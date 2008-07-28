@@ -543,130 +543,130 @@ died_no_date_no_place = [
 
 buried_full_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried on %(burial_date)s in %(burial_place)s."), 
-    _("He was buried on %(burial_date)s in %(burial_place)s."), 
+    _("%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
+    _("He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried on %(burial_date)s in %(burial_place)s."), 
-    _("She was buried on %(burial_date)s in %(burial_place)s."), 
+    _("%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
+    _("She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."), 
-    _("This person was buried on %(burial_date)s in %(burial_place)s."), 
+    _("%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
+    _("This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(burial_date)s in %(burial_place)s."),
+    'succinct' : _("Buried %(burial_date)s in %(burial_place)s%(endnotes)s."),
     }
 
 buried_full_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried on %(burial_date)s."), 
-    _("He was buried on %(burial_date)s."), 
+    _("%(male_name)s was buried on %(burial_date)s%(endnotes)s."), 
+    _("He was buried on %(burial_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried on %(burial_date)s."), 
-    _("She was buried on %(burial_date)s."), 
+    _("%(female_name)s was buried on %(burial_date)s%(endnotes)s."), 
+    _("She was buried on %(burial_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried on %(burial_date)s."), 
-    _("This person was buried on %(burial_date)s."), 
+    _("%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."), 
+    _("This person was buried on %(burial_date)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(burial_date)s."),
+    'succinct' : _("Buried %(burial_date)s%(endnotes)s."),
     }
 
 buried_partial_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried in %(month_year)s in %(burial_place)s."), 
-    _("He was buried in %(month_year)s in %(burial_place)s."), 
+    _("%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
+    _("He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried in %(month_year)s in %(burial_place)s."), 
-    _("She was buried in %(month_year)s in %(burial_place)s."), 
+    _("%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
+    _("She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."), 
-    _("This person was buried in %(month_year)s in %(burial_place)s."), 
+    _("%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
+    _("This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(month_year)s in %(burial_place)s."),
+    'succinct' : _("Buried %(month_year)s in %(burial_place)s%(endnotes)s."),
     }
 
 buried_partial_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried in %(month_year)s."), 
-    _("He was buried in %(month_year)s."), 
+    _("%(male_name)s was buried in %(month_year)s%(endnotes)s."), 
+    _("He was buried in %(month_year)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried in %(month_year)s."), 
-    _("She was buried in %(month_year)s."), 
+    _("%(female_name)s was buried in %(month_year)s%(endnotes)s."), 
+    _("She was buried in %(month_year)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried in %(month_year)s."), 
-    _("This person was buried in %(month_year)s."), 
+    _("%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."), 
+    _("This person was buried in %(month_year)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(month_year)s."),
+    'succinct' : _("Buried %(month_year)s%(endnotes)s."),
     }
 
 buried_modified_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried %(modified_date)s in %(burial_place)s."), 
-    _("He was buried %(modified_date)s in %(burial_place)s."), 
+    _("%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
+    _("He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried %(modified_date)s in %(burial_place)s."), 
-    _("She was buried %(modified_date)s in %(burial_place)s."), 
+    _("%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
+    _("She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."), 
-    _("This person was buried %(modified_date)s in %(burial_place)s."), 
+    _("%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
+    _("This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(modified_date)s in %(burial_place)s."),
+    'succinct' : _("Buried %(modified_date)s in %(burial_place)s%(endnotes)s."),
     }
 
 buried_modified_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was buried %(modified_date)s."), 
-    _("He was buried %(modified_date)s."), 
+    _("%(male_name)s was buried %(modified_date)s%(endnotes)s."), 
+    _("He was buried %(modified_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was buried %(modified_date)s."), 
-    _("She was buried %(modified_date)s."), 
+    _("%(female_name)s was buried %(modified_date)s%(endnotes)s."), 
+    _("She was buried %(modified_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried %(modified_date)s."), 
-    _("This person was buried %(modified_date)s."), 
+    _("%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."), 
+    _("This person was buried %(modified_date)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried %(modified_date)s."),
+    'succinct' : _("Buried %(modified_date)s%(endnotes)s."),
     }
 
 buried_no_date_place = {
     gen.lib.Person.MALE    : [
-    _("%(male_name)s was buried in %(burial_place)s."), 
-    _("He was buried in %(burial_place)s."), 
+    _("%(male_name)s was buried in %(burial_place)s%(endnotes)s."), 
+    _("He was buried in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE  : [
-    _("%(female_name)s was buried in %(burial_place)s."), 
-    _("She was buried in %(burial_place)s."), 
+    _("%(female_name)s was buried in %(burial_place)s%(endnotes)s."), 
+    _("She was buried in %(burial_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was buried in %(burial_place)s."), 
-    _("This person was buried in %(burial_place)s."), 
+    _("%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."), 
+    _("This person was buried in %(burial_place)s%(endnotes)s."), 
     ], 
-    'succinct' : _("Buried in %(burial_place)s."),
+    'succinct' : _("Buried in %(burial_place)s%(endnotes)s."),
     }
 
 buried_no_date_no_place = {
     gen.lib.Person.MALE    : [
-    _("%(male_name)s was buried."), 
-    _("He was buried."), 
+    _("%(male_name)s was buried%(endnotes)s."), 
+    _("He was buried%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE  : [
-    _("%(female_name)s was buried."), 
-    _("She was buried."), 
+    _("%(female_name)s was buried%(endnotes)s."), 
+    _("She was buried%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was buried."), 
-    _("This person was buried."), 
+    _("%(unknown_gender_name)s was buried%(endnotes)s."), 
+    _("This person was buried%(endnotes)s."), 
     ],
-    'succinct' : _("Buried."),
+    'succinct' : _("Buried%(endnotes)s."),
     }
 
 #------------------------------------------------------------------------
@@ -677,130 +677,130 @@ buried_no_date_no_place = {
 
 baptised_full_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
-    _("He was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
-    _("She was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [ 
-    _("%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
-    _("This person was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(baptism_date)s in %(baptism_place)s."), 
+    'succinct' : _("Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_full_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised on %(baptism_date)s."), 
-    _("He was baptised on %(baptism_date)s."), 
+    _("%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("He was baptised on %(baptism_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised on %(baptism_date)s."), 
-    _("She was baptised on %(baptism_date)s."), 
+    _("%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("She was baptised on %(baptism_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised on %(baptism_date)s."), 
-    _("This person was baptised on %(baptism_date)s."), 
+    _("%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."), 
+    _("This person was baptised on %(baptism_date)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(baptism_date)s.") 
+    'succinct' : _("Baptised %(baptism_date)s%(endnotes)s.") 
     }
 
 baptised_partial_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
-    _("He was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ], 
 gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
-    _("She was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ], 
 gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
-    _("This person was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(month_year)s in %(baptism_place)s."), 
+    'succinct' : _("Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_partial_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised in %(month_year)s."), 
-    _("He was baptised in %(month_year)s."), 
+    _("%(male_name)s was baptised in %(month_year)s%(endnotes)s."), 
+    _("He was baptised in %(month_year)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised in %(month_year)s."), 
-    _("She was baptised in %(month_year)s."), 
+    _("%(female_name)s was baptised in %(month_year)s%(endnotes)s."), 
+    _("She was baptised in %(month_year)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised in %(month_year)s."), 
-    _("This person was baptised in %(month_year)s."), 
+    _("%(unknown_gender_name)s was baptised in %(month_year)s%(endnotes)s."), 
+    _("This person was baptised in %(month_year)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(month_year)s."), 
+    'succinct' : _("Baptised %(month_year)s%(endnotes)s."), 
     }
 
 baptised_modified_date_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
-    _("He was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
-    _("She was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
-    _("This person was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(modified_date)s in %(baptism_place)s."), 
+    'succinct' : _("Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_modified_date_no_place = {
     gen.lib.Person.MALE: [
-    _("%(male_name)s was baptised %(modified_date)s."), 
-    _("He was baptised %(modified_date)s."), 
+    _("%(male_name)s was baptised %(modified_date)s%(endnotes)s."), 
+    _("He was baptised %(modified_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE: [
-    _("%(female_name)s was baptised %(modified_date)s."), 
-    _("She was baptised %(modified_date)s."), 
+    _("%(female_name)s was baptised %(modified_date)s%(endnotes)s."), 
+    _("She was baptised %(modified_date)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was baptised %(modified_date)s."), 
-    _("This person was baptised %(modified_date)s."), 
+    _("%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."), 
+    _("This person was baptised %(modified_date)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised %(modified_date)s."), 
+    'succinct' : _("Baptised %(modified_date)s%(endnotes)s."), 
     }
 
 baptised_no_date_place = {
     gen.lib.Person.MALE    : [
-    _("%(male_name)s was baptised in %(baptism_place)s."), 
-    _("He was baptised in %(baptism_place)s."), 
+    _("%(male_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("He was baptised in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE  : [
-    _("%(female_name)s was baptised in %(baptism_place)s."), 
-    _("She was baptised in %(baptism_place)s."), 
+    _("%(female_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("She was baptised in %(baptism_place)s%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was baptised in %(baptism_place)s."), 
-    _("This person was baptised in %(baptism_place)s."), 
+    _("%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."), 
+    _("This person was baptised in %(baptism_place)s%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised in %(baptism_place)s."), 
+    'succinct' : _("Baptised in %(baptism_place)s%(endnotes)s."), 
     }
 
 baptised_no_date_no_place = {
     gen.lib.Person.MALE    : [
-    _("%(male_name)s was baptised."), 
-    _("He was baptised."), 
+    _("%(male_name)s was baptised%(endnotes)s."), 
+    _("He was baptised%(endnotes)s."), 
     ], 
     gen.lib.Person.FEMALE  : [
-    _("%(female_name)s was baptised."), 
-    _("She was baptised."), 
+    _("%(female_name)s was baptised%(endnotes)s."), 
+    _("She was baptised%(endnotes)s."), 
     ], 
     gen.lib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was baptised."), 
-    _("This person was baptised."), 
+    _("%(unknown_gender_name)s was baptised%(endnotes)s."), 
+    _("This person was baptised%(endnotes)s."), 
     ],
-    'succinct' : _("Baptised."),
+    'succinct' : _("Baptised%(endnotes)s."),
     }
 
 #------------------------------------------------------------------------
@@ -2447,8 +2447,8 @@ def died_str(database, person, person_name=None, verbose=True,
 # buried_str
 #
 #-------------------------------------------------------------------------
-def buried_str(database, person, person_name=None, 
-               empty_date="", empty_place="", verbose=True):
+def buried_str(database, person, person_name=None, verbose=True, 
+                 endnotes=None, empty_date="", empty_place=""):
     """ 
     Check burial record.
     Statement formats name precedes this
@@ -2459,6 +2459,9 @@ def buried_str(database, person, person_name=None,
         was buried in Place.
         ''
     """
+
+    if not endnotes:
+        endnotes = empty_notes
 
     name_index = 0
     if person_name == None:
@@ -2502,7 +2505,8 @@ def buried_str(database, person, person_name=None,
         'burial_date'         : bdate, 
         'burial_place'        : bplace, 
         'month_year'          : bdate, 
-        'modified_date'       : bdate, 
+        'modified_date'       : bdate,
+        'endnotes'            : endnotes(event),
         }
 
     if bdate and bdate_mod and verbose:
@@ -2552,7 +2556,8 @@ def buried_str(database, person, person_name=None,
 #
 #-------------------------------------------------------------------------
 
-def baptised_str(database, person, person_name=None, verbose=True, empty_date="", empty_place=""):
+def baptised_str(database, person, person_name=None, verbose=True, 
+                 endnotes=None, empty_date="", empty_place=""):
     """ 
     Check baptism record.
     Statement formats name precedes this
@@ -2563,6 +2568,9 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
         was baptised in Place.
     ''
     """
+
+    if not endnotes:
+        endnotes = empty_notes
 
     name_index = 0
     if person_name == None:
@@ -2606,7 +2614,8 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
         'baptism_date'        : bdate, 
         'baptism_place'       : bplace, 
         'month_year'          : bdate, 
-        'modified_date'       : bdate, 
+        'modified_date'       : bdate,
+        'endnotes'            : endnotes(event),  
         }
 
     if bdate and bdate_mod and verbose:
