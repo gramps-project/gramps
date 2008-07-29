@@ -76,7 +76,6 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 import gen.lib
 import const
-import BaseDoc
 from GrampsCfg import get_researcher
 from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
@@ -262,31 +261,6 @@ class WebCalReport(Report):
                   "web pages."))
             self.warn_dir = False
 
-    # code snippets for Easter and Daylight saving start/ stop
-    # are borrowed from Calendar.py
-
-    def easter(self):
-        """
-        Computes the year/month/day of easter. Based on work by
-        J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
-        to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
-        Ash Wednesday is 46 days before Easter Sunday.
-        """
-        year = self.year
-        c = year / 100
-        n = year - 19 * (year / 19)
-        k = (c - 17) / 25
-        i = c - c / 4 - (c - k) / 3 + 19 * n + 15
-        i = i - 30 * (i / 30)
-        i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1))
-                           * ((21 - n) / 11))
-        j = year + year / 4 + i + 2 - c + c / 4
-        j = j - 7 * (j / 7)
-        l = i - j
-        month = 3 + (l + 40) / 44
-        day = l + 28 - 31 * (month / 4)
-        return (year, month, day)
-
     def dst(self, area="us"):
         """
         Return Daylight Saving Time start/stop in a given area ("us", "eu").
@@ -305,35 +279,6 @@ class WebCalReport(Report):
             stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
         return (start, stop)
 
-    def get_short_name(self, person, maiden_name = None):
-        """ Return person's name, unless maiden_name given, unless married_name listed. """
-        # Get all of a person's names:
-        primary_name = person.get_primary_name()
-        married_name = None
-        names = [primary_name] + person.get_alternate_names()
-        for n in names:
-            if int(n.get_type()) == gen.lib.NameType.MARRIED:
-                married_name = n
-        # Now, decide which to use:
-        if maiden_name is not None:
-            if married_name is not None:
-                first_name, family_name = married_name.get_first_name(), married_name.get_surname()
-                call_name = married_name.get_call_name()
-            else:
-                first_name, family_name = primary_name.get_first_name(), maiden_name
-                call_name = primary_name.get_call_name()
-        else:
-            first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
-            call_name = primary_name.get_call_name()
-        # If they have a nickname use it
-        if call_name is not None and call_name.strip() != "":
-            first_name = call_name.strip()
-        else: # else just get the first name:
-            first_name = first_name.strip()
-            if " " in first_name:
-                first_name, rest = first_name.split(" ", 1) # just one split max
-        return ("%s %s" % (first_name, family_name)).strip()
-
     def add_day_item(self, text, year, month, day):
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
@@ -349,7 +294,6 @@ class WebCalReport(Report):
         User directory is first choice if it exists, and does not use both holiday files any longer
         """
 
-        year = self.year
         holiday_file = 'holidays.xml'
         holiday_full_path = ""
         fname1 = os.path.join(const.USER_PLUGINS, holiday_file)
@@ -373,7 +317,7 @@ class WebCalReport(Report):
             holidays = mycalendar.check_date( date )
             for text in holidays:
                 if text == "Easter":
-                    date1 = self.easter()
+                    date1 = _easter(year)
                     self.add_day_item(text, date1[0], date1[1], date1[2])
                 elif text == "Daylight Saving begins":
                     if Utils.xml_lang() == "en-US":
@@ -425,7 +369,7 @@ class WebCalReport(Report):
             ('June',        _('Jun'),             True),
             ('July',        _('Jul'),             True),
             ('August',      _('Aug'),             True),
-            ('September',   _('Sep'),            True),
+            ('September',   _('Sep'),             True),
             ('October',     _('Oct'),             True),
             ('November',    _('Nov'),             True),
             ('December',    _('Dec'),             True),
@@ -442,17 +386,14 @@ class WebCalReport(Report):
                 else:
                     url = _subdirs("wc", new_dir, url_fname)
                 url += self.ext
-                self.display_nav_link(of, url, nav_text, currentsection)
 
-    def display_nav_link(self, of, url, title, currentsection):
-        # Figure out if we need <li id="CurrentSection"> of just plain <li>
-        cs = False
-        if title == currentsection:
-            cs = True
+                # Figure out if we need <li id="CurrentSection"> or just plain <li>
+                cs = False
+                if nav_text == currentsection:
+                    cs = True
 
-        cs = cs and ' id="CurrentSection"' or ''
-        of.write('            <li%s><a href="%s">%s</a></li>\n'
-            % (cs, url, title))
+                cs = cs and ' id="CurrentSection"' or ''
+                of.write('            <li%s><a href="%s">%s</a></li>\n' % (cs, url, nav_text))
 
     def calendar_build(self, of, cal, month):
         """
@@ -553,8 +494,8 @@ class WebCalReport(Report):
                         of.write('                 <td id="day%d" ' % day)
                         thisday = current_date.fromordinal(current_ord)
                         if thisday.month == month: # Something this month
-                            list_ = self.calendar.get(month, {}).get(thisday.day, {})
-                            if ((thisday.day == day) and (list_ > [])):
+                            list_ = self.calendar.get(month, {}).get(thisday.day, [])
+                            if list_ > []:
                                 specclass = "highlight " + dayclass
                                 of.write('class="%s">\n' % specclass)
                                 if cal == "yg": # Year at a Glance
@@ -565,13 +506,13 @@ class WebCalReport(Report):
                                     of.write('                         <div class="date">%d'
                                         '</div></a>\n' % day)
                                     self.indiv_date(month, day, list_)
-                                else: # WebCal
+                                else:
+                                    # WebCal
                                     of.write('                         <div class="date">%d'
                                         '</div>\n' % day)
                                     of.write('                          <ul>\n')
                                     for p in list_:
-                                        lines = p.count("\n") + 1 # lines in the text
-                                        for line in p.split("\n"):
+                                        for line in p.splitlines():
                                             of.write('                            <li>')
                                             of.write(line)
                                             of.write('</li>\n')
@@ -588,9 +529,7 @@ class WebCalReport(Report):
             of.write('             </tr>\n')
 
         # Complete six weeks for proper styling
-        of = self.six_weeks(of, nweeks)
-
-        return of
+        self.six_weeks(of, nweeks)
 
     def write_header(self, of, title, cal, mystyle):
         """
@@ -777,8 +716,7 @@ class WebCalReport(Report):
         else:
             ip.write('                  <ul>\n')
         for p in list_:
-            lines = p.count("\n") + 1 # lines in the text
-            for line in p.split("\n"):
+            for line in p.splitlines():
                 ip.write('                         <li>')
                 ip.write(line)
                 ip.write('</li>\n')
@@ -804,7 +742,6 @@ class WebCalReport(Report):
             of.write('                 <td id="emptyDays" colspan="7">\n')
             of.write('                 </td>\n')
             of.write('             </tr>\n')
-        return of
 
     def blank_year(self):
         """
@@ -874,7 +811,7 @@ class WebCalReport(Report):
             self.progress.step()
 
             # build the calendar
-            by = self.calendar_build(by, "by", month)
+            self.calendar_build(by, "by", month)
 
             # close table body
             by.write('         </tbody>\n')
@@ -978,7 +915,7 @@ class WebCalReport(Report):
             self.progress.step()
 
             # build the calendar
-            yg = self.calendar_build(yg, "yg", month)
+            self.calendar_build(yg, "yg", month)
 
 
             # close table body before writing note
@@ -1115,7 +1052,7 @@ class WebCalReport(Report):
                                         # European calendar starts on Monday, default
 
         # build the calendar
-        of = self.calendar_build(of, "wc", month)
+        self.calendar_build(of, "wc", month)
 
         # close table body before note section
         of.write('         </tbody>\n')
@@ -1152,6 +1089,7 @@ class WebCalReport(Report):
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
             living = probably_alive(person, self.database, make_date(self.year, 1, 1), 0)
+
             if self.birthday and birth_date != None and ((self.alive and living) or not self.alive):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
@@ -1172,7 +1110,7 @@ class WebCalReport(Report):
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father != None:
                                         father_lastname = father.get_primary_name().get_surname()
-                short_name = self.get_short_name(person, father_lastname)
+                short_name = _get_short_name(person, father_lastname)
                 if age == 0: # person is 0 years old, display nothing
                     text = ""
                 elif age == 1: # person is 1, and therefore display it correctly
@@ -1181,6 +1119,7 @@ class WebCalReport(Report):
                 else:
                     text = '%s, <em>%d</em> years old' % (short_name, age)
                 self.add_day_item(text, year, month, day)
+
             if self.anniv and ((self.alive and living) or not self.alive):
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list:
@@ -1194,8 +1133,8 @@ class WebCalReport(Report):
                     if spouse_handle:
                         spouse = self.database.get_person_from_handle(spouse_handle)
                         if spouse:
-                            spouse_name = self.get_short_name(spouse)
-                            short_name = self.get_short_name(person)
+                            spouse_name = _get_short_name(spouse)
+                            short_name = _get_short_name(person)
                             if self.alive:
                                 if not probably_alive(spouse, self.database, make_date(self.year, 1, 1), 0):
                                     continue
@@ -1704,6 +1643,62 @@ def _get_countries():
 # TODO: Only load this once the first time it is actually needed so Gramps
 # doesn't take so long to start up.
 _COUNTRIES = _get_countries()
+
+# code snippets for Easter and Daylight saving start/ stop
+# are borrowed from Calendar.py
+def _easter(year):
+    """
+    Computes the year/month/day of easter. Based on work by
+    J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
+    to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
+    Ash Wednesday is 46 days before Easter Sunday.
+    """
+    c = year / 100
+    n = year - 19 * (year / 19)
+    k = (c - 17) / 25
+    i = c - c / 4 - (c - k) / 3 + 19 * n + 15
+    i = i - 30 * (i / 30)
+    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1)) * ((21 - n) / 11))
+    j = year + year / 4 + i + 2 - c + c / 4
+    j = j - 7 * (j / 7)
+    l = i - j
+    month = 3 + (l + 40) / 44
+    day = l + 28 - 31 * (month / 4)
+    return year, month, day
+
+# FIXME. Missing name prefix, suffix etc.
+def _get_short_name(person, maiden_name = None):
+    """ Return person's name, unless maiden_name given, unless married_name listed. """
+    # Get all of a person's names:
+    primary_name = person.get_primary_name()
+
+    married_name = None
+    names = [primary_name] + person.get_alternate_names()
+    for n in names:
+        if int(n.get_type()) == gen.lib.NameType.MARRIED:
+            married_name = n
+
+    # Now, decide which to use:
+    if maiden_name is not None:
+        if married_name is not None:
+            first_name, family_name = married_name.get_first_name(), married_name.get_surname()
+            call_name = married_name.get_call_name()
+        else:
+            first_name, family_name = primary_name.get_first_name(), maiden_name
+            call_name = primary_name.get_call_name()
+    else:
+        first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
+        call_name = primary_name.get_call_name()
+
+    # If they have a nickname use it
+    if call_name is not None and call_name.strip() != "":
+        first_name = call_name.strip()
+    else: # else just get the first name:
+        first_name = first_name.strip()
+        if " " in first_name:
+            first_name, rest = first_name.split(" ", 1) # just one split max
+
+    return ("%s %s" % (first_name, family_name)).strip()
 
 #-------------------------------------------------------------------------
 #
