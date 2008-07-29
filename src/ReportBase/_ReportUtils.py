@@ -2562,7 +2562,7 @@ def buried_str(database, person, person_name=None, verbose=True,
 #
 #-------------------------------------------------------------------------
 def baptised_str(database, person, person_name=None, verbose=True, 
-               endnotes=None, empty_date="", empty_place=""
+               endnotes=None, empty_date="", empty_place=""):
     """ 
     Check baptism record.
     Statement formats name precedes this
