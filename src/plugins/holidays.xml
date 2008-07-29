@@ -353,4 +353,27 @@
     <date name="1. svátek vánoční" value="*/12/25" type="national" />
     <date name="2. svátek vánoční" value="*/12/26" type="national" />
   </country>
+  <country name="Chile">
+    <date name="Año nuevo" value="*/1/1" type="national" />
+    <date name="Viernes Santo" value="2007/4/6" type="religious" />
+    <date name="Viernes Santo" value="2008/3/21" type="religious" />
+    <date name="Viernes Santo" value="2009/4/10" type="religious" />
+    <date name="Viernes Santo" value="2010/4/2" type="religious" />
+    <date name="Viernes Santo" value="2011/4/22" type="religious" />
+    <date name="Viernes Santo" value="2012/4/6" type="religious" />
+    <date name="Viernes Santo" value="2013/3/29" type="religious" />
+    <date name="Viernes Santo" value="2014/4/18" type="religious" />
+    <date name="Viernes Santo" value="2015/4/3" type="religious" />
+    <date name="Día del Trabajador" value="*/5/1" type="national" />
+    <date name="Día de las Glorias Navales" value="*/5/21" type="national" />
+    <date name="San Pedro y San Pablo" value="*/6/29" type="religious" />
+    <date name="Día de la Virgen del Carmen" value="*/7/16" type="religious" />
+    <date name="Asunción de la Virgen" value="*/8/15" type="religious" />
+    <date name="Fiestas Patrias" value="*/9/18" type="national" />
+    <date name="Glorias del Ejército" value="*/9/19" type="national" />
+    <date name="Día de la Raza" value="*/10/12" type="national" />
+    <date name="Todos los Santos" value="*/11/1" type="religious" />
+    <date name="Inmaculada Concepción" value="*/12/8" type="religious" />
+    <date name="Navidad" value="*/12/25" type="national" /> 
+  </country>
 </calendar>
