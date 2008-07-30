@@ -231,6 +231,15 @@ class WebCalReport(Report):
 
         self.warn_dir = True        # Only give warning once.
 
+        # Set first weekday according to Locale
+        xmllang = Utils.xml_lang()
+        if xmllang == "en-US":
+            # USA calendar starts on a Sunday
+            calendar.setfirstweekday(calendar.SUNDAY)
+        else:
+            # European calendar starts on Monday, default
+            calendar.setfirstweekday(calendar.MONDAY)
+
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
         Copy a file from a source to a (report) destination.
@@ -280,6 +289,9 @@ class WebCalReport(Report):
         return (start, stop)
 
     def add_day_item(self, text, year, month, day):
+        if day == 0:
+            # This may happen for certain "about" dates.
+            day = 1     # Use first day of the month
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
         day_list.append(text)
@@ -358,9 +370,13 @@ class WebCalReport(Report):
                 self.copy_file(from_file, "arrow102.gif", "images")
 
     def display_nav_links(self, of, currentsection, cal):
+        """
+        'cal' - one of "yg", "by", "wc", "ip"
+        """
 
         # Check to see if home_link will be used???
         navs = [
+            (self.home_link,_('Home'),            self.home_link),
             ('January',     _('Jan'),             True),
             ('February',    _('Feb'),             True),
             ('March',       _('Mar'),             True),
@@ -388,16 +404,17 @@ class WebCalReport(Report):
                 url += self.ext
 
                 # Figure out if we need <li id="CurrentSection"> or just plain <li>
-                cs = False
+                cs = ''
                 if nav_text == currentsection:
-                    cs = True
+                    cs = ' id="CurrentSection"'
 
-                cs = cs and ' id="CurrentSection"' or ''
                 of.write('            <li%s><a href="%s">%s</a></li>\n' % (cs, url, nav_text))
 
     def calendar_build(self, of, cal, month):
         """
         This does the work of building the calendar
+        'cal' - one of "yg", "by", "wc"
+        'month' - month number 1, 2, .., 12
         """
 
         year = self.year
@@ -411,6 +428,9 @@ class WebCalReport(Report):
         of.write('                <th colspan="7" class="monthName">')
         of.write('%s</th>\n' % title)
         of.write('            </tr>\n')
+
+        # This calendar has first column sunday. Do not use locale!
+        calendar.setfirstweekday(calendar.SUNDAY)
 
         # Calendar weekday names header
         of.write('            <tr>\n')
@@ -437,12 +457,16 @@ class WebCalReport(Report):
         of.write('        </thead>\n')
 
         of.write('        <tbody>\n')
-        monthinfo = calendar.monthcalendar(year, month)
-        nweeks = len(monthinfo)
+
+        # Compute the first day to display for this month.
+        # It can also be a day in the previous month.
         current_date = datetime.date(year, month, 1) # first day of the month
+        # isoweekday: 1=monday, 2=tuesday, etc
         if current_date.isoweekday() != 7: # start dow here is 7, sunday
+            # Compute the sunday before this date.
             current_ord = current_date.toordinal() - current_date.isoweekday()
         else:
+            # First day of the month is sunday, that's OK
             current_ord = current_date.toordinal()
 
         # get last month's last week for previous days in the month
@@ -451,19 +475,22 @@ class WebCalReport(Report):
         else:
             prevmonth = calendar.monthcalendar(year, month-1)
         num_weeks = len(prevmonth)
-        lastweek = prevmonth[num_weeks - 1]
+        lastweek_prevmonth = prevmonth[num_weeks - 1]
 
         # get next month's first week for next days in the month
         if month == 12:
             nextmonth = calendar.monthcalendar(year+1, 1)
         else:
             nextmonth = calendar.monthcalendar(year, month + 1)
-        nextweek = nextmonth[0]
+        firstweek_nextmonth = nextmonth[0]
 
         # Begin calendar
+        monthinfo = calendar.monthcalendar(year, month)
+        nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
             week = monthinfo[week_row]
             of.write('             <tr class="week%d">\n' % week_row)
+
             for days_row in range(0, 7):
                 if days_row == 0:
                     dayclass = "weekend sunday"
@@ -471,31 +498,33 @@ class WebCalReport(Report):
                     dayclass = "weekend saturday"
                 else:
                     dayclass = "weekday"
+
                 day = week[days_row]
-                if day == 0: # previous or next month day
-                    if week_row == 0: # previous day
-                        specday = lastweek[days_row]
+                if day == 0:                      # a day in the previous or in the next month
+                    if week_row == 0:             # day in the previous month
+                        specday = lastweek_prevmonth[days_row]
                         specclass = "previous " + dayclass
-                    elif week_row == nweeks-1:
-                        specday = nextweek[days_row]
+                    elif week_row == nweeks-1:    # day in the next month
+                        specday = firstweek_nextmonth[days_row]
                         specclass = "next " + dayclass
+
                     of.write('                 <td id="specday%d" class="%s">\n'
                         % (specday, specclass))
                     of.write('                     <div class="date">%d</div>\n'
                         % specday)
                     of.write('                 </td>\n')
-                else: # day number
+
+                else:                             # normal day number in current month
                     if cal == "by":
-                        of.write('                 <td id="day%d" class="%s">\n'
-                            % (day, dayclass))
+                        of.write('                 <td id="day%d" class="%s">\n' % (day, dayclass))
                         of.write('                     <div class="date">%d</div>\n' % day)
                         of.write('                 </td>\n')
                     else:
                         of.write('                 <td id="day%d" ' % day)
-                        thisday = current_date.fromordinal(current_ord)
+                        thisday = datetime.date.fromordinal(current_ord)
                         if thisday.month == month: # Something this month
-                            list_ = self.calendar.get(month, {}).get(thisday.day, [])
-                            if list_ > []:
+                            day_list = self.calendar.get(month, {}).get(thisday.day, [])
+                            if day_list > []:
                                 specclass = "highlight " + dayclass
                                 of.write('class="%s">\n' % specclass)
                                 if cal == "yg": # Year at a Glance
@@ -505,13 +534,12 @@ class WebCalReport(Report):
                                         % (lng_month, shrt_month, day, self.ext))
                                     of.write('                         <div class="date">%d'
                                         '</div></a>\n' % day)
-                                    self.indiv_date(month, day, list_)
+                                    self.indiv_date(month, day, day_list)
                                 else:
                                     # WebCal
-                                    of.write('                         <div class="date">%d'
-                                        '</div>\n' % day)
+                                    of.write('                         <div class="date">%d</div>\n' % day)
                                     of.write('                          <ul>\n')
-                                    for p in list_:
+                                    for p in day_list:
                                         for line in p.splitlines():
                                             of.write('                            <li>')
                                             of.write(line)
@@ -519,21 +547,25 @@ class WebCalReport(Report):
                                     of.write('                         </ul>\n')
                             else:
                                 of.write('class="%s">\n' % dayclass)
-                                of.write('                         <div class="date">%d</div>\n'
-                                    % day)
+                                of.write('                         <div class="date">%d</div>\n' % day)
                         else:
+                            # Either a day of previous month, or a day of next month
                             of.write('class="%s">\n' % dayclass)
                             of.write('                     <div class="date">%d</div>\n' % day)
                         of.write('                 </td>\n')
+
                 current_ord += 1
+
             of.write('             </tr>\n')
 
         # Complete six weeks for proper styling
-        self.six_weeks(of, nweeks)
+        # FIXME. Why would we need this? The for loop already
+        # creates all the weeks we need. At most six weeks.
+        # self.six_weeks(of, nweeks)
 
     def write_header(self, of, title, cal, mystyle):
         """
-        This creates the header for the Calendars iincluding style embedded for special purpose
+        This creates the header for the Calendars including style embedded for special purpose
         """
 
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n ')
@@ -580,7 +612,7 @@ class WebCalReport(Report):
         of.write(mystyle)
         of.write('</head>\n')
 
-        return (of, author)
+        return author
 
     def write_footer(self, of, cal):
         """
@@ -635,9 +667,10 @@ class WebCalReport(Report):
     def close_file(self, of):
         of.close()
 
-    def indiv_date(self, month, day_num, list_):
+    def indiv_date(self, month, day_num, day_list):
         """
         This method creates the indiv pages for "Year At A Glance"
+        'dat_list' - lines of text to display at this day
         """
 
         # TODO. Cleanup the "/" for URLs versus file names.
@@ -655,7 +688,7 @@ class WebCalReport(Report):
 
         # Name the file, and create it
         cal_file = '%d/%s/%s%d%s' % (year, lng_month, shrt_month, day_num, self.ext)
-        ip = self.create_file(cal_file)
+        of = self.create_file(cal_file)
 
         mystyle = """
         <style type="text/css">
@@ -681,49 +714,49 @@ class WebCalReport(Report):
 
         # Add Header to calendar
         title = "%d %s %d" % (day_num, lng_month, year)
-        (ip, author) = self.write_header(ip, title, "ip", mystyle)
+        author = self.write_header(of, title, "ip", mystyle)
 
-        ip.write('<body id="events-%s%d">\n' % (shrt_month, day_num))
-        ip.write('    <div id="header">\n')
+        of.write('<body id="events-%s%d">\n' % (shrt_month, day_num))
+        of.write('    <div id="header">\n')
         if author:
-            ip.write('         <div id="GRAMPSinfo">\n')
+            of.write('         <div id="GRAMPSinfo">\n')
             msg = 'Created for %s' % author
-            ip.write('             %s</div>\n' % msg)
-        ip.write('      <h1 id="SiteTitle">A Peak into One Day</h1>\n')
-        ip.write('    </div>\n')
+            of.write('             %s</div>\n' % msg)
+        of.write('      <h1 id="SiteTitle">A Peak into One Day</h1>\n')
+        of.write('    </div>\n')
 
         # Create navigation menu
-        ip.write('    <div id="navigation">\n')
-        ip.write('         <ul>\n')
+        of.write('    <div id="navigation">\n')
+        of.write('         <ul>\n')
 
         if self.home_link.strip() != '':
-            ip.write('                     <li>')
-            ip.write('<a href="%s">HOME</a></li>\n' % self.home_link)
+            of.write('                     <li>')
+            of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
         title = GrampsLocale.short_months[month]
-        self.display_nav_links(ip, title, "ip")
+        self.display_nav_links(of, title, "ip")
 
-        ip.write('         </ul>\n')
-        ip.write('     </div>\n')
+        of.write('         </ul>\n')
+        of.write('     </div>\n')
 
-        ip.write('      <h2 class="monthName" style="display:block;">%s %d, %d</h2>\n'
+        of.write('      <h2 class="monthName" style="display:block;">%s %d, %d</h2>\n'
             % (lng_month, day_num, year))
 
         # if arrow file exists in IMAGE_DIR, use it
         arrow = os.path.join(const.IMAGE_DIR, "arrow102.gif")
         if os.path.isfile(arrow):
-            ip.write('                  <ul id="arrow">\n')
+            of.write('                  <ul id="arrow">\n')
         else:
-            ip.write('                  <ul>\n')
-        for p in list_:
+            of.write('                  <ul>\n')
+        for p in day_list:
             for line in p.splitlines():
-                ip.write('                         <li>')
-                ip.write(line)
-                ip.write('</li>\n')
-        ip.write('                      </ul>\n')
+                of.write('                         <li>')
+                of.write(line)
+                of.write('</li>\n')
+        of.write('                      </ul>\n')
 
-        self.write_footer(ip, "ip")
-        self.close_file(ip)
+        self.write_footer(of, "ip")
+        self.close_file(of)
 
     def six_weeks(self, of, nweeks):
         """
@@ -756,7 +789,7 @@ class WebCalReport(Report):
 
         # Name the file, and create it
         cal_file = '%d/blankyear%s' % (year, self.ext)
-        by = self.create_file(cal_file)
+        of = self.create_file(cal_file)
 
         # Add specific styles for "Printable Full-Year Calendar" page
         mystyle = """
@@ -778,31 +811,31 @@ class WebCalReport(Report):
 
         # Add header to page
         title = str(year) + "Blank Calendar"
-        (by, author) = self.write_header(by, title, "by", mystyle)
+        author = self.write_header(of, title, "by", mystyle)
 
-        by.write('<body id="blankca">\n')
+        of.write('<body id="blankca">\n')
 
         # Header Title
-        by.write('    <div id="header">\n')
+        of.write('    <div id="header">\n')
         if author:
-            by.write('         <div id="GRAMPSinfo">\n')
+            of.write('         <div id="GRAMPSinfo">\n')
             msg = 'Created for %s' % author
-            by.write('             %s</div>\n' % msg)
-        by.write('        <h1 id="SiteTitle">%d</h1>\n' % year)
-        by.write('    </div>\n')
+            of.write('             %s</div>\n' % msg)
+        of.write('        <h1 id="SiteTitle">%d</h1>\n' % year)
+        of.write('    </div>\n')
 
         # Create navigation menu
-        by.write('    <div id="navigation">\n')
-        by.write('         <ul>\n')
+        of.write('    <div id="navigation">\n')
+        of.write('         <ul>\n')
 
         if self.home_link.strip() != '':
-            by.write('                     <li>')
-            by.write('<a href="%s">HOME</a></li>\n' % self.home_link)
+            of.write('                     <li>')
+            of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(by, 'Blank Calendar', "by")
+        self.display_nav_links(of, 'Blank Calendar', "by")
 
-        by.write('         </ul>\n')
-        by.write('     </div>\n')
+        of.write('         </ul>\n')
+        of.write('     </div>\n')
 
         # Create progress bar for it
         self.progress.set_pass(_('Creating Printable Blank Full-Year Calendar Page'), 12)
@@ -811,15 +844,15 @@ class WebCalReport(Report):
             self.progress.step()
 
             # build the calendar
-            self.calendar_build(by, "by", month)
+            self.calendar_build(of, "by", month)
 
             # close table body
-            by.write('         </tbody>\n')
-            by.write('     </table>\n')
+            of.write('         </tbody>\n')
+            of.write('     </table>\n')
 
         # Write footer and close file
-        self.write_footer(by, "by")
-        self.close_file(by)
+        self.write_footer(of, "by")
+        self.close_file(of)
 
     def year_glance(self):
         """
@@ -834,7 +867,7 @@ class WebCalReport(Report):
 
         # Name the file, and create it
         cal_file = '%d/fullyear%s' % (year, self.ext)
-        yg = self.create_file(cal_file)
+        of = self.create_file(cal_file)
 
         # Add specific styles for "Year At A Glance" page
         mystyle = """
@@ -876,37 +909,37 @@ class WebCalReport(Report):
 
         # Add header to page
         title = "%d, At A Glance" % year
-        (yg, author) = self.write_header(yg, title, "yg", mystyle)
+        author = self.write_header(of, title, "yg", mystyle)
 
-        yg.write('<body id="fullyear">\n')     # body will terminate in write_footer
+        of.write('<body id="fullyear">\n')     # body will terminate in write_footer
 
         # Header Title
-        yg.write('    <div id="header">\n')
+        of.write('    <div id="header">\n')
         if author:
-            yg.write('         <div id="GRAMPSinfo">\n')
+            of.write('         <div id="GRAMPSinfo">\n')
             msg = 'Created for %s' % author
-            yg.write('             %s</div>\n' % msg)
-        yg.write('      <h1 id="SiteTitle">%s\n' % title)
-        yg.write('    </div>\n')
+            of.write('             %s</div>\n' % msg)
+        of.write('      <h1 id="SiteTitle">%s\n' % title)
+        of.write('    </div>\n')
 
         # Create navigation menu
-        yg.write('         <div id="navigation">\n')
-        yg.write('              <ul>\n')
+        of.write('         <div id="navigation">\n')
+        of.write('              <ul>\n')
 
         if self.home_link.strip() != '':
-            yg.write('                     <li>')
-            yg.write('<a href="%s">HOME</a></li>\n' % self.home_link)
+            of.write('                     <li>')
+            of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(yg, 'Year Glance', "yg")
+        self.display_nav_links(of, 'Year Glance', "yg")
 
-        yg.write('         </ul>\n')
-        yg.write('     </div>\n') # End Navigation Menu
+        of.write('         </ul>\n')
+        of.write('     </div>\n') # End Navigation Menu
 
-        yg.write('        <p id="description">\n')
-        yg.write('            This calendar is meant to give you access to all your data at a glance '
+        of.write('        <p id="description">\n')
+        of.write('            This calendar is meant to give you access to all your data at a glance '
         'compressed into one page.  Clicking on a <b>red square</b> will take you to a '
         'page that shows all the events for that date!\n')
-        yg.write('        </p>\n\n')
+        of.write('        </p>\n\n')
 
         # Create progress bar for it
         self.progress.set_pass(_('Creating Year At A Glance page'), 12)
@@ -915,27 +948,27 @@ class WebCalReport(Report):
             self.progress.step()
 
             # build the calendar
-            self.calendar_build(yg, "yg", month)
+            self.calendar_build(of, "yg", month)
 
 
             # close table body before writing note
-            yg.write('         </tbody>\n')
+            of.write('         </tbody>\n')
 
             # create note section for each calendar month
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
-            yg.write('        <tfoot>\n')
-            yg.write('            <tr>\n')
-            yg.write('                <td class="note" colspan="7">\n')
-            yg.write('                     %s\n' % note)
-            yg.write('                 </td>\n')
-            yg.write('            </tr>\n')
-            yg.write('        </tfoot>\n')
-            yg.write('     </table>\n\n')
+            of.write('        <tfoot>\n')
+            of.write('            <tr>\n')
+            of.write('                <td class="note" colspan="7">\n')
+            of.write('                     %s\n' % note)
+            of.write('                 </td>\n')
+            of.write('            </tr>\n')
+            of.write('        </tfoot>\n')
+            of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(yg, "yg")
-        self.close_file(yg)
+        self.write_footer(of, "yg")
+        self.close_file(of)
 
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
@@ -1017,7 +1050,7 @@ class WebCalReport(Report):
         # TODO. See note in indiv_date()
 
         # Add Header to calendar
-        of, author = self.write_header(of, self.title_text, "of", mystyle)
+        author = self.write_header(of, self.title_text, "wc", mystyle)
 
         of.write('<body id="WebCal">\n')   # terminated in write_footer
 
@@ -1045,12 +1078,6 @@ class WebCalReport(Report):
         of.write('        </ul>\n\n')
         of.write('    </div>\n') # End Navigation Menu
 
-        # Set first weekday according to Locale
-        xmllang = Utils.xml_lang()
-        if xmllang == "en-US":
-            calendar.setfirstweekday(6) # USA calendar starts on a Sunday
-                                        # European calendar starts on Monday, default
-
         # build the calendar
         self.calendar_build(of, "wc", month)
 
@@ -1068,7 +1095,7 @@ class WebCalReport(Report):
         of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(of, "of")
+        self.write_footer(of, "wc")
         self.close_file(of)
 
     def collect_data(self):
