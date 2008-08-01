@@ -695,10 +695,8 @@ class WebCalReport(Report):
         shrt_month = GrampsLocale.short_months[month]
 
         # Name the file, and create it
-        # TODO. Do we want locale month name here?
         cal_fname = '%s%d%s' % (shrt_month, day_num, self.ext)
-        cal_fname = os.path.join(lng_month, cal_fname)
-        of = self.create_file(cal_fname, "%d" % year)
+        of = self.create_file(cal_fname, os.path.join(str(year), lng_month))
 
         arrow = os.path.join(self.html_dir, "images", "arrow102.gif")
         mystyle = """
