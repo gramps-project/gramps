@@ -11,15 +11,6 @@ dist_pkgdata_DATA = \
 	system_filters.xml \
 	tips.xml\
 	lds.xml\
-	NWeb-Print_Default.css\
-	NWeb-Screen_Basic-Ash.css\
-	NWeb-Screen_Basic-Cypress.css\
-	NWeb-Screen_Basic-Lilac.css\
-	NWeb-Screen_Basic-Peach.css\
-	NWeb-Screen_Basic-Spruce.css\
-	NWeb-Screen_Mainz.css\
-	NWeb-Screen_Nebraska.css\
-	NWeb-Screen_Sharp.css\
 	Web_Evergreen.css\
 	Web_Nebraska.css\
 	Web_Print-Default.css\

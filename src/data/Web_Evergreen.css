@@ -129,7 +129,7 @@ h3 {
     margin:0;
     color:#426E40;
     padding:.3em 20px 0 20px;
-    border-bottom:double 4px #426E40;
+    border-bottom:double 4px #000;
 }
 h4 {
     font-size:1em;
@@ -139,7 +139,7 @@ h4 {
     text-align:center;
     margin:0;
     padding:.5em 0 .2em 0;
-    border-bottom:dashed 1px #426E40;
+    border-bottom:dashed 1px #000;
 }
 h5, h6 {
     font-style:italic;
@@ -203,7 +203,7 @@ a:hover {
 */
 #header {
     width:100%;
-    height:1.5cm;
+    height:1cm;
     padding:0 0 .9em 0;
     margin:0;
     background-color:#139400;
@@ -211,12 +211,13 @@ a:hover {
     border-bottom:solid 2px #D30;
 }
 #SiteTitle {
-    font:italic 1cm serif;
+    font:italic 2em serif;
     color:#FAFAFA;
     margin:0;
-    padding:.5em 0 0 20px;
+    padding:0;
     float:center;
     text-align:center;
+    vertical-align:middle;
 }
 #GRAMPSinfo {
     font:normal .8em/1.2em sans-serif;
@@ -256,10 +257,7 @@ p#user_header {
     list-style-type:none;
     text-align:center;
     vertical-align:middle;
-    font-size:10px;
-    margin:0;
-    padding:0;
-    background-color:#00FFFF;
+    background-color:#6AF364;
     border-top:solid 4px #D30;
     border-bottom:solid 4px #D30;
 }
@@ -267,8 +265,6 @@ p#user_header {
     display:inline;
     width:2em;
     text-align:center;
-    font-size:10px;
-    padding:0;
     margin:0;
 }
 #navigation ul li a {
@@ -276,19 +272,21 @@ p#user_header {
     color:#000;
     text-decoration:none;
     margin:0;
-    padding:4px 0 0 4px;
+    padding:4px;
 }
 #navigation ul li a:hover {
-    background-color:#6AF364;
+    background-color:#000;
+    color:#FAFAFA;
 }
 #navigation ul li#CurrentSection a {
     border-right:solid 2px #D30;
     border-left:solid 2px #D30;
+    border-top:solid 2px #D30;
+    border-bottom:solid 2px #FAFAFA; 
     font-family:Georgia, serif;
     font-weight:bold;
     font-style:italic;
     font-size:16px;
-    padding:
     text-decoration:none;
     background-color:#FAFAFA;
     color:#426E40;
@@ -335,39 +333,36 @@ p#user_header {
 .calendar thead tr th.weekend, .calendar thead tr th.weekday {
     background-color:#426E40;
     color:#FAFAFA;
-    border:solid 2px #6AF364;
+    border:solid 1px #6AF364;
 }
-.calendar tbody tr.week5 {
-    border-bottom:solid 1px #426E40;
-}
-.calendar tbody tr.week6 {
-    border-bottom:solid 1px #426E40;
+.calendar tbody tr.week5, .calendar tbody tr.week6  {
+    border-bottom:solid 1px #000;
 }
 .calendar tbody tr td {
     vertical-align:top;
-    height:6em;
+    height:10em;
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color:#426E40;
+    border-color:#000;
+}
+.calendar tbody tr td.previous, .calendar tbody tr td.next {
+    background-color:#D8F3D6;
+}
+.calendar tbody tr td.weekday {
+    background-color:#FAFAFA;
 }
 .calendar tbody tr td.weekend {
     background-color:#D8F3D6;
 }
 .calendar tbody tr td.saturday {
-    border-right:solid 1px #426E40;
+    border-right:solid 1px #000;
 }
 .calendar tbody tr td.sunday {
-    border-left:solid 1px #426E40;
-}
-.calendar tbody tr td.weekday {
-    background-color:#FAFAFA;
-}
-.calendar tbody tr td.previous, .calendar tbody tr td.next {
-    background-color:#D8F3D6;
+    border-left:solid 1px #000;
 }
 .calendar tbody tr td#emptyDays {
-    border:solid 1px #426E40;
+    border:solid 1px #000;
 }
 .calendar tbody tr td ul {
     list-style:none;
@@ -381,7 +376,7 @@ p#user_header {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top:dashed 1px #426E40;
+    border-top:dashed 1px #000;
 }
 .calendar tbody tr td ul li em {
     font-style:normal;
@@ -395,7 +390,7 @@ p#user_header {
     background-color:#6AF364;
 }
 .calendar tfoot tr td.note {
-    border-top:solid 2px #6AF364;
+    border-top:solid 2px #D30;
     background-color:#000;
     color:#FAFAFA;
 }
@@ -406,18 +401,20 @@ p#user_header {
     font-size:1.2em;
     line-height:100%;
     text-align:center;
-    background-color:#426E40;
-    color:#FAFAFA;
+    background-color:#6AF364;
+    color:#000;
     margin:0 0 0 .5em;
     padding:.2em 0;
+}
+.previous span.date, .next span.date {
+    background-color:#000;
+    color:#FAFAFA;
 }
 .highlight div.date {
     background-color:#1E90FF;
     color:#FAFAFA;
-}
-.previous div.date, .next div.date {
-    background-color:#000;
-    color:#D30;
+    font-weight:bold;
+    font-style:italic;
 }
 
 /*
@@ -550,10 +547,10 @@ table.surnamelist tbody tr td.ColumnSurname:hover, table#SortByName tbody tr td.
     color:#FAFAFA;
 }
 table.surname {
-    border-bottom:solid 2px #1ED416;
+    border-bottom:solid 2px #6AF364;
 }
 table.surname tbody tr td {
-    border-bottom:dashed 1px #426E40;
+    border-bottom:dashed 1px #000;
 }
 table.surname thead tr th.ColumnName {
     width:20%;
@@ -590,7 +587,7 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     border-bottom:solid 2px #426E40;
 }
 #Individuals table.individuallist tbody tr td {
-    border-bottom:dashed 1px #426E40;
+    border-bottom:dashed 1px #000;
 }
 #Individuals table.individuallist tbody tr td a {
     text-decoration:none;
@@ -748,7 +745,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #GalleryDisplay img {
     margin:0 auto;
-    border:solid 2px #139400;
+    border:solid 2px #426E40;
 }
 #GalleryDetail div#summaryarea{
     margin:0;
@@ -770,7 +767,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-bottom:0;
     border-style:solid;
     border-width:8px 0 0 0;
-    border-color:#D3D3D3;
+    border-color:#6AF364;
 }
 
 /*
@@ -899,7 +896,7 @@ div#events h4 {
     color:#426E40;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 2px #D3D3D3;
+    border-bottom:solid 2px #000;
     color:#426E40;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnValue  a {
@@ -1032,7 +1029,7 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 #indivgallery .thumbnail a img {
     margin:0;
     padding:0;
-    border:solid 2px #139400;
+    border:solid 2px #000;
 }
 #indivgallery div.thumbnail p {
     font:normal .7em/1.4em sans-serif;
@@ -1100,7 +1097,7 @@ div#summaryarea table.infolist {
     margin:0;
     padding:0;
     background:#FAFAFA;
-    border-bottom:solid .7em #FAFAFA;
+    border-bottom:solid .7em #000;
 }
 div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
     font:normal .9em/1.2em sans-serif;
@@ -1301,12 +1298,12 @@ div#pedigree {
 }
 #footer a:hover {
     text-decoration:none;
-    background-color:#426E40;
+    background-color:#228B22;
 }
 #footer img {
     border:0;
     margin:0;
-    background:none;
+    float:center;
 }
 #footer p#createdate {
     font-size:.8em;

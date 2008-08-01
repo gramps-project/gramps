@@ -563,11 +563,6 @@ class WebCalReport(Report):
 
             of.write('             </tr>\n')
 
-        # Complete six weeks for proper styling
-        # FIXME. Why would we need this? The for loop already
-        # creates all the weeks we need. At most six weeks.
-        # self.six_weeks(of, nweeks)
-
     def write_header(self, of, title, cal, mystyle):
         """
         This creates the header for the Calendars including style embedded for special purpose
@@ -768,24 +763,6 @@ class WebCalReport(Report):
         self.write_footer(of, "ip")
         self.close_file(of)
 
-    def six_weeks(self, of, nweeks):
-        """
-        Will complete the calendar out to six weeks for
-        proper styling of css sheets
-        """
-
-        if nweeks == 4: # four weeks, add two weeks
-            for empty_weeks in range(1, 3):
-                of.write('             <tr class="week%d">\n' % (nweeks + empty_weeks))
-                of.write('                 <td id="emptyDays" colspan="7">\n')
-                of.write('                 </td>\n')
-                of.write('             </tr>\n')
-        elif nweeks == 5: # five weeks, add one week
-            of.write('             <tr class="week6">\n')
-            of.write('                 <td id="emptyDays" colspan="7">\n')
-            of.write('                 </td>\n')
-            of.write('             </tr>\n')
-
     def blank_year(self):
         """
         This method will create the Printable Full Year One Page Calendar...
@@ -951,7 +928,14 @@ class WebCalReport(Report):
 
             # build the calendar
             self.calendar_build(of, "yg", month)
-
+            # TODO. Add week padding to make them all 6 weeks long.
+            # See six_weeks
+            nweeks = len(calendar.monthcalendar(year, month))
+            for i in range(nweeks+1, 7):
+                of.write('             <tr class="week%d">\n' % i)
+                of.write('                 <td id="emptyDays" colspan="7">\n')
+                of.write('                 </td>\n')
+                of.write('             </tr>\n')
 
             # close table body before writing note
             of.write('         </tbody>\n')
@@ -1691,7 +1675,7 @@ def _easter(year):
     day = l + 28 - 31 * (month / 4)
     return year, month, day
 
-# FIXME. Missing name prefix, suffix etc.
+# TODO. Check name prefix, suffix etc.
 def _get_short_name(person, maiden_name = None):
     """ Return person's name, unless maiden_name given, unless married_name listed. """
     # Get all of a person's names:
