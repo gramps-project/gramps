@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-01 16:24+0200\n"
+"POT-Creation-Date: 2008-08-01 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11279,7 +11279,7 @@ msgid "Create Year At A Glance"
 msgstr ""
 
 #: ../src/plugins/WebCal.py:1267
-msgid "Wheather to create A Full Year High-lighted calendar"
+msgid "Whether to create A Full Year High-lighted calendar"
 msgstr ""
 
 #: ../src/plugins/WebCal.py:1270
@@ -11287,7 +11287,7 @@ msgid "Create A Printable Blank Full- Year Calendar"
 msgstr ""
 
 #: ../src/plugins/WebCal.py:1271
-msgid "Wheather to create A Full Year Printable calendar"
+msgid "Whether to create A Full Year Printable calendar"
 msgstr ""
 
 #: ../src/plugins/WebCal.py:1279

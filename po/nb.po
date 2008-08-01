@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-31 23:00+0200\n"
-"PO-Revision-Date: 2008-08-01 16:23+0200\n"
+"POT-Creation-Date: 2008-08-01 17:03+0200\n"
+"PO-Revision-Date: 2008-08-01 17:00+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -868,7 +868,7 @@ msgstr "Adresse"
 #: ../src/DataViews/RepositoryView.py:73
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
-#: ../src/plugins/ExtractCity.py:373 ../src/plugins/NarrativeWeb.py:1082
+#: ../src/plugins/ExtractCity.py:385 ../src/plugins/NarrativeWeb.py:1082
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr "By"
@@ -882,13 +882,13 @@ msgstr "Delstat/fylke"
 #: ../src/DataViews/RepositoryView.py:76
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
-#: ../src/plugins/ExtractCity.py:376 ../src/plugins/NarrativeWeb.py:1087
+#: ../src/plugins/ExtractCity.py:388 ../src/plugins/NarrativeWeb.py:1087
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr "Land"
 
 #: ../src/GrampsCfg.py:180 ../src/DataViews/PlaceView.py:70
-#: ../src/DataViews/RepositoryView.py:72 ../src/plugins/ExtractCity.py:375
+#: ../src/DataViews/RepositoryView.py:72 ../src/plugins/ExtractCity.py:387
 #: ../src/plugins/NarrativeWeb.py:1086
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
@@ -3444,7 +3444,7 @@ msgid "County"
 msgstr "Fylke"
 
 #: ../src/DataViews/PlaceView.py:73 ../src/DataViews/RepositoryView.py:75
-#: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:374
+#: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:386
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr "Stat"
@@ -5624,7 +5624,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/DetDescendantReport.py:877
 #: ../src/plugins/EndOfLineReport.py:322 ../src/plugins/Eval.py:131
 #: ../src/plugins/EventCmp.py:467 ../src/plugins/EventNames.py:163
-#: ../src/plugins/ExtractCity.py:633 ../src/plugins/FamilyGroup.py:773
+#: ../src/plugins/ExtractCity.py:648 ../src/plugins/FamilyGroup.py:773
 #: ../src/plugins/FanChart.py:444 ../src/plugins/FilterByName.py:235
 #: ../src/plugins/FindDupes.py:701 ../src/plugins/GVFamilyLines.py:1030
 #: ../src/plugins/GVHourGlass.py:303 ../src/plugins/GVRelGraph.py:570
@@ -5640,7 +5640,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
 #: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
 #: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1749 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/WebCal.py:1731 ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr "Stabil"
 
@@ -5878,7 +5878,7 @@ msgstr "Generasjon %d"
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3031
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1222
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1204
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
@@ -6051,7 +6051,7 @@ msgstr "Innstillinger"
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3052
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:1234 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1216 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
 
@@ -6062,14 +6062,14 @@ msgstr "Velg filter for å begrense antall personer"
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3058 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1240
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1222
 msgid "Filter Person"
 msgstr "Filtrere person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/StatisticsChart.py:688
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1241
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1223
 msgid "The center person for the filter"
 msgstr "Senterpersonen for filteret"
 
@@ -6255,12 +6255,12 @@ msgid "Relationships shown are to %s"
 msgstr "Viste slektsforhold er til %s"
 
 #: ../src/plugins/Calendar.py:488 ../src/plugins/Calendar.py:490
-#: ../src/plugins/WebCal.py:1279 ../src/plugins/WebCal.py:1281
+#: ../src/plugins/WebCal.py:1261 ../src/plugins/WebCal.py:1263
 msgid "Year of calendar"
 msgstr "Kalenderår"
 
 #: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3054
-#: ../src/plugins/WebCal.py:1236
+#: ../src/plugins/WebCal.py:1218
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Velg filter for å begrense antall personer som skal vises på kalenderen"
 
@@ -6268,7 +6268,7 @@ msgstr "Velg filter for å begrense antall personer som skal vises på kalendere
 msgid "Select the format to display names"
 msgstr "Velg format for å vise navn"
 
-#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1292
+#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1274
 msgid "Country for holidays"
 msgstr "Land for helligdager"
 
@@ -6304,27 +6304,27 @@ msgstr "Hustruer bruker sitt eget etternavn"
 msgid "Select married women's displayed surname"
 msgstr "Velg gifte kvinners viste etternavn"
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1306
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1288
 msgid "Include only living people"
 msgstr "Ta bare med levende personer"
 
-#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1307
+#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1289
 msgid "Include only living people in the calendar"
 msgstr "Ta bare med levende personer i kalenderen"
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1310
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1292
 msgid "Include birthdays"
 msgstr "Ta med fødselsdager"
 
-#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1311
+#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1293
 msgid "Include birthdays in the calendar"
 msgstr "Ta med fødselsdager i kalenderen"
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1314
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1296
 msgid "Include anniversaries"
 msgstr "Ta med jubileer"
 
-#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1315
+#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1297
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med jubileer i kalenderen"
 
@@ -6428,7 +6428,7 @@ msgstr "Stil for dagtekst"
 msgid "Month text style"
 msgstr "Stil for månedstekst"
 
-#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1667
+#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1649
 msgid "Don't include holidays"
 msgstr "Ikke ta med helligdager"
 
@@ -6456,7 +6456,7 @@ msgstr "Kontrollerer familinavn"
 msgid "Searching family names"
 msgstr "Søker etter familinavn"
 
-#: ../src/plugins/ChangeNames.py:146 ../src/plugins/ExtractCity.py:496
+#: ../src/plugins/ChangeNames.py:146 ../src/plugins/ExtractCity.py:511
 #: ../src/plugins/PatchNames.py:187
 msgid "No modifications made"
 msgstr "Ingen endringer ble gjort"
@@ -6465,7 +6465,7 @@ msgstr "Ingen endringer ble gjort"
 msgid "No capitalization changes were detected."
 msgstr "Ingen endringer i store/små bokstaver ble oppdaget."
 
-#: ../src/plugins/ChangeNames.py:198 ../src/plugins/ExtractCity.py:528
+#: ../src/plugins/ChangeNames.py:198 ../src/plugins/ExtractCity.py:543
 #: ../src/plugins/PatchNames.py:221 ../src/glade/mergedata.glade.h:12
 msgid "Select"
 msgstr "Velg"
@@ -6479,7 +6479,7 @@ msgid "Capitalization Change"
 msgstr "Endringer i store/små bokstaver"
 
 #: ../src/plugins/ChangeNames.py:212 ../src/plugins/EventCmp.py:289
-#: ../src/plugins/ExtractCity.py:542 ../src/plugins/PatchNames.py:243
+#: ../src/plugins/ExtractCity.py:557 ../src/plugins/PatchNames.py:243
 msgid "Building display"
 msgstr "Oppdaterer visningen"
 
@@ -8034,35 +8034,35 @@ msgstr "Frankrike"
 msgid "Sweden"
 msgstr "Sverige"
 
-#: ../src/plugins/ExtractCity.py:372
+#: ../src/plugins/ExtractCity.py:384
 msgid "Place title"
 msgstr "Stedsnavn"
 
-#: ../src/plugins/ExtractCity.py:399 ../src/plugins/ExtractCity.py:603
+#: ../src/plugins/ExtractCity.py:414 ../src/plugins/ExtractCity.py:618
 msgid "Extract Place data"
 msgstr "Hent ut stedsdata"
 
-#: ../src/plugins/ExtractCity.py:416
+#: ../src/plugins/ExtractCity.py:431
 msgid "Checking Place Titles"
 msgstr "Sjekker stedstitler"
 
-#: ../src/plugins/ExtractCity.py:417
+#: ../src/plugins/ExtractCity.py:432
 msgid "Looking for place fields"
 msgstr "Ser etter stedsfelt"
 
-#: ../src/plugins/ExtractCity.py:497
+#: ../src/plugins/ExtractCity.py:512
 msgid "No place information could be extracted."
 msgstr "Ingen stedsinformasjon kunne hentes ut."
 
-#: ../src/plugins/ExtractCity.py:517
+#: ../src/plugins/ExtractCity.py:532
 msgid "Below is a list of Places with the possible data that can be extracted from the place title. Select the places you wish GRAMPS to convert."
 msgstr "Under er en liste over Steder med de data som kan hentes ut fra tittelen. Velg det stedet du ønsker at GRAMPS skal konvertere."
 
-#: ../src/plugins/ExtractCity.py:632
+#: ../src/plugins/ExtractCity.py:647
 msgid "Extract Place Data from a Place Title"
 msgstr "Hent ut stedsdata fra en stedstittel"
 
-#: ../src/plugins/ExtractCity.py:636
+#: ../src/plugins/ExtractCity.py:651
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Forsøker å hente ut by og fylke/provins fra en stedstittel"
 
@@ -9590,14 +9590,14 @@ msgstr "ved &nbsp; %(place)s"
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:982
+#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:964
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Hverken %s eller %s er mapper"
 
 #: ../src/plugins/NarrativeWeb.py:2645 ../src/plugins/NarrativeWeb.py:2649
 #: ../src/plugins/NarrativeWeb.py:2662 ../src/plugins/NarrativeWeb.py:2666
-#: ../src/plugins/WebCal.py:989 ../src/plugins/WebCal.py:993
+#: ../src/plugins/WebCal.py:971 ../src/plugins/WebCal.py:975
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Klarte ikke å opprette mappa: %s"
@@ -9614,7 +9614,7 @@ msgstr "Arkivfilen må være en fil, ikke en katalog"
 msgid "Generate XHTML Reports"
 msgstr "Lage XHTML-rapporter"
 
-#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1106
+#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1088
 msgid "Filtering"
 msgstr "Filter"
 
@@ -9654,11 +9654,11 @@ msgstr "Lagre nettsted i .tar.gz arkiv"
 msgid "Whether to store the web pages in an archive file"
 msgstr "Lagre nettsted i en arkivfil"
 
-#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1224
+#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1206
 msgid "Destination"
 msgstr "Mål"
 
-#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1226
+#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1208
 msgid "The destination directory for the web files"
 msgstr "Målkatalogen for nettsidene"
 
@@ -9674,31 +9674,31 @@ msgstr "Mitt familietre"
 msgid "The title of the web site"
 msgstr "Tittel på nettstedet"
 
-#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1247
+#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1229
 msgid "File extension"
 msgstr "Filetternavn"
 
-#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1250
+#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1232
 msgid "The extension to be used for the web files"
 msgstr "Filendelsen som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1253
+#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1235
 msgid "Copyright"
 msgstr "Opphavsrett"
 
-#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1258
+#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1240
 msgid "The copyright to be used for the web files"
 msgstr "Opphavsrett som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1261
+#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1243
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1264
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1246
 msgid "The encoding to be used for the web files"
 msgstr "Tegnsettet som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1267
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1249
 msgid "StyleSheet"
 msgstr "Stilark"
 
@@ -10825,7 +10825,7 @@ msgstr "Sorteringsmetode som skal brukes"
 
 #: ../src/plugins/TimeLine.py:336
 msgid "The calendar which determines the year span"
-msgstr ""
+msgstr "Den kalenderen som bestemmer årintervallet"
 
 #: ../src/plugins/TimeLine.py:373
 msgid "The style used for the person's name."
@@ -11058,291 +11058,291 @@ msgstr "des"
 
 #: ../src/plugins/WebCal.py:392
 msgid "Year Glance"
-msgstr ""
+msgstr "Årsoversikt"
 
 #: ../src/plugins/WebCal.py:393
 msgid "Blank Calendar"
 msgstr "Tom kalender"
 
-#: ../src/plugins/WebCal.py:631
+#: ../src/plugins/WebCal.py:626
 #, python-format
 msgid "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</a> on %(date)s"
 msgstr "Generert av <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</a> %(date)s"
 
-#: ../src/plugins/WebCal.py:735 ../src/plugins/WebCal.py:830
-#: ../src/plugins/WebCal.py:924 ../src/plugins/WebCal.py:1062
+#: ../src/plugins/WebCal.py:728 ../src/plugins/WebCal.py:805
+#: ../src/plugins/WebCal.py:899 ../src/plugins/WebCal.py:1044
 #, python-format
 msgid "Created for %(author)s"
 msgstr "Laget for %(author)s"
 
-#: ../src/plugins/WebCal.py:737
+#: ../src/plugins/WebCal.py:730
 msgid "A Peak into One Day"
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:849
+#: ../src/plugins/WebCal.py:824
 msgid "Creating Printable Blank Full-Year Calendar Page"
 msgstr "Lager utskriftvennlige blanke helårskalendersider"
 
-#: ../src/plugins/WebCal.py:943
+#: ../src/plugins/WebCal.py:918
 msgid "            This calendar is meant to give you access to all your data at a glance compressed into one page.  Clicking on a <b>red square</b> will take you to a page that shows all the events for that date!\n"
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:949
+#: ../src/plugins/WebCal.py:924
 msgid "Creating Year At A Glance page"
-msgstr ""
+msgstr "Lager en side med årsoversikt"
 
-#: ../src/plugins/WebCal.py:999
+#: ../src/plugins/WebCal.py:981
 msgid "Generate XHTML Calendars"
 msgstr "Lage XHTML-kalendre"
 
 #. get the information, first from holidays:
 #. Don't include holidays
 #. _country is currently global
-#: ../src/plugins/WebCal.py:1007
+#: ../src/plugins/WebCal.py:989
 msgid "Getting information from holidays file"
 msgstr "Hent ut informasjon fra helligdagsfil"
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:1013
+#: ../src/plugins/WebCal.py:995
 msgid "Creating Calendar pages"
 msgstr "Lager kalendersider"
 
-#: ../src/plugins/WebCal.py:1109
+#: ../src/plugins/WebCal.py:1091
 msgid "Reading database"
 msgstr "Leser database"
 
 #. person is 1, and therefore display it correctly
 #. TODO. Make this translatable
-#: ../src/plugins/WebCal.py:1145
+#: ../src/plugins/WebCal.py:1127
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> year old"
 msgstr "%(short_name)s, <em>%(age)d</em> år gammel"
 
-#: ../src/plugins/WebCal.py:1147
+#: ../src/plugins/WebCal.py:1129
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> years old"
 msgstr "%(short_name)s, <em>%(age)d</em> år gammel"
 
-#: ../src/plugins/WebCal.py:1187
+#: ../src/plugins/WebCal.py:1169
 #, python-format
 msgid "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> year anniversary</span>"
 msgstr "<span class=\"yearsmarried\">%(spouse)s og %(person)s, <em>%(nyears)d</em> års jubileum</span>"
 
-#: ../src/plugins/WebCal.py:1230
+#: ../src/plugins/WebCal.py:1212
 msgid "Calendar Title"
 msgstr "Kalendertittel"
 
-#: ../src/plugins/WebCal.py:1230
+#: ../src/plugins/WebCal.py:1212
 msgid "My Family Calendar"
 msgstr "Min familiekalender"
 
-#: ../src/plugins/WebCal.py:1231
+#: ../src/plugins/WebCal.py:1213
 msgid "The title of the calendar"
 msgstr "Tittel på kalenderen"
 
-#: ../src/plugins/WebCal.py:1270
+#: ../src/plugins/WebCal.py:1252
 msgid "The Style Sheet to be used for the web page"
 msgstr "Stilarket som skal brukes på nettsidene"
 
-#: ../src/plugins/WebCal.py:1277
+#: ../src/plugins/WebCal.py:1259
 msgid "Content Options"
 msgstr "Innholdsinnstillinger"
 
-#: ../src/plugins/WebCal.py:1284
+#: ../src/plugins/WebCal.py:1266
 msgid "Create Year At A Glance"
-msgstr ""
+msgstr "Lage årsoversikt"
 
-#: ../src/plugins/WebCal.py:1285
-msgid "Wheather to create A Full Year High-lighted calendar"
-msgstr ""
+#: ../src/plugins/WebCal.py:1267
+msgid "Whether to create A Full Year High-lighted calendar"
+msgstr "Om det skal lages en komplett helårskalender"
 
-#: ../src/plugins/WebCal.py:1288
+#: ../src/plugins/WebCal.py:1270
 msgid "Create A Printable Blank Full- Year Calendar"
 msgstr "Lag en utskriftsvennlig tom helårskalender"
 
-#: ../src/plugins/WebCal.py:1289
-msgid "Wheather to create A Full Year Printable calendar"
+#: ../src/plugins/WebCal.py:1271
+msgid "Whether to create A Full Year Printable calendar"
 msgstr "Om det skal lages en helårs utskriftsvennlig kalender"
 
-#: ../src/plugins/WebCal.py:1297
+#: ../src/plugins/WebCal.py:1279
 msgid "Holidays will be included for the selected country"
 msgstr "Helligdager vil bli tatt med for det valgte landet"
 
-#: ../src/plugins/WebCal.py:1301
+#: ../src/plugins/WebCal.py:1283
 msgid "Home link"
 msgstr "Hjemmeside"
 
-#: ../src/plugins/WebCal.py:1302
+#: ../src/plugins/WebCal.py:1284
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr "Lenken som skal tas med for å sende brukeren til hovedsiden for nettstedet"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1300
 msgid "Check for wives to use maiden name"
 msgstr "Merk av for at hustruer bruker sitt pikenavn"
 
-#: ../src/plugins/WebCal.py:1319
+#: ../src/plugins/WebCal.py:1301
 msgid "Attempt to use maiden names of women"
 msgstr "Forsøke å bruke pikenavn for kvinner"
 
-#: ../src/plugins/WebCal.py:1326
+#: ../src/plugins/WebCal.py:1308
 msgid "Jan - Jun Notes"
 msgstr "Notater for jan - jun"
 
-#: ../src/plugins/WebCal.py:1328
+#: ../src/plugins/WebCal.py:1310
 msgid "Jan Note"
 msgstr "jan-notat"
 
-#: ../src/plugins/WebCal.py:1328
+#: ../src/plugins/WebCal.py:1310
 msgid "This prints in January"
 msgstr "Dette skrives i januar"
 
-#: ../src/plugins/WebCal.py:1329
+#: ../src/plugins/WebCal.py:1311
 msgid "The note for the month of January"
 msgstr "Notatet for januar måned"
 
-#: ../src/plugins/WebCal.py:1332
+#: ../src/plugins/WebCal.py:1314
 msgid "Feb Note"
 msgstr "feb-notat"
 
-#: ../src/plugins/WebCal.py:1332
+#: ../src/plugins/WebCal.py:1314
 msgid "This prints in February"
 msgstr "Dette skrives i februar"
 
-#: ../src/plugins/WebCal.py:1333
+#: ../src/plugins/WebCal.py:1315
 msgid "The note for the month of February"
 msgstr "Notatet for februar måned"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1318
 msgid "Mar Note"
 msgstr "mar-notat"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1318
 msgid "This prints in March"
 msgstr "Dette skrives i mars"
 
-#: ../src/plugins/WebCal.py:1337
+#: ../src/plugins/WebCal.py:1319
 msgid "The note for the month of March"
 msgstr "Notatet for mars måned"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1322
 msgid "Apr Note"
 msgstr "apr-notat"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1322
 msgid "This prints in April"
 msgstr "Dette skrives i april"
 
-#: ../src/plugins/WebCal.py:1341
+#: ../src/plugins/WebCal.py:1323
 msgid "The note for the month of April"
 msgstr "Notatet for april måned"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1326
 msgid "May Note"
 msgstr "mai-notat"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1326
 msgid "This prints in May"
 msgstr "mai"
 
-#: ../src/plugins/WebCal.py:1345
+#: ../src/plugins/WebCal.py:1327
 msgid "The note for the month of May"
 msgstr "Notatet for mai måned"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1330
 msgid "Jun Note"
 msgstr "jun-notat"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1330
 msgid "This prints in June"
 msgstr "Dette skrives i juni"
 
-#: ../src/plugins/WebCal.py:1349
+#: ../src/plugins/WebCal.py:1331
 msgid "The note for the month of June"
 msgstr "Notatet for juni måned"
 
-#: ../src/plugins/WebCal.py:1352
+#: ../src/plugins/WebCal.py:1334
 msgid "Jul - Dec Notes"
 msgstr "Notater for jul - des"
 
-#: ../src/plugins/WebCal.py:1354
+#: ../src/plugins/WebCal.py:1336
 msgid "Jul Note"
 msgstr "jul-notat"
 
-#: ../src/plugins/WebCal.py:1354
+#: ../src/plugins/WebCal.py:1336
 msgid "This prints in July"
 msgstr "Dette skrives i juli"
 
-#: ../src/plugins/WebCal.py:1355
+#: ../src/plugins/WebCal.py:1337
 msgid "The note for the month of July"
 msgstr "Notatet for juli måned"
 
-#: ../src/plugins/WebCal.py:1358
+#: ../src/plugins/WebCal.py:1340
 msgid "Aug Note"
 msgstr "aug-notat"
 
-#: ../src/plugins/WebCal.py:1358
+#: ../src/plugins/WebCal.py:1340
 msgid "This prints in August"
 msgstr "Dette skrives i august"
 
-#: ../src/plugins/WebCal.py:1359
+#: ../src/plugins/WebCal.py:1341
 msgid "The note for the month of August"
 msgstr "Notatet for august måned"
 
-#: ../src/plugins/WebCal.py:1362
+#: ../src/plugins/WebCal.py:1344
 msgid "Sep Note"
 msgstr "sep-notat"
 
-#: ../src/plugins/WebCal.py:1362
+#: ../src/plugins/WebCal.py:1344
 msgid "This prints in September"
 msgstr "Dette skrives i september"
 
-#: ../src/plugins/WebCal.py:1363
+#: ../src/plugins/WebCal.py:1345
 msgid "The note for the month of September"
 msgstr "Notatet for september måned"
 
-#: ../src/plugins/WebCal.py:1366
+#: ../src/plugins/WebCal.py:1348
 msgid "Oct Note"
 msgstr "okt-notat"
 
-#: ../src/plugins/WebCal.py:1366
+#: ../src/plugins/WebCal.py:1348
 msgid "This prints in October"
 msgstr "Dette skrives i oktober"
 
-#: ../src/plugins/WebCal.py:1367
+#: ../src/plugins/WebCal.py:1349
 msgid "The note for the month of October"
 msgstr "Notatet for oktober måned"
 
-#: ../src/plugins/WebCal.py:1370
+#: ../src/plugins/WebCal.py:1352
 msgid "Nov Note"
 msgstr "nov-notat"
 
-#: ../src/plugins/WebCal.py:1370
+#: ../src/plugins/WebCal.py:1352
 msgid "This prints in November"
 msgstr "Dette skrives i november"
 
-#: ../src/plugins/WebCal.py:1371
+#: ../src/plugins/WebCal.py:1353
 msgid "The note for the month of November"
 msgstr "Notatet for november måned"
 
-#: ../src/plugins/WebCal.py:1374
+#: ../src/plugins/WebCal.py:1356
 msgid "Dec Note"
 msgstr "des-notat"
 
-#: ../src/plugins/WebCal.py:1374
+#: ../src/plugins/WebCal.py:1356
 msgid "This prints in December"
 msgstr "Dette skrives i desember"
 
-#: ../src/plugins/WebCal.py:1375
+#: ../src/plugins/WebCal.py:1357
 msgid "The note for the month of December"
 msgstr "Notatet for desember måned"
 
-#: ../src/plugins/WebCal.py:1748
+#: ../src/plugins/WebCal.py:1730
 msgid "Web Calendar"
 msgstr "Internettkalender"
 
-#: ../src/plugins/WebCal.py:1752
+#: ../src/plugins/WebCal.py:1734
 msgid "Produces web (HTML) calendars."
 msgstr "Lag internettkalendre (HTML)."
 
@@ -13350,184 +13350,184 @@ msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s
 msgstr "Denne personen ble begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(burial_date)s i %(burial_place)s."
+msgstr "Begravet %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:566
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(burial_date)s."
+msgstr "%(male_name)s ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:567
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "Han ble begravet %(burial_date)s."
+msgstr "Han ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(burial_date)s."
+msgstr "%(female_name)s ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:571
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "Hun ble begravet %(burial_date)s."
+msgstr "Hun ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:574
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(burial_date)s."
+msgstr "%(unknown_gender_name)s ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(burial_date)s."
+msgstr "Denne personen ble begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:577
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "Begravet %(burial_date)s."
+msgstr "Begravet %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "%(male_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Han ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "%(female_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Hun ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:590
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(month_year)s, %(burial_place)s."
+msgstr "%(unknown_gender_name)s ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:591
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(month_year)s, %(burial_place)s."
+msgstr "Denne personen ble begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(month_year)s i %(burial_place)s."
+msgstr "Begravet %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:598
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(month_year)s."
+msgstr "%(male_name)s ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:599
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "Han ble begravet %(month_year)s."
+msgstr "Han ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:602
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(month_year)s."
+msgstr "%(female_name)s ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:603
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "Hun ble begravet %(month_year)s."
+msgstr "Hun ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:606
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(month_year)s."
+msgstr "%(unknown_gender_name)s ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:607
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(month_year)s."
+msgstr "Denne personen ble begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:609
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "Begravet %(month_year)s."
+msgstr "Begravet %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "%(male_name)s ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Han ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "Han ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "%(female_name)s ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Hun ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "Hun ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:622
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:623
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(modified_date)s, %(burial_place)s."
+msgstr "Denne personen ble begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begravet %(modified_date)s i %(burial_place)s."
+msgstr "Begravet %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:630
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(modified_date)s."
+msgstr "%(male_name)s ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:631
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "Han ble begravet %(modified_date)s."
+msgstr "Han ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(modified_date)s."
+msgstr "%(female_name)s ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "Hun ble begravet %(modified_date)s."
+msgstr "Hun ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s."
+msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(modified_date)s."
+msgstr "Denne personen ble begravet %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:641
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "Gift med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Begravd %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:646
 #, python-format
@@ -13600,109 +13600,109 @@ msgid "Buried%(endnotes)s."
 msgstr "Begravet%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:684
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s ble døpt %(baptism_date)s i %(baptism_place)s."
+msgstr "%(male_name)s ble døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Han ble døpt %(baptism_date)s i %(baptism_place)s."
+msgstr "Han ble døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s ble døpt %(baptism_date)s, %(baptism_place)s."
+msgstr "%(female_name)s ble døpt %(baptism_date)s, %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Hun ble døpt %(baptism_date)s i %(baptism_place)s."
+msgstr "Hun ble døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:692
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble døpt %(baptism_date)s i %(baptism_place)s."
+msgstr "%(unknown_gender_name)s ble døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:693
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Denne personen ble døpt%(baptism_date)s, %(baptism_place)s."
+msgstr "Denne personen ble døpt%(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:695
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Døpt %(baptism_date)s i %(baptism_place)s."
+msgstr "Døpt %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:700
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(male_name)s ble døpt %(baptism_date)s."
+msgstr "%(male_name)s ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:701
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "Han ble døpt %(baptism_date)s."
+msgstr "Han ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(female_name)s ble døpt %(baptism_date)s."
+msgstr "%(female_name)s ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "Hun ble døpt %(baptism_date)s."
+msgstr "Hun ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:708
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble døpt %(baptism_date)s."
+msgstr "%(unknown_gender_name)s ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:709
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "Denne personen ble døpt %(baptism_date)s."
+msgstr "Denne personen ble døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:711
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(baptism_date)s%(endnotes)s."
-msgstr "Døpt %(baptism_date)s."
+msgstr "Døpt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:716
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s ble døpt %(month_year)s i %(baptism_place)s."
+msgstr "%(male_name)s ble døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Han ble døpt %(month_year)s, %(baptism_place)s."
+msgstr "Han ble døpt %(month_year)s, %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:720
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s ble døpt %(month_year)s i %(baptism_place)s."
+msgstr "%(female_name)s ble døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Hun ble døpt %(month_year)s, %(baptism_place)s."
+msgstr "Hun ble døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:724
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble døpt %(month_year)s i %(baptism_place)s."
+msgstr "%(unknown_gender_name)s ble døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:725
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Denne personen ble døpt %(month_year)s i %(baptism_place)s."
+msgstr "Denne personen ble døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Døpt %(month_year)s i %(baptism_place)s."
+msgstr "Døpt %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
@@ -17887,7 +17887,7 @@ msgstr "Bakgrunnsfarge"
 
 #: ../src/widgets/styledtexteditor.py:356
 msgid "Clear Markup"
-msgstr ""
+msgstr "Fjerne markering"
 
 #: ../src/widgets/styledtexteditor.py:475
 msgid "Select font color"
@@ -19603,4 +19603,3 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
-
