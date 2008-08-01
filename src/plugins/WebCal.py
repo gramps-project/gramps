@@ -369,26 +369,27 @@ class WebCalReport(Report):
             if os.path.exists(from_file):
                 self.copy_file(from_file, "arrow102.gif", "images")
 
-    def display_nav_links(self, of, currentsection, cal):
+    def display_nav_links(self, of, currentsection, nr_up):
         """
-        'cal' - one of "yg", "by", "wc", "ip"
+        'nr_up' - number of directory levels up, started from current page, to the
+        root of the directory tree (i.e. to self.html_dir).
         """
 
         # Check to see if home_link will be used???
         navs = [
             (self.home_link, _('Home'),           self.home_link),
-            (1,              _('Jan'),            True),
-            (2,              _('Feb'),            True),
-            (3,              _('Mar'),            True),
-            (4,              _('Apr'),            True),
-            (5,              _('May'),            True),
-            (6,              _('Jun'),            True),
-            (7,              _('Jul'),            True),
-            (8,              _('Aug'),            True),
-            (9,              _('Sep'),            True),
-            (10,             _('Oct'),            True),
-            (11,             _('Nov'),            True),
-            (12,             _('Dec'),            True),
+            (1,              1,                   True),
+            (2,              2,                   True),
+            (3,              3,                   True),
+            (4,              4,                   True),
+            (5,              5,                   True),
+            (6,              6,                   True),
+            (7,              7,                   True),
+            (8,              8,                   True),
+            (9,              9,                   True),
+            (10,             10,                  True),
+            (11,             11,                  True),
+            (12,             12,                  True),
             ('fullyear',     _('Year Glance'),    self.fullyear),
             ('blankyear',    _('Blank Calendar'), self.blankyear)
                 ]
@@ -401,15 +402,13 @@ class WebCalReport(Report):
 
                 if type(url_fname) == int:
                     url_fname = GrampsLocale.long_months[url_fname]
-                new_dir = str(self.year)
-                url = _('unknown')
-                if ((cal == "yg") or (cal == "by")):
-                    url = _subdirs("yg", new_dir, url_fname)
-                elif cal == "ip":
-                    url = _subdirs("ip", new_dir, url_fname)
-                else:
-                    url = _subdirs("wc", new_dir, url_fname)
+                if type(nav_text) == int:
+                    nav_text = GrampsLocale.short_months[nav_text]
 
+                subdirs = ['..'] * nr_up
+                subdirs.append(str(self.year))
+                # Note. We use '/' here because it is a URL, not a OS dependent pathname
+                url = '/'.join(subdirs + [url_fname])
                 if not _has_webpage_extension(url):
                     url += self.ext
 
@@ -563,9 +562,11 @@ class WebCalReport(Report):
 
             of.write('             </tr>\n')
 
-    def write_header(self, of, title, cal, mystyle):
+    def write_header(self, of, title, nr_up, mystyle, skip_print=None):
         """
         This creates the header for the Calendars including style embedded for special purpose
+        'nr_up' - number of directory levels up, started from current page, to the
+        root of the directory tree (i.e. to self.html_dir).
         """
 
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n ')
@@ -583,27 +584,18 @@ class WebCalReport(Report):
         author = get_researcher().get_name()
         of.write('     <meta name="author" content="%s" />\n' % author)
 
-        if ((cal == "yg") or (cal == "by")): # year glance and blank_year
-                                             # have same directory levels
-            fname1 = _subdirs("yg", "styles", _CALENDARSCREEN)
-            fname2 = _subdirs("yg", "styles", _CALENDARPRINT)
-            fname3 = _subdirs("yg", "images", "favicon.ico")
-        elif cal == "ip":
-            fname1 = _subdirs("ip", "styles", _CALENDARSCREEN)
-            fname2 = _subdirs("ip", "styles", _CALENDARPRINT)
-            fname3 = _subdirs("ip", "images", "favicon.ico")
-        else:
-            fname1 = _subdirs("wc", "styles", _CALENDARSCREEN)
-            fname2 = _subdirs("wc", "styles", _CALENDARPRINT)
-            fname3 = _subdirs("wc", "images", "favicon.ico")
+        subdirs = ['..'] * nr_up
+        # Note. We use '/' here because it is a URL, not a OS dependent pathname
+        fname1 = '/'.join(subdirs + ["styles"] + [_CALENDARSCREEN])
+        fname2 = '/'.join(subdirs + ["styles"] + [_CALENDARPRINT])
+        fname3 = '/'.join(subdirs + ["images"] + ["favicon.ico"])
 
         # link to calendar-screen css
         of.write('     <link href="%s" rel="stylesheet" type="text/css" media="screen" />\n' % fname1)
 
         # link to calendar-print css
-        if not cal == "yg":
-            of.write('     <link href="%s" rel="stylesheet" type="text/css" media="print" />\n'
-                % fname2)
+        if not skip_print:
+            of.write('     <link href="%s" rel="stylesheet" type="text/css" media="print" />\n' % fname2)
 
         # create a link to GRAMPS favicon
         of.write('     <link href="%s" rel="Shortcut Icon" />\n' % fname3)
@@ -614,9 +606,11 @@ class WebCalReport(Report):
 
         return author
 
-    def write_footer(self, of, cal):
+    def write_footer(self, of, nr_up):
         """
         Writes the footer section of the pages
+        'nr_up' - number of directory levels up, started from current page, to the
+        root of the directory tree (i.e. to self.html_dir).
         """
 
         # Display date as user set in preferences
@@ -632,23 +626,16 @@ class WebCalReport(Report):
         of.write('     <div id="footer">\n')
         of.write('         <p id="createdate">%s</p>\n' % msg)
 
-        # copyright license
-        if cal == "yg" or cal == "by":
-            to_urldir = os.path.join("yg", "images")
-            to_dir = os.path.join("yg", "images")
-        elif cal == "ip":
-            to_urldir = os.path.join("ip", "images")
-            to_dir = os.path.join("ip", "images")
-        else:
-            to_urldir = os.path.join("wc", "images")
-            to_dir = os.path.join("wc", "images")
         if self.copy > 0 and self.copy < len(_CC):
+            subdirs = ['..'] * nr_up
+            # Note. We use '/' here because it is a URL, not a OS dependent pathname
+            fname = '/'.join(subdirs + ["images"] + ["favicon.ico"])
             text = _CC[self.copy]
-            fname  = os.path.join(to_urldir, "somerights20.gif")
             text = text % {'gif_fname' : fname}
 
+            # FIXME. Copying the file only needs to be done once at the top level of this plugin.
             from_file = os.path.join(const.IMAGE_DIR, "somerights20.gif")
-            self.copy_file(from_file, "somerights20.gif", to_dir)
+            self.copy_file(from_file, "somerights20.gif", "images")
         else:
             text = "&copy; %s %s" % (time.localtime()[0], author)
         of.write('         <p id="copyright">%s</p>\n' % text)
@@ -680,7 +667,7 @@ class WebCalReport(Report):
     def indiv_date(self, month, day_num, day_list):
         """
         This method creates the indiv pages for "Year At A Glance"
-        'dat_list' - lines of text to display at this day
+        'day_list' - lines of text to display at this day
         """
 
         year = self.year
@@ -718,7 +705,7 @@ class WebCalReport(Report):
 
         # Add Header to calendar
         title = "%d %s %d" % (day_num, lng_month, year)
-        author = self.write_header(of, title, "ip", mystyle)
+        author = self.write_header(of, title, 2, mystyle)
 
         of.write('<body id="events-%s%d">\n' % (shrt_month, day_num))
 
@@ -739,7 +726,7 @@ class WebCalReport(Report):
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(of, None, "ip")
+        self.display_nav_links(of, None, 2)
 
         of.write('         </ul>\n')
         of.write('     </div>\n')
@@ -760,7 +747,7 @@ class WebCalReport(Report):
                 of.write('</li>\n')
         of.write('                      </ul>\n')
 
-        self.write_footer(of, "ip")
+        self.write_footer(of, 2)
         self.close_file(of)
 
     def blank_year(self):
@@ -772,7 +759,7 @@ class WebCalReport(Report):
 
         # Name the file, and create it
         cal_fname = 'blankyear%s' % self.ext
-        of = self.create_file(cal_fname, "%d" % year)
+        of = self.create_file(cal_fname, str(year))
 
         # Add specific styles for "Printable Full-Year Calendar" page
         mystyle = """
@@ -793,8 +780,8 @@ class WebCalReport(Report):
         # TODO. See note in indiv_date()
 
         # Add header to page
-        title = str(year) + "Blank Calendar"
-        author = self.write_header(of, title, "by", mystyle)
+        title = ' '.join([str(year), _('Blank Calendar')])
+        author = self.write_header(of, title, 1, mystyle)
 
         of.write('<body id="blankca">\n')
 
@@ -815,7 +802,7 @@ class WebCalReport(Report):
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(of, 'blankyear', "by")
+        self.display_nav_links(of, 'blankyear', 1)
 
         of.write('         </ul>\n')
         of.write('     </div>\n')
@@ -834,7 +821,7 @@ class WebCalReport(Report):
             of.write('     </table>\n')
 
         # Write footer and close file
-        self.write_footer(of, "by")
+        self.write_footer(of, 1)
         self.close_file(of)
 
     def year_glance(self):
@@ -846,7 +833,7 @@ class WebCalReport(Report):
 
         # Name the file, and create it
         cal_fname = 'fullyear%s' % (self.ext)
-        of = self.create_file(cal_fname, "%d" % year)
+        of = self.create_file(cal_fname, str(year))
 
         # Add specific styles for "Year At A Glance" page
         mystyle = """
@@ -887,8 +874,8 @@ class WebCalReport(Report):
         # TODO. See note in indiv_date()
 
         # Add header to page
-        title = "%d, At A Glance" % year
-        author = self.write_header(of, title, "yg", mystyle)
+        title = _("%(year)d, At A Glance") % {'year' : year}
+        author = self.write_header(of, title, 1, mystyle, True)
 
         of.write('<body id="fullyear">\n')     # body will terminate in write_footer
 
@@ -909,7 +896,7 @@ class WebCalReport(Report):
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(of, 'fullyear', "yg")
+        self.display_nav_links(of, 'fullyear', 1)
 
         of.write('         </ul>\n')
         of.write('     </div>\n') # End Navigation Menu
@@ -953,7 +940,7 @@ class WebCalReport(Report):
             of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(of, "yg")
+        self.write_footer(of, 1)
         self.close_file(of)
 
     def write_report(self):
@@ -1017,7 +1004,7 @@ class WebCalReport(Report):
         # Name the file, and create it
         # TODO. Do we want locale month name here?
         cal_fname = "%s%s" % (GrampsLocale.long_months[month], self.ext)
-        of = self.create_file(cal_fname, "%d" % year)
+        of = self.create_file(cal_fname, str(year))
 
         # Add specific styles to calendar head
         mystyle = """
@@ -1033,7 +1020,7 @@ class WebCalReport(Report):
         # TODO. See note in indiv_date()
 
         # Add Header to calendar
-        author = self.write_header(of, self.title_text, "wc", mystyle)
+        author = self.write_header(of, self.title_text, 1, mystyle)
 
         of.write('<body id="WebCal">\n')   # terminated in write_footer
 
@@ -1055,7 +1042,7 @@ class WebCalReport(Report):
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(of, month, "wc")
+        self.display_nav_links(of, month, 1)
 
         of.write('        </ul>\n\n')
         of.write('    </div>\n') # End Navigation Menu
@@ -1077,7 +1064,7 @@ class WebCalReport(Report):
         of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(of, "wc")
+        self.write_footer(of, 1)
         self.close_file(of)
 
     def collect_data(self):
