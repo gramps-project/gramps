@@ -1264,11 +1264,11 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "year", year)
 
         fullyear = BooleanOption(_('Create Year At A Glance'), False)
-        fullyear.set_help(_('Wheather to create A Full Year High-lighted calendar'))
+        fullyear.set_help(_('Whether to create A Full Year High-lighted calendar'))
         menu.add_option(category_name, 'fullyear', fullyear)
 
         blankyear = BooleanOption(_('Create A Printable Blank Full- Year Calendar'), False)
-        blankyear.set_help(_('Wheather to create A Full Year Printable calendar'))
+        blankyear.set_help(_('Whether to create A Full Year Printable calendar'))
         menu.add_option(category_name, 'blankyear', blankyear)
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
