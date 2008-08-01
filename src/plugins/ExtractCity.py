@@ -341,6 +341,18 @@ STATE_MAP = {
     u"COM"           : (u"COM-Collectivité Territoriale d'Outre-Mer", 2),  
     u"DOM"           : (u"DOM-Départements d'Outre-Mer", 2), 
     u"TOM"           : (u"TOM-Territoires d'Outre-Mer", 2),
+    u"GUA"           : (u"GUA-Guadeloupe", 2),
+    u"GUADELOUPE"    : (u"Guadeloupe", 2),
+    u"MAR"           : (u"MAR-Martinique", 2),
+    u"MARTINIQUE"    : (u"Martinique", 2),    
+    u"GUY"           : (u"GUY-Guyane", 2),
+    u"GUYANE"        : (u"Guyane", 2),  
+    u"REU"           : (u"REU-Réunion", 2),
+    u"REUNION"       : (u"Réunion", 2),
+    u"MIQ"           : (u"MIQ-Saint-Pierre et Miquelon", 2),
+    u"MIQUELON"      : (u"Saint-Pierre et Miquelon", 2),
+    u"MAY"           : (u"MAY-Mayotte", 2),
+    u"MAYOTTE"       : (u"Mayotte", 2),
     u"(A)"           : (u"Stockholms stad", 3),
     u"(AB)"          : (u"Stockholms stad/län", 3),
     u"(B)"           : (u"Stockholms län", 3),
@@ -393,6 +405,9 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
     Works for Sweden if the decriptions is like
         Stockholm (A)
     where the letter A is the abbreviation letter for laen.
+    Works for France if the description is like
+        Paris, IDF 75000, FRA
+    or  Paris, ILE DE FRANCE 75000, FRA
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
