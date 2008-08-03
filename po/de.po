@@ -11070,7 +11070,7 @@ msgstr "Entspricht den Personen, mit dem selben Nachnamen"
 #: ../src/plugins/SameSurnames.py:73
 #, python-format
 msgid "People with the surname '%s'"
-msgstr "Personen mit dem Vornamen '%s'"
+msgstr "Personen mit dem Nachnamen '%s'"
 
 #: ../src/plugins/SameSurnames.py:90
 #, python-format
@@ -16676,6 +16676,9 @@ msgid ""
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
 "You might want to make a backup copy first."
 msgstr ""
+"Sie können diese Datenbank nicht öffnen, ohne sie zu aufrüsten (Update).\n"
+"Wenn Sie aufrüsten, dann werden Sie die vorigen Versionen von GRAMPS nicht mehr benutzen können.\n"
+"Sie mögen zuerst eine Sicherungskopie erstellen wollen."
 
 #: ../src/gen/db/dbdir.py:565
 msgid "Upgrade now"
