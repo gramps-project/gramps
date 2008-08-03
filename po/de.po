@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 17:52+0200\n"
-"PO-Revision-Date: 2008-07-28 18:44+0200\n"
+"POT-Creation-Date: 2008-08-03 11:47+0200\n"
+"PO-Revision-Date: 2008-08-03 19:14+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -9649,7 +9649,7 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage or M-"
 "line. People in this lineage all share the same RNA."
 msgstr ""
-"Dieser Bericht zeigt die Väterliche Abstammungslinie, auch genannt "
+"Dieser Bericht zeigt die Mütterliche Abstammungslinie, auch genannt "
 "matronimische Linie oder M-Linie. Personen in dieser Abstammungslinie haben "
 "alle die gleiche RNA."
 
@@ -10973,7 +10973,7 @@ msgstr "Entspricht den Personen, mit dem selben Nachnamen"
 #: ../src/plugins/SameSurnames.py:73
 #, python-format
 msgid "People with the surname '%s'"
-msgstr "Personen mit dem Vornamen '%s'"
+msgstr "Personen mit dem Nachnamen '%s'"
 
 #: ../src/plugins/SameSurnames.py:90
 #, python-format
@@ -14015,7 +14015,9 @@ msgstr "Starb (mit %(age)d Tagen)."
 #: ../src/ReportBase/_ReportUtils.py:546
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde begraben am %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s wurde begraben am %(burial_date)s in %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:547
 #, python-format
@@ -14027,7 +14029,9 @@ msgstr "Er wurde am %(burial_date)s in %(burial_place)s%(endnotes)s begraben."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr "%(female_name)s wurde begraben am %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s wurde begraben am %(burial_date)s in %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
@@ -14040,8 +14044,8 @@ msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(burial_date)s in %(burial_place)s%(endnotes)s "
-"begraben."
+"%(unknown_gender_name)s wurde am %(burial_date)s in %(burial_place)s%"
+"(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
@@ -14091,7 +14095,9 @@ msgstr "Begraben am %(burial_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:578
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde begraben im %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s wurde begraben im %(month_year)s in %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:579
 #, python-format
@@ -14101,7 +14107,9 @@ msgstr "Er wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s wurde begraben im %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s wurde begraben im %(month_year)s in %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
@@ -14113,7 +14121,9 @@ msgstr "Sie wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde im %(month_year)s in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"%(unknown_gender_name)s wurde im %(month_year)s in %(burial_place)s%"
+"(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
@@ -14163,7 +14173,9 @@ msgstr "Begraben im %(month_year)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:610
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"%(male_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
+"begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:611
 #, python-format
@@ -14173,7 +14185,9 @@ msgstr "Er wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"%(female_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
+"begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
@@ -14186,13 +14200,15 @@ msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
-"begraben."
+"%(unknown_gender_name)s wurde am %(modified_date)s in %(burial_place)s%"
+"(endnotes)s begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Die Person wurde am %(modified_date)s in %(burial_place)s%(endnotes)s begraben."
+msgstr ""
+"Die Person wurde am %(modified_date)s in %(burial_place)s%(endnotes)s "
+"begraben."
 
 #: ../src/ReportBase/_ReportUtils.py:621
 #, python-format
@@ -14309,7 +14325,9 @@ msgstr "Begraben %(endnotes)s."
 msgid ""
 "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(male_name)s wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(male_name)s wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:681
 #, python-format
@@ -14321,7 +14339,9 @@ msgstr "Er wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s getauft."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(female_name)s wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
@@ -14334,15 +14354,17 @@ msgid ""
 "%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s "
-"getauft."
+"%(unknown_gender_name)s wurde am %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
 msgid ""
 "This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "Diese Person wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"Diese Person wurde am %(baptism_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:691
 #, python-format
@@ -14389,7 +14411,9 @@ msgstr "Getauft %(baptism_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "%(male_name)s wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(male_name)s wurde im %(month_year)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:713
 #, python-format
@@ -14401,7 +14425,9 @@ msgstr "Er wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
 msgid ""
 "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(female_name)s wurde im %(month_year)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:717
 #, python-format
@@ -14413,12 +14439,16 @@ msgstr "Sie wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
 msgid ""
 "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(unknown_gender_name)s wurde im %(month_year)s in %(baptism_place)s%"
+"(endnotes)s getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
 msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Diese Person wurde im %(month_year)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"Diese Person wurde im %(month_year)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:723
 #, python-format
@@ -14465,7 +14495,9 @@ msgstr "Getauft %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "%(male_name)s wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(male_name)s wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:745
 #, python-format
@@ -14477,7 +14509,9 @@ msgstr "Er wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s getauft."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"%(female_name)s wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
@@ -14490,13 +14524,15 @@ msgid ""
 "%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s "
-"getauft."
+"%(unknown_gender_name)s wurde am %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
 msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Diese Person wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s getauft."
+msgstr ""
+"Diese Person wurde am %(modified_date)s in %(baptism_place)s%(endnotes)s "
+"getauft."
 
 #: ../src/ReportBase/_ReportUtils.py:755
 #, python-format
@@ -16416,7 +16452,7 @@ msgstr "Er starb in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:2955
 #, python-format
 msgid "Descendant Families of %s"
-msgstr "Familie eines Nachkommens von %s"
+msgstr "Familien der Nachkommen von %s"
 
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
