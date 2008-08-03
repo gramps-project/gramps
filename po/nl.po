@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 09:05+0200\n"
-"PO-Revision-Date: 2008-07-29 09:08+0200\n"
+"POT-Creation-Date: 2008-08-01 17:03+0200\n"
+"PO-Revision-Date: 2008-08-03 11:00+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -802,14 +802,14 @@ msgstr "Gegevens zonder verbindingen niet bijvoegen"
 #: ../src/ExportOptions.py:94 ../src/plugins/EventCmp.py:144
 #: ../src/plugins/ExportCSV.py:183 ../src/plugins/ExportVCalendar.py:89
 #: ../src/plugins/ExportVCard.py:87 ../src/plugins/WriteFtree.py:88
-#: ../src/plugins/WriteGeneWeb.py:93 ../src/ReportBase/_ReportUtils.py:2944
+#: ../src/plugins/WriteGeneWeb.py:93 ../src/ReportBase/_ReportUtils.py:2953
 msgid "Entire Database"
 msgstr "Volledig gegevensbestand"
 
 #: ../src/ExportOptions.py:120 ../src/plugins/DescendReport.py:145
 #: ../src/plugins/ExportCSV.py:190 ../src/plugins/ExportVCalendar.py:96
 #: ../src/plugins/ExportVCard.py:94 ../src/plugins/WriteFtree.py:95
-#: ../src/plugins/WriteGeneWeb.py:100 ../src/ReportBase/_ReportUtils.py:2948
+#: ../src/plugins/WriteGeneWeb.py:100 ../src/ReportBase/_ReportUtils.py:2957
 #, python-format
 msgid "Descendants of %s"
 msgstr "Afstammelingen van %s"
@@ -817,7 +817,7 @@ msgstr "Afstammelingen van %s"
 #: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:196
 #: ../src/plugins/ExportVCalendar.py:102 ../src/plugins/ExportVCard.py:100
 #: ../src/plugins/WriteFtree.py:101 ../src/plugins/WriteGeneWeb.py:106
-#: ../src/ReportBase/_ReportUtils.py:2956
+#: ../src/ReportBase/_ReportUtils.py:2965
 #, python-format
 msgid "Ancestors of %s"
 msgstr "Voorouders van %s"
@@ -825,7 +825,7 @@ msgstr "Voorouders van %s"
 #: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:202
 #: ../src/plugins/ExportVCalendar.py:108 ../src/plugins/ExportVCard.py:106
 #: ../src/plugins/WriteFtree.py:107 ../src/plugins/WriteGeneWeb.py:112
-#: ../src/ReportBase/_ReportUtils.py:2960
+#: ../src/ReportBase/_ReportUtils.py:2969
 #, python-format
 msgid "People with common ancestor with %s"
 msgstr "Personen met dezelfde voorouder als %s"
@@ -952,7 +952,7 @@ msgstr "Adres"
 #: ../src/DataViews/RepositoryView.py:73
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
-#: ../src/plugins/ExtractCity.py:373 ../src/plugins/NarrativeWeb.py:1082
+#: ../src/plugins/ExtractCity.py:385 ../src/plugins/NarrativeWeb.py:1082
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
 msgstr "Dorp of stad"
@@ -966,13 +966,13 @@ msgstr "Deelstaat/Provincie"
 #: ../src/DataViews/RepositoryView.py:76
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
-#: ../src/plugins/ExtractCity.py:376 ../src/plugins/NarrativeWeb.py:1087
+#: ../src/plugins/ExtractCity.py:388 ../src/plugins/NarrativeWeb.py:1087
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:91
 msgid "Country"
 msgstr "Land"
 
 #: ../src/GrampsCfg.py:180 ../src/DataViews/PlaceView.py:70
-#: ../src/DataViews/RepositoryView.py:72 ../src/plugins/ExtractCity.py:375
+#: ../src/DataViews/RepositoryView.py:72 ../src/plugins/ExtractCity.py:387
 #: ../src/plugins/NarrativeWeb.py:1086
 msgid "ZIP/Postal Code"
 msgstr "Postcode"
@@ -1592,7 +1592,9 @@ msgstr "Het geselecteerde item verwijderen?"
 msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
-msgstr "Er werd méér dan één item geslecteerd om te verwijderen. Telkens vragen om te verwijderen?"
+msgstr ""
+"Er werd méér dan één item geslecteerd om te verwijderen. Telkens vragen om "
+"te verwijderen?"
 
 #: ../src/PageView.py:275 ../src/plugins/all_relations.py:306
 #: ../src/PluginUtils/_GuiOptions.py:886
@@ -2600,16 +2602,16 @@ msgstr "vrouwelijk"
 #: ../src/docgen/HtmlDoc.py:494 ../src/DisplayModels/_PeopleModel.py:238
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
-#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:497
-#: ../src/plugins/DetAncestralReport.py:504
-#: ../src/plugins/DetAncestralReport.py:547
-#: ../src/plugins/DetAncestralReport.py:554
+#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:496
+#: ../src/plugins/DetAncestralReport.py:503
+#: ../src/plugins/DetAncestralReport.py:546
+#: ../src/plugins/DetAncestralReport.py:553
 #: ../src/plugins/DetDescendantReport.py:429
 #: ../src/plugins/DetDescendantReport.py:436
 #: ../src/plugins/DetDescendantReport.py:484
 #: ../src/plugins/DetDescendantReport.py:491
 #: ../src/plugins/IndivComplete.py:319 ../src/plugins/NarrativeWeb.py:1697
-#: ../src/plugins/NarrativeWeb.py:2375
+#: ../src/plugins/NarrativeWeb.py:2375 ../src/plugins/WebCal.py:405
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "onbekend"
@@ -3455,7 +3457,7 @@ msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:400 ../src/plugins/NarrativeWeb.py:1454
-#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:633
+#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:379
 msgid "Home"
 msgstr "Startpagina"
 
@@ -3654,7 +3656,7 @@ msgstr "Provincie"
 
 # Provincie
 #: ../src/DataViews/PlaceView.py:73 ../src/DataViews/RepositoryView.py:75
-#: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:374
+#: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:386
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
 msgstr "Deelstaat"
@@ -6091,11 +6093,11 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/Check.py:1519 ../src/plugins/CmdRef.py:248
 #: ../src/plugins/Desbrowser.py:169 ../src/plugins/DescendTree.py:490
 #: ../src/plugins/DescendReport.py:256
-#: ../src/plugins/DetAncestralReport.py:888
-#: ../src/plugins/DetDescendantReport.py:878
+#: ../src/plugins/DetAncestralReport.py:887
+#: ../src/plugins/DetDescendantReport.py:877
 #: ../src/plugins/EndOfLineReport.py:322 ../src/plugins/Eval.py:131
 #: ../src/plugins/EventCmp.py:467 ../src/plugins/EventNames.py:163
-#: ../src/plugins/ExtractCity.py:633 ../src/plugins/FamilyGroup.py:773
+#: ../src/plugins/ExtractCity.py:648 ../src/plugins/FamilyGroup.py:773
 #: ../src/plugins/FanChart.py:444 ../src/plugins/FilterByName.py:235
 #: ../src/plugins/FindDupes.py:701 ../src/plugins/GVFamilyLines.py:1030
 #: ../src/plugins/GVHourGlass.py:303 ../src/plugins/GVRelGraph.py:570
@@ -6111,7 +6113,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
 #: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
 #: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1639 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/WebCal.py:1731 ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr "Stabiel"
 
@@ -6249,8 +6251,8 @@ msgstr "Stamboomopties"
 #: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:250
 #: ../src/plugins/Calendar.py:498 ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
-#: ../src/plugins/DetAncestralReport.py:701
-#: ../src/plugins/DetDescendantReport.py:682
+#: ../src/plugins/DetAncestralReport.py:700
+#: ../src/plugins/DetDescendantReport.py:681
 #: ../src/plugins/EndOfLineReport.py:238 ../src/plugins/FanChart.py:343
 #: ../src/plugins/GVHourGlass.py:256 ../src/plugins/KinshipReport.py:339
 #: ../src/plugins/NumberOfAncestorsReport.py:161
@@ -6263,8 +6265,8 @@ msgstr "De centrale persoon voor de stamboom"
 
 #: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:254
 #: ../src/plugins/DescendTree.py:419 ../src/plugins/DescendReport.py:201
-#: ../src/plugins/DetAncestralReport.py:705
-#: ../src/plugins/DetDescendantReport.py:686 ../src/plugins/FanChart.py:347
+#: ../src/plugins/DetAncestralReport.py:704
+#: ../src/plugins/DetDescendantReport.py:685 ../src/plugins/FanChart.py:347
 msgid "Generations"
 msgstr "Generaties"
 
@@ -6305,8 +6307,8 @@ msgid "Whether to compress the tree."
 msgstr "Stamboom al of niet comprimeren."
 
 #: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:331
-#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:843
-#: ../src/plugins/DetDescendantReport.py:833
+#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:842
+#: ../src/plugins/DetDescendantReport.py:832
 #: ../src/plugins/EndOfLineReport.py:273 ../src/plugins/EndOfLineReport.py:291
 #: ../src/plugins/FamilyGroup.py:679 ../src/plugins/FanChart.py:403
 #: ../src/plugins/IndivComplete.py:599 ../src/plugins/KinshipReport.py:392
@@ -6344,23 +6346,23 @@ msgstr "Generatie %d"
 #. ###############################
 #: ../src/plugins/AncestorReport.py:248 ../src/plugins/Calendar.py:486
 #: ../src/plugins/Calendar.py:644 ../src/plugins/DescendReport.py:195
-#: ../src/plugins/DetAncestralReport.py:699
-#: ../src/plugins/DetDescendantReport.py:680
+#: ../src/plugins/DetAncestralReport.py:698
+#: ../src/plugins/DetDescendantReport.py:679
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:337
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3031
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1180
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1204
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Verslagopties"
 
 #: ../src/plugins/AncestorReport.py:251 ../src/plugins/Calendar.py:499
 #: ../src/plugins/DescendReport.py:198
-#: ../src/plugins/DetAncestralReport.py:702
-#: ../src/plugins/DetDescendantReport.py:683
+#: ../src/plugins/DetAncestralReport.py:701
+#: ../src/plugins/DetDescendantReport.py:682
 #: ../src/plugins/EndOfLineReport.py:239 ../src/plugins/FanChart.py:344
 #: ../src/plugins/KinshipReport.py:340
 #: ../src/plugins/NumberOfAncestorsReport.py:162
@@ -6368,20 +6370,20 @@ msgid "The center person for the report"
 msgstr "De centrale persoon voor dit verslag"
 
 #: ../src/plugins/AncestorReport.py:255 ../src/plugins/DescendReport.py:202
-#: ../src/plugins/DetAncestralReport.py:706
-#: ../src/plugins/DetDescendantReport.py:687 ../src/plugins/FanChart.py:348
+#: ../src/plugins/DetAncestralReport.py:705
+#: ../src/plugins/DetDescendantReport.py:686 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
 msgstr "Het aantal generaties dat getoond wordt in het verslag"
 
 #: ../src/plugins/AncestorReport.py:258
-#: ../src/plugins/DetAncestralReport.py:709
-#: ../src/plugins/DetDescendantReport.py:690
+#: ../src/plugins/DetAncestralReport.py:708
+#: ../src/plugins/DetDescendantReport.py:689
 msgid "Page break between generations"
 msgstr "Nieuwe pagina bij volgende generatie"
 
 #: ../src/plugins/AncestorReport.py:260
-#: ../src/plugins/DetAncestralReport.py:711
-#: ../src/plugins/DetDescendantReport.py:692
+#: ../src/plugins/DetAncestralReport.py:710
+#: ../src/plugins/DetDescendantReport.py:691
 msgid "Whether to start a new page after each generation."
 msgstr "Al of niet een nieuwe pagina starten na iedere generatie."
 
@@ -6394,8 +6396,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr "De lijn afbreken na de naam."
 
 #: ../src/plugins/AncestorReport.py:308 ../src/plugins/DescendReport.py:218
-#: ../src/plugins/DetAncestralReport.py:797
-#: ../src/plugins/DetDescendantReport.py:787
+#: ../src/plugins/DetAncestralReport.py:796
+#: ../src/plugins/DetDescendantReport.py:786
 #: ../src/plugins/EndOfLineReport.py:255 ../src/plugins/FamilyGroup.py:670
 #: ../src/plugins/IndivComplete.py:567 ../src/plugins/KinshipReport.py:375
 #: ../src/plugins/MarkerReport.py:466
@@ -6406,8 +6408,8 @@ msgid "The style used for the title of the page."
 msgstr "De gebruikte stijl voor de titel van de pagina."
 
 #: ../src/plugins/AncestorReport.py:321
-#: ../src/plugins/DetAncestralReport.py:807
-#: ../src/plugins/DetDescendantReport.py:797 ../src/ReportBase/_Endnotes.py:43
+#: ../src/plugins/DetAncestralReport.py:806
+#: ../src/plugins/DetDescendantReport.py:796 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "De gebruikte stijl voor de generatiehoofding."
 
@@ -6529,7 +6531,7 @@ msgstr "Opties"
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3052
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:1192 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1216 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
 
@@ -6540,14 +6542,14 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3058 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1198
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1222
 msgid "Filter Person"
 msgstr "Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/StatisticsChart.py:688
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1199
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1223
 msgid "The center person for the filter"
 msgstr "De centrale persoon voor de filter"
 
@@ -6736,12 +6738,12 @@ msgid "Relationships shown are to %s"
 msgstr "Getoonde verwantschappen van %s"
 
 #: ../src/plugins/Calendar.py:488 ../src/plugins/Calendar.py:490
-#: ../src/plugins/WebCal.py:1237 ../src/plugins/WebCal.py:1239
+#: ../src/plugins/WebCal.py:1261 ../src/plugins/WebCal.py:1263
 msgid "Year of calendar"
 msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3054
-#: ../src/plugins/WebCal.py:1194
+#: ../src/plugins/WebCal.py:1218
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
@@ -6751,7 +6753,7 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr "Kies het naamformaat"
 
-#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1250
+#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1274
 msgid "Country for holidays"
 msgstr "Land voor de vakanties"
 
@@ -6787,27 +6789,27 @@ msgstr "Vrouwen eigen achternaam"
 msgid "Select married women's displayed surname"
 msgstr "Kies getoonde achternaam van de echtgenote"
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1264
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1288
 msgid "Include only living people"
 msgstr "Enkel nog levende personen bijvoegen"
 
-#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1265
+#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1289
 msgid "Include only living people in the calendar"
 msgstr "Enkel nog levende personen tonen in de kalender"
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1268
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1292
 msgid "Include birthdays"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1269
+#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1293
 msgid "Include birthdays in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1272
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1296
 msgid "Include anniversaries"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1273
+#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1297
 msgid "Include anniversaries in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
@@ -6911,7 +6913,7 @@ msgstr "Dagtekststijl"
 msgid "Month text style"
 msgstr "Maandtekststijl"
 
-#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1619
+#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1649
 msgid "Don't include holidays"
 msgstr "Vakanties niet meenemen"
 
@@ -6939,7 +6941,7 @@ msgstr "Familienamen controleren"
 msgid "Searching family names"
 msgstr "Familienamen zoeken"
 
-#: ../src/plugins/ChangeNames.py:146 ../src/plugins/ExtractCity.py:496
+#: ../src/plugins/ChangeNames.py:146 ../src/plugins/ExtractCity.py:511
 #: ../src/plugins/PatchNames.py:187
 msgid "No modifications made"
 msgstr "Niets aangepast"
@@ -6948,7 +6950,7 @@ msgstr "Niets aangepast"
 msgid "No capitalization changes were detected."
 msgstr "Geen hoofdletterwijzigingen werden gedetecteerd."
 
-#: ../src/plugins/ChangeNames.py:198 ../src/plugins/ExtractCity.py:528
+#: ../src/plugins/ChangeNames.py:198 ../src/plugins/ExtractCity.py:543
 #: ../src/plugins/PatchNames.py:221 ../src/glade/mergedata.glade.h:12
 msgid "Select"
 msgstr "Selecteren"
@@ -6962,7 +6964,7 @@ msgid "Capitalization Change"
 msgstr "Hoofdletterwijziging"
 
 #: ../src/plugins/ChangeNames.py:212 ../src/plugins/EventCmp.py:289
-#: ../src/plugins/ExtractCity.py:542 ../src/plugins/PatchNames.py:243
+#: ../src/plugins/ExtractCity.py:557 ../src/plugins/PatchNames.py:243
 msgid "Building display"
 msgstr "Opbouwen weergave"
 
@@ -8030,297 +8032,297 @@ msgstr "Voorouder-rapport voor %s"
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s is dezelfde persoon als [%(id_str)s]."
 
-#: ../src/plugins/DetAncestralReport.py:287
-#: ../src/plugins/DetDescendantReport.py:564
+#: ../src/plugins/DetAncestralReport.py:286
+#: ../src/plugins/DetDescendantReport.py:563
 #, python-format
 msgid "Notes for %s"
 msgstr "Opmerkingen bij %s"
 
-#: ../src/plugins/DetAncestralReport.py:298
-#: ../src/plugins/DetAncestralReport.py:321
-#: ../src/plugins/DetAncestralReport.py:332
-#: ../src/plugins/DetAncestralReport.py:351
-#: ../src/plugins/DetDescendantReport.py:575
-#: ../src/plugins/DetDescendantReport.py:593
-#: ../src/plugins/DetDescendantReport.py:604
-#: ../src/plugins/DetDescendantReport.py:623
+#: ../src/plugins/DetAncestralReport.py:297
+#: ../src/plugins/DetAncestralReport.py:320
+#: ../src/plugins/DetAncestralReport.py:331
+#: ../src/plugins/DetAncestralReport.py:350
+#: ../src/plugins/DetDescendantReport.py:574
+#: ../src/plugins/DetDescendantReport.py:592
+#: ../src/plugins/DetDescendantReport.py:603
+#: ../src/plugins/DetDescendantReport.py:622
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Meer over %(person_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:305
-#: ../src/plugins/DetDescendantReport.py:582
+#: ../src/plugins/DetAncestralReport.py:304
+#: ../src/plugins/DetDescendantReport.py:581
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:612
+#: ../src/plugins/DetAncestralReport.py:339
+#: ../src/plugins/DetDescendantReport.py:611
 msgid "Address: "
 msgstr "Adres: "
 
-#: ../src/plugins/DetAncestralReport.py:358
-#: ../src/plugins/DetAncestralReport.py:412
+#: ../src/plugins/DetAncestralReport.py:357
+#: ../src/plugins/DetAncestralReport.py:411
 #: ../src/plugins/DetDescendantReport.py:344
-#: ../src/plugins/DetDescendantReport.py:630
+#: ../src/plugins/DetDescendantReport.py:629
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../src/plugins/DetAncestralReport.py:380
+#: ../src/plugins/DetAncestralReport.py:379
 #: ../src/plugins/DetDescendantReport.py:313
 #, python-format
 msgid "%(event_name)s: %(date)s, %(place)s"
 msgstr "%(event_name)s: %(date)s, %(place)s"
 
-#: ../src/plugins/DetAncestralReport.py:385
+#: ../src/plugins/DetAncestralReport.py:384
 #: ../src/plugins/DetDescendantReport.py:318
 #, python-format
 msgid "%(event_name)s: %(date)s"
 msgstr "%(event_name)s: %(date)s"
 
-#: ../src/plugins/DetAncestralReport.py:389
+#: ../src/plugins/DetAncestralReport.py:388
 #: ../src/plugins/DetDescendantReport.py:322
 #, python-format
 msgid "%(event_name)s: %(place)s"
 msgstr "%(event_name)s: %(place)s"
 
-#: ../src/plugins/DetAncestralReport.py:393
+#: ../src/plugins/DetAncestralReport.py:392
 #: ../src/plugins/DetDescendantReport.py:326
 #, python-format
 msgid "%(event_name)s: "
 msgstr "%(event_name)s: "
 
-#: ../src/plugins/DetAncestralReport.py:401
+#: ../src/plugins/DetAncestralReport.py:400
 #, python-format
 msgid "%(endnotes)s."
 msgstr "%(endnotes)s."
 
-#: ../src/plugins/DetAncestralReport.py:508
+#: ../src/plugins/DetAncestralReport.py:507
 #: ../src/plugins/DetDescendantReport.py:440
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Kinderen van %(mother_name)s en %(father_name)s"
 
-#: ../src/plugins/DetAncestralReport.py:561
+#: ../src/plugins/DetAncestralReport.py:560
 #: ../src/plugins/DetDescendantReport.py:498
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Meer over %(mother_name)s en %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:714
-#: ../src/plugins/DetDescendantReport.py:700
+#: ../src/plugins/DetAncestralReport.py:713
+#: ../src/plugins/DetDescendantReport.py:699
 msgid "Content"
 msgstr "Inhoud"
 
-#: ../src/plugins/DetAncestralReport.py:716
-#: ../src/plugins/DetDescendantReport.py:702
+#: ../src/plugins/DetAncestralReport.py:715
+#: ../src/plugins/DetDescendantReport.py:701
 msgid "Use callname for common name"
 msgstr "Gebruik roepnaam voor gewone naam"
 
-#: ../src/plugins/DetAncestralReport.py:717
-#: ../src/plugins/DetDescendantReport.py:703
+#: ../src/plugins/DetAncestralReport.py:716
+#: ../src/plugins/DetDescendantReport.py:702
 msgid "Whether to use the call name as the first name."
 msgstr "De roepnaam al of niet gebruiken als voornaam."
 
-#: ../src/plugins/DetAncestralReport.py:721
-#: ../src/plugins/DetDescendantReport.py:707
+#: ../src/plugins/DetAncestralReport.py:720
+#: ../src/plugins/DetDescendantReport.py:706
 msgid "Use full dates instead of only the year"
 msgstr "Volledige datums gebruiken in plaats van alleen het jaar"
 
-#: ../src/plugins/DetAncestralReport.py:722
-#: ../src/plugins/DetDescendantReport.py:708
+#: ../src/plugins/DetAncestralReport.py:721
+#: ../src/plugins/DetDescendantReport.py:707
 msgid "Whether to use full dates instead of just year."
 msgstr "Volledige datums gebruiken in plaats van alleen het jaar."
 
-#: ../src/plugins/DetAncestralReport.py:725
-#: ../src/plugins/DetDescendantReport.py:711
+#: ../src/plugins/DetAncestralReport.py:724
+#: ../src/plugins/DetDescendantReport.py:710
 msgid "List children"
 msgstr "Kinderen opsommen"
 
-#: ../src/plugins/DetAncestralReport.py:726
-#: ../src/plugins/DetDescendantReport.py:712
+#: ../src/plugins/DetAncestralReport.py:725
+#: ../src/plugins/DetDescendantReport.py:711
 msgid "Whether to list children."
 msgstr "Kinderen al of niet oplijsten."
 
-#: ../src/plugins/DetAncestralReport.py:729
-#: ../src/plugins/DetDescendantReport.py:715
+#: ../src/plugins/DetAncestralReport.py:728
+#: ../src/plugins/DetDescendantReport.py:714
 msgid "Compute age"
 msgstr "Leeftijd berekenen"
 
-#: ../src/plugins/DetAncestralReport.py:730
-#: ../src/plugins/DetDescendantReport.py:716
+#: ../src/plugins/DetAncestralReport.py:729
+#: ../src/plugins/DetDescendantReport.py:715
 msgid "Whether to compute age."
 msgstr "Al of niet leeftijd berekenen."
 
 # Duplicaat-voorouders
-#: ../src/plugins/DetAncestralReport.py:733
-#: ../src/plugins/DetDescendantReport.py:719
+#: ../src/plugins/DetAncestralReport.py:732
+#: ../src/plugins/DetDescendantReport.py:718
 msgid "Omit duplicate ancestors"
 msgstr "Voorouder-duplicaten weglaten"
 
 # Duplicaat-voorouders
-#: ../src/plugins/DetAncestralReport.py:734
-#: ../src/plugins/DetDescendantReport.py:720
+#: ../src/plugins/DetAncestralReport.py:733
+#: ../src/plugins/DetDescendantReport.py:719
 msgid "Whether to omit duplicate ancestors."
 msgstr "Al of niet voorouderduplicaten weglaten."
 
-#: ../src/plugins/DetAncestralReport.py:737
-#: ../src/plugins/DetDescendantReport.py:723
+#: ../src/plugins/DetAncestralReport.py:736
+#: ../src/plugins/DetDescendantReport.py:722
 msgid "Use Complete Sentences"
 msgstr "Gebruik volledige zinnen"
 
-#: ../src/plugins/DetAncestralReport.py:739
-#: ../src/plugins/DetDescendantReport.py:725
+#: ../src/plugins/DetAncestralReport.py:738
+#: ../src/plugins/DetDescendantReport.py:724
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Beknopte vorm gebruiken of volledige zinnen."
 
 # Opnemen ipv toevoegen
-#: ../src/plugins/DetAncestralReport.py:742
-#: ../src/plugins/DetDescendantReport.py:728
+#: ../src/plugins/DetAncestralReport.py:741
+#: ../src/plugins/DetDescendantReport.py:727
 msgid "Add descendant reference in child list"
 msgstr "Afstammeling-verwijzingen in kinderen-lijst toevoegen"
 
 # Opnemen ipv toevoegen
-#: ../src/plugins/DetAncestralReport.py:744
-#: ../src/plugins/DetDescendantReport.py:730
+#: ../src/plugins/DetAncestralReport.py:743
+#: ../src/plugins/DetDescendantReport.py:729
 msgid "Whether to add descendant references in child list."
 msgstr "Al of niet afstammelingverwijzingen in kinderenlijst toevoegen."
 
 #. #########################
-#: ../src/plugins/DetAncestralReport.py:747
-#: ../src/plugins/DetDescendantReport.py:733 ../src/plugins/FamilyGroup.py:599
+#: ../src/plugins/DetAncestralReport.py:746
+#: ../src/plugins/DetDescendantReport.py:732 ../src/plugins/FamilyGroup.py:599
 #: ../src/plugins/NarrativeWeb.py:3177
 msgid "Include"
 msgstr "Bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:749
-#: ../src/plugins/DetDescendantReport.py:735
+#: ../src/plugins/DetAncestralReport.py:748
+#: ../src/plugins/DetDescendantReport.py:734
 msgid "Include notes"
 msgstr "Opmerkingen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:750
-#: ../src/plugins/DetDescendantReport.py:736
+#: ../src/plugins/DetAncestralReport.py:749
+#: ../src/plugins/DetDescendantReport.py:735
 msgid "Whether to include notes."
 msgstr "Al of niet opmerkingen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:753
-#: ../src/plugins/DetDescendantReport.py:739
+#: ../src/plugins/DetAncestralReport.py:752
+#: ../src/plugins/DetDescendantReport.py:738
 msgid "Include attributes"
 msgstr "Kenmerken bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:754
-#: ../src/plugins/DetDescendantReport.py:740 ../src/plugins/FamilyGroup.py:621
+#: ../src/plugins/DetAncestralReport.py:753
+#: ../src/plugins/DetDescendantReport.py:739 ../src/plugins/FamilyGroup.py:621
 msgid "Whether to include attributes."
 msgstr "Al of niet kenmerken toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:757
-#: ../src/plugins/DetDescendantReport.py:743
+#: ../src/plugins/DetAncestralReport.py:756
+#: ../src/plugins/DetDescendantReport.py:742
 msgid "Include Photo/Images from Gallery"
 msgstr "Foto's/Afbeeldingen uit de galerie bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:758
-#: ../src/plugins/DetDescendantReport.py:744
+#: ../src/plugins/DetAncestralReport.py:757
+#: ../src/plugins/DetDescendantReport.py:743
 msgid "Whether to include images."
 msgstr "Al of niet afbeeldingen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:761
-#: ../src/plugins/DetDescendantReport.py:747
+#: ../src/plugins/DetAncestralReport.py:760
+#: ../src/plugins/DetDescendantReport.py:746
 msgid "Include alternative names"
 msgstr "Alternatieve namen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:762
-#: ../src/plugins/DetDescendantReport.py:748
+#: ../src/plugins/DetAncestralReport.py:761
+#: ../src/plugins/DetDescendantReport.py:747
 msgid "Whether to include other names."
 msgstr "Al of niet andere namen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:765
-#: ../src/plugins/DetDescendantReport.py:751
+#: ../src/plugins/DetAncestralReport.py:764
+#: ../src/plugins/DetDescendantReport.py:750
 msgid "Include events"
 msgstr "Gebeurtenissen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:766
-#: ../src/plugins/DetDescendantReport.py:752
+#: ../src/plugins/DetAncestralReport.py:765
+#: ../src/plugins/DetDescendantReport.py:751
 msgid "Whether to include events."
 msgstr "Al of niet gebeurtenissen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:769
-#: ../src/plugins/DetDescendantReport.py:755
+#: ../src/plugins/DetAncestralReport.py:768
+#: ../src/plugins/DetDescendantReport.py:754
 msgid "Include addresses"
 msgstr "Adressen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:770
-#: ../src/plugins/DetDescendantReport.py:756
+#: ../src/plugins/DetAncestralReport.py:769
+#: ../src/plugins/DetDescendantReport.py:755
 msgid "Whether to include addresses."
 msgstr "Al of niet adressen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:773
-#: ../src/plugins/DetDescendantReport.py:759
+#: ../src/plugins/DetAncestralReport.py:772
+#: ../src/plugins/DetDescendantReport.py:758
 msgid "Include sources"
 msgstr "Bronnen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:774
-#: ../src/plugins/DetDescendantReport.py:760
+#: ../src/plugins/DetAncestralReport.py:773
+#: ../src/plugins/DetDescendantReport.py:759
 msgid "Whether to include source references."
 msgstr "Al of niet bronverwijzingen toevoegen."
 
-#: ../src/plugins/DetAncestralReport.py:777
-#: ../src/plugins/DetDescendantReport.py:767
+#: ../src/plugins/DetAncestralReport.py:776
+#: ../src/plugins/DetDescendantReport.py:766
 msgid "Missing information"
 msgstr "Ontbrekende informatie"
 
-#: ../src/plugins/DetAncestralReport.py:779
-#: ../src/plugins/DetDescendantReport.py:769
+#: ../src/plugins/DetAncestralReport.py:778
+#: ../src/plugins/DetDescendantReport.py:768
 msgid "Replace missing places with ______"
 msgstr "Ontbrekende locaties vervangen door ______"
 
-#: ../src/plugins/DetAncestralReport.py:780
-#: ../src/plugins/DetDescendantReport.py:770
+#: ../src/plugins/DetAncestralReport.py:779
+#: ../src/plugins/DetDescendantReport.py:769
 msgid "Whether to replace missing Places with blanks."
 msgstr "Al of niet ontbrekende locaties vervangen spaties."
 
 # data/datums
-#: ../src/plugins/DetAncestralReport.py:783
-#: ../src/plugins/DetDescendantReport.py:773
+#: ../src/plugins/DetAncestralReport.py:782
+#: ../src/plugins/DetDescendantReport.py:772
 msgid "Replace missing dates with ______"
 msgstr "Ontbrekende datums vervangen door ______"
 
 # data/datums
-#: ../src/plugins/DetAncestralReport.py:784
-#: ../src/plugins/DetDescendantReport.py:774
+#: ../src/plugins/DetAncestralReport.py:783
+#: ../src/plugins/DetDescendantReport.py:773
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Al of niet ontbrekende datums vervangen door spaties."
 
-#: ../src/plugins/DetAncestralReport.py:817
-#: ../src/plugins/DetDescendantReport.py:807
+#: ../src/plugins/DetAncestralReport.py:816
+#: ../src/plugins/DetDescendantReport.py:806
 msgid "The style used for the children list title."
 msgstr "De gebruikte stijl voor de titel van de kinderenlijst."
 
-#: ../src/plugins/DetAncestralReport.py:827
-#: ../src/plugins/DetDescendantReport.py:817
+#: ../src/plugins/DetAncestralReport.py:826
+#: ../src/plugins/DetDescendantReport.py:816
 msgid "The style used for the children list."
 msgstr "De gebruikte stijl voor de kinderenlijst."
 
-#: ../src/plugins/DetAncestralReport.py:850
-#: ../src/plugins/DetDescendantReport.py:840
+#: ../src/plugins/DetAncestralReport.py:849
+#: ../src/plugins/DetDescendantReport.py:839
 msgid "The style used for the first personal entry."
 msgstr "De gebruikte stijl voor de eerste persoonlijke regel."
 
-#: ../src/plugins/DetAncestralReport.py:860
-#: ../src/plugins/DetDescendantReport.py:850
+#: ../src/plugins/DetAncestralReport.py:859
+#: ../src/plugins/DetDescendantReport.py:849
 msgid "The style used for the More About header."
 msgstr "De gebruikte stijl voor de sectiekop van \"meer over\"."
 
-#: ../src/plugins/DetAncestralReport.py:870
-#: ../src/plugins/DetDescendantReport.py:860
+#: ../src/plugins/DetAncestralReport.py:869
+#: ../src/plugins/DetDescendantReport.py:859
 msgid "The style used for additional detail data."
 msgstr "De gebruikte stijl voor de algemene detailgegevens."
 
-#: ../src/plugins/DetAncestralReport.py:887
+#: ../src/plugins/DetAncestralReport.py:886
 msgid "Detailed Ancestral Report"
 msgstr "Gedetailleerd voorouderverslag"
 
-#: ../src/plugins/DetAncestralReport.py:889
+#: ../src/plugins/DetAncestralReport.py:888
 msgid "Produces a detailed ancestral report"
 msgstr "Levert een gedetailleerd voorouder-rapport"
 
@@ -8329,28 +8331,28 @@ msgstr "Levert een gedetailleerd voorouder-rapport"
 msgid "Descendant Report for %(person_name)s"
 msgstr "Afstammeling-rapport voor %(person_name)s"
 
-#: ../src/plugins/DetDescendantReport.py:695
+#: ../src/plugins/DetDescendantReport.py:694
 msgid "Use Record-style (Modified Register) numbering"
 msgstr "Gebruik 'Record'-stijl voor de nummering"
 
-#: ../src/plugins/DetDescendantReport.py:697
+#: ../src/plugins/DetDescendantReport.py:696
 msgid "Whether to use Record-style numbering instead of Henry-style."
 msgstr "Al of niet 'Record'-stijl nummering gebruik in plaats van 'Henry'-stijl."
 
-#: ../src/plugins/DetDescendantReport.py:763
+#: ../src/plugins/DetDescendantReport.py:762
 #: ../src/plugins/KinshipReport.py:351
 msgid "Include spouses"
 msgstr "Echtgenoten bijvoegen"
 
-#: ../src/plugins/DetDescendantReport.py:764
+#: ../src/plugins/DetDescendantReport.py:763
 msgid "Whether to include detailed spouse information."
 msgstr "Al of niet detailinformatie over de echtenoten toevoegen."
 
-#: ../src/plugins/DetDescendantReport.py:877
+#: ../src/plugins/DetDescendantReport.py:876
 msgid "Detailed Descendant Report"
 msgstr "Gedetailleerd afstammelingenverslag"
 
-#: ../src/plugins/DetDescendantReport.py:879
+#: ../src/plugins/DetDescendantReport.py:878
 msgid "Produces a detailed descendant report"
 msgstr "Levert een gedetailleerd afstammeling-rapport"
 
@@ -8610,27 +8612,27 @@ msgid "Sweden"
 msgstr "Zweden"
 
 # Plaatsnaam
-#: ../src/plugins/ExtractCity.py:372
+#: ../src/plugins/ExtractCity.py:384
 msgid "Place title"
 msgstr "Locatienaam"
 
-#: ../src/plugins/ExtractCity.py:399 ../src/plugins/ExtractCity.py:603
+#: ../src/plugins/ExtractCity.py:414 ../src/plugins/ExtractCity.py:618
 msgid "Extract Place data"
 msgstr "Haal locatiegegevens op"
 
-#: ../src/plugins/ExtractCity.py:416
+#: ../src/plugins/ExtractCity.py:431
 msgid "Checking Place Titles"
 msgstr "Nakijken locatienamen"
 
-#: ../src/plugins/ExtractCity.py:417
+#: ../src/plugins/ExtractCity.py:432
 msgid "Looking for place fields"
 msgstr "Zoeken naar locatievelden"
 
-#: ../src/plugins/ExtractCity.py:497
+#: ../src/plugins/ExtractCity.py:512
 msgid "No place information could be extracted."
 msgstr "Er kon geen informatie over de locatie opgehaald worden."
 
-#: ../src/plugins/ExtractCity.py:517
+#: ../src/plugins/ExtractCity.py:532
 msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish GRAMPS to convert."
@@ -8639,11 +8641,11 @@ msgstr ""
 "locatietitel kunnen gehaald worden. Kies die locaties waarvan u wilt dat "
 "GRAMPS ze omzet."
 
-#: ../src/plugins/ExtractCity.py:632
+#: ../src/plugins/ExtractCity.py:647
 msgid "Extract Place Data from a Place Title"
 msgstr "Haal locatiegegevens uit een plaatsnaam"
 
-#: ../src/plugins/ExtractCity.py:636
+#: ../src/plugins/ExtractCity.py:651
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Tracht de stad en de staat/provincie uit de plaatsnaam te halen"
 
@@ -8999,7 +9001,7 @@ msgstr "Medium"
 # Duplicaat
 #: ../src/plugins/FindDupes.py:70
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Mogelijke dubbele personen zoeken"
+msgstr "Mogelijke dubbele personen zoeken..."
 
 # Duplicaat
 #: ../src/plugins/FindDupes.py:135 ../src/plugins/FindDupes.py:700
@@ -9386,7 +9388,7 @@ msgstr "Afstammelingen - Voorouders"
 
 #: ../src/plugins/GVRelGraph.py:436
 msgid "Determines what people are included in the graph"
-msgstr "Bepaald welke personen in de grafiek getoond worden "
+msgstr "Bepaald welke personen in de grafiek getoond worden"
 
 #: ../src/plugins/GVRelGraph.py:448
 msgid "Include Birth, Marriage and Death dates"
@@ -9910,7 +9912,7 @@ msgstr "Maakt een lijst van personen met een bepaalde aanduiding"
 
 #: ../src/plugins/MediaManager.py:64
 msgid "manual|Media_Manager..."
-msgstr "Mediamanager"
+msgstr "Mediamanager..."
 
 #: ../src/plugins/MediaManager.py:85 ../src/plugins/MediaManager.py:595
 msgid "Media Manager"
@@ -10086,56 +10088,56 @@ msgid "Manages batch operations on media files"
 msgstr "Beheert automatische acties op mediabestanden"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:106
+#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:105
 msgid "Evergreen"
 msgstr "Evergreen"
 
-#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:107
+#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:106
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:108
+#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:107
 msgid "Simply Red"
 msgstr "Simply Red"
 
-#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:109
+#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:108
 msgid "No style sheet"
 msgstr "Geen stijlblad"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:114
+#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:113
 msgid "Unicode (recommended)"
 msgstr "Unicode (aanbevolen)"
 
-#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:166
+#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:165
 msgid "Standard copyright"
 msgstr "Standaard copyright"
 
-#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:168
+#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:167
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - By attribution"
 
-#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:169
+#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:168
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - By attribution, No derivations"
 
-#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:170
+#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:169
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - By attribution, Share-alike"
 
-#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:171
+#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:170
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - By attribution, Non-commercial"
 
-#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:172
+#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:171
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - By attribution, Non-commercial, No derivations"
 
-#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:173
+#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:172
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 
-#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:175
+#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:174
 msgid "No copyright notice"
 msgstr "Geen copyright notitie"
 
@@ -10357,14 +10359,14 @@ msgstr "te &nbsp; %(place)s"
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:861
+#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:964
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Noch %s noch %s zijn mappen"
 
 #: ../src/plugins/NarrativeWeb.py:2645 ../src/plugins/NarrativeWeb.py:2649
 #: ../src/plugins/NarrativeWeb.py:2662 ../src/plugins/NarrativeWeb.py:2666
-#: ../src/plugins/WebCal.py:868 ../src/plugins/WebCal.py:872
+#: ../src/plugins/WebCal.py:971 ../src/plugins/WebCal.py:975
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Kon de map %s niet aanmaken"
@@ -10381,7 +10383,7 @@ msgstr "Het archief moet een bestand zijn, niet een map"
 msgid "Generate XHTML Reports"
 msgstr "HTML-verslagen aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1066
+#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1088
 msgid "Filtering"
 msgstr "Filter"
 
@@ -10407,11 +10409,11 @@ msgstr "Plaats-pagina's aanmaken"
 msgid "Creating media pages"
 msgstr "Mediapagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:257
+#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:264
 msgid "Possible destination error"
 msgstr "Mogelijk een doelfout"
 
-#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:258
+#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:265
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -10430,11 +10432,11 @@ msgstr "Sla de web pagina's op in een tar.gz archief"
 msgid "Whether to store the web pages in an archive file"
 msgstr "Sla de webpagina's op in een archiefbestand"
 
-#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1182
+#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1206
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1184
+#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1208
 msgid "The destination directory for the web files"
 msgstr "De bestemmingsmap voor de webpagina's"
 
@@ -10451,32 +10453,32 @@ msgid "The title of the web site"
 msgstr "De titel voor de webstek"
 
 # Bestandsuitgang/extensie
-#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1205
+#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1229
 msgid "File extension"
 msgstr "Bestandsextensie"
 
-#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1208
+#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1232
 msgid "The extension to be used for the web files"
 msgstr "De gebruikte extensie voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1211
+#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1235
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1216
+#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1240
 msgid "The copyright to be used for the web files"
 msgstr "Autheursrecht gebruiken voor de webpagina's"
 
 # Doping
-#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1219
+#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1243
 msgid "Character set encoding"
 msgstr "Tekenset codering"
 
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1222
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1246
 msgid "The encoding to be used for the web files"
 msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1225
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1249
 msgid "StyleSheet"
 msgstr "Stijlblad"
 
@@ -11851,65 +11853,65 @@ msgstr "De gegevens controleren"
 msgid "Verifies the data against user-defined tests"
 msgstr "Controleert de gegevens met een aantal door de gebruiker opgestelde tests"
 
-#: ../src/plugins/WebCal.py:419 ../src/plugins/WebCal.py:634
+#: ../src/plugins/WebCal.py:380
 msgid "Jan"
 msgstr "Jan"
 
-#: ../src/plugins/WebCal.py:420 ../src/plugins/WebCal.py:635
+#: ../src/plugins/WebCal.py:381
 msgid "Feb"
 msgstr "Feb"
 
-#: ../src/plugins/WebCal.py:421 ../src/plugins/WebCal.py:636
+#: ../src/plugins/WebCal.py:382
 msgid "Mar"
 msgstr "Maa"
 
-#: ../src/plugins/WebCal.py:422 ../src/plugins/WebCal.py:637
+#: ../src/plugins/WebCal.py:383
 msgid "Apr"
 msgstr "Apr"
 
-#: ../src/plugins/WebCal.py:423 ../src/plugins/WebCal.py:638
+#: ../src/plugins/WebCal.py:384
 msgid "May"
 msgstr "Mei"
 
-#: ../src/plugins/WebCal.py:424 ../src/plugins/WebCal.py:639
+#: ../src/plugins/WebCal.py:385
 msgid "Jun"
 msgstr "Jun"
 
-#: ../src/plugins/WebCal.py:425 ../src/plugins/WebCal.py:640
+#: ../src/plugins/WebCal.py:386
 msgid "Jul"
 msgstr "Jul"
 
 # enkelvoud beter?
-#: ../src/plugins/WebCal.py:426 ../src/plugins/WebCal.py:641
+#: ../src/plugins/WebCal.py:387
 msgid "Aug"
 msgstr "Aug"
 
-#: ../src/plugins/WebCal.py:427 ../src/plugins/WebCal.py:642
+#: ../src/plugins/WebCal.py:388
 msgid "Sep"
 msgstr "Sep"
 
-#: ../src/plugins/WebCal.py:428 ../src/plugins/WebCal.py:643
+#: ../src/plugins/WebCal.py:389
 msgid "Oct"
 msgstr "Oct"
 
 # niet/geen
-#: ../src/plugins/WebCal.py:429 ../src/plugins/WebCal.py:644
+#: ../src/plugins/WebCal.py:390
 msgid "Nov"
 msgstr "Nov"
 
-#: ../src/plugins/WebCal.py:430 ../src/plugins/WebCal.py:645
+#: ../src/plugins/WebCal.py:391
 msgid "Dec"
 msgstr "Dec"
 
-#: ../src/plugins/WebCal.py:431 ../src/plugins/WebCal.py:646
+#: ../src/plugins/WebCal.py:392
 msgid "Year Glance"
 msgstr "Vooruitblik jaar"
 
-#: ../src/plugins/WebCal.py:432 ../src/plugins/WebCal.py:647
+#: ../src/plugins/WebCal.py:393
 msgid "Blank Calendar"
 msgstr "Lege kalender"
 
-#: ../src/plugins/WebCal.py:683
+#: ../src/plugins/WebCal.py:626
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</"
@@ -11918,37 +11920,66 @@ msgstr ""
 "Gegenereerd met <a href=\"http://gramps-project.org\" target=\"_blank"
 "\">GRAMPS</a> op %(date)s"
 
-#. Create progress bar for it
-#: ../src/plugins/WebCal.py:804
-msgid "Creating Printable Blank Full-Year Calendar page"
-msgstr "Maak een lege en uitdrukbare kalenderpagina voor een volledige jaar aan"
+#: ../src/plugins/WebCal.py:728 ../src/plugins/WebCal.py:805
+#: ../src/plugins/WebCal.py:899 ../src/plugins/WebCal.py:1044
+#, python-format
+msgid "Created for %(author)s"
+msgstr "Aangemaakt voor %(author)s"
+
+#: ../src/plugins/WebCal.py:730
+msgid "A Peak into One Day"
+msgstr "Eén dag bekijken"
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:828
+#: ../src/plugins/WebCal.py:824
+msgid "Creating Printable Blank Full-Year Calendar Page"
+msgstr "UMaak een lege en uitdrukbare kalenderpagina voor een volledige jaar aan"
+
+#: ../src/plugins/WebCal.py:918
+msgid ""
+"            This calendar is meant to give you access to all your data at a "
+"glance compressed into one page.  Clicking on a <b>red square</b> will take "
+"you to a page that shows all the events for that date!\n"
+msgstr "            Deze kalender is bedoeld om in één oogopslag al uw gegevens toegankelijk te maken in één pagina.  Klikt u op een <b>rood vierkant</b> dan wordt u naar een pagina geveord waar alle gebeurtenissen voor deze datum zijn samengevat!\n"
+
+#. Create progress bar for it
+#: ../src/plugins/WebCal.py:924
 msgid "Creating Year At A Glance page"
 msgstr "Maak een jaar-vooruitblik-pagina aan"
 
-#: ../src/plugins/WebCal.py:887
+#: ../src/plugins/WebCal.py:981
 msgid "Generate XHTML Calendars"
 msgstr "XHTML-kalenders aanmaken"
 
 #. get the information, first from holidays:
 #. Don't include holidays
 #. _country is currently global
-#: ../src/plugins/WebCal.py:895
+#: ../src/plugins/WebCal.py:989
 msgid "Getting information from holidays file"
 msgstr "Informatie uit verlofbestand halen"
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:901
+#: ../src/plugins/WebCal.py:995
 msgid "Creating Calendar pages"
 msgstr "Kalenderpagina's aanmaken"
 
-#: ../src/plugins/WebCal.py:1069
+#: ../src/plugins/WebCal.py:1091
 msgid "Reading database"
 msgstr "Lezen van het gegevensbestand"
 
-#: ../src/plugins/WebCal.py:1145
+#. person is 1, and therefore display it correctly
+#. TODO. Make this translatable
+#: ../src/plugins/WebCal.py:1127
+#, python-format
+msgid "%(short_name)s, <em>%(age)d</em> year old"
+msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
+
+#: ../src/plugins/WebCal.py:1129
+#, python-format
+msgid "%(short_name)s, <em>%(age)d</em> years old"
+msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
+
+#: ../src/plugins/WebCal.py:1169
 #, python-format
 msgid ""
 "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> "
@@ -11957,222 +11988,222 @@ msgstr ""
 "<span class=\"yearsmarried\">%(spouse)s en %(person)s, <em>%(nyears)d</em> "
 "jaar verjaardag</span>"
 
-#: ../src/plugins/WebCal.py:1188
+#: ../src/plugins/WebCal.py:1212
 msgid "Calendar Title"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1188
+#: ../src/plugins/WebCal.py:1212
 msgid "My Family Calendar"
 msgstr "Mijn familiekalender"
 
-#: ../src/plugins/WebCal.py:1189
+#: ../src/plugins/WebCal.py:1213
 msgid "The title of the calendar"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1228
+#: ../src/plugins/WebCal.py:1252
 msgid "The Style Sheet to be used for the web page"
 msgstr "Het te gebruiken stijlblad voor de webstek"
 
-#: ../src/plugins/WebCal.py:1235
+#: ../src/plugins/WebCal.py:1259
 msgid "Content Options"
 msgstr "Inhoudopties"
 
-#: ../src/plugins/WebCal.py:1242
+#: ../src/plugins/WebCal.py:1266
 msgid "Create Year At A Glance"
 msgstr "Maak jaar-in-een-oogopslag aan"
 
-#: ../src/plugins/WebCal.py:1243
-msgid "Wheather to create A Full Year High-lighted calendar"
-msgstr "Al of niet een kalender voor een volledig jaar aanmaken"
+#: ../src/plugins/WebCal.py:1267
+msgid "Whether to create A Full Year High-lighted calendar"
+msgstr "Al of niet een kalender met ''High-light'' voor een volledig jaar aanmaken"
 
-#: ../src/plugins/WebCal.py:1246
+#: ../src/plugins/WebCal.py:1270
 msgid "Create A Printable Blank Full- Year Calendar"
 msgstr "Een lege, uitdrukbare jaarkalender aanmaken"
 
-#: ../src/plugins/WebCal.py:1247
-msgid "Wheather to create A Full Year Printable calendar"
+#: ../src/plugins/WebCal.py:1271
+msgid "Whether to create A Full Year Printable calendar"
 msgstr "Al of niet een volledige, uitdrukbare jaarkalender aanmaken"
 
-#: ../src/plugins/WebCal.py:1255
+#: ../src/plugins/WebCal.py:1279
 msgid "Holidays will be included for the selected country"
 msgstr "Verloven voor het geselecteerde land zullen toegevoegd worden"
 
 # Nog geen definieve vertaling gevonden
-#: ../src/plugins/WebCal.py:1259
+#: ../src/plugins/WebCal.py:1283
 msgid "Home link"
 msgstr "Home link"
 
-#: ../src/plugins/WebCal.py:1260
+#: ../src/plugins/WebCal.py:1284
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Een verwijzing om de gebruiker naar de hoofdpagina van de webstek te sturen, "
 "wordt toegevoegd"
 
-#: ../src/plugins/WebCal.py:1276
+#: ../src/plugins/WebCal.py:1300
 msgid "Check for wives to use maiden name"
 msgstr "Aanklikken om de meisjesnaam voor de vrouwen te gebruiken"
 
-#: ../src/plugins/WebCal.py:1277
+#: ../src/plugins/WebCal.py:1301
 msgid "Attempt to use maiden names of women"
 msgstr "Poging om de meisjesnamen te gebruiken voor vrouwen"
 
-#: ../src/plugins/WebCal.py:1284
+#: ../src/plugins/WebCal.py:1308
 msgid "Jan - Jun Notes"
 msgstr "Opmerkingen jan tot jun"
 
-#: ../src/plugins/WebCal.py:1286
+#: ../src/plugins/WebCal.py:1310
 msgid "Jan Note"
 msgstr "Opmerkingen jan"
 
-#: ../src/plugins/WebCal.py:1286
+#: ../src/plugins/WebCal.py:1310
 msgid "This prints in January"
 msgstr "Dit wordt in januari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1287
+#: ../src/plugins/WebCal.py:1311
 msgid "The note for the month of January"
 msgstr "De opmerking voor de maand januari"
 
-#: ../src/plugins/WebCal.py:1290
+#: ../src/plugins/WebCal.py:1314
 msgid "Feb Note"
 msgstr "Opmerking feb"
 
-#: ../src/plugins/WebCal.py:1290
+#: ../src/plugins/WebCal.py:1314
 msgid "This prints in February"
 msgstr "Dit wordt in februari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1291
+#: ../src/plugins/WebCal.py:1315
 msgid "The note for the month of February"
 msgstr "De opmerking voor februari"
 
-#: ../src/plugins/WebCal.py:1294
+#: ../src/plugins/WebCal.py:1318
 msgid "Mar Note"
 msgstr "Opmerkingen maa"
 
-#: ../src/plugins/WebCal.py:1294
+#: ../src/plugins/WebCal.py:1318
 msgid "This prints in March"
 msgstr "Dit wordt in maart afgedrukt"
 
-#: ../src/plugins/WebCal.py:1295
+#: ../src/plugins/WebCal.py:1319
 msgid "The note for the month of March"
 msgstr "Een opmerking voor maart"
 
-#: ../src/plugins/WebCal.py:1298
+#: ../src/plugins/WebCal.py:1322
 msgid "Apr Note"
 msgstr "Opmerking apr"
 
-#: ../src/plugins/WebCal.py:1298
+#: ../src/plugins/WebCal.py:1322
 msgid "This prints in April"
 msgstr "Dit wordt in april afgedrukt"
 
-#: ../src/plugins/WebCal.py:1299
+#: ../src/plugins/WebCal.py:1323
 msgid "The note for the month of April"
 msgstr "Een opmerking voor april"
 
-#: ../src/plugins/WebCal.py:1302
+#: ../src/plugins/WebCal.py:1326
 msgid "May Note"
 msgstr "Opmerking mei"
 
-#: ../src/plugins/WebCal.py:1302
+#: ../src/plugins/WebCal.py:1326
 msgid "This prints in May"
 msgstr "Dit wordt in mei afgedrukt"
 
-#: ../src/plugins/WebCal.py:1303
+#: ../src/plugins/WebCal.py:1327
 msgid "The note for the month of May"
 msgstr "Een opmerking voor mei"
 
-#: ../src/plugins/WebCal.py:1306
+#: ../src/plugins/WebCal.py:1330
 msgid "Jun Note"
 msgstr "Opmerking jun"
 
-#: ../src/plugins/WebCal.py:1306
+#: ../src/plugins/WebCal.py:1330
 msgid "This prints in June"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1307
+#: ../src/plugins/WebCal.py:1331
 msgid "The note for the month of June"
 msgstr "Een opmerking voor juni"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1334
 msgid "Jul - Dec Notes"
 msgstr "Opmerking jul tot dec"
 
-#: ../src/plugins/WebCal.py:1312
+#: ../src/plugins/WebCal.py:1336
 msgid "Jul Note"
 msgstr "Opmerking jul"
 
-#: ../src/plugins/WebCal.py:1312
+#: ../src/plugins/WebCal.py:1336
 msgid "This prints in July"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1313
+#: ../src/plugins/WebCal.py:1337
 msgid "The note for the month of July"
 msgstr "Een opmerking voor juli"
 
-#: ../src/plugins/WebCal.py:1316
+#: ../src/plugins/WebCal.py:1340
 msgid "Aug Note"
 msgstr "Opmerking aug"
 
-#: ../src/plugins/WebCal.py:1316
+#: ../src/plugins/WebCal.py:1340
 msgid "This prints in August"
 msgstr "Dit wordt in augustus afgedrukt"
 
-#: ../src/plugins/WebCal.py:1317
+#: ../src/plugins/WebCal.py:1341
 msgid "The note for the month of August"
 msgstr "Een opmerking voor augustus"
 
-#: ../src/plugins/WebCal.py:1320
+#: ../src/plugins/WebCal.py:1344
 msgid "Sep Note"
 msgstr "Opmerking sep"
 
-#: ../src/plugins/WebCal.py:1320
+#: ../src/plugins/WebCal.py:1344
 msgid "This prints in September"
 msgstr "Dit wordt in september afgedrukt"
 
-#: ../src/plugins/WebCal.py:1321
+#: ../src/plugins/WebCal.py:1345
 msgid "The note for the month of September"
 msgstr "Een opmerking voor september"
 
-#: ../src/plugins/WebCal.py:1324
+#: ../src/plugins/WebCal.py:1348
 msgid "Oct Note"
 msgstr "Opmerking okt"
 
-#: ../src/plugins/WebCal.py:1324
+#: ../src/plugins/WebCal.py:1348
 msgid "This prints in October"
 msgstr "Dit wordt in oktober afgedrukt"
 
-#: ../src/plugins/WebCal.py:1325
+#: ../src/plugins/WebCal.py:1349
 msgid "The note for the month of October"
 msgstr "Een opmerking voor oktober"
 
-#: ../src/plugins/WebCal.py:1328
+#: ../src/plugins/WebCal.py:1352
 msgid "Nov Note"
 msgstr "Opmerking nov"
 
-#: ../src/plugins/WebCal.py:1328
+#: ../src/plugins/WebCal.py:1352
 msgid "This prints in November"
 msgstr "Dit wordt in november afgedrukt"
 
-#: ../src/plugins/WebCal.py:1329
+#: ../src/plugins/WebCal.py:1353
 msgid "The note for the month of November"
 msgstr "een opmerking voor november"
 
-#: ../src/plugins/WebCal.py:1332
+#: ../src/plugins/WebCal.py:1356
 msgid "Dec Note"
 msgstr "Opmerking dec"
 
-#: ../src/plugins/WebCal.py:1332
+#: ../src/plugins/WebCal.py:1356
 msgid "This prints in December"
 msgstr "Dit wordt in december afgedrukt"
 
-#: ../src/plugins/WebCal.py:1333
+#: ../src/plugins/WebCal.py:1357
 msgid "The note for the month of December"
 msgstr "Een opmerking voor december"
 
-#: ../src/plugins/WebCal.py:1638
+#: ../src/plugins/WebCal.py:1730
 msgid "Web Calendar"
 msgstr "Webkalender"
 
-#: ../src/plugins/WebCal.py:1642
+#: ../src/plugins/WebCal.py:1734
 msgid "Produces web (HTML) calendars."
 msgstr "Maakt web (HTML) kalenders aan."
 
@@ -14442,557 +14473,593 @@ msgstr "Overleed (leeftijd %(age)d dagen)."
 
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
-msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(male_name)s werd begraven op %(burial_date)s in %(burial_place)s."
+msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
-msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr "Hij werd begraven op %(burial_date)s in %(burial_place)s."
+msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Hij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:554
 #, python-format
-msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(female_name)s werd begraven %(burial_date)s in %(burial_place)s."
+msgid ""
+"%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
+"s."
+msgstr "%(female_name)s werd begraven %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
-msgid "She was buried on %(burial_date)s in %(burial_place)s."
-msgstr "Zij werd begraven op %(burial_date)s in %(burial_place)s."
+msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Zij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:558
 #, python-format
-msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
+"(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:559
 #, python-format
-msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr "Deze persoon werd begraven op %(burial_date)s in %(burial_place)s."
+msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
 #, python-format
-msgid "Buried %(burial_date)s in %(burial_place)s."
-msgstr "Begraven %(burial_date)s in %(burial_place)s."
+msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Begraven %(burial_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:566
 #, python-format
-msgid "%(male_name)s was buried on %(burial_date)s."
-msgstr "%(male_name)s werd begraven op %(burial_date)s."
+msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:567
 #, python-format
-msgid "He was buried on %(burial_date)s."
-msgstr "Hij werd begraven op %(burial_date)s."
+msgid "He was buried on %(burial_date)s%(endnotes)s."
+msgstr "Hij werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:570
 #, python-format
-msgid "%(female_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s werd begraven op %(burial_date)s."
+msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:571
 #, python-format
-msgid "She was buried on %(burial_date)s."
-msgstr "Zij werd begraven op %(burial_date)s."
+msgid "She was buried on %(burial_date)s%(endnotes)s."
+msgstr "Zij werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:574
 #, python-format
-msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
-msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:575
 #, python-format
-msgid "This person was buried on %(burial_date)s."
-msgstr "Deze persoon werd begraven op %(burial_date)s."
+msgid "This person was buried on %(burial_date)s%(endnotes)s."
+msgstr "Deze persoon werd begraven op %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:577
 #, python-format
-msgid "Buried %(burial_date)s."
-msgstr "Begraven %(burial_date)s."
+msgid "Buried %(burial_date)s%(endnotes)s."
+msgstr "Begraven %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
-msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(male_name)s werd begraven in %(month_year)s in %(burial_place)s."
+msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
-msgid "He was buried in %(month_year)s in %(burial_place)s."
-msgstr "Hij werd begraven in %(month_year)s in %(burial_place)s."
+msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Hij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
-msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s in %(burial_place)s."
+msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven in %(month_year)s te%(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
-msgid "She was buried in %(month_year)s in %(burial_place)s."
-msgstr "Zij werd begraven in %(month_year)s in %(burial_place)s."
+msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Zij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:590
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
+"(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
-msgid "This person was buried in %(month_year)s in %(burial_place)s."
-msgstr "Deze persoon werd begraven in %(month_year)s in %(burial_place)s."
+msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
 #, python-format
-msgid "Buried %(month_year)s in %(burial_place)s."
-msgstr "Begraven %(month_year)s in %(burial_place)s."
+msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Begraven %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:598
 #, python-format
-msgid "%(male_name)s was buried in %(month_year)s."
-msgstr "%(male_name)s werd begraven in %(month_year)s."
+msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:599
 #, python-format
-msgid "He was buried in %(month_year)s."
-msgstr "Hij werd begraven in %(month_year)s."
+msgid "He was buried in %(month_year)s%(endnotes)s."
+msgstr "Hij werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:602
 #, python-format
-msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s."
+msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:603
 #, python-format
-msgid "She was buried in %(month_year)s."
-msgstr "Zij werd begraven in %(month_year)s."
+msgid "She was buried in %(month_year)s%(endnotes)s."
+msgstr "Zij werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:606
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:607
 #, python-format
-msgid "This person was buried in %(month_year)s."
-msgstr "Deze persoon werd begraven in %(month_year)s."
+msgid "This person was buried in %(month_year)s%(endnotes)s."
+msgstr "Deze persoon werd begraven in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:609
 #, python-format
-msgid "Buried %(month_year)s."
-msgstr "Begraven %(month_year)s."
+msgid "Buried %(month_year)s%(endnotes)s."
+msgstr "Begraven %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s in %(burial_place)s."
+msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Hij werd begraven %(modified_date)s in %(burial_place)s."
+msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Hij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
-msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s werd begraven %(modified_date)s in %(burial_place)s."
+msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
-msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Zij werd begraven %(modified_date)s in %(burial_place)s."
+msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Zij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:622
 #, python-format
-msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s in %(burial_place)s."
+msgid ""
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
+"(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
-msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "Deze persoon werd begraven %(modified_date)s in %(burial_place)s."
+msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
-msgid "Buried %(modified_date)s in %(burial_place)s."
-msgstr "Begraven %(modified_date)s in %(burial_place)s."
+msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:630
 #, python-format
-msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s."
+msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:631
 #, python-format
-msgid "He was buried %(modified_date)s."
-msgstr "Hij werd begraven %(modified_date)s."
+msgid "He was buried %(modified_date)s%(endnotes)s."
+msgstr "Hij werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
 #, python-format
-msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s werd begraven %(modified_date)s."
+msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:635
 #, python-format
-msgid "She was buried %(modified_date)s."
-msgstr "Zij werd begraven %(modified_date)s."
+msgid "She was buried %(modified_date)s%(endnotes)s."
+msgstr "Zij werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
-msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
-msgid "This person was buried %(modified_date)s."
-msgstr "Deze persoon werd begraven %(modified_date)s."
+msgid "This person was buried %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon werd begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:641
 #, python-format
-msgid "Buried %(modified_date)s."
-msgstr "Begraven %(modified_date)s."
+msgid "Buried %(modified_date)s%(endnotes)s."
+msgstr "Begraven %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:646
 #, python-format
-msgid "%(male_name)s was buried in %(burial_place)s."
-msgstr "%(male_name)s werd begraven in %(burial_place)s."
+msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd begraven in %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:647
 #, python-format
-msgid "He was buried in %(burial_place)s."
-msgstr "Hij werd begraven in %(burial_place)s."
+msgid "He was buried in %(burial_place)s%(endnotes)s."
+msgstr "Hij werd begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
-msgid "%(female_name)s was buried in %(burial_place)s."
-msgstr "%(female_name)s werd begraven in %(burial_place)s."
+msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:651
 #, python-format
-msgid "She was buried in %(burial_place)s."
-msgstr "Zij werd begraven in %(burial_place)s."
+msgid "She was buried in %(burial_place)s%(endnotes)s."
+msgstr "Zij werd begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:654
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:655
 #, python-format
-msgid "This person was buried in %(burial_place)s."
-msgstr "Deze persoon werd begraven in %(burial_place)s."
+msgid "This person was buried in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:657
 #, python-format
-msgid "Buried in %(burial_place)s."
-msgstr "Begraven in %(burial_place)s."
+msgid "Buried in %(burial_place)s%(endnotes)s."
+msgstr "Begraven te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:662
 #, python-format
-msgid "%(male_name)s was buried."
-msgstr "%(male_name)s werd begraven."
+msgid "%(male_name)s was buried%(endnotes)s."
+msgstr "%(male_name)s werd begraven%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:663
-msgid "He was buried."
-msgstr "Hij werd begraven."
+#, python-format
+msgid "He was buried%(endnotes)s."
+msgstr "Hij werd begraven %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:666
 #, python-format
-msgid "%(female_name)s was buried."
-msgstr "%(female_name)s werd begraven."
+msgid "%(female_name)s was buried%(endnotes)s."
+msgstr "%(female_name)s werd begraven%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:667
-msgid "She was buried."
-msgstr "Zij werd begraven."
+#, python-format
+msgid "She was buried%(endnotes)s."
+msgstr "Zij werd begraven%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:670
 #, python-format
-msgid "%(unknown_gender_name)s was buried."
-msgstr "%(unknown_gender_name)s werd begraven."
+msgid "%(unknown_gender_name)s was buried%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd begraven %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:671
-msgid "This person was buried."
-msgstr "Deze persoon werd begraven."
+#, python-format
+msgid "This person was buried%(endnotes)s."
+msgstr "Deze persoon werd begraven %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:673
-msgid "Buried."
-msgstr "Begraven."
+#, python-format
+msgid "Buried%(endnotes)s."
+msgstr "Begraven%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:684
 #, python-format
-msgid "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s."
-msgstr "%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
-msgid "He was baptised on %(baptism_date)s in %(baptism_place)s."
-msgstr "Hij werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+msgid "He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:688
 #, python-format
-msgid "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s."
-msgstr "%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
-msgid "She was baptised on %(baptism_date)s in %(baptism_place)s."
-msgstr "Zij werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:692
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)"
-"s."
-msgstr "%(unknown_gender_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)"
+"s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:693
 #, python-format
-msgid "This person was baptised on %(baptism_date)s in %(baptism_place)s."
-msgstr "Deze persoon werd gedoopt op %(baptism_date)s te %(baptism_place)s."
+msgid ""
+"This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
+"s."
+msgstr "Deze persoon werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:695
 #, python-format
-msgid "Baptised %(baptism_date)s in %(baptism_place)s."
-msgstr "Gedoopt %(baptism_date)s te %(baptism_place)s."
+msgid "Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Gedoopt %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:700
 #, python-format
-msgid "%(male_name)s was baptised on %(baptism_date)s."
-msgstr "%(male_name)s werd gedoopt op %(baptism_date)s."
+msgid "%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:701
 #, python-format
-msgid "He was baptised on %(baptism_date)s."
-msgstr "Hij werd gedoopt  op %(baptism_date)s."
+msgid "He was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "Hij werd gedoopt  op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:704
 #, python-format
-msgid "%(female_name)s was baptised on %(baptism_date)s."
-msgstr "%(female_name)s werd gedoopt op %(baptism_date)s."
+msgid "%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
 #, python-format
-msgid "She was baptised on %(baptism_date)s."
-msgstr "Zij werd gedoopt op %(baptism_date)s."
+msgid "She was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "Zij werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:708
 #, python-format
-msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s."
-msgstr "%(unknown_gender_name)s werd gedoopt op %(baptism_date)s."
+msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:709
 #, python-format
-msgid "This person was baptised on %(baptism_date)s."
-msgstr "Deze persoon werd gedoopt op %(baptism_date)s."
+msgid "This person was baptised on %(baptism_date)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:711
 #, python-format
-msgid "Baptised %(baptism_date)s."
-msgstr "Gedoopt %(baptism_date)s."
+msgid "Baptised %(baptism_date)s%(endnotes)s."
+msgstr "Gedoopt %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:716
 #, python-format
-msgid "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "%(male_name)s werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
+"s."
+msgstr "%(male_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
 #, python-format
-msgid "He was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "Hij werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid "He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:720
 #, python-format
-msgid "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "%(female_name)s werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(female_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
-msgid "She was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "Zij werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid "She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:724
 #, python-format
-msgid "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid ""
+"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:725
 #, python-format
-msgid "This person was baptised in %(month_year)s in %(baptism_place)s."
-msgstr "Deze persoon werd gedoopt in %(month_year)s te %(baptism_place)s."
+msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
 #, python-format
-msgid "Baptised %(month_year)s in %(baptism_place)s."
-msgstr "Gedoopt %(month_year)s te %(baptism_place)s."
+msgid "Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Gedoopt %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
-msgid "%(male_name)s was baptised in %(month_year)s."
-msgstr "%(male_name)s werd gedoopt in %(month_year)s."
+msgid "%(male_name)s was baptised in %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:733
 #, python-format
-msgid "He was baptised in %(month_year)s."
-msgstr "Hij werd gedoopt in %(month_year)s."
+msgid "He was baptised in %(month_year)s%(endnotes)s."
+msgstr "Hij werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:736
 #, python-format
-msgid "%(female_name)s was baptised in %(month_year)s."
-msgstr "%(female_name)s werd gedoopt in %(month_year)s."
+msgid "%(female_name)s was baptised in %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:737
 #, python-format
-msgid "She was baptised in %(month_year)s."
-msgstr "Zij werd gedoopt in %(month_year)s."
+msgid "She was baptised in %(month_year)s%(endnotes)s."
+msgstr "Zij werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:740
 #, python-format
-msgid "%(unknown_gender_name)s was baptised in %(month_year)s."
-msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s."
+msgid "%(unknown_gender_name)s was baptised in %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:741
 #, python-format
-msgid "This person was baptised in %(month_year)s."
-msgstr "Deze persoon werd gedoopt in %(month_year)s."
+msgid "This person was baptised in %(month_year)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:743
 #, python-format
-msgid "Baptised %(month_year)s."
-msgstr "Gedoopt %(month_year)s."
+msgid "Baptised %(month_year)s%(endnotes)s."
+msgstr "Gedoopt %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:748
 #, python-format
-msgid "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
+"s."
+msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
-msgid "He was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "Hij werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid "He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:752
 #, python-format
-msgid "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "%(female_name)s werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
-msgid "She was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "Zij werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid "She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:756
 #, python-format
-msgid "%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid ""
+"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:757
 #, python-format
-msgid "This person was baptised %(modified_date)s in %(baptism_place)s."
-msgstr "Deze persoon werd gedoopt %(modified_date)s te %(baptism_place)s."
+msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:759
 #, python-format
-msgid "Baptised %(modified_date)s in %(baptism_place)s."
-msgstr "Gedoopt %(modified_date)s te %(baptism_place)s."
+msgid "Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "Gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
 #, python-format
-msgid "%(male_name)s was baptised %(modified_date)s."
-msgstr "%(male_name)s werd gedoopt %(modified_date)s."
+msgid "%(male_name)s was baptised %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
 #, python-format
-msgid "He was baptised %(modified_date)s."
-msgstr "Hij werd gedoopt %(modified_date)s."
+msgid "He was baptised %(modified_date)s%(endnotes)s."
+msgstr "Hij werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:768
 #, python-format
-msgid "%(female_name)s was baptised %(modified_date)s."
-msgstr "%(female_name)s werd gedoopt %(modified_date)s."
+msgid "%(female_name)s was baptised %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:769
 #, python-format
-msgid "She was baptised %(modified_date)s."
-msgstr "Zij werd gedoopt %(modified_date)s."
+msgid "She was baptised %(modified_date)s%(endnotes)s."
+msgstr "Zij werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:772
 #, python-format
-msgid "%(unknown_gender_name)s was baptised %(modified_date)s."
-msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s."
+msgid "%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:773
 #, python-format
-msgid "This person was baptised %(modified_date)s."
-msgstr "Deze persoon werd gedoopt %(modified_date)s."
+msgid "This person was baptised %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
 #, python-format
-msgid "Baptised %(modified_date)s."
-msgstr "Gedoopt %(modified_date)s."
+msgid "Baptised %(modified_date)s%(endnotes)s."
+msgstr "Gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:780
 #, python-format
-msgid "%(male_name)s was baptised in %(baptism_place)s."
-msgstr "%(male_name)s werd gedoopt te %(baptism_place)s."
+msgid "%(male_name)s was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:781
 #, python-format
-msgid "He was baptised in %(baptism_place)s."
-msgstr "Hij werd gedoopt te %(baptism_place)s."
+msgid "He was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
 #, python-format
-msgid "%(female_name)s was baptised in %(baptism_place)s."
-msgstr "%(female_name)s werd gedoopt te %(baptism_place)s."
+msgid "%(female_name)s was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:785
 #, python-format
-msgid "She was baptised in %(baptism_place)s."
-msgstr "Zij werd gedoopt te %(baptism_place)s."
+msgid "She was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:788
 #, python-format
-msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s."
-msgstr "%(unknown_gender_name)s werd gedoopt te %(baptism_place)s."
+msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:789
 #, python-format
-msgid "This person was baptised in %(baptism_place)s."
-msgstr "Deze persoon werd bedoopt te %(baptism_place)s."
+msgid "This person was baptised in %(baptism_place)s%(endnotes)s."
+msgstr "Deze persoon werd bedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:791
 #, python-format
-msgid "Baptised in %(baptism_place)s."
-msgstr "Gedoopt te %(baptism_place)s."
+msgid "Baptised in %(baptism_place)s%(endnotes)s."
+msgstr "Gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:796
 #, python-format
-msgid "%(male_name)s was baptised."
-msgstr "%(male_name)s werd gedoopt."
+msgid "%(male_name)s was baptised%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-msgid "He was baptised."
-msgstr "Hij werd gedoopt."
+#, python-format
+msgid "He was baptised%(endnotes)s."
+msgstr "Hij werd gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:800
 #, python-format
-msgid "%(female_name)s was baptised."
-msgstr "%(female_name)s werd gedoopt."
+msgid "%(female_name)s was baptised%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:801
-msgid "She was baptised."
-msgstr "Zij werd gedoopt."
+#, python-format
+msgid "She was baptised%(endnotes)s."
+msgstr "Zij werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:804
 #, python-format
-msgid "%(unknown_gender_name)s was baptised."
-msgstr "%(unknown_gender_name)s werd gedoopt."
+msgid "%(unknown_gender_name)s was baptised%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:805
-msgid "This person was baptised."
-msgstr "Deze persoon werd gedoopt."
+#, python-format
+msgid "This person was baptised%(endnotes)s."
+msgstr "Deze persoon werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
-msgid "Baptised."
-msgstr "Gedoopt."
+#, python-format
+msgid "Baptised%(endnotes)s."
+msgstr "Gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
 #, python-format
@@ -16711,84 +16778,84 @@ msgstr "%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)
 msgid "%(female_name)s%(endnotes)s."
 msgstr "%(female_name)s%(endnotes)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2687
+#: ../src/ReportBase/_ReportUtils.py:2696
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Geboren: %(birth_date)s %(birth_place)s Overleden: %(death_date)s %"
 "(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2690
+#: ../src/ReportBase/_ReportUtils.py:2699
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
 msgstr "Geboren: %(birth_date)s %(birth_place)s Overleden: %(death_date)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2694
+#: ../src/ReportBase/_ReportUtils.py:2703
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
 msgstr "Geboren: %(birth_date)s %(birth_place)s Overleden: %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2697
+#: ../src/ReportBase/_ReportUtils.py:2706
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
 msgstr "Geboren: %(birth_date)s %(birth_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2701
+#: ../src/ReportBase/_ReportUtils.py:2710
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
 msgstr "Geboren: %(birth_date)s Overleden: %(death_date)s %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2704
+#: ../src/ReportBase/_ReportUtils.py:2713
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
 msgstr "Geboren: %(birth_date)s Overleden: %(death_date)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2707
+#: ../src/ReportBase/_ReportUtils.py:2716
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
 msgstr "Geboren: %(birth_date)s Overleden: %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2709
+#: ../src/ReportBase/_ReportUtils.py:2718
 #, python-format
 msgid "Born: %(birth_date)s."
 msgstr "Geboren: %(birth_date)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2714
+#: ../src/ReportBase/_ReportUtils.py:2723
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr "Geboren: %(birth_place)s Overleden: %(death_date)s %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2717
+#: ../src/ReportBase/_ReportUtils.py:2726
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
 msgstr "Geboren: %(birth_place)s Overleden: %(death_date)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2721
+#: ../src/ReportBase/_ReportUtils.py:2730
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
 msgstr "Geboren: %(birth_place)s Overleden: %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2724
+#: ../src/ReportBase/_ReportUtils.py:2733
 #, python-format
 msgid "Born: %(birth_place)s."
 msgstr "Geboren: %(birth_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2728
+#: ../src/ReportBase/_ReportUtils.py:2737
 #, python-format
 msgid "Died: %(death_date)s %(death_place)s."
 msgstr "Overleden: %(death_date)s in %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2730
+#: ../src/ReportBase/_ReportUtils.py:2739
 #, python-format
 msgid "Died: %(death_date)s."
 msgstr "Overleden: %(death_date)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2733
+#: ../src/ReportBase/_ReportUtils.py:2742
 #, python-format
 msgid "Died: %(death_place)s."
 msgstr "Overleden: in %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2952
+#: ../src/ReportBase/_ReportUtils.py:2961
 #, python-format
 msgid "Descendant Families of %s"
 msgstr "Familie-afstammelingen van %s"
