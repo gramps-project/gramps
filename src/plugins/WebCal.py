@@ -1075,7 +1075,7 @@ class WebCalReport(Report):
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father != None:
-                                        father_lastname = father.get_primary_name().get_surname()
+                                        father_lastname = _get_regular_surname(father.get_primary_name())
                 short_name = _get_short_name(person, father_lastname)
                 if age == 0: # person is 0 years old, display nothing
                     text = ""
@@ -1605,8 +1605,21 @@ def _easter(year):
     day = l + 28 - 31 * (month / 4)
     return year, month, day
 
-# FIXME. Name prefix, suffix etc. is missing.
-def _get_short_name(person, maiden_name = None):
+
+def _get_regular_surname(name):
+    """
+    Return a name string built from the components of the Name instance.
+    """
+    surname = name.get_surname()
+    prefix = name.get_surname_prefix()
+    if prefix:
+        surname = prefix + " " + surname
+    suffix = name.get_suffix()
+    if suffix:
+        surname = surname + ", " + suffix
+    return surname
+
+def _get_short_name(person, maiden_name=None):
     """ Return person's name, unless maiden_name given, unless married_name listed. """
     # Get all of a person's names:
     primary_name = person.get_primary_name()
@@ -1620,13 +1633,13 @@ def _get_short_name(person, maiden_name = None):
     # Now, decide which to use:
     if maiden_name is not None:
         if married_name is not None:
-            first_name, family_name = married_name.get_first_name(), married_name.get_surname()
+            first_name, family_name = married_name.get_first_name(), _get_regular_surname(married_name)
             call_name = married_name.get_call_name()
         else:
             first_name, family_name = primary_name.get_first_name(), maiden_name
             call_name = primary_name.get_call_name()
     else:
-        first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
+        first_name, family_name = primary_name.get_first_name(), _get_regular_surname(primary_name)
         call_name = primary_name.get_call_name()
 
     # If they have a nickname use it
