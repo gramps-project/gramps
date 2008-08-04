@@ -174,7 +174,7 @@ _COPY_OPTIONS = [
         _('No copyright notice'),
         ]
 
-def make_date(year, month, day):
+def _make_date(year, month, day):
     """
     Return a Date object of the particular year/month/day.
     """
@@ -270,24 +270,6 @@ class WebCalReport(Report):
                   "web pages."))
             self.warn_dir = False
 
-    def dst(self, area="us"):
-        """
-        Return Daylight Saving Time start/stop in a given area ("us", "eu").
-        US calculation valid 1976-2099; EU 1996-2099
-        """
-        year = self.year
-        if area == "us":
-            if year > 2006:
-                start = (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
-                stop = (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
-            else:
-                start = (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
-                stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
-        elif area == "eu":
-            start = (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
-            stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
-        return (start, stop)
-
     def add_day_item(self, text, year, month, day):
         if day == 0:
             # This may happen for certain "about" dates.
@@ -326,22 +308,20 @@ class WebCalReport(Report):
         mycalendar = Holidays(element, country)
         date = datetime.date(year, 1, 1)
         while date.year == year:
-            holidays = mycalendar.check_date( date )
+            holidays = mycalendar.check_date(date)
             for text in holidays:
-                if text == "Easter":
+                if text == "Easter":    # TODO. Verify if this needs translation, and how
                     date1 = _easter(year)
                     self.add_day_item(text, date1[0], date1[1], date1[2])
-                elif text == "Daylight Saving begins":
+                elif text == "Daylight Saving begins":  # TODO. Verify if this needs translation, and how
                     if Utils.xml_lang() == "en-US":
-                        date2 = self.dst("us")
+                        dst_start, dst_stop = _get_dst_start_stop(year, "us")
                     else:
-                        date2 = self.dst("eu")
-                    dst_start = date2[0]
-                    dst_stop = date2[1]
+                        dst_start, dst_stop = _getdst_start_stop(year, "eu")
                     self.add_day_item(text, dst_start[0], dst_start[1], dst_start[2])
-                    self.add_day_item("Daylight Saving ends", dst_stop[0], dst_stop[1], dst_stop[2])
+                    self.add_day_item(_("Daylight Saving ends"), dst_stop[0], dst_stop[1], dst_stop[2])
                 elif text == "Daylight Saving ends":
-                    pass
+                    pass                # end is already done above
                 self.add_day_item(text, date.year, date.month, date.day)
             date = date.fromordinal( date.toordinal() + 1)
 
@@ -421,6 +401,13 @@ class WebCalReport(Report):
         'month' - month number 1, 2, .., 12
         """
 
+        def _get_class_for_daycol(day):
+            if day == 0:
+                return "weekend sunday"
+            elif day == 6:
+                return "weekend saturday"
+            return "weekday"
+
         year = self.year
 
         # Begin calendar head
@@ -429,35 +416,23 @@ class WebCalReport(Report):
         of.write('    <table id="%s" class="calendar">\n' % title)
         of.write('        <thead>\n')
         of.write('            <tr>\n')
-        of.write('                <th colspan="7" class="monthName">')
-        of.write('%s</th>\n' % title)
+        of.write('                <th colspan="7" class="monthName">%s</th>\n' % title)
         of.write('            </tr>\n')
 
         # This calendar has first column sunday. Do not use locale!
         calendar.setfirstweekday(calendar.SUNDAY)
 
         # Calendar weekday names header
+        if cal == "yg":
+            day_names = GrampsLocale.short_days
+        else:
+            day_names = GrampsLocale.long_days
         of.write('            <tr>\n')
-        of.write('                <th class="weekend sunday" />')
-        if cal == "yg":
-            of.write(GrampsLocale.short_days[1])
-        else:
-            of.write(GrampsLocale.long_days[1])
-        of.write('</th>\n')
-        for day_col in range(5):
-            of.write('                <th class="weekday" />')
-            if cal == "yg":
-                of.write(GrampsLocale.short_days[day_col+2])
-            else:
-                of.write(GrampsLocale.long_days[day_col+2])
-            of.write('</th>\n')
-        of.write('                <th class="weekend saturday" />')
-        if cal == "yg":
-            of.write(GrampsLocale.short_days[7])
-        else:
-            of.write(GrampsLocale.long_days[7])
-        of.write('</th>\n')
+        for day_col in range(7):
+            dayclass = _get_class_for_daycol(day_col)
+            of.write('                <th class="%s" />%s</th>\n' % (dayclass, day_names[day_col + 1]))
         of.write('            </tr>\n')
+
         of.write('        </thead>\n')
 
         of.write('        <tbody>\n')
@@ -495,21 +470,16 @@ class WebCalReport(Report):
             week = monthinfo[week_row]
             of.write('             <tr class="week%d">\n' % week_row)
 
-            for days_row in range(0, 7):
-                if days_row == 0:
-                    dayclass = "weekend sunday"
-                elif days_row == 6:
-                    dayclass = "weekend saturday"
-                else:
-                    dayclass = "weekday"
+            for day_col in range(0, 7):
+                dayclass = _get_class_for_daycol(day_col)
 
-                day = week[days_row]
+                day = week[day_col]
                 if day == 0:                      # a day in the previous or in the next month
                     if week_row == 0:             # day in the previous month
-                        specday = lastweek_prevmonth[days_row]
+                        specday = lastweek_prevmonth[day_col]
                         specclass = "previous " + dayclass
                     elif week_row == nweeks-1:    # day in the next month
-                        specday = firstweek_nextmonth[days_row]
+                        specday = firstweek_nextmonth[day_col]
                         specclass = "next " + dayclass
 
                     of.write('                 <td id="specday%d" class="%s">\n'
@@ -1084,7 +1054,7 @@ class WebCalReport(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            living = probably_alive(person, self.database, make_date(self.year, 1, 1), 0)
+            living = probably_alive(person, self.database, _make_date(self.year, 1, 1), 0)
 
             if self.birthday and birth_date != None and ((self.alive and living) or not self.alive):
                 year = birth_date.get_year()
@@ -1110,7 +1080,6 @@ class WebCalReport(Report):
                 if age == 0: # person is 0 years old, display nothing
                     text = ""
                 elif age == 1: # person is 1, and therefore display it correctly
-                    # TODO. Make this translatable
                     text = _('%(short_name)s, <em>%(age)d</em> year old') % {'short_name' : short_name, 'age' : age}
                 else:
                     text = _('%(short_name)s, <em>%(age)d</em> years old') % {'short_name' : short_name, 'age' : age}
@@ -1132,7 +1101,7 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
                             if self.alive:
-                                if not probably_alive(spouse, self.database, make_date(self.year, 1, 1), 0):
+                                if not probably_alive(spouse, self.database, _make_date(self.year, 1, 1), 0):
                                     continue
                             married = True
                             for event_ref in fam.get_event_ref_list():
@@ -1583,32 +1552,6 @@ class Holidays:
                 retval.append(rule["name"])
         return retval
 
-# TODO. Try to understand this function and then to replace it with
-# something more Pythonic, more understandable.
-# Questions to answer:
-# * are the file names URLs or native filesystem names?
-#   (This matters if we must use os.path.join(), or build_url_fname())
-# * the logic path for "wc" and "yg" and "by" give same subdirs
-# * why the "./" trailer?
-def _subdirs(cal, dir_, name):
-    """
-    This will add the number of subdirs to the filename depending on which
-    calendar is being called:
-    wc = WebCal
-    yg = Year At A Glance
-    by = Printable Pocket Calendar
-    ip = Indiv Pages
-    """
-
-    if cal == "wc":
-        subdirs = '.././'
-    elif ((cal == "yg") or (cal == "by")):
-        subdirs = '.././'
-    else:
-        subdirs = '../.././'
-    fname = subdirs + '%s/%s' % (dir_, name)
-    return fname
-
 def process_holiday_file(filename):
     """ This will process a holiday file for country names """
     parser = Xml2Obj()
@@ -1662,7 +1605,7 @@ def _easter(year):
     day = l + 28 - 31 * (month / 4)
     return year, month, day
 
-# TODO. Check name prefix, suffix etc.
+# FIXME. Name prefix, suffix etc. is missing.
 def _get_short_name(person, maiden_name = None):
     """ Return person's name, unless maiden_name given, unless married_name listed. """
     # Get all of a person's names:
@@ -1701,6 +1644,23 @@ def _has_webpage_extension(fname):
         if fname.endswith(ext):
             return True
     return False
+
+def _get_dst_start_stop(year, area="us"):
+    """
+    Return Daylight Saving Time start/stop in a given area ("us", "eu").
+    US calculation valid 1976-2099; EU 1996-2099
+    """
+    if area == "us":
+        if year > 2006:
+            start = (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
+            stop = (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
+        else:
+            start = (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
+            stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
+    elif area == "eu":
+        start = (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
+        stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
+    return start, stop
 
 #-------------------------------------------------------------------------
 #
