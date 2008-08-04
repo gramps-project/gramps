@@ -3660,7 +3660,7 @@ msgstr "Relasjonstype: %s"
 #: ../src/DataViews/RelationView.py:1176
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s in %(place)s"
+msgstr "%(event_type)s: %(date)s i %(place)s"
 
 #: ../src/DataViews/RelationView.py:1180
 #, python-format
