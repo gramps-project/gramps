@@ -96,6 +96,7 @@ from DateHandler import parser as _dp
 #------------------------------------------------------------------------
 _CALENDARSCREEN = "calendar-screen.css"
 _CALENDARPRINT = "calendar-print.css"
+_ARROW_GIF = "arrow102.gif"
 
 # This information defines the list of styles in the Web calendar
 # options dialog as well as the location of the corresponding SCREEN
@@ -229,16 +230,8 @@ class WebCalReport(Report):
                              menu.get_option_by_name('note_nov').get_value(),
                              menu.get_option_by_name('note_dec').get_value()]
 
-        self.warn_dir = True        # Only give warning once.
-
-        # Set first weekday according to Locale
-        xmllang = Utils.xml_lang()
-        if xmllang == "en-US":
-            # USA calendar starts on a Sunday
-            calendar.setfirstweekday(calendar.SUNDAY)
-        else:
-            # European calendar starts on Monday, default
-            calendar.setfirstweekday(calendar.MONDAY)
+        self.warn_dir = True            # Only give warning once.
+        self.has_arrow_gif = False # Set to True after copying to destination
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
@@ -345,9 +338,10 @@ class WebCalReport(Report):
         # Copy arrow image if "Year At A Glance" is requested,
         # and if the file exists
         if self.fullyear:
-            from_file = os.path.join(const.IMAGE_DIR, "arrow102.gif")
+            from_file = os.path.join(const.IMAGE_DIR, _ARROW_GIF)
             if os.path.exists(from_file):
-                self.copy_file(from_file, "arrow102.gif", "images")
+                self.copy_file(from_file, _ARROW_GIF, "images")
+                self.has_arrow_gif = True
 
     def display_nav_links(self, of, currentsection, nr_up):
         """
@@ -640,6 +634,7 @@ class WebCalReport(Report):
         'day_list' - lines of text to display at this day
         """
 
+        nr_up = 2                       # Number of directory levels up to get to root
         year = self.year
 
         # Create names for long and short month names, in LOcale
@@ -650,17 +645,19 @@ class WebCalReport(Report):
         cal_fname = '%s%d%s' % (shrt_month, day_num, self.ext)
         of = self.create_file(cal_fname, os.path.join(str(year), lng_month))
 
-        arrow = os.path.join(self.html_dir, "images", "arrow102.gif")
         mystyle = """
         <style type="text/css">
         <!--
         """
-        if os.path.isfile(arrow):
+        if self.has_arrow_gif:
+            subdirs = ['..'] * nr_up
+            # Note. We use '/' here because it is a URL, not a OS dependent pathname
+            gif_fname = '/'.join(subdirs + ["images"] + [_ARROW_GIF])
             mystyle += """
             ul#arrow li {
                 font-size:16px;
-                list-style-image: url("../../images/arrow102.gif"); }
-            """
+                list-style-image: url("%(gif_fname)s"); }
+            """ % {'gif_fname' : gif_fname}
         else:
             mystyle += """
             ul li {
@@ -675,7 +672,7 @@ class WebCalReport(Report):
 
         # Add Header to calendar
         title = "%d %s %d" % (day_num, lng_month, year)
-        author = self.write_header(of, title, 2, mystyle)
+        author = self.write_header(of, title, nr_up, mystyle)
 
         of.write('<body id="events-%s%d">\n' % (shrt_month, day_num))
 
@@ -696,7 +693,7 @@ class WebCalReport(Report):
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
 
-        self.display_nav_links(of, None, 2)
+        self.display_nav_links(of, None, nr_up)
 
         of.write('         </ul>\n')
         of.write('     </div>\n')
@@ -704,9 +701,7 @@ class WebCalReport(Report):
         of.write('      <h2 class="monthName" style="display:block;">%s %d, %d</h2>\n'
             % (lng_month, day_num, year))
 
-        # if arrow file exists in IMAGE_DIR, use it
-        arrow = os.path.join(const.IMAGE_DIR, "arrow102.gif")
-        if os.path.isfile(arrow):
+        if self.has_arrow_gif:
             of.write('                  <ul id="arrow">\n')
         else:
             of.write('                  <ul>\n')
@@ -717,7 +712,7 @@ class WebCalReport(Report):
                 of.write('</li>\n')
         of.write('                      </ul>\n')
 
-        self.write_footer(of, 2)
+        self.write_footer(of, nr_up)
         self.close_file(of)
 
     def blank_year(self):
