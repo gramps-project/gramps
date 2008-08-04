@@ -968,10 +968,6 @@ class EditFamily(EditPrimary):
 
             self.db.add_family(self.obj, trans)
             self.db.transaction_commit(trans, _("Add Family"))
-        elif original and self.object_is_empty():
-            trans = self.db.transaction_begin()
-            self.db.remove_family(self.obj.handle, trans)
-            self.db.transaction_commit(trans, _("Remove Family"))
         elif cmp(original.serialize(),self.obj.serialize()):
 
             trans = self.db.transaction_begin()
@@ -1004,7 +1000,7 @@ class EditFamily(EditPrimary):
                 self.db.commit_family(self.obj, trans)
             self.db.transaction_commit(trans, _("Edit Family"))
 
-        self.close()
+        self._do_close()
 
     def _cleanup_on_exit(self):
         (width, height) = self.window.get_size()
