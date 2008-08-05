@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-01 17:03+0200\n"
-"PO-Revision-Date: 2008-08-01 17:00+0200\n"
+"POT-Creation-Date: 2008-08-05 13:35+0200\n"
+"PO-Revision-Date: 2008-08-05 13:46+0200\n"
 "Last-Translator: \n"
-"Language-Team:  <nb@li.org>\n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2462,7 +2462,7 @@ msgstr "kvinne"
 #: ../src/plugins/DetDescendantReport.py:484
 #: ../src/plugins/DetDescendantReport.py:491
 #: ../src/plugins/IndivComplete.py:319 ../src/plugins/NarrativeWeb.py:1697
-#: ../src/plugins/NarrativeWeb.py:2375 ../src/plugins/WebCal.py:405
+#: ../src/plugins/NarrativeWeb.py:2375
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "ukjent"
@@ -3258,7 +3258,7 @@ msgstr "En person ble funnet til å være hans/hennes egen ane."
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:400 ../src/plugins/NarrativeWeb.py:1454
-#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:379
+#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:354
 msgid "Home"
 msgstr "Hjem"
 
@@ -4504,7 +4504,7 @@ msgstr "Familien du redigerer er endret. For å være sikker på at databasen ik
 msgid "New Family"
 msgstr "Ny familie"
 
-#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1005
+#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1001
 msgid "Edit Family"
 msgstr "Rediger familie"
 
@@ -4594,10 +4594,6 @@ msgstr "Du har prøvd å forandre GRAMPS IDen med verdien %(id)s. Denne verdien 
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
 msgstr "Legg til familie"
-
-#: ../src/Editors/_EditFamily.py:974 ../src/gen/utils/dbutils.py:98
-msgid "Remove Family"
-msgstr "Fjern familie"
 
 #: ../src/Editors/_EditLdsOrd.py:152 ../src/Editors/_EditLdsOrd.py:302
 #: ../src/Editors/_EditLdsOrd.py:338 ../src/Editors/_EditLdsOrd.py:418
@@ -5640,7 +5636,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
 #: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
 #: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1731 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/WebCal.py:1686 ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr "Stabil"
 
@@ -5878,7 +5874,7 @@ msgstr "Generasjon %d"
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3031
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1204
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1155
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
@@ -6051,7 +6047,7 @@ msgstr "Innstillinger"
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3052
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:1216 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1167 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
 
@@ -6062,14 +6058,14 @@ msgstr "Velg filter for å begrense antall personer"
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3058 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1222
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1173
 msgid "Filter Person"
 msgstr "Filtrere person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/StatisticsChart.py:688
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1223
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1174
 msgid "The center person for the filter"
 msgstr "Senterpersonen for filteret"
 
@@ -6255,12 +6251,12 @@ msgid "Relationships shown are to %s"
 msgstr "Viste slektsforhold er til %s"
 
 #: ../src/plugins/Calendar.py:488 ../src/plugins/Calendar.py:490
-#: ../src/plugins/WebCal.py:1261 ../src/plugins/WebCal.py:1263
+#: ../src/plugins/WebCal.py:1212 ../src/plugins/WebCal.py:1214
 msgid "Year of calendar"
 msgstr "Kalenderår"
 
 #: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3054
-#: ../src/plugins/WebCal.py:1218
+#: ../src/plugins/WebCal.py:1169
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Velg filter for å begrense antall personer som skal vises på kalenderen"
 
@@ -6268,7 +6264,7 @@ msgstr "Velg filter for å begrense antall personer som skal vises på kalendere
 msgid "Select the format to display names"
 msgstr "Velg format for å vise navn"
 
-#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1274
+#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1225
 msgid "Country for holidays"
 msgstr "Land for helligdager"
 
@@ -6304,27 +6300,27 @@ msgstr "Hustruer bruker sitt eget etternavn"
 msgid "Select married women's displayed surname"
 msgstr "Velg gifte kvinners viste etternavn"
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1288
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1239
 msgid "Include only living people"
 msgstr "Ta bare med levende personer"
 
-#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1289
+#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1240
 msgid "Include only living people in the calendar"
 msgstr "Ta bare med levende personer i kalenderen"
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1292
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1243
 msgid "Include birthdays"
 msgstr "Ta med fødselsdager"
 
-#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1293
+#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1244
 msgid "Include birthdays in the calendar"
 msgstr "Ta med fødselsdager i kalenderen"
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1296
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1247
 msgid "Include anniversaries"
 msgstr "Ta med jubileer"
 
-#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1297
+#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1248
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med jubileer i kalenderen"
 
@@ -6428,7 +6424,7 @@ msgstr "Stil for dagtekst"
 msgid "Month text style"
 msgstr "Stil for månedstekst"
 
-#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1649
+#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1574
 msgid "Don't include holidays"
 msgstr "Ikke ta med helligdager"
 
@@ -7770,11 +7766,11 @@ msgstr "Etterkommerrapport for %(person_name)s"
 
 #: ../src/plugins/DetDescendantReport.py:694
 msgid "Use Record-style (Modified Register) numbering"
-msgstr ""
+msgstr "Bruk fortløpende nummerering"
 
 #: ../src/plugins/DetDescendantReport.py:696
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr ""
+msgstr "Om det skal brukes fortløpende nummerering istedet for Henry-nummerering."
 
 #: ../src/plugins/DetDescendantReport.py:762
 #: ../src/plugins/KinshipReport.py:351
@@ -9362,56 +9358,56 @@ msgid "Manages batch operations on media files"
 msgstr "Håndtere batchoperasjoner på mediafiler"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:105
+#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:106
 msgid "Evergreen"
 msgstr "Eviggrønn"
 
-#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:106
+#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:107
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:107
+#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:108
 msgid "Simply Red"
 msgstr "Enkelt rød"
 
-#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:108
+#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:109
 msgid "No style sheet"
 msgstr "Ingen stilsett"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:113
+#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:114
 msgid "Unicode (recommended)"
 msgstr "Unicode (anbefalt)"
 
-#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:165
+#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:166
 msgid "Standard copyright"
 msgstr "Alminnelig opphavsrett"
 
-#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:167
+#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:168
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - Etter egenskap"
 
-#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:168
+#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:169
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ingen avledninger"
 
-#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:169
+#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:170
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - Etter egenskap, Del-likt"
 
-#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:170
+#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:171
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell"
 
-#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:171
+#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:172
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - Etter egenskap, Ikke-kommersiell, Ingen avledninger"
 
-#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:172
+#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:173
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 
-#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:174
+#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:175
 msgid "No copyright notice"
 msgstr "Ingen opphavsrett"
 
@@ -9590,14 +9586,14 @@ msgstr "ved &nbsp; %(place)s"
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:964
+#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:916
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Hverken %s eller %s er mapper"
 
 #: ../src/plugins/NarrativeWeb.py:2645 ../src/plugins/NarrativeWeb.py:2649
 #: ../src/plugins/NarrativeWeb.py:2662 ../src/plugins/NarrativeWeb.py:2666
-#: ../src/plugins/WebCal.py:971 ../src/plugins/WebCal.py:975
+#: ../src/plugins/WebCal.py:923 ../src/plugins/WebCal.py:927
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Klarte ikke å opprette mappa: %s"
@@ -9614,7 +9610,7 @@ msgstr "Arkivfilen må være en fil, ikke en katalog"
 msgid "Generate XHTML Reports"
 msgstr "Lage XHTML-rapporter"
 
-#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1088
+#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1040
 msgid "Filtering"
 msgstr "Filter"
 
@@ -9638,11 +9634,11 @@ msgstr "Lager side over steder"
 msgid "Creating media pages"
 msgstr "Lag side over mediaobjekter"
 
-#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:264
+#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:257
 msgid "Possible destination error"
 msgstr "Mulig målfeil"
 
-#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:265
+#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:258
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Det ser ut som om du har satt målkatalog lik en katalog som brukes for å lagre data.  Dette kan lage problemer med filhåndteringen.  Det anbefales at du vurderer å bruke en annen katalog for å lagre dine genererte nettsider."
 
@@ -9654,11 +9650,11 @@ msgstr "Lagre nettsted i .tar.gz arkiv"
 msgid "Whether to store the web pages in an archive file"
 msgstr "Lagre nettsted i en arkivfil"
 
-#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1206
+#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1157
 msgid "Destination"
 msgstr "Mål"
 
-#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1208
+#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1159
 msgid "The destination directory for the web files"
 msgstr "Målkatalogen for nettsidene"
 
@@ -9674,31 +9670,31 @@ msgstr "Mitt familietre"
 msgid "The title of the web site"
 msgstr "Tittel på nettstedet"
 
-#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1229
+#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1180
 msgid "File extension"
 msgstr "Filetternavn"
 
-#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1232
+#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1183
 msgid "The extension to be used for the web files"
 msgstr "Filendelsen som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1235
+#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1186
 msgid "Copyright"
 msgstr "Opphavsrett"
 
-#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1240
+#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1191
 msgid "The copyright to be used for the web files"
 msgstr "Opphavsrett som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1243
+#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1194
 msgid "Character set encoding"
 msgstr "Tegnsett"
 
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1246
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1197
 msgid "The encoding to be used for the web files"
 msgstr "Tegnsettet som skal brukes på nettsidene"
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1249
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1200
 msgid "StyleSheet"
 msgstr "Stilark"
 
@@ -11008,341 +11004,305 @@ msgstr "Verifisere dataene"
 msgid "Verifies the data against user-defined tests"
 msgstr "Verifiserer dataene mot brukerdefinerte tester"
 
-#: ../src/plugins/WebCal.py:380
-msgid "Jan"
-msgstr "jan"
+#: ../src/plugins/WebCal.py:315
+msgid "Daylight Saving ends"
+msgstr ""
 
-#: ../src/plugins/WebCal.py:381
-msgid "Feb"
-msgstr "feb"
-
-#: ../src/plugins/WebCal.py:382
-msgid "Mar"
-msgstr "mar"
-
-#: ../src/plugins/WebCal.py:383
-msgid "Apr"
-msgstr "apr"
-
-#: ../src/plugins/WebCal.py:384
-msgid "May"
-msgstr "mai"
-
-#: ../src/plugins/WebCal.py:385
-msgid "Jun"
-msgstr "jun"
-
-#: ../src/plugins/WebCal.py:386
-msgid "Jul"
-msgstr "jul"
-
-#: ../src/plugins/WebCal.py:387
-msgid "Aug"
-msgstr "aug"
-
-#: ../src/plugins/WebCal.py:388
-msgid "Sep"
-msgstr "sep"
-
-#: ../src/plugins/WebCal.py:389
-msgid "Oct"
-msgstr "okt"
-
-#: ../src/plugins/WebCal.py:390
-msgid "Nov"
-msgstr "nov"
-
-#: ../src/plugins/WebCal.py:391
-msgid "Dec"
-msgstr "des"
-
-#: ../src/plugins/WebCal.py:392
+#: ../src/plugins/WebCal.py:367
 msgid "Year Glance"
 msgstr "Årsoversikt"
 
-#: ../src/plugins/WebCal.py:393
+#. TODO. See note in indiv_date()
+#. Add header to page
+#: ../src/plugins/WebCal.py:368 ../src/plugins/WebCal.py:748
 msgid "Blank Calendar"
 msgstr "Tom kalender"
 
-#: ../src/plugins/WebCal.py:626
+#: ../src/plugins/WebCal.py:584
 #, python-format
 msgid "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</a> on %(date)s"
 msgstr "Generert av <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</a> %(date)s"
 
-#: ../src/plugins/WebCal.py:728 ../src/plugins/WebCal.py:805
-#: ../src/plugins/WebCal.py:899 ../src/plugins/WebCal.py:1044
+#: ../src/plugins/WebCal.py:682 ../src/plugins/WebCal.py:757
+#: ../src/plugins/WebCal.py:851 ../src/plugins/WebCal.py:996
 #, python-format
 msgid "Created for %(author)s"
 msgstr "Laget for %(author)s"
 
-#: ../src/plugins/WebCal.py:730
+#: ../src/plugins/WebCal.py:684
 msgid "A Peak into One Day"
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:824
+#: ../src/plugins/WebCal.py:776
 msgid "Creating Printable Blank Full-Year Calendar Page"
 msgstr "Lager utskriftvennlige blanke helårskalendersider"
 
-#: ../src/plugins/WebCal.py:918
+#. TODO. See note in indiv_date()
+#. Add header to page
+#: ../src/plugins/WebCal.py:842
+#, python-format
+msgid "%(year)d, At A Glance"
+msgstr ""
+
+#: ../src/plugins/WebCal.py:870
 msgid "            This calendar is meant to give you access to all your data at a glance compressed into one page.  Clicking on a <b>red square</b> will take you to a page that shows all the events for that date!\n"
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:924
+#: ../src/plugins/WebCal.py:876
 msgid "Creating Year At A Glance page"
 msgstr "Lager en side med årsoversikt"
 
-#: ../src/plugins/WebCal.py:981
+#: ../src/plugins/WebCal.py:933
 msgid "Generate XHTML Calendars"
 msgstr "Lage XHTML-kalendre"
 
 #. get the information, first from holidays:
 #. Don't include holidays
 #. _country is currently global
-#: ../src/plugins/WebCal.py:989
+#: ../src/plugins/WebCal.py:941
 msgid "Getting information from holidays file"
 msgstr "Hent ut informasjon fra helligdagsfil"
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:995
+#: ../src/plugins/WebCal.py:947
 msgid "Creating Calendar pages"
 msgstr "Lager kalendersider"
 
-#: ../src/plugins/WebCal.py:1091
+#: ../src/plugins/WebCal.py:1043
 msgid "Reading database"
 msgstr "Leser database"
 
 #. person is 1, and therefore display it correctly
-#. TODO. Make this translatable
-#: ../src/plugins/WebCal.py:1127
+#: ../src/plugins/WebCal.py:1078
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> year old"
 msgstr "%(short_name)s, <em>%(age)d</em> år gammel"
 
-#: ../src/plugins/WebCal.py:1129
+#: ../src/plugins/WebCal.py:1080
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> years old"
 msgstr "%(short_name)s, <em>%(age)d</em> år gammel"
 
-#: ../src/plugins/WebCal.py:1169
+#: ../src/plugins/WebCal.py:1120
 #, python-format
 msgid "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> year anniversary</span>"
 msgstr "<span class=\"yearsmarried\">%(spouse)s og %(person)s, <em>%(nyears)d</em> års jubileum</span>"
 
-#: ../src/plugins/WebCal.py:1212
+#: ../src/plugins/WebCal.py:1163
 msgid "Calendar Title"
 msgstr "Kalendertittel"
 
-#: ../src/plugins/WebCal.py:1212
+#: ../src/plugins/WebCal.py:1163
 msgid "My Family Calendar"
 msgstr "Min familiekalender"
 
-#: ../src/plugins/WebCal.py:1213
+#: ../src/plugins/WebCal.py:1164
 msgid "The title of the calendar"
 msgstr "Tittel på kalenderen"
 
-#: ../src/plugins/WebCal.py:1252
+#: ../src/plugins/WebCal.py:1203
 msgid "The Style Sheet to be used for the web page"
 msgstr "Stilarket som skal brukes på nettsidene"
 
-#: ../src/plugins/WebCal.py:1259
+#: ../src/plugins/WebCal.py:1210
 msgid "Content Options"
 msgstr "Innholdsinnstillinger"
 
-#: ../src/plugins/WebCal.py:1266
+#: ../src/plugins/WebCal.py:1217
 msgid "Create Year At A Glance"
 msgstr "Lage årsoversikt"
 
-#: ../src/plugins/WebCal.py:1267
+#: ../src/plugins/WebCal.py:1218
 msgid "Whether to create A Full Year High-lighted calendar"
 msgstr "Om det skal lages en komplett helårskalender"
 
-#: ../src/plugins/WebCal.py:1270
+#: ../src/plugins/WebCal.py:1221
 msgid "Create A Printable Blank Full- Year Calendar"
 msgstr "Lag en utskriftsvennlig tom helårskalender"
 
-#: ../src/plugins/WebCal.py:1271
+#: ../src/plugins/WebCal.py:1222
 msgid "Whether to create A Full Year Printable calendar"
 msgstr "Om det skal lages en helårs utskriftsvennlig kalender"
 
-#: ../src/plugins/WebCal.py:1279
+#: ../src/plugins/WebCal.py:1230
 msgid "Holidays will be included for the selected country"
 msgstr "Helligdager vil bli tatt med for det valgte landet"
 
-#: ../src/plugins/WebCal.py:1283
+#: ../src/plugins/WebCal.py:1234
 msgid "Home link"
 msgstr "Hjemmeside"
 
-#: ../src/plugins/WebCal.py:1284
+#: ../src/plugins/WebCal.py:1235
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr "Lenken som skal tas med for å sende brukeren til hovedsiden for nettstedet"
 
-#: ../src/plugins/WebCal.py:1300
+#: ../src/plugins/WebCal.py:1251
 msgid "Check for wives to use maiden name"
 msgstr "Merk av for at hustruer bruker sitt pikenavn"
 
-#: ../src/plugins/WebCal.py:1301
+#: ../src/plugins/WebCal.py:1252
 msgid "Attempt to use maiden names of women"
 msgstr "Forsøke å bruke pikenavn for kvinner"
 
-#: ../src/plugins/WebCal.py:1308
+#: ../src/plugins/WebCal.py:1259
 msgid "Jan - Jun Notes"
 msgstr "Notater for jan - jun"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1261
 msgid "Jan Note"
 msgstr "jan-notat"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1261
 msgid "This prints in January"
 msgstr "Dette skrives i januar"
 
-#: ../src/plugins/WebCal.py:1311
+#: ../src/plugins/WebCal.py:1262
 msgid "The note for the month of January"
 msgstr "Notatet for januar måned"
 
-#: ../src/plugins/WebCal.py:1314
+#: ../src/plugins/WebCal.py:1265
 msgid "Feb Note"
 msgstr "feb-notat"
 
-#: ../src/plugins/WebCal.py:1314
+#: ../src/plugins/WebCal.py:1265
 msgid "This prints in February"
 msgstr "Dette skrives i februar"
 
-#: ../src/plugins/WebCal.py:1315
+#: ../src/plugins/WebCal.py:1266
 msgid "The note for the month of February"
 msgstr "Notatet for februar måned"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1269
 msgid "Mar Note"
 msgstr "mar-notat"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1269
 msgid "This prints in March"
 msgstr "Dette skrives i mars"
 
-#: ../src/plugins/WebCal.py:1319
+#: ../src/plugins/WebCal.py:1270
 msgid "The note for the month of March"
 msgstr "Notatet for mars måned"
 
-#: ../src/plugins/WebCal.py:1322
+#: ../src/plugins/WebCal.py:1273
 msgid "Apr Note"
 msgstr "apr-notat"
 
-#: ../src/plugins/WebCal.py:1322
+#: ../src/plugins/WebCal.py:1273
 msgid "This prints in April"
 msgstr "Dette skrives i april"
 
-#: ../src/plugins/WebCal.py:1323
+#: ../src/plugins/WebCal.py:1274
 msgid "The note for the month of April"
 msgstr "Notatet for april måned"
 
-#: ../src/plugins/WebCal.py:1326
+#: ../src/plugins/WebCal.py:1277
 msgid "May Note"
 msgstr "mai-notat"
 
-#: ../src/plugins/WebCal.py:1326
+#: ../src/plugins/WebCal.py:1277
 msgid "This prints in May"
-msgstr "mai"
+msgstr "Dette skrives i mai"
 
-#: ../src/plugins/WebCal.py:1327
+#: ../src/plugins/WebCal.py:1278
 msgid "The note for the month of May"
 msgstr "Notatet for mai måned"
 
-#: ../src/plugins/WebCal.py:1330
+#: ../src/plugins/WebCal.py:1281
 msgid "Jun Note"
 msgstr "jun-notat"
 
-#: ../src/plugins/WebCal.py:1330
+#: ../src/plugins/WebCal.py:1281
 msgid "This prints in June"
 msgstr "Dette skrives i juni"
 
-#: ../src/plugins/WebCal.py:1331
+#: ../src/plugins/WebCal.py:1282
 msgid "The note for the month of June"
 msgstr "Notatet for juni måned"
 
-#: ../src/plugins/WebCal.py:1334
+#: ../src/plugins/WebCal.py:1285
 msgid "Jul - Dec Notes"
 msgstr "Notater for jul - des"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1287
 msgid "Jul Note"
 msgstr "jul-notat"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1287
 msgid "This prints in July"
 msgstr "Dette skrives i juli"
 
-#: ../src/plugins/WebCal.py:1337
+#: ../src/plugins/WebCal.py:1288
 msgid "The note for the month of July"
 msgstr "Notatet for juli måned"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1291
 msgid "Aug Note"
 msgstr "aug-notat"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1291
 msgid "This prints in August"
 msgstr "Dette skrives i august"
 
-#: ../src/plugins/WebCal.py:1341
+#: ../src/plugins/WebCal.py:1292
 msgid "The note for the month of August"
 msgstr "Notatet for august måned"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1295
 msgid "Sep Note"
 msgstr "sep-notat"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1295
 msgid "This prints in September"
 msgstr "Dette skrives i september"
 
-#: ../src/plugins/WebCal.py:1345
+#: ../src/plugins/WebCal.py:1296
 msgid "The note for the month of September"
 msgstr "Notatet for september måned"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1299
 msgid "Oct Note"
 msgstr "okt-notat"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1299
 msgid "This prints in October"
 msgstr "Dette skrives i oktober"
 
-#: ../src/plugins/WebCal.py:1349
+#: ../src/plugins/WebCal.py:1300
 msgid "The note for the month of October"
 msgstr "Notatet for oktober måned"
 
-#: ../src/plugins/WebCal.py:1352
+#: ../src/plugins/WebCal.py:1303
 msgid "Nov Note"
 msgstr "nov-notat"
 
-#: ../src/plugins/WebCal.py:1352
+#: ../src/plugins/WebCal.py:1303
 msgid "This prints in November"
 msgstr "Dette skrives i november"
 
-#: ../src/plugins/WebCal.py:1353
+#: ../src/plugins/WebCal.py:1304
 msgid "The note for the month of November"
 msgstr "Notatet for november måned"
 
-#: ../src/plugins/WebCal.py:1356
+#: ../src/plugins/WebCal.py:1307
 msgid "Dec Note"
 msgstr "des-notat"
 
-#: ../src/plugins/WebCal.py:1356
+#: ../src/plugins/WebCal.py:1307
 msgid "This prints in December"
 msgstr "Dette skrives i desember"
 
-#: ../src/plugins/WebCal.py:1357
+#: ../src/plugins/WebCal.py:1308
 msgid "The note for the month of December"
 msgstr "Notatet for desember måned"
 
-#: ../src/plugins/WebCal.py:1730
+#: ../src/plugins/WebCal.py:1685
 msgid "Web Calendar"
 msgstr "Internettkalender"
 
-#: ../src/plugins/WebCal.py:1734
+#: ../src/plugins/WebCal.py:1689
 msgid "Produces web (HTML) calendars."
 msgstr "Lag internettkalendre (HTML)."
 
@@ -15964,6 +15924,10 @@ msgstr "Avgitt"
 msgid "Uncleared"
 msgstr "Uavklart"
 
+#: ../src/gen/utils/dbutils.py:98
+msgid "Remove Family"
+msgstr "Fjern familie"
+
 #: ../src/gen/utils/dbutils.py:117
 msgid "Remove father from family"
 msgstr "Fjern far fra familien"
@@ -19603,3 +19567,4 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
+
