@@ -1199,7 +1199,7 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
-            if attrs.has_key():
+            if attrs.has_key('description'):
                 self.p.set_description(attrs['description'])
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
