@@ -7193,7 +7193,7 @@ msgstr "Kvinner"
 
 #: ../src/plugins/DefaultGramplets.py:662 ../src/plugins/Summary.py:120
 msgid "Individuals with unknown gender"
-msgstr " Personer med ukjent kjønn"
+msgstr "Personer med ukjent kjønn"
 
 #: ../src/plugins/DefaultGramplets.py:666 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
