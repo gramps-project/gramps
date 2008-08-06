@@ -197,6 +197,7 @@ msgstr ""
 " Frode Jemtland\n"
 " Axel Bojer\n"
 " Jørgen Grønlund\n"
+" Nils Kristian Tomren\n"
 " Espen Berg"
 
 #: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1102
@@ -7149,7 +7150,7 @@ msgstr "Kvinner"
 
 #: ../src/plugins/DefaultGramplets.py:771
 msgid "Individuals with unknown gender"
-msgstr " Personer med ukjent kjønn"
+msgstr "Personer med ukjent kjønn"
 
 #: ../src/plugins/DefaultGramplets.py:775
 msgid "Individuals with incomplete names"
@@ -10734,7 +10735,7 @@ msgstr "Kvinner: %d"
 #: ../src/plugins/Summary.py:157
 #, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr " Personer med ukjent kjønn: %d"
+msgstr "Personer med ukjent kjønn: %d"
 
 #: ../src/plugins/Summary.py:161
 #, python-format
