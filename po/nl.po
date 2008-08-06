@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-01 17:03+0200\n"
-"PO-Revision-Date: 2008-08-03 11:00+0200\n"
+"POT-Creation-Date: 2008-08-05 13:35+0200\n"
+"PO-Revision-Date: 2008-08-06 09:52+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2611,7 +2611,7 @@ msgstr "vrouwelijk"
 #: ../src/plugins/DetDescendantReport.py:484
 #: ../src/plugins/DetDescendantReport.py:491
 #: ../src/plugins/IndivComplete.py:319 ../src/plugins/NarrativeWeb.py:1697
-#: ../src/plugins/NarrativeWeb.py:2375 ../src/plugins/WebCal.py:405
+#: ../src/plugins/NarrativeWeb.py:2375
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "onbekend"
@@ -3457,7 +3457,7 @@ msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:400 ../src/plugins/NarrativeWeb.py:1454
-#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:379
+#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:354
 msgid "Home"
 msgstr "Startpagina"
 
@@ -4785,7 +4785,7 @@ msgstr ""
 msgid "New Family"
 msgstr "Nieuwe familie"
 
-#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1005
+#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1001
 msgid "Edit Family"
 msgstr "Familie bewerken"
 
@@ -4890,10 +4890,6 @@ msgstr ""
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
 msgstr "Familie toevoegen"
-
-#: ../src/Editors/_EditFamily.py:974 ../src/gen/utils/dbutils.py:98
-msgid "Remove Family"
-msgstr "Familie verwijderen"
 
 #: ../src/Editors/_EditLdsOrd.py:152 ../src/Editors/_EditLdsOrd.py:302
 #: ../src/Editors/_EditLdsOrd.py:338 ../src/Editors/_EditLdsOrd.py:418
@@ -6113,7 +6109,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
 #: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
 #: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1731 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/WebCal.py:1686 ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr "Stabiel"
 
@@ -6354,7 +6350,7 @@ msgstr "Generatie %d"
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3031
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1204
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1155
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Verslagopties"
@@ -6531,7 +6527,7 @@ msgstr "Opties"
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3052
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:1216 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1167 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
 
@@ -6542,14 +6538,14 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3058 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1222
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1173
 msgid "Filter Person"
 msgstr "Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/StatisticsChart.py:688
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1223
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1174
 msgid "The center person for the filter"
 msgstr "De centrale persoon voor de filter"
 
@@ -6738,12 +6734,12 @@ msgid "Relationships shown are to %s"
 msgstr "Getoonde verwantschappen van %s"
 
 #: ../src/plugins/Calendar.py:488 ../src/plugins/Calendar.py:490
-#: ../src/plugins/WebCal.py:1261 ../src/plugins/WebCal.py:1263
+#: ../src/plugins/WebCal.py:1212 ../src/plugins/WebCal.py:1214
 msgid "Year of calendar"
 msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3054
-#: ../src/plugins/WebCal.py:1218
+#: ../src/plugins/WebCal.py:1169
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
@@ -6753,7 +6749,7 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr "Kies het naamformaat"
 
-#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1274
+#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1225
 msgid "Country for holidays"
 msgstr "Land voor de vakanties"
 
@@ -6789,27 +6785,27 @@ msgstr "Vrouwen eigen achternaam"
 msgid "Select married women's displayed surname"
 msgstr "Kies getoonde achternaam van de echtgenote"
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1288
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1239
 msgid "Include only living people"
 msgstr "Enkel nog levende personen bijvoegen"
 
-#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1289
+#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1240
 msgid "Include only living people in the calendar"
 msgstr "Enkel nog levende personen tonen in de kalender"
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1292
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1243
 msgid "Include birthdays"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1293
+#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1244
 msgid "Include birthdays in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1296
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1247
 msgid "Include anniversaries"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1297
+#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1248
 msgid "Include anniversaries in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
@@ -6913,7 +6909,7 @@ msgstr "Dagtekststijl"
 msgid "Month text style"
 msgstr "Maandtekststijl"
 
-#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1649
+#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1574
 msgid "Don't include holidays"
 msgstr "Vakanties niet meenemen"
 
@@ -10088,56 +10084,56 @@ msgid "Manages batch operations on media files"
 msgstr "Beheert automatische acties op mediabestanden"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:105
+#: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:106
 msgid "Evergreen"
 msgstr "Evergreen"
 
-#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:106
+#: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:107
 msgid "Nebraska"
 msgstr "Nebraska"
 
-#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:107
+#: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:108
 msgid "Simply Red"
 msgstr "Simply Red"
 
-#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:108
+#: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:109
 msgid "No style sheet"
 msgstr "Geen stijlblad"
 
 #. First is used as default selection.
-#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:113
+#: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:114
 msgid "Unicode (recommended)"
 msgstr "Unicode (aanbevolen)"
 
-#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:165
+#: ../src/plugins/NarrativeWeb.py:177 ../src/plugins/WebCal.py:166
 msgid "Standard copyright"
 msgstr "Standaard copyright"
 
-#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:167
+#: ../src/plugins/NarrativeWeb.py:178 ../src/plugins/WebCal.py:168
 msgid "Creative Commons - By attribution"
 msgstr "Creative Commons - By attribution"
 
-#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:168
+#: ../src/plugins/NarrativeWeb.py:179 ../src/plugins/WebCal.py:169
 msgid "Creative Commons - By attribution, No derivations"
 msgstr "Creative Commons - By attribution, No derivations"
 
-#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:169
+#: ../src/plugins/NarrativeWeb.py:180 ../src/plugins/WebCal.py:170
 msgid "Creative Commons - By attribution, Share-alike"
 msgstr "Creative Commons - By attribution, Share-alike"
 
-#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:170
+#: ../src/plugins/NarrativeWeb.py:181 ../src/plugins/WebCal.py:171
 msgid "Creative Commons - By attribution, Non-commercial"
 msgstr "Creative Commons - By attribution, Non-commercial"
 
-#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:171
+#: ../src/plugins/NarrativeWeb.py:182 ../src/plugins/WebCal.py:172
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
 msgstr "Creative Commons - By attribution, Non-commercial, No derivations"
 
-#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:172
+#: ../src/plugins/NarrativeWeb.py:183 ../src/plugins/WebCal.py:173
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 
-#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:174
+#: ../src/plugins/NarrativeWeb.py:184 ../src/plugins/WebCal.py:175
 msgid "No copyright notice"
 msgstr "Geen copyright notitie"
 
@@ -10359,14 +10355,14 @@ msgstr "te &nbsp; %(place)s"
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:964
+#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:916
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Noch %s noch %s zijn mappen"
 
 #: ../src/plugins/NarrativeWeb.py:2645 ../src/plugins/NarrativeWeb.py:2649
 #: ../src/plugins/NarrativeWeb.py:2662 ../src/plugins/NarrativeWeb.py:2666
-#: ../src/plugins/WebCal.py:971 ../src/plugins/WebCal.py:975
+#: ../src/plugins/WebCal.py:923 ../src/plugins/WebCal.py:927
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Kon de map %s niet aanmaken"
@@ -10383,7 +10379,7 @@ msgstr "Het archief moet een bestand zijn, niet een map"
 msgid "Generate XHTML Reports"
 msgstr "HTML-verslagen aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1088
+#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1040
 msgid "Filtering"
 msgstr "Filter"
 
@@ -10409,11 +10405,11 @@ msgstr "Plaats-pagina's aanmaken"
 msgid "Creating media pages"
 msgstr "Mediapagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:264
+#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:257
 msgid "Possible destination error"
 msgstr "Mogelijk een doelfout"
 
-#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:265
+#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:258
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -10432,11 +10428,11 @@ msgstr "Sla de web pagina's op in een tar.gz archief"
 msgid "Whether to store the web pages in an archive file"
 msgstr "Sla de webpagina's op in een archiefbestand"
 
-#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1206
+#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1157
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1208
+#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1159
 msgid "The destination directory for the web files"
 msgstr "De bestemmingsmap voor de webpagina's"
 
@@ -10453,32 +10449,32 @@ msgid "The title of the web site"
 msgstr "De titel voor de webstek"
 
 # Bestandsuitgang/extensie
-#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1229
+#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1180
 msgid "File extension"
 msgstr "Bestandsextensie"
 
-#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1232
+#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1183
 msgid "The extension to be used for the web files"
 msgstr "De gebruikte extensie voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1235
+#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1186
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1240
+#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1191
 msgid "The copyright to be used for the web files"
 msgstr "Autheursrecht gebruiken voor de webpagina's"
 
 # Doping
-#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1243
+#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1194
 msgid "Character set encoding"
 msgstr "Tekenset codering"
 
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1246
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1197
 msgid "The encoding to be used for the web files"
 msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1249
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1200
 msgid "StyleSheet"
 msgstr "Stijlblad"
 
@@ -11853,65 +11849,21 @@ msgstr "De gegevens controleren"
 msgid "Verifies the data against user-defined tests"
 msgstr "Controleert de gegevens met een aantal door de gebruiker opgestelde tests"
 
-#: ../src/plugins/WebCal.py:380
-msgid "Jan"
-msgstr "Jan"
+#: ../src/plugins/WebCal.py:315
+msgid "Daylight Saving ends"
+msgstr "Zomertijd stopt"
 
-#: ../src/plugins/WebCal.py:381
-msgid "Feb"
-msgstr "Feb"
-
-#: ../src/plugins/WebCal.py:382
-msgid "Mar"
-msgstr "Maa"
-
-#: ../src/plugins/WebCal.py:383
-msgid "Apr"
-msgstr "Apr"
-
-#: ../src/plugins/WebCal.py:384
-msgid "May"
-msgstr "Mei"
-
-#: ../src/plugins/WebCal.py:385
-msgid "Jun"
-msgstr "Jun"
-
-#: ../src/plugins/WebCal.py:386
-msgid "Jul"
-msgstr "Jul"
-
-# enkelvoud beter?
-#: ../src/plugins/WebCal.py:387
-msgid "Aug"
-msgstr "Aug"
-
-#: ../src/plugins/WebCal.py:388
-msgid "Sep"
-msgstr "Sep"
-
-#: ../src/plugins/WebCal.py:389
-msgid "Oct"
-msgstr "Oct"
-
-# niet/geen
-#: ../src/plugins/WebCal.py:390
-msgid "Nov"
-msgstr "Nov"
-
-#: ../src/plugins/WebCal.py:391
-msgid "Dec"
-msgstr "Dec"
-
-#: ../src/plugins/WebCal.py:392
+#: ../src/plugins/WebCal.py:367
 msgid "Year Glance"
 msgstr "Vooruitblik jaar"
 
-#: ../src/plugins/WebCal.py:393
+#. TODO. See note in indiv_date()
+#. Add header to page
+#: ../src/plugins/WebCal.py:368 ../src/plugins/WebCal.py:748
 msgid "Blank Calendar"
 msgstr "Lege kalender"
 
-#: ../src/plugins/WebCal.py:626
+#: ../src/plugins/WebCal.py:584
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</"
@@ -11920,66 +11872,76 @@ msgstr ""
 "Gegenereerd met <a href=\"http://gramps-project.org\" target=\"_blank"
 "\">GRAMPS</a> op %(date)s"
 
-#: ../src/plugins/WebCal.py:728 ../src/plugins/WebCal.py:805
-#: ../src/plugins/WebCal.py:899 ../src/plugins/WebCal.py:1044
+#: ../src/plugins/WebCal.py:682 ../src/plugins/WebCal.py:757
+#: ../src/plugins/WebCal.py:851 ../src/plugins/WebCal.py:996
 #, python-format
 msgid "Created for %(author)s"
 msgstr "Aangemaakt voor %(author)s"
 
-#: ../src/plugins/WebCal.py:730
+#: ../src/plugins/WebCal.py:684
 msgid "A Peak into One Day"
 msgstr "Eén dag bekijken"
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:824
+#: ../src/plugins/WebCal.py:776
 msgid "Creating Printable Blank Full-Year Calendar Page"
 msgstr "UMaak een lege en uitdrukbare kalenderpagina voor een volledige jaar aan"
 
-#: ../src/plugins/WebCal.py:918
+#. TODO. See note in indiv_date()
+#. Add header to page
+#: ../src/plugins/WebCal.py:842
+#, python-format
+msgid "%(year)d, At A Glance"
+msgstr "%(year)d, een jaar-in-een-oogopslag"
+
+#: ../src/plugins/WebCal.py:870
 msgid ""
 "            This calendar is meant to give you access to all your data at a "
 "glance compressed into one page.  Clicking on a <b>red square</b> will take "
 "you to a page that shows all the events for that date!\n"
-msgstr "            Deze kalender is bedoeld om in één oogopslag al uw gegevens toegankelijk te maken in één pagina.  Klikt u op een <b>rood vierkant</b> dan wordt u naar een pagina geveord waar alle gebeurtenissen voor deze datum zijn samengevat!\n"
+msgstr ""
+"            Deze kalender is bedoeld om in één oogopslag al uw gegevens "
+"toegankelijk te maken in één pagina.  Klikt u op een <b>rood vierkant</b> "
+"dan wordt u naar een pagina geveord waar alle gebeurtenissen voor deze datum "
+"zijn samengevat!\n"
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:924
+#: ../src/plugins/WebCal.py:876
 msgid "Creating Year At A Glance page"
 msgstr "Maak een jaar-vooruitblik-pagina aan"
 
-#: ../src/plugins/WebCal.py:981
+#: ../src/plugins/WebCal.py:933
 msgid "Generate XHTML Calendars"
 msgstr "XHTML-kalenders aanmaken"
 
 #. get the information, first from holidays:
 #. Don't include holidays
 #. _country is currently global
-#: ../src/plugins/WebCal.py:989
+#: ../src/plugins/WebCal.py:941
 msgid "Getting information from holidays file"
 msgstr "Informatie uit verlofbestand halen"
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:995
+#: ../src/plugins/WebCal.py:947
 msgid "Creating Calendar pages"
 msgstr "Kalenderpagina's aanmaken"
 
-#: ../src/plugins/WebCal.py:1091
+#: ../src/plugins/WebCal.py:1043
 msgid "Reading database"
 msgstr "Lezen van het gegevensbestand"
 
 #. person is 1, and therefore display it correctly
-#. TODO. Make this translatable
-#: ../src/plugins/WebCal.py:1127
+#: ../src/plugins/WebCal.py:1078
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> year old"
 msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
 
-#: ../src/plugins/WebCal.py:1129
+#: ../src/plugins/WebCal.py:1080
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> years old"
 msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
 
-#: ../src/plugins/WebCal.py:1169
+#: ../src/plugins/WebCal.py:1120
 #, python-format
 msgid ""
 "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> "
@@ -11988,222 +11950,222 @@ msgstr ""
 "<span class=\"yearsmarried\">%(spouse)s en %(person)s, <em>%(nyears)d</em> "
 "jaar verjaardag</span>"
 
-#: ../src/plugins/WebCal.py:1212
+#: ../src/plugins/WebCal.py:1163
 msgid "Calendar Title"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1212
+#: ../src/plugins/WebCal.py:1163
 msgid "My Family Calendar"
 msgstr "Mijn familiekalender"
 
-#: ../src/plugins/WebCal.py:1213
+#: ../src/plugins/WebCal.py:1164
 msgid "The title of the calendar"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1252
+#: ../src/plugins/WebCal.py:1203
 msgid "The Style Sheet to be used for the web page"
 msgstr "Het te gebruiken stijlblad voor de webstek"
 
-#: ../src/plugins/WebCal.py:1259
+#: ../src/plugins/WebCal.py:1210
 msgid "Content Options"
 msgstr "Inhoudopties"
 
-#: ../src/plugins/WebCal.py:1266
+#: ../src/plugins/WebCal.py:1217
 msgid "Create Year At A Glance"
 msgstr "Maak jaar-in-een-oogopslag aan"
 
-#: ../src/plugins/WebCal.py:1267
+#: ../src/plugins/WebCal.py:1218
 msgid "Whether to create A Full Year High-lighted calendar"
 msgstr "Al of niet een kalender met ''High-light'' voor een volledig jaar aanmaken"
 
-#: ../src/plugins/WebCal.py:1270
+#: ../src/plugins/WebCal.py:1221
 msgid "Create A Printable Blank Full- Year Calendar"
 msgstr "Een lege, uitdrukbare jaarkalender aanmaken"
 
-#: ../src/plugins/WebCal.py:1271
+#: ../src/plugins/WebCal.py:1222
 msgid "Whether to create A Full Year Printable calendar"
 msgstr "Al of niet een volledige, uitdrukbare jaarkalender aanmaken"
 
-#: ../src/plugins/WebCal.py:1279
+#: ../src/plugins/WebCal.py:1230
 msgid "Holidays will be included for the selected country"
 msgstr "Verloven voor het geselecteerde land zullen toegevoegd worden"
 
 # Nog geen definieve vertaling gevonden
-#: ../src/plugins/WebCal.py:1283
+#: ../src/plugins/WebCal.py:1234
 msgid "Home link"
 msgstr "Home link"
 
-#: ../src/plugins/WebCal.py:1284
+#: ../src/plugins/WebCal.py:1235
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Een verwijzing om de gebruiker naar de hoofdpagina van de webstek te sturen, "
 "wordt toegevoegd"
 
-#: ../src/plugins/WebCal.py:1300
+#: ../src/plugins/WebCal.py:1251
 msgid "Check for wives to use maiden name"
 msgstr "Aanklikken om de meisjesnaam voor de vrouwen te gebruiken"
 
-#: ../src/plugins/WebCal.py:1301
+#: ../src/plugins/WebCal.py:1252
 msgid "Attempt to use maiden names of women"
 msgstr "Poging om de meisjesnamen te gebruiken voor vrouwen"
 
-#: ../src/plugins/WebCal.py:1308
+#: ../src/plugins/WebCal.py:1259
 msgid "Jan - Jun Notes"
 msgstr "Opmerkingen jan tot jun"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1261
 msgid "Jan Note"
 msgstr "Opmerkingen jan"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1261
 msgid "This prints in January"
 msgstr "Dit wordt in januari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1311
+#: ../src/plugins/WebCal.py:1262
 msgid "The note for the month of January"
 msgstr "De opmerking voor de maand januari"
 
-#: ../src/plugins/WebCal.py:1314
+#: ../src/plugins/WebCal.py:1265
 msgid "Feb Note"
 msgstr "Opmerking feb"
 
-#: ../src/plugins/WebCal.py:1314
+#: ../src/plugins/WebCal.py:1265
 msgid "This prints in February"
 msgstr "Dit wordt in februari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1315
+#: ../src/plugins/WebCal.py:1266
 msgid "The note for the month of February"
 msgstr "De opmerking voor februari"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1269
 msgid "Mar Note"
 msgstr "Opmerkingen maa"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1269
 msgid "This prints in March"
 msgstr "Dit wordt in maart afgedrukt"
 
-#: ../src/plugins/WebCal.py:1319
+#: ../src/plugins/WebCal.py:1270
 msgid "The note for the month of March"
 msgstr "Een opmerking voor maart"
 
-#: ../src/plugins/WebCal.py:1322
+#: ../src/plugins/WebCal.py:1273
 msgid "Apr Note"
 msgstr "Opmerking apr"
 
-#: ../src/plugins/WebCal.py:1322
+#: ../src/plugins/WebCal.py:1273
 msgid "This prints in April"
 msgstr "Dit wordt in april afgedrukt"
 
-#: ../src/plugins/WebCal.py:1323
+#: ../src/plugins/WebCal.py:1274
 msgid "The note for the month of April"
 msgstr "Een opmerking voor april"
 
-#: ../src/plugins/WebCal.py:1326
+#: ../src/plugins/WebCal.py:1277
 msgid "May Note"
 msgstr "Opmerking mei"
 
-#: ../src/plugins/WebCal.py:1326
+#: ../src/plugins/WebCal.py:1277
 msgid "This prints in May"
 msgstr "Dit wordt in mei afgedrukt"
 
-#: ../src/plugins/WebCal.py:1327
+#: ../src/plugins/WebCal.py:1278
 msgid "The note for the month of May"
 msgstr "Een opmerking voor mei"
 
-#: ../src/plugins/WebCal.py:1330
+#: ../src/plugins/WebCal.py:1281
 msgid "Jun Note"
 msgstr "Opmerking jun"
 
-#: ../src/plugins/WebCal.py:1330
+#: ../src/plugins/WebCal.py:1281
 msgid "This prints in June"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1331
+#: ../src/plugins/WebCal.py:1282
 msgid "The note for the month of June"
 msgstr "Een opmerking voor juni"
 
-#: ../src/plugins/WebCal.py:1334
+#: ../src/plugins/WebCal.py:1285
 msgid "Jul - Dec Notes"
 msgstr "Opmerking jul tot dec"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1287
 msgid "Jul Note"
 msgstr "Opmerking jul"
 
-#: ../src/plugins/WebCal.py:1336
+#: ../src/plugins/WebCal.py:1287
 msgid "This prints in July"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1337
+#: ../src/plugins/WebCal.py:1288
 msgid "The note for the month of July"
 msgstr "Een opmerking voor juli"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1291
 msgid "Aug Note"
 msgstr "Opmerking aug"
 
-#: ../src/plugins/WebCal.py:1340
+#: ../src/plugins/WebCal.py:1291
 msgid "This prints in August"
 msgstr "Dit wordt in augustus afgedrukt"
 
-#: ../src/plugins/WebCal.py:1341
+#: ../src/plugins/WebCal.py:1292
 msgid "The note for the month of August"
 msgstr "Een opmerking voor augustus"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1295
 msgid "Sep Note"
 msgstr "Opmerking sep"
 
-#: ../src/plugins/WebCal.py:1344
+#: ../src/plugins/WebCal.py:1295
 msgid "This prints in September"
 msgstr "Dit wordt in september afgedrukt"
 
-#: ../src/plugins/WebCal.py:1345
+#: ../src/plugins/WebCal.py:1296
 msgid "The note for the month of September"
 msgstr "Een opmerking voor september"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1299
 msgid "Oct Note"
 msgstr "Opmerking okt"
 
-#: ../src/plugins/WebCal.py:1348
+#: ../src/plugins/WebCal.py:1299
 msgid "This prints in October"
 msgstr "Dit wordt in oktober afgedrukt"
 
-#: ../src/plugins/WebCal.py:1349
+#: ../src/plugins/WebCal.py:1300
 msgid "The note for the month of October"
 msgstr "Een opmerking voor oktober"
 
-#: ../src/plugins/WebCal.py:1352
+#: ../src/plugins/WebCal.py:1303
 msgid "Nov Note"
 msgstr "Opmerking nov"
 
-#: ../src/plugins/WebCal.py:1352
+#: ../src/plugins/WebCal.py:1303
 msgid "This prints in November"
 msgstr "Dit wordt in november afgedrukt"
 
-#: ../src/plugins/WebCal.py:1353
+#: ../src/plugins/WebCal.py:1304
 msgid "The note for the month of November"
 msgstr "een opmerking voor november"
 
-#: ../src/plugins/WebCal.py:1356
+#: ../src/plugins/WebCal.py:1307
 msgid "Dec Note"
 msgstr "Opmerking dec"
 
-#: ../src/plugins/WebCal.py:1356
+#: ../src/plugins/WebCal.py:1307
 msgid "This prints in December"
 msgstr "Dit wordt in december afgedrukt"
 
-#: ../src/plugins/WebCal.py:1357
+#: ../src/plugins/WebCal.py:1308
 msgid "The note for the month of December"
 msgstr "Een opmerking voor december"
 
-#: ../src/plugins/WebCal.py:1730
+#: ../src/plugins/WebCal.py:1685
 msgid "Web Calendar"
 msgstr "Webkalender"
 
-#: ../src/plugins/WebCal.py:1734
+#: ../src/plugins/WebCal.py:1689
 msgid "Produces web (HTML) calendars."
 msgstr "Maakt web (HTML) kalenders aan."
 
@@ -14474,7 +14436,9 @@ msgstr "Overleed (leeftijd %(age)d dagen)."
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
@@ -14486,7 +14450,9 @@ msgstr "Hij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr "%(female_name)s werd begraven %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd begraven %(burial_date)s te %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
@@ -14498,12 +14464,16 @@ msgstr "Zij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd begraven op %(burial_date)s te %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:559
 #, python-format
 msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Deze persoon werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"Deze persoon werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
 #, python-format
@@ -14548,7 +14518,9 @@ msgstr "Begraven %(burial_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
@@ -14558,7 +14530,9 @@ msgstr "Hij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s te%(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd begraven in %(month_year)s te%(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
@@ -14570,7 +14544,9 @@ msgstr "Zij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
@@ -14620,7 +14596,9 @@ msgstr "Begraven %(month_year)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
@@ -14630,7 +14608,9 @@ msgstr "Hij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd begraven %(modified_date)s te %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -14642,7 +14622,9 @@ msgstr "Zij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd begraven %(modified_date)s te %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
@@ -14764,7 +14746,9 @@ msgstr "Begraven%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
@@ -14776,7 +14760,9 @@ msgstr "Hij werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
@@ -14789,15 +14775,17 @@ msgid ""
 "%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)"
-"s%(endnotes)s."
+"%(unknown_gender_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:693
 #, python-format
 msgid ""
 "This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "Deze persoon werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"Deze persoon werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:695
 #, python-format
@@ -14844,7 +14832,9 @@ msgstr "Gedoopt %(baptism_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "%(male_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
 #, python-format
@@ -14856,7 +14846,9 @@ msgstr "Hij werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
@@ -14868,7 +14860,9 @@ msgstr "Zij werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd gedoopt in %(month_year)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:725
 #, python-format
@@ -14920,7 +14914,9 @@ msgstr "Gedoopt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(male_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
@@ -14932,7 +14928,9 @@ msgstr "Hij werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(female_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(female_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
@@ -14944,7 +14942,9 @@ msgstr "Zij werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:757
 #, python-format
@@ -17557,6 +17557,10 @@ msgstr "Onderworpen"
 #: ../src/gen/lib/ldsord.py:112
 msgid "Uncleared"
 msgstr "Niet gewist"
+
+#: ../src/gen/utils/dbutils.py:98
+msgid "Remove Family"
+msgstr "Familie verwijderen"
 
 #: ../src/gen/utils/dbutils.py:117
 msgid "Remove father from family"
