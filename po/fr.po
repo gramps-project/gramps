@@ -6078,7 +6078,7 @@ msgstr "GE_DCOM"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
-msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des  logiciels de généalogie acceptent ce format."
+msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des logiciels de généalogie acceptent ce format."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1476
 msgid "GEDCOM export options"
@@ -11662,7 +11662,7 @@ msgstr "Statistiques sur la base"
 
 #: ../src/plugins/Summary.py:187
 msgid "Provides a summary of the current database"
-msgstr "Fournit un résumé de la base de donnée active"
+msgstr "Fournit un résumé de la base de données active"
 
 # (for %s filtre(group) - des Ascendants ?, pour Toute la base ?)
 #: ../src/plugins/TimeLine.py:92
@@ -12216,7 +12216,7 @@ msgstr "_GeneWeb"
 
 #: ../src/plugins/WriteGeneWeb.py:641
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb est un logiciel de généalogie fonctionnant sur le Web."
+msgstr "GeneWeb est un logiciel de généalogie basé sur un serveur et un navigateur internet."
 
 #: ../src/plugins/WriteGeneWeb.py:642
 msgid "GeneWeb export options"
@@ -12233,7 +12233,7 @@ msgstr "Paquet GRAM_PS (XML portable)"
 
 #: ../src/plugins/WritePkg.py:224
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr "Le paquet GRAMPS est une base de donnée XML comprenant les media."
+msgstr "Le paquet GRAMPS est une base de données XML comprenant les media."
 
 #: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
@@ -12404,7 +12404,7 @@ msgid ""
 msgstr ""
 "En poursuivant avec cet outil vous allez effacer l'historique de cette session. Vous ne pourrez annuler les changements effectués par cet outil ou revenir aux modifications antérieures.\n"
 "\n"
-"Si vous pensez avoir besoin de retourner à une action précédente, veuillez arrêter et sauvegarder votre base de donnée."
+"Si vous pensez avoir besoin de retourner à une action précédente, veuillez arrêter et sauvegarder votre base de données."
 
 #: ../src/PluginUtils/_Tool.py:118
 msgid "_Proceed with the tool"
@@ -20147,7 +20147,7 @@ msgid ""
 "that have been selected."
 msgstr ""
 "La liste ci-dessous comprend des surnoms, des titres et des particules que GRAMPS peut extraire de\n"
-"la base de donnée en cours. Si vous acceptez les modifications, GRAMPS modifiera les entrées\n"
+"la base de données en cours. Si vous acceptez les modifications, GRAMPS modifiera les entrées\n"
 "qui avaient été sélectionnées."
 
 #: ../src/plugins/patchnames.glade.h:4
