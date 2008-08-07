@@ -207,6 +207,7 @@ class WebCalReport(Report):
         self.encoding = menu.get_option_by_name('encoding').get_value()
         self.css = menu.get_option_by_name('css').get_value()
         self.country = menu.get_option_by_name('country').get_value()
+        self.start_dow = menu.get_option_by_name('start_dow').get_value()
         self.year = menu.get_option_by_name('year').get_value()
         self.fullyear = menu.get_option_by_name('fullyear').get_value()
         self.blankyear = menu.get_option_by_name('blankyear').get_value()
@@ -395,14 +396,39 @@ class WebCalReport(Report):
         'month' - month number 1, 2, .., 12
         """
 
-        def _get_class_for_daycol(day):
-            if day == 0:
+        # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
+        start_dow = self.start_dow
+        col2day = [(x-1)%7+1 for x in range(start_dow, start_dow + 7)]
+
+        # Note. GrampsLocale has sunday => 1, monday => 2, etc
+        # We slice out the first empty element.
+        if cal == "yg":
+            day_names = GrampsLocale.short_days
+        else:
+            day_names = GrampsLocale.long_days
+
+        # Translate a Gramps day number into a HTMLclass
+        def get_class_for_daycol(col):
+            day = col2day[col]
+            if day == 1:
                 return "weekend sunday"
-            elif day == 6:
+            elif day == 7:
                 return "weekend saturday"
             return "weekday"
 
+        def get_name_for_daycol(col):
+            day = col2day[col]
+            return day_names[day]
+
         year = self.year
+
+        # This calendar has first column sunday. Do not use locale!
+        calendar.setfirstweekday(_dow_gramps2iso[start_dow])
+
+        # monthinfo is filled using standard Python library calendar.monthcalendar
+        # It fills a list of 7-day-lists. The first day of the 7-day-list is
+        # determined by calendar.firstweekday
+        monthinfo = calendar.monthcalendar(year, month)
 
         # Begin calendar head
         title = GrampsLocale.long_months[month]
@@ -413,18 +439,11 @@ class WebCalReport(Report):
         of.write('                <th colspan="7" class="monthName">%s</th>\n' % title)
         of.write('            </tr>\n')
 
-        # This calendar has first column sunday. Do not use locale!
-        calendar.setfirstweekday(calendar.SUNDAY)
-
         # Calendar weekday names header
-        if cal == "yg":
-            day_names = GrampsLocale.short_days
-        else:
-            day_names = GrampsLocale.long_days
         of.write('            <tr>\n')
         for day_col in range(7):
-            dayclass = _get_class_for_daycol(day_col)
-            of.write('                <th class="%s" />%s</th>\n' % (dayclass, day_names[day_col + 1]))
+            dayclass = get_class_for_daycol(day_col)
+            of.write('                <th class="%s" />%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
         of.write('            </tr>\n')
 
         of.write('        </thead>\n')
@@ -433,14 +452,12 @@ class WebCalReport(Report):
 
         # Compute the first day to display for this month.
         # It can also be a day in the previous month.
+        # Count number of days in first 7-day-list of monthinfo.
         current_date = datetime.date(year, month, 1) # first day of the month
-        # isoweekday: 1=monday, 2=tuesday, etc
-        if current_date.isoweekday() != 7: # start dow here is 7, sunday
-            # Compute the sunday before this date.
-            current_ord = current_date.toordinal() - current_date.isoweekday()
-        else:
-            # First day of the month is sunday, that's OK
-            current_ord = current_date.toordinal()
+        current_ord = current_date.toordinal()
+        for i in range(7):
+            if monthinfo[0][i] == 0:
+                current_ord = current_ord - 1        
 
         # get last month's last week for previous days in the month
         if month == 1:
@@ -457,15 +474,13 @@ class WebCalReport(Report):
             nextmonth = calendar.monthcalendar(year, month + 1)
         firstweek_nextmonth = nextmonth[0]
 
-        # Begin calendar
-        monthinfo = calendar.monthcalendar(year, month)
         nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
             week = monthinfo[week_row]
             of.write('             <tr class="week%d">\n' % week_row)
 
             for day_col in range(0, 7):
-                dayclass = _get_class_for_daycol(day_col)
+                dayclass = get_class_for_daycol(day_col)
 
                 day = week[day_col]
                 if day == 0:                      # a day in the previous or in the next month
@@ -1184,10 +1199,8 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "ext", ext)
 
         cright = EnumeratedListOption(_('Copyright'), 0 )
-        index = 0
-        for copt in _COPY_OPTIONS:
+        for index, copt in enumerate(_COPY_OPTIONS):
             cright.add_item(index, copt)
-            index += 1
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
@@ -1223,13 +1236,18 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'blankyear', blankyear)
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
-        index = 0
-        for item in _COUNTRIES:
+        for index, item in enumerate(_COUNTRIES):
             country.add_item(index, item)
-            index += 1
         country.set_help( _("Holidays will be included for the selected "
                             "country"))
         menu.add_option(category_name, "country", country)
+
+        # Default selection ????
+        start_dow = EnumeratedListOption(_("First day of week"), 1)
+        for count in range(1, 8):
+            start_dow.add_item(count, GrampsLocale.long_days[count].capitalize()) 
+        start_dow.set_help(_("Select the first day of the week for the calendar"))
+        menu.add_option(category_name, "start_dow", start_dow)
 
         home_link = StringOption(_('Home link'), '../index.html')
         home_link.set_help(_("The link to be included to direct the user to "
@@ -1669,6 +1687,15 @@ def _get_dst_start_stop(year, area="us"):
         start = (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
         stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return start, stop
+
+# Simple utility list to convert Gramps day-of-week numbering to calendar.firstweekday numbering
+_dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY, calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY, calendar.SATURDAY ]
+
+def _gramps2iso(dow):
+    """ Convert GRAMPS day of week to ISO day of week """
+    # GRAMPS: SUN = 1
+    # ISO: MON = 1
+    return (dow + 5) % 7 + 1
 
 #-------------------------------------------------------------------------
 #
