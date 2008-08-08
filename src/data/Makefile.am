@@ -6,6 +6,7 @@ SUBDIRS = templates
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
 dist_pkgdata_DATA = \
+        authors.xml \
 	gedcom.xml \
 	papersize.xml \
 	system_filters.xml \
