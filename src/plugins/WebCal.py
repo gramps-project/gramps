@@ -216,7 +216,7 @@ class WebCalReport(Report):
         self.birthday = menu.get_option_by_name('birthdays').get_value()
         self.anniv = menu.get_option_by_name('anniversaries').get_value()
         self.title_text  = menu.get_option_by_name('title').get_value()
-        self.home_link = menu.get_option_by_name('home_link').get_value()
+        self.home_link = menu.get_option_by_name('home_link').get_value().strip()
 
         self.month_notes  = [menu.get_option_by_name('note_jan').get_value(),
                              menu.get_option_by_name('note_feb').get_value(),
@@ -233,6 +233,8 @@ class WebCalReport(Report):
 
         self.warn_dir = True            # Only give warning once.
         self.has_arrow_gif = False # Set to True after copying to destination
+
+        calendar.setfirstweekday(_dow_gramps2iso[self.start_dow])
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
@@ -422,9 +424,6 @@ class WebCalReport(Report):
 
         year = self.year
 
-        # This calendar has first column sunday. Do not use locale!
-        calendar.setfirstweekday(_dow_gramps2iso[start_dow])
-
         # monthinfo is filled using standard Python library calendar.monthcalendar
         # It fills a list of 7-day-lists. The first day of the 7-day-list is
         # determined by calendar.firstweekday
@@ -443,7 +442,7 @@ class WebCalReport(Report):
         of.write('            <tr>\n')
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
-            of.write('                <th class="%s" />%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
+            of.write('                <th class="%s">%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
         of.write('            </tr>\n')
 
         of.write('        </thead>\n')
@@ -452,12 +451,8 @@ class WebCalReport(Report):
 
         # Compute the first day to display for this month.
         # It can also be a day in the previous month.
-        # Count number of days in first 7-day-list of monthinfo.
         current_date = datetime.date(year, month, 1) # first day of the month
-        current_ord = current_date.toordinal()
-        for i in range(7):
-            if monthinfo[0][i] == 0:
-                current_ord = current_ord - 1        
+        current_ord = current_date.toordinal() - monthinfo[0].count(0)
 
         # get last month's last week for previous days in the month
         if month == 1:
@@ -558,8 +553,7 @@ class WebCalReport(Report):
         of.write('     <meta http-equiv="Content-Type" content="text/html;charset=%s" />\n'
                 % self.encoding)
         of.write('     <meta name="robots" content="noindex" />\n')
-        of.write('     <meta name="generator" content="GRAMPS 3.1.x: http://www.gramps-project.org" '
-                '/>\n')
+        of.write('     <meta name="generator" content="GRAMPS 3.1.x: http://www.gramps-project.org" />\n')
         author = get_researcher().get_name()
         of.write('     <meta name="author" content="%s" />\n' % author)
 
@@ -704,10 +698,9 @@ class WebCalReport(Report):
         of.write('    <div id="navigation">\n')
         of.write('         <ul>\n')
 
-        if self.home_link.strip() != '':
+        if self.home_link:
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
-
         self.display_nav_links(of, None, nr_up)
 
         of.write('         </ul>\n')
@@ -735,6 +728,7 @@ class WebCalReport(Report):
         This method will create the Printable Full Year One Page Calendar...
         """
 
+        nr_up = 1                       # Number of directory levels up to get to root
         year = self.year
 
         # Name the file, and create it
@@ -761,7 +755,7 @@ class WebCalReport(Report):
 
         # Add header to page
         title = ' '.join([str(year), _('Blank Calendar')])
-        author = self.write_header(of, title, 1, mystyle)
+        author = self.write_header(of, title, nr_up, mystyle)
 
         of.write('<body id="blankca">\n')
 
@@ -778,11 +772,10 @@ class WebCalReport(Report):
         of.write('    <div id="navigation">\n')
         of.write('         <ul>\n')
 
-        if self.home_link.strip() != '':
+        if self.home_link:
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
-
-        self.display_nav_links(of, 'blankyear', 1)
+        self.display_nav_links(of, 'blankyear', nr_up)
 
         of.write('         </ul>\n')
         of.write('     </div>\n')
@@ -801,7 +794,7 @@ class WebCalReport(Report):
             of.write('     </table>\n')
 
         # Write footer and close file
-        self.write_footer(of, 1)
+        self.write_footer(of, nr_up)
         self.close_file(of)
 
     def year_glance(self):
@@ -809,6 +802,7 @@ class WebCalReport(Report):
         This method will create the Full Year At A Glance Page...
         """
 
+        nr_up = 1                       # Number of directory levels up to get to root
         year = self.year
 
         # Name the file, and create it
@@ -855,7 +849,7 @@ class WebCalReport(Report):
 
         # Add header to page
         title = _("%(year)d, At A Glance") % {'year' : year}
-        author = self.write_header(of, title, 1, mystyle, True)
+        author = self.write_header(of, title, nr_up, mystyle, True)
 
         of.write('<body id="fullyear">\n')     # body will terminate in write_footer
 
@@ -872,11 +866,10 @@ class WebCalReport(Report):
         of.write('         <div id="navigation">\n')
         of.write('              <ul>\n')
 
-        if self.home_link.strip() != '':
+        if self.home_link:
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
-
-        self.display_nav_links(of, 'fullyear', 1)
+        self.display_nav_links(of, 'fullyear', nr_up)
 
         of.write('         </ul>\n')
         of.write('     </div>\n') # End Navigation Menu
@@ -895,8 +888,7 @@ class WebCalReport(Report):
 
             # build the calendar
             self.calendar_build(of, "yg", month)
-            # TODO. Add week padding to make them all 6 weeks long.
-            # See six_weeks
+            # Note. The week rows are filled up to make them all 6 weeks long.
             nweeks = len(calendar.monthcalendar(year, month))
             for i in range(nweeks+1, 7):
                 of.write('             <tr class="week%d">\n' % i)
@@ -920,7 +912,7 @@ class WebCalReport(Report):
             of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(of, 1)
+        self.write_footer(of, nr_up)
         self.close_file(of)
 
     def write_report(self):
@@ -979,6 +971,7 @@ class WebCalReport(Report):
         This method provides information and header/ footer to the calendar month
         """
 
+        nr_up = 1                       # Number of directory levels up to get to root
         year = self.year
 
         # Name the file, and create it
@@ -1000,7 +993,7 @@ class WebCalReport(Report):
         # TODO. See note in indiv_date()
 
         # Add Header to calendar
-        author = self.write_header(of, self.title_text, 1, mystyle)
+        author = self.write_header(of, self.title_text, nr_up, mystyle)
 
         of.write('<body id="WebCal">\n')   # terminated in write_footer
 
@@ -1018,11 +1011,10 @@ class WebCalReport(Report):
         of.write('    <div id="navigation">\n')
         of.write('        <ul>\n')
 
-        if self.home_link.strip() != '':
+        if self.home_link:
             of.write('                     <li>')
             of.write('<a href="%s">HOME</a></li>\n' % self.home_link)
-
-        self.display_nav_links(of, month, 1)
+        self.display_nav_links(of, month, nr_up)
 
         of.write('        </ul>\n\n')
         of.write('    </div>\n') # End Navigation Menu
@@ -1044,7 +1036,7 @@ class WebCalReport(Report):
         of.write('     </table>\n\n')
 
         # write footer section, and close file
-        self.write_footer(of, 1)
+        self.write_footer(of, nr_up)
         self.close_file(of)
 
     def collect_data(self):
