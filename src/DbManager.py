@@ -100,7 +100,7 @@ DSORT_COL = 4
 OPEN_COL  = 5
 STOCK_COL = 6
 
-RCS_BUTTON = { True : _('Extract'), False : _('Archive') }
+RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
 class CLIDbManager:
     """
@@ -421,8 +421,6 @@ class DbManager(CLIDbManager):
         buttons are disabled, and the Open button is disabled if the
         row represents a open database.
         """
-        if not _RCS_FOUND:
-            self.rcs.hide()
             
         # Get the current selection
         store, node = selection.get_selected()
@@ -441,24 +439,18 @@ class DbManager(CLIDbManager):
             return
 
         is_rev = len(path) > 1
+        self.rcs.set_label(RCS_BUTTON[is_rev])
 
         if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
             self.connect.set_sensitive(False)
             if _RCS_FOUND:
-                self.rcs.show()
+                self.rcs.set_sensitive(True)
         else:
             self.connect.set_sensitive(not is_rev)
             if _RCS_FOUND and is_rev:
-                self.rcs.show()
+                self.rcs.set_sensitive(True)
             else:
-                self.rcs.hide()
-
-        if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
-            self.connect.set_sensitive(False)
-            self.rcs.set_sensitive(True)
-        else:
-            self.connect.set_sensitive(not is_rev)
-            self.rcs.set_sensitive(is_rev)
+                self.rcs.set_sensitive(False)
 
         if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
             path = store.get_value(node, PATH_COL)
