@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-03 11:47+0200\n"
-"PO-Revision-Date: 2008-08-03 19:14+0200\n"
+"POT-Creation-Date: 2008-08-13 21:09+0200\n"
+"PO-Revision-Date: 2008-08-13 21:26+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgstr "Family Tree"
 
 #: ../src/DbManager.py:103
 msgid "Extract"
-msgstr "Auszug"
+msgstr "Auswählen"
 
 #: ../src/DbManager.py:103 ../src/gen/lib/repotype.py:64
 msgid "Archive"
@@ -4751,7 +4751,7 @@ msgstr ""
 msgid "New Family"
 msgstr "Neue Familie"
 
-#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1005
+#: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1001
 msgid "Edit Family"
 msgstr "Bearbeite Familie"
 
@@ -4855,10 +4855,6 @@ msgstr ""
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
 msgstr "Füge Familie hinzu"
-
-#: ../src/Editors/_EditFamily.py:974 ../src/gen/utils/dbutils.py:98
-msgid "Remove Family"
-msgstr "Entferne Familie"
 
 #: ../src/Editors/_EditLdsOrd.py:151 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:417
@@ -17087,6 +17083,10 @@ msgstr "Eingereicht"
 #: ../src/gen/lib/ldsord.py:112
 msgid "Uncleared"
 msgstr "Nicht freigegeben"
+
+#: ../src/gen/utils/dbutils.py:98
+msgid "Remove Family"
+msgstr "Entferne Familie"
 
 #: ../src/gen/utils/dbutils.py:117
 msgid "Remove father from family"
