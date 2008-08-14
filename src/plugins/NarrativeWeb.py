@@ -2714,8 +2714,11 @@ class NavWebReport(Report):
         self.person_pages(ind_list, place_list, source_list)
         self.surname_pages(ind_list)
         self.place_pages(place_list, source_list)
+        self.source_pages(source_list)
         if self.inc_gallery:
             self.gallery_pages(source_list)
+        # Build source pages a second time to pick up sources referenced
+        # by galleries
         self.source_pages(source_list)
 
         if self.archive:
