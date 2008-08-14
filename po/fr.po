@@ -530,15 +530,18 @@ msgstr "Extraire l'archive…"
 msgid "Importing archive..."
 msgstr "Importer une archive…"
 
+# Supprimer car efface
 #: ../src/DbManager.py:691
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Supprimer l'arbre familial '%s' ?"
 
+# Supprimer car efface
 #: ../src/DbManager.py:692
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Supprimer cet arbre familial supprimera définitivement les données."
 
+# Supprimer car efface
 #: ../src/DbManager.py:693
 msgid "Remove family tree"
 msgstr "Supprimer l'arbre familial"
@@ -550,9 +553,8 @@ msgstr "Retrait de la version '%(revision)s' de '%(database)s'"
 
 #: ../src/DbManager.py:703
 msgid "Removing this version will prevent you from extracting it in the future."
-msgstr "Enlever cette version vous empêchera toute extraction future."
+msgstr "Retirer cette version vous empêchera toute extraction future."
 
-# enlever une référence aux parents
 #: ../src/DbManager.py:705
 msgid "Remove version"
 msgstr "Retirer la version"
@@ -869,7 +871,7 @@ msgid ""
 "==== Contributors ====\n"
 msgstr ""
 "\n"
-"==== Contribueurs ====\n"
+"==== Collaborateurs ====\n"
 
 #: ../src/GrampsAboutDialog.py:79
 msgid ""
@@ -4236,7 +4238,6 @@ msgstr "%(date)s à %(place)s"
 msgid "Edit parents"
 msgstr "Éditer les parents"
 
-# enlever une référence aux parents
 #: ../src/DataViews/RelationView.py:702
 msgid "Reorder parents"
 msgstr "Réorganiser les parents"
@@ -4609,6 +4610,7 @@ msgstr "Rapport express"
 msgid "Create and add a new address"
 msgstr "Créer et ajouter une nouvelle adresse"
 
+# enlever la référence
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
 msgid "Remove the existing address"
 msgstr "Enlever l'adresse existante"
@@ -4633,6 +4635,7 @@ msgstr "_Adresses"
 msgid "Create and add a new attribute"
 msgstr "Créer et ajouter un nouvel attribut"
 
+# enlever la référence
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 msgid "Remove the existing attribute"
 msgstr "Enlever un attribut existant"
@@ -4773,6 +4776,7 @@ msgstr "Objet média inexistant trouvé dans la galerie"
 msgid "Create and add a new LDS ordinance"
 msgstr "Créer et ajouter une nouvelle ordinance"
 
+# enlever la référence
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 msgid "Remove the existing LDS ordinance"
 msgstr "Enlever l'ordinance existante"
@@ -4801,6 +4805,7 @@ msgstr "Noms _alternatifs"
 msgid "Create and add a new name"
 msgstr "Créer et ajouter une nouveau nom"
 
+# enlever la référence
 #: ../src/DisplayTabs/_NameEmbedList.py:60
 msgid "Remove the existing name"
 msgstr "Enlever le nom existant"
@@ -6981,6 +6986,7 @@ msgstr "Traitement…\n"
 msgid "Replacing...\n"
 msgstr "Remplacement…\n"
 
+# enlever car utilisé pour un calcul
 #: ../src/plugins/CalculateEstimatedDates.py:175
 #, python-format
 msgid "Removing '%s'..."
@@ -7612,12 +7618,12 @@ msgstr "1 média manquant a été remplacé\n"
 msgid "%d missing media objects were replaced\n"
 msgstr "%d objets média manquants ont été remplacés\n"
 
-# référence ou non, enlever ou supprimer
+# supprimer de la base de données
 #: ../src/plugins/Check.py:1390
 msgid "1 missing media object was removed\n"
 msgstr "1 média manquant a été supprimé\n"
 
-# référence ou non, enlever ou supprimer
+# supprimer de la base de données
 #: ../src/plugins/Check.py:1392
 #, python-format
 msgid "%d missing media objects were removed\n"
