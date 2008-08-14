@@ -114,8 +114,8 @@ _niece_level = [ "", "sobrinha", "sobrinha neta", "sobrinha bisneta", ]
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
-    def __init__(self,db):
-        Relationship.RelationshipCalculator.__init__(self,db)
+    def __init__(self):
+        Relationship.RelationshipCalculator.__init__(self)
 
     def get_male_cousin(self,level):
         if level<len(_level_name_male):
