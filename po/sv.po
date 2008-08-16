@@ -1,4 +1,4 @@
-# translation of sv1.po to svenska
+# translation of sv.po to svenska
 # translation of svny1.po to
 # translation of sv99.po to
 # translation of svny.po to
@@ -32,10 +32,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: sv1\n"
+"Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-15 18:55+0200\n"
-"PO-Revision-Date: 2008-08-15 20:03+0200\n"
+"PO-Revision-Date: 2008-08-16 16:02+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -7500,7 +7500,7 @@ msgstr "Generation 1"
 #: ../src/plugins/DefaultGramplets.py:581
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " utgörs 1 person (100 % fulltalig)\n"
+msgstr " utgörs av 1 person (100 % fulltalig)\n"
 
 #: ../src/plugins/DefaultGramplets.py:585
 #, python-format
@@ -13924,12 +13924,11 @@ msgstr "Hon begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:554
 #, python-format
-#, fuzzy
 msgid ""
 "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s begravdes %(burial_date)s in %(burial_place)s%"
+"%(unknown_gender_name)s begravdes %(burial_date)s i %(burial_place)s%"
 "(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
@@ -14802,17 +14801,17 @@ msgstr "Även gift med %(spouse)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:919
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Personen var gift med %(spouse)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:920
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "Han var gift med %(spouse)s%(endnotes)s."
+msgstr "Han gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:921
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "Hon var gift med %(spouse)s%(endnotes)s."
+msgstr "Hon gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:922
 #, python-format
