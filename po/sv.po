@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-15 20:08+0200\n"
-"PO-Revision-Date: 2008-08-15 20:09+0200\n"
+"PO-Revision-Date: 2008-08-16 16:09+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14928,17 +14928,17 @@ msgstr "Även gift med %(spouse)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:923
 #, python-format
 msgid "This person married %(spouse)s%(endnotes)s."
-msgstr "Personen var gift med %(spouse)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:924
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "Han var gift med %(spouse)s%(endnotes)s."
+msgstr "Han gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:925
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "Hon var gift med %(spouse)s%(endnotes)s."
+msgstr "Hon gifte sig med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:926
 #, python-format
