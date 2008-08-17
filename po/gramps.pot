@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-05 13:35+0200\n"
+"POT-Creation-Date: 2008-08-16 17:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,11 +363,11 @@ msgid "Family Tree"
 msgstr ""
 
 #: ../src/DbManager.py:103
-msgid "Extract"
+msgid "_Extract"
 msgstr ""
 
-#: ../src/DbManager.py:103 ../src/gen/lib/repotype.py:64
-msgid "Archive"
+#: ../src/DbManager.py:103 ../src/glade/gramps.glade.h:129
+msgid "_Archive"
 msgstr ""
 
 #: ../src/DbManager.py:231
@@ -385,26 +385,26 @@ msgstr ""
 msgid "Importing data..."
 msgstr ""
 
-#: ../src/DbManager.py:495
+#: ../src/DbManager.py:487
 msgid "Family tree name"
 msgstr ""
 
-#: ../src/DbManager.py:505 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:497 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr ""
 
-#: ../src/DbManager.py:511
+#: ../src/DbManager.py:503
 msgid "Last modified"
 msgstr ""
 
-#: ../src/DbManager.py:590
+#: ../src/DbManager.py:582
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr ""
 
-#: ../src/DbManager.py:591
+#: ../src/DbManager.py:583
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -412,15 +412,15 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 
-#: ../src/DbManager.py:597
+#: ../src/DbManager.py:589
 msgid "Break lock"
 msgstr ""
 
-#: ../src/DbManager.py:673
+#: ../src/DbManager.py:665
 msgid "Rename failed"
 msgstr ""
 
-#: ../src/DbManager.py:674
+#: ../src/DbManager.py:666
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -428,62 +428,62 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:689
+#: ../src/DbManager.py:681
 msgid "Could not rename the Family Tree."
 msgstr ""
 
-#: ../src/DbManager.py:690
+#: ../src/DbManager.py:682
 msgid "Family Tree already exists, choose a unique name."
 msgstr ""
 
-#: ../src/DbManager.py:703
+#: ../src/DbManager.py:695
 msgid "Could not rename family tree"
 msgstr ""
 
-#: ../src/DbManager.py:737
+#: ../src/DbManager.py:729
 msgid "Extracting archive..."
 msgstr ""
 
-#: ../src/DbManager.py:742
+#: ../src/DbManager.py:734
 msgid "Importing archive..."
 msgstr ""
 
-#: ../src/DbManager.py:758
+#: ../src/DbManager.py:750
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr ""
 
-#: ../src/DbManager.py:759
+#: ../src/DbManager.py:751
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 
-#: ../src/DbManager.py:760
+#: ../src/DbManager.py:752
 msgid "Remove family tree"
 msgstr ""
 
-#: ../src/DbManager.py:766
+#: ../src/DbManager.py:758
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr ""
 
-#: ../src/DbManager.py:770
+#: ../src/DbManager.py:762
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 
-#: ../src/DbManager.py:772
+#: ../src/DbManager.py:764
 msgid "Remove version"
 msgstr ""
 
-#: ../src/DbManager.py:801
+#: ../src/DbManager.py:793
 msgid "Could not delete family tree"
 msgstr ""
 
-#: ../src/DbManager.py:826
+#: ../src/DbManager.py:818
 msgid "Deletion failed"
 msgstr ""
 
-#: ../src/DbManager.py:827
+#: ../src/DbManager.py:819
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -491,23 +491,23 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:870
+#: ../src/DbManager.py:862
 msgid "Rebuilding database from backup files"
 msgstr ""
 
-#: ../src/DbManager.py:905
+#: ../src/DbManager.py:897
 msgid "Could not create family tree"
 msgstr ""
 
-#: ../src/DbManager.py:996
+#: ../src/DbManager.py:988
 msgid "Could not make database directory: "
 msgstr ""
 
-#: ../src/DbManager.py:1010
+#: ../src/DbManager.py:1002
 msgid "Never"
 msgstr ""
 
-#: ../src/DbManager.py:1084 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1076 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:900
 #: ../src/DataViews/RelationView.py:937
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -533,11 +533,11 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: ../src/DbManager.py:1103
+#: ../src/DbManager.py:1095
 msgid "Retrieve failed"
 msgstr ""
 
-#: ../src/DbManager.py:1104
+#: ../src/DbManager.py:1096
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -545,11 +545,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1141 ../src/DbManager.py:1165
+#: ../src/DbManager.py:1133 ../src/DbManager.py:1157
 msgid "Archiving failed"
 msgstr ""
 
-#: ../src/DbManager.py:1142
+#: ../src/DbManager.py:1134
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -557,15 +557,15 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1147
+#: ../src/DbManager.py:1139
 msgid "Creating data to be archived..."
 msgstr ""
 
-#: ../src/DbManager.py:1152
+#: ../src/DbManager.py:1144
 msgid "Saving archive..."
 msgstr ""
 
-#: ../src/DbManager.py:1166
+#: ../src/DbManager.py:1158
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -3214,7 +3214,7 @@ msgstr ""
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:400 ../src/plugins/NarrativeWeb.py:1454
-#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:354
+#: ../src/plugins/NarrativeWeb.py:1456 ../src/plugins/WebCal.py:357
 msgid "Home"
 msgstr ""
 
@@ -5660,7 +5660,7 @@ msgstr ""
 #: ../src/plugins/IndivComplete.py:644 ../src/plugins/KinshipReport.py:408
 #: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:242
 #: ../src/plugins/lineage.py:253 ../src/plugins/MarkerReport.py:526
-#: ../src/plugins/NarrativeWeb.py:3322 ../src/plugins/NotRelated.py:437
+#: ../src/plugins/NarrativeWeb.py:3325 ../src/plugins/NotRelated.py:437
 #: ../src/plugins/NumberOfAncestorsReport.py:200
 #: ../src/plugins/OnThisDay.py:146 ../src/plugins/PatchNames.py:374
 #: ../src/plugins/Rebuild.py:120 ../src/plugins/References.py:105
@@ -5669,7 +5669,7 @@ msgstr ""
 #: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
 #: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
 #: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1686 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/WebCal.py:1705 ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr ""
 
@@ -5904,10 +5904,10 @@ msgstr ""
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:337
-#: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3031
+#: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3034
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1155
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1162
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr ""
@@ -6074,9 +6074,9 @@ msgstr ""
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:493
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
-#: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3052
+#: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3055
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:1167 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1174 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr ""
 
@@ -6086,15 +6086,15 @@ msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
-#: ../src/plugins/NarrativeWeb.py:3058 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1173
+#: ../src/plugins/NarrativeWeb.py:3061 ../src/plugins/StatisticsChart.py:687
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1180
 msgid "Filter Person"
 msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
-#: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/StatisticsChart.py:688
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1174
+#: ../src/plugins/NarrativeWeb.py:3062 ../src/plugins/StatisticsChart.py:688
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1181
 msgid "The center person for the filter"
 msgstr ""
 
@@ -6278,12 +6278,12 @@ msgid "Relationships shown are to %s"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:488 ../src/plugins/Calendar.py:490
-#: ../src/plugins/WebCal.py:1212 ../src/plugins/WebCal.py:1214
+#: ../src/plugins/WebCal.py:1217 ../src/plugins/WebCal.py:1219
 msgid "Year of calendar"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3054
-#: ../src/plugins/WebCal.py:1169
+#: ../src/plugins/Calendar.py:495 ../src/plugins/NarrativeWeb.py:3057
+#: ../src/plugins/WebCal.py:1176
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
@@ -6291,7 +6291,7 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1225
+#: ../src/plugins/Calendar.py:511 ../src/plugins/WebCal.py:1230
 msgid "Country for holidays"
 msgstr ""
 
@@ -6299,11 +6299,12 @@ msgstr ""
 msgid "Select the country to see associated holidays"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:519
+#. Default selection ????
+#: ../src/plugins/Calendar.py:519 ../src/plugins/WebCal.py:1238
 msgid "First day of week"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:523
+#: ../src/plugins/Calendar.py:523 ../src/plugins/WebCal.py:1241
 msgid "Select the first day of the week for the calendar"
 msgstr ""
 
@@ -6327,27 +6328,27 @@ msgstr ""
 msgid "Select married women's displayed surname"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1239
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1249
 msgid "Include only living people"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1240
+#: ../src/plugins/Calendar.py:534 ../src/plugins/WebCal.py:1250
 msgid "Include only living people in the calendar"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1243
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1253
 msgid "Include birthdays"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1244
+#: ../src/plugins/Calendar.py:538 ../src/plugins/WebCal.py:1254
 msgid "Include birthdays in the calendar"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1247
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1257
 msgid "Include anniversaries"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1248
+#: ../src/plugins/Calendar.py:542 ../src/plugins/WebCal.py:1258
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
@@ -6451,7 +6452,7 @@ msgstr ""
 msgid "Month text style"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1574
+#: ../src/plugins/Calendar.py:897 ../src/plugins/WebCal.py:1584
 msgid "Don't include holidays"
 msgstr ""
 
@@ -7655,7 +7656,7 @@ msgstr ""
 #. #########################
 #: ../src/plugins/DetAncestralReport.py:746
 #: ../src/plugins/DetDescendantReport.py:732 ../src/plugins/FamilyGroup.py:599
-#: ../src/plugins/NarrativeWeb.py:3177
+#: ../src/plugins/NarrativeWeb.py:3180
 msgid "Include"
 msgstr ""
 
@@ -9080,7 +9081,7 @@ msgstr ""
 
 #: ../src/plugins/IndivComplete.py:420 ../src/plugins/NarrativeWeb.py:471
 #: ../src/plugins/NarrativeWeb.py:516 ../src/plugins/NarrativeWeb.py:531
-#: ../src/plugins/NarrativeWeb.py:2859 ../src/ReportBase/_ReportUtils.py:1721
+#: ../src/plugins/NarrativeWeb.py:2862 ../src/ReportBase/_ReportUtils.py:1721
 msgid "Could not add photo to page"
 msgstr ""
 
@@ -9678,14 +9679,14 @@ msgstr ""
 msgid "<br />%(type)s: %(value)s"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:916
+#: ../src/plugins/NarrativeWeb.py:2638 ../src/plugins/WebCal.py:923
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2645 ../src/plugins/NarrativeWeb.py:2649
 #: ../src/plugins/NarrativeWeb.py:2662 ../src/plugins/NarrativeWeb.py:2666
-#: ../src/plugins/WebCal.py:923 ../src/plugins/WebCal.py:927
+#: ../src/plugins/WebCal.py:930 ../src/plugins/WebCal.py:934
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr ""
@@ -9702,35 +9703,35 @@ msgstr ""
 msgid "Generate XHTML Reports"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2733 ../src/plugins/WebCal.py:1040
+#: ../src/plugins/NarrativeWeb.py:2736 ../src/plugins/WebCal.py:1047
 msgid "Filtering"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2749
+#: ../src/plugins/NarrativeWeb.py:2752
 msgid "Creating individual pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2769
+#: ../src/plugins/NarrativeWeb.py:2772
 msgid "Creating surname pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2781
+#: ../src/plugins/NarrativeWeb.py:2784
 msgid "Creating source pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2792
+#: ../src/plugins/NarrativeWeb.py:2795
 msgid "Creating place pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2803
+#: ../src/plugins/NarrativeWeb.py:2806
 msgid "Creating media pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2992 ../src/plugins/WebCal.py:257
+#: ../src/plugins/NarrativeWeb.py:2995 ../src/plugins/WebCal.py:260
 msgid "Possible destination error"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2993 ../src/plugins/WebCal.py:258
+#: ../src/plugins/NarrativeWeb.py:2996 ../src/plugins/WebCal.py:261
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -9738,275 +9739,275 @@ msgid ""
 "pages."
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3033
+#: ../src/plugins/NarrativeWeb.py:3036
 msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3035
+#: ../src/plugins/NarrativeWeb.py:3038
 msgid "Whether to store the web pages in an archive file"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3040 ../src/plugins/WebCal.py:1157
+#: ../src/plugins/NarrativeWeb.py:3043 ../src/plugins/WebCal.py:1164
 msgid "Destination"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3042 ../src/plugins/WebCal.py:1159
+#: ../src/plugins/NarrativeWeb.py:3045 ../src/plugins/WebCal.py:1166
 msgid "The destination directory for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3048
+#: ../src/plugins/NarrativeWeb.py:3051
 msgid "Web site title"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3048
+#: ../src/plugins/NarrativeWeb.py:3051
 msgid "My Family Tree"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3049
+#: ../src/plugins/NarrativeWeb.py:3052
 msgid "The title of the web site"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/WebCal.py:1180
+#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1187
 msgid "File extension"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3068 ../src/plugins/WebCal.py:1183
+#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1190
 msgid "The extension to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3071 ../src/plugins/WebCal.py:1186
+#: ../src/plugins/NarrativeWeb.py:3074 ../src/plugins/WebCal.py:1193
 msgid "Copyright"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/WebCal.py:1191
+#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1196
 msgid "The copyright to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3079 ../src/plugins/WebCal.py:1194
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1199
 msgid "Character set encoding"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1197
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1202
 msgid "The encoding to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1200
+#: ../src/plugins/NarrativeWeb.py:3088 ../src/plugins/WebCal.py:1205
 msgid "StyleSheet"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3088
+#: ../src/plugins/NarrativeWeb.py:3091
 msgid "The stylesheet to be used for the web page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3091
+#: ../src/plugins/NarrativeWeb.py:3094
 msgid "Include ancestor graph"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3092
+#: ../src/plugins/NarrativeWeb.py:3095
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3097
+#: ../src/plugins/NarrativeWeb.py:3100
 msgid "Graph generations"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3102
+#: ../src/plugins/NarrativeWeb.py:3105
 msgid "The number of generations to include in the ancestor graph"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3112
+#: ../src/plugins/NarrativeWeb.py:3115
 msgid "Page Generation"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3114
+#: ../src/plugins/NarrativeWeb.py:3117
 msgid "Home page note"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3115
+#: ../src/plugins/NarrativeWeb.py:3118
 msgid "A note to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3118
+#: ../src/plugins/NarrativeWeb.py:3121
 msgid "Home page image"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3119
+#: ../src/plugins/NarrativeWeb.py:3122
 msgid "An image to be used on the home page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3122
+#: ../src/plugins/NarrativeWeb.py:3125
 msgid "Introduction note"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3123
+#: ../src/plugins/NarrativeWeb.py:3126
 msgid "A note to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3126
+#: ../src/plugins/NarrativeWeb.py:3129
 msgid "Introduction image"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3127
+#: ../src/plugins/NarrativeWeb.py:3130
 msgid "An image to be used as the introduction"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3130
+#: ../src/plugins/NarrativeWeb.py:3133
 msgid "Publisher contact note"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3131
+#: ../src/plugins/NarrativeWeb.py:3134
 msgid "A note to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3134
+#: ../src/plugins/NarrativeWeb.py:3137
 msgid "Publisher contact image"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3135
+#: ../src/plugins/NarrativeWeb.py:3138
 msgid "An image to be used as the publisher contact"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3138
+#: ../src/plugins/NarrativeWeb.py:3141
 msgid "HTML user header"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3139
+#: ../src/plugins/NarrativeWeb.py:3142
 msgid "A note to be used as the page header"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3142
+#: ../src/plugins/NarrativeWeb.py:3145
 msgid "HTML user footer"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3143
+#: ../src/plugins/NarrativeWeb.py:3146
 msgid "A note to be used as the page footer"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3146
+#: ../src/plugins/NarrativeWeb.py:3149
 msgid "Include images and media objects"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3147
+#: ../src/plugins/NarrativeWeb.py:3150
 msgid "Whether to include a gallery of media objects"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3150
+#: ../src/plugins/NarrativeWeb.py:3153
 msgid "Include download page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3151
+#: ../src/plugins/NarrativeWeb.py:3154
 msgid "Whether to include a database download option"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3154
+#: ../src/plugins/NarrativeWeb.py:3157
 msgid "Suppress GRAMPS ID"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3155
+#: ../src/plugins/NarrativeWeb.py:3158
 msgid "Whether to include the Gramps ID of objects"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3162
+#: ../src/plugins/NarrativeWeb.py:3165
 msgid "Privacy"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3164
+#: ../src/plugins/NarrativeWeb.py:3167
 msgid "Include records marked private"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3165
+#: ../src/plugins/NarrativeWeb.py:3168
 msgid "Whether to include private objects"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3168
+#: ../src/plugins/NarrativeWeb.py:3171
 msgid "Living People"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3171
+#: ../src/plugins/NarrativeWeb.py:3174
 msgid "Exclude"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3173
+#: ../src/plugins/NarrativeWeb.py:3176
 msgid "Include Last Name Only"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3175
+#: ../src/plugins/NarrativeWeb.py:3178
 msgid "Include Full Name Only"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3178
+#: ../src/plugins/NarrativeWeb.py:3181
 msgid "How to handle living people"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3182
+#: ../src/plugins/NarrativeWeb.py:3185
 msgid "Years from death to consider living"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3184
+#: ../src/plugins/NarrativeWeb.py:3187
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3196
+#: ../src/plugins/NarrativeWeb.py:3199
 msgid "Advanced"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3198
+#: ../src/plugins/NarrativeWeb.py:3201
 msgid "Include link to home person on every page"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3200
+#: ../src/plugins/NarrativeWeb.py:3203
 msgid "Whether to include a link to the home person"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3203
+#: ../src/plugins/NarrativeWeb.py:3206
 msgid "Include a column for birth dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3205
+#: ../src/plugins/NarrativeWeb.py:3208
 msgid "Whether to include a birth column"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3208
+#: ../src/plugins/NarrativeWeb.py:3211
 msgid "Include a column for death dates on the index pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3210
+#: ../src/plugins/NarrativeWeb.py:3213
 msgid "Whether to include a death column"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3213
+#: ../src/plugins/NarrativeWeb.py:3216
 msgid "Include a column for partners on the index pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3215
+#: ../src/plugins/NarrativeWeb.py:3218
 msgid "Whether to include a partners column"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3218
+#: ../src/plugins/NarrativeWeb.py:3221
 msgid "Include a column for parents on the index pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3220
+#: ../src/plugins/NarrativeWeb.py:3223
 msgid "Whether to include a parents column"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3223
+#: ../src/plugins/NarrativeWeb.py:3226
 msgid "Include half-siblings and step-siblings on the individual pages"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3226
+#: ../src/plugins/NarrativeWeb.py:3229
 msgid ""
 "Whether to include half-siblings and step-siblings with the parents and "
 "siblings"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3321
+#: ../src/plugins/NarrativeWeb.py:3324
 msgid "Narrated Web Site"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:3325
+#: ../src/plugins/NarrativeWeb.py:3328
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr ""
 
@@ -11121,50 +11122,50 @@ msgstr ""
 msgid "Verifies the data against user-defined tests"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:315
+#: ../src/plugins/WebCal.py:318
 msgid "Daylight Saving ends"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:367
+#: ../src/plugins/WebCal.py:370
 msgid "Year Glance"
 msgstr ""
 
 #. TODO. See note in indiv_date()
 #. Add header to page
-#: ../src/plugins/WebCal.py:368 ../src/plugins/WebCal.py:748
+#: ../src/plugins/WebCal.py:371 ../src/plugins/WebCal.py:757
 msgid "Blank Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:584
+#: ../src/plugins/WebCal.py:593
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</"
 "a> on %(date)s"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:682 ../src/plugins/WebCal.py:757
-#: ../src/plugins/WebCal.py:851 ../src/plugins/WebCal.py:996
+#: ../src/plugins/WebCal.py:691 ../src/plugins/WebCal.py:766
+#: ../src/plugins/WebCal.py:860 ../src/plugins/WebCal.py:1004
 #, python-format
 msgid "Created for %(author)s"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:684
+#: ../src/plugins/WebCal.py:693
 msgid "A Peak into One Day"
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:776
+#: ../src/plugins/WebCal.py:784
 msgid "Creating Printable Blank Full-Year Calendar Page"
 msgstr ""
 
 #. TODO. See note in indiv_date()
 #. Add header to page
-#: ../src/plugins/WebCal.py:842
+#: ../src/plugins/WebCal.py:851
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:870
+#: ../src/plugins/WebCal.py:878
 msgid ""
 "            This calendar is meant to give you access to all your data at a "
 "glance compressed into one page.  Clicking on a <b>red square</b> will take "
@@ -11172,262 +11173,262 @@ msgid ""
 msgstr ""
 
 #. Create progress bar for it
-#: ../src/plugins/WebCal.py:876
+#: ../src/plugins/WebCal.py:884
 msgid "Creating Year At A Glance page"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:933
+#: ../src/plugins/WebCal.py:940
 msgid "Generate XHTML Calendars"
 msgstr ""
 
 #. get the information, first from holidays:
 #. Don't include holidays
 #. _country is currently global
-#: ../src/plugins/WebCal.py:941
+#: ../src/plugins/WebCal.py:948
 msgid "Getting information from holidays file"
 msgstr ""
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:947
+#: ../src/plugins/WebCal.py:954
 msgid "Creating Calendar pages"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1043
+#: ../src/plugins/WebCal.py:1050
 msgid "Reading database"
 msgstr ""
 
 #. person is 1, and therefore display it correctly
-#: ../src/plugins/WebCal.py:1078
+#: ../src/plugins/WebCal.py:1085
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> year old"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1080
+#: ../src/plugins/WebCal.py:1087
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> years old"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1120
+#: ../src/plugins/WebCal.py:1127
 #, python-format
 msgid ""
 "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> "
 "year anniversary</span>"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1163
+#: ../src/plugins/WebCal.py:1170
 msgid "Calendar Title"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1163
+#: ../src/plugins/WebCal.py:1170
 msgid "My Family Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1164
+#: ../src/plugins/WebCal.py:1171
 msgid "The title of the calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1203
+#: ../src/plugins/WebCal.py:1208
 msgid "The Style Sheet to be used for the web page"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1210
+#: ../src/plugins/WebCal.py:1215
 msgid "Content Options"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1217
+#: ../src/plugins/WebCal.py:1222
 msgid "Create Year At A Glance"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1218
+#: ../src/plugins/WebCal.py:1223
 msgid "Whether to create A Full Year High-lighted calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1221
+#: ../src/plugins/WebCal.py:1226
 msgid "Create A Printable Blank Full- Year Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1222
+#: ../src/plugins/WebCal.py:1227
 msgid "Whether to create A Full Year Printable calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1230
+#: ../src/plugins/WebCal.py:1233
 msgid "Holidays will be included for the selected country"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1234
+#: ../src/plugins/WebCal.py:1244
 msgid "Home link"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1235
+#: ../src/plugins/WebCal.py:1245
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1251
+#: ../src/plugins/WebCal.py:1261
 msgid "Check for wives to use maiden name"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1252
+#: ../src/plugins/WebCal.py:1262
 msgid "Attempt to use maiden names of women"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1259
+#: ../src/plugins/WebCal.py:1269
 msgid "Jan - Jun Notes"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1261
+#: ../src/plugins/WebCal.py:1271
 msgid "Jan Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1261
+#: ../src/plugins/WebCal.py:1271
 msgid "This prints in January"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1262
+#: ../src/plugins/WebCal.py:1272
 msgid "The note for the month of January"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1265
+#: ../src/plugins/WebCal.py:1275
 msgid "Feb Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1265
+#: ../src/plugins/WebCal.py:1275
 msgid "This prints in February"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1266
+#: ../src/plugins/WebCal.py:1276
 msgid "The note for the month of February"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1269
+#: ../src/plugins/WebCal.py:1279
 msgid "Mar Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1269
+#: ../src/plugins/WebCal.py:1279
 msgid "This prints in March"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1270
+#: ../src/plugins/WebCal.py:1280
 msgid "The note for the month of March"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1273
+#: ../src/plugins/WebCal.py:1283
 msgid "Apr Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1273
+#: ../src/plugins/WebCal.py:1283
 msgid "This prints in April"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1274
+#: ../src/plugins/WebCal.py:1284
 msgid "The note for the month of April"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1277
+#: ../src/plugins/WebCal.py:1287
 msgid "May Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1277
+#: ../src/plugins/WebCal.py:1287
 msgid "This prints in May"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1278
+#: ../src/plugins/WebCal.py:1288
 msgid "The note for the month of May"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1281
+#: ../src/plugins/WebCal.py:1291
 msgid "Jun Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1281
+#: ../src/plugins/WebCal.py:1291
 msgid "This prints in June"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1282
+#: ../src/plugins/WebCal.py:1292
 msgid "The note for the month of June"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1285
+#: ../src/plugins/WebCal.py:1295
 msgid "Jul - Dec Notes"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1287
+#: ../src/plugins/WebCal.py:1297
 msgid "Jul Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1287
+#: ../src/plugins/WebCal.py:1297
 msgid "This prints in July"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1288
+#: ../src/plugins/WebCal.py:1298
 msgid "The note for the month of July"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1291
+#: ../src/plugins/WebCal.py:1301
 msgid "Aug Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1291
+#: ../src/plugins/WebCal.py:1301
 msgid "This prints in August"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1292
+#: ../src/plugins/WebCal.py:1302
 msgid "The note for the month of August"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1295
+#: ../src/plugins/WebCal.py:1305
 msgid "Sep Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1295
+#: ../src/plugins/WebCal.py:1305
 msgid "This prints in September"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1296
+#: ../src/plugins/WebCal.py:1306
 msgid "The note for the month of September"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1299
+#: ../src/plugins/WebCal.py:1309
 msgid "Oct Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1299
+#: ../src/plugins/WebCal.py:1309
 msgid "This prints in October"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1300
+#: ../src/plugins/WebCal.py:1310
 msgid "The note for the month of October"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1303
+#: ../src/plugins/WebCal.py:1313
 msgid "Nov Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1303
+#: ../src/plugins/WebCal.py:1313
 msgid "This prints in November"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1304
+#: ../src/plugins/WebCal.py:1314
 msgid "The note for the month of November"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1307
+#: ../src/plugins/WebCal.py:1317
 msgid "Dec Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1307
+#: ../src/plugins/WebCal.py:1317
 msgid "This prints in December"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1308
+#: ../src/plugins/WebCal.py:1318
 msgid "The note for the month of December"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1685
+#: ../src/plugins/WebCal.py:1704
 msgid "Web Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1689
+#: ../src/plugins/WebCal.py:1708
 msgid "Produces web (HTML) calendars."
 msgstr ""
 
@@ -15957,6 +15958,10 @@ msgstr ""
 msgid "Church"
 msgstr ""
 
+#: ../src/gen/lib/repotype.py:64
+msgid "Archive"
+msgstr ""
+
 #: ../src/gen/lib/repotype.py:65
 msgid "Album"
 msgstr ""
@@ -19031,10 +19036,6 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:128
 msgid "Y_ear"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:129
-msgid "_Archive"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:130
