@@ -4142,7 +4142,7 @@ msgstr "Flytt den valgte relasjonen ned"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:62
 msgid "Association"
-msgstr "Forening"
+msgstr "Relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
 msgid "_Associations"
