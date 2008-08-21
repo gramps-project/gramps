@@ -62,7 +62,7 @@ class DataEmbedList(EmbeddedList):
         self.obj = obj
         
         EmbeddedList.__init__(self, dbstate, uistate, track, _('_Data'), 
-                              DataModel, move_buttons=True)
+                              DataModel, move_buttons=False)
 
     def build_columns(self):
         EmbeddedList.build_columns(self)
