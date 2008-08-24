@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 20:08+0200\n"
-"PO-Revision-Date: 2008-08-16 16:09+0200\n"
+"POT-Creation-Date: 2008-08-16 17:07+0200\n"
+"PO-Revision-Date: 2008-08-24 12:00+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19752,7 +19752,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:127
 msgid "Y"
-msgstr "J"
+msgstr "Y"
 
 #: ../src/glade/gramps.glade.h:128
 msgid "Y_ear"
