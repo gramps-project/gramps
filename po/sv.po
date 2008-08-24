@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 18:55+0200\n"
-"PO-Revision-Date: 2008-08-16 16:02+0200\n"
+"POT-Creation-Date: 2008-08-20 09:02+0200\n"
+"PO-Revision-Date: 2008-08-24 11:50+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -5991,7 +5991,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
-#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:560
+#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:568
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6252,7 +6252,7 @@ msgstr "Generation %d"
 #: ../src/plugins/DetAncestralReport.py:699
 #: ../src/plugins/DetDescendantReport.py:645
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:430
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2935
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
@@ -6424,7 +6424,7 @@ msgstr "Alternativ"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:432
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:433
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2952
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -6436,14 +6436,14 @@ msgid "Select filter to restrict people"
 msgstr "Välj ett filter, som begränsar personerurvalet"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2958 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
 msgstr "Filtrera person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2959 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
@@ -8973,7 +8973,7 @@ msgstr "Maximalt antal barn, som skall tas med."
 msgid "Images"
 msgstr "Bilder"
 
-#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:477
 msgid "Include thumbnail images of people"
 msgstr "Ta med miniatyrbilder på personer"
 
@@ -8981,15 +8981,15 @@ msgstr "Ta med miniatyrbilder på personer"
 msgid "Thumbnail location"
 msgstr "Minatyrbildsplats"
 
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:484
 msgid "Above the name"
 msgstr "Ovanför namnet"
 
-#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:485
 msgid "Beside the name"
 msgstr "Vid sidan om namnet"
 
-#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
+#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:487
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Var miniatyrbilden skall synas relativt till namnet"
 
@@ -9113,43 +9113,43 @@ msgstr "Skapar ett timglasdiagram med Graphviz"
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/GVRelGraph.py:59
+#: ../src/plugins/GVRelGraph.py:60
 msgid "B&W outline"
 msgstr "Svartvit kontur"
 
-#: ../src/plugins/GVRelGraph.py:60
+#: ../src/plugins/GVRelGraph.py:61
 msgid "Colored outline"
 msgstr "Färglagd kontur"
 
-#: ../src/plugins/GVRelGraph.py:61
+#: ../src/plugins/GVRelGraph.py:62
 msgid "Color fill"
 msgstr "Färgfyllning"
 
-#: ../src/plugins/GVRelGraph.py:63
+#: ../src/plugins/GVRelGraph.py:64
 msgid "Descendants <- Ancestors"
 msgstr "Ättlingar <- Anor"
 
-#: ../src/plugins/GVRelGraph.py:64
+#: ../src/plugins/GVRelGraph.py:65
 msgid "Descendants -> Ancestors"
 msgstr "Ättlingar -> Anor"
 
-#: ../src/plugins/GVRelGraph.py:65
+#: ../src/plugins/GVRelGraph.py:66
 msgid "Descendants <-> Ancestors"
 msgstr "Ättlingar <-> Anor"
 
-#: ../src/plugins/GVRelGraph.py:66
+#: ../src/plugins/GVRelGraph.py:67
 msgid "Descendants - Ancestors"
 msgstr "Ättlingar - Anor"
 
-#: ../src/plugins/GVRelGraph.py:434
+#: ../src/plugins/GVRelGraph.py:435
 msgid "Determines what people are included in the graph"
 msgstr "Avgör vilka personer, som tas med i rapporten"
 
-#: ../src/plugins/GVRelGraph.py:446
+#: ../src/plugins/GVRelGraph.py:447
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Ta med födelse-, giftermåls- och dödsdatum"
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:448
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -9157,11 +9157,11 @@ msgstr ""
 "Ta med de datum när personen föddes, gifte sig och/eller dog i "
 "diagrametiketterna."
 
-#: ../src/plugins/GVRelGraph.py:451
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Limit dates to years only"
 msgstr "Begränsa datum till år enbart"
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:453
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -9169,11 +9169,11 @@ msgstr ""
 "Skriver enbart ut år för datum, varken månad eller dag eller datumskattning "
 "eller -intervall visas."
 
-#: ../src/plugins/GVRelGraph.py:457
+#: ../src/plugins/GVRelGraph.py:458
 msgid "Use place when no date"
 msgstr "Använd plats när datum saknas"
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:459
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -9181,11 +9181,11 @@ msgstr ""
 "När inget födelse-, giftermåls- eller dödsdatum finns tillgängligt, kommer "
 "motsvarande platsfält att användas."
 
-#: ../src/plugins/GVRelGraph.py:463
+#: ../src/plugins/GVRelGraph.py:464
 msgid "Include URLs"
 msgstr "Ta med URL:er"
 
-#: ../src/plugins/GVRelGraph.py:464
+#: ../src/plugins/GVRelGraph.py:465
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -9195,33 +9195,33 @@ msgstr ""
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
 "'Skapa webbplats'."
 
-#: ../src/plugins/GVRelGraph.py:471
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include IDs"
 msgstr "Ta med ID:n"
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:473
 msgid "Include individual and family IDs."
 msgstr "Ta med individ- och familje-ID."
 
-#: ../src/plugins/GVRelGraph.py:478
+#: ../src/plugins/GVRelGraph.py:479
 msgid "Whether to include thumbnails of people."
 msgstr "Huruvida miniatyrbilder av personer skall tas med."
 
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Thumbnail Location"
 msgstr "Bildminiatyrplats"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:491
+#: ../src/plugins/GVRelGraph.py:492
 msgid "Graph Style"
 msgstr "Diagrammall"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:494
+#: ../src/plugins/GVRelGraph.py:495
 msgid "Graph coloring"
 msgstr "Färgläggning av diagram"
 
-#: ../src/plugins/GVRelGraph.py:497
+#: ../src/plugins/GVRelGraph.py:498
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -9229,35 +9229,43 @@ msgstr ""
 "Män kommer att visas i blått, kvinnor i rött. Om könet för en person är "
 "okänt, visas den i grått."
 
-#: ../src/plugins/GVRelGraph.py:502
+#: ../src/plugins/GVRelGraph.py:503
 msgid "Arrowhead direction"
 msgstr "Riktning för pilspets"
 
-#: ../src/plugins/GVRelGraph.py:505
+#: ../src/plugins/GVRelGraph.py:506
 msgid "Choose the direction that the arrows point."
 msgstr "Välj den riktning som pilarna ska peka åt."
 
-#: ../src/plugins/GVRelGraph.py:509
+#: ../src/plugins/GVRelGraph.py:510
+msgid "Use rounded corners"
+msgstr "Använd avrundade hörn"
+
+#: ../src/plugins/GVRelGraph.py:512
+msgid "Use rounded corners to differentiate between women and men."
+msgstr ""
+
+#: ../src/plugins/GVRelGraph.py:517
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
-#: ../src/plugins/GVRelGraph.py:510
+#: ../src/plugins/GVRelGraph.py:518
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
-#: ../src/plugins/GVRelGraph.py:514
+#: ../src/plugins/GVRelGraph.py:522
 msgid "Show family nodes"
 msgstr "Visa familjenoder"
 
-#: ../src/plugins/GVRelGraph.py:515
+#: ../src/plugins/GVRelGraph.py:523
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:567
 msgid "Relationship Graph"
 msgstr "Antavla i diagramform"
 
-#: ../src/plugins/GVRelGraph.py:561
+#: ../src/plugins/GVRelGraph.py:569
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Skapar en antavla i diagramform med Graphviz."
 
@@ -14001,7 +14009,9 @@ msgstr "Hon begravdes %(month_year)s i %(burial_place)s%(endnotes)s."
 msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
 "(endnotes)s."
-msgstr "%(unknown_gender_name)s begravdes %(month_year)s i %(burial_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s begravdes %(month_year)s i %(burial_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
@@ -14197,9 +14207,7 @@ msgstr "Begravd%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(male_name)s döptes %(baptism_date)s i %(baptism_place)s%"
-"(endnotes)s."
+msgstr "%(male_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:681
 #, python-format
@@ -14211,9 +14219,7 @@ msgstr "Han döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%"
-"(endnotes)s."
+msgstr "%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
@@ -14226,8 +14232,8 @@ msgid ""
 "%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(baptism_date)s i %(baptism_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s döptes %(baptism_date)s i %(baptism_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
@@ -14281,9 +14287,7 @@ msgstr "Döpt %(baptism_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(male_name)s döptes %(month_year)s i %(baptism_place)s%(endnotes)"
-"s."
+msgstr "%(male_name)s döptes %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:713
 #, python-format
@@ -14308,8 +14312,8 @@ msgid ""
 "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s döptes %(month_year)s i %(baptism_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s döptes %(month_year)s i %(baptism_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
@@ -14361,9 +14365,7 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)"
-"s."
+msgstr "%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:745
 #, python-format
@@ -14375,9 +14377,7 @@ msgstr "Han döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(modified_date)s i %(baptism_place)s%"
-"(endnotes)s."
+msgstr "%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
@@ -19475,7 +19475,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:127
 msgid "Y"
-msgstr "J"
+msgstr "Y"
 
 #: ../src/glade/gramps.glade.h:128
 msgid "Y_ear"
