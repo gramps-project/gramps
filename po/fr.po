@@ -530,6 +530,7 @@ msgstr "Extraire l'archive…"
 msgid "Importing archive..."
 msgstr "Importer une archive…"
 
+# objet sélectionné
 # Supprimer car efface
 #: ../src/DbManager.py:691
 #, python-format
@@ -541,6 +542,7 @@ msgstr "Supprimer l'arbre familial '%s' ?"
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Supprimer cet arbre familial supprimera définitivement les données."
 
+# objet sélectionné
 # Supprimer car efface
 #: ../src/DbManager.py:693
 msgid "Remove family tree"
@@ -559,6 +561,7 @@ msgstr "Retirer cette version vous empêchera toute extraction future."
 msgid "Remove version"
 msgstr "Retirer la version"
 
+# objet sélectionné
 #: ../src/DbManager.py:734
 msgid "Could not delete family tree"
 msgstr "Impossible de supprimer l'arbre familial"
@@ -3575,6 +3578,7 @@ msgstr "Ajouter un nouvel événement"
 msgid "Edit the selected event"
 msgstr "Éditer l'événement sélectionné"
 
+# objet sélectionné
 #: ../src/DataViews/EventView.py:79
 msgid "Delete the selected event"
 msgstr "Supprimer l'événement sélectionné"
@@ -3615,6 +3619,7 @@ msgstr "Supprimer l'événement l'enlèvera de la base de données."
 msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
+# objet sélectionné
 #: ../src/DataViews/EventView.py:250
 msgid "_Delete Event"
 msgstr "_Supprimer l'événement"
@@ -3631,6 +3636,7 @@ msgstr "Ajouter une nouvelle famille"
 msgid "Edit the selected family"
 msgstr "Éditer la famille sélectionnée"
 
+# objet sélectionné
 #: ../src/DataViews/FamilyList.py:72
 msgid "Delete the selected family"
 msgstr "Supprimer la famille sélectionnée"
@@ -3660,6 +3666,7 @@ msgstr "Éditeur de filtre sur la famille"
 msgid "Edit the selected media object"
 msgstr "Éditer l'objet média sélectionné"
 
+# objet sélectionné
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
 msgstr "Supprimer l'objet média sélectionné"
@@ -3705,13 +3712,15 @@ msgstr "Ce média est actuellement utilisé, le supprimer l'enlèvera de la base
 msgid "Deleting media object will remove it from the database."
 msgstr "Supprimer l'objet le supprimera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "Supprimer un média ?"
+msgstr "Supprimer l'objet média ?"
 
+# objet sélectionné
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr "Supprimer un mé_dia"
+msgstr "Supprimer l'objet mé_dia"
 
 #: ../src/DataViews/GrampletView.py:73
 #: ../src/DataViews/GrampletView.py:840
@@ -3771,6 +3780,7 @@ msgstr "Marqueur"
 msgid "Edit the selected note"
 msgstr "Éditer la note sélectionnée"
 
+# objet sélectionné
 #: ../src/DataViews/NoteView.py:75
 msgid "Delete the selected note"
 msgstr "Supprimer la note sélectionnée"
@@ -3792,9 +3802,10 @@ msgstr "Cette note est actuellement utilisée, la supprimer l'enlèvera de la ba
 msgid "Deleting note will remove it from the database."
 msgstr "Supprimer la note l'enlèvera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/NoteView.py:218
 msgid "_Delete Note"
-msgstr "_Supprimer une note"
+msgstr "_Supprimer la note"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3993,6 +4004,7 @@ msgstr "Fermer tous les nœuds"
 msgid "Add a new person"
 msgstr "Ajouter un nouvel individu"
 
+# objet sélectionné
 # supprimer pour marquer la disparition de l'objet
 #: ../src/DataViews/PersonView.py:160
 msgid "Remove the Selected Person"
@@ -4030,10 +4042,12 @@ msgstr "Chargement en cours…"
 msgid "Deleting the person will remove the person from the database."
 msgstr "Supprimer l'individu l'enlèvera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/PersonView.py:607
 msgid "_Delete Person"
-msgstr "_Supprimer un individu"
+msgstr "_Supprimer l'individu"
 
+# objet sélectionné
 #: ../src/DataViews/PersonView.py:622
 #, python-format
 msgid "Delete Person (%s)"
@@ -4047,6 +4061,7 @@ msgstr "Individu par défaut"
 msgid "Edit selected person"
 msgstr "Éditer l'individu sélectionné"
 
+# objet sélectionné
 #: ../src/DataViews/PersonView.py:908
 msgid "Delete selected person"
 msgstr "Supprimer l'individu sélectionné"
@@ -4098,6 +4113,7 @@ msgstr "Rue"
 msgid "Edit the selected place"
 msgstr "Éditer le lieu sélectionné"
 
+# objet sélectionné
 #: ../src/DataViews/PlaceView.py:82
 msgid "Delete the selected place"
 msgstr "Supprimer le lieu sélectionné"
@@ -4130,9 +4146,10 @@ msgstr "Ce lieu est actuellement utilisé, le supprimer l'enlèvera de la base e
 msgid "Deleting place will remove it from the database."
 msgstr "Supprimer le lieu l'enlèvera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/PlaceView.py:257
 msgid "_Delete Place"
-msgstr "Supprimer _un lieu"
+msgstr "Supprimer _le lieu"
 
 #: ../src/DataViews/PlaceView.py:276
 msgid "Cannot merge places."
@@ -4374,6 +4391,7 @@ msgstr "Ajouter un nouveau dépôt"
 msgid "Edit the selected repository"
 msgstr "Éditer le dépôt sélectionné"
 
+# objet sélectionné
 #: ../src/DataViews/RepositoryView.py:84
 msgid "Delete the selected repository"
 msgstr "Supprimer le dépôt sélectionné"
@@ -4394,9 +4412,10 @@ msgstr "Cet dépôt est actuellement utilisé, le supprimer l'enlèvera de la ba
 msgid "Deleting repository will remove it from the database."
 msgstr "Supprimer le dépôt l'enlèvera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/RepositoryView.py:211
 msgid "_Delete Repository"
-msgstr "_Supprimer un dépôt"
+msgstr "_Supprimer le dépôt"
 
 #: ../src/DataViews/SourceView.py:74
 msgid "Add a new source"
@@ -4407,6 +4426,7 @@ msgstr "Ajouter une nouvelle source"
 msgid "Edit the selected source"
 msgstr "Éditer la source sélectionnée"
 
+# objet sélectionné
 #: ../src/DataViews/SourceView.py:76
 msgid "Delete the selected source"
 msgstr "Supprimer la source sélectionnée"
@@ -4432,9 +4452,10 @@ msgstr "Cette source est actuellement utilisée, la supprimer l'enlèvera de la 
 msgid "Deleting source will remove it from the database."
 msgstr "Supprimer la source l'enlèvera de la base de données."
 
+# objet sélectionné
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
-msgstr "_Supprimer une source"
+msgstr "_Supprimer la source"
 
 #: ../src/DataViews/SourceView.py:225
 msgid "Cannot merge sources."
@@ -5109,6 +5130,7 @@ msgstr "Cet événement ne peut pas être vide"
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
+# objet sélectionné
 #: ../src/Editors/_EditEvent.py:326
 #, python-format
 msgid "Delete Event (%s)"
@@ -5468,6 +5490,7 @@ msgstr "Impossible d'enregistrer la note. L'identifiant existe déjà."
 msgid "Add Note"
 msgstr "Ajouter une note"
 
+# objet sélectionné
 #: ../src/Editors/_EditNote.py:634
 #, python-format
 msgid "Delete Note (%s)"
@@ -5612,6 +5635,7 @@ msgstr "Ajouter le lieu (%s)"
 msgid "Edit Place (%s)"
 msgstr "Éditer le lieu (%s)"
 
+# objet sélectionné
 #: ../src/Editors/_EditPlace.py:339
 #, python-format
 msgid "Delete Place (%s)"
@@ -5677,6 +5701,7 @@ msgstr "Ajouter le dépôt (%s)"
 msgid "Edit Repository (%s)"
 msgstr "Éditeur de dépôt (%s)"
 
+# objet sélectionné
 #: ../src/Editors/_EditRepository.py:203
 #, python-format
 msgid "Delete Repository (%s)"
@@ -5713,6 +5738,7 @@ msgstr "Ajouter la source (%s)"
 msgid "Edit Source (%s)"
 msgstr "Éditer la source (%s)"
 
+# objet sélectionné
 #: ../src/Editors/_EditSource.py:255
 #, python-format
 msgid "Delete Source (%s)"
@@ -18790,6 +18816,7 @@ msgstr "Commentaire"
 msgid "Custom Filter Editor"
 msgstr "Éditeur de filtre personnalisé"
 
+# objet sélectionné
 #: ../src/FilterEditor/_FilterEditor.py:189
 msgid "Delete Filter?"
 msgstr "Supprimer le filtre ?"
@@ -18798,6 +18825,7 @@ msgstr "Supprimer le filtre ?"
 msgid "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it."
 msgstr "Ce filtre est actuellement utilisé comme base pour d'autres filtres. Le supprimer enlèvera également les filtres qui dépendent de lui."
 
+# objet sélectionné
 #: ../src/FilterEditor/_FilterEditor.py:194
 msgid "Delete Filter"
 msgstr "Supprimer le filtre"
@@ -19875,10 +19903,12 @@ msgstr "Dupliquer le filtre sélectionné"
 msgid "Co_mment:"
 msgstr "Co_mmentaire :"
 
+# objet sélectionné
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
 msgstr "Supprimer le filtre sélectionné"
 
+# objet sélectionné
 #: ../src/glade/rule.glade.h:16
 msgid "Delete the selected rule"
 msgstr "Supprimer la règle sélectionnée"
@@ -20003,6 +20033,7 @@ msgstr "Remonter la sélection en cours dans le livre"
 msgid "Open previously created book"
 msgstr "Ouvrir un livre précédemment créé"
 
+# objet sélectionné
 # supprimer car efface
 #: ../src/plugins/book.glade.h:11
 msgid "Remove currently selected item from the book"
