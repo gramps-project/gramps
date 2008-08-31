@@ -40,6 +40,7 @@ from _MatchesFilter import MatchesFilter
 from _MatchesPersonFilter import MatchesPersonFilter
 from _MatchesSourceFilter import MatchesSourceFilter
 from _HasAttribute import HasAttribute
+from _HasData import HasData
 
 editor_rule_list = [
     AllEvents,
@@ -56,4 +57,5 @@ editor_rule_list = [
     MatchesPersonFilter,
     MatchesSourceFilter,
     HasAttribute,
+    HasData,
 ]
