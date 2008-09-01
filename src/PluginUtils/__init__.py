@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian Matherly
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +25,7 @@ from _MenuOptions import (NumberOption, BooleanOption, TextOption,
                           EnumeratedListOption, FilterOption, StringOption, 
                           ColourOption, PersonOption, PersonListOption, 
                           SurnameColourOption, FamilyOption, DestinationOption,
-                          NoteOption, MediaOption, StyleOption)
+                          NoteOption, MediaOption, StyleOption, PlaceListOption)
 from _GuiOptions import GuiMenuOptions, make_gui_option
 from _Options import Options, OptionListCollection, OptionList, OptionHandler
 

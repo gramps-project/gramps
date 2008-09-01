@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -747,6 +748,7 @@ class ReportOptions(_Options.Options):
                     FTD-    FTM Style Descendant report
                     IDS-    Individual Complete Report
                     IVS-    Individual Summary Report
+                    PLC-    Place Report
                     SBT-    Simple Boot Title
                     TLG-    Timeline Graph
         """

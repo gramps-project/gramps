@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -510,6 +511,28 @@ class PersonListOption(Option):
         """
         @param label: A friendly label to be applied to this option.
             Example: "People of interest"
+        @type label: string
+        @param value: A set of GIDs as initial values for this option.
+            Example: "111 222 333 444"
+        @type value: string
+        @return: nothing
+        """
+        Option.__init__(self, label, "")
+
+#-------------------------------------------------------------------------
+#
+# PlaceListOption class
+#
+#-------------------------------------------------------------------------
+class PlaceListOption(Option):
+    """
+    This class describes a widget that allows multiple places from the 
+    database to be selected.
+    """
+    def __init__(self, label):
+        """
+        @param label: A label to be applied to this option.
+            Example: "Places"
         @type label: string
         @param value: A set of GIDs as initial values for this option.
             Example: "111 222 333 444"

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -902,6 +903,117 @@ class GuiPersonListOption(gtk.HBox):
 
 #-------------------------------------------------------------------------
 #
+# GuiPlaceListOption class
+#
+#-------------------------------------------------------------------------
+class GuiPlaceListOption(gtk.HBox):
+    """
+    This class displays a widget that allows multiple places from the 
+    database to be selected.
+    """
+    def __init__(self, option, dbstate, uistate, track, tooltip):
+        """
+        @param option: The option to display.
+        @type option: MenuOption.PlaceListOption
+        @return: nothing
+        """
+        gtk.HBox.__init__(self)
+        self.__option = option
+        self.__dbstate = dbstate
+        self.__db = dbstate.get_database()
+        self.__uistate = uistate
+        self.__track = track
+
+        self.__model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.__tree_view = gtk.TreeView(self.__model)
+        self.__tree_view.set_size_request(150, 150)
+        col1 = gtk.TreeViewColumn(_('Place'  ), gtk.CellRendererText(), text=0)
+        col2 = gtk.TreeViewColumn(_('ID'    ), gtk.CellRendererText(), text=1)
+        col1.set_resizable(True)
+        col2.set_resizable(True)
+        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sort_column_id(0)
+        col2.set_sort_column_id(1)
+        self.__tree_view.append_column(col1)
+        self.__tree_view.append_column(col2)
+        self.__scrolled_window = gtk.ScrolledWindow()
+        self.__scrolled_window.add(self.__tree_view)
+        self.__scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
+                                          gtk.POLICY_AUTOMATIC)
+        self.__scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+
+        self.pack_start(self.__scrolled_window, expand=True, fill=True)
+
+        value = self.__option.get_value()
+        for gid in value.split():
+            place = self.__db.get_place_from_gramps_id(gid)
+            if place:
+                place_name = place.get_title()
+                self.__model.append([place_name, gid])
+
+        # now setup the '+' and '-' pushbutton for adding/removing places from 
+        # the container
+        self.__add_place = widgets.SimpleButton(gtk.STOCK_ADD, 
+                                                self.__add_place_clicked)
+        self.__del_place = widgets.SimpleButton(gtk.STOCK_REMOVE, 
+                                                self.__del_place_clicked)
+        self.__vbbox = gtk.VButtonBox()
+        self.__vbbox.add(self.__add_place)
+        self.__vbbox.add(self.__del_place)
+        self.__vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.pack_end(self.__vbbox, expand=False)
+        
+        tooltip.set_tip(self.__tree_view, self.__option.get_help())
+
+    def __update_value(self):
+        """
+        Parse the object and return.
+        """
+        gidlist = ''
+        i = self.__model.get_iter_first()
+        while (i):
+            gid = self.__model.get_value(i, 1)
+            gidlist = gidlist + gid + ' '
+            i = self.__model.iter_next(i)
+        self.__option.set_value(gidlist)
+
+    def __add_place_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the add place button.
+        """
+        # places we already have must be excluded
+        # so we don't list them multiple times
+        skip_list = set()
+        i = self.__model.get_iter_first()
+        while (i):
+            gid = self.__model.get_value(i, 1) # get the GID stored in column #1
+            place = self.__db.get_place_from_gramps_id(gid)
+            skip_list.add(place.get_handle())
+            i = self.__model.iter_next(i)
+
+        select_class = selector_factory('Place')
+        sel = select_class(self.__dbstate, self.__uistate, 
+                           self.__track, skip=skip_list)
+        place = sel.run()
+        if place:
+            place_name = place.get_title()
+            gid = place.get_gramps_id()
+            self.__model.append([place_name, gid])
+            self.__update_value()
+            
+    def __del_place_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the delete place button.
+        """
+        (path, column) = self.__tree_view.get_cursor()
+        if (path):
+            i = self.__model.get_iter(path)
+            self.__model.remove(i)
+            self.__update_value()
+
+#-------------------------------------------------------------------------
+#
 # GuiSurnameColourOption class
 #
 #-------------------------------------------------------------------------
@@ -1332,6 +1444,10 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
         widget = GuiSurnameColourOption(option, dbstate, 
                                  uistate, track, 
                                  tooltips)
+    elif isinstance(option, _MenuOptions.PlaceListOption):
+        widget = GuiPlaceListOption(option, dbstate, 
+                                    uistate, track, 
+                                    tooltips)
     else:
         raise AttributeError("can't make GuiOption: unknown option type: '%s'" % option)
     return widget, label
