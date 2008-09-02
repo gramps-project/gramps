@@ -35,7 +35,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import PluginManager, PlaceListOption, FilterOption
-from Filters import CustomFilters, GenericFilter
 from ReportBase import Report, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -79,6 +78,8 @@ class PlaceReport(Report):
         else:
             # Use the place handles selected without a filter
             self.place_handles = self.__get_place_handles(places)
+
+        self.place_handles.sort(self.sort.by_place_title)
 
     def write_report(self):
         """
@@ -225,7 +226,7 @@ class PlaceReport(Report):
         for place_gid in places.split():
             place = self.database.get_place_from_gramps_id(place_gid)
             place_handles.append(place.get_handle())
-        place_handles.sort(self.sort.by_place_title)
+
         return place_handles
     
 #------------------------------------------------------------------------
@@ -247,6 +248,10 @@ class PlaceOptions(MenuReportOptions):
         Add options to the menu for the place report.
         """
         category_name = _("Report Options")
+
+        # Reload filters to pick any new ones
+        CustomFilters = None
+        from Filters import CustomFilters, GenericFilter
 
         opt = FilterOption(_("Select using filter"), 0)
         opt.set_help(_("Select places using a filter"))
