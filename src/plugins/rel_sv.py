@@ -4,6 +4,7 @@
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008       Peter G. LAndgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -116,7 +117,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         gen_result = [ item + 's' for item in result[0:-1] ]
         gen_result = ' '.join(gen_result+result[-1:])
         if len(rel_list)>1 and step != '':
-            # Indicate step relation8s) by adding ' [styv]'
+            # Indicate step relations) by adding ' [styv]'
             gen_result = gen_result + ' [styv]'
         return gen_result
 
@@ -139,8 +140,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if inlaw != '':
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
-        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
-            # Correct string "-2" with genitive s and add a space to get correctSwedish, if even number in result
+        if len(result)>1 and len(result) % 2 == 0 and \
+            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get
+            # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result, step)
 
@@ -165,8 +168,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if inlaw != '':
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
-        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
-            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
+        if len(result)>1 and len(result) % 2 == 0 and \
+            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get
+            # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result, step)
 
@@ -181,8 +186,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         if inlaw != '' :
             inlaw = 'ingifta '
-        if inlaw != '' and len(result) % 2 !=0:
-            # Correct string "-1" with genitive s and add a space to get correct Swedish, if even number in result
+        if len(result) % 2 != 0:
+            # Correct string "-1" with genitive s and add a space to get
+            # correct Swedish, if odd number of ancestors
             result[-1] = result[-1] + 's '
         result.append(self._get_cousin(level, step, inlaw))
         if step != '' and len(result)==1:
@@ -218,8 +224,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if inlaw != '':
             #Preceed with inlaw prefix
             result[-1] = u'svär' + result[-1]
-        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
-            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
+        if len(result)>1 and len(result) % 2 == 0 and \
+            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get
+            # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result, step)
 
@@ -240,8 +248,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if inlaw != '' and person_gender == gen.lib.Person.UNKNOWN:
             #Preceed with inlaw prefix
             result[-1] = u'svåger/svägerska'
-        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
-            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
+        if len(result)>1 and len(result) % 2 == 0 and \
+            (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get
+            # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result, step)
 
@@ -370,7 +380,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # being in a higher generation from the common ancestor than the 
             # first person.
             if Gb <= len(_level_name):
-                rel_str = u"förfäders " + self._get_cousin_kinship(Ga) + " i "+ _level_name[Gb] +  " generationen" 
+                rel_str = u"förfäders " + self._get_cousin_kinship(Ga) + \
+                    " i "+ _level_name[Gb] +  " generationen" 
             else:
                 rel_str =  u"avlägsna kusiner"
         elif Gb > 1 and Gb > Ga:
@@ -510,7 +521,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # being in a lower generation from the common ancestor than the 
             # first person.
             rel_str = self._get_cousins_descendant(gender_b, reltocommon_b, reltocommon_a, step, inlaw)
-        return rel_str
+        # the replace method is to avoid double step indications. Can't figure out why.
+        return rel_str.replace (' [styv] [styv]', ' [styv]') 
 
 #-------------------------------------------------------------------------
 #
