@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-16 17:07+0200\n"
+"POT-Creation-Date: 2008-09-03 07:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,7 +126,7 @@ msgstr ""
 #: ../src/plugins/PatchNames.py:233 ../src/plugins/RelCalc.py:55
 #: ../src/plugins/RelCalc.py:115 ../src/plugins/RemoveUnused.py:202
 #: ../src/plugins/TimeLine.py:61 ../src/plugins/Verify.py:550
-#: ../src/PluginUtils/_GuiOptions.py:789
+#: ../src/PluginUtils/_GuiOptions.py:790
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
@@ -154,7 +154,8 @@ msgstr ""
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:248
 #: ../src/plugins/NotRelated.py:111 ../src/plugins/PatchNames.py:224
 #: ../src/plugins/RelCalc.py:56 ../src/plugins/RemoveUnused.py:196
-#: ../src/plugins/Verify.py:543 ../src/PluginUtils/_GuiOptions.py:790
+#: ../src/plugins/Verify.py:543 ../src/PluginUtils/_GuiOptions.py:791
+#: ../src/PluginUtils/_GuiOptions.py:931
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -904,6 +905,7 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:2001 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
+#: ../src/PluginUtils/_GuiOptions.py:930
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Place"
@@ -1002,8 +1004,8 @@ msgstr ""
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:740
 #: ../src/plugins/NarrativeWeb.py:870 ../src/plugins/NarrativeWeb.py:1361
-#: ../src/plugins/StatisticsChart.py:90 ../src/PluginUtils/_GuiOptions.py:80
-#: ../src/PluginUtils/_GuiOptions.py:935
+#: ../src/plugins/StatisticsChart.py:90 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/PluginUtils/_GuiOptions.py:1047
 msgid "Surname"
 msgstr ""
 
@@ -1431,12 +1433,12 @@ msgid ""
 msgstr ""
 
 #: ../src/PageView.py:275 ../src/plugins/all_relations.py:306
-#: ../src/PluginUtils/_GuiOptions.py:886
+#: ../src/PluginUtils/_GuiOptions.py:887
 msgid "Yes"
 msgstr ""
 
 #: ../src/PageView.py:276 ../src/plugins/all_relations.py:310
-#: ../src/PluginUtils/_GuiOptions.py:885
+#: ../src/PluginUtils/_GuiOptions.py:886
 msgid "No"
 msgstr ""
 
@@ -4267,7 +4269,7 @@ msgstr ""
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:751
+#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:752
 msgid "No image given, click button to select one"
 msgstr ""
 
@@ -4275,7 +4277,7 @@ msgstr ""
 msgid "Edit media object"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:726
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:727
 msgid "Select an existing media object"
 msgstr ""
 
@@ -4287,7 +4289,7 @@ msgstr ""
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:674
+#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:675
 msgid "No note given, click button to select one"
 msgstr ""
 
@@ -4296,7 +4298,7 @@ msgstr ""
 msgid "Edit Note"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:644
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:645
 msgid "Select an existing note"
 msgstr ""
 
@@ -5583,7 +5585,7 @@ msgstr ""
 msgid "Select Media Object"
 msgstr ""
 
-#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:883
+#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:884
 msgid "Select Person"
 msgstr ""
 
@@ -5978,15 +5980,15 @@ msgstr ""
 msgid "Not Applicable"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:584
+#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:585
 msgid "unknown father"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:590
+#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:591
 msgid "unknown mother"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:592
+#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:593
 #, python-format
 msgid "%s and %s (%s)"
 msgstr ""
@@ -8392,7 +8394,7 @@ msgstr ""
 msgid "missing birth event"
 msgstr ""
 
-#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:82
 msgid "Count"
 msgstr ""
 
@@ -11555,7 +11557,7 @@ msgstr ""
 msgid "GRAMPS 2.x database"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:74
+#: ../src/PluginUtils/_GuiOptions.py:75
 msgid "Select surname"
 msgstr ""
 
@@ -11568,41 +11570,41 @@ msgstr ""
 #. build up the list of surnames, keeping track of the count for each
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
-#: ../src/PluginUtils/_GuiOptions.py:108
+#: ../src/PluginUtils/_GuiOptions.py:109
 msgid "Finding Surnames"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:109
+#: ../src/PluginUtils/_GuiOptions.py:110
 msgid "Finding surnames"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:414
+#: ../src/PluginUtils/_GuiOptions.py:415
 msgid "Select a different person"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:443
+#: ../src/PluginUtils/_GuiOptions.py:444
 msgid "Select a person for the report"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:502
+#: ../src/PluginUtils/_GuiOptions.py:503
 msgid "Select a different family"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:881
+#: ../src/PluginUtils/_GuiOptions.py:882
 #, python-format
 msgid "Also include %s?"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:936
+#: ../src/PluginUtils/_GuiOptions.py:1048
 msgid "Colour"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:1107
+#: ../src/PluginUtils/_GuiOptions.py:1219
 #: ../src/ReportBase/_ReportDialog.py:446
 msgid "Save As"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:1171
+#: ../src/PluginUtils/_GuiOptions.py:1283
 #: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr ""
