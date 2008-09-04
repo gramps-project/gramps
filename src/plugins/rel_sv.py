@@ -186,10 +186,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         if inlaw != '' :
             inlaw = 'ingifta '
-        if len(result) % 2 != 0:
-            # Correct string "-1" with genitive s and add a space to get
-            # correct Swedish, if odd number of ancestors
-            result[-1] = result[-1] + 's '
         result.append(self._get_cousin(level, step, inlaw))
         if step != '' and len(result)==1:
             result[0] = self.STEP + result[0]
