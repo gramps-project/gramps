@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-16 17:07+0200\n"
-"PO-Revision-Date: 2008-09-02 11:34+0100\n"
+"POT-Creation-Date: 2008-09-03 07:53+0200\n"
+"PO-Revision-Date: 2008-09-04 22:30+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,7 @@ msgstr "Organizovat záložky"
 #: ../src/plugins/RemoveUnused.py:202
 #: ../src/plugins/TimeLine.py:61
 #: ../src/plugins/Verify.py:550
-#: ../src/PluginUtils/_GuiOptions.py:789
+#: ../src/PluginUtils/_GuiOptions.py:790
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
@@ -215,7 +215,8 @@ msgstr "Jméno"
 #: ../src/plugins/RelCalc.py:56
 #: ../src/plugins/RemoveUnused.py:196
 #: ../src/plugins/Verify.py:543
-#: ../src/PluginUtils/_GuiOptions.py:790
+#: ../src/PluginUtils/_GuiOptions.py:791
+#: ../src/PluginUtils/_GuiOptions.py:931
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -1102,6 +1103,7 @@ msgstr "Rodina"
 #: ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:35
 #: ../src/plugins/References.py:93
+#: ../src/PluginUtils/_GuiOptions.py:930
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Place"
@@ -1235,8 +1237,8 @@ msgstr "Detaily vlastního formátu"
 #: ../src/plugins/NarrativeWeb.py:870
 #: ../src/plugins/NarrativeWeb.py:1361
 #: ../src/plugins/StatisticsChart.py:90
-#: ../src/PluginUtils/_GuiOptions.py:80
-#: ../src/PluginUtils/_GuiOptions.py:935
+#: ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/PluginUtils/_GuiOptions.py:1047
 msgid "Surname"
 msgstr "Příjmení"
 
@@ -1754,13 +1756,13 @@ msgstr ""
 
 #: ../src/PageView.py:275
 #: ../src/plugins/all_relations.py:306
-#: ../src/PluginUtils/_GuiOptions.py:886
+#: ../src/PluginUtils/_GuiOptions.py:887
 msgid "Yes"
 msgstr "Ano"
 
 #: ../src/PageView.py:276
 #: ../src/plugins/all_relations.py:310
-#: ../src/PluginUtils/_GuiOptions.py:885
+#: ../src/PluginUtils/_GuiOptions.py:886
 msgid "No"
 msgstr "Ne"
 
@@ -4892,7 +4894,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pro výběr média použijte drag-and-drop nebo tlačítka"
 
 #: ../src/Editors/ObjectEntries.py:298
-#: ../src/PluginUtils/_GuiOptions.py:751
+#: ../src/PluginUtils/_GuiOptions.py:752
 msgid "No image given, click button to select one"
 msgstr "Nebyl zvolen žádný obrázek. Pro volbu klikněte na tlačítko."
 
@@ -4901,7 +4903,7 @@ msgid "Edit media object"
 msgstr "Upravit mediální objekt"
 
 #: ../src/Editors/ObjectEntries.py:300
-#: ../src/PluginUtils/_GuiOptions.py:726
+#: ../src/PluginUtils/_GuiOptions.py:727
 msgid "Select an existing media object"
 msgstr "Vybrat existující mediální objekt"
 
@@ -4914,7 +4916,7 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pro výběr poznámky použijte drag-and-drop nebo tlačítka"
 
 #: ../src/Editors/ObjectEntries.py:349
-#: ../src/PluginUtils/_GuiOptions.py:674
+#: ../src/PluginUtils/_GuiOptions.py:675
 msgid "No note given, click button to select one"
 msgstr "Nebylo zvolena žádná poznámka. Pro volbu klikněte na tlačítko."
 
@@ -4925,7 +4927,7 @@ msgid "Edit Note"
 msgstr "Upravit poznámku"
 
 #: ../src/Editors/ObjectEntries.py:351
-#: ../src/PluginUtils/_GuiOptions.py:644
+#: ../src/PluginUtils/_GuiOptions.py:645
 msgid "Select an existing note"
 msgstr "Vybrat existující poznámku"
 
@@ -5967,9 +5969,8 @@ msgid "Applying selected filter"
 msgstr "Duplikovat vybraný filtr"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:377
-#, fuzzy
 msgid "Filtering unlinked records"
-msgstr "/_Analýza/Záznamy o hráčích"
+msgstr "Filtrují se nepřipojené záznamy"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:547
 msgid "Writing individuals"
@@ -6034,14 +6035,14 @@ msgid "Report a bug"
 msgstr "Nahlásit chybu"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:24
-#, fuzzy
 msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report to the Gramps developers that will be as detailed as possible.\n"
 "\n"
 "The assistant will ask you a few questions and will gather some information about the error that has occured and the operating environment. At the end of the assistant you will be asked to file a bug report on the Gramps bug tracking system. The assistant will place the bug report on the clip board so that you can paste it into the form on the bug tracking website and review exactly what information you want to include."
 msgstr ""
 "Toto je pomocník hlášení chyby. Pomůže vám vytvořit report pro vývojáře Gramps, který bude detailní, jak jen to bude možné.\n"
-"Pomocník vám položí několik otázek a získá informace o chybě a prostředí, v kterém aplikaci provozujete. Na budete vyzván k odeslání reportu elektronickou poštou do mailové konference určené k reportování chyb. Pomocník umístí report do schránky. Můžete jej snadno vložit do vašeho emailového programu a před odesláním zkontrolovat jaké informace budou odeslány."
+"\n"
+"Pomocník vám položí několik otázek a získá informace o chybě a prostředí, v kterém aplikaci provozujete. Na konci budete vyzván k odeslání zprávy do webové aplikace určené k hlášení chyb. Pomocník umístí report do schránky. Můžete jej snadno vložit do aplikace pro hlášení chyb. Před odesláním zkontrolujte jaké informace budou odeslány."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 msgid "Report a bug: Step 1 of 5"
@@ -6120,9 +6121,8 @@ msgstr "Sumarizace hlášení chyby"
 
 #. side_label = gtk.Label(_("This is the completed bug report. The next page "#. "of the assistant will help you to send the report "#. "to the bug report mailing list."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:376
-#, fuzzy
 msgid "This is the completed bug report. The next page of the assistant will help you to file a bug  on the Gramps bug tracking system website."
-msgstr "Toto je dokončené hlášení o chybě. Další stránka asistenta vám pomůže odeslat hlášení do fronty mailové konference."
+msgstr "Toto je dokončené hlášení o chybě. Další stránka pomocníka Vám pomůže odeslat hlášení do fronty hlášení na webu."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:401
 msgid "Use the two buttons below to first copy the bug report to the clipboard and then open a webbrowser to file a bug report at "
@@ -6138,9 +6138,8 @@ msgstr ""
 #. "email client, paste the report and send it to the address "
 #. "above."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:443
-#, fuzzy
 msgid "Use this button to copy the bug report onto the clipboard. Then go to the bug tracking website by using the button below, paste the report and click submit report"
-msgstr "Pokud se vaše emailová aplikace nespustí, použijte toto tlačítko pro zkopírování hlášení o chybě do schránky. Poté spusťte aplikaci ručně, vložte hlášení a odešlete na adresu uvedenou výše."
+msgstr "Použijte toto tlačítko pro zkopírování hlášení o chybě do schránky. Poté přejděte do aplikace hlášení chyb na web GRAMPS, použitím tlačítka níže vložte hlášení a vložte jej do systému."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 msgid "Send Bug Report"
@@ -6149,9 +6148,8 @@ msgstr "Odeslat hlášení o chybě"
 #. side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #. "page to transfer the bug report to your email client."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:491
-#, fuzzy
 msgid "This is the final step. Use the buttons on this page to start a web browser and file a bug report on the Gramps bug tracking system."
-msgstr "Toto je poslední krok. Použijte tlačítka na této stránce k přenosu hlášení o chybě do vaší emailové aplikace."
+msgstr "Toto je poslední krok. Použijte tlačítka na této stránce pro otevření webového prohlížeče a vložení chyby do webového systému hlášení chyb GRAMPS."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
 msgid "manual|General"
@@ -6196,7 +6194,7 @@ msgid "Select Media Object"
 msgstr "Vybrat mediální objekt"
 
 #: ../src/Selectors/_SelectPerson.py:72
-#: ../src/PluginUtils/_GuiOptions.py:883
+#: ../src/PluginUtils/_GuiOptions.py:884
 msgid "Select Person"
 msgstr "Vybrat osobu"
 
@@ -6471,9 +6469,8 @@ msgstr "Střední osoba"
 
 #: ../src/plugins/AncestorTree.py:461
 #: ../src/plugins/DescendTree.py:416
-#, fuzzy
 msgid "The center person for the tree"
-msgstr "Model pro stromový pohled"
+msgstr "Ústřední osoba stromu"
 
 #: ../src/plugins/AncestorTree.py:464
 #: ../src/plugins/AncestorReport.py:254
@@ -6487,9 +6484,8 @@ msgstr "Generace"
 
 #: ../src/plugins/AncestorTree.py:465
 #: ../src/plugins/DescendTree.py:420
-#, fuzzy
 msgid "The number of generations to include in the tree"
-msgstr "Počet generací zahrnutý v sestavě"
+msgstr "Počet generací zahrnutých ve stromu"
 
 #: ../src/plugins/AncestorTree.py:468
 #: ../src/plugins/DescendTree.py:423
@@ -6680,17 +6676,17 @@ msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
 #: ../src/plugins/BookReport.py:167
-#: ../src/PluginUtils/_GuiOptions.py:584
+#: ../src/PluginUtils/_GuiOptions.py:585
 msgid "unknown father"
 msgstr "neznámý otec"
 
 #: ../src/plugins/BookReport.py:173
-#: ../src/PluginUtils/_GuiOptions.py:590
+#: ../src/PluginUtils/_GuiOptions.py:591
 msgid "unknown mother"
 msgstr "neznámá matka"
 
 #: ../src/plugins/BookReport.py:175
-#: ../src/PluginUtils/_GuiOptions.py:592
+#: ../src/PluginUtils/_GuiOptions.py:593
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s a %s (%s)"
@@ -6908,9 +6904,8 @@ msgid "Processing...\n"
 msgstr "Zpracovávání...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:174
-#, fuzzy
 msgid "Replacing...\n"
-msgstr "Načítají se data..."
+msgstr "Přemisťuje se...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:175
 #, python-format
@@ -6918,9 +6913,8 @@ msgid "Removing '%s'..."
 msgstr "Odstraňuji '%s'..."
 
 #: ../src/plugins/CalculateEstimatedDates.py:216
-#, fuzzy
 msgid "Calculating...\n"
-msgstr "Vypočítává se časová osa..."
+msgstr "Běží výpočet...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:217
 msgid "Calculating estimated dates..."
@@ -7406,33 +7400,28 @@ msgid "Looking for event problems"
 msgstr "Vyhledávají se problémy událostí"
 
 #: ../src/plugins/Check.py:832
-#, fuzzy
 msgid "Looking for person reference problems"
-msgstr "Hledám možné duplicitní osoby"
+msgstr "Hledají se problémové odkazy na osoby"
 
 #: ../src/plugins/Check.py:848
-#, fuzzy
 msgid "Looking for repository reference problems"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Hledají se problémové odkazy na zdroje"
 
 #: ../src/plugins/Check.py:865
 msgid "Looking for place reference problems"
 msgstr ""
 
 #: ../src/plugins/Check.py:912
-#, fuzzy
 msgid "Looking for source reference problems"
-msgstr "_Zvolte zdroj slovníku pro vyhledávání slov:"
+msgstr "Hledají se problémové odkazy na prameny"
 
 #: ../src/plugins/Check.py:1035
-#, fuzzy
 msgid "Looking for media object reference problems"
-msgstr "Hledám možné duplicitní osoby"
+msgstr "Hledají se problémové odkazy na média"
 
 #: ../src/plugins/Check.py:1127
-#, fuzzy
 msgid "Looking for note reference problems"
-msgstr "Hledám možné duplicitní osoby"
+msgstr "Hledají se problémové odkazy na poznámky"
 
 #: ../src/plugins/Check.py:1292
 msgid "No errors were found"
@@ -7608,19 +7597,17 @@ msgid "%d sources were referenced, but not found\n"
 msgstr "%d odkzovaných pramenů nebylo nalezeno\n"
 
 #: ../src/plugins/Check.py:1421
-#, fuzzy
 msgid "1 media object was referenced but not found\n"
-msgstr "1 objekt byl požadován, ale nebyl nalezen\n"
+msgstr "1 mediální objekt byl požadován, ale nebyl nalezen\n"
 
 #: ../src/plugins/Check.py:1427
-#, fuzzy
 msgid "1 note object was referenced but not found\n"
-msgstr "1 objekt byl požadován, ale nebyl nalezen\n"
+msgstr "1 poznámka byla požadován, ale nebyl nalezena\n"
 
 #: ../src/plugins/Check.py:1429
-#, fuzzy, python-format
+#, python-format
 msgid "%d note objects were referenced, but not found\n"
-msgstr "%d objektů bylo požadováno, ale nebylo nalezeno\n"
+msgstr "%d poznámek bylo požadováno, ale nebylo nalezeno\n"
 
 #: ../src/plugins/Check.py:1433
 msgid "1 invalid name format reference was removed\n"
@@ -8651,9 +8638,8 @@ msgid "Provides a window that can evaluate python code"
 msgstr "Poskytne okno, které vyhodnocuje kód Pythonu"
 
 #: ../src/plugins/EventCmp.py:68
-#, fuzzy
 msgid "manual|Compare_Individual_Events"
-msgstr "Události kolečka myši"
+msgstr "manual|Porovnat_jednotlivé záznamy"
 
 #: ../src/plugins/EventCmp.py:139
 msgid "Event comparison filter selection"
@@ -9209,7 +9195,7 @@ msgid "missing birth event"
 msgstr "chybí událost narození"
 
 #: ../src/plugins/FilterByName.py:147
-#: ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/PluginUtils/_GuiOptions.py:82
 msgid "Count"
 msgstr "Počet"
 
@@ -12407,7 +12393,7 @@ msgstr "Přegeneruje mapy odkazů"
 msgid "GRAMPS 2.x database"
 msgstr "Databáze GRAMPS verze 2.x"
 
-#: ../src/PluginUtils/_GuiOptions.py:74
+#: ../src/PluginUtils/_GuiOptions.py:75
 msgid "Select surname"
 msgstr "Vybrat příjmení"
 
@@ -12420,41 +12406,41 @@ msgstr "Vybrat příjmení"
 #. build up the list of surnames, keeping track of the count for each
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
-#: ../src/PluginUtils/_GuiOptions.py:108
+#: ../src/PluginUtils/_GuiOptions.py:109
 msgid "Finding Surnames"
 msgstr "Hledají se příjmení"
 
-#: ../src/PluginUtils/_GuiOptions.py:109
+#: ../src/PluginUtils/_GuiOptions.py:110
 msgid "Finding surnames"
 msgstr "Hledají se příjmení"
 
-#: ../src/PluginUtils/_GuiOptions.py:414
+#: ../src/PluginUtils/_GuiOptions.py:415
 msgid "Select a different person"
 msgstr "Vybrat jinou osobu"
 
-#: ../src/PluginUtils/_GuiOptions.py:443
+#: ../src/PluginUtils/_GuiOptions.py:444
 msgid "Select a person for the report"
 msgstr "Vybrat osobu do zprávy"
 
-#: ../src/PluginUtils/_GuiOptions.py:502
+#: ../src/PluginUtils/_GuiOptions.py:503
 msgid "Select a different family"
 msgstr "Vybrat jinou rodinu"
 
-#: ../src/PluginUtils/_GuiOptions.py:881
+#: ../src/PluginUtils/_GuiOptions.py:882
 #, python-format
 msgid "Also include %s?"
 msgstr "Zahrnout také %s?"
 
-#: ../src/PluginUtils/_GuiOptions.py:936
+#: ../src/PluginUtils/_GuiOptions.py:1048
 msgid "Colour"
 msgstr "Barva"
 
-#: ../src/PluginUtils/_GuiOptions.py:1107
+#: ../src/PluginUtils/_GuiOptions.py:1219
 #: ../src/ReportBase/_ReportDialog.py:446
 msgid "Save As"
 msgstr "Uložit jako"
 
-#: ../src/PluginUtils/_GuiOptions.py:1171
+#: ../src/PluginUtils/_GuiOptions.py:1283
 #: ../src/ReportBase/_ReportDialog.py:303
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
