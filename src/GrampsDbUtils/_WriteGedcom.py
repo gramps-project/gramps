@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -340,6 +341,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             if not option_box.cfilter.is_empty():
                 self.progress_cnt += 1
 
+            if not option_box.nfilter.is_empty():
+                self.progress_cnt += 1
+
             if option_box.unlinked:
                 self.progress_cnt += 1
 
@@ -363,13 +367,21 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                             gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
             # If the filter returned by cfilter is not empty, apply the 
-            # FilterProxyDb
+            # FilterProxyDb (Person Filter)
             if not option_box.cfilter.is_empty():
-                self.reset(_("Applying selected filter"))
+                self.reset(_("Applying selected person filter"))
                 self.progress_cnt += 1
                 self.update(self.progress_cnt)
                 self.dbase = gen.proxy.FilterProxyDb(
                     self.dbase, option_box.cfilter)
+            
+            # Apply the Note Filter
+            if not option_box.nfilter.is_empty():
+                self.reset(_("Applying selected note filter"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
+                self.dbase = gen.proxy.FilterProxyDb(
+                    self.dbase, note_filter=option_box.nfilter)
 
             # Apply the ReferencedProxyDb to remove any objects not referenced
             # after any of the other proxies have been applied

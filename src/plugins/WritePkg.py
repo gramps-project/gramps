@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -78,9 +79,15 @@ def writeData(database, filename, person, option_box, callback=None):
         database = gen.proxy.LivingProxyDb(
             database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
+    # Apply the Person Filter
     if not option_box.cfilter.is_empty():
         database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
 
+    # Apply the Note Filter
+    if not option_box.nfilter.is_empty():
+        database = gen.proxy.FilterProxyDb(
+            database, note_filter=option_box.nfilter)
+    
     # Apply the ReferencedProxyDb to remove any objects not referenced
     # after any of the other proxies have been applied
     if option_box.unlinked:

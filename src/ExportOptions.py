@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008 Donald N. Allingham
 # Copyright (C) 2008      Gary Burton 
+# Copyright (C) 2008      Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,20 +56,29 @@ class WriterOptionBox:
         self.person = person
         self.private = 0
         self.restrict = 0
+        self.unlinked = 0
         self.cfilter = None
+        self.nfilter = None
         self.restrict_check = None
         self.private_check = None
         self.unlinked_check = None
         self.filter_obj = None
+        self.filter_note = None
 
     def get_option_box(self):
         """Build up a gtk.Table that contains the standard options."""
-        table = gtk.Table(4, 2)
+        table = gtk.Table(5, 2)
         
         self.filter_obj = gtk.ComboBox()
-        label = gtk.Label(_('Filt_er'))
+        label = gtk.Label(_('_Person Filter'))
         label.set_use_underline(True)
         label.set_mnemonic_widget(self.filter_obj)
+        
+        # Objects for choosing a Note filter
+        self.filter_note = gtk.ComboBox()
+        label_note = gtk.Label(_('_Note Filter'))
+        label_note.set_use_underline(True)
+        label_note.set_mnemonic_widget(self.filter_note)
 
         self.private_check = gtk.CheckButton(
             _('_Do not include records marked private'))
@@ -86,10 +96,13 @@ class WriterOptionBox:
         table.set_col_spacings(6)
         table.attach(label, 0, 1, 0, 1, xoptions=0, yoptions=0)
         table.attach(self.filter_obj, 1, 2, 0, 1, yoptions=0)
-        table.attach(self.private_check, 1, 2, 1, 2, yoptions=0)
-        table.attach(self.restrict_check, 1, 2, 2, 3, yoptions=0)
-        table.attach(self.unlinked_check, 1, 2, 3, 4, yoptions=0)
+        table.attach(label_note, 0, 1, 1, 2, xoptions =0, yoptions=0)
+        table.attach(self.filter_note, 1, 2, 1, 2, yoptions=0)
+        table.attach(self.private_check, 1, 2, 2, 3, yoptions=0)
+        table.attach(self.restrict_check, 1, 2, 3, 4, yoptions=0)
+        table.attach(self.unlinked_check, 1, 2, 4, 5, yoptions=0)
 
+        # Populate the Person Filter
         entire_db = GenericFilter()
         entire_db.set_name(_("Entire Database"))
         the_filters = [entire_db]
@@ -109,6 +122,19 @@ class WriterOptionBox:
         self.filter_obj.add_attribute(cell, 'text', 0)
         self.filter_obj.set_model(model)
         self.filter_obj.set_active(0)
+        
+        # Populate the Notes Filter
+        notes_filters = [entire_db]
+        
+        notes_filters.extend(CustomFilters.get_filters('Note'))
+        notes_model = gtk.ListStore(gobject.TYPE_STRING, object)
+        for item in notes_filters:
+            notes_model.append(row=[item.get_name(), item])
+        notes_cell = gtk.CellRendererText()
+        self.filter_note.pack_start(notes_cell, True)
+        self.filter_note.add_attribute(notes_cell, 'text', 0)
+        self.filter_note.set_model(notes_model)
+        self.filter_note.set_active(0)       
 
         table.show()
         return table
@@ -144,7 +170,8 @@ class WriterOptionBox:
            private  = privacy requested
            restrict = restrict information on living peoplel
            cfitler  = return the GenericFilter selected
-           unlinked  = restrict unlinked records
+           nfilter  = return the NoteFilter selected
+           unlinked = restrict unlinked records
 
         """
         self.restrict = self.restrict_check.get_active()
@@ -159,4 +186,9 @@ class WriterOptionBox:
         model = self.filter_obj.get_model()
         node = self.filter_obj.get_active_iter()
         self.cfilter = model[node][1]
+        
+        model = self.filter_note.get_model()
+        node = self.filter_note.get_active_iter()
+        self.nfilter = model[node][1]
+
 

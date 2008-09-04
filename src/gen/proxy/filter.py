@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008       Brian G. Matherly
 # Copyright (C) 2008            Gary Burton
+# Copyright (C) 2008            Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +41,8 @@ class FilterProxyDb(ProxyDbBase):
     the user.
     """
 
-    def __init__(self, db, person_filter=None, event_filter=None):
+    def __init__(self, db, person_filter=None, event_filter=None, 
+                 note_filter=None):
         """
         Create a new PrivateProxyDb instance. 
         """
@@ -58,6 +60,12 @@ class FilterProxyDb(ProxyDbBase):
                     self.db, self.db.get_event_handles()))
         else:
             self.elist = self.db.get_event_handles()
+        
+        if note_filter:
+            self.nlist = set(note_filter.apply(
+                    self.db, self.db.get_note_handles()))
+        else:
+            self.nlist = self.db.get_note_handles()
 
         self.flist = set()
         for handle in list(self.plist):
@@ -97,7 +105,10 @@ class FilterProxyDb(ProxyDbBase):
                 person.set_birth_ref(bref)
             if dref in new_eref_list:
                 person.set_death_ref(dref)
-
+            
+            # Filter notes out
+            self.sanitize_person(person)
+            
             return person
         else:
             return None
@@ -107,21 +118,32 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.db.get_source_from_handle(handle)
+        source = self.db.get_source_from_handle(handle)
+        # Filter notes out
+        self.sanitize_notebase(source)
+        return source
 
     def get_object_from_handle(self, handle):
         """
-        Finds an Object in the database from the passed gramps' ID.
+        Finds a MediaObject in the database from the passed GRAMPS' handle.
         If no such Object exists, None is returned.
         """
-        return self.db.get_object_from_handle(handle)
+        media = self.db.get_object_from_handle(handle)
+        # Filter notes out
+        self.sanitize_notebase(media)
+        self.sanitize_sourcebase(media)
+        return media
 
     def get_place_from_handle(self, handle):
         """
-        Finds a Place in the database from the passed gramps' ID.
+        Finds a Place in the database from the passed GRAMPS' handle.
         If no such Place exists, None is returned.
         """
-        return self.db.get_place_from_handle(handle)
+        place = self.db.get_place_from_handle(handle)
+        # Filter notes out
+        self.sanitize_notebase(place)
+        self.sanitize_sourcebase(place)
+        return place
 
     def get_event_from_handle(self, handle):
         """
@@ -129,7 +151,11 @@ class FilterProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         if handle in self.elist:
-            return self.db.get_event_from_handle(handle)
+            event = self.db.get_event_from_handle(handle)
+            # Filter all notes out
+            self.sanitize_notebase(event)
+            self.sanitize_sourcebase(event)
+            return event
         else:
             return None
 
@@ -154,6 +180,10 @@ class FilterProxyDb(ProxyDbBase):
             clist = [ cref for cref in family.get_child_ref_list()
                       if cref.ref in self.plist ]
             family.set_child_ref_list(clist)
+            
+            # Filter notes out
+            self.sanitize_notebase(family)
+            self.sanitize_sourcebase(family)
             return family
         else:
             return None
@@ -163,14 +193,21 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self.db.get_repository_from_handle(handle)
+        repository = self.db.get_repository_from_handle(handle)
+        # Filter notes out
+        self.sanitize_notebase(repository)
+        self.sanitize_addressbase(repository)
+        return repository
 
     def get_note_from_handle(self, handle):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.db.get_note_from_handle(handle)
+        if handle in self.nlist:
+            return self.db.get_note_from_handle(handle)
+        else:
+            return None
 
     def get_person_from_gramps_id(self, val):
         """
@@ -178,17 +215,15 @@ class FilterProxyDb(ProxyDbBase):
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
-        if person.get_handle() not in self.plist:
-            return None
-        else:
-            return person
+        return self.get_person_from_handle(person.get_handle())
 
     def get_family_from_gramps_id(self, val):
         """
         Finds a Family in the database from the passed GRAMPS ID.
         If no such Family exists, None is returned.
         """
-        return self.db.get_family_from_gramps_id(val)
+        family = self.db.get_family_from_gramps_id(val)
+        return self.get_family_from_handle(family.get_handle())
 
     def get_event_from_gramps_id(self, val):
         """
@@ -196,51 +231,54 @@ class FilterProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)
-        if event.get_handle() not in self.elist:
-            return None
-        else:
-            return event
+        return self.get_event_from_handle(event.get_handle())
 
     def get_place_from_gramps_id(self, val):
         """
         Finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned.
         """
-        return self.db.get_place_from_gramps_id(val)
+        place = self.db.get_place_from_gramps_id(val)
+        return self.get_place_from_handle(place.get_handle())
 
     def get_source_from_gramps_id(self, val):
         """
         Finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned.
         """
-        return self.db.get_source_from_gramps_id(val)
+        source = self.db.get_source_from_gramps_id(val)
+        return self.get_source_from_handle(source.get_handle())
 
     def get_object_from_gramps_id(self, val):
         """
         Finds a MediaObject in the database from the passed gramps' ID.
         If no such MediaObject exists, None is returned.
         """
-        return self.db.get_object_from_gramps_id(val)
+        media = self.db.get_object_from_gramps_id(val)
+        return self.get_object_from_handle(media.get_handle())
 
     def get_repository_from_gramps_id(self, val):
         """
         Finds a Repository in the database from the passed gramps' ID.
         If no such Repository exists, None is returned.
         """
-        return self.db.get_repository_from_gramps_id(val)
+        repository = self.db.get_repository_from_gramps_id(val)
+        return self.get_repository_from_handle(repository.get_handle())
 
     def get_note_from_gramps_id(self, val):
         """
         Finds a Note in the database from the passed gramps' ID.
         If no such Note exists, None is returned.
         """
-        return self.db.get_note_from_gramps_id(val)
+        note = self.db.get_note_from_gramps_id(val)
+        return self.get_note_from_handle(note.get_handle())
 
     def get_person_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
+        # FIXME: plist is not a sorted list of handles
         return list(self.plist)
 
     def get_place_handles(self, sort_handles=True):
@@ -292,7 +330,7 @@ class FilterProxyDb(ProxyDbBase):
         Return a list of database handles, one handle for each Note in
         the database.
         """
-        return self.db.get_note_handles()
+        return list(self.nlist)
 
     def get_researcher(self):
         """returns the Researcher instance, providing information about
@@ -361,7 +399,7 @@ class FilterProxyDb(ProxyDbBase):
         """
         returns True if the handle exists in the current Note database.
         """
-        return self.db.has_note_handle(handle)
+        return handle in self.nlist
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -384,4 +422,53 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = [i for i in find_backlink_handles(handle)]
         """
+        #FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)
+    
+    def sanitize_notebase(self, notebase):
+        """
+        Filters notes out of the passed notebase object according to the Note Filter.
+        @param notebase: NoteBase object to clean
+        @type event: NoteBase
+        """
+        note_list = notebase.get_note_list()
+        new_note_list = [ note for note in note_list if note in self.nlist ]
+        notebase.set_note_list(new_note_list)
+     
+    def sanitize_sourcebase(self, sourcebase):
+        """
+        Filter notes out of an SourceBase object
+        @param event: SourceBase object to clean
+        @type event: SourceBase
+        """
+        sources = sourcebase.get_source_references()
+        for source in sources:
+            self.sanitize_notebase(source)
+            
+    def sanitize_addressbase(self, addressbase):
+        addresses = addressbase.get_address_list()
+        for address in addresses:
+            self.sanitize_notebase(address)
+            self.sanitize_sourcebase(address)
+       
+    def sanitize_person(self, person):
+        """
+        Cleans filtered notes out of the passed person
+        @param event: Person object to clean
+        @type event: Person
+        """
+        # Filter note references
+        self.sanitize_notebase(person)
+        self.sanitize_sourcebase(person)
+        self.sanitize_addressbase(person)
+        
+        name = person.get_primary_name()
+        self.sanitize_notebase(name)
+        self.sanitize_sourcebase(name)
+        
+        altnames = person.get_alternate_names()
+        for name in altnames:
+            self.sanitize_notebase(name)
+            self.sanitize_sourcebase(name)
+        
+        self.sanitize_addressbase(person)
