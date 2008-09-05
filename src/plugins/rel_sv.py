@@ -86,6 +86,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return u"avlägset släkt"
         else:
             result = inlaw + _cousin_level[level]
+            # Indicate step relations) by adding ' [styv]'
             if step:
                 result = result + ' [styv]'
             return result
@@ -96,7 +97,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         for word in rel_list[:]:
             if not word:
                 continue
-            if word in _cousin_level:
+            if word.replace(' [styv]', '') in _cousin_level:
                 if item:
                     result.append(item)
                     item = ""
@@ -116,8 +117,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result.append(item)
         gen_result = [ item + 's' for item in result[0:-1] ]
         gen_result = ' '.join(gen_result+result[-1:])
-        if len(rel_list)>1 and step != '':
-            # Indicate step relations) by adding ' [styv]'
+        # Indicate step relations) by adding ' [styv]' if not already added.
+        if len(rel_list)>1 and step != '' and not gen_result.rfind(' [styv]'):
             gen_result = gen_result + ' [styv]'
         return gen_result
 
@@ -517,8 +518,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # being in a lower generation from the common ancestor than the 
             # first person.
             rel_str = self._get_cousins_descendant(gender_b, reltocommon_b, reltocommon_a, step, inlaw)
-        # the replace method is to avoid double step indications. Can't figure out why.
-        return rel_str.replace (' [styv] [styv]', ' [styv]') 
+        return rel_str
 
 #-------------------------------------------------------------------------
 #
