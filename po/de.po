@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-13 21:09+0200\n"
-"PO-Revision-Date: 2008-08-28 18:46+0200\n"
+"PO-Revision-Date: 2008-09-05 23:26+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -649,7 +649,7 @@ msgstr "Endgültige Bestätigung"
 
 #: ../src/ExportAssistant.py:351
 msgid "Please wait while your data is selected and exported"
-msgstr "Bitte warten während ihre Daten ausgewählt und exportiert werden"
+msgstr "Bitte warten während deine Daten ausgewählt und exportiert werden"
 
 #: ../src/ExportAssistant.py:364 ../src/PluginUtils/_PluginWindows.py:121
 msgid "Summary"
@@ -688,7 +688,7 @@ msgstr ""
 
 #: ../src/ExportAssistant.py:468
 msgid "Your data has been saved"
-msgstr "Ihre Daten wurden gespeichert"
+msgstr "Deine Daten wurden gespeichert"
 
 #: ../src/ExportAssistant.py:470
 msgid ""
@@ -719,7 +719,7 @@ msgid ""
 "data that failed to save."
 msgstr ""
 "Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehen zurück und "
-"versuchen es nochmal.\n"
+"versuchen es noch einmal.\n"
 "\n"
 "Anmerkung: deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
 "deiner Daten konnte nicht gespeichert werden."
@@ -742,7 +742,7 @@ msgstr ""
 "Datenbank gespeichert.\n"
 "\n"
 "Dieser Vorgang hilft dir deine Daten in einem der verschiedenen Formate, die "
-"GRAMPS unterstützt, zu speichern. Dies kann dazu benutzt werden, eine Kopie "
+"GRAMPS unterstützt, zu speichern. Dies kann dazu verwendet werden, eine Kopie "
 "deiner Daten zu erstellen, deine Daten zu sichern oder sie in ein Format zu "
 "konvertieren, das es dir erlaubt sie in ein anderes Programm zu "
 "transferieren.\n"
@@ -762,7 +762,7 @@ msgstr "Als \"privat\" markierte _Datensätze ignorieren"
 #: ../src/ExportOptions.py:74 ../src/plugins/genewebexport.glade.h:9
 #: ../src/plugins/writeftree.glade.h:3
 msgid "_Restrict data on living people"
-msgstr "Daten von lebende Pe_rsonen beschränken"
+msgstr "Daten von lebenden Pe_rsonen beschränken"
 
 #: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:134
 #: ../src/plugins/ExportCSV.py:182 ../src/plugins/ExportVCalendar.py:88
@@ -793,7 +793,7 @@ msgstr "Vorfahren von %s"
 #: ../src/ReportBase/_ReportUtils.py:2963
 #, python-format
 msgid "People with common ancestor with %s"
-msgstr "Personen mit gleichem Vorfahren wie %s"
+msgstr "Personen mit gleichen Vorfahren wie %s"
 
 #. -------------------------------------------------------------------------
 #.
@@ -858,11 +858,11 @@ msgstr "Isländischer Stil"
 
 #: ../src/GrampsCfg.py:119 ../src/GrampsCfg.py:122
 msgid "Display Name Editor"
-msgstr "Namen-Editor anzeigen"
+msgstr "Nameneditor anzeigen"
 
 #: ../src/GrampsCfg.py:133
 msgid " Name Editor"
-msgstr "Namen-Editor"
+msgstr "Nameneditor"
 
 #: ../src/GrampsCfg.py:133 ../src/GrampsCfg.py:141 ../src/GrampsCfg.py:144
 #: ../src/GrampsCfg.py:906
@@ -1009,7 +1009,7 @@ msgstr "Quelle"
 #: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:632 ../src/ScratchPad.py:645
 #: ../src/Editors/_EditPerson.py:470 ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
-msgstr "Medien-Objekt"
+msgstr "Medienobjekt"
 
 #: ../src/GrampsCfg.py:203 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:91
@@ -1079,11 +1079,11 @@ msgstr "Selbstdefiniert"
 #. label for the combo
 #: ../src/GrampsCfg.py:304
 msgid "_Display format"
-msgstr "Anzeigeformat"
+msgstr "_Anzeigeformat"
 
 #: ../src/GrampsCfg.py:310
 msgid "C_ustom format details"
-msgstr "Details zum selbstdefinierten Format"
+msgstr "_Details zum selbstdefinierten Format"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
@@ -1223,7 +1223,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:735
 msgid "Add default source on import"
-msgstr "Füge Standardquelle zum Import hinzu"
+msgstr "Füge Standardquelle beim Import hinzu"
 
 #: ../src/GrampsCfg.py:737
 msgid "Enable spelling checker"
@@ -1235,11 +1235,11 @@ msgstr "Tipp des Tages anzeigen"
 
 #: ../src/GrampsCfg.py:741
 msgid "Use shading in Relationship View"
-msgstr "Benutze Schattierungen in der Beziehungsansicht"
+msgstr "Benutze Schattierungen in der Beziehungenansicht"
 
 #: ../src/GrampsCfg.py:743
 msgid "Display edit buttons on Relationship View"
-msgstr "Zeige Bearbeiten-Knöpfe in der Beziehungsansicht"
+msgstr "Zeige Bearbeiten Schaltflächen in der Beziehungenansicht"
 
 #: ../src/GrampsCfg.py:745
 msgid "Remember last view displayed"
@@ -1267,7 +1267,7 @@ msgstr "Wähle ein Medienverzeichnis"
 
 #: ../src/GrampsCfg.py:930
 msgid "Name Format Editor"
-msgstr "Namensformat-Editor"
+msgstr "Namensformat Editor"
 
 #: ../src/GrampsCfg.py:954
 msgid "The format definition is invalid"
@@ -1279,11 +1279,11 @@ msgstr "Was willst du tun?"
 
 #: ../src/GrampsCfg.py:956
 msgid "_Continue anyway"
-msgstr "Trotzdem fortfahren"
+msgstr "_Trotzdem fortfahren"
 
 #: ../src/GrampsCfg.py:956
 msgid "_Modify format"
-msgstr "Format ändern"
+msgstr "_Format ändern"
 
 #: ../src/GrampsCfg.py:964
 msgid "Both Format name and definition have to be defined"
@@ -1409,7 +1409,7 @@ msgstr "Quellen"
 
 #: ../src/gramps_main.py:124
 msgid "Add Spouse"
-msgstr "Partner hinzufügen"
+msgstr "Partner(in) hinzufügen"
 
 #: ../src/gramps_main.py:125
 msgid "Tools"
@@ -1517,15 +1517,15 @@ msgstr ""
 
 #: ../src/GrampsWidgets.py:133
 msgid "Edit icons can be enabled in the Preferences dialog"
-msgstr "Bearbeiten-Schaltflächen können in den Einstellungen eingeschaltet werden"
+msgstr "Bearbeiten-Schaltflächen können in den Einstellungen aktiviert werden"
 
 #: ../src/GrampsWidgets.py:343
 msgid "Record is private"
-msgstr "Informationen sind privat"
+msgstr "Information ist privat"
 
 #: ../src/GrampsWidgets.py:348
 msgid "Record is public"
-msgstr "Akte ist öffentlich"
+msgstr "Information ist öffentlich"
 
 #: ../src/GrampsWidgets.py:922
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -1569,7 +1569,7 @@ msgstr "Ein bestehendes Medienobjekt auswählen"
 
 #: ../src/GrampsWidgets.py:981 ../src/DataViews/MediaView.py:88
 msgid "Add a new media object"
-msgstr "Neues Medien-Objekt hinzufügen"
+msgstr "Neues Medienobjekt hinzufügen"
 
 #: ../src/GrampsWidgets.py:982
 msgid "Remove media object"
@@ -1999,7 +1999,7 @@ msgstr "Telefon"
 
 #: ../src/ScratchPad.py:227
 msgid "Event Link"
-msgstr "Ereignis-Verknüpfung"
+msgstr "Ereignisverknüpfung"
 
 #: ../src/ScratchPad.py:344 ../src/ScratchPad.py:357
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
@@ -2074,7 +2074,7 @@ msgstr "Familiäres Attribut"
 
 #: ../src/ScratchPad.py:473 ../src/ScratchPad.py:502
 msgid "Source Reference"
-msgstr "Quellen-Referenz"
+msgstr "Quellenreferenz"
 
 #: ../src/ScratchPad.py:485
 msgid "not available|NA"
@@ -2113,7 +2113,7 @@ msgstr "Seite"
 
 #: ../src/ScratchPad.py:516 ../src/ScratchPad.py:529
 msgid "Repository Reference"
-msgstr "Aufbewahrungsort-Referenz"
+msgstr "Aufbewahrungsortreferenz"
 
 #: ../src/ScratchPad.py:531 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
@@ -2121,11 +2121,11 @@ msgstr "Standortnummer/Signatur"
 
 #: ../src/ScratchPad.py:532
 msgid "Media Type"
-msgstr "Medien-Typ"
+msgstr "Medientyp"
 
 #: ../src/ScratchPad.py:544
 msgid "Event Reference"
-msgstr "Ereignis-Referenz"
+msgstr "Ereignisreferenz"
 
 #: ../src/ScratchPad.py:580
 msgid "Call Name"
@@ -2139,11 +2139,11 @@ msgstr "Präfix"
 
 #: ../src/ScratchPad.py:666 ../src/ScratchPad.py:678
 msgid "Media Reference"
-msgstr "Medien-Referenz"
+msgstr "Medienreferenz"
 
 #: ../src/ScratchPad.py:692 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
-msgstr "Personen-Referenzen"
+msgstr "Personreferenz"
 
 #: ../src/ScratchPad.py:709 ../src/ScratchPad.py:734
 msgid "Person Link"
@@ -2161,7 +2161,7 @@ msgstr "Geburt"
 
 #: ../src/ScratchPad.py:768 ../src/ScratchPad.py:786
 msgid "Source Link"
-msgstr "Quellen-Referenz"
+msgstr "Quellenverknüpfung"
 
 #: ../src/ScratchPad.py:788 ../src/DataViews/SourceView.py:69
 #: ../src/plugins/NarrativeWeb.py:1710
@@ -2181,7 +2181,7 @@ msgstr "Publikationsinformation"
 
 #: ../src/ScratchPad.py:809 ../src/ScratchPad.py:824
 msgid "Repository Link"
-msgstr "Aufbewahrungsort-Referenz"
+msgstr "Aufbewahrungsortverknüpfung"
 
 #: ../src/ScratchPad.py:1192 ../src/ScratchPad.py:1228
 #: ../src/glade/scratchpad.glade.h:2
@@ -2206,11 +2206,11 @@ msgstr "Arabisch"
 
 #: ../src/Spell.py:79
 msgid "Azerbaijani"
-msgstr "Aserbeidschan"
+msgstr "Aserbeidschanisch"
 
 #: ../src/Spell.py:80
 msgid "Belarusian"
-msgstr "Weißrusse"
+msgstr "Weißrussisch"
 
 #: ../src/Spell.py:81
 msgid "Bulgarian"
@@ -2514,7 +2514,7 @@ msgstr "Usbekisch"
 
 #: ../src/Spell.py:157
 msgid "Vietnamese"
-msgstr "Vietnamasisch"
+msgstr "Vietnamesisch"
 
 #: ../src/Spell.py:158
 msgid "Walloon"
@@ -2573,14 +2573,14 @@ msgstr "Kind"
 #: ../src/plugins/NarrativeWeb.py:1881
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
-msgstr "Männlich"
+msgstr "männlich"
 
 #: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:63
 #: ../src/DisplayModels/_PeopleModel.py:237 ../src/Editors/_EditPerson.py:237
 #: ../src/plugins/NarrativeWeb.py:1882
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
-msgstr "Weiblich"
+msgstr "weiblich"
 
 #. -------------------------------------------------------------------------
 #.
@@ -2608,7 +2608,7 @@ msgstr "unbekannt"
 
 #: ../src/Utils.py:88
 msgid "Invalid"
-msgstr "fehlerhaft"
+msgstr "Ungültig"
 
 #: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:138
 msgid "Very High"
@@ -2678,7 +2678,7 @@ msgstr "Standardwert"
 #: ../src/Utils.py:713 ../src/plugins/CalculateEstimatedDates.py:415
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "Datenbankfehler: %s wurde als Ihr Vorfahre festgelegt"
+msgstr "Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
 
 #: ../src/Utils.py:1076
 msgid "Please do not force closing this important dialog."
@@ -2755,7 +2755,7 @@ msgstr "Datenbanken verwalten"
 
 #: ../src/ViewManager.py:373
 msgid "_Family Trees"
-msgstr "Stammbäume"
+msgstr "_Stammbäume"
 
 #: ../src/ViewManager.py:374
 msgid "_Manage Family Trees..."
@@ -2839,7 +2839,7 @@ msgstr "Be_richte"
 
 #: ../src/ViewManager.py:411
 msgid "Open the reports dialog"
-msgstr "Öffnet die Auswahl eines Berichtes"
+msgstr "Öffnet den Berichtedialog"
 
 #: ../src/ViewManager.py:412
 msgid "_Go"
@@ -2855,7 +2855,7 @@ msgstr "Zwischena_blage"
 
 #: ../src/ViewManager.py:441
 msgid "Open the Clipboard dialog"
-msgstr "Öffnet den Zwischenablage Dialog"
+msgstr "Öffnet den Zwischenablagedialog"
 
 #: ../src/ViewManager.py:442
 msgid "_Import..."
@@ -2867,7 +2867,7 @@ msgstr "_Werkzeuge"
 
 #: ../src/ViewManager.py:445
 msgid "Open the tools dialog"
-msgstr "Öffnet die Auswahl eines Werkzeugs"
+msgstr "Öffnet den Werkzeugedialog"
 
 #: ../src/ViewManager.py:447
 msgid "_Bookmarks"
@@ -2942,19 +2942,19 @@ msgstr "Abbrechen"
 
 #: ../src/ViewManager.py:667
 msgid "Cannot abandon session's changes"
-msgstr "Sitzungsänderungen können nicht beendet werden"
+msgstr "Sitzungsänderungen können nicht zurück genommen werden werden"
 
 #: ../src/ViewManager.py:668
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Die Änderungen können nicht vollständig ausgeführt werden, da die Nummer der "
+"Die Änderungen können nicht vollständig zurück genommen werden werden, da die Nummer der "
 "Änderungen das Limit der Sitzung überschritten hat."
 
 #: ../src/ViewManager.py:1034
 msgid "Import Statistics"
-msgstr "Statistiken importieren"
+msgstr "Importstatistiken"
 
 #: ../src/ViewManager.py:1064
 msgid "Could not load a recent Family Tree."
@@ -3066,7 +3066,7 @@ msgstr "Privater Datensatz"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr "_Personen zusammenfassen"
+msgstr "Personen_zusammenfassen"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
@@ -3096,7 +3096,7 @@ msgid ""
 "break the relationship between them."
 msgstr ""
 "Ein Elternteil und ein Kind können nicht zusammengefasst werden. Um diese "
-"Personen zusammenzufassen, mußt du zuerst die Verbindung der beiden lösen."
+"Personen zusammenzufassen, musst du zuerst die Verbindung der beiden lösen."
 
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
@@ -3154,7 +3154,7 @@ msgstr "Personen zusammenfassen"
 
 #: ../src/Merge/_MergePlace.py:52
 msgid "manual|Merge_Places"
-msgstr "_Orte zusammenfassen"
+msgstr "Orte_zusammenfassen"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3163,11 +3163,11 @@ msgstr "Orte zusammenfassen"
 
 #: ../src/Merge/_MergeSource.py:42
 msgid "manual|Merge_Sources"
-msgstr "_Ereignis zusammenfassen"
+msgstr "Quellen_zusammenfassen"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
-msgstr "Ereignis zusammenfassen"
+msgstr "Quellen zusammenfassen"
 
 #: ../src/DataViews/EventView.py:74 ../src/DataViews/FamilyList.py:67
 #: ../src/DataViews/MediaView.py:84 ../src/DataViews/PlaceView.py:76
@@ -3199,7 +3199,7 @@ msgstr "_Spalteneditor"
 
 #: ../src/DataViews/EventView.py:204
 msgid "Select Event Columns"
-msgstr "Spalten auswählen"
+msgstr "Ereignisspalten auswählen"
 
 #: ../src/DataViews/EventView.py:237
 msgid ""
@@ -3211,7 +3211,7 @@ msgstr ""
 
 #: ../src/DataViews/EventView.py:241
 msgid "Deleting event will remove it from the database."
-msgstr "Das Löschen eines Ereignisses entfernt es aus der Datenbank."
+msgstr "Das Löschen des Ereignisses entfernt es aus der Datenbank."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
 #: ../src/DataViews/PersonView.py:605 ../src/DataViews/PlaceView.py:256
@@ -3222,7 +3222,7 @@ msgstr "%s löschen?"
 
 #: ../src/DataViews/EventView.py:250
 msgid "_Delete Event"
-msgstr "Ereignis löschen"
+msgstr "_Ereignis löschen"
 
 #: ../src/DataViews/FamilyList.py:66
 msgid "Marriage Date"
@@ -3247,7 +3247,7 @@ msgstr "Familien"
 
 #: ../src/DataViews/FamilyList.py:107
 msgid "Select Family Columns"
-msgstr "FamilienSpalten wählen"
+msgstr "Familienspalten wählen"
 
 #: ../src/DataViews/FamilyList.py:167 ../src/DataViews/PersonView.py:161
 msgid "_Column Editor..."
@@ -3255,23 +3255,23 @@ msgstr "_Spalteneditor..."
 
 #: ../src/DataViews/FamilyList.py:169
 msgid "Family Filter Editor"
-msgstr "Filtereditor für Familien"
+msgstr "Familienfiltereditor"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr "Gewähltes Medien-Objekt bearbeiten"
+msgstr "Gewähltes Medienobjekt bearbeiten"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Das ausgewählte Medien-Objekt löschen"
+msgstr "Das ausgewählte Medienobjekt löschen"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "Medien-Objekt ziehen"
+msgstr "Medienobjekt ziehen"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
-msgstr "Filtereditor für Medien-Objekte"
+msgstr "Filtereditor für Medienobjekte"
 
 #: ../src/DataViews/MediaView.py:218
 msgid "View in the default viewer"
@@ -3289,7 +3289,7 @@ msgstr "GRAMPS kann keine Anwendung zum Betrachten von Dateien des Typs %s finde
 
 #: ../src/DataViews/MediaView.py:247
 msgid "Select Media Columns"
-msgstr "Spalten auswählen"
+msgstr "Medienspalten auswählen"
 
 #: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
@@ -3301,20 +3301,20 @@ msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Dieses Medien-Objekt wird derzeit verwendet. Wenn du es löscht, wird es aus "
+"Dieses Medienobjekt wird derzeit verwendet. Wenn du es löscht, wird es aus "
 "der Datenbank und allen referenzierenden Datensätzen entfernt."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
-msgstr "Das Löschen eines Medien-Objektes entfernt es aus der Datenbank"
+msgstr "Das Löschen eines Medienobjektes entfernt es aus der Datenbank"
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "Medien-Objekt löschen?"
+msgstr "Medienobjekt löschen?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr "Lösche Medien-Objekt"
+msgstr "_Medienobjekt löschen"
 
 #: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:840
 msgid "Unnamed Gramplet"
@@ -3391,7 +3391,7 @@ msgstr ""
 
 #: ../src/DataViews/NoteView.py:212
 msgid "Deleting note will remove it from the database."
-msgstr "Das Löschen einer Notiz entfernt sie aus der Datenbank."
+msgstr "Das Löschen der Notiz entfernt sie aus der Datenbank."
 
 #: ../src/DataViews/NoteView.py:218
 msgid "_Delete Note"
@@ -3414,19 +3414,19 @@ msgstr "†"
 
 #: ../src/DataViews/PedigreeView.py:74
 msgid "bap."
-msgstr "get."
+msgstr "~"
 
 #: ../src/DataViews/PedigreeView.py:75
 msgid "chr."
-msgstr "get."
+msgstr "~"
 
 #: ../src/DataViews/PedigreeView.py:76
 msgid "bur."
-msgstr "beg."
+msgstr "⚰"
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "crem."
-msgstr "ein."
+msgstr "⚱"
 
 #: ../src/DataViews/PedigreeView.py:973
 msgid "Jump to child..."
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #: ../src/DataViews/PersonView.py:237
 msgid "Select Person Columns"
-msgstr "Spalten auswählen"
+msgstr "Personenspalten auswählen"
 
 #: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
@@ -3599,11 +3599,11 @@ msgstr "Aktive Person ist nicht sichtbar"
 
 #: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
-msgstr "Anzeige wird aufgebaut..."
+msgstr "Anzeige wird aktualisiert..."
 
 #: ../src/DataViews/PersonView.py:602
 msgid "Deleting the person will remove the person from the database."
-msgstr "Das Löschen einer Person entfernt die Person aus der Datenbank."
+msgstr "Das Löschen der Person entfernt die Person aus der Datenbank."
 
 #: ../src/DataViews/PersonView.py:607
 msgid "_Delete Person"
@@ -3684,11 +3684,11 @@ msgstr "Versuche Ort auf Google Maps zu finden"
 
 #: ../src/DataViews/PlaceView.py:123
 msgid "Place Filter Editor"
-msgstr "Ortefilter Editor"
+msgstr "Ortefiltereditor"
 
 #: ../src/DataViews/PlaceView.py:157
 msgid "Select Place Columns"
-msgstr "Spalten auswählen"
+msgstr "Ortespalten auswählen"
 
 #: ../src/DataViews/PlaceView.py:244
 msgid ""
@@ -3708,7 +3708,7 @@ msgstr "Ort _löschen"
 
 #: ../src/DataViews/PlaceView.py:276
 msgid "Cannot merge places."
-msgstr "Orte können nicht zusammengefasst werden."
+msgstr "Kann Orte nicht zusammenfassen."
 
 #: ../src/DataViews/PlaceView.py:277
 msgid ""
@@ -3717,7 +3717,7 @@ msgid ""
 "place."
 msgstr ""
 "Genau zwei Orte müssen ausgewählt sein, um eine "
-"Zusammenfassungdurchzuführen. Ein zweiter Ort kann durch Anklicken bei "
+"Zusammenfassung durchzuführen. Ein zweiter Ort kann durch Anklicken bei "
 "gehaltener Strg-Taste gewählt werden."
 
 #: ../src/DataViews/RelationView.py:323
@@ -3745,7 +3745,7 @@ msgstr "Partner"
 #: ../src/DataViews/RelationView.py:332 ../src/DataViews/RelationView.py:334
 #: ../src/DataViews/RelationView.py:705
 msgid "Add a new family with person as parent"
-msgstr "Füge eine neue Familie mit aktiver Person als Elter"
+msgstr "Eine neue Familie mit aktiver Person als Elter hinzufügen"
 
 #: ../src/DataViews/RelationView.py:333
 msgid "Add Partner..."
@@ -3814,7 +3814,7 @@ msgstr "Entferne Person als Kind dieser Eltern"
 
 #: ../src/DataViews/RelationView.py:707
 msgid "Edit family"
-msgstr "Familie Bearbeiten"
+msgstr "Familie bearbeiten"
 
 #: ../src/DataViews/RelationView.py:708
 msgid "Reorder families"
@@ -3876,7 +3876,7 @@ msgstr "Beziehungstyp: %s"
 #: ../src/DataViews/RelationView.py:1115
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, %(place)s"
+msgstr "%(event_type)s: %(date)s, in %(place)s"
 
 #: ../src/DataViews/RelationView.py:1119
 #, python-format
@@ -3945,7 +3945,7 @@ msgstr "Filtereditor für Aufbewahrungsorte"
 
 #: ../src/DataViews/RepositoryView.py:128
 msgid "Select Repository Columns"
-msgstr "Spalten auswählen"
+msgstr "Aufbewahrungsortespalten auswählen"
 
 #: ../src/DataViews/RepositoryView.py:202
 msgid ""
@@ -3957,7 +3957,7 @@ msgstr ""
 
 #: ../src/DataViews/RepositoryView.py:206
 msgid "Deleting repository will remove it from the database."
-msgstr "Das Löschen eines Aufbewahrungsortes entfernt ihn aus der Datenbank."
+msgstr "Das Löschen des Aufbewahrungsortes entfernt ihn aus der Datenbank."
 
 #: ../src/DataViews/RepositoryView.py:211
 msgid "_Delete Repository"
@@ -3985,7 +3985,7 @@ msgstr "Filtereditor für Quellen"
 
 #: ../src/DataViews/SourceView.py:123
 msgid "Select Source Columns"
-msgstr "Spalten auswählen"
+msgstr "Quellenspalten auswählen"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/SourceView.py:193
@@ -3994,11 +3994,11 @@ msgid ""
 "database and from all people and families that reference it."
 msgstr ""
 "Diese Quelle wird derzeit verwendet. Beim Löschen wird sie aus der Datenbank "
-"und allen referenzierenden Datensätzen entfernt."
+"und allen referenzierenden Familien und Personen entfernt."
 
 #: ../src/DataViews/SourceView.py:197
 msgid "Deleting source will remove it from the database."
-msgstr "Das Löschen einer Quelle entfernt sie aus der Datenbank."
+msgstr "Das Löschen dieser Quelle entfernt sie aus der Datenbank."
 
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
@@ -4006,7 +4006,7 @@ msgstr "Quelle _löschen"
 
 #: ../src/DataViews/SourceView.py:225
 msgid "Cannot merge sources."
-msgstr "Die Ereignis können nicht zusammengefasst werden."
+msgstr "Kann Quellen nicht zusammenfassen."
 
 #: ../src/DataViews/SourceView.py:226
 msgid ""
@@ -4047,7 +4047,7 @@ msgstr ""
 #: ../src/plugins/WriteGeneWeb.py:256 ../src/plugins/WriteGeneWeb.py:260
 #, python-format
 msgid "Could not create %s"
-msgstr "Datei %s konnte nicht erstellt werden"
+msgstr "Konnte %s nicht erstellen"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
 #: ../src/docgen/RTFDoc.py:448 ../src/Editors/_EditPerson.py:476
@@ -4092,7 +4092,7 @@ msgid ""
 "Could not open %s\n"
 "Using the default template"
 msgstr ""
-"Datei %s konnte nicht geöffnet werden\n"
+"Konnte %s nicht öffnen\n"
 "Standardvorlage wird verwendet"
 
 #: ../src/docgen/HtmlDoc.py:494 ../src/docgen/HtmlDoc.py:498
@@ -4172,7 +4172,7 @@ msgstr "Neues Attribut erstellen und hinzufügen"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 msgid "Remove the existing attribute"
-msgstr "Das bestehend Attribut entfernen"
+msgstr "Das vorhandene Attribut entfernen"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:54
 msgid "Edit the selected attribute"
@@ -4272,7 +4272,7 @@ msgstr "_Ereignisse"
 #: ../src/DisplayTabs/_RepoEmbedList.py:152
 #: ../src/DisplayTabs/_SourceEmbedList.py:133
 msgid "Cannot edit this reference"
-msgstr "Diese Referenz kann nicht bearbeitet werden"
+msgstr "Kann diese Referenz nicht bearbeiten"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:135
 #: ../src/DisplayTabs/_EventEmbedList.py:170
@@ -4287,7 +4287,7 @@ msgstr ""
 "verbundene Ereignis wird schon bearbeitet oder eine andere Ereignis-"
 "Referenz, die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, mußt du die Quelle schließen."
+"Um die Ereignis-Referenz zu bearbeiten, muss die Quelle geschlossen werden."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
@@ -4301,7 +4301,7 @@ msgstr "_Galerie"
 #: ../src/DisplayTabs/_GalleryTab.py:122
 #, python-format
 msgid "Open with %s"
-msgstr "Öffne mit %s"
+msgstr "Öffnen mit %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
 msgid "Non existing media found in the Gallery"
@@ -4460,11 +4460,11 @@ msgstr ""
 "Referenz, die mit dem selben Ereignis verbunden ist, wird gerade "
 "bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, mußt du das Ereignis schließen."
+"Um die Ereignis-Referenz zu bearbeiten, muss das Ereignis geschlossen werden."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
-msgstr "Neue Quelle anlegen und hinzufügen"
+msgstr "Neue Quelle erstellen und hinzufügen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Remove the existing source"
@@ -4472,7 +4472,7 @@ msgstr "Die ausgewählte Quelle entfernen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
 msgid "Add an existing source"
-msgstr "Existierende Quelle hinzufügen"
+msgstr "Bestehende Quelle hinzufügen"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
 msgid "Move the selected source upwards"
@@ -4498,31 +4498,31 @@ msgstr ""
 "verbundene Ereignis wird schon bearbeitet oder eine andere Ereignis-"
 "Referenz, die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, mußt du die Quelle schließen."
+"Um die Ereignis-Referenz zu bearbeiten, muss die Quelle geschlossen werden."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
 msgid "Create and add a new web address"
-msgstr "Neue Netzadresse erstellen und hinzufügen"
+msgstr "Neue Webadresse erstellen und hinzufügen"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 msgid "Remove the existing web address"
-msgstr "Die bestehende Netzadresse entfernen"
+msgstr "Die bestehende Webadresse entfernen"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:55
 msgid "Edit the selected web address"
-msgstr "Gewählte Netzadresse bearbeiten"
+msgstr "Gewählte Webadresse bearbeiten"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:56
 msgid "Move the selected web address upwards"
-msgstr "Gewählte Netzadresse nach oben verschieben"
+msgstr "Gewählte Webadresse nach oben verschieben"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:57
 msgid "Move the selected web address downwards"
-msgstr "Gewählte Netzadresse nach unten verschieben"
+msgstr "Gewählte Webadresse nach unten verschieben"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:58
 msgid "Jump to the selected web address"
-msgstr "Zur gewählten Netzadresse springen"
+msgstr "Zur gewählten Webadresse springen"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:69
 msgid "_Internet"
@@ -4530,11 +4530,11 @@ msgstr "_Internet"
 
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
-msgstr "Ein Medien-Objekt auswählen"
+msgstr "Ein Medienobjekt auswählen"
 
 #: ../src/Editors/AddMedia.py:146
 msgid "Select media object"
-msgstr "Wähle ein Medien Objekt"
+msgstr "Wähle ein Medienobjekt"
 
 #: ../src/Editors/AddMedia.py:156
 msgid "Import failed"
@@ -4576,19 +4576,19 @@ msgstr "Neues Attribut"
 
 #: ../src/Editors/_EditAttribute.py:146
 msgid "Cannot save attribute"
-msgstr "Attribut kann nicht gespeichert werden"
+msgstr "Kann Attribut nicht speichern"
 
 #: ../src/Editors/_EditAttribute.py:147
 msgid "The attribute type cannot be empty"
-msgstr "Attributtyp kann nicht leer sein"
+msgstr "Attributtyp darf nicht leer sein"
 
 #: ../src/Editors/_EditChildRef.py:93 ../src/Editors/_EditChildRef.py:154
 msgid "Child Reference Editor"
-msgstr "Kindreferenz-Editor"
+msgstr "Kindreferenzeditor"
 
 #: ../src/Editors/_EditChildRef.py:154
 msgid "Child Reference"
-msgstr "Kind-Referenzen"
+msgstr "Kindreferenzen"
 
 #: ../src/Editors/_EditEvent.py:60
 msgid "manual|Editing_Information_About_Events"
@@ -4609,17 +4609,15 @@ msgstr "Ereignis bearbeiten"
 
 #: ../src/Editors/_EditEvent.py:203 ../src/Editors/_EditEvent.py:226
 msgid "Cannot save event"
-msgstr "Ereignis kann nicht gespeichert werden"
+msgstr "Kann Ereignis nicht speichern"
 
 #: ../src/Editors/_EditEvent.py:204
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr ""
-"Es existieren keine Daten für dieses Ereignis. Bitte gib Daten ein oder "
-"breche ab."
+msgstr "Es existieren keine Daten für dieses Ereignis. Bitte gib Daten ein oder brich das Bearbeiten ab."
 
 #: ../src/Editors/_EditEvent.py:213
 msgid "Cannot save event. ID already exists."
-msgstr "Kann Ereignis nicht speichern ID existiert bereits"
+msgstr "Kann Ereignis nicht speichern ID besteht bereits."
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:251
 #: ../src/Editors/_EditPerson.py:690 ../src/Editors/_EditPlace.py:275
@@ -4630,14 +4628,14 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Du habst versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
+"Du hast versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
 "verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte gib "
 "eine andere ID ein oder lasse sie leer um den nächsten verfügbaren ID Wert "
 "zu erhalten."
 
 #: ../src/Editors/_EditEvent.py:227
 msgid "The event type cannot be empty"
-msgstr "Ereignistyp kann nicht leer sein"
+msgstr "Ereignistyp darf nicht leer sein"
 
 #: ../src/Editors/_EditEvent.py:234 ../src/Editors/_EditEventRef.py:234
 msgid "Add Event"
@@ -4646,11 +4644,11 @@ msgstr "Ereignis hinzufügen"
 #: ../src/Editors/_EditEvent.py:326
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Ereignis löschen (%s)"
+msgstr "Ereignis (%s) löschen"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
 msgid "Event Reference Editor"
-msgstr "Ereignis-Referenzen-Editor"
+msgstr "Ereignisreferenzeditor"
 
 #: ../src/Editors/_EditEventRef.py:96 ../src/Editors/_EditMediaRef.py:95
 #: ../src/Editors/_EditName.py:123 ../src/Editors/_EditRepoRef.py:88
@@ -4659,25 +4657,23 @@ msgstr "_Allgemeines"
 
 #: ../src/Editors/_EditEventRef.py:231
 msgid "Modify Event"
-msgstr "Ereignis bearbeiten"
+msgstr "Ereignis ändern"
 
 #: ../src/Editors/_EditFamily.py:91
 msgid "Create a new person and add the child to the family"
-msgstr "Neue Person anlegen und als Kind hinzufügen"
+msgstr "Neue Person anlegen und das Kind zur Familie hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:92
 msgid "Remove the child from the family"
-msgstr "Löscht das gewählte Kind von der Familie"
+msgstr "Entfernt das Kind von der Familie"
 
 #: ../src/Editors/_EditFamily.py:93
 msgid "Edit the child reference"
-msgstr "Kind Referenz bearbeiten"
+msgstr "Kindreferenz bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:94
 msgid "Add an existing person as a child of the family"
-msgstr ""
-"Wählt eine existierende Person und fügt sie als Kind zur aktiven Familie "
-"hinzu."
+msgstr "Bestehende Person als Kind der Familie hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:95
 msgid "Move the child up in the childrens list"
@@ -4693,11 +4689,11 @@ msgstr "#"
 
 #: ../src/Editors/_EditFamily.py:104
 msgid "Paternal"
-msgstr "Väterlich"
+msgstr "Väterlicherseits"
 
 #: ../src/Editors/_EditFamily.py:105
 msgid "Maternal"
-msgstr "mütterlicherseits"
+msgstr "Mütterlicherseits"
 
 #: ../src/Editors/_EditFamily.py:117 ../src/plugins/csvexport.glade.h:5
 msgid "_Children"
@@ -4705,11 +4701,11 @@ msgstr "_Kinder"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
-msgstr "Bearbeite Kind"
+msgstr "Kind bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:125
 msgid "Add an existing child"
-msgstr "Existierendes Kind hinzufügen"
+msgstr "Bestehendes Kind hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:127
 msgid "Edit relationship"
@@ -4753,23 +4749,23 @@ msgstr "Neue Familie"
 
 #: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1001
 msgid "Edit Family"
-msgstr "Bearbeite Familie"
+msgstr "Familie bearbeiten"
 
 #: ../src/Editors/_EditFamily.py:532
 msgid "Add a new person as the mother"
-msgstr "Füge eine neue Person als Mutter hinzu"
+msgstr "Neue Person als Mutter hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:534
 msgid "Add a new person as the father"
-msgstr "Füge eine neue Person als Vater hinzu"
+msgstr "Neue Person als Vater hinzufügen"
 
 #: ../src/Editors/_EditFamily.py:642
 msgid "Select a person as the father"
-msgstr "Wähle eine Person als den Vater."
+msgstr "Eine Person als Vater wählen"
 
 #: ../src/Editors/_EditFamily.py:643
 msgid "Remove the person as the father"
-msgstr "Entferne die Person als Vater"
+msgstr "Die Person als Vater entfernen"
 
 #: ../src/Editors/_EditFamily.py:649
 msgid "Select a person as the mother"
@@ -4777,19 +4773,19 @@ msgstr "Wähle eine Person als Mutter"
 
 #: ../src/Editors/_EditFamily.py:650
 msgid "Remove the person as the mother"
-msgstr "Entferne die Person als Mutter"
+msgstr "Die Person als Mutter entfernen"
 
 #: ../src/Editors/_EditFamily.py:714
 msgid "Select Mother"
-msgstr "Wähle Mutter"
+msgstr "Mutter wählen"
 
 #: ../src/Editors/_EditFamily.py:758
 msgid "Select Father"
-msgstr "Wähle Vater"
+msgstr "Vater wählen"
 
 #: ../src/Editors/_EditFamily.py:785
 msgid "Duplicate Family"
-msgstr "Dupliziere Familie"
+msgstr "Doppelte Familie"
 
 #: ../src/Editors/_EditFamily.py:786
 msgid ""
@@ -4816,7 +4812,7 @@ msgstr "Ein Vater kann nicht sein eigenes Kind sein."
 #: ../src/Editors/_EditFamily.py:903
 #, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr "%s wird als Vater und Kind dieser Familie angezeigt."
+msgstr "%s wird als Vater und Kind dieser Familie geführt."
 
 #: ../src/Editors/_EditFamily.py:912
 msgid "A mother cannot be her own child"
@@ -4825,17 +4821,15 @@ msgstr "Eine Mutter kann nicht ihr eigenes Kind sein"
 #: ../src/Editors/_EditFamily.py:913
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr "%s wird als Mutter und Kind dieser Familie angezeigt."
+msgstr "%s wird als Mutter und Kind dieser Familie geführt."
 
 #: ../src/Editors/_EditFamily.py:920
 msgid "Cannot save family"
-msgstr "Konnte Familie nicht sichern"
+msgstr "Kann Familie nicht speichern"
 
 #: ../src/Editors/_EditFamily.py:921
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr ""
-"Es existieren keine Daten für diese Familie. Bitte gib Daten ein oder brich "
-"ab."
+msgstr "Es existieren keine Daten für diese Familie. Bitte gib Daten ein oder brich die Bearbeitung ab."
 
 #: ../src/Editors/_EditFamily.py:928
 msgid "Cannot save family. ID already exists."
@@ -4854,7 +4848,7 @@ msgstr ""
 
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
-msgstr "Füge Familie hinzu"
+msgstr "Familie hinzufügen"
 
 #: ../src/Editors/_EditLdsOrd.py:151 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:417
@@ -4882,20 +4876,20 @@ msgstr "LDS Ordination"
 
 #: ../src/Editors/_EditLocation.py:59
 msgid "Location Editor"
-msgstr "Ortsnamen-Editor"
+msgstr "Ortsangabeeditor"
 
 #: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMediaRef.py:374
 #, python-format
 msgid "Media: %s"
-msgstr "Medien: %s"
+msgstr "Medium: %s"
 
 #: ../src/Editors/_EditMedia.py:86 ../src/Editors/_EditMediaRef.py:376
 msgid "New Media"
-msgstr "Neue Medien"
+msgstr "Neues Medium"
 
 #: ../src/Editors/_EditMedia.py:200
 msgid "Edit Media Object"
-msgstr "Medien-Objekt bearbeiten"
+msgstr "Medienobjekt bearbeiten"
 
 #: ../src/Editors/_EditMedia.py:240
 msgid "Cannot save media object"
@@ -4914,24 +4908,24 @@ msgstr "Kann Medienobjekt nicht speichern. ID existiert bereits."
 #: ../src/Editors/_EditMedia.py:268 ../src/Editors/_EditMediaRef.py:466
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Medien-Objekt (%s)hinzufügen"
+msgstr "Medienobjekt (%s)hinzufügen"
 
 #: ../src/Editors/_EditMedia.py:273 ../src/Editors/_EditMediaRef.py:462
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Medien-Objekt (%s) bearbeiten"
+msgstr "Medienobjekt (%s) bearbeiten"
 
 #: ../src/Editors/_EditMedia.py:340
 msgid "Remove Media Object"
-msgstr "Medien-Objekt entfernen"
+msgstr "Medienobjekt entfernen"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
-msgstr "Medienreferenz-Editor"
+msgstr "Medienreferenzeditor"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
-msgstr "Namen-Editor"
+msgstr "Nameneditor"
 
 #: ../src/Editors/_EditName.py:276
 msgid "New Name"
@@ -4956,7 +4950,7 @@ msgstr "Fortsetzen"
 
 #: ../src/Editors/_EditName.py:346
 msgid "Return to Name Editor"
-msgstr "Zurück zum Namen-Editor"
+msgstr "Zurück zum Nameneditor"
 
 #: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
@@ -5023,7 +5017,7 @@ msgstr "Notiz hinzufügen"
 #: ../src/Editors/_EditNote.py:634
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Notiz löschen (%s)"
+msgstr "Notiz (%s) löschen"
 
 #: ../src/Editors/_EditPerson.py:119
 msgid "New Person"
