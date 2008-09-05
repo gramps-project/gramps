@@ -355,6 +355,18 @@ class EnumeratedListOption(Option):
         """
         self.__items = []
         self.emit('options-changed')
+        
+    def get_value(self):
+        """
+        Get the value of this option.
+        
+        @return: The option value.
+        """
+        value = Option.get_value(self)
+        if value >= len(self.__items):
+            # Range check the value
+            value = 0
+        return value
 
 #-------------------------------------------------------------------------
 #
