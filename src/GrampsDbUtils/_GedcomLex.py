@@ -362,15 +362,18 @@ class Reader:
 
     def __readahead(self):
         while len(self.current_list) < 5:
-            line = self.ifile.readline()
+            linetmp = self.ifile.readline()
             self.index += 1
-            if not line:
+            if not linetmp:
                 self.eof = True
                 return
 
             try:
                 # the space ensures no trailing whitespace on last parm
-                line = line.strip(' \n\r').split(None, 2) + ['']
+                line = linetmp.strip(' \n\r').split(None, 2) + ['']
+                # however keep trailing whitespace on notes only
+                if line[1] in ['CONT', 'CONC'] or line[2].startswith('NOTE'):
+                    line = linetmp.strip('\n\r').split(None, 2) + ['']
                 level = int(line[0])
             except:
                 continue
