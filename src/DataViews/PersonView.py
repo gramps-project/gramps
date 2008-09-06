@@ -533,7 +533,6 @@ class PersonView(PageView.PersonNavView):
                                                   True)
 
             self.build_columns()
-            self.setup_filter()
             self.dbstate.change_active_person(active)
             self._goto()
             self.dirty = False
