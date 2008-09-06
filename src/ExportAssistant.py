@@ -475,7 +475,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'Future editing of the currently opened database will '
                 'not alter the copy you have just made. ')
                 #add test, what is dir
-                conclusion_text += '\n\n' + 'Filename: %s' %self.chooser.get_filename()
+                conclusion_text += '\n\n' + _('Filename: %s') %self.chooser.get_filename()
             else:
                 conclusion_title =  _('Saving failed')
                 conclusion_text = _(
