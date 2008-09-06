@@ -284,6 +284,29 @@ class EditMedia(EditPrimary):
         Config.set(Config.MEDIA_HEIGHT, height)
         Config.sync()
 
+    def data_has_changed(self):
+        """
+        A date comparison can fail incorrectly because we have made the
+        decision to store entered text in the date. However, there is no
+        entered date when importing from a XML file, so we can get an
+        incorrect fail.
+        """
+        
+        if self.db.readonly:
+            return False
+        elif self.obj.handle:
+            orig = self.get_from_handle(self.obj.handle)
+            if orig:
+                cmp_obj = orig
+            else:
+                cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize(True)[1:],
+                       self.obj.serialize(True)[1:]) != 0
+        else:
+            cmp_obj = self.empty_object()
+            return cmp(cmp_obj.serialize(True)[1:],
+                       self.obj.serialize()[1:]) != 0
+
 class DeleteMediaQuery:
 
     def __init__(self, dbstate, uistate, media_handle, the_lists):

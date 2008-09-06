@@ -82,7 +82,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
             self.desc = ""
             self.thumb = None
 
-    def serialize(self):
+    def serialize(self, no_text_date = False):
         """
         Convert the data held in the event to a Python tuple that
         represents all the data elements. 
@@ -105,7 +105,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 self.change,
-                DateBase.serialize(self),
+                DateBase.serialize(self, no_text_date),
                 self.marker.serialize(),
                 self.private)
 
