@@ -59,7 +59,7 @@ class HasNoteRegexBase(Rule):
         notelist = person.get_note_list()
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
-            n = unicode(note.get(False))
+            n = unicode(note.get())
             if self.match.match(n) is not None:
                 return True
         return False

@@ -156,7 +156,7 @@ class RepositoryTip:
         for notehandle in notelist:
             note = self._db.get_note_from_handle(notehandle)
             s += "\t<b>%s:</b>\t%s\n" % (
-                    _("Note"), escape(note.get(False)))
+                    _("Note"), escape(note.get()))
 
         # Get the list of sources that reference this repository
         repos_handle = self._obj.get_handle()
