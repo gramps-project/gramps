@@ -56,6 +56,7 @@ pkgdata_PYTHON = \
 	OnThisDay.py\
 	OwnerEditor.py\
 	PatchNames.py\
+	PlaceReport.py\
 	ReadGrdb.py\
 	ReadPkg.py\
 	Rebuild.py\

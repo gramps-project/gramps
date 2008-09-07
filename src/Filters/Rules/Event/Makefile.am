@@ -8,6 +8,7 @@ pkgdata_PYTHON = \
 	_HasNoteRegexp.py\
 	_RegExpIdOf.py\
 	_AllEvents.py\
+	_HasData.py\
 	_HasIdOf.py\
 	_HasMarkerOf.py\
 	_HasType.py\
