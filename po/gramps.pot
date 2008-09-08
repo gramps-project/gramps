@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-20 09:02+0200\n"
+"POT-Creation-Date: 2008-09-08 18:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,8 +111,8 @@ msgstr ""
 #: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
 #: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:642
-#: ../src/DataViews/PersonView.py:648 ../src/DataViews/RepositoryView.py:67
+#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
+#: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -638,6 +638,12 @@ msgid ""
 "Note: the database currently opened in your GRAMPS window is NOT the file "
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
+msgstr ""
+
+#. add test, what is dir
+#: ../src/ExportAssistant.py:478
+#, python-format
+msgid "Filename: %s"
 msgstr ""
 
 #: ../src/ExportAssistant.py:480
@@ -1624,19 +1630,19 @@ msgstr ""
 msgid "_Filter"
 msgstr ""
 
-#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:912
+#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr ""
 
-#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:920
+#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr ""
 
-#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr ""
 
-#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr ""
 
@@ -3074,7 +3080,7 @@ msgid "Deleting event will remove it from the database."
 msgstr ""
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
-#: ../src/DataViews/PersonView.py:605 ../src/DataViews/PlaceView.py:256
+#: ../src/DataViews/PersonView.py:604 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
@@ -3450,32 +3456,32 @@ msgstr ""
 msgid "Active person not visible"
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:602
+#: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:607
+#: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:622
+#: ../src/DataViews/PersonView.py:621
 #, python-format
 msgid "Delete Person (%s)"
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:897
+#: ../src/DataViews/PersonView.py:896
 msgid "Go to default person"
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:902
+#: ../src/DataViews/PersonView.py:901
 msgid "Edit selected person"
 msgstr ""
 
-#: ../src/DataViews/PersonView.py:908
+#: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
 msgstr ""
 
@@ -4716,7 +4722,7 @@ msgstr ""
 msgid "Edit Media Object (%s)"
 msgstr ""
 
-#: ../src/Editors/_EditMedia.py:340
+#: ../src/Editors/_EditMedia.py:363
 msgid "Remove Media Object"
 msgstr ""
 
