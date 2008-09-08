@@ -7,7 +7,6 @@
 #    Copyright (C) 2000-2007  Donald N. Allingham
 #    Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #    Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
-#    Copyright (C) 2008       Stephane Charette <stephanecharette@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,10 +60,10 @@ _COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
             { 'name' : _("Colored outline"), 'value' : "colored" },
             { 'name' : _("Color fill"),      'value' : "filled"  }]
 
-_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd'  },
-            { 'name' : _("Descendants -> Ancestors"),  'value' : 'a'  },
-            { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
-            { 'name' : _("Descendants - Ancestors"),   'value' : ''   }]
+_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 0 },
+            { 'name' : _("Descendants -> Ancestors"),  'value' : 1 },
+            { 'name' : _("Descendants <-> Ancestors"), 'value' : 2 },
+            { 'name' : _("Descendants - Ancestors"),   'value' : 3 }]
 
 #------------------------------------------------------------------------
 #
@@ -100,14 +99,9 @@ class RelGraphReport(Report):
         imgpos     - Image position, above/beside name
         color      - Whether to use outline, colored outline or filled color in graph
         dashed     - Whether to use dashed lines for non-birth relationships.
-        use_roundedcorners - Whether to use rounded corners for females
         """
         Report.__init__(self, database, options_class)
         
-        # Would be nice to get rid of these 2 hard-coded arrays of colours
-        # and instead allow the user to pick-and-choose whatever colour they
-        # want.  When/if this is done, take a look at the colour-selection
-        # widget and code used in the FamilyLines graph.
         colored = {
             'male': 'dodgerblue4',
             'female': 'deeppink',
@@ -128,7 +122,6 @@ class RelGraphReport(Report):
         self.includeurl = menu.get_option_by_name('url').get_value()
         self.includeimg = menu.get_option_by_name('includeImages').get_value()
         self.imgpos     = menu.get_option_by_name('imageOnTheSide').get_value()
-        self.use_roundedcorners = menu.get_option_by_name('useroundedcorners').get_value()
         self.adoptionsdashed = menu.get_option_by_name('dashed').get_value()
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
@@ -138,15 +131,16 @@ class RelGraphReport(Report):
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
-        arrow_str = menu.get_option_by_name('arrow').get_value()
-        if arrow_str.find('a') + 1:
-            self.arrowheadstyle = 'normal'
-        else:
-            self.arrowheadstyle = 'none'
-        if arrow_str.find('d') + 1:
+        arrow_value = menu.get_option_by_name('arrow').get_value()
+        self.arrowheadstyle = 'none'
+        self.arrowtailstyle = 'none'
+        if arrow_value == 0:
             self.arrowtailstyle = 'normal'
-        else:
-            self.arrowtailstyle = 'none'
+        if arrow_value == 1:
+            self.arrowheadstyle = 'normal'
+        if arrow_value == 2:
+            self.arrowheadstyle = 'normal'
+            self.arrowtailstyle = 'normal'
 
         filter_option = options_class.menu.get_option_by_name('filter')
         self._filter = filter_option.get_filter()
@@ -268,15 +262,18 @@ class RelGraphReport(Report):
         "return gender specific person style"
         gender = person.get_gender()
         shape = "box"
-        style = "solid"
+        style = ""
         color = ""
         fill = ""
-
-        if gender == person.FEMALE and self.use_roundedcorners:
+        if gender == person.MALE:
+            shape="box"
+            style="solid"
+        elif gender == person.FEMALE:
+            shape="box"
             style="rounded"
-        elif gender == person.UNKNOWN:
+        else:
             shape="hexagon"
-
+	    style = "solid"
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']
@@ -285,7 +282,10 @@ class RelGraphReport(Report):
             else:
                 color = self.colors['unknown']
         elif self.colorize == 'filled':
-            style += ",filled"
+            if style != "":
+                style += ",filled"
+            else:
+                style = "filled"
             if gender == person.MALE:
                 fill = self.colors['male']
             elif gender == person.FEMALE:
@@ -505,13 +505,6 @@ class RelGraphOptions(MenuReportOptions):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
         menu.add_option(category_name, "arrow", arrow)
-
-        roundedcorners = BooleanOption(
-                    _("Use rounded corners"), False)
-        roundedcorners.set_help(
-                    _("Use rounded corners to differentiate "
-                      "between women and men."))
-        menu.add_option(category_name, "useroundedcorners", roundedcorners)
         
         dashed = BooleanOption(
                   _("Indicate non-birth relationships with dotted lines"), True)
