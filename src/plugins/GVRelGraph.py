@@ -58,9 +58,11 @@ import ThumbNails
 # Constant options items
 #
 #------------------------------------------------------------------------
-_COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
-            { 'name' : _("Colored outline"), 'value' : "colored" },
-            { 'name' : _("Color fill"),      'value' : "filled"  }]
+_COLORS = [ { 'name' : _("B&W outline"),     'value' : 0 },
+            { 'name' : _("Colored outline"), 'value' : 1 },
+            { 'name' : _("Color fill"),      'value' : 2 }]
+
+_COLORS_TAB =['outlined','colored','filled']
 
 _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 0 },
             { 'name' : _("Descendants -> Ancestors"),  'value' : 1 },
@@ -134,7 +136,7 @@ class RelGraphReport(Report):
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
         self.use_place = menu.get_option_by_name('use_place').get_value()
-        self.colorize = menu.get_option_by_name('color').get_value()
+        self.colorize = _COLORS_TAB[menu.get_option_by_name('color').get_value()]
         if self.colorize == 'colored':
             self.colors = colored
         elif self.colorize == 'filled':
@@ -494,7 +496,7 @@ class RelGraphOptions(MenuReportOptions):
         category_name = _("Graph Style")
         ################################
 
-        color = EnumeratedListOption(_("Graph coloring"), "filled")
+        color = EnumeratedListOption(_("Graph coloring"), 0)
         for i in range( 0, len(_COLORS) ):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
@@ -502,7 +504,7 @@ class RelGraphOptions(MenuReportOptions):
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
         
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 0)
         for i in range( 0, len(_ARROWS) ):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
