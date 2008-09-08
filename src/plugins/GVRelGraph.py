@@ -62,10 +62,10 @@ _COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
             { 'name' : _("Colored outline"), 'value' : "colored" },
             { 'name' : _("Color fill"),      'value' : "filled"  }]
 
-_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd'  },
-            { 'name' : _("Descendants -> Ancestors"),  'value' : 'a'  },
-            { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
-            { 'name' : _("Descendants - Ancestors"),   'value' : ''   }]
+_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 0 },
+            { 'name' : _("Descendants -> Ancestors"),  'value' : 1 },
+            { 'name' : _("Descendants <-> Ancestors"), 'value' : 2 },
+            { 'name' : _("Descendants - Ancestors"),   'value' : 3 }]
 
 #------------------------------------------------------------------------
 #
@@ -139,15 +139,16 @@ class RelGraphReport(Report):
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
-        arrow_str = menu.get_option_by_name('arrow').get_value()
-        if arrow_str.find('a') + 1:
-            self.arrowheadstyle = 'normal'
-        else:
-            self.arrowheadstyle = 'none'
-        if arrow_str.find('d') + 1:
+        arrow_value = menu.get_option_by_name('arrow').get_value()
+        self.arrowheadstyle = 'none'
+        self.arrowtailstyle = 'none'
+        if arrow_value == 0:
             self.arrowtailstyle = 'normal'
-        else:
-            self.arrowtailstyle = 'none'
+        if arrow_value == 1:
+            self.arrowheadstyle = 'normal'
+        if arrow_value == 2:
+            self.arrowheadstyle = 'normal'
+            self.arrowtailstyle = 'normal'
 
         filter_option = options_class.menu.get_option_by_name('filter')
         self._filter = filter_option.get_filter()
