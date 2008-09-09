@@ -56,16 +56,14 @@ import ThumbNails
 # Constant options items
 #
 #------------------------------------------------------------------------
-_COLORS = [ { 'name' : _("B&W outline"),     'value' : 0 },
-            { 'name' : _("Colored outline"), 'value' : 1 },
-            { 'name' : _("Color fill"),      'value' : 2 }]
+_COLORS = [ { 'name' : _("B&W outline"),     'value' : 'outlined' },
+            { 'name' : _("Colored outline"), 'value' : 'colored' },
+            { 'name' : _("Color fill"),      'value' : 'filled' }]
 
-_COLORS_TAB =['outlined','colored','filled']
-
-_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 0 },
-            { 'name' : _("Descendants -> Ancestors"),  'value' : 1 },
-            { 'name' : _("Descendants <-> Ancestors"), 'value' : 2 },
-            { 'name' : _("Descendants - Ancestors"),   'value' : 3 }]
+_ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd' },
+            { 'name' : _("Descendants -> Ancestors"),  'value' : 'a' },
+            { 'name' : _("Descendants <-> Ancestors"), 'value' : 'da' },
+            { 'name' : _("Descendants - Ancestors"),   'value' : '' }]
 
 #------------------------------------------------------------------------
 #
@@ -128,21 +126,20 @@ class RelGraphReport(Report):
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
         self.use_place = menu.get_option_by_name('use_place').get_value()
-        self.colorize = _COLORS_TAB[menu.get_option_by_name('color').get_value()]
+        self.colorize = menu.get_option_by_name('color').get_value()
         if self.colorize == 'colored':
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
-        arrow_value = menu.get_option_by_name('arrow').get_value()
-        self.arrowheadstyle = 'none'
-        self.arrowtailstyle = 'none'
-        if arrow_value == 0:
-            self.arrowtailstyle = 'normal'
-        if arrow_value == 1:
+        arrow_str = menu.get_option_by_name('arrow').get_value()
+        if arrow_str.find('a') + 1:
             self.arrowheadstyle = 'normal'
-        if arrow_value == 2:
-            self.arrowheadstyle = 'normal'
+        else:
+            self.arrowheadstyle = 'none'
+        if arrow_str.find('d') + 1:
             self.arrowtailstyle = 'normal'
+        else:
+            self.arrowtailstyle = 'none'
 
         filter_option = options_class.menu.get_option_by_name('filter')
         self._filter = filter_option.get_filter()
@@ -494,7 +491,7 @@ class RelGraphOptions(MenuReportOptions):
         category_name = _("Graph Style")
         ################################
 
-        color = EnumeratedListOption(_("Graph coloring"), 0)
+        color = EnumeratedListOption(_("Graph coloring"), 'filled')
         for i in range( 0, len(_COLORS) ):
             color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
         color.set_help(_("Males will be shown with blue, females "
@@ -502,7 +499,7 @@ class RelGraphOptions(MenuReportOptions):
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
         
-        arrow = EnumeratedListOption(_("Arrowhead direction"), 0)
+        arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
         for i in range( 0, len(_ARROWS) ):
             arrow.add_item(_ARROWS[i]["value"], _ARROWS[i]["name"])
         arrow.set_help(_("Choose the direction that the arrows point."))
