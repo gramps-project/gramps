@@ -49,14 +49,6 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     to the refereneced event.
     """
 
-    __slots__=('__role','ref')
-
-    def __getstate__(self):
-        return{'__role': self.__role,'ref': self.ref}
-    def __setstate__(self,dict_):
-        self.__role = dict_['__role']
-        self.ref = dict_['ref']
-
     def __init__(self, source=None):
         """
         Create a new EventRef instance, copying from the source if present.
