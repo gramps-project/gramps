@@ -356,17 +356,25 @@ class EnumeratedListOption(Option):
         self.__items = []
         self.emit('options-changed')
         
-    def get_value(self):
+    def set_value(self, value):
         """
-        Get the value of this option.
+        Set the value of this option.
         
-        @return: The option value.
+        @param value: A value for this option.
+            Example: True
+        @type value: The type will depend on the type of option.
+        @return: nothing
         """
-        value = Option.get_value(self)
-        if value >= len(self.__items):
-            # Range check the value
-            value = 0
-        return value
+        found = False
+        for (opt_value, opt_description) in self.__items:
+            if value == opt_value:
+                found = True
+                
+        if found:
+            Option.set_value(self, value)
+        else:
+            print "Value %s not found for option %s" % ( str(value), 
+                                                         self.get_label() )
 
 #-------------------------------------------------------------------------
 #
