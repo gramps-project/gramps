@@ -195,7 +195,8 @@ class PersonCompare(ManagedWindow.ManagedWindow):
             self.add(tobj, title, _("Addresses"))
             for addr in alist:
                 location = ", ".join([addr.get_street(), addr.get_city(), 
-                                     addr.get_state(), addr.get_country()])
+                                     addr.get_state(), addr.get_country(),
+                                     addr.get_postal_code(), addr.get_phone()])
                 self.add(tobj, normal, location.strip())
 
     def get_parent_info(self, fid):
