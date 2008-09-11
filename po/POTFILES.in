@@ -296,6 +296,7 @@ src/plugins/NumberOfAncestorsReport.py
 src/plugins/OnThisDay.py
 src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
+src/plugins/PlaceReport.py
 src/plugins/ReadPkg.py
 src/plugins/Rebuild.py
 src/plugins/References.py
@@ -566,6 +567,7 @@ src/Filters/Rules/Family/_HasMarkerOf.py
 src/Filters/Rules/Event/_AllEvents.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasAttribute.py
+src/Filters/Rules/Event/_HasData.py
 src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasMarkerOf.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
