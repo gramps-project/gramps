@@ -555,27 +555,29 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = "la belle-sœur"
                 else:
                     rel_str = "le beau-frère ou la belle-sœur"
-        elif sib_type == self.HALF_SIB_FATHER:
-                if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le demi-frère consanguin"
-                elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la demi-sœur consanguine"
-                else:
-                    rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
+        #il faut penser à "mères différentes" (enfin, je crois !)
         elif sib_type == self.HALF_SIB_MOTHER:
-                if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le demi-frère utérin"
-                elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la demi-sœur utérine"
-                else:
-                    rel_str = "le demi-frère ou la demi-sœur utérin(e)"
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "le demi-frère consanguin"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "la demi-sœur consanguine"
+            else:
+                rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
+        #il faut penser à "pères différents" (enfin, je crois !)
+        elif sib_type == self.HALF_SIB_FATHER:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "le demi-frère utérin"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "la demi-sœur utérine"
+            else:
+                rel_str = "le demi-frère ou la demi-sœur utérin(e)"
         elif sib_type == self.STEP_SIB:
-                if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le demi-frère"
-                elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la demi-sœur"
-                else:
-                    rel_str = "le demi-frère ou la demi-sœur"
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "le demi-frère"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "la demi-sœur"
+            else:
+                rel_str = "le demi-frère ou la demi-sœur"
         return rel_str
 
 
