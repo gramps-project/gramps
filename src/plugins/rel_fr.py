@@ -132,8 +132,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-# de la personne active à l'ascendant commun Ga=[level] pour 
-# le calculateur de relations
+# RelCalc tool - Status Bar
+
+# de la personne active à l'ascendant commun Ga=[level]
 
     def get_cousin(self, level, removed, dir = '', inlaw=''):
         if removed == 0 and level < len(_level_name):
@@ -181,6 +182,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if level > len(_level_name)-1:
             return "l'ascendant lointain, à la %s génération" % (
                         _level_name[level])
+        elif level == 1:
+            return "un parent%s" % (inlaw)
         else:
             return "un parent lointain%s" % (inlaw)
 
@@ -202,6 +205,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if level > len(_level_name)-1:
             return "le descendant lointain, à la %s génération" % (
                         _level_name[level+1])
+        elif level == 1:
+            return "un enfant%s" % (inlaw)
         else:
             return "un descendant lointain%s" % (inlaw)
 
@@ -326,7 +331,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         return rel_str
 
 
-# quick report /RelCalc tool
+# quick report (missing on RelCalc tool - Status Bar)
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
@@ -353,11 +358,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             if Gb == 0 :
                 rel_str = 'le même individu'
             elif gender_b == gen.lib.Person.MALE and Gb < len(_son_level):
+                # spouse of daughter
                 if inlaw and Gb == 1 and not step:
                     rel_str = "le gendre"
                 else:
                     rel_str = self.get_son(Gb)
             elif gender_b == gen.lib.Person.FEMALE and Gb < len(_daughter_level):
+                # spouse of son
                 if inlaw and Gb == 1 and not step:
                     rel_str = "la bru"
                 else:
@@ -374,17 +381,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif Gb == 0:
             # b is parents/grand parent of a
             if gender_b == gen.lib.Person.MALE and Ga < len(_father_level):
-                if inlaw and Ga == 1 and not step:
-                    rel_str = "le père du conjoint"
-                elif step and Ga == 1 and not inlaw:
+                # other spouse of father (new parent)
+                if Ga == 1 and inlaw and self.STEP_SIB:
                     rel_str = "le beau-père"
+                # father of spouse (family of spouse)
+                elif Ga == 1 and inlaw:
+                    rel_str = "le père du conjoint"
                 else:
                     rel_str = self.get_father(Ga, inlaw)
             elif gender_b == gen.lib.Person.FEMALE and Ga < len(_mother_level):
-                if inlaw and Ga == 1 and not step:
-                    rel_str = "la mère du conjoint"
-                elif step and Ga == 1 and not inlaw:
+                # other spouse of mother (new parent)
+                if Ga == 1 and inlaw and self.STEP_SIB:
                     rel_str = "la belle-mère"
+                # mother of spouse (family of spouse)
+                elif Ga == 1 and inlaw:
+                    rel_str = "la mère du conjoint"
                 else:
                     rel_str = self.get_mother(Ga, inlaw)
             elif Ga < len(_level_name) and gender_b == gen.lib.Person.MALE:
@@ -517,6 +528,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     return rel_str
         return rel_str
 
+# RelCalc tool - Status Bar
+
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
 
@@ -532,7 +545,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 elif gender_b == gen.lib.Person.FEMALE:
                     rel_str = 'la sœur (germaine)'
                 else:
-                    rel_str = 'le frère ou la sœur (germain)'
+                    rel_str = 'le frère ou la sœur germain(e)'
             else:
                 if gender_b == gen.lib.Person.MALE:
                     rel_str = "le beau-frère"
@@ -555,7 +568,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = "la belle-sœur"
                 else:
                     rel_str = "le beau-frère ou la belle-sœur"
-        #il faut penser à "mères différentes" (enfin, je crois !)
+        # Logique inversée ! Pourquoi ?
         elif sib_type == self.HALF_SIB_MOTHER:
             if gender_b == gen.lib.Person.MALE:
                 rel_str = "le demi-frère consanguin"
@@ -563,7 +576,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = "la demi-sœur consanguine"
             else:
                 rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
-        #il faut penser à "pères différents" (enfin, je crois !)
+        # Logique inversée ! Pourquoi ?
         elif sib_type == self.HALF_SIB_FATHER:
             if gender_b == gen.lib.Person.MALE:
                 rel_str = "le demi-frère utérin"
