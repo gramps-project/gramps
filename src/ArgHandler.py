@@ -59,6 +59,7 @@ import RecentFiles
 import Utils
 import gen.db.exceptions as GX
 from DbManager import CLIDbManager, NAME_FILE, find_locker_name
+import gen
 
 from PluginUtils import Tool, cl_list, cli_tool_list
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
@@ -462,6 +463,8 @@ class ArgHandler:
             if not self.open:
                 # Create empty dir for imported database(s)
                 self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
+                newdb = gen.db.GrampsDBDir()
+                newdb.write_version(self.imp_db_path)
                 self.vm.db_loader.read_file(self.imp_db_path)
 
             for imp in self.imports:
