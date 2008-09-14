@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 07:53+0200\n"
-"PO-Revision-Date: 2008-08-05 13:46+0200\n"
+"POT-Creation-Date: 2008-09-14 12:36+0200\n"
+"PO-Revision-Date: 2008-09-14 12:42+0200\n"
 "Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,8 +119,8 @@ msgstr "Organisere bokmerker"
 #: ../src/ScratchPad.py:688 ../src/ScratchPad.py:742 ../src/ScratchPad.py:753
 #: ../src/ScratchPad.py:832 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:642
-#: ../src/DataViews/PersonView.py:648 ../src/DataViews/RepositoryView.py:67
+#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
+#: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -675,6 +675,12 @@ msgstr ""
 "\n"
 "Merk: databasen som nå er åpen i ditt GRAMPS-vindu er IKKE fila du akkurat har lagret. Fremtidige endringer i den åpne databasen vil ikke endre kopien du akkurat har laget. "
 
+#. add test, what is dir
+#: ../src/ExportAssistant.py:479
+#, python-format
+msgid "Filename: %s"
+msgstr "Filnavn: %s"
+
 #: ../src/ExportAssistant.py:481
 msgid "Saving failed"
 msgstr "Lagring feilet"
@@ -703,31 +709,35 @@ msgstr ""
 "\n"
 "Hvis du ombestemmer deg mens denne prosessen pågår, kan du trykke &quot;Avbryt&quot;-knappen når som helst, og databasen vil fortsatt være intakt."
 
-#: ../src/ExportOptions.py:69
-msgid "Filt_er"
-msgstr "Filt_er"
+#: ../src/ExportOptions.py:73
+msgid "_Person Filter"
+msgstr "_Personfilter"
 
-#: ../src/ExportOptions.py:74 ../src/plugins/genewebexport.glade.h:8
+#: ../src/ExportOptions.py:79
+msgid "_Note Filter"
+msgstr "_Notatfilter"
+
+#: ../src/ExportOptions.py:84 ../src/plugins/genewebexport.glade.h:8
 msgid "_Do not include records marked private"
 msgstr "_Ikke ta med poster som er markert som private"
 
-#: ../src/ExportOptions.py:76 ../src/plugins/genewebexport.glade.h:9
+#: ../src/ExportOptions.py:86 ../src/plugins/genewebexport.glade.h:9
 #: ../src/plugins/writeftree.glade.h:3
 msgid "_Restrict data on living people"
 msgstr "Beg_rens data om levende personer"
 
-#: ../src/ExportOptions.py:78
+#: ../src/ExportOptions.py:88
 msgid "_Do not include unlinked records"
 msgstr "_Ikke ta med poster som er ikke er lenket"
 
-#: ../src/ExportOptions.py:94 ../src/plugins/EventCmp.py:144
+#: ../src/ExportOptions.py:107 ../src/plugins/EventCmp.py:144
 #: ../src/plugins/ExportCSV.py:183 ../src/plugins/ExportVCalendar.py:89
 #: ../src/plugins/ExportVCard.py:87 ../src/plugins/WriteFtree.py:88
 #: ../src/plugins/WriteGeneWeb.py:93 ../src/ReportBase/_ReportUtils.py:2953
 msgid "Entire Database"
 msgstr "Hele databasen"
 
-#: ../src/ExportOptions.py:120 ../src/plugins/DescendReport.py:145
+#: ../src/ExportOptions.py:146 ../src/plugins/DescendReport.py:145
 #: ../src/plugins/ExportCSV.py:190 ../src/plugins/ExportVCalendar.py:96
 #: ../src/plugins/ExportVCard.py:94 ../src/plugins/WriteFtree.py:95
 #: ../src/plugins/WriteGeneWeb.py:100 ../src/ReportBase/_ReportUtils.py:2957
@@ -735,7 +745,7 @@ msgstr "Hele databasen"
 msgid "Descendants of %s"
 msgstr "Etterkommere av %s"
 
-#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:196
+#: ../src/ExportOptions.py:152 ../src/plugins/ExportCSV.py:196
 #: ../src/plugins/ExportVCalendar.py:102 ../src/plugins/ExportVCard.py:100
 #: ../src/plugins/WriteFtree.py:101 ../src/plugins/WriteGeneWeb.py:106
 #: ../src/ReportBase/_ReportUtils.py:2965
@@ -743,7 +753,7 @@ msgstr "Etterkommere av %s"
 msgid "Ancestors of %s"
 msgstr "Aner av %s"
 
-#: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:202
+#: ../src/ExportOptions.py:158 ../src/plugins/ExportCSV.py:202
 #: ../src/plugins/ExportVCalendar.py:108 ../src/plugins/ExportVCard.py:106
 #: ../src/plugins/WriteFtree.py:107 ../src/plugins/WriteGeneWeb.py:112
 #: ../src/ReportBase/_ReportUtils.py:2969
@@ -1265,7 +1275,7 @@ msgstr " Legg til bokmerke"
 #: ../src/plugins/NarrativeWeb.py:626 ../src/plugins/NarrativeWeb.py:1249
 #: ../src/plugins/NarrativeWeb.py:1590 ../src/plugins/NarrativeWeb.py:2001
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
-#: ../src/plugins/OnThisDay.py:79
+#: ../src/plugins/OnThisDay.py:79 ../src/plugins/PlaceReport.py:150
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
@@ -1501,7 +1511,7 @@ msgstr "Dette elementet er for øyeblikket i bruk. Hvis du sletter det vil det b
 msgid "Deleting item will remove it from the database."
 msgstr "Sletting av elementet vil fjerne det fra databasen."
 
-#: ../src/PageView.py:297 ../src/DataViews/PersonView.py:605
+#: ../src/PageView.py:297 ../src/DataViews/PersonView.py:604
 #, python-format
 msgid "Delete %s?"
 msgstr "Vil du slette %s?"
@@ -1600,19 +1610,19 @@ msgstr "R_edigere..."
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1054 ../src/DataViews/PersonView.py:912
+#: ../src/PageView.py:1054 ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr "Eksportere visningsresultat som et regneark"
 
-#: ../src/PageView.py:1062 ../src/DataViews/PersonView.py:920
+#: ../src/PageView.py:1062 ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr "Format:"
 
-#: ../src/PageView.py:1067 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1067 ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1068 ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1068 ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr "Open Document Regneark"
 
@@ -1906,7 +1916,7 @@ msgstr "Årsak"
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:53
 #: ../src/plugins/MarkerReport.py:307 ../src/plugins/NarrativeWeb.py:2001
-#: ../src/gen/lib/attrtype.py:65
+#: ../src/plugins/PlaceReport.py:150 ../src/gen/lib/attrtype.py:65
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Beskrivelse"
@@ -2944,20 +2954,20 @@ msgid "Compare People"
 msgstr "Sammenligne personer"
 
 #: ../src/Merge/_MergePerson.py:97 ../src/Merge/_MergePerson.py:102
-#: ../src/Merge/_MergePerson.py:274 ../src/Merge/_MergePerson.py:281
-#: ../src/Merge/_MergePerson.py:312 ../src/Merge/_MergePerson.py:317
+#: ../src/Merge/_MergePerson.py:275 ../src/Merge/_MergePerson.py:282
+#: ../src/Merge/_MergePerson.py:313 ../src/Merge/_MergePerson.py:318
 #: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
 msgid "Cannot merge people"
 msgstr "Kan ikke flette sammen personer"
 
-#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:275
-#: ../src/Merge/_MergePerson.py:313
+#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
+#: ../src/Merge/_MergePerson.py:314
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Ektefeller kan ikke flettes sammen. For å flette disse personene, må du først bryte relasjonene mellom dem."
 
-#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:282
-#: ../src/Merge/_MergePerson.py:318
+#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:283
+#: ../src/Merge/_MergePerson.py:319
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "En forelder og et barn kan ikke flettes. For å flette disse personene, må du først bryte relasjonen mellom dem."
 
@@ -3011,7 +3021,7 @@ msgstr "Fant ingen ektefeller eller barn"
 msgid "Addresses"
 msgstr "Adresser"
 
-#: ../src/Merge/_MergePerson.py:292 ../src/Merge/_MergePerson.py:332
+#: ../src/Merge/_MergePerson.py:293 ../src/Merge/_MergePerson.py:333
 msgid "Merge People"
 msgstr "Flett sammen personer"
 
@@ -3401,32 +3411,32 @@ msgstr "Velg personkolonner"
 msgid "Active person not visible"
 msgstr "Den aktive personens er ikke synlig"
 
-#: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "Oppdater visningen ..."
 
-#: ../src/DataViews/PersonView.py:602
+#: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
 msgstr "Å slette personen vil fjerne vedkommende fra databasen."
 
-#: ../src/DataViews/PersonView.py:607
+#: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
 msgstr "_Slett en person"
 
-#: ../src/DataViews/PersonView.py:622
+#: ../src/DataViews/PersonView.py:621
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Slett person (%s)"
 
-#: ../src/DataViews/PersonView.py:897
+#: ../src/DataViews/PersonView.py:896
 msgid "Go to default person"
 msgstr "Gå til standardperson"
 
-#: ../src/DataViews/PersonView.py:902
+#: ../src/DataViews/PersonView.py:901
 msgid "Edit selected person"
 msgstr "Rediger den valgte personen"
 
-#: ../src/DataViews/PersonView.py:908
+#: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
 msgstr "Fjern den valgte personen"
 
@@ -3786,8 +3796,8 @@ msgstr "Nøyaktig to kilder må velges for å gjennomføre en fletting.  Kilde n
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1503
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1508 ../src/plugins/ExportCSV.py:333
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1515
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1520 ../src/plugins/ExportCSV.py:333
 #: ../src/plugins/ExportCSV.py:337 ../src/plugins/ExportVCalendar.py:208
 #: ../src/plugins/ExportVCalendar.py:212 ../src/plugins/ExportVCard.py:185
 #: ../src/plugins/ExportVCard.py:189 ../src/plugins/NarrativeWeb.py:2677
@@ -4661,7 +4671,7 @@ msgstr "Legg til Mediaobjekt (%s)"
 msgid "Edit Media Object (%s)"
 msgstr "Rediger mediaobjekt (%s)"
 
-#: ../src/Editors/_EditMedia.py:339
+#: ../src/Editors/_EditMedia.py:362
 msgid "Remove Media Object"
 msgstr "Fjern mediaobjekt"
 
@@ -5323,43 +5333,47 @@ msgstr "Vitners kommentar: %s"
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "GRAMPS-filen du importerer ble laget med GRAMPS versjon %s, men du kjører en eldre versjon %s. Filen vil ikke bli importert. Vennligst oppgrader til siste versjon av GRAMPS og prøv på nytt."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:351
+#: ../src/GrampsDbUtils/_WriteGedcom.py:355
 msgid "Filtering private data"
 msgstr "Filtrere private data"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:358
+#: ../src/GrampsDbUtils/_WriteGedcom.py:362
 msgid "Filtering living persons"
 msgstr "Filter på levende personer"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:368
-msgid "Applying selected filter"
-msgstr "Aktivere det valgte filteret"
+#: ../src/GrampsDbUtils/_WriteGedcom.py:372
+msgid "Applying selected person filter"
+msgstr "Aktivere det valgte personfilteret"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:377
+#: ../src/GrampsDbUtils/_WriteGedcom.py:380
+msgid "Applying selected note filter"
+msgstr "Aktivere det valgte notatfilteret"
+
+#: ../src/GrampsDbUtils/_WriteGedcom.py:389
 msgid "Filtering unlinked records"
 msgstr "Filter poster som ikke er lenket"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:547
+#: ../src/GrampsDbUtils/_WriteGedcom.py:559
 msgid "Writing individuals"
 msgstr "Skriver personer"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:889
+#: ../src/GrampsDbUtils/_WriteGedcom.py:901
 msgid "Writing families"
 msgstr "Skriver familier"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1052
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1064
 msgid "Writing sources"
 msgstr "Skriver kilder"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1086
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1098
 msgid "Writing notes"
 msgstr "Skriver notater"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1123
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1135
 msgid "Writing repositories"
 msgstr "Skriver oppbevaringssteder"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1506
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1518
 msgid "Export failed"
 msgstr "Eksporteringen feilet"
 
@@ -5368,15 +5382,15 @@ msgstr "Eksporteringen feilet"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1516
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1528
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1517
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1529
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1519
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1531
 msgid "GEDCOM export options"
 msgstr "GEDCOM-eksportinnstillinger"
 
@@ -5385,15 +5399,15 @@ msgstr "GEDCOM-eksportinnstillinger"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteXML.py:133
+#: ../src/GrampsDbUtils/_WriteXML.py:140
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS _XML-database"
 
-#: ../src/GrampsDbUtils/_WriteXML.py:134
+#: ../src/GrampsDbUtils/_WriteXML.py:141
 msgid "The GRAMPS XML database is a text version of a family tree. It is read-write compatible with the present GRAMPS database format."
 msgstr "GRAMPS XML-database er en tekstversjon av slektstreet. Det er både lese- og skrivekompatibelt med det nåværende databaseformatet til GRAMPS."
 
-#: ../src/GrampsDbUtils/_WriteXML.py:137
+#: ../src/GrampsDbUtils/_WriteXML.py:144
 msgid "GRAMPS XML export options"
 msgstr "GRAMPS-XML eksportinnstillinger"
 
@@ -5626,20 +5640,21 @@ msgstr "Alle hendelser"
 #: ../src/plugins/ExtractCity.py:648 ../src/plugins/FamilyGroup.py:773
 #: ../src/plugins/FanChart.py:444 ../src/plugins/FilterByName.py:235
 #: ../src/plugins/FindDupes.py:701 ../src/plugins/GVFamilyLines.py:1030
-#: ../src/plugins/GVHourGlass.py:303 ../src/plugins/GVRelGraph.py:570
+#: ../src/plugins/GVHourGlass.py:303 ../src/plugins/GVRelGraph.py:569
 #: ../src/plugins/IndivComplete.py:644 ../src/plugins/KinshipReport.py:408
 #: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:242
 #: ../src/plugins/lineage.py:253 ../src/plugins/MarkerReport.py:526
 #: ../src/plugins/NarrativeWeb.py:3325 ../src/plugins/NotRelated.py:437
 #: ../src/plugins/NumberOfAncestorsReport.py:200
 #: ../src/plugins/OnThisDay.py:146 ../src/plugins/PatchNames.py:374
-#: ../src/plugins/Rebuild.py:120 ../src/plugins/References.py:105
-#: ../src/plugins/RelCalc.py:270 ../src/plugins/RemoveUnused.py:496
-#: ../src/plugins/ReorderIds.py:239 ../src/plugins/SameSurnames.py:104
-#: ../src/plugins/SimpleBookTitle.py:188 ../src/plugins/SoundGen.py:154
-#: ../src/plugins/StatisticsChart.py:902 ../src/plugins/Summary.py:302
-#: ../src/plugins/TimeLine.py:466 ../src/plugins/Verify.py:1580
-#: ../src/plugins/WebCal.py:1705 ../src/plugins/RebuildRefMap.py:122
+#: ../src/plugins/PlaceReport.py:401 ../src/plugins/Rebuild.py:120
+#: ../src/plugins/References.py:105 ../src/plugins/RelCalc.py:270
+#: ../src/plugins/RemoveUnused.py:496 ../src/plugins/ReorderIds.py:239
+#: ../src/plugins/SameSurnames.py:104 ../src/plugins/SimpleBookTitle.py:188
+#: ../src/plugins/SoundGen.py:154 ../src/plugins/StatisticsChart.py:902
+#: ../src/plugins/Summary.py:302 ../src/plugins/TimeLine.py:466
+#: ../src/plugins/Verify.py:1580 ../src/plugins/WebCal.py:1705
+#: ../src/plugins/RebuildRefMap.py:122
 msgid "Stable"
 msgstr "Stabil"
 
@@ -5872,13 +5887,13 @@ msgstr "Generasjon %d"
 #: ../src/plugins/DetAncestralReport.py:698
 #: ../src/plugins/DetDescendantReport.py:679
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:431
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:430
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:337
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:3034
 #: ../src/plugins/NumberOfAncestorsReport.py:159
-#: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:679
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:1162
-#: ../src/ReportBase/_ReportDialog.py:342
+#: ../src/plugins/PlaceReport.py:250 ../src/plugins/SimpleBookTitle.py:117
+#: ../src/plugins/StatisticsChart.py:679 ../src/plugins/TimeLine.py:312
+#: ../src/plugins/WebCal.py:1162 ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
 
@@ -6047,7 +6062,7 @@ msgstr "Innstillinger"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:493
-#: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:434
+#: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:433
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:3055
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:314
 #: ../src/plugins/WebCal.py:1174 ../src/FilterEditor/_FilterEditor.py:114
@@ -6059,14 +6074,14 @@ msgid "Select filter to restrict people"
 msgstr "Velg filter for å begrense antall personer"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3061 ../src/plugins/StatisticsChart.py:687
 #: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:1180
 msgid "Filter Person"
 msgstr "Filtrere person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:3062 ../src/plugins/StatisticsChart.py:688
 #: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:1181
 msgid "The center person for the filter"
@@ -6553,7 +6568,7 @@ msgid "Looking for unused objects"
 msgstr "Søker etter ubrukte objekter"
 
 #: ../src/plugins/Check.py:534 ../src/plugins/WriteCD.py:236
-#: ../src/plugins/WritePkg.py:166
+#: ../src/plugins/WritePkg.py:173
 msgid "Select file"
 msgstr "Velg en fil"
 
@@ -8576,7 +8591,7 @@ msgstr "Maksimalt antall barn som skal inkluderes."
 msgid "Images"
 msgstr "Bilder"
 
-#: ../src/plugins/GVFamilyLines.py:188 ../src/plugins/GVRelGraph.py:478
+#: ../src/plugins/GVFamilyLines.py:188 ../src/plugins/GVRelGraph.py:477
 msgid "Include thumbnail images of people"
 msgstr "Ta med bilde av personer"
 
@@ -8584,22 +8599,22 @@ msgstr "Ta med bilde av personer"
 msgid "Thumbnail location"
 msgstr "Plassering av bilde"
 
-#: ../src/plugins/GVFamilyLines.py:195 ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVFamilyLines.py:195 ../src/plugins/GVRelGraph.py:484
 msgid "Above the name"
 msgstr "Over navnet"
 
-#: ../src/plugins/GVFamilyLines.py:196 ../src/plugins/GVRelGraph.py:486
+#: ../src/plugins/GVFamilyLines.py:196 ../src/plugins/GVRelGraph.py:485
 msgid "Beside the name"
 msgstr "Ved siden av navnet"
 
-#: ../src/plugins/GVFamilyLines.py:198 ../src/plugins/GVRelGraph.py:488
+#: ../src/plugins/GVFamilyLines.py:198 ../src/plugins/GVRelGraph.py:487
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Hvor bildet skal vises i forhold til navnet"
 
 #. ---------------------
 #. ###############################
 #: ../src/plugins/GVFamilyLines.py:205 ../src/plugins/GVHourGlass.py:274
-#: ../src/plugins/GVRelGraph.py:496
+#: ../src/plugins/GVRelGraph.py:495
 msgid "Graph coloring"
 msgstr "Graffarger"
 
@@ -8609,12 +8624,12 @@ msgstr "Menn vil bli vist med blå farge, kvinner med rød farge om ikke annet e
 
 #. see bug report #2180
 #: ../src/plugins/GVFamilyLines.py:214 ../src/plugins/GVHourGlass.py:283
-#: ../src/plugins/GVRelGraph.py:511
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Use rounded corners"
 msgstr "Bruk avrundede hjørner"
 
 #: ../src/plugins/GVFamilyLines.py:215 ../src/plugins/GVHourGlass.py:285
-#: ../src/plugins/GVRelGraph.py:513
+#: ../src/plugins/GVRelGraph.py:512
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Bruk avrundede hjørner for å vise forskjell mellom kvinner og menn."
 
@@ -8718,11 +8733,11 @@ msgid "The number of generations of ancestors to include in the graph"
 msgstr "Antall generasjoner med aner som skal være med i rapporten"
 
 #. ###############################
-#: ../src/plugins/GVHourGlass.py:271 ../src/plugins/GVRelGraph.py:493
+#: ../src/plugins/GVHourGlass.py:271 ../src/plugins/GVRelGraph.py:492
 msgid "Graph Style"
 msgstr "Grafstil"
 
-#: ../src/plugins/GVHourGlass.py:277 ../src/plugins/GVRelGraph.py:499
+#: ../src/plugins/GVHourGlass.py:277 ../src/plugins/GVRelGraph.py:498
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Menn vil bli vist med blå farge, kvinner med rød farge.  Hvis kjønnet er ukjent vil individet bli vist med grå farge."
 
@@ -8750,87 +8765,87 @@ msgstr "Etterkommere <-> forfedre"
 msgid "Descendants - Ancestors"
 msgstr "Etterkommere - forfedre"
 
-#: ../src/plugins/GVRelGraph.py:436
+#: ../src/plugins/GVRelGraph.py:435
 msgid "Determines what people are included in the graph"
 msgstr "Beregner hvilke personer som skal tas med i grafen"
 
-#: ../src/plugins/GVRelGraph.py:448
+#: ../src/plugins/GVRelGraph.py:447
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inkluder fødsels-, ekteskaps- og dødsdatoer"
 
-#: ../src/plugins/GVRelGraph.py:449
+#: ../src/plugins/GVRelGraph.py:448
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Ta med datoene for når personen ble født, gift og/eller døde i grafetikettene."
 
-#: ../src/plugins/GVRelGraph.py:453
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Limit dates to years only"
 msgstr "Reduser datoene til kun år"
 
-#: ../src/plugins/GVRelGraph.py:454
+#: ../src/plugins/GVRelGraph.py:453
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "Skriver kun datoens år, verken måned eller dag, heller ikke dato tilnærminger eller intervaller blir vist."
 
-#: ../src/plugins/GVRelGraph.py:459
+#: ../src/plugins/GVRelGraph.py:458
 msgid "Use place when no date"
 msgstr "Bruk stedsnavn når det ikke finnes dato"
 
-#: ../src/plugins/GVRelGraph.py:460
+#: ../src/plugins/GVRelGraph.py:459
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Når hverken fødsels-, ekteskaps- eller dødsdato er tilgjengelig, vil det korresponderende stedsfeltet bli brukt."
 
-#: ../src/plugins/GVRelGraph.py:465
+#: ../src/plugins/GVRelGraph.py:464
 msgid "Include URLs"
 msgstr "Ta med URL-er (internettadresser)"
 
-#: ../src/plugins/GVRelGraph.py:466
+#: ../src/plugins/GVRelGraph.py:465
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Ta med en URL ved hvert knutepunkt på grafen, slik at PDF- og bildekartfilene kan lages med aktive lenker til filene som lages av nettsiderapporten."
 
-#: ../src/plugins/GVRelGraph.py:473
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include IDs"
 msgstr "Ta med IDer"
 
-#: ../src/plugins/GVRelGraph.py:474
+#: ../src/plugins/GVRelGraph.py:473
 msgid "Include individual and family IDs."
 msgstr "Ta med person og famile IDer."
 
-#: ../src/plugins/GVRelGraph.py:480
+#: ../src/plugins/GVRelGraph.py:479
 msgid "Whether to include thumbnails of people."
 msgstr "Velge å ta med bilde av personer."
 
-#: ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Thumbnail Location"
 msgstr "Plassering av bilde"
 
-#: ../src/plugins/GVRelGraph.py:504
+#: ../src/plugins/GVRelGraph.py:503
 msgid "Arrowhead direction"
 msgstr "Pilhoderetning"
 
-#: ../src/plugins/GVRelGraph.py:507
+#: ../src/plugins/GVRelGraph.py:506
 msgid "Choose the direction that the arrows point."
 msgstr "Velg pilens retning."
 
-#: ../src/plugins/GVRelGraph.py:518
+#: ../src/plugins/GVRelGraph.py:517
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Vis ikke-blodsrelasjoner med stiplede linjer"
 
-#: ../src/plugins/GVRelGraph.py:519
+#: ../src/plugins/GVRelGraph.py:518
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Ikke-blodsrelasjoner vil vises som stiplede linjer i grafen."
 
-#: ../src/plugins/GVRelGraph.py:523
+#: ../src/plugins/GVRelGraph.py:522
 msgid "Show family nodes"
 msgstr "Grupper familier"
 
-#: ../src/plugins/GVRelGraph.py:524
+#: ../src/plugins/GVRelGraph.py:523
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Familier vises som ovaler, forbundet til foreldre og barn."
 
-#: ../src/plugins/GVRelGraph.py:569
+#: ../src/plugins/GVRelGraph.py:568
 msgid "Relationship Graph"
 msgstr "Relasjonsgraf"
 
-#: ../src/plugins/GVRelGraph.py:571
+#: ../src/plugins/GVRelGraph.py:570
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Lager en slektsgraf med GraphViz"
 
@@ -10084,6 +10099,103 @@ msgstr "Hent ut informasjon fra navn"
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
 msgstr "Søker gjennom hele databasen og forsøker å trekke ut titler, kallenavn og etternavnsprefikser som kan være lagret i en persons fornavn."
 
+#. Write the title line. Set in INDEX marker so that this section will be
+#. identified as a major category if this is included in a Book report.
+#: ../src/plugins/PlaceReport.py:93 ../src/plugins/PlaceReport.py:400
+msgid "Place Report"
+msgstr "Stedsrapport"
+
+#: ../src/plugins/PlaceReport.py:118
+#, python-format
+msgid "Gramps ID: %s "
+msgstr "Gramps ID: %s "
+
+#: ../src/plugins/PlaceReport.py:119
+#, python-format
+msgid "Street: %s "
+msgstr "Gate: %s "
+
+#: ../src/plugins/PlaceReport.py:120
+#, python-format
+msgid "Parish: %s "
+msgstr "Prestegjeld: %s "
+
+#: ../src/plugins/PlaceReport.py:121
+#, python-format
+msgid "City: %s "
+msgstr "By: %s "
+
+#: ../src/plugins/PlaceReport.py:122
+#, python-format
+msgid "County: %s "
+msgstr "Fylke: %s "
+
+#: ../src/plugins/PlaceReport.py:123
+#, python-format
+msgid "State: %s"
+msgstr "Stat: %s"
+
+#: ../src/plugins/PlaceReport.py:124
+#, python-format
+msgid "Country: %s "
+msgstr "Land: %s "
+
+#: ../src/plugins/PlaceReport.py:146
+msgid "Events that happened at this place"
+msgstr "Hendelser har funnet sted på dette stedet"
+
+#: ../src/plugins/PlaceReport.py:150
+msgid "Type of Event"
+msgstr "Hendelsestype"
+
+#: ../src/plugins/PlaceReport.py:209
+msgid "People associated with this place"
+msgstr "Personer med tilknytning til dette stedet"
+
+#: ../src/plugins/PlaceReport.py:256
+msgid "Select using filter"
+msgstr "Velg ved å bruke filter"
+
+#: ../src/plugins/PlaceReport.py:257
+msgid "Select places using a filter"
+msgstr "Velg sted ved å bruke et filter"
+
+#: ../src/plugins/PlaceReport.py:264
+msgid "Select places individually"
+msgstr "Velg steder enkeltvis"
+
+#: ../src/plugins/PlaceReport.py:265
+msgid "List of places to report on"
+msgstr ""
+
+#: ../src/plugins/PlaceReport.py:295
+msgid "The style used for the title of the report."
+msgstr "Stilen som skal brukes på rapportens tittel."
+
+#: ../src/plugins/PlaceReport.py:309
+msgid "The style used for place title."
+msgstr "Stil som skal brukes for stedstittelen."
+
+#: ../src/plugins/PlaceReport.py:321
+msgid "The style used for place details."
+msgstr "Stil som skal brukes på stedsdetaljer."
+
+#: ../src/plugins/PlaceReport.py:333
+msgid "The style used for a column title."
+msgstr "Stil som skal brukes på kolonnetittel."
+
+#: ../src/plugins/PlaceReport.py:347
+msgid "The style used for each section."
+msgstr "Stil som skal brukes på hvert kapittel."
+
+#: ../src/plugins/PlaceReport.py:370
+msgid "The style used for event and person details."
+msgstr "Stil som skal brukes på hendelser og persondetaljer."
+
+#: ../src/plugins/PlaceReport.py:402
+msgid "Produces a textual place report"
+msgstr "Lager en tekstbasert stedsrapport"
+
 #: ../src/plugins/ReadPkg.py:80
 #, python-format
 msgid "Could not create media directory %s"
@@ -10343,6 +10455,7 @@ msgstr "Samsvarer med personer som mangler etternavn"
 #: ../src/Filters/Rules/Person/_SearchName.py:48
 #: ../src/Filters/Rules/Family/_HasRelType.py:50
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:46
+#: ../src/Filters/Rules/Event/_HasData.py:51
 #: ../src/Filters/Rules/Event/_HasType.py:49
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:55
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:51
@@ -11388,15 +11501,15 @@ msgstr "&quot;GeneWeb&quot;-eksportvalg"
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WritePkg.py:227
+#: ../src/plugins/WritePkg.py:234
 msgid "GRAM_PS package (portable XML)"
 msgstr "GRAM_PS-pakke (portable XML)"
 
-#: ../src/plugins/WritePkg.py:228
+#: ../src/plugins/WritePkg.py:235
 msgid "GRAMPS package is an archived XML database together with the media object files."
 msgstr "GRAMPS-pakke er en arkivert XML-database sammen med mediaobjektfiler."
 
-#: ../src/plugins/WritePkg.py:230
+#: ../src/plugins/WritePkg.py:237
 msgid "GRAMPS package export options"
 msgstr "Eksportopsjoner for GRAMPS-pakke"
 
@@ -15997,6 +16110,7 @@ msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
 
 #: ../src/Filters/Rules/_HasEventBase.py:48
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
+#: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/Event/_HasType.py:46
 #: ../src/FilterEditor/_EditRule.py:81
 msgid "Event type:"
@@ -16008,6 +16122,7 @@ msgstr "Hendelsestype:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:49
 #: ../src/Filters/Rules/Family/_HasEvent.py:46
+#: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 msgid "Date:"
 msgstr "Dato:"
@@ -16018,6 +16133,7 @@ msgstr "Dato:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:48
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
+#: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/FilterEditor/_EditRule.py:470
 msgid "Place:"
 msgstr "Sted:"
@@ -16028,6 +16144,7 @@ msgstr "Sted:"
 #: ../src/Filters/Rules/Person/_HasEvent.py:49
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:48
+#: ../src/Filters/Rules/Event/_HasData.py:48
 msgid "Description:"
 msgstr "Beskrivelse:"
 
@@ -17042,6 +17159,14 @@ msgstr "Hendelser med egenskapen <egenskap>"
 #: ../src/Filters/Rules/Event/_HasAttribute.py:47
 msgid "Matches events with the event attribute of a particular value"
 msgstr "Samsvarer med hendelser med en gitt egenskap med en bestemt verdi"
+
+#: ../src/Filters/Rules/Event/_HasData.py:49
+msgid "Events with <data>"
+msgstr "Hendelser med <data>"
+
+#: ../src/Filters/Rules/Event/_HasData.py:50
+msgid "Matches events with data of a particular value"
+msgstr "Samsvarer med hendelser med data av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -19571,3 +19696,4 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
+
