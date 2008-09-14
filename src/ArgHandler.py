@@ -59,6 +59,7 @@ import Config
 import RecentFiles
 import Utils
 import gen.db.exceptions as GX
+import gen
 from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
 from PluginUtils import Tool, PluginManager
@@ -192,27 +193,7 @@ class ArgHandler:
         for opt_ix in range(len(options)):
             option, value = options[opt_ix]
             if option in ( '-O', '--open'):
-                #only family trees can be opened
-                format = 'famtree'
-                fname = value
-                fullpath = os.path.abspath(os.path.expanduser(fname))
-                ftype = Mime.get_type(fullpath)
-                if not os.path.exists(fullpath):
-                    #see if not just a name of a database is given
-                    data = self.dbman.family_tree(fname)
-                    if data is not None:
-                        fname, ftype, title = data
-                    else:
-                        print "Input family tree does not exist:  %s" % fullpath
-                        print "If gedcom, gramps-xml or grdb, use the -i option"
-                        continue
-                else:
-                    if not os.path.isdir(fullpath):
-                        print "A file is given, not an existing family tree",
-                        print ", use the -i option to import in a family tree",
-                        print " instead"
-                        continue
-                self.open = (fname, format)
+                self.handle_open_option(value)
             elif option in ( '-i', '--import'):
                 fname = value
                 fullpath = os.path.abspath(os.path.expanduser(fname))
@@ -323,6 +304,39 @@ class ArgHandler:
             elif option in ('-u', '--force-unlock'):
                 self.force_unlock = True
 
+    def handle_open_option(self, value):
+        """
+        Handle the "-O" or "--open" option.                            
+        """
+        db_path = None
+        
+        # First, check if this is the name of a family tree
+        data = self.dbman.family_tree(value)
+        if data is not None:
+            # This is a known database name. Use it.
+            db_path, ftype, title = data
+        else:
+            # This is not a known database name.
+            # Check if the user provided a db path instead.
+            fullpath = os.path.abspath(os.path.expanduser(value))
+            if os.path.isdir(fullpath):
+                # The user provided a directory. Check if it is a valid tree.
+                name_file_path = os.path.join(fullpath, NAME_FILE)
+                if os.path.isfile(name_file_path):
+                    db_path = fullpath
+
+        if db_path:
+            # We have a potential database path.
+            # Check if it is good.
+            if not self.__check_db(db_path, self.force_unlock):
+                sys.exit(0)
+            self.open = db_path
+        else:
+            print _('Input family tree "%s" does not exist.') % value
+            print _("If gedcom, gramps-xml or grdb, use the -i option to "
+                    "import into a family tree instead")
+            sys.exit(0)
+                
     #-------------------------------------------------------------------------
     # Determine the need for GUI
     #-------------------------------------------------------------------------
@@ -441,30 +455,11 @@ class ArgHandler:
             # Then go on and process the rest of the command line arguments.
             self.cl = bool(self.exports or self.actions)
 
-            name, format = self.open
-            success = False
-
-            if format == 'famtree':
-                path_name = os.path.join(name, NAME_FILE)
-                if os.path.isfile(path_name):
-                    filetype = const.APP_FAMTREE
-                    filename = name
-                    if not self.__check_db(filename, self.force_unlock):
-                        sys.exit(0)
-                    success = True
-                else:
-                    print "No valid Family tree given, cannot be opened."
-                    print "Exiting..." 
-                    sys.exit(1)                
-            else:
-                print "Only Family trees can be opened."
-                print "Exiting..." 
-                sys.exit(0)
+            filename = self.open
 
             try:
                 self.vm.open_activate(filename)
                 print "Opened successfully!"
-                success = True
             except:
                 print "Error opening the file." 
                 print "Exiting..." 
@@ -476,7 +471,12 @@ class ArgHandler:
             if not self.open:
                 # Create empty dir for imported database(s)
                 self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
-                self.vm.db_loader.read_file(self.imp_db_path)
+                
+                newdb = gen.db.GrampsDBDir()
+                newdb.write_version(self.imp_db_path)
+                
+                if not self.vm.db_loader.read_file(self.imp_db_path):
+                    sys.exit(0)
 
             for imp in self.imports:
                 print "Importing: file %s, format %s." % imp
@@ -634,7 +634,7 @@ class ArgHandler:
             if self.imp_db_path:
                 return self.vm.open_activate(self.imp_db_path)
             else:
-                return self.vm.open_activate(self.open[0])
+                return self.vm.open_activate(self.open)
 
     #-------------------------------------------------------------------------
     #
