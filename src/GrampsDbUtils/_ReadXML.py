@@ -2080,7 +2080,7 @@ class GrampsParser(UpdateCallback):
         self.person = None
 
     def stop_description(self, tag):
-        self.event.description = tag
+        self.event.set_description(tag)
 
     def stop_cause(self, tag):
         # The old event's cause is now an attribute
