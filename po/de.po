@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-08 20:58+0200\n"
-"PO-Revision-Date: 2008-09-10 20:28+0200\n"
+"PO-Revision-Date: 2008-09-15 23:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -8619,11 +8619,11 @@ msgstr "Fehlende Informationen"
 #. #########################
 #: ../src/plugins/FamilyGroup.py:648
 msgid "Print fields for missing information"
-msgstr "Drucke Felder für fehlende Angaben"
+msgstr "Drucke Felder für fehlende Informationen"
 
 #: ../src/plugins/FamilyGroup.py:650
 msgid "Whether to include fields for missing information."
-msgstr "Ob Felder für fehlende Angaben gedruckt werden."
+msgstr "Ob Felder für fehlende Informationen enthalten sind."
 
 #: ../src/plugins/FamilyGroup.py:688
 msgid "The style used for the text related to the children."
@@ -8638,8 +8638,8 @@ msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Erstellt einen Familiengruppenbericht, der Informationen über ein Elternpaar "
-"und dessen Kinder enthält."
+"Erstellt einen Familiengruppenbericht, der Informationen über einen Satz Eltern "
+"und deren Kinder enthält."
 
 #: ../src/plugins/FanChart.py:191
 #, python-format
@@ -8680,7 +8680,7 @@ msgstr "von der Generation abhängig"
 
 #: ../src/plugins/FanChart.py:362
 msgid "Background color is either white or generation dependent"
-msgstr "Hintergrundfarbe ist entweder weiß oder Generationsabhängig"
+msgstr "Hintergrundfarbe ist entweder weiß oder von der Generation abhängig"
 
 #: ../src/plugins/FanChart.py:366
 msgid "Orientation of radial texts"
@@ -8708,7 +8708,7 @@ msgstr "Fächergrafik"
 
 #: ../src/plugins/FanChart.py:446
 msgid "Produces fan charts"
-msgstr "Gibt eine Fächergrafik aus"
+msgstr "Erstellt Fächergrafiken"
 
 #. force translation
 #: ../src/plugins/FilterByName.py:37
@@ -8753,11 +8753,11 @@ msgstr "Personen mit Medien"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "media references"
-msgstr "Medien-Referenzen"
+msgstr "Medienreferenzen"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "unique media"
-msgstr "einzelne Medien"
+msgstr "verschiedene Medien"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "missing media"
@@ -8782,7 +8782,7 @@ msgstr "Filtern nach %s"
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
 #: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
 msgid "Name type"
-msgstr "Namen Art"
+msgstr "Namentyp"
 
 #: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
@@ -8794,11 +8794,11 @@ msgstr "Geburtereignis fehlt"
 
 #: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
-msgstr "Zahl"
+msgstr "Zählung"
 
 #: ../src/plugins/FilterByName.py:157
 msgid "Media count"
-msgstr "Medien Anzahl"
+msgstr "Medienanzahl"
 
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
@@ -8812,7 +8812,7 @@ msgstr "Medien"
 
 #: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
-msgstr "Einzelnes Medium"
+msgstr "Verschiedene Medien"
 
 #: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
@@ -8845,7 +8845,7 @@ msgstr "Werkzeugeinstellungen"
 
 #: ../src/plugins/FindDupes.py:145
 msgid "Find Duplicates tool"
-msgstr "Finden von Dubletten"
+msgstr "Werkzeug zum finden von Dubletten"
 
 #: ../src/plugins/FindDupes.py:178
 msgid "No matches found"
@@ -8861,11 +8861,11 @@ msgstr "Finde Duplikate"
 
 #: ../src/plugins/FindDupes.py:189
 msgid "Looking for duplicate people"
-msgstr "Finden von doppelt vorkommenden Personen"
+msgstr "Suche nach doppelt vorkommenden Personen"
 
 #: ../src/plugins/FindDupes.py:198
 msgid "Pass 1: Building preliminary lists"
-msgstr "Durchgang 1 : Erstellt vorausgehende Listen"
+msgstr "Durchgang 1: Erstelle Vorbereitungslisten"
 
 #: ../src/plugins/FindDupes.py:216
 msgid "Pass 2: Calculating potential matches"
@@ -8961,7 +8961,7 @@ msgstr "Familienfarben"
 
 #: ../src/plugins/GVFamilyLines.py:119
 msgid "Colours to use for various family lines."
-msgstr " Farben die für verschiedene Familienlinien benutzt wird."
+msgstr " Farben die für verschiedene Familienlinien benutzt werden"
 
 #: ../src/plugins/GVFamilyLines.py:127
 msgid "The colour to use to display men."
@@ -8973,7 +8973,7 @@ msgstr "Die Farbe die für die Anzeige von Frauen benutzt wird."
 
 #: ../src/plugins/GVFamilyLines.py:135
 msgid "The colour to use when the gender is unknown."
-msgstr "Die Farbe die für die Anzeige benutzt wird wenn das Geschlecht unbekannt ist."
+msgstr "Die Farbe die für die benutzt wird wenn das Geschlecht unbekannt ist."
 
 #: ../src/plugins/GVFamilyLines.py:139
 msgid "The colour to use to display families."
@@ -8985,7 +8985,7 @@ msgstr "Anzahl der Eltern begrenzen"
 
 #: ../src/plugins/GVFamilyLines.py:144 ../src/plugins/GVFamilyLines.py:149
 msgid "The maximum number of ancestors to include."
-msgstr "Maximale Anzahl der berücksichtigten Vorfahren."
+msgstr "Maximale Anzahl der enthaltenen Vorfahren."
 
 #: ../src/plugins/GVFamilyLines.py:152
 msgid "Limit the number of children"
@@ -8994,7 +8994,7 @@ msgstr "Anzahl der Kinder begrenzen"
 #: ../src/plugins/GVFamilyLines.py:154 ../src/plugins/GVFamilyLines.py:160
 #: ../src/plugins/GVFamilyLines.py:169
 msgid "The maximum number of children to include."
-msgstr "Maximale Anzahl der berücksichtigten Kinder"
+msgstr "Maximale Anzahl der enthaltenen Kinder."
 
 #. --------------------
 #: ../src/plugins/GVFamilyLines.py:164
@@ -9093,7 +9093,7 @@ msgstr "Finde Vorfahren und Kinder"
 #. number
 #: ../src/plugins/GVFamilyLines.py:322
 msgid "Writing family lines"
-msgstr "Schreibe Familienstämme"
+msgstr "Schreibe Familienlinien"
 
 #: ../src/plugins/GVFamilyLines.py:805
 #, python-format
@@ -9106,7 +9106,7 @@ msgstr "Grafik der Familienlinien"
 
 #: ../src/plugins/GVFamilyLines.py:880
 msgid "Produces family line graphs using GraphViz"
-msgstr "Generiert Familien Linien Diagramm mit GraphViz"
+msgstr "Generiert Familienliniendiagramm mit GraphViz"
 
 #: ../src/plugins/GVHourGlass.py:185
 msgid "The center person for the graph"
@@ -9114,7 +9114,7 @@ msgstr "Die Zentrale Person für die Grafik"
 
 #: ../src/plugins/GVHourGlass.py:188 ../src/plugins/KinshipReport.py:341
 msgid "Max Descendant Generations"
-msgstr "Max. Nachkommen Generationen"
+msgstr "Max. Nachkommengenerationen"
 
 #: ../src/plugins/GVHourGlass.py:189
 msgid "The number of generations of descendants to include in the graph"
@@ -9122,11 +9122,11 @@ msgstr "Die Anzahl der Generationen von Nachkommen für die Grafik"
 
 #: ../src/plugins/GVHourGlass.py:193 ../src/plugins/KinshipReport.py:345
 msgid "Max Ancestor Generations"
-msgstr "Max. Vorfahren Generationen"
+msgstr "Max. Vorfahrengenerationen"
 
 #: ../src/plugins/GVHourGlass.py:194
 msgid "The number of generations of ancestors to include in the graph"
-msgstr "Die Anzahl der Generationen von Vorfahren in der Grafik"
+msgstr "Die Anzahl der Vorfahrengenerationen in der Grafik"
 
 #: ../src/plugins/GVHourGlass.py:209
 msgid "Hourglass Graph"
@@ -9199,7 +9199,7 @@ msgstr ""
 
 #: ../src/plugins/GVRelGraph.py:460
 msgid "Use place when no date"
-msgstr "Benutze Ort wenn kein Datum vorhanden"
+msgstr "Benutze Ort wenn kein Datum vorhanden ist"
 
 #: ../src/plugins/GVRelGraph.py:461
 msgid ""
@@ -9229,7 +9229,7 @@ msgstr "IDs aufnehmen"
 
 #: ../src/plugins/GVRelGraph.py:475
 msgid "Include individual and family IDs."
-msgstr "IDs des Probanden und seiner Familie aufnehmen."
+msgstr "Personen und Familie IDs aufnehmen."
 
 #: ../src/plugins/GVRelGraph.py:481
 msgid "Whether to include thumbnails of people."
@@ -9242,7 +9242,7 @@ msgstr "Miniaturbilder Position"
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:494
 msgid "Graph Style"
-msgstr "Diagrammart"
+msgstr "Diagrammstil"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:497
@@ -9254,8 +9254,8 @@ msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
-"Männer haben einen blauen Rand, Frauen einen roten. Bei unbekanntem "
-"Geschlecht ist der Rand grau."
+"Männer werden in blau gezeigt, Frauen in rot. Personen mit unbekanntem "
+"Geschlecht in grau."
 
 #: ../src/plugins/GVRelGraph.py:505
 msgid "Arrowhead direction"
@@ -9279,17 +9279,15 @@ msgstr "Familienknoten anzeigen"
 
 #: ../src/plugins/GVRelGraph.py:518
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, "
-"erscheinen"
+msgstr "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
 
 #: ../src/plugins/GVRelGraph.py:562
 msgid "Relationship Graph"
-msgstr "Beziehungsgrafik"
+msgstr "Beziehungengrafik"
 
 #: ../src/plugins/GVRelGraph.py:564
 msgid "Produces relationship graphs using Graphviz"
-msgstr "Erstellt eine Beziehungsgrafik mit GraphViz."
+msgstr "Erstellt eine Beziehungengrafik mit GraphViz."
 
 #: ../src/plugins/ImportCSV.py:158
 msgid "Given name"
@@ -9333,7 +9331,7 @@ msgstr "Quelle"
 
 #: ../src/plugins/ImportCSV.py:239
 msgid "note"
-msgstr "Hinweis"
+msgstr "Notiz"
 
 #: ../src/plugins/ImportCSV.py:241
 msgid "birth place"
@@ -9487,11 +9485,11 @@ msgstr "Übersicht für %s"
 #: ../src/plugins/NarrativeWeb.py:1562 ../src/plugins/NarrativeWeb.py:1607
 #: ../src/plugins/NarrativeWeb.py:1838 ../src/ReportBase/_ReportUtils.py:1717
 msgid "Could not add photo to page"
-msgstr "Es konnten keine Photos zu der Seite hinzugefügt werden"
+msgstr "Kann Photo nicht zur Seite hinzugen"
 
 #: ../src/plugins/IndivComplete.py:421 ../src/ReportBase/_ReportUtils.py:1718
 msgid "File does not exist"
-msgstr "Die Datei existiert nicht"
+msgstr "Datei existiert nicht"
 
 #: ../src/plugins/IndivComplete.py:439
 msgid "Male"
@@ -9519,7 +9517,7 @@ msgstr "Der Stil, der für Kategoriebeschriftungen verwendet wird."
 
 #: ../src/plugins/IndivComplete.py:590
 msgid "The style used for the spouse's name."
-msgstr "Der Stil, der für den Namen des (Ehe-)Partners verwendet wird."
+msgstr "Der Stil, der für den Namen des Partners verwendet wird."
 
 #: ../src/plugins/IndivComplete.py:642
 msgid "Complete Individual Report"
@@ -9541,11 +9539,11 @@ msgstr "Partner von %s"
 
 #: ../src/plugins/KinshipReport.py:342
 msgid "The maximum number of descendant generations"
-msgstr "Maximale Anzahl der Nachkommen Generationen"
+msgstr "Maximale Anzahl der Nachkommengenerationen"
 
 #: ../src/plugins/KinshipReport.py:346
 msgid "The maximum number of ancestor generations"
-msgstr "Maximale Anzahl der Vorfahren Generationen"
+msgstr "Maximale Anzahl der Vorfahrengenerationen"
 
 #: ../src/plugins/KinshipReport.py:350
 msgid "Whether to include spouses"
@@ -9569,11 +9567,11 @@ msgstr "Ob Tanten/Onkel/Neffen/Nichten aufgenommen werden"
 
 #: ../src/plugins/KinshipReport.py:382
 msgid "The basic style used for sub-headings."
-msgstr "Der Standard Stil für Untertitel"
+msgstr "Der Standardstil für Untertitel"
 
 #: ../src/plugins/KinshipReport.py:404
 msgid "Kinship Report"
-msgstr "Verwandtschaftsbericht"
+msgstr "Verwandtschaftbericht"
 
 #: ../src/plugins/KinshipReport.py:406
 msgid "Produces a textual report of kinship for a given person"
@@ -9655,7 +9653,7 @@ msgstr "Direkte Linie weiblicher Nachkommen"
 
 #: ../src/plugins/lineage.py:124 ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "FEHLER: Zu viele Ebenen in dem Baum (wohl eine Schleife?)."
+msgstr "FEHLER: Zu viele Ebenen in dem Baum (vieleicht eine Schleife?)."
 
 #: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
@@ -9710,11 +9708,11 @@ msgstr "Erstellt eine Liste von Personen mit einem bestimmten Marker"
 
 #: ../src/plugins/MediaManager.py:76 ../src/plugins/MediaManager.py:585
 msgid "Media Manager"
-msgstr "Multimediaverwalter"
+msgstr "Medienverwalter"
 
 #: ../src/plugins/MediaManager.py:80
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS-Multimediaverwalter"
+msgstr "GRAMPS-Medienverwalter"
 
 #: ../src/plugins/MediaManager.py:82
 msgid "Selecting operation"
@@ -9741,13 +9739,13 @@ msgid ""
 msgstr ""
 "Dieses Werkzeug erlaubt dir Änderungen an Multimedia-Objekten, die in GRAMPS "
 "gespeichert sind, vorzunehmen. Es muss jedoch eine wichtige Unterscheidung "
-"zwischen GRAMPS Multimedia-Objekten und dessen Dateien gemacht werden.\n"
+"zwischen GRAMPS Medienobjekten und deren Dateien gemacht werden.\n"
 "\n"
-"Das GRAMPS Multimedia-Objekt ist eine Sammlung von Daten über die "
+"Das GRAMPS Medienobjekt ist eine Sammlung von Daten über die "
 "entsprechende Datei: Der Dateiname und/oder Pfad, seine Bezeichnung, ID, "
 "Notizen, Quellenreferenzen, usw. Diese Daten <b> sind nicht in der Datei "
 "selber enthalten</b>.\n"
-"Die Dateien umfassenden Bilder, Klang, Video usw. bestehen getrennt auf der "
+"Die Dateien die Bilder, Klänge, Videos usw. enthalten bestehen getrennt auf der "
 "Festplatte. Diese Dateien werden nicht von GRAMPS verwaltet und gehören "
 "nicht in die GRAMPS Datenbank. Die GRAMPS Datenbank speichert nur den Pfad "
 "und Dateinamen ab.\n"
@@ -9777,19 +9775,19 @@ msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
 msgstr ""
-"Der gewählte Vorgang wurde erfolgreich abgeschlossen. Du kannst jetzt OK zum "
+"Die gewählte Aktion wurde erfolgreich abgeschlossen. Du kannst jetzt OK zum "
 "Fortfahren drücken."
 
 #: ../src/plugins/MediaManager.py:291
 msgid "Operation failed"
-msgstr "Arbeitsvorgang fehlgeschlagen"
+msgstr "Aktion fehlgeschlagen"
 
 #: ../src/plugins/MediaManager.py:293
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
 msgstr ""
-"Es gab einen Fehler während des Laufens der ausgewählten Operation. Du "
+"Es gab einen Fehler während des Laufens der ausgewählten Aktion. Du "
 "solltest versuchen, das Werkzeug erneut zu starten. "
 
 #: ../src/plugins/MediaManager.py:330
@@ -9799,13 +9797,13 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr ""
-"Die folgende Aktion führt durch:\n"
+"Die folgende Aktion wird ausgeführt:\n"
 "\n"
 "Operation:\t%s"
 
 #: ../src/plugins/MediaManager.py:403
 msgid "Replace _substrings in the path"
-msgstr "Ersetze die Zeichenfolge _ in dem Pfad"
+msgstr "Ersetze die _Zeichenfolge in dem Pfad"
 
 #: ../src/plugins/MediaManager.py:404
 msgid ""
@@ -9814,7 +9812,7 @@ msgid ""
 "from one directory to another"
 msgstr ""
 "Dieses Werkzeug erlaubt eine bestimmte Zeichenfolge in den Pfaden von "
-"Multimedia-Objekten mit anderen Zeichenfolge zu ersetzen. Es ist sehr "
+"Medienobjekten durch andere Zeichenfolge zu ersetzen. Es ist sehr "
 "nützlich beim Verschieben von Multimediadateien von einem in ein anderes "
 "Verzeichnis"
 
@@ -9839,11 +9837,11 @@ msgid ""
 "Replace:\t\t%s\n"
 "With:\t\t%s"
 msgstr ""
-"Die folgende Aktion führt durch:\n"
+"Die folgende Aktion wird durchgeführt:\n"
 "\n"
-"Operation:\t%s\n"
+"Aktion:\t%s\n"
 "Ersetzt:\t\t%s\n"
-"Mit:\t\t%s"
+"Durch:\t\t%s"
 
 #: ../src/plugins/MediaManager.py:486
 msgid "Convert paths from relative to _absolute"
@@ -9857,7 +9855,7 @@ msgid ""
 msgstr ""
 "Dieses Werkzeug erlaubt relative Medienpfade in absolute zu konvertieren. Es "
 "macht dies durch voranstellen des Grundpfades aus den Voreinstellungen oder "
-"wenn diese nicht gesetzt wurden Ihr Heimatverzeichnis."
+"wenn dieser nicht gesetzt wurde Ihr Heimatverzeichnis."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
@@ -9870,9 +9868,9 @@ msgid ""
 "Preferences, or if that is not set, your home directory. A relative path "
 "allows to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Dieses Werkzeug erlaubt absolute Multimediapfade in relative zu "
+"Dieses Werkzeug erlaubt absolute Medienpfade in relative zu "
 "konvertieren. Der relative Pfad ist relativ zum Grundpfad aus den "
-"Voreinstellungen oder wenn diese nicht gesetzt ist zu deinem "
+"Voreinstellungen oder wenn dieser nicht gesetzt ist zu deinem "
 "Heimatverzeichnis. Ein relativer Pfad erlaubt dir, einen Dateiort an einen "
 "Grundpfad zu binden der deinen Bedürfnissen angepasst werden kann."
 
@@ -9882,23 +9880,23 @@ msgstr "Verwaltet Stapeloperationen von Mediendateien"
 
 #: ../src/plugins/NarrativeWeb.py:105
 msgid "Basic - Ash"
-msgstr "Basic - Asche"
+msgstr "Einfach - Asche"
 
 #: ../src/plugins/NarrativeWeb.py:106
 msgid "Basic - Cypress"
-msgstr "Basic - Zypresse"
+msgstr "Einfach - Zypresse"
 
 #: ../src/plugins/NarrativeWeb.py:107
 msgid "Basic - Lilac"
-msgstr "Basic - Lila"
+msgstr "Einfach - Lila"
 
 #: ../src/plugins/NarrativeWeb.py:108
 msgid "Basic - Peach"
-msgstr "Basic - Pfirsich"
+msgstr "Einfach - Pfirsich"
 
 #: ../src/plugins/NarrativeWeb.py:109
 msgid "Basic - Spruce"
-msgstr "Basic - Tannengrün"
+msgstr "Einfach - Tannengrün"
 
 #: ../src/plugins/NarrativeWeb.py:110
 msgid "Mainz"
@@ -9948,11 +9946,11 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:173 ../src/plugins/WebCal.py:144
 msgid "No copyright notice"
-msgstr "Kein Copyright"
+msgstr "Keine Copyrightnotiz"
 
 #: ../src/plugins/NarrativeWeb.py:254
 msgid "Possible destination error"
-msgstr "Eventuell Ziel Fehler"
+msgstr "Möglicher Zielfehler"
 
 #: ../src/plugins/NarrativeWeb.py:255
 msgid ""
@@ -9961,7 +9959,7 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
-"Es scheint Du hast dein Zielverzeichnis auf ein Verzeichnis, das für "
+"Es scheint du hast dein Zielverzeichnis auf ein Verzeichnis, das für "
 "Datenspeicherung benutzt wird gesetzt. Dies kann zu Problemen mit dem "
 "Dateimanagement führen. Es wird empfohlen das du ein anderes Verzeichnis für "
 "deine erstellten Webseiten wählst."
@@ -9974,7 +9972,7 @@ msgstr "&copy; %(year)d %(person)s"
 #: ../src/plugins/NarrativeWeb.py:413 ../src/plugins/WebCal.py:406
 #, python-format
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr "Erstellt von <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)s"
+msgstr "Erstellt mit <a href=\"http://gramps-project.org\">GRAMPS</a> am %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:424
 #, python-format
@@ -10082,7 +10080,7 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:1269
 msgid "Next"
-msgstr "Nächstes"
+msgstr "Vor"
 
 #: ../src/plugins/NarrativeWeb.py:1299 ../src/plugins/NarrativeWeb.py:1327
 msgid "The file has been moved or deleted"
@@ -10209,7 +10207,7 @@ msgstr "Filtern"
 
 #: ../src/plugins/NarrativeWeb.py:2776
 msgid "Creating individual pages"
-msgstr "Erstellen von einzelnen Seiten"
+msgstr "Erstelle Personen Seiten"
 
 #: ../src/plugins/NarrativeWeb.py:2800
 msgid "Creating surname pages"
@@ -10233,7 +10231,7 @@ msgstr "Webseiten in ein .tar.gz Archiv abspeichern"
 
 #: ../src/plugins/NarrativeWeb.py:2939
 msgid "Whether to store the web pages in an archive file"
-msgstr "Ob die Webseiten in einer Archivdatei gespeichert wird"
+msgstr "Ob die Webseiten in einer Archivdatei gespeichert werden"
 
 #: ../src/plugins/NarrativeWeb.py:2944 ../src/plugins/WebCal.py:704
 msgid "Destination"
@@ -10293,19 +10291,19 @@ msgstr "Die Stilvorlage, für die Webseiten."
 
 #: ../src/plugins/NarrativeWeb.py:2995
 msgid "Include ancestor graph"
-msgstr "Kurze Ahnentafel einschließen "
+msgstr "Mit Ahnentafel"
 
 #: ../src/plugins/NarrativeWeb.py:2996
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr "Ob jede Personenseite eine Vorfahrengrafik beinhaltet."
+msgstr "Ob jede Personenseite eine Ahnentafel enthält."
 
 #: ../src/plugins/NarrativeWeb.py:3001
 msgid "Graph generations"
-msgstr "Grafik Generationen"
+msgstr "Generationengrafik"
 
 #: ../src/plugins/NarrativeWeb.py:3006
 msgid "The number of generations to include in the ancestor graph"
-msgstr "Anzahl der im Vorfahren Graf berücksichtigten Generationen."
+msgstr "Anzahl der in der Ahnengrafik berücksichtigten Generationen."
 
 #: ../src/plugins/NarrativeWeb.py:3016
 msgid "Page Generation"
@@ -10313,7 +10311,7 @@ msgstr "Seiten Generation"
 
 #: ../src/plugins/NarrativeWeb.py:3018
 msgid "Home page note"
-msgstr "Startseite Notiz"
+msgstr "Startseitennotiz"
 
 #: ../src/plugins/NarrativeWeb.py:3019
 msgid "A note to be used on the home page"
@@ -10321,7 +10319,7 @@ msgstr "Eine Notiz die auf der Startseite verwendet wird"
 
 #: ../src/plugins/NarrativeWeb.py:3022
 msgid "Home page image"
-msgstr "Startseite Bild"
+msgstr "Startseitenbild"
 
 #: ../src/plugins/NarrativeWeb.py:3023
 msgid "An image to be used on the home page"
@@ -10329,7 +10327,7 @@ msgstr "Ein Bild das auf der Startseite verwendet wird"
 
 #: ../src/plugins/NarrativeWeb.py:3026
 msgid "Introduction note"
-msgstr "Einleitung Notiz"
+msgstr "Einleitungsnotiz"
 
 #: ../src/plugins/NarrativeWeb.py:3027
 msgid "A note to be used as the introduction"
@@ -10337,11 +10335,11 @@ msgstr "Eine Notiz die als Einleitung verwendet wird"
 
 #: ../src/plugins/NarrativeWeb.py:3030
 msgid "Introduction image"
-msgstr "Einstieg Bild"
+msgstr "Einleitungsbild"
 
 #: ../src/plugins/NarrativeWeb.py:3031
 msgid "An image to be used as the introduction"
-msgstr "Ein Bild das als Einstieg verwendet wird"
+msgstr "Ein Bild das als Einleitung verwendet wird"
 
 #: ../src/plugins/NarrativeWeb.py:3034
 msgid "Publisher contact note"
@@ -10373,7 +10371,7 @@ msgstr "HTML Fußzeile"
 
 #: ../src/plugins/NarrativeWeb.py:3047
 msgid "A note to be used as the page footer"
-msgstr "Eine Notiz die als Fußnote benutzt wird"
+msgstr "Eine Notiz die als Fußzeile benutzt wird"
 
 #: ../src/plugins/NarrativeWeb.py:3050
 msgid "Include images and media objects"
@@ -10425,11 +10423,11 @@ msgstr "Nur Nachnamen aufnehmen"
 
 #: ../src/plugins/NarrativeWeb.py:3079
 msgid "Include Full Name Only"
-msgstr "Vollen Namen aufnehmen"
+msgstr "Nur kompletten Namen aufnehmen"
 
 #: ../src/plugins/NarrativeWeb.py:3082
 msgid "How to handle living people"
-msgstr "Lebende Personen wie behandeln"
+msgstr "Wie lebende Personenbehandelt werden"
 
 #: ../src/plugins/NarrativeWeb.py:3086
 msgid "Years from death to consider living"
@@ -10461,7 +10459,7 @@ msgstr "Spalte für Geburtsdaten auf den Indexseiten"
 
 #: ../src/plugins/NarrativeWeb.py:3109
 msgid "Whether to include a birth column"
-msgstr "Ob eine Geburtsspalte aufgenommen wird"
+msgstr "Ob eine Spalte für Geburt aufgenommen wird"
 
 #: ../src/plugins/NarrativeWeb.py:3112
 msgid "Include a column for death dates on the index pages"
@@ -10469,7 +10467,7 @@ msgstr "Spalte für Todesdaten auf den Indexseiten"
 
 #: ../src/plugins/NarrativeWeb.py:3114
 msgid "Whether to include a death column"
-msgstr "Ob eine Todesspalte aufgenommen wird"
+msgstr "Ob eine Spalte für Tot aufgenommen wird"
 
 #: ../src/plugins/NarrativeWeb.py:3117
 msgid "Include a column for partners on the index pages"
@@ -10489,11 +10487,11 @@ msgstr "Ob eine Spalte für Eltern aufgenommen wird"
 
 #: ../src/plugins/NarrativeWeb.py:3127
 msgid "Include half-siblings on the individual pages"
-msgstr "Mit Halb-Geschwister auf den Personenseiten"
+msgstr "Mit Halbgeschwister auf den Personenseiten"
 
 #: ../src/plugins/NarrativeWeb.py:3129
 msgid "Whether to include half-siblings with the parents and siblings"
-msgstr "Ob Halb-Geschwister mit Eltern und Geschwistern aufgenommen werden"
+msgstr "Ob Halbgeschwister mit Eltern und Geschwistern aufgenommen werden"
 
 #: ../src/plugins/NarrativeWeb.py:3228
 msgid "Narrated Web Site"
@@ -10586,7 +10584,7 @@ msgstr "Zeige Ereignisse an einem bestimmten Tag"
 
 #: ../src/plugins/OwnerEditor.py:98
 msgid "Database Owner Editor"
-msgstr "Datenbank Besitzer Editor"
+msgstr "Datenbankeignerereditor"
 
 #: ../src/plugins/OwnerEditor.py:156 ../src/PluginUtils/_PluginWindows.py:461
 msgid "Main window"
@@ -10599,15 +10597,15 @@ msgstr "Informationen über Datenbankeigner bearbeiten"
 #. translated_name = _("Database Owner Information"),
 #: ../src/plugins/OwnerEditor.py:191
 msgid "Edit Database Owner Information"
-msgstr "Datenbankeigner Informationen Beareiten"
+msgstr "Datenbankeigner Informationen bearbeiten"
 
 #: ../src/plugins/OwnerEditor.py:195
 msgid "Allow editing database owner information."
-msgstr "Bearbeiten der Informationen über Datenbankeigner erlauben."
+msgstr "Erlaubt das bearbeiten der Datenbankeignerinformation."
 
 #: ../src/plugins/PatchNames.py:92
 msgid "Name and title extraction tool"
-msgstr "Extraktion von Namen und Titeln"
+msgstr "Auszug von Namen und Titeln"
 
 #: ../src/plugins/PatchNames.py:107
 msgid "Extracting Information from Names"
@@ -10623,7 +10621,7 @@ msgstr "Keine Titel oder Spitznamen gefunden"
 
 #: ../src/plugins/PatchNames.py:222
 msgid "Bulding display"
-msgstr "Anzeigen"
+msgstr "Erstelle Anzeige"
 
 #: ../src/plugins/PatchNames.py:329
 msgid "Extract information from names"
@@ -10658,7 +10656,7 @@ msgstr "In Medienverzeichnis %s kann nicht geschrieben werden"
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
-"Medienverzeichnis %s existiert. Lösche es erst und wiederholedanach den "
+"Medienverzeichnis %s existiert. Lösche es erst und wiederhole danach den "
 "Importvorgang"
 
 #: ../src/plugins/ReadPkg.py:97
@@ -10681,7 +10679,7 @@ msgstr ""
 "Der Medienbasispfad dieses Stammbaum wurde auf %s gesetzt. Überlege einen "
 "einfacheren Pfad zu wählen. Kannst dies in den Einstellungen ändern, durch "
 "verschieben deiner Medienobjekte an die neue Position und das "
-"Multimediamanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
+"Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
 "Pfade in ihren Medienobjekten zu setzen, erledigen."
 
 #: ../src/plugins/ReadPkg.py:123
@@ -10704,7 +10702,7 @@ msgstr ""
 "(path)s. Du kannst den Medienpfad in den Einstellungen ändern oder die "
 "importierten Mediendateien in den bestehende Medienbasispfad ändern. Du "
 "kannst das durch verschieben deiner Medienobjekte an die neue Position und "
-"das Multimediamanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die "
+"das Medienmanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die "
 "korrekten Pfade in deinen Medienobjekten zu setzen, erledigen."
 
 #: ../src/plugins/ReadPkg.py:153
@@ -10718,23 +10716,23 @@ msgstr "GRAMPS-Paket"
 
 #: ../src/plugins/Rebuild.py:75
 msgid "Rebuilding secondary indices..."
-msgstr "Erstelle interne Datenbank-Indexe neu..."
+msgstr "Erstelle sekundäre Datenbankindexe neu..."
 
 #: ../src/plugins/Rebuild.py:84
 msgid "Secondary indices rebuilt"
-msgstr "Es wurden zusätzlicher Indexe neu erstellt"
+msgstr "Sekundäre Indexe neu erstellt"
 
 #: ../src/plugins/Rebuild.py:85
 msgid "All secondary indices have been rebuilt."
-msgstr "Alle zusätzlichen Indexe wurden neu erstellt."
+msgstr "Alle sekundäre Indexe wurden neu erstellt."
 
 #: ../src/plugins/Rebuild.py:117
 msgid "Rebuild Secondary Indices"
-msgstr "Neuaufbau Zusätzliche Indexe"
+msgstr "Neuaufbau sekundäre Indexe"
 
 #: ../src/plugins/Rebuild.py:121
 msgid "Rebuilds secondary indices"
-msgstr "Erstellt zusätzliche Indexe"
+msgstr "Erstellt sekundäre Indexe"
 
 #. display the title
 #: ../src/plugins/References.py:68
@@ -10784,7 +10782,7 @@ msgstr ""
 
 #: ../src/plugins/RelCalc.py:160
 msgid "Relationship Calculator tool"
-msgstr "Verwandtschaftrechner Werkzeug"
+msgstr "Verwandtschaftrechnerwerkzeug"
 
 #: ../src/plugins/RelCalc.py:187
 #, python-format
@@ -10811,7 +10809,7 @@ msgstr "Verwandtschaftrechner"
 
 #: ../src/plugins/RelCalc.py:270
 msgid "Calculates the relationship between two people"
-msgstr "Bestimmt die Verwandtschaftbeziehung zwischen zwei Personen."
+msgstr "Berechnet die Verwandtschaftbeziehung zwischen zwei Personen."
 
 #: ../src/plugins/RemoveUnused.py:75
 msgid "Unused Objects"
@@ -10829,7 +10827,7 @@ msgstr "Unbenutzte Objekte entfernen"
 
 #: ../src/plugins/RemoveUnused.py:458
 msgid "Remove Unused Objects"
-msgstr "Unbenutzte Objekte Entfernen"
+msgstr "Unbenutzte Objekte entfernen"
 
 #: ../src/plugins/RemoveUnused.py:462
 msgid "Removes unused objects from the database"
@@ -10853,11 +10851,11 @@ msgstr "Ereignis-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "Multimedia-Objekt neu ordnen"
+msgstr "Medienobjekt-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
-msgstr "Ereignis-IDs neu ordnen"
+msgstr "Quellen-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:120
 msgid "Reordering Place IDs"
@@ -10873,15 +10871,15 @@ msgstr "Notiz-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:155 ../src/plugins/ReorderIds.py:236
 msgid "Reorder GRAMPS IDs"
-msgstr "GRAMPS-IDs neu ordnen"
+msgstr "Ordne GRAMPS-IDs neu"
 
 #: ../src/plugins/ReorderIds.py:203
 msgid "Finding and assigning unused IDs"
-msgstr "Finden und Markieren von unbenutzten IDs"
+msgstr "Finden und zuweisen von unbenutzten IDs"
 
 #: ../src/plugins/ReorderIds.py:240
 msgid "Reorders the gramps IDs according to Gramps' default rules."
-msgstr "Sortiert die Gramps-IDs nach Gramps' Vorgabe Regeln."
+msgstr "Ordnet die Gramps-IDs nach Gramps' Vorgabe Regeln neu."
 
 #: ../src/plugins/SameSurnames.py:35
 msgid "People with incomplete surnames"
@@ -10889,7 +10887,7 @@ msgstr "Personen mit unvollständigen Nachnamen"
 
 #: ../src/plugins/SameSurnames.py:36
 msgid "Matches people with lastname missing"
-msgstr "Entspricht den Personen, bei den der Nachname fehlt"
+msgstr "Entspricht Personen, bei denen der Nachname fehlt"
 
 #: ../src/plugins/SameSurnames.py:37 ../src/plugins/SameSurnames.py:49
 #: ../src/Filters/Rules/_Everything.py:46
@@ -10959,7 +10957,7 @@ msgstr "Personen mit dem <Namen>"
 
 #: ../src/plugins/SameSurnames.py:48
 msgid "Matches people with same lastname"
-msgstr "Entspricht den Personen, mit dem selben Nachnamen"
+msgstr "Entspricht Personen, mit dem selben Nachnamen"
 
 #. display the title
 #: ../src/plugins/SameSurnames.py:73
@@ -10974,7 +10972,7 @@ msgstr "Es gibt %d Personen mit einem Passenden Namen oder alternativ Namen.\n"
 
 #: ../src/plugins/SameSurnames.py:102
 msgid "Same Surnames"
-msgstr "Selben Nachnamen"
+msgstr "Selbe Nachnamen"
 
 #: ../src/plugins/SameSurnames.py:104
 msgid "Display people with the same surname as a person."
@@ -11182,7 +11180,7 @@ msgstr "Statistikdiagramme"
 #. extract requested items from the database and count them
 #: ../src/plugins/StatisticsChart.py:506
 msgid "Collecting data..."
-msgstr "Daten zusammenführen..."
+msgstr "Sammele Daten.."
 
 #: ../src/plugins/StatisticsChart.py:512
 msgid "Sorting data..."
@@ -11213,7 +11211,7 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind"
 
 #: ../src/plugins/StatisticsChart.py:696
 msgid "Sort chart items by"
-msgstr "Sortiere Diagramm-Einträge nach"
+msgstr "Sortiere Diagrammeinträge nach"
 
 #: ../src/plugins/StatisticsChart.py:701
 msgid "Select how the statistical data is sorted."
@@ -11233,7 +11231,7 @@ msgstr "Personen geboren nach"
 
 #: ../src/plugins/StatisticsChart.py:711
 msgid "Birth year from which to include people"
-msgstr "Geburtsjahr ab/aus dem Personen enthalten sind"
+msgstr "Geburtsjahr ab dem Personen enthalten sind"
 
 #: ../src/plugins/StatisticsChart.py:714
 msgid "People Born Before"
@@ -11261,7 +11259,7 @@ msgstr "Wähle aus, welche Geschlechter in die Statistik aufgenommen werden soll
 
 #: ../src/plugins/StatisticsChart.py:734
 msgid "Max. items for a pie"
-msgstr "Max.röße für ein Tortendiagramm"
+msgstr "Max. Stücke für ein Tortendiagramm"
 
 #: ../src/plugins/StatisticsChart.py:735
 msgid "With fewer items pie chart and legend will be used instead of a bar chart."
@@ -11500,7 +11498,7 @@ msgstr "Überprüft die Daten gegen benutzerdefinierte Tests"
 
 #: ../src/plugins/WebCal.py:479
 msgid "Generate HTML Calendars"
-msgstr "Generiert HTML Kalender"
+msgstr "Erstellt HTML Kalender"
 
 #. generate the report:
 #: ../src/plugins/WebCal.py:490
@@ -11513,7 +11511,7 @@ msgstr "Inhaltsoptionen"
 
 #: ../src/plugins/WebCal.py:759
 msgid "Holidays will be included for the selected country"
-msgstr "Feiertage für das gewählte Land werden "
+msgstr "Feiertage werden für das gewählte Land aufgenommen"
 
 #: ../src/plugins/WebCal.py:775
 msgid "Check for wives to use maiden name"
@@ -11755,8 +11753,8 @@ msgid ""
 "style, color and the background color of the block, including the day-name "
 "area. Inclusion of a graphic does not cover the day-name area."
 msgstr ""
-"Der Stiel der für Monatsnamen und Jahre benutzt wird er kontrolliert das "
-"Erscheinungsbild der Schrift, Größe, Stiel, Farbe und Hintergrundfarbe des "
+"Der Stil der für Monatsnamen und Jahre benutzt wird er kontrolliert das "
+"Erscheinungsbild der Schrift, Größe, Stil, Farbe und Hintergrundfarbe des "
 "Blocks, inklusive des Tagesnamenbereich. Einbeziehen einer Grafik betrifft "
 "nicht den Tagesnamenbereich."
 
@@ -11766,8 +11764,8 @@ msgid ""
 "face, style, color, and alignment. The background color is used ONLY for "
 "cells containing text, allowing for high-lighting of dates."
 msgstr ""
-"Dieser Stiel wird für den Text von dem Kalender benutzt er kontrolliert "
-"Schriftgröße Stiel, Farbe und Anordnung. Die Hintergrundfarbe wird NUR für "
+"Dieser Stil wird für den Text von dem Kalender benutzt er kontrolliert "
+"Schriftgröße Stil, Farbe und Anordnung. Die Hintergrundfarbe wird NUR für "
 "Zellen mit Text benutzt erlaubt Hervorhebung von Daten."
 
 #: ../src/plugins/WebCal.py:961
@@ -11776,7 +11774,7 @@ msgid ""
 "size, face, style, color and positioning. The background color setting "
 "affect all EMPTY calendar cells."
 msgstr ""
-"Der Stiel für Notizen am Fuß des Kalenders. Er kontrolliert Schriftgröße, "
+"Der Stil für Notizen am Fuß des Kalenders. Er kontrolliert Schriftgröße, "
 "Erscheinungsbild, Farbe und Position. Die Hintergrundfarbe gilt für alle "
 "LEEREN Kalenderzellen."
 
@@ -11786,7 +11784,7 @@ msgid ""
 "lines and the color, font, size, and positioning of the calendar date "
 "numbers. It also controls the color of the day names."
 msgstr ""
-"Dieser Stiel ist für die eigentliche Tabelle. Dies betrifft die Farbe der "
+"Dieser Stil ist für die eigentliche Tabelle. Dies betrifft die Farbe der "
 "Tabellenlinien, die Schriftfarbe und die Position der Kalenderdatumzahlen. "
 "Er kontrolliert auch die Farbe der Tagesnamen."
 
@@ -11865,7 +11863,7 @@ msgstr "Web Family Tree-Format."
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree export options"
-msgstr "Web Family Tree-Export-Optionen"
+msgstr "Web Family Tree-Exportoptionen"
 
 #: ../src/plugins/WriteGeneWeb.py:264
 msgid "No families matched by selected filter"
@@ -11882,11 +11880,11 @@ msgstr "_GeneWeb"
 
 #: ../src/plugins/WriteGeneWeb.py:641
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb ist ein webbasierendes Ahnenforschungs-Programm"
+msgstr "GeneWeb ist ein webbasiertes Ahnenforschungsprogramm"
 
 #: ../src/plugins/WriteGeneWeb.py:642
 msgid "GeneWeb export options"
-msgstr "GeneWeb-Export-Optionen"
+msgstr "GeneWeb-Exportoptionen"
 
 #. -------------------------------------------------------------------------
 #.
@@ -11903,11 +11901,11 @@ msgid ""
 "files."
 msgstr ""
 "Das GRAMPS-Paket ist eine archivierte XML-Datenbank zusammen mit den Dateien "
-"zu den Multimedia-Objekten"
+"zu den Medienobjekten"
 
 #: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
-msgstr "GRAMPS Packet Export-Optionen"
+msgstr "GRAMPS Packet Exportoptionen"
 
 #: ../src/plugins/RebuildRefMap.py:76
 msgid "Rebuilding reference maps..."
@@ -12007,19 +12005,19 @@ msgstr "Einen der links aufgeführten Berichte auswählen."
 
 #: ../src/PluginUtils/_Plugins.py:273
 msgid "_Generate"
-msgstr "Erzeu_gen"
+msgstr "_Erstellen"
 
 #: ../src/PluginUtils/_Plugins.py:273
 msgid "Generate selected report"
-msgstr "Ausgewählten Bericht erzeugen"
+msgstr "Ausgewählten Bericht erstellen"
 
 #: ../src/PluginUtils/_Plugins.py:303
 msgid "Tool Selection"
-msgstr "Auswahl eines Werkzeugs"
+msgstr "Werkzeugauswahl"
 
 #: ../src/PluginUtils/_Plugins.py:304
 msgid "Select a tool from those available on the left."
-msgstr "Eins der links aufgeführten Werkzeuge auswählen."
+msgstr "Eines der links aufgeführten Werkzeuge auswählen."
 
 #: ../src/PluginUtils/_Plugins.py:305 ../src/plugins/verify.glade.h:24
 msgid "_Run"
@@ -12072,13 +12070,9 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Wenn du mit dem folgenden Werkzeug weitermachst, wird die "
-"Bearbeitungschronik dieser Sitzung gelöscht. Dadurch können vorherige und "
-"durch das Werkzeuge gemachte Änderungen nicht mehr rückgängig gemacht "
-"werden.\n"
+"Wenn du diese Werkzeug benutzt, wird die Bearbeitungschronik dieser Sitzung gelöscht. Dadurch können vorherige und durch das Werkzeuge getätigte Änderungen nicht mehr rückgängig gemacht werden.\n"
 "\n"
-"Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht werden, "
-"rückgängig machen willst, stoppe hier und sichere deine Datenbank."
+"Wenn du jedoch die Änderungen, die durch das Werkzeug getätigt werden, rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
 #: ../src/PluginUtils/_Tool.py:118
 msgid "_Proceed with the tool"
@@ -12095,7 +12089,7 @@ msgstr "Datei"
 
 #: ../src/PluginUtils/_PluginWindows.py:86
 msgid "Message"
-msgstr "Meldung"
+msgstr "Nachricht"
 
 #: ../src/PluginUtils/_PluginWindows.py:98
 msgid "Unavailable"
@@ -12191,7 +12185,7 @@ msgstr "Vorlage"
 
 #: ../src/ReportBase/_DocReportDialog.py:237
 msgid "User Template"
-msgstr "Benutzer Vorlage"
+msgstr "Benutzervorlage"
 
 #: ../src/ReportBase/_DocReportDialog.py:242
 msgid "Choose File"
@@ -12199,11 +12193,11 @@ msgstr "Wähle Datei"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
-msgstr "Der Standardstil, der für die SchlussnotizenQuellenanzeige verwendet wird."
+msgstr "Der Standardstil, der für die Schlussnotizen Quellenanzeige verwendet wird."
 
 #: ../src/ReportBase/_Endnotes.py:57
 msgid "The basic style used for the endnotes reference display."
-msgstr "Der Standardstil, der für die Schlussnotizen verwendet wird."
+msgstr "Der Standardstil, der für die Schlussnotizen Referenz verwendet wird."
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
@@ -12244,7 +12238,7 @@ msgstr "Horizontal (von rechts nach links)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Bottom, left"
-msgstr "Unten, Links"
+msgstr "Unten, links"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Bottom, right"
@@ -12256,23 +12250,23 @@ msgstr "Oben, links"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Top, Right"
-msgstr "Oben, Rechts"
+msgstr "Oben, rechts"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Right, bottom"
-msgstr "Rechts, Unten"
+msgstr "Rechts, unten"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:78
 msgid "Right, top"
-msgstr "Rechts, Oben"
+msgstr "Rechts, oben"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Left, bottom"
-msgstr "Links, Unten"
+msgstr "Links, unten"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Left, top"
-msgstr "Links, Oben"
+msgstr "Links, oben"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Minimal size"
@@ -12350,8 +12344,7 @@ msgid ""
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 "Wähle die Schriftfamilie. Wenn internationale Zeichen nicht angezeigt "
-"werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: http://"
-"www.nongnu.org/freefont/"
+"werden, benutze die FreeSans-Schrift. FreeSans ist verfügbar unter: http://www.nongnu.org/freefont/"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:762
 msgid "Font size"
@@ -12363,7 +12356,7 @@ msgstr "Die Schriftröße in Punkten."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "Graph Direction"
-msgstr "Ausrichtung des Graphen"
+msgstr "Ausrichtung der Grafik"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:771
 msgid "Whether graph goes from top to bottom or left to right."
@@ -12470,15 +12463,15 @@ msgstr ""
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:855
 msgid "Note to add to the graph"
-msgstr "Notizen zu Graph hinzufügen"
+msgstr "Notizen zu Grafik hinzufügen"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:857
 msgid "This text will be added to the graph."
-msgstr "Dieser Text wird in den Graph hinzugefügt"
+msgstr "Dieser Text wird der Grafik hinzugefügt"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:860
 msgid "Note location"
-msgstr "Ort der Notiz"
+msgstr "Position der Notiz"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:863
 msgid "Whether note will appear on top or bottom of the page."
@@ -12490,7 +12483,7 @@ msgstr "Notizgröße"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:868
 msgid "The size of note text, in points."
-msgstr "Die Größe von Notizentext, in Punkten."
+msgstr "Die Größe des Notizentext, in Punkten."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:893
 #: ../src/ReportBase/_GraphvizReportDialog.py:948
@@ -16422,12 +16415,12 @@ msgstr "Gestorben: %(death_date)s %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:2733
 #, python-format
 msgid "Died: %(death_date)s."
-msgstr "Starb am %(death_date)s."
+msgstr "Starb: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2736
 #, python-format
 msgid "Died: %(death_place)s."
-msgstr "Starb in %(death_place)s."
+msgstr "Starb: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2955
 #, python-format
