@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-20 09:02+0200\n"
-"PO-Revision-Date: 2008-08-24 11:50+0200\n"
+"POT-Creation-Date: 2008-09-15 09:01+0200\n"
+"PO-Revision-Date: 2008-09-15 09:22+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,13 +43,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/ArgHandler.py:403 ../src/DbLoader.py:167 ../src/DbLoader.py:188
+#: ../src/ArgHandler.py:404 ../src/DbLoader.py:167 ../src/DbLoader.py:188
 #: ../src/DbLoader.py:276
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kunde inte öppna fil: %s"
 
-#: ../src/ArgHandler.py:404
+#: ../src/ArgHandler.py:405
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
@@ -57,24 +57,24 @@ msgstr ""
 "Ett ogiltigt familjeträd angivet för öppning\n"
 "\n"
 
-#: ../src/ArgHandler.py:509
+#: ../src/ArgHandler.py:512
 msgid "Database is locked, cannot open it!"
 msgstr "Databasen är låst, kan inte öppna den!"
 
-#: ../src/ArgHandler.py:510
+#: ../src/ArgHandler.py:513
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/ArgHandler.py:513
+#: ../src/ArgHandler.py:516
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databasen behöver återhämtas, kan ej öppna den!"
 
-#: ../src/ArgHandler.py:795 ../src/DbLoader.py:349
+#: ../src/ArgHandler.py:798 ../src/DbLoader.py:349
 msgid "All files"
 msgstr "Alla filer"
 
-#: ../src/ArgHandler.py:804
+#: ../src/ArgHandler.py:807
 msgid "GRAMPS databases"
 msgstr "GRAMPS-databaser"
 
@@ -140,8 +140,8 @@ msgstr "Organisera bokmärken"
 #: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
 #: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:642
-#: ../src/DataViews/PersonView.py:648 ../src/DataViews/RepositoryView.py:67
+#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
+#: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -720,6 +720,12 @@ msgstr ""
 "filen som du just har sparat. Framtida redigering av den för närvarande "
 "öppnade databasen kommer inte att förändra kopian som du just tog. "
 
+#. add test, what is dir
+#: ../src/ExportAssistant.py:478
+#, python-format
+msgid "Filename: %s"
+msgstr "Filnamn: %s"
+
 #: ../src/ExportAssistant.py:480
 msgid "Saving failed"
 msgstr "Misslyckades att spara"
@@ -1041,7 +1047,7 @@ msgstr "Arkivplats"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:852
+#: ../src/ReportBase/_GraphvizReportDialog.py:853
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1739,19 +1745,19 @@ msgstr "Redigera..."
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:912
+#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr "Exportera vy som kalkylblad"
 
-#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:920
+#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr "Format:"
 
-#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr "Open Document kalkylblad"
 
@@ -3077,15 +3083,15 @@ msgid "Compare People"
 msgstr "Jämför personer"
 
 #: ../src/Merge/_MergePerson.py:97 ../src/Merge/_MergePerson.py:102
-#: ../src/Merge/_MergePerson.py:274 ../src/Merge/_MergePerson.py:281
-#: ../src/Merge/_MergePerson.py:312 ../src/Merge/_MergePerson.py:317
+#: ../src/Merge/_MergePerson.py:275 ../src/Merge/_MergePerson.py:282
+#: ../src/Merge/_MergePerson.py:313 ../src/Merge/_MergePerson.py:318
 #: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
 msgid "Cannot merge people"
 msgstr "Kan inte slå samman personer"
 
-#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:275
-#: ../src/Merge/_MergePerson.py:313
+#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
+#: ../src/Merge/_MergePerson.py:314
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
@@ -3093,8 +3099,8 @@ msgstr ""
 "Makar kan inte slås ihop. För att slå ihop dessa personer, måste du först "
 "bryta relationen mellan dem."
 
-#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:282
-#: ../src/Merge/_MergePerson.py:318
+#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:283
+#: ../src/Merge/_MergePerson.py:319
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -3152,7 +3158,7 @@ msgstr "Inga makar eller barn hittades"
 msgid "Addresses"
 msgstr "Adresser"
 
-#: ../src/Merge/_MergePerson.py:292 ../src/Merge/_MergePerson.py:332
+#: ../src/Merge/_MergePerson.py:293 ../src/Merge/_MergePerson.py:333
 msgid "Merge People"
 msgstr "Slå samman personer"
 
@@ -3219,7 +3225,7 @@ msgid "Deleting event will remove it from the database."
 msgstr "Att ta bort händelsen innebär att den tas bort från databasen."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
-#: ../src/DataViews/PersonView.py:605 ../src/DataViews/PlaceView.py:256
+#: ../src/DataViews/PersonView.py:604 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
@@ -3603,32 +3609,32 @@ msgstr "Välj kolumner för personer"
 msgid "Active person not visible"
 msgstr "Aktiv person är inte synlig"
 
-#: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "Uppdaterar visning..."
 
-#: ../src/DataViews/PersonView.py:602
+#: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
 msgstr "Att radera personen innebär att personen raderas från databasen."
 
-#: ../src/DataViews/PersonView.py:607
+#: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
 msgstr "_Ta bort person"
 
-#: ../src/DataViews/PersonView.py:622
+#: ../src/DataViews/PersonView.py:621
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Ta bort person (%s)"
 
-#: ../src/DataViews/PersonView.py:897
+#: ../src/DataViews/PersonView.py:896
 msgid "Go to default person"
 msgstr "Gå till hemperson"
 
-#: ../src/DataViews/PersonView.py:902
+#: ../src/DataViews/PersonView.py:901
 msgid "Edit selected person"
 msgstr "Redigera vald person"
 
-#: ../src/DataViews/PersonView.py:908
+#: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
 msgstr "Ta bort vald person"
 
@@ -4109,7 +4115,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:716
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -4918,7 +4924,7 @@ msgstr "Lägg till mediaobjekt (%s)"
 msgid "Edit Media Object (%s)"
 msgstr "Redigera mediaobjekt (%s)"
 
-#: ../src/Editors/_EditMedia.py:340
+#: ../src/Editors/_EditMedia.py:363
 msgid "Remove Media Object"
 msgstr "Ta bort mediaobjekt"
 
@@ -5991,7 +5997,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
-#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:568
+#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:560
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6252,7 +6258,7 @@ msgstr "Generation %d"
 #: ../src/plugins/DetAncestralReport.py:699
 #: ../src/plugins/DetDescendantReport.py:645
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:430
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2935
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
@@ -6424,7 +6430,7 @@ msgstr "Alternativ"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:433
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:432
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2952
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -6436,14 +6442,14 @@ msgid "Select filter to restrict people"
 msgstr "Välj ett filter, som begränsar personerurvalet"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2958 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
 msgstr "Filtrera person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2959 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
@@ -8973,7 +8979,7 @@ msgstr "Maximalt antal barn, som skall tas med."
 msgid "Images"
 msgstr "Bilder"
 
-#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:477
+#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:476
 msgid "Include thumbnail images of people"
 msgstr "Ta med miniatyrbilder på personer"
 
@@ -8981,15 +8987,15 @@ msgstr "Ta med miniatyrbilder på personer"
 msgid "Thumbnail location"
 msgstr "Minatyrbildsplats"
 
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:483
 msgid "Above the name"
 msgstr "Ovanför namnet"
 
-#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:484
 msgid "Beside the name"
 msgstr "Vid sidan om namnet"
 
-#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:487
+#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Var miniatyrbilden skall synas relativt till namnet"
 
@@ -9113,43 +9119,43 @@ msgstr "Skapar ett timglasdiagram med Graphviz"
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/GVRelGraph.py:60
+#: ../src/plugins/GVRelGraph.py:59
 msgid "B&W outline"
 msgstr "Svartvit kontur"
 
-#: ../src/plugins/GVRelGraph.py:61
+#: ../src/plugins/GVRelGraph.py:60
 msgid "Colored outline"
 msgstr "Färglagd kontur"
 
-#: ../src/plugins/GVRelGraph.py:62
+#: ../src/plugins/GVRelGraph.py:61
 msgid "Color fill"
 msgstr "Färgfyllning"
 
-#: ../src/plugins/GVRelGraph.py:64
+#: ../src/plugins/GVRelGraph.py:63
 msgid "Descendants <- Ancestors"
 msgstr "Ättlingar <- Anor"
 
-#: ../src/plugins/GVRelGraph.py:65
+#: ../src/plugins/GVRelGraph.py:64
 msgid "Descendants -> Ancestors"
 msgstr "Ättlingar -> Anor"
 
-#: ../src/plugins/GVRelGraph.py:66
+#: ../src/plugins/GVRelGraph.py:65
 msgid "Descendants <-> Ancestors"
 msgstr "Ättlingar <-> Anor"
 
-#: ../src/plugins/GVRelGraph.py:67
+#: ../src/plugins/GVRelGraph.py:66
 msgid "Descendants - Ancestors"
 msgstr "Ättlingar - Anor"
 
-#: ../src/plugins/GVRelGraph.py:435
+#: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
 msgstr "Avgör vilka personer, som tas med i rapporten"
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Ta med födelse-, giftermåls- och dödsdatum"
 
-#: ../src/plugins/GVRelGraph.py:448
+#: ../src/plugins/GVRelGraph.py:447
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -9157,11 +9163,11 @@ msgstr ""
 "Ta med de datum när personen föddes, gifte sig och/eller dog i "
 "diagrametiketterna."
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Limit dates to years only"
 msgstr "Begränsa datum till år enbart"
 
-#: ../src/plugins/GVRelGraph.py:453
+#: ../src/plugins/GVRelGraph.py:452
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -9169,11 +9175,11 @@ msgstr ""
 "Skriver enbart ut år för datum, varken månad eller dag eller datumskattning "
 "eller -intervall visas."
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
 msgstr "Använd plats när datum saknas"
 
-#: ../src/plugins/GVRelGraph.py:459
+#: ../src/plugins/GVRelGraph.py:458
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -9181,11 +9187,11 @@ msgstr ""
 "När inget födelse-, giftermåls- eller dödsdatum finns tillgängligt, kommer "
 "motsvarande platsfält att användas."
 
-#: ../src/plugins/GVRelGraph.py:464
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include URLs"
 msgstr "Ta med URL:er"
 
-#: ../src/plugins/GVRelGraph.py:465
+#: ../src/plugins/GVRelGraph.py:464
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -9195,33 +9201,33 @@ msgstr ""
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
 "'Skapa webbplats'."
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
 msgstr "Ta med ID:n"
 
-#: ../src/plugins/GVRelGraph.py:473
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include individual and family IDs."
 msgstr "Ta med individ- och familje-ID."
 
-#: ../src/plugins/GVRelGraph.py:479
+#: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
 msgstr "Huruvida miniatyrbilder av personer skall tas med."
 
-#: ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Thumbnail Location"
 msgstr "Bildminiatyrplats"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:492
+#: ../src/plugins/GVRelGraph.py:491
 msgid "Graph Style"
 msgstr "Diagrammall"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:495
+#: ../src/plugins/GVRelGraph.py:494
 msgid "Graph coloring"
 msgstr "Färgläggning av diagram"
 
-#: ../src/plugins/GVRelGraph.py:498
+#: ../src/plugins/GVRelGraph.py:497
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -9229,43 +9235,35 @@ msgstr ""
 "Män kommer att visas i blått, kvinnor i rött. Om könet för en person är "
 "okänt, visas den i grått."
 
-#: ../src/plugins/GVRelGraph.py:503
+#: ../src/plugins/GVRelGraph.py:502
 msgid "Arrowhead direction"
 msgstr "Riktning för pilspets"
 
-#: ../src/plugins/GVRelGraph.py:506
+#: ../src/plugins/GVRelGraph.py:505
 msgid "Choose the direction that the arrows point."
 msgstr "Välj den riktning som pilarna ska peka åt."
 
-#: ../src/plugins/GVRelGraph.py:510
-msgid "Use rounded corners"
-msgstr "Använd avrundade hörn"
-
-#: ../src/plugins/GVRelGraph.py:512
-msgid "Use rounded corners to differentiate between women and men."
-msgstr ""
-
-#: ../src/plugins/GVRelGraph.py:517
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
-#: ../src/plugins/GVRelGraph.py:518
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
-#: ../src/plugins/GVRelGraph.py:522
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Show family nodes"
 msgstr "Visa familjenoder"
 
-#: ../src/plugins/GVRelGraph.py:523
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
-#: ../src/plugins/GVRelGraph.py:567
+#: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
 msgstr "Antavla i diagramform"
 
-#: ../src/plugins/GVRelGraph.py:569
+#: ../src/plugins/GVRelGraph.py:561
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Skapar en antavla i diagramform med Graphviz."
 
@@ -12096,7 +12094,7 @@ msgstr "Stilmallsredigerare"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:192
+#: ../src/ReportBase/_CommandLineReport.py:167
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:363 ../src/ReportBase/_PaperMenu.py:385
 msgid "Custom Size"
@@ -12131,7 +12129,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:922
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -12140,7 +12138,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:901
+#: ../src/ReportBase/_GraphvizReportDialog.py:902
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -12261,53 +12259,53 @@ msgstr "Nederkant"
 msgid "Processing File"
 msgstr "Bearbetar diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:607
+#: ../src/ReportBase/_GraphvizReportDialog.py:608
 msgid "Graphviz Dot File"
 msgstr "Graphviz dot-fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:617
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:623
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:629
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:635
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:641
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:647
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:653
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:658
+#: ../src/ReportBase/_GraphvizReportDialog.py:659
 msgid "PNG image"
 msgstr "PNG-bild"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:749
+#: ../src/ReportBase/_GraphvizReportDialog.py:750
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:752
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12316,27 +12314,27 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:764
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:766
+#: ../src/ReportBase/_GraphvizReportDialog.py:767
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:776
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:777
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12346,11 +12344,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:785
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12360,11 +12358,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:792
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:797
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12373,24 +12371,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:815
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:817
+#: ../src/ReportBase/_GraphvizReportDialog.py:818
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:823
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:827
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
@@ -12399,11 +12397,11 @@ msgstr ""
 "Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, "
 "försök med tal som 100 eller 300 DPI. För postscript eller pdf använd 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:836
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:837
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12413,11 +12411,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:843
+#: ../src/ReportBase/_GraphvizReportDialog.py:844
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:845
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12428,32 +12426,32 @@ msgstr ""
 "detta avståndet mellan rader."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:855
+#: ../src/ReportBase/_GraphvizReportDialog.py:856
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
+#: ../src/ReportBase/_GraphvizReportDialog.py:858
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:861
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:863
+#: ../src/ReportBase/_GraphvizReportDialog.py:864
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:867
+#: ../src/ReportBase/_GraphvizReportDialog.py:868
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:869
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:893
-#: ../src/ReportBase/_GraphvizReportDialog.py:948
+#: ../src/ReportBase/_GraphvizReportDialog.py:894
+#: ../src/ReportBase/_GraphvizReportDialog.py:949
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
@@ -16199,77 +16197,77 @@ msgstr "%(female_name)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:2690
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "född %(birth_date)s i %(birth_place)s, död %(death_date)s i %(death_place)s."
+msgstr "Föddes: %(birth_date)s %(birth_place)s, dog: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2693
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr "född %(birth_date)s i %(birth_place)s, död %(death_date)s."
+msgstr "Föddes: %(birth_date)s %(birth_place)s, dog: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2697
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr "född %(birth_date)s i %(birth_place)s, död i %(death_place)s."
+msgstr "Föddes: %(birth_date)s %(birth_place)s, dog: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2700
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
-msgstr "född %(birth_date)s i %(birth_place)s."
+msgstr "Föddes: %(birth_date)s %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2704
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr "född %(birth_date)s, död %(death_date)s i %(death_place)s."
+msgstr "Föddes: %(birth_date)s, dog: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2707
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "född %(birth_date)s, död %(death_date)s."
+msgstr "Föddes: %(birth_date)s, dog: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2710
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
-msgstr "född %(birth_date)s, död i %(death_place)s."
+msgstr "Föddes: %(birth_date)s, dog: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2712
 #, python-format
 msgid "Born: %(birth_date)s."
-msgstr "född %(birth_date)s."
+msgstr "Föddes: %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2717
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "född i %(birth_place)s, död %(death_date)s i %(death_place)s."
+msgstr "Föddes: %(birth_place)s, dog: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2720
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr "född i %(birth_place)s, död %(death_date)s."
+msgstr "Föddes: %(birth_place)s, dog: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2724
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr "född i %(birth_place)s, död i %(death_place)s."
+msgstr "Föddes: %(birth_place)s, dog: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2727
 #, python-format
 msgid "Born: %(birth_place)s."
-msgstr "född i %(birth_place)s."
+msgstr "Föddes: %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2731
 #, python-format
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr "död %(death_date)s i %(death_place)s."
+msgstr "Dog: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2733
 #, python-format
 msgid "Died: %(death_date)s."
-msgstr "död %(death_date)s."
+msgstr "Dog: %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2736
 #, python-format
 msgid "Died: %(death_place)s."
-msgstr "död i %(death_place)s."
+msgstr "Dog: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2955
 #, python-format
