@@ -292,7 +292,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @rtype: tuple
         """
         return self.__type
-    type = property(get_type, get_type, None, 'Returns or sets type of the event')
+    type = property(get_type, set_type, None, 'Returns or sets type of the event')
 
     def set_description(self, description):
         """
