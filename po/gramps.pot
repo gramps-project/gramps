@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-15 19:34+0200\n"
+"POT-Creation-Date: 2008-09-16 01:10-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,36 +16,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/ArgHandler.py:403 ../src/DbLoader.py:167 ../src/DbLoader.py:188
+#: ../src/ArgHandler.py:404 ../src/DbLoader.py:167 ../src/DbLoader.py:188
 #: ../src/DbLoader.py:276
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
 
-#: ../src/ArgHandler.py:404
+#: ../src/ArgHandler.py:405
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
 msgstr ""
 
-#: ../src/ArgHandler.py:509
+#: ../src/ArgHandler.py:512
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../src/ArgHandler.py:510
+#: ../src/ArgHandler.py:513
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../src/ArgHandler.py:513
+#: ../src/ArgHandler.py:516
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../src/ArgHandler.py:795 ../src/DbLoader.py:349
+#: ../src/ArgHandler.py:798 ../src/DbLoader.py:349
 msgid "All files"
 msgstr ""
 
-#: ../src/ArgHandler.py:804
+#: ../src/ArgHandler.py:807
 msgid "GRAMPS databases"
 msgstr ""
 
@@ -11605,7 +11605,7 @@ msgstr ""
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:192
+#: ../src/ReportBase/_CommandLineReport.py:167
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:363 ../src/ReportBase/_PaperMenu.py:385
 msgid "Custom Size"
