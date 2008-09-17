@@ -181,19 +181,12 @@ class CmdRef(Tool.Tool):
 
             if len(oclass.options_help[arg])>2:
                 if isinstance(oclass.options_help[arg][2], (list, tuple)):
-                    if oclass.options_help[arg][3]:
-                        f.write('          <orderedlist>\n')
+                    if oclass.options_help[arg][2]:
+                        f.write('          <itemizedlist>\n')
                         for val in oclass.options_help[arg][2]:
-                            f.write( "      <listitem><para>%s</para></listitem>\n"
-                                     % escape(val))
-                        f.write('          </orderedlist>\n')
-                    else:
-                        if oclass.options_help[arg][2]:
-                            f.write('          <itemizedlist>\n')
-                            for val in oclass.options_help[arg][2]:
-                                f.write( "      <listitem><para>%s</para>"
-                                         "</listitem>\n" % escape(val))
-                            f.write('          </itemizedlist>\n')
+                            f.write( "      <listitem><para>%s</para>"
+                                     "</listitem>\n" % escape(val))
+                        f.write('          </itemizedlist>\n')
                 else:
                     f.write('            '
                             '<para>Value: <userinput>%s</userinput></para>\n'
