@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-08 18:30+0200\n"
+"POT-Creation-Date: 2008-09-16 01:10-0700\n"
 "PO-Revision-Date: 2008-07-28 15:48+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/ArgHandler.py:403 ../src/DbLoader.py:167 ../src/DbLoader.py:188
+#: ../src/ArgHandler.py:404 ../src/DbLoader.py:167 ../src/DbLoader.py:188
 #: ../src/DbLoader.py:276
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Impossible d'ouvrir le fichier : %s"
 
-#: ../src/ArgHandler.py:404
+#: ../src/ArgHandler.py:405
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
@@ -31,24 +31,24 @@ msgstr ""
 "Ce n'est pas un format valide pour l'ouverture\n"
 "\n"
 
-#: ../src/ArgHandler.py:509
+#: ../src/ArgHandler.py:512
 msgid "Database is locked, cannot open it!"
 msgstr "La base de données est verrouillée, impossible à ouvrir !"
 
-#: ../src/ArgHandler.py:510
+#: ../src/ArgHandler.py:513
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/ArgHandler.py:513
+#: ../src/ArgHandler.py:516
 msgid "Database needs recovery, cannot open it!"
 msgstr "La base de données doit être récupérée, impossible à ouvrir !"
 
-#: ../src/ArgHandler.py:795 ../src/DbLoader.py:349
+#: ../src/ArgHandler.py:798 ../src/DbLoader.py:349
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: ../src/ArgHandler.py:804
+#: ../src/ArgHandler.py:807
 msgid "GRAMPS databases"
 msgstr "Bases GRAMPS (grdb)"
 
@@ -3028,20 +3028,20 @@ msgid "Compare People"
 msgstr "Comparaison des individus"
 
 #: ../src/Merge/_MergePerson.py:97 ../src/Merge/_MergePerson.py:102
-#: ../src/Merge/_MergePerson.py:274 ../src/Merge/_MergePerson.py:281
-#: ../src/Merge/_MergePerson.py:312 ../src/Merge/_MergePerson.py:317
+#: ../src/Merge/_MergePerson.py:275 ../src/Merge/_MergePerson.py:282
+#: ../src/Merge/_MergePerson.py:313 ../src/Merge/_MergePerson.py:318
 #: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
 msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
-#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:275
-#: ../src/Merge/_MergePerson.py:313
+#: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
+#: ../src/Merge/_MergePerson.py:314
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Impossible de fusionner les conjoints. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
-#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:282
-#: ../src/Merge/_MergePerson.py:318
+#: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:283
+#: ../src/Merge/_MergePerson.py:319
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
@@ -3095,7 +3095,7 @@ msgstr "Aucun conjoint ni d'enfant trouvé"
 msgid "Addresses"
 msgstr "Adresses"
 
-#: ../src/Merge/_MergePerson.py:292 ../src/Merge/_MergePerson.py:332
+#: ../src/Merge/_MergePerson.py:293 ../src/Merge/_MergePerson.py:333
 msgid "Merge People"
 msgstr "Fusionner les individus"
 
@@ -5765,7 +5765,7 @@ msgstr "Tous les événements"
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
-#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:568
+#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:560
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6029,7 +6029,7 @@ msgstr "Génération %d"
 #: ../src/plugins/DetAncestralReport.py:699
 #: ../src/plugins/DetDescendantReport.py:645
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:430
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2935
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
@@ -6199,7 +6199,7 @@ msgstr "Options"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:433
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:432
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2952
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -6211,14 +6211,14 @@ msgid "Select filter to restrict people"
 msgstr "Sélectionne un filtre pour restreindre les individus"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2958 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
 msgstr "Filtre sur l'individu"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2959 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
@@ -7445,7 +7445,7 @@ msgstr ""
 "\n"
 "Pour démarrer\n"
 "\n"
-"La première étape est de créer un nouvel arbre familial (une base de données). Sélectionner \"Arbres familiaux\" depuis le menu, choisir \"Gestion des arbres familaux\", appuyer sur \"Nouveau\" et donner un nom à votre base de données.Pour plus de détails, lire le manuel d'utilisateur, ou la version en ligne sur http://gramps-project.org.\n"
+"La première étape est de créer un nouvel arbre familial (une base de données). Sélectionnez \"Arbres familiaux\" depuis le menu, choisissez \"Gestion des arbres familaux\", appuyez sur \"Nouveau\" et donnez un nom à votre base de données. Pour plus de détails, lire le manuel d'utilisateur, ou la version en ligne sur http://gramps-project.org.\n"
 "\n"
 "Vous êtes en train de lire depuis la page \"Gramplets\", dans laquelle vous pouvez ajouter vos propres gramplets.\n"
 "\n"
@@ -7462,11 +7462,11 @@ msgstr "Lecture"
 #. GUI setup:
 #: ../src/plugins/DefaultGramplets.py:969
 msgid "Enter a date, click Run"
-msgstr "Entrer une date, puis Exécuter"
+msgstr "Entrez une date, puis cliquez sur Exécuter"
 
 #: ../src/plugins/DefaultGramplets.py:977
 msgid "Enter a date in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column, and double-click the row to view or edit."
-msgstr "Entrer une date dans le champ suivant et cliquer sur Exécuter. Ceci calculera les âges de tous les individus de votre arbre familial pour cette date. Vous pourrez trier la colonne âge, et double cliquer sur la ligne pour éditer."
+msgstr "Entrez une date dans le champ suivant et cliquez sur Exécuter. Ceci calculera les âges de tous les individus de votre arbre familial pour cette date. Vous pourrez trier la colonne âge, et double cliquer sur la ligne pour éditer."
 
 #: ../src/plugins/DefaultGramplets.py:985
 msgid "Run"
@@ -8733,7 +8733,7 @@ msgstr "Le nombre maximum d'enfants à inclure."
 msgid "Images"
 msgstr "Images"
 
-#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:477
+#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:476
 msgid "Include thumbnail images of people"
 msgstr "Inclure une image miniature des individus"
 
@@ -8741,15 +8741,15 @@ msgstr "Inclure une image miniature des individus"
 msgid "Thumbnail location"
 msgstr "Emplacement de la miniature"
 
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:483
 msgid "Above the name"
 msgstr "Au-dessus du nom"
 
-#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:484
 msgid "Beside the name"
 msgstr "À côté du nom"
 
-#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:487
+#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "L'emplacement de la miniature associée au nom"
 
@@ -8869,137 +8869,129 @@ msgstr "Produit un graphique sablier avec Graphviz"
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/GVRelGraph.py:60
+#: ../src/plugins/GVRelGraph.py:59
 msgid "B&W outline"
 msgstr "Bordures noir et blanc (intérieur vide)"
 
-#: ../src/plugins/GVRelGraph.py:61
+#: ../src/plugins/GVRelGraph.py:60
 msgid "Colored outline"
 msgstr "Bordures en couleur (intérieur vide)"
 
-#: ../src/plugins/GVRelGraph.py:62
+#: ../src/plugins/GVRelGraph.py:61
 msgid "Color fill"
 msgstr "Remplissage avec des couleurs"
 
-#: ../src/plugins/GVRelGraph.py:64
+#: ../src/plugins/GVRelGraph.py:63
 msgid "Descendants <- Ancestors"
 msgstr "Descendants <- Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:65
+#: ../src/plugins/GVRelGraph.py:64
 msgid "Descendants -> Ancestors"
 msgstr "Descendants -> Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:66
+#: ../src/plugins/GVRelGraph.py:65
 msgid "Descendants <-> Ancestors"
 msgstr "Descendants <-> Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:67
+#: ../src/plugins/GVRelGraph.py:66
 msgid "Descendants - Ancestors"
 msgstr "Descendants - Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:435
+#: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
 msgstr "Détermine quels individus seront inclus dans le rapport"
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inclure les dates de naissance, de mariage et de décès"
 
-#: ../src/plugins/GVRelGraph.py:448
+#: ../src/plugins/GVRelGraph.py:447
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Inclure les dates de naissance, mariage et/ou décès sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Limit dates to years only"
 msgstr "Limiter les dates à l'année seule"
 
-#: ../src/plugins/GVRelGraph.py:453
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "N'imprimer que les années des dates, pas le mois ni le jour, pas plus que les dates approximatives ou les intervalles."
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
 msgstr "Utiliser le lieu en l'absence de date"
 
-#: ../src/plugins/GVRelGraph.py:459
+#: ../src/plugins/GVRelGraph.py:458
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Lorsque ni les dates de naissance, ni les dates de mariage, ni les dates de décès ne sont disponibles, le lieu correspondant sera utilisé."
 
-#: ../src/plugins/GVRelGraph.py:464
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include URLs"
 msgstr "Inclure les URL"
 
-#: ../src/plugins/GVRelGraph.py:465
+#: ../src/plugins/GVRelGraph.py:464
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Inclure une URL dans chaque cellule du graphique afin que les fichiers PDF et les images puissent être générés avec des liens valides par le générateur de site internet."
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
 msgstr "Inclure les identifiants"
 
-#: ../src/plugins/GVRelGraph.py:473
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include individual and family IDs."
 msgstr "Inclure les identifiants individuels et familiaux."
 
-#: ../src/plugins/GVRelGraph.py:479
+#: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
 msgstr "Inclure ou non les images miniatures des individus."
 
-#: ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Thumbnail Location"
 msgstr "Emplacement de la miniature"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:492
+#: ../src/plugins/GVRelGraph.py:491
 msgid "Graph Style"
 msgstr "Style du graphique"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:495
+#: ../src/plugins/GVRelGraph.py:494
 msgid "Graph coloring"
 msgstr "Coloration du graphique"
 
-#: ../src/plugins/GVRelGraph.py:498
+#: ../src/plugins/GVRelGraph.py:497
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Les hommes seront en bleu, les femmes en rouge. Si le sexe d'un individu est indéterminé, celui-ci sera en gris."
 
-#: ../src/plugins/GVRelGraph.py:503
+#: ../src/plugins/GVRelGraph.py:502
 msgid "Arrowhead direction"
 msgstr "Sens des flèches"
 
-#: ../src/plugins/GVRelGraph.py:506
+#: ../src/plugins/GVRelGraph.py:505
 msgid "Choose the direction that the arrows point."
 msgstr "Choisir le sens des flèches."
 
-#: ../src/plugins/GVRelGraph.py:510
-msgid "Use rounded corners"
-msgstr "Utiliser les coins arrondis"
-
-#: ../src/plugins/GVRelGraph.py:512
-msgid "Use rounded corners to differentiate between women and men."
-msgstr "Utilise des coins arrondis pour différencier les femmes des hommes."
-
-#: ../src/plugins/GVRelGraph.py:517
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
-#: ../src/plugins/GVRelGraph.py:518
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:522
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Show family nodes"
 msgstr "Afficher les nœuds familiaux"
 
-#: ../src/plugins/GVRelGraph.py:523
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
-#: ../src/plugins/GVRelGraph.py:567
+#: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
 msgstr "Graphique relationnel"
 
-#: ../src/plugins/GVRelGraph.py:569
+#: ../src/plugins/GVRelGraph.py:561
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Génère des graphiques relationnels avec GraphViz"
 
@@ -11708,7 +11700,7 @@ msgstr "Éditeur de style"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:192
+#: ../src/ReportBase/_CommandLineReport.py:167
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:363 ../src/ReportBase/_PaperMenu.py:385
 msgid "Custom Size"
@@ -19816,3 +19808,9 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
+msgid "Use rounded corners"
+msgstr "Utiliser les coins arrondis"
+
+msgid "Use rounded corners to differentiate between women and men."
+msgstr "Utilise des coins arrondis pour différencier les femmes des hommes."
