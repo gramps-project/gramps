@@ -314,6 +314,7 @@ class EditPerson(EditPrimary):
         Create the notebook tabs and insert them into the main window.
         """
         notebook = gtk.Notebook()
+        notebook.set_scrollable(True)
 
         self.event_list = self._add_tab(
             notebook, 
