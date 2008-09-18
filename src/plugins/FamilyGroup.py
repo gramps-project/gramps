@@ -300,7 +300,7 @@ class FamilyGroup(Report):
         if self.incParNotes:
             for notehandle in person.get_note_list():
                 note = self.database.get_note_from_handle(notehandle)
-                self.dump_parent_line(_("Note"), note.get(False))
+                self.dump_parent_line(_("Note"), note.get())
                 
         if self.includeAttrs:
             for attr in person.get_attribute_list():
