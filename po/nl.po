@@ -2190,7 +2190,7 @@ msgstr "Bibliotheekreferentie"
 
 #: ../src/ScratchPad.py:531 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
-msgstr "Telefoonnummer"
+msgstr "Inventarisnummer"
 
 #: ../src/ScratchPad.py:532
 msgid "Media Type"
