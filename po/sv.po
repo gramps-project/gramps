@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-15 09:01+0200\n"
-"PO-Revision-Date: 2008-09-15 09:22+0200\n"
+"POT-Creation-Date: 2008-09-16 01:10-0700\n"
+"PO-Revision-Date: 2008-09-20 20:26+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1047,7 +1047,7 @@ msgstr "Arkivplats"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:853
+#: ../src/ReportBase/_GraphvizReportDialog.py:852
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -4115,7 +4115,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:716
+#: ../src/ReportBase/_GraphvizReportDialog.py:715
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -8039,7 +8039,7 @@ msgstr "Lägg till ättlingareferens i barnlista"
 #: ../src/plugins/DetAncestralReport.py:744
 #: ../src/plugins/DetDescendantReport.py:690
 msgid "Whether to add descendant references in child list."
-msgstr "Huruvida lägg till ättlingareferens i barnlista"
+msgstr "Huruvida lägg till ättlingareferens i barnlista."
 
 #. #########################
 #: ../src/plugins/DetAncestralReport.py:747
@@ -12129,7 +12129,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:922
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -12138,7 +12138,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:902
+#: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -12259,53 +12259,53 @@ msgstr "Nederkant"
 msgid "Processing File"
 msgstr "Bearbetar diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:608
+#: ../src/ReportBase/_GraphvizReportDialog.py:607
 msgid "Graphviz Dot File"
 msgstr "Graphviz dot-fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:616
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:623
+#: ../src/ReportBase/_GraphvizReportDialog.py:622
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:628
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:635
+#: ../src/ReportBase/_GraphvizReportDialog.py:634
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:641
+#: ../src/ReportBase/_GraphvizReportDialog.py:640
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:647
+#: ../src/ReportBase/_GraphvizReportDialog.py:646
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:653
+#: ../src/ReportBase/_GraphvizReportDialog.py:652
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:659
+#: ../src/ReportBase/_GraphvizReportDialog.py:658
 msgid "PNG image"
 msgstr "PNG-bild"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:750
+#: ../src/ReportBase/_GraphvizReportDialog.py:749
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:752
+#: ../src/ReportBase/_GraphvizReportDialog.py:751
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:757
+#: ../src/ReportBase/_GraphvizReportDialog.py:756
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12314,27 +12314,27 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:762
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:764
+#: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:767
+#: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:772
+#: ../src/ReportBase/_GraphvizReportDialog.py:771
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:775
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:777
+#: ../src/ReportBase/_GraphvizReportDialog.py:776
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12344,11 +12344,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:783
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:785
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12358,11 +12358,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:792
+#: ../src/ReportBase/_GraphvizReportDialog.py:791
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:797
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12371,24 +12371,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:815
+#: ../src/ReportBase/_GraphvizReportDialog.py:814
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:818
+#: ../src/ReportBase/_GraphvizReportDialog.py:817
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:823
+#: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:827
+#: ../src/ReportBase/_GraphvizReportDialog.py:826
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:830
+#: ../src/ReportBase/_GraphvizReportDialog.py:829
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
@@ -12397,11 +12397,11 @@ msgstr ""
 "Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, "
 "försök med tal som 100 eller 300 DPI. För postscript eller pdf använd 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:835
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:837
+#: ../src/ReportBase/_GraphvizReportDialog.py:836
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12411,11 +12411,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:843
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:845
+#: ../src/ReportBase/_GraphvizReportDialog.py:844
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12426,32 +12426,32 @@ msgstr ""
 "detta avståndet mellan rader."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:856
+#: ../src/ReportBase/_GraphvizReportDialog.py:855
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:858
+#: ../src/ReportBase/_GraphvizReportDialog.py:857
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:861
+#: ../src/ReportBase/_GraphvizReportDialog.py:860
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:864
+#: ../src/ReportBase/_GraphvizReportDialog.py:863
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:867
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:869
+#: ../src/ReportBase/_GraphvizReportDialog.py:868
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:894
-#: ../src/ReportBase/_GraphvizReportDialog.py:949
+#: ../src/ReportBase/_GraphvizReportDialog.py:893
+#: ../src/ReportBase/_GraphvizReportDialog.py:948
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
@@ -13921,7 +13921,7 @@ msgstr "Han begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr "%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s"
+msgstr "%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
