@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-16 01:10-0700\n"
-"PO-Revision-Date: 2008-09-11 09:04+0200\n"
+"PO-Revision-Date: 2008-09-21 10:26+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -518,8 +518,7 @@ msgstr "Het gegevensbestand '%s' verwijderen?"
 
 #: ../src/DbManager.py:692
 msgid "Removing this family tree will permanently destroy the data."
-msgstr ""
-"Het verwijderen van deze familiestamboom zal de gegevens blijven verwijderen."
+msgstr "Het verwijderen van deze familiestamboom zal de gegevens blijven verwijderen."
 
 #: ../src/DbManager.py:693
 msgid "Remove family tree"
@@ -531,10 +530,8 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Verwijder de '%(revision)s' versie van '%(database)s'"
 
 #: ../src/DbManager.py:703
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
-msgstr ""
-"Door deze versie te verwijderen, kunt u het in de toekomst niet meer ophalen."
+msgid "Removing this version will prevent you from extracting it in the future."
+msgstr "Door deze versie te verwijderen, kunt u het in de toekomst niet meer ophalen."
 
 #: ../src/DbManager.py:705
 msgid "Remove version"
@@ -561,8 +558,7 @@ msgstr ""
 
 #: ../src/DbManager.py:803
 msgid "Rebuilding database from backup files"
-msgstr ""
-"Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
+msgstr "Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
 
 #: ../src/DbManager.py:838
 msgid "Could not create family tree"
@@ -1231,8 +1227,7 @@ msgstr "Statusbalk"
 #. Text in sidebar:
 #: ../src/GrampsCfg.py:684
 msgid "Show text in sidebar buttons (takes effect on restart)"
-msgstr ""
-"Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
+msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
 
 #: ../src/GrampsCfg.py:695
 msgid "Missing surname"
@@ -1573,8 +1568,7 @@ msgstr ""
 
 #: ../src/GrampsWidgets.py:133
 msgid "Edit icons can be enabled in the Preferences dialog"
-msgstr ""
-"Aanpassen van de iconen kan geactiveerd worden in het voorkeurendialoog"
+msgstr "Aanpassen van de iconen kan geactiveerd worden in het voorkeurendialoog"
 
 #: ../src/GrampsWidgets.py:343
 msgid "Record is private"
@@ -1586,8 +1580,7 @@ msgstr "Gegeven is openbaar"
 
 #: ../src/GrampsWidgets.py:922
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr ""
-"Om een locatie te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
+msgstr "Om een locatie te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
 
 #: ../src/GrampsWidgets.py:924
 msgid "No place given, click button to select one"
@@ -1638,8 +1631,7 @@ msgstr "Media-object verwijderen"
 
 #: ../src/GrampsWidgets.py:1030
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr ""
-"Om een opmerking te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
+msgstr "Om een opmerking te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
 
 #: ../src/GrampsWidgets.py:1032 ../src/PluginUtils/_GuiOptions.py:672
 msgid "No note given, click button to select one"
@@ -3047,8 +3039,7 @@ msgstr "Kon de familiestamboom niet laden."
 
 #: ../src/ViewManager.py:1065
 msgid "Family Tree does not exists, as it has been deleted."
-msgstr ""
-"Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
+msgstr "Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
 #: ../src/ViewManager.py:1121
 msgid "Read Only"
@@ -3822,8 +3813,7 @@ msgstr ""
 
 #: ../src/DataViews/PlaceView.py:248
 msgid "Deleting place will remove it from the database."
-msgstr ""
-"Bij het verwijderen van een plaats wordt het uit het gegevensbestand gehaald."
+msgstr "Bij het verwijderen van een plaats wordt het uit het gegevensbestand gehaald."
 
 #: ../src/DataViews/PlaceView.py:257
 msgid "_Delete Place"
@@ -4127,8 +4117,7 @@ msgstr ""
 
 #: ../src/DataViews/SourceView.py:197
 msgid "Deleting source will remove it from the database."
-msgstr ""
-"Bij het verwijderen van een bron wordt het uit het gegevensbestand gehaald."
+msgstr "Bij het verwijderen van een bron wordt het uit het gegevensbestand gehaald."
 
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
@@ -5039,8 +5028,7 @@ msgid "Cannot save media object"
 msgstr "Kan media-object niet opslaan"
 
 #: ../src/Editors/_EditMedia.py:241
-msgid ""
-"No data exists for this media object. Please enter data or cancel the edit."
+msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor dit media-object. Gelieve gegevens in te "
 "voeren of de aanpassingen te verwijderen."
@@ -5361,8 +5349,7 @@ msgid "Cannot save repository"
 msgstr "Kan bibliotheek niet opslaan"
 
 #: ../src/Editors/_EditRepository.py:145
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze bibliotheek. Voer gegevens in of stop het "
 "bewerken."
@@ -5591,8 +5578,7 @@ msgstr ""
 msgid ""
 "Your family tree groups name %s together with %s, did not change this "
 "grouping to %s"
-msgstr ""
-"Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
+msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
 
 #: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:256
 msgid "Import database"
@@ -5642,8 +5628,7 @@ msgstr "Fout bij lezen van %s"
 # verknoeid/bedorven/beschadigd als vertaling voor corrupt.
 #: ../src/GrampsDbUtils/_ReadXML.py:132
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Het bestand is waarschijnlijk beschadigd of geen geldige GRAMPS-database."
+msgstr "Het bestand is waarschijnlijk beschadigd of geen geldige GRAMPS-database."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:236
 #, python-format
@@ -5954,15 +5939,13 @@ msgstr "Systeeminformatie"
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
-msgstr ""
-"Deze informatie over uw systeem helpt de ontwikkelaars de fout te corrigeren."
+msgstr "Deze informatie over uw systeem helpt de ontwikkelaars de fout te corrigeren."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:270
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
-msgstr ""
-"Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad. "
+msgstr "Geef zoveel mogelijk informatie over wat u precies deed toen de fout optrad. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:311
 msgid "Further Information"
@@ -6219,8 +6202,7 @@ msgstr "Er is geen relatie tussen %(person)s en %(active_person)s."
 #: ../src/plugins/all_relations.py:148
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr ""
-"%(person)s en %(active_person)s hebben de volgende aangetrouwde relatie:"
+msgstr "%(person)s en %(active_person)s hebben de volgende aangetrouwde relatie:"
 
 #: ../src/plugins/all_relations.py:202
 #, python-format
@@ -6366,7 +6348,7 @@ msgstr "Het aantal generaties dat in de stamboom wordt voorzien"
 
 #: ../src/plugins/AncestorTree.py:468 ../src/plugins/DescendTree.py:423
 msgid "Display Format"
-msgstr "Weergave-formaat"
+msgstr "Weergaveformaat"
 
 #: ../src/plugins/AncestorTree.py:470 ../src/plugins/DescendTree.py:425
 msgid "Display format for the outputbox."
@@ -6628,7 +6610,7 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/NarrativeWeb.py:2958 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
-msgstr "Filter Persoonsfilter"
+msgstr "Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
@@ -6858,13 +6840,11 @@ msgstr "Geboortedatum achternaam"
 
 #: ../src/plugins/Calendar.py:525
 msgid "Wives use husband's surname (from first family listed)"
-msgstr ""
-"Vrouwen gebruiken achternaam echtgenoot(van de eerste familie in lijst)"
+msgstr "Vrouwen gebruiken achternaam echtgenoot(van de eerste familie in lijst)"
 
 #: ../src/plugins/Calendar.py:526
 msgid "Wives use husband's surname (from last family listed)"
-msgstr ""
-"Vrouwen gebruiken achternaam echtgenoot (van de laatste familie in de lijst)"
+msgstr "Vrouwen gebruiken achternaam echtgenoot (van de laatste familie in de lijst)"
 
 #: ../src/plugins/Calendar.py:527
 msgid "Wives use their own surname"
@@ -6988,7 +6968,7 @@ msgstr "Stijl titel"
 
 #: ../src/plugins/Calendar.py:654
 msgid "Data text display"
-msgstr "Gegevens tekst weergave"
+msgstr "Gegevens tekstweergave"
 
 #: ../src/plugins/Calendar.py:656
 msgid "Day text style"
@@ -7059,8 +7039,7 @@ msgid "Fix Capitalization of Family Names"
 msgstr "Verbeter de hoofdletters van familienamen"
 
 #: ../src/plugins/ChangeNames.py:292
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
 "Doorzoekt de gehele database en probeert de namen met of zonder hoofdletters "
 "te verbeteren."
@@ -7319,8 +7298,7 @@ msgstr "Er was een verwijzing naar 1 media-object welke niet werd gevonden\n"
 #: ../src/plugins/Check.py:1377 ../src/plugins/Check.py:1422
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr ""
-"Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
+msgstr "Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
 
 #: ../src/plugins/Check.py:1380
 msgid "Reference to 1 missing media object was kept\n"
@@ -7405,8 +7383,7 @@ msgstr "Er was een verwijzing naar 1 opmerking welke niet werd gevonden\n"
 #: ../src/plugins/Check.py:1428
 #, python-format
 msgid "%d note objects were referenced, but not found\n"
-msgstr ""
-"Er waren verwijzingen naar %d opmerkingen, welke niet werden gevonden\n"
+msgstr "Er waren verwijzingen naar %d opmerkingen, welke niet werden gevonden\n"
 
 #: ../src/plugins/Check.py:1432
 msgid "1 invalid name format reference was removed\n"
@@ -7453,8 +7430,7 @@ msgid "Check and Repair Database"
 msgstr "Gegevensbestand controleren en herstellen"
 
 #: ../src/plugins/Check.py:1520
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
 "Controleert het gegevensbestand op integriteitsproblemen. Problemen worden "
 "waar mogelijk verholpen"
@@ -9236,7 +9212,7 @@ msgstr "Naast de naam"
 
 #: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "Plaats waar de verkleinde weergave wordt getoond t.o.v. de de naam"
+msgstr "Plaats waar het miniatuur wordt getoond t.o.v. de de naam"
 
 #. ---------------------
 #: ../src/plugins/GVFamilyLines.py:184
@@ -9276,16 +9252,14 @@ msgstr "Het aantal kinderen bijvoegen"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr ""
-"Meenemen van het aantal kinderen voor die families met meer dan 1 kind."
+msgstr "Meenemen van het aantal kinderen voor die families met meer dan 1 kind."
 
 #: ../src/plugins/GVFamilyLines.py:203
 msgid "Include private records"
 msgstr "Privégegevens bijvoegen"
 
 #: ../src/plugins/GVFamilyLines.py:204
-msgid ""
-"Whether to include names, dates, and families that are marked as private."
+msgid "Whether to include names, dates, and families that are marked as private."
 msgstr ""
 "Al of niet namen, datums en families die als privé beschouwd worden, "
 "bijvoegen."
@@ -9365,11 +9339,11 @@ msgstr "Maakt een zandlopergrafiek aan met Graphviz"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/GVRelGraph.py:59
 msgid "B&W outline"
-msgstr "Z&W omtrek"
+msgstr "Omtrek in zwart en wit"
 
 #: ../src/plugins/GVRelGraph.py:60
 msgid "Colored outline"
-msgstr "Gekleurde omtrek"
+msgstr "Omtrek in kleuren"
 
 #: ../src/plugins/GVRelGraph.py:61
 msgid "Color fill"
@@ -9393,7 +9367,7 @@ msgstr "Afstammelingen - Voorouders"
 
 #: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
-msgstr "Bepaald welke personen in de grafiek worden meegenomen worden"
+msgstr "Bepaald welke personen in de grafiek getoond worden"
 
 #: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
@@ -9415,9 +9389,7 @@ msgstr "Datums beperken tot jaren alleen"
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
-msgstr ""
-"Geeft alleen het jaar van een datum. Noch de maand, dag, datumbenadering of "
-"interval wordt getoond."
+msgstr "Geeft enkel het jaar weer van een datum. Er worden geen maanden, dagen of intervallen getoond."
 
 #: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
@@ -9443,7 +9415,7 @@ msgid ""
 msgstr ""
 "Een URL bij elk grafiekknooppunt toevoegen zodat PDF en imagemap-bestanden "
 "kunnen worden gegenereerd die actieve links bevatten naar de bestanden die "
-"gegenereerd zijn met het 'Websiteverslag ."
+"gegenereerd zijn met het 'Website'-verslag ."
 
 #: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
@@ -9455,11 +9427,11 @@ msgstr "Persoonlijke en familie-IDs bijvoegen."
 
 #: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
-msgstr "Al of niet verkleinde weergave van personen."
+msgstr "Al of niet miniaturen van personen weergeven."
 
 #: ../src/plugins/GVRelGraph.py:482
 msgid "Thumbnail Location"
-msgstr "Plaats van de 'thumbnails'"
+msgstr "Plaats van de miniaturen"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:491
@@ -9481,7 +9453,7 @@ msgstr ""
 
 #: ../src/plugins/GVRelGraph.py:502
 msgid "Arrowhead direction"
-msgstr "Pijlpunt-richting"
+msgstr "Richting van de pijlen"
 
 #: ../src/plugins/GVRelGraph.py:505
 msgid "Choose the direction that the arrows point."
@@ -9504,8 +9476,7 @@ msgstr "Familieknooppunten tonen"
 
 #: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
+msgstr "Families worden met ovalen voorgesteld met verbindingen naar ouders en kinderen."
 
 #: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
@@ -9883,8 +9854,7 @@ msgstr "Vrouwelijk afstammelingen in rechte lijn"
 
 #: ../src/plugins/lineage.py:124 ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr ""
-"FOUT . Er zijn teveel onderverdelingen in de boom (misschien een lus?)."
+msgstr "FOUT . Er zijn teveel onderverdelingen in de boom (misschien een lus?)."
 
 #: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
@@ -10201,10 +10171,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:413 ../src/plugins/WebCal.py:406
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr ""
-"Gegenereerd met <a href=\"http://gramps-project.org\">GRAMPS</a> op %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgstr "Gegenereerd met <a href=\"http://gramps-project.org\">GRAMPS</a> op %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:424
 #, python-format
@@ -10391,8 +10359,7 @@ msgstr "Half-broers en zussen"
 #: ../src/plugins/NarrativeWeb.py:2515
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr ""
-"%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;in&nbsp;&nbsp;%(place)s"
+msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;in&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2517
 #, python-format
@@ -10482,8 +10449,7 @@ msgstr "De map waar de webpagina's worden opgeslagen"
 
 #: ../src/plugins/NarrativeWeb.py:2954
 msgid "Select filter to restrict people that appear on web files"
-msgstr ""
-"Kies een filter om het aantal personen te beperken voor aanmaak webpagina's"
+msgstr "Kies een filter om het aantal personen te beperken voor aanmaak webpagina's"
 
 #: ../src/plugins/NarrativeWeb.py:2965
 msgid "Web site title"
@@ -10629,8 +10595,7 @@ msgstr "Download pagina bijvoegen"
 
 #: ../src/plugins/NarrativeWeb.py:3055
 msgid "Whether to include a database download option"
-msgstr ""
-"Al of niet een optie toevoegen om het gegevensbestand te kunnen downloaden"
+msgstr "Al of niet een optie toevoegen om het gegevensbestand te kunnen downloaden"
 
 #: ../src/plugins/NarrativeWeb.py:3058
 msgid "Suppress GRAMPS ID"
@@ -10812,8 +10777,7 @@ msgstr "Andere gebeurtenissen in deze maand/ op deze dag in de geschiedenis"
 
 #: ../src/plugins/OnThisDay.py:121
 msgid "No other events on this month/day in history"
-msgstr ""
-"Geen andere gebeurtenissen in deze maand/ op deze dag in de geschiedenis"
+msgstr "Geen andere gebeurtenissen in deze maand/ op deze dag in de geschiedenis"
 
 #: ../src/plugins/OnThisDay.py:126
 #, python-format
@@ -10905,8 +10869,7 @@ msgstr "Mediamap %s is niet beschrijfbaar"
 #. it, have him remove it!
 #: ../src/plugins/ReadPkg.py:88
 #, python-format
-msgid ""
-"Media directory %s exists. Delete it first, then restart the import process"
+msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Mediamap %s bestaat reeds. Verwijder de map eerst en herstart het "
 "importproces "
@@ -11224,8 +11187,7 @@ msgstr "Personen met de achternaam '%s'"
 #: ../src/plugins/SameSurnames.py:90
 #, python-format
 msgid "There are %d people with a matching name, or alternate name.\n"
-msgstr ""
-"Er zijn %d personen met een overeenkomende naam of een alternatieve naam.\n"
+msgstr "Er zijn %d personen met een overeenkomende naam of een alternatieve naam.\n"
 
 #: ../src/plugins/SameSurnames.py:102
 msgid "Same Surnames"
@@ -11526,8 +11488,7 @@ msgid "Max. items for a pie"
 msgstr "Max. items voor een taart"
 
 #: ../src/plugins/StatisticsChart.py:735
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Met minder items wordt een taartgrafiek en legenda gebruikt in plaats van "
 "een balkgrafiek."
@@ -11764,8 +11725,7 @@ msgstr "De gegevens controleren"
 
 #: ../src/plugins/Verify.py:1528
 msgid "Verifies the data against user-defined tests"
-msgstr ""
-"Controleert de gegevens met een aantal door de gebruiker opgestelde tests"
+msgstr "Controleert de gegevens met een aantal door de gebruiker opgestelde tests"
 
 #: ../src/plugins/WebCal.py:479
 msgid "Generate HTML Calendars"
@@ -11814,8 +11774,7 @@ msgid "Home link"
 msgstr "Home link"
 
 #: ../src/plugins/WebCal.py:790
-msgid ""
-"The link to be included to direct the user to the main page of the web site"
+msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Een verwijzing om de gebruiker naar de hoofdpagina van de webstek te sturen, "
 "wordt toegevoegd"
@@ -12073,8 +12032,7 @@ msgstr "Maakt web (HTML) kalenders aan."
 
 #: ../src/plugins/WriteCD.py:54
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-msgstr ""
-"WriteCD is een hulpprogramma van GNOME en momenteel draait u GNOME niet"
+msgstr "WriteCD is een hulpprogramma van GNOME en momenteel draait u GNOME niet"
 
 #: ../src/plugins/WriteCD.py:60
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -12312,8 +12270,7 @@ msgstr "Plugins herladen"
 
 #: ../src/PluginUtils/_Plugins.py:420
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr ""
-"Poging plugins opnieuw te laden. Merk op: deze tool zelf wordt niet herladen!"
+msgstr "Poging plugins opnieuw te laden. Merk op: deze tool zelf wordt niet herladen!"
 
 #: ../src/PluginUtils/_Tool.py:64
 msgid "Debug"
@@ -12638,7 +12595,7 @@ msgstr "Lettergrootte"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid "The font size, in points."
-msgstr "Lettertypegrootte in pts."
+msgstr "Lettergrootte in pts."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "Graph Direction"
@@ -12697,7 +12654,7 @@ msgstr "GraphViz-opties"
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:817
 msgid "Aspect ratio"
-msgstr "Weergave verhouding"
+msgstr "Weergaveverhouding"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "Affects greatly how the graph is layed out on the page."
@@ -12816,8 +12773,7 @@ msgid "File already exists"
 msgstr "Bestand bestaat reeds"
 
 #: ../src/ReportBase/_ReportDialog.py:217
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "U kunt ervoor kiezen het bestand te overschrijven, of de geselecteerde "
 "bestandsnaam te wijzigen."
@@ -12843,8 +12799,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:275
 msgid "You must select an active person for this report to work properly."
-msgstr ""
-"Opdat dit rapport correct zou werken moet u een actieve persoon kiezen."
+msgstr "Opdat dit rapport correct zou werken moet u een actieve persoon kiezen."
 
 #: ../src/ReportBase/_ReportUtils.py:59
 #, python-format
@@ -12864,8 +12819,7 @@ msgstr "Zij werd geboren op %(birth_date)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:64
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren op %(birth_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren op %(birth_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:65
 #, python-format
@@ -12900,8 +12854,7 @@ msgstr "Zij werd geboren %(modified_date)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:78
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren %(modified_date)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren %(modified_date)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:79
 #, python-format
@@ -13006,8 +12959,7 @@ msgstr "Zij werd geboren in %(month_year)s in %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:120
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
-"%(unknown_gender_name)s werd geboren in %(month_year)s in %(birth_place)s."
+msgstr "%(unknown_gender_name)s werd geboren in %(month_year)s in %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:121
 #, python-format
@@ -13133,24 +13085,21 @@ msgstr "Hij overleed op %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:170
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:171
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:172
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -13162,24 +13111,21 @@ msgstr "Zij overleed op %(death_date)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:176
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:177
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:178
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Zij overleed op %(death_date)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -13293,8 +13239,7 @@ msgstr "Overleden %(death_date)s te %(death_place)s (leeftijd  %(age)d jaren)."
 #: ../src/ReportBase/_ReportUtils.py:203 ../src/ReportBase/_ReportUtils.py:250
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
-msgstr ""
-"Overleden %(death_date)s te %(death_place)s (leeftijd %(age)d maanden)."
+msgstr "Overleden %(death_date)s te %(death_place)s (leeftijd %(age)d maanden)."
 
 #: ../src/ReportBase/_ReportUtils.py:204 ../src/ReportBase/_ReportUtils.py:251
 #, python-format
@@ -13373,8 +13318,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:224
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed %(death_date)s in %(death_place)s op een leeftijd van %(age)d "
 "maanden."
@@ -13490,20 +13434,17 @@ msgstr "Deze persoon overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:258
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:259
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:260
 #, python-format
 msgid "This person died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:263
 #, python-format
@@ -13552,24 +13493,21 @@ msgstr "%(unknown_gender_name)s overleed op %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:277
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:279
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed op %(death_date)s op een leeftijd van %(age)"
 "d dagen."
@@ -13582,20 +13520,17 @@ msgstr "%(male_name)s overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:283
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:284
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:285
 #, python-format
 msgid "%(male_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:288
 #, python-format
@@ -13605,8 +13540,7 @@ msgstr "%(female_name)s overleed op %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:289
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:290
 #, python-format
@@ -13618,8 +13552,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:291
 #, python-format
 msgid "%(female_name)s died on %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed op %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:295 ../src/ReportBase/_ReportUtils.py:342
 #, python-format
@@ -13654,14 +13587,12 @@ msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d jaar."
 #: ../src/ReportBase/_ReportUtils.py:306
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:307
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:310
 #, python-format
@@ -13710,16 +13641,14 @@ msgstr "%(unknown_gender_name)s overleed %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed %(death_date)s op een leeftijd van %(age)d "
 "jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed %(death_date)s op een leeftijd van %(age)d "
 "maanden."
@@ -13739,20 +13668,17 @@ msgstr "%(male_name)s overleed %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:330
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:331
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:332
 #, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:335
 #, python-format
@@ -13762,20 +13688,17 @@ msgstr "%(female_name)s overleed %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:336
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:337
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:338
 #, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed %(death_date)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:351
 #, python-format
@@ -13816,24 +13739,21 @@ msgstr "Hij overleed in %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:358
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:359
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:360
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Hij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -13845,24 +13765,21 @@ msgstr "Zij overleed in %(month_year)s in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:364
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:365
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:366
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "Zij overleed in %(month_year)s in %(death_place)s op een leeftijd van %(age)"
 "d dagen."
@@ -13976,8 +13893,7 @@ msgstr "Overleed %(month_year)s te %(death_place)s (leeftijd %(age)d jaren)."
 #: ../src/ReportBase/_ReportUtils.py:391
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-msgstr ""
-"Overleed %(month_year)s te %(death_place)s (leeftijd van %(age)d maanden)."
+msgstr "Overleed %(month_year)s te %(death_place)s (leeftijd van %(age)d maanden)."
 
 #: ../src/ReportBase/_ReportUtils.py:392
 #, python-format
@@ -13992,20 +13908,17 @@ msgstr "Deze persoon overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:399
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:400
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:401
 #, python-format
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:404
 #, python-format
@@ -14054,24 +13967,21 @@ msgstr "%(unknown_gender_name)s overleed in %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:418
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:419
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:420
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(month_year)s op een leeftijd van %(age)"
 "d dagen."
@@ -14084,20 +13994,17 @@ msgstr "%(male_name)s overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:424
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:425
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d maanden."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:426
 #, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:429
 #, python-format
@@ -14107,8 +14014,7 @@ msgstr "%(female_name)s overleed in %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:430
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:431
 #, python-format
@@ -14120,8 +14026,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:432
 #, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
+msgstr "%(female_name)s overleed in %(month_year)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:436
 #, python-format
@@ -14151,20 +14056,17 @@ msgstr "Deze persoon overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:447
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:448
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d maanden."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:449
 #, python-format
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d dagen."
+msgstr "Deze persoon overleed in %(death_place)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:452
 #, python-format
@@ -14213,24 +14115,21 @@ msgstr "%(unknown_gender_name)s overleed in %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:466
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:467
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d maanden."
 
 #: ../src/ReportBase/_ReportUtils.py:468
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr ""
 "%(unknown_gender_name)s overleed in %(death_place)s op een leeftijd van %"
 "(age)d dagen."
@@ -14243,8 +14142,7 @@ msgstr "%(male_name)s overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:472
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:473
 #, python-format
@@ -14256,8 +14154,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:474
 #, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d dagen."
+msgstr "%(male_name)s overleed in %(death_place)s op een leeftijd van %(age)d dagen."
 
 #: ../src/ReportBase/_ReportUtils.py:477
 #, python-format
@@ -14267,8 +14164,7 @@ msgstr "%(female_name)s overleed in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:478
 #, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
+msgstr "%(female_name)s overleed in %(death_place)s op een leeftijd van %(age)d jaar."
 
 #: ../src/ReportBase/_ReportUtils.py:479
 #, python-format
@@ -14411,8 +14307,7 @@ msgstr "Overleed (leeftijd %(age)d dagen)."
 
 #: ../src/ReportBase/_ReportUtils.py:546
 #, python-format
-msgid ""
-"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)"
 "s."
@@ -14447,8 +14342,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
-msgid ""
-"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "Deze persoon werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)"
 "s."
@@ -14495,8 +14389,7 @@ msgstr "Begraven %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:578
 #, python-format
-msgid ""
-"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)"
 "s."
@@ -14508,8 +14401,7 @@ msgstr "Hij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
-msgid ""
-"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(female_name)s werd begraven in %(month_year)s te %(burial_place)s%"
 "(endnotes)s."
@@ -14530,10 +14422,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
-msgid ""
-"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Deze persoon werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:589
 #, python-format
@@ -14577,8 +14467,7 @@ msgstr "Begraven %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:610
 #, python-format
-msgid ""
-"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)"
 "s."
@@ -14590,8 +14479,7 @@ msgstr "Hij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 "%(female_name)s werd begraven %(modified_date)s te %(burial_place)s%"
 "(endnotes)s."
@@ -14612,10 +14500,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
-msgid ""
-"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Deze persoon werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:621
 #, python-format
@@ -14852,10 +14738,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
-msgid ""
-"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"Deze persoon werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt in %(month_year)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:723
 #, python-format
@@ -14936,10 +14820,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
-msgid ""
-"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr ""
-"This person werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgstr "This person werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
 #, python-format
@@ -15053,24 +14935,18 @@ msgstr "Gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:814
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:815
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:816
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon trouwde %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 #, python-format
@@ -15146,41 +15022,33 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:842
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:844
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Hij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:847
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:848
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:849
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Zij trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:852
 #, python-format
@@ -15260,8 +15128,7 @@ msgstr "Huwde %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Deze persoon trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Deze persoon trouwde tevens %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:884
 #, python-format
@@ -15764,10 +15631,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1024
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"Ook relatie (geen huwelijk) met %(spouse)s %(partial_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Ook relatie (geen huwelijk) met %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1025
 #, python-format
@@ -15776,10 +15641,8 @@ msgstr "Ook relatie (geen huwelijk) met %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1026
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Ook relatie (geen huwelijk) met %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Ook relatie (geen huwelijk) met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1031
 #, python-format
@@ -15794,17 +15657,13 @@ msgstr ""
 # hij had een relatie met
 #: ../src/ReportBase/_ReportUtils.py:1032
 #, python-format
-msgid ""
-"He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hij had een relatie (geen huwelijk) met %(spouse)s te %(place)s%(endnotes)s."
+msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Hij had een relatie (geen huwelijk) met %(spouse)s te %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1033
 #, python-format
-msgid ""
-"She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Zij had een relatie (geen huwelijk) met %(spouse)s te %(place)s%(endnotes)s."
+msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Zij had een relatie (geen huwelijk) met %(spouse)s te %(place)s%(endnotes)s."
 
 # hij onderhield een relatie met
 # hij had een relatie met
@@ -15868,8 +15727,7 @@ msgstr "Ongetrouwde relatie met %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1052
 #, python-format
-msgid ""
-"This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
+msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr ""
 "Deze persoon had tevens een relatie (geen huwelijk) met %(spouse)s%(endnotes)"
 "s."
@@ -15927,8 +15785,7 @@ msgstr ""
 msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Hij had een relatie met %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Hij had een relatie met %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1074
 #, python-format
@@ -15953,8 +15810,7 @@ msgstr ""
 msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Zij had een relatie met %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Zij had een relatie met %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1079
 #, python-format
@@ -15977,8 +15833,7 @@ msgstr "Relatie met %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1084
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Relatie met %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1090
@@ -16064,20 +15919,17 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1105
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 msgstr "Ook relatie met %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1106
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Ook relatie met %(spouse)s op %(full_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1107
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Ook relatie met %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1113
@@ -16085,22 +15937,17 @@ msgstr "Ook relatie met %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)"
 "s."
-msgstr ""
-"Deze persoon had een relatie met%(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Deze persoon had een relatie met%(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1114
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Deze persoon had een relatie met %(spouse)s op %(full_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Deze persoon had een relatie met %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1115
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Deze persoon had een relatie met %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon had een relatie met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1118
 #, python-format
@@ -16176,45 +16023,33 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1141
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Hij had tevens een realtie met %(spouse)s in %(partial_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hij had tevens een realtie met %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1142
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Hij had tevens een realtie met %(spouse)s op %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Hij had tevens een realtie met %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1143
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Hij had tevens een realtie met %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hij had tevens een realtie met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1146
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Zij had tevens een relatie met%(spouse)s in %(partial_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Zij had tevens een relatie met%(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1147
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Zij had tevens een relatie met %(spouse)s op %(full_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Zij had tevens een relatie met %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1148
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Zij had bovendien een relatie met %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Zij had bovendien een relatie met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1151
 #, python-format
@@ -16233,8 +16068,7 @@ msgstr "Ook relatie met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1158
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Deze persoon had een relatie met %(spouse)s in %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1159
@@ -16254,10 +16088,8 @@ msgstr "Relatie met %(spouse)s te %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1165
 #, python-format
-msgid ""
-"This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Deze persoon had tevens een relatie met %(spouse)s te %(place)s%(endnotes)s."
+msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Deze persoon had tevens een relatie met %(spouse)s te %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1166
 #, python-format
@@ -16632,8 +16464,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1868
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1874
 #, python-format
@@ -16664,10 +16495,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1887
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1892
 #, python-format
@@ -16681,14 +16510,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1895
 #, python-format
 msgid "%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1899
 #, python-format
 msgid "%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1902
 #, python-format
@@ -16763,8 +16590,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1939
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s werd geboren op %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1945
 #, python-format
@@ -16795,8 +16621,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1958
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s werd geboren in %(birth_place)s%(birth_endnotes)"
 "s."
@@ -16813,14 +16638,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1966
 #, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s overleed op %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1970
 #, python-format
 msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s overleed in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1973
 #, python-format
@@ -16829,8 +16652,7 @@ msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2690
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 "Geboren: %(birth_date)s %(birth_place)s Overleden: %(death_date)s %"
 "(death_place)s."
@@ -17832,8 +17654,7 @@ msgstr "Objecten met <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt objecten waarvan de GRAMPS ID overeenkomt met de reguliere uitdrukking"
+msgstr "Vindt objecten waarvan de GRAMPS ID overeenkomt met de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -17914,8 +17735,7 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Heeft een gemeenschappelijke voorouder met resultaat van <filter>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Vindt personen die een gemeenschappelijke voorouder hebben met iemand "
 "gevonden via een filter"
@@ -18243,8 +18063,7 @@ msgstr "Is een afstammeling van resultaat van filter"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr ""
-"Vindt personen die afstammeling zijn van iemand gevonden via een filter"
+msgstr "Vindt personen die afstammeling zijn van iemand gevonden via een filter"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 msgid "Descendants of <person>"
@@ -18270,8 +18089,7 @@ msgstr "Aantal generaties:"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr ""
-"Voorouders van personen met bladwijzer, niet meer dan N generaties verwijderd"
+msgstr "Voorouders van personen met bladwijzer, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
 msgid ""
@@ -18283,20 +18101,17 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr ""
-"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Vindt personen die voorouder zijn van een gespecificeerd persoon, niet meer "
 "dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr ""
-"Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een voorouder van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid ""
@@ -18308,8 +18123,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr ""
-"Is een afstammeling van een persoon, niet meer dan N generaties verwijderd"
+msgstr "Is een afstammeling van een persoon, niet meer dan N generaties verwijderd"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
@@ -18387,8 +18201,7 @@ msgstr "Gebeurtenisfilternaam:"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr ""
-"Personen waarvan de gebeurtenissen overeen komen met <gebeurtenissenfilter>"
+msgstr "Personen waarvan de gebeurtenissen overeen komen met <gebeurtenissenfilter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
@@ -18600,8 +18413,7 @@ msgstr "Familieobjecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
 msgid "Matches family objects with a certain reference count"
-msgstr ""
-"Vindt familieobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
+msgstr "Vindt familieobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 msgid "Family with the relationship type"
@@ -18609,8 +18421,7 @@ msgstr "Families van het relatie-type"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 msgid "Matches family with the relationship type of a particular value"
-msgstr ""
-"Vindt families met relatie van het type personen met bepaalde attribuut"
+msgstr "Vindt families met relatie van het type personen met bepaalde attribuut"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -18626,8 +18437,7 @@ msgstr "Families met <Id> die overeenkomen met een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt families waarvan de GRAMPS-ID overeenkomt met de reguliere uitdrukking"
+msgstr "Vindt families waarvan de GRAMPS-ID overeenkomt met de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
@@ -18801,8 +18611,7 @@ msgstr "Vindt gebeurtenissen die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
-msgstr ""
-"Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt gebeurtenissen met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -18816,8 +18625,7 @@ msgstr "Gebeurtenissen maarnaar <x aantal maal> naar verwezen wordt"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:44
 msgid "Matches events with a certain reference count"
-msgstr ""
-"Vindt gebeurtenissen waarnaar een bepaald aantal keer naar verwezen wordt"
+msgstr "Vindt gebeurtenissen waarnaar een bepaald aantal keer naar verwezen wordt"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -18992,8 +18800,7 @@ msgstr "Locatieobjecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
 msgid "Matches place objects with a certain reference count"
-msgstr ""
-"Vindt locatieobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
+msgstr "Vindt locatieobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -19092,8 +18899,7 @@ msgstr "Bronobjecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
 msgid "Matches source objects with a certain reference count"
-msgstr ""
-"Vindt bronobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
+msgstr "Vindt bronobjecten waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -19204,12 +19010,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr ""
-"Vindt media-objecten met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt media-objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
 "Vindt media-objecten van wie de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
@@ -19244,8 +19048,7 @@ msgstr "Media-objecten met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Vindt media-objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
+msgstr "Vindt media-objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -19276,12 +19079,10 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr ""
-"Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
+msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
 "Vindt bibliotheken waarvan de notities tekst bevatten die met "
 "reguliereuitdrukking overeenkomen"
@@ -19292,8 +19093,7 @@ msgstr "Bibliotheken waarnaar <zoveel> maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr ""
-"Vindt Bibliotheken waarnaar een bepaald aantaal maal naar wordt verwezen"
+msgstr "Vindt Bibliotheken waarnaar een bepaald aantaal maal naar wordt verwezen"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -19321,8 +19121,7 @@ msgstr "Bibliotheken met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Bibliotheken vinden met GRAMPS ID die voldoen aan een reguliere uitdrukking"
+msgstr "Bibliotheken vinden met GRAMPS ID die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -19585,8 +19384,7 @@ msgstr "Reguliere uitdrukking toepassen"
 
 #: ../src/FilterEditor/_EditRule.py:500
 msgid "Also family events where person is wife/husband"
-msgstr ""
-"Ook die familiegebeurtenissen waarin de persoon echtgenoot/echtgenote is"
+msgstr "Ook die familiegebeurtenissen waarin de persoon echtgenoot/echtgenote is"
 
 #: ../src/FilterEditor/_EditRule.py:514
 msgid "Rule Name"
@@ -20567,8 +20365,7 @@ msgid "Place 2"
 msgstr "Locatie 2"
 
 #: ../src/glade/mergedata.glade.h:13
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Selecteer de persoon die de primaire gegevens zal geven voor de "
 "samengevoegde persoon."
@@ -20611,8 +20408,7 @@ msgstr "<b>Waarden</b>"
 
 #: ../src/glade/rule.glade.h:7
 msgid "<i>Note: changes take effect only after this window is closed</i>"
-msgstr ""
-"<i>Merk op: wijzigingen hebben pas effect nadat dit venster is gesloten</i>"
+msgstr "<i>Merk op: wijzigingen hebben pas effect nadat dit venster is gesloten</i>"
 
 #: ../src/glade/rule.glade.h:8
 msgid "Add a new filter"
@@ -20848,8 +20644,7 @@ msgstr "Huwelijken"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
-"<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
+msgstr "<i>Dubbelklikken op de rij om de persoonlijke informatie te bewerken</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -21041,8 +20836,7 @@ msgstr "Maximum aantal _kinderen"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr ""
-"Maximum aantal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
+msgstr "Maximum aantal opeenvolgende jaren _weduwnaarschap voor volgende huwelijk"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -21070,8 +20864,7 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS genealogie systeem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
@@ -21934,10 +21727,3 @@ msgstr ""
 "U kunt willekeurige elektronische media (ook beeld en geluid) en andere "
 "bestandstypes koppelen aan uw GRAMPS-familiestamboom."
 
-#~ msgid "Use rounded corners"
-#~ msgstr "Gebruik afgeronde hoeken"
-
-#~ msgid "Use rounded corners to differentiate between women and men."
-#~ msgstr ""
-#~ "Gebruik afgeronde hoeken om een verschil te maken tussen mannen en "
-#~ "vrouwen."
