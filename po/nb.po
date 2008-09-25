@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-14 12:36+0200\n"
-"PO-Revision-Date: 2008-09-14 12:42+0200\n"
+"POT-Creation-Date: 2008-09-25 23:09+0200\n"
+"PO-Revision-Date: 2008-09-25 23:11+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,13 +22,22 @@ msgstr ""
 "Generated-By: pygettext.py 1.4\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/ArgHandler.py:417 ../src/DbLoader.py:170 ../src/DbLoader.py:191
+#: ../src/ArgHandler.py:335
+#, python-format
+msgid "Input family tree \"%s\" does not exist."
+msgstr "Slektstreet \"%s\" finnes ikke."
+
+#: ../src/ArgHandler.py:336
+msgid "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead"
+msgstr "Hvis fila er gedcom, gramps-xml eller grdb, bruk istedet opsjonen -i for å importere til et slektstre"
+
+#: ../src/ArgHandler.py:431 ../src/DbLoader.py:170 ../src/DbLoader.py:191
 #: ../src/DbLoader.py:284
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kunne ikke åpne fila: %s"
 
-#: ../src/ArgHandler.py:418
+#: ../src/ArgHandler.py:432
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
@@ -972,7 +981,7 @@ msgid "Source"
 msgstr "Kilde"
 
 #: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
-#: ../src/Editors/_EditPerson.py:470 ../src/FilterEditor/_EditRule.py:279
+#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:279
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
@@ -3808,7 +3817,7 @@ msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
 
 #: ../src/docgen/AsciiDoc.py:383 ../src/docgen/HtmlDoc.py:490
-#: ../src/docgen/RTFDoc.py:449 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/RTFDoc.py:449 ../src/Editors/_EditPerson.py:477
 #, python-format
 msgid "Open in %s"
 msgstr "Åpne i %s"
@@ -4413,7 +4422,7 @@ msgid "Cannot save event. ID already exists."
 msgstr "Kan ikke lagre hendelse. ID finnes allerede."
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:250
-#: ../src/Editors/_EditPerson.py:690 ../src/Editors/_EditPlace.py:275
+#: ../src/Editors/_EditPerson.py:691 ../src/Editors/_EditPlace.py:275
 #: ../src/Editors/_EditRepository.py:155 ../src/Editors/_EditSource.py:172
 #, python-format
 msgid "You have attempted to use the existing GRAMPS ID with value %(id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
@@ -4773,27 +4782,27 @@ msgstr "Ny person"
 msgid "Patronymic:"
 msgstr "Avstamningsnavn:"
 
-#: ../src/Editors/_EditPerson.py:417
+#: ../src/Editors/_EditPerson.py:418
 msgid "Edit Person"
 msgstr "Rediger person"
 
-#: ../src/Editors/_EditPerson.py:478
+#: ../src/Editors/_EditPerson.py:479
 msgid "Edit Object Properties"
 msgstr "Rediger objektegenskapene"
 
-#: ../src/Editors/_EditPerson.py:516
+#: ../src/Editors/_EditPerson.py:517
 msgid "Make Active Person"
 msgstr "Gjør person aktiv"
 
-#: ../src/Editors/_EditPerson.py:520
+#: ../src/Editors/_EditPerson.py:521
 msgid "Make Home Person"
 msgstr "Gjør til startperson"
 
-#: ../src/Editors/_EditPerson.py:667
+#: ../src/Editors/_EditPerson.py:668
 msgid "Problem changing the gender"
 msgstr "Problem med å endre kjønn"
 
-#: ../src/Editors/_EditPerson.py:668
+#: ../src/Editors/_EditPerson.py:669
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -4801,45 +4810,45 @@ msgstr ""
 "Endring av kjønn førte til problemer med informasjonen om ekteskapet.\n"
 "Sjekk personens giftemål."
 
-#: ../src/Editors/_EditPerson.py:679
+#: ../src/Editors/_EditPerson.py:680
 msgid "Cannot save person"
 msgstr "Kan ikke lagre personen"
 
-#: ../src/Editors/_EditPerson.py:680
+#: ../src/Editors/_EditPerson.py:681
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr "Det er angitt data for denne personen.  Skriv inn data eller avbryt endringen."
 
-#: ../src/Editors/_EditPerson.py:689
+#: ../src/Editors/_EditPerson.py:690
 msgid "Cannot save person. ID already exists."
 msgstr "Kan ikke lagre personen. ID finnes allerede."
 
-#: ../src/Editors/_EditPerson.py:710
+#: ../src/Editors/_EditPerson.py:711
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Legg til person (%s)"
 
-#: ../src/Editors/_EditPerson.py:715
+#: ../src/Editors/_EditPerson.py:716
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Rediger person (%s)"
 
-#: ../src/Editors/_EditPerson.py:871
+#: ../src/Editors/_EditPerson.py:872
 msgid "Unknown gender specified"
 msgstr "Det angitte kjønnet er ukjent"
 
-#: ../src/Editors/_EditPerson.py:873
+#: ../src/Editors/_EditPerson.py:874
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
 msgstr "Kjønnet til personen er for øyeblikket ukjent. Vanligvis er dette en feil. Spesifiser kjønn."
 
-#: ../src/Editors/_EditPerson.py:876
+#: ../src/Editors/_EditPerson.py:877
 msgid "_Male"
 msgstr "_Hankjønn"
 
-#: ../src/Editors/_EditPerson.py:877
+#: ../src/Editors/_EditPerson.py:878
 msgid "_Female"
 msgstr "Hu_nkjønn"
 
-#: ../src/Editors/_EditPerson.py:878
+#: ../src/Editors/_EditPerson.py:879
 msgid "_Unknown"
 msgstr "_Ukjent"
 
@@ -5630,7 +5639,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/AncestorReport.py:347 ../src/plugins/BookReport.py:1250
 #: ../src/plugins/Calendar.py:929 ../src/plugins/Calendar.py:942
 #: ../src/plugins/ChangeNames.py:291 ../src/plugins/ChangeTypes.py:207
-#: ../src/plugins/Check.py:1519 ../src/plugins/CmdRef.py:248
+#: ../src/plugins/Check.py:1519 ../src/plugins/CmdRef.py:241
 #: ../src/plugins/Desbrowser.py:169 ../src/plugins/DescendTree.py:490
 #: ../src/plugins/DescendReport.py:256
 #: ../src/plugins/DetAncestralReport.py:887
@@ -6886,11 +6895,11 @@ msgstr "Kontrollere og reparere database"
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerer databasen for integritetsproblemer og retter det den kan"
 
-#: ../src/plugins/CmdRef.py:247
+#: ../src/plugins/CmdRef.py:240
 msgid "Generate Commandline Plugin Reference"
 msgstr "Lag referanse til programtillegg for kommandolinje"
 
-#: ../src/plugins/CmdRef.py:251
+#: ../src/plugins/CmdRef.py:244
 msgid "Produces a DocBook XML file that contains a parameter reference of Reports and Tools."
 msgstr "Lage en DocBook XML-fil som inneholder en parameterreferanse til Rapporter og Verktøy."
 
@@ -11705,7 +11714,7 @@ msgstr "OK"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:201
+#: ../src/ReportBase/_CommandLineReport.py:172
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:364 ../src/ReportBase/_PaperMenu.py:386
 msgid "Custom Size"
