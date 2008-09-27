@@ -1,3 +1,13 @@
+Version 3.0.2 -- the "You look like a milkman to me" release.
+* Translation updates for de, fr, hr, nl, no, pl, ru, sv
+* Many bug fixes (see ChangeLog for full list)
+* Several fixes backported from trunk
+* Many fixes to report plugins
+* Windows-specific fix for RCS
+* GEDCOM fix for ADDR
+* Fix for media with non-ASCII characters in filename
+* Fixes to Gramplets
+
 Version 3.0.1 -- the "Don't call me "Señor!" release!
 * Translation updates for de, es, fi, fr, hr, lt, nb, nl, pl, sk, and sv!
 * Bug fixes for the book report!
