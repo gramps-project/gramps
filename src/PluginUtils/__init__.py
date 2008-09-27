@@ -21,11 +21,6 @@
 #
 # $Id$
 #
-from _MenuOptions import (NumberOption, BooleanOption, TextOption, 
-                          EnumeratedListOption, FilterOption, StringOption, 
-                          ColourOption, PersonOption, PersonListOption, 
-                          SurnameColourOption, FamilyOption, DestinationOption,
-                          NoteOption, MediaOption, StyleOption, PlaceListOption)
 from _GuiOptions import GuiMenuOptions, make_gui_option
 from _Options import Options, OptionListCollection, OptionList, OptionHandler
 

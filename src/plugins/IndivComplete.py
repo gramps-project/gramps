@@ -37,8 +37,8 @@ from gettext import gettext as _
 import gen.lib
 import BaseDoc
 import DateHandler
-from PluginUtils import PluginManager, FilterOption, BooleanOption, \
-    PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import BooleanOption, FilterOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes

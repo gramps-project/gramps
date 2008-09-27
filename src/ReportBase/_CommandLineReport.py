@@ -41,6 +41,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import PluginUtils
+import gen
 import Utils
 import BaseDoc
 from BasicUtils import name_displayer
@@ -70,7 +71,7 @@ def _validate_options(options, dbase):
     for name in menu.get_all_option_names():
         option = menu.get_option_by_name(name)
 
-        if isinstance(option, PluginUtils.PersonOption):
+        if isinstance(option, gen.plug.menu.PersonOption):
             pid = option.get_value()
             person = dbase.get_person_from_gramps_id(pid)
             if not person:
@@ -83,7 +84,7 @@ def _validate_options(options, dbase):
             if person:
                 option.set_value(person.get_gramps_id())
             
-        elif isinstance(option, PluginUtils.FamilyOption):
+        elif isinstance(option, gen.plug.menu.FamilyOption):
             fid = option.get_value()
             family = dbase.get_family_from_gramps_id(fid)
             if not family:
@@ -200,7 +201,7 @@ class CommandLineReport:
             self.options_dict[name] = option.get_value()
             self.options_help[name] = [ "", option.get_help() ]
             
-            if isinstance(option, PluginUtils.PersonOption):
+            if isinstance(option, gen.plug.menu.PersonOption):
                 id_list = []
                 for person_handle in self.database.get_person_handles():
                     person = self.database.get_person_from_handle(person_handle)
@@ -208,7 +209,7 @@ class CommandLineReport:
                         person.get_gramps_id(),
                         name_displayer.display(person)))
                 self.options_help[name].append(id_list)
-            elif isinstance(option, PluginUtils.FamilyOption):
+            elif isinstance(option, gen.plug.menu.FamilyOption):
                 id_list = []
                 for fhandle in self.database.get_family_handles():
                     family = self.database.get_family_from_handle(fhandle)
@@ -228,31 +229,31 @@ class CommandLineReport:
                         (family.get_gramps_id(), fname, mname)
                     id_list.append(text)
                 self.options_help[name].append(id_list)
-            elif isinstance(option, PluginUtils.NoteOption):
+            elif isinstance(option, gen.plug.menu.NoteOption):
                 id_list = []
                 for nhandle in self.database.get_note_handles():
                     note = self.database.get_note_from_handle(nhandle)
                     id_list.append(note.get_gramps_id())
                 self.options_help[name].append(id_list)
-            elif isinstance(option, PluginUtils.MediaOption):
+            elif isinstance(option, gen.plug.menu.MediaOption):
                 id_list = []
                 for mhandle in self.database.get_media_object_handles():
                     mobject = self.database.get_object_from_handle(mhandle)
                     id_list.append(mobject.get_gramps_id())
                 self.options_help[name].append(id_list)
-            elif isinstance(option, PluginUtils.PersonListOption):
+            elif isinstance(option, gen.plug.menu.PersonListOption):
                 self.options_help[name].append("")
-            elif isinstance(option, PluginUtils.NumberOption):
+            elif isinstance(option, gen.plug.menu.NumberOption):
                 self.options_help[name].append("A number")
-            elif isinstance(option, PluginUtils.BooleanOption):
+            elif isinstance(option, gen.plug.menu.BooleanOption):
                 self.options_help[name].append(["0\tno", "1\tyes"])
-            elif isinstance(option, PluginUtils.DestinationOption):
+            elif isinstance(option, gen.plug.menu.DestinationOption):
                 self.options_help[name].append("A file system path")
-            elif isinstance(option, PluginUtils.StringOption):
+            elif isinstance(option, gen.plug.menu.StringOption):
                 self.options_help[name].append("Any text")
-            elif isinstance(option, PluginUtils.TextOption):
+            elif isinstance(option, gen.plug.menu.TextOption):
                 self.options_help[name].append("Any text")
-            elif isinstance(option, PluginUtils.EnumeratedListOption):
+            elif isinstance(option, gen.plug.menu.EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
                     ilist.append("%s\t%s" % (value, description))

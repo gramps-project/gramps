@@ -29,8 +29,8 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import PluginManager, NumberOption, BooleanOption, \
-    TextOption, PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, \
     ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords

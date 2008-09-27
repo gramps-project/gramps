@@ -33,7 +33,8 @@ from TransUtils import sgettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, NumberOption, StringOption, MediaOption
+from PluginUtils import PluginManager
+from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc

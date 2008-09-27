@@ -29,7 +29,8 @@
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import PluginManager, BooleanOption, FamilyOption
+from PluginUtils import PluginManager
+from gen.plug.menu import BooleanOption, FamilyOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc

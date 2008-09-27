@@ -38,8 +38,8 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from SubstKeywords import SubstKeywords
-from PluginUtils import PluginManager, \
-    NumberOption, BooleanOption, TextOption, PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
 from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer

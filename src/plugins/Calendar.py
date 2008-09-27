@@ -41,8 +41,8 @@ from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, 
                         CATEGORY_DRAW, CATEGORY_TEXT, 
                         MODE_GUI, MODE_BKI, MODE_CLI)
-from PluginUtils import (NumberOption, BooleanOption, StringOption, 
-                         FilterOption, EnumeratedListOption, PersonOption)
+from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
+                         EnumeratedListOption, FilterOption, PersonOption
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter

@@ -34,7 +34,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, EnumeratedListOption
+from PluginUtils import PluginManager
+from gen.plug.menu import EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc

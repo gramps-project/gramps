@@ -38,8 +38,7 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import PluginManager
-from PluginUtils import FilterOption, EnumeratedListOption, \
-    PersonOption
+from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm

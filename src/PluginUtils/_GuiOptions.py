@@ -52,7 +52,7 @@ from QuestionDialog import OptionDialog
 from Selectors import selector_factory
 from BasicUtils import name_displayer as _nd
 from Filters import GenericFilter, Rules
-import _MenuOptions
+import gen
 
 #------------------------------------------------------------------------
 #
@@ -160,7 +160,7 @@ class GuiStringOption(gtk.Entry):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.StringOption
+        @type option: gen.plug.menu.StringOption
         @return: nothing
         """
         gtk.Entry.__init__(self)
@@ -177,10 +177,10 @@ class GuiStringOption(gtk.Entry):
 
 #-------------------------------------------------------------------------
 #
-# GuiColourOption class
+# GuiColorOption class
 #
 #-------------------------------------------------------------------------
-class GuiColourOption(gtk.ColorButton):
+class GuiColorOption(gtk.ColorButton):
     """
     This class displays an option that allows the selection of a colour.
     """
@@ -385,7 +385,7 @@ class GuiPersonOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.PersonOption
+        @type option: gen.plug.menu.PersonOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -476,7 +476,7 @@ class GuiFamilyOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.FamilyOption
+        @type option: gen.plug.menu.FamilyOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -615,7 +615,7 @@ class GuiNoteOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.NoteOption
+        @type option: gen.plug.menu.NoteOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -697,7 +697,7 @@ class GuiMediaOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.MediaOption
+        @type option: gen.plug.menu.MediaOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -774,7 +774,7 @@ class GuiPersonListOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.PersonListOption
+        @type option: gen.plug.menu.PersonListOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -914,7 +914,7 @@ class GuiPlaceListOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.PlaceListOption
+        @type option: gen.plug.menu.PlaceListOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -1014,10 +1014,10 @@ class GuiPlaceListOption(gtk.HBox):
 
 #-------------------------------------------------------------------------
 #
-# GuiSurnameColourOption class
+# GuiSurnameColorOption class
 #
 #-------------------------------------------------------------------------
-class GuiSurnameColourOption(gtk.HBox):
+class GuiSurnameColorOption(gtk.HBox):
     """
     This class displays a widget that allows multiple surnames to be
     selected from the database, and to assign a colour (not necessarily
@@ -1026,7 +1026,7 @@ class GuiSurnameColourOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.SurnameColourOption
+        @type option: gen.plug.menu.SurnameColorOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -1179,7 +1179,7 @@ class GuiDestinationOption(gtk.HBox):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.StringOption
+        @type option: gen.plug.menu.DestinationOption
         @return: nothing
         """
         gtk.HBox.__init__(self)
@@ -1274,10 +1274,11 @@ class GuiStyleOption(GuiEnumeratedListOption):
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
         @param option: The option to display.
-        @type option: MenuOption.StyleOption
+        @type option: gen.plug.menu.StyleOption
         @return: nothing
         """
-        GuiEnumeratedListOption.__init__(self, option, dbstate, uistate, track, tooltip)
+        GuiEnumeratedListOption.__init__(self, option, dbstate, 
+                                         uistate, track, tooltip)
         self.__option = option
         
         self.__button = gtk.Button("%s..." % _("Style Editor"))
@@ -1313,7 +1314,7 @@ class GuiMenuOptions:
     options to a GTK dialog.
     """
     def __init__(self):
-        self.menu = _MenuOptions.Menu()
+        self.menu = gen.plug.menu.Menu()
         
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
@@ -1389,66 +1390,41 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
     """
     widget = None
     label = True
-    if isinstance(option, _MenuOptions.PersonOption):
-        widget = GuiPersonOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.FamilyOption):
-        widget = GuiFamilyOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.NoteOption):
-        widget = GuiNoteOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.MediaOption):
-        widget = GuiMediaOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.PersonListOption):
-        widget = GuiPersonListOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.NumberOption):
-        widget = GuiNumberOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.BooleanOption):
-        widget = GuiBooleanOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
+    if isinstance(option, gen.plug.menu.PersonOption):
+        widget = GuiPersonOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.FamilyOption):
+        widget = GuiFamilyOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.NoteOption):
+        widget = GuiNoteOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.MediaOption):
+        widget = GuiMediaOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.PersonListOption):
+        widget = GuiPersonListOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.NumberOption):
+        widget = GuiNumberOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.BooleanOption):
+        widget = GuiBooleanOption(option, dbstate, uistate, track, tooltips)
         label = False
-    elif isinstance(option, _MenuOptions.DestinationOption):
-        widget = GuiDestinationOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.StringOption):
-        widget = GuiStringOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.StyleOption):
+    elif isinstance(option, gen.plug.menu.DestinationOption):
+        widget = GuiDestinationOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.StringOption):
+        widget = GuiStringOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.StyleOption):
         widget = GuiStyleOption(option, dbstate, uistate, track, tooltips)
-    elif isinstance(option, _MenuOptions.EnumeratedListOption):
-        widget = GuiEnumeratedListOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.TextOption):
-        widget = GuiTextOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.ColourOption):
-        widget = GuiColourOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.SurnameColourOption):
-        widget = GuiSurnameColourOption(option, dbstate, 
-                                 uistate, track, 
-                                 tooltips)
-    elif isinstance(option, _MenuOptions.PlaceListOption):
-        widget = GuiPlaceListOption(option, dbstate, 
-                                    uistate, track, 
-                                    tooltips)
+    elif isinstance(option, gen.plug.menu.EnumeratedListOption):
+        widget = GuiEnumeratedListOption(option, dbstate, uistate, track, 
+                                         tooltips)
+    elif isinstance(option, gen.plug.menu.TextOption):
+        widget = GuiTextOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.ColorOption):
+        widget = GuiColorOption(option, dbstate, uistate, track, tooltips)
+    elif isinstance(option, gen.plug.menu.SurnameColorOption):
+        widget = GuiSurnameColorOption(option, dbstate, uistate, track, 
+                                       tooltips)
+    elif isinstance(option, gen.plug.menu.PlaceListOption):
+        widget = GuiPlaceListOption(option, dbstate, uistate, track, tooltips)
     else:
-        raise AttributeError("can't make GuiOption: unknown option type: '%s'" % option)
+        raise AttributeError(
+                     "can't make GuiOption: unknown option type: '%s'" % option)
     return widget, label
 

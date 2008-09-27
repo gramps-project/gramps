@@ -54,7 +54,7 @@ from ReportBase import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _FileEntry import FileEntry
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, EnumeratedListOption, TextOption
+from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption
 
 #-------------------------------------------------------------------------------
 #

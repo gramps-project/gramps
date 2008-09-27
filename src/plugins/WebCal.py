@@ -80,8 +80,9 @@ from GrampsCfg import get_researcher
 from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
                         MODE_GUI)
-from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
-    BooleanOption, NumberOption, StringOption, DestinationOption
+from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
+                          EnumeratedListOption, FilterOption, PersonOption, \
+                          DestinationOption
 import Utils
 import GrampsLocale
 from QuestionDialog import ErrorDialog, WarningDialog

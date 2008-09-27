@@ -73,7 +73,7 @@ import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
 from PluginUtils import PluginManager
-from PluginUtils import PersonOption, FilterOption, FamilyOption
+from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 
 # Import from specific modules in ReportBase

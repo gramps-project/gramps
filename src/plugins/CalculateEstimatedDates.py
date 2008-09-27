@@ -36,9 +36,9 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager, PluginWindows, \
-    MenuToolOptions, BooleanOption, FilterOption, StringOption, \
-    NumberOption, PersonOption
+from PluginUtils import Tool, PluginManager, PluginWindows, MenuToolOptions
+from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
+                         FilterOption, PersonOption
 import gen.lib
 import Config
 from BasicUtils import name_displayer

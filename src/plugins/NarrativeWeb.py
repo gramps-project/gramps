@@ -73,10 +73,10 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
-from PluginUtils import (PluginManager, FilterOption, EnumeratedListOption,
-                         PersonOption, BooleanOption, NumberOption,
-                         StringOption, DestinationOption, NoteOption,
-                         MediaOption)
+from PluginUtils import PluginManager
+from gen.plug.menu import PersonOption, NumberOption, StringOption, \
+                          BooleanOption, EnumeratedListOption, FilterOption, \
+                          NoteOption, MediaOption, DestinationOption
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
                         MODE_GUI, MODE_CLI, Bibliography)
 import Utils

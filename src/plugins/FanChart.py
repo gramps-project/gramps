@@ -35,7 +35,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import PluginManager
-from PluginUtils import NumberOption, EnumeratedListOption, PersonOption
+from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords

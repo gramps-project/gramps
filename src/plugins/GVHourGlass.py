@@ -36,8 +36,9 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, NumberOption, PersonOption, \
-     BooleanOption, EnumeratedListOption
+from PluginUtils import PluginManager
+from gen.plug.menu import PersonOption, BooleanOption, NumberOption, \
+                          EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer

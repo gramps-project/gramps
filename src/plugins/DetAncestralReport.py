@@ -38,8 +38,8 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import PluginManager, NumberOption, \
-    BooleanOption, PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes

@@ -35,8 +35,8 @@ from string import capitalize
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, NumberOption, \
-    BooleanOption, PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc

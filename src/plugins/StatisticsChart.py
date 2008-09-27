@@ -45,8 +45,8 @@ from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import PluginManager
-from PluginUtils import BooleanOption, FilterOption, PersonOption, \
-    EnumeratedListOption, NumberOption
+from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
+                         FilterOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 import DateHandler

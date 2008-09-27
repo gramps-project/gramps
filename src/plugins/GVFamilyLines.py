@@ -51,8 +51,10 @@ import ThumbNails
 from DateHandler import displayer as _dd
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_GRAPHVIZ, MODE_GUI
-from PluginUtils import PluginManager, EnumeratedListOption, BooleanOption, \
-    NumberOption, ColourOption, PersonListOption, SurnameColourOption
+from PluginUtils import PluginManager
+from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
+                          EnumeratedListOption, PersonListOption, \
+                          SurnameColorOption
 
 #------------------------------------------------------------------------
 #
@@ -131,7 +133,7 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Family Colours')
         # ----------------------------
 
-        surname_color = SurnameColourOption(_('Family colours'))
+        surname_color = SurnameColorOption(_('Family colours'))
         surname_color.set_help(_('Colours to use for various family lines.'))
         menu.add_option(category, 'surnamecolors', surname_color)
 

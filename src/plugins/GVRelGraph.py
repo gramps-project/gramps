@@ -43,8 +43,9 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, FilterOption, \
-                        EnumeratedListOption, BooleanOption, PersonOption
+from PluginUtils import PluginManager
+from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
+                          PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
