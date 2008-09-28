@@ -440,7 +440,7 @@ SHARED ELEMENTS
         description CDATA #IMPLIED
 >
 
-<!ELEMENT objref (region?,reattribute*,sourceref*,noteref*)>
+<!ELEMENT objref (region?,attribute*,sourceref*,noteref*)>
 <!ATTLIST objref 
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
