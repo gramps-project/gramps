@@ -153,7 +153,7 @@ class NotRelated(Tool.Tool, ManagedWindow.ManagedWindow) :
 
         # populate the treeview model with the names of unrelated people
         if self.numberOfUnrelatedPeople == 0:
-            title.set_text('Everyone in the database is related to %s' % self.name)
+            title.set_text(_('Everyone in the database is related to %s') % self.name)
         else:
             self.populateModel()
             self.model.set_sort_column_id(0, gtk.SORT_ASCENDING)
