@@ -301,7 +301,8 @@ class BasePage:
                 of.write('%s' % cright)
         elif 0 < copy_nr < 7:
             text = _CC[copy_nr]
-            fname = self.build_url_fname("somerights20.gif", 'images', self.up)
+            fname = self.report.build_url_fname("somerights20.gif", 
+                                                'images', self.up)
             text = text % {'gif_fname' : fname}
             of.write(text)
         of.write('</p>\n')
