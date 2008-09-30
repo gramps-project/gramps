@@ -1007,81 +1007,118 @@ def media_path_full(db, filename):
 class ProgressMeter:
     """
     Progress meter class for GRAMPS.
+    
+    The progress meter has two modes:
+    
+    MODE_FRACTION is used when you know the number of steps that will be taken.
+    Set the total number of steps, and then call step() that many times. 
+    The progress bar will progress from left to right.
+    
+    MODE_ACTIVITY is used when you don't know the number of steps that will be
+    taken. Set up the total number of steps for the bar to get from one end of
+    the bar to the other. Then, call step() as many times as you want. The bar
+    will move from left to right until you stop calling step. 
     """
+    
+    MODE_FRACTION = 0
+    MODE_ACTIVITY = 1
+    
     def __init__(self, title, header=''):
         """
         Specify the title and the current pass header.
         """
-        self.old_val = -1
-        self.ptop = gtk.Dialog()
-        self.ptop.connect('delete_event', self.warn)
-        self.ptop.set_has_separator(False)
-        self.ptop.set_title(title)
-        self.ptop.set_border_width(12)
-        self.ptop.vbox.set_spacing(10)
-        lbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
-        lbl.set_use_markup(True)
-        self.lbl = gtk.Label(header)
-        self.lbl.set_use_markup(True)
-        self.ptop.vbox.add(lbl)
-        self.ptop.vbox.add(self.lbl)
-        self.ptop.vbox.set_border_width(24)
-        self.pbar = gtk.ProgressBar()
-
-        self.ptop.set_size_request(350, 125)
-        self.ptop.vbox.add(self.pbar)
-        self.ptop.show_all()
+        self.__mode = ProgressMeter.MODE_FRACTION
+        self.__pbar_max = 100.0
+        self.__pbar_index = 0.0
+        self.__old_val = -1
+        
+        self.__dialog = gtk.Dialog()
+        self.__dialog.connect('delete_event', self.__warn)
+        self.__dialog.set_has_separator(False)
+        self.__dialog.set_title(title)
+        self.__dialog.set_border_width(12)
+        self.__dialog.vbox.set_spacing(10)
+        self.__dialog.vbox.set_border_width(24)
+        self.__dialog.set_size_request(350, 125)
+        
+        tlbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        tlbl.set_use_markup(True)
+        self.__dialog.vbox.add(tlbl)
+        
+        self.__lbl = gtk.Label(header)
+        self.__lbl.set_use_markup(True)
+        self.__dialog.vbox.add(self.__lbl)
+ 
+        self.__pbar = gtk.ProgressBar()
+        self.__dialog.vbox.add(self.__pbar)
+        
+        self.__dialog.show_all()
         if header == '':
-            self.lbl.hide()
+            self.__lbl.hide()
 
-    def set_pass(self, header, total):
+    def set_pass(self, header="", total=100, mode=MODE_FRACTION):
         """
         Reset for another pass. Provide a new header and define number
         of steps to be used.
         """
+        self.__mode = mode
+        self.__pbar_max = total
+        self.__pbar_index = 0.0
+        
+        self.__lbl.set_text(header)
         if header == '':
-            self.lbl.hide()
+            self.__lbl.hide()
         else:
-            self.lbl.show()
-        self.pbar_max = total
-        self.pbar_index = 0.0
-        self.lbl.set_text(header)
-        self.pbar.set_fraction(0.0)
+            self.__lbl.show()
+
+        if self.__mode is ProgressMeter.MODE_FRACTION:
+            self.__pbar.set_fraction(0.0)
+        else: # ProgressMeter.MODE_ACTIVITY
+            self.__pbar.set_pulse_step(1.0/self.__pbar_max)
+        
         while gtk.events_pending():
             gtk.main_iteration()
 
     def step(self):
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%."""
-        self.pbar_index = self.pbar_index + 1.0
         
-        if self.pbar_index > self.pbar_max:
-            self.pbar_index = self.pbar_max
-
-        try:
-            val = int(100*self.pbar_index/self.pbar_max)
-        except ZeroDivisionError:
-            val = 0
-
-        if val != self.old_val:
-            self.pbar.set_text("%d%%" % val)
-            self.pbar.set_fraction(val/100.0)
-            self.old_val = val
+        if self.__mode is ProgressMeter.MODE_FRACTION:
+            self.__pbar_index = self.__pbar_index + 1.0
+            
+            if self.__pbar_index > self.__pbar_max:
+                self.__pbar_index = self.__pbar_max
+    
+            try:
+                val = int(100*self.__pbar_index/self.__pbar_max)
+            except ZeroDivisionError:
+                val = 0
+    
+            if val != self.__old_val:
+                self.__pbar.set_text("%d%%" % val)
+                self.__pbar.set_fraction(val/100.0)
+                self.__old_val = val
+        else: # ProgressMeter.MODE_ACTIVITY
+            self.__pbar.pulse()
+            
         while gtk.events_pending():
             gtk.main_iteration()
 
-    def warn(self, *obj):
+    def __warn(self, *obj):
+        """
+        Don't let the user close the progress dialog.
+        """
         WarningDialog(
             _("Attempt to force closing the dialog"), 
             _("Please do not force closing this important dialog."), 
-            self.ptop)
+            self.__dialog)
         return True
 
     def close(self):
         """
         Close the progress meter
         """
-        self.ptop.destroy()
+        self.__dialog.destroy()
 
 def launch(prog_str, path):
     
