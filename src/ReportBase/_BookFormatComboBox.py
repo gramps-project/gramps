@@ -36,6 +36,7 @@ import gobject
 #-------------------------------------------------------------------------
 import Config
 import PluginUtils
+import gen
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +46,7 @@ import PluginUtils
 class BookFormatComboBox(gtk.ComboBox):
 
     def __init__(self):
-        pmgr = PluginUtils.PluginManager.get_instance()
+        pmgr = gen.plug.PluginManager.get_instance()
         self.__book_doc_list = pmgr.get_book_doc_list()
         self.__book_doc_list.sort()
         gtk.ComboBox.__init__(self)

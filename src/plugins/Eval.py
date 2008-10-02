@@ -46,7 +46,8 @@ from gtk import glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -126,7 +127,7 @@ if __debug__:
         category = Tool.TOOL_DEBUG,
         tool_class = Eval,
         options_class = EvalOptions,
-        modes = Tool.MODE_GUI,
+        modes = PluginManager.TOOL_MODE_GUI,
         translated_name = _("Python Evaluation Window"),
         status = _("Stable"),
         author_name = "Donald N. Allingham",

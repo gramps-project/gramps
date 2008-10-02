@@ -38,10 +38,9 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from SubstKeywords import SubstKeywords
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
-from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions, \
-    MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions
 from BasicUtils import name_displayer
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
@@ -531,7 +530,9 @@ pmgr.register_report(
     category = CATEGORY_DRAW,
     report_class = AncestorTree,
     options_class = AncestorTreeOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Ancestor Tree"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

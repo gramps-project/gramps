@@ -1531,6 +1531,6 @@ DESCRIPTION = _('GEDCOM is used to transfer data between genealogy programs. '
 CONFIG = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
 FILENAME = 'ged'
 
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 pmgr = PluginManager.get_instance()
 pmgr.register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)

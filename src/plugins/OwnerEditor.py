@@ -48,7 +48,8 @@ import GrampsCfg
 import GrampsDisplay
 from widgets import MonitoredEntry
 import ManagedWindow
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -196,8 +197,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = OwnerEditor,
     options_class = OwnerEditorOptions,
-    modes = Tool.MODE_GUI,
-#   translated_name = _("Database Owner Information"),
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Edit Database Owner Information"),
     status = _("Beta"),
     author_name = "Zsolt Foldvari",

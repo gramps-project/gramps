@@ -24,7 +24,7 @@
 import gtk
 import gobject
 import Config
-import PluginUtils
+import gen
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +34,7 @@ import PluginUtils
 class TextFormatComboBox(gtk.ComboBox):
 
     def __init__(self):
-        pmgr = PluginUtils.PluginManager.get_instance()
+        pmgr = gen.plug.PluginManager.get_instance()
         self.__text_doc_list = pmgr.get_text_doc_list()
         self.__text_doc_list.sort()
         gtk.ComboBox.__init__(self)

@@ -37,10 +37,9 @@ from gettext import gettext as _
 import gen.lib
 import BaseDoc
 import DateHandler
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FilterOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from ReportBase import Bibliography, Endnotes
 from BasicUtils import name_displayer as _nd
 from Utils import media_path_full
@@ -639,7 +638,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Complete Individual Report"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

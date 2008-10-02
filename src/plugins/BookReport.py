@@ -72,12 +72,12 @@ import ListModel
 import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 
 # Import from specific modules in ReportBase
-from ReportBase._Constants import CATEGORY_BOOK, MODE_GUI, MODE_CLI
+from ReportBase import CATEGORY_BOOK, book_categories
 from ReportBase._BookFormatComboBox import BookFormatComboBox
 from ReportBase._ReportDialog import ReportDialog
 from ReportBase._DocReportDialog import DocReportDialog
@@ -204,7 +204,7 @@ class BookItem:
                 if item[5]:
                     self.category = _UNSUPPORTED
                 else:
-                    self.category = item[1]
+                    self.category = book_categories[item[1]]
                 self.write_item = item[2]
                 self.name = item[4]
                 self.option_class = item[3](self.name, self.dbase)
@@ -757,7 +757,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             if book_item[5]:
                 category = _UNSUPPORTED
             else:
-                category = book_item[1]
+                category = book_categories[book_item[1]]
             
             data = [ book_item[0], category, book_item[4] ] 
             new_iter = self.av_model.add(data)
@@ -1245,7 +1245,7 @@ pmgr.register_report(
     category = CATEGORY_BOOK,
     report_class = BookReportSelector,
     options_class = cl_report,
-    modes = MODE_GUI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | PluginManager.REPORT_MODE_CLI,
     translated_name = _("Book Report"),
     status = _("Stable"),
     description = _("Produces a book containing several reports."),

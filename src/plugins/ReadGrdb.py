@@ -51,7 +51,7 @@ from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
 from BasicUtils import name_displayer
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

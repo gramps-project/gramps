@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import ImgManip
 import tarfile
 import const

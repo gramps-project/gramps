@@ -40,7 +40,6 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import PluginUtils
 import gen
 import Utils
 import BaseDoc
@@ -126,7 +125,7 @@ class CommandLineReport:
         """
         Initialize the options that are hard-coded into the report system.
         """
-        pmgr = PluginUtils.PluginManager.get_instance()
+        pmgr = gen.plug.PluginManager.get_instance()
         _textdoc_list = pmgr.get_text_doc_list()
         _drawdoc_list = pmgr.get_draw_doc_list()
         _bookdoc_list = pmgr.get_book_doc_list()
@@ -285,7 +284,7 @@ class CommandLineReport:
         
         self.option_class.handler.output = self.options_dict['of']
 
-        pmgr = PluginUtils.PluginManager.get_instance()
+        pmgr = gen.plug.PluginManager.get_instance()
 
         if self.category == CATEGORY_TEXT:
             for item in pmgr.get_text_doc_list():

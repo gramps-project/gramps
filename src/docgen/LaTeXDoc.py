@@ -43,7 +43,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import ImgManip
 import Errors
 import Mime

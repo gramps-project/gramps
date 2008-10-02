@@ -25,7 +25,7 @@ Display a person's events, both personal and family
 
 from Simple import SimpleAccess, by_date, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY
 
 def run(database, document, person):

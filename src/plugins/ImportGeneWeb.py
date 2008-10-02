@@ -56,7 +56,7 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')

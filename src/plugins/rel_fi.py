@@ -34,7 +34,7 @@
 import gen.lib
 import Relationship
 import types
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

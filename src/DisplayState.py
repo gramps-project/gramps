@@ -56,7 +56,7 @@ import Config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 DISABLED = -1
 

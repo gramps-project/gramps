@@ -47,7 +47,8 @@ import gc
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -126,7 +127,7 @@ if __debug__:
         category = Tool.TOOL_DEBUG,
         tool_class = Leak,
         options_class = LeakOptions,
-        modes = Tool.MODE_GUI,
+        modes = PluginManager.TOOL_MODE_GUI,
         translated_name = _("Show Uncollected Objects"),
         status = _("Stable"),
         author_name = "Donald N. Allingham",

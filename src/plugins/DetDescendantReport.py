@@ -39,10 +39,9 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from ReportBase import Bibliography, Endnotes
 import BaseDoc
 import DateHandler
@@ -872,7 +871,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = DetDescendantReport,
     options_class = DetDescendantOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Detailed Descendant Report"),
     status = _("Stable"),
     description = _("Produces a detailed descendant report"),

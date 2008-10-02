@@ -43,11 +43,10 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
                           PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-    MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
 import DateHandler
 import gen.lib
@@ -561,16 +560,17 @@ class RelGraphOptions(MenuReportOptions):
 #------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
 pmgr.register_report(
-    name = 'rel_graph',
-    category = CATEGORY_GRAPHVIZ,
-    report_class = RelGraphReport,
-    options_class = RelGraphOptions,
-    modes = MODE_GUI | MODE_CLI,
+    name            = 'rel_graph',
+    category        = CATEGORY_GRAPHVIZ,
+    report_class    = RelGraphReport,
+    options_class   = RelGraphOptions,
+    modes           = PluginManager.REPORT_MODE_GUI | \
+                      PluginManager.REPORT_MODE_CLI,
     translated_name = _("Relationship Graph"),
-    status = _("Stable"),
-    description = _("Produces relationship graphs using Graphviz"),
-    author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
+    status          = _("Stable"),
+    description     = _("Produces relationship graphs using Graphviz"),
+    author_name     = "Brian G. Matherly",
+    author_email    = "brian@gramps-project.org"
     )
 
 

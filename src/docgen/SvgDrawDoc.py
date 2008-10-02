@@ -34,7 +34,7 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import BaseDoc
 import Errors
 

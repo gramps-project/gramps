@@ -43,7 +43,7 @@ from gettext import gettext as _
 import const
 from ReportBase import report, standalone_categories
 import _Tool
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import ManagedWindow
 
 #-------------------------------------------------------------------------

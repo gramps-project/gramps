@@ -44,11 +44,10 @@ from TransUtils import sgettext as _
 from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 import DateHandler
 from Utils import ProgressMeter
 
@@ -897,7 +896,9 @@ pmgr.register_report(
     category = CATEGORY_DRAW,
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Statistics Charts"),
     status = _("Stable"),
     author_name = "Eero Tamminen",

@@ -28,7 +28,7 @@ from ReportBase import (CATEGORY_QR_SOURCE, CATEGORY_QR_PERSON,
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 # mention so that will be translated for below
 [_('Person'), _('Family'), _('Event'), _('Source'), 

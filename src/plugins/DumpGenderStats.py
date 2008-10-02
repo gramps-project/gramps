@@ -30,7 +30,8 @@ import gtk
 import ListModel
 import ManagedWindow
 
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -115,7 +116,7 @@ if __debug__:
         category = Tool.TOOL_DEBUG,
         tool_class = DumpGenderStats,
         options_class = DumpGenderStatsOptions,
-        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
         translated_name = _("Dump Gender Statistics"),
         description = _("Will dump the statistics for the gender guessing "
                         "from the first name.")

@@ -61,7 +61,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import Utils
 
 #-------------------------------------------------------------------------

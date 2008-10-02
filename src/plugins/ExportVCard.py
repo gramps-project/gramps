@@ -56,7 +56,7 @@ from Filters import GenericFilter, Rules, build_filter_menu
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

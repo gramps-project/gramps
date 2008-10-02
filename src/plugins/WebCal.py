@@ -77,9 +77,8 @@ log = logging.getLogger(".WebPage")
 import gen.lib
 import const
 from GrampsCfg import get_researcher
-from PluginUtils import PluginManager
-from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
-                        MODE_GUI)
+from gen.plug import PluginManager
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption
@@ -1701,7 +1700,7 @@ pmgr.register_report(
     category = CATEGORY_WEB,
     report_class = WebCalReport,
     options_class = WebCalOptions,
-    modes = MODE_GUI,
+    modes = PluginManager.REPORT_MODE_GUI,
     translated_name = _("Web Calendar"),
     status = _("Stable"),
     author_name = "Thom Sturgill",

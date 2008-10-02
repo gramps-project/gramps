@@ -59,7 +59,7 @@ import Utils
 from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

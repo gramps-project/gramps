@@ -37,7 +37,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from CairoDoc import CairoDoc
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import Utils
 import Mime
 

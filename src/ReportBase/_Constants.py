@@ -35,10 +35,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 
-# Modes for generating reports
-MODE_GUI = 1    # Standalone report using GUI
-MODE_BKI = 2    # Book Item interface using GUI
-MODE_CLI = 4    # Command line interface (CLI)
+
 
 # Report categories
 CATEGORY_TEXT     = 0

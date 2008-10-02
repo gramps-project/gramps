@@ -60,7 +60,7 @@ import Mime
 import gen.db
 import GrampsDbUtils
 import Utils
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 import Errors

@@ -56,7 +56,7 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

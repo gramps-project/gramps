@@ -29,10 +29,9 @@
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FamilyOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 import DateHandler
 from TransUtils import sgettext as _
@@ -769,7 +768,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = FamilyGroup,
     options_class = FamilyGroupOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Family Group Report"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

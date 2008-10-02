@@ -25,7 +25,7 @@ Display references for any object
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_DATE
 import DateHandler
 import gen.lib

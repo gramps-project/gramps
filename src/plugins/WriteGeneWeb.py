@@ -57,7 +57,7 @@ from Filters import GenericFilter, Rules, build_filter_menu
 import Utils
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

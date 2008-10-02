@@ -34,10 +34,9 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW, \
-    MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
 
 #------------------------------------------------------------------------
@@ -439,7 +438,9 @@ pmgr.register_report(
     category = CATEGORY_DRAW,
     report_class = FanChart,
     options_class = FanChartOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Fan Chart"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

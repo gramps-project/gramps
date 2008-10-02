@@ -55,8 +55,9 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, PluginWindows, PluginManager, \
+from PluginUtils import Tool, PluginWindows, \
     ReportPluginDialog, ToolPluginDialog
+from gen.plug import PluginManager
 import ReportBase
 import DisplayState
 import const

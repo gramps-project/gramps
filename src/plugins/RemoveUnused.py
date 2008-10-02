@@ -59,7 +59,8 @@ import Errors
 import ManagedWindow
 from DateHandler import displayer as _dd
 from BasicUtils import UpdateCallback
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -491,7 +492,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBFIX,
     tool_class = RemoveUnused,
     options_class = CheckOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Remove Unused Objects"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

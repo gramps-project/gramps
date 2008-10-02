@@ -25,7 +25,7 @@ Run a query on the tables
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import Utils
 from ReportBase import CATEGORY_QR_MISC
 import DateHandler

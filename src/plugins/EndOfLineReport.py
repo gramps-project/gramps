@@ -34,10 +34,9 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 from BasicUtils import name_displayer
 import DateHandler
@@ -318,7 +317,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = EndOfLineReport,
     options_class = EndOfLineOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("End of Line Report"),
     status = _("Stable"),
     description = _("Produces a textual end of line report"),

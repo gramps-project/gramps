@@ -50,7 +50,8 @@ import gobject
 import ManagedWindow
 import GrampsDisplay
 
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import Utils
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
@@ -643,7 +644,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC, 
     tool_class = ExtractCity, 
     options_class = ExtractCityOptions, 
-    modes = Tool.MODE_GUI, 
+    modes = PluginManager.TOOL_MODE_GUI, 
     translated_name = _("Extract Place Data from a Place Title"), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 

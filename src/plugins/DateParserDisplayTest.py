@@ -43,7 +43,8 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import Utils
 from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
@@ -234,7 +235,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DEBUG,
     tool_class = DateParserDisplayTest,
     options_class = Tool.ToolOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
     translated_name = _("Check Localized Date Displayer and Parser"),
     status = _("Beta"),
     author_name = "Martin Hawlisch",

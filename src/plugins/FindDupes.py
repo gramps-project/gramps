@@ -52,7 +52,8 @@ import Errors
 from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from QuestionDialog import ErrorDialog, RunDatabaseRepair
 from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
@@ -696,7 +697,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = Merge,
     options_class = MergeOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Find Possible Duplicate People"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

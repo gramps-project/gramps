@@ -45,7 +45,8 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import Utils
 import LdsUtils
 
@@ -1396,7 +1397,7 @@ if __debug__:
         category = Tool.TOOL_DEBUG,
         tool_class = TestcaseGenerator,
         options_class = TestcaseGeneratorOptions,
-        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
         translated_name = _("Generate Testcases for Persons and Families"),
         status = _("Beta"),
         author_name = "Martin Hawlisch",

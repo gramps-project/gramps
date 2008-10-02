@@ -60,7 +60,8 @@ import Utils
 #import const
 import ManagedWindow
 
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from QuestionDialog import OkDialog, MissingMediaDialog
 from BasicUtils import name_displayer as _nd
 
@@ -1514,7 +1515,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBFIX,
     tool_class = Check,
     options_class = CheckOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
     translated_name = _("Check and Repair Database"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

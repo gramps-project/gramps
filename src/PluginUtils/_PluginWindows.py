@@ -45,7 +45,7 @@ import gobject
 #-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import _Tool as Tool
 
 #-------------------------------------------------------------------------

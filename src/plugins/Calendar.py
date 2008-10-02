@@ -37,10 +37,9 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from BasicUtils import name_displayer
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, 
-                        CATEGORY_DRAW, CATEGORY_TEXT, 
-                        MODE_GUI, MODE_BKI, MODE_CLI)
+                        CATEGORY_DRAW, CATEGORY_TEXT)
 from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
                          EnumeratedListOption, FilterOption, PersonOption
 import GrampsLocale
@@ -924,7 +923,9 @@ pmgr.register_report(
     category = CATEGORY_DRAW, 
     report_class = Calendar, 
     options_class = CalendarOptions, 
-    modes = MODE_GUI | MODE_BKI | MODE_CLI, 
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI, 
     translated_name = _("Calendar"), 
     status = _("Stable"), 
     author_name = "Douglas S. Blank", 
@@ -937,7 +938,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT, 
     report_class = CalendarReport, 
     options_class = CalendarReportOptions, 
-    modes = MODE_GUI | MODE_BKI | MODE_CLI, 
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI, 
     translated_name = _("Birthday and Anniversary Report"), 
     status = _("Stable"), 
     author_name = "Douglas S. Blank", 

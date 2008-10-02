@@ -51,7 +51,8 @@ log = logging.getLogger(".RebuildRefMap")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from QuestionDialog import OkDialog
 from BasicUtils import UpdateCallback
 
@@ -117,7 +118,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBFIX,
     tool_class = RebuildRefMap,
     options_class = RebuildRefMapOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
     translated_name = _("Rebuild Reference Maps"),
     status= _("Stable"),
     author_name = "Alex Roitman",

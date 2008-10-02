@@ -52,7 +52,7 @@ import gtk
 
 import const
 import Config
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import Utils
 import ManagedWindow
 

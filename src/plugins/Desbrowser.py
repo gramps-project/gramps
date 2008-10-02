@@ -44,7 +44,8 @@ from gtk import glade
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
@@ -164,7 +165,7 @@ pmgr.register_tool(
     category = Tool.TOOL_ANAL,
     tool_class = DesBrowse,
     options_class = DesBrowseOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Interactive Descendant Browser"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

@@ -62,7 +62,8 @@ import gen.db.exceptions as GX
 import gen
 from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
 
 IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 

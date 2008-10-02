@@ -49,7 +49,8 @@ import ManagedWindow
 from DisplayModels import PeopleModel
 
 from QuestionDialog import ErrorDialog
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 
 column_names = [
     _('Name'),
@@ -265,7 +266,7 @@ pmgr.register_tool(
     category = Tool.TOOL_UTILS,
     tool_class = RelCalc,
     options_class = RelCalcOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Relationship Calculator"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

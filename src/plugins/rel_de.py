@@ -46,7 +46,7 @@ import re
 
 import gen.lib
 import Relationship
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

@@ -35,10 +35,9 @@ from string import capitalize
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 from BasicUtils import name_displayer
 import DateHandler
@@ -403,7 +402,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = KinshipReport,
     options_class = KinshipOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Kinship Report"),
     status = _("Stable"),
     description = _("Produces a textual report of kinship for a given person"),

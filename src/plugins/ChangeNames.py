@@ -49,7 +49,8 @@ import GrampsDisplay
 import ManagedWindow
 
 from QuestionDialog import OkDialog
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 #
@@ -286,7 +287,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = ChangeNames,
     options_class = ChangeNamesOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Fix Capitalization of Family Names"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

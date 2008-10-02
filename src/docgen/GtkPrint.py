@@ -44,7 +44,7 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from CairoDoc import CairoDoc
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 import Errors
 
 #------------------------------------------------------------------------

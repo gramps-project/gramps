@@ -21,12 +21,12 @@
 # $Id$
 
 """
-The core of the GRAMPS plugin system. This module provides tasks to load
-plugins from specfied directories, build menus for the different categories,
-and provide dialog to select and execute plugins.
+The core of the GRAMPS plugin system. This module provides capability to load
+plugins from specfied directories and provide information about the loaded
+plugins.
 
-Plugins are divided into several categories. This are: reports, tools,
-importers, exporters, and document generators.
+Plugins are divided into several categories. These are: reports, tools,
+importers, exporters, quick reports, and document generators.
 """
 
 #-------------------------------------------------------------------------
@@ -44,7 +44,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ReportBase import MODE_GUI, MODE_CLI, MODE_BKI, book_categories
 import gen.utils
 import Relationship
 
@@ -65,6 +64,15 @@ class PluginManager(gen.utils.Callback):
     __instance = None
     
     __signals__ = { 'plugins-reloaded' : None }
+    
+    # Modes for generating reports
+    REPORT_MODE_GUI = 1    # Standalone report using GUI
+    REPORT_MODE_BKI = 2    # Book Item interface using GUI
+    REPORT_MODE_CLI = 4    # Command line interface (CLI)
+    
+    # Modes for running tools
+    TOOL_MODE_GUI = 1    # Standrt tool using GUI
+    TOOL_MODE_CLI = 2    # Command line interface (CLI)
     
     def get_instance():
         """ Use this function to get the instance of the PluginManager """
@@ -305,17 +313,15 @@ class PluginManager(gen.utils.Callback):
         This function should be used to register tool in GUI and/or
         command-line mode.
         """
-        
-        import _Tool
-    
-        (junk, gui_task) = divmod(modes, 2**_Tool.MODE_GUI)
+        (junk, gui_task) = divmod(modes, 2**PluginManager.TOOL_MODE_GUI)
         if gui_task:
             self.__register_gui_tool(tool_class, options_class, translated_name,
                                name, category, description,
                                status, author_name, author_email, unsupported,
                                require_active)
     
-        (junk, cli_task) = divmod(modes-gui_task, 2**_Tool.MODE_CLI)
+        (junk, cli_task) = divmod(modes-gui_task, 
+                                  2**PluginManager.TOOL_MODE_CLI)
         if cli_task:
             self.__register_cli_tool(name, category, tool_class, options_class,
                                translated_name, unsupported)
@@ -369,7 +375,8 @@ class PluginManager(gen.utils.Callback):
         The low-level functions (starting with '_') should not be used
         on their own. Instead, this function will call them as needed.
         """
-        (junk, standalone_task) = divmod(modes, 2**MODE_GUI)
+        (junk, standalone_task) = divmod(modes, 
+                                         2**PluginManager.REPORT_MODE_GUI)
         if standalone_task:
             self.__register_standalone(report_class, options_class, 
                                        translated_name, name, category, 
@@ -377,15 +384,16 @@ class PluginManager(gen.utils.Callback):
                                        author_email, unsupported, 
                                        require_active)
     
-        (junk, book_item_task) = divmod(modes-standalone_task, 2**MODE_BKI)
+        (junk, book_item_task) = divmod(modes-standalone_task, 
+                                        2**PluginManager.REPORT_MODE_BKI)
         if book_item_task:
-            book_item_category = book_categories[category]
+            book_item_category = category
             self.__register_book_item(translated_name, book_item_category,
                                       report_class, options_class, name, 
                                       unsupported, require_active)
     
         (junk, command_line_task) = divmod(modes-standalone_task-book_item_task,
-                                           2**MODE_CLI)
+                                           2**PluginManager.REPORT_MODE_CLI)
         if command_line_task:
             self.__register_cl_report(name, category, report_class, 
                                       options_class, translated_name, 

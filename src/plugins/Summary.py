@@ -37,9 +37,8 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import PluginManager
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from gen.plug import PluginManager
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 from Utils import media_path_full
 import DateHandler
@@ -297,7 +296,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = SummaryReport,
     options_class = SummaryOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Database Summary Report"),
     status = _("Stable"),
     description = _("Provides a summary of the current database"),

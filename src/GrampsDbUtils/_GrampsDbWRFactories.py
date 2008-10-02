@@ -44,7 +44,7 @@ import logging
 log = logging.getLogger(".GrampDb")
 
 from gen.db import GrampsDbException
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 def gramps_db_reader_factory(db_type):
     """Factory class for obtaining a Gramps database importer.

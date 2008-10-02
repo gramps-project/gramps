@@ -35,7 +35,7 @@ Display a person's father or mother lineage
 import gen.lib
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 
 __FMT     = "%-30s\t%-12s\t%-12s"

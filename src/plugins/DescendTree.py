@@ -29,10 +29,9 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, MenuReportOptions, \
-    ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
 import BaseDoc
@@ -485,7 +484,9 @@ pmgr.register_report(
     category = CATEGORY_DRAW,
     report_class = DescendTree,
     options_class = DescendTreeOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Descendant Tree"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

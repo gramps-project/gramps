@@ -49,9 +49,8 @@ import gen.lib
 import Utils
 import ThumbNails
 from DateHandler import displayer as _dd
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-    CATEGORY_GRAPHVIZ, MODE_GUI
-from PluginUtils import PluginManager
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
+from gen.plug import PluginManager
 from gen.plug.menu import NumberOption, ColorOption, BooleanOption, \
                           EnumeratedListOption, PersonListOption, \
                           SurnameColorOption
@@ -1028,7 +1027,8 @@ pmgr.register_report(
     category        = CATEGORY_GRAPHVIZ,
     report_class    = FamilyLinesReport,
     options_class   = FamilyLinesOptions,
-    modes           = MODE_GUI,
+    modes           = PluginManager.REPORT_MODE_GUI | \
+                      PluginManager.REPORT_MODE_CLI,
     status          = _("Stable"),
     author_name     = "Stephane Charette",
     author_email    = "stephanecharette@gmail.com",

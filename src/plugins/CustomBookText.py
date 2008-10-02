@@ -41,9 +41,9 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import TextOption
-from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
+from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -166,6 +166,6 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = CustomText,
     options_class = CustomTextOptions,
-    modes = MODE_BKI,
+    modes = PluginManager.REPORT_MODE_BKI,
     translated_name = _("Custom Text"),
     )

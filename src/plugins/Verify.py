@@ -56,7 +56,8 @@ import Utils
 import GrampsDisplay
 from ManagedWindow import ManagedWindow
 from BasicUtils import UpdateCallback
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 #
@@ -1575,7 +1576,7 @@ pmgr.register_tool(
     category = Tool.TOOL_UTILS,
     tool_class = Verify,
     options_class = VerifyOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
     translated_name = _("Verify the Data"),
     status=(_("Stable")),
     author_name = "Alex Roitman",

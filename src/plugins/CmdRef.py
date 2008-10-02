@@ -38,7 +38,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_WEB
 from ReportBase._CommandLineReport import CommandLineReport
 
@@ -236,7 +237,7 @@ if __debug__:
         category = Tool.TOOL_DEBUG,
         tool_class = CmdRef,
         options_class = CmdRefOptions,
-        modes = Tool.MODE_GUI | Tool.MODE_CLI,
+        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
         translated_name = _("Generate Commandline Plugin Reference"),
         status = _("Stable"),
         author_name = "Martin Hawlisch",

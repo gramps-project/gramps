@@ -52,7 +52,8 @@ import const
 import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from ReportBase import ReportUtils
 import GrampsDisplay 
 import ManagedWindow
@@ -462,7 +463,7 @@ pmgr.register_tool(
     category = Tool.TOOL_ANAL,
     tool_class = EventComparison,
     options_class = EventComparisonOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Compare Individual Events"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

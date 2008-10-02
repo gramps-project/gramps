@@ -34,10 +34,9 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import FilterOption, PlaceListOption
-from ReportBase import Report, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 import DateHandler
 import Sort
@@ -397,7 +396,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = PlaceReport,
     options_class = PlaceOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Place Report"),
     status = _("Stable"),
     description = _("Produces a textual place report"),

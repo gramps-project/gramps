@@ -35,7 +35,7 @@ import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

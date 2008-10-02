@@ -46,7 +46,8 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Utils
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
@@ -369,7 +370,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = PatchNames,
     options_class = PatchNamesOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Extract Information from Names"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

@@ -34,10 +34,9 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 from gen.lib import MarkerType
 from Filters import GenericFilterFactory, Rules
@@ -522,7 +521,9 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = MarkerReport,
     options_class = MarkerOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | \
+            PluginManager.REPORT_MODE_BKI | \
+            PluginManager.REPORT_MODE_CLI,
     translated_name = _("Marker Report"),
     status = _("Stable"),
     description = _("Produces a list of people with a specified marker"),

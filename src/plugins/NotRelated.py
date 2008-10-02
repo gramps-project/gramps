@@ -43,7 +43,8 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager, Tool
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from ReportBase import ReportUtils
 from Editors import EditPerson, EditFamily
 import ManagedWindow
@@ -432,7 +433,7 @@ pmgr.register_tool(
     category = Tool.TOOL_UTILS,
     tool_class = NotRelated,
     options_class = NotRelatedOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Not Related"),
     status = _("Stable"),
     author_name = "Stephane Charette",

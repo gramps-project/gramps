@@ -48,9 +48,6 @@ from PluginUtils import (Options, OptionHandler, OptionList,
 # Constants
 #
 #-------------------------------------------------------------------------
-# Modes for running tools
-MODE_GUI = 1    # Standrt tool using GUI
-MODE_CLI = 2    # Command line interface (CLI)
 
 # Tool categories
 TOOL_DEBUG  = -1

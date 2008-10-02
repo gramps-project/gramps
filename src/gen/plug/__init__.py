@@ -22,3 +22,6 @@ The "plug" package for handling plugins in Gramps.
 """
 
 __all__ = [ "opt" ]
+
+from _manager import PluginManager
+

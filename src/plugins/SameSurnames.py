@@ -25,7 +25,7 @@ Display a people who have a person's same surname
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 from Filters.Rules import Rule
 from Filters import GenericFilterFactory

@@ -24,7 +24,7 @@ Display filtered data
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name_direct
 from gen.lib import Person

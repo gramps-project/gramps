@@ -45,7 +45,8 @@ import ManagedWindow
 import gen.lib
 import Utils
 
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------
@@ -158,7 +159,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC, 
     tool_class = EventNames, 
     options_class = EventNamesOptions, 
-    modes = Tool.MODE_GUI, 
+    modes = PluginManager.TOOL_MODE_GUI, 
     translated_name = _("Extract Event Descriptions from Event Data"), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 

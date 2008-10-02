@@ -144,6 +144,6 @@ DESCRIPTION = _('The GRAMPS XML database is a text version of a family tree. '
 CONFIG = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
 FILENAME = 'gramps'
 
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 pmgr = PluginManager.get_instance()
 pmgr.register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)

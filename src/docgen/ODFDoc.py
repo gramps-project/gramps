@@ -43,7 +43,7 @@ from xml.sax.saxutils import escape
 #-------------------------------------------------------------------------
 import BaseDoc
 import const
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import ReportUtils
 import ImgManip
 import FontScale

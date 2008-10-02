@@ -73,12 +73,12 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
                           NoteOption, MediaOption, DestinationOption
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
-                        MODE_GUI, MODE_CLI, Bibliography)
+                        Bibliography)
 import Utils
 import ThumbNails
 import ImgManip
@@ -3321,7 +3321,7 @@ pmgr.register_report(
     category = CATEGORY_WEB,
     report_class = NavWebReport,
     options_class = NavWebOptions,
-    modes = MODE_GUI | MODE_CLI,
+    modes = PluginManager.REPORT_MODE_GUI | PluginManager.REPORT_MODE_CLI,
     translated_name = _("Narrated Web Site"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

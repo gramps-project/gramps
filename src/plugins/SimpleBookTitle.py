@@ -33,10 +33,10 @@ from TransUtils import sgettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
-from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
+from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -184,7 +184,7 @@ pmgr.register_report(
     category = CATEGORY_TEXT,
     report_class = SimpleBookTitle,
     options_class = SimpleBookTitleOptions,
-    modes = MODE_BKI,
+    modes = PluginManager.REPORT_MODE_BKI,
     translated_name = _("Title Page"),
     status = _("Stable"),
     description = _("Produces a title page for book reports."),

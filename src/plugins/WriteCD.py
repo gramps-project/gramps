@@ -76,7 +76,7 @@ except:
 from GrampsDbUtils import XmlWriter
 from Utils import media_path_full
 from QuestionDialog import ErrorDialog, MissingMediaDialog
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 _title_string = _("Export to CD")
 

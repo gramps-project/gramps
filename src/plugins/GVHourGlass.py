@@ -36,11 +36,10 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, BooleanOption, NumberOption, \
                           EnumeratedListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-    MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
 import DateHandler
 
@@ -299,7 +298,8 @@ pmgr.register_report(
     category        = CATEGORY_GRAPHVIZ,
     report_class    = HourGlassReport,
     options_class   = HourGlassOptions,
-    modes           = MODE_GUI | MODE_CLI,
+    modes           = PluginManager.REPORT_MODE_GUI | \
+                      PluginManager.REPORT_MODE_CLI,
     translated_name = _("Hourglass Graph"),
     status          = _("Stable"),
     author_name     = "Brian G. Matherly",

@@ -57,7 +57,7 @@ import const
 from GrampsDbUtils import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #

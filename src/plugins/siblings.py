@@ -25,7 +25,7 @@ Display a person's siblings in a report window
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import PluginManager
+from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 
 def run(database, document, person):

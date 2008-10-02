@@ -41,7 +41,8 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import Utils
 import gen.lib
-from PluginUtils import Tool, PluginManager
+from PluginUtils import Tool
+from gen.plug import PluginManager
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
@@ -234,7 +235,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = ReorderIds,
     options_class = ReorderIdsOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
+    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
     translated_name = _("Reorder GRAMPS IDs"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",

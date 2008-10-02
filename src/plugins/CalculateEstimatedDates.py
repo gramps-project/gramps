@@ -36,7 +36,8 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool, PluginManager, PluginWindows, MenuToolOptions
+from PluginUtils import Tool, PluginWindows, MenuToolOptions
+from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                          FilterOption, PersonOption
 import gen.lib
@@ -488,7 +489,7 @@ pmgr.register_tool(
     category = Tool.TOOL_DBPROC,
     tool_class = CalcToolManagedWindow,
     options_class = CalcEstDateOptions,
-    modes = Tool.MODE_GUI,
+    modes = PluginManager.TOOL_MODE_GUI,
     translated_name = _("Calculate Estimated Dates"),
     status = _("Beta"),
     author_name = "Douglas S. Blank",
