@@ -6709,7 +6709,7 @@ msgstr "Recherche de doublons de conjoint"
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:323
 msgid "Looking for character encoding errors"
-msgstr "Rechercher les erreurs d'encodage de caractères"
+msgstr "Recherche les erreurs d'encodage de caractères"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:350
@@ -6789,7 +6789,7 @@ msgstr "Recherche de familles vides"
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:717
 msgid "Looking for broken parent relationships"
-msgstr "Rechercher de relations parentales brisées"
+msgstr "Recherche de relations parentales brisées"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:748
@@ -8582,7 +8582,7 @@ msgstr "Moyen"
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
-msgstr "Rechercher des doublons"
+msgstr "Recherche des doublons"
 
 #: ../src/plugins/FindDupes.py:145 ../src/plugins/Verify.py:293
 msgid "Tool settings"
@@ -8590,7 +8590,7 @@ msgstr "Propriétés de l'outil"
 
 #: ../src/plugins/FindDupes.py:145
 msgid "Find Duplicates tool"
-msgstr "Rechercher des doublons"
+msgstr "Recherche des doublons"
 
 #: ../src/plugins/FindDupes.py:178
 msgid "No matches found"
@@ -8602,7 +8602,7 @@ msgstr "Aucun doublon potentiel n'a été trouvé"
 
 #: ../src/plugins/FindDupes.py:188
 msgid "Find Duplicates"
-msgstr "Rechercher des doublons"
+msgstr "Recherche des doublons"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/FindDupes.py:189
