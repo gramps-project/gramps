@@ -665,8 +665,11 @@ class BasePage:
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n')
 
-    def person_link(self, of, url, name, gid=None):
-        of.write('<a href="%s">%s' % (url, name))
+    def person_link(self, of, url, name, gid=None, thumbnailUrl=None):
+        of.write('<a href="%s">' % url)
+        if thumbnailUrl:
+            of.write('<img src="%s"><br />' % thumbnailUrl)
+        of.write('%s' % name)
         if not self.noid and gid:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
@@ -1777,9 +1780,19 @@ class IndividualPage(BasePage):
         of.write('\t\t\t<div class="%s" style="top: %dpx; left: %dpx;">\n' % (divclass, top, xoff+1))
         of.write('\t\t\t\t<div class="box">')
         if person.handle in self.ind_list:
+            thumbnailUrl = None
+            if self.use_gallery and col < 3:
+                photolist = person.get_media_list()
+                if photolist:
+                    photo_handle = photolist[0].get_reference_handle()
+                    photo = self.report.database.get_object_from_handle(photo_handle)
+                    mime_type = photo.get_mime_type()
+                    if mime_type:
+                        (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
+                        thumbnailUrl = '/'.join(['..']*3 + [thumbnailUrl])
             person_name = _nd.display(person)
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
-            self.person_link(of, url, person_name)
+            self.person_link(of, url, person_name, thumbnailUrl=thumbnailUrl)
         else:
             of.write(_nd.display(person))
         of.write('</div>\n')
