@@ -21,7 +21,7 @@ pkgdata_PYTHON = \
 	_person.py \
 	_personlist.py \
 	_placelist.py \
-	_sring.py \
+	_string.py \
 	_style.py \
 	_surnamecolor.py \
 	_text.py
