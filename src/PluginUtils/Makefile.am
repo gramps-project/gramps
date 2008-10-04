@@ -8,7 +8,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/PluginUtils
 pkgdata_PYTHON = \
 	__init__.py\
 	_GuiOptions.py\
-	_MenuOptions.py\
 	_Options.py\
 	_Tool.py\
 	_PluginMgr.py\
