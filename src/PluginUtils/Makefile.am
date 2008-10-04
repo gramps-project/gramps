@@ -10,7 +10,6 @@ pkgdata_PYTHON = \
 	_GuiOptions.py\
 	_Options.py\
 	_Tool.py\
-	_PluginMgr.py\
 	_PluginWindows.py\
 	_PluginDialogs.py
 
