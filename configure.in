@@ -33,7 +33,7 @@ AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
 dnl Add the languages which your application supports here.
-ALL_LINGUAS="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo fi lt sk tr bg hr sl"
+ALL_LINGUAS="sv fr no nb"
 GETTEXT_PACKAGE=gramps
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext package name.])
@@ -151,6 +151,8 @@ src/gen/proxy/Makefile
 src/gen/db/Makefile
 src/gen/lib/Makefile
 src/gen/utils/Makefile
+src/gen/plug/Makefile
+src/gen/plug/menu/Makefile
 src/data/Makefile
 src/data/templates/Makefile
 src/glade/Makefile
