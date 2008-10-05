@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-14 12:36+0200\n"
-"PO-Revision-Date: 2008-09-17 16:43+0200\n"
+"PO-Revision-Date: 2008-10-05 11:27+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1996,7 +1996,7 @@ msgstr "Relaties opnieuw rangschikken: %s"
 
 #: ../src/ScratchPad.py:69
 msgid "manual|Using_the_Clipboard"
-msgstr "Gebruik van het klembord"
+msgstr "Gebruik_van_het_klembord"
 
 #: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
@@ -3118,7 +3118,7 @@ msgstr "Gegevens privé"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr "Personen samenvoegen"
+msgstr "Personen_samenvoegen"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
@@ -3207,7 +3207,7 @@ msgstr "Personen samenvoegen"
 
 #: ../src/Merge/_MergePlace.py:52
 msgid "manual|Merge_Places"
-msgstr "Locaties samenvoegen"
+msgstr "Locaties_samenvoegen"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3216,7 +3216,7 @@ msgstr "Locaties samenvoegen"
 
 #: ../src/Merge/_MergeSource.py:42
 msgid "manual|Merge_Sources"
-msgstr "Bronnen samenvoegen"
+msgstr "Bronnen_samenvoegen"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
@@ -6940,7 +6940,7 @@ msgstr "Levert een verslag met geboortedatums en verjaardagen"
 
 #: ../src/plugins/ChangeNames.py:68
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Verbeter de hoofdletters van familienamen..."
+msgstr "Verbeter_de_hoofdletters_van_familienamen..."
 
 #: ../src/plugins/ChangeNames.py:78 ../src/plugins/ChangeNames.py:256
 msgid "Capitalization changes"
@@ -9014,7 +9014,7 @@ msgstr "Medium"
 # Duplicaat
 #: ../src/plugins/FindDupes.py:70
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Mogelijke dubbele personen zoeken..."
+msgstr "Mogelijke_dubbele_personen_zoeken..."
 
 # Duplicaat
 #: ../src/plugins/FindDupes.py:135 ../src/plugins/FindDupes.py:700
@@ -10718,7 +10718,7 @@ msgstr "Genereert web-pagina's (HTML) voor personen, of een groep personen"
 
 #: ../src/plugins/NotRelated.py:61
 msgid "manual|Not_Related..."
-msgstr "Heeft geen relatie..."
+msgstr "Heeft_geen_relatie..."
 
 #: ../src/plugins/NotRelated.py:73
 #, python-format
@@ -10835,7 +10835,7 @@ msgstr "Toont gebeurtenissen op een bepaalde dag"
 
 #: ../src/plugins/OwnerEditor.py:60
 msgid "manual|Edit_Database_Owner_Information"
-msgstr "Gegevensbestandseigenaarsinformatie aanpassen"
+msgstr "Gegevensbestandseigenaarsinformatie_aanpassen"
 
 #: ../src/plugins/OwnerEditor.py:107
 msgid "Database Owner Editor"
@@ -10860,7 +10860,7 @@ msgstr "Laat toe om de eigenaarsinformatie aan te passen."
 
 #: ../src/plugins/PatchNames.py:62
 msgid "manual|Extract_Information_from_Names"
-msgstr "Informatie uit namen halen"
+msgstr "Informatie_uit_namen_halen"
 
 # betere vertaling voor extractie tool
 #: ../src/plugins/PatchNames.py:105
@@ -11411,7 +11411,7 @@ msgstr "maakt een titelpagina voor boekverslagen aan."
 
 #: ../src/plugins/SoundGen.py:57
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Soundex-codes aanmaken"
+msgstr "Soundex-codes_aanmaken"
 
 #: ../src/plugins/SoundGen.py:67
 msgid "SoundEx code generator"
@@ -11800,7 +11800,7 @@ msgstr "Maakt een tijdlijngrafiek aan."
 
 #: ../src/plugins/Verify.py:67
 msgid "manual|Verify_the_Data..."
-msgstr "De gegevens controleren..."
+msgstr "De_gegevens_controleren..."
 
 #: ../src/plugins/Verify.py:221
 msgid "Database Verify tool"
