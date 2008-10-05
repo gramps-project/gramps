@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 01:10-0700\n"
+"POT-Creation-Date: 2008-10-05 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -946,7 +946,7 @@ msgstr ""
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:852
+#: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
-#: ../src/GrampsCfg.py:354 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
@@ -1016,36 +1016,36 @@ msgstr ""
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:354 ../src/GrampsCfg.py:355
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:581
-#: ../src/Utils.py:1157 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
 msgid "Given"
 msgstr ""
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
-#: ../src/ScratchPad.py:586 ../src/Utils.py:1160
+#: ../src/ScratchPad.py:586 ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
 msgid "Suffix"
 msgstr ""
 
 #: ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:356
-#: ../src/GrampsCfg.py:357 ../src/Utils.py:1163
+#: ../src/GrampsCfg.py:357 ../src/Utils.py:1200
 msgid "Common"
 msgstr ""
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
-#: ../src/GrampsCfg.py:358 ../src/Utils.py:1162
+#: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:163
 msgid "Call"
 msgstr ""
 
 #: ../src/GrampsCfg.py:348 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:357
 #: ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359 ../src/GrampsCfg.py:360
-#: ../src/GrampsCfg.py:361 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:361 ../src/Utils.py:1196
 msgid "SURNAME"
 msgstr ""
 
-#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1161
+#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1198
 msgid "Patronymic"
 msgstr ""
 
@@ -1691,7 +1691,7 @@ msgid ""
 "on the Repair button"
 msgstr ""
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1075
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1112
 msgid "Attempt to force closing the dialog"
 msgstr ""
 
@@ -1978,7 +1978,7 @@ msgstr ""
 #. keyword, code, translated standard, translated upper
 #: ../src/ScratchPad.py:503 ../src/ScratchPad.py:585 ../src/ScratchPad.py:646
 #: ../src/ScratchPad.py:679 ../src/ScratchPad.py:787 ../src/ScratchPad.py:899
-#: ../src/ScratchPad.py:905 ../src/Utils.py:1156
+#: ../src/ScratchPad.py:905 ../src/Utils.py:1193
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:66
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2016,7 +2016,7 @@ msgstr ""
 msgid "Call Name"
 msgstr ""
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1158
+#: ../src/ScratchPad.py:584 ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 msgid "Prefix"
@@ -2556,43 +2556,43 @@ msgstr ""
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 
-#: ../src/Utils.py:1076
+#: ../src/Utils.py:1113
 msgid "Please do not force closing this important dialog."
 msgstr ""
 
-#: ../src/Utils.py:1156
+#: ../src/Utils.py:1193
 msgid "TITLE"
 msgstr ""
 
-#: ../src/Utils.py:1157
+#: ../src/Utils.py:1194
 msgid "GIVEN"
 msgstr ""
 
-#: ../src/Utils.py:1158
+#: ../src/Utils.py:1195
 msgid "PREFIX"
 msgstr ""
 
-#: ../src/Utils.py:1160
+#: ../src/Utils.py:1197
 msgid "SUFFIX"
 msgstr ""
 
-#: ../src/Utils.py:1161
+#: ../src/Utils.py:1198
 msgid "PATRONYMIC"
 msgstr ""
 
-#: ../src/Utils.py:1162
+#: ../src/Utils.py:1199
 msgid "CALL"
 msgstr ""
 
-#: ../src/Utils.py:1163
+#: ../src/Utils.py:1200
 msgid "COMMON"
 msgstr ""
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "Initials"
 msgstr ""
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "INITIALS"
 msgstr ""
 
@@ -3946,7 +3946,7 @@ msgstr ""
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:865
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr ""
@@ -5702,7 +5702,7 @@ msgstr ""
 #: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
-#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
+#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
 #: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
 #: ../src/plugins/DetAncestralReport.py:887
@@ -6953,11 +6953,11 @@ msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
 
-#: ../src/plugins/CmdRef.py:243
+#: ../src/plugins/CmdRef.py:236
 msgid "Generate Commandline Plugin Reference"
 msgstr ""
 
-#: ../src/plugins/CmdRef.py:247
+#: ../src/plugins/CmdRef.py:240
 msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
@@ -10034,6 +10034,11 @@ msgstr ""
 msgid "Not related to \"%s\""
 msgstr ""
 
+#: ../src/plugins/NotRelated.py:142
+#, python-format
+msgid "Everyone in the database is related to %s"
+msgstr ""
+
 #: ../src/plugins/NotRelated.py:210
 #, python-format
 msgid "Setting marker for %d people"
@@ -11640,7 +11645,7 @@ msgid "Graphics"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:1071
 msgid "Paper Options"
 msgstr ""
 
@@ -11649,7 +11654,7 @@ msgid "HTML Options"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:901
+#: ../src/ReportBase/_GraphvizReportDialog.py:1051
 msgid "Output Format"
 msgstr ""
 
@@ -11762,151 +11767,151 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:240
+#: ../src/ReportBase/_GraphvizReportDialog.py:125
 msgid "Processing File"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:607
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Graphviz Dot File"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "PDF (Ghostscript)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Structured Vector Graphics (SVG)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "JPEG image"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "GIF image"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:658
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "PNG image"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:749
+#: ../src/ReportBase/_GraphvizReportDialog.py:899
 msgid "GraphViz Layout"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Font family"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:906
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:912
 msgid "Font size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:913
 msgid "The font size, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:766
+#: ../src/ReportBase/_GraphvizReportDialog.py:916
 msgid "Graph Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "Paging Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "GraphViz Options"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:817
+#: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Aspect ratio"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
 "use 72 DPI."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Node spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:843
+#: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -11914,32 +11919,32 @@ msgid ""
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:855
+#: ../src/ReportBase/_GraphvizReportDialog.py:1005
 msgid "Note to add to the graph"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
+#: ../src/ReportBase/_GraphvizReportDialog.py:1007
 msgid "This text will be added to the graph."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:1010
 msgid "Note location"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:863
+#: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "Whether note will appear on top or bottom of the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:867
+#: ../src/ReportBase/_GraphvizReportDialog.py:1017
 msgid "Note size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:893
-#: ../src/ReportBase/_GraphvizReportDialog.py:948
+#: ../src/ReportBase/_GraphvizReportDialog.py:1043
+#: ../src/ReportBase/_GraphvizReportDialog.py:1098
 msgid "Open with application"
 msgstr ""
 
