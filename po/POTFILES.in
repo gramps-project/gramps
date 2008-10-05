@@ -332,14 +332,28 @@ src/plugins/RebuildRefMap.py
 src/plugins/ReadGrdb.py
 
 # PluginUtils package
-src/PluginUtils/__init__.py
-src/PluginUtils/_GuiOptions.py
-src/PluginUtils/_Options.py
-src/PluginUtils/_PluginMgr.py
-src/PluginUtils/_PluginDialogs.py
-src/PluginUtils/_Tool.py
-src/PluginUtils/_PluginWindows.py
-src/PluginUtils/_MenuOptions.py
+src/gen/plug/__init__.py
+src/gen/plug/_manager.py
+src/gen/plug/menu/_boolean.py
+src/gen/plug/menu/_color.py
+src/gen/plug/menu/_destination.py
+src/gen/plug/menu/_enumeratedlist.py
+src/gen/plug/menu/_family.py
+src/gen/plug/menu/_filter.py
+src/gen/plug/menu/__init__.py
+src/gen/plug/menu/_media.py
+src/gen/plug/menu/_menu.py
+src/gen/plug/menu/_note.py
+src/gen/plug/menu/_number.py
+src/gen/plug/menu/_option.py
+src/gen/plug/menu/_personlist.py
+src/gen/plug/menu/_person.py
+src/gen/plug/menu/_placelist.py
+src/gen/plug/menu/_string.py
+src/gen/plug/menu/_style.py
+src/gen/plug/menu/_surnamecolor.py
+src/gen/plug/menu/_text.py
+
 
 # ReportBase package
 src/ReportBase/_BookFormatComboBox.py
