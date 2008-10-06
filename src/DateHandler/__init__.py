@@ -42,6 +42,7 @@ import _Date_pt
 import _Date_ru
 import _Date_sk
 import _Date_sv
+import _Date_hr
 
 # Initialize global parser
 try:
