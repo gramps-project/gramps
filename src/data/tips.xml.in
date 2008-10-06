@@ -75,7 +75,7 @@ database.
 </_tip>
 
 <_tip number="13">
-GRAMPS comes with a rich set of tools. These allows you to undertake
+GRAMPS comes with a rich set of tools. These allow you to undertake
 operations such as checking database for errors and consistency, as well as
 research and analysis tools such as event comparison, finding duplicate
 people, interactive descendant browser, and others.
@@ -135,7 +135,7 @@ date entry options.
 
 <_tip number="21">
 <b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find
-possible duplicate</b> people allows you to located (and merge) entries
+possible duplicate</b> people allows you to locate (and merge) entries
 of the same person entered more than once in the database.
 </_tip>
 
@@ -181,7 +181,7 @@ listed as a child of the Active Person.
 </_tip>
 
 <_tip number="28">
-<b>Editing The Relationship of a Child</b>: Not all children are the related by
+<b>Editing The Relationship of a Child</b>: Not all children are related by
 birth to their parents. You can edit the relationship of a child to
 each parent by making the child the active person. In the
 Relationship View, click on the third icon to the right of the 
@@ -426,7 +426,7 @@ original documents.
 
 <_tip number="61">
 Go from what you know to what you do not. Always record everything that is
-known before making conjecture. Often the facts at hand suggest plenty of
+known before making conjectures. Often the facts at hand suggest plenty of
 direction for more research. Don't waste time looking through thousands of
 records hoping for a trail when you have other unexplored leads.
 </_tip>
@@ -439,7 +439,7 @@ way in making your family history come alive.
 </_tip>
 
 <_tip number="63">
-GRAMPS has been translated to 15 languages. If GRAMPS supports your
+GRAMPS has been translated to more than 20 languages. If GRAMPS supports your
 language and it is not being displayed, set the default language on
 your machine and restart GRAMPS.
 </_tip>
