@@ -104,7 +104,7 @@ family_rel_descriptions = {
                                          "members of the same sex"), 
     gen.lib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
                                          "and woman"), 
-    gen.lib.FamilyRelType.CUSTOM      : _("An unspecified relationship "
+    gen.lib.FamilyRelType.CUSTOM      : _("An unspecified relationship between "
                                          "a man and woman"), 
     }
 
