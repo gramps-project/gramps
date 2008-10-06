@@ -332,6 +332,13 @@ src/plugins/RebuildRefMap.py
 src/plugins/ReadGrdb.py
 
 # PluginUtils package
+src/PluginUtils/_GuiOptions.py
+src/PluginUtils/_Options.py
+src/PluginUtils/_PluginDialogs.py
+src/PluginUtils/_PluginWindows.py
+src/PluginUtils/_Tool.py
+src/gen/utils/dbutils.py
+src/gen/utils/progressmon.py
 src/gen/plug/__init__.py
 src/gen/plug/_manager.py
 src/gen/plug/menu/_boolean.py
