@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-16 01:10-0700\n"
-"PO-Revision-Date: 2008-09-21 10:26+0200\n"
+"PO-Revision-Date: 2008-10-06 13:38+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3146,7 +3146,7 @@ msgstr "Gegevens privé"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr "Personen samenvoegen"
+msgstr "Personen_samenvoegen"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
@@ -3235,7 +3235,7 @@ msgstr "Personen samenvoegen"
 
 #: ../src/Merge/_MergePlace.py:52
 msgid "manual|Merge_Places"
-msgstr "Locaties samenvoegen"
+msgstr "Locaties_samenvoegen"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3244,7 +3244,7 @@ msgstr "Locaties samenvoegen"
 
 #: ../src/Merge/_MergeSource.py:42
 msgid "manual|Merge_Sources"
-msgstr "Bronnen samenvoegen"
+msgstr "Bronnen_samenvoegen"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
@@ -4716,7 +4716,7 @@ msgstr "Referentie naar kind"
 
 #: ../src/Editors/_EditEvent.py:60
 msgid "manual|Editing_Information_About_Events"
-msgstr "Datums_aanpassen"
+msgstr "Informatie_aanpassen_van_gebeurtenissen"
 
 # Gebeuren (korter)
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
@@ -6992,7 +6992,7 @@ msgstr "Levert een verslag met geboortedatums en verjaardagen"
 
 #: ../src/plugins/ChangeNames.py:67
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Verbeter de hoofdletters van familienamen..."
+msgstr "Verbeter _de_hoofdletters_van_familienamen..."
 
 #: ../src/plugins/ChangeNames.py:77 ../src/plugins/ChangeNames.py:255
 msgid "Capitalization changes"
@@ -7980,7 +7980,7 @@ msgstr "Stamboomgramplet"
 
 #: ../src/plugins/Desbrowser.py:56
 msgid "manual|Interactive_Descendant_Browser"
-msgstr "Interactieve afstammeling-browser"
+msgstr "Interactieve_afstammeling-browser..."
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
@@ -11255,7 +11255,7 @@ msgstr "Titelpagina"
 
 #: ../src/plugins/SoundGen.py:56
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Soundex-codes aanmaken"
+msgstr "Soundex-codes_aanmaken"
 
 #: ../src/plugins/SoundGen.py:66
 msgid "SoundEx code generator"
@@ -11568,7 +11568,7 @@ msgstr "Maakt een tijdlijngrafiek aan."
 
 #: ../src/plugins/Verify.py:66
 msgid "manual|Verify_the_Data..."
-msgstr "De gegevens controleren..."
+msgstr "De_gegevens_controleren..."
 
 #: ../src/plugins/Verify.py:219
 msgid "Database Verify tool"
