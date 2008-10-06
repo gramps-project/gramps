@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-05 11:36+0200\n"
-"PO-Revision-Date: 2008-10-05 12:10+0200\n"
+"PO-Revision-Date: 2008-10-06 13:46+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4639,7 +4639,7 @@ msgstr "Referentie naar kind"
 
 #: ../src/Editors/_EditEvent.py:61
 msgid "manual|Editing_Information_About_Events"
-msgstr "Datums_aanpassen"
+msgstr "Informatie_aanpassen_van_gebeurtenissen"
 
 # Gebeuren (korter)
 #: ../src/Editors/_EditEvent.py:88 ../src/Editors/_EditEventRef.py:223
@@ -7957,7 +7957,7 @@ msgstr "Query"
 
 #: ../src/plugins/Desbrowser.py:58
 msgid "manual|Interactive_Descendant_Browser"
-msgstr "Interactieve afstammeling-browser"
+msgstr "Interactieve_afstammeling-browser..."
 
 #: ../src/plugins/Desbrowser.py:75
 #, python-format
@@ -10867,7 +10867,7 @@ msgstr "Laat toe om de eigenaarsinformatie aan te passen."
 
 #: ../src/plugins/PatchNames.py:63
 msgid "manual|Extract_Information_from_Names"
-msgstr "Informatie_uit_namen_halen"
+msgstr "Informatie_uit_namen_halen..."
 
 # betere vertaling voor extractie tool
 #: ../src/plugins/PatchNames.py:106
