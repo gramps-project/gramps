@@ -1082,7 +1082,7 @@ class ViewManager:
         if not  os.path.isdir(filename):
             ErrorDialog(
                     _("Could not load a recent Family Tree."), 
-                    _("Family Tree does not exists, as it has been deleted."))
+                    _("Family Tree does not exist, as it has been deleted."))
             return
 
         if self.db_loader.read_file(filename):

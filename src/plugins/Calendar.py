@@ -218,7 +218,7 @@ class Calendar(Report):
         # get data from database:
         self.collect_data()
         # generate the report:
-        self.progress.set_pass(_('Formating months...'), 12)
+        self.progress.set_pass(_('Formatting months...'), 12)
         for month in range(1, 13):
             self.progress.step()
             self.print_page(month)
@@ -441,7 +441,7 @@ class CalendarReport(Calendar):
             self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(_("Relationships shown are to %s") % name_displayer.display_name(name))
             self.doc.end_paragraph()
-        self.progress.set_pass(_('Formating months...'), 12)
+        self.progress.set_pass(_('Formatting months...'), 12)
         for month in range(1, 13):
             self.progress.step()
             self.print_page(month)
