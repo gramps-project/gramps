@@ -148,6 +148,12 @@ class WriterOptionBox:
         des.add_rule(Rules.Person.IsDescendantOf(
                 [self.person.get_gramps_id(), 1]))
         
+        df = GenericFilter()
+        df.set_name(_("Descendant Families of %s") %
+                     name_displayer.display(self.person))
+        df.add_rule(Rules.Person.IsDescendantFamilyOf(
+                [self.person.get_gramps_id(), 1]))
+        
         ans = GenericFilter()
         ans.set_name(_("Ancestors of %s")
                      % name_displayer.display(self.person))
@@ -159,7 +165,7 @@ class WriterOptionBox:
                      name_displayer.display(self.person))
         com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
-        return [des, ans, com]
+        return [des, df, ans, com]
 
     def parse_options(self):
         """
