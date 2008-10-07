@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-16 01:10-0700\n"
-"PO-Revision-Date: 2008-07-28 15:48+0100\n"
+"PO-Revision-Date: 2008-10-05 15:48+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1109,7 +1109,7 @@ msgstr "Usuel"
 #: ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359 ../src/GrampsCfg.py:360
 #: ../src/GrampsCfg.py:361 ../src/Utils.py:1159
 msgid "SURNAME"
-msgstr "NOM DE FAMMILE"
+msgstr "NOM DE FAMILLE"
 
 #: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1161
 msgid "Patronymic"
