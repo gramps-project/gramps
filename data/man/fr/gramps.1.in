@@ -159,7 +159,7 @@ Permet les logs de debug pour le développement et les tests. Regarder le code s
 .BI \-\^\-version
 Imprime le numéro de version pour gramps puis quitte.
 \" changer 0 par 1 pour permettre la sortie des options OAF
-.si 0 \{
+.if 0 \{
 .PP
 Les options suivantes seront utilisées pour l'activation Bonobo.
 .TP 
@@ -173,7 +173,7 @@ OAF IID à activer
 Prévenir de l'enregistrement du serveur avec OAF
 \}
 \" changer 0 par 1 pour permettre la sortie des options son de GNOME
-.si 0 \{
+.if 0 \{
 .PP
 Les options suivantes seront utilisées pour contrôler le son avec les librairies GNOME.
 .TP
