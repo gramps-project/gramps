@@ -143,7 +143,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">90 0 150 1 10 10</property>
+		      <property name="adjustment">90 0 150 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -221,7 +221,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">17 0 100 1 10 10</property>
+		      <property name="adjustment">17 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -271,7 +271,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">50 0 150 1 10 10</property>
+		      <property name="adjustment">50 0 150 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -322,7 +322,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">3 0 100 1 10 10</property>
+		      <property name="adjustment">3 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -344,7 +344,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">30 0 100 1 10 10</property>
+		      <property name="adjustment">30 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -423,7 +423,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">99 0 150 1 10 10</property>
+		      <property name="adjustment">99 0 150 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -588,7 +588,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">17 0 100 1 10 10</property>
+		      <property name="adjustment">17 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -610,7 +610,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">48 0 100 1 10 10</property>
+		      <property name="adjustment">48 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -632,7 +632,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">12 0 100 1 10 10</property>
+		      <property name="adjustment">12 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -777,7 +777,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">15 0 100 1 10 10</property>
+		      <property name="adjustment">15 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -799,7 +799,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">65 0 150 1 10 10</property>
+		      <property name="adjustment">65 0 150 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -821,7 +821,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">18 0 100 1 10 10</property>
+		      <property name="adjustment">18 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -882,7 +882,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">30 0 100 1 10 10</property>
+		      <property name="adjustment">30 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -904,7 +904,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">8 0 100 1 10 10</property>
+		      <property name="adjustment">8 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -926,7 +926,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">25 0 100 1 10 10</property>
+		      <property name="adjustment">25 0 100 1 10 0</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
