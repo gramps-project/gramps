@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-05 11:36+0200\n"
-"PO-Revision-Date: 2008-10-06 13:46+0200\n"
+"PO-Revision-Date: 2008-10-10 11:12+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -10843,7 +10843,7 @@ msgstr "Toont gebeurtenissen op een bepaalde dag"
 
 #: ../src/plugins/OwnerEditor.py:61
 msgid "manual|Edit_Database_Owner_Information"
-msgstr "Gegevensbestandseigenaarsinformatie_aanpassen"
+msgstr "Gegevensbestandseigenaarsinformatie_aanpassen..."
 
 #: ../src/plugins/OwnerEditor.py:108
 msgid "Database Owner Editor"
