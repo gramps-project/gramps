@@ -66,7 +66,7 @@ from TransUtils import sgettext as _
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
-WIKI_HELP_SEC = _('manual|Compare_Individual_Events')
+WIKI_HELP_SEC = _('manual|Compare_Individual_Events...')
 
 #------------------------------------------------------------------------
 #
