@@ -28,7 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+
 
 #------------------------------------------------------------------------
 #
@@ -49,10 +49,18 @@ from Editors import EditPerson, EditFamily
 from QuestionDialog import WarningDialog
 import ManagedWindow
 import Utils
+from TransUtils import sgettext as _
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Not_Related...')
 
 #------------------------------------------------------------------------
 #
-# 
+# 	NotRelated.py
 #
 #------------------------------------------------------------------------
 class NotRelated(ManagedWindow.ManagedWindow) :
@@ -67,7 +75,10 @@ class NotRelated(ManagedWindow.ManagedWindow) :
         self.db = dbstate.db
         glade_file = "%s/NotRelated.glade" % os.path.dirname(__file__)
         topDialog = gtk.glade.XML(glade_file, "top", "gramps")
-        topDialog.signal_autoconnect({"destroy_passed_object" : self.close})
+        topDialog.signal_autoconnect({
+             "destroy_passed_object" : self.close, 
+	     "on_help_clicked"       : self.on_help_clicked,
+	})
 
         window = topDialog.get_widget("top")
         title = topDialog.get_widget("title")
@@ -198,6 +209,9 @@ class NotRelated(ManagedWindow.ManagedWindow) :
                 except Errors.WindowActiveError:
                     pass
 
+    def on_help_clicked(self, obj):
+        """Display the relevant portion of GRAMPS manual"""
+        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)   
 
     def applyMarkerClicked(self, button) :
         progress    = None
