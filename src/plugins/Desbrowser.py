@@ -55,7 +55,7 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
-WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser')
+WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
 
 
