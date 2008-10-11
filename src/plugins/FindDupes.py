@@ -28,7 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _ 
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +53,7 @@ import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool, register_tool
 from QuestionDialog import ErrorDialog, RunDatabaseRepair
-
+from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -65,7 +64,8 @@ _val2label = {
     1.0  : _("Medium"),
     2.0  : _("High"),
     }
-
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
 #-------------------------------------------------------------------------
 #
 #
@@ -146,7 +146,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def ancestors_of(self,p1_id,id_list):
         if (not p1_id) or (p1_id in id_list):
