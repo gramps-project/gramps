@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 01:10-0700\n"
-"PO-Revision-Date: 2008-10-06 13:38+0200\n"
+"POT-Creation-Date: 2008-10-05 13:11+0200\n"
+"PO-Revision-Date: 2008-10-11 08:46+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1067,7 +1067,7 @@ msgstr "Bibliotheek"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:852
+#: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1130,7 +1130,7 @@ msgstr "Detail eigen aangemaakte formaten"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
-#: ../src/GrampsCfg.py:354 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
@@ -1144,37 +1144,37 @@ msgstr "Achternaam"
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:354 ../src/GrampsCfg.py:355
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:581
-#: ../src/Utils.py:1157 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
 msgid "Given"
 msgstr "Voornaam"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
-#: ../src/ScratchPad.py:586 ../src/Utils.py:1160
+#: ../src/ScratchPad.py:586 ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
 msgid "Suffix"
 msgstr "Achtervoegsel"
 
 #: ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:356
-#: ../src/GrampsCfg.py:357 ../src/Utils.py:1163
+#: ../src/GrampsCfg.py:357 ../src/Utils.py:1200
 msgid "Common"
 msgstr "Algemeen"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
-#: ../src/GrampsCfg.py:358 ../src/Utils.py:1162
+#: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:163
 msgid "Call"
 msgstr "Call"
 
 #: ../src/GrampsCfg.py:348 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:357
 #: ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359 ../src/GrampsCfg.py:360
-#: ../src/GrampsCfg.py:361 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:361 ../src/Utils.py:1196
 msgid "SURNAME"
 msgstr "ACHTERNAAM"
 
 # patronymisch/patroniemen
-#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1161
+#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1198
 msgid "Patronymic"
 msgstr "Patroniemen"
 
@@ -1863,7 +1863,7 @@ msgstr ""
 "gegevensbestand. Dit kan hersteld worden door middel van de familiestamboom- "
 "beheerder. Kies het gegevensbestand en klik op de herstelknop"
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1075
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1112
 msgid "Attempt to force closing the dialog"
 msgstr "Poging om de dialoog geforceerd te sluiten"
 
@@ -2158,7 +2158,7 @@ msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 #. keyword, code, translated standard, translated upper
 #: ../src/ScratchPad.py:503 ../src/ScratchPad.py:585 ../src/ScratchPad.py:646
 #: ../src/ScratchPad.py:679 ../src/ScratchPad.py:787 ../src/ScratchPad.py:899
-#: ../src/ScratchPad.py:905 ../src/Utils.py:1156
+#: ../src/ScratchPad.py:905 ../src/Utils.py:1193
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:66
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2197,7 +2197,7 @@ msgstr "Gebeurtenisreferentie"
 msgid "Call Name"
 msgstr "Roepnaam"
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1158
+#: ../src/ScratchPad.py:584 ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 msgid "Prefix"
@@ -2750,44 +2750,44 @@ msgstr "standaard"
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Database fout: %s is gedefinieerd als zijn of haar eigen voorouder"
 
-#: ../src/Utils.py:1076
+#: ../src/Utils.py:1113
 msgid "Please do not force closing this important dialog."
 msgstr "Sluit deze dialoog niet geforceerd af."
 
-#: ../src/Utils.py:1156
+#: ../src/Utils.py:1193
 msgid "TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1157
+#: ../src/Utils.py:1194
 msgid "GIVEN"
 msgstr "VOORNAAM"
 
-#: ../src/Utils.py:1158
+#: ../src/Utils.py:1195
 msgid "PREFIX"
 msgstr "PREFIX"
 
-#: ../src/Utils.py:1160
+#: ../src/Utils.py:1197
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1161
+#: ../src/Utils.py:1198
 msgid "PATRONYMIC"
 msgstr "PATRONIEM"
 
-#: ../src/Utils.py:1162
+#: ../src/Utils.py:1199
 msgid "CALL"
 msgstr "CALL"
 
-#: ../src/Utils.py:1163
+#: ../src/Utils.py:1200
 msgid "COMMON"
 msgstr "GEWONE"
 
 # Individuen
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "INITIALS"
 msgstr "INITIALEN"
 
@@ -4221,7 +4221,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:865
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
@@ -6144,7 +6144,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
-#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
+#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
 #: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
 #: ../src/plugins/DetAncestralReport.py:887
@@ -7435,11 +7435,11 @@ msgstr ""
 "Controleert het gegevensbestand op integriteitsproblemen. Problemen worden "
 "waar mogelijk verholpen"
 
-#: ../src/plugins/CmdRef.py:243
+#: ../src/plugins/CmdRef.py:236
 msgid "Generate Commandline Plugin Reference"
 msgstr "Aanmaken van opdrachtregel plugin referentie"
 
-#: ../src/plugins/CmdRef.py:247
+#: ../src/plugins/CmdRef.py:240
 msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
@@ -9389,7 +9389,9 @@ msgstr "Datums beperken tot jaren alleen"
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
-msgstr "Geeft enkel het jaar weer van een datum. Er worden geen maanden, dagen of intervallen getoond."
+msgstr ""
+"Geeft enkel het jaar weer van een datum. Er worden geen maanden, dagen of "
+"intervallen getoond."
 
 #: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
@@ -9476,7 +9478,9 @@ msgstr "Familieknooppunten tonen"
 
 #: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Families worden met ovalen voorgesteld met verbindingen naar ouders en kinderen."
+msgstr ""
+"Families worden met ovalen voorgesteld met verbindingen naar ouders en "
+"kinderen."
 
 #: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
@@ -10716,6 +10720,11 @@ msgstr "Maak webpagina's aan (HTML) voor personen, of een groep personen"
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Geen relatie met \"%s\""
+
+#: ../src/plugins/NotRelated.py:142
+#, python-format
+msgid "Everyone in the database is related to %s"
+msgstr "Iedereen heeft een relatie met %s"
 
 #: ../src/plugins/NotRelated.py:210
 #, python-format
@@ -12407,7 +12416,7 @@ msgid "Graphics"
 msgstr "Grafisch"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:1071
 msgid "Paper Options"
 msgstr "Papieropties"
 
@@ -12416,7 +12425,7 @@ msgid "HTML Options"
 msgstr "HTML-opties"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:901
+#: ../src/ReportBase/_GraphvizReportDialog.py:1051
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
@@ -12530,57 +12539,57 @@ msgstr "Boven"
 msgid "Bottom"
 msgstr "Onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:240
+#: ../src/ReportBase/_GraphvizReportDialog.py:125
 msgid "Processing File"
 msgstr "Bestand wordt verwerkt"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:607
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Graphviz Dot File"
 msgstr "Graphviz Dot bestand"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:658
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:749
+#: ../src/ReportBase/_GraphvizReportDialog.py:899
 msgid "GraphViz Layout"
 msgstr "GraphViz-layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:906
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12589,27 +12598,27 @@ msgstr ""
 "gebruik dan het FreeSans lettertype. Dit lettertype is verkrijgbaar bij "
 "http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:912
 msgid "Font size"
 msgstr "Lettergrootte"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:913
 msgid "The font size, in points."
 msgstr "Lettergrootte in pts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:766
+#: ../src/ReportBase/_GraphvizReportDialog.py:916
 msgid "Graph Direction"
 msgstr "Grafiekrichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Grafiek van boven naar onder gaan, of van links naar rechts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
 msgstr "Aantal horizontale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12619,11 +12628,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal horizontale pagina's. "
 "Deze optie is enkel toepasbaar op dot, postscript en pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
 msgstr "Aantal verticale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12633,11 +12642,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal verticale pagina's. is "
 "enkel toepasbaar op dot, postscript en pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "Paging Direction"
 msgstr "Paginarichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12647,24 +12656,24 @@ msgstr ""
 "dan 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "GraphViz Options"
 msgstr "GraphViz-opties"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:817
+#: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Aspect ratio"
 msgstr "Weergaveverhouding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Bepaalt in grote mate hoe grafieken geschikt worden op de pagina."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
@@ -12674,11 +12683,11 @@ msgstr ""
 "voor een webstek, gebruik dan best 100 of 300 DPI. Voor het aanmaken van "
 "postscript of PDF-bestanden gebruikt u best 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Node spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12688,11 +12697,11 @@ msgstr ""
 "grafieken, is dit de afstand tussen de kolommen. Voor horizontale frafieken "
 "is dit de afstand tussen de rijen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:843
+#: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12703,32 +12712,32 @@ msgstr ""
 "grafieken is dit de ruimte tussen de kolommen."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:855
+#: ../src/ReportBase/_GraphvizReportDialog.py:1005
 msgid "Note to add to the graph"
 msgstr "Bijschrift toevoegen aan grafiek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
+#: ../src/ReportBase/_GraphvizReportDialog.py:1007
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:1010
 msgid "Note location"
 msgstr "Opmerking locatie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:863
+#: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Of de notitie boven of onder aan de pagina zal verschijnen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:867
+#: ../src/ReportBase/_GraphvizReportDialog.py:1017
 msgid "Note size"
 msgstr "Grootte opmerkingen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte, in 'points'."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:893
-#: ../src/ReportBase/_GraphvizReportDialog.py:948
+#: ../src/ReportBase/_GraphvizReportDialog.py:1043
+#: ../src/ReportBase/_GraphvizReportDialog.py:1098
 msgid "Open with application"
 msgstr "Openen met toepassing"
 
