@@ -98,11 +98,14 @@ class PersonBoxWidget_old( gtk.Button):
         self.modify_bg( gtk.STATE_SELECTED, white)
 
 class _PersonWidget_base:
-    def __init__(self, fh, person):
+    def __init__(self, view, fh, person):
+        self.view = view
         self.fh = fh
         self.person = person
         self.force_mouse_over = False
         if self.person:
+            self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+            self.connect("button-release-event", self.on_button_release_cb)
             self.connect("drag_data_get", self.drag_data_get)
             self.connect('drag_begin', self.drag_begin_cb)
             self.drag_source_set(gtk.gdk.BUTTON1_MASK,
@@ -120,11 +123,16 @@ class _PersonWidget_base:
         else:
             sel_data.set(sel_data.target, 8, self.fh.format_person( self.person,11))
 
+    def on_button_release_cb(self,widget,event):
+        self.view.on_childmenu_changed(None, self.person.get_handle())
+        return False
+
+
             
 class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
-    def __init__(self,fh,person,alive,maxlines,image=None):
+    def __init__(self,view,fh,person,alive,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
-        _PersonWidget_base.__init__(self,fh,person)
+        _PersonWidget_base.__init__(self,view,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
         self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
@@ -258,9 +266,9 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
 
 
 class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
-    def __init__(self,fh,person,alive,maxlines,image=None):
+    def __init__(self,view,fh,person,alive,maxlines,image=None):
         gtk.DrawingArea.__init__(self)
-        _PersonWidget_base.__init__(self,fh,person)
+        _PersonWidget_base.__init__(self,view,fh,person)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)  # Required for popup menu
         self.add_events(gtk.gdk.ENTER_NOTIFY_MASK)  # Required for tooltip and mouse-over
         self.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)  # Required for tooltip and mouse-over
@@ -285,7 +293,7 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
             xmin += self.image.get_width()
             ymin = max( ymin,self.image.get_height()+4)
         self.set_size_request(max(xmin,120),max(ymin,25))
-    
+
     def on_enter_cb(self,widget,event):
         """ On mouse-over hightlight border"""
         self.border_gc.line_width = 3
@@ -826,9 +834,9 @@ class PedigreeView(PageView.PersonNavView):
             if not lst[i]:
                 # No person -> show empty box
                 if cairo_available:
-                    pw = PersonBoxWidget_cairo( self.format_helper, None, False, 0, None);
+                    pw = PersonBoxWidget_cairo( self, self.format_helper, None, False, 0, None);
                 else:
-                    pw = PersonBoxWidget( self.format_helper, None, False, 0, None);
+                    pw = PersonBoxWidget( self, self.format_helper, None, False, 0, None);
                 if i > 0 and lst[((i+1)/2)-1]:
                     fam_h = None
                     fam = lst[((i+1)/2)-1][2]
@@ -863,9 +871,9 @@ class PedigreeView(PageView.PersonNavView):
                                                         obj.get_path()),
                                             rectangle=ph.get_rectangle())
                 if cairo_available:
-                    pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
+                    pw = PersonBoxWidget_cairo( self, self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 else:
-                    pw = PersonBoxWidget( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
+                    pw = PersonBoxWidget( self, self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 if positions[i][0][3] < 7:
                     self.tooltips.set_tip(pw, self.format_helper.format_person(lst[i][0], 11))
 
@@ -964,7 +972,6 @@ class PedigreeView(PageView.PersonNavView):
         
         # Add navigation arrows
         if lst[0]:
-            #l = gtk.Button("‚óÄ")
             l=gtk.Button()
             l.add(gtk.Arrow(gtk.ARROW_LEFT, gtk.SHADOW_IN))
             childlist = find_children(self.dbstate.db,lst[0][0])
@@ -975,7 +982,6 @@ class PedigreeView(PageView.PersonNavView):
                 l.set_sensitive(False)
             ymid = int(math.floor(ymax/2))
             table_widget.attach(l,0,1,ymid,ymid+1,0,0,0,0)
-            #l = gtk.Button("‚ñ∂")
             l = gtk.Button()
             l.add(gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_IN))
             if lst[1]:
