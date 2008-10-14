@@ -211,7 +211,6 @@ src/GrampsDbUtils/importdbdir.py
 src/GrampsDbUtils/_ReadGedcom.py
 src/GrampsDbUtils/_ReadXML.py
 src/GrampsDbUtils/_WriteGedcom.py
-src/GrampsDbUtils/_WriteGrdb.py
 src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
 

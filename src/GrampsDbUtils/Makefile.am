@@ -22,7 +22,6 @@ pkgdata_PYTHON = \
 	_ReadGedcom.py\
 	_ReadXML.py\
 	_WriteGedcom.py\
-	_WriteGrdb.py\
 	_WriteXML.py
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsDbUtils

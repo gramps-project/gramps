@@ -29,14 +29,10 @@ for a database backend.
 The app_* constants in const.py can be used to indicate which backend is
 required e.g.:
 
->     # To get a XML writer
->     GrampsDb.gramps_db_writer_factory(db_type = const.APP_GRAMPS_XML)
 >
 >     # To get a Gedcom reader
 >     GrampsDb.gramps_db_reader_factory(db_type = const.APP_GEDCOM)
 
-As of 3.0 the writer_factory is deprecated. Exporter uses directly the plugin
-system for export, no factory needed.
 """
 import const
 

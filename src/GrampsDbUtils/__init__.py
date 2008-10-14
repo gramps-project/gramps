@@ -29,9 +29,9 @@ depends on Gtk.
 A number of importers and exporters are provided to convert between
 the different backend formats.
 
-To obtain a class that implements writers use the gramps_db_writer_factory
-method and for readers use the gramps_db_reader_factory method. For information
-on using these factories see the _GrampsDbUtilsFactories.py file comments.
+To obtain a class that implements readers use the gramps_db_reader_factory 
+method. For information on using this factory see the 
+_GrampsDbUtilsFactories.py file comments.
 
 """
 

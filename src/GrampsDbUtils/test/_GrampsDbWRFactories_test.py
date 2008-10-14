@@ -17,7 +17,6 @@ class Test1(unittest.TestCase):
         self.assertTrue(par in sys.path, 
             "par %r has to be in path!" % par)
         ilist = (
-            "_WriteGrdb",
             "_WriteXML",
             "_WriteGedcom",
             "_ReadXML",
