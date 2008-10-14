@@ -52,7 +52,7 @@ import Relationship
 # Constants
 #
 #-------------------------------------------------------------------------
-_UNAVAILABLE = _("No description was provided"),
+_UNAVAILABLE = _("No description was provided")
 
 #-------------------------------------------------------------------------
 #
@@ -71,7 +71,7 @@ class PluginManager(gen.utils.Callback):
     REPORT_MODE_CLI = 4    # Command line interface (CLI)
     
     # Modes for running tools
-    TOOL_MODE_GUI = 1    # Standrt tool using GUI
+    TOOL_MODE_GUI = 1    # Standard tool using GUI
     TOOL_MODE_CLI = 2    # Command line interface (CLI)
     
     def get_instance():
@@ -93,8 +93,8 @@ class PluginManager(gen.utils.Callback):
         self.__report_list       = []
         self.__quick_report_list = []
         self.__tool_list         = []
-        self.__import_list       = []
         self.__export_list       = []
+        self.__import_plugins    = []
         self.__attempt_list      = []
         self.__loaddir_list      = []
         self.__textdoc_list      = []
@@ -257,10 +257,6 @@ class PluginManager(gen.utils.Callback):
         """ Return the list of command line tool plugins. """
         return self.__cli_tool_list
     
-    def get_import_list(self):
-        """ Return the list of import plugins. """
-        return self.__import_list
-    
     def get_export_list(self):
         """ Return the list of export plugins. """
         return self.__export_list
@@ -268,6 +264,24 @@ class PluginManager(gen.utils.Callback):
     def get_module_description(self, module):
         """ Given a module name, return the module description. """
         return self.__mod2text.get(module, '')
+    
+    def register_plugin(self, plugin):
+        """
+        @param plugin: The plugin to be registered.
+        @type plugin: gen.plug.Plugin
+        @return: nothing
+        """
+        if isinstance(plugin, gen.plug.ImportPlugin):
+            self.__import_plugins.append(plugin)
+            self.__mod2text[plugin.get_module_name()] = plugin.get_description()
+            
+    def get_import_plugins(self):
+        """
+        Get the list of import plugins.
+        
+        @return: [gen.plug.ImportPlugin] (a list of ImportPlugin instances)
+        """
+        return self.__import_plugins
 
     def register_export(self, export_data, title, description='', config=None, 
                         filename=''):
@@ -286,21 +300,6 @@ class PluginManager(gen.utils.Callback):
             self.__export_list.append(
                             (export_data, title, description, config, filename))
             self.__mod2text[export_data.__module__] = description
-
-    def register_import(self, task, ffilter, mime=None, native_format=0, 
-                        format_name=""):
-        """Register an import filter, taking the task and file filter"""
-        if mime:
-            del_index = -1
-            for i in range(0, len(self.__import_list)):
-                if self.__import_list[i][2] == mime:
-                    del_index = i
-            if del_index != -1:
-                del self.__import_list[del_index]
-    
-            self.__import_list.append(
-                            (task, ffilter, mime, native_format, format_name))
-            self.__mod2text[task.__module__] = format_name
 
     def register_tool(self, name, category, tool_class, options_class,
                       modes, translated_name, status=_("Unknown"), 
@@ -548,8 +547,8 @@ class PluginManager(gen.utils.Callback):
     
         self.__export_list[:] = [ item for item in self.__export_list
                         if item[0].__module__ not in failed_module_names ][:]
-        self.__import_list[:] = [ item for item in self.__import_list
-                        if item[0].__module__ not in failed_module_names ][:]
+        self.__import_plugins[:] = [ item for item in self.__import_plugins
+                        if item.get_module_name not in failed_module_names ][:]
         self.__tool_list[:] = [ item for item in self.__tool_list
                       if item[0].__module__ not in failed_module_names ][:]
         self.__cli_tool_list[:] = [ item for item in self.__cli_tool_list

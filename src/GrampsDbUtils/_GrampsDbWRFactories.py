@@ -67,11 +67,11 @@ def gramps_db_reader_factory(db_type):
         #see if registered importer
         found = False
         pmgr = PluginManager.get_instance()
-        for data in pmgr.get_import_list():
-            if db_type in data[2]:
-                print "Found import plugin for %s" % data[4]
+        for plugin in pmgr.get_import_plugins():
+            if db_type in plugin.get_mime_types():
+                print "Found import plugin for %s" % plugin.get_name()
                 found = True
-                md = data[0]
+                md = plugin.get_import_function()
                 break
         if not found:
             raise GrampsDbException("Attempt to create a database "

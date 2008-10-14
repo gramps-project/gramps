@@ -36,13 +36,6 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GTK+ Modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
@@ -51,7 +44,7 @@ from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
 from BasicUtils import name_displayer
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -321,11 +314,10 @@ def make_peron_name_remapper(other_database, formats_map):
 # Register with the plugin system
 #
 #------------------------------------------------------------------------
-_mime_type = 'application/x-gramps'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS 2.x database'))
-_filter.add_mime_type(_mime_type)
-_format_name = _('GRAMPS 2.x database')
-
 pmgr = PluginManager.get_instance()
-pmgr.register_import(importData, _filter, [_mime_type], 0, _format_name)
+plugin = ImportPlugin(name            = _('GRAMPS 2.x database'), 
+                      description     = _("Import data from GRAMPS 2.x "
+                                          "database files"),
+                      import_function = importData,
+                      mime_types      = ['application/x-gramps'])
+pmgr.register_plugin(plugin)

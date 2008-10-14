@@ -34,8 +34,6 @@ from gettext import gettext as _
 import os
 import struct
 
-import time
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -49,12 +47,10 @@ log = logging.getLogger('.ImportProGen')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import Utils
 import gen.lib
-import const
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 
 
 class ProgenError(Exception):
@@ -1214,13 +1210,14 @@ class ProgenParser:
                     self.db.commit_person(person, self.trans)
             self.progress.step()
                 
-
-_mime_type = "application/x-progen"
-import gtk
-_filter = gtk.FileFilter()
-_filter.set_name(_('Pro-Gen files'))
-_filter.add_mime_type(_mime_type)
-_format_name = _('Pro-Gen')
-
+#-------------------------------------------------------------------------
+#
+# Register with the plugin system
+#
+#-------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-pmgr.register_import(_importData, _filter, [_mime_type], 0, _format_name)
+plugin = ImportPlugin(name            = _('Pro-Gen'), 
+                      description     = _("Import data from Pro-Gen files"),
+                      import_function = _importData,
+                      mime_types      = ["application/x-progen"])
+pmgr.register_plugin(plugin)

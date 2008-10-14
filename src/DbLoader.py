@@ -126,16 +126,17 @@ class DbLoader:
         format_list = OPEN_FORMATS[:]
 
         # Add more data type selections if opening existing db
-        for data in pmgr.get_import_list():
-            mime_filter = data[1]
-            mime_types = data[2]
-            native_format = data[3]
-            format_name = data[4]
+        for plugin in pmgr.get_import_plugins():
+            mime_types = plugin.get_mime_types()
+            mime_filter = gtk.FileFilter()
+            mime_filter.set_name(plugin.get_name())
+            for mime_type in mime_types:
+                mime_filter.add_mime_type(mime_type)
+            format_name = plugin.get_name()
 
-            if not native_format:
-                choose_db_dialog.add_filter(mime_filter)
-                format_list.append(mime_types[0])
-                _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
+            choose_db_dialog.add_filter(mime_filter)
+            format_list.append(mime_types[0])
+            _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
 
         (box, type_selector) = format_maker(format_list)
         choose_db_dialog.set_extra_widget(box)
@@ -180,10 +181,11 @@ class DbLoader:
                 (the_path, the_file) = os.path.split(filename)
                 Config.set(Config.RECENT_IMPORT_DIR, the_path)
                 # Then we try all the known plugins
-                for (importData, mime_filter, mime_types, native_format, 
-                     format_name) in pmgr.get_import_list():
-                    if filetype in mime_types:
-                        self.do_import(choose_db_dialog, importData, filename)
+                for plugin in pmgr.get_import_plugins():
+                    if filetype in plugin.get_mime():
+                        self.do_import(choose_db_dialog, 
+                                       plugin.get_import_function(), 
+                                       filename)
                         return True
 
                 # Finally, we give up and declare this an unknown format

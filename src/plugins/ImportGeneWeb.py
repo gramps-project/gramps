@@ -42,13 +42,6 @@ log = logging.getLogger(".ImportGeneWeb")
 
 #-------------------------------------------------------------------------
 #
-# GTK/GNOME Modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -56,7 +49,7 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -926,14 +919,12 @@ class GeneWebParser:
             print txt
 #-------------------------------------------------------------------------
 #
-#
+# Register with the plugin system
 #
 #-------------------------------------------------------------------------
-_mime_type = const.APP_GENEWEB
-_filter = gtk.FileFilter()
-_filter.set_name(_('GeneWeb files'))
-_filter.add_mime_type(_mime_type)
-_format_name = _('GeneWeb')
-
 pmgr = PluginManager.get_instance()
-pmgr.register_import(importData, _filter, [_mime_type], 0, _format_name)
+plugin = ImportPlugin(name            = _('GeneWeb'), 
+                      description     =  _("Import data from GeneWeb files"),
+                      import_function = importData,
+                      mime_types      = [const.APP_GENEWEB])
+pmgr.register_plugin(plugin)

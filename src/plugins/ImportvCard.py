@@ -42,21 +42,13 @@ log = logging.getLogger(".ImportVCard")
 
 #-------------------------------------------------------------------------
 #
-# GTK/GNOME Modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
-import const
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -217,14 +209,12 @@ class VCardParser:
 
 #-------------------------------------------------------------------------
 #
-#
+# Register with the plugin system
 #
 #-------------------------------------------------------------------------
-_mime_type = const.APP_VCARD
-_filter = gtk.FileFilter()
-_filter.set_name(_('vCard files'))
-for mime in _mime_type:
-    _filter.add_mime_type(mime)
-
 pmgr = PluginManager.get_instance()
-pmgr.register_import(importData, _filter, _mime_type, 1)
+plugin = ImportPlugin(name            = _('vCard'), 
+                      description     = _("Import data from vCard files"),
+                      import_function = importData,
+                      mime_types      = ["text/x-vcard", "text/x-vcalendar"])
+pmgr.register_plugin(plugin)

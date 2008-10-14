@@ -10,7 +10,9 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/plug
 
 pkgdata_PYTHON = \
 	__init__.py \
-	_manager.py
+	_import.py \
+	_manager.py \
+	_plugin.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug
 pkgpythondir = @pkgpythondir@/gen/plug

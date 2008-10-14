@@ -43,13 +43,6 @@ log = logging.getLogger(".ReadPkg")
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK+ modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -57,7 +50,7 @@ import const
 from GrampsDbUtils import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -149,11 +142,9 @@ def impData(database, name, cb=None, cl=0):
 # Register with the plugin system
 #
 #------------------------------------------------------------------------
-_mime_type = 'application/x-gramps-package'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS packages'))
-_filter.add_mime_type(_mime_type)
-_format_name = _('GRAMPS package')
-
 pmgr = PluginManager.get_instance()
-pmgr.register_import(impData, _filter, [_mime_type], 0, _format_name)
+plugin = ImportPlugin(name            = _('GRAMPS package'), 
+                      description     = _("Import data from GRAMPS packages"),
+                      import_function = impData,
+                      mime_types      = ['application/x-gramps-package'])
+pmgr.register_plugin(plugin)

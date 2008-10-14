@@ -340,7 +340,9 @@ src/PluginUtils/_Tool.py
 src/gen/utils/dbutils.py
 src/gen/utils/progressmon.py
 src/gen/plug/__init__.py
+src/gen/plug/_import.py
 src/gen/plug/_manager.py
+src/gen/plug/_plugin.py
 src/gen/plug/menu/_boolean.py
 src/gen/plug/menu/_color.py
 src/gen/plug/menu/_destination.py

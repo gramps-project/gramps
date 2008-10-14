@@ -45,20 +45,13 @@ log = logging.getLogger(".ImportCSV")
 
 #-------------------------------------------------------------------------
 #
-# GTK/GNOME Modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
 import gen.lib
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ImportPlugin
 from Utils import gender as gender_map
 from Utils import ProgressMeter
 
@@ -798,12 +791,10 @@ class CSVParser:
 #-------------------------------------------------------------------------
 _mime_type = "text/x-comma-separated-values" # CSV Document
 _mime_type_rfc_4180 = "text/csv" # CSV Document   See rfc4180 for mime type
-_filter = gtk.FileFilter()
-_filter.set_name(_('CSV spreadsheet files'))
-_filter.add_mime_type(_mime_type)
-_filter.add_mime_type(_mime_type_rfc_4180)
-_format_name = _('CSV Spreadheet')
 
 pmgr = PluginManager.get_instance()
-pmgr.register_import(importData, _filter, [_mime_type, _mime_type_rfc_4180],
-                0, _format_name)
+plugin = ImportPlugin(name            = _('CSV Spreadheet'), 
+                      description     = _("Import data from CSV files"),
+                      import_function = importData,
+                      mime_types      = [_mime_type, _mime_type_rfc_4180])
+pmgr.register_plugin(plugin)
