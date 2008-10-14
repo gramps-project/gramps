@@ -59,6 +59,13 @@ import ManagedWindow
 from TransUtils import sgettext as _
 
 from DdTargets import DdTargets
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Navigation'
+WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 
 
 #-------------------------------------------------------------------------
@@ -1245,7 +1252,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-scratch-pad')
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_clear_clicked(self, obj):
         """Deletes the selected object from the object list"""
