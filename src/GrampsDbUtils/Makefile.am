@@ -17,7 +17,6 @@ pkgdata_PYTHON = \
 	_GrampsBSDDB.py\
 	_GrampsDbWRFactories.py\
 	_GrampsDbWriteXML.py\
-	importdbdir.py\
 	__init__.py\
 	_ReadGedcom.py\
 	_ReadXML.py\

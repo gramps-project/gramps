@@ -50,10 +50,7 @@ def gramps_db_reader_factory(db_type):
 
     Raises GrampsDbException if the db_type is not recognised.
     """
-    if db_type == const.APP_FAMTREE :
-        import importdbdir
-        md = importdbdir.importData
-    elif db_type == const.APP_GRAMPS_XML:
+    if db_type == const.APP_GRAMPS_XML:
         import _ReadXML as ReadXML
         md = ReadXML.importData
     elif db_type == const.APP_GEDCOM:

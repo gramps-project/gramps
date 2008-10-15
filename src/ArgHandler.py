@@ -199,21 +199,10 @@ class ArgHandler:
                 fname = value
                 fullpath = os.path.abspath(os.path.expanduser(fname))
 
-                format = 'famtree'
+                format = None
                 ftype = Mime.get_type(fullpath)
-                if not os.path.exists(fullpath):
-                    #see if not just a name of a database is given
-                    data = self.dbman.family_tree(fname)
-                    if data is not None:
-                        fname, ftype, title = data
-                    else:
-                        print "Input file does not exist:  %s" % fullpath
-                        continue
-                elif os.path.isdir(fullpath):
-                    ftype = const.APP_FAMTREE
-                    fname = fullpath
-                elif opt_ix<len(options)-1 \
-                            and options[opt_ix+1][0] in ( '-f', '--format'): 
+                if opt_ix<len(options)-1 \
+                   and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
                     if format not in ('gedcom',
                                       'gramps-xml',
@@ -404,7 +393,7 @@ class ArgHandler:
             else:
                 filename = os.path.abspath(os.path.expanduser(self.open_gui))
                 filetype = Mime.get_type(filename)
-            if filetype in ('x-directory/normal',):
+            if filetype is const.APP_FAMTREE:
                 success = True
                 pass
             elif filetype in IMPORT_TYPES:
@@ -539,17 +528,7 @@ class ArgHandler:
         Command-line import routine. Try to import filename using the format.
         Any errors will cause the sys.exit(1) call.
         """
-        if format == 'famtree':
-            #3.x database
-            if not self.__check_db(filename):
-                sys.exit(0)
-            try:
-                GrampsDbUtils.gramps_db_reader_factory(const.APP_FAMTREE)(
-                    self.state.db, filename, empty)
-            except AttributeError:
-                print "Error importing Family Tree %s" % filename
-                sys.exit(1)
-        elif format == 'grdb':
+        if format == 'grdb':
             #2.x database
             filename = os.path.normpath(os.path.abspath(filename))
             try:

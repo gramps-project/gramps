@@ -207,7 +207,6 @@ src/GrampsDbUtils/_GedcomTokens.py
 src/GrampsDbUtils/_GrampsBSDDB.py
 src/GrampsDbUtils/_GrampsDbWriteXML.py
 src/GrampsDbUtils/_GrampsDbWRFactories.py
-src/GrampsDbUtils/importdbdir.py
 src/GrampsDbUtils/_ReadGedcom.py
 src/GrampsDbUtils/_ReadXML.py
 src/GrampsDbUtils/_WriteGedcom.py
