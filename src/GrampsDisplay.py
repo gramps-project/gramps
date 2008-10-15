@@ -30,6 +30,9 @@ import os
 MANUALS = {
     'nl' : '/nl',
     'fr' : '/fr',
+    'sq' : '/sq',
+    'mk' : '/mk',
+    'de' : '/de',
 }
 
 #first, determine language code, so nl_BE --> wiki /nl
