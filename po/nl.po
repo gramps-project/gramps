@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-05 11:36+0200\n"
-"PO-Revision-Date: 2008-10-10 11:12+0200\n"
+"POT-Creation-Date: 2008-10-14 12:49+0200\n"
+"PO-Revision-Date: 2008-10-14 22:50+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -57,10 +57,12 @@ msgstr "Familiestamboom \"%s\" bestaat niet."
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
-msgstr "Indien geedcom, gramps-xml of grdb, gebruik dan de -i optie om te importeren in een familistamboom"
+msgstr ""
+"Indien geedcom, gramps-xml of grdb, gebruik dan de -i optie om te importeren "
+"in een familistamboom"
 
-#: ../src/ArgHandler.py:432 ../src/DbLoader.py:170 ../src/DbLoader.py:191
-#: ../src/DbLoader.py:284
+#: ../src/ArgHandler.py:432 ../src/DbLoader.py:171 ../src/DbLoader.py:193
+#: ../src/DbLoader.py:286
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kon bestand: %s niet openen"
@@ -86,7 +88,7 @@ msgstr "  Info: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "Gegevensbestand moet hersteld worden en kan niet geopend worden!"
 
-#: ../src/ArgHandler.py:813 ../src/DbLoader.py:355
+#: ../src/ArgHandler.py:813 ../src/DbLoader.py:357
 msgid "All files"
 msgstr "Alle bestanden"
 
@@ -172,6 +174,7 @@ msgstr "Bladwijzers organiseren"
 #: ../src/plugins/PatchNames.py:234 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/RelCalc.py:116 ../src/plugins/RemoveUnused.py:203
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:551
+#: ../src/PluginUtils/_GuiOptions.py:790
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
@@ -199,7 +202,8 @@ msgstr "Naam"
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:249
 #: ../src/plugins/NotRelated.py:112 ../src/plugins/PatchNames.py:225
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/RemoveUnused.py:197
-#: ../src/plugins/Verify.py:544
+#: ../src/plugins/Verify.py:544 ../src/PluginUtils/_GuiOptions.py:791
+#: ../src/PluginUtils/_GuiOptions.py:931
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -307,7 +311,7 @@ msgstr "GRAMPS XML"
 msgid "GEDCOM"
 msgstr "GEDCOM"
 
-#: ../src/DbLoader.py:100
+#: ../src/DbLoader.py:100 ../src/PluginUtils/_Tool.py:108
 msgid "Undo history warning"
 msgstr "Teniet doen van geschiedenis waarschuwing"
 
@@ -331,7 +335,7 @@ msgstr ""
 msgid "_Proceed with import"
 msgstr "Doorgaan met importeren"
 
-#: ../src/DbLoader.py:106
+#: ../src/DbLoader.py:106 ../src/PluginUtils/_Tool.py:115
 msgid "_Stop"
 msgstr "_Stop"
 
@@ -339,11 +343,11 @@ msgstr "_Stop"
 msgid "GRAMPS: Import database"
 msgstr "GRAMPS: gegevensbestand importeren"
 
-#: ../src/DbLoader.py:162
+#: ../src/DbLoader.py:163
 msgid "Cannot import from current file"
 msgstr "Kan niet importeren van huidig bestand"
 
-#: ../src/DbLoader.py:192
+#: ../src/DbLoader.py:194
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
@@ -355,11 +359,11 @@ msgstr ""
 "Geldige typen zijn: GRAMPS gegevensbestand, GRAMPS XML, GRAMPS pakket, en "
 "GEDCOM."
 
-#: ../src/DbLoader.py:216 ../src/DbLoader.py:223 ../src/DbLoader.py:280
+#: ../src/DbLoader.py:218 ../src/DbLoader.py:225 ../src/DbLoader.py:282
 msgid "Cannot open database"
 msgstr "Kan gegevensbestand niet openen"
 
-#: ../src/DbLoader.py:217
+#: ../src/DbLoader.py:219
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
@@ -367,28 +371,28 @@ msgstr ""
 "Het geselecteerde bestand is een map, geen bestand.\n"
 "Een GRAMPS-gegevensbestand moet een bestand zijn."
 
-#: ../src/DbLoader.py:224
+#: ../src/DbLoader.py:226
 msgid "You do not have read access to the selected file."
 msgstr "U heeft geen leestoegangsrechten tot het geselecteerde bestand."
 
-#: ../src/DbLoader.py:234
+#: ../src/DbLoader.py:236
 msgid "Cannot create database"
 msgstr "Kan gegevensbestand niet maken"
 
-#: ../src/DbLoader.py:235 ../src/DbLoader.py:259
+#: ../src/DbLoader.py:237 ../src/DbLoader.py:261
 msgid "You do not have write access to the selected file."
 msgstr "U heeft geen schrijftoegangsrechten tot het geselecteerde bestand."
 
-#: ../src/DbLoader.py:258
+#: ../src/DbLoader.py:260
 msgid "Read only database"
 msgstr "Alleen-lezen gegevensbestand"
 
-#: ../src/DbLoader.py:307
+#: ../src/DbLoader.py:309
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Kon bestand %s niet importeren"
 
-#: ../src/DbLoader.py:308
+#: ../src/DbLoader.py:310
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -397,27 +401,27 @@ msgstr ""
 "correct geïmporteerd worden. Tracht dus eerst de karakterset te corrigeren "
 "en importeer dan opnieuw"
 
-#: ../src/DbLoader.py:364
+#: ../src/DbLoader.py:366
 msgid "All GRAMPS files"
 msgstr "Alle GRAMPS bestanden"
 
-#: ../src/DbLoader.py:374
+#: ../src/DbLoader.py:376
 msgid "GRAMPS 2.x databases"
 msgstr "GRAMPS 2.x gegevensbestanden"
 
-#: ../src/DbLoader.py:383
+#: ../src/DbLoader.py:385
 msgid "GRAMPS XML databases"
 msgstr "GRAMPS XML-gegevensbestanden"
 
-#: ../src/DbLoader.py:392
+#: ../src/DbLoader.py:394
 msgid "GEDCOM files"
 msgstr "GEDCOM-bestanden"
 
-#: ../src/DbLoader.py:432
+#: ../src/DbLoader.py:434
 msgid "Automatically detected"
 msgstr "Automatisch gedetecteerd"
 
-#: ../src/DbLoader.py:441
+#: ../src/DbLoader.py:443
 msgid "Select file _type:"
 msgstr "Bestands_type selecteren:"
 
@@ -449,7 +453,7 @@ msgstr "Importeren beëindigd..."
 
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:282 ../src/plugins/ImportCSV.py:388
+#: ../src/DbManager.py:282 ../src/plugins/ImportCSV.py:381
 msgid "Importing data..."
 msgstr "Importeren van gegevens..."
 
@@ -459,6 +463,7 @@ msgstr "Stamboomnaam"
 
 #: ../src/DbManager.py:497 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
+#: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr "Status"
 
@@ -596,13 +601,13 @@ msgstr "Nooit"
 #: ../src/plugins/DefaultGramplets.py:450
 #: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:151
 #: ../src/plugins/IndivComplete.py:442 ../src/plugins/NarrativeWeb.py:624
-#: ../src/gen/plug/_manager.py:306 ../src/gen/plug/_manager.py:307
-#: ../src/gen/plug/_manager.py:308 ../src/gen/plug/_manager.py:331
-#: ../src/gen/plug/_manager.py:332 ../src/gen/plug/_manager.py:366
-#: ../src/gen/plug/_manager.py:367 ../src/gen/plug/_manager.py:368
-#: ../src/gen/plug/_manager.py:404 ../src/gen/plug/_manager.py:405
-#: ../src/gen/plug/_manager.py:406 ../src/gen/plug/_manager.py:514
-#: ../src/gen/plug/_manager.py:515 ../src/gen/plug/_manager.py:516
+#: ../src/gen/plug/_manager.py:305 ../src/gen/plug/_manager.py:306
+#: ../src/gen/plug/_manager.py:307 ../src/gen/plug/_manager.py:330
+#: ../src/gen/plug/_manager.py:331 ../src/gen/plug/_manager.py:365
+#: ../src/gen/plug/_manager.py:366 ../src/gen/plug/_manager.py:367
+#: ../src/gen/plug/_manager.py:403 ../src/gen/plug/_manager.py:404
+#: ../src/gen/plug/_manager.py:405 ../src/gen/plug/_manager.py:513
+#: ../src/gen/plug/_manager.py:514 ../src/gen/plug/_manager.py:515
 #: ../src/ReportBase/_ReportUtils.py:1311 ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76 ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62 ../src/gen/lib/childreftype.py:64
@@ -832,7 +837,12 @@ msgstr "Volledig gegevensbestand"
 msgid "Descendants of %s"
 msgstr "Afstammelingen van %s"
 
-#: ../src/ExportOptions.py:152 ../src/plugins/ExportCSV.py:196
+#: ../src/ExportOptions.py:152 ../src/ReportBase/_ReportUtils.py:2961
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Familie-afstammelingen van %s"
+
+#: ../src/ExportOptions.py:158 ../src/plugins/ExportCSV.py:196
 #: ../src/plugins/ExportVCalendar.py:102 ../src/plugins/ExportVCard.py:100
 #: ../src/plugins/WriteFtree.py:101 ../src/plugins/WriteGeneWeb.py:106
 #: ../src/ReportBase/_ReportUtils.py:2965
@@ -840,7 +850,7 @@ msgstr "Afstammelingen van %s"
 msgid "Ancestors of %s"
 msgstr "Voorouders van %s"
 
-#: ../src/ExportOptions.py:158 ../src/plugins/ExportCSV.py:202
+#: ../src/ExportOptions.py:164 ../src/plugins/ExportCSV.py:202
 #: ../src/plugins/ExportVCalendar.py:108 ../src/plugins/ExportVCard.py:106
 #: ../src/plugins/WriteFtree.py:107 ../src/plugins/WriteGeneWeb.py:112
 #: ../src/ReportBase/_ReportUtils.py:2969
@@ -1018,7 +1028,7 @@ msgstr "E-mail"
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCSV.py:202 ../src/plugins/References.py:34
+#: ../src/plugins/ImportCSV.py:195 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:274
 msgid "Person"
@@ -1032,7 +1042,7 @@ msgstr "Persoon"
 #: ../src/DataViews/RelationView.py:1209 ../src/DataViews/RelationView.py:1233
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:270 ../src/plugins/ExportCSV.py:475
-#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:209
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:202
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:275
 msgid "Family"
@@ -1043,10 +1053,11 @@ msgstr "Familie"
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63 ../src/plugins/ExportCSV.py:436
-#: ../src/plugins/ImportCSV.py:224 ../src/plugins/MarkerReport.py:301
+#: ../src/plugins/ImportCSV.py:217 ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/NarrativeWeb.py:2015 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
+#: ../src/PluginUtils/_GuiOptions.py:930
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Place"
@@ -1054,7 +1065,7 @@ msgstr "Locatie"
 
 #: ../src/GrampsCfg.py:199 ../src/Simple/_SimpleTable.py:209
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCSV.py:436
-#: ../src/plugins/ImportCSV.py:174 ../src/plugins/ImportCSV.py:207
+#: ../src/plugins/ImportCSV.py:167 ../src/plugins/ImportCSV.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:278
 msgid "Source"
@@ -1085,7 +1096,7 @@ msgstr "Bibliotheek"
 #: ../src/Simple/_SimpleTable.py:230 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/ExportCSV.py:370 ../src/plugins/ExportCSV.py:436
-#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:176
+#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:169
 #: ../src/ReportBase/_GraphvizReportDialog.py:1027
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1151,9 +1162,10 @@ msgstr "Detail eigen aangemaakte formaten"
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:744
+#: ../src/plugins/ImportCSV.py:149 ../src/plugins/NarrativeWeb.py:744
 #: ../src/plugins/NarrativeWeb.py:874 ../src/plugins/NarrativeWeb.py:1365
-#: ../src/plugins/StatisticsChart.py:89
+#: ../src/plugins/StatisticsChart.py:89 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/PluginUtils/_GuiOptions.py:1047
 msgid "Surname"
 msgstr "Achternaam"
 
@@ -1163,14 +1175,14 @@ msgstr "Achternaam"
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1197 ../src/BasicUtils/_NameDisplay.py:107
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:160
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:153
 msgid "Given"
 msgstr "Voornaam"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:593 ../src/Utils.py:1200
-#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:170
+#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:163
 msgid "Suffix"
 msgstr "Achtervoegsel"
 
@@ -1181,7 +1193,7 @@ msgstr "Algemeen"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1202
-#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:164
+#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:157
 msgid "Call"
 msgstr "Call"
 
@@ -1374,7 +1386,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:1097 ../src/plugins/ExportCSV.py:436
-#: ../src/plugins/ImportCSV.py:222 ../src/plugins/MarkerReport.py:295
+#: ../src/plugins/ImportCSV.py:215 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:627 ../src/plugins/NarrativeWeb.py:1253
 #: ../src/plugins/NarrativeWeb.py:1594 ../src/plugins/NarrativeWeb.py:2015
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
@@ -1429,7 +1441,7 @@ msgstr "Opmerkingen"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../src/gramps_main.py:114 ../src/Merge/_MergePerson.py:159
-#: ../src/DataViews/PedigreeView.py:1565 ../src/DataViews/RelationView.py:452
+#: ../src/DataViews/PedigreeView.py:1571 ../src/DataViews/RelationView.py:452
 #: ../src/DataViews/RelationView.py:752 ../src/DataViews/RelationView.py:786
 #: ../src/plugins/all_relations.py:305 ../src/plugins/NarrativeWeb.py:757
 #: ../src/plugins/NarrativeWeb.py:899 ../src/plugins/NarrativeWeb.py:2159
@@ -1445,7 +1457,7 @@ msgstr "Ouders toevoegen"
 msgid "Select Parents"
 msgstr "Selecteer ouders"
 
-#: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:457
+#: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:465
 #: ../src/plugins/DefaultGramplets.py:1220 ../src/plugins/NarrativeWeb.py:1904
 msgid "Pedigree"
 msgstr "Stamboom"
@@ -1614,11 +1626,13 @@ msgstr ""
 "te verwijderen?"
 
 #: ../src/PageView.py:275 ../src/plugins/all_relations.py:306
+#: ../src/PluginUtils/_GuiOptions.py:887
 msgid "Yes"
 msgstr "Ja"
 
 # niet/geen
 #: ../src/PageView.py:276 ../src/plugins/all_relations.py:310
+#: ../src/PluginUtils/_GuiOptions.py:886
 msgid "No"
 msgstr "Nee"
 
@@ -1826,7 +1840,7 @@ msgstr ""
 msgid "Quick Report"
 msgstr "Snelverslag"
 
-#: ../src/Relationship.py:798 ../src/DataViews/PedigreeView.py:1264
+#: ../src/Relationship.py:798 ../src/DataViews/PedigreeView.py:1270
 msgid "Relationship loop detected"
 msgstr "Relatiekringloop ontdekt"
 
@@ -1853,11 +1867,11 @@ msgstr "De persoon %s heeft een verwijzing naar zichzelf via %s"
 msgid "undefined"
 msgstr "onbepaald"
 
-#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:289
+#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:282
 msgid "husband"
 msgstr "echtgenoot"
 
-#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:285
+#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:278
 msgid "wife"
 msgstr "echtgenote"
 
@@ -1955,7 +1969,7 @@ msgstr "vorige partner"
 #: ../src/Merge/_MergePerson.py:164 ../src/DataViews/FamilyList.py:63
 #: ../src/DataViews/RelationView.py:787 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:300 ../src/plugins/FamilyGroup.py:185
-#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:216
+#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:209
 #: ../src/plugins/IndivComplete.py:215 ../src/plugins/IndivComplete.py:217
 #: ../src/plugins/IndivComplete.py:473 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2190
@@ -1968,7 +1982,7 @@ msgstr "Vader"
 #: ../src/Merge/_MergePerson.py:166 ../src/DataViews/FamilyList.py:64
 #: ../src/DataViews/RelationView.py:788 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:297 ../src/plugins/FamilyGroup.py:202
-#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:212
+#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:205
 #: ../src/plugins/IndivComplete.py:224 ../src/plugins/IndivComplete.py:226
 #: ../src/plugins/IndivComplete.py:478 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2195
@@ -2116,7 +2130,7 @@ msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCSV.py:367
-#: ../src/plugins/ImportCSV.py:166 ../src/plugins/PatchNames.py:266
+#: ../src/plugins/ImportCSV.py:159 ../src/plugins/PatchNames.py:266
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
@@ -2149,7 +2163,7 @@ msgid "Call Name"
 msgstr "Roepnaam"
 
 #: ../src/ScratchPad.py:591 ../src/Utils.py:1198
-#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:168
+#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:161
 #: ../src/plugins/PatchNames.py:278 ../src/plugins/PatchNames.py:290
 msgid "Prefix"
 msgstr "Voorvoegsel"
@@ -2587,7 +2601,7 @@ msgstr "Bronnen in bibliotheek"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
-#: ../src/plugins/ExportCSV.py:475 ../src/plugins/ImportCSV.py:205
+#: ../src/plugins/ExportCSV.py:475 ../src/plugins/ImportCSV.py:198
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -2675,7 +2689,7 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Onbekende relatie tussen een man en een vrouw"
 
 #: ../src/Utils.py:107
-msgid "An unspecified relationship a man and woman"
+msgid "An unspecified relationship between a man and woman"
 msgstr "Een ongespecificeerde relatie tussen een man en een vrouw"
 
 #: ../src/Utils.py:123
@@ -2783,6 +2797,7 @@ msgstr "Geschiedenis gewist"
 #.
 #. ------------------------------------------------------------------------
 #: ../src/ViewManager.py:86 ../src/plugins/BookReport.py:94
+#: ../src/PluginUtils/_PluginDialogs.py:56
 msgid "Unsupported"
 msgstr "Niet ondersteund"
 
@@ -3013,7 +3028,7 @@ msgid "Could not load a recent Family Tree."
 msgstr "Kon de familiestamboom niet laden."
 
 #: ../src/ViewManager.py:1085
-msgid "Family Tree does not exists, as it has been deleted."
+msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
 #: ../src/ViewManager.py:1141
@@ -3053,27 +3068,27 @@ msgstr "Patroniem, voornaam"
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCSV.py:238
+#: ../src/plugins/ImportCSV.py:231
 msgid "title"
 msgstr "titel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCSV.py:232
+#: ../src/plugins/ImportCSV.py:225
 msgid "given"
 msgstr "voornaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCSV.py:240
+#: ../src/plugins/ImportCSV.py:233
 msgid "prefix"
 msgstr "prefix"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCSV.py:228
+#: ../src/plugins/ImportCSV.py:221
 msgid "surname"
 msgstr "achternaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCSV.py:242
+#: ../src/plugins/ImportCSV.py:235
 msgid "suffix"
 msgstr "suffix"
 
@@ -3083,7 +3098,7 @@ msgid "patronymic"
 msgstr "patroniem"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCSV.py:236
+#: ../src/plugins/ImportCSV.py:229
 msgid "call"
 msgstr "call"
 
@@ -3156,7 +3171,7 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:46 ../src/plugins/ExportCSV.py:367
-#: ../src/plugins/ImportCSV.py:172 ../src/plugins/IndivComplete.py:436
+#: ../src/plugins/ImportCSV.py:165 ../src/plugins/IndivComplete.py:436
 #: ../src/plugins/NarrativeWeb.py:1994 ../src/plugins/RelCalc.py:58
 #: ../src/plugins/StatisticsChart.py:93
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
@@ -3184,14 +3199,14 @@ msgid "No parents found"
 msgstr "Geen ouders gevonden"
 
 #. Go over spouses and build their menu
-#: ../src/Merge/_MergePerson.py:170 ../src/DataViews/PedigreeView.py:1451
+#: ../src/Merge/_MergePerson.py:170 ../src/DataViews/PedigreeView.py:1457
 #: ../src/plugins/KinshipReport.py:106
 msgid "Spouses"
 msgstr "Echtgenoten"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1149
 #: ../src/plugins/ExportCSV.py:435 ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCSV.py:220 ../src/gen/lib/eventtype.py:131
+#: ../src/plugins/ImportCSV.py:213 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Huwelijk"
 
@@ -3447,19 +3462,19 @@ msgstr "begr."
 msgid "crem."
 msgstr "crem."
 
-#: ../src/DataViews/PedigreeView.py:973
+#: ../src/DataViews/PedigreeView.py:980
 msgid "Jump to child..."
 msgstr "Spring naar kind..."
 
-#: ../src/DataViews/PedigreeView.py:983
+#: ../src/DataViews/PedigreeView.py:989
 msgid "Jump to father"
 msgstr "Spring naar vader"
 
-#: ../src/DataViews/PedigreeView.py:992
+#: ../src/DataViews/PedigreeView.py:998
 msgid "Jump to mother"
 msgstr "Spring naar moeder"
 
-#: ../src/DataViews/PedigreeView.py:1265
+#: ../src/DataViews/PedigreeView.py:1271
 msgid "A person was found to be his/her own ancestor."
 msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 
@@ -3469,69 +3484,69 @@ msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
+#: ../src/DataViews/PedigreeView.py:1314 ../src/DataViews/PedigreeView.py:1323
 #: ../src/plugins/NarrativeWeb.py:401 ../src/plugins/NarrativeWeb.py:1458
-#: ../src/plugins/NarrativeWeb.py:1460 ../src/plugins/WebCal.py:357
+#: ../src/plugins/NarrativeWeb.py:1460 ../src/plugins/WebCal.py:423
 msgid "Home"
 msgstr "Startpagina"
 
-#: ../src/DataViews/PedigreeView.py:1331
+#: ../src/DataViews/PedigreeView.py:1337
 msgid "Show images"
 msgstr "Toon afbeeldingen"
 
-#: ../src/DataViews/PedigreeView.py:1340
+#: ../src/DataViews/PedigreeView.py:1346
 msgid "Show marriage data"
 msgstr "Toon gegevens huwelijk"
 
-#: ../src/DataViews/PedigreeView.py:1349
+#: ../src/DataViews/PedigreeView.py:1355
 msgid "Tree style"
 msgstr "Boom stijl"
 
-#: ../src/DataViews/PedigreeView.py:1356
+#: ../src/DataViews/PedigreeView.py:1362
 msgid "Version A"
 msgstr "Versie A"
 
-#: ../src/DataViews/PedigreeView.py:1363
+#: ../src/DataViews/PedigreeView.py:1369
 msgid "Version B"
 msgstr "Versie B"
 
-#: ../src/DataViews/PedigreeView.py:1375
+#: ../src/DataViews/PedigreeView.py:1381
 msgid "Tree size"
 msgstr "Grootte stamboom"
 
-#: ../src/DataViews/PedigreeView.py:1382
+#: ../src/DataViews/PedigreeView.py:1388
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: ../src/DataViews/PedigreeView.py:1390
+#: ../src/DataViews/PedigreeView.py:1396
 #, python-format
 msgid "%d generations"
 msgstr "%d generaties"
 
 # Mensen
-#: ../src/DataViews/PedigreeView.py:1403 ../src/DataViews/PedigreeView.py:1423
+#: ../src/DataViews/PedigreeView.py:1409 ../src/DataViews/PedigreeView.py:1429
 msgid "People Menu"
 msgstr "Personen menu"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/PedigreeView.py:1485 ../src/DataViews/RelationView.py:802
+#: ../src/DataViews/PedigreeView.py:1491 ../src/DataViews/RelationView.py:802
 #: ../src/plugins/siblings.py:77 ../src/plugins/NarrativeWeb.py:2201
 msgid "Siblings"
 msgstr "Broers en zussen"
 
 #. Go over children and build their menu
-#: ../src/DataViews/PedigreeView.py:1528 ../src/DataViews/RelationView.py:1250
+#: ../src/DataViews/PedigreeView.py:1534 ../src/DataViews/RelationView.py:1250
 #: ../src/plugins/FamilyGroup.py:543 ../src/plugins/IndivComplete.py:332
 #: ../src/plugins/NarrativeWeb.py:2356
 msgid "Children"
 msgstr "Kinderen"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/PedigreeView.py:1602
+#: ../src/DataViews/PedigreeView.py:1608
 msgid "Related"
 msgstr "Heeft Relatie"
 
-#: ../src/DataViews/PedigreeView.py:1653
+#: ../src/DataViews/PedigreeView.py:1659
 msgid "Family Menu"
 msgstr "Familie Menu"
 
@@ -4570,7 +4585,7 @@ msgstr ""
 "Om een media-object te selecteren gebruik 'drag' en 'drop' of gebruik de "
 "knoppen"
 
-#: ../src/Editors/ObjectEntries.py:298
+#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:752
 msgid "No image given, click button to select one"
 msgstr "Geen afbeelding gekozen, klik op knop om er één te kiezen"
 
@@ -4579,7 +4594,7 @@ msgid "Edit media object"
 msgstr "Media-object bewerken"
 
 # dit is een soort titel in een file-selector
-#: ../src/Editors/ObjectEntries.py:300
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:727
 msgid "Select an existing media object"
 msgstr "Selecteer een bestaand media-object"
 
@@ -4591,7 +4606,7 @@ msgstr "Media-object verwijderen"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Om een opmerking te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
 
-#: ../src/Editors/ObjectEntries.py:349
+#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:675
 msgid "No note given, click button to select one"
 msgstr "Geen opmerking gekozen, klik op knop om er één te selecteren"
 
@@ -4601,7 +4616,7 @@ msgstr "Geen opmerking gekozen, klik op knop om er één te selecteren"
 msgid "Edit Note"
 msgstr "Opmerking bewerken"
 
-#: ../src/Editors/ObjectEntries.py:351
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:645
 msgid "Select an existing note"
 msgstr "Een bestaande opmerking kiezen"
 
@@ -4933,12 +4948,12 @@ msgstr "JDS Wijding"
 msgid "Location Editor"
 msgstr "Locatie-editor"
 
-#: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMediaRef.py:375
+#: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMediaRef.py:383
 #, python-format
 msgid "Media: %s"
 msgstr "Media: %s"
 
-#: ../src/Editors/_EditMedia.py:86 ../src/Editors/_EditMediaRef.py:377
+#: ../src/Editors/_EditMedia.py:86 ../src/Editors/_EditMediaRef.py:385
 msgid "New Media"
 msgstr "Nieuwe media"
 
@@ -4960,12 +4975,12 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr "Kan media-object niet opslaan. ID bestaat al."
 
-#: ../src/Editors/_EditMedia.py:267 ../src/Editors/_EditMediaRef.py:467
+#: ../src/Editors/_EditMedia.py:267 ../src/Editors/_EditMediaRef.py:563
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Media-object (%s) toevoegen"
 
-#: ../src/Editors/_EditMedia.py:272 ../src/Editors/_EditMediaRef.py:463
+#: ../src/Editors/_EditMedia.py:272 ../src/Editors/_EditMediaRef.py:559
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Media-object (%s) bewerken"
@@ -4974,7 +4989,7 @@ msgstr "Media-object (%s) bewerken"
 msgid "Remove Media Object"
 msgstr "Media-object verwijderen"
 
-#: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:378
+#: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:386
 msgid "Media Reference Editor"
 msgstr "Bewerken van mediareferentie"
 
@@ -5472,13 +5487,13 @@ msgstr ""
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
 #: ../src/GrampsDbUtils/_ReadXML.py:2423 ../src/GrampsDbUtils/_ReadXML.py:2429
-#: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:88
-#: ../src/plugins/ReadGrdb.py:101
+#: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:81
+#: ../src/plugins/ReadGrdb.py:94
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s kon niet worden geopend"
 
-#: ../src/GrampsDbUtils/importdbdir.py:70 ../src/plugins/ReadGrdb.py:95
+#: ../src/GrampsDbUtils/importdbdir.py:70 ../src/plugins/ReadGrdb.py:88
 #: ../src/gen/db/dbdir.py:1213
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
@@ -5490,28 +5505,28 @@ msgstr ""
 "gebruik XML om gegevens over te zetten tussen verschillendeversies van "
 "gegevensbestanden."
 
-#: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:102
+#: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:95
 msgid "The Database version is not supported by this version of GRAMPS."
 msgstr ""
 "De versie van het gegevensbestand wordt niet door deze versie van GRAMPS "
 "ondersteund."
 
 #: ../src/GrampsDbUtils/importdbdir.py:218
-#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:243
+#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:236
 #, python-format
 msgid ""
 "Your family tree groups name %s together with %s, did not change this "
 "grouping to %s"
 msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
 
-#: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:257
+#: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:250
 msgid "Import database"
 msgstr "Gegevensbestand importeren"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
-#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:324
-#: ../src/plugins/ImportGeneWeb.py:91 ../src/plugins/ImportGeneWeb.py:97
-#: ../src/plugins/ImportvCard.py:71 ../src/plugins/ImportvCard.py:77
+#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:317
+#: ../src/plugins/ImportGeneWeb.py:84 ../src/plugins/ImportGeneWeb.py:90
+#: ../src/plugins/ImportvCard.py:63 ../src/plugins/ImportvCard.py:69
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "%s kon niet worden geopend\n"
@@ -6037,7 +6052,7 @@ msgstr "Selecteer opmerking"
 msgid "Select Media Object"
 msgstr "Selecteer media-object"
 
-#: ../src/Selectors/_SelectPerson.py:72
+#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:884
 msgid "Select Person"
 msgstr "Persoon selecteren"
 
@@ -6127,7 +6142,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/SameSurnames.py:104 ../src/plugins/SimpleBookTitle.py:189
 #: ../src/plugins/SoundGen.py:155 ../src/plugins/StatisticsChart.py:903
 #: ../src/plugins/Summary.py:303 ../src/plugins/TimeLine.py:466
-#: ../src/plugins/Verify.py:1581 ../src/plugins/WebCal.py:1705
+#: ../src/plugins/Verify.py:1581 ../src/plugins/WebCal.py:2034
 #: ../src/plugins/RebuildRefMap.py:123
 msgid "Stable"
 msgstr "Stabiel"
@@ -6370,7 +6385,7 @@ msgstr "Generatie %d"
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/PlaceReport.py:250 ../src/plugins/SimpleBookTitle.py:118
 #: ../src/plugins/StatisticsChart.py:678 ../src/plugins/TimeLine.py:310
-#: ../src/plugins/WebCal.py:1162 ../src/ReportBase/_ReportDialog.py:342
+#: ../src/plugins/WebCal.py:1412 ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Verslagopties"
 
@@ -6440,15 +6455,15 @@ msgstr "Levert een tekstueel voorouder-rapport"
 msgid "Not Applicable"
 msgstr "Niet van toepassing"
 
-#: ../src/plugins/BookReport.py:167
+#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:585
 msgid "unknown father"
 msgstr "onbekende vader"
 
-#: ../src/plugins/BookReport.py:173
+#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:591
 msgid "unknown mother"
 msgstr "onbekende moeder"
 
-#: ../src/plugins/BookReport.py:175
+#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:593
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s en %s (%s)"
@@ -6546,7 +6561,7 @@ msgstr "Opties"
 #: ../src/plugins/FilterByName.py:234 ../src/plugins/GVRelGraph.py:433
 #: ../src/plugins/IndivComplete.py:515 ../src/plugins/NarrativeWeb.py:3069
 #: ../src/plugins/StatisticsChart.py:680 ../src/plugins/TimeLine.py:312
-#: ../src/plugins/WebCal.py:1174 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:1424 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
 
@@ -6557,14 +6572,14 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:521
 #: ../src/plugins/NarrativeWeb.py:3075 ../src/plugins/StatisticsChart.py:686
-#: ../src/plugins/TimeLine.py:318 ../src/plugins/WebCal.py:1180
+#: ../src/plugins/TimeLine.py:318 ../src/plugins/WebCal.py:1430
 msgid "Filter Person"
 msgstr "Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:71
 #: ../src/plugins/GVRelGraph.py:440 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:3076 ../src/plugins/StatisticsChart.py:687
-#: ../src/plugins/TimeLine.py:319 ../src/plugins/WebCal.py:1181
+#: ../src/plugins/TimeLine.py:319 ../src/plugins/WebCal.py:1431
 msgid "The center person for the filter"
 msgstr "De centrale persoon voor de filter"
 
@@ -6725,8 +6740,8 @@ msgstr "Kalender"
 
 #. generate the report:
 #: ../src/plugins/Calendar.py:221 ../src/plugins/Calendar.py:444
-msgid "Formating months..."
-msgstr "Maanden formateren..."
+msgid "Formatting months..."
+msgstr "UMaanden formateren..."
 
 #: ../src/plugins/Calendar.py:313 ../src/plugins/Calendar.py:319
 msgid "Filtering data..."
@@ -6753,12 +6768,11 @@ msgid "Relationships shown are to %s"
 msgstr "Getoonde verwantschappen van %s"
 
 #: ../src/plugins/Calendar.py:487 ../src/plugins/Calendar.py:489
-#: ../src/plugins/WebCal.py:1217 ../src/plugins/WebCal.py:1219
 msgid "Year of calendar"
 msgstr "Kalenderjaar"
 
 #: ../src/plugins/Calendar.py:494 ../src/plugins/NarrativeWeb.py:3071
-#: ../src/plugins/WebCal.py:1176
+#: ../src/plugins/WebCal.py:1426
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
@@ -6768,7 +6782,7 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr "Kies het naamformaat"
 
-#: ../src/plugins/Calendar.py:510 ../src/plugins/WebCal.py:1230
+#: ../src/plugins/Calendar.py:510 ../src/plugins/WebCal.py:1501
 msgid "Country for holidays"
 msgstr "Land voor de vakanties"
 
@@ -6777,55 +6791,55 @@ msgid "Select the country to see associated holidays"
 msgstr "Kies een land om de overeenkomstige verlofdagen te zien"
 
 #. Default selection ????
-#: ../src/plugins/Calendar.py:518 ../src/plugins/WebCal.py:1238
+#: ../src/plugins/Calendar.py:518 ../src/plugins/WebCal.py:1516
 msgid "First day of week"
 msgstr "eerste dag van de week"
 
-#: ../src/plugins/Calendar.py:522 ../src/plugins/WebCal.py:1241
+#: ../src/plugins/Calendar.py:522 ../src/plugins/WebCal.py:1519
 msgid "Select the first day of the week for the calendar"
 msgstr "Kies de eerste dag van de week voor de kalender"
 
-#: ../src/plugins/Calendar.py:525
+#: ../src/plugins/Calendar.py:525 ../src/plugins/WebCal.py:1508
 msgid "Birthday surname"
 msgstr "Geboortedatum achternaam"
 
-#: ../src/plugins/Calendar.py:526
+#: ../src/plugins/Calendar.py:526 ../src/plugins/WebCal.py:1509
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Vrouwen gebruiken achternaam echtgenoot(van de eerste familie in lijst)"
 
-#: ../src/plugins/Calendar.py:527
+#: ../src/plugins/Calendar.py:527 ../src/plugins/WebCal.py:1510
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Vrouwen gebruiken achternaam echtgenoot (van de laatste familie in de lijst)"
 
-#: ../src/plugins/Calendar.py:528
+#: ../src/plugins/Calendar.py:528 ../src/plugins/WebCal.py:1511
 msgid "Wives use their own surname"
 msgstr "Vrouwen eigen achternaam"
 
-#: ../src/plugins/Calendar.py:529
+#: ../src/plugins/Calendar.py:529 ../src/plugins/WebCal.py:1512
 msgid "Select married women's displayed surname"
 msgstr "Kies getoonde achternaam van de echtgenote"
 
-#: ../src/plugins/Calendar.py:532 ../src/plugins/WebCal.py:1249
+#: ../src/plugins/Calendar.py:532 ../src/plugins/WebCal.py:1527
 msgid "Include only living people"
 msgstr "Enkel nog levende personen bijvoegen"
 
-#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1250
+#: ../src/plugins/Calendar.py:533 ../src/plugins/WebCal.py:1528
 msgid "Include only living people in the calendar"
 msgstr "Enkel nog levende personen tonen in de kalender"
 
-#: ../src/plugins/Calendar.py:536 ../src/plugins/WebCal.py:1253
+#: ../src/plugins/Calendar.py:536 ../src/plugins/WebCal.py:1531
 msgid "Include birthdays"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1254
+#: ../src/plugins/Calendar.py:537 ../src/plugins/WebCal.py:1532
 msgid "Include birthdays in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
-#: ../src/plugins/Calendar.py:540 ../src/plugins/WebCal.py:1257
+#: ../src/plugins/Calendar.py:540 ../src/plugins/WebCal.py:1535
 msgid "Include anniversaries"
 msgstr "Verjaardagen toevoegen"
 
-#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1258
+#: ../src/plugins/Calendar.py:541 ../src/plugins/WebCal.py:1536
 msgid "Include anniversaries in the calendar"
 msgstr "Verjaardagen toevoegen in de kalender"
 
@@ -6929,7 +6943,7 @@ msgstr "Dagtekststijl"
 msgid "Month text style"
 msgstr "Maandtekststijl"
 
-#: ../src/plugins/Calendar.py:896 ../src/plugins/WebCal.py:1584
+#: ../src/plugins/Calendar.py:896 ../src/plugins/WebCal.py:1869
 msgid "Don't include holidays"
 msgstr "Vakanties niet meenemen"
 
@@ -7956,7 +7970,7 @@ msgid "Query"
 msgstr "Query"
 
 #: ../src/plugins/Desbrowser.py:58
-msgid "manual|Interactive_Descendant_Browser"
+msgid "manual|Interactive_Descendant_Browser..."
 msgstr "Interactieve_afstammeling-browser..."
 
 #: ../src/plugins/Desbrowser.py:75
@@ -8418,7 +8432,7 @@ msgstr "Geeft een venster waarin python code kan worden geëvalueerd"
 # afzonderlijke/individuele
 # seperate/individual
 #: ../src/plugins/EventCmp.py:69
-msgid "manual|Compare_Individual_Events"
+msgid "manual|Compare_Individual_Events..."
 msgstr "Individuele_gebeurtenissen_vergelijken..."
 
 #: ../src/plugins/EventCmp.py:140
@@ -8501,41 +8515,41 @@ msgstr "Gebeurtenisbeschrijvingen halen uit gebeurtenisgegevens"
 msgid "Extracts event descriptions from the event data"
 msgstr "Haal de gebeurtenisbeschrijvingen uit de gebeurtenissengegevens"
 
-#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:182
+#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:175
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geboortedatum"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:179
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:172
 #: ../src/plugins/StatisticsChart.py:103
 msgid "Birth place"
 msgstr "Geboorteplaats"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:178
 msgid "Birth source"
 msgstr "Geboortebron"
 
-#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:191
+#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:184
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterfdatum"
 
-#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:188
+#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:181
 #: ../src/plugins/StatisticsChart.py:105
 msgid "Death place"
 msgstr "Sterfplaats"
 
-#: ../src/plugins/ExportCSV.py:370 ../src/plugins/ImportCSV.py:194
+#: ../src/plugins/ExportCSV.py:370 ../src/plugins/ImportCSV.py:187
 msgid "Death source"
 msgstr "Overlijdensbron"
 
 #: ../src/plugins/ExportCSV.py:435 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCSV.py:217 ../src/plugins/NarrativeWeb.py:2376
+#: ../src/plugins/ImportCSV.py:210 ../src/plugins/NarrativeWeb.py:2376
 msgid "Husband"
 msgstr "Man"
 
 #: ../src/plugins/ExportCSV.py:435 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCSV.py:213 ../src/plugins/NarrativeWeb.py:2378
+#: ../src/plugins/ImportCSV.py:206 ../src/plugins/NarrativeWeb.py:2378
 msgid "Wife"
 msgstr "Vrouw"
 
@@ -8970,7 +8984,7 @@ msgstr "geboortegebeurtenis maar geen datum"
 msgid "missing birth event"
 msgstr "ontbrekende geboortegebeurtenis"
 
-#: ../src/plugins/FilterByName.py:147
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:82
 msgid "Count"
 msgstr "Tellen"
 
@@ -9509,173 +9523,177 @@ msgstr "Relatiegrafiek"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Maakt een verwantschapsgrafiek aan met \"GraphViz\""
 
-#: ../src/plugins/ImportCSV.py:159
+#: ../src/plugins/ImportCSV.py:152
 msgid "Given name"
 msgstr "Voornaam"
 
-#: ../src/plugins/ImportCSV.py:163
+#: ../src/plugins/ImportCSV.py:156
 msgid "Call name"
 msgstr "Roepnaam"
 
-#: ../src/plugins/ImportCSV.py:197
+#: ../src/plugins/ImportCSV.py:190
 msgid "Death cause"
 msgstr "Overlijdensoorzaak"
 
-#: ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/ImportCSV.py:193
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCSV.py:214
+#: ../src/plugins/ImportCSV.py:207
 msgid "Parent2"
 msgstr "Ouder2"
 
-#: ../src/plugins/ImportCSV.py:218
+#: ../src/plugins/ImportCSV.py:211
 msgid "Parent1"
 msgstr "Ouder1"
 
-#: ../src/plugins/ImportCSV.py:231
+#: ../src/plugins/ImportCSV.py:224
 msgid "given name"
 msgstr "voornaam"
 
-#: ../src/plugins/ImportCSV.py:244
+#: ../src/plugins/ImportCSV.py:237
 msgid "gender"
 msgstr "geslacht"
 
-#: ../src/plugins/ImportCSV.py:246 ../src/plugins/ImportCSV.py:279
+#: ../src/plugins/ImportCSV.py:239 ../src/plugins/ImportCSV.py:272
 msgid "source"
 msgstr "bron"
 
 # niet/geen
-#: ../src/plugins/ImportCSV.py:248
+#: ../src/plugins/ImportCSV.py:241
 msgid "note"
 msgstr "opmerking"
 
-#: ../src/plugins/ImportCSV.py:251
+#: ../src/plugins/ImportCSV.py:244
 msgid "birth place"
 msgstr "geboorteplaats"
 
-#: ../src/plugins/ImportCSV.py:254
+#: ../src/plugins/ImportCSV.py:247
 msgid "birth date"
 msgstr "geboortedatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCSV.py:257
+#: ../src/plugins/ImportCSV.py:250
 msgid "birth source"
 msgstr "geboortebron"
 
-#: ../src/plugins/ImportCSV.py:260
+#: ../src/plugins/ImportCSV.py:253
 msgid "death place"
 msgstr "plaats van overlijden"
 
-#: ../src/plugins/ImportCSV.py:263
+#: ../src/plugins/ImportCSV.py:256
 msgid "death date"
 msgstr "sterfdatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCSV.py:266
+#: ../src/plugins/ImportCSV.py:259
 msgid "death source"
 msgstr "overlijdensbron"
 
-#: ../src/plugins/ImportCSV.py:269
+#: ../src/plugins/ImportCSV.py:262
 msgid "death cause"
 msgstr "doodsoorzaak"
 
-#: ../src/plugins/ImportCSV.py:272
+#: ../src/plugins/ImportCSV.py:265
 msgid "gramps id"
 msgstr "gramps id"
 
-#: ../src/plugins/ImportCSV.py:274
+#: ../src/plugins/ImportCSV.py:267
 msgid "person"
 msgstr "persoon"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:277
+#: ../src/plugins/ImportCSV.py:270
 msgid "child"
 msgstr "kind"
 
-#: ../src/plugins/ImportCSV.py:281
+#: ../src/plugins/ImportCSV.py:274
 msgid "family"
 msgstr "familie"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:284
+#: ../src/plugins/ImportCSV.py:277
 msgid "mother"
 msgstr "moeder"
 
-#: ../src/plugins/ImportCSV.py:286
+#: ../src/plugins/ImportCSV.py:279
 msgid "parent2"
 msgstr "ouder2"
 
-#: ../src/plugins/ImportCSV.py:288
+#: ../src/plugins/ImportCSV.py:281
 msgid "father"
 msgstr "vader"
 
-#: ../src/plugins/ImportCSV.py:290
+#: ../src/plugins/ImportCSV.py:283
 msgid "parent1"
 msgstr "ouder1"
 
-#: ../src/plugins/ImportCSV.py:292
+#: ../src/plugins/ImportCSV.py:285
 msgid "marriage"
 msgstr "huwelijk"
 
-#: ../src/plugins/ImportCSV.py:294
+#: ../src/plugins/ImportCSV.py:287
 msgid "date"
 msgstr "datum"
 
-#: ../src/plugins/ImportCSV.py:296
+#: ../src/plugins/ImportCSV.py:289
 msgid "place"
 msgstr "locatie"
 
-#: ../src/plugins/ImportCSV.py:334
+#: ../src/plugins/ImportCSV.py:327
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "formaatfout: bestand %s, lijn %d: %s"
 
-#: ../src/plugins/ImportCSV.py:385
+#: ../src/plugins/ImportCSV.py:378
 msgid "CSV Import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCSV.py:386
+#: ../src/plugins/ImportCSV.py:379
 msgid "Reading data..."
 msgstr "Gegevens worden gelezen..."
 
-#: ../src/plugins/ImportCSV.py:653 ../src/plugins/ImportGeneWeb.py:188
-#: ../src/plugins/ImportvCard.py:152
+#: ../src/plugins/ImportCSV.py:646 ../src/plugins/ImportGeneWeb.py:181
+#: ../src/plugins/ImportvCard.py:144
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import voltooid: %d seconden"
 
-#: ../src/plugins/ImportCSV.py:654
+#: ../src/plugins/ImportCSV.py:647
 msgid "CSV import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCSV.py:802
-msgid "CSV spreadsheet files"
-msgstr "CSV rekenbladbestanden"
-
-#: ../src/plugins/ImportCSV.py:805
+#: ../src/plugins/ImportCSV.py:796
 msgid "CSV Spreadheet"
 msgstr "CSV rekenblad"
 
-#: ../src/plugins/ImportGeneWeb.py:190
+#: ../src/plugins/ImportCSV.py:797
+msgid "Import data from CSV files"
+msgstr "Importeer gegevens van CSV-bestanden"
+
+#: ../src/plugins/ImportGeneWeb.py:183
 msgid "GeneWeb import"
 msgstr "GeneWeb import"
 
-#: ../src/plugins/ImportGeneWeb.py:934
-msgid "GeneWeb files"
-msgstr "GeneWeb-bestanden"
-
-#: ../src/plugins/ImportGeneWeb.py:936 ../data/gramps.keys.in.h:5
+#: ../src/plugins/ImportGeneWeb.py:926 ../data/gramps.keys.in.h:5
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
-#: ../src/plugins/ImportvCard.py:154
+#: ../src/plugins/ImportGeneWeb.py:927
+msgid "Import data from GeneWeb files"
+msgstr "Importeer gegevens vanuit GeneWeb-bestanden"
+
+#: ../src/plugins/ImportvCard.py:146
 msgid "vCard import"
 msgstr "vCard import"
 
-#: ../src/plugins/ImportvCard.py:225
-msgid "vCard files"
-msgstr "vCard-bestanden"
+#: ../src/plugins/ImportvCard.py:216
+msgid "vCard"
+msgstr "vCard"
+
+#: ../src/plugins/ImportvCard.py:217
+msgid "Import data from vCard files"
+msgstr "Importeer gegevens vanuit vCard-bestanden"
 
 #: ../src/plugins/IndivComplete.py:104
 #, python-format
@@ -10375,14 +10393,13 @@ msgstr "te &nbsp; %(place)s"
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2652 ../src/plugins/WebCal.py:923
+#: ../src/plugins/NarrativeWeb.py:2652
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Noch %s noch %s zijn mappen"
 
 #: ../src/plugins/NarrativeWeb.py:2659 ../src/plugins/NarrativeWeb.py:2663
 #: ../src/plugins/NarrativeWeb.py:2676 ../src/plugins/NarrativeWeb.py:2680
-#: ../src/plugins/WebCal.py:930 ../src/plugins/WebCal.py:934
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Kon de map %s niet aanmaken"
@@ -10399,7 +10416,7 @@ msgstr "Het archief moet een bestand zijn, niet een map"
 msgid "Generate XHTML Reports"
 msgstr "HTML-verslagen aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2750 ../src/plugins/WebCal.py:1047
+#: ../src/plugins/NarrativeWeb.py:2750
 msgid "Filtering"
 msgstr "Filter"
 
@@ -10425,11 +10442,11 @@ msgstr "Plaats-pagina's aanmaken"
 msgid "Creating media pages"
 msgstr "Mediapagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:3009 ../src/plugins/WebCal.py:260
+#: ../src/plugins/NarrativeWeb.py:3009 ../src/plugins/WebCal.py:289
 msgid "Possible destination error"
 msgstr "Mogelijk een doelfout"
 
-#: ../src/plugins/NarrativeWeb.py:3010 ../src/plugins/WebCal.py:261
+#: ../src/plugins/NarrativeWeb.py:3010 ../src/plugins/WebCal.py:290
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -10448,11 +10465,11 @@ msgstr "Sla de web pagina's op in een tar.gz archief"
 msgid "Whether to store the web pages in an archive file"
 msgstr "Sla de webpagina's op in een archiefbestand"
 
-#: ../src/plugins/NarrativeWeb.py:3057 ../src/plugins/WebCal.py:1164
+#: ../src/plugins/NarrativeWeb.py:3057 ../src/plugins/WebCal.py:1414
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/WebCal.py:1166
+#: ../src/plugins/NarrativeWeb.py:3059 ../src/plugins/WebCal.py:1416
 msgid "The destination directory for the web files"
 msgstr "De bestemmingsmap voor de webpagina's"
 
@@ -10469,32 +10486,32 @@ msgid "The title of the web site"
 msgstr "De titel voor de webstek"
 
 # Bestandsuitgang/extensie
-#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1187
+#: ../src/plugins/NarrativeWeb.py:3082 ../src/plugins/WebCal.py:1437
 msgid "File extension"
 msgstr "Bestandsextensie"
 
-#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1190
+#: ../src/plugins/NarrativeWeb.py:3085 ../src/plugins/WebCal.py:1440
 msgid "The extension to be used for the web files"
 msgstr "De gebruikte extensie voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3088 ../src/plugins/WebCal.py:1193
+#: ../src/plugins/NarrativeWeb.py:3088 ../src/plugins/WebCal.py:1443
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/NarrativeWeb.py:3093 ../src/plugins/WebCal.py:1196
+#: ../src/plugins/NarrativeWeb.py:3093 ../src/plugins/WebCal.py:1446
 msgid "The copyright to be used for the web files"
 msgstr "Autheursrecht gebruiken voor de webpagina's"
 
 # Doping
-#: ../src/plugins/NarrativeWeb.py:3096 ../src/plugins/WebCal.py:1199
+#: ../src/plugins/NarrativeWeb.py:3096 ../src/plugins/WebCal.py:1449
 msgid "Character set encoding"
 msgstr "Tekenset codering"
 
-#: ../src/plugins/NarrativeWeb.py:3099 ../src/plugins/WebCal.py:1202
+#: ../src/plugins/NarrativeWeb.py:3099 ../src/plugins/WebCal.py:1452
 msgid "The encoding to be used for the web files"
 msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:3102 ../src/plugins/WebCal.py:1205
+#: ../src/plugins/NarrativeWeb.py:3102 ../src/plugins/WebCal.py:1455
 msgid "StyleSheet"
 msgstr "Stijlblad"
 
@@ -10842,14 +10859,14 @@ msgid "Display events on a particular day"
 msgstr "Toont gebeurtenissen op een bepaalde dag"
 
 #: ../src/plugins/OwnerEditor.py:61
-msgid "manual|Edit_Database_Owner_Information"
+msgid "manual|Edit_Database_Owner_Information..."
 msgstr "Gegevensbestandseigenaarsinformatie_aanpassen..."
 
 #: ../src/plugins/OwnerEditor.py:108
 msgid "Database Owner Editor"
 msgstr "Aanpassen gegevensbestandseigenaar"
 
-#: ../src/plugins/OwnerEditor.py:166
+#: ../src/plugins/OwnerEditor.py:166 ../src/PluginUtils/_PluginWindows.py:483
 msgid "Main window"
 msgstr "Hoofdscherm"
 
@@ -11003,35 +11020,35 @@ msgstr "De gebruikte stijl voor de gebeurtenissen- en personendetails."
 msgid "Produces a textual place report"
 msgstr "Levert een tekstueel locatieverslag"
 
-#: ../src/plugins/ReadPkg.py:80
+#: ../src/plugins/ReadPkg.py:73
 #, python-format
 msgid "Could not create media directory %s"
 msgstr "Kon de mediamap %s niet aanmaken"
 
-#: ../src/plugins/ReadPkg.py:84
+#: ../src/plugins/ReadPkg.py:77
 #, python-format
 msgid "Media directory %s is not writable"
 msgstr "Mediamap %s is niet beschrijfbaar"
 
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
-#: ../src/plugins/ReadPkg.py:89
+#: ../src/plugins/ReadPkg.py:82
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Mediamap %s bestaat reeds. Eerst verwijderen, dan het importproces nieuw "
 "starten"
 
-#: ../src/plugins/ReadPkg.py:98
+#: ../src/plugins/ReadPkg.py:91
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fout bij uitpakken naar %s"
 
-#: ../src/plugins/ReadPkg.py:114
+#: ../src/plugins/ReadPkg.py:107
 msgid "Base path for relative media set"
 msgstr "Standaardpad voor relatieve media ingesteld"
 
-#: ../src/plugins/ReadPkg.py:115
+#: ../src/plugins/ReadPkg.py:108
 #, python-format
 msgid ""
 "The base media path of this family tree has been set to %s. Consider taking "
@@ -11044,11 +11061,11 @@ msgstr ""
 "te maken van het mediamanager hulpmiddel. U kunt ook bepaalde "
 "deeltekenreeksen vervangen."
 
-#: ../src/plugins/ReadPkg.py:124
+#: ../src/plugins/ReadPkg.py:117
 msgid "Cannot set base media path"
 msgstr "Kan mediamap niet instellen"
 
-#: ../src/plugins/ReadPkg.py:125
+#: ../src/plugins/ReadPkg.py:118
 #, python-format
 msgid ""
 "The family tree you imported into already has a base media path: %(orig_path)"
@@ -11066,14 +11083,14 @@ msgstr ""
 "doen door het hulpmiddel mediamanager te gebruiken. U kunt zo "
 "deeltekenreeksen eenvoudiger vervangen om het pad juist in te stellen."
 
-#: ../src/plugins/ReadPkg.py:154
-msgid "GRAMPS packages"
-msgstr "GRAMPS-pakketten"
-
-#: ../src/plugins/ReadPkg.py:156 ../data/gramps.keys.in.h:4
+#: ../src/plugins/ReadPkg.py:146 ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "GRAMPS package"
 msgstr "GRAMPS-pakket"
+
+#: ../src/plugins/ReadPkg.py:147
+msgid "Import data from GRAMPS packages"
+msgstr "Importeer gegevens vanuit GRAMPS-pakketten"
 
 #: ../src/plugins/Rebuild.py:77
 msgid "Rebuilding secondary indices..."
@@ -11131,11 +11148,12 @@ msgstr "Relatie-calculator: %(person_name)s"
 msgid "Relationship to %(person_name)s"
 msgstr "Relatie tot %(person_name)s"
 
-#: ../src/plugins/RelCalc.py:146 ../src/ReportBase/_ReportDialog.py:596
+#: ../src/plugins/RelCalc.py:146 ../src/PluginUtils/_Tool.py:136
+#: ../src/ReportBase/_ReportDialog.py:596
 msgid "Active person has not been set"
 msgstr "Er is geen actieve persoon gekozen"
 
-#: ../src/plugins/RelCalc.py:147
+#: ../src/plugins/RelCalc.py:147 ../src/PluginUtils/_Tool.py:137
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 "Om dit gereedschap correct te kunnen gebruiken moet u een actieve persoon "
@@ -11973,21 +11991,39 @@ msgstr "De gegevens controleren"
 msgid "Verifies the data against user-defined tests"
 msgstr "Controleert de gegevens met een aantal door de gebruiker opgestelde tests"
 
-#: ../src/plugins/WebCal.py:318
+#: ../src/plugins/WebCal.py:364
+msgid "Easter"
+msgstr "Pasen"
+
+#: ../src/plugins/WebCal.py:370
+msgid "Daylight Saving begins"
+msgstr "Zomertijd begint"
+
+#: ../src/plugins/WebCal.py:372
 msgid "Daylight Saving ends"
 msgstr "Zomertijd stopt"
 
-#: ../src/plugins/WebCal.py:370
+#. Add a link for year_glance() if requested
+#: ../src/plugins/WebCal.py:431
 msgid "Year Glance"
 msgstr "Vooruitblik jaar"
 
-#. TODO. See note in indiv_date()
-#. Add header to page
-#: ../src/plugins/WebCal.py:371 ../src/plugins/WebCal.py:757
+#. add a link to blank_year() if requested
+#: ../src/plugins/WebCal.py:435 ../src/plugins/WebCal.py:1020
 msgid "Blank Calendar"
 msgstr "Lege kalender"
 
-#: ../src/plugins/WebCal.py:593
+#: ../src/plugins/WebCal.py:553
+#, python-format
+msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</a>\n"
+msgstr "Aangemaakt voor <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</a>\n"
+
+#: ../src/plugins/WebCal.py:557
+#, python-format
+msgid "Created for %(author)s\n"
+msgstr "Aangemaakt voor %(author)s\n"
+
+#: ../src/plugins/WebCal.py:786
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\" target=\"_blank\">GRAMPS</"
@@ -11996,29 +12032,36 @@ msgstr ""
 "Gegenereerd met <a href=\"http://gramps-project.org\" target=\"_blank"
 "\">GRAMPS</a> op %(date)s"
 
-#: ../src/plugins/WebCal.py:691 ../src/plugins/WebCal.py:766
-#: ../src/plugins/WebCal.py:860 ../src/plugins/WebCal.py:1004
-#, python-format
-msgid "Created for %(author)s"
-msgstr "Aangemaakt voor %(author)s"
-
-#: ../src/plugins/WebCal.py:693
-msgid "A Peak into One Day"
-msgstr "Eén dag bekijken"
-
-#. Create progress bar for it
-#: ../src/plugins/WebCal.py:784
-msgid "Creating Printable Blank Full-Year Calendar Page"
-msgstr "UMaak een lege en uitdrukbare kalenderpagina voor een volledige jaar aan"
-
-#. TODO. See note in indiv_date()
-#. Add header to page
 #: ../src/plugins/WebCal.py:851
+msgid "Holiday"
+msgstr "Verlof"
+
+#. create calendar common info for each calendar
+#: ../src/plugins/WebCal.py:951
+msgid "One Day Within A Year"
+msgstr "Een dag in een jaar"
+
+#: ../src/plugins/WebCal.py:1018
+msgid " Blank Calendar"
+msgstr "Lege kalender"
+
+#. generate progress pass for "Blank Year"
+#: ../src/plugins/WebCal.py:1026
+msgid "Creating Blank Year calendars"
+msgstr "Lege jaarkalenders worden aangemaakt"
+
+#. page title
+#: ../src/plugins/WebCal.py:1084
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "%(year)d, een jaar-in-een-oogopslag"
 
-#: ../src/plugins/WebCal.py:878
+#. generate progress pass for "Year At A Glance"
+#: ../src/plugins/WebCal.py:1090
+msgid "Creating Year At A Glance calendars"
+msgstr "Jaar-vooruitblik-kalender wordt aangemaakt"
+
+#: ../src/plugins/WebCal.py:1094
 msgid ""
 "            This calendar is meant to give you access to all your data at a "
 "glance compressed into one page.  Clicking on a <b>red square</b> will take "
@@ -12029,267 +12072,300 @@ msgstr ""
 "dan wordt u naar een pagina geveord waar alle gebeurtenissen voor deze datum "
 "zijn samengevat!\n"
 
-#. Create progress bar for it
-#: ../src/plugins/WebCal.py:884
-msgid "Creating Year At A Glance page"
-msgstr "Maak een jaar-vooruitblik-pagina aan"
-
-#: ../src/plugins/WebCal.py:940
+#. open progress meter bar
+#: ../src/plugins/WebCal.py:1148
 msgid "Generate XHTML Calendars"
 msgstr "XHTML-kalenders aanmaken"
 
-#. get the information, first from holidays:
+#. generate progress pass for year ????
+#: ../src/plugins/WebCal.py:1168
+#, python-format
+msgid "Creating year %d calendars"
+msgstr "Kalender jaar %d wordt aangemaakt"
+
+#. get the information from holidays for each year being created
 #. Don't include holidays
-#. _country is currently global
-#: ../src/plugins/WebCal.py:948
-msgid "Getting information from holidays file"
-msgstr "Informatie uit verlofbestand halen"
+#. _COUNTRIES is currently global
+#. generate progress pass for single year
+#: ../src/plugins/WebCal.py:1208
+msgid "Creating calendars"
+msgstr "Kalenders worden aangemaakt"
 
-#. generate the report:
-#: ../src/plugins/WebCal.py:954
-msgid "Creating Calendar pages"
-msgstr "Kalenderpagina's aanmaken"
+#. generate progress pass for "WebCal"
+#: ../src/plugins/WebCal.py:1247
+msgid "Creating WebCal calendars"
+msgstr "WebCal kalenders worden aangemaakt"
 
-#: ../src/plugins/WebCal.py:1050
-msgid "Reading database"
-msgstr "Lezen van het gegevensbestand"
+#: ../src/plugins/WebCal.py:1292
+msgid "Applying Filter..."
+msgstr "Filter wordt toegepast..."
 
-#. person is 1, and therefore display it correctly
-#: ../src/plugins/WebCal.py:1085
+#: ../src/plugins/WebCal.py:1296
+msgid "Reading database..."
+msgstr "Gegevensbestand wordt gelezen..."
+
+#: ../src/plugins/WebCal.py:1342
 #, python-format
-msgid "%(short_name)s, <em>%(age)d</em> year old"
-msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
+msgid "%(short_name)s"
+msgstr "%(short_name)s"
 
-#: ../src/plugins/WebCal.py:1087
+#: ../src/plugins/WebCal.py:1343
+msgid "birthday"
+msgstr "verjaardag"
+
+#: ../src/plugins/WebCal.py:1379
 #, python-format
-msgid "%(short_name)s, <em>%(age)d</em> years old"
-msgstr "%(short_name)s, <em>%(age)d</em> jaren oud"
+msgid "%(spouse)s and %(person)s"
+msgstr "%(spouse)s en %(person)s"
 
-#: ../src/plugins/WebCal.py:1127
-#, python-format
-msgid ""
-"<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> "
-"year anniversary</span>"
-msgstr ""
-"<span class=\"yearsmarried\">%(spouse)s en %(person)s, <em>%(nyears)d</em> "
-"jaar verjaardag</span>"
+#: ../src/plugins/WebCal.py:1382
+msgid "anniversary"
+msgstr "verjaardag"
 
-#: ../src/plugins/WebCal.py:1170
+#: ../src/plugins/WebCal.py:1420
 msgid "Calendar Title"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1170
+#: ../src/plugins/WebCal.py:1420
 msgid "My Family Calendar"
 msgstr "Mijn familiekalender"
 
-#: ../src/plugins/WebCal.py:1171
+#: ../src/plugins/WebCal.py:1421
 msgid "The title of the calendar"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/WebCal.py:1208
+#: ../src/plugins/WebCal.py:1458
 msgid "The Style Sheet to be used for the web page"
 msgstr "Het te gebruiken stijlblad voor de webstek"
 
-#: ../src/plugins/WebCal.py:1215
+#: ../src/plugins/WebCal.py:1465
 msgid "Content Options"
 msgstr "Inhoudopties"
 
-#: ../src/plugins/WebCal.py:1222
-msgid "Create Year At A Glance"
-msgstr "Maak jaar-in-een-oogopslag aan"
+#: ../src/plugins/WebCal.py:1472
+msgid "Create Partial Year calendar"
+msgstr "Een kalender met een gedeelte van een jaar aanmaken"
 
-#: ../src/plugins/WebCal.py:1223
-msgid "Whether to create A Full Year High-lighted calendar"
-msgstr "Al of niet een kalender met ''High-light'' voor een volledig jaar aanmaken"
+#: ../src/plugins/WebCal.py:1473
+msgid ""
+"Create a partial year calendar. The start month will beequal to the current "
+"month to the end of the year."
+msgstr "EEn kalender met een deel van een jaar aanmaken. De startmaand is gelijk aan de huidige maand en de kalender loopt tot het einde van het jaar."
 
-#: ../src/plugins/WebCal.py:1226
-msgid "Create A Printable Blank Full- Year Calendar"
-msgstr "Een lege, uitdrukbare jaarkalender aanmaken"
+#: ../src/plugins/WebCal.py:1477
+msgid "Create multiple year calendars"
+msgstr "Kalenders voor meerdere jaren aanmaken"
 
-#: ../src/plugins/WebCal.py:1227
+#: ../src/plugins/WebCal.py:1478
+msgid "Whether to create Multiple year calendars or not."
+msgstr "Al of niet klaenders over meerdere jaren aanmaken."
+
+#: ../src/plugins/WebCal.py:1482
+msgid "Start Year for the Calendar(s)"
+msgstr "Startjaar voor de kalender(s)"
+
+#: ../src/plugins/WebCal.py:1483
+msgid "Enter the starting year for the calendars between 1900 - 3000"
+msgstr "Vul een startjaar in voor de kalenders dat ligt tussen 1900 en 3000"
+
+#: ../src/plugins/WebCal.py:1486
+msgid "End Year for the Calendar(s)"
+msgstr "Eindjaar voor de kalender(s)"
+
+#: ../src/plugins/WebCal.py:1487
+msgid ""
+"Enter the ending year for the calendars between 1900 - 3000.  if multiple "
+"years is selected, then only twenty years at any given time"
+msgstr "Vul een eindjaar in voor de kalenders tussen 1900 en 3000.  Indien meerdere jaren worden gekozen, worden per keer telkens kalenders voor 20 jaar aangemaakt"
+
+#: ../src/plugins/WebCal.py:1493
+msgid "Create \"Year At A Glance\" Calendar(s)"
+msgstr "\"jaar-in-een-oogopslag\" kalender(s) aanmaken"
+
+#: ../src/plugins/WebCal.py:1494
+msgid "Whether to create A one-page mini calendar with dates highlighted"
+msgstr "Al of niet een minikalender aanmaken met \"speciale\" datums"
+
+#: ../src/plugins/WebCal.py:1497
+msgid "Create \"Printable Blank\" Calendar(s)"
+msgstr "\"Lege, uitdrukbare\" kalender(s) aanmaken"
+
+#: ../src/plugins/WebCal.py:1498
 msgid "Whether to create A Full Year Printable calendar"
 msgstr "Al of niet een volledige, uitdrukbare jaarkalender aanmaken"
 
-#: ../src/plugins/WebCal.py:1233
+#: ../src/plugins/WebCal.py:1504
 msgid "Holidays will be included for the selected country"
 msgstr "Verloven voor het geselecteerde land zullen toegevoegd worden"
 
 # Nog geen definieve vertaling gevonden
-#: ../src/plugins/WebCal.py:1244
+#: ../src/plugins/WebCal.py:1522
 msgid "Home link"
 msgstr "Home link"
 
-#: ../src/plugins/WebCal.py:1245
+#: ../src/plugins/WebCal.py:1523
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Een verwijzing om de gebruiker naar de hoofdpagina van de webstek te sturen, "
 "wordt toegevoegd"
 
-#: ../src/plugins/WebCal.py:1261
-msgid "Check for wives to use maiden name"
-msgstr "Aanklikken om de meisjesnaam voor de vrouwen te gebruiken"
-
-#: ../src/plugins/WebCal.py:1262
-msgid "Attempt to use maiden names of women"
-msgstr "Poging om de meisjesnamen te gebruiken voor vrouwen"
-
-#: ../src/plugins/WebCal.py:1269
+#: ../src/plugins/WebCal.py:1543
 msgid "Jan - Jun Notes"
 msgstr "Opmerkingen jan tot jun"
 
-#: ../src/plugins/WebCal.py:1271
+#: ../src/plugins/WebCal.py:1545
 msgid "Jan Note"
 msgstr "Opmerkingen jan"
 
-#: ../src/plugins/WebCal.py:1271
+#: ../src/plugins/WebCal.py:1545
 msgid "This prints in January"
 msgstr "Dit wordt in januari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1272
+#: ../src/plugins/WebCal.py:1546
 msgid "The note for the month of January"
 msgstr "De opmerking voor de maand januari"
 
-#: ../src/plugins/WebCal.py:1275
+#: ../src/plugins/WebCal.py:1549
 msgid "Feb Note"
 msgstr "Opmerking feb"
 
-#: ../src/plugins/WebCal.py:1275
+#: ../src/plugins/WebCal.py:1549
 msgid "This prints in February"
 msgstr "Dit wordt in februari afgedrukt"
 
-#: ../src/plugins/WebCal.py:1276
+#: ../src/plugins/WebCal.py:1550
 msgid "The note for the month of February"
 msgstr "De opmerking voor februari"
 
-#: ../src/plugins/WebCal.py:1279
+#: ../src/plugins/WebCal.py:1553
 msgid "Mar Note"
 msgstr "Opmerkingen maa"
 
-#: ../src/plugins/WebCal.py:1279
+#: ../src/plugins/WebCal.py:1553
 msgid "This prints in March"
 msgstr "Dit wordt in maart afgedrukt"
 
-#: ../src/plugins/WebCal.py:1280
+#: ../src/plugins/WebCal.py:1554
 msgid "The note for the month of March"
 msgstr "Een opmerking voor maart"
 
-#: ../src/plugins/WebCal.py:1283
+#: ../src/plugins/WebCal.py:1557
 msgid "Apr Note"
 msgstr "Opmerking apr"
 
-#: ../src/plugins/WebCal.py:1283
+#: ../src/plugins/WebCal.py:1557
 msgid "This prints in April"
 msgstr "Dit wordt in april afgedrukt"
 
-#: ../src/plugins/WebCal.py:1284
+#: ../src/plugins/WebCal.py:1558
 msgid "The note for the month of April"
 msgstr "Een opmerking voor april"
 
-#: ../src/plugins/WebCal.py:1287
+#: ../src/plugins/WebCal.py:1561
 msgid "May Note"
 msgstr "Opmerking mei"
 
-#: ../src/plugins/WebCal.py:1287
+#: ../src/plugins/WebCal.py:1561
 msgid "This prints in May"
 msgstr "Dit wordt in mei afgedrukt"
 
-#: ../src/plugins/WebCal.py:1288
+#: ../src/plugins/WebCal.py:1562
 msgid "The note for the month of May"
 msgstr "Een opmerking voor mei"
 
-#: ../src/plugins/WebCal.py:1291
+#: ../src/plugins/WebCal.py:1565
 msgid "Jun Note"
 msgstr "Opmerking jun"
 
-#: ../src/plugins/WebCal.py:1291
+#: ../src/plugins/WebCal.py:1565
 msgid "This prints in June"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1292
+#: ../src/plugins/WebCal.py:1566
 msgid "The note for the month of June"
 msgstr "Een opmerking voor juni"
 
-#: ../src/plugins/WebCal.py:1295
+#: ../src/plugins/WebCal.py:1569
 msgid "Jul - Dec Notes"
 msgstr "Opmerking jul tot dec"
 
-#: ../src/plugins/WebCal.py:1297
+#: ../src/plugins/WebCal.py:1571
 msgid "Jul Note"
 msgstr "Opmerking jul"
 
-#: ../src/plugins/WebCal.py:1297
+#: ../src/plugins/WebCal.py:1571
 msgid "This prints in July"
 msgstr "Dit wordt in juli afgedrukt"
 
-#: ../src/plugins/WebCal.py:1298
+#: ../src/plugins/WebCal.py:1572
 msgid "The note for the month of July"
 msgstr "Een opmerking voor juli"
 
-#: ../src/plugins/WebCal.py:1301
+#: ../src/plugins/WebCal.py:1575
 msgid "Aug Note"
 msgstr "Opmerking aug"
 
-#: ../src/plugins/WebCal.py:1301
+#: ../src/plugins/WebCal.py:1575
 msgid "This prints in August"
 msgstr "Dit wordt in augustus afgedrukt"
 
-#: ../src/plugins/WebCal.py:1302
+#: ../src/plugins/WebCal.py:1576
 msgid "The note for the month of August"
 msgstr "Een opmerking voor augustus"
 
-#: ../src/plugins/WebCal.py:1305
+#: ../src/plugins/WebCal.py:1579
 msgid "Sep Note"
 msgstr "Opmerking sep"
 
-#: ../src/plugins/WebCal.py:1305
+#: ../src/plugins/WebCal.py:1579
 msgid "This prints in September"
 msgstr "Dit wordt in september afgedrukt"
 
-#: ../src/plugins/WebCal.py:1306
+#: ../src/plugins/WebCal.py:1580
 msgid "The note for the month of September"
 msgstr "Een opmerking voor september"
 
-#: ../src/plugins/WebCal.py:1309
+#: ../src/plugins/WebCal.py:1583
 msgid "Oct Note"
 msgstr "Opmerking okt"
 
-#: ../src/plugins/WebCal.py:1309
+#: ../src/plugins/WebCal.py:1583
 msgid "This prints in October"
 msgstr "Dit wordt in oktober afgedrukt"
 
-#: ../src/plugins/WebCal.py:1310
+#: ../src/plugins/WebCal.py:1584
 msgid "The note for the month of October"
 msgstr "Een opmerking voor oktober"
 
-#: ../src/plugins/WebCal.py:1313
+#: ../src/plugins/WebCal.py:1587
 msgid "Nov Note"
 msgstr "Opmerking nov"
 
-#: ../src/plugins/WebCal.py:1313
+#: ../src/plugins/WebCal.py:1587
 msgid "This prints in November"
 msgstr "Dit wordt in november afgedrukt"
 
-#: ../src/plugins/WebCal.py:1314
+#: ../src/plugins/WebCal.py:1588
 msgid "The note for the month of November"
 msgstr "een opmerking voor november"
 
-#: ../src/plugins/WebCal.py:1317
+#: ../src/plugins/WebCal.py:1591
 msgid "Dec Note"
 msgstr "Opmerking dec"
 
-#: ../src/plugins/WebCal.py:1317
+#: ../src/plugins/WebCal.py:1591
 msgid "This prints in December"
 msgstr "Dit wordt in december afgedrukt"
 
-#: ../src/plugins/WebCal.py:1318
+#: ../src/plugins/WebCal.py:1592
 msgid "The note for the month of December"
 msgstr "Een opmerking voor december"
 
-#: ../src/plugins/WebCal.py:1704
+#: ../src/plugins/WebCal.py:2033
 msgid "Web Calendar"
 msgstr "Webkalender"
 
-#: ../src/plugins/WebCal.py:1708
+#: ../src/plugins/WebCal.py:2037
 msgid "Produces web (HTML) calendars."
 msgstr "Maakt web (HTML) kalenders aan."
 
@@ -12426,9 +12502,200 @@ msgstr "Opnieuw opbouwen van referentiestructuur"
 msgid "Rebuilds reference maps"
 msgstr "Bouwt de referentiestructuur opnieuw op"
 
-#: ../src/plugins/ReadGrdb.py:326 ../src/plugins/ReadGrdb.py:328
+#: ../src/plugins/ReadGrdb.py:318
 msgid "GRAMPS 2.x database"
 msgstr "GRAMPS 2.x gegevensbestand"
+
+#: ../src/plugins/ReadGrdb.py:319
+msgid "Import data from GRAMPS 2.x database files"
+msgstr "Importeren van gegevens vanuit GRAMPS 2.x gegevensbestanden"
+
+#: ../src/PluginUtils/_GuiOptions.py:75
+msgid "Select surname"
+msgstr "Naam selecteren"
+
+#. we could use database.get_surname_list(), but if we do that
+#. all we get is a list of names without a count...therefore
+#. we'll traverse the entire database ourself and build up a
+#. list that we can use
+#. for name in database.get_surname_list():
+#. self.__model.append([name, 0])
+#. build up the list of surnames, keeping track of the count for each
+#. name (this can be a lengthy process, so by passing in the
+#. dictionary we can be certain we only do this once)
+#: ../src/PluginUtils/_GuiOptions.py:109
+msgid "Finding Surnames"
+msgstr "Namen zoeken"
+
+#: ../src/PluginUtils/_GuiOptions.py:110
+msgid "Finding surnames"
+msgstr "Ontbrekende namen zoeken"
+
+#: ../src/PluginUtils/_GuiOptions.py:415
+msgid "Select a different person"
+msgstr "Selecteer een andere persoon"
+
+#: ../src/PluginUtils/_GuiOptions.py:444
+msgid "Select a person for the report"
+msgstr "Kies een person voor het verslag"
+
+# dit is een soort titel in een file-selector
+#: ../src/PluginUtils/_GuiOptions.py:503
+msgid "Select a different family"
+msgstr "Kies een andere familie"
+
+#: ../src/PluginUtils/_GuiOptions.py:882
+#, python-format
+msgid "Also include %s?"
+msgstr "Ook %s?"
+
+#: ../src/PluginUtils/_GuiOptions.py:1048
+msgid "Colour"
+msgstr "Kleur"
+
+#: ../src/PluginUtils/_GuiOptions.py:1219
+#: ../src/ReportBase/_ReportDialog.py:446
+msgid "Save As"
+msgstr "Opslaan als"
+
+#: ../src/PluginUtils/_GuiOptions.py:1284
+#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
+msgid "Style Editor"
+msgstr "Stijleditor"
+
+#: ../src/PluginUtils/_PluginDialogs.py:119
+msgid "_Apply"
+msgstr "Toepassen"
+
+#: ../src/PluginUtils/_PluginDialogs.py:264
+msgid "Report Selection"
+msgstr "Verslagkeuze"
+
+#: ../src/PluginUtils/_PluginDialogs.py:265 ../src/glade/plugins.glade.h:4
+msgid "Select a report from those available on the left."
+msgstr "Kies een rapport uit de lijst aan de linkerkant."
+
+#: ../src/PluginUtils/_PluginDialogs.py:266
+msgid "_Generate"
+msgstr "Aanmaken"
+
+#: ../src/PluginUtils/_PluginDialogs.py:266
+msgid "Generate selected report"
+msgstr "Gekozen verslag aanmaken"
+
+#: ../src/PluginUtils/_PluginDialogs.py:297
+msgid "Tool Selection"
+msgstr "Keuze hulpmiddel"
+
+#: ../src/PluginUtils/_PluginDialogs.py:298
+msgid "Select a tool from those available on the left."
+msgstr "Kies een hulpmiddel uit de lijst aan de linkerkant."
+
+#: ../src/PluginUtils/_PluginDialogs.py:299 ../src/plugins/verify.glade.h:25
+msgid "_Run"
+msgstr "_Uitvoeren"
+
+#: ../src/PluginUtils/_PluginDialogs.py:300
+msgid "Run selected tool"
+msgstr "Het gekozen hulpmiddel gebruiken"
+
+#: ../src/PluginUtils/_PluginWindows.py:61
+#: ../src/PluginUtils/_PluginWindows.py:157
+msgid "Plugin Status"
+msgstr "Plugin-status"
+
+#: ../src/PluginUtils/_PluginWindows.py:86
+msgid "File"
+msgstr "Bestand"
+
+#: ../src/PluginUtils/_PluginWindows.py:89
+msgid "Message"
+msgstr "Boodschap"
+
+#. Only show the "Reload" button when in debug mode
+#. (without -O on the command line)
+#: ../src/PluginUtils/_PluginWindows.py:98
+msgid "Reload"
+msgstr "Herladen"
+
+#: ../src/PluginUtils/_PluginWindows.py:114
+msgid "Unavailable"
+msgstr "NB"
+
+#: ../src/PluginUtils/_PluginWindows.py:118
+msgid "Fail"
+msgstr "Fout"
+
+#: ../src/PluginUtils/_PluginWindows.py:126
+msgid "OK"
+msgstr "OK"
+
+#: ../src/PluginUtils/_Tool.py:61
+msgid "Debug"
+msgstr "Testen"
+
+#: ../src/PluginUtils/_Tool.py:62
+msgid "Analysis and Exploration"
+msgstr "Analyse en verkenning"
+
+#: ../src/PluginUtils/_Tool.py:63
+msgid "Database Processing"
+msgstr "Gegevensbestand bewerken"
+
+#: ../src/PluginUtils/_Tool.py:64
+msgid "Database Repair"
+msgstr "Gegevensbestand herstellen"
+
+#: ../src/PluginUtils/_Tool.py:65
+msgid "Revision Control"
+msgstr "Revisiekontrole"
+
+#: ../src/PluginUtils/_Tool.py:66
+msgid "Utilities"
+msgstr "Hulpmiddelen"
+
+#: ../src/PluginUtils/_Tool.py:109
+msgid ""
+"Proceeding with this tool will erase the undo history for this session. In "
+"particular, you will not be able to revert the changes made by this tool or "
+"any changes made prior to it.\n"
+"\n"
+"If you think you may want to revert running this tool, please stop here and "
+"backup your database."
+msgstr ""
+"Wanneer u voortgaat met dit hulpmiddel zal de ongedaan maken geschiedenis voor "
+"deze sessie uitgewist worden. U bent dus niet meer in de mogelijkheid om het "
+"gebruik van dit hulpmiddel terug te draaien of alle veranderingen ervoor teniet te doen.\n"
+"\n"
+"Indien u meent dat het beter is dit hulpmiddel nu niet te gebruiken, moet u hier stoppen en eerst een reservekopie van het gegevensbestand maken."
+
+#: ../src/PluginUtils/_Tool.py:115
+msgid "_Proceed with the tool"
+msgstr "Doorgaan met importeren"
+
+#: ../src/gen/utils/dbutils.py:98
+msgid "Remove Family"
+msgstr "Familie verwijderen"
+
+#: ../src/gen/utils/dbutils.py:117
+msgid "Remove father from family"
+msgstr "Verwijder vader uit familie"
+
+#: ../src/gen/utils/dbutils.py:119
+msgid "Remove mother from family"
+msgstr "Verwijder moeder uit familie"
+
+#: ../src/gen/utils/dbutils.py:166
+msgid "Remove child from family"
+msgstr "Verwijder kind uit familie"
+
+#: ../src/gen/utils/dbutils.py:199
+msgid "Add child to family"
+msgstr "Kind aan familie toevoegen"
+
+#: ../src/gen/utils/progressmon.py:64
+msgid "Progress Information"
+msgstr "Voortschrijdingsinformatie"
 
 #. -------------------------------------------------------------------------
 #.
@@ -12828,14 +13095,6 @@ msgstr "Instellingen"
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stijl"
-
-#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
-msgid "Style Editor"
-msgstr "Stijleditor"
-
-#: ../src/ReportBase/_ReportDialog.py:446
-msgid "Save As"
-msgstr "Opslaan als"
 
 #. need any labels at top:
 #: ../src/ReportBase/_ReportDialog.py:451
@@ -16822,11 +17081,6 @@ msgstr "Overleden: %(death_date)s."
 msgid "Died: %(death_place)s."
 msgstr "Overleden: in %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2961
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Familie-afstammelingen van %s"
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Documentstijlen"
@@ -17528,30 +17782,6 @@ msgstr "Onderworpen"
 #: ../src/gen/lib/ldsord.py:112
 msgid "Uncleared"
 msgstr "Niet gewist"
-
-#: ../src/gen/utils/dbutils.py:98
-msgid "Remove Family"
-msgstr "Familie verwijderen"
-
-#: ../src/gen/utils/dbutils.py:117
-msgid "Remove father from family"
-msgstr "Verwijder vader uit familie"
-
-#: ../src/gen/utils/dbutils.py:119
-msgid "Remove mother from family"
-msgstr "Verwijder moeder uit familie"
-
-#: ../src/gen/utils/dbutils.py:166
-msgid "Remove child from family"
-msgstr "Verwijder kind uit familie"
-
-#: ../src/gen/utils/dbutils.py:199
-msgid "Add child to family"
-msgstr "Kind aan familie toevoegen"
-
-#: ../src/gen/utils/progressmon.py:64
-msgid "Progress Information"
-msgstr "Voortschrijdingsinformatie"
 
 # voortgezet
 #: ../src/Filters/_SearchBar.py:92
@@ -20630,10 +20860,6 @@ msgstr "E-mail van auteur:"
 msgid "Perform selected action"
 msgstr "Geselecteerde actie uitvoeren"
 
-#: ../src/glade/plugins.glade.h:4
-msgid "Select a report from those available on the left."
-msgstr "Kies een rapport uit de lijst aan de linkerkant."
-
 #: ../src/glade/plugins.glade.h:5
 msgid "Status:"
 msgstr "Status:"
@@ -21115,10 +21341,6 @@ msgstr "Ontbrekende datums _schatten"
 msgid "_Identify invalid dates"
 msgstr "Zoek naar foute datums"
 
-#: ../src/plugins/verify.glade.h:25
-msgid "_Run"
-msgstr "_Uitvoeren"
-
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS genealogie systeem"
@@ -21229,7 +21451,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
-"possible duplicate</b> people allows you to located (and merge) entries of "
+"possible duplicate</b> people allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
 "<b>Dubbele ingave</b>: <b>Hulpmiddelen &gt; Gegevensbestand verwerken &gt; "
@@ -21238,8 +21460,8 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
-"<b>Editing The Relationship of a Child</b>: Not all children are the related "
-"by birth to their parents. You can edit the relationship of a child to each "
+"<b>Editing The Relationship of a Child</b>: Not all children are related by "
+"birth to their parents. You can edit the relationship of a child to each "
 "parent by making the child the active person. In the Relationship View, "
 "click on the third icon to the right of the &quot;Parents:&quot; entry. This "
 "brings up the Family Editor. Now select the child, right-click and choose "
@@ -21249,9 +21471,7 @@ msgid ""
 msgstr ""
 "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden "
 "met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het "
-"kind te selecteren, rechtsklikken en te kiezen &quot;aanpassen kind ouder "
-"relatie&quot;. Mogelijke relaties zijn: geboorte, adoptie, stiefkind, "
-"gesponsord, pleegkind, of onbekend."
+"kind als actieve persoon te selecteren. Vervolgens klikt u in het realtiescherm op het derde icoon rechts van de &quot;Ouders&quot;. Nu wordt een scherm getoond waarin u de familie kunt aanpassen. Selecteer het kind, klik rechts en kies &quot;kind ouder relatie aanpassen&quot;. Hier kunt u nu de realtie tussen het kind en zijn/haar vader en moeder bepalen. Mogelijke relaties zijn: geboorte, adoptie, stiefkind, geen, gesponsord, pleegkind, of onbekend."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -21639,7 +21859,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"GRAMPS comes with a rich set of tools. These allows you to undertake "
+"GRAMPS comes with a rich set of tools. These allow you to undertake "
 "operations such as checking database for errors and consistency, as well as "
 "research and analysis tools such as event comparison, finding duplicate "
 "people, interactive descendant browser, and others. All tools can be "
@@ -21647,8 +21867,7 @@ msgid ""
 msgstr ""
 "GRAMPS bevat een uitgebreid aantal hulpmiddelen. Deze laten u toe dingen te "
 "doen zoals controle van het gegevensbestand op fouten en consistentie, "
-"onderzoeken en analyseren van gebeurtenissen het vinden van duplicaten, "
-"personen, het gebruik van een interactieve afstammeling-browser en meer. "
+"onderzoeken en analyseren van gebeurtenissen, het vinden van dubbele personen, het gebruik van een interactieve afstammeling-browser enzovoort. "
 "Alle hulpmiddelen zijn beschikbaar via het menu <b>Hulpmiddelen</b>."
 
 #: ../src/data/tips.xml.in.h:41
@@ -21663,12 +21882,11 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
-"GRAMPS has been translated to 15 languages. If GRAMPS supports your language "
-"and it is not being displayed, set the default language on your machine and "
-"restart GRAMPS."
+"GRAMPS has been translated to more than 20 languages. If GRAMPS supports "
+"your language and it is not being displayed, set the default language on "
+"your machine and restart GRAMPS."
 msgstr ""
-"GRAMPS is vertaald in 15 talen. Als GRAMPS ondersteuning heeft voor uw taal "
-"maar deze niet weergeeft, stel dan de standaardtaal in, op uw computer en "
+"GRAMPS is vertaald in meer dan 20 talen. Als GRAMPS ondersteuning heeft voor uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw computer en "
 "start GRAMPS opnieuw op."
 
 #: ../src/data/tips.xml.in.h:43
@@ -21777,7 +21995,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:53
 msgid ""
 "Go from what you know to what you do not. Always record everything that is "
-"known before making conjecture. Often the facts at hand suggest plenty of "
+"known before making conjectures. Often the facts at hand suggest plenty of "
 "direction for more research. Don't waste time looking through thousands of "
 "records hoping for a trail when you have other unexplored leads."
 msgstr ""
