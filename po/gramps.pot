@@ -3838,7 +3838,7 @@ msgid "Open in %(program_name)s"
 msgstr ""
 
 #: ../src/docgen/LaTeXDoc.py:537
-msgid "LaTex"
+msgid "LaTeX"
 msgstr ""
 
 #: ../src/docgen/ODFDoc.py:1160 ../src/docgen/ODFDoc.py:1162
