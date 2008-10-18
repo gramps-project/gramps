@@ -64,6 +64,9 @@
     <code>BAIRE</code>
     <code>BA</code>
   </temple>
+  <temple name="Calgary, Alberta">
+    <code>CALGA</code>
+  </temple>
   <temple name="Campinas, Brazil">
     <code>CAMPI</code>
   </temple>
@@ -103,6 +106,9 @@
   <temple name="Copenhagen, Denmark">
     <code>COPEN</code>
   </temple>
+  <temple name="Cordoba, Argentina">
+    <code>CORDO</code>
+  </temple>
   <temple name="Curitiba, Brazil">
     <code>CURIT</code>
   </temple>
@@ -136,6 +142,12 @@
   </temple>
   <temple name="Fukuoka, Japan">
     <code>FUKUO</code>
+  </temple>
+  <temple name="Gila Valley, Arizona">
+    <code>GVALL</code>
+  </temple>
+  <temple name="Gilbert, Arizona">
+    <code>GILBE</code>
   </temple>
   <temple name="Guadalajara, Mexico">
     <code>GUADA</code>
@@ -187,6 +199,9 @@
     <code>JRIVE</code>
     <code>JR</code>
   </temple>
+  <temple name="Kansas City, Missouri">
+    <code>KANSA</code>
+  </temple>
   <temple name="Kona, Hawaii">
     <code>KONA</code>
   </temple>
@@ -228,6 +243,9 @@
   </temple>
   <temple name="Madrid, Spain">
     <code>MADRI</code>
+  </temple>
+  <temple name="Manaus, Brazil">
+    <code>MANAU</code>
   </temple>
   <temple name="Manhattan, New York">
     <code>MANHA</code>
@@ -325,6 +343,12 @@
   <temple name="Perth, Australia">
     <code>PERTH</code>
   </temple>
+  <temple name="Philadelphia, Pennsylvania">
+    <code>PHILA</code>
+  </temple>
+  <temple name="Phoenix, Arizona">
+    <code>PHOEN</code>
+  </temple>
   <temple name="Portland, Oregon">
     <code>PORTL</code>
     <code>PT</code>
@@ -360,6 +384,9 @@
   <temple name="Rexburg, Idaho">
     <code>REXBU</code>
   </temple>
+  <temple name="Rome, Italy">
+    <code>ROME</code>
+  </temple>
   <temple name="Sacramento, California">
     <code>SACRA</code>
   </temple>
@@ -386,6 +413,9 @@
   </temple>
   <temple name="San Jose, Costa Rica">
     <code>SJOSE</code>
+  </temple>
+  <temple name="San Salvador, El Salvador">
+    <code>SSALV</code>
   </temple>
   <temple name="Santiago, Chile">
     <code>SANTI</code>
