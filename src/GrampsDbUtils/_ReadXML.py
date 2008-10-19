@@ -1347,6 +1347,8 @@ class GrampsParser(UpdateCallback):
             self.note = gen.lib.Note()
             self.note.handle = Utils.create_id()
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
+            # The order in this long if-then statement should reflect the
+            # DTD: most deeply nested elements come first.
             if self.source_ref:
                 self.note.type.set(gen.lib.NoteType.SOURCEREF)
                 self.note.private = self.source_ref.private
@@ -1371,6 +1373,12 @@ class GrampsParser(UpdateCallback):
             elif self.name:
                 self.note.type.set(gen.lib.NoteType.PERSONNAME)
                 self.note.private = self.name.private
+            elif self.eventref:
+                self.note.type.set(gen.lib.NoteType.EVENTREF)
+                self.note.private = self.eventref.private
+            elif self.reporef:
+                self.note.type.set(gen.lib.NoteType.REPOREF)
+                self.note.private = self.reporef.private
             elif self.source:
                 self.note.type.set(gen.lib.NoteType.SOURCE)
                 self.note.private = self.source.private
@@ -1392,15 +1400,9 @@ class GrampsParser(UpdateCallback):
             elif self.placeobj:
                 self.note.type.set(gen.lib.NoteType.PLACE)
                 self.note.private = self.placeobj.private
-            elif self.eventref:
-                self.note.type.set(gen.lib.NoteType.EVENTREF)
-                self.note.private = self.eventref.private
             elif self.repo:
                 self.note.type.set(gen.lib.NoteType.REPO)
                 self.note.private = self.repo.private
-            elif self.reporef:
-                self.note.type.set(gen.lib.NoteType.REPOREF)
-                self.note.private = self.reporef.private
  
             self.db.add_note(self.note, self.trans)
             #set correct change time
@@ -1411,6 +1413,8 @@ class GrampsParser(UpdateCallback):
         handle = attrs['hlink'].replace('_', '')
         self.db.check_note_from_handle(handle, self.trans, set_gid = False)
 
+        # The order in this long if-then statement should reflect the
+        # DTD: most deeply nested elements come first.
         if self.source_ref:
             self.source_ref.add_note(handle)
         elif self.address:
@@ -1427,6 +1431,10 @@ class GrampsParser(UpdateCallback):
             self.photo.add_note(handle)
         elif self.name:
             self.name.add_note(handle)
+        elif self.eventref:
+            self.eventref.add_note(handle)
+        elif self.reporef:
+            self.reporef.add_note(handle)
         elif self.source:
             self.source.add_note(handle)
         elif self.event:
@@ -1441,12 +1449,8 @@ class GrampsParser(UpdateCallback):
             self.family.add_note(handle)
         elif self.placeobj:
             self.placeobj.add_note(handle)
-        elif self.eventref:
-            self.eventref.add_note(handle)
         elif self.repo:
             self.repo.add_note(handle)
-        elif self.reporef:
-            self.reporef.add_note(handle)
 
     def start_sourceref(self, attrs):
         self.source_ref = gen.lib.SourceRef()
@@ -2183,6 +2187,8 @@ class GrampsParser(UpdateCallback):
             text = tag
         self.note.set(text)
 
+        # The order in this long if-then statement should reflect the
+        # DTD: most deeply nested elements come first.
         if self.address:
             self.address.add_note(self.note.handle)
         elif self.ord:
@@ -2197,6 +2203,10 @@ class GrampsParser(UpdateCallback):
             self.photo.add_note(self.note.handle)
         elif self.name:
             self.name.add_note(self.note.handle)
+        elif self.eventref:
+            self.eventref.add_note(self.note.handle)
+        elif self.reporef:
+            self.reporef.add_note(self.note.handle)
         elif self.source:
             self.source.add_note(self.note.handle)
         elif self.event:
@@ -2211,12 +2221,8 @@ class GrampsParser(UpdateCallback):
             self.family.add_note(self.note.handle)
         elif self.placeobj:
             self.placeobj.add_note(self.note.handle)
-        elif self.eventref:
-            self.eventref.add_note(self.note.handle)
         elif self.repo:
             self.repo.add_note(self.note.handle)
-        elif self.reporef:
-            self.reporef.add_note(self.note.handle)
 
         self.db.commit_note(self.note, self.trans, self.note.get_change_time())
         self.note = None
