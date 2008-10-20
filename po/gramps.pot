@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-14 12:49+0200\n"
+"POT-Creation-Date: 2008-10-20 21:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,47 +16,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/ArgHandler.py:336
+#: ../src/ArgHandler.py:325
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr ""
 
-#: ../src/ArgHandler.py:337
+#: ../src/ArgHandler.py:326
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
 msgstr ""
 
-#: ../src/ArgHandler.py:432 ../src/DbLoader.py:171 ../src/DbLoader.py:193
+#: ../src/ArgHandler.py:421 ../src/DbLoader.py:171 ../src/DbLoader.py:193
 #: ../src/DbLoader.py:286
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
 
-#: ../src/ArgHandler.py:433
+#: ../src/ArgHandler.py:422
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
 msgstr ""
 
-#: ../src/ArgHandler.py:524
+#: ../src/ArgHandler.py:513
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../src/ArgHandler.py:525
+#: ../src/ArgHandler.py:514
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../src/ArgHandler.py:528
+#: ../src/ArgHandler.py:517
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../src/ArgHandler.py:813 ../src/DbLoader.py:357
+#: ../src/ArgHandler.py:792 ../src/DbLoader.py:357
 msgid "All files"
 msgstr ""
 
-#: ../src/ArgHandler.py:822
+#: ../src/ArgHandler.py:801
 msgid "GRAMPS databases"
 msgstr ""
 
@@ -5125,39 +5125,6 @@ msgid ""
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
 
-#: ../src/GrampsDbUtils/importdbdir.py:63
-#: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2423 ../src/GrampsDbUtils/_ReadXML.py:2429
-#: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:81
-#: ../src/plugins/ReadGrdb.py:94
-#, python-format
-msgid "%s could not be opened"
-msgstr ""
-
-#: ../src/GrampsDbUtils/importdbdir.py:70 ../src/plugins/ReadGrdb.py:88
-#: ../src/gen/db/dbdir.py:1213
-msgid ""
-"The database version is not supported by this version of GRAMPS.\n"
-"Please upgrade to the corresponding version or use XML for porting data "
-"between different database versions."
-msgstr ""
-
-#: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:95
-msgid "The Database version is not supported by this version of GRAMPS."
-msgstr ""
-
-#: ../src/GrampsDbUtils/importdbdir.py:218
-#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:236
-#, python-format
-msgid ""
-"Your family tree groups name %s together with %s, did not change this "
-"grouping to %s"
-msgstr ""
-
-#: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:250
-msgid "Import database"
-msgstr ""
-
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
 #: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:317
 #: ../src/plugins/ImportGeneWeb.py:84 ../src/plugins/ImportGeneWeb.py:90
@@ -5320,17 +5287,30 @@ msgstr ""
 msgid "GRAMPS XML import"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:1999
+#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:2003
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1887
+#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:236
+#, python-format
+msgid ""
+"Your family tree groups name %s together with %s, did not change this "
+"grouping to %s"
+msgstr ""
+
+#: ../src/GrampsDbUtils/_ReadXML.py:1891
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2441
+#: ../src/GrampsDbUtils/_ReadXML.py:2429 ../src/GrampsDbUtils/_ReadXML.py:2435
+#: ../src/plugins/ReadGrdb.py:81 ../src/plugins/ReadGrdb.py:94
+#, python-format
+msgid "%s could not be opened"
+msgstr ""
+
+#: ../src/GrampsDbUtils/_ReadXML.py:2447
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
@@ -11747,6 +11727,21 @@ msgstr ""
 
 #: ../src/plugins/RebuildRefMap.py:126
 msgid "Rebuilds reference maps"
+msgstr ""
+
+#: ../src/plugins/ReadGrdb.py:88 ../src/gen/db/dbdir.py:1213
+msgid ""
+"The database version is not supported by this version of GRAMPS.\n"
+"Please upgrade to the corresponding version or use XML for porting data "
+"between different database versions."
+msgstr ""
+
+#: ../src/plugins/ReadGrdb.py:95
+msgid "The Database version is not supported by this version of GRAMPS."
+msgstr ""
+
+#: ../src/plugins/ReadGrdb.py:250
+msgid "Import database"
 msgstr ""
 
 #: ../src/plugins/ReadGrdb.py:318
@@ -20395,8 +20390,8 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
-"GRAMPS works even when using KDE, as long as the required GNOME libraries "
-"are installed."
+"GRAMPS works even when using KDE, as long as the required GTK libraries are "
+"installed."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:52

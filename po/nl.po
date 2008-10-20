@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-14 12:49+0200\n"
-"PO-Revision-Date: 2008-10-14 22:50+0200\n"
+"POT-Creation-Date: 2008-10-20 21:37+0200\n"
+"PO-Revision-Date: 2008-10-20 21:39+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../src/ArgHandler.py:336
+#: ../src/ArgHandler.py:325
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr "Familiestamboom \"%s\" bestaat niet."
 
-#: ../src/ArgHandler.py:337
+#: ../src/ArgHandler.py:326
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
@@ -61,13 +61,13 @@ msgstr ""
 "Indien geedcom, gramps-xml of grdb, gebruik dan de -i optie om te importeren "
 "in een familistamboom"
 
-#: ../src/ArgHandler.py:432 ../src/DbLoader.py:171 ../src/DbLoader.py:193
+#: ../src/ArgHandler.py:421 ../src/DbLoader.py:171 ../src/DbLoader.py:193
 #: ../src/DbLoader.py:286
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kon bestand: %s niet openen"
 
-#: ../src/ArgHandler.py:433
+#: ../src/ArgHandler.py:422
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
@@ -75,24 +75,24 @@ msgstr ""
 "Er werd geen geldige familiestamboom opgegeven om te openen\n"
 "\n"
 
-#: ../src/ArgHandler.py:524
+#: ../src/ArgHandler.py:513
 msgid "Database is locked, cannot open it!"
 msgstr "Het gegevensbestand is op slot en kan niet geopend worden!"
 
-#: ../src/ArgHandler.py:525
+#: ../src/ArgHandler.py:514
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/ArgHandler.py:528
+#: ../src/ArgHandler.py:517
 msgid "Database needs recovery, cannot open it!"
 msgstr "Gegevensbestand moet hersteld worden en kan niet geopend worden!"
 
-#: ../src/ArgHandler.py:813 ../src/DbLoader.py:357
+#: ../src/ArgHandler.py:792 ../src/DbLoader.py:357
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: ../src/ArgHandler.py:822
+#: ../src/ArgHandler.py:801
 msgid "GRAMPS databases"
 msgstr "GRAMPS-gegevensbestanden"
 
@@ -4104,7 +4104,7 @@ msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
 
 #: ../src/docgen/LaTeXDoc.py:537
-msgid "LaTex"
+msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/docgen/ODFDoc.py:1160 ../src/docgen/ODFDoc.py:1162
@@ -5484,45 +5484,6 @@ msgstr ""
 "het bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand "
 "en probeer dan opnieuw."
 
-#: ../src/GrampsDbUtils/importdbdir.py:63
-#: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2423 ../src/GrampsDbUtils/_ReadXML.py:2429
-#: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:81
-#: ../src/plugins/ReadGrdb.py:94
-#, python-format
-msgid "%s could not be opened"
-msgstr "%s kon niet worden geopend"
-
-#: ../src/GrampsDbUtils/importdbdir.py:70 ../src/plugins/ReadGrdb.py:88
-#: ../src/gen/db/dbdir.py:1213
-msgid ""
-"The database version is not supported by this version of GRAMPS.\n"
-"Please upgrade to the corresponding version or use XML for porting data "
-"between different database versions."
-msgstr ""
-"De versie van het gegevensbestand wordt niet ondersteund door deze \n"
-"versie van GRAMPS. Gelieve op te waarderen naar een overeenkomendeversie of "
-"gebruik XML om gegevens over te zetten tussen verschillendeversies van "
-"gegevensbestanden."
-
-#: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:95
-msgid "The Database version is not supported by this version of GRAMPS."
-msgstr ""
-"De versie van het gegevensbestand wordt niet door deze versie van GRAMPS "
-"ondersteund."
-
-#: ../src/GrampsDbUtils/importdbdir.py:218
-#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:236
-#, python-format
-msgid ""
-"Your family tree groups name %s together with %s, did not change this "
-"grouping to %s"
-msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
-
-#: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:250
-msgid "Import database"
-msgstr "Gegevensbestand importeren"
-
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
 #: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:317
 #: ../src/plugins/ImportGeneWeb.py:84 ../src/plugins/ImportGeneWeb.py:90
@@ -5704,17 +5665,30 @@ msgstr ""
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML import"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:1999
+#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:2003
 #, python-format
 msgid "Witness name: %s"
 msgstr "Getuige naam: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1887
+#: ../src/GrampsDbUtils/_ReadXML.py:1314 ../src/plugins/ReadGrdb.py:236
+#, python-format
+msgid ""
+"Your family tree groups name %s together with %s, did not change this "
+"grouping to %s"
+msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:1891
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Getuige commentaar: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2441
+#: ../src/GrampsDbUtils/_ReadXML.py:2429 ../src/GrampsDbUtils/_ReadXML.py:2435
+#: ../src/plugins/ReadGrdb.py:81 ../src/plugins/ReadGrdb.py:94
+#, python-format
+msgid "%s could not be opened"
+msgstr "%s kon niet worden geopend"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:2447
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
@@ -12016,7 +11990,9 @@ msgstr "Lege kalender"
 #: ../src/plugins/WebCal.py:553
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</a>\n"
-msgstr "Aangemaakt voor <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</a>\n"
+msgstr ""
+"Aangemaakt voor <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</"
+"a>\n"
 
 #: ../src/plugins/WebCal.py:557
 #, python-format
@@ -12150,7 +12126,9 @@ msgstr "Een kalender met een gedeelte van een jaar aanmaken"
 msgid ""
 "Create a partial year calendar. The start month will beequal to the current "
 "month to the end of the year."
-msgstr "EEn kalender met een deel van een jaar aanmaken. De startmaand is gelijk aan de huidige maand en de kalender loopt tot het einde van het jaar."
+msgstr ""
+"EEn kalender met een deel van een jaar aanmaken. De startmaand is gelijk aan "
+"de huidige maand en de kalender loopt tot het einde van het jaar."
 
 #: ../src/plugins/WebCal.py:1477
 msgid "Create multiple year calendars"
@@ -12176,7 +12154,10 @@ msgstr "Eindjaar voor de kalender(s)"
 msgid ""
 "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
 "years is selected, then only twenty years at any given time"
-msgstr "Vul een eindjaar in voor de kalenders tussen 1900 en 3000.  Indien meerdere jaren worden gekozen, worden per keer telkens kalenders voor 20 jaar aangemaakt"
+msgstr ""
+"Vul een eindjaar in voor de kalenders tussen 1900 en 3000.  Indien meerdere "
+"jaren worden gekozen, worden per keer telkens kalenders voor 20 jaar "
+"aangemaakt"
 
 #: ../src/plugins/WebCal.py:1493
 msgid "Create \"Year At A Glance\" Calendar(s)"
@@ -12502,6 +12483,27 @@ msgstr "Opnieuw opbouwen van referentiestructuur"
 msgid "Rebuilds reference maps"
 msgstr "Bouwt de referentiestructuur opnieuw op"
 
+#: ../src/plugins/ReadGrdb.py:88 ../src/gen/db/dbdir.py:1213
+msgid ""
+"The database version is not supported by this version of GRAMPS.\n"
+"Please upgrade to the corresponding version or use XML for porting data "
+"between different database versions."
+msgstr ""
+"De versie van het gegevensbestand wordt niet ondersteund door deze \n"
+"versie van GRAMPS. Gelieve op te waarderen naar een overeenkomendeversie of "
+"gebruik XML om gegevens over te zetten tussen verschillendeversies van "
+"gegevensbestanden."
+
+#: ../src/plugins/ReadGrdb.py:95
+msgid "The Database version is not supported by this version of GRAMPS."
+msgstr ""
+"De versie van het gegevensbestand wordt niet door deze versie van GRAMPS "
+"ondersteund."
+
+#: ../src/plugins/ReadGrdb.py:250
+msgid "Import database"
+msgstr "Gegevensbestand importeren"
+
 #: ../src/plugins/ReadGrdb.py:318
 msgid "GRAMPS 2.x database"
 msgstr "GRAMPS 2.x gegevensbestand"
@@ -12663,11 +12665,13 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Wanneer u voortgaat met dit hulpmiddel zal de ongedaan maken geschiedenis voor "
-"deze sessie uitgewist worden. U bent dus niet meer in de mogelijkheid om het "
-"gebruik van dit hulpmiddel terug te draaien of alle veranderingen ervoor teniet te doen.\n"
+"Wanneer u voortgaat met dit hulpmiddel zal de ongedaan maken geschiedenis "
+"voor deze sessie uitgewist worden. U bent dus niet meer in de mogelijkheid "
+"om het gebruik van dit hulpmiddel terug te draaien of alle veranderingen "
+"ervoor teniet te doen.\n"
 "\n"
-"Indien u meent dat het beter is dit hulpmiddel nu niet te gebruiken, moet u hier stoppen en eerst een reservekopie van het gegevensbestand maken."
+"Indien u meent dat het beter is dit hulpmiddel nu niet te gebruiken, moet u "
+"hier stoppen en eerst een reservekopie van het gegevensbestand maken."
 
 #: ../src/PluginUtils/_Tool.py:115
 msgid "_Proceed with the tool"
@@ -21471,7 +21475,13 @@ msgid ""
 msgstr ""
 "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden "
 "met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het "
-"kind als actieve persoon te selecteren. Vervolgens klikt u in het realtiescherm op het derde icoon rechts van de &quot;Ouders&quot;. Nu wordt een scherm getoond waarin u de familie kunt aanpassen. Selecteer het kind, klik rechts en kies &quot;kind ouder relatie aanpassen&quot;. Hier kunt u nu de realtie tussen het kind en zijn/haar vader en moeder bepalen. Mogelijke relaties zijn: geboorte, adoptie, stiefkind, geen, gesponsord, pleegkind, of onbekend."
+"kind als actieve persoon te selecteren. Vervolgens klikt u in het "
+"realtiescherm op het derde icoon rechts van de &quot;Ouders&quot;. Nu wordt "
+"een scherm getoond waarin u de familie kunt aanpassen. Selecteer het kind, "
+"klik rechts en kies &quot;kind ouder relatie aanpassen&quot;. Hier kunt u nu "
+"de realtie tussen het kind en zijn/haar vader en moeder bepalen. Mogelijke "
+"relaties zijn: geboorte, adoptie, stiefkind, geen, gesponsord, pleegkind, of "
+"onbekend."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -21867,7 +21877,8 @@ msgid ""
 msgstr ""
 "GRAMPS bevat een uitgebreid aantal hulpmiddelen. Deze laten u toe dingen te "
 "doen zoals controle van het gegevensbestand op fouten en consistentie, "
-"onderzoeken en analyseren van gebeurtenissen, het vinden van dubbele personen, het gebruik van een interactieve afstammeling-browser enzovoort. "
+"onderzoeken en analyseren van gebeurtenissen, het vinden van dubbele "
+"personen, het gebruik van een interactieve afstammeling-browser enzovoort. "
 "Alle hulpmiddelen zijn beschikbaar via het menu <b>Hulpmiddelen</b>."
 
 #: ../src/data/tips.xml.in.h:41
@@ -21886,8 +21897,9 @@ msgid ""
 "your language and it is not being displayed, set the default language on "
 "your machine and restart GRAMPS."
 msgstr ""
-"GRAMPS is vertaald in meer dan 20 talen. Als GRAMPS ondersteuning heeft voor uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw computer en "
-"start GRAMPS opnieuw op."
+"GRAMPS is vertaald in meer dan 20 talen. Als GRAMPS ondersteuning heeft voor "
+"uw taal maar deze niet wordt getoond, stel dan de standaardtaal in op uw "
+"computer en start GRAMPS opnieuw op."
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -21973,10 +21985,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
-"GRAMPS works even when using KDE, as long as the required GNOME libraries "
-"are installed."
+"GRAMPS works even when using KDE, as long as the required GTK libraries are "
+"installed."
 msgstr ""
-"GRAMPS werkt ook binnen KDE, als de GNOME-bibliotheekfuncties maar zijn "
+"GRAMPS werkt ook met KDE, zolang de vereiste GTK-bibliotheekfuncties zijn "
 "geïnstalleerd."
 
 #: ../src/data/tips.xml.in.h:52
