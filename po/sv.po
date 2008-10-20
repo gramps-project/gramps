@@ -34,10 +34,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 01:10-0700\n"
-"PO-Revision-Date: 2008-09-20 20:26+0200\n"
+"POT-Creation-Date: 2008-10-20 15:54+0200\n"
+"PO-Revision-Date: 2008-10-20 15:59+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: svenska <sv@li.org>\n"
+"Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -133,12 +133,12 @@ msgid "Organize Bookmarks"
 msgstr "Organisera bokmärken"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
-#: ../src/ScratchPad.py:372 ../src/ScratchPad.py:428 ../src/ScratchPad.py:461
-#: ../src/ScratchPad.py:530 ../src/ScratchPad.py:561 ../src/ScratchPad.py:578
-#: ../src/ScratchPad.py:579 ../src/ScratchPad.py:598 ../src/ScratchPad.py:648
-#: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
-#: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
+#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:193
+#: ../src/ScratchPad.py:379 ../src/ScratchPad.py:435 ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:537 ../src/ScratchPad.py:568 ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586 ../src/ScratchPad.py:605 ../src/ScratchPad.py:655
+#: ../src/ScratchPad.py:688 ../src/ScratchPad.py:742 ../src/ScratchPad.py:753
+#: ../src/ScratchPad.py:832 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
 #: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
 #: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
@@ -151,7 +151,7 @@ msgstr "Organisera bokmärken"
 #: ../src/plugins/IndivComplete.py:426 ../src/plugins/MarkerReport.py:118
 #: ../src/plugins/NarrativeWeb.py:848 ../src/plugins/NarrativeWeb.py:992
 #: ../src/plugins/NarrativeWeb.py:1119 ../src/plugins/NarrativeWeb.py:1657
-#: ../src/plugins/NarrativeWeb.py:1750 ../src/plugins/NotRelated.py:96
+#: ../src/plugins/NarrativeWeb.py:1750 ../src/plugins/NotRelated.py:107
 #: ../src/plugins/PatchNames.py:212 ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:192
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:544
@@ -180,8 +180,8 @@ msgstr "Namn"
 #: ../src/Selectors/_SelectNote.py:59 ../src/Selectors/_SelectObject.py:74
 #: ../src/Selectors/_SelectPerson.py:50 ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
-#: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:238
-#: ../src/plugins/NotRelated.py:97 ../src/plugins/PatchNames.py:203
+#: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:249
+#: ../src/plugins/NotRelated.py:108 ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:186
 #: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:788
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -559,7 +559,7 @@ msgstr "Kunde inte skapa databasmappen: "
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/DbManager.py:1016 ../src/ScratchPad.py:94
+#: ../src/DbManager.py:1016 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -780,7 +780,7 @@ msgstr "_Ta inte med data markerade som privata"
 msgid "_Restrict data on living people"
 msgstr "_Begränsa information om nu levande personer"
 
-#: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:134
+#: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:145
 #: ../src/plugins/ExportCSV.py:182 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/WriteFtree.py:87
 #: ../src/plugins/WriteGeneWeb.py:92 ../src/ReportBase/_ReportUtils.py:2947
@@ -896,7 +896,7 @@ msgstr "Allmänt"
 msgid "Database"
 msgstr "Databas"
 
-#: ../src/GrampsCfg.py:155 ../src/ScratchPad.py:611 ../src/ScratchPad.py:619
+#: ../src/GrampsCfg.py:155 ../src/ScratchPad.py:618 ../src/ScratchPad.py:626
 #: ../src/plugins/CustomBookText.py:113 ../src/plugins/MarkerReport.py:387
 #: ../src/plugins/NarrativeWeb.py:707 ../src/plugins/SimpleBookTitle.py:167
 #: ../src/plugins/SimpleBookTitle.py:168 ../src/plugins/SimpleBookTitle.py:169
@@ -921,8 +921,8 @@ msgstr "Forskare"
 msgid "Marker Colors"
 msgstr "Markeringsfärger"
 
-#: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:152
-#: ../src/ScratchPad.py:169 ../src/DisplayTabs/_AddrEmbedList.py:70
+#: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:159
+#: ../src/ScratchPad.py:176 ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:148 ../src/plugins/FamilyGroup.py:285
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
@@ -974,7 +974,7 @@ msgstr "E-post"
 #. ------------------------------------------------------------------------
 #: ../src/GrampsCfg.py:193 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117 ../src/plugins/AgeOnDate.py:53
-#: ../src/plugins/EventCmp.py:238 ../src/plugins/ExportCSV.py:364
+#: ../src/plugins/EventCmp.py:249 ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
 #: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
@@ -989,7 +989,7 @@ msgstr "Person"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:195 ../src/gramps_main.py:106 ../src/ScratchPad.py:582
+#: ../src/GrampsCfg.py:195 ../src/gramps_main.py:106 ../src/ScratchPad.py:589
 #: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:465
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
@@ -1000,7 +1000,7 @@ msgstr "Person"
 msgid "Family"
 msgstr "Familj"
 
-#: ../src/GrampsCfg.py:197 ../src/ScratchPad.py:282 ../src/ScratchPad.py:360
+#: ../src/GrampsCfg.py:197 ../src/ScratchPad.py:289 ../src/ScratchPad.py:367
 #: ../src/Simple/_SimpleTable.py:219 ../src/DataViews/EventView.py:73
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1022,7 +1022,7 @@ msgstr "Plats"
 msgid "Source"
 msgstr "Källa"
 
-#: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:632 ../src/ScratchPad.py:645
+#: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
 #: ../src/Editors/_EditPerson.py:470 ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
 msgstr "Mediaobjekt"
@@ -1042,12 +1042,12 @@ msgid "Repository"
 msgstr "Arkivplats"
 
 #. ###############################
-#: ../src/GrampsCfg.py:207 ../src/ScratchPad.py:311 ../src/ToolTips.py:159
+#: ../src/GrampsCfg.py:207 ../src/ScratchPad.py:318 ../src/ToolTips.py:159
 #: ../src/Simple/_SimpleTable.py:227 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:852
+#: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1103,7 +1103,7 @@ msgstr "Detaljer för _anpassat format"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
-#: ../src/GrampsCfg.py:354 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
@@ -1116,37 +1116,37 @@ msgstr "Efternamn"
 #: ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:354 ../src/GrampsCfg.py:355
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
-#: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:581
-#: ../src/Utils.py:1157 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
+#: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
 msgid "Given"
 msgstr "Förnamn"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
-#: ../src/ScratchPad.py:586 ../src/Utils.py:1160
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
 msgid "Suffix"
 msgstr "Suffix"
 
 #: ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:356
-#: ../src/GrampsCfg.py:357 ../src/Utils.py:1163
+#: ../src/GrampsCfg.py:357 ../src/Utils.py:1200
 msgid "Common"
 msgstr "Tilltals/Förnamn"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
-#: ../src/GrampsCfg.py:358 ../src/Utils.py:1162
+#: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:163
 msgid "Call"
 msgstr "Tilltalsnamn"
 
 #: ../src/GrampsCfg.py:348 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:357
 #: ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359 ../src/GrampsCfg.py:360
-#: ../src/GrampsCfg.py:361 ../src/Utils.py:1159
+#: ../src/GrampsCfg.py:361 ../src/Utils.py:1196
 msgid "SURNAME"
 msgstr "EFTERNAMN"
 
-#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1161
+#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:590 ../src/Utils.py:1198
 msgid "Patronymic"
 msgstr "Patronymikon"
 
@@ -1307,7 +1307,7 @@ msgstr "Både formatnamn och definition måste anges"
 msgid "Family Trees"
 msgstr "Släktträd"
 
-#: ../src/gramps_main.py:98 ../src/ScratchPad.py:407 ../src/ScratchPad.py:415
+#: ../src/gramps_main.py:98 ../src/ScratchPad.py:414 ../src/ScratchPad.py:422
 #: ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr "Attribut"
@@ -1316,7 +1316,7 @@ msgstr "Attribut"
 msgid "Add Bookmark"
 msgstr "Lägg till bokmärke"
 
-#: ../src/gramps_main.py:103 ../src/ScratchPad.py:170 ../src/ScratchPad.py:359
+#: ../src/gramps_main.py:103 ../src/ScratchPad.py:177 ../src/ScratchPad.py:366
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
 #: ../src/DisplayTabs/_EventEmbedList.py:65
@@ -1379,7 +1379,7 @@ msgstr "Anteckningar"
 #: ../src/DataViews/RelationView.py:751 ../src/DataViews/RelationView.py:785
 #: ../src/plugins/all_relations.py:301 ../src/plugins/NarrativeWeb.py:860
 #: ../src/plugins/NarrativeWeb.py:1000 ../src/plugins/NarrativeWeb.py:2258
-#: ../src/plugins/NotRelated.py:98
+#: ../src/plugins/NotRelated.py:109
 msgid "Parents"
 msgstr "Föräldrar"
 
@@ -1414,8 +1414,8 @@ msgstr "Rapporter"
 msgid "Repositories"
 msgstr "Arkivplatser"
 
-#: ../src/gramps_main.py:123 ../src/ScratchPad.py:185 ../src/ScratchPad.py:427
-#: ../src/ScratchPad.py:460 ../src/DataViews/SourceView.py:94
+#: ../src/gramps_main.py:123 ../src/ScratchPad.py:192 ../src/ScratchPad.py:434
+#: ../src/ScratchPad.py:467 ../src/DataViews/SourceView.py:94
 #: ../src/plugins/NarrativeWeb.py:464 ../src/plugins/NarrativeWeb.py:1632
 #: ../src/plugins/NarrativeWeb.py:1649 ../src/plugins/NarrativeWeb.py:1692
 msgid "Sources"
@@ -1815,7 +1815,7 @@ msgstr ""
 "Detta kan repareras från Släktträdshanteraren. Välj databasen och klicka på "
 "Reparera-knappen."
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1075
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1112
 msgid "Attempt to force closing the dialog"
 msgstr "Försök att stänga dialogen med våld"
 
@@ -2002,29 +2002,33 @@ msgstr "Ordna om relationer"
 msgid "Reorder Relationships: %s"
 msgstr "Ordna om relationer: %s"
 
-#: ../src/ScratchPad.py:171 ../src/ScratchPad.py:198 ../src/ScratchPad.py:210
+#: ../src/ScratchPad.py:68
+msgid "manual|Using_the_Clipboard"
+msgstr ""
+
+#: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
 msgid "Location"
 msgstr "Lokalisering"
 
-#: ../src/ScratchPad.py:177 ../src/ScratchPad.py:215 ../src/ToolTips.py:149
+#: ../src/ScratchPad.py:184 ../src/ScratchPad.py:222 ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../src/ScratchPad.py:227
+#: ../src/ScratchPad.py:234
 msgid "Event Link"
 msgstr "Händelselänk"
 
-#: ../src/ScratchPad.py:344 ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:351 ../src/ScratchPad.py:364
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Familjehändelse"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:358 ../src/ScratchPad.py:416 ../src/ScratchPad.py:449
-#: ../src/ScratchPad.py:587 ../src/ScratchPad.py:647 ../src/ScratchPad.py:680
-#: ../src/ScratchPad.py:826 ../src/ScratchPad.py:898 ../src/ScratchPad.py:904
+#: ../src/ScratchPad.py:365 ../src/ScratchPad.py:423 ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:594 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
+#: ../src/ScratchPad.py:833 ../src/ScratchPad.py:905 ../src/ScratchPad.py:911
 #: ../src/Merge/_MergePerson.py:182 ../src/DataViews/EventView.py:71
 #: ../src/DataViews/MediaView.py:82 ../src/DataViews/NoteView.py:69
 #: ../src/DataViews/RepositoryView.py:69
@@ -2049,11 +2053,11 @@ msgstr "Familjehändelse"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:71
+#: ../src/ScratchPad.py:368 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Orsak"
 
-#: ../src/ScratchPad.py:362 ../src/ScratchPad.py:396
+#: ../src/ScratchPad.py:369 ../src/ScratchPad.py:403
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:53
 #: ../src/plugins/MarkerReport.py:307 ../src/gen/lib/attrtype.py:65
@@ -2061,40 +2065,40 @@ msgstr "Orsak"
 msgid "Description"
 msgstr "Beskrivning"
 
-#: ../src/ScratchPad.py:371 ../src/ScratchPad.py:597 ../src/ScratchPad.py:745
+#: ../src/ScratchPad.py:378 ../src/ScratchPad.py:604 ../src/ScratchPad.py:752
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Primär källa"
 
-#: ../src/ScratchPad.py:385 ../src/ScratchPad.py:393
+#: ../src/ScratchPad.py:392 ../src/ScratchPad.py:400
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:394 ../src/DataViews/MediaView.py:83
+#: ../src/ScratchPad.py:401 ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Sökväg"
 
-#: ../src/ScratchPad.py:418 ../src/ScratchPad.py:451 ../src/ScratchPad.py:900
-#: ../src/ScratchPad.py:906 ../src/DisplayTabs/_AttrEmbedList.py:61
+#: ../src/ScratchPad.py:425 ../src/ScratchPad.py:458 ../src/ScratchPad.py:907
+#: ../src/ScratchPad.py:913 ../src/DisplayTabs/_AttrEmbedList.py:61
 #: ../src/DisplayTabs/_DataEmbedList.py:58 ../src/plugins/PatchNames.py:209
 msgid "Value"
 msgstr "Värde"
 
-#: ../src/ScratchPad.py:440 ../src/ScratchPad.py:448
+#: ../src/ScratchPad.py:447 ../src/ScratchPad.py:455
 msgid "Family Attribute"
 msgstr "Familjeattribut"
 
-#: ../src/ScratchPad.py:473 ../src/ScratchPad.py:502
+#: ../src/ScratchPad.py:480 ../src/ScratchPad.py:509
 msgid "Source Reference"
 msgstr "Källreferens"
 
-#: ../src/ScratchPad.py:485
+#: ../src/ScratchPad.py:492
 msgid "not available|NA"
 msgstr "Otillgänglig"
 
-#: ../src/ScratchPad.py:491
+#: ../src/ScratchPad.py:498
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Volym/sida: %(pag)s -- %(sourcetext)s"
@@ -2105,9 +2109,9 @@ msgstr "Volym/sida: %(pag)s -- %(sourcetext)s"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:503 ../src/ScratchPad.py:585 ../src/ScratchPad.py:646
-#: ../src/ScratchPad.py:679 ../src/ScratchPad.py:787 ../src/ScratchPad.py:899
-#: ../src/ScratchPad.py:905 ../src/Utils.py:1156
+#: ../src/ScratchPad.py:510 ../src/ScratchPad.py:592 ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:686 ../src/ScratchPad.py:794 ../src/ScratchPad.py:906
+#: ../src/ScratchPad.py:912 ../src/Utils.py:1193
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:66
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2120,50 +2124,50 @@ msgstr "Volym/sida: %(pag)s -- %(sourcetext)s"
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:504 ../src/DisplayTabs/_SourceEmbedList.py:65
+#: ../src/ScratchPad.py:511 ../src/DisplayTabs/_SourceEmbedList.py:65
 #: ../src/plugins/NarrativeWeb.py:700
 msgid "Page"
 msgstr "Sida"
 
-#: ../src/ScratchPad.py:516 ../src/ScratchPad.py:529
+#: ../src/ScratchPad.py:523 ../src/ScratchPad.py:536
 msgid "Repository Reference"
 msgstr "Arkivplatsreferens"
 
-#: ../src/ScratchPad.py:531 ../src/DisplayTabs/_RepoEmbedList.py:64
+#: ../src/ScratchPad.py:538 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
 msgstr "Klassifikationssignum"
 
-#: ../src/ScratchPad.py:532
+#: ../src/ScratchPad.py:539
 msgid "Media Type"
 msgstr "Mediatyp"
 
-#: ../src/ScratchPad.py:544
+#: ../src/ScratchPad.py:551
 msgid "Event Reference"
 msgstr "Händelsereferens"
 
-#: ../src/ScratchPad.py:580
+#: ../src/ScratchPad.py:587
 msgid "Call Name"
 msgstr "Tilltalsnamn"
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1158
+#: ../src/ScratchPad.py:591 ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 msgid "Prefix"
 msgstr "Prefix"
 
-#: ../src/ScratchPad.py:666 ../src/ScratchPad.py:678
+#: ../src/ScratchPad.py:673 ../src/ScratchPad.py:685
 msgid "Media Reference"
 msgstr "Mediareferens"
 
-#: ../src/ScratchPad.py:692 ../src/Editors/_EditPersonRef.py:142
+#: ../src/ScratchPad.py:699 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Personreferens"
 
-#: ../src/ScratchPad.py:709 ../src/ScratchPad.py:734
+#: ../src/ScratchPad.py:716 ../src/ScratchPad.py:741
 msgid "Person Link"
 msgstr "Personlänk"
 
-#: ../src/ScratchPad.py:736 ../src/ToolTips.py:200
+#: ../src/ScratchPad.py:743 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:137 ../src/DataViews/RelationView.py:556
 #: ../src/plugins/all_relations.py:266 ../src/plugins/FamilyGroup.py:436
 #: ../src/plugins/FamilyGroup.py:438 ../src/plugins/lineage.py:92
@@ -2173,31 +2177,31 @@ msgstr "Personlänk"
 msgid "Birth"
 msgstr "Födelse"
 
-#: ../src/ScratchPad.py:768 ../src/ScratchPad.py:786
+#: ../src/ScratchPad.py:775 ../src/ScratchPad.py:793
 msgid "Source Link"
 msgstr "Källänk"
 
-#: ../src/ScratchPad.py:788 ../src/DataViews/SourceView.py:69
+#: ../src/ScratchPad.py:795 ../src/DataViews/SourceView.py:69
 #: ../src/plugins/NarrativeWeb.py:1710
 msgid "Abbreviation"
 msgstr "Förkortning"
 
-#: ../src/ScratchPad.py:789 ../src/DataViews/SourceView.py:68
+#: ../src/ScratchPad.py:796 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/NarrativeWeb.py:1708
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Författare"
 
-#: ../src/ScratchPad.py:790 ../src/DataViews/SourceView.py:70
+#: ../src/ScratchPad.py:797 ../src/DataViews/SourceView.py:70
 msgid "Publication Information"
 msgstr "Publiceringsinformation"
 
-#: ../src/ScratchPad.py:809 ../src/ScratchPad.py:824
+#: ../src/ScratchPad.py:816 ../src/ScratchPad.py:831
 msgid "Repository Link"
 msgstr "Länk till arkivplats"
 
-#: ../src/ScratchPad.py:1192 ../src/ScratchPad.py:1228
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1235
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Urklipp"
@@ -2629,7 +2633,7 @@ msgid "Very High"
 msgstr "Mycket hög"
 
 #: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/FindDupes.py:66
+#: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Hög"
 
@@ -2639,7 +2643,7 @@ msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/FindDupes.py:64
+#: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Låg"
 
@@ -2664,7 +2668,7 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Okänd relation mellan man och kvinna"
 
 #: ../src/Utils.py:107
-msgid "An unspecified relationship a man and woman"
+msgid "An unspecified relationship between a man and woman"
 msgstr "Ett ospecificerat förhållande mellan en man och en kvinna"
 
 #: ../src/Utils.py:123
@@ -2690,43 +2694,43 @@ msgstr "standard"
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Databasfel: %s är definierad som hans eller hennes egen förfader"
 
-#: ../src/Utils.py:1076
+#: ../src/Utils.py:1113
 msgid "Please do not force closing this important dialog."
 msgstr "Försök inte stänga den här dialogrutan med våld."
 
-#: ../src/Utils.py:1156
+#: ../src/Utils.py:1193
 msgid "TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1157
+#: ../src/Utils.py:1194
 msgid "GIVEN"
 msgstr "FÖRNAMN"
 
-#: ../src/Utils.py:1158
+#: ../src/Utils.py:1195
 msgid "PREFIX"
 msgstr "PREFIX"
 
-#: ../src/Utils.py:1160
+#: ../src/Utils.py:1197
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1161
+#: ../src/Utils.py:1198
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1162
+#: ../src/Utils.py:1199
 msgid "CALL"
 msgstr "TILLTALSNAMN"
 
-#: ../src/Utils.py:1163
+#: ../src/Utils.py:1200
 msgid "COMMON"
 msgstr "COMMON"
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "Initials"
 msgstr "Initialer"
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "INITIALS"
 msgstr "INITIALER"
 
@@ -2971,7 +2975,7 @@ msgid "Could not load a recent Family Tree."
 msgstr "Kunde inte ladda ett nyligen använt släktträd."
 
 #: ../src/ViewManager.py:1065
-msgid "Family Tree does not exists, as it has been deleted."
+msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Släktträdet saknas, då det har tagits bort."
 
 #: ../src/ViewManager.py:1121
@@ -3370,7 +3374,7 @@ msgid "Preview"
 msgstr "Förhandsgranskning"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:61
-#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:99
+#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:110
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
@@ -4115,7 +4119,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:865
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -5410,7 +5414,7 @@ msgstr ""
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2387 ../src/GrampsDbUtils/_ReadXML.py:2393
+#: ../src/GrampsDbUtils/_ReadXML.py:2393 ../src/GrampsDbUtils/_ReadXML.py:2399
 #: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:87
 #: ../src/plugins/ReadGrdb.py:100
 #, python-format
@@ -5619,17 +5623,17 @@ msgstr ""
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML-import"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:885 ../src/GrampsDbUtils/_ReadXML.py:1969
+#: ../src/GrampsDbUtils/_ReadXML.py:885 ../src/GrampsDbUtils/_ReadXML.py:1973
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1857
+#: ../src/GrampsDbUtils/_ReadXML.py:1861
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vittnets kommentar: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2405
+#: ../src/GrampsDbUtils/_ReadXML.py:2411
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
@@ -5987,13 +5991,13 @@ msgstr "Alla händelser"
 #: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
-#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
+#: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
 #: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
 #: ../src/plugins/DetAncestralReport.py:887
 #: ../src/plugins/DetDescendantReport.py:837
 #: ../src/plugins/EndOfLineReport.py:321 ../src/plugins/Eval.py:129
-#: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
+#: ../src/plugins/EventCmp.py:467 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
@@ -6001,7 +6005,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
-#: ../src/plugins/NarrativeWeb.py:3229 ../src/plugins/NotRelated.py:405
+#: ../src/plugins/NarrativeWeb.py:3229 ../src/plugins/NotRelated.py:419
 #: ../src/plugins/OnThisDay.py:145 ../src/plugins/PatchNames.py:360
 #: ../src/plugins/Rebuild.py:118 ../src/plugins/References.py:103
 #: ../src/plugins/RelCalc.py:267 ../src/plugins/RemoveUnused.py:459
@@ -6202,7 +6206,7 @@ msgstr "Huruvida skala om att passa på ett enda ark."
 
 #: ../src/plugins/AncestorTree.py:477 ../src/plugins/DescendTree.py:432
 msgid "Include Blank Pages"
-msgstr "Ta blanka sidor"
+msgstr "Ta med blanka sidor"
 
 #: ../src/plugins/AncestorTree.py:478 ../src/plugins/DescendTree.py:433
 msgid "Whether to include pages that are blank."
@@ -6609,7 +6613,7 @@ msgstr "Kalender"
 
 #. generate the report:
 #: ../src/plugins/Calendar.py:222 ../src/plugins/Calendar.py:443
-msgid "Formating months..."
+msgid "Formatting months..."
 msgstr "Formaterar månader..."
 
 #: ../src/plugins/Calendar.py:314 ../src/plugins/Calendar.py:318
@@ -6860,7 +6864,7 @@ msgstr "Ursprungligt namn"
 msgid "Capitalization Change"
 msgstr "Skiftlägesändring"
 
-#: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:279
+#: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:290
 #: ../src/plugins/ExtractCity.py:541
 msgid "Building display"
 msgstr "Förbereder visning"
@@ -7259,11 +7263,11 @@ msgstr "Kontrollera och reparera"
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt."
 
-#: ../src/plugins/CmdRef.py:243
+#: ../src/plugins/CmdRef.py:236
 msgid "Generate Commandline Plugin Reference"
 msgstr "Skapar kommandoradsbeskrivning för tilläggsprogram"
 
-#: ../src/plugins/CmdRef.py:247
+#: ../src/plugins/CmdRef.py:240
 msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
@@ -7797,7 +7801,7 @@ msgid "Pedigree Gramplet"
 msgstr "Antavelfönster"
 
 #: ../src/plugins/Desbrowser.py:56
-msgid "manual|Interactive_Descendant_Browser"
+msgid "manual|Interactive_Descendant_Browser..."
 msgstr ""
 
 #: ../src/plugins/Desbrowser.py:73
@@ -8241,60 +8245,64 @@ msgstr "Fönster för Python"
 msgid "Provides a window that can evaluate python code"
 msgstr "Gör ett fönster som kan utföra kod i Python."
 
-#: ../src/plugins/EventCmp.py:129
+#: ../src/plugins/EventCmp.py:67
+msgid "manual|Compare_Individual_Events..."
+msgstr ""
+
+#: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
 msgstr "Markering i jämförelsefilter för händelser"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Filter selection"
 msgstr "Filterval"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Event Comparison tool"
 msgstr "Verktyg för händelsejämförelse"
 
-#: ../src/plugins/EventCmp.py:167
+#: ../src/plugins/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Jämför händelser"
 
-#: ../src/plugins/EventCmp.py:168
+#: ../src/plugins/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Väljer personer"
 
-#: ../src/plugins/EventCmp.py:180
+#: ../src/plugins/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Inga träffar upptäcktes"
 
-#: ../src/plugins/EventCmp.py:230 ../src/plugins/EventCmp.py:253
+#: ../src/plugins/EventCmp.py:241 ../src/plugins/EventCmp.py:264
 msgid "Event Comparison Results"
 msgstr "Resultat av Händelsejämförelse"
 
-#: ../src/plugins/EventCmp.py:240
+#: ../src/plugins/EventCmp.py:251
 msgid " Date"
 msgstr " Datum"
 
 #. This won't be shown in a tree
-#: ../src/plugins/EventCmp.py:242
+#: ../src/plugins/EventCmp.py:253
 msgid " Place"
 msgstr " Plats"
 
-#: ../src/plugins/EventCmp.py:286
+#: ../src/plugins/EventCmp.py:297
 msgid "Comparing Events"
 msgstr "Jämför händelser"
 
-#: ../src/plugins/EventCmp.py:287
+#: ../src/plugins/EventCmp.py:298
 msgid "Building data"
 msgstr "Konstruerar data"
 
-#: ../src/plugins/EventCmp.py:379
+#: ../src/plugins/EventCmp.py:390
 msgid "Select filename"
 msgstr "Välj fil"
 
-#: ../src/plugins/EventCmp.py:455
+#: ../src/plugins/EventCmp.py:466
 msgid "Compare Individual Events"
 msgstr "Jämför personliga händelser"
 
-#: ../src/plugins/EventCmp.py:459
+#: ../src/plugins/EventCmp.py:470
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
@@ -8813,9 +8821,13 @@ msgstr "Filter matchade %d poster."
 msgid "Display filtered data"
 msgstr "Visa filtrerade data"
 
-#: ../src/plugins/FindDupes.py:65
+#: ../src/plugins/FindDupes.py:64
 msgid "Medium"
 msgstr "Medel"
+
+#: ../src/plugins/FindDupes.py:68
+msgid "manual|Find_Possible_Duplicate_People..."
+msgstr ""
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
@@ -9056,8 +9068,8 @@ msgid "Generating Family Lines"
 msgstr "Skapa släktlinjer"
 
 #. start the progress indicator
-#: ../src/plugins/GVFamilyLines.py:297 ../src/plugins/NotRelated.py:83
-#: ../src/plugins/NotRelated.py:209
+#: ../src/plugins/GVFamilyLines.py:297 ../src/plugins/NotRelated.py:94
+#: ../src/plugins/NotRelated.py:223
 msgid "Starting"
 msgstr "Börjar"
 
@@ -10471,44 +10483,53 @@ msgstr "Beskrivande webbplats"
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Skapar webbsidor (HTML) för personer eller en grupp av personer."
 
-#: ../src/plugins/NotRelated.py:63
+#: ../src/plugins/NotRelated.py:59
+msgid "manual|Not_Related..."
+msgstr ""
+
+#: ../src/plugins/NotRelated.py:71
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Ej släkt med \"%s\""
 
-#: ../src/plugins/NotRelated.py:210
+#: ../src/plugins/NotRelated.py:153
+#, python-format
+msgid "Everyone in the database is related to %s"
+msgstr "Samtliga i databasen är släkt med %s"
+
+#: ../src/plugins/NotRelated.py:224
 #, python-format
 msgid "Setting marker for %d people"
 msgstr "Gör markering för %d personer"
 
-#: ../src/plugins/NotRelated.py:242
+#: ../src/plugins/NotRelated.py:256
 #, python-format
 msgid "Finding relationships between %d people"
 msgstr "Beräknar släktskap mellan %d personer"
 
-#: ../src/plugins/NotRelated.py:307
+#: ../src/plugins/NotRelated.py:321
 msgid "Looking for 1 person"
 msgstr "Letar efter 1 person"
 
-#: ../src/plugins/NotRelated.py:309
+#: ../src/plugins/NotRelated.py:323
 #, python-format
 msgid "Looking for %d people"
 msgstr "Letar efter %d personer"
 
-#: ../src/plugins/NotRelated.py:332
+#: ../src/plugins/NotRelated.py:346
 msgid "Looking up the name for 1 person"
 msgstr "Slår upp namnet för 1 person"
 
-#: ../src/plugins/NotRelated.py:334
+#: ../src/plugins/NotRelated.py:348
 #, python-format
 msgid "Looking up the names for %d people"
 msgstr "Slår upp namnen för %d personer"
 
-#: ../src/plugins/NotRelated.py:404
+#: ../src/plugins/NotRelated.py:418
 msgid "Not Related"
 msgstr "Ej släkt"
 
-#: ../src/plugins/NotRelated.py:408
+#: ../src/plugins/NotRelated.py:422
 msgid "Find people who are not in any way related to the selected person"
 msgstr "Hitta personer, som inte på något sätt är släkt med den valda personen"
 
@@ -12129,7 +12150,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:1071
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -12138,7 +12159,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:901
+#: ../src/ReportBase/_GraphvizReportDialog.py:1051
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -12255,57 +12276,57 @@ msgstr "Överkant"
 msgid "Bottom"
 msgstr "Nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:240
+#: ../src/ReportBase/_GraphvizReportDialog.py:125
 msgid "Processing File"
 msgstr "Bearbetar diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:607
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Graphviz Dot File"
 msgstr "Graphviz dot-fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:658
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "PNG image"
 msgstr "PNG-bild"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:749
+#: ../src/ReportBase/_GraphvizReportDialog.py:899
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:906
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12314,27 +12335,27 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:912
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:913
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:766
+#: ../src/ReportBase/_GraphvizReportDialog.py:916
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12344,11 +12365,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12358,11 +12379,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Giltigt endast för dot, postscript och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12371,24 +12392,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:817
+#: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
@@ -12397,11 +12418,11 @@ msgstr ""
 "Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, "
 "försök med tal som 100 eller 300 DPI. För postscript eller pdf använd 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12411,11 +12432,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:843
+#: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12426,32 +12447,32 @@ msgstr ""
 "detta avståndet mellan rader."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:855
+#: ../src/ReportBase/_GraphvizReportDialog.py:1005
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
+#: ../src/ReportBase/_GraphvizReportDialog.py:1007
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:1010
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:863
+#: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:867
+#: ../src/ReportBase/_GraphvizReportDialog.py:1017
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:893
-#: ../src/ReportBase/_GraphvizReportDialog.py:948
+#: ../src/ReportBase/_GraphvizReportDialog.py:1043
+#: ../src/ReportBase/_GraphvizReportDialog.py:1098
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
@@ -20339,7 +20360,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find "
-"possible duplicate</b> people allows you to located (and merge) entries of "
+"possible duplicate</b> people allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
 "<b>Dubblerade poster</b>: Med <b>Verktyg &gt; Databashantering &gt; Hitta "
@@ -20348,8 +20369,8 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
-"<b>Editing The Relationship of a Child</b>: Not all children are the related "
-"by birth to their parents. You can edit the relationship of a child to each "
+"<b>Editing The Relationship of a Child</b>: Not all children are related by "
+"birth to their parents. You can edit the relationship of a child to each "
 "parent by making the child the active person. In the Relationship View, "
 "click on the third icon to the right of the &quot;Parents:&quot; entry. This "
 "brings up the Family Editor. Now select the child, right-click and choose "
@@ -20744,7 +20765,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:40
 msgid ""
-"GRAMPS comes with a rich set of tools. These allows you to undertake "
+"GRAMPS comes with a rich set of tools. These allow you to undertake "
 "operations such as checking database for errors and consistency, as well as "
 "research and analysis tools such as event comparison, finding duplicate "
 "people, interactive descendant browser, and others. All tools can be "
@@ -20768,11 +20789,11 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
-"GRAMPS has been translated to 15 languages. If GRAMPS supports your language "
-"and it is not being displayed, set the default language on your machine and "
-"restart GRAMPS."
+"GRAMPS has been translated to more than 20 languages. If GRAMPS supports "
+"your language and it is not being displayed, set the default language on "
+"your machine and restart GRAMPS."
 msgstr ""
-"GRAMPS har översatts till 15 språk. Om GRAMPS stödjer ditt språk och det "
+"GRAMPS har översatts till mer än 20 språk. Om GRAMPS stödjer ditt språk och det "
 "inte visas, så ställ in standardspråket på din maskin och starta om GRAMPS."
 
 #: ../src/data/tips.xml.in.h:43
@@ -20858,10 +20879,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
-"GRAMPS works even when using KDE, as long as the required GNOME libraries "
-"are installed."
+"GRAMPS works even when using KDE, as long as the required GTK libraries are "
+"installed."
 msgstr ""
-"GRAMPS fungerar också när KDE används, bara de nödvändiga GNOME-biblioteken "
+"GRAMPS fungerar också när KDE används, bara de nödvändiga GTK-biblioteken "
 "är installerade."
 
 #: ../src/data/tips.xml.in.h:52
@@ -20879,7 +20900,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:53
 msgid ""
 "Go from what you know to what you do not. Always record everything that is "
-"known before making conjecture. Often the facts at hand suggest plenty of "
+"known before making conjectures. Often the facts at hand suggest plenty of "
 "direction for more research. Don't waste time looking through thousands of "
 "records hoping for a trail when you have other unexplored leads."
 msgstr ""
