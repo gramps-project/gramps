@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-05 13:11+0200\n"
-"PO-Revision-Date: 2008-09-14 12:22+0200\n"
+"POT-Creation-Date: 2008-10-20 08:52+0200\n"
+"PO-Revision-Date: 2008-10-20 08:59+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,12 +112,12 @@ msgid "Organize Bookmarks"
 msgstr "Organisere bokmerker"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
-#: ../src/ScratchPad.py:372 ../src/ScratchPad.py:428 ../src/ScratchPad.py:461
-#: ../src/ScratchPad.py:530 ../src/ScratchPad.py:561 ../src/ScratchPad.py:578
-#: ../src/ScratchPad.py:579 ../src/ScratchPad.py:598 ../src/ScratchPad.py:648
-#: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
-#: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
+#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:193
+#: ../src/ScratchPad.py:379 ../src/ScratchPad.py:435 ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:537 ../src/ScratchPad.py:568 ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586 ../src/ScratchPad.py:605 ../src/ScratchPad.py:655
+#: ../src/ScratchPad.py:688 ../src/ScratchPad.py:742 ../src/ScratchPad.py:753
+#: ../src/ScratchPad.py:832 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
 #: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
 #: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
@@ -130,7 +130,7 @@ msgstr "Organisere bokmerker"
 #: ../src/plugins/IndivComplete.py:426 ../src/plugins/MarkerReport.py:118
 #: ../src/plugins/NarrativeWeb.py:848 ../src/plugins/NarrativeWeb.py:992
 #: ../src/plugins/NarrativeWeb.py:1119 ../src/plugins/NarrativeWeb.py:1657
-#: ../src/plugins/NarrativeWeb.py:1750 ../src/plugins/NotRelated.py:96
+#: ../src/plugins/NarrativeWeb.py:1750 ../src/plugins/NotRelated.py:107
 #: ../src/plugins/PatchNames.py:212 ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:192
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:544
@@ -159,8 +159,8 @@ msgstr "Navn"
 #: ../src/Selectors/_SelectNote.py:59 ../src/Selectors/_SelectObject.py:74
 #: ../src/Selectors/_SelectPerson.py:50 ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
-#: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:238
-#: ../src/plugins/NotRelated.py:97 ../src/plugins/PatchNames.py:203
+#: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:249
+#: ../src/plugins/NotRelated.py:108 ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:186
 #: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:788
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -521,7 +521,7 @@ msgstr "Klarte ikke å opprette databasekatalog: "
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/DbManager.py:1016 ../src/ScratchPad.py:94
+#: ../src/DbManager.py:1016 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -720,7 +720,7 @@ msgstr "_Ikke ta med poster som er markert som private"
 msgid "_Restrict data on living people"
 msgstr "Beg_rens data om levende personer"
 
-#: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:134
+#: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:145
 #: ../src/plugins/ExportCSV.py:182 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/WriteFtree.py:87
 #: ../src/plugins/WriteGeneWeb.py:92 ../src/ReportBase/_ReportUtils.py:2947
@@ -836,7 +836,7 @@ msgstr "Generelt"
 msgid "Database"
 msgstr "Database"
 
-#: ../src/GrampsCfg.py:155 ../src/ScratchPad.py:611 ../src/ScratchPad.py:619
+#: ../src/GrampsCfg.py:155 ../src/ScratchPad.py:618 ../src/ScratchPad.py:626
 #: ../src/plugins/CustomBookText.py:113 ../src/plugins/MarkerReport.py:387
 #: ../src/plugins/NarrativeWeb.py:707 ../src/plugins/SimpleBookTitle.py:167
 #: ../src/plugins/SimpleBookTitle.py:168 ../src/plugins/SimpleBookTitle.py:169
@@ -861,8 +861,8 @@ msgstr "Forsker"
 msgid "Marker Colors"
 msgstr "Markeringsfarger"
 
-#: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:152
-#: ../src/ScratchPad.py:169 ../src/DisplayTabs/_AddrEmbedList.py:70
+#: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:159
+#: ../src/ScratchPad.py:176 ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:148 ../src/plugins/FamilyGroup.py:285
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
@@ -914,7 +914,7 @@ msgstr "E-post:"
 #. ------------------------------------------------------------------------
 #: ../src/GrampsCfg.py:193 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117 ../src/plugins/AgeOnDate.py:53
-#: ../src/plugins/EventCmp.py:238 ../src/plugins/ExportCSV.py:364
+#: ../src/plugins/EventCmp.py:249 ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
 #: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
@@ -929,7 +929,7 @@ msgstr "Person"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:195 ../src/gramps_main.py:106 ../src/ScratchPad.py:582
+#: ../src/GrampsCfg.py:195 ../src/gramps_main.py:106 ../src/ScratchPad.py:589
 #: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:465
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
@@ -940,7 +940,7 @@ msgstr "Person"
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/GrampsCfg.py:197 ../src/ScratchPad.py:282 ../src/ScratchPad.py:360
+#: ../src/GrampsCfg.py:197 ../src/ScratchPad.py:289 ../src/ScratchPad.py:367
 #: ../src/Simple/_SimpleTable.py:219 ../src/DataViews/EventView.py:73
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -962,7 +962,7 @@ msgstr "Sted"
 msgid "Source"
 msgstr "Kilde"
 
-#: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:632 ../src/ScratchPad.py:645
+#: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
 #: ../src/Editors/_EditPerson.py:470 ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
 msgstr "Mediaobjekt"
@@ -982,7 +982,7 @@ msgid "Repository"
 msgstr "Bibliotek"
 
 #. ###############################
-#: ../src/GrampsCfg.py:207 ../src/ScratchPad.py:311 ../src/ToolTips.py:159
+#: ../src/GrampsCfg.py:207 ../src/ScratchPad.py:318 ../src/ToolTips.py:159
 #: ../src/Simple/_SimpleTable.py:227 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
@@ -1056,7 +1056,7 @@ msgstr "Etternavn"
 #: ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:354 ../src/GrampsCfg.py:355
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
-#: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:581
+#: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
 msgid "Given"
@@ -1064,7 +1064,7 @@ msgstr "Fornavn"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
-#: ../src/ScratchPad.py:586 ../src/Utils.py:1197
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
 msgid "Suffix"
 msgstr "Etterstavelse"
@@ -1086,7 +1086,7 @@ msgstr "Fornavn"
 msgid "SURNAME"
 msgstr "ETTERNAVN"
 
-#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:583 ../src/Utils.py:1198
+#: ../src/GrampsCfg.py:354 ../src/ScratchPad.py:590 ../src/Utils.py:1198
 msgid "Patronymic"
 msgstr "Avstamningsnavn"
 
@@ -1245,7 +1245,7 @@ msgstr "Både Formater navn og definisjon må defineres"
 msgid "Family Trees"
 msgstr "Familietrær"
 
-#: ../src/gramps_main.py:98 ../src/ScratchPad.py:407 ../src/ScratchPad.py:415
+#: ../src/gramps_main.py:98 ../src/ScratchPad.py:414 ../src/ScratchPad.py:422
 #: ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr "Egenskap"
@@ -1254,7 +1254,7 @@ msgstr "Egenskap"
 msgid "Add Bookmark"
 msgstr " Legg til bokmerke"
 
-#: ../src/gramps_main.py:103 ../src/ScratchPad.py:170 ../src/ScratchPad.py:359
+#: ../src/gramps_main.py:103 ../src/ScratchPad.py:177 ../src/ScratchPad.py:366
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
 #: ../src/DisplayTabs/_EventEmbedList.py:65
@@ -1317,7 +1317,7 @@ msgstr "Notater"
 #: ../src/DataViews/RelationView.py:751 ../src/DataViews/RelationView.py:785
 #: ../src/plugins/all_relations.py:301 ../src/plugins/NarrativeWeb.py:860
 #: ../src/plugins/NarrativeWeb.py:1000 ../src/plugins/NarrativeWeb.py:2258
-#: ../src/plugins/NotRelated.py:98
+#: ../src/plugins/NotRelated.py:109
 msgid "Parents"
 msgstr "Foreldre"
 
@@ -1352,8 +1352,8 @@ msgstr "Rapporter"
 msgid "Repositories"
 msgstr "Bibliotek"
 
-#: ../src/gramps_main.py:123 ../src/ScratchPad.py:185 ../src/ScratchPad.py:427
-#: ../src/ScratchPad.py:460 ../src/DataViews/SourceView.py:94
+#: ../src/gramps_main.py:123 ../src/ScratchPad.py:192 ../src/ScratchPad.py:434
+#: ../src/ScratchPad.py:467 ../src/DataViews/SourceView.py:94
 #: ../src/plugins/NarrativeWeb.py:464 ../src/plugins/NarrativeWeb.py:1632
 #: ../src/plugins/NarrativeWeb.py:1649 ../src/plugins/NarrativeWeb.py:1692
 msgid "Sources"
@@ -1923,29 +1923,33 @@ msgstr "Sortere relasjonstyper"
 msgid "Reorder Relationships: %s"
 msgstr "Sortere relasjonstyper: %s"
 
-#: ../src/ScratchPad.py:171 ../src/ScratchPad.py:198 ../src/ScratchPad.py:210
+#: ../src/ScratchPad.py:68
+msgid "manual|Using_the_Clipboard"
+msgstr "Bruk av Utklippstavlen"
+
+#: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
 msgid "Location"
 msgstr "Plassering"
 
-#: ../src/ScratchPad.py:177 ../src/ScratchPad.py:215 ../src/ToolTips.py:149
+#: ../src/ScratchPad.py:184 ../src/ScratchPad.py:222 ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../src/ScratchPad.py:227
+#: ../src/ScratchPad.py:234
 msgid "Event Link"
 msgstr "Hendelseskobling"
 
-#: ../src/ScratchPad.py:344 ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:351 ../src/ScratchPad.py:364
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Familiehendelser"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:358 ../src/ScratchPad.py:416 ../src/ScratchPad.py:449
-#: ../src/ScratchPad.py:587 ../src/ScratchPad.py:647 ../src/ScratchPad.py:680
-#: ../src/ScratchPad.py:826 ../src/ScratchPad.py:898 ../src/ScratchPad.py:904
+#: ../src/ScratchPad.py:365 ../src/ScratchPad.py:423 ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:594 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
+#: ../src/ScratchPad.py:833 ../src/ScratchPad.py:905 ../src/ScratchPad.py:911
 #: ../src/Merge/_MergePerson.py:182 ../src/DataViews/EventView.py:71
 #: ../src/DataViews/MediaView.py:82 ../src/DataViews/NoteView.py:69
 #: ../src/DataViews/RepositoryView.py:69
@@ -1970,11 +1974,11 @@ msgstr "Familiehendelser"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:71
+#: ../src/ScratchPad.py:368 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Årsak"
 
-#: ../src/ScratchPad.py:362 ../src/ScratchPad.py:396
+#: ../src/ScratchPad.py:369 ../src/ScratchPad.py:403
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:53
 #: ../src/plugins/MarkerReport.py:307 ../src/gen/lib/attrtype.py:65
@@ -1982,40 +1986,40 @@ msgstr "Årsak"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../src/ScratchPad.py:371 ../src/ScratchPad.py:597 ../src/ScratchPad.py:745
+#: ../src/ScratchPad.py:378 ../src/ScratchPad.py:604 ../src/ScratchPad.py:752
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Primærkilde"
 
-#: ../src/ScratchPad.py:385 ../src/ScratchPad.py:393
+#: ../src/ScratchPad.py:392 ../src/ScratchPad.py:400
 msgid "Url"
 msgstr "Nettadresse"
 
-#: ../src/ScratchPad.py:394 ../src/DataViews/MediaView.py:83
+#: ../src/ScratchPad.py:401 ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Sti"
 
-#: ../src/ScratchPad.py:418 ../src/ScratchPad.py:451 ../src/ScratchPad.py:900
-#: ../src/ScratchPad.py:906 ../src/DisplayTabs/_AttrEmbedList.py:61
+#: ../src/ScratchPad.py:425 ../src/ScratchPad.py:458 ../src/ScratchPad.py:907
+#: ../src/ScratchPad.py:913 ../src/DisplayTabs/_AttrEmbedList.py:61
 #: ../src/DisplayTabs/_DataEmbedList.py:58 ../src/plugins/PatchNames.py:209
 msgid "Value"
 msgstr "Verdi"
 
-#: ../src/ScratchPad.py:440 ../src/ScratchPad.py:448
+#: ../src/ScratchPad.py:447 ../src/ScratchPad.py:455
 msgid "Family Attribute"
 msgstr "Familieegenskap"
 
-#: ../src/ScratchPad.py:473 ../src/ScratchPad.py:502
+#: ../src/ScratchPad.py:480 ../src/ScratchPad.py:509
 msgid "Source Reference"
 msgstr "Kildehenvisning"
 
-#: ../src/ScratchPad.py:485
+#: ../src/ScratchPad.py:492
 msgid "not available|NA"
 msgstr "utilgjengelig"
 
-#: ../src/ScratchPad.py:491
+#: ../src/ScratchPad.py:498
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "BindSide: %(pag)s -- %(sourcetext)s"
@@ -2026,9 +2030,9 @@ msgstr "BindSide: %(pag)s -- %(sourcetext)s"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:503 ../src/ScratchPad.py:585 ../src/ScratchPad.py:646
-#: ../src/ScratchPad.py:679 ../src/ScratchPad.py:787 ../src/ScratchPad.py:899
-#: ../src/ScratchPad.py:905 ../src/Utils.py:1193
+#: ../src/ScratchPad.py:510 ../src/ScratchPad.py:592 ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:686 ../src/ScratchPad.py:794 ../src/ScratchPad.py:906
+#: ../src/ScratchPad.py:912 ../src/Utils.py:1193
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:66
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2041,50 +2045,50 @@ msgstr "BindSide: %(pag)s -- %(sourcetext)s"
 msgid "Title"
 msgstr "Tittel"
 
-#: ../src/ScratchPad.py:504 ../src/DisplayTabs/_SourceEmbedList.py:65
+#: ../src/ScratchPad.py:511 ../src/DisplayTabs/_SourceEmbedList.py:65
 #: ../src/plugins/NarrativeWeb.py:700
 msgid "Page"
 msgstr "Side"
 
-#: ../src/ScratchPad.py:516 ../src/ScratchPad.py:529
+#: ../src/ScratchPad.py:523 ../src/ScratchPad.py:536
 msgid "Repository Reference"
 msgstr "Behold henvisningen"
 
-#: ../src/ScratchPad.py:531 ../src/DisplayTabs/_RepoEmbedList.py:64
+#: ../src/ScratchPad.py:538 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
 msgstr "Telefonnummer"
 
-#: ../src/ScratchPad.py:532
+#: ../src/ScratchPad.py:539
 msgid "Media Type"
 msgstr "Medietype"
 
-#: ../src/ScratchPad.py:544
+#: ../src/ScratchPad.py:551
 msgid "Event Reference"
 msgstr "Redigere hendelse"
 
-#: ../src/ScratchPad.py:580
+#: ../src/ScratchPad.py:587
 msgid "Call Name"
 msgstr "Kallenavn"
 
-#: ../src/ScratchPad.py:584 ../src/Utils.py:1195
+#: ../src/ScratchPad.py:591 ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 msgid "Prefix"
 msgstr "Forstavelse"
 
-#: ../src/ScratchPad.py:666 ../src/ScratchPad.py:678
+#: ../src/ScratchPad.py:673 ../src/ScratchPad.py:685
 msgid "Media Reference"
 msgstr "Mediareferanse"
 
-#: ../src/ScratchPad.py:692 ../src/Editors/_EditPersonRef.py:142
+#: ../src/ScratchPad.py:699 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Personreferanse"
 
-#: ../src/ScratchPad.py:709 ../src/ScratchPad.py:734
+#: ../src/ScratchPad.py:716 ../src/ScratchPad.py:741
 msgid "Person Link"
 msgstr "Personlenke"
 
-#: ../src/ScratchPad.py:736 ../src/ToolTips.py:200
+#: ../src/ScratchPad.py:743 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:137 ../src/DataViews/RelationView.py:556
 #: ../src/plugins/all_relations.py:266 ../src/plugins/FamilyGroup.py:436
 #: ../src/plugins/FamilyGroup.py:438 ../src/plugins/lineage.py:92
@@ -2094,31 +2098,31 @@ msgstr "Personlenke"
 msgid "Birth"
 msgstr "Født"
 
-#: ../src/ScratchPad.py:768 ../src/ScratchPad.py:786
+#: ../src/ScratchPad.py:775 ../src/ScratchPad.py:793
 msgid "Source Link"
 msgstr "Kildehenvisning"
 
-#: ../src/ScratchPad.py:788 ../src/DataViews/SourceView.py:69
+#: ../src/ScratchPad.py:795 ../src/DataViews/SourceView.py:69
 #: ../src/plugins/NarrativeWeb.py:1710
 msgid "Abbreviation"
 msgstr "Forkortelse"
 
-#: ../src/ScratchPad.py:789 ../src/DataViews/SourceView.py:68
+#: ../src/ScratchPad.py:796 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/NarrativeWeb.py:1708
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Forfatter"
 
-#: ../src/ScratchPad.py:790 ../src/DataViews/SourceView.py:70
+#: ../src/ScratchPad.py:797 ../src/DataViews/SourceView.py:70
 msgid "Publication Information"
 msgstr "Publikasjonsinformasjon"
 
-#: ../src/ScratchPad.py:809 ../src/ScratchPad.py:824
+#: ../src/ScratchPad.py:816 ../src/ScratchPad.py:831
 msgid "Repository Link"
 msgstr "Bibliotekshenvisning"
 
-#: ../src/ScratchPad.py:1192 ../src/ScratchPad.py:1228
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1235
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Utklippstavle"
@@ -2550,7 +2554,7 @@ msgid "Very High"
 msgstr "Veldig høy"
 
 #: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/FindDupes.py:66
+#: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Høy"
 
@@ -2560,7 +2564,7 @@ msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/FindDupes.py:64
+#: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Lav"
 
@@ -2585,7 +2589,7 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Ukjent relasjon mellom mann og kvinne"
 
 #: ../src/Utils.py:107
-msgid "An unspecified relationship a man and woman"
+msgid "An unspecified relationship between a man and woman"
 msgstr "En uspesifisert relasjon mellom mann og kvinne"
 
 #: ../src/Utils.py:123
@@ -2880,7 +2884,7 @@ msgid "Could not load a recent Family Tree."
 msgstr "Kunne ikke laste et av de siste Slektstrærne."
 
 #: ../src/ViewManager.py:1065
-msgid "Family Tree does not exists, as it has been deleted."
+msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Slektstre finnes ikke, eller det er blitt slettet."
 
 #: ../src/ViewManager.py:1121
@@ -3261,7 +3265,7 @@ msgid "Preview"
 msgstr "Forhåndsvisning"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:61
-#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:99
+#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:110
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
@@ -5180,7 +5184,7 @@ msgstr "Databasen kan ikke lagres fordi du ikke har rettigheter til å skrive ti
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2387 ../src/GrampsDbUtils/_ReadXML.py:2393
+#: ../src/GrampsDbUtils/_ReadXML.py:2393 ../src/GrampsDbUtils/_ReadXML.py:2399
 #: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:87
 #: ../src/plugins/ReadGrdb.py:100
 #, python-format
@@ -5376,17 +5380,17 @@ msgstr "Den åpnede fila har mediasti %s, som er i konflikt med mediastien til d
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML-import"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:885 ../src/GrampsDbUtils/_ReadXML.py:1969
+#: ../src/GrampsDbUtils/_ReadXML.py:885 ../src/GrampsDbUtils/_ReadXML.py:1973
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vitners navn: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1857
+#: ../src/GrampsDbUtils/_ReadXML.py:1861
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vitners kommentar: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2405
+#: ../src/GrampsDbUtils/_ReadXML.py:2411
 #, python-format
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "GRAMPS-filen du importerer ble laget med GRAMPS versjon %s, men du kjører en eldre versjon %s. Filen vil ikke bli importert. Vennligst oppgrader til siste versjon av GRAMPS og prøv på nytt."
@@ -5662,7 +5666,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/DetAncestralReport.py:887
 #: ../src/plugins/DetDescendantReport.py:837
 #: ../src/plugins/EndOfLineReport.py:321 ../src/plugins/Eval.py:129
-#: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
+#: ../src/plugins/EventCmp.py:467 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
@@ -5670,7 +5674,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
-#: ../src/plugins/NarrativeWeb.py:3229 ../src/plugins/NotRelated.py:405
+#: ../src/plugins/NarrativeWeb.py:3229 ../src/plugins/NotRelated.py:419
 #: ../src/plugins/OnThisDay.py:145 ../src/plugins/PatchNames.py:360
 #: ../src/plugins/Rebuild.py:118 ../src/plugins/References.py:103
 #: ../src/plugins/RelCalc.py:267 ../src/plugins/RemoveUnused.py:459
@@ -6276,8 +6280,8 @@ msgstr "Kalender"
 
 #. generate the report:
 #: ../src/plugins/Calendar.py:222 ../src/plugins/Calendar.py:443
-msgid "Formating months..."
-msgstr "Formattere måneder..."
+msgid "Formatting months..."
+msgstr "Formatere måneder..."
 
 #: ../src/plugins/Calendar.py:314 ../src/plugins/Calendar.py:318
 msgid "Filtering data..."
@@ -6527,7 +6531,7 @@ msgstr "Opprinnelige navn"
 msgid "Capitalization Change"
 msgstr "Endringer i store/små bokstaver"
 
-#: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:279
+#: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:290
 #: ../src/plugins/ExtractCity.py:541
 msgid "Building display"
 msgstr "Oppdaterer visningen"
@@ -7406,8 +7410,8 @@ msgid "Pedigree Gramplet"
 msgstr "Anetavlevindu"
 
 #: ../src/plugins/Desbrowser.py:56
-msgid "manual|Interactive_Descendant_Browser"
-msgstr "Interaktiv_Etterkommernavigering"
+msgid "manual|Interactive_Descendant_Browser..."
+msgstr "Interaktiv_Etterkommernavigering..."
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
@@ -7850,60 +7854,64 @@ msgstr "Evalueringsvindu for Python"
 msgid "Provides a window that can evaluate python code"
 msgstr "Viser et vindu som kan evaluere python-kode"
 
-#: ../src/plugins/EventCmp.py:129
+#: ../src/plugins/EventCmp.py:67
+msgid "manual|Compare_Individual_Events..."
+msgstr "Sammenligne enkelthendelser..."
+
+#: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
 msgstr "Filtervalg for sammenligning av hendelser"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Filter selection"
 msgstr "Filtervalg"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Event Comparison tool"
 msgstr "Verktøy for sammenligning av hendelser"
 
-#: ../src/plugins/EventCmp.py:167
+#: ../src/plugins/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Sammenlign hendelser"
 
-#: ../src/plugins/EventCmp.py:168
+#: ../src/plugins/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Velger personer"
 
-#: ../src/plugins/EventCmp.py:180
+#: ../src/plugins/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Ingen treff ble funnet"
 
-#: ../src/plugins/EventCmp.py:230 ../src/plugins/EventCmp.py:253
+#: ../src/plugins/EventCmp.py:241 ../src/plugins/EventCmp.py:264
 msgid "Event Comparison Results"
 msgstr "Resultat av hendelsessammenligning"
 
-#: ../src/plugins/EventCmp.py:240
+#: ../src/plugins/EventCmp.py:251
 msgid " Date"
 msgstr " Dato"
 
 #. This won't be shown in a tree
-#: ../src/plugins/EventCmp.py:242
+#: ../src/plugins/EventCmp.py:253
 msgid " Place"
 msgstr " Sted"
 
-#: ../src/plugins/EventCmp.py:286
+#: ../src/plugins/EventCmp.py:297
 msgid "Comparing Events"
 msgstr "Sammenligne hendelser"
 
-#: ../src/plugins/EventCmp.py:287
+#: ../src/plugins/EventCmp.py:298
 msgid "Building data"
 msgstr "Bygger data"
 
-#: ../src/plugins/EventCmp.py:379
+#: ../src/plugins/EventCmp.py:390
 msgid "Select filename"
 msgstr "Velg en fil"
 
-#: ../src/plugins/EventCmp.py:455
+#: ../src/plugins/EventCmp.py:466
 msgid "Compare Individual Events"
 msgstr "Sammenligne enkelthendelser"
 
-#: ../src/plugins/EventCmp.py:459
+#: ../src/plugins/EventCmp.py:470
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Hjelper til med å analysere data ved å la deg lage egne filtre. Disse kan brukes på databasen for å finne hendelser som ligner på hverandre"
 
@@ -8410,9 +8418,13 @@ msgstr "Filter samsvarer med %d poster."
 msgid "Display filtered data"
 msgstr "Vis filtrert data"
 
-#: ../src/plugins/FindDupes.py:65
+#: ../src/plugins/FindDupes.py:64
 msgid "Medium"
 msgstr "Medium"
+
+#: ../src/plugins/FindDupes.py:68
+msgid "manual|Find_Possible_Duplicate_People..."
+msgstr "Finn mulig duplikate personer..."
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
@@ -8634,8 +8646,8 @@ msgid "Generating Family Lines"
 msgstr "Lager Slektslinjer"
 
 #. start the progress indicator
-#: ../src/plugins/GVFamilyLines.py:297 ../src/plugins/NotRelated.py:83
-#: ../src/plugins/NotRelated.py:209
+#: ../src/plugins/GVFamilyLines.py:297 ../src/plugins/NotRelated.py:94
+#: ../src/plugins/NotRelated.py:223
 msgid "Starting"
 msgstr "Starter"
 
@@ -9921,49 +9933,53 @@ msgstr "Fortellende nettsider"
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Lager nettsider (HTML) for personer, eller for en gruppe med personer"
 
-#: ../src/plugins/NotRelated.py:63
+#: ../src/plugins/NotRelated.py:59
+msgid "manual|Not_Related..."
+msgstr "Ikke i slekt..."
+
+#: ../src/plugins/NotRelated.py:71
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Ikke i slekt med \"%s\""
 
-#: ../src/plugins/NotRelated.py:142
+#: ../src/plugins/NotRelated.py:153
 #, python-format
 msgid "Everyone in the database is related to %s"
 msgstr "Alle i databasen er i slekt med %s"
 
-#: ../src/plugins/NotRelated.py:210
+#: ../src/plugins/NotRelated.py:224
 #, python-format
 msgid "Setting marker for %d people"
 msgstr "Setter markering for %d personer"
 
-#: ../src/plugins/NotRelated.py:242
+#: ../src/plugins/NotRelated.py:256
 #, python-format
 msgid "Finding relationships between %d people"
 msgstr "Beregner relasjonen mellom %d personer"
 
-#: ../src/plugins/NotRelated.py:307
+#: ../src/plugins/NotRelated.py:321
 msgid "Looking for 1 person"
 msgstr "Søker etter 1 person"
 
-#: ../src/plugins/NotRelated.py:309
+#: ../src/plugins/NotRelated.py:323
 #, python-format
 msgid "Looking for %d people"
 msgstr "Søker etter %d personer"
 
-#: ../src/plugins/NotRelated.py:332
+#: ../src/plugins/NotRelated.py:346
 msgid "Looking up the name for 1 person"
 msgstr "Henter navn for 1 person"
 
-#: ../src/plugins/NotRelated.py:334
+#: ../src/plugins/NotRelated.py:348
 #, python-format
 msgid "Looking up the names for %d people"
 msgstr "Henter navn for %d personer"
 
-#: ../src/plugins/NotRelated.py:404
+#: ../src/plugins/NotRelated.py:418
 msgid "Not Related"
 msgstr "Ikke i slekt"
 
-#: ../src/plugins/NotRelated.py:408
+#: ../src/plugins/NotRelated.py:422
 msgid "Find people who are not in any way related to the selected person"
 msgstr "Finn personer som ikke på noen måte er i slekt med den valgte personen"
 
@@ -19008,15 +19024,15 @@ msgid "<b>Different Views</b>: There are nine different views for navigating you
 msgstr "<b>Forskjellige visninger</b>: Det er seks forskjellige visninger for å navigere i dine slektsdata: Personer, familie, stamtavle, kilder, steder og media. Alle disse hjelper deg å utføre en eller flere av dine oppgaver."
 
 #: ../src/data/tips.xml.in.h:7
-msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Dobble oppføringer</b>: <b>Verktøy &gt; Databasebehandling &gt; Finn personer med doble oppføringer</b> gir deg muligheten til å finne (og flette sammen) inntastinger av personer som er lagt inn flere ganger i databasen."
+msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to locate (and merge) entries of the same person entered more than once in the database."
+msgstr "<b>Doble oppføringer</b>: <b>Verktøy &gt; Databasebehandling &gt; Finn personer med doble oppføringer</b> gir deg muligheten til å finne (og flette sammen) inntastinger av personer som er lagt inn flere ganger i databasen."
 
 # Sponset? betyr egentlig at man i gamle dager tok til
 # seg barn som ikke var ens egne ... men hva bør dette være på norsk?
 # tror ikke sponset er noe fornuftig ord dessverre ... -Jørgen
 #: ../src/data/tips.xml.in.h:8
-msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr "<b>Rediger relasjonen til et barn</b>: Ikke alle barn er relatert til sine foreldre ved en fødsel. Du kan endre relasjonen for et barn til hver av foreldrene ved å velge barnet som aktiv person.  I Relasjonsvisningen velger du trefje ikon fra høyre for &quot;Foreldre&quot;.  Dette åpner Familieeditoren.  Velg så barnet, høyreklikk og velg &quot;Endre relasjon&quot;.  Her kan du sette relasjon mellom barnet og dets mor og far.. Relasjonen kan være enten Fødsel, Adoptert, Stebarn, Fadderbarn, Fosterbarn eller Ukjent."
+msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
+msgstr "<b>Endre relasjonen til et barn</b>: Ikke alle barn er relatert til sine foreldre ved en fødsel. Du kan endre relasjonen for et barn til hver av foreldrene ved å velge barnet som aktiv person. I Relasjonsvisningen velger du tredje ikon fra høyre for &quot;Foreldrefeltet&quot;.  Dette åpner Familieeditoren. Velg så barnet, høyreklikk og velg &quot;Endre relasjon&quot;. Her kan du sette relasjon mellom barnet og dets mor og far.. Relasjonen kan være enten Fødsel, Adoptert, Stebarn, Fadderbarn, Fosterbarn eller Ukjent."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
@@ -19143,16 +19159,16 @@ msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format a
 msgstr "GRAMPS kan eksportere data til Web Family Tree (WFT)-formatet. Dette formatet tillater at et familie tre kan vises på en nettside ved å bruke en enkeltfil, i stedet for mange html-filer."
 
 #: ../src/data/tips.xml.in.h:40
-msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
-msgstr "GRAMPS kommer med et rikt utvalg av verktøy. Disse verktøyene lar deg gjøre operasjoner som å kontrollere databasen for feil og inkonsistens, så vel som analyse og utforskningsverktøy, som hendelses-sammenligning, finn dobbeloppførte personer, interaktiv etterkommer-utforsker, med mer. Alle verktøy finner du under <b>Verktøy</b> menyen."
+msgid "GRAMPS comes with a rich set of tools. These allow you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
+msgstr "GRAMPS kommer med et rikt utvalg av verktøy. Disse verktøyene lar deg gjøre operasjoner som å kontrollere databasen for feil og inkonsistens, så vel som analyse og utforskningsverktøy, som hendelsessammenligning, finn dobbeloppførte personer, interaktiv etterkommer-utforsker, med mer. Du finner alle verktøy under menyen <b>Verktøy</b>."
 
 #: ../src/data/tips.xml.in.h:41
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
 msgstr "GRAMPS har blitt utviklet slik at nye oversettelser enkelt kan legges til. Hvis du er interessert i å bidra kan du sende en e-post til gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:42
-msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr "GRAMPS har blitt oversatt til 15 språk. Hvis GRAMPS er oversatt til ditt språk uten at det vises, må du endre standardspråket for maskinen din før du starter GRAMPS på nytt."
+msgid "GRAMPS has been translated to more than 20 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
+msgstr "GRAMPS har blitt oversatt til mer enn 20 språk. Hvis GRAMPS er oversatt til ditt språk uten at det vises, må du endre standardspråket for maskinen din før du starter GRAMPS på nytt."
 
 #: ../src/data/tips.xml.in.h:43
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
@@ -19195,8 +19211,8 @@ msgid "Genealogy isn't only about dates and names. It is about people. Be descri
 msgstr "Slektsforskning dreier seg ikke bare om datoer og navn. Det handler om mennesker. Vær derfor beskrivende, og ta med <b>hvorfor</b> tingene skjedde, og hvordan etterfølgerne kan ha blitt formet av hendelsene de gikk gjennom. Små historier bidrar til at din slektshistorie blir levende."
 
 #: ../src/data/tips.xml.in.h:53
-msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
-msgstr "Gå fra hva du vet til hva du ikke vet. Skriv inn alt som er kjent før du konkluderer. Ofte viser de faktaene man har for hånd, mange mulige retninger for videre forskning. Ikke kast bort tid ved å lete gjennom tusener av poster etter et håp om en videre retning, når du har andre muligheter som du ikke har sett på ennå."
+msgid "Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
+msgstr "Gå fra hva du vet til hva du ikke vet. Skriv inn alt som er kjent før du konkluderer. Ofte viser de faktaene man har for hånd mange mulige retninger for videre forskning. Ikke kast bort tid ved å lete gjennom tusener av poster etter et håp om en videre retning, når du har andre muligheter som du ikke har sett på enda."
 
 #: ../src/data/tips.xml.in.h:54
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
@@ -19282,8 +19298,3 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
 
-#~ msgid "Use rounded corners"
-#~ msgstr "Bruk avrundede hjørner"
-
-#~ msgid "Use rounded corners to differentiate between women and men."
-#~ msgstr "Bruk avrundede hjørner for å vise forskjell mellom kvinner og menn."
