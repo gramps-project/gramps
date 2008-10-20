@@ -496,7 +496,7 @@ http://www.gnu.org/licenses/licenses.html#GPL
 </_tip>
 
 <_tip number="73">
-GRAMPS works even when using KDE, as long as the required GNOME libraries are
+GRAMPS works even when using KDE, as long as the required GTK libraries are
 installed.
 </_tip>
 
