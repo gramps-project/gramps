@@ -1,3 +1,12 @@
+Version 3.0.3 -- the "I have this terrible feeling of déjà vu" release.
+* Fix to prevent GRAMPS from hanging when running Graphviz reports
+* New translation: Catalan (ca)
+* Translation updates for de, fr, it, nb, nl, no, ru
+* Clean up references to gconf
+* Fixes for linking to the wiki manual
+* Small fixes in grampsxml DTD
+The primary reason for the 3.0.3 release is to fix the Graphviz report hang issue introduced in 3.0.2.
+
 Version 3.0.2 -- the "You look like a milkman to me" release.
 * Translation updates for de, fr, hr, nl, no, pl, ru, sv
 * Many bug fixes (see ChangeLog for full list)
