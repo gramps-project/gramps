@@ -637,7 +637,6 @@ class ProgenParser:
         return date
 
     def create_persons(self):
-        self.progress.set_pass(_('Importing individuals'), len(self.pers))
         table = self.def_['Table_1']
 
         # Records in the PER file using PG30-1.DEF contain the following fields:
@@ -711,6 +710,7 @@ class ProgenParser:
         bur_info_ix = table.get_record_field_index('Begrafenis info')
 
         # The records are numbered 1..N
+        self.progress.set_pass(_('Importing individuals'), len(self.pers))
         for i, rec in enumerate(self.pers):
             pers_id = i + 1
             father = rec[father_ix]
@@ -928,7 +928,6 @@ class ProgenParser:
             self.progress.step()
 
     def create_families(self):
-        self.progress.set_pass(_('Importing families'), len(self.rels))
         table = self.def_['Table_2']
 
         # Records in the REL file using PG30-1.DEF contain the following fields:
@@ -983,7 +982,7 @@ class ProgenParser:
         div_info_ix = table.get_record_field_index('Scheiding info')
 
         # The records are numbered 1..N
-        self.progress.set_pass(_('Adding families'), len(self.rels))
+        self.progress.set_pass(_('Importing families'), len(self.rels))
         for i, rec in enumerate(self.rels):
             fam_id = i + 1
             husband = rec[man_ix]
@@ -1163,12 +1162,12 @@ class ProgenParser:
     def add_children(self):
         # Once more to record the father and mother
         table = self.def_['Table_1']
-        self.progress.set_pass(_('Adding children'), len(self.pers))
 
         father_ix = table.get_record_field_index('Vader')
         mother_ix = table.get_record_field_index('Moeder')
 
         # The records are numbered 1..N
+        self.progress.set_pass(_('Adding children'), len(self.pers))
         for i, rec in enumerate(self.pers):
             pers_id = i + 1
             father = rec[father_ix]
