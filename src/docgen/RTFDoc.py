@@ -419,6 +419,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     #
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None):
+    # Covert all text to unicode, just in case it's not. Solves bug #2447.
+        text=unicode(text)        
         text = text.replace('\n','\n\\par ')
         if self.opened == 0:
             self.opened = 1
