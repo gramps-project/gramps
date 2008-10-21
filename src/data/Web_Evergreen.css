@@ -203,10 +203,10 @@ a:hover {
 */
 #header {
     width:100%;
-    height:1cm;
-    padding:0 0 .9em 0;
+    height:2cm;
+    padding:0;
     margin:0;
-    background-color:#139400;
+    background-color:#22822A;
     border-top:solid 4px #D30;
     border-bottom:solid 2px #D30;
 }
@@ -253,10 +253,13 @@ p#user_header {
 */
 #navigation {
     width:100%;
-    height:35px;
+    height:30px;
     list-style-type:none;
     text-align:center;
     vertical-align:middle;
+    font-size:10px;
+    margin:0;
+    padding:0;
     background-color:#6AF364;
     border-top:solid 4px #D30;
     border-bottom:solid 4px #D30;
@@ -265,6 +268,8 @@ p#user_header {
     display:inline;
     width:2em;
     text-align:center;
+    font-size:10px;
+    padding:0;
     margin:0;
 }
 #navigation ul li a {
@@ -281,12 +286,13 @@ p#user_header {
 #navigation ul li#CurrentSection a {
     border-right:solid 2px #D30;
     border-left:solid 2px #D30;
-    border-top:solid 2px #D30;
-    border-bottom:solid 2px #FAFAFA; 
+    bborder-top:solid 4px #D30;
+    border-bottom:solid 1px #FAFAFA;
     font-family:Georgia, serif;
     font-weight:bold;
     font-style:italic;
     font-size:16px;
+    padding:4px;
     text-decoration:none;
     background-color:#FAFAFA;
     color:#426E40;
@@ -335,7 +341,7 @@ p#user_header {
     color:#FAFAFA;
     border:solid 1px #6AF364;
 }
-.calendar tbody tr.week5, .calendar tbody tr.week6  {
+.week3, .week4, .week5 {
     border-bottom:solid 1px #000;
 }
 .calendar tbody tr td {
@@ -413,8 +419,6 @@ p#user_header {
 .highlight div.date {
     background-color:#1E90FF;
     color:#FAFAFA;
-    font-weight:bold;
-    font-style:italic;
 }
 
 /*
@@ -1286,6 +1290,7 @@ div#pedigree {
     height:1.5cm;
     background-color:#139400;
     color:#FAFAFA;
+    font-size:14px;
     margin:0;
     padding:0;
     clear:both;
@@ -1298,15 +1303,14 @@ div#pedigree {
 }
 #footer a:hover {
     text-decoration:none;
-    background-color:#228B22;
+    background-color:#426E40;
 }
 #footer img {
     border:0;
     margin:0;
-    float:center;
+    background:none;
 }
 #footer p#createdate {
-    font-size:.8em;
     float:left;
     width:40%;
     text-align:left;

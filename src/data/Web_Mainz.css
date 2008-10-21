@@ -1,44 +1,50 @@
 /*
-**************************************************************************************************
-Copyright Holder and License
-**************************************************************************************************
+----------------------------------------------------------------------------
 GRAMPS Cascading Style Sheet
-Style Name: Nebraska Default Stylesheet
-Style Author: Jason M. Simanek (2008)
-**************************************************************************************************
+Style Name: Mainz
+Style Author: Jason Simanek (2008)
+----------------------------------------------------------------------------
+
 This website was created with GRAMPS
-http://www.gramps-project.org
---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
 and a wiki open to all. It is a community project, created, developed and governed by genealogists.
 
-Go to http://gramps-project.org to learn more!
+Go to www.gramps-project.org to learn more!
 
---------------------------------------------------------------------------------------------------
+License
+----------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
-
 This file is part of the GRAMPS program.
 
-GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
-Public License as published by the Free Software Foundation, version 2 of the License.
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
 
-GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with GRAMPS. If not,
-see <http://www.gnu.org/licenses/>.
---------------------------------------------------------------------------------------------------
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
 
 Color Palette
---------------------------------------------------------------------------------------------------
-brown darkest       #453619
-brown dark          #542
-brown               #A97
-brown light         #C1B398
-brown lightest      #F6F2EE
-gray                #696969
-green               #5D835F
+----------------------------------------------------------------------------
+black                           #000
+brown                           #7D5925
+brown light                     #D8C19F
+green                           #767D25
+yellow                          #FFF2C6
+yellow light                    #FFFFE7
+----------------------------------------------------------------------------
+
+
+Style Images
+----------------------------------------------------------------------------
+Body                    images/Web_Mainz_Bkgd.png
+Header                  images/Web_Mainz_Header.png
+Middle                  images/Web_Mainz_Mid.png
+Middle Light            images/Web_Mainz_MidLight.png
+----------------------------------------------------------------------------
 */
 
 /* NarrativeWeb Styles
@@ -47,26 +53,14 @@ green               #5D835F
 /* General Elements
 ----------------------------------------------------- */
 body {
-    color:#000;
+    font-family:Georgia, serif;
+    color:#7D5925;
     margin:0;
     padding:0;
-    background-color:#fff;
+    background:url(../images/Web_Mainz_Bkgd.png) #000 repeat;
 }
 div {
     margin:0;
-    padding:0;
-}
-table {
-    border:none;
-    border-collapse:collapse;
-}
-th {
-    font-weight:bold;
-    text-align:left;
-    padding:1px 3em 1px 0.5em;
-}
-td {
-    vertical-align:top;
     padding:0;
 }
 img {
@@ -77,21 +71,25 @@ img {
     background:none;
 }
 .content {
-    background-color:#FFF;
+    width:965px;
+    margin:0 auto;
+    padding-bottom:.5em;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 .content div.snapshot {
-    float:right;
-    margin:1.6em;
+    margin:0;
     padding:0;
     background:none;
 }
 .content div.snapshot div.thumbnail {
     margin:0;
-    padding:0;
+    padding:2em 0 0 0;
     background:none;
 }
-.content div.snapshot div.thumbnail p {
-    display:none;
+.content div.snapshot div.thumbnail a {
+    display:block;
+    width:96px;
+    margin:0 auto;
 }
 .fullclear {
     width:100%;
@@ -104,167 +102,160 @@ img {
 /* General Text
 ----------------------------------------------------- */
 h1 {
-    font:normal 2em/1.2em serif;
+    font-size:1.8em;
+    font-weight:normal;
+    font-style:italic;
 }
 h2 {
     display:none;
 }
 h3 {
-    font:normal 2em/1.2em serif;
-    text-align:left;
+    font-size:2em;
+    line-height:1.3em;
+    font-weight:normal;
+    font-style:italic;
+    color:#767D25;
+    text-align:center;
     margin:0;
-    padding:.5em 20px .2em 20px;
+    padding:.3em 20px 0 20px;
 }
 h4 {
-    font:normal 1.2em/1.2em serif;
-    color:white;
+    font-size:1.4em;
+    font-weight:normal;
+    font-style:italic;
+    color:#767D25;
+    text-align:center;
     margin:0;
-    padding:.2em 0 .2em 20px;
-    background-color:#C1B398;
-    border-bottom:solid 1px #542;
+    padding:.5em 0 .2em 0;
+    border-bottom:dashed 1px #7D5925;
 }
 h5, h6 {
-    font:normal 1em/1.2em serif;
     font-style:italic;
     margin:1.3em 0 .5em 1em;
 }
-
-p#description {
-    color:#542;
-    max-width:800px;
-    margin:0;
-    padding:1em 20px;
-    background-color:#FFF;
+p {
+    font-size:14px;
+    line-height:17px;
 }
-p a {
-    color:#FFF;
+p#description {
+    padding:0 15px 1em 15px;
+}
+p a:link {
     text-decoration:underline;
 }
 sup {
     line-height:0;
 }
 ol {
-    font:normal .9em/1.6em sans-serif;
-    margin-top:0;
-    margin-bottom:0;
-    padding-top:.5em;
-    padding-bottom:0;
 }
 ol li a {
     text-decoration:none;
 }
-ol li a:hover {
+a:link {
+    color:#7D5925;
     text-decoration:underline;
 }
-a {
-    color:#542;
+a:hover, a:active {
+    color:#7D5925;
+    text-decoration:underline;
+    background-color:#FFFFE7;
 }
 a:visited {
-    color:#542;
-}
-a:hover {
-    color:#542;
+    color:#7D5925;
     text-decoration:underline;
-}
-span.preposition {
-    padding-left:1em;
-    padding-right:1em;
 }
 .grampsid {
     font:normal .8em/1.2em monospace;
-    color:#696969;
 }
 
 /* Header
 ----------------------------------------------------- */
-#header  {
-    margin:0;
-    padding:0 0 .9em 0;
-    background-color:#542;
-    border-bottom:solid 1px #453619;
+#header {
+    width:965px;
+    margin:0 auto;
+    padding:5em 0 2px 0;
+    background:url(../images/Web_Mainz_Header.png) repeat-x top left;
 }
 #SiteTitle {
-    color:#FFF;
-    margin:0;
-    padding:.5em 0 0 20px;
+    color:#7D5925;
+    margin:0 0 7px 50px;
 }
-p#user_header {
-    font-size:1.3em;
-    text-align:left;
-    color:#A97;
-    margin:0;
-    padding:.2em 0 .6em 20px;
-    background-color:#542;
+#Header p {
+    font-size:1em;
+    font-weight:bold;
+    font-style:italic;
+    color:#7D5925;
+    margin:0 0 5px 50px;
 }
 
 /* Navigation
 ----------------------------------------------------- */
 #navigation {
-    margin:0;
+    font-family:sans-serif;
+    width:965px;
+    margin:0 auto;
     padding:0;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
 }
 #navigation ul {
     list-style:none;
     min-width:770px;
-    height:32px;
+    height:24px;
     margin:0;
-    padding:0 0 0 9px;
-    background-color:#A97;
-    border-bottom:solid 1px #542;
+    padding:0 0 0 12px;
 }
 #navigation ul li {
     margin:0;
+    padding:0;
     float:left;
 }
 #navigation ul li a {
     display:block;
-    float:left;
-    font:normal 16px/100% serif;
-    color:#542;
+    font-size:12px;
+    line-height:100%;
+    font-weight:normal;
+    color:#7D5925;
     text-decoration:none;
     margin:0;
-    padding:8px 13px;
-
+    padding:6px 8px 5px 8px;
 }
 #navigation ul li a:hover {
-    background-color:#C1B398;
-    border-bottom:solid 1px #542;
+    background-color:#FFFFE7;
 }
 #navigation ul li#CurrentSection a {
-    font-size:19px;
-    margin-top:-6px;
-    padding-top:11px;
-    padding-bottom:8px;
-    border-right:solid 1px #542;
-    border-left:solid 1px #542;
-    border-bottom:solid 1px #FFF;
-    background-color:#FFF;
+    font-family:Georgia, serif;
+    font-weight:bold;
+    font-style:italic;
+    padding:5px 15px 5px 15px;
+    border-top:solid 1px yellow;
+    border-bottom:solid 1px yellow;
+    border-style:dashed;
+    border-width:1px;
+    border-color:#7D5925;
 }
 #navigation ul li#CurrentSection a:hover {
-    background-color:#FFF;
 }
 
 /* Main Table
 ----------------------------------------------------- */
-table.infolist {
-    width:100%;
-    margin:0;
+table {
+    font-size:14px;
+    margin:0 15px 1em 15px;
     padding:0;
-    background-color:#F6F2EE;
+    border:none;
+    border-collapse:collapse;
 }
-table.infolist tr th {
-    font:normal 1.1em/1.2em serif;
-    color:#FFF;
+table tr th {
+    font-weight: bold;
+    text-align: left;
     margin:0;
-    padding:.2em 10px;
-    background-color:#A97;
-    border-bottom:solid 1px #542;
+    padding:.1em 10px;
+    border-bottom:double 4px #7D5925;
 }
-table.infolist tr th a:hover {
-    background-color:#C1B398;
+table.infolist tr th a {
+    text-decoration:none;
 }
-table.infolist tr td {
-    font:normal 1.1em/1.4em serif;
+table tr td {
     vertical-align:middle;
     padding:.1em 10px;
 }
@@ -273,15 +264,16 @@ table.infolist tr td a {
     text-decoration:none;
 }
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid 1px #C1B398;
+    border-top:dashed 1px #D8C19F;
+}
+table.infolist tr th.ColumnQuantity {
+    width:30%;
 }
 table.infolist tr td.ColumnLetter {
-    width:3%;
-    text-align:center;
+    font-weight:bold;
 }
 table.infolist tbody tr td.ColumnBirth {
     font-size:.9em;
-    color:#5D835F;
     width:10%;
 }
 table.infolist tbody tr td.ColumnDeath {
@@ -289,9 +281,8 @@ table.infolist tbody tr td.ColumnDeath {
     width:10%;
 }
 table.infolist tbody tr td.ColumnRowLabel {
+    font-weight:bold;
     width:2%;
-    color:#696969;
-    padding-left:20px;
 }
 table.infolist tbody tr td.ColumnType {
     width:6%;
@@ -309,65 +300,57 @@ table.infolist tbody tr td.ColumnParents span.father, table.infolist tbody tr td
 table.infolist tbody tr td.ColumnParents span.mother:before {
     content:"+ ";
 }
+table.infolist tbody p.EventNote {
+    border-top:dashed 1px #D8C19F;
+    padding-top:1em;
+    padding-bottom:1em;
+}
 
 /* Surnames
 ----------------------------------------------------- */
 #Surnames {  }
 #SurnameDetail p#description { padding-top:0; }
-table.surnamelist tr thead th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
+table.surnamelist {
+    margin-left:auto;
+    margin-right:auto;
+}
+table.surnamelist tbody tr td.ColumnSurname {
     width:50%;
 }
-table.surnamelist tr th {
+table.surnamelist thead tr th.ColumnSurname {
     padding:0;
 }
-table.surnamelist tr th a, table.surnamelist tr th a:visited {
+table.surnamelist thead tr th.ColumnQuantity {
+    width:40%;
+    padding:0;
+}
+table.infolist thead tr th.ColumnSurname a, table.infolist thead tr th.ColumnQuantity a {
     display:block;
-    color:#FFF;
-    text-align:left;
-    text-decoration:none;
-    padding:.2em 10px;
-}
-table.surnamelist tr th:hover {
-    background-color:#C1B398;
-}
-table.surnamelist thead tr th.ColumnLetter {
-    padding-left:20px;
-    padding-right:10px;
-}
-table#SortByName thead tr th.ColumnSurname, table#SortByCount thead tr th.ColumnQuantity {
-    background-color:#C1B398;
+    padding:.1em 10px;
 }
 table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
     content:" ↓";
 }
-table#SortByName tbody tr td.ColumnSurname {
+table.infolist tbody tr td.ColumnSurname {
     padding:0;
-    background-color:#FFF;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
-table#SortByName tbody tr td.ColumnSurname a {
-    display:block;
-    padding:.1em 10px .3em 10px;
+table.infolist tbody tr td.ColumnSurname a {
+    padding:.1em 10px;
 }
-table#SortByCount tbody tr td.ColumnQuantity {
-    background-color:#FFF;
-}
-table.surnamelist tbody tr td.ColumnSurname:hover, table#SortByName tbody tr td.ColumnSurname:hover {
-    background-color:#C1B398;
-}
-table.surname {
-    border-bottom:solid 1px #A97;
+table.infolist tbody tr td.ColumnSurname a:hover {
+    padding:.1em 10px;
 }
 table.surname tbody tr td {
-    border-bottom:dashed 1px #C1B398;
+    border-bottom:dashed 1px #D8C19F;
 }
-table.surname thead tr th.ColumnName {
-    width:20%;
-    padding-left:20px;
+table.surname tbody tr:last-child td {
+    border:none;
 }
 table.surname tbody tr td.ColumnName {
     width:20%;
     padding:0;
-    background-color:#FFF;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 table.surname tbody tr td.ColumnName a {
     display:block;
@@ -376,9 +359,6 @@ table.surname tbody tr td.ColumnName a {
 table.surname tbody tr td.ColumnName a span.grampsid {
     display:none;
 }
-table.surname tbody tr td.ColumnName:hover {
-    background-color:#C1B398;
-}
 table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
     width:25%;
 }
@@ -386,14 +366,17 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 /* Individuals
 ----------------------------------------------------- */
 #Individuals {  }
-#Individuals table.individuallist {
-    border-bottom:solid 1px #A97;
-}
 #Individuals table.individuallist tbody tr td {
-    border-bottom:dashed 1px #C1B398;
+    border-bottom:dashed 1px #D8C19F;
+}
+#Individuals table.individuallist tbody tr:last-child td {
+    border:none;
 }
 #Individuals table.individuallist tbody tr td a:hover {
     text-decoration:none;
+}
+table.individuallist tbody tr td.ColumnSurname {
+    background:none;
 }
 table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
     cursor:default;
@@ -402,18 +385,14 @@ table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbo
 }
 table.individuallist tbody tr td.ColumnName {
     padding:0;
-    background-color:#FFF;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 table.individuallist tbody tr td.ColumnName a {
     display:block;
     padding:.6em 10px;
     vertical-align:middle;
 }
-table.individuallist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
 #IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
-    font:normal .9em/1.2em sans-serif;
     vertical-align:top;
 }
 #IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
@@ -424,12 +403,12 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#696969;
+    color:#767D25;
+    padding-left:5px;
 }
 
 /* Sources
 ----------------------------------------------------- */
-#Sources {  }
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
 }
@@ -437,11 +416,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     padding:0;
 }
 #Sources table.infolist tbody tr td.ColumnName a {
-    font-size:.9em;
     padding:.1em 10px .3em 10px;
-}
-#Sources table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
 }
 #SourceDetail div#references ol li {
     padding-bottom:.5em;
@@ -449,20 +424,18 @@ table.individuallist tbody tr td.ColumnName a:hover {
 
 /* Places
 ----------------------------------------------------- */
-#Places {  }
+#Places table.infolist {
+    margin:0 auto;
+}
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
-#Places table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
 
 /* Gallery
 ----------------------------------------------------- */
-#Gallery {  }
 #Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
     padding-bottom:0;
 }
@@ -472,34 +445,39 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #Gallery table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
 }
-#Gallery table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
 #GalleryNav {
-    font:normal 1em/1em sans-serif;
-    margin:1em 0 0 0;
-    padding:1.2em 0 1.4em 0;
+    font-size:.8em;
+    margin:0;
+    padding:2.2em 0 0 0;
     text-align:center;
 }
 #GalleryNav a {
     font-weight:bold;
+    font-style:italic;
+    color:#FFF2C6;
     text-decoration:none;
-    border:solid 1px #542;
+    background:url(../images/Web_Mainz_Bkgd.png) #7D5925 repeat;
+    border:outset 3px #000;
 }
 #GalleryNav a:hover {
-    background-color:#F6F2EE;
+    border:outset 3px #7D5925;
+}
+#GalleryNav a:active {
+    border:solid 3px #000;
 }
 #GalleryNav a#Previous {
-    padding:.5em .7em .3em .7em;
+    padding:.4em .7em .3em .7em;
 }
 #GalleryNav a#Next {
-    padding:.5em 1.9em .3em 1.9em;
+    padding:.4em 1.9em .3em 1.9em;
 }
 #GalleryPages {
     margin:0 1em;
 }
 #GalleryCurrent {
-    font:bold 1.2em/1em sans-serif;
+    font-size:2em;
+    font-weight:normal;
+    font-style:italic;
 }
 #GalleryTotal {
     font-weight:normal;
@@ -509,27 +487,29 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #GalleryDisplay img {
     margin:0 auto;
-    border:solid 1px #542;
+    border:solid 1px #7D5925;
 }
 #GalleryDetail div#summaryarea{
     margin:0;
-    padding:2em 0 0 0;
+    padding:1.4em 0 0 0;
 }
 #GalleryDetail div#summaryarea h3 {
-    font:normal 1.2em/1.2em serif;
     text-align:center;
 }
 #GalleryDetail div h4 {
     margin-top:0;
 }
 #GalleryDetail div#summaryarea table.gallery {
-    padding-bottom:0;
+    width:100%;
     margin-top:1.5em;
     margin-bottom:0;
-    background-color:#F6F2EE;
-    border-style:solid;
-    border-width:8px 0 0 0;
-    border-color:#C1B398;
+    padding-bottom:0;
+    border-style:double;
+    border-width:4px 0 0 0;
+    border-color:#7D5925;
+}
+#GalleryDetail div#summaryarea table.gallery tbody tr td.ColumnAttribute {
+    color:#767D25;
 }
 
 /* Contact
@@ -537,38 +517,30 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #Contact #summaryarea {
     width:500px;
     margin:0 auto;
-    padding:3em;
-    background-color:#F1ECE2;
+    padding:1em 3em;
 }
 #Contact #summaryarea img {
-    float:right;
-    margin:0;
+    display:block;
+    margin:0 auto;
+    padding:0;
+    border:solid 1px #7D5925;
 }
 #researcher {
-    font:normal 1.5em/1.4em serif;
-    margin-top:.3em;
+    text-align:center;
+    margin-top:.7em;
 }
 #researcher h3 {
-    font:normal 1.2em/1.4em serif;
     padding:0;
 }
-#researcher span {
-    float:left;
-    display:block;
-    font:normal .9em/1.4em serif;
-    margin-right:.4em;
-}
 #streetaddress {
-    width:70%;
+    display:block;
 }
 #city:after {
     content:",";
 }
-#country {
-    clear:left;
-}
+#country {  }
 #email {
-    clear:left;
+    display:block;
 }
 #email a {
     text-decoration:none;
@@ -577,25 +549,23 @@ table.individuallist tbody tr td.ColumnName a:hover {
     text-decoration:underline;
 }
 
-/* Subsections
+/* SubSection
 ----------------------------------------------------- */
-#Home, #Introduction, #Contact {
-    padding:2em 0 3em 0;
+#Home, #Introduction, #Download, #Contact {
+    min-height:500px;
+    padding:1.5em 0 3em 0;
 }
-#Download {
-    padding:1em 0 3em 0;
-}
-#Home p, #Introduction p, #Download p {
+#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, #Download p, #Contact p {
     margin:0 20px 1em 20px;
+    padding-top:1em;
 }
 #Home img, #Introduction img, #Download img {
     float:right;
     margin:0;
-    padding:0 20px 3em 2em;
+    padding:0 20px 3em 20px;
 }
 div.subsection{
     padding-bottom:.5em;
-    background-color:#F6F2EE;
 }
 div.subsection h4 {
     margin-bottom:.5em;
@@ -608,6 +578,7 @@ div.subsection a {
 }
 div.subsection a:hover {
     text-decoration:underline;
+    background:none;
 }
 div.subsection table.infolist {
     width:100%;
@@ -617,56 +588,55 @@ div.subsection table.infolist {
     padding-left:20px;
 }
 
-/* Subsections : Events
+/* SubSection : Summary Area
+----------------------------------------------------- */
+div#summaryarea {
+    min-height:100px;
+    background:none;
+}
+div#summaryarea table.infolist {
+    width:100%;
+    margin:1.5em 0 0 0;
+    padding:0;
+    border-style:double;
+    border-width:4px 0 0 0;
+    border-color:#7D5925;
+}
+div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
+    vertical-align:top;
+}
+div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
+    display:inline;
+}
+div#summaryarea table.infolist tbody tr td.ColumnAttribute {
+    width:14%;
+    padding-left:20px;
+}
+
+/* SubSection : Events
 ----------------------------------------------------- */
 div#events {
     padding-bottom:0;
 }
 div#events h4 {
     margin-bottom:0;
-    border:none;
 }
-#IndividualDetail div#events table.infolist thead tr th {
-    font-weight:bold;
-    font-size:12px;
-    line-height:12px;
-    font-family:sans-serif;
-    text-transform:uppercase;
-    color:#542;
-    padding-top:6px;
-    padding-bottom:4px;
-    background-color:#A97;
+div#events table.infolist tbody tr td {
+    padding-top:.2em;
+    padding-bottom:.2em;
 }
-#IndividualDetail div#events table.infolist thead tr th:first-child {
-    padding-left:20px;
+div#events table.infolist tbody tr td.ColumnAttribute {
+    border-bottom:dashed 1px #D8C19F;
 }
-#IndividualDetail div#events table.infolist tbody tr td {
-    padding-top:.4em;
-    padding-bottom:.8em;
+div#events table.infolist tbody tr td.ColumnValue {
+    border-bottom:dashed 1px #D8C19F;
 }
-#IndividualDetail div#events table.infolist tbody tr td.ColumnAttribute {
-    border-bottom:solid 1px #C1B398;
-}
-#IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #C1B398;
-}
-table.infolist tbody tr td.ColumnValue p {
-    font-family:sans-serif;
-    color:#696969;
-    margin:.2em 0 0 2em;
+div#events table.infolist tbody tr td.ColumnValue p {
+    margin:.1em 2em;
 }
 
-/* Subsections : Attributes
+/* SubSection : Parents
 ----------------------------------------------------- */
-
-/* Subsections : Parents
------------------------------------------------------ */
-div#parents table.infolist {
-    margin-top:.5em;
-}
-div#parents table.infolist tbody tr td.ColumnAttribute {
-    width:19%;
-}
 div#parents table.infolist tbody tr td.ColumnValue ol {
     margin:0;
     padding-top:0;
@@ -675,11 +645,8 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
 }
 
-/* Subsections : Families
+/* SubSection : Families
 ----------------------------------------------------- */
-div#families table.infolist {
-    margin-top:.5em;
-}
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
 }
@@ -691,24 +658,30 @@ div#families table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
 }
 
-/* Subsections : Addresses
+/* SubSection : Addresses
 ----------------------------------------------------- */
 div#addresses {
     padding-bottom:0;
 }
+div#addresses h4 {
+    margin-bottom:0;
+}
 div#addresses table.infolist tbody tr td {
-    padding-top:.4em;
-    padding-bottom:.4em;
+    padding-top:.2em;
+    padding-bottom:.2em;
 }
 div#addresses table.infolist tbody tr td.ColumnAttribute {
     width:30%;
-    border-bottom:solid 1px #C1B398;
+    border-bottom:dashed 1px #D8C19F;
 }
 div#addresses table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #C1B398;
+    border-bottom:dashed 1px #D8C19F;
 }
 
-/* Subsections : Gallery
+/* SubSection : Attributes
+----------------------------------------------------- */
+
+/* SubSection : Gallery
 ----------------------------------------------------- */
 #indivgallery h4 {
     margin-bottom:1em;
@@ -729,32 +702,35 @@ div#addresses table.infolist tbody tr td.ColumnValue {
 #indivgallery .thumbnail a img {
     margin:0;
     padding:0;
-    border:solid 1px #542;
+    border:solid 1px #7D5925;
 }
 #indivgallery div.thumbnail p {
-    font:normal .7em/1.4em sans-serif;
+    font-size:.6em;
     text-align:center;
     width:80%;
     margin:0 auto;
     padding:0;
 }
 
-/* Subsections : Narrative
+/* SubSection : Narrative
 ----------------------------------------------------- */
 div#narrative {
     padding-bottom:0;
 }
 #narrative p {
-    font:normal .9em/1.4em sans-serif;
     margin-top:.5em;
     margin-bottom:0;
     padding:0 20px 1em 20px;
 }
 
-/* Subsections : References
+/* SubSection : References
 ----------------------------------------------------- */
+#references ol {
+    margin-top:0;
+    margin-bottom:0;
+}
 
-/* Subsections : Source References
+/* SubSection : Source References
 ----------------------------------------------------- */
 div#sourcerefs ol {
     list-style-type:decimal;
@@ -763,71 +739,40 @@ div#sourcerefs ol li ol {
     list-style-type:lower-alpha;
 }
 
-/* Subsections : Summary Area
------------------------------------------------------ */
-div#summaryarea {
-    background:none;
-}
-div#summaryarea table.infolist {
-    margin:0;
-    padding:0;
-    background:#FFF;
-    border-bottom:solid .7em #FFF;
-}
-div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
-    font:normal .9em/1.2em sans-serif;
-    vertical-align:top;
-}
-div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
-    display:inline;
-}
-div#summaryarea table.infolist tbody tr td.ColumnAttribute {
-    width:14%;
-    color:#696969;
-    padding-left:20px;
-}
-
-/* Subsections : Weblinks
+/* SubSection : Weblinks
 ----------------------------------------------------- */
 
-/* Subsections : Pedigree
+/* SubSection : Pedigree
 ----------------------------------------------------- */
-div#pedigree {
-    padding-bottom:1.2em;
-}
-#pedigree a {
-    text-decoration:none;
-}
-#pedigree a:hover {
-    text-decoration:underline;
-}
 .pedigreegen {
-    font:normal .9em/1.2em sans-serif;
+    font-size:.9em;
     list-style:none;
     margin:.5em 0 0 0;
-    padding:0 0 0 20px;
+    padding:0 0 .7em 20px;
 }
 .pedigreegen li ol {
     list-style:none;
     margin-left:.5em;
 }
+.pedigreegen li ol li {
+    padding-bottom:.2em;
+}
 .pedigreegen li ol li ol {
-    font:normal 1em/1.4em sans-serif;
     list-style:decimal;
     margin-left:1.6em;
 }
 .pedigreegen li ol li ol li ol.spouselist {
+    font-size:1em;
     list-style:none;
     margin-left:0;
 }
 .spouselist li.spouse ol {
+    font-size:1em;
     list-style:decimal;
     margin-left:1.6em;
 }
 .spouse a {
     font-weight:normal;
-    font-style:normal;
-    color:#A97;
 }
 .spouse:before {
     content: "+ ";
@@ -836,17 +781,17 @@ div#pedigree {
     font-weight:bold;
 }
 
-/* Subsections : Ancestors Tree
+/* SubSection : Ancestors Tree
 ----------------------------------------------------- */
 #tree {
     page-break-before:always;
     margin:0;
     padding:0;
-    background:none;
 }
 #treeContainer {
     position:relative;
     z-index:1;
+    padding-bottom:1.4em;
 }
 #treeContainer div.boxbg {
     position:absolute;
@@ -858,27 +803,27 @@ div#pedigree {
     position:relative;
     z-index:10;
     display:block;
-    font:normal .7em/1.4em sans-serif;
+    font:normal .8em/1.4em sans-serif;
     text-align:center;
     text-decoration:none;
-    color:#542;
+    color:#7D5925;
     width:118px;
     padding:5px 20px 7px 20px;
     margin-top:-25px;
     margin-left:16px;
-    background-color:#F6F2EE;
-    border:solid 1px #542;
+    background-color:#FFFFE7;
+    border:dotted 2px #7D5925;
 }
 #treeContainer div.boxbg a:hover {
     position:relative;
     z-index:999;
     font-size:1em;
     text-decoration:none;
-    color:#542;
+    color:#7D5925;
     width:190px;
     margin-left:-20px;
     padding:10px 25px 12px 25px;
-    border:solid 2px #542;
+    border:solid 2px #7D5925;
 }
 #treeContainer div.boxbg a:hover, #treeContainer div.AncCol3 a:hover, #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
@@ -930,18 +875,18 @@ div#pedigree {
 #tree div div.bvline {
     position:absolute;
     z-index:2;
-    height:1px;
-    margin:0 0 0 16px;
+    height:2px;
+    margin:2px 0 0 16px;
     padding:0;
-    background-color:#453619;
+    background-color:#D8C19F;
 }
 #tree div div.bhline {
     position:absolute;
     z-index:2;
     width:1px;
-    margin:0 0 0 16px;
+    margin:2px 0 0 16px;
     padding:0;
-    background-color:#453619;
+    background-color:#D8C19F;
 }
 .ghline, .gvline {
     display:none;
@@ -951,19 +896,17 @@ div#pedigree {
 ----------------------------------------------------- */
 #footer {
     clear:both;
-    width:100%;
+    width:965px;
     font-size:12px;
     line-height:130%;
     font-family:sans-serif;
-    color:#FFF;
-    margin:0;
+    margin:0 auto;
     padding:0;
-    background-color:#542;
-    border-top:solid 8px #A97;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6;
+    border-top:dashed 1px #7D5925;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
-    color:#FFF;
 }
 #footer a:hover {
     text-decoration:underline;
@@ -979,13 +922,11 @@ div#pedigree {
     width:40%;
     text-align:left;
     margin-left:10px;
-    color:#FFF;
 }
 #footer p#copyright {
     float:right;
     width:40%;
     text-align:right;
-    color:#FFF;
     margin-right:10px;
 }
 #footer p#copyright img {
@@ -995,7 +936,8 @@ div#pedigree {
     float:center;
     width:100%;
     text-align:center;
-    color:#FFF;
+    padding-bottom:40px;
+    margin-bottom:0;
 }
 #footer p#quality img {
     float:center;
@@ -1007,7 +949,6 @@ div#pedigree {
 }
 #user_footer p {
     font:normal 1em/1.2em serif;
-    color:#A97;
     margin:0;
     padding:0;
 }
@@ -1015,16 +956,12 @@ div#pedigree {
 /* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
-body#WebCal {
-    padding:0 14px;
-    background-color:#542;
-}
 .calendar {
     empty-cells:show;
-    width:100%;
+    width:965px;
     font-size:1em;
     font-weight:normal;
-    margin:0;
+    margin:0 auto;
     padding:0;
     border:none;
     border-collapse:collapse;
@@ -1032,42 +969,37 @@ body#WebCal {
 .calendar thead tr th {
     width:14%;
     font-weight:normal;
+    font-style:italic;
     font-size:18px;
-    line-height:18px;
+    line-height:100%;
     text-align:center;
-    text-transform:uppercase;
     padding:2px 0;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 .calendar thead tr th.monthName {
     width:100%;
     font-size:2em;
-    line-height:100%;
     text-transform:none;
-    color:#542;
+    color:#767D25;
     padding:.3em 0 .2em 0;
-    background-color:#FFF;
 }
 #CreatorInfo {
     float:right;
-    color:#FFF;
     margin:-24px 10px 0 0;
 }
 .calendar thead tr th.weekend, 
-.calendar thead tr th.weekday {
-    color:#542;
-    background-color:#A97;
-}
+.calendar thead tr th.weekday {  }
 .calendar thead tr th.saturday, 
 .calendar thead tr th.sunday { }
 .calendar tfoot tr td {
     padding:.7em 5% 1em 5%;
-    border-top:solid 4px #A97;
+    border-top:double 4px #7D5925;
 }
 .calendar tfoot tr td.note {
     height:1cm;
     vertical-align:middle;
-    color:#542;
-    background-color:#F6F2EE;
+    color:#7D5925;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 
 /* Calendar : Date Numeral */
@@ -1075,13 +1007,14 @@ body#WebCal {
     float:right;
     display:block;
     width:1.8em;
+    font-style:italic;
     font-size:1.2em;
     line-height:100%;
     text-align:center;
-    color:#542;
+    color:#7D5925;
     margin:0 0 0 .5em;
     padding:.2em 0;
-    background-color:#F6F2EE;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 
 /* Calendar : Date Container */
@@ -1090,14 +1023,14 @@ body#WebCal {
     height:10em;
     padding:0;
     border-width:1px 0 0 1px;
-    border-style:solid;
-    border-color:#A97;
+    border-style:dashed;
+    border-color:#7D5925;
 }
 .calendar tbody tr td.weekday {
-    background-color:#FFF;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 .calendar tbody tr td.weekend {
-    background-color:#F6F2EE;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 .calendar tbody tr td.saturday {
 
@@ -1122,7 +1055,7 @@ body#WebCal {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top:dashed 1px #C1B398;
+    border-top:dashed 1px #D8C19F;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
@@ -1131,17 +1064,18 @@ body#WebCal {
 /* Calendar : Birthday, Anniversary, Highlight */
 .calendar tbody tr td ul li em {
     font-style:normal;
-    color:#0A65B5;
+    color:#767D25;
 }
 .calendar tbody tr td ul li span.yearsmarried em {
     color:#453619;
 }
 .calendar tbody tr td.highlight {
-    background-color:#E5F2FE;
+
 }
 .calendar tbody tr td.highlight div.date {
-    color:#0A65B5;
-    background-color:#C2E1FE;
+    color:#767D25;
+    background-image:none;
+    background-color:#FFFFE7;
 }
 
 /* Calendar : Previous-Next Month */
@@ -1149,6 +1083,6 @@ body#WebCal {
 .calendar tbody tr td.next, 
 .calendar tbody tr td.previous div.date, 
 .calendar tbody tr td.next div.date {
-    color:#A97;
-    background-color:#F6F2EE;
+    color:#D8C19F;
+    background:url(../images/Web_Mainz_MidLight.png) #FFF2C6 repeat;
 }

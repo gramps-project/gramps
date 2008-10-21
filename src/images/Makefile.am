@@ -70,10 +70,14 @@ dist_pkgdata_DATA = \
 	document.png\
 	image-missing.png\
 	favicon.ico\
-	NWeb_Mainz_Bkgd.png\
-	NWeb_Mainz_Header.png\
-	NWeb_Mainz_MidLight.png\
-	NWeb_Mainz_Mid.png\
+	Web_Mainz_Bkgd.png\
+	Web_Mainz_Header.png\
+	Web_Mainz_MidLight.png\
+	Web_Mainz_Mid.png\
+	Web_Gender_Male.png\
+	Web_Gender_Female.png\
+	Web_Gender_MaleFFF.png\
+	Web_Gender_FemaleFFF.png\
 	arrow102.gif\
 	arrow231.gif
 

@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Gary Burton <gary.burton@zen.co.uk>
 # Copyright (C) 2007-2008  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -114,9 +115,14 @@ _XOFFSET = 5
 # stylesheets.
 _CSS_FILES = [
     # First is used as default selection.
-    [_("Evergreen"),       'Web_Evergreen.css'],
-    [_("Nebraska"),        'Web_Nebraska.css'],
-    [_("Simply Red"),      'Web_Simply-Red.css'],
+    [_("Basic-Ash"),            'Web_Basic-Ash.css'],
+    [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
+    [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
+    [_("Basic-Peach"),          'Web_Basic-Peach.css'],
+    [_("Basic-Spruce"),         'Web_Basic-Spruce.css'],
+    [_("Mainz"),                'Web_Mainz.css'],
+    [_("Nebraska"),             'Web_Nebraska.css'],
+    [_("Visually Impaired"),    'Web_Visually.css'],
     [_("No style sheet"),  ''],
     ]
 
@@ -359,10 +365,7 @@ class BasePage:
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
-        of.write('    <div id="header">\n')
-
-        # FIXME. Do we want an empty GRAMPSinfo div below if no self.linkhome?
-        msg = ""
+        of.write('<div id="header">\n')
 
         db = self.report.database
         if self.linkhome:
@@ -370,26 +373,24 @@ class BasePage:
             if home_person:
                 home_person_url = self.report.build_url_fname_html(home_person.handle, 'ppl', self.up)
                 home_person_name = home_person.get_primary_name().get_regular_name()
-                msg = _('Created for <a href="%s">%s</a>') % (home_person_url, home_person_name)
 
-        of.write('         <div id="GRAMPSinfo">%s</div>\n' % msg)
-        of.write('         <h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
+        of.write('\t<h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
         header = self.report.options['headernote']
         if header:
             note = db.get_note_from_gramps_id(header)
-            of.write('         <p id="user_header">')
+            of.write('\t<p id="user_header">')
             of.write(note.get())
             of.write('</p>\n')
-        of.write('\t</div>\n')
+        of.write('</div>\n\n')
 
         # Begin Navigation Menu
-        of.write('         <div id="navigation">\n')
-        of.write('             <ul>\n') 
+        of.write('<div id="navigation">\n')
+        of.write('\t<ul>\n') 
 
         self.display_nav_links(of, title)
 
-        of.write('             </ul>\n')
-        of.write('         </div>\n') # End Navigation Menu
+        of.write('\t</ul>\n')
+        of.write('</div>\n') # End Navigation Menu
 
         divid = ''
         if content_divid:
@@ -666,9 +667,12 @@ class BasePage:
         of.write('\t</div>\n')
 
     def person_link(self, of, url, name, gid=None, thumbnailUrl=None):
-        of.write('<a href="%s">' % url)
+        of.write('<a href="%s"' % url)
+        if not thumbnailUrl:
+            of.write(' class="noThumb"')
+        of.write('>')
         if thumbnailUrl:
-            of.write('<img src="%s"><br />' % thumbnailUrl)
+            of.write('<span class="thumbnail"><img src="%s" width="" height="" alt="Image of %s" /></span>' % (thumbnailUrl, name))
         of.write('%s' % name)
         if not self.noid and gid:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
@@ -1772,16 +1776,16 @@ class IndividualPage(BasePage):
         xoff = _XOFFSET+col*(_WIDTH+_HGAP)
         sex = person.get_gender()
         if sex == gen.lib.Person.MALE:
-            divclass = "boxbg male"
+            divclass = "male"
         elif sex == gen.lib.Person.FEMALE:
-            divclass = "boxbg female"
+            divclass = "female"
         else:
-            divclass = "boxbg unknown"
-        of.write('\t\t\t<div class="%s" style="top: %dpx; left: %dpx;">\n' % (divclass, top, xoff+1))
-        of.write('\t\t\t\t<div class="box">')
+            divclass = "unknown"
+        of.write('\t\t\t<div class="boxbg %s AncCol%s" style="top: %dpx; left: %dpx;">\n' % (divclass, col, top, xoff+1))
+        of.write('\t\t\t\t')
         if person.handle in self.ind_list:
             thumbnailUrl = None
-            if self.use_gallery and col < 3:
+            if self.use_gallery and col < 5:
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
@@ -1795,8 +1799,7 @@ class IndividualPage(BasePage):
             self.person_link(of, url, person_name, thumbnailUrl=thumbnailUrl)
         else:
             of.write(_nd.display(person))
-        of.write('</div>\n')
-        of.write('\t\t\t</div>\n')
+        of.write('\n\t\t\t</div>\n')
         of.write('\t\t\t<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+_SHADOW, xoff+_SHADOW))
 
     def extend_line(self, of, y0, x0):
@@ -2012,8 +2015,10 @@ class IndividualPage(BasePage):
 
         # table head
         of.write('\t\t\t<thead>\n')
+        of.write('\t\t\t\t<tr>\n')
         for h in (_('event|Type'), _('Date'), _('Place'), _('Description'), _('Notes')):
-            of.write('\t\t\t\t<th>%s</th>' % h)
+            of.write('\t\t\t\t\t<th>%s</th>\n' % h)
+        of.write('\t\t\t\t</tr>\n')
         of.write('\t\t\t</thead>\n')
         of.write('\t\t\t<tbody>\n')
 
@@ -2078,6 +2083,10 @@ class IndividualPage(BasePage):
         done_first_note = False
         notelist = event.get_note_list()
         notelist.extend(event_ref.get_note_list())
+        if notelist:
+            of.write('\t\t\t\t\t\t<ol>\n')
+        else:
+            of.write('\t\t\t\t\t\t&nbsp;\n')
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             if note:
@@ -2088,11 +2097,9 @@ class IndividualPage(BasePage):
                     else:
                         # TODO. Decide what to do with multiline notes.
                         txt = u" ".join(note_text.split("\n"))
-                    if not done_first_note:
-                        of.write('\t\t\t\t\t\t<ol>\n')
                     txt = txt or '&nbsp;'
                     of.write('\t\t\t\t\t\t\t<li>%s</li>\n' % txt)
-        if done_first_note:
+        if notelist:
             of.write('\t\t\t\t\t\t</ol>\n')
         of.write('\t\t\t\t\t</td>\n')
 
@@ -2497,9 +2504,9 @@ class IndividualPage(BasePage):
         date = _dd.display(event.get_date_object())
 
         if date and place:
-            text = _("%(date)s &nbsp; at &nbsp; %(place)s") % { 'date': date, 'place': place }
+            text = _('%(date)s <span class="preposition">at</span> %(place)s') % { 'date': date, 'place': place }
         elif place:
-            text = _("at &nbsp; %(place)s") % { 'place': place }
+            text = _('<span class="preposition">at</span> %(place)s') % { 'place': place }
         elif date:
             text = date
         else:
@@ -2704,10 +2711,10 @@ class NavWebReport(Report):
         imgs = []
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
-            imgs += ["NWeb_Mainz_Bkgd.png",
-                     "NWeb_Mainz_Header.png",
-                     "NWeb_Mainz_Mid.png",
-                     "NWeb_Mainz_MidLight.png",
+            imgs += ["Web_Mainz_Bkgd.png",
+                     "Web_Mainz_Header.png",
+                     "Web_Mainz_Mid.png",
+                     "Web_Mainz_MidLight.png",
                      "document.png"]
 
         # Copy the Creative Commons icon if the Creative Commons
@@ -2715,7 +2722,11 @@ class NavWebReport(Report):
         if 0 < self.copyright < 7:
             imgs += ["somerights20.gif"]
 
-        imgs += ["favicon.ico"]
+        imgs += ["favicon.ico",
+                 "Web_Gender_Female.png",
+                 "Web_Gender_FemaleFFF.png",
+                 "Web_Gender_Male.png",
+                 "Web_Gender_MaleFFF.png"]
 
         for f in imgs:
             from_path = os.path.join(const.IMAGE_DIR, f)
