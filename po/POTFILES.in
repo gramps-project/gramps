@@ -204,7 +204,6 @@ src/GrampsDbUtils/_GedcomStageOne.py
 #src/GrampsDbUtils/_GedcomLex.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
-src/GrampsDbUtils/_GrampsBSDDB.py
 src/GrampsDbUtils/_GrampsDbWriteXML.py
 src/GrampsDbUtils/_GrampsDbWRFactories.py
 src/GrampsDbUtils/_ReadGedcom.py
@@ -281,6 +280,8 @@ src/plugins/GVHourGlass.py
 src/plugins/GVRelGraph.py
 src/plugins/ImportCSV.py
 src/plugins/ImportGeneWeb.py
+src/plugins/ImportGpkg.py
+src/plugins/ImportGrdb.py
 src/plugins/ImportvCard.py
 src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
@@ -295,7 +296,6 @@ src/plugins/OnThisDay.py
 src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
 src/plugins/PlaceReport.py
-src/plugins/ReadPkg.py
 src/plugins/Rebuild.py
 src/plugins/References.py
 src/plugins/RelCalc.py
@@ -327,7 +327,6 @@ src/plugins/WriteFtree.py
 src/plugins/WriteGeneWeb.py
 src/plugins/WritePkg.py
 src/plugins/RebuildRefMap.py
-src/plugins/ReadGrdb.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py

@@ -31,11 +31,6 @@
 # constants
 #
 #-------------------------------------------------------------------------
-APP_GRAMPS      = "application/x-gramps"
-APP_GRAMPS_XML  = "application/x-gramps-xml"
-APP_GEDCOM      = "application/x-gedcom"
-APP_GRAMPS_PKG  = "application/x-gramps-package"
-APP_GENEWEB     = "application/x-geneweb"
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

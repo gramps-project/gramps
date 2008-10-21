@@ -30,13 +30,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # Standard python modules
 #
 #-------------------------------------------------------------------------
@@ -64,7 +57,7 @@ from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
 from PluginUtils import Tool
 from gen.plug import PluginManager
-from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
+from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
 
 IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
                 const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
@@ -783,27 +776,6 @@ class ArgHandler:
         else:
             print "Unknown action: %s." % action
             sys.exit(1)
-
-def add_all_files_filter(chooser):
-    """
-    Add an all-permitting filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('All files'))
-    mime_filter.add_pattern('*')
-    chooser.add_filter(mime_filter)
-
-def add_grdb_filter(chooser):
-    """
-    Add a GRDB filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS databases'))
-    mime_filter.add_mime_type(const.APP_GRAMPS)
-    chooser.add_filter(mime_filter)
-
-def read_pkg(filename):
-    print "FIXME: This is not re-implemented yet."
 
 def empty(val):
     pass

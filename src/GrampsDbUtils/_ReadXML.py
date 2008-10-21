@@ -80,7 +80,7 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None, cl=0, use_trans=False):
+def importData(database, filename, callback=None, cl=0):
 
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
@@ -109,7 +109,7 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
         
     try:
         xml_file.seek(0)
-        info = parser.parse(xml_file, use_trans, line_cnt, person_cnt)
+        info = parser.parse(xml_file, line_cnt, person_cnt)
     except IOError, msg:
         if cl:
             print "Error reading %s" % filename
@@ -733,7 +733,7 @@ class GrampsParser(UpdateCallback):
                 self.nidswap[gramps_id] = gramps_id
         return self.nidswap[gramps_id]
 
-    def parse(self, ifile, use_trans=False, linecount=0, personcount=0):
+    def parse(self, ifile, linecount=0, personcount=0):
         if personcount < 1000:
             no_magic = True
         else:

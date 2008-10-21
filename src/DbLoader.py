@@ -119,7 +119,6 @@ class DbLoader:
 
         # Always add automatic (match all files) filter
         add_all_files_filter(choose_db_dialog)   # *
-        #add_grdb_filter(choose_db_dialog)        # .grdb no longer native!
         add_xml_filter(choose_db_dialog)         # .gramps
         add_gedcom_filter(choose_db_dialog)      # .ged
 
@@ -366,15 +365,6 @@ def add_gramps_files_filter(chooser):
     mime_filter.set_name(_('All GRAMPS files'))
     for fmt in OPEN_FORMATS:
         mime_filter.add_mime_type(fmt)
-    chooser.add_filter(mime_filter)
-
-def add_grdb_filter(chooser):
-    """
-    Add a GRDB filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS 2.x databases'))
-    mime_filter.add_mime_type(const.APP_GRAMPS)
     chooser.add_filter(mime_filter)
 
 def add_xml_filter(chooser):

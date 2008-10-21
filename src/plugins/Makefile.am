@@ -43,6 +43,8 @@ pkgdata_PYTHON = \
 	GVRelGraph.py\
 	ImportCSV.py\
 	ImportGeneWeb.py\
+	ImportGpkg.py\
+	ImportGrdb.py\
 	ImportvCard.py\
 	IndivComplete.py\
 	KinshipReport.py\
@@ -57,8 +59,6 @@ pkgdata_PYTHON = \
 	OwnerEditor.py\
 	PatchNames.py\
 	PlaceReport.py\
-	ReadGrdb.py\
-	ReadPkg.py\
 	Rebuild.py\
 	RebuildRefMap.py\
 	References.py\

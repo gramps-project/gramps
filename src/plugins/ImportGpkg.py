@@ -57,7 +57,7 @@ from gen.plug import PluginManager, ImportPlugin
 #
 #
 #-------------------------------------------------------------------------
-def impData(database, name, cb=None, cl=0):
+def impData(database, name, cb=None):
     # Create tempdir, if it does not exist, then check for writability
     #     THE TEMP DIR is named as the filname.gpkg.media and is created
     #     in the mediapath dir of the family tree we import too
