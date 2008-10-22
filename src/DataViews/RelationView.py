@@ -972,7 +972,13 @@ class RelationshipView(PageView.PersonNavView):
             vbox = gtk.VBox()
             frame = gtk.Frame()
             frame.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-            frame.add(vbox)
+            if self.use_shade:
+                ev = gtk.EventBox()
+                ev.modify_bg(gtk.STATE_NORMAL, self.color)
+                ev.add(vbox)
+                frame.add(ev)
+            else:
+                frame.add(vbox)
             original_vbox.add(frame)
         
         parent = has_children(self.dbstate.db,
