@@ -253,7 +253,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             m = match.groups()
             self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
         else:
-            self.file_header = self.top
+            self.file_header = "".join(self.top)
         self.file_header = self.process_line(self.file_header)
 
     def build_style_declaration(self):
