@@ -863,7 +863,7 @@ def make_welcome_content(gui):
         ' gramplets and change the number of columns. You can also drag the '
         'Properties button to reposition the gramplet on this page, and detach'
         ' the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet'
-        ' detached, it will re-opened detached the next time you start '
+        ' detached, it will re-open detached the next time you start '
         'GRAMPS.'
             )
     gui.set_text(text)
