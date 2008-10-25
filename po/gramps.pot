@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 08:52+0200\n"
+"POT-Creation-Date: 2008-10-25 18:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -701,7 +701,12 @@ msgstr ""
 msgid "Descendants of %s"
 msgstr ""
 
-#: ../src/ExportOptions.py:120 ../src/plugins/ExportCSV.py:195
+#: ../src/ExportOptions.py:120 ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr ""
+
+#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/WriteFtree.py:100 ../src/plugins/WriteGeneWeb.py:105
 #: ../src/ReportBase/_ReportUtils.py:2959
@@ -709,7 +714,7 @@ msgstr ""
 msgid "Ancestors of %s"
 msgstr ""
 
-#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:201
+#: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/WriteFtree.py:106 ../src/plugins/WriteGeneWeb.py:111
 #: ../src/ReportBase/_ReportUtils.py:2963
@@ -3901,7 +3906,7 @@ msgid "Could not create %s"
 msgstr ""
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr ""
@@ -3974,7 +3979,7 @@ msgstr ""
 msgid "PostScript"
 msgstr ""
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr ""
 
@@ -15636,11 +15641,6 @@ msgstr ""
 msgid "Died: %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr ""
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr ""
@@ -19933,8 +19933,8 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
-"GRAMPS works even when using KDE, as long as the required GNOME libraries "
-"are installed."
+"GRAMPS works even when using KDE, as long as the required GTK libraries are "
+"installed."
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:52

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 08:52+0200\n"
+"POT-Creation-Date: 2008-10-25 18:22+0200\n"
 "PO-Revision-Date: 2008-10-20 08:59+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
@@ -735,7 +735,12 @@ msgstr "Hele databasen"
 msgid "Descendants of %s"
 msgstr "Etterkommere av %s"
 
-#: ../src/ExportOptions.py:120 ../src/plugins/ExportCSV.py:195
+#: ../src/ExportOptions.py:120 ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Familier som nedstammer fra %s"
+
+#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/WriteFtree.py:100 ../src/plugins/WriteGeneWeb.py:105
 #: ../src/ReportBase/_ReportUtils.py:2959
@@ -743,7 +748,7 @@ msgstr "Etterkommere av %s"
 msgid "Ancestors of %s"
 msgstr "Aner av %s"
 
-#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:201
+#: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/WriteFtree.py:106 ../src/plugins/WriteGeneWeb.py:111
 #: ../src/ReportBase/_ReportUtils.py:2963
@@ -3104,7 +3109,7 @@ msgstr "Slett den valgte hendelsen"
 
 #: ../src/DataViews/EventView.py:181
 msgid "Event Filter Editor"
-msgstr "Hendelsesbehandler"
+msgstr "Lage hendelsesfilter"
 
 #: ../src/DataViews/EventView.py:184 ../src/DataViews/MediaView.py:214
 #: ../src/DataViews/NoteView.py:166 ../src/DataViews/PlaceView.py:117
@@ -3923,7 +3928,7 @@ msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr "Åpne i %s"
@@ -3998,7 +4003,7 @@ msgstr "Skriv ut en kopi"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr "RTF-dokument"
 
@@ -4061,7 +4066,7 @@ msgstr "Flytt den valgte egenskapen nedover"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:66
 msgid "_Attributes"
-msgstr "_Egenskaper"
+msgstr "E_genskaper"
 
 #: ../src/DisplayTabs/_BackRefList.py:64
 msgid "_References"
@@ -15133,11 +15138,6 @@ msgstr "Døde: %(death_date)s."
 msgid "Died: %(death_place)s."
 msgstr "Døde: %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Familier som nedstammer fra %s"
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Dokumentstiler"
@@ -18026,7 +18026,7 @@ msgstr "D_ag"
 
 #: ../src/glade/gramps.glade.h:62
 msgid "Dat_e:"
-msgstr "_Dato:"
+msgstr "Da_to:"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "De_scription:"
@@ -18293,7 +18293,7 @@ msgstr "_Troverdighet:"
 
 #: ../src/glade/gramps.glade.h:141
 msgid "_Date:"
-msgstr "_Dato:"
+msgstr "Da_to:"
 
 #: ../src/glade/gramps.glade.h:142
 msgid "_Day"
@@ -19203,8 +19203,8 @@ msgid "GRAMPS offers full Unicode support. Characters for all languages are prop
 msgstr "GRAMPS tilbyr full Unicode-støtte. Særtegn for alle språk skal vises riktig."
 
 #: ../src/data/tips.xml.in.h:51
-msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME-oppbevaringsstedene er installert."
+msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
+msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GTK-bibliotekene er installert."
 
 #: ../src/data/tips.xml.in.h:52
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
@@ -19297,4 +19297,3 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
-
