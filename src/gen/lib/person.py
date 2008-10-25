@@ -242,13 +242,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             # If deleting removing the reference to the event
             # to which birth or death ref_index points, unset the index
             if (self.birth_ref_index != -1) \
-                   and (self.event_ref_list[self.birth_ref_index]
+                   and (self.event_ref_list[self.birth_ref_index].ref
                         in handle_list):
-                self.birth_ref_index = -1
+                self.set_birth_ref(None)
             if (self.death_ref_index != -1) \
-                   and (self.event_ref_list[self.death_ref_index]
+                   and (self.event_ref_list[self.death_ref_index].ref
                         in handle_list):
-                self.death_ref_index = -1
+                self.set_death_ref(None)
             self.event_ref_list = new_list
 
             # Reset the indexes after deleting the event from even_ref_list
