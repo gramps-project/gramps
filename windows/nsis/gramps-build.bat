@@ -56,15 +56,15 @@ rem *****************************************************
 rem *  MAKE ALL ADJUSTMENTS IN THIS SECTION!            *
 
 rem version (also used for location
-	set VERSION=0
+	set VERSION=3
 	set VERSIONSUB=0
-	set VERSIONPT=0
-	set VERSIONBUILD=0
+	set VERSIONPT=3
+	set VERSIONBUILD=1
 
 rem path to Nullsoft Installer (NSIS)
 	set NSIS=C:\PROGRA~1\NSIS
 rem path to Nullsoft customized files
-	set CUSTOM=C:\DOCUME~1\HALLS~1.PER\_seh\devel\gramps
+	set CUSTOM=C:\DOCUME~1\halls\_seh\devel\gramps
 
 rem path to Python
 	if "%PYTHONPATH%"=="" echo   Manually setting $PYTHONPATH...
@@ -165,7 +165,7 @@ echo.
 echo   [1] Clean build location
 echo   [2] Extract source tarballs
 echo   [3] Build source
-echo   [N] Nullsoft Installer
+echo   [4] Nullsoft Installer
 echo.
 echo   [R]emove existing installation
 echo.
@@ -180,7 +180,7 @@ echo.
 	if /I "%CH%"=="Q" goto QUIT
 	if /I "%CH%"=="A" goto AUTO
 	if /I "%CH%"=="R" goto REMOVE
-	if /I "%CH%"=="N" goto NSIS
+	if /I "%CH%"=="4" goto NSIS
 	if /I "%CH%"=="3" goto BUILD
 	if /I "%CH%"=="2" goto SOURCE
 	if /I "%CH%"=="1" goto CLEAN
@@ -301,13 +301,13 @@ if exist %NSIS%\CON goto NSISFOUND
 	goto CHOOSE
 	:NSISFOUND
 
-echo   copying customized NSIS files...
-	rem if not exist "%BUILDPATH%\%VERSIONNAME%\nsis" mkdir "%BUILDPATH%\%VERSIONNAME%\nsis"
-	rem copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-install.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-install.ico"
-	rem copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-uninstall.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-uninstall.ico"
-	rem copy /Y "%NSIS%\Contrib\Graphics\Header\win.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\win.bmp"
-	rem if exist "%CUSTOM%\nsis-splash.bmp" copy /Y "%CUSTOM%\nsis-splash.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-splash.bmp"
-	rem if exist "%CUSTOM%\nsis-checkboxes.bmp" copy /Y "%CUSTOM%\nsis-checkboxes.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-checkboxes.bmp"
+rem echo   copying customized NSIS files...
+rem     if not exist "%BUILDPATH%\%VERSIONNAME%\nsis" mkdir "%BUILDPATH%\%VERSIONNAME%\nsis"
+rem     copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-install.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-install.ico"
+rem     copy /Y "%NSIS%\Contrib\Graphics\Icons\classic-uninstall.ico" "%BUILDPATH%\%VERSIONNAME%\nsis\classic-uninstall.ico"
+rem     copy /Y "%NSIS%\Contrib\Graphics\Header\win.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\win.bmp"
+rem     if exist "%CUSTOM%\nsis-splash.bmp" copy /Y "%CUSTOM%\nsis-splash.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-splash.bmp"
+rem     if exist "%CUSTOM%\nsis-checkboxes.bmp" copy /Y "%CUSTOM%\nsis-checkboxes.bmp" "%BUILDPATH%\%VERSIONNAME%\nsis\nsis-checkboxes.bmp"
 
 rem TODO:
 echo   copying temporary, should end up in next release (?)
@@ -320,10 +320,13 @@ echo   building installer...
 	cd "%BUILDPATH%\%VERSIONNAME%\nsis"
 	%NSIS%\makensis gramps.nsi
 
-if not "%RETURN%"=="no" echo.
-if not "%RETURN%"=="no" echo   Pausing... did we enjoy building the Nullsoft installer? (Ctrl+C to quit)
-if not "%RETURN%"=="no" pause
-if not "%RETURN%"=="no" goto CHOOSE
+rem Open Windows Explorer to this directory
+	explorer /e,"%BUILDPATH%\%VERSIONNAME%\nsis"
+
+echo.
+echo   Pausing... did we enjoy building the Nullsoft installer? (Ctrl+C to quit)
+	pause
+	goto CHOOSE
 
 rem REMOVE {{{1
 :REMOVE
