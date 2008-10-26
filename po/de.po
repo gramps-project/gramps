@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 21:39+0200\n"
-"PO-Revision-Date: 2008-10-20 21:41+0200\n"
+"POT-Creation-Date: 2008-10-26 13:33+0100\n"
+"PO-Revision-Date: 2008-10-26 18:50+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -785,7 +785,12 @@ msgstr "Gesamte Datenbank"
 msgid "Descendants of %s"
 msgstr "Nachkommen von %s"
 
-#: ../src/ExportOptions.py:120 ../src/plugins/ExportCSV.py:195
+#: ../src/ExportOptions.py:120 ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Familien der Nachkommen von %s"
+
+#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/WriteFtree.py:100 ../src/plugins/WriteGeneWeb.py:105
 #: ../src/ReportBase/_ReportUtils.py:2959
@@ -793,7 +798,7 @@ msgstr "Nachkommen von %s"
 msgid "Ancestors of %s"
 msgstr "Vorfahren von %s"
 
-#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:201
+#: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/WriteFtree.py:106 ../src/plugins/WriteGeneWeb.py:111
 #: ../src/ReportBase/_ReportUtils.py:2963
@@ -4060,7 +4065,7 @@ msgid "Could not create %s"
 msgstr "Konnte %s nicht erstellen"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr "Öffne in %s"
@@ -4135,7 +4140,7 @@ msgstr "Eine Kopie drucken"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr "RTF-Dokument"
 
@@ -7674,7 +7679,7 @@ msgid ""
 "gramplets and change the number of columns. You can also drag the Properties "
 "button to reposition the gramplet on this page, and detach the gramplet to "
 "float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-"
-"opened detached the next time you start GRAMPS."
+"open detached the next time you start GRAMPS."
 msgstr ""
 "Willkommen zu GRAMPS!\n"
 "\n"
@@ -7690,19 +7695,19 @@ msgstr ""
 "Wie beginnen\n"
 "\n"
 "Als erstes musst du einen neuen Stammbaum erstellen. Zum anlegen eines neuen "
-"Stammbaum (auch genannt Datenbank) wähle \"Stammbäume\" aus dem Menü, wähle "
+"Stammbaum (auch Datenbank genannt) wähle \"Stammbäume\" aus dem Menü, wähle "
 "\"Stammbäume verwalten\", drücke \"Neu\" und gib deiner Datenbank einen "
 "Namen. Für mehr Details lies bitte das Benutzerhandbuch, oder das "
 "Onlinehandbuch auf http://gramps-project.org.\n"
 "\n"
 "Du befindest dich auf der \"Mein Gramps\" Seite, wo du deine eigenen "
-"gramplets hinzufügen kannst.\n"
+"Gramplets hinzufügen kannst.\n"
 "\n"
-"Du kannst auf den Hintergrund dieser Seite rechts klicken um weitere gadgets "
-"hinzu zu fügen oder die Anzahl der Spalten zu ändern. Du kannst auch die "
-"Eigenschaftenschaltfläche ziehen um das gadget auf der Seite zu verschieben, "
-"und das gadget lösen um es über GRAMPS schweben zu lassen. Wenn du GRAMPS "
-"mit einem geöffneten gadget schließt, wird es beim nächsten starten von "
+"Du kannst auf den Hintergrund dieser Seite rechts klicken um weitere Gadgets "
+"hinzu zu fügen und die Anzahl der Spalten zu ändern. Du kannst auch die "
+"Eigenschaftenschaltfläche ziehen um das Gramplet auf der Seite zu verschieben, "
+"und das Gramplet lösen um es über GRAMPS schweben zu lassen. Wenn du GRAMPS "
+"mit einem geöffneten Gramplet schließt, wird es beim nächsten starten von "
 "GRAMPS mit geöffnet."
 
 #: ../src/plugins/DefaultGramplets.py:875
@@ -16447,11 +16452,6 @@ msgstr "Starb: %(death_date)s."
 msgid "Died: %(death_place)s."
 msgstr "Starb: %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Familien der Nachkommen von %s"
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Dokumentenstile"
@@ -17355,8 +17355,8 @@ msgid "Has marker of"
 msgstr "Hat Marker"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-msgid "Matches markers of a partikular type"
-msgstr "Liefert Marker des gegebenen Typs"
+msgid "Matches markers of a particular type"
+msgstr "Liefert Marker eines bestimmten Typs"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -19123,15 +19123,14 @@ msgstr "Personen:"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
 msgid ""
-"This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, "
+"This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
 "Diese GEDCOM-Datei sagt, dass sie in der ANSEL-Kodierung gespeichert ist. "
 "Machmal stimmt dies jedoch nicht. Wenn die Daten nach dem Import merkwürdige "
-"Sonderzeichen enthalten, mache den Import rückgängig, und wähle eine "
-"andereKodierung aus der Liste aus."
+"Sonderzeichen enthalten, mache den Import rückgängig, und überschreibe die Kodierung durch die Auswahl einer anderen Kodierung weiter unten."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
 msgid "Version:"
