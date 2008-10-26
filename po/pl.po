@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-08 18:30+0200\n"
-"PO-Revision-Date: 2008-09-15 18:58+0100\n"
+"POT-Creation-Date: 2008-10-25 18:22+0200\n"
+"PO-Revision-Date: 2008-10-26 18:27+0100\n"
 "Last-Translator: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "Language-Team: Łukasz Rymarczyk <yenidai@poczta.onet.pl>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
 
-#: ../src/ArgHandler.py:403
+#: ../src/ArgHandler.py:404
 #: ../src/DbLoader.py:167
 #: ../src/DbLoader.py:188
 #: ../src/DbLoader.py:276
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Could not open file: %s"
 msgstr "Nie można otworzyć pliku: %s"
 
-#: ../src/ArgHandler.py:404
+#: ../src/ArgHandler.py:405
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
@@ -36,25 +36,25 @@ msgstr ""
 "Nie podano do otwarcia poprawnego drzewa rodzinnego\n"
 "\n"
 
-#: ../src/ArgHandler.py:509
+#: ../src/ArgHandler.py:512
 msgid "Database is locked, cannot open it!"
 msgstr "Baza danych jest zablokowana, nie można jej otworzyć!"
 
-#: ../src/ArgHandler.py:510
+#: ../src/ArgHandler.py:513
 #, python-format
 msgid "  Info: %s"
 msgstr "  Informacja: %s"
 
-#: ../src/ArgHandler.py:513
+#: ../src/ArgHandler.py:516
 msgid "Database needs recovery, cannot open it!"
 msgstr "Baza danych wymaga naprawy, nie można jej otworzyć!"
 
-#: ../src/ArgHandler.py:795
+#: ../src/ArgHandler.py:798
 #: ../src/DbLoader.py:349
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: ../src/ArgHandler.py:804
+#: ../src/ArgHandler.py:807
 msgid "GRAMPS databases"
 msgstr "Bazy danych GRAMPS"
 
@@ -126,20 +126,20 @@ msgstr "Organizuj zakładki"
 #. Add column with object name
 #: ../src/Bookmarks.py:214
 #: ../src/GrampsCfg.py:175
-#: ../src/ScratchPad.py:186
-#: ../src/ScratchPad.py:372
-#: ../src/ScratchPad.py:428
-#: ../src/ScratchPad.py:461
-#: ../src/ScratchPad.py:530
-#: ../src/ScratchPad.py:561
-#: ../src/ScratchPad.py:578
-#: ../src/ScratchPad.py:579
-#: ../src/ScratchPad.py:598
-#: ../src/ScratchPad.py:648
-#: ../src/ScratchPad.py:681
-#: ../src/ScratchPad.py:735
-#: ../src/ScratchPad.py:746
-#: ../src/ScratchPad.py:825
+#: ../src/ScratchPad.py:193
+#: ../src/ScratchPad.py:379
+#: ../src/ScratchPad.py:435
+#: ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:537
+#: ../src/ScratchPad.py:568
+#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:586
+#: ../src/ScratchPad.py:605
+#: ../src/ScratchPad.py:655
+#: ../src/ScratchPad.py:688
+#: ../src/ScratchPad.py:742
+#: ../src/ScratchPad.py:753
+#: ../src/ScratchPad.py:832
 #: ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
@@ -164,7 +164,7 @@ msgstr "Organizuj zakładki"
 #: ../src/plugins/NarrativeWeb.py:1119
 #: ../src/plugins/NarrativeWeb.py:1657
 #: ../src/plugins/NarrativeWeb.py:1750
-#: ../src/plugins/NotRelated.py:96
+#: ../src/plugins/NotRelated.py:107
 #: ../src/plugins/PatchNames.py:212
 #: ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113
@@ -208,8 +208,8 @@ msgstr "Nazwisko"
 #: ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
 #: ../src/Selectors/_SelectSource.py:54
-#: ../src/plugins/EventCmp.py:238
-#: ../src/plugins/NotRelated.py:97
+#: ../src/plugins/EventCmp.py:249
+#: ../src/plugins/NotRelated.py:108
 #: ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55
 #: ../src/plugins/RemoveUnused.py:186
@@ -584,7 +584,7 @@ msgid "Never"
 msgstr "Nigdy"
 
 #: ../src/DbManager.py:1016
-#: ../src/ScratchPad.py:94
+#: ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400
 #: ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
@@ -805,7 +805,7 @@ msgid "_Restrict data on living people"
 msgstr "Ogranicz dane o żyjących osobach"
 
 #: ../src/ExportOptions.py:88
-#: ../src/plugins/EventCmp.py:134
+#: ../src/plugins/EventCmp.py:145
 #: ../src/plugins/ExportCSV.py:182
 #: ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86
@@ -828,6 +828,12 @@ msgid "Descendants of %s"
 msgstr "Potomkowie osoby %s"
 
 #: ../src/ExportOptions.py:120
+#: ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Rodziny potomne osoby %s"
+
+#: ../src/ExportOptions.py:126
 #: ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101
 #: ../src/plugins/ExportVCard.py:99
@@ -838,7 +844,7 @@ msgstr "Potomkowie osoby %s"
 msgid "Ancestors of %s"
 msgstr "Przodkowie osoby %s"
 
-#: ../src/ExportOptions.py:126
+#: ../src/ExportOptions.py:132
 #: ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107
 #: ../src/plugins/ExportVCard.py:105
@@ -946,8 +952,8 @@ msgid "Database"
 msgstr "Baza danych"
 
 #: ../src/GrampsCfg.py:155
-#: ../src/ScratchPad.py:611
-#: ../src/ScratchPad.py:619
+#: ../src/ScratchPad.py:618
+#: ../src/ScratchPad.py:626
 #: ../src/plugins/CustomBookText.py:113
 #: ../src/plugins/MarkerReport.py:387
 #: ../src/plugins/NarrativeWeb.py:707
@@ -977,8 +983,8 @@ msgstr "Kolory zakreślacza"
 
 #: ../src/GrampsCfg.py:176
 #: ../src/gramps_main.py:97
-#: ../src/ScratchPad.py:152
-#: ../src/ScratchPad.py:169
+#: ../src/ScratchPad.py:159
+#: ../src/ScratchPad.py:176
 #: ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:148
 #: ../src/plugins/FamilyGroup.py:285
@@ -1043,7 +1049,7 @@ msgstr "E-mail"
 #: ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117
 #: ../src/plugins/AgeOnDate.py:53
-#: ../src/plugins/EventCmp.py:238
+#: ../src/plugins/EventCmp.py:249
 #: ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/FilterByName.py:57
 #: ../src/plugins/FilterByName.py:65
@@ -1068,7 +1074,7 @@ msgstr "Osoba"
 #. get the family events
 #: ../src/GrampsCfg.py:195
 #: ../src/gramps_main.py:106
-#: ../src/ScratchPad.py:582
+#: ../src/ScratchPad.py:589
 #: ../src/ToolTips.py:228
 #: ../src/DataViews/RelationView.py:465
 #: ../src/DataViews/RelationView.py:1148
@@ -1087,8 +1093,8 @@ msgid "Family"
 msgstr "Rodzina"
 
 #: ../src/GrampsCfg.py:197
-#: ../src/ScratchPad.py:282
-#: ../src/ScratchPad.py:360
+#: ../src/ScratchPad.py:289
+#: ../src/ScratchPad.py:367
 #: ../src/Simple/_SimpleTable.py:219
 #: ../src/DataViews/EventView.py:73
 #: ../src/DisplayTabs/_EventEmbedList.py:66
@@ -1120,8 +1126,8 @@ msgid "Source"
 msgstr "Źródło"
 
 #: ../src/GrampsCfg.py:201
-#: ../src/ScratchPad.py:632
-#: ../src/ScratchPad.py:645
+#: ../src/ScratchPad.py:639
+#: ../src/ScratchPad.py:652
 #: ../src/Editors/_EditPerson.py:470
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
@@ -1148,7 +1154,7 @@ msgstr "Magazyn"
 
 #. ###############################
 #: ../src/GrampsCfg.py:207
-#: ../src/ScratchPad.py:311
+#: ../src/ScratchPad.py:318
 #: ../src/ToolTips.py:159
 #: ../src/Simple/_SimpleTable.py:227
 #: ../src/DisplayModels/_MediaModel.py:105
@@ -1158,7 +1164,7 @@ msgstr "Magazyn"
 #: ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303
 #: ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:852
+#: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1227,7 +1233,7 @@ msgstr "_Szczegóły własnego formatu"
 #: ../src/GrampsCfg.py:352
 #: ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354
-#: ../src/Utils.py:1159
+#: ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155
@@ -1254,8 +1260,8 @@ msgstr "Nazwisko"
 #: ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360
 #: ../src/GrampsCfg.py:361
-#: ../src/ScratchPad.py:581
-#: ../src/Utils.py:1157
+#: ../src/ScratchPad.py:588
+#: ../src/Utils.py:1194
 #: ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/ImportCSV.py:159
@@ -1268,8 +1274,8 @@ msgstr "Imiona"
 #: ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:355
 #: ../src/GrampsCfg.py:360
-#: ../src/ScratchPad.py:586
-#: ../src/Utils.py:1160
+#: ../src/ScratchPad.py:593
+#: ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365
 #: ../src/plugins/ImportCSV.py:169
 msgid "Suffix"
@@ -1279,7 +1285,7 @@ msgstr "Przyrostek"
 #: ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:356
 #: ../src/GrampsCfg.py:357
-#: ../src/Utils.py:1163
+#: ../src/Utils.py:1200
 msgid "Common"
 msgstr "wspólne"
 
@@ -1287,7 +1293,7 @@ msgstr "wspólne"
 #: ../src/GrampsCfg.py:349
 #: ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358
-#: ../src/Utils.py:1162
+#: ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365
 #: ../src/plugins/ImportCSV.py:163
 msgid "Call"
@@ -1300,13 +1306,13 @@ msgstr "Używane imię"
 #: ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360
 #: ../src/GrampsCfg.py:361
-#: ../src/Utils.py:1159
+#: ../src/Utils.py:1196
 msgid "SURNAME"
 msgstr "NAZWISKO"
 
 #: ../src/GrampsCfg.py:354
-#: ../src/ScratchPad.py:583
-#: ../src/Utils.py:1161
+#: ../src/ScratchPad.py:590
+#: ../src/Utils.py:1198
 msgid "Patronymic"
 msgstr "Imię ojcowskie"
 
@@ -1475,8 +1481,8 @@ msgid "Family Trees"
 msgstr "Moje drzewa"
 
 #: ../src/gramps_main.py:98
-#: ../src/ScratchPad.py:407
-#: ../src/ScratchPad.py:415
+#: ../src/ScratchPad.py:414
+#: ../src/ScratchPad.py:422
 #: ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr "Atrybut"
@@ -1486,8 +1492,8 @@ msgid "Add Bookmark"
 msgstr "Dodaj zakładkę"
 
 #: ../src/gramps_main.py:103
-#: ../src/ScratchPad.py:170
-#: ../src/ScratchPad.py:359
+#: ../src/ScratchPad.py:177
+#: ../src/ScratchPad.py:366
 #: ../src/DataViews/EventView.py:72
 #: ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
@@ -1571,7 +1577,7 @@ msgstr "Notatki"
 #: ../src/plugins/NarrativeWeb.py:860
 #: ../src/plugins/NarrativeWeb.py:1000
 #: ../src/plugins/NarrativeWeb.py:2258
-#: ../src/plugins/NotRelated.py:98
+#: ../src/plugins/NotRelated.py:109
 msgid "Parents"
 msgstr "Rodzice"
 
@@ -1614,9 +1620,9 @@ msgid "Repositories"
 msgstr "Magazyny"
 
 #: ../src/gramps_main.py:123
-#: ../src/ScratchPad.py:185
-#: ../src/ScratchPad.py:427
-#: ../src/ScratchPad.py:460
+#: ../src/ScratchPad.py:192
+#: ../src/ScratchPad.py:434
+#: ../src/ScratchPad.py:467
 #: ../src/DataViews/SourceView.py:94
 #: ../src/plugins/NarrativeWeb.py:464
 #: ../src/plugins/NarrativeWeb.py:1632
@@ -2040,7 +2046,7 @@ msgid "GRAMPS has detected a problem in the underlying Berkeley database. This c
 msgstr "GRAMPS wykrył problem z używanym przez niego systemem baz danych Berkeley. Ten problem może być naprawiony z poziomu menadżera drzew genealogicznych. Wybierz odpowiednią bazę i wciśnij przycisk Napraw"
 
 #: ../src/QuestionDialog.py:310
-#: ../src/Utils.py:1075
+#: ../src/Utils.py:1112
 msgid "Attempt to force closing the dialog"
 msgstr "Próbuj wymusić zamknięcie okna"
 
@@ -2249,40 +2255,44 @@ msgstr "Zmień kolejność związków"
 msgid "Reorder Relationships: %s"
 msgstr "Zmień kolejność związków: %s"
 
-#: ../src/ScratchPad.py:171
-#: ../src/ScratchPad.py:198
-#: ../src/ScratchPad.py:210
+#: ../src/ScratchPad.py:68
+msgid "manual|Using_the_Clipboard"
+msgstr "Nie można otworzyć pliku: %s"
+
+#: ../src/ScratchPad.py:178
+#: ../src/ScratchPad.py:205
+#: ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
 msgid "Location"
 msgstr "Położenie"
 
-#: ../src/ScratchPad.py:177
-#: ../src/ScratchPad.py:215
+#: ../src/ScratchPad.py:184
+#: ../src/ScratchPad.py:222
 #: ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../src/ScratchPad.py:227
+#: ../src/ScratchPad.py:234
 msgid "Event Link"
 msgstr "Łącze do zdarzenia"
 
-#: ../src/ScratchPad.py:344
-#: ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:351
+#: ../src/ScratchPad.py:364
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Zdarzenie rodzinne"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:358
-#: ../src/ScratchPad.py:416
-#: ../src/ScratchPad.py:449
-#: ../src/ScratchPad.py:587
-#: ../src/ScratchPad.py:647
-#: ../src/ScratchPad.py:680
-#: ../src/ScratchPad.py:826
-#: ../src/ScratchPad.py:898
-#: ../src/ScratchPad.py:904
+#: ../src/ScratchPad.py:365
+#: ../src/ScratchPad.py:423
+#: ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:594
+#: ../src/ScratchPad.py:654
+#: ../src/ScratchPad.py:687
+#: ../src/ScratchPad.py:833
+#: ../src/ScratchPad.py:905
+#: ../src/ScratchPad.py:911
 #: ../src/Merge/_MergePerson.py:182
 #: ../src/DataViews/EventView.py:71
 #: ../src/DataViews/MediaView.py:82
@@ -2317,13 +2327,13 @@ msgstr "Zdarzenie rodzinne"
 msgid "Type"
 msgstr "Rodzaj"
 
-#: ../src/ScratchPad.py:361
+#: ../src/ScratchPad.py:368
 #: ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Powód"
 
-#: ../src/ScratchPad.py:362
-#: ../src/ScratchPad.py:396
+#: ../src/ScratchPad.py:369
+#: ../src/ScratchPad.py:403
 #: ../src/DataViews/EventView.py:69
 #: ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64
@@ -2334,50 +2344,50 @@ msgstr "Powód"
 msgid "Description"
 msgstr "Opis"
 
-#: ../src/ScratchPad.py:371
-#: ../src/ScratchPad.py:597
-#: ../src/ScratchPad.py:745
+#: ../src/ScratchPad.py:378
+#: ../src/ScratchPad.py:604
+#: ../src/ScratchPad.py:752
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Główne źródło"
 
-#: ../src/ScratchPad.py:385
-#: ../src/ScratchPad.py:393
+#: ../src/ScratchPad.py:392
+#: ../src/ScratchPad.py:400
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:394
+#: ../src/ScratchPad.py:401
 #: ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Ścieżka"
 
-#: ../src/ScratchPad.py:418
-#: ../src/ScratchPad.py:451
-#: ../src/ScratchPad.py:900
-#: ../src/ScratchPad.py:906
+#: ../src/ScratchPad.py:425
+#: ../src/ScratchPad.py:458
+#: ../src/ScratchPad.py:907
+#: ../src/ScratchPad.py:913
 #: ../src/DisplayTabs/_AttrEmbedList.py:61
 #: ../src/DisplayTabs/_DataEmbedList.py:58
 #: ../src/plugins/PatchNames.py:209
 msgid "Value"
 msgstr "Wartość"
 
-#: ../src/ScratchPad.py:440
-#: ../src/ScratchPad.py:448
+#: ../src/ScratchPad.py:447
+#: ../src/ScratchPad.py:455
 msgid "Family Attribute"
 msgstr "Atrybuty rodzinne"
 
-#: ../src/ScratchPad.py:473
-#: ../src/ScratchPad.py:502
+#: ../src/ScratchPad.py:480
+#: ../src/ScratchPad.py:509
 msgid "Source Reference"
 msgstr "Odwołania do źródeł"
 
-#: ../src/ScratchPad.py:485
+#: ../src/ScratchPad.py:492
 msgid "not available|NA"
 msgstr "Niedostępne"
 
-#: ../src/ScratchPad.py:491
+#: ../src/ScratchPad.py:498
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Wolumin/Strona: %(pag)s -- %(sourcetext)s"
@@ -2388,14 +2398,14 @@ msgstr "Wolumin/Strona: %(pag)s -- %(sourcetext)s"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:503
-#: ../src/ScratchPad.py:585
-#: ../src/ScratchPad.py:646
-#: ../src/ScratchPad.py:679
-#: ../src/ScratchPad.py:787
-#: ../src/ScratchPad.py:899
-#: ../src/ScratchPad.py:905
-#: ../src/Utils.py:1156
+#: ../src/ScratchPad.py:510
+#: ../src/ScratchPad.py:592
+#: ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:686
+#: ../src/ScratchPad.py:794
+#: ../src/ScratchPad.py:906
+#: ../src/ScratchPad.py:912
+#: ../src/Utils.py:1193
 #: ../src/DataViews/MediaView.py:80
 #: ../src/DataViews/SourceView.py:66
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
@@ -2412,36 +2422,36 @@ msgstr "Wolumin/Strona: %(pag)s -- %(sourcetext)s"
 msgid "Title"
 msgstr "Tytuł"
 
-#: ../src/ScratchPad.py:504
+#: ../src/ScratchPad.py:511
 #: ../src/DisplayTabs/_SourceEmbedList.py:65
 #: ../src/plugins/NarrativeWeb.py:700
 msgid "Page"
 msgstr "Strona"
 
-#: ../src/ScratchPad.py:516
-#: ../src/ScratchPad.py:529
+#: ../src/ScratchPad.py:523
+#: ../src/ScratchPad.py:536
 msgid "Repository Reference"
 msgstr "Odwołanie do magazynu"
 
-#: ../src/ScratchPad.py:531
+#: ../src/ScratchPad.py:538
 #: ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
 msgstr "Sygnatura"
 
-#: ../src/ScratchPad.py:532
+#: ../src/ScratchPad.py:539
 msgid "Media Type"
 msgstr "Rodzaj obiektu medialnego"
 
-#: ../src/ScratchPad.py:544
+#: ../src/ScratchPad.py:551
 msgid "Event Reference"
 msgstr "Odwołanie do zdarzenia"
 
-#: ../src/ScratchPad.py:580
+#: ../src/ScratchPad.py:587
 msgid "Call Name"
 msgstr "Używane imię"
 
-#: ../src/ScratchPad.py:584
-#: ../src/Utils.py:1158
+#: ../src/ScratchPad.py:591
+#: ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365
 #: ../src/plugins/ImportCSV.py:167
 #: ../src/plugins/PatchNames.py:256
@@ -2449,22 +2459,22 @@ msgstr "Używane imię"
 msgid "Prefix"
 msgstr "Prefiks"
 
-#: ../src/ScratchPad.py:666
-#: ../src/ScratchPad.py:678
+#: ../src/ScratchPad.py:673
+#: ../src/ScratchPad.py:685
 msgid "Media Reference"
 msgstr "Odwołanie do mediów"
 
-#: ../src/ScratchPad.py:692
+#: ../src/ScratchPad.py:699
 #: ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Odwołania do osoby"
 
-#: ../src/ScratchPad.py:709
-#: ../src/ScratchPad.py:734
+#: ../src/ScratchPad.py:716
+#: ../src/ScratchPad.py:741
 msgid "Person Link"
 msgstr "Łącze do osoby"
 
-#: ../src/ScratchPad.py:736
+#: ../src/ScratchPad.py:743
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:137
 #: ../src/DataViews/RelationView.py:556
@@ -2480,18 +2490,18 @@ msgstr "Łącze do osoby"
 msgid "Birth"
 msgstr "Narodziny"
 
-#: ../src/ScratchPad.py:768
-#: ../src/ScratchPad.py:786
+#: ../src/ScratchPad.py:775
+#: ../src/ScratchPad.py:793
 msgid "Source Link"
 msgstr "Łącze do  źródła"
 
-#: ../src/ScratchPad.py:788
+#: ../src/ScratchPad.py:795
 #: ../src/DataViews/SourceView.py:69
 #: ../src/plugins/NarrativeWeb.py:1710
 msgid "Abbreviation"
 msgstr "Skrót"
 
-#: ../src/ScratchPad.py:789
+#: ../src/ScratchPad.py:796
 #: ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/NarrativeWeb.py:1708
@@ -2499,18 +2509,18 @@ msgstr "Skrót"
 msgid "Author"
 msgstr "Autor"
 
-#: ../src/ScratchPad.py:790
+#: ../src/ScratchPad.py:797
 #: ../src/DataViews/SourceView.py:70
 msgid "Publication Information"
 msgstr "Informacje o wydaniu"
 
-#: ../src/ScratchPad.py:809
-#: ../src/ScratchPad.py:824
+#: ../src/ScratchPad.py:816
+#: ../src/ScratchPad.py:831
 msgid "Repository Link"
 msgstr "Łącze do magazynu"
 
-#: ../src/ScratchPad.py:1192
-#: ../src/ScratchPad.py:1228
+#: ../src/ScratchPad.py:1199
+#: ../src/ScratchPad.py:1235
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Schowek"
@@ -2962,7 +2972,7 @@ msgstr "Bardzo wysoka"
 
 #: ../src/Utils.py:92
 #: ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/FindDupes.py:66
+#: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Wysoka"
 
@@ -2974,7 +2984,7 @@ msgstr "Normalna"
 
 #: ../src/Utils.py:94
 #: ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/FindDupes.py:64
+#: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Niska"
 
@@ -3000,8 +3010,8 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Nieznany związek pomiędzy mężczyzną a kobietą"
 
 #: ../src/Utils.py:107
-msgid "An unspecified relationship a man and woman"
-msgstr "Nieokreślony związek pomiędzy mężczyzną a kobietą"
+msgid "An unspecified relationship between a man and woman"
+msgstr "Nieznany związek pomiędzy mężczyzną a kobietą"
 
 #: ../src/Utils.py:123
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
@@ -3025,43 +3035,43 @@ msgstr "domyślny"
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Błąd bazy danych: %s jest zdefiniowany jako jego lub jej własny przodek"
 
-#: ../src/Utils.py:1076
+#: ../src/Utils.py:1113
 msgid "Please do not force closing this important dialog."
 msgstr "Proszę nie wymuszać zamknięcia tego ważnego okna dialogowego."
 
-#: ../src/Utils.py:1156
+#: ../src/Utils.py:1193
 msgid "TITLE"
 msgstr "TYTUŁ"
 
-#: ../src/Utils.py:1157
+#: ../src/Utils.py:1194
 msgid "GIVEN"
 msgstr "IMIONA"
 
-#: ../src/Utils.py:1158
+#: ../src/Utils.py:1195
 msgid "PREFIX"
 msgstr "PREFIKS"
 
-#: ../src/Utils.py:1160
+#: ../src/Utils.py:1197
 msgid "SUFFIX"
 msgstr "PRZYROSTEK"
 
-#: ../src/Utils.py:1161
+#: ../src/Utils.py:1198
 msgid "PATRONYMIC"
 msgstr "IMIĘ OJCOWSKIE"
 
-#: ../src/Utils.py:1162
+#: ../src/Utils.py:1199
 msgid "CALL"
 msgstr "UŻYWANE IMIĘ"
 
-#: ../src/Utils.py:1163
+#: ../src/Utils.py:1200
 msgid "COMMON"
 msgstr "WSPÓLNE"
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "Initials"
 msgstr "Inicjały"
 
-#: ../src/Utils.py:1164
+#: ../src/Utils.py:1201
 msgid "INITIALS"
 msgstr "INICJAŁY"
 
@@ -3305,7 +3315,7 @@ msgid "Could not load a recent Family Tree."
 msgstr "Nie można otworzyć ostatnio używanego Drzewa rodzinnego."
 
 #: ../src/ViewManager.py:1065
-msgid "Family Tree does not exists, as it has been deleted."
+msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Drzewo rodzinne nie istnieje, ponieważ zostało usunięte."
 
 #: ../src/ViewManager.py:1121
@@ -3430,10 +3440,10 @@ msgstr "Porównaj osoby"
 
 #: ../src/Merge/_MergePerson.py:97
 #: ../src/Merge/_MergePerson.py:102
-#: ../src/Merge/_MergePerson.py:274
-#: ../src/Merge/_MergePerson.py:281
-#: ../src/Merge/_MergePerson.py:312
-#: ../src/Merge/_MergePerson.py:317
+#: ../src/Merge/_MergePerson.py:275
+#: ../src/Merge/_MergePerson.py:282
+#: ../src/Merge/_MergePerson.py:313
+#: ../src/Merge/_MergePerson.py:318
 #: ../src/DataViews/PersonView.py:190
 #: ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214
@@ -3442,14 +3452,14 @@ msgid "Cannot merge people"
 msgstr "Nie można złączyć osób"
 
 #: ../src/Merge/_MergePerson.py:98
-#: ../src/Merge/_MergePerson.py:275
-#: ../src/Merge/_MergePerson.py:313
+#: ../src/Merge/_MergePerson.py:276
+#: ../src/Merge/_MergePerson.py:314
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Nie można złączyć małżonków. Żeby złączyć te osoby, musisz najpierw przerwać związek pomiędzy nimi."
 
 #: ../src/Merge/_MergePerson.py:103
-#: ../src/Merge/_MergePerson.py:282
-#: ../src/Merge/_MergePerson.py:318
+#: ../src/Merge/_MergePerson.py:283
+#: ../src/Merge/_MergePerson.py:319
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Nie można złączyć rodzica z dzieckiem. Żeby złączyć te osoby, musisz najpierw przerwać związek pomiędzy nimi."
 
@@ -3519,8 +3529,8 @@ msgstr "Nie odnaleziono małżonków ani dzieci"
 msgid "Addresses"
 msgstr "Adresy"
 
-#: ../src/Merge/_MergePerson.py:292
-#: ../src/Merge/_MergePerson.py:332
+#: ../src/Merge/_MergePerson.py:293
+#: ../src/Merge/_MergePerson.py:333
 msgid "Merge People"
 msgstr "Połącz osoby"
 
@@ -3745,7 +3755,7 @@ msgstr "Podgląd"
 #: ../src/DataViews/NoteView.py:70
 #: ../src/Selectors/_SelectNote.py:61
 #: ../src/plugins/MarkerReport.py:438
-#: ../src/plugins/NotRelated.py:99
+#: ../src/plugins/NotRelated.py:110
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
@@ -4484,7 +4494,7 @@ msgstr "Nie można utworzyć %s"
 
 #: ../src/docgen/AsciiDoc.py:382
 #: ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448
+#: ../src/docgen/RTFDoc.py:450
 #: ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
@@ -4542,7 +4552,7 @@ msgstr "HTML"
 #: ../src/docgen/LaTeXDoc.py:529
 #: ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:865
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Otwórz w %(program_name)s"
@@ -4568,7 +4578,7 @@ msgstr "Wydrukuj kopię"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr "Dokument RTF"
 
@@ -5790,8 +5800,8 @@ msgstr "Nie można zapisać bazy danych, ponieważ nie posiadasz praw zapisu do 
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2387
 #: ../src/GrampsDbUtils/_ReadXML.py:2393
+#: ../src/GrampsDbUtils/_ReadXML.py:2399
 #: ../src/GrampsDbUtils/_WriteGrdb.py:63
 #: ../src/plugins/ReadGrdb.py:87
 #: ../src/plugins/ReadGrdb.py:100
@@ -5999,17 +6009,17 @@ msgid "GRAMPS XML import"
 msgstr "Importowanie GRAMPS XML"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:885
-#: ../src/GrampsDbUtils/_ReadXML.py:1969
+#: ../src/GrampsDbUtils/_ReadXML.py:1973
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nazwisko świadka: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1857
+#: ../src/GrampsDbUtils/_ReadXML.py:1861
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Komentarz o świadku: %s"
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2405
+#: ../src/GrampsDbUtils/_ReadXML.py:2411
 #, python-format
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "Plik. gramps który importujesz został utworzony za pomocą wersji %s GRAMPSa, podczas gdy Ty aktualnie pracujesz na starszej wersji %s. Plik nie będzie zaimportowany. Proszę uaktualnić program do najnowszej wersji i spróbować ponownie."
@@ -6294,7 +6304,7 @@ msgstr "Wszystkie zdarzenia"
 #: ../src/plugins/ChangeNames.py:289
 #: ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517
-#: ../src/plugins/CmdRef.py:244
+#: ../src/plugins/CmdRef.py:237
 #: ../src/plugins/CountAncestors.py:143
 #: ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489
@@ -6303,7 +6313,7 @@ msgstr "Wszystkie zdarzenia"
 #: ../src/plugins/DetDescendantReport.py:837
 #: ../src/plugins/EndOfLineReport.py:321
 #: ../src/plugins/Eval.py:129
-#: ../src/plugins/EventCmp.py:456
+#: ../src/plugins/EventCmp.py:467
 #: ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631
 #: ../src/plugins/FamilyGroup.py:772
@@ -6312,7 +6322,7 @@ msgstr "Wszystkie zdarzenia"
 #: ../src/plugins/FindDupes.py:697
 #: ../src/plugins/GVFamilyLines.py:877
 #: ../src/plugins/GVHourGlass.py:210
-#: ../src/plugins/GVRelGraph.py:568
+#: ../src/plugins/GVRelGraph.py:560
 #: ../src/plugins/IndivComplete.py:643
 #: ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129
@@ -6320,7 +6330,7 @@ msgstr "Wszystkie zdarzenia"
 #: ../src/plugins/lineage.py:251
 #: ../src/plugins/MarkerReport.py:525
 #: ../src/plugins/NarrativeWeb.py:3229
-#: ../src/plugins/NotRelated.py:405
+#: ../src/plugins/NotRelated.py:419
 #: ../src/plugins/OnThisDay.py:145
 #: ../src/plugins/PatchNames.py:360
 #: ../src/plugins/Rebuild.py:118
@@ -6620,7 +6630,7 @@ msgstr "Pokolenie %d"
 #: ../src/plugins/EndOfLineReport.py:236
 #: ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341
-#: ../src/plugins/GVRelGraph.py:430
+#: ../src/plugins/GVRelGraph.py:429
 #: ../src/plugins/IndivComplete.py:513
 #: ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436
@@ -6814,7 +6824,7 @@ msgstr "Opcje"
 #: ../src/plugins/CalculateEstimatedDates.py:64
 #: ../src/plugins/Calendar.py:491
 #: ../src/plugins/FilterByName.py:233
-#: ../src/plugins/GVRelGraph.py:433
+#: ../src/plugins/GVRelGraph.py:432
 #: ../src/plugins/IndivComplete.py:516
 #: ../src/plugins/NarrativeWeb.py:2952
 #: ../src/plugins/StatisticsChart.py:683
@@ -6829,7 +6839,7 @@ msgid "Select filter to restrict people"
 msgstr "Wybierz filtr, aby ograniczyć listę osób"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:439
+#: ../src/plugins/GVRelGraph.py:438
 #: ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2958
 #: ../src/plugins/StatisticsChart.py:689
@@ -6839,7 +6849,7 @@ msgid "Filter Person"
 msgstr "Filtr osób"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:440
+#: ../src/plugins/GVRelGraph.py:439
 #: ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2959
 #: ../src/plugins/StatisticsChart.py:690
@@ -7006,7 +7016,7 @@ msgstr "Kalendarz"
 #. generate the report:
 #: ../src/plugins/Calendar.py:222
 #: ../src/plugins/Calendar.py:443
-msgid "Formating months..."
+msgid "Formatting months..."
 msgstr "Formatowanie miesięcy..."
 
 #: ../src/plugins/Calendar.py:314
@@ -7280,7 +7290,7 @@ msgid "Capitalization Change"
 msgstr "Zmiana wielkich/małych liter"
 
 #: ../src/plugins/ChangeNames.py:211
-#: ../src/plugins/EventCmp.py:279
+#: ../src/plugins/EventCmp.py:290
 #: ../src/plugins/ExtractCity.py:541
 msgid "Building display"
 msgstr "Budowanie widoku"
@@ -7679,11 +7689,11 @@ msgstr "Sprawdź i napraw bazę danych"
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Sprawdza bazę danych w kierunku błędów spójności, w miarę możliwości naprawiając problemy"
 
-#: ../src/plugins/CmdRef.py:243
+#: ../src/plugins/CmdRef.py:236
 msgid "Generate Commandline Plugin Reference"
 msgstr "Generuj referencję dla wtyczek linii poleceń"
 
-#: ../src/plugins/CmdRef.py:247
+#: ../src/plugins/CmdRef.py:240
 msgid "Produces a DocBook XML file that contains a parameter reference of Reports and Tools."
 msgstr "Generuje plik XML DocBook  zawierający referencje parametrów z raportów i narzędzi."
 
@@ -8187,8 +8197,8 @@ msgid "Pedigree Gramplet"
 msgstr "Pedigree Gramplet"
 
 #: ../src/plugins/Desbrowser.py:56
-msgid "manual|Interactive_Descendant_Browser"
-msgstr "Interaktywna przeglądarka potomków"
+msgid "manual|Interactive_Descendant_Browser..."
+msgstr "Interaktywna przeglądarka potomków..."
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
@@ -8635,61 +8645,65 @@ msgstr "Konsola Pythona"
 msgid "Provides a window that can evaluate python code"
 msgstr "Udostępnia okno, w którym można wykonywać kod Pythona"
 
-#: ../src/plugins/EventCmp.py:129
+#: ../src/plugins/EventCmp.py:67
+msgid "manual|Compare_Individual_Events..."
+msgstr "Porównaj poszczególne zdarzenia..."
+
+#: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
 msgstr "Wybór filtru do porównywania zdarzeń"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Filter selection"
 msgstr "Wybór filtru"
 
-#: ../src/plugins/EventCmp.py:154
+#: ../src/plugins/EventCmp.py:165
 msgid "Event Comparison tool"
 msgstr "Narzędzie Porównywania Zdarzeń"
 
-#: ../src/plugins/EventCmp.py:167
+#: ../src/plugins/EventCmp.py:178
 msgid "Comparing events"
 msgstr "Porównywanie zdarzeń"
 
-#: ../src/plugins/EventCmp.py:168
+#: ../src/plugins/EventCmp.py:179
 msgid "Selecting people"
 msgstr "Wybieranie osób"
 
-#: ../src/plugins/EventCmp.py:180
+#: ../src/plugins/EventCmp.py:191
 msgid "No matches were found"
 msgstr "Nie odnaleziono dopasowań"
 
-#: ../src/plugins/EventCmp.py:230
-#: ../src/plugins/EventCmp.py:253
+#: ../src/plugins/EventCmp.py:241
+#: ../src/plugins/EventCmp.py:264
 msgid "Event Comparison Results"
 msgstr "Wyniki porównywania zdarzeń"
 
-#: ../src/plugins/EventCmp.py:240
+#: ../src/plugins/EventCmp.py:251
 msgid " Date"
 msgstr " Data"
 
 #. This won't be shown in a tree
-#: ../src/plugins/EventCmp.py:242
+#: ../src/plugins/EventCmp.py:253
 msgid " Place"
 msgstr " Miejsce"
 
-#: ../src/plugins/EventCmp.py:286
+#: ../src/plugins/EventCmp.py:297
 msgid "Comparing Events"
 msgstr "Porównywanie zdarzeń"
 
-#: ../src/plugins/EventCmp.py:287
+#: ../src/plugins/EventCmp.py:298
 msgid "Building data"
 msgstr "Generowanie danych"
 
-#: ../src/plugins/EventCmp.py:379
+#: ../src/plugins/EventCmp.py:390
 msgid "Select filename"
 msgstr "Wybierz nazwę pliku"
 
-#: ../src/plugins/EventCmp.py:455
+#: ../src/plugins/EventCmp.py:466
 msgid "Compare Individual Events"
 msgstr "Porównaj poszczególne zdarzenia"
 
-#: ../src/plugins/EventCmp.py:459
+#: ../src/plugins/EventCmp.py:470
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Pomaga w analizie danych poprzez udostępnienie możliwości budowania własnych filtrów, które mogą być zastosowane do bazy danych w celu znalezienia podobnych zdarzeń"
 
@@ -9218,9 +9232,13 @@ msgstr "Filtr dopasował %d rekordów."
 msgid "Display filtered data"
 msgstr "Wyświetl przefiltrowane dane"
 
-#: ../src/plugins/FindDupes.py:65
+#: ../src/plugins/FindDupes.py:64
 msgid "Medium"
 msgstr "Średni"
+
+#: ../src/plugins/FindDupes.py:68
+msgid "manual|Find_Possible_Duplicate_People..."
+msgstr "Znajdź możliwe duplikaty osób..."
 
 #: ../src/plugins/FindDupes.py:133
 #: ../src/plugins/FindDupes.py:696
@@ -9377,7 +9395,7 @@ msgid "Images"
 msgstr "Obrazy"
 
 #: ../src/plugins/GVFamilyLines.py:168
-#: ../src/plugins/GVRelGraph.py:477
+#: ../src/plugins/GVRelGraph.py:476
 msgid "Include thumbnail images of people"
 msgstr "Dołącz miniaturki zdjęć osób"
 
@@ -9386,17 +9404,17 @@ msgid "Thumbnail location"
 msgstr "Położenie miniaturek"
 
 #: ../src/plugins/GVFamilyLines.py:174
-#: ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Above the name"
 msgstr "Powyżej nazwy"
 
 #: ../src/plugins/GVFamilyLines.py:175
-#: ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVRelGraph.py:484
 msgid "Beside the name"
 msgstr "Obok nazwy"
 
 #: ../src/plugins/GVFamilyLines.py:177
-#: ../src/plugins/GVRelGraph.py:487
+#: ../src/plugins/GVRelGraph.py:486
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Określa, czy miniaturka obrazka powinna pojawić się względem nazwy"
 
@@ -9451,8 +9469,8 @@ msgstr "Generuj linie rodzin"
 
 #. start the progress indicator
 #: ../src/plugins/GVFamilyLines.py:297
-#: ../src/plugins/NotRelated.py:83
-#: ../src/plugins/NotRelated.py:209
+#: ../src/plugins/NotRelated.py:94
+#: ../src/plugins/NotRelated.py:223
 msgid "Starting"
 msgstr "Rozpoczynanie"
 
@@ -9516,137 +9534,129 @@ msgstr "Generuje wykres klepsydrowy za pomocą programu Graphviz."
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/GVRelGraph.py:60
+#: ../src/plugins/GVRelGraph.py:59
 msgid "B&W outline"
 msgstr "Czarno-biały kontur"
 
-#: ../src/plugins/GVRelGraph.py:61
+#: ../src/plugins/GVRelGraph.py:60
 msgid "Colored outline"
 msgstr "Kolorowy kontur"
 
-#: ../src/plugins/GVRelGraph.py:62
+#: ../src/plugins/GVRelGraph.py:61
 msgid "Color fill"
 msgstr "Kolorowe wypełnienie"
 
-#: ../src/plugins/GVRelGraph.py:64
+#: ../src/plugins/GVRelGraph.py:63
 msgid "Descendants <- Ancestors"
 msgstr "Potomkowie <- Przodkowie"
 
-#: ../src/plugins/GVRelGraph.py:65
+#: ../src/plugins/GVRelGraph.py:64
 msgid "Descendants -> Ancestors"
 msgstr "Potomkowie -> Przodkowie"
 
-#: ../src/plugins/GVRelGraph.py:66
+#: ../src/plugins/GVRelGraph.py:65
 msgid "Descendants <-> Ancestors"
 msgstr "Potomkowie <-> Przodkowie"
 
-#: ../src/plugins/GVRelGraph.py:67
+#: ../src/plugins/GVRelGraph.py:66
 msgid "Descendants - Ancestors"
 msgstr "Potomkowie <-> Przodkowie"
 
-#: ../src/plugins/GVRelGraph.py:435
+#: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
 msgstr "Określa jakie osoby będą dołączone do grafu"
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Dołącz daty urodzin, małżeństwa i zgonu"
 
-#: ../src/plugins/GVRelGraph.py:448
+#: ../src/plugins/GVRelGraph.py:447
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Dołącz daty urodzin, małżeństw i zgonu osoby na etykietach grafu."
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Limit dates to years only"
 msgstr "Ogranicz daty do samych lat"
 
-#: ../src/plugins/GVRelGraph.py:453
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "Drukuje jedynie rok daty, bez dnia lub przybliżonej daty ani zakrsu."
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
 msgstr "Użyj miejsca gdy brak daty"
 
-#: ../src/plugins/GVRelGraph.py:459
+#: ../src/plugins/GVRelGraph.py:458
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "W przypadku braku daty urodzenia, małżeństwa lub zgonu, użyte będzie odpowiednie pole miejsca."
 
-#: ../src/plugins/GVRelGraph.py:464
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include URLs"
 msgstr "Dołącz URLe"
 
-#: ../src/plugins/GVRelGraph.py:465
+#: ../src/plugins/GVRelGraph.py:464
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Dołącz URLe do każdego elementu grafu aby można było generować pliki PDF i mapy obrazów, które zawierają aktywne łącza do plików generowanych przez raport Opisowej Strony internetowej."
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
 msgstr "Dołącz wewnętrzne identyfikatory GRAMPS"
 
-#: ../src/plugins/GVRelGraph.py:473
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include individual and family IDs."
 msgstr "Dołącz wewnętrzne identyfikatory osoby i rodziny."
 
-#: ../src/plugins/GVRelGraph.py:479
+#: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
 msgstr "Określa, czy dołączać miniaturki zdjęć ludzi."
 
-#: ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Thumbnail Location"
 msgstr "Położenie miniaturek"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:492
+#: ../src/plugins/GVRelGraph.py:491
 msgid "Graph Style"
 msgstr "Styl grafu"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:495
+#: ../src/plugins/GVRelGraph.py:494
 msgid "Graph coloring"
 msgstr "Kolorowanie grafu"
 
-#: ../src/plugins/GVRelGraph.py:498
+#: ../src/plugins/GVRelGraph.py:497
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Mężczyźni zostaną oznaczeni przy użyciu koloru niebieskiego, kobiety czerwonego. Jeśli płeć jest nieznana, przy użyciu koloru szarego."
 
-#: ../src/plugins/GVRelGraph.py:503
+#: ../src/plugins/GVRelGraph.py:502
 msgid "Arrowhead direction"
 msgstr "Kierunek strzałki"
 
-#: ../src/plugins/GVRelGraph.py:506
+#: ../src/plugins/GVRelGraph.py:505
 msgid "Choose the direction that the arrows point."
 msgstr "Wybierz kierunek wskazywany przez strzałki."
 
-#: ../src/plugins/GVRelGraph.py:510
-msgid "Use rounded corners"
-msgstr "Używaj zaokrąglonych narożników"
-
-#: ../src/plugins/GVRelGraph.py:512
-msgid "Use rounded corners to differentiate between women and men."
-msgstr "Użyj zaokrąglonych narożników do rozróżnienia pomiędzy kobietami a mężczyznami."
-
-#: ../src/plugins/GVRelGraph.py:517
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Pokazuj relacje inne niż urodzenie przy pomocy linii kropkowanych"
 
-#: ../src/plugins/GVRelGraph.py:518
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Relacje inne niż urodziny będą pokazane jako linie kropkowane w grafie."
 
-#: ../src/plugins/GVRelGraph.py:522
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Show family nodes"
 msgstr "Pokaż wierzchołki rodzin"
 
-#: ../src/plugins/GVRelGraph.py:523
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Rodziny będą pokazane jako elipsy, połączone z rodzicami i dziećmi."
 
-#: ../src/plugins/GVRelGraph.py:567
+#: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
 msgstr "Graf pokrewieństwa"
 
-#: ../src/plugins/GVRelGraph.py:569
+#: ../src/plugins/GVRelGraph.py:561
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Generuje grafy relacji za pomocą Graphviz."
 
@@ -10814,44 +10824,53 @@ msgstr "Opisowa strona internetowa"
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Generuje strony internetowe (HTML) dla osób lub grup osób."
 
-#: ../src/plugins/NotRelated.py:63
+#: ../src/plugins/NotRelated.py:59
+msgid "manual|Not_Related..."
+msgstr "Nie spok_rewniony..."
+
+#: ../src/plugins/NotRelated.py:71
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Nie spokrewniony do \"%s\""
 
-#: ../src/plugins/NotRelated.py:210
+#: ../src/plugins/NotRelated.py:153
+#, python-format
+msgid "Everyone in the database is related to %s"
+msgstr "Każdy w bazie jest spokrewniony do %s"
+
+#: ../src/plugins/NotRelated.py:224
 #, python-format
 msgid "Setting marker for %d people"
 msgstr "Ustawianie znacznika dla %d ludzi"
 
-#: ../src/plugins/NotRelated.py:242
+#: ../src/plugins/NotRelated.py:256
 #, python-format
 msgid "Finding relationships between %d people"
 msgstr "Oblicza pokrewieństwa między %d osobami"
 
-#: ../src/plugins/NotRelated.py:307
+#: ../src/plugins/NotRelated.py:321
 msgid "Looking for 1 person"
 msgstr "Wyszukiwanie dla 1 osoby"
 
-#: ../src/plugins/NotRelated.py:309
+#: ../src/plugins/NotRelated.py:323
 #, python-format
 msgid "Looking for %d people"
 msgstr "Szukanie dla %d osób"
 
-#: ../src/plugins/NotRelated.py:332
+#: ../src/plugins/NotRelated.py:346
 msgid "Looking up the name for 1 person"
 msgstr "Wyszukiwanie nazwy dla 1 osoby"
 
-#: ../src/plugins/NotRelated.py:334
+#: ../src/plugins/NotRelated.py:348
 #, python-format
 msgid "Looking up the names for %d people"
 msgstr "Szukanie nazw dla %d osób"
 
-#: ../src/plugins/NotRelated.py:404
+#: ../src/plugins/NotRelated.py:418
 msgid "Not Related"
 msgstr "Nie spokrewniony"
 
-#: ../src/plugins/NotRelated.py:408
+#: ../src/plugins/NotRelated.py:422
 msgid "Find people who are not in any way related to the selected person"
 msgstr "Znajdź osoby, które nie są w żaden sposób spokrewnione z wybraną osobą"
 
@@ -12383,7 +12402,7 @@ msgstr "Edytor stylów"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:192
+#: ../src/ReportBase/_CommandLineReport.py:167
 #: ../src/ReportBase/_PaperMenu.py:201
 #: ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:363
@@ -12420,7 +12439,7 @@ msgid "Graphics"
 msgstr "Grafika"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:1071
 msgid "Paper Options"
 msgstr "Opcje dokumentu"
 
@@ -12429,7 +12448,7 @@ msgid "HTML Options"
 msgstr "Opcje HTML"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:901
+#: ../src/ReportBase/_GraphvizReportDialog.py:1051
 msgid "Output Format"
 msgstr "Format wyjścia"
 
@@ -12542,167 +12561,167 @@ msgstr "Góra"
 msgid "Bottom"
 msgstr "Dół"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:240
+#: ../src/ReportBase/_GraphvizReportDialog.py:125
 msgid "Processing File"
 msgstr "Przetwarzanie plików"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:607
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Graphviz Dot File"
 msgstr "Plik Graphviz Dot"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "JPEG image"
 msgstr "Obraz JPEG"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "GIF image"
 msgstr "Obraz GIF"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:658
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "PNG image"
 msgstr "Obraz PNG"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:749
+#: ../src/ReportBase/_GraphvizReportDialog.py:899
 msgid "GraphViz Layout"
 msgstr "Układ graficzny GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Font family"
 msgstr "Krój pisma"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:906
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Wybierz krój pisma. Jeśli nie pokazują się znaki międzynarodowe, użyj czcionki FreeSans dostępnej ze strony http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:912
 msgid "Font size"
 msgstr "Wielkość czcionki"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:913
 msgid "The font size, in points."
 msgstr "Rozmiar czcionki podany w punktach."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:766
+#: ../src/ReportBase/_GraphvizReportDialog.py:916
 msgid "Graph Direction"
 msgstr "Kierunek grafu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Czy graf będzie wyświetlany z góry na dół albo z lewa na prawo."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
 msgstr "Liczba stron poziomych"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr "Program GraphViz może utworzyć bardzo duże grafy poprzez ich rozciągnięcie na prostokątnej tablicy stron. To ustawienie określa ilość stron poziomo. Ustawienie to dotyczy tylko plików dot, postscriptu oraz pdf wygenerowanych za pomocą GhostScript'a."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
 msgstr "Liczba stron pionowych"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr "Program GraphViz może utworzyć bardzo duże grafy poprzez ich rozciągnięcie na prostokątnej tablicy stron. To ustawienie określa ilość stron pionowo. Ustawienie to dotyczy tylko plików dot, postscriptu oraz pdf wygenerowanych za pomocą GhostScript'a."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "Paging Direction"
 msgstr "Kierunek strony"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "Kolejność, w jakiej strony grafu będą tworzone. Ta opcja ma zastosowanie tylko, jeśli ilość stron poziomo albo pionowo jest większa od 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "GraphViz Options"
 msgstr "Opcje programu GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:817
+#: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Aspect ratio"
 msgstr "Proporcje"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Wpływa na to jak graf będzie ułożony na stronie."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, use 72 DPI."
 msgstr "Pikseli na cal. Kiedy tworzysz obrazki takie jak .gif albo .png dla stron internetowych, spróbuj użyć wartości 100 albo 300 DPI, natomiast dla plików pdf albo postscriptowych użyj 600 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Node spacing"
 msgstr "Odstęp między węzłami"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
 msgstr "Minimalna ilość wolnego miejsca, w calach, pomiędzy indywidualnymi węzłami. Dla poziomych grafów, oznacza odległość pomiędzy kolumnami, dla pionowych - pomiędzy wierszami."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:843
+#: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
 msgstr "Odstęp międzyrzędowy"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:844
+#: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
 msgstr "Minimalna ilość wolnego miejsca, w calach, pomiędzy rzędami. Dla grafów pionowych, określa odstęp pomiędzy wierszami, dla grafów poziomych - pomiędzy kolumnami."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:855
+#: ../src/ReportBase/_GraphvizReportDialog.py:1005
 msgid "Note to add to the graph"
 msgstr ""
 "Tekst do dołączenia\n"
 "do grafu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
+#: ../src/ReportBase/_GraphvizReportDialog.py:1007
 msgid "This text will be added to the graph."
 msgstr "Ten tekst zostanie dodany do grafu."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:1010
 msgid "Note location"
 msgstr "Położenie tekstu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:863
+#: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Czy opis pojawi się na górze czy dole strony."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:867
+#: ../src/ReportBase/_GraphvizReportDialog.py:1017
 msgid "Note size"
 msgstr "Rozmiar notatki"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
 msgstr "Rozmiar tekstu opisu w punktach."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:893
-#: ../src/ReportBase/_GraphvizReportDialog.py:948
+#: ../src/ReportBase/_GraphvizReportDialog.py:1043
+#: ../src/ReportBase/_GraphvizReportDialog.py:1098
 msgid "Open with application"
 msgstr "Otwórz za pomocą aplikacji"
 
@@ -16051,11 +16070,6 @@ msgstr "Zm.: %(death_date)s."
 #, python-format
 msgid "Died: %(death_place)s."
 msgstr "Zm: %(death_place)s."
-
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Rodziny potomne osoby %s"
 
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
@@ -19989,11 +20003,11 @@ msgid "<b>Different Views</b>: There are nine different views for navigating you
 msgstr "<b>Widok różnic</b>: Jest dziewięć różnych widoków umożliwiających nawigację po rodzinie: osób, związków, listy rodzin, rodowodu zdarzeń, źródeł, miejsc, obiektów medialnych oraz magazynów. Każdy z nich pozwala na wykonanie jednej lub więcej specyficznych zadań."
 
 #: ../src/data/tips.xml.in.h:7
-msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Podwójne wpisy</b>: <b>Narzędzia &gt; Przetwarzanie danych &gt; znajdź możliwe duplikaty osób</b>pozwala na odnalezienie (i złączenie) wpisów dla tej samej osby występujących więcej niż jeden raz w bazie danych."
+msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to locate (and merge) entries of the same person entered more than once in the database."
+msgstr "<b>Podwójne wpisy</b>: <b>Narzędzia &gt; Przetwarzanie danych &gt; znajdź możliwe duplikaty osób</b>pozwala na odnalezienie (i złączenie) wpisów dla tej samej osoby występujących więcej niż jeden raz w bazie danych."
 
 #: ../src/data/tips.xml.in.h:8
-msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
+msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Edycja związku z dzieckiem</b>: Nie wszystkie dzieci są spokrewnione poprzez urodzenie ze swoimi rodzicami. Możesz edytować takie związki do każdego rodzica przez aktywowanie takiej osoby. W widoku konkretnej rodziny, kliknij na trzecią ikoną od góry po prawej stronie. Spowoduje to pojawienie się okna relacji związku pomiędzy dzieckiem a jego ojcem i matką. Związek może być jednym z Adoptowany,Rodzony,Pasierb,Utrzymanek,Sierota i nieznany."
 
 #: ../src/data/tips.xml.in.h:9
@@ -20121,7 +20135,7 @@ msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format a
 msgstr "Program GRAMPS potrafi eksportować do formatu Web Family Tree (WFT). Ten format umożliwia wyświetlanie drzewa genealogicznego w Internecie przy pomocy jednego pliku zamiast wielu plików html."
 
 #: ../src/data/tips.xml.in.h:40
-msgid "GRAMPS comes with a rich set of tools. These allows you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
+msgid "GRAMPS comes with a rich set of tools. These allow you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
 msgstr "GRAMPS posiada bogatą kolekcję narzędzi. Pozwalają Ci one na wykonywanie różnych operacji takie jak sprawdzanie bazy pod kątem błędów i konsystencji danych, jak również dokonywanie analiz takich jak porównywanie zdarzeń, znajdowanie zduplikowanych osób, interaktywne przeglądanie przodków i inne. Wszystkie narzędzia dostępne są poprzez menu <b>Narzędzia</b>."
 
 #: ../src/data/tips.xml.in.h:41
@@ -20129,8 +20143,8 @@ msgid "GRAMPS has been designed so that new translations can easily be added wit
 msgstr "GRAMPS został tak zaprojektowany, aby nowe tłumaczenia mogły być łatwo dodawane przy niewielkim narzucie pracy. Jeśli jesteś zainteresowany w udziale w tłumaczeniu, proszę wysłać email na gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:42
-msgid "GRAMPS has been translated to 15 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
-msgstr "GRAMPS został już na ponad 24 języki. Jeśli chcesz, aby GRAMPS używał Twojego języka, a nie jest on aktualnie wyświetlany, ustaw odpowiednio domyślny język na swojej maszynie i ponownie uruchomić GRAMPS."
+msgid "GRAMPS has been translated to more than 20 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
+msgstr "GRAMPS został już przetłumaczony na ponad 20 języków języki. Jeśli chcesz, aby GRAMPS używał Twojego języka, a nie jest on aktualnie wyświetlany, ustaw odpowiednio domyślny język na swojej maszynie i ponownie uruchom GRAMPSa."
 
 #: ../src/data/tips.xml.in.h:43
 msgid "GRAMPS has some unique features, including the ability to input any piece of information directly into GRAMPS. All data in the data base can be rearranged/manipulated to assist the user in doing research, analysis and correlation with the potential of filling relationship gaps."
@@ -20165,15 +20179,15 @@ msgid "GRAMPS offers full Unicode support. Characters for all languages are prop
 msgstr "Program GRAPS w pełni wspiera Unicode. Znaki we wszystkich językach są wyświetlane prawidłowo."
 
 #: ../src/data/tips.xml.in.h:51
-msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr "GRAMPS działa także na KDE o ile zainstalowane są wymagane biblioteki GNOME."
+msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
+msgstr "GRAMPS działa także na KDE o ile zainstalowane są wymagane biblioteki GTK."
 
 #: ../src/data/tips.xml.in.h:52
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
 msgstr "Genealogia nie jest wiedzą o datach i nazwiskach. Dotyczy ludzi. Bądź opisowy. Opisuj <b>dlaczego</b> i jak dane zdarzenia się wydarzyły, i ilu przodków mogło być związanych z danym zdarzeniem. Narracja to długa droga, ale przywraca historię Twojej rodziny czyniąc ją żywą."
 
 #: ../src/data/tips.xml.in.h:53
-msgid "Go from what you know to what you do not. Always record everything that is known before making conjecture. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
+msgid "Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
 msgstr "Zacznij od tego co wiesz i od tego czego nie wiesz. Zawsze zapisuj całą wiedzę, która jest znana, zanim postawisz hipotezę.Często fakty w ręku sugerują wiele różnych kierunków poszukiwań. Nie trać czasu na przeglądanie tysięcy rekordów w nadziei na szlak kiedy masz inne nieodkryte ścieżki."
 
 #: ../src/data/tips.xml.in.h:54
@@ -20262,6 +20276,12 @@ msgstr "Możesz łatwo eksportować swoje drzewo genealogiczne do postaci strony
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Możesz połączyć media elektroniczne wielu typów do drzewa genealogicznego w programie GRAMPS."
 
+#~ msgid "Use rounded corners"
+#~ msgstr "Używaj zaokrąglonych narożników"
+#~ msgid "Use rounded corners to differentiate between women and men."
+#~ msgstr ""
+#~ "Użyj zaokrąglonych narożników do rozróżnienia pomiędzy kobietami a "
+#~ "mężczyznami."
 #~ msgid "Postal code"
 #~ msgstr "Kod pocztowy"
 #~ msgid "Postal Code"
