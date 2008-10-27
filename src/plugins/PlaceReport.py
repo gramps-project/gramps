@@ -403,5 +403,6 @@ pmgr.register_report(
     status = _("Stable"),
     description = _("Produces a textual place report"),
     author_name = "Gary Burton",
-    author_email = "gary.burton@zen.co.uk"
+    author_email = "gary.burton@zen.co.uk",
+    require_active = False
     )
