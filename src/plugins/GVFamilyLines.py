@@ -878,5 +878,6 @@ register_report(
     author_name     = "Stephane Charette",
     author_email    = "stephanecharette@gmail.com",
     description     = _("Produces family line graphs using GraphViz"),
+    require_active = False
     )
 

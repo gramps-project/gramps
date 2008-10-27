@@ -525,5 +525,6 @@ register_report(
     status = _("Stable"),
     description = _("Produces a list of people with a specified marker"),
     author_name = "Brian G. Matherly",
-    author_email = "brian@gramps-project.org"
+    author_email = "brian@gramps-project.org",
+    require_active = False
     )
