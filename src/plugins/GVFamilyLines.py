@@ -140,20 +140,20 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Individuals')
         # -------------------------
 
-        color_males = ColourOption(_('Males'), '#e0e0ff')
+        color_males = ColorOption(_('Males'), '#e0e0ff')
         color_males.set_help(_('The colour to use to display men.'))
         menu.add_option(category, 'colormales', color_males)
 
-        color_females = ColourOption(_('Females'), '#ffe0e0')
+        color_females = ColorOption(_('Females'), '#ffe0e0')
         color_females.set_help(_('The colour to use to display women.'))
         menu.add_option(category, 'colorfemales', color_females)
 
-        color_unknown = ColourOption(_('Unknown'), '#e0e0e0')
+        color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
         color_unknown.set_help(_('The colour to use when the gender is ' \
                                  'unknown.'))
         menu.add_option(category, 'colorunknown', color_unknown)
 
-        color_family = ColourOption(_('Families'), '#ffffe0')
+        color_family = ColorOption(_('Families'), '#ffffe0')
         color_family.set_help(_('The colour to use to display families.'))
         menu.add_option(category, 'colorfamilies', color_family)
 
@@ -1033,5 +1033,6 @@ pmgr.register_report(
     author_name     = "Stephane Charette",
     author_email    = "stephanecharette@gmail.com",
     description     = _("Produces family line graphs using GraphViz"),
+    require_active = False
     )
 
