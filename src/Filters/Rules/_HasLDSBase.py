@@ -48,4 +48,4 @@ class HasLDSBase(Rule):
     category    = _('General filters')
     
     def apply(self, db, obj):
-        return len( obj.get_media_list()) > 0
+        return len( obj.get_lds_ord_list()) > 0
