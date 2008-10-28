@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,7 +34,9 @@ from _RegExpChildName import RegExpChildName
 
 from _HasRelType import HasRelType
 from _AllFamilies import AllFamilies
+from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
+from _HasLDS import HasLDS
 from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
@@ -55,6 +58,7 @@ editor_rule_list = [
     AllFamilies,
     HasRelType,
     HasIdOf,
+    HasLDS,
     RegExpIdOf,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,

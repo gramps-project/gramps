@@ -2,6 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2008  Jerome Rapinat
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -32,13 +32,16 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasGalleryBase import HasGalleryBase
+
+from Filters.Rules._HasLDSBase import HasLDSBase
 
 #-------------------------------------------------------------------------
-# "People who have images"
+#
+# HasLDS
+#
 #-------------------------------------------------------------------------
-class HavePhotos(HasGalleryBase):
-    """Rule that checks for people who have Media object reference"""
+class HasLDS(HasLDSBase):
+    """Rule that checks for a person with a LDS event"""
 
-    name        = _('People with images')
-    description = _("Matches people with images in the gallery")
+    name        = _('People with LDS event')
+    description = _("Matches people with LDS event")

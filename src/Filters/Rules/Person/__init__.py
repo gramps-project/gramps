@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008   Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,6 +28,8 @@ Package providing filter rules for GRAMPS.
 from _Disconnected import Disconnected
 from _Everyone import Everyone
 from _FamilyWithIncompleteEvent import FamilyWithIncompleteEvent
+from _HasAddress import HasAddress
+from _HasAssociation import HasAssociation
 from _HasAttribute import HasAttribute
 from _HasBirth import HasBirth
 from _HasCommonAncestorWith import HasCommonAncestorWith
@@ -37,6 +40,7 @@ from _HasEvent import HasEvent
 from _HasFamilyAttribute import HasFamilyAttribute
 from _HasFamilyEvent import HasFamilyEvent
 from _HasIdOf import HasIdOf
+from _HasLDS import HasLDS
 from _HasNameOf import HasNameOf
 from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
@@ -107,7 +111,10 @@ editor_rule_list = [
     IsMale,
     IsDefaultPerson,
     IsBookmarked,
+    HasAddress,
+    HasAssociation,
     HasIdOf,
+    HasLDS,
     HasNameOf,
     HasRelationship,
     HasDeath,
