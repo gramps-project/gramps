@@ -47,7 +47,7 @@ editor_rule_list = [
     AllEvents,
     HasType,
     HasIdOf,
-    HasGallery
+    HasGallery,
 # TODO: At the time of this writing, the GRAMPS UI does not allow setting markers for events. 1197 bug-report
 #    HasMarkerOf, 
     RegExpIdOf,
