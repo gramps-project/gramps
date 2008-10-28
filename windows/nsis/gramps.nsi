@@ -1,9 +1,25 @@
 #
-# Filename: gramps.nsi
+# Gramps - a GTK+ based genealogy program
+#
+# Copyright (C) 2008 Steve Hall [ digitect dancingpaper com ]
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# $Id:  $
 #
 # Description: Nullsoft Installer (NSIS) file to build Windows installer:
-# Updated:     2007-06-18 07:09:38-0400
-# Author:      Steve Hall [ digitect dancingpaper com ]
 #
 # Requires:    NSIS version 2.0 or later.
 # Notes:
@@ -43,7 +59,7 @@ CRCCheck on
 
 # compression
 SetCompress auto
-# zlib good, bzip2 better, lzma best (and slowest, whew.) 
+# zlib good, bzip2 better, lzma best (and slowest, whew.)
 SetCompressor lzma
 # reference existing store if possible
 SetDatablockOptimize on
@@ -134,8 +150,47 @@ SilentInstall normal
 # 4. Custom functions {{{1
 
 # 5. Language files {{{1
+# Languages
+# TODO: These are pretty badly broken at the moment.
+# Note: This appears to be due to building on Win95 which does not
+#       support Unicode:
+#       (http://nsis.sf.net/archive/nsisweb.php?page=247&instances=0,235)
+#
+#   So what happens if we use only ASCII?
+#
+#!insertmacro MUI_LANGUAGE "Arabic"
+#!insertmacro MUI_LANGUAGE "Bulgarian"
+#!insertmacro MUI_LANGUAGE "Catalan"
+#!insertmacro MUI_LANGUAGE "Croatian"
+#!insertmacro MUI_LANGUAGE "Czech"
+#!insertmacro MUI_LANGUAGE "Default"
+#!insertmacro MUI_LANGUAGE "Estonian"
+#!insertmacro MUI_LANGUAGE "Farsi"
+#!insertmacro MUI_LANGUAGE "Finnish"
+#!insertmacro MUI_LANGUAGE "Greek"
+#!insertmacro MUI_LANGUAGE "Hebrew"
+#!insertmacro MUI_LANGUAGE "Hungarian"
+#!insertmacro MUI_LANGUAGE "Indonesian"
+#!insertmacro MUI_LANGUAGE "Japanese"
+#!insertmacro MUI_LANGUAGE "Korean"
+#!insertmacro MUI_LANGUAGE "Latvian"
+#!insertmacro MUI_LANGUAGE "Lithuanian"
+#!insertmacro MUI_LANGUAGE "Macedonian"
+#!insertmacro MUI_LANGUAGE "Norwegian"
+#!insertmacro MUI_LANGUAGE "Polish"
+#!insertmacro MUI_LANGUAGE "Romanian"
+#!insertmacro MUI_LANGUAGE "Russian"
+#!insertmacro MUI_LANGUAGE "Serbian"
+#!insertmacro MUI_LANGUAGE "SerbianLatin"
+#!insertmacro MUI_LANGUAGE "SimpChinese"
+#!insertmacro MUI_LANGUAGE "Slovak"
+#!insertmacro MUI_LANGUAGE "Slovenian"
+#!insertmacro MUI_LANGUAGE "Swedish"
+#!insertmacro MUI_LANGUAGE "Thai"
+#!insertmacro MUI_LANGUAGE "TradChinese"
+#!insertmacro MUI_LANGUAGE "Turkish"
+#!insertmacro MUI_LANGUAGE "Ukrainian"
 
-# Latin1
 !insertmacro MUI_LANGUAGE "Danish"
 !insertmacro MUI_LANGUAGE "Dutch"
 !insertmacro MUI_LANGUAGE "English"
@@ -145,40 +200,6 @@ SilentInstall normal
 !insertmacro MUI_LANGUAGE "Portuguese"
 !insertmacro MUI_LANGUAGE "PortugueseBR"
 !insertmacro MUI_LANGUAGE "Spanish"
-
-# non-Latin1 below (bugs in NSIS?)
-!insertmacro MUI_LANGUAGE "Arabic"
-!insertmacro MUI_LANGUAGE "Bulgarian"
-!insertmacro MUI_LANGUAGE "Catalan"
-!insertmacro MUI_LANGUAGE "Croatian"
-!insertmacro MUI_LANGUAGE "Czech"
-#!insertmacro MUI_LANGUAGE "Default"  <= WHAT IS THIS?
-!insertmacro MUI_LANGUAGE "Estonian"
-!insertmacro MUI_LANGUAGE "Farsi"
-!insertmacro MUI_LANGUAGE "Finnish"
-!insertmacro MUI_LANGUAGE "Greek"
-!insertmacro MUI_LANGUAGE "Hebrew"
-!insertmacro MUI_LANGUAGE "Hungarian"
-!insertmacro MUI_LANGUAGE "Indonesian"
-!insertmacro MUI_LANGUAGE "Japanese"
-!insertmacro MUI_LANGUAGE "Korean"
-!insertmacro MUI_LANGUAGE "Latvian"
-!insertmacro MUI_LANGUAGE "Lithuanian"
-!insertmacro MUI_LANGUAGE "Macedonian"
-!insertmacro MUI_LANGUAGE "Norwegian"
-!insertmacro MUI_LANGUAGE "Polish"
-!insertmacro MUI_LANGUAGE "Romanian"
-!insertmacro MUI_LANGUAGE "Russian"
-!insertmacro MUI_LANGUAGE "Serbian"
-!insertmacro MUI_LANGUAGE "SerbianLatin"
-!insertmacro MUI_LANGUAGE "SimpChinese"
-!insertmacro MUI_LANGUAGE "Slovak"
-!insertmacro MUI_LANGUAGE "Slovenian"
-!insertmacro MUI_LANGUAGE "Swedish"
-!insertmacro MUI_LANGUAGE "Thai"
-!insertmacro MUI_LANGUAGE "TradChinese"
-!insertmacro MUI_LANGUAGE "Turkish"
-!insertmacro MUI_LANGUAGE "Ukrainian"
 
 # 6. Reserve Files  {{{1
 
@@ -190,11 +211,11 @@ SilentInstall normal
 Section "Program files (required)" Main
 SectionIn 1 2 3 RO
 
-	Call WarnDirExists
+    Call WarnDirExists
 
-	SetOutPath $INSTDIR
-	File /r ..\src\*.*
-	#File /r ..\nsis\gramps.ico
+    SetOutPath $INSTDIR
+    File /r ..\src\*.*
+    #File /r ..\nsis\gramps.ico
 
 SectionEnd
 
@@ -204,19 +225,19 @@ SubSection "Menus and shortcuts" MenusAndIcons
 
 Section "Add GRAMPS to the Start Menu" MenuStart
 SectionIn 1 3
-	# determines "Start In" location for shortcuts
-	SetOutPath $INSTDIR
-	
-	StrCpy $0 "GRAMPS"
+    # determines "Start In" location for shortcuts
+    SetOutPath $INSTDIR
+   
+    StrCpy $0 "GRAMPS"
 
-	IfFileExists "$SMPROGRAMS\$0" 0 skipStartMenuRemove
-	RMDir /r "$SMPROGRAMS\$0\"
-	skipStartMenuRemove:
+    IfFileExists "$SMPROGRAMS\$0" 0 skipStartMenuRemove
+    RMDir /r "$SMPROGRAMS\$0\"
+    skipStartMenuRemove:
 
-	CreateDirectory "$SMPROGRAMS\$0\"
-	CreateShortCut "$SMPROGRAMS\$0\GRAMPS ${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
-	WriteINIStr "$SMPROGRAMS\$0\GRAMPS Website.url" "InternetShortcut" "URL" "http://www.gramps-project.org/"
-	CreateShortCut "$SMPROGRAMS\$0\Uninstall GRAMPS.lnk" "$\"$INSTDIR\uninstall.exe$\"" "" "" "0" "" "" "Uninstall GRAMPS"
+    CreateDirectory "$SMPROGRAMS\$0\"
+    CreateShortCut "$SMPROGRAMS\$0\GRAMPS ${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
+    WriteINIStr "$SMPROGRAMS\$0\GRAMPS Website.url" "InternetShortcut" "URL" "http://www.gramps-project.org/"
+    CreateShortCut "$SMPROGRAMS\$0\Uninstall GRAMPS.lnk" "$\"$INSTDIR\uninstall.exe$\"" "" "" "0" "" "" "Uninstall GRAMPS"
 
 SectionEnd
 
@@ -232,20 +253,22 @@ SubSectionEnd
 #    Language Files {{{1
 
 Section "Language Files" LangFiles
+# off by default
+#SectionIn 1 3
 
-	#CreateDirectory $INSTDIR\lang
-	SetOutPath $INSTDIR
-	File /r ..\po\*.mo
+    #CreateDirectory $INSTDIR\lang
+    SetOutPath $INSTDIR
+    File /r ..\po\*.mo
 
-	#MessageBox MB_OK "Setting up languages..."
-	# setup
-	; switches:
-	; -c 
-	; -t :: setup the language files
-	; -r
-	;
-	; pythonw grampsSetup.py -c -t
-	#Exec '"$3" $\"$INSTDIR\grampsSetup.py -c -t -r$\"'
+    #MessageBox MB_OK "Setting up languages..."
+    # setup
+    ; switches:
+    ; -c
+    ; -t :: setup the language files
+    ; -r
+    ;
+    ; pythonw grampsSetup.py -c -t
+    #Exec '"$3" $\"$INSTDIR\grampsSetup.py -c -t -r$\"'
 
 SectionEnd
 
@@ -266,9 +289,9 @@ SectionEnd
 ;
 ;   Example:
 ;   !insertmacro APP_ASSOCIATE \
-;	  "txt" \
-;	  "myapp.textfile" \
-;	  "myapp tiny description" \
+;      "txt" \
+;      "myapp.textfile" \
+;      "myapp tiny description" \
 ;     "$INSTDIR\myapp.exe,0" \
 ;     "Open with myapp" \
 ;     "$INSTDIR\myapp.exe $\"%1$\""
@@ -308,54 +331,54 @@ SectionEnd
 ;
 
 !macro APP_ASSOCIATE EXT FILECLASS DESCRIPTION ICON COMMANDTEXT COMMAND
-	; Backup the previously associated file class
-	ReadRegStr $R0 HKCR ".${EXT}" ""
-	WriteRegStr HKCR ".${EXT}" "${FILECLASS}_backup" "$R0"
+    ; Backup the previously associated file class
+    ReadRegStr $R0 HKCR ".${EXT}" ""
+    WriteRegStr HKCR ".${EXT}" "${FILECLASS}_backup" "$R0"
 
-	WriteRegStr HKCR ".${EXT}" "" "${FILECLASS}"
-	WriteRegStr HKCR "${FILECLASS}" "" `${DESCRIPTION}`
-	WriteRegStr HKCR "${FILECLASS}\DefaultIcon" "" `${ICON}`
-	WriteRegStr HKCR "${FILECLASS}\shell" "" "open"
-	WriteRegStr HKCR "${FILECLASS}\shell\open" "" `${COMMANDTEXT}`
-	WriteRegStr HKCR "${FILECLASS}\shell\open\command" "" `${COMMAND}`
+    WriteRegStr HKCR ".${EXT}" "" "${FILECLASS}"
+    WriteRegStr HKCR "${FILECLASS}" "" `${DESCRIPTION}`
+    WriteRegStr HKCR "${FILECLASS}\DefaultIcon" "" `${ICON}`
+    WriteRegStr HKCR "${FILECLASS}\shell" "" "open"
+    WriteRegStr HKCR "${FILECLASS}\shell\open" "" `${COMMANDTEXT}`
+    WriteRegStr HKCR "${FILECLASS}\shell\open\command" "" `${COMMAND}`
 !macroend
 
 !macro APP_ASSOCIATE_EX EXT FILECLASS DESCRIPTION ICON VERB DEFAULTVERB SHELLNEW COMMANDTEXT COMMAND
-	; Backup the previously associated file class
-	ReadRegStr $R0 HKCR ".${EXT}" ""
-	WriteRegStr HKCR ".${EXT}" "${FILECLASS}_backup" "$R0"
+    ; Backup the previously associated file class
+    ReadRegStr $R0 HKCR ".${EXT}" ""
+    WriteRegStr HKCR ".${EXT}" "${FILECLASS}_backup" "$R0"
 
-	WriteRegStr HKCR ".${EXT}" "" "${FILECLASS}"
-	StrCmp "${SHELLNEW}" "0" +2
-	WriteRegStr HKCR ".${EXT}\ShellNew" "NullFile" ""
+    WriteRegStr HKCR ".${EXT}" "" "${FILECLASS}"
+    StrCmp "${SHELLNEW}" "0" +2
+    WriteRegStr HKCR ".${EXT}\ShellNew" "NullFile" ""
 
-	WriteRegStr HKCR "${FILECLASS}" "" `${DESCRIPTION}`
-	WriteRegStr HKCR "${FILECLASS}\DefaultIcon" "" `${ICON}`
-	WriteRegStr HKCR "${FILECLASS}\shell" "" `${DEFAULTVERB}`
-	WriteRegStr HKCR "${FILECLASS}\shell\${VERB}" "" `${COMMANDTEXT}`
-	WriteRegStr HKCR "${FILECLASS}\shell\${VERB}\command" "" `${COMMAND}`
+    WriteRegStr HKCR "${FILECLASS}" "" `${DESCRIPTION}`
+    WriteRegStr HKCR "${FILECLASS}\DefaultIcon" "" `${ICON}`
+    WriteRegStr HKCR "${FILECLASS}\shell" "" `${DEFAULTVERB}`
+    WriteRegStr HKCR "${FILECLASS}\shell\${VERB}" "" `${COMMANDTEXT}`
+    WriteRegStr HKCR "${FILECLASS}\shell\${VERB}\command" "" `${COMMAND}`
 !macroend
 
 !macro APP_ASSOCIATE_ADDVERB FILECLASS VERB COMMANDTEXT COMMAND
-	WriteRegStr HKCR "${FILECLASS}\shell\${VERB}" "" `${COMMANDTEXT}`
-	WriteRegStr HKCR "${FILECLASS}\shell\${VERB}\command" "" `${COMMAND}`
+    WriteRegStr HKCR "${FILECLASS}\shell\${VERB}" "" `${COMMANDTEXT}`
+    WriteRegStr HKCR "${FILECLASS}\shell\${VERB}\command" "" `${COMMAND}`
 !macroend
 
 !macro APP_ASSOCIATE_REMOVEVERB FILECLASS VERB
-	DeleteRegKey HKCR `${FILECLASS}\shell\${VERB}`
+    DeleteRegKey HKCR `${FILECLASS}\shell\${VERB}`
 !macroend
 
 
 !macro APP_UNASSOCIATE EXT FILECLASS
-	; Backup the previously associated file class
-	ReadRegStr $R0 HKCR ".${EXT}" `${FILECLASS}_backup`
-	WriteRegStr HKCR ".${EXT}" "" "$R0"
+    ; Backup the previously associated file class
+    ReadRegStr $R0 HKCR ".${EXT}" `${FILECLASS}_backup`
+    WriteRegStr HKCR ".${EXT}" "" "$R0"
 
-	DeleteRegKey HKCR `${FILECLASS}`
+    DeleteRegKey HKCR `${FILECLASS}`
 !macroend
 
 !macro APP_ASSOCIATE_GETFILECLASS OUTPUT EXT
-	ReadRegStr ${OUTPUT} HKCR ".${EXT}" ""
+    ReadRegStr ${OUTPUT} HKCR ".${EXT}" ""
 !macroend
 
 
@@ -372,7 +395,7 @@ SectionEnd
 !macro UPDATEFILEASSOC
 ; Using the system.dll plugin to call the SHChangeNotify Win32 API function so we
 ; can update the shell.
-	System::Call "shell32::SHChangeNotify(i,i,i,i) (${SHCNE_ASSOCCHANGED}, ${SHCNF_FLUSH}, 0, 0)"
+    System::Call "shell32::SHChangeNotify(i,i,i,i) (${SHCNE_ASSOCCHANGED}, ${SHCNF_FLUSH}, 0, 0)"
 !macroend
 
 ;EOF
@@ -383,41 +406,41 @@ Section "File Association" FileAssoc
 SectionIn 1 3
 # depends on FileAssoc.nsh, by Saivert (http://nsis.sourceforge.net/FileAssoc)
 
-	# .grdb
-	!insertmacro APP_ASSOCIATE \
-	  "grdb" \
-	  "application/x-gramps-database" \
-	  "GRAMPS database file" \
-	 "$INSTDIR\images\ped24.ico" \
-	 "Open with GRAMPS" \
-	 "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
+    # .grdb
+    !insertmacro APP_ASSOCIATE \
+      "grdb" \
+      "application/x-gramps-database" \
+      "GRAMPS database file" \
+     "$INSTDIR\images\ped24.ico" \
+     "Open with GRAMPS" \
+     "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
 
-	# .gramps
-	!insertmacro APP_ASSOCIATE \
-	  "gramps" \
-	  "application/x-gramps-file" \
-	  "GRAMPS application file" \
-	 "$INSTDIR\images\ped24.ico" \
-	 "Open with GRAMPS" \
-	 "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
+    # .gramps
+    !insertmacro APP_ASSOCIATE \
+      "gramps" \
+      "application/x-gramps-file" \
+      "GRAMPS application file" \
+     "$INSTDIR\images\ped24.ico" \
+     "Open with GRAMPS" \
+     "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
 
-	# .gpkg
-	!insertmacro APP_ASSOCIATE \
-	  "gpkg" \
-	  "application/x-gramps-package" \
-	  "GRAMPS package file" \
-	 "$INSTDIR\images\ped24.ico" \
-	 "Open with GRAMPS" \
-	 "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
+    # .gpkg
+    !insertmacro APP_ASSOCIATE \
+      "gpkg" \
+      "application/x-gramps-package" \
+      "GRAMPS package file" \
+     "$INSTDIR\images\ped24.ico" \
+     "Open with GRAMPS" \
+     "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
 
-	# .ged
-	!insertmacro APP_ASSOCIATE \
-	  "ged" \
-	  "application/x-gramps-gedcom" \
-	  "GEnealogical Data COMmunication (GEDCOM) file" \
-	 "$INSTDIR\images\ped24.ico" \
-	 "Open with GRAMPS" \
-	 "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
+    # .ged
+    !insertmacro APP_ASSOCIATE \
+      "ged" \
+      "application/x-gramps-gedcom" \
+      "GEnealogical Data COMmunication (GEDCOM) file" \
+     "$INSTDIR\images\ped24.ico" \
+     "Open with GRAMPS" \
+     "$\"$3$\" $\"$INSTDIR\gramps.py$\" $\"%1$\""
 
 SectionEnd
 
@@ -426,22 +449,22 @@ SectionEnd
 
 Section Uninstall
 
-	# ask first
-	MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 \
-		"Completely remove installation? $\n\
-		(Delete folder $INSTDIR ) " \
-		IDNO unQuit IDYES unContinue
+    # ask first
+    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 \
+        "Completely remove installation? $\n\
+        (Delete folder $INSTDIR ) " \
+        IDNO unQuit IDYES unContinue
 
-	unQuit:
-	Abort
+    unQuit:
+    Abort
 
-	unContinue:
-	ClearErrors
-	RMDir /r $INSTDIR
-	Call un.StartMenu
-	Call un.Desktop
+    unContinue:
+    ClearErrors
+    RMDir /r $INSTDIR
+    Call un.StartMenu
+    Call un.Desktop
 
-	unEnd:
+    unEnd:
 
 SectionEnd
 
@@ -454,196 +477,216 @@ Function .onInit
 
 #MessageBox MB_OK "Testing dependencies..."
 
-	; look for pythonw.exe
-	; NOTE: This is set to $3 if it exists.
+    ; look for pythonw.exe
+    ; NOTE: This is set to $3 if it exists.
 
-	; on path
-	SearchPath $3 pythonw.exe
+    ; on path
+    SearchPath $3 pythonw.exe
 #MessageBox MB_OK "DEBUG: Testing pythonw.exe on path...$\n$\nFound:  $\"$3$\""
-	IfFileExists $3 HavePython 0
+    IfFileExists $3 HavePython 0
 
-	; registry keys (these are confirmed possibilities)
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\python.exe' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key (updated on 2.5 upgrade)
-	ReadRegStr $3 HKCR 'Python.File\shell\open\command' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key (updated on 2.5 upgrade)
-	ReadRegStr $3 HKCU 'Software\Classes\Python.File\shell\open\command' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKCU 'Software\Microsoft\Windows\Current version\App Paths\Python.exe' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKCU 'Software\Microsoft\Windows\ShellNoRoam\MUICache (data:python)' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key (Python version 2.5)
-	ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.5\InstallPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key (Python version 2.4)
-	ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.4\InstallPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	# these hold compound paths
-	#; reg key (Python version 2.5)
-	#ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.5\PythonPath' ""
-	#StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	#IfFileExists $3 HavePython 0
-	#; reg key (Python version 2.4)
-	#ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.4\PythonPath' ""
-	#StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	#IfFileExists $3 HavePython 0
+    ; registry keys (these are confirmed possibilities)
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\python.exe' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key (updated on 2.5 upgrade)
+    ReadRegStr $3 HKCR 'Python.File\shell\open\command' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key (updated on 2.5 upgrade)
+    ReadRegStr $3 HKCU 'Software\Classes\Python.File\shell\open\command' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKCU 'Software\Microsoft\Windows\Current version\App Paths\Python.exe' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKCU 'Software\Microsoft\Windows\ShellNoRoam\MUICache (data:python)' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key (Python version 2.5)
+    ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.5\InstallPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key (Python version 2.4)
+    ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.4\InstallPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    # these hold compound paths
+    #; reg key (Python version 2.5)
+    #ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.5\PythonPath' ""
+    #StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    #IfFileExists $3 HavePython 0
+    #; reg key (Python version 2.4)
+    #ReadRegStr $3 HKCU 'Software\Python\PythonCore\2.4\PythonPath' ""
+    #StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    #IfFileExists $3 HavePython 0
 
-	; Keys not prone to be properly updated on upgrades	
-	; reg key 
-	ReadRegStr $3 HKCR 'Applications\python.exe\shell\open\command' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key (not updated on 2.5 upgrade)
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5\PythonPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4\PythonPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5\InstallPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
-	; reg key
-	ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4\InstallPath' ""
-	StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
-	IfFileExists $3 HavePython 0
+    ; Keys not prone to be properly updated on upgrades   
+    ; reg key
+    ReadRegStr $3 HKCR 'Applications\python.exe\shell\open\command' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key (not updated on 2.5 upgrade)
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5\PythonPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4\PythonPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.5\InstallPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
+    ; reg key
+    ReadRegStr $3 HKLM 'SOFTWARE\Python\PythonCore\2.4\InstallPath' ""
+    StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
+    IfFileExists $3 HavePython 0
 
 
-	; TODO: request path from user/browse (can NSIS do this?)
-		MessageBox MB_OK "GRAMPS requires Python to be installed, please see:$\n \
-		  $\n \
-		  http://gramps-project.org/windows/ $\n \
-		  $\n \
-		  for installation help. Unable to continue installation."
-		Abort
-		HavePython:
+    ; TODO: request path from user/browse (can NSIS do this?)
+        #MessageBox MB_OK "GRAMPS requires Python to be installed, please see:$\n \
+        #  $\n \
+        #  http://gramps-project.org/windows/ $\n \
+        #  $\n \
+        #  for installation help. Unable to continue installation."
+        #Abort
+        MessageBox MB_OK "Python not found."
+        StrCpy $4 "flag"
+        HavePython:
 #MessageBox MB_OK "DEBUG: Final path for pythonw.exe...$\n$\nFound:  $\"$3$\""
 
-	; extract gcheck
-	SetOutPath $TEMP
+    ; extract gcheck
+    SetOutPath $TEMP
 #MessageBox MB_OK "DEBUG: $$TEMP location found:$\n$\n  $TEMP"
-	File gcheck.py
-	; set INI output location ($1)
-	StrCpy $1 "$TEMP\gramps-install.ini"
+    File gcheck.py
+    ; set INI output location ($1)
+    StrCpy $1 "$TEMP\gramps-install.ini"
 #MessageBox MB_OK "DEBUG: Attempting to run:$\n$\n  $\"$3$\" $TEMP\gcheck.py $1"
-	; run gcheck
-	Exec '"$3" $TEMP\gcheck.py $1'
+    ; run gcheck
+    Exec '"$3" $TEMP\gcheck.py $1'
+    #Exec '"$3" "$TEMP\gcheck.py" "$1"'
+    #Exec '$\"$3$\" $\"$TEMP\gcheck.py$\" $\"$1$\"'
 
-	; Note The Exec above is a fork, meaning the following file test
-	;      will fail because it happens faster than the Exec can run
-	;      to create it!
-	DetailPrint "Pausing for gcheck.py exectution..."
-	; sleep
-	Sleep 6000
+    #; Note The Exec above is a fork, meaning the following file test
+    #;      will fail because it happens faster than the Exec can run
+    #;      to create it!
+    DetailPrint "Pausing for gcheck.py exectution..."
+    #; sleep
+    Sleep 1000
 
-	; verify INI created
-	IfFileExists $1 YesINI 0
-		MessageBox MB_OK "Dependency test INI creation failed, unable to continue."
-		Abort
-		YesINI:
+    ; verify INI created
+    IfFileExists $1 YesINI 0
+        #MessageBox MB_OK "Dependency test INI creation failed, unable to continue."
+        #Abort
+        MessageBox MB_OK "Dependency test INI creation failed."
+        StrCpy $4 "flag"
+        YesINI:
 
-	; verify environment test results
-	; GTK+ and pygtk
-	ReadINIStr $0 $1 tests gtk
-	StrCmp $0 "yes" HaveGTK 0
+    ; verify environment test results
+    ; GTK+ and pygtk
+    ReadINIStr $0 $1 tests gtk
+    StrCmp $0 "yes" HaveGTK 0
 
-		; TODO: if no, perhaps just have GTK+ installed, check registry
-		; reg key
-		ReadRegStr $3 HKCU 'Environment\GTK_BASEPATH' ""
-		IfFileExists $3\*.* NoHavePyGTK 0
-		; reg key
-		ReadRegStr $3 HKCU 'Software\GTK\2.0\Path' ""
-		IfFileExists $3\*.* NoHavePyGTK 0
-		; reg key
-		ReadRegStr $3 HKLM 'Software\GTK\2.0\Path' ""
-		IfFileExists $3\*.* NoHavePyGTK 0
-		; reg key
-		ReadRegStr $3 HKLM 'Software\GTK\2.0\DllPath' ""
-		IfFileExists $3\*.* NoHavePyGTK 0
-		
-		; if we make it this far, we don't have GTK+
-		MessageBox MB_OK "GRAMPS requires GTK+ and PyGTK to be installed, please see:$\n \
-		  $\n \
-		  http://gramps-project.org/windows/ $\n \
-		  $\n \
-		  for installation help. Unable to continue installation."
-		Abort
+        ; TODO: if no, perhaps just have GTK+ installed, check registry
+        ; reg key
+        ReadRegStr $3 HKCU 'Environment\GTK_BASEPATH' ""
+        IfFileExists $3\*.* NoHavePyGTK 0
+        ; reg key
+        ReadRegStr $3 HKCU 'Software\GTK\2.0\Path' ""
+        IfFileExists $3\*.* NoHavePyGTK 0
+        ; reg key
+        ReadRegStr $3 HKLM 'Software\GTK\2.0\Path' ""
+        IfFileExists $3\*.* NoHavePyGTK 0
+        ; reg key
+        ReadRegStr $3 HKLM 'Software\GTK\2.0\DllPath' ""
+        IfFileExists $3\*.* NoHavePyGTK 0
+       
+        ; if we make it this far, we don't have GTK+
+        #MessageBox MB_OK "GRAMPS requires GTK+ and PyGTK to be installed, please see:$\n \
+        #  $\n \
+        #  http://gramps-project.org/windows/ $\n \
+        #  $\n \
+        #  for installation help. Unable to continue installation."
+        #Abort
+        MessageBox MB_OK "GTK+ and PyGTK not found."
+        StrCpy $4 "flag"
 
-		NoHavePyGTK:
-		MessageBox MB_OK "GTK+/PyGTK import failed (GTK+ found on system), please see:$\n \
-		  $\n \
-		  http://gramps-project.org/windows/ $\n \
-		  $\n \
-		  for installation help. Unable to continue installation."
-		Abort
+        NoHavePyGTK:
+        #MessageBox MB_OK "PyGTK import failed (GTK+ found on system), please see:$\n \
+        #  $\n \
+        #  http://gramps-project.org/windows/ $\n \
+        #  $\n \
+        #  for installation help. Unable to continue installation."
+        #Abort
+        MessageBox MB_OK "PyGTK not found."
+        StrCpy $4 "flag"
 
-		HaveGTK:
+        HaveGTK:
 
-	# NOTE: we can not detect just pygtk via gcheck.py
+    # NOTE: we can not detect just pygtk via gcheck.py
 
-	; glade
-	ReadINIStr $0 $1 tests glade
-	StrCmp $0 "yes" Haveglade 0
-		MessageBox MB_OK "glade not installed, unable to continue."
-		Abort
-		Haveglade:
-	; pycairo
-	ReadINIStr $0 $1 tests pycairo
-	StrCmp $0 "yes" Havepycairo 0
-		MessageBox MB_OK "pycairo not installed, unable to continue."
-		Abort
-		Havepycairo:
+    ; glade
+    ReadINIStr $0 $1 tests glade
+    StrCmp $0 "yes" Haveglade 0
+        #MessageBox MB_OK "glade not installed, unable to continue."
+        #Abort
+        MessageBox MB_OK "Glade not found."
+        StrCpy $4 "flag"
+        Haveglade:
+    ; pycairo
+    ReadINIStr $0 $1 tests pycairo
+    StrCmp $0 "yes" Havepycairo 0
+        #MessageBox MB_OK "pycairo not installed, unable to continue."
+        #Abort
+        MessageBox MB_OK "pycairo not found."
+        StrCpy $4 "flag"
+        Havepycairo:
 
-	#!insertmacro MUI_LANGDLL_DISPLAY
+    #!insertmacro MUI_LANGDLL_DISPLAY
 
-	# default install directory ($INSTDIR)
-	StrCpy $INSTDIR $PROGRAMFILES\gramps
+    StrCmp $4 "flag" +1 DependantsOK
+    MessageBox MB_OK "At least one dependency was not found, unable to continue."
+    Abort
+
+    DependantsOK:
+
+    # default install directory ($INSTDIR)
+    StrCpy $INSTDIR $PROGRAMFILES\gramps
 
 FunctionEnd
 
 Function .onInstSuccess
 
-	# write uninstaller
-	WriteUninstaller $INSTDIR\uninstall.exe
+    # write uninstaller
+    WriteUninstaller $INSTDIR\uninstall.exe
 
 FunctionEnd
 
 Function .onInstFailed
-	MessageBox MB_OK|MB_ICONEXCLAMATION "Installation failed."
+    MessageBox MB_OK|MB_ICONEXCLAMATION "Installation failed."
 FunctionEnd
 
 Function WarnDirExists
-	# warn if dir already exists
-	IfFileExists $INSTDIR\*.* DirExists DirExistsOK
-	DirExists:
-	MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 \
-		"Install over existing?" \
-		IDYES DirExistsOK
-	Quit
-	DirExistsOK:
+    # warn if dir already exists
+    IfFileExists $INSTDIR\*.* DirExists DirExistsOK
+    DirExists:
+    MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 \
+        "Install over existing?" \
+        IDYES DirExistsOK
+    Quit
+    DirExistsOK:
 FunctionEnd
 
 #    Uninstaller {{{1
@@ -655,17 +698,17 @@ FunctionEnd
 
 Function un.StartMenu
 
-	IfFileExists "$SMPROGRAMS\GRAMPS" 0 unStartMenuFine
-	RMDir /r "$SMPROGRAMS\GRAMPS\"
-	unStartMenuFine:
+    IfFileExists "$SMPROGRAMS\GRAMPS" 0 unStartMenuFine
+    RMDir /r "$SMPROGRAMS\GRAMPS\"
+    unStartMenuFine:
 
 FunctionEnd
 
 Function un.Desktop
 
-	IfFileExists "$DESKTOP\GRAMPS.lnk" 0 unNoDesktop
-	Delete "$DESKTOP\GRAMPS.lnk"
-	unNoDesktop:
+    IfFileExists "$DESKTOP\GRAMPS.lnk" 0 unNoDesktop
+    Delete "$DESKTOP\GRAMPS.lnk"
+    unNoDesktop:
 
 FunctionEnd
 
@@ -674,23 +717,23 @@ FunctionEnd
 ######################################################################
 # (must be last)
 
-	LangString DESC_Main ${LANG_ENGLISH} "Main program files (required)."
-	LangString DESC_MenusAndIcons ${LANG_ENGLISH} "General Desktop and Start Menu shortcut options."
-	LangString DESC_Desktop ${LANG_ENGLISH} "Add icon to the Desktop."
-	LangString DESC_MenuStart ${LANG_ENGLISH} "Add icons to the Start Menu."
-	LangString DESC_LangFiles ${LANG_ENGLISH} "Set up non-English languages."
-	LangString DESC_FileAssoc ${LANG_ENGLISH} "Associate GRAMPS with .grdb, .gramps, .gpkg, and .ged files."
-	LangString DESC_Prog ${LANG_ENGLISH} "GRAMPS..."
+    LangString DESC_Main ${LANG_ENGLISH} "Main program files (required)."
+    LangString DESC_MenusAndIcons ${LANG_ENGLISH} "General Desktop and Start Menu shortcut options."
+    LangString DESC_Desktop ${LANG_ENGLISH} "Add icon to the Desktop."
+    LangString DESC_MenuStart ${LANG_ENGLISH} "Add icons to the Start Menu."
+    LangString DESC_LangFiles ${LANG_ENGLISH} "Set up non-English languages."
+    LangString DESC_FileAssoc ${LANG_ENGLISH} "Associate GRAMPS with .grdb, .gramps, .gpkg, and .ged files."
+    LangString DESC_Prog ${LANG_ENGLISH} "GRAMPS..."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 
-	!insertmacro MUI_DESCRIPTION_TEXT ${Main} $(DESC_Main)
-	!insertmacro MUI_DESCRIPTION_TEXT ${MenusAndIcons} $(DESC_MenusAndIcons)
-	!insertmacro MUI_DESCRIPTION_TEXT ${Desktop} $(DESC_Desktop)
-	!insertmacro MUI_DESCRIPTION_TEXT ${MenuStart} $(DESC_MenuStart)
-	!insertmacro MUI_DESCRIPTION_TEXT ${LangFiles} $(DESC_LangFiles)
-	!insertmacro MUI_DESCRIPTION_TEXT ${FileAssoc} $(DESC_FileAssoc)
-	!insertmacro MUI_DESCRIPTION_TEXT ${Prog} $(DESC_Prog)
+    !insertmacro MUI_DESCRIPTION_TEXT ${Main} $(DESC_Main)
+    !insertmacro MUI_DESCRIPTION_TEXT ${MenusAndIcons} $(DESC_MenusAndIcons)
+    !insertmacro MUI_DESCRIPTION_TEXT ${Desktop} $(DESC_Desktop)
+    !insertmacro MUI_DESCRIPTION_TEXT ${MenuStart} $(DESC_MenuStart)
+    !insertmacro MUI_DESCRIPTION_TEXT ${LangFiles} $(DESC_LangFiles)
+    !insertmacro MUI_DESCRIPTION_TEXT ${FileAssoc} $(DESC_FileAssoc)
+    !insertmacro MUI_DESCRIPTION_TEXT ${Prog} $(DESC_Prog)
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
