@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@ Package providing filter rules for GRAMPS.
 """
 
 from _AllPlaces import AllPlaces
+from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
 from _HasNoteRegexp import HasNoteRegexp
@@ -39,6 +41,7 @@ from _MatchesEventFilter import MatchesEventFilter
 
 editor_rule_list = [
     AllPlaces,
+    HasGallery,
     HasIdOf,
     RegExpIdOf,
     HasNoteRegexp,

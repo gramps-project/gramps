@@ -57,7 +57,7 @@ from _ChildHasIdOf import ChildHasIdOf
 editor_rule_list = [
     AllFamilies,
     HasRelType,
-    HasGallery
+    HasGallery,
     HasIdOf,
     HasLDS,
     RegExpIdOf,
