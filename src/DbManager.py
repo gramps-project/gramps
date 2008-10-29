@@ -631,7 +631,8 @@ class DbManager(CLIDbManager):
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
             if not old_text.strip() == new_text.strip():
-                if len(path) > 1 :
+                #If there is a ":" in path, then it as revision
+                if ":" in path :
                     self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
