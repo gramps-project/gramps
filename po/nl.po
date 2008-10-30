@@ -1,4 +1,4 @@
-# translation of nl.po to nederlands
+# translation of nl_grampsbranch.po to nederlands
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -34,10 +34,10 @@
 # lineage	lijn
 msgid ""
 msgstr ""
-"Project-Id-Version: nl\n"
+"Project-Id-Version: nl_grampsbranch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 08:52+0200\n"
-"PO-Revision-Date: 2008-10-20 21:55+0200\n"
+"POT-Creation-Date: 2008-10-25 18:22+0200\n"
+"PO-Revision-Date: 2008-10-30 09:20+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -811,7 +811,12 @@ msgstr "Gehele database"
 msgid "Descendants of %s"
 msgstr "Afstammelingen van %s"
 
-#: ../src/ExportOptions.py:120 ../src/plugins/ExportCSV.py:195
+#: ../src/ExportOptions.py:120 ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Familie-afstammelingen van %s"
+
+#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/WriteFtree.py:100 ../src/plugins/WriteGeneWeb.py:105
 #: ../src/ReportBase/_ReportUtils.py:2959
@@ -819,7 +824,7 @@ msgstr "Afstammelingen van %s"
 msgid "Ancestors of %s"
 msgstr "Voorouders van %s"
 
-#: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:201
+#: ../src/ExportOptions.py:132 ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/WriteFtree.py:106 ../src/plugins/WriteGeneWeb.py:111
 #: ../src/ReportBase/_ReportUtils.py:2963
@@ -4174,7 +4179,7 @@ msgid "Could not create %s"
 msgstr "Kon %s niet aanmaken"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr "Openen in %s"
@@ -4249,7 +4254,7 @@ msgstr "Een kopie afdrukken"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr "RTF-document"
 
@@ -16755,11 +16760,6 @@ msgstr "Overleden: %(death_date)s."
 msgid "Died: %(death_place)s."
 msgstr "Overleden: in %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Familie-afstammelingen van %s"
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Documentstijlen"
@@ -21017,7 +21017,13 @@ msgid ""
 msgstr ""
 "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden "
 "met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het "
-"kind de actieve persoon te maken. Klik vervolgens in het relatiescherm op de derde icoon die zich rechts naast de &quot;ouders:&quot;. bevindt. Vervolgens wordt een familiescherm getoond. Selecteer nu het kind en klik rechts en kies &quote;relatie bewerken&quote;. Hier kunt u de relatie tussen het kind en de vader en de moeder bepalen. Volgende relatietypes zijn mogelijk: Adoptie, geboorte, pleegkind, geen, gesponsord, stiefkind of onbekend."
+"kind de actieve persoon te maken. Klik vervolgens in het relatiescherm op de "
+"derde icoon die zich rechts naast de &quot;ouders:&quot;. bevindt. "
+"Vervolgens wordt een familiescherm getoond. Selecteer nu het kind en klik "
+"rechts en kies &quote;relatie bewerken&quote;. Hier kunt u de relatie tussen "
+"het kind en de vader en de moeder bepalen. Volgende relatietypes zijn "
+"mogelijk: Adoptie, geboorte, pleegkind, geen, gesponsord, stiefkind of "
+"onbekend."
 
 #: ../src/data/tips.xml.in.h:9
 msgid ""
@@ -21413,7 +21419,8 @@ msgid ""
 msgstr ""
 "GRAMPS bevat een uitgebreid aantal hulpmiddelen. Deze laten u toe dingen te "
 "doen zoals controle van het gegevensbestand op fouten en consistentie, "
-"onderzoeken en analyseren van gebeurtenissen, het vinden van dubbele personen, het gebruik van een interactieve afstammeling-browser en meer. "
+"onderzoeken en analyseren van gebeurtenissen, het vinden van dubbele "
+"personen, het gebruik van een interactieve afstammeling-browser en meer. "
 "Alle hulpmiddelen zijn beschikbaar via het menu <b>Hulpmiddelen</b>."
 
 #: ../src/data/tips.xml.in.h:41
@@ -21432,8 +21439,9 @@ msgid ""
 "your language and it is not being displayed, set the default language on "
 "your machine and restart GRAMPS."
 msgstr ""
-"GRAMPS is vertaald in meer dan 20 talen. Als GRAMPS ondersteuning heeft voor uw taal maar deze niet weergeeft, stel dan de standaardtaal in, op uw computer en "
-"start GRAMPS opnieuw op."
+"GRAMPS is vertaald in meer dan 20 talen. Als GRAMPS ondersteuning heeft voor "
+"uw taal maar deze niet weergeeft, stel dan de standaardtaal in, op uw "
+"computer en start GRAMPS opnieuw op."
 
 #: ../src/data/tips.xml.in.h:43
 msgid ""
@@ -21519,11 +21527,9 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
-"GRAMPS works even when using KDE, as long as the required GNOME libraries "
-"are installed."
-msgstr ""
-"GRAMPS werkt ook binnen KDE, als de GNOME-bibliotheekfuncties maar zijn "
-"geïnstalleerd."
+"GRAMPS works even when using KDE, as long as the required GTK libraries are "
+"installed."
+msgstr "GRAMPS werkt zelfs met KDE, maar de vereiste GTK-functies moeten wel geïnstalleerd zijn."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
