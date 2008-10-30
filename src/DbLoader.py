@@ -134,8 +134,12 @@ class DbLoader:
             format_name = plugin.get_name()
 
             choose_db_dialog.add_filter(mime_filter)
-            format_list.append(mime_types[0])
-            _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
+            # There might be multiple entries in mime_types
+            # Add only formats not already in list, so user don't get confused
+            # with multiple entries
+            if not mime_types[0] in format_list:
+                format_list.append(mime_types[0])
+                _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
 
         (box, type_selector) = format_maker(format_list)
         choose_db_dialog.set_extra_widget(box)
