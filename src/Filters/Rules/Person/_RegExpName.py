@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +60,7 @@ class RegExpName(Rule):
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             for field in [name.first_name, name.surname, name.suffix, name.title,
-                          name.prefix, name.patronymic]:
+                          name.prefix, name.patronymic, name.call_name]:
                 if self.match.match(field):
                     return True
         else:
