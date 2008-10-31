@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+ based genealogy program
 #
-# Copyright (C) 2008 Steve Hall [ digitect dancingpaper com ]
+# Copyright (C) 2008 Steve Hall <digitect dancingpaper com>
+# Copyright (C) 2008 Stephen George <steve_geo@optusnet.com.au>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:  $
+# $Id$
 #
 # Description: Nullsoft Installer (NSIS) file to build Windows installer:
 #
@@ -215,6 +216,10 @@ SectionIn 1 2 3 RO
 
     SetOutPath $INSTDIR
     File /r ..\src\*.*
+    File ..\COPYING
+    File ..\NEWS
+    File ..\FAQ
+    File ..\AUTHORS
     #File /r ..\nsis\gramps.ico
 
 SectionEnd
@@ -227,7 +232,7 @@ Section "Add GRAMPS to the Start Menu" MenuStart
 SectionIn 1 3
     # determines "Start In" location for shortcuts
     SetOutPath $INSTDIR
-   
+
     StrCpy $0 "GRAMPS"
 
     IfFileExists "$SMPROGRAMS\$0" 0 skipStartMenuRemove
@@ -524,7 +529,7 @@ Function .onInit
     #StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
     #IfFileExists $3 HavePython 0
 
-    ; Keys not prone to be properly updated on upgrades   
+    ; Keys not prone to be properly updated on upgrades
     ; reg key
     ReadRegStr $3 HKCR 'Applications\python.exe\shell\open\command' ""
     StrCpy $3 "$3pythonw.exe"  ; append "pythonw.exe"
@@ -612,7 +617,7 @@ Function .onInit
         ; reg key
         ReadRegStr $3 HKLM 'Software\GTK\2.0\DllPath' ""
         IfFileExists $3\*.* NoHavePyGTK 0
-       
+
         ; if we make it this far, we don't have GTK+
         #MessageBox MB_OK "GRAMPS requires GTK+ and PyGTK to be installed, please see:$\n \
         #  $\n \
