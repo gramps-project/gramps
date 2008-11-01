@@ -40,6 +40,6 @@ from Filters.Rules._HasReferenceCountBase import HasReferenceCountBase
 class HasReferenceCountOf(HasReferenceCountBase):
     """Source objects with a reference count of <count>"""
 
-    name        = _('Source objects with a reference count of <count>')
-    description = _("Matches source objects with a certain reference count")
+    name        = _('Sources with a reference count of <count>')
+    description = _("Matches sources with a certain reference count")
 
