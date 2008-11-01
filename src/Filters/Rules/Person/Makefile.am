@@ -15,6 +15,7 @@ pkgdata_PYTHON = \
 	_HasEvent.py \
 	_HasFamilyAttribute.py \
 	_HasFamilyEvent.py \
+	_HasGallery.py \
 	_HasIdOf.py \
 	_HasNameOf.py \
 	_HasNote.py \
@@ -26,7 +27,6 @@ pkgdata_PYTHON = \
 	_HasUnknownGender.py \
 	_HaveAltFamilies.py \
 	_HaveChildren.py \
-	_HavePhotos.py \
 	_IncompleteNames.py \
 	_IsAncestorOf.py \
 	_IsAncestorOfFilterMatch.py \
