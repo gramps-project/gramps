@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-28 19:13+0100\n"
-"PO-Revision-Date: 2008-10-28 20:22+0100\n"
+"POT-Creation-Date: 2008-11-01 15:46+0100\n"
+"PO-Revision-Date: 2008-11-01 16:56+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,8 +36,8 @@ msgstr ""
 "Wenn gedcom, gramps-xml oder grdb die -i Option zum Import in Stammbäume "
 "stattdessen verwendet wird."
 
-#: ../src/ArgHandler.py:414 ../src/DbLoader.py:170 ../src/DbLoader.py:192
-#: ../src/DbLoader.py:285
+#: ../src/ArgHandler.py:414 ../src/DbLoader.py:174 ../src/DbLoader.py:196
+#: ../src/DbLoader.py:289
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
@@ -303,11 +303,11 @@ msgstr "_Stopp"
 msgid "GRAMPS: Import database"
 msgstr "GRAMPS: Datenbank importieren"
 
-#: ../src/DbLoader.py:162
+#: ../src/DbLoader.py:166
 msgid "Cannot import from current file"
 msgstr "Kann von aktueller Datei nicht importieren"
 
-#: ../src/DbLoader.py:193
+#: ../src/DbLoader.py:197
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
@@ -318,11 +318,11 @@ msgstr ""
 "\n"
 "Gültige Type sind: GRAMPS-Datenbank, GRAMPS-XML, GRAMPS-Paket und GEDCOM."
 
-#: ../src/DbLoader.py:217 ../src/DbLoader.py:224 ../src/DbLoader.py:281
+#: ../src/DbLoader.py:221 ../src/DbLoader.py:228 ../src/DbLoader.py:285
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
-#: ../src/DbLoader.py:218
+#: ../src/DbLoader.py:222
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
@@ -330,28 +330,28 @@ msgstr ""
 "Die ausgewählte Datei ist ein Verzeichnis und keine Datei.\n"
 "Eine GRAMPS-Datenbank muss eine Datei sein."
 
-#: ../src/DbLoader.py:225
+#: ../src/DbLoader.py:229
 msgid "You do not have read access to the selected file."
 msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 
-#: ../src/DbLoader.py:235
+#: ../src/DbLoader.py:239
 msgid "Cannot create database"
 msgstr "Kann Datenbank nicht erstellen"
 
-#: ../src/DbLoader.py:236 ../src/DbLoader.py:260
+#: ../src/DbLoader.py:240 ../src/DbLoader.py:264
 msgid "You do not have write access to the selected file."
 msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
-#: ../src/DbLoader.py:259
+#: ../src/DbLoader.py:263
 msgid "Read only database"
 msgstr "Schreibgeschützte Datenbank"
 
-#: ../src/DbLoader.py:308
+#: ../src/DbLoader.py:312
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Kann Datei nicht importieren: %s"
 
-#: ../src/DbLoader.py:309
+#: ../src/DbLoader.py:313
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -360,27 +360,27 @@ msgstr ""
 "importiert werden. Bitte korrigiere den Zeichensatz und importiere sie "
 "erneut."
 
-#: ../src/DbLoader.py:356
+#: ../src/DbLoader.py:360
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/DbLoader.py:365
+#: ../src/DbLoader.py:369
 msgid "All GRAMPS files"
 msgstr "Alle GRAMPS-Dateien"
 
-#: ../src/DbLoader.py:375
+#: ../src/DbLoader.py:379
 msgid "GRAMPS XML databases"
 msgstr "GRAMPS-XML-Datenbanken"
 
-#: ../src/DbLoader.py:384
+#: ../src/DbLoader.py:388
 msgid "GEDCOM files"
 msgstr "GEDCOM-Dateien"
 
-#: ../src/DbLoader.py:424
+#: ../src/DbLoader.py:428
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/DbLoader.py:433
+#: ../src/DbLoader.py:437
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -452,11 +452,11 @@ msgstr ""
 msgid "Break lock"
 msgstr "Sperre aufheben"
 
-#: ../src/DbManager.py:665
+#: ../src/DbManager.py:666
 msgid "Rename failed"
 msgstr "Umbenennung ist fehlgeschlagen"
 
-#: ../src/DbManager.py:666
+#: ../src/DbManager.py:667
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -468,61 +468,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:681
+#: ../src/DbManager.py:682
 msgid "Could not rename the Family Tree."
 msgstr "Kann diesen Stammbaum nicht umbenennen."
 
-#: ../src/DbManager.py:682
+#: ../src/DbManager.py:683
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Stammbaum besteht bereits, wähle einen einmaligen Namen."
 
-#: ../src/DbManager.py:695
+#: ../src/DbManager.py:696
 msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../src/DbManager.py:729
+#: ../src/DbManager.py:730
 msgid "Extracting archive..."
 msgstr "Entpacke Archiv..."
 
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:735
 msgid "Importing archive..."
 msgstr "Importiere Archiv..."
 
-#: ../src/DbManager.py:750
+#: ../src/DbManager.py:751
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Den '%s' Stammbaum entfernen?"
 
-#: ../src/DbManager.py:751
+#: ../src/DbManager.py:752
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Das Entfernen dieses Stammbaum zerstört die Daten dauerhaft."
 
-#: ../src/DbManager.py:752
+#: ../src/DbManager.py:753
 msgid "Remove family tree"
 msgstr "Entferne Stammbaum"
 
-#: ../src/DbManager.py:758
+#: ../src/DbManager.py:759
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
-#: ../src/DbManager.py:762
+#: ../src/DbManager.py:763
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
-#: ../src/DbManager.py:764
+#: ../src/DbManager.py:765
 msgid "Remove version"
 msgstr "Entferne Version"
 
-#: ../src/DbManager.py:793
+#: ../src/DbManager.py:794
 msgid "Could not delete family tree"
 msgstr "Kann Stammbaum nicht löschen"
 
-#: ../src/DbManager.py:818
+#: ../src/DbManager.py:819
 msgid "Deletion failed"
 msgstr "Löschung fehlgeschlagen"
 
-#: ../src/DbManager.py:819
+#: ../src/DbManager.py:820
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -534,23 +534,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:862
+#: ../src/DbManager.py:863
 msgid "Rebuilding database from backup files"
 msgstr "Datenbank aus Sicherungsdateien wiederherstellen"
 
-#: ../src/DbManager.py:897
+#: ../src/DbManager.py:898
 msgid "Could not create family tree"
 msgstr "Konnte Stammbaum nicht erstellen"
 
-#: ../src/DbManager.py:988
+#: ../src/DbManager.py:989
 msgid "Could not make database directory: "
 msgstr "Konnte Datenbankverzeichnis nicht erstellen:"
 
-#: ../src/DbManager.py:1002
+#: ../src/DbManager.py:1003
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/DbManager.py:1076 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1077 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:900
 #: ../src/DataViews/RelationView.py:937
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -576,11 +576,11 @@ msgstr "Nie"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../src/DbManager.py:1095
+#: ../src/DbManager.py:1096
 msgid "Retrieve failed"
 msgstr "Abfrage fehlgeschlagen"
 
-#: ../src/DbManager.py:1096
+#: ../src/DbManager.py:1097
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -591,11 +591,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1133 ../src/DbManager.py:1157
+#: ../src/DbManager.py:1134 ../src/DbManager.py:1158
 msgid "Archiving failed"
 msgstr "Archivierung ist fehlgeschlagen"
 
-#: ../src/DbManager.py:1134
+#: ../src/DbManager.py:1135
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -607,15 +607,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1139
+#: ../src/DbManager.py:1140
 msgid "Creating data to be archived..."
 msgstr "Erstelle zu archivierende Daten..."
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1145
 msgid "Saving archive..."
 msgstr "Speichere Archiv..."
 
-#: ../src/DbManager.py:1158
+#: ../src/DbManager.py:1159
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -4959,6 +4959,7 @@ msgid "New Person"
 msgstr "Neue Person"
 
 #: ../src/Editors/_EditPerson.py:266
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Patronymic:"
 msgstr "Patronymikon:"
 
@@ -7576,7 +7577,6 @@ msgid "Enter your TODO list here."
 msgstr "Gib deine zu erledigen Liste hier ein."
 
 #: ../src/plugins/DefaultGramplets.py:960
-#, fuzzy
 msgid ""
 "Welcome to GRAMPS!\n"
 "\n"
@@ -7620,20 +7620,20 @@ msgstr ""
 "Wie beginnen\n"
 "\n"
 "Als erstes musst du einen neuen Stammbaum erstellen. Zum anlegen eines neuen "
-"Stammbaum (auch genannt Datenbank) wähle \"Stammbäume\" aus dem Menü, wähle "
+"Stammbaum (auch Datenbank genannt) wähle \"Stammbäume\" aus dem Menü, wähle "
 "\"Stammbäume verwalten\", drücke \"Neu\" und gib deiner Datenbank einen "
 "Namen. Für mehr Details lies bitte das Benutzerhandbuch, oder das "
 "Onlinehandbuch auf http://gramps-project.org.\n"
 "\n"
 "Du befindest dich auf der \"Mein Gramps\" Seite, wo du deine eigenen "
-"gramplets hinzufügen kannst.\n"
+"Gramplets hinzufügen kannst.\n"
 "\n"
-"Du kannst auf den Hintergrund dieser Seite rechts klicken um weitere gadgets "
-"hinzu zu fügen oder die Anzahl der Spalten zu ändern. Du kannst auch die "
-"Eigenschaftenschaltfläche ziehen um das gadget auf der Seite zu verschieben, "
-"und das gadget lösen um es über GRAMPS schweben zu lassen. Wenn du GRAMPS "
-"mit einem geöffneten gadget schließt, wird es beim nächsten starten von "
-"GRAMPS mit geöffnet."
+"Du kannst auf den Hintergrund dieser Seite rechts klicken um weitere Gadgets "
+"hinzu zu fügen und die Anzahl der Spalten zu ändern. Du kannst auch die "
+"Eigenschaftenschaltfläche ziehen um das Gramplet auf der Seite zu "
+"verschieben, und das Gramplet lösen um es über GRAMPS schweben zu lassen. "
+"Wenn du GRAMPS mit einem geöffneten Gramplet schließt, wird es beim nächsten "
+"starten von GRAMPS mit geöffnet."
 
 #: ../src/plugins/DefaultGramplets.py:989
 msgid "Read news from the GRAMPS wiki"
@@ -8150,7 +8150,7 @@ msgstr "Nachkommenbericht für %(person_name)s"
 
 #: ../src/plugins/DetDescendantReport.py:693
 msgid "Use Record-style (Modified Register) numbering"
-msgstr ""
+msgstr "Benutze Datensatzart (Geänderte Register) Nummerierung"
 
 #: ../src/plugins/DetDescendantReport.py:695
 msgid "Whether to use Record-style numbering instead of Henry-style."
@@ -9976,28 +9976,27 @@ msgstr "Verwaltet Stapeloperationen von Mediendateien"
 #. First is used as default selection.
 #: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:106
 msgid "Basic-Ash"
-msgstr ""
+msgstr "Einfach - Asche"
 
 #: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:107
 msgid "Basic-Cypress"
-msgstr ""
+msgstr "Einfach - Zypresse"
 
 #: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:108
 msgid "Basic-Lilac"
-msgstr ""
+msgstr "Einfach - Lila"
 
 #: ../src/plugins/NarrativeWeb.py:121 ../src/plugins/WebCal.py:109
 msgid "Basic-Peach"
-msgstr ""
+msgstr "Einfach - Pfirsich"
 
 #: ../src/plugins/NarrativeWeb.py:122 ../src/plugins/WebCal.py:110
 msgid "Basic-Spruce"
-msgstr ""
+msgstr "Einfach - Tannengrün"
 
 #: ../src/plugins/NarrativeWeb.py:123 ../src/plugins/WebCal.py:111
-#, fuzzy
 msgid "Mainz"
-msgstr "Ränder"
+msgstr "Mainz"
 
 #: ../src/plugins/NarrativeWeb.py:124 ../src/plugins/WebCal.py:112
 msgid "Nebraska"
@@ -10005,7 +10004,7 @@ msgstr "Nebraska"
 
 #: ../src/plugins/NarrativeWeb.py:125 ../src/plugins/WebCal.py:113
 msgid "Visually Impaired"
-msgstr ""
+msgstr "Sehbehindert"
 
 #: ../src/plugins/NarrativeWeb.py:126 ../src/plugins/WebCal.py:114
 msgid "No style sheet"
@@ -10245,14 +10244,14 @@ msgid "Step Siblings"
 msgstr "Stiefgeschwister"
 
 #: ../src/plugins/NarrativeWeb.py:2507
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-msgstr "%(date)s &nbsp; in &nbsp; %(place)s"
+msgstr "%(date)s <span class=\"preposition\">am</span> %(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2509
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
-msgstr ""
+msgstr "<span class=\"preposition\">am</span> %(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2526
 #, python-format
@@ -11063,7 +11062,7 @@ msgstr "Entspricht Personen, bei denen der Nachname fehlt"
 #: ../src/Filters/Rules/Person/_Everyone.py:46
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
-#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNameOf.py:55
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:46
 #: ../src/Filters/Rules/Person/_HasNote.py:45
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:47
@@ -11079,8 +11078,8 @@ msgstr "Entspricht Personen, bei denen der Nachname fehlt"
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:45
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:45
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:48
-#: ../src/Filters/Rules/Person/_RegExpName.py:49
-#: ../src/Filters/Rules/Person/_SearchName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:50
+#: ../src/Filters/Rules/Person/_SearchName.py:49
 #: ../src/Filters/Rules/Family/_HasRelType.py:50
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:46
 #: ../src/Filters/Rules/Event/_HasData.py:51
@@ -11103,13 +11102,13 @@ msgstr "Allgemeine Filter"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
-#: ../src/Filters/Rules/Person/_SearchName.py:45
+#: ../src/Filters/Rules/Person/_SearchName.py:46
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Teilzeichenfolge:"
 
 #: ../src/plugins/SameSurnames.py:47
-#: ../src/Filters/Rules/Person/_SearchName.py:46
+#: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
 msgstr "Personen mit dem <Namen>"
 
@@ -11780,9 +11779,9 @@ msgid "Blank Calendar"
 msgstr "Leerer Kalender"
 
 #: ../src/plugins/WebCal.py:556
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
-msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\" />%(author)s</a>\n"
+msgstr "Erstellt für <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
 #: ../src/plugins/WebCal.py:560
 #, python-format
@@ -11805,7 +11804,7 @@ msgstr "Feiertag"
 #. create calendar common info for each calendar
 #: ../src/plugins/WebCal.py:952
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "Ein Tag innerhalb eines Jahres"
 
 #: ../src/plugins/WebCal.py:1004
 msgid " Blank Calendar"
@@ -11828,16 +11827,11 @@ msgid "Creating Year At A Glance calendars"
 msgstr "Erstelle Jahresüberblick Kalender"
 
 #: ../src/plugins/WebCal.py:1080
-#, fuzzy
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a <strong>red square</strong> will "
 "take you to a page that shows all the events for that date!\n"
-msgstr ""
-"            Dieser Kalender ist bestimmt dir Zugang zu deinen Daten auf "
-"einen Blick komprimiert auf eine Seite zu geben. Klicken auf ein <b>rotes "
-"Quadrat</b> bringt dich zu einer Seite die alle Ereignisse dieses Datums "
-"zeigt!\n"
+msgstr "Dieser Kalender ist bestimmt dir Zugang zu deinen Daten auf einen Blick komprimiert auf eine Seite zu geben. Klicken auf ein <strong>rotes Quadrat</strong> bringt dich zu einer Seite die alle Ereignisse dieses Datums zeigt!\n"
 
 #. open progress meter bar
 #: ../src/plugins/WebCal.py:1134
@@ -11865,7 +11859,7 @@ msgstr "Erstelle WebCal Kalender"
 
 #: ../src/plugins/WebCal.py:1286
 msgid "Applying Filter..."
-msgstr ""
+msgstr "Wende Filter an..."
 
 #: ../src/plugins/WebCal.py:1290
 msgid "Reading database..."
@@ -11910,24 +11904,22 @@ msgid "Content Options"
 msgstr "Inhaltsoptionen"
 
 #: ../src/plugins/WebCal.py:1466
-#, fuzzy
 msgid "Create Partial Year calendar"
-msgstr "Erstelle druckbare leeren Jahreskalender"
+msgstr "Erstelle teilweisen Jahreskalender"
 
 #: ../src/plugins/WebCal.py:1467
 msgid ""
 "Create a partial year calendar. The start month will be equal to the current "
 "month to the end of the year."
-msgstr ""
+msgstr "Erstellt einen teilweisen Jahreskalender. Der Startmonat entspricht dem aktuellen Monat bis zum Jahresende."
 
 #: ../src/plugins/WebCal.py:1471
 msgid "Create multiple year calendars"
-msgstr ""
+msgstr "Kalender für mehrere Jahre erstellen"
 
 #: ../src/plugins/WebCal.py:1472
-#, fuzzy
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Ob druckbarer leerer Jahreskalender erstellt wird"
+msgstr "Ob Kalender für mehrere Jahre erstellt wird"
 
 #: ../src/plugins/WebCal.py:1476
 msgid "Start Year for the Calendar(s)"
@@ -11945,22 +11937,19 @@ msgstr "Endejahr de(s/r) Kalender"
 msgid ""
 "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
 "years is selected, then only twenty years at any given time"
-msgstr ""
+msgstr "Gib das Endjahr für die Kalender zwischen 1900 und 3000 ein. Wenn mehrere Jahre gewählt sind, dann nur zwanzig Jahre auf einmal."
 
 #: ../src/plugins/WebCal.py:1487
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar(s)"
-msgstr "Erstelle Jahresüberblick"
+msgstr "Erstelle \"Jahresüberblick\" Kalender"
 
 #: ../src/plugins/WebCal.py:1488
-#, fuzzy
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr "Ob die Webseiten in einer Archivdatei gespeichert werden"
+msgstr "Ob ein einseiten mini Kalender mit hervorgehobenen Daten erstellt wird."
 
 #: ../src/plugins/WebCal.py:1491
-#, fuzzy
 msgid "Create \"Printable Blank\" Calendar(s)"
-msgstr "Erstelle druckbare leeren Jahreskalender"
+msgstr "Erstelle \"druckbare leeren\" Kalender"
 
 #: ../src/plugins/WebCal.py:1492
 msgid "Whether to create A Full Year Printable calendar"
@@ -17843,28 +17832,36 @@ msgstr "Personen mit <ID>"
 msgid "Matches people with a specified GRAMPS ID"
 msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:45
+#: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
 msgstr "Vorname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:46
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Family name:"
 msgstr "Familienname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Suffix:"
 msgstr "Suffix:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
 msgstr "Titel:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+msgid "Prefix:"
+msgstr "Präfix:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:52
+msgid "Call Name:"
+msgstr "Rufname:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "People with the <name>"
 msgstr "Personen mit dem <Namen>"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:50
-#: ../src/Filters/Rules/Person/_SearchName.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:54
+#: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
 msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
 
@@ -18289,15 +18286,15 @@ msgstr "Personen, mit <ID> entsprechend regulärem Ausdruck"
 msgid "Matches people whose GRAMPS ID matches the regular expression"
 msgstr "Liefert Pesonen, deren GRAMPS ID einem regulären Ausdruck entspricht"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:46
+#: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "Expression:"
 msgstr "Erklärung:"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:47
+#: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
 msgstr "Personennamen entsprechend <Regulärem Ausdruck>"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
 msgstr "Liefert Personen, deren Name einen regulären Ausdruck entspricht"
 
@@ -19480,7 +19477,7 @@ msgstr "Hintergrundfarbe"
 
 #: ../src/widgets/styledtexteditor.py:356
 msgid "Clear Markup"
-msgstr ""
+msgstr "Markierungen löschen"
 
 #: ../src/widgets/styledtexteditor.py:475
 msgid "Select font color"
@@ -19584,7 +19581,6 @@ msgid "People:"
 msgstr "Personen:"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
-#, fuzzy
 msgid ""
 "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
@@ -19593,8 +19589,8 @@ msgid ""
 msgstr ""
 "Diese GEDCOM-Datei sagt, dass sie in der ANSEL-Kodierung gespeichert ist. "
 "Machmal stimmt dies jedoch nicht. Wenn die Daten nach dem Import merkwürdige "
-"Sonderzeichen enthalten, mache den Import rückgängig, und wähle eine "
-"andereKodierung aus der Liste aus."
+"Sonderzeichen enthalten, mache den Import rückgängig, und überschreibe die "
+"Kodierung durch die Auswahl einer anderen Kodierung weiter unten."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
 msgid "Version:"
