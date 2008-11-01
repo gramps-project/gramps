@@ -43,8 +43,8 @@ class MatchIdOf(Rule):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
     labels      = [ _('ID:') ]
-    name        = _('People with <Id>')
-    description = _("Matches people with a specified GRAMPS ID")
+    name        = _('Person with <Id>')
+    description = _("Matches person with a specified GRAMPS ID")
     category    = _('General filters')
 
     def apply(self,db,person):

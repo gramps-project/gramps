@@ -39,6 +39,7 @@ from _HasDeath import HasDeath
 from _HasEvent import HasEvent
 from _HasFamilyAttribute import HasFamilyAttribute
 from _HasFamilyEvent import HasFamilyEvent
+from _HasGallery import HavePhotos
 from _HasIdOf import HasIdOf
 from _HasLDS import HasLDS
 from _HasNameOf import HasNameOf
@@ -53,7 +54,6 @@ from _HasUnknownGender import HasUnknownGender
 from _HasMarkerOf import HasMarkerOf
 from _HaveAltFamilies import HaveAltFamilies
 from _HaveChildren import HaveChildren
-from _HavePhotos import HavePhotos
 from _IncompleteNames import IncompleteNames
 from _IsAncestorOf import IsAncestorOf
 from _IsAncestorOfFilterMatch import IsAncestorOfFilterMatch

@@ -35,10 +35,10 @@ from gettext import gettext as _
 from Filters.Rules._HasGalleryBase import HasGalleryBase
 
 #-------------------------------------------------------------------------
-# "Places who have images"
+# "Places who have media object reference"
 #-------------------------------------------------------------------------
 class HasGallery(HasGalleryBase):
-    """Rule that checks for places who have Media object reference"""
+    """Rule that checks for place who has media object reference"""
 
-    name        = _('Place with images')
-    description = _("Matches place with image in the gallery")
+    name        = _('Places with media')
+    description = _("Matches places with media object in the gallery")

@@ -35,10 +35,10 @@ from gettext import gettext as _
 from Filters.Rules._HasGalleryBase import HasGalleryBase
 
 #-------------------------------------------------------------------------
-# "Families who have images"
+# "Families who have media object reference"
 #-------------------------------------------------------------------------
 class HasGallery(HasGalleryBase):
-    """Rule that checks for families who have Media object reference"""
+    """Rule that checks for family who has media object reference"""
 
-    name        = _('Family with images')
-    description = _("Matches family with images in the gallery")
+    name        = _('Families with media')
+    description = _("Matches families with media object in the gallery")

@@ -39,7 +39,7 @@ from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Repositoriess having notes '
+    name        = _('Repositories having notes '
                     'containing <regular expression>')
     description = _("Matches repositories whose notes contain text "
                     "matching a regular expression")

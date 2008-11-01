@@ -35,10 +35,10 @@ from gettext import gettext as _
 from Filters.Rules._HasGalleryBase import HasGalleryBase
 
 #-------------------------------------------------------------------------
-# "Events who have images"
+# "Events who have media object reference"
 #-------------------------------------------------------------------------
 class HasGallery(HasGalleryBase):
-    """Rule that checks for events who have Media object reference"""
+    """Rule that checks for event who has media object reference"""
 
-    name        = _('Event with images')
-    description = _("Matches event with image in the gallery")
+    name        = _('Events with media')
+    description = _("Matches events with media object in the gallery")

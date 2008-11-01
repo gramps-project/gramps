@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Stephane Charette
+# Copyright (C) 2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,14 +32,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasReferenceCountBase import HasReferenceCountBase
+from Filters.Rules._HasGalleryBase import HasGalleryBase
 
 #-------------------------------------------------------------------------
-# "Family objects with a certain reference count"
+# "People with media object reference "
 #-------------------------------------------------------------------------
-class HasReferenceCountOf(HasReferenceCountBase):
-    """Family objects with a reference count of <count>"""
+class HavePhotos(HasGalleryBase):
+    """Rule that checks for person who has media object reference"""
 
-    name        = _('Families with a reference count of <count>')
-    description = _("Matches families objects with a certain reference count")
-
+    name        = _('People with media')
+    description = _("Matches people with media object in the gallery")

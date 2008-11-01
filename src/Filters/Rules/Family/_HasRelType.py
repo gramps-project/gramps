@@ -44,8 +44,8 @@ class HasRelType(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
     labels      = [ _('Relationship type:') ]
-    name        = _('Family with the relationship type')
-    description = _("Matches family with the relationship type "
+    name        = _('Families with the relationship type')
+    description = _("Matches families with the relationship type "
                     "of a particular value")
     category    = _('General filters')
 

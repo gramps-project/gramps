@@ -42,5 +42,5 @@ from Filters.Rules import HasGrampsId
 class HasIdOf(HasGrampsId):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
-    name        = _('People with <Id>')
-    description = _("Matches people with a specified GRAMPS ID")
+    name        = _('Person with <Id>')
+    description = _("Matches person with a specified GRAMPS ID")

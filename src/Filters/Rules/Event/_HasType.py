@@ -44,8 +44,8 @@ class HasType(Rule):
     """Rule that checks for an event of a particular type."""
 
     labels      = [ _('Event type:') ]
-    name        = _('Event with the particular type')
-    description = _("Matches event with the particular type ")
+    name        = _('Events with the particular type')
+    description = _("Matches events with the particular type ")
     category    = _('General filters')
 
     def apply(self, db, event):
