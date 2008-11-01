@@ -502,6 +502,7 @@ src/Filters/Rules/Person/_HasDeath.py
 src/Filters/Rules/Person/_HasEvent.py
 src/Filters/Rules/Person/_HasFamilyAttribute.py
 src/Filters/Rules/Person/_HasFamilyEvent.py
+src/Filters/Rules/Person/_HasGallery.py
 src/Filters/Rules/Person/_HasIdOf.py
 src/Filters/Rules/Person/_HasNameOf.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
@@ -514,7 +515,6 @@ src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasUnknownGender.py
 src/Filters/Rules/Person/_HaveAltFamilies.py
 src/Filters/Rules/Person/_HaveChildren.py
-src/Filters/Rules/Person/_HavePhotos.py
 src/Filters/Rules/Person/_IncompleteNames.py
 src/Filters/Rules/Person/__init__.py
 src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py
