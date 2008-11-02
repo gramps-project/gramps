@@ -38,8 +38,10 @@ from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _HasLDS import HasLDS
 from _RegExpIdOf import RegExpIdOf
+from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _HasSource import HasSource
 from _HasReferenceCountOf import HasReferenceCountOf
 from _FamilyPrivate import FamilyPrivate
 from _HasAttribute import HasAttribute
@@ -60,10 +62,12 @@ editor_rule_list = [
     HasGallery,
     HasIdOf,
     HasLDS,
+    HasNote,
     RegExpIdOf,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
+    HasSource,
     FamilyPrivate,
     HasEvent,
     HasAttribute,

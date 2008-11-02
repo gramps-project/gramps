@@ -29,6 +29,7 @@ from _AllSources import AllSources
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
+from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
@@ -41,6 +42,7 @@ editor_rule_list = [
     HasGallery,
     HasIdOf,
     RegExpIdOf,
+    HasNote,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,

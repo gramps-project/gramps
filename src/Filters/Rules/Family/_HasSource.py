@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008  Jerome Rapinat
 # Copyright (C) 2008  Benny Malengier
 #
@@ -20,6 +21,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id: _HasNote.py 9912 2008-01-22 09:17:46Z acraphae $
+
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -32,20 +35,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-
-from Filters.Rules import Rule
+from Filters.Rules._HasSourceBase import HasSourceBase
 
 #-------------------------------------------------------------------------
-#
-# HasAddress
-#
+# "Families having sources"
 #-------------------------------------------------------------------------
-class HasAddress(Rule):
-    """Rule that checks for a person with a personal address"""
+class HasSource(HasSourceBase):
+    """Families with sources"""
 
-    name        = _('People with address')
-    description = _("Matches people with a personal address")
-    category    = _('General filters')
-    
-    def apply(self, db, person):
-        return len( person.get_address_list()) > 0
+    name        = _('Families with source')
+    description = _("Matches families with a source")

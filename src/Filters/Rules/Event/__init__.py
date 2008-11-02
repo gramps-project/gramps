@@ -33,6 +33,7 @@ from _AllEvents import AllEvents
 from _HasGallery import HasGallery
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf
+from _HasNote import HasNote
 from _HasNoteRegexp import HasNoteRegexp
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
@@ -51,6 +52,7 @@ editor_rule_list = [
 # TODO: At the time of this writing, the GRAMPS UI does not allow setting markers for events. 1197 bug-report
 #    HasMarkerOf, 
     RegExpIdOf,
+    HasNote,
     HasNoteRegexp,
     HasNoteMatchingSubstringOf,
     HasReferenceCountOf,

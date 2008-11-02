@@ -47,6 +47,7 @@ from _HasNote import HasNote
 from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasRelationship import HasRelationship
+from _HasSource import HasSource
 from _HasSourceOf import HasSourceOf
 from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
 from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
@@ -124,6 +125,7 @@ editor_rule_list = [
     HasFamilyEvent,
     HasAttribute,
     HasFamilyAttribute,
+    HasSource,
     HasSourceOf,
     HasMarkerOf,
     HaveAltFamilies,
