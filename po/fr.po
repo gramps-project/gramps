@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 08:35+0200\n"
-"PO-Revision-Date: 2008-10-20 09:07+0100\n"
+"POT-Creation-Date: 2008-11-02 16:05+0100\n"
+"PO-Revision-Date: 2008-11-02 16:08+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -498,11 +498,11 @@ msgstr "GRAMPS pense cette base de données est en cours d'édition. Vous ne pou
 msgid "Break lock"
 msgstr "Enlever le verrou"
 
-#: ../src/DbManager.py:606
+#: ../src/DbManager.py:607
 msgid "Rename failed"
 msgstr "Impossible de renommer"
 
-#: ../src/DbManager.py:607
+#: ../src/DbManager.py:608
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -513,71 +513,71 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:622
+#: ../src/DbManager.py:623
 msgid "Could not rename the Family Tree."
 msgstr "Impossible de renommer l'arbre familial."
 
-#: ../src/DbManager.py:623
+#: ../src/DbManager.py:624
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Cet arbre familial existe, choisissez un nom unique."
 
-#: ../src/DbManager.py:636
+#: ../src/DbManager.py:637
 msgid "Could not rename family tree"
 msgstr "Impossible de renommer l'arbre familial"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:671
 msgid "Extracting archive..."
 msgstr "Extraction de l'archive…"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:675
+#: ../src/DbManager.py:676
 msgid "Importing archive..."
 msgstr "Importation de l'archive…"
 
 # objet sélectionné
 # Supprimer car efface
-#: ../src/DbManager.py:691
+#: ../src/DbManager.py:692
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Supprimer l'arbre familial '%s' ?"
 
 # Substantif (GNOME fr)
 # Supprimer car efface
-#: ../src/DbManager.py:692
+#: ../src/DbManager.py:693
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "La suppression de cet arbre familial effacera définitivement les données."
 
 # objet sélectionné
 # Supprimer car efface
-#: ../src/DbManager.py:693
+#: ../src/DbManager.py:694
 msgid "Remove family tree"
 msgstr "Supprimer l'arbre familial"
 
-#: ../src/DbManager.py:699
+#: ../src/DbManager.py:700
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Retrait de la version '%(revision)s' de '%(database)s'"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:703
+#: ../src/DbManager.py:704
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Le retrait de cette version vous empêchera toute extraction future."
 
-#: ../src/DbManager.py:705
+#: ../src/DbManager.py:706
 msgid "Remove version"
 msgstr "Retirer la version"
 
 # objet sélectionné
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:735
 msgid "Could not delete family tree"
 msgstr "Impossible de supprimer l'arbre familial"
 
-#: ../src/DbManager.py:759
+#: ../src/DbManager.py:760
 msgid "Deletion failed"
 msgstr "Impossible de supprimer"
 
-#: ../src/DbManager.py:760
+#: ../src/DbManager.py:761
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -589,23 +589,23 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:803
+#: ../src/DbManager.py:804
 msgid "Rebuilding database from backup files"
 msgstr "Reconstruire une base de données depuis les fichiers de sauvegarde"
 
-#: ../src/DbManager.py:838
+#: ../src/DbManager.py:839
 msgid "Could not create family tree"
 msgstr "Impossible de créer l'arbre familial"
 
-#: ../src/DbManager.py:928
+#: ../src/DbManager.py:929
 msgid "Could not make database directory: "
 msgstr "Impossible de créer le répertoire de la base de données : "
 
-#: ../src/DbManager.py:942
+#: ../src/DbManager.py:943
 msgid "Never"
 msgstr "Jamais"
 
-#: ../src/DbManager.py:1016
+#: ../src/DbManager.py:1017
 #: ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400
 #: ../src/DataViews/RelationView.py:863
@@ -650,11 +650,11 @@ msgstr "Jamais"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/DbManager.py:1035
+#: ../src/DbManager.py:1036
 msgid "Retrieve failed"
 msgstr "Impossible de récupérer"
 
-#: ../src/DbManager.py:1036
+#: ../src/DbManager.py:1037
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -666,12 +666,12 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1073
-#: ../src/DbManager.py:1097
+#: ../src/DbManager.py:1074
+#: ../src/DbManager.py:1098
 msgid "Archiving failed"
 msgstr "Impossible d'archiver"
 
-#: ../src/DbManager.py:1074
+#: ../src/DbManager.py:1075
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -683,16 +683,16 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1079
+#: ../src/DbManager.py:1080
 msgid "Creating data to be archived..."
 msgstr "Création des données à archiver…"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1084
+#: ../src/DbManager.py:1085
 msgid "Saving archive..."
 msgstr "Enregistrement de l'archive…"
 
-#: ../src/DbManager.py:1098
+#: ../src/DbManager.py:1099
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -857,6 +857,12 @@ msgid "Descendants of %s"
 msgstr "Descendants de %s"
 
 #: ../src/ExportOptions.py:120
+#: ../src/ReportBase/_ReportUtils.py:2955
+#, python-format
+msgid "Descendant Families of %s"
+msgstr "Familles descendantes de %s"
+
+#: ../src/ExportOptions.py:126
 #: ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101
 #: ../src/plugins/ExportVCard.py:99
@@ -867,7 +873,7 @@ msgstr "Descendants de %s"
 msgid "Ancestors of %s"
 msgstr "Ascendants de %s"
 
-#: ../src/ExportOptions.py:126
+#: ../src/ExportOptions.py:132
 #: ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107
 #: ../src/plugins/ExportVCard.py:105
@@ -4575,7 +4581,7 @@ msgstr "Impossible de créer %s"
 
 #: ../src/docgen/AsciiDoc.py:382
 #: ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:448
+#: ../src/docgen/RTFDoc.py:450
 #: ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
@@ -4660,7 +4666,7 @@ msgstr "Imprimer une copie"
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/docgen/RTFDoc.py:453
+#: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
 msgstr "Document RTF"
 
@@ -5558,6 +5564,7 @@ msgid "New Person"
 msgstr "Nouvel individu"
 
 #: ../src/Editors/_EditPerson.py:266
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Patronymic:"
 msgstr "Patronyme :"
 
@@ -8269,7 +8276,7 @@ msgid ""
 "\n"
 "You are currently reading from the \"Gramplets\" page, where you can add your own gramplets.\n"
 "\n"
-"You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-opened detached the next time you start GRAMPS."
+"You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-open detached the next time you start GRAMPS."
 msgstr ""
 "Bienvenu dans GRAMPS !\n"
 "\n"
@@ -11473,7 +11480,7 @@ msgstr "Correspond aux individus sans prénom"
 #: ../src/Filters/Rules/Person/_Everyone.py:46
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
-#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNameOf.py:55
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:46
 #: ../src/Filters/Rules/Person/_HasNote.py:45
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:47
@@ -11490,8 +11497,8 @@ msgstr "Correspond aux individus sans prénom"
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:45
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:45
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:48
-#: ../src/Filters/Rules/Person/_RegExpName.py:49
-#: ../src/Filters/Rules/Person/_SearchName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:50
+#: ../src/Filters/Rules/Person/_SearchName.py:49
 #: ../src/Filters/Rules/Family/_HasRelType.py:50
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:46
 #: ../src/Filters/Rules/Event/_HasType.py:49
@@ -11513,14 +11520,14 @@ msgstr "Filtres généraux"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
-#: ../src/Filters/Rules/Person/_SearchName.py:45
+#: ../src/Filters/Rules/Person/_SearchName.py:46
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Sous-chaîne :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/plugins/SameSurnames.py:47
-#: ../src/Filters/Rules/Person/_SearchName.py:46
+#: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
 msgstr "Individus avec le même <nom>"
 
@@ -16415,11 +16422,6 @@ msgstr "Décès : %(death_date)s."
 msgid "Died: %(death_place)s."
 msgstr "Décès : %(death_place)s."
 
-#: ../src/ReportBase/_ReportUtils.py:2955
-#, python-format
-msgid "Descendant Families of %s"
-msgstr "Familles descendantes de %s"
-
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Styles de document"
@@ -17367,7 +17369,7 @@ msgstr "A la marque de"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-msgid "Matches markers of a partikular type"
+msgid "Matches markers of a particular type"
 msgstr "Correspond aux marqueurs avec un type particulier"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
@@ -17522,29 +17524,37 @@ msgstr "Individus avec l'<Id>"
 msgid "Matches people with a specified GRAMPS ID"
 msgstr "Correspond aux individus ayant l'identifiant GRAMPS spécifié"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:45
+#: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
 msgstr "Prénom :"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:46
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Family name:"
 msgstr "Nom de famille :"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Suffix:"
 msgstr "Suffixe :"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
 msgstr "Titre (Dr. ou Me.) :"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+msgid "Prefix:"
+msgstr "Préfixe :"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:52
+msgid "Call Name:"
+msgstr "Nom usuel :"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "People with the <name>"
 msgstr "Individus avec le <nom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_HasNameOf.py:50
-#: ../src/Filters/Rules/Person/_SearchName.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:54
+#: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
 msgstr "Correspond aux individus ayant un nom (partiel) spécifié"
 
@@ -17970,17 +17980,17 @@ msgstr "Individus avec l'<Id> correspondant à une expression rationnelle"
 msgid "Matches people whose GRAMPS ID matches the regular expression"
 msgstr "Correspond aux individus dont l'ID GRAMPS contient une expression rationnelle"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:46
+#: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "Expression:"
 msgstr "Expression :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_RegExpName.py:47
+#: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
 msgstr "Individus correspondants à l'<expression rationnelle_nom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_RegExpName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
 msgstr "Correspond aux noms d'individus avec une expression rationnelle spécifique"
 
@@ -19213,7 +19223,7 @@ msgid "People:"
 msgstr "Individus :"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
-msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
+msgid "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
 msgstr "Ce fichier GEDCOM a été identifié comme utilisant l'encodage ANSEL. Il peut s'agir d'une erreur. Si les données importées contiennent des caractères inhabituels, annuler l'importation, et sélectionnez un encodage différent."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
@@ -20789,8 +20799,8 @@ msgid "GRAMPS offers full Unicode support. Characters for all languages are prop
 msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue sont s'affichent correctement."
 
 #: ../src/data/tips.xml.in.h:51
-msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr "GRAMPS fonctionne sous KDE, tant que les librairies Gtk nécessaires sont installées."
+msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
+msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires sont installées."
 
 # Récits pour Narratives plutôt que sagas…
 #: ../src/data/tips.xml.in.h:52
@@ -20886,10 +20896,4 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
-
-msgid "Use rounded corners"
-msgstr "Utiliser les coins arrondis"
-
-msgid "Use rounded corners to differentiate between women and men."
-msgstr "Utilise des coins arrondis pour différencier les femmes des hommes."
 
