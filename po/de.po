@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-01 15:46+0100\n"
-"PO-Revision-Date: 2008-11-01 16:56+0100\n"
+"POT-Creation-Date: 2008-11-01 20:32+0100\n"
+"PO-Revision-Date: 2008-11-02 21:26+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11831,7 +11831,10 @@ msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a <strong>red square</strong> will "
 "take you to a page that shows all the events for that date!\n"
-msgstr "Dieser Kalender ist bestimmt dir Zugang zu deinen Daten auf einen Blick komprimiert auf eine Seite zu geben. Klicken auf ein <strong>rotes Quadrat</strong> bringt dich zu einer Seite die alle Ereignisse dieses Datums zeigt!\n"
+msgstr ""
+"Dieser Kalender ist bestimmt dir Zugang zu deinen Daten auf einen Blick "
+"komprimiert auf eine Seite zu geben. Klicken auf ein <strong>rotes Quadrat</"
+"strong> bringt dich zu einer Seite die alle Ereignisse dieses Datums zeigt!\n"
 
 #. open progress meter bar
 #: ../src/plugins/WebCal.py:1134
@@ -11911,7 +11914,9 @@ msgstr "Erstelle teilweisen Jahreskalender"
 msgid ""
 "Create a partial year calendar. The start month will be equal to the current "
 "month to the end of the year."
-msgstr "Erstellt einen teilweisen Jahreskalender. Der Startmonat entspricht dem aktuellen Monat bis zum Jahresende."
+msgstr ""
+"Erstellt einen teilweisen Jahreskalender. Der Startmonat entspricht dem "
+"aktuellen Monat bis zum Jahresende."
 
 #: ../src/plugins/WebCal.py:1471
 msgid "Create multiple year calendars"
@@ -11937,7 +11942,9 @@ msgstr "Endejahr de(s/r) Kalender"
 msgid ""
 "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
 "years is selected, then only twenty years at any given time"
-msgstr "Gib das Endjahr für die Kalender zwischen 1900 und 3000 ein. Wenn mehrere Jahre gewählt sind, dann nur zwanzig Jahre auf einmal."
+msgstr ""
+"Gib das Endjahr für die Kalender zwischen 1900 und 3000 ein. Wenn mehrere "
+"Jahre gewählt sind, dann nur zwanzig Jahre auf einmal."
 
 #: ../src/plugins/WebCal.py:1487
 msgid "Create \"Year At A Glance\" Calendar(s)"
@@ -17650,7 +17657,7 @@ msgstr "Filtername:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
 msgid "Objects matching the <filter>"
-msgstr "Liefert Objekte, die einem <Filter> entsprechen"
+msgstr "Liefert Objekte, die dem <Filter> entsprechen"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:54
 msgid "Matches objects matched by the specified filter name"
@@ -17822,15 +17829,23 @@ msgstr "Hat das familiäre <Ereignis>"
 msgid "Matches people with a family event of a particular value"
 msgstr "Entspricht der Person mit einem bestimmten familiären Ereignis"
 
+#: ../src/Filters/Rules/Person/_HasGallery.py:43
+msgid "People with media"
+msgstr "Personen mit Medien"
+
+#: ../src/Filters/Rules/Person/_HasGallery.py:44
+msgid "Matches people with media object in the gallery"
+msgstr "Entspricht Personen bei denen Medienobjekte in der Galerie enthalten sind"
+
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
-msgid "People with <Id>"
-msgstr "Personen mit <ID>"
+msgid "Person with <Id>"
+msgstr "Person mit <ID>"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
-msgid "Matches people with a specified GRAMPS ID"
-msgstr "Entspricht Personen mit einer bestimmten GRAMPS-ID"
+msgid "Matches person with a specified GRAMPS ID"
+msgstr "Entspricht einer Person mit einer bestimmten GRAMPS-ID"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
@@ -17975,14 +17990,6 @@ msgstr "Personen mit Kindern"
 msgid "Matches people who have children"
 msgstr "Enthält Personen, die Kinder haben"
 
-#: ../src/Filters/Rules/Person/_HavePhotos.py:43
-msgid "People with images"
-msgstr "Personen mit Bildern"
-
-#: ../src/Filters/Rules/Person/_HavePhotos.py:44
-msgid "Matches people with images in the gallery"
-msgstr "Entspricht den Personen, von den Bilder in Galerie enthalten sind"
-
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:45
 msgid "People with incomplete names"
 msgstr "Personen mit unvollständigen Namen"
@@ -18030,7 +18037,7 @@ msgstr "Kinder von einen <Filter>treffer"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:49
 msgid "Matches children of anybody matched by a filter"
-msgstr "Entspricht den Kindern von jemanden, der im Filter enthalten ist"
+msgstr "Entspricht den Kindern von den Personen die im Filter enthalten sind"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
 msgid "Default person"
@@ -18062,7 +18069,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
 msgid "Descendants of <filter> match"
-msgstr "Ist ein Nachkommen eines <Filter>treffers"
+msgstr "Ist ein Nachkomme eines <Filter>treffers"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -18181,8 +18188,8 @@ msgstr "Geschwister eines <Filter>treffers"
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
 msgstr ""
-"Entspricht den Personen, die Geschwister sind von jemanden sind, der in "
-"einem Filter enthalten ist"
+"Entspricht den Personen, die Geschwister von jemanden sind, der in "
+"dem Filter enthalten ist"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:47
 msgid "Spouses of <filter> match"
@@ -18210,21 +18217,21 @@ msgstr "Ereignisfiltername:"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Personenmit Ereignissen entsprechend dem <event filter>"
+msgstr "Personenmit Ereignissen entsprechend dem <Ereignisfilter>"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Passt auf Personen mit Ereignisssen, die auf den angegeben Ereignisfilter "
+"Passt auf Personen mit Ereignissen, die auf den angegeben Ereignisfilter "
 "passen"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
-msgstr "Personen, die dem <filter> entsprechen"
+msgstr "Personen, die dem <Filter> entsprechen"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
-msgstr "Entspricht Personen, die dem gegebenen Filter entsprechenden"
+msgstr "Entspricht Personen, die dem gegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
 msgid "People with multiple marriage records"
@@ -18410,19 +18417,19 @@ msgstr ""
 "Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
-msgid "Family objects with a reference count of <count>"
-msgstr "Familienobjekte mit einer Referenzanzahl von <count>"
+msgid "Families with a reference count of <count>"
+msgstr "Familien mit einer Referenzanzahl von <count>"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-msgid "Matches family objects with a certain reference count"
-msgstr "Liefert Familienobjekte mir vorgegebener Referenzanzahl"
+msgid "Matches families objects with a certain reference count"
+msgstr "Liefert Familien mir vorgegebener Referenzanzahl"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-msgid "Family with the relationship type"
-msgstr "Familien mit der <Beziehung>"
+msgid "Families with the relationship type"
+msgstr "Familien mit dem Beziehungstyp"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-msgid "Matches family with the relationship type of a particular value"
+msgid "Matches families with the relationship type of a particular value"
 msgstr "Liefert Familien mit einer bestimmten Art der Beziehung"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
@@ -18443,7 +18450,7 @@ msgstr "Fasst alle Familien ein, deren GRAMPS ID die reguläre Erklärung enthal
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
-msgstr "Familien entsprechend <Filter>"
+msgstr "Familien die dem <Filter> entsprechen"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
@@ -18668,11 +18675,11 @@ msgid "Matches events with a certain reference count"
 msgstr "Passt auf Ereignisse mit gegebener Anzahl Referenzen"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-msgid "Event with the particular type"
-msgstr "Ereignis mit gegebenem Typ"
+msgid "Events with the particular type"
+msgstr "Ereignis mit dem gegebenem Typ"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-msgid "Matches event with the particular type "
+msgid "Matches events with the particular type "
 msgstr "Liefert Ereignisse des gegebenen Typs"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
@@ -18681,7 +18688,7 @@ msgstr "Ereignisse entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
-msgstr "Liefert Ereignisse, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Ereignisse, die dem gegebenen Filter entsprechen"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
@@ -18696,7 +18703,7 @@ msgstr "Familienereignisse aufnehmen:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
-msgstr "Ereignisse von Personen entsprechend <person filter>"
+msgstr "Ereignisse von Personen die dem <Personenfilter> entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
@@ -18709,11 +18716,11 @@ msgstr "Quellenfiltername:"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:48
 msgid "Events with source matching the <source filter>"
-msgstr "Ereignisse mit Quellen entsprechend <source filter>"
+msgstr "Ereignisse mit Quellen die dem <Quellenfilter> entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 msgid "Matches events with sources that match the specified source filter name"
-msgstr "Passt auf Ereignisse mit Quellen die dem gegeben Quellenfilter entsprechen"
+msgstr "Passt auf Ereignisse mit Quellen die dem gegebenen Quellenfilter entsprechen"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
@@ -18802,12 +18809,12 @@ msgid "Matches places with particular parameters"
 msgstr "Liefert Orte mit den gegebenen Parametern"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
-msgid "Place objects with a reference count of <count>"
-msgstr "Orts-Objekte mit gegebener Anzahl Referenzen von <count>"
+msgid "Places with a reference count of <count>"
+msgstr "Orte mit gegebener Anzahl Referenzen von <count>"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
-msgid "Matches place objects with a certain reference count"
-msgstr "Liefert Orts-Objekte mit gegebener Anzahl Referenzen"
+msgid "Matches places with a certain reference count"
+msgstr "Liefert Orte mit gegebener Anzahl Referenzen"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -18845,18 +18852,18 @@ msgstr "Orte entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:46
 msgid "Matches places matched by the specified filter name"
-msgstr "Liefert Orte, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Orte, die dem gegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
 msgid "Places of events matching the <event filter>"
-msgstr "Orte von Ereignissen entsprechend dem <Ereignis-Filter>"
+msgstr "Orte von Ereignissen entsprechend dem <Ereignisfilter>"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
 msgstr ""
-"Passt auf Orte wo Ereignissse stattfanden die auf den angegeben "
+"Passt auf Orte wo Ereignisse stattfanden die auf den angegeben "
 "Ereignisfilter passen"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
@@ -18881,7 +18888,7 @@ msgstr "Quellen entsprechend <Filter>"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:46
 msgid "Matches sources matched by the specified filter name"
-msgstr "Liefert Quellen, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Quellen, die dem gegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/Source/_SourcePrivate.py:43
 msgid "Sources marked private"
@@ -18900,12 +18907,12 @@ msgid "Matches sources whose GRAMPS ID matches the regular expression"
 msgstr "Liefert Quellen, deren GRAMPS ID dem gegebenen regulären Ausdruck entsprechen"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
-msgid "Source objects with a reference count of <count>"
-msgstr "Liefert Medien-Objekte mit gegebener Anzahl Referenzen"
+msgid "Sources with a reference count of <count>"
+msgstr "Quellen mit einer Anzahl von Referenzen von <Zahl>"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
-msgid "Matches source objects with a certain reference count"
-msgstr "Liefert Quellen-Objekte mit gegebener Anzahl Referenzen"
+msgid "Matches sources with a certain reference count"
+msgstr "Passt auf Quellen mit einer bestimmten Anzahl von Referenzen"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -19044,11 +19051,11 @@ msgstr "Liefert Medien-Objekte mit gegebener Anzahl Referenzen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Multimedia-Objekt entsprechend <Filter>"
+msgstr "Multimediaobjekt entsprechenden <Filter>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Liefert Multimedia-Objekte, die dem gegebenen Filter entsprechenden"
+msgstr "Liefert Multimediaobjekte, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
@@ -19095,7 +19102,7 @@ msgstr ""
 "Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositoriess having notes containing <regular expression>"
+msgid "Repositories having notes containing <regular expression>"
 msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
@@ -19291,35 +19298,35 @@ msgstr "Postleitzahl"
 
 #: ../src/FilterEditor/_FilterEditor.py:65
 msgid "Person Filters"
-msgstr "Personen Filter"
+msgstr "Personenfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:66
 msgid "Family Filters"
-msgstr "Familien Filter"
+msgstr "Familienfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:67
 msgid "Event Filters"
-msgstr "Ereignis Filter"
+msgstr "Ereignisfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:68
 msgid "Place Filters"
-msgstr "Orte Filter"
+msgstr "Ortefilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:69
 msgid "Source Filters"
-msgstr "Quellen Filter"
+msgstr "Quellenfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:70
 msgid "Media Object Filters"
-msgstr "Medienobjekt Filter"
+msgstr "Medienobjektfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
 msgid "Repository Filters"
-msgstr "Aufbewahrungsort Filter"
+msgstr "Aufbewahrungsortfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:72
 msgid "Note Filters"
-msgstr "Hinweis Filter"
+msgstr "Notizfilter"
 
 #: ../src/FilterEditor/_FilterEditor.py:114
 msgid "Comment"
@@ -19327,7 +19334,7 @@ msgstr "Kommentar"
 
 #: ../src/FilterEditor/_FilterEditor.py:121
 msgid "Custom Filter Editor"
-msgstr "Filtereditor"
+msgstr "Brnutzerfiltereditor"
 
 #: ../src/FilterEditor/_FilterEditor.py:189
 msgid "Delete Filter?"
@@ -19339,7 +19346,7 @@ msgid ""
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
-"Dieser Filter wird zur Zeit als Grundlage für andere Filter. Löschen dieses "
+"Dieser Filter wird zur Zeit als Grundlage für andere Filter verwendet. Löschen dieses "
 "Filters hat zur Folge das alle Filter die von ihm abhängen auch gelöscht "
 "werden."
 
