@@ -1,7 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2002-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008  Jerome Rapinat
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,17 +35,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasNoteBase import HasNoteBase
 
 #-------------------------------------------------------------------------
 # "People having notes"
 #-------------------------------------------------------------------------
-class HasNote(Rule):
+class HasNote(HasNoteBase):
     """People having notes"""
 
-    name        = _('People having notes')
+    name        = _('People having note')
     description = _("Matches people that have a note")
-    category    = _('General filters')
-
-    def apply(self,db,person):
-        return bool(person.get_note_list())
