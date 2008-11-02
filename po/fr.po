@@ -12755,15 +12755,15 @@ msgstr "Choisir un fichier"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
-msgstr "Le style de base utilisé pour afficher les annotations de la source."
+msgstr "Le style de base utilisé pour afficher la source référencée."
 
 #: ../src/ReportBase/_Endnotes.py:57
 msgid "The basic style used for the endnotes reference display."
-msgstr "Le style de base utilisé pour afficher les annotations de la référence."
+msgstr "Le style de base utilisé pour afficher la référence de la source."
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
-msgstr "Annotations de fin"
+msgstr "Références bibliographiques"
 
 #. -------------------------------------------------------------------------------
 #.
