@@ -7,6 +7,8 @@ pkgdata_PYTHON = \
 	_Everyone.py \
 	_FamilyWithIncompleteEvent.py \
 	_HasAttribute.py \
+	_HasAddress.py \
+	_HasAssociation.py \
 	_HasBirth.py \
 	_HasCommonAncestorWith.py \
 	_HasCommonAncestorWithFilterMatch.py \
@@ -17,10 +19,12 @@ pkgdata_PYTHON = \
 	_HasFamilyEvent.py \
 	_HasGallery.py \
 	_HasIdOf.py \
+	_HasLDS.py \
 	_HasNameOf.py \
 	_HasNote.py \
 	_HasNoteMatchingSubstringOf.py \
 	_HasRelationship.py \
+	_HasSource.py \
 	_HasSourceOf.py \
 	_HasTextMatchingRegexpOf.py \
 	_HasTextMatchingSubstringOf.py \

@@ -9,8 +9,10 @@ pkgdata_PYTHON = \
 	_RegExpIdOf.py\
 	_AllEvents.py\
 	_HasData.py\
+	_HasGallery.py \
 	_HasIdOf.py\
 	_HasMarkerOf.py\
+	_HasNote.py \
 	_HasType.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\

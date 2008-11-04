@@ -8,10 +8,14 @@ pkgdata_PYTHON = \
 	_Everything.py\
 	_HasEventBase.py\
 	_HasAttributeBase.py\
+	_HasGalleryBase.py \
 	_HasGrampsId.py\
+	_HasLDSBase.py \
+	_HasNoteBase.py \
 	_HasNoteRegexBase.py\
 	_HasNoteSubstrBase.py\
 	_HasReferenceCountBase.py \
+	_HasSourceBase.py \
 	_HasTextMatchingRegexpOf.py\
 	_HasTextMatchingSubstringOf.py\
 	__init__.py\

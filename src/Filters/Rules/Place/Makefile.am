@@ -7,9 +7,11 @@ pkgdata_PYTHON = \
 	_HasIdOf.py\
 	_HasNoLatOrLon.py\
 	_InLatLonNeighborhood.py\
+	_HasGallery.py \
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasPlace.py\
+	_HasNote.py \
 	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
 	_MatchesEventFilter.py\

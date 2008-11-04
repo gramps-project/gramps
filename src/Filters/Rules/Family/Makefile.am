@@ -7,11 +7,15 @@ pkgdata_PYTHON = \
 	_FamilyPrivate.py\
 	_HasEvent.py\
 	_HasAttribute.py\
+	_HasGallery.py \
 	_HasIdOf.py\
+	_HasLDS.py \
+	_HasNote.py \
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\
 	_HasReferenceCountOf.py\
 	_HasRelType.py\
+	_HasSource.py \
 	__init__.py\
 	_IsBookmarked.py\
 	_RegExpIdOf.py\

@@ -34,7 +34,7 @@ pkgdata_PYTHON = \
 	ExportCsv.py\
 	ExportFtree.py\
 	ExportGedcom.py\
-	ExportGeneweb.py\
+	ExportGeneWeb.py\
 	ExportPkg.py\
 	ExportVCalendar.py\
 	ExportVCard.py\
@@ -47,13 +47,13 @@ pkgdata_PYTHON = \
 	GVFamilyLines.py \
 	GVHourGlass.py\
 	GVRelGraph.py\
-	ImportCSV.py\
+	ImportCsv.py\
 	ImportGedcom.py\
 	ImportGeneWeb.py\
 	ImportGpkg.py\
 	ImportGrdb.py\
 	ImportProGen.py\
-	ImportvCard.py\
+	ImportVCard.py\
 	ImportXml.py\
 	IndivComplete.py\
 	KinshipReport.py\
@@ -97,8 +97,7 @@ pkgdata_PYTHON = \
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
-	WebCal.py\
-	WriteFtree.py
+	WebCal.py
 
 #        DateParserDisplayTest.py\
 #        DumpGenderStats.py\

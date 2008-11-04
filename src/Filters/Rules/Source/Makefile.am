@@ -6,11 +6,13 @@ pkgdata_PYTHON = \
 	_MatchesFilter.py\
 	_SourcePrivate.py\
 	_RegExpIdOf.py\
+	_HasGallery.py \
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\
 	_AllSources.py\
 	_HasIdOf.py\
 	_HasSource.py\
+	_HasNote.py \
 	_HasNoteRegexp.py\
 	__init__.py
 
