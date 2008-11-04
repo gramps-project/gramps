@@ -47,7 +47,6 @@ log = logging.getLogger(".ImportGeneWeb")
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
-import const
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ImportPlugin
 from htmlentitydefs import name2codepoint
@@ -926,5 +925,5 @@ pmgr = PluginManager.get_instance()
 plugin = ImportPlugin(name            = _('GeneWeb'), 
                       description     =  _("Import data from GeneWeb files"),
                       import_function = importData,
-                      mime_types      = [const.APP_GENEWEB])
+                      extension       = "gw")
 pmgr.register_plugin(plugin)

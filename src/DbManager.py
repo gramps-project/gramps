@@ -69,14 +69,12 @@ import pango
 import const
 from QuestionDialog import ErrorDialog, QuestionDialog
 import gen.db
+from gen.plug import PluginManager
 import GrampsDbUtils
 import Config
 import Mime
 from DdTargets import DdTargets
 import RecentFiles
-IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
-                const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
-                const.APP_GRAMPS)
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
@@ -208,14 +206,14 @@ class CLIDbManager:
 
         self.current_names.sort()
 
-    def family_tree(self, name):
-        """Given a name, return None if name not existing or 
-            filename, filetype, name
-           if a known database name
+    def get_family_tree_path(self, name):
+        """
+        Given a name, return None if name not existing or the path to the
+        database if it is a known database name.
         """
         for data in self.current_names:
             if data[0] == name:
-                return data[1], 'x-directory/normal', name
+                return data[1]
         return None
 
     def family_tree_list(self):
@@ -269,37 +267,39 @@ class CLIDbManager:
         """
         return self._create_new_db_cli(title)
 
-    def import_new_db(self, filetype, filename, callback):
-        if filetype in IMPORT_TYPES:
-            # get the name of the database from the filename of the file
-            (name, ext) = os.path.splitext(os.path.basename(filename))
+    def import_new_db(self, filename, callback):
+        """
+        Attempt to import the provided file into a new database.
+        A new database will only be created if an appropriate importer was 
+        found.
+        
+        @return: A tuple of (new_path, name) for the new database
+                 or (None, None) if no import was performed.
+        """
+        pmgr = PluginManager.get_instance()
+        (name, ext) = os.path.splitext(os.path.basename(filename))
+        format = ext[1:].lower()
 
-            # create the database
-            new_path, name = self._create_new_db(name)
+        for plugin in pmgr.get_import_plugins():
+            if format == plugin.get_extension():
 
-            # get the import function using the filetype, but create a db
-            # based on the DBDir
-            self.__start_cursor(_("Importing data..."))
-            dbclass = gen.db.GrampsDBDir
-            dbase = dbclass()
-            dbase.load(new_path, callback)
-
-            rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
-            rdr(dbase, filename, callback)
-
-            # finish up
-            self.__end_cursor()
-            dbase.close()
-            
-            path = os.path.join(new_path, "name.txt")
-            try:
-                ifile = open(path)
-                title = ifile.readline().strip()
-                ifile.close()
-            except:
-                title = new_path
-            return new_path, 'x-directory/normal', title
-        return None, None, None
+                new_path, name = self._create_new_db(name)
+    
+                # Create a new database
+                self.__start_cursor(_("Importing data..."))
+                dbclass = gen.db.GrampsDBDir
+                dbase = dbclass()
+                dbase.load(new_path, callback)
+    
+                import_function = plugin.get_import_function()
+                import_function(dbase, filename, callback)
+    
+                # finish up
+                self.__end_cursor()
+                dbase.close()
+                
+                return new_path, name
+        return None, None
 
     def is_locked(self, dbpath):
         """
@@ -929,13 +929,9 @@ class DbManager(CLIDbManager):
 
             drag_value = drag_value.strip()
 
-            # deterimine the mime type. If it is one that we are interested in,
-            # we process it
-            filetype = Mime.get_type(drag_value)
-            fname, type, title = self.import_new_db(filetype, drag_value[7:],
-                                    None)
+            fname, title = self.import_new_db(drag_value[7:], None)
 
-        return fname, type, title
+        return fname, title
 
 def drag_motion(wid, context, xpos, ypos, time_stamp):
     """
@@ -1099,7 +1095,11 @@ def check_out(dbase, rev, path, callback):
             )
         return 
 
-    rdr = GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)
+    pmgr = PluginManager.get_instance()
+    for plugin in pmgr.get_import_plugins():
+        if plugin.get_extension() == "gramps":
+            rdr = plugin.get_import_function()
+
     xml_file = os.path.join(path, ARCHIVE)
     rdr(dbase, xml_file, callback)
     os.unlink(xml_file)

@@ -20,62 +20,83 @@
 # $Id$
 
 """
-This module provides the Plugin class for import plugins.
+This module provides the Plugin class for export plugins.
 """
 
 from gen.plug import Plugin
 
-class ImportPlugin(Plugin):
+class ExportPlugin(Plugin):
     """
-    This class represents a plugin for importing data into Gramps
+    This class represents a plugin for exporting data from Gramps
     """
-    def __init__(self, name, description, import_function, extension):
+    def __init__(self, name, description, export_function, 
+                 extension, config=None):
         """
         @param name: A friendly name to call this plugin.
-            Example: "GEDCOM Import"
+            Example: "GEDCOM Export"
         @type name: string
         @param description: An short description of the plugin.
-            Example: "This plugin will import a GEDCOM file into a database"
+            Example: "This plugin will export a GEDCOM file from database"
         @type description: string
-        @param import_function: A function to call to perform the import.
+        @param export_function: A function to call to perform the export.
             The function must take the form:
-                def import_function(db, filename, callback):
+                def export_function(database, filename, option_box, callback):
             where:
                 "db" is a Gramps database to import the data into
-                "filename" is the file that contains data to be imported
+                "filename" is the file that the data will be exported to
                 "callback" is a callable object that takes two parameters.
                     The first parameter is a progress indicator.
                     The second parameter is a text string.
-        @type import_function: callable
-        @param extension: The extension for the files imported by this plugin.
+        @type export_function: callable
+        @param extension: The extension for the output file.
             Example: "ged"
         @type extension: str
+        @param config: Options for the exporter
+        @type config: tuple (??,??)
         @return: nothing
         """
         Plugin.__init__(self, name, description)
-        self.__import_func = import_function
+        self.__name = name
+        self.__export_func = export_function
         self.__extension = extension
-    
+        self.__config = config
+
     def get_module_name(self):
         """
         Get the name of the module that this plugin lives in.
         
         @return: a string representing the name of the module for this plugin
         """
-        return self.__import_func.__module__
+        return self.__export_func.__module__
     
-    def get_import_function(self):
+    def get_name(self):
+        """
+        Get the short name for this plugins.
+        
+        @return: str
+        """
+        return self.__name
+    
+    def get_export_function(self):
         """
         Get the import function for this plugins.
         
         @return: the callable import_function passed into __init__ 
         """
-        return self.__import_func
+        return self.__export_func
     
     def get_extension(self):
         """
-        Get the extension for the files imported by this plugin.
+        Get the file extension for the export file.
         
         @return: str
         """
         return self.__extension
+
+    def get_config(self):
+        """
+        Get the config.
+        
+        @return: (??,??)
+        """
+        return self.__config

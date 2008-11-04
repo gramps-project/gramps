@@ -2,6 +2,9 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,8 +26,6 @@
 """
 Contains the interface to allow a database to get written using
 GRAMPS' XML file format.
-This module contains all that is needed for xml write, however it does not
-provide the export plugin functionality. That is provided in _WriteXML.py
 """
 
 #-------------------------------------------------------------------------
@@ -33,10 +34,12 @@ provide the export plugin functionality. That is provided in _WriteXML.py
 #
 #-------------------------------------------------------------------------
 import time
+import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
 from gettext import gettext as _
+
 
 #------------------------------------------------------------------------
 #
@@ -51,10 +54,14 @@ log = logging.getLogger(".WriteXML")
 # load GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-
 import gen.lib 
 from BasicUtils import UpdateCallback
 from gen.db.exceptions import GrampsDbWriteFailure
+import const
+from QuestionDialog import ErrorDialog
+import ExportOptions
+import gen.proxy
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -75,15 +82,6 @@ strip_dict = dict.fromkeys(range(9)+range(12,20))
 
 def escxml(d):
     return escape(d, { '"' : '&quot;' } )
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def quick_write(database, filename, version="unknown"):
-    g = GrampsDbXmlWriter(database,0,1,version)
-    g.write(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -1131,8 +1129,90 @@ def conf_priv(obj):
 
 #-------------------------------------------------------------------------
 #
-#
+# export_data
 #
 #-------------------------------------------------------------------------
+def export_data(database, filename, option_box=None, callback=None):
+    """
+    Call the XML writer with the syntax expected by the export plugin.
+    """
+    if os.path.isfile(filename):
+        try:
+            shutil.copyfile(filename, filename + ".bak")
+            shutil.copystat(filename, filename + ".bak")
+        except:
+            pass
 
-# Don't export a writer for plugins, that is the task of _WriteXML.py
+    compress = _gzip_ok == 1
+
+    if option_box:
+        option_box.parse_options()
+    
+        if option_box.private:
+            database = gen.proxy.PrivateProxyDb(database)
+    
+        if option_box.restrict:
+            database = gen.proxy.LivingProxyDb(
+                database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+    
+        # Apply the Person Filter
+        if not option_box.cfilter.is_empty():
+            database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
+    
+        # Apply the Note Filter
+        if not option_box.nfilter.is_empty():
+            database = gen.proxy.FilterProxyDb(
+                database, note_filter=option_box.nfilter)
+        
+        # Apply the ReferencedProxyDb to remove any objects not referenced
+        # after any of the other proxies have been applied
+        if option_box.unlinked:
+            database = gen.proxy.ReferencedProxyDb(database)
+
+    g = XmlWriter(database, callback, 0, compress)
+    return g.write(filename)
+
+#-------------------------------------------------------------------------
+#
+# XmlWriter
+#
+#-------------------------------------------------------------------------
+class XmlWriter(GrampsDbXmlWriter):
+    """
+    Writes a database to the XML file.
+    """
+
+    def __init__(self, dbase, callback, strip_photos, compress=1):
+        GrampsDbXmlWriter.__init__(
+            self, dbase, strip_photos, compress, const.VERSION, callback)
+        
+    def write(self, filename):
+        """
+        Write the database to the specified file.
+        """
+        ret = 0 #False
+        try:
+            ret = GrampsDbXmlWriter.write(self, filename)
+        except GrampsDbWriteFailure, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1, m2)
+        return ret
+
+#------------------------------------------------------------------------
+#
+# Register with the plugin system
+#
+#------------------------------------------------------------------------
+_description = _('Exporting to CD copies all your data and media object files '
+                 'to the CD Creator. You may later burn the CD with this data, '
+                 'and that copy will be completely portable across different '
+                 'machines and binary architectures.')
+_config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
+
+pmgr = PluginManager.get_instance()
+plugin = ExportPlugin(name            = _('GRAMPS _XML database'), 
+                      description     = _description,
+                      export_function = export_data,
+                      extension       = "gramps",
+                      config          = _config )
+pmgr.register_plugin(plugin)

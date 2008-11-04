@@ -1218,5 +1218,5 @@ pmgr = PluginManager.get_instance()
 plugin = ImportPlugin(name            = _('Pro-Gen'), 
                       description     = _("Import data from Pro-Gen files"),
                       import_function = _importData,
-                      mime_types      = ["application/x-progen"])
+                      extension       = "def")
 pmgr.register_plugin(plugin)

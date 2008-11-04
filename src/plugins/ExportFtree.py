@@ -29,7 +29,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from cStringIO import StringIO
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -56,15 +55,15 @@ import Utils
 from Filters import GenericFilter, Rules, build_filter_menu
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, person, option_box, callback=None):
-    writer = FtreeWriter(database, person, 0, filename, option_box, callback)
+def writeData(database, filename, option_box=None, callback=None):
+    writer = FtreeWriter(database, filename, option_box, callback)
     return writer.export_data()
     
 class FtreeWriterOptionBox:
@@ -74,11 +73,11 @@ class FtreeWriterOptionBox:
     """
     def __init__(self, person):
         self.person = person
+        self.restrict = True
 
     def get_option_box(self):
-        self.restrict = True
-        base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"writeftree.glade")
+        glade_file = os.path.join(os.path.dirname(__file__),
+                                  "ExportFtree.glade")
         
         self.top = glade.XML(glade_file, "top", "gramps")
 
@@ -133,12 +132,10 @@ class FtreeWriterOptionBox:
 #-------------------------------------------------------------------------
 class FtreeWriter:
 
-    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+    def __init__(self, database, filename="", option_box=None, 
                  callback = None):
         self.db = database
-        self.person = person
         self.option_box = option_box
-        self.cl = cl
         self.filename = filename
         self.callback = callback
         if callable(self.callback): # callback is really callable
@@ -303,15 +300,17 @@ def get_name(name, count):
         else:
             return "%s %s%s, %s" % (name.first_name, name.surname, val, name.suffix)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
-# Register the plugin
+# Register with the plugin system
 #
-#-------------------------------------------------------------------------
-_title = _('_Web Family Tree')
-_description = _('Web Family Tree format.')
+#------------------------------------------------------------------------
 _config = (_('Web Family Tree export options'), FtreeWriterOptionBox)
-_filename = 'wft'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(writeData, _title, _description, _config,_filename)
+plugin = ExportPlugin(name            = _('_Web Family Tree'), 
+                      description     = _('Web Family Tree format.'),
+                      export_function = writeData,
+                      extension       = "wft",
+                      config          = _config )
+pmgr.register_plugin(plugin)

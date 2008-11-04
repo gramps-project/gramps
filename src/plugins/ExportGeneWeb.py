@@ -55,9 +55,8 @@ import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
 #import const
 import Utils
-import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -77,9 +76,8 @@ class GeneWebWriterOptionBox:
         self.restrict = 1
         self.private = 1
 
-        glade_file = "%s/genewebexport.glade" % os.path.dirname(__file__)
-        if not os.path.isfile(glade_file):
-            glade_file = "plugins/genewebexport.glade"
+        glade_file = os.path.join(os.path.dirname(__file__), 
+                                  "ExportGeneWeb.glade")
 
         self.topDialog = glade.XML(glade_file, "genewebExport", "gramps")
         self.topDialog.signal_autoconnect({
@@ -154,12 +152,10 @@ class GeneWebWriterOptionBox:
             self.images_path = ""
 
 class GeneWebWriter:
-    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+    def __init__(self, database, filename="", option_box=None, 
                  callback=None):
         self.db = database
-        self.person = person
         self.option_box = option_box
-        self.cl = cl
         self.filename = filename
         self.callback = callback
         if callable(self.callback): # callback is really callable
@@ -175,7 +171,10 @@ class GeneWebWriter:
         self.person_ids = {}
         
         if not option_box:
-            self.cl_setup()
+            self.restrict = 0
+            self.private = 0
+            self.copy = 0
+            self.images = 0
         else:
             self.option_box.parse_options()
 
@@ -188,23 +187,17 @@ class GeneWebWriter:
             self.images = self.option_box.images
             self.images_path = self.option_box.images_path
             
-            if self.option_box.cfilter is None:
-                for p in self.db.get_person_handles(sort_handles=False):
-                    self.plist[p] = 1
-            else:
-                try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
-                        self.plist[p] = 1
-                except Errors.FilterError, msg:
-                    (m1, m2) = msg.messages()
-                    ErrorDialog(m1, m2)
-                    return
+            if not option_box.cfilter.is_empty():
+                self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
 
-            self.flist = {}
-            for key in self.plist:
-                p = self.db.get_person_from_handle(key)
-                for family_handle in p.get_family_handle_list():
-                    self.flist[family_handle] = 1
+        for p in self.db.get_person_handles(sort_handles=False):
+            self.plist[p] = 1
+            
+        self.flist = {}
+        for key in self.plist:
+            p = self.db.get_person_from_handle(key)
+            for family_handle in p.get_family_handle_list():
+                self.flist[family_handle] = 1
 
         # remove families that dont contain father AND mother
         # because GeneWeb requires both to be present
@@ -228,22 +221,6 @@ class GeneWebWriter:
         if newval != self.oldval:
             self.callback(newval)
             self.oldval = newval
-
-    def cl_setup(self):
-        self.restrict = 0
-        self.private = 0
-        self.copy = 0
-        self.images = 0
-
-        for p in self.db.get_person_handles(sort_handles=False):
-            self.plist[p] = 1
-
-        self.flist = {}
-
-        for key in self.plist:
-            p = self.db.get_person_from_handle(key)
-            for family_handle in p.get_family_handle_list():
-                self.flist[family_handle] = 1
 
     def writeln(self, text):
         self.g.write(self.iso8859('%s\n' % (text)))
@@ -389,7 +366,7 @@ class GeneWebWriter:
             note = ""
             for notehandle in notelist:
                 noteobj = self.db.get_note_from_handle(notehandle)
-                note += noteobj.get(False)
+                note += noteobj.get()
                 note += " "
 
             if note and note != "":
@@ -629,19 +606,22 @@ class GeneWebWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person, option_box,callback=None):
-    gw = GeneWebWriter(database,person,0,filename, option_box,callback)
+def exportData(database, filename, option_box=None, callback=None):
+    gw = GeneWebWriter(database, filename, option_box, callback)
     return gw.export_data()
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# Register with the plugin system
 #
-#
-#-------------------------------------------------------------------------
-_title = _('_GeneWeb')
+#------------------------------------------------------------------------
 _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'), GeneWebWriterOptionBox)
-_filename = 'gw'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(exportData, _title, _description, _config, _filename)
+plugin = ExportPlugin(name            = _('_GeneWeb'), 
+                      description     = _description,
+                      export_function = exportData,
+                      extension       = "gw",
+                      config          = _config )
+pmgr.register_plugin(plugin)

@@ -42,20 +42,6 @@ class FactoryTest(unittest.TestCase):
 
         self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_factory, "gibberish")
 
-    def test_gramps_db_reader_factory(self):
-        """Test that gramps_db_reader_factory returns the correct method."""
-
-        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gramps)
-        assert callable(md), "Returned method is %s " % str(md)
-
-        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gramps_xml)
-        assert callable(md), "Returned method is %s " % str(md)
-
-        md = GrampsDb.gramps_db_reader_factory(db_type = const.app_gedcom)
-        assert callable(md), "Returned method is %s " % str(md)
-
-        self.assertRaises(GrampsDb.GrampsDbException, GrampsDb.gramps_db_reader_factory, "gibberish")
-
         
         
 class ReferenceMapTest (GrampsDbBaseTest):

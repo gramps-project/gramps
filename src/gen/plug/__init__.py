@@ -24,5 +24,6 @@ The "plug" package for handling plugins in Gramps.
 from _plugin import Plugin
 from _manager import PluginManager
 from _import import ImportPlugin
+from _export import ExportPlugin
 
-__all__ = [ "menu", Plugin, PluginManager, ImportPlugin ]
+__all__ = [ "menu", Plugin, PluginManager, ImportPlugin, ExportPlugin ]

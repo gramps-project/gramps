@@ -73,10 +73,10 @@ except:
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from GrampsDbUtils import XmlWriter
+from ExportXml import XmlWriter
 from Utils import media_path_full
 from QuestionDialog import ErrorDialog, MissingMediaDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
 
 _title_string = _("Export to CD")
 
@@ -85,7 +85,7 @@ _title_string = _("Export to CD")
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, person, option_box=None, callback=None):
+def writeData(database, filename, option_box=None, callback=None):
     writer = PackageWriter(database, filename, callback)
     return writer.export()
     
@@ -299,13 +299,15 @@ class PackageWriter:
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-_title = _('_Export to CD (portable XML)')
-_description = _('Exporting to CD copies all your data and media '
-    'object files to the CD Creator. You may later burn the CD '
-    'with this data, and that copy will be completely portable '
-    'across different machines and binary architectures.')
-_config = None
-_filename = 'burn'
+_description = _('Exporting to CD copies all your data and media object files '
+                 'to the CD Creator. You may later burn the CD with this data, '
+                 'and that copy will be completely portable across different '
+                 'machines and binary architectures.')
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(writeData, _title, _description, _config, _filename)
+plugin = ExportPlugin(name            = _('_Export to CD (portable XML)'), 
+                      description     = _description,
+                      export_function = writeData,
+                      extension       = "burn",
+                      config          = None )
+pmgr.register_plugin(plugin)

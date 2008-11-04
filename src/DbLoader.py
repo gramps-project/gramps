@@ -56,29 +56,12 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 import Config
-import Mime
 import gen.db
-import GrampsDbUtils
 import Utils
 from gen.plug import PluginManager
 from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 import Errors
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-
-#connection between main mime type, name, and list of alternative mime types
-_KNOWN_FORMATS = { 
-    const.APP_GRAMPS        : [_('GRAMPS (grdb)'), []], 
-    const.APP_GRAMPS_XML    : [_('GRAMPS XML'), []], 
-    const.APP_GEDCOM        : [_('GEDCOM'), []], 
-}
-
-OPEN_FORMATS = [const.APP_GRAMPS_XML, const.APP_GEDCOM]
 
 #-------------------------------------------------------------------------
 #
@@ -110,39 +93,27 @@ class DbLoader:
             
         pmgr = PluginManager.get_instance()
         
-        choose_db_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
+        import_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
                                        self.uistate.window, 
                                        gtk.FILE_CHOOSER_ACTION_OPEN, 
                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
                                         'gramps-import', gtk.RESPONSE_OK))
-        choose_db_dialog.set_local_only(False)
+        import_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
-        add_all_files_filter(choose_db_dialog)   # *
-        add_xml_filter(choose_db_dialog)         # .gramps
-        add_gedcom_filter(choose_db_dialog)      # .ged
+        add_all_files_filter(import_dialog)   # *
 
-        format_list = OPEN_FORMATS[:]
-
-        # Add more data type selections if opening existing db
+        # Add more file type selections for available importers
         for plugin in pmgr.get_import_plugins():
-            mime_types = plugin.get_mime_types()
-            mime_filter = gtk.FileFilter()
-            mime_filter.set_name(plugin.get_name())
-            for mime_type in mime_types:
-                mime_filter.add_mime_type(mime_type)
-            format_name = plugin.get_name()
+            file_filter = gtk.FileFilter()
+            name = "%s (.%s)" % (plugin.get_name(), plugin.get_extension())
+            file_filter.set_name(name)
+            file_filter.add_pattern("*.%s" % plugin.get_extension())
+            file_filter.add_pattern(plugin.get_extension().capitalize())
+            import_dialog.add_filter(file_filter)
 
-            choose_db_dialog.add_filter(mime_filter)
-            # There might be multiple entries in mime_types
-            # Add only formats not already in list, so user don't get confused
-            # with multiple entries
-            if not mime_types[0] in format_list:
-                format_list.append(mime_types[0])
-                _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
-
-        (box, type_selector) = format_maker(format_list)
-        choose_db_dialog.set_extra_widget(box)
+        (box, type_selector) = format_maker()
+        import_dialog.set_extra_widget(box)
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
@@ -150,43 +121,31 @@ class DbLoader:
         if len(default_dir)<=1:
             default_dir = get_default_dir()
 
-        choose_db_dialog.set_current_folder(default_dir)
+        import_dialog.set_current_folder(default_dir)
         while True:
-            response = choose_db_dialog.run()
+            response = import_dialog.run()
             if response == gtk.RESPONSE_CANCEL:
                 break
             elif response == gtk.RESPONSE_OK:
-                filename = Utils.get_unicode_path(choose_db_dialog.get_filename())
+                filename = Utils.get_unicode_path(import_dialog.get_filename())
                 if self.check_errors(filename):
                     # displays errors if any
                     continue
 
-                # Do not allow importing from the currently open file
-                if filename == self.dbstate.db.full_name:
-                    ErrorDialog(_("Cannot import from current file")) 
-                    continue
-
-                filetype = type_selector.get_value()
-                if filetype == 'auto':
-                    try:
-                        filetype = Mime.get_type(filename)
-                    except RuntimeError, msg:
-                        ErrorDialog(_("Could not open file: %s") % filename, 
-                                    str(msg))
-                        continue
-
-                # First we try our best formats
-                if filetype in OPEN_FORMATS or filetype in _KNOWN_FORMATS:
-                    importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
-                    self.do_import(choose_db_dialog, importer, filename)
-                    return True
-
                 (the_path, the_file) = os.path.split(filename)
                 Config.set(Config.RECENT_IMPORT_DIR, the_path)
-                # Then we try all the known plugins
+                
+                extension = type_selector.get_value()
+                if extension == 'auto':
+                    # Guess the file format based on the file extension.
+                    # This will get the lower case extension without a period, 
+                    # or an empty string.
+                    extension = os.path.splitext(filename)[-1][1:].lower()
+                
                 for plugin in pmgr.get_import_plugins():
-                    if filetype in plugin.get_mime():
-                        self.do_import(choose_db_dialog, 
+                    print plugin.get_extension()
+                    if extension == plugin.get_extension():
+                        self.do_import(import_dialog, 
                                        plugin.get_import_function(), 
                                        filename)
                         return True
@@ -196,9 +155,9 @@ class DbLoader:
                     _("Could not open file: %s") % filename, 
                     _('File type "%s" is unknown to GRAMPS.\n\n'
                       'Valid types are: GRAMPS database, GRAMPS XML, '
-                      'GRAMPS package, and GEDCOM.') % filetype)
+                      'GRAMPS package, and GEDCOM.') % extension)
 
-        choose_db_dialog.destroy()
+        import_dialog.destroy()
         return False
 
     def check_errors(self, filename):
@@ -218,16 +177,14 @@ class DbLoader:
             return True
         elif os.path.isdir(filename):
             ErrorDialog(
-                _('Cannot open database'), 
-                _('The selected file is a directory, not '
-                  'a file.\nA GRAMPS database must be a file.'))
+                _('Cannot open file'), 
+                _('The selected file is a directory, not a file.\n'))
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
                 ErrorDialog(
-                    _('Cannot open database'), 
-                    _('You do not have read access to the selected '
-                      'file.'))
+                    _('Cannot open file'), 
+                    _('You do not have read access to the selected file.'))
                 return True
         else:
             try:
@@ -236,7 +193,7 @@ class DbLoader:
                 os.remove(filename)
             except IOError:
                 ErrorDialog(
-                    _('Cannot create database'), 
+                    _('Cannot create file'),
                     _('You do not have write access to the selected file.'))
                 return True
 
@@ -361,34 +318,6 @@ def add_all_files_filter(chooser):
     mime_filter.add_pattern('*')
     chooser.add_filter(mime_filter)
 
-def add_gramps_files_filter(chooser):
-    """
-    Add an all-GRAMPS filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('All GRAMPS files'))
-    for fmt in OPEN_FORMATS:
-        mime_filter.add_mime_type(fmt)
-    chooser.add_filter(mime_filter)
-
-def add_xml_filter(chooser):
-    """
-    Add a GRAMPS XML filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS XML databases'))
-    mime_filter.add_mime_type(const.APP_GRAMPS_XML)
-    chooser.add_filter(mime_filter)
-
-def add_gedcom_filter(chooser):
-    """
-    Add a GEDCOM filter to the file chooser dialog.
-    """
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GEDCOM files'))
-    mime_filter.add_mime_type(const.APP_GEDCOM)
-    chooser.add_filter(mime_filter)
-
 #-------------------------------------------------------------------------
 #
 # Format selectors: explictly set the format of the file
@@ -417,7 +346,7 @@ class GrampsFormatWidget(gtk.ComboBox):
             return None
         return self.format_list[active][0]
 
-def format_maker(formats):
+def format_maker():
     """
     A factory function making format selection widgets.
     
@@ -425,10 +354,11 @@ def format_maker(formats):
     The auto selection is always added as the first one.
     The returned box contains both the label and the selector.
     """
+    pmgr = PluginManager.get_instance()
     format_list = [ ('auto', _('Automatically detected')) ]
-    for format in formats:
-        if format in _KNOWN_FORMATS:
-            format_list.append( (format, _KNOWN_FORMATS[format][0]) )
+    
+    for plugin in pmgr.get_import_plugins():
+        format_list.append( (plugin.get_extension(), plugin.get_name()) )
 
     type_selector = GrampsFormatWidget()
     type_selector.set(format_list)

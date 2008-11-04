@@ -59,7 +59,7 @@ import Utils
 from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -75,9 +75,9 @@ class CalendarWriterOptionBox:
     def __init__(self, person):
         self.person = person
 
-        glade_file = "%s/vcalendarexport.glade" % os.path.dirname(__file__)
-        if not os.path.isfile(glade_file):
-            glade_file = "plugins/vcalendarexport.glade"
+        glade_file = os.path.join(os.path.dirname(__file__), 
+                                  "ExportVCalendar.glade")
+
         self.topDialog = glade.XML(glade_file, "calendarExport", "gramps")
         self.copy = 0
         self.filter_menu = gtk.Menu()
@@ -128,10 +128,9 @@ class CalendarWriterOptionBox:
 
 
 class CalendarWriter:
-    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+    def __init__(self, database, cl=0, filename="", option_box=None, 
                  callback=None):
         self.db = database
-        self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
@@ -342,19 +341,22 @@ class CalendarWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person, option_box, callback=None):
-    cw = CalendarWriter(database, person, 0, filename, option_box, callback)
+def exportData(database, filename, option_box=None, callback=None):
+    cw = CalendarWriter(database, 0, filename, option_box, callback)
     return cw.export_data(filename)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# Register with the plugin system
 #
-#
-#-------------------------------------------------------------------------
-_title = _('vC_alendar')
+#------------------------------------------------------------------------
 _description = _('vCalendar is used in many calendaring and pim applications.')
 _config = (_('vCalendar export options'), CalendarWriterOptionBox)
-_filename = 'vcs'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(exportData, _title, _description, _config, _filename)
+plugin = ExportPlugin(name            = _('vC_alendar'), 
+                      description     = _description,
+                      export_function = exportData,
+                      extension       = "vcs",
+                      config          = _config )
+pmgr.register_plugin(plugin)

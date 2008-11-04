@@ -60,8 +60,8 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from GrampsDbUtils import XmlWriter
-from gen.plug import PluginManager
+from ExportXml import XmlWriter
+from gen.plug import PluginManager, ExportPlugin
 import Utils
 
 #-------------------------------------------------------------------------
@@ -69,29 +69,30 @@ import Utils
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database, filename, person, option_box, callback=None):
-    option_box.parse_options()
-
-    if option_box.private:
-        database = gen.proxy.PrivateProxyDb(database)
-
-    if option_box.restrict:
-        database = gen.proxy.LivingProxyDb(
-            database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
-
-    # Apply the Person Filter
-    if not option_box.cfilter.is_empty():
-        database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
-
-    # Apply the Note Filter
-    if not option_box.nfilter.is_empty():
-        database = gen.proxy.FilterProxyDb(
-            database, note_filter=option_box.nfilter)
+def writeData(database, filename, option_box=None, callback=None):
+    if option_box:
+        option_box.parse_options()
     
-    # Apply the ReferencedProxyDb to remove any objects not referenced
-    # after any of the other proxies have been applied
-    if option_box.unlinked:
-        database = gen.proxy.ReferencedProxyDb(database)
+        if option_box.private:
+            database = gen.proxy.PrivateProxyDb(database)
+    
+        if option_box.restrict:
+            database = gen.proxy.LivingProxyDb(
+                database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
+    
+        # Apply the Person Filter
+        if not option_box.cfilter.is_empty():
+            database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
+    
+        # Apply the Note Filter
+        if not option_box.nfilter.is_empty():
+            database = gen.proxy.FilterProxyDb(
+                database, note_filter=option_box.nfilter)
+        
+        # Apply the ReferencedProxyDb to remove any objects not referenced
+        # after any of the other proxies have been applied
+        if option_box.unlinked:
+            database = gen.proxy.ReferencedProxyDb(database)
 
     writer = PackageWriter(database, filename, callback)
     return writer.export()
@@ -225,17 +226,20 @@ class PackageWriter:
         g.close()
 
         return True
-    
-#-------------------------------------------------------------------------
+
+#------------------------------------------------------------------------
 #
-# Register the plugin
+# Register with the plugin system
 #
-#-------------------------------------------------------------------------
-_title = _('GRAM_PS package (portable XML)')
+#------------------------------------------------------------------------
 _description = _('GRAMPS package is an archived XML database together '
                  'with the media object files.')
 _config = (_('GRAMPS package export options'), ExportOptions.WriterOptionBox)
-_filename = 'gpkg'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(writeData, _title, _description, _config, _filename)
+plugin = ExportPlugin(name            = _('GRAM_PS package (portable XML)'), 
+                      description     = _description,
+                      export_function = writeData,
+                      extension       = "gpkg",
+                      config          = _config )
+pmgr.register_plugin(plugin)

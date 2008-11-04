@@ -56,7 +56,7 @@ from Filters import GenericFilter, Rules, build_filter_menu
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -74,9 +74,8 @@ class CardWriterOptionBox:
 
     def get_option_box(self):
 
-        glade_file = "%s/vcardexport.glade" % os.path.dirname(__file__)
-        if not os.path.isfile(glade_file):
-            glade_file = "plugins/vcardexport.glade"
+        glade_file = os.path.join(os.path.dirname(__file__), 
+                                  "ExportVCard.glade")
 
         self.topDialog = glade.XML(glade_file,"vcardExport","gramps")
 
@@ -125,10 +124,9 @@ class CardWriterOptionBox:
         self.cfilter = self.filter_menu.get_active().get_data("filter")
 
 class CardWriter:
-    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+    def __init__(self, database, cl=0, filename="", option_box=None, 
                  callback=None):
         self.db = database
-        self.person = person
         self.option_box = option_box
         self.cl = cl
         self.filename = filename
@@ -258,19 +256,22 @@ class CardWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person, option_box, callback=None):
-    cw = CardWriter(database, person, 0, filename, option_box, callback)
+def exportData(database, filename, option_box=None, callback=None):
+    cw = CardWriter(database, 0, filename, option_box, callback)
     return cw.export_data(filename)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# Register with the plugin system
 #
-#
-#-------------------------------------------------------------------------
-_title = _('_vCard')
+#------------------------------------------------------------------------
 _description = _('vCard is used in many addressbook and pim applications.')
 _config = (_('vCard export options'), CardWriterOptionBox)
-_filename = 'vcf'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(exportData, _title, _description, _config, _filename)
+plugin = ExportPlugin(name            = _('_vCard'), 
+                      description     = _description,
+                      export_function = exportData,
+                      extension       = "vcf",
+                      config          = _config )
+pmgr.register_plugin(plugin)

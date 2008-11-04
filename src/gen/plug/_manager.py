@@ -93,8 +93,8 @@ class PluginManager(gen.utils.Callback):
         self.__report_list       = []
         self.__quick_report_list = []
         self.__tool_list         = []
-        self.__export_list       = []
         self.__import_plugins    = []
+        self.__export_plugins    = []
         self.__attempt_list      = []
         self.__loaddir_list      = []
         self.__textdoc_list      = []
@@ -257,10 +257,6 @@ class PluginManager(gen.utils.Callback):
         """ Return the list of command line tool plugins. """
         return self.__cli_tool_list
     
-    def get_export_list(self):
-        """ Return the list of export plugins. """
-        return self.__export_list
-    
     def get_module_description(self, module):
         """ Given a module name, return the module description. """
         return self.__mod2text.get(module, '')
@@ -274,6 +270,9 @@ class PluginManager(gen.utils.Callback):
         if isinstance(plugin, gen.plug.ImportPlugin):
             self.__import_plugins.append(plugin)
             self.__mod2text[plugin.get_module_name()] = plugin.get_description()
+        if isinstance(plugin, gen.plug.ExportPlugin):
+            self.__export_plugins.append(plugin)
+            self.__mod2text[plugin.get_module_name()] = plugin.get_description()
             
     def get_import_plugins(self):
         """
@@ -282,24 +281,14 @@ class PluginManager(gen.utils.Callback):
         @return: [gen.plug.ImportPlugin] (a list of ImportPlugin instances)
         """
         return self.__import_plugins
-
-    def register_export(self, export_data, title, description='', config=None, 
-                        filename=''):
-        """
-        Register an export filter, taking the task, file filter, 
-        and the list of patterns for the filename matching.
-        """
-        if description and filename:
-            del_index = -1
-            for i in range(0, len(self.__export_list)):
-                if self.__export_list[i][1] == title:
-                    del_index = i
-            if del_index != -1:
-                del self.__export_list[del_index]
     
-            self.__export_list.append(
-                            (export_data, title, description, config, filename))
-            self.__mod2text[export_data.__module__] = description
+    def get_export_plugins(self):
+        """
+        Get the list of export plugins.
+        
+        @return: [gen.plug.ExportPlugin] (a list of ExportPlugin instances)
+        """
+        return self.__export_plugins
 
     def register_tool(self, name, category, tool_class, options_class,
                       modes, translated_name, status=_("Unknown"), 
@@ -545,8 +534,8 @@ class PluginManager(gen.utils.Callback):
             for filename, junk in self.__failmsg_list
             ]
     
-        self.__export_list[:] = [ item for item in self.__export_list
-                        if item[0].__module__ not in failed_module_names ][:]
+        self.__export_plugins[:] = [ item for item in self.__export_plugins
+                        if item.get_module_name not in failed_module_names ][:]
         self.__import_plugins[:] = [ item for item in self.__import_plugins
                         if item.get_module_name not in failed_module_names ][:]
         self.__tool_list[:] = [ item for item in self.__tool_list

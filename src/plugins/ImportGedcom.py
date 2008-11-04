@@ -45,9 +45,10 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #------------------------------------------------------------------------
 import Errors
-from _GedcomParse import GedcomParser
-from _GedcomStageOne import StageOne
+from GrampsDbUtils._GedcomParse import GedcomParser
+from GrampsDbUtils._GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
+from gen.plug import PluginManager, ImportPlugin
 
 try:
     import Config
@@ -61,7 +62,7 @@ except ImportError:
 # importData
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None, use_trans=False):
+def importData(database, filename, callback=None):
     """
     Try to handle ANSEL encoded files that are not really ANSEL encoded
     """
@@ -83,7 +84,8 @@ def importData(database, filename, callback=None, use_trans=False):
     ifile.close()
 
     if not gramps and ansel:
-        glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+        glade_file = os.path.join(os.path.dirname(__file__), 
+                                  "ImportGedcom.glade")
         top = glade.XML(glade_file, 'encoding','gramps')
         code = top.get_widget('codeset')
         code.set_active(0)
@@ -94,17 +96,6 @@ def importData(database, filename, callback=None, use_trans=False):
         dialog.destroy()
     else:
         code_set = ""
-    import2(database, filename, callback, code_set, use_trans)
-
-#-------------------------------------------------------------------------
-#
-# import2
-#
-#-------------------------------------------------------------------------
-def import2(database, filename, callback, code_set, use_trans):
-    """
-    Import the gedcom file.
-    """
 
     assert(isinstance(code_set, basestring))
 
@@ -126,13 +117,10 @@ def import2(database, filename, callback, code_set, use_trans):
                     _("%s could not be imported") % filename + "\n" + str(msg))
         return
 
-    if database.get_number_of_people() == 0:
-        use_trans = False
-
     try:
         read_only = database.readonly
         database.readonly = False
-        gedparse.parse_gedcom_file(use_trans)
+        gedparse.parse_gedcom_file(False)
         database.readonly = read_only
         ifile.close()
     except IOError, msg:
@@ -146,3 +134,17 @@ def import2(database, filename, callback, code_set, use_trans):
         ErrorDialog(_('Error reading GEDCOM file'), str(msg))
         return
 
+#------------------------------------------------------------------------
+#
+# Register with the plugin system
+#
+#------------------------------------------------------------------------
+_description = _('GEDCOM is used to transfer data between genealogy programs. '
+                'Most genealogy software will accept a GEDCOM file as input.')
+
+pmgr = PluginManager.get_instance()
+plugin = ImportPlugin(name            = _('GE_DCOM'), 
+                      description     = _description,
+                      import_function = importData,
+                      extension       = "ged" )
+pmgr.register_plugin(plugin)

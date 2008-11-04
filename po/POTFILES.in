@@ -204,12 +204,6 @@ src/GrampsDbUtils/_GedcomStageOne.py
 #src/GrampsDbUtils/_GedcomLex.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
-src/GrampsDbUtils/_GrampsDbWriteXML.py
-src/GrampsDbUtils/_GrampsDbWRFactories.py
-src/GrampsDbUtils/_ReadGedcom.py
-src/GrampsDbUtils/_ReadXML.py
-src/GrampsDbUtils/_WriteGedcom.py
-src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
 
 # GrampsLocale package
@@ -242,12 +236,11 @@ src/Selectors/_SelectorFactory.py
 src/Selectors/__init__.py
 
 # plugins directory
+src/plugins/AgeOnDate.py
 src/plugins/all_events.py
 src/plugins/all_relations.py
-src/plugins/siblings.py
-src/plugins/AgeOnDate.py
-src/plugins/AncestorTree.py
 src/plugins/AncestorReport.py
+src/plugins/AncestorTree.py
 src/plugins/BookReport.py
 src/plugins/CalculateEstimatedDates.py
 src/plugins/Calendar.py
@@ -267,9 +260,15 @@ src/plugins/EndOfLineReport.py
 src/plugins/Eval.py
 src/plugins/EventCmp.py
 src/plugins/EventNames.py
-src/plugins/ExportCSV.py
+src/plugins/ExportCd.py
+src/plugins/ExportCsv.py
+src/plugins/ExportFtree.py
+src/plugins/ExportGedcom.py
+src/plugins/ExportGeneWeb.py
+src/plugins/ExportPkg.py
 src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
+src/plugins/ExportXml.py
 src/plugins/ExtractCity.py
 src/plugins/FamilyGroup.py
 src/plugins/FanChart.py
@@ -278,11 +277,14 @@ src/plugins/FindDupes.py
 src/plugins/GVFamilyLines.py
 src/plugins/GVHourGlass.py
 src/plugins/GVRelGraph.py
-src/plugins/ImportCSV.py
+src/plugins/ImportCsv.py
+src/plugins/ImportGedcom.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportGpkg.py
 src/plugins/ImportGrdb.py
+src/plugins/ImportProGen.py
 src/plugins/ImportvCard.py
+src/plugins/ImportXml.py
 src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
 src/plugins/Leak.py
@@ -297,6 +299,7 @@ src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
 src/plugins/PlaceReport.py
 src/plugins/Rebuild.py
+src/plugins/RebuildRefMap.py
 src/plugins/References.py
 src/plugins/RelCalc.py
 src/plugins/rel_da.py
@@ -315,6 +318,7 @@ src/plugins/rel_pl.py
 src/plugins/RemoveUnused.py
 src/plugins/ReorderIds.py
 src/plugins/SameSurnames.py
+src/plugins/siblings.py
 src/plugins/SimpleBookTitle.py
 src/plugins/SoundGen.py
 src/plugins/StatisticsChart.py
@@ -322,11 +326,6 @@ src/plugins/Summary.py
 src/plugins/TimeLine.py
 src/plugins/Verify.py
 src/plugins/WebCal.py
-src/plugins/WriteCD.py
-src/plugins/WriteFtree.py
-src/plugins/WriteGeneWeb.py
-src/plugins/WritePkg.py
-src/plugins/RebuildRefMap.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py
@@ -337,6 +336,7 @@ src/PluginUtils/_Tool.py
 src/gen/utils/dbutils.py
 src/gen/utils/progressmon.py
 src/gen/plug/__init__.py
+src/gen/plug/_export.py
 src/gen/plug/_import.py
 src/gen/plug/_manager.py
 src/gen/plug/_plugin.py
@@ -693,7 +693,6 @@ src/widgets/validatedmaskedentry.py
 #	Glade files
 #
 src/docgen/gtkprintpreview.glade
-src/GrampsDbUtils/gedcomimport.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade
 src/glade/mergedata.glade
@@ -703,14 +702,12 @@ src/glade/scratchpad.glade
 src/glade/paper_settings.glade
 src/plugins/NotRelated.glade
 src/plugins/book.glade
-src/plugins/cdexport.glade
 src/plugins/changenames.glade
 src/plugins/changetype.glade
-src/plugins/csvexport.glade
 src/plugins/desbrowse.glade
 src/plugins/eval.glade
 src/plugins/eventcmp.glade
-src/plugins/genewebexport.glade
+src/plugins/ImportGedcom.glade
 src/plugins/leak.glade
 src/plugins/merge.glade
 src/plugins/ownereditor.glade
@@ -719,10 +716,12 @@ src/plugins/relcalc.glade
 src/plugins/soundex.glade
 src/plugins/summary.glade
 src/plugins/unused.glade
-src/plugins/vcalendarexport.glade
-src/plugins/vcardexport.glade
+src/plugins/ExportCsv.glade
+src/plugins/ExportFtree.glade
+src/plugins/ExportGeneWeb.glade
+src/plugins/ExportVCard.glade
+src/plugins/ExportVCalendar.glade
 src/plugins/verify.glade
-src/plugins/writeftree.glade
 #
 #	Files to extract from and then merge into
 #

@@ -160,7 +160,11 @@ class VCardParser:
         self.person = gen.lib.Person()
 
     def set_nick_name(self, fields, data):
-        self.person.set_nick_name(data)
+        if self.person is not None:
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.NICKNAME)
+            attr.set_value(data)
+            self.person.add_attribute(attr)
 
     def add_name(self, fields, data):
         data_fields = data.split(";")
@@ -170,7 +174,7 @@ class VCardParser:
         name.set_first_name(data_fields[1])
         if data_fields[2]:
             name.set_first_name(data_fields[1]+" "+data_fields[2])
-        name.set_prefix(data_fields[3])
+        name.set_surname_prefix(data_fields[3])
         name.set_suffix(data_fields[4])
         
         self.person.set_primary_name(name)
@@ -200,7 +204,10 @@ class VCardParser:
         event = gen.lib.Event()
         event.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
         self.db.add_event(event,self.trans)
-        self.person.set_birth_handle(event.get_handle())
+        
+        event_ref = gen.lib.EventRef()
+        event_ref.set_reference_handle(event.get_handle())
+        self.person.set_birth_ref(event_ref)
 
     def add_url(self, fields, data):
         url = gen.lib.Url()
@@ -216,5 +223,5 @@ pmgr = PluginManager.get_instance()
 plugin = ImportPlugin(name            = _('vCard'), 
                       description     = _("Import data from vCard files"),
                       import_function = importData,
-                      mime_types      = ["text/x-vcard", "text/x-vcalendar"])
+                      extension       = "vcf")
 pmgr.register_plugin(plugin)

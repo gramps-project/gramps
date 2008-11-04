@@ -2687,5 +2687,5 @@ plugin = ImportPlugin(name            = _('GRAMPS 2.x database'),
                       description     = _("Import data from GRAMPS 2.x "
                                           "database files"),
                       import_function = importData,
-                      mime_types      = ['application/x-gramps'])
+                      extension       = "grdb")
 pmgr.register_plugin(plugin)

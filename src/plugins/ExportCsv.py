@@ -57,9 +57,9 @@ log = logging.getLogger(".ExportCSV")
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
 import Utils
-import Errors
 from QuestionDialog import ErrorDialog
-from gen.plug import PluginManager
+from gen.plug import PluginManager, ExportPlugin
+import gen.proxy
 import DateHandler
 
 #-------------------------------------------------------------------------
@@ -67,8 +67,8 @@ import DateHandler
 # The function that does the exporting
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person, option_box,callback=None):
-    gw = CSVWriter(database,person,0,filename, option_box,callback)
+def exportData(database, filename, option_box=None, callback=None):
+    gw = CSVWriter(database, filename, option_box, callback)
     return gw.export_data()
 
 #-------------------------------------------------------------------------
@@ -166,15 +166,12 @@ class CSVWriterOptionBox:
     """
     def __init__(self,person):
         self.person = person
-
-    def get_option_box(self):
         self.include_individuals = 1
         self.include_marriages = 1
         self.include_children = 1
 
-        glade_file = "%s/csvexport.glade" % os.path.dirname(__file__)
-        if not os.path.isfile(glade_file):
-            glade_file = "plugins/csvexport.glade"
+    def get_option_box(self):
+        glade_file = os.path.join(os.path.dirname(__file__), "ExportCsv.glade")
 
         self.topDialog = glade.XML(glade_file,"csvExport","gramps")
         filter_obj = self.topDialog.get_widget("filter")
@@ -229,12 +226,9 @@ class CSVWriterOptionBox:
 #
 #-------------------------------------------------------------------------
 class CSVWriter:
-    def __init__(self,database,person,cl=0,filename="",
-                 option_box=None,callback=None):
+    def __init__(self, database, filename, option_box=None, callback=None):
         self.db = database
-        self.person = person
         self.option_box = option_box
-        self.cl = cl
         self.filename = filename
         self.callback = callback
         if callable(self.callback): # callback is really callable
@@ -250,7 +244,9 @@ class CSVWriter:
         self.person_ids = {}
         
         if not option_box:
-            self.cl_setup()
+            self.include_individuals = 1
+            self.include_marriages = 1
+            self.include_children = 1
         else:
             self.option_box.parse_options()
 
@@ -258,48 +254,9 @@ class CSVWriter:
             self.include_marriages = self.option_box.include_marriages
             self.include_children = self.option_box.include_children
             
-            if self.option_box.cfilter is None:
-                for p in self.db.get_person_handles(sort_handles=False):
-                    self.plist[p] = 1
-            else:
-                try:
-                    for p in self.option_box.cfilter.apply(self.db, 
-                                                           self.db.get_person_handles(sort_handles=False)):
-                        self.plist[p] = 1
-                except Errors.FilterError, msg:
-                    (m1,m2) = msg.messages()
-                    ErrorDialog(m1,m2)
-                    return
+            if not option_box.cfilter.is_empty():
+                self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
 
-            # get the families for which these people are spouses:
-            self.flist = {}
-            for key in self.plist:
-                p = self.db.get_person_from_handle(key)
-                for family_handle in p.get_family_handle_list():
-                    self.flist[family_handle] = 1
-            # now add the families for which these people are a child:
-            family_handles = self.db.get_family_handles()
-            for family_handle in family_handles:
-                family = self.db.get_family_from_handle(family_handle)
-                for child_ref in family.get_child_ref_list():
-                    child_handle = child_ref.ref
-                    if child_handle in self.plist.keys():
-                        self.flist[family_handle] = 1
-
-    def update_empty(self):
-        pass
-
-    def update_real(self):
-        self.count += 1
-        newval = int(100*self.count/self.total)
-        if newval != self.oldval:
-            self.callback(newval)
-            self.oldval = newval
-
-    def cl_setup(self):
-        self.include_individuals = 0
-        self.include_marriages = 0
-        self.include_children = 0
         for p in self.db.get_person_handles(sort_handles=False):
             self.plist[p] = 1
         # get the families for which these people are spouses:
@@ -316,6 +273,16 @@ class CSVWriter:
                 child_handle = child_ref.ref
                 if child_handle in self.plist.keys():
                     self.flist[family_handle] = 1
+                        
+    def update_empty(self):
+        pass
+
+    def update_real(self):
+        self.count += 1
+        newval = int(100*self.count/self.total)
+        if newval != self.oldval:
+            self.callback(newval)
+            self.oldval = newval
 
     def writeln(self):
         self.g.writerow([])
@@ -497,13 +464,17 @@ class CSVWriter:
 
 #-------------------------------------------------------------------------
 #
-# Register all of the plugins
+# Register the plugin
 #
 #-------------------------------------------------------------------------
-_title = _('Comma _Separated Values Spreadsheet (CSV)')
+_name = _('Comma _Separated Values Spreadsheet (CSV)')
 _description = _('CSV is a common spreadsheet format.')
 _config = (_('CSV spreadsheet options'),CSVWriterOptionBox)
-_filename = 'csv'
 
 pmgr = PluginManager.get_instance()
-pmgr.register_export(exportData,_title,_description,_config,_filename)
+plugin = ExportPlugin(name            = _name, 
+                      description     = _description,
+                      export_function = exportData,
+                      extension       = "csv",
+                      config          = _config )
+pmgr.register_plugin(plugin)

@@ -796,5 +796,5 @@ pmgr = PluginManager.get_instance()
 plugin = ImportPlugin(name            = _('CSV Spreadheet'), 
                       description     = _("Import data from CSV files"),
                       import_function = importData,
-                      mime_types      = [_mime_type, _mime_type_rfc_4180])
+                      extension       = "csv")
 pmgr.register_plugin(plugin)

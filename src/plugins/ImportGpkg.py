@@ -47,7 +47,7 @@ log = logging.getLogger(".ReadPkg")
 #
 #-------------------------------------------------------------------------
 import const
-from GrampsDbUtils import gramps_db_reader_factory
+import ImportXml
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
 from gen.plug import PluginManager, ImportPlugin
@@ -93,7 +93,7 @@ def impData(database, name, cb=None):
 
     imp_db_name = os.path.join(tmpdir_path, const.XMLFILE)  
 
-    importer = gramps_db_reader_factory(const.APP_GRAMPS_XML)
+    importer = ImportXml.importData
     info = importer(database, imp_db_name, cb)
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!
@@ -146,5 +146,5 @@ pmgr = PluginManager.get_instance()
 plugin = ImportPlugin(name            = _('GRAMPS package'), 
                       description     = _("Import data from GRAMPS packages"),
                       import_function = impData,
-                      mime_types      = ['application/x-gramps-package'])
+                      extension       = "gpkg")
 pmgr.register_plugin(plugin)

@@ -22,28 +22,12 @@
 
 """
 This package implements additions to the the GrampsDb database. 
-
-This package should be used for code that extended GrampsDb but also 
-depends on Gtk.
-
-A number of importers and exporters are provided to convert between
-the different backend formats.
-
-To obtain a class that implements readers use the gramps_db_reader_factory 
-method. For information on using this factory see the 
-_GrampsDbUtilsFactories.py file comments.
-
 """
 
 from _GedcomInfo import (personalConstantEvents, familyConstantEvents, 
                          personalConstantAttributes)
-from _GrampsDbWRFactories import gramps_db_reader_factory
      
 from _GedcomParse import GedcomParser
-from _WriteGedcom import GedcomWriter
-
-from _GrampsDbWriteXML import GrampsDbXmlWriter
-from _WriteXML import XmlWriter
 
 import _Backup as Backup
 

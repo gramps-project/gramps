@@ -30,9 +30,15 @@ pkgdata_PYTHON = \
 	Eval.py\
 	EventCmp.py\
 	EventNames.py\
-	ExportCSV.py\
+	ExportCd.py\
+	ExportCsv.py\
+	ExportFtree.py\
+	ExportGedcom.py\
+	ExportGeneweb.py\
+	ExportPkg.py\
 	ExportVCalendar.py\
 	ExportVCard.py\
+	ExportXml.py\
 	ExtractCity.py\
 	FamilyGroup.py\
 	FanChart.py\
@@ -42,10 +48,13 @@ pkgdata_PYTHON = \
 	GVHourGlass.py\
 	GVRelGraph.py\
 	ImportCSV.py\
+	ImportGedcom.py\
 	ImportGeneWeb.py\
 	ImportGpkg.py\
 	ImportGrdb.py\
+	ImportProGen.py\
 	ImportvCard.py\
+	ImportXml.py\
 	IndivComplete.py\
 	KinshipReport.py\
 	Leak.py\
@@ -89,10 +98,7 @@ pkgdata_PYTHON = \
 	TimeLine.py\
 	Verify.py\
 	WebCal.py\
-	WriteFtree.py\
-	WriteGeneWeb.py\
-	WritePkg.py\
-	WriteCD.py
+	WriteFtree.py
 
 #        DateParserDisplayTest.py\
 #        DumpGenderStats.py\
@@ -104,28 +110,28 @@ pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 
 GLADEFILES = \
-	NotRelated.glade\
-	changetype.glade\
-	csvexport.glade\
-	desbrowse.glade\
-	eventcmp.glade\
-	merge.glade\
-	patchnames.glade\
+	book.glade\
 	changenames.glade\
+	changetype.glade\
+	desbrowse.glade\
+	eval.glade\	
+	eventcmp.glade\
+	ExportCsv.glade\
+	ExportFtree.glade\
+	ExportGeneWeb.glade\
+	ExportVCalendar.glade\
+	ExportVCard.glade\
+	ImportGedcom.glade\	
+	leak.glade\
+	merge.glade\
+	NotRelated.glade\
+	ownereditor.glade\
+	patchnames.glade\
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
-	verify.glade\
-	cdexport.glade\
-	eval.glade\
-	leak.glade\
-	book.glade\
-	ownereditor.glade\
-	writeftree.glade\
-	genewebexport.glade\
-	vcardexport.glade\
-	vcalendarexport.glade\
-	unused.glade
+	unused.glade\
+	verify.glade
 
 GRAPHICS = 
 

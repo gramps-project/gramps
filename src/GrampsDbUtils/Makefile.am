@@ -14,21 +14,10 @@ pkgdata_PYTHON = \
 	_GedcomStageOne.py\
 	_GedcomTokens.py\
 	_GedcomUtils.py\
-	_GrampsDbWRFactories.py\
-	_GrampsDbWriteXML.py\
-	__init__.py\
-	_ReadGedcom.py\
-	_ReadXML.py\
-	_WriteGedcom.py\
-	_WriteXML.py
+	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsDbUtils
 pkgpythondir = @pkgpythondir@/GrampsDbUtils
-
-GLADEFILES = \
-	gedcomimport.glade
-
-dist_pkgdata_DATA = $(GLADEFILES) 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

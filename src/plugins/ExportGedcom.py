@@ -40,13 +40,14 @@ import time
 #-------------------------------------------------------------------------
 import gen.lib
 import const
-import _GedcomInfo as GedcomInfo
+import GrampsDbUtils._GedcomInfo as GedcomInfo
 import Errors
 import ExportOptions
 import BasicUtils
 from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
+from gen.plug import PluginManager, ExportPlugin
 
 #-------------------------------------------------------------------------
 #
@@ -306,12 +307,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     so that it can provide visual feedback via a progress bar if needed.
     """
 
-    def __init__(self, database, person, cmd_line=0,
+    def __init__(self, database, cmd_line=0,
                  option_box=None, callback=None):
         BasicUtils.UpdateCallback.__init__(self, callback)
 
         self.dbase = database
-        self.person = person
         self.cmd_line = cmd_line
         self.dirname = None
         self.gedcom_file = None
@@ -1502,14 +1502,13 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 #
 #
 #-------------------------------------------------------------------------
-def export_data(database, filename, person, option_box, callback=None):
+def export_data(database, filename, option_box=None, callback=None):
     """
     External interface used to register with the plugin system.
     """
     ret = False
     try:
-        ged_write = GedcomWriter(database, person, 0,  
-                                 option_box, callback)
+        ged_write = GedcomWriter(database, 0, option_box, callback)
         ret = ged_write.write_gedcom_file(filename)
     except IOError, msg:
         msg2 = _("Could not create %s") % filename
@@ -1520,17 +1519,19 @@ def export_data(database, filename, person, option_box, callback=None):
         ErrorDialog(_("Could not create %s") % filename)
     return ret
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# Register with the plugin system
 #
-#
-#-------------------------------------------------------------------------
-TITLE = _('GE_DCOM')
-DESCRIPTION = _('GEDCOM is used to transfer data between genealogy programs. '
+#------------------------------------------------------------------------
+_description = _('GEDCOM is used to transfer data between genealogy programs. '
                 'Most genealogy software will accept a GEDCOM file as input.')
-CONFIG = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
-FILENAME = 'ged'
+_config = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
 
-from gen.plug import PluginManager
 pmgr = PluginManager.get_instance()
-pmgr.register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)
+plugin = ExportPlugin(name            = _('GE_DCOM'), 
+                      description     = _description,
+                      export_function = export_data,
+                      extension       = "ged",
+                      config          = _config )
+pmgr.register_plugin(plugin)

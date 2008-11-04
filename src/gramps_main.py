@@ -275,9 +275,8 @@ class Gramps:
         # we may need to change the order of operation
         ah = ArgHandler.ArgHandler(state, self.vm, args)
         if ah.need_gui():
-            retval = ah.handle_args()
-            if retval:
-                filename, filetype = retval
+            filename = ah.handle_args()
+            if filename:
                 self.vm.post_init_interface(show_manager=False)
                 self.vm.open_activate(filename)
             else:

@@ -45,23 +45,15 @@ import logging
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsDbUtils
-import Mime
-from QuestionDialog import ErrorDialog
 import Config
 import RecentFiles
 import Utils
-import gen.db.exceptions as GX
 import gen
 from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
-
-IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
-                const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
-                const.APP_GRAMPS)
 
 _help = """
 Usage: gramps.py [OPTION...]
@@ -74,7 +66,7 @@ Help options
 Application options
   -O, --open=FAMILY_TREE                 Open family tree
   -i, --import=FILENAME                  Import file
-  -o, --output=FILENAME                  Write file
+  -e, --export=FILENAME                  Export file
   -f, --format=FORMAT                    Specify format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
@@ -96,7 +88,7 @@ class ArgHandler:
                             All following arguments will be ignored.
     -O, --open=FAMTREE  :   Family tree or family tree database dir to open.
     -i, --import=FILE   :   filename to import.
-    -o, --output=FILE   :   filename to export.
+    -e, --export=FILE   :   filename to export.
     -f, --format=FORMAT :   format of the file preceding this option.
     
     If the filename (no flags) is specified, the interactive session is 
@@ -148,11 +140,9 @@ class ArgHandler:
         1/ Just the family tree (name or database dir)
         2/ -O, Open of a family tree
         3/ -i, Import of any format understood by an importer, optionally provide
-            -f to indicate format (possible: 'gedcom','gramps-xml','gramps-pkg',
-                'grdb','geneweb'
-        4/ -o, output a family tree in required format, optionally provide
-            -f to indicate format (possible: 'gedcom',
-                'gramps-xml','gramps-pkg','iso','wft','geneweb')
+            -f to indicate format
+        4/ -e, export a family tree in required format, optionally provide
+            -f to indicate format
         5/ -a, --action:    An action (possible: 'check', 'summary', 'report', 
                             'tool')
         6/ -u, --force-unlock: A locked database can be unlocked by given this
@@ -187,84 +177,19 @@ class ArgHandler:
         for opt_ix in range(len(options)):
             option, value = options[opt_ix]
             if option in ( '-O', '--open'):
-                self.handle_open_option(value)
+                self.__handle_open_option(value)
             elif option in ( '-i', '--import'):
-                fname = value
-                fullpath = os.path.abspath(os.path.expanduser(fname))
-
                 format = None
-                ftype = Mime.get_type(fullpath)
-                if opt_ix<len(options)-1 \
-                   and options[opt_ix+1][0] in ( '-f', '--format'): 
-                    format = options[opt_ix+1][1]
-                    if format not in ('gedcom',
-                                      'gramps-xml',
-                                      'gramps-pkg',
-                                      'grdb',
-                                      'geneweb'):
-                        print "Invalid format:  %s" % format
-                        print "Ignoring input file:  %s" % fname
-                        continue
-                elif ftype == const.APP_GEDCOM:
-                    format = 'gedcom'
-                elif ftype == const.APP_GRAMPS_PKG:
-                    format = 'gramps-pkg'
-                elif ftype == const.APP_GRAMPS_XML:
-                    format = 'gramps-xml'
-                elif ftype == const.APP_GRAMPS:
-                    format = 'grdb'
-                elif ftype == const.APP_GENEWEB:
-                    format = 'geneweb'
-                else:
-                    print 'Unrecognized type: "%s" for input file: %s' \
-                          % (ftype,fname)
-                    print "Ignoring input file:  %s" % fname
-                    continue
-                self.imports.append((fname, format))
-            elif option in ( '-o', '--output' ):
-                outfname = value
-                fullpath = os.path.abspath(os.path.expanduser(outfname))
-                if os.path.exists(fullpath):
-                    print "WARNING: Output file already exist!"
-                    print "WARNING: It will be overwritten:\n   %s" % fullpath
-                    answer = None
-                    while not answer:
-                        answer = raw_input('OK to overwrite? (yes/no) ')
-                    if answer.upper() in ('Y','YES'):
-                        print "Will overwrite the existing file: %s" % fullpath
-                    else:
-                        print "Will skip the output file: %s" % fullpath
-                        continue
-                if opt_ix < len(options)-1 \
-                            and options[opt_ix+1][0] in ( '-f', '--format'): 
-                    outformat = options[opt_ix+1][1]
-                    if outformat not in ('gedcom',
-                                         'gramps-xml',
-                                         'gramps-pkg',
-                                         'grdb',
-                                         'iso',
-                                         'wft',
-                                         'geneweb'):
-                        print "Invalid format for output:  %s" % outformat
-                        print "Ignoring output file:  %s" % outfname
-                        continue
-                elif outfname[-3:].upper() == "GED":
-                    outformat = 'gedcom'
-                elif outfname[-4:].upper() == "GPKG":
-                    outformat = 'gramps-pkg'
-                elif outfname[-3:].upper() == "WFT":
-                    outformat = 'wft'
-                elif outfname[-2:].upper() == "GW":
-                    outformat = 'geneweb'
-                elif outfname[-6:].upper() == "GRAMPS":
-                    outformat = 'gramps-xml'
-                elif outfname[-4:].upper() == "GRDB":
-                    outformat = 'grdb'
-                else:
-                    print "Unrecognized format for output file %s" % outfname
-                    print "Ignoring output file:  %s" % outfname
-                    continue
-                self.exports.append((fullpath, outformat))
+                if opt_ix < len(options) - 1 \
+                   and options[opt_ix + 1][0] in ( '-f', '--format'): 
+                    format = options[opt_ix + 1][1]
+                self.__handle_import_option(value, format)
+            elif option in ( '-e', '--export' ):
+                format = None
+                if opt_ix < len(options) - 1 \
+                   and options[opt_ix + 1][0] in ( '-f', '--format'): 
+                    format = options[opt_ix + 1][1]
+                self.__handle_export_option(value, format)
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ( 'check', 'summary', 'report', 'tool' ):
@@ -287,26 +212,11 @@ class ArgHandler:
             elif option in ('-u', '--force-unlock'):
                 self.force_unlock = True
 
-    def handle_open_option(self, value):
+    def __handle_open_option(self, value):
         """
         Handle the "-O" or "--open" option.                            
         """
-        db_path = None
-        
-        # First, check if this is the name of a family tree
-        data = self.dbman.family_tree(value)
-        if data is not None:
-            # This is a known database name. Use it.
-            db_path, ftype, title = data
-        else:
-            # This is not a known database name.
-            # Check if the user provided a db path instead.
-            fullpath = os.path.abspath(os.path.expanduser(value))
-            if os.path.isdir(fullpath):
-                # The user provided a directory. Check if it is a valid tree.
-                name_file_path = os.path.join(fullpath, NAME_FILE)
-                if os.path.isfile(name_file_path):
-                    db_path = fullpath
+        db_path = self.__deduce_db_path(value)
 
         if db_path:
             # We have a potential database path.
@@ -319,7 +229,95 @@ class ArgHandler:
             print _("If gedcom, gramps-xml or grdb, use the -i option to "
                     "import into a family tree instead")
             sys.exit(0)
+
+    def __handle_import_option(self, value, format):
+        """
+        Handle the "-i" or "--import" option.                            
+        """
+        fname = value
+        fullpath = os.path.abspath(os.path.expanduser(fname))
+        if not os.path.exists(fullpath):
+            print 'Import file not found.'
+            print "Ignoring import file:  %s" % fname
+            return
+        
+        if format is None:
+            # Guess the file format based on the file extension.
+            # This will get the lower case extension without a period, 
+            # or an empty string.
+            format = os.path.splitext(fname)[-1][1:].lower()
+
+        pmgr = PluginManager.get_instance()
+        plugin_found = False
+        for plugin in pmgr.get_import_plugins():
+            if format == plugin.get_extension():
+                plugin_found = True
                 
+        if plugin_found:
+            self.imports.append((fname, format))
+        else:
+            print 'Unrecognized type: "%s" for import file: %s' \
+                  % (format, fname)
+            print "Ignoring import file:  %s" % fname
+            
+    def __handle_export_option(self, value, format):
+        """
+        Handle the "-e" or "--export" option.                            
+        """
+        fname = value
+        fullpath = os.path.abspath(os.path.expanduser(fname))
+        if os.path.exists(fullpath):
+            print "WARNING: Output file already exist!"
+            print "WARNING: It will be overwritten:\n   %s" % fullpath
+            answer = None
+            while not answer:
+                answer = raw_input('OK to overwrite? (yes/no) ')
+            if answer.upper() in ('Y','YES'):
+                print "Will overwrite the existing file: %s" % fullpath
+            else:
+                print "Will skip the output file: %s" % fullpath
+                return
+
+        if format is None:
+            # Guess the file format based on the file extension.
+            # This will get the lower case extension without a period, 
+            # or an empty string.
+            format = os.path.splitext(fname)[-1][1:].lower()
+
+        pmgr = PluginManager.get_instance()
+        plugin_found = False
+        for plugin in pmgr.get_export_plugins():
+            if format == plugin.get_extension():
+                plugin_found = True
+                
+        if plugin_found:
+            self.exports.append((fullpath, format))
+        else:
+            print "Unrecognized format for export file %s" % fname
+            print "Ignoring export file:  %s" % fname
+        
+    def __deduce_db_path(self, db_name_or_path):
+        """
+        Attempt to find a database path for the given parameter.
+        
+        @return: The path to a Gramps DB
+                 or None if a database can not be deduced.
+        """
+        # First, check if this is the name of a family tree
+        db_path = self.dbman.get_family_tree_path(db_name_or_path)
+
+        if db_path is None:
+            # This is not a known database name.
+            # Check if the user provided a db path instead.
+            fullpath = os.path.abspath(os.path.expanduser(db_name_or_path))
+            if os.path.isdir(fullpath):
+                # The user provided a directory. Check if it is a valid tree.
+                name_file_path = os.path.join(fullpath, NAME_FILE)
+                if os.path.isfile(name_file_path):
+                    db_path = fullpath
+                    
+        return db_path
+        
     #-------------------------------------------------------------------------
     # Determine the need for GUI
     #-------------------------------------------------------------------------
@@ -358,80 +356,47 @@ class ArgHandler:
             for name, dirname in self.dbman.family_tree_list():
                 print dirname, ', with name ', name 
             sys.exit(0)
+            
         if self.list_more:
             print 'GRAMPS Family Trees:'
-            list = self.dbman.family_tree_summary()
-            for dict in list:
+            summary_list = self.dbman.family_tree_summary()
+            for summary in summary_list:
                 print "Family Tree \"%s\":" % dict["Family tree"]
-                for item in dict:
+                for item in summary:
                     if item != "Family tree":
                         print "   %s: %s" % (item, dict[item])
             sys.exit(0)
+            
         if self.help:
             print _help
             sys.exit(0)
+            
         if self.open_gui:
-            # Filename was given as gramps FILENAME. 
-            # Open a session with that file. Forget the rest of given arguments
-            success = False
-            if os.path.isdir(self.open_gui):
-                #only accept if a name.txt is found
-                path_name = os.path.join(self.open_gui, NAME_FILE)
-                if os.path.isfile(path_name):
-                    filetype = const.APP_FAMTREE
-                    filename = self.open_gui
-                else:
-                    filetype = 'No Fam Tree Dir'
-                    filename = self.open_gui
-            else:
-                filename = os.path.abspath(os.path.expanduser(self.open_gui))
-                filetype = Mime.get_type(filename)
-            if filetype is const.APP_FAMTREE:
-                success = True
-                pass
-            elif filetype in IMPORT_TYPES:
-                # Say the type outloud
-                if filetype == const.APP_GRAMPS:
-                    print "Type: GRAMPS 2.2.x GRDB database"
-                elif filetype == const.APP_GEDCOM:
-                    print "Type: GEDCOM file"
-                elif filetype == const.APP_GRAMPS_XML:
-                    print "Type: GRAMPS XML database"
-                elif filetype == const.APP_GRAMPS_PKG:
-                    print "Type: GRAMPS XML package"
+            # First check if a Gramps database was provided
+            # (either a database path or a database name)
+            db_path = self.__deduce_db_path(self.open_gui)
 
-                filename, filetype, name = self.dbman.import_new_db(filetype, 
-                                                               filename, None)
-                success = True
-            else:
-                #see if not just a name of a database is given
-                data = self.dbman.family_tree(self.open_gui)
-                if data is not None:
-                    filename, filetype = data[0], data[1]
-                    success = True
-                else:
-                    ErrorDialog( 
-                        _("Could not open file: %s") % filename,
-                        _('Not a valid Family tree given to open\n\n'
-                         ))
-                    print "Exiting..." 
-                    sys.exit(0)
-            if success:
+            if not db_path:
+                # Apparently it is not a database. See if it is a file that
+                # can be imported.
+                db_path, title = self.dbman.import_new_db(self.open_gui, None)
+
+            if db_path:
                 # Test if not locked or problematic
-                if not self.__check_db(filename, self.force_unlock):
+                if not self.__check_db(db_path, self.force_unlock):
                     sys.exit(0)
                 # Add the file to the recent items
-                path = os.path.join(filename, "name.txt")
+                path = os.path.join(db_path, "name.txt")
                 try:
                     ifile = open(path)
                     title = ifile.readline().strip()
                     ifile.close()
                 except:
-                    title = filename
-                RecentFiles.recent_files(filename, title)
+                    title = db_path
+                RecentFiles.recent_files(db_path, title)
             else:
                 sys.exit(1)
-            return (filename, filetype)
+            return db_path
            
         if self.open:
             # Family Tree to open was given. Open it 
@@ -496,7 +461,7 @@ class ArgHandler:
                     os.path.isfile(os.path.join(filename, "name.txt")) and \
                     self.__check_db(filename):
                 self.vm.db_loader.read_file(filename)
-                return (filename, const.APP_FAMTREE)
+                return filename
 
     def __check_db(self, dbpath, force_unlock = False):
         # Test if not locked or problematic
@@ -521,88 +486,12 @@ class ArgHandler:
         Command-line import routine. Try to import filename using the format.
         Any errors will cause the sys.exit(1) call.
         """
-        if format == 'grdb':
-            #2.x database
-            filename = os.path.normpath(os.path.abspath(filename))
-            try:
-                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS)(
-                    self.state.db,filename,empty)
-            except GX.GrampsDbException, e:
-                print "%s" % e.value
-                sys.exit(1)
-            except:
-                print "Error importing %s" % filename
-                sys.exit(1)
-        elif format == 'gedcom':
-            filename = os.path.normpath(os.path.abspath(filename))
-            filename = Utils.get_unicode_path(filename)
-            try:
-                # Cheating here to use default encoding
-                from GrampsDbUtils._ReadGedcom import import2
-                import2(self.state.db, filename, None, "", False)
-            except:
-                print "Error importing %s" % filename
-                sys.exit(1)
-        elif format == 'gramps-xml':
-            try:
-                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)(
-                    self.state.db,filename,None,self.cl)
-            except:
-                print "Error importing %s" % filename
-                sys.exit(1)
-        elif format == 'geneweb':
-            import ImportGeneWeb
-            filename = os.path.normpath(os.path.abspath(filename))
-            try:
-                ImportGeneWeb.importData(self.state.db, filename, None)
-            except:
-                print "Error importing %s" % filename
-                sys.exit(1)
-        elif format == 'gramps-pkg':
-            tmpdir_path = Utils.get_empty_tempdir("imp_gpkgdir")
-            try:
-                import tarfile
-                archive = tarfile.open(filename)
-                for tarinfo in archive:
-                    archive.extract(tarinfo, tmpdir_path)
-                archive.close()
-            except tarfile.ReadError, msg:
-                print "Error reading archive:", msg
-                sys.exit(1)
-            except tarfile.CompressionError, msg:
-                print "Error uncompressing archive:", msg
-                sys.exit(1)
-            except:
-                print "Error extracting into %s" % tmpdir_path
-                sys.exit(1)
-
-            dbname = os.path.join(tmpdir_path, const.XMLFILE)
-
-            try:
-                GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)(
-                    self.state.db,dbname,None)
-            except:
-                print "Error importing %s" % filename
-                sys.exit(1)
-            # Clean up tempdir after ourselves
-            #     THIS HAS BEEN CHANGED, because now we want to keep images
-            #     stay after the import is over. Just delete the XML file.
-            ##jgs:FIXME for how long? just for debug? or this session?
-            ##  must not be forever, since re-exec of this routine 
-            ##   clears dirfiles without asking 
-            ##   & expands nre tarball possibly overwriting subdirs
-            ##
-            ## if only debugging, could do Utils.rm_tempdir here
-            ## in any case, no real harm (exc. space) to leave stuff here
-            ## until next exec of this, which will discard all old stuff
-            os.remove(dbname)
-##             files = os.listdir(tmpdir_path) 
-##             for fn in files:
-##                 os.remove(os.path.join(tmpdir_path,fn))
-##             os.rmdir(tmpdir_path)
-        else:
-            print "Invalid format:  %s" % format
-            sys.exit(1)
+        pmgr = PluginManager.get_instance()
+        for plugin in pmgr.get_import_plugins():
+            if format == plugin.get_extension():
+                import_function = plugin.get_import_function()
+                import_function(self.state.db, filename, None)
+        
         if not self.cl:
             if self.imp_db_path:
                 return self.vm.open_activate(self.imp_db_path)
@@ -620,71 +509,11 @@ class ArgHandler:
         Try to write into filename using the format.
         Any errors will cause the sys.exit(1) call.
         """
-        filename = os.path.abspath(os.path.expanduser(filename))
-        if format == 'grdb':
-            print "GRDB format write is no longer supported!"
-            sys.exit(1)
-        elif format == 'gedcom':
-            try:
-                gw = GrampsDbUtils.GedcomWriter(self.state.db, None, 1)
-                ret = gw.write_gedcom_file(filename)
-                print "... finished writing %s" % filename
-            except:
-                print "Error exporting %s" % filename
-                sys.exit(1)
-        elif format == 'gramps-xml':
-            filename = os.path.normpath(os.path.abspath(filename))
-            if filename:
-                try:
-                    g = GrampsDbUtils.XmlWriter(self.state.db, None, 0, 1)
-                    ret = g.write(filename)
-                    print "... finished writing %s" % filename
-                except:
-                    print "Error exporting %s" % filename
-                    sys.exit(1)
-            else:
-                print "Error exporting %s" % filename
-        elif format == 'gramps-pkg':
-            try:
-                import WritePkg
-                writer = WritePkg.PackageWriter(self.state.db, filename)
-                ret = writer.export()
-                print "... finished writing %s" % filename
-            except:
-                print "Error creating %s" % filename
-                sys.exit(1)
-        elif format == 'iso':
-            import WriteCD
-            try:
-                writer = WriteCD.PackageWriter(self.state.db, filename, 1)
-                ret = writer.export()
-                print "... finished writing %s" % filename
-            except:
-                print "Error exporting %s" % filename
-                sys.exit(1)
-        elif format == 'wft':
-            import WriteFtree
-            try:
-                writer = WriteFtree.FtreeWriter(self.state.db, None, 1,
-                                                filename)
-                ret = writer.export_data()
-                print "... finished writing %s" % filename
-            except:
-                print "Error exporting %s" % filename
-                sys.exit(1)
-        elif format == 'geneweb':
-            import WriteGeneWeb
-            try:
-                writer = WriteGeneWeb.GeneWebWriter(self.state.db,
-                                                    None, 1, filename)
-                ret = writer.export_data()
-                print "... finished writing %s" % filename
-            except:
-                print "Error exporting %s" % filename
-                sys.exit(1)
-        else:
-            print "Invalid format: %s" % format
-            sys.exit(1)
+        pmgr = PluginManager.get_instance()
+        for plugin in pmgr.get_export_plugins():
+            if format == plugin.get_extension():
+                export_function = plugin.get_export_function()
+                export_function(self.state.db, filename)
 
     #-------------------------------------------------------------------------
     #
@@ -777,5 +606,3 @@ class ArgHandler:
             print "Unknown action: %s." % action
             sys.exit(1)
 
-def empty(val):
-    pass

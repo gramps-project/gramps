@@ -131,7 +131,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.logo      = gtk.gdk.pixbuf_new_from_file(_gramps_png)
         self.splash    = gtk.gdk.pixbuf_new_from_file(_splash_jpg)
             
-        self.obtain_export_formats()
+        pmgr = PluginManager.get_instance()
+        self.__exporters = pmgr.get_export_plugins()
         
         self.__previous_page = -1
 
@@ -191,7 +192,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         box.set_border_width(12)
         box.set_spacing(12)
 
-        table = gtk.Table(2*len(self.exportformats),2)
+        table = gtk.Table(2*len(self.__exporters),2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
@@ -200,9 +201,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         group = None
         recent_type = Config.get(Config.RECENT_EXPORT_TYPE)
         
-        for ix in range(len(self.exportformats)):
-            title = self.exportformats[ix][1]
-            description= self.exportformats[ix][2]
+        for ix in range(len(self.__exporters)):
+            title = self.__exporters[ix].get_name()
+            description= self.__exporters[ix].get_description()
 
             button = gtk.RadioButton(group,title)
             if not group:
@@ -248,7 +249,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if pagenumber == _ExportAssistant_pages['exporttypes'] :
             #decide if options need to be shown:
             ix = self.get_selected_format_index()
-            if self.exportformats[ix][3]: 
+            if self.__exporters[ix].get_config(): 
                 return pagenumber + 1
             else :
                 # no options needed
@@ -260,12 +261,15 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         """This method gets the option page, and fills it with the options."""
         option = self.get_selected_format_index()
         vbox = self.get_nth_page(_ExportAssistant_pages['options'])
-        self.set_page_title(vbox, self.exportformats[option][3][0])
+        (config_title, config_box_class) = self.__exporters[option].get_config()
+        self.set_page_title(vbox, config_title)
         # remove present content of the vbox
         vbox.foreach(vbox.remove)
         # add new content
-        option_box_class = self.exportformats[option][3][1]
-        self.option_box_instance = option_box_class(self.person)
+        if config_box_class:
+            self.option_box_instance = config_box_class(self.person)
+        else: 
+            self.option_box_instance = None
         box = self.option_box_instance.get_option_box()
         vbox.add(box)
         vbox.show_all()
@@ -430,7 +434,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             # The confirm page with apply button
             # Present user with what will happen
             ix = self.get_selected_format_index()
-            format = self.exportformats[ix][1].replace('_','')
+            format = self.__exporters[ix].get_name()
 
             #Allow for exotic error: file is still not correct
             self.check_fileselect(self.chooser, show=False)
@@ -505,18 +509,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #clean up ManagedWindow menu, then destroy window, bring forward parent
         
         ManagedWindow.ManagedWindow.close(self,*obj)
-    
-    def obtain_export_formats(self):
-        """
-        This method builds its own list of available exports. 
-        
-        The list is built from the list of exporters in the PluginManager and 
-        from the locally defined exports (i.e. native export defined here).
-        
-        """
-        pmgr = PluginManager.get_instance()
-        self.exportformats = [item for item in pmgr.get_export_list()]
-        
+
     def get_intro_text(self):
         return _('Under normal circumstances, GRAMPS does not require you '
                  'to directly save your changes. All changes you make are '
@@ -546,7 +539,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def suggest_filename(self):
         """Prepare suggested filename and set it in the file chooser."""
         ix = self.get_selected_format_index()
-        ext = self.exportformats[ix][4]
+        ext = self.__exporters[ix].get_extension()
         
         # Suggested folder: try last export, then last import, then home.
         default_dir = Config.get(Config.RECENT_EXPORT_DIR)
@@ -575,15 +568,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         Config.set(Config.RECENT_EXPORT_DIR, os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         Config.set(Config.RECENT_EXPORT_TYPE, ix)
-        if self.exportformats[ix][3]:
-            success = self.exportformats[ix][0](self.dbstate.db,
-                                          filename,self.person,
-                                          self.option_box_instance,
-                                          self.callback)
-        else:
-            success = self.exportformats[ix][0](self.dbstate.db,
-                                          filename,self.person,
-                                          self.callback)
+        export_function = self.__exporters[ix].get_export_function()
+        success = export_function(self.dbstate.db,
+                                  filename,
+                                  self.option_box_instance,
+                                  self.callback)
         return success
     
     def pre_save(self,page):

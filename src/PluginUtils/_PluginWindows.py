@@ -133,7 +133,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             data = model.get_value(node, 3)
             name = model.get_value(node, 1)
             if data:
-                PluginTrace(self.uistate, self.track, data, name)
+                PluginTrace(self.uistate, [], data, name)
                 
     def build_menu_names(self, obj):
         return (self.title, "")
