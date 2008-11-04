@@ -283,7 +283,7 @@ src/plugins/ImportGeneWeb.py
 src/plugins/ImportGpkg.py
 src/plugins/ImportGrdb.py
 src/plugins/ImportProGen.py
-src/plugins/ImportvCard.py
+src/plugins/ImportVCard.py
 src/plugins/ImportXml.py
 src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
