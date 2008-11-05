@@ -41,7 +41,7 @@ from Filters.Rules._Rule import Rule
 class HasSourceBase(Rule):
     """Objects having notes"""
 
-    labels      = [  _('Number of instances:'), _('Number must be')]
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = _('Objects with <count> sources')
     description = _("Matches objects that have a certain number of sources")
     category    = _('General filters')
