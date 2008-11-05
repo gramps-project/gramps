@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-01 20:32+0100\n"
-"PO-Revision-Date: 2008-11-02 21:26+0100\n"
+"PO-Revision-Date: 2008-11-05 18:52+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18163,7 +18163,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Ist ein Nachkomme von <Person> wenigstens N Generationen entfernt"
+msgstr "Ist ein Nachkomme von <Person> wenigstens <N> Generationen entfernt"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid ""
