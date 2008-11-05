@@ -40,5 +40,5 @@ from Filters.Rules._HasGalleryBase import HasGalleryBase
 class HasGallery(HasGalleryBase):
     """Rule that checks for source who has media object reference"""
 
-    name        = _('Sources with media')
-    description = _("Matches sources with media object in the gallery")
+    name        = _('Sources with <count> media')
+    description = _("Matches sources with a certain number of items in the gallery")
