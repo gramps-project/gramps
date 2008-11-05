@@ -43,5 +43,5 @@ from Filters.Rules._HasNoteBase import HasNoteBase
 class HasNote(HasNoteBase):
     """Families having notes"""
 
-    name        = _('Families having <count> note')
-    description = _("Matches families having a certain number of items in note")
+    name        = _('Families having <count> notes')
+    description = _("Matches families having a certain number notes")

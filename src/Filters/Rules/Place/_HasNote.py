@@ -43,5 +43,5 @@ from Filters.Rules._HasNoteBase import HasNoteBase
 class HasNote(HasNoteBase):
     """Places having notes"""
 
-    name        = _('Places having <count> note')
-    description = _("Matches places having a certain number of items in note")
+    name        = _('Places having <count> notes')
+    description = _("Matches places having a certain number of notes")

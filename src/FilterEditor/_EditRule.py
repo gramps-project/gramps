@@ -188,7 +188,7 @@ class MyFilters(gtk.ComboBox):
 #-------------------------------------------------------------------------
 class MyLesserEqualGreater(gtk.ComboBox):
 
-    def __init__(self):
+    def __init__(self, default=0):
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
@@ -198,7 +198,7 @@ class MyLesserEqualGreater(gtk.ComboBox):
         self.clist = [_('lesser than'), _('equal to'), _('greater than')]
         for name in self.clist:
             store.append(row=[name])
-        self.set_active(0)
+        self.set_active(default)
         self.show()
 
     def get_text(self):
@@ -475,10 +475,10 @@ class EditRule(ManagedWindow.ManagedWindow):
                             _('Number of instances:')
                             ]:
                     t = MyInteger(0, 999)
-                elif v in [_('Reference count must be:'),
-                            _('Number must be')
-                            ]:
+                elif v == _('Reference count must be:'):
                     t = MyLesserEqualGreater()
+                elif v == _('Number must be'):
+                    t = MyLesserEqualGreater(1)
                 elif v == _('Number of generations:'):
                     t = MyInteger(1, 32)
                 elif v == _('ID:'):

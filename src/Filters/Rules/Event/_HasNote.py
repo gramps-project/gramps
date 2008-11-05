@@ -43,5 +43,5 @@ from Filters.Rules._HasNoteBase import HasNoteBase
 class HasNote(HasNoteBase):
     """Events having notes"""
 
-    name        = _('Events having <count> note')
-    description = _("Matches events having a certain number of items in note")
+    name        = _('Events having <count> notes')
+    description = _("Matches events having a certain number of notes")
