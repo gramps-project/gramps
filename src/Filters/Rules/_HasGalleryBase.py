@@ -40,8 +40,8 @@ from Filters.Rules import Rule
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""
 
-    labels      = [  _('Number of instances:'), _('Number must be')]
-    name        = _('Object with <count> Media reference')
+    labels      = [  _('Number of instances:'), _('Number must be:')]
+    name        = _('Object with <count> Media references')
     description = _("Matches objects with certain number of items in the gallery")
     category    = _('General filters')
 

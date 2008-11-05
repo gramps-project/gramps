@@ -43,5 +43,5 @@ from Filters.Rules._HasLDSBase import HasLDSBase
 class HasLDS(HasLDSBase):
     """Rule that checks for family with a LDS event"""
 
-    name        = _('Families with LDS event')
-    description = _("Matches families with LDS event")
+    name        = _('Families with LDS events')
+    description = _("Matches families with a certain number of LDS events")

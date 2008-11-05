@@ -41,7 +41,7 @@ from Filters.Rules._Rule import Rule
 class HasNoteBase(Rule):
     """Objects having notes"""
 
-    labels      = [  _('Number of instances:'), _('Number must be')]
+    labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = _('Object with notes')
     description = _("Matches objects that have a certain number of notes")
     category    = _('General filters')

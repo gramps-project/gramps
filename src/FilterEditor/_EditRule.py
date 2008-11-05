@@ -477,7 +477,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyInteger(0, 999)
                 elif v == _('Reference count must be:'):
                     t = MyLesserEqualGreater()
-                elif v == _('Number must be'):
+                elif v == _('Number must be:'):
                     t = MyLesserEqualGreater(1)
                 elif v == _('Number of generations:'):
                     t = MyInteger(1, 32)

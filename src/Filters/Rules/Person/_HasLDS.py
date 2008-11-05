@@ -43,5 +43,5 @@ from Filters.Rules._HasLDSBase import HasLDSBase
 class HasLDS(HasLDSBase):
     """Rule that checks for a person with a LDS event"""
 
-    name        = _('People with LDS event')
-    description = _("Matches people with LDS event")
+    name        = _('People with LDS events')
+    description = _("Matches people with a certain number of LDS events")
