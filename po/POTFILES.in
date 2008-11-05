@@ -493,6 +493,8 @@ src/Filters/Rules/_HasMarkerBase.py
 src/Filters/Rules/Person/_Disconnected.py
 src/Filters/Rules/Person/_Everyone.py
 src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py
+src/Filters/Rules/Person/_HasAddress.py
+src/Filters/Rules/Person/_HasAssociation.py
 src/Filters/Rules/Person/_HasAttribute.py
 src/Filters/Rules/Person/_HasBirth.py
 src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py
@@ -504,11 +506,15 @@ src/Filters/Rules/Person/_HasFamilyAttribute.py
 src/Filters/Rules/Person/_HasFamilyEvent.py
 src/Filters/Rules/Person/_HasGallery.py
 src/Filters/Rules/Person/_HasIdOf.py
+src/Filters/Rules/Person/_HasLDS.py
+src/Filters/Rules/Person/_HasMarkerOf.py
 src/Filters/Rules/Person/_HasNameOf.py
+src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Person/_HasNote.py
 src/Filters/Rules/Person/_HasNoteRegexp.py
 src/Filters/Rules/Person/_HasRelationship.py
+src/Filters/Rules/Person/_HasSource.py
 src/Filters/Rules/Person/_HasSourceOf.py
 src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
 src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py
@@ -540,6 +546,7 @@ src/Filters/Rules/Person/_IsWitness.py
 src/Filters/Rules/Person/_MatchesEventFilter.py
 src/Filters/Rules/Person/_MatchesFilter.py
 src/Filters/Rules/Person/_MatchIdOf.py
+src/Filters/Rules/Person/_MissingParent.py
 src/Filters/Rules/Person/_MultipleMarriages.py
 src/Filters/Rules/Person/_NeverMarried.py
 src/Filters/Rules/Person/_NoBirthdate.py
@@ -551,45 +558,49 @@ src/Filters/Rules/Person/_RegExpName.py
 src/Filters/Rules/Person/_RelationshipPathBetween.py
 src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py
 src/Filters/Rules/Person/_SearchName.py
-src/Filters/Rules/Person/_HasMarkerOf.py
-src/Filters/Rules/Person/_MissingParent.py
 
 # Filters.Rules.Family package
 src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Family/_AllFamilies.py
+src/Filters/Rules/Family/_ChildHasIdOf.py
+src/Filters/Rules/Family/_ChildHasNameOf.py
 src/Filters/Rules/Family/_FamilyPrivate.py
+src/Filters/Rules/Family/_FatherHasIdOf.py
+src/Filters/Rules/Family/_FatherHasNameOf.py
 src/Filters/Rules/Family/_HasAttribute.py
 src/Filters/Rules/Family/_HasEvent.py
+src/Filters/Rules/Family/_HasGallery.py
 src/Filters/Rules/Family/_HasIdOf.py
+src/Filters/Rules/Family/_HasLDS.py
+src/Filters/Rules/Family/_HasMarkerOf.py
+src/Filters/Rules/Family/_HasNote.py
 src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
+src/Filters/Rules/Family/_HasSource.py
 src/Filters/Rules/Family/_IsBookmarked.py
-src/Filters/Rules/Family/_RegExpIdOf.py
 src/Filters/Rules/Family/_MatchesFilter.py
+src/Filters/Rules/Family/_MemberBase.py
 src/Filters/Rules/Family/_MotherHasIdOf.py
-src/Filters/Rules/Family/_FatherHasIdOf.py
 src/Filters/Rules/Family/_MotherHasNameOf.py
-src/Filters/Rules/Family/_ChildHasIdOf.py
-src/Filters/Rules/Family/_FatherHasNameOf.py
-src/Filters/Rules/Family/_ChildHasNameOf.py
 src/Filters/Rules/Family/_SearchFatherName.py
 src/Filters/Rules/Family/_SearchChildName.py
 src/Filters/Rules/Family/_SearchMotherName.py
 src/Filters/Rules/Family/_RegExpFatherName.py
 src/Filters/Rules/Family/_RegExpMotherName.py
 src/Filters/Rules/Family/_RegExpChildName.py
-src/Filters/Rules/Family/_MemberBase.py
-src/Filters/Rules/Family/_HasMarkerOf.py
+src/Filters/Rules/Family/_RegExpIdOf.py
 
 # Filters.Rules.Event package
 src/Filters/Rules/Event/_AllEvents.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasAttribute.py
 src/Filters/Rules/Event/_HasData.py
+src/Filters/Rules/Event/_HasGallery.py
 src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasMarkerOf.py
+src/Filters/Rules/Event/_HasNote.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
 src/Filters/Rules/Event/_HasReferenceCountOf.py
@@ -602,12 +613,15 @@ src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
 src/Filters/Rules/Place/_AllPlaces.py
+src/Filters/Rules/Place/_HasGallery.py
 src/Filters/Rules/Place/_HasIdOf.py
 src/Filters/Rules/Place/_HasNoLatOrLon.py
+src/Filters/Rules/Place/_HasNote.py
 src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Place/_HasNoteRegexp.py
 src/Filters/Rules/Place/_HasPlace.py
 src/Filters/Rules/Place/_HasReferenceCountOf.py
+src/Filters/Rules/Place/_HasSource.py
 src/Filters/Rules/Place/_InLatLonNeighborhood.py
 src/Filters/Rules/Place/_MatchesFilter.py
 src/Filters/Rules/Place/_MatchesEventFilter.py
@@ -616,15 +630,17 @@ src/Filters/Rules/Place/_RegExpIdOf.py
 src/Filters/Rules/Place/__init__.py
 
 # Filters.Rules.Source package
+src/Filters/Rules/Source/_AllSources.py
+src/Filters/Rules/Source/_HasGallery.py
+src/Filters/Rules/Source/_HasIdOf.py
+src/Filters/Rules/Source/_HasNote.py
+src/Filters/Rules/Source/_HasNoteRegexp.py
+src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Source/_HasReferenceCountOf.py
+src/Filters/Rules/Source/_HasSource.py
 src/Filters/Rules/Source/_MatchesFilter.py
 src/Filters/Rules/Source/_SourcePrivate.py
 src/Filters/Rules/Source/_RegExpIdOf.py
-src/Filters/Rules/Source/_HasReferenceCountOf.py
-src/Filters/Rules/Source/_HasSource.py
-src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py
-src/Filters/Rules/Source/_AllSources.py
-src/Filters/Rules/Source/_HasNoteRegexp.py
-src/Filters/Rules/Source/_HasIdOf.py
 src/Filters/Rules/Source/__init__.py
 
 # Filters.Rules.MediaObject package
