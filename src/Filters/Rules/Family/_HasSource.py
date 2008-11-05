@@ -43,5 +43,5 @@ from Filters.Rules._HasSourceBase import HasSourceBase
 class HasSource(HasSourceBase):
     """Families with sources"""
 
-    name        = _('Families with source')
-    description = _("Matches families with a source")
+    name        = _('Families with <count> source')
+    description = _("Matches families with a certain number of items in the source")
