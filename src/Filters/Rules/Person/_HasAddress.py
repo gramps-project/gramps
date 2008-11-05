@@ -43,9 +43,28 @@ from Filters.Rules import Rule
 class HasAddress(Rule):
     """Rule that checks for a person with a personal address"""
 
-    name        = _('People with address')
-    description = _("Matches people with a personal address")
+    labels      = [  _('Number of instances:'), _('Number must be:')]
+    name        = _('People with <count> address')
+    description = _("Matches peoplewith certain number of personal address")
     category    = _('General filters')
+
     
-    def apply(self, db, person):
-        return len( person.get_address_list()) > 0
+    def prepare(self, db):
+        # things we want to do just once, not for every handle
+        if  self.list[1] == _('lesser than'):
+           self.count_type = 0
+        elif self.list[1] == _('greater than'):
+            self.count_type = 2
+        else:
+            self.count_type = 1 # "equal to"
+
+        self.userSelectedCount = int(self.list[0])
+        
+    def apply(self, db, obj):
+        count = len( person.get_address_list())
+        if self.count_type == 0:     # "lesser than"
+            return count < self.userSelectedCount
+        elif self.count_type == 2:   # "greater than"
+            return count > self.userSelectedCount
+        # "equal to"
+        return count == self.userSelectedCount
