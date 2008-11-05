@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:07+0100\n"
-"PO-Revision-Date: 2008-11-04 17:50+0100\n"
+"POT-Creation-Date: 2008-11-05 09:37+0100\n"
+"PO-Revision-Date: 2008-11-05 11:12+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -11173,6 +11173,8 @@ msgstr "Matchar personer utan efternamn"
 #: ../src/Filters/Rules/_HasMarkerBase.py:50
 #: ../src/Filters/Rules/Person/_Disconnected.py:46
 #: ../src/Filters/Rules/Person/_Everyone.py:46
+#: ../src/Filters/Rules/Person/_HasAddress.py:48
+#: ../src/Filters/Rules/Person/_HasAssociation.py:48
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
@@ -11960,8 +11962,9 @@ msgid ""
 "compressed into one page. Clicking on a <strong>red square</strong> will "
 "take you to a page that shows all the events for that date!\n"
 msgstr ""
-"Denna kalender avser att ge dig snabb tillgång till alla dina "
-"data komprimerat till en sida. Genom att klicka på en <strong>röd ruta</strong> kommer du till en sida, som visar alla händelser på detta datum!\n"
+"Denna kalender avser att ge dig snabb tillgång till alla dina data "
+"komprimerat till en sida. Genom att klicka på en <strong>röd ruta</strong> "
+"kommer du till en sida, som visar alla händelser på detta datum!\n"
 
 #. open progress meter bar
 #: ../src/plugins/WebCal.py:1134
@@ -12041,7 +12044,9 @@ msgstr "Skapa en delårskalender"
 msgid ""
 "Create a partial year calendar. The start month will be equal to the current "
 "month to the end of the year."
-msgstr "Skapa en delårskalender. Första månaden blir den aktuella och till slutet av året."
+msgstr ""
+"Skapa en delårskalender. Första månaden blir den aktuella och till slutet av "
+"året."
 
 #: ../src/plugins/WebCal.py:1471
 msgid "Create multiple year calendars"
@@ -17595,6 +17600,22 @@ msgstr "Familjer med ofullständiga händelser"
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Matchar personer med saknat datum eller plats i en händelse i familjen"
 
+#: ../src/Filters/Rules/Person/_HasAddress.py:46
+msgid "People with address"
+msgstr "Personer med adress"
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:47
+msgid "Matches people with a personal address"
+msgstr "Matchar personer med egen adress"
+
+#: ../src/Filters/Rules/Person/_HasAssociation.py:46
+msgid "People with association"
+msgstr "Personer med relation"
+
+#: ../src/Filters/Rules/Person/_HasAssociation.py:47
+msgid "Matches people with association"
+msgstr "Matchar personer med relation"
+
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:82
 msgid "Personal attribute:"
@@ -17718,6 +17739,22 @@ msgstr "Person med <Id>"
 msgid "Matches person with a specified GRAMPS ID"
 msgstr "Matchar person med ett angivet GRAMPS-ID"
 
+#: ../src/Filters/Rules/Person/_HasLDS.py:46
+msgid "People with LDS event"
+msgstr "Personer med LDS-händelse"
+
+#: ../src/Filters/Rules/Person/_HasLDS.py:47
+msgid "Matches people with LDS event"
+msgstr "Matchar personer med LDS-händelse"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+msgid "People with <marker>"
+msgstr "Personer med <marker>"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
+msgid "Matches people with a marker of a particular value"
+msgstr "Matchar personer med en markering av ett visst värde"
+
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
 msgstr "Förnamn:"
@@ -17751,14 +17788,6 @@ msgstr "Personer med <namn>"
 msgid "Matches people with a specified (partial) name"
 msgstr "Matchar personer som har ett angivet (del)namn"
 
-#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
-msgid "People having notes containing <substring>"
-msgstr "Personer med <delsträng> i anteckningar"
-
-#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
-msgid "Matches people whose notes contain text matching a substring"
-msgstr "Matchar personer vars anteckningar innehåller angiven text"
-
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having note"
 msgstr "Personer med anteckning"
@@ -17766,6 +17795,14 @@ msgstr "Personer med anteckning"
 #: ../src/Filters/Rules/Person/_HasNote.py:47
 msgid "Matches people that have a note"
 msgstr "Matchar personer som har en anteckning"
+
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
+msgid "People having notes containing <substring>"
+msgstr "Personer med <delsträng> i anteckningar"
+
+#: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
+msgid "Matches people whose notes contain text matching a substring"
+msgstr "Matchar personer vars anteckningar innehåller angiven text"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
@@ -17804,11 +17841,19 @@ msgstr "Matchar personer med en viss släktskap/relation"
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_MissingParent.py:48
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:45
 #: ../src/Filters/Rules/Person/_NeverMarried.py:45
-#: ../src/Filters/Rules/Person/_MissingParent.py:48
 msgid "Family filters"
 msgstr "Släktfilter"
+
+#: ../src/Filters/Rules/Person/_HasSource.py:46
+msgid "People with source"
+msgstr "Personer med källa"
+
+#: ../src/Filters/Rules/Person/_HasSource.py:47
+msgid "Matches people with a source"
+msgstr "Matchar personer med källa"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:481
@@ -18082,6 +18127,18 @@ msgstr "Personer som matchar <filter>"
 msgid "Matches people matched by the specified filter name"
 msgstr "Matchar personer som matchas av det angivna filtret"
 
+#: ../src/Filters/Rules/Person/_MissingParent.py:44
+msgid "People missing parents"
+msgstr "Personer, som saknar föräldrar"
+
+#: ../src/Filters/Rules/Person/_MissingParent.py:45
+msgid ""
+"Matches people that are children in a family with less than two parents or "
+"are not children in any family."
+msgstr ""
+"Matchar personer, som är barn i en familj, med mindre än två föräldrar eller "
+"som inte är barn i någon familj."
+
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
 msgid "People with multiple marriage records"
 msgstr "Personer med flera giften"
@@ -18183,26 +18240,6 @@ msgstr ""
 "Matchar anorna för personer med bokmärken tillbaka till en gemensam ana och "
 "redovisar på så vis släktskapsvägen mellan två personer."
 
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
-msgid "People with <marker>"
-msgstr "Personer med <marker>"
-
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
-msgid "Matches people with a marker of a particular value"
-msgstr "Matchar personer med en markering av ett visst värde"
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:44
-msgid "People missing parents"
-msgstr "Personer, som saknar föräldrar"
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:45
-msgid ""
-"Matches people that are children in a family with less than two parents or "
-"are not children in any family."
-msgstr ""
-"Matchar personer, som är barn i en familj, med mindre än två föräldrar eller "
-"som inte är barn i någon familj."
-
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
 msgstr "Varje familj"
@@ -18211,6 +18248,35 @@ msgstr "Varje familj"
 msgid "Matches every family in the database"
 msgstr "Matchar varje familj i databasen"
 
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
+msgid "Person ID:"
+msgstr "Person-id:"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
+msgid "Families with child with the <Id>"
+msgstr "Familjer med barn med <id>"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
+msgid "Matches families where child has a specified GRAMPS ID"
+msgstr "Matchar familjer där barn har ett angivet GRAMPS-ID"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchChildName.py:49
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
+msgid "Child filters"
+msgstr "Barnfilter"
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
+msgid "Families with child with the <name>"
+msgstr "Familjer med barn med namnet <name>"
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
+msgid "Matches families where child has a specified (partial) name"
+msgstr "Matchar familjer där barn har ett angivet (del)namn"
+
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
 msgstr "Familjer markerade som privata"
@@ -18218,6 +18284,30 @@ msgstr "Familjer markerade som privata"
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
 msgstr "Matchar familjer som indikerats som privata"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
+msgid "Families with father with the <Id>"
+msgstr "Familjer med fader med id <id>"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
+msgid "Matches families whose father has a specified GRAMPS ID"
+msgstr "Matchar familjer vars far har ett angivet GRAMPS-ID"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
+msgid "Father filters"
+msgstr "Faderfilter"
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
+msgid "Families with father with the <name>"
+msgstr "Familjer vars far har namnet <namn>"
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
+msgid "Matches families whose father has a specified (partial) name"
+msgstr "Matchar familjer vars far har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 msgid "Families with the family <attribute>"
@@ -18235,6 +18325,14 @@ msgstr "Familjer med <händelse>"
 msgid "Matches families with an event of a particular value"
 msgstr "Matchar familjer som har en händelse med ett visst värde"
 
+#: ../src/Filters/Rules/Family/_HasGallery.py:43
+msgid "Families with media"
+msgstr "Familjer med media"
+
+#: ../src/Filters/Rules/Family/_HasGallery.py:44
+msgid "Matches families with media object in the gallery"
+msgstr "Matchar personer som har mediaobjekt i galleriet"
+
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
 msgstr "Familjer med <Id>"
@@ -18242,6 +18340,30 @@ msgstr "Familjer med <Id>"
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Matchar familjer med ett angivet GRAMPS-ID"
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:46
+msgid "Families with LDS event"
+msgstr "Familjer med LDS-händelse"
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:47
+msgid "Matches families with LDS event"
+msgstr "Matchar familjer med LDS-händelse"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
+msgid "Families with <marker>"
+msgstr "Familjer med <marker>"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
+msgid "Matches Families with a marker of a particular value"
+msgstr "Matchar familjer som har en markör av ett visst värde"
+
+#: ../src/Filters/Rules/Family/_HasNote.py:46
+msgid "Families having note"
+msgstr "Familjer med anteckning"
+
+#: ../src/Filters/Rules/Family/_HasNote.py:47
+msgid "Matches families that have a note"
+msgstr "Matchar familjer som har en anteckning"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
@@ -18275,6 +18397,14 @@ msgstr "Familjer med släktskapstypen"
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Matchar familjer med en släktskapstyp av ett visst värde"
 
+#: ../src/Filters/Rules/Family/_HasSource.py:46
+msgid "Families with source"
+msgstr "Familjer med källa"
+
+#: ../src/Filters/Rules/Family/_HasSource.py:47
+msgid "Matches families with a source"
+msgstr "Matchar familjer som har en källa"
+
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
 msgstr "Bokmärkta familjer"
@@ -18283,14 +18413,6 @@ msgstr "Bokmärkta familjer"
 msgid "Matches the families on the bookmark list"
 msgstr "Matchar familjerna i bokmärkeslistan"
 
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-msgid "Families with <Id> matching regular expression"
-msgstr "Familjer vars <id> matchar reguljärt uttryck"
-
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
-msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr "Matchar familjer vars GRAMPS-id matchar det reguljära uttrycket"
-
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
 msgstr "Släkter som matchar <filter>"
@@ -18298,12 +18420,6 @@ msgstr "Släkter som matchar <filter>"
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
 msgstr "Matchar familjer som matchas av det angivna filtret"
-
-#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-msgid "Person ID:"
-msgstr "Person-id:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
@@ -18320,21 +18436,6 @@ msgstr "Matchar familjer vars mor har ett angivet GRAMPS-ID"
 msgid "Mother filters"
 msgstr "Moderfilter"
 
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
-msgid "Families with father with the <Id>"
-msgstr "Familjer med fader med id <id>"
-
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Matchar familjer vars far har ett angivet GRAMPS-ID"
-
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
-#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
-msgid "Father filters"
-msgstr "Faderfilter"
-
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
 msgstr "Familjer vars mor har namnet <namn>"
@@ -18343,38 +18444,6 @@ msgstr "Familjer vars mor har namnet <namn>"
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
 msgstr "Matchar familjer vars mor har ett angivet (del)namn"
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
-msgid "Families with child with the <Id>"
-msgstr "Familjer med barn med <id>"
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Matchar familjer där barn har ett angivet GRAMPS-ID"
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchChildName.py:49
-#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
-msgid "Child filters"
-msgstr "Barnfilter"
-
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-msgid "Families with father with the <name>"
-msgstr "Familjer vars far har namnet <namn>"
-
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-msgid "Matches families whose father has a specified (partial) name"
-msgstr "Matchar familjer vars far har ett angivet (del)namn"
-
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-msgid "Families with child with the <name>"
-msgstr "Familjer med barn med namnet <name>"
-
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-msgid "Matches families where child has a specified (partial) name"
-msgstr "Matchar familjer där barn har ett angivet (del)namn"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
@@ -18428,13 +18497,13 @@ msgstr ""
 "Matchar familjer vars barn har ett namn, som matchar ett angivet reguljärt "
 "uttryck"
 
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
-msgid "Families with <marker>"
-msgstr "Familjer med <marker>"
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
+msgid "Families with <Id> matching regular expression"
+msgstr "Familjer vars <id> matchar reguljärt uttryck"
 
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
-msgid "Matches Families with a marker of a particular value"
-msgstr "Matchar familjer som har en markör av ett visst värde"
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
+msgid "Matches families whose GRAMPS ID matches the regular expression"
+msgstr "Matchar familjer vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -18473,6 +18542,14 @@ msgstr "Händelser med <data>"
 msgid "Matches events with data of a particular value"
 msgstr "Matchar händelser med data av ett visst värde"
 
+#: ../src/Filters/Rules/Event/_HasGallery.py:43
+msgid "Events with media"
+msgstr "Händelser med media"
+
+#: ../src/Filters/Rules/Event/_HasGallery.py:44
+msgid "Matches events with media object in the gallery"
+msgstr "Matcharhändelser som har mediaobjekt i galleriet"
+
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
 msgstr "Händelser med <Id>"
@@ -18488,6 +18565,14 @@ msgstr "Händelser med <marker>"
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
 msgstr "Matchar händelser, som har en markör av ett visst värde"
+
+#: ../src/Filters/Rules/Event/_HasNote.py:46
+msgid "Events having note"
+msgstr "Händelser med anteckning"
+
+#: ../src/Filters/Rules/Event/_HasNote.py:47
+msgid "Matches events that have a note"
+msgstr "Matchar händelser som har en anteckning"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -18577,6 +18662,14 @@ msgstr "Alla platser"
 msgid "Matches every place in the database"
 msgstr "Matchar alla platser i databasen"
 
+#: ../src/Filters/Rules/Place/_HasGallery.py:43
+msgid "Places with media"
+msgstr "Platser med media"
+
+#: ../src/Filters/Rules/Place/_HasGallery.py:44
+msgid "Matches places with media object in the gallery"
+msgstr "Matchar platser som har mediaobjekt i galleriet"
+
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
 msgstr "Platser med <id>"
@@ -18597,6 +18690,14 @@ msgstr "Matchar platser med tomt latitud eller longitud"
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
 msgid "Position filters"
 msgstr "Positionsfilter"
+
+#: ../src/Filters/Rules/Place/_HasNote.py:46
+msgid "Places having note"
+msgstr "Platser med anteckning"
+
+#: ../src/Filters/Rules/Place/_HasNote.py:47
+msgid "Matches places that have a note"
+msgstr "Matchar platser som har en anteckning"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
@@ -18717,29 +18818,53 @@ msgstr "Platser med <id> som matchar reguljärt uttryck"
 msgid "Matches places whose GRAMPS ID matches the regular expression"
 msgstr "Matchar platser vars GRAMPS-ID matchar det reguljära uttrycket"
 
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-msgid "Sources matching the <filter>"
-msgstr "Källor som matchar <filter>"
+#: ../src/Filters/Rules/Source/_AllSources.py:45
+msgid "Every source"
+msgstr "Alla källor"
 
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-msgid "Matches sources matched by the specified filter name"
-msgstr "Matchar källor som matchar det angivna filtret"
+#: ../src/Filters/Rules/Source/_AllSources.py:46
+msgid "Matches every source in the database"
+msgstr "Matchar alla källor i databasen"
 
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-msgid "Sources marked private"
-msgstr "Källor markerade som privata"
+#: ../src/Filters/Rules/Source/_HasGallery.py:43
+msgid "Sources with media"
+msgstr "Källor med media"
 
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-msgid "Matches sources that are indicated as private"
-msgstr "Matchar källor som indikerats som privata"
+#: ../src/Filters/Rules/Source/_HasGallery.py:44
+msgid "Matches sources with media object in the gallery"
+msgstr "Matchar källor som har mediaobjekt i galleriet"
 
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-msgid "Sources with <Id> matching regular expression"
-msgstr "Källor med <id> som matchar reguljärt uttryck"
+#: ../src/Filters/Rules/Source/_HasIdOf.py:45
+msgid "Source with <Id>"
+msgstr "Källor med <Id>"
 
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr "Matchar källor vars GRAMPS-id matchar det reguljära uttrycket"
+#: ../src/Filters/Rules/Source/_HasIdOf.py:46
+msgid "Matches a source with a specified GRAMPS ID"
+msgstr "Matchar källor med ett angivet GRAMPS-ID"
+
+#: ../src/Filters/Rules/Source/_HasNote.py:46
+msgid "Sources having note"
+msgstr "Källor med anteckning"
+
+#: ../src/Filters/Rules/Source/_HasNote.py:47
+msgid "Matches sources that have a note"
+msgstr "Matchar källor som har en anteckning"
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
+msgid "Sources having notes containing <regular expression>"
+msgstr "Källor med <reguljärt uttryck> i anteckningar"
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
+msgid "Matches sources whose notes contain text matching a regular expression"
+msgstr "Matchar källor vars anteckningar innehåller angivet reguljärt uttryck"
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
+msgid "Sources having notes containing <substring>"
+msgstr "Källor med <delsträng> i anteckningar"
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches sources whose notes contain text matching a substring"
+msgstr "Matchar källor vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 msgid "Sources with a reference count of <count>"
@@ -18773,37 +18898,29 @@ msgstr "Källor som matchar parametrar"
 msgid "Matches sources with particular parameters"
 msgstr "Matchar källor med vissa parametrar"
 
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-msgid "Sources having notes containing <substring>"
-msgstr "Källor med <delsträng> i anteckningar"
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
+msgid "Sources matching the <filter>"
+msgstr "Källor som matchar <filter>"
 
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Matchar källor vars anteckningar innehåller angiven delsträng"
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
+msgid "Matches sources matched by the specified filter name"
+msgstr "Matchar källor som matchar det angivna filtret"
 
-#: ../src/Filters/Rules/Source/_AllSources.py:45
-msgid "Every source"
-msgstr "Alla källor"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
+msgid "Sources marked private"
+msgstr "Källor markerade som privata"
 
-#: ../src/Filters/Rules/Source/_AllSources.py:46
-msgid "Matches every source in the database"
-msgstr "Matchar alla källor i databasen"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
+msgid "Matches sources that are indicated as private"
+msgstr "Matchar källor som indikerats som privata"
 
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-msgid "Sources having notes containing <regular expression>"
-msgstr "Källor med <reguljärt uttryck> i anteckningar"
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
+msgid "Sources with <Id> matching regular expression"
+msgstr "Källor med <id> som matchar reguljärt uttryck"
 
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr "Matchar källor vars anteckningar innehåller angivet reguljärt uttryck"
-
-#: ../src/Filters/Rules/Source/_HasIdOf.py:45
-msgid "Source with <Id>"
-msgstr "Källor med <Id>"
-
-#: ../src/Filters/Rules/Source/_HasIdOf.py:46
-msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Matchar källor med ett angivet GRAMPS-ID"
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
+msgid "Matches sources whose GRAMPS ID matches the regular expression"
+msgstr "Matchar källor vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
