@@ -2,6 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -469,9 +471,13 @@ class EditRule(ManagedWindow.ManagedWindow):
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])
-                elif v == _('Reference count:'):
+                elif v in [_('Reference count:'),
+                            _('Number of instances:')
+                            ]:
                     t = MyInteger(0, 999)
-                elif v == _('Reference count must be:'):
+                elif v in [_('Reference count must be:'),
+                            _('Number must be')
+                            ]:
                     t = MyLesserEqualGreater()
                 elif v == _('Number of generations:'):
                     t = MyInteger(1, 32)

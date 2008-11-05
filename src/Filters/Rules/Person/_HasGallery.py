@@ -40,5 +40,5 @@ from Filters.Rules._HasGalleryBase import HasGalleryBase
 class HavePhotos(HasGalleryBase):
     """Rule that checks for person who has media object reference"""
 
-    name        = _('People with media')
-    description = _("Matches people with media object in the gallery")
+    name        = _('People with <count> media')
+    description = _("Matches people with a certain number of items in the gallery")

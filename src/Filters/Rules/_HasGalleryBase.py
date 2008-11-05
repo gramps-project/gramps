@@ -40,9 +40,27 @@ from Filters.Rules import Rule
 class HasGalleryBase(Rule):
     """Objects who have Media Object"""
 
-    name        = _('Object with Media reference')
-    description = _("Matches objects with reference in the gallery")
+    labels      = [  _('Number of instances:'), _('Number must be')]
+    name        = _('Object with <count> Media reference')
+    description = _("Matches objects with certain number of items in the gallery")
     category    = _('General filters')
 
+    def prepare(self, db):
+        # things we want to do just once, not for every handle
+        if  self.list[1] == _('lesser than'):
+           self.count_type = 0
+        elif self.list[1] == _('greater than'):
+            self.count_type = 2
+        else:
+            self.count_type = 1 # "equal to"
+
+        self.userSelectedCount = int(self.list[0])
+        
     def apply(self, db, obj):
-        return len( obj.get_media_list()) > 0
+        count = len( obj.get_media_list())
+        if self.count_type == 0:     # "lesser than"
+            return count < self.userSelectedCount
+        elif self.count_type == 2:   # "greater than"
+            return count > self.userSelectedCount
+        # "equal to"
+        return count == self.userSelectedCount
