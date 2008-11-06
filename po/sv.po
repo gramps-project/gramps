@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-06 09:58+0100\n"
-"PO-Revision-Date: 2008-11-06 09:56+0100\n"
+"PO-Revision-Date: 2008-11-06 19:12+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -204,9 +204,7 @@ msgstr "Ändra kolumner"
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
-msgstr ""
-"GRAMPS (Genealogical Research and Analysis Management Programming System) är "
-"ett genealogiprogram för privatpersoner."
+msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System) är ett genealogiprogram för privatpersoner."
 
 #: ../src/const.py:184
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -485,8 +483,7 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
 #: ../src/DbManager.py:763
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
+msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
 #: ../src/DbManager.py:765
@@ -819,7 +816,7 @@ msgid ""
 "license."
 msgstr ""
 "Mycket av GRAMPS' artistiska arbete kommer\n"
-"antingen från Tango-pProjektet eller härstammar\n"
+"antingen från Tango-Projektet eller härstammar\n"
 "från det. Detta artistiska arbete utges under \n"
 "Create Commons Attribution-ShareAlike 2.5\n"
 "licens."
@@ -1475,7 +1472,7 @@ msgid ""
 "and make sure to export your data to XML every now and then."
 msgstr ""
 "Denna GRAMPS 3.x-trunk är en utvecklingsutgåva. Denna version är ej avsedd "
-"för normalt arbete. Amvänds på egen risk.\n"
+"för normalt arbete. Används på egen risk.\n"
 "\n"
 "This version may:\n"
 "1) Work differently than you expect.\n"
@@ -1526,7 +1523,7 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
-"Din Python-version klarar inte kraven. åtminston Python %d.%d.%d behövs för "
+"Din Python-version klarar inte kraven. Åtminstone Python %d.%d.%d behövs för "
 "att starta GRAMPS.\n"
 "\n"
 "GRAMPS kommer att avslutas nu."
@@ -1764,7 +1761,7 @@ msgid ""
 msgstr ""
 "Släktträd når bakåt längre än det maximalt antal av %d generationer, som "
 "genomsökts.\n"
-"Det är möjhligt att släktskap har missats."
+"Det är möjligt att släktskap har missats."
 
 #: ../src/Relationship.py:927
 msgid "Relationship loop detected:"
@@ -2169,7 +2166,7 @@ msgstr "Katalanska"
 
 #: ../src/Spell.py:85
 msgid "Czech"
-msgstr "Teckiska"
+msgstr "Tjeckiska"
 
 #: ../src/Spell.py:86
 msgid "Kashubian"
@@ -2241,7 +2238,7 @@ msgstr "Skotsk gaeliska"
 
 #: ../src/Spell.py:103
 msgid "Galician"
-msgstr "Galisiska"
+msgstr "Galizisk"
 
 #: ../src/Spell.py:104
 msgid "Gujarati"
@@ -2483,7 +2480,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Kan ej läsa tips-filen från extern fil.\n"
+"Kan ej läsa tipsfilen från extern fil.\n"
 "\n"
 "%s"
 
@@ -2578,8 +2575,7 @@ msgstr "Ett registrerat eller samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:101
 msgid "No legal or common-law relationship between man and woman"
-msgstr ""
-"Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
+msgstr "Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:103
 msgid "An established relationship between members of the same sex"
@@ -4162,7 +4158,7 @@ msgstr "Inget befintligt media funnet i galleriet"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr "Skapa och lägg till en ny XXXLDS"
+msgstr "Skapa och lägg till en ny LDS-ceremoni"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 msgid "Remove the existing LDS ordinance"
@@ -4409,8 +4405,7 @@ msgstr "Kan inte visa %s"
 msgid ""
 "GRAMPS is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr ""
-"GRAMPS kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
+msgstr "GRAMPS kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
 
 #: ../src/Editors/ObjectEntries.py:245
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -4524,8 +4519,7 @@ msgstr "Kan inte spara händelse"
 
 #: ../src/Editors/_EditEvent.py:204
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr ""
-"Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
+msgstr "Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
 
 #: ../src/Editors/_EditEvent.py:213
 msgid "Cannot save event. ID already exists."
@@ -4807,8 +4801,7 @@ msgid "Cannot save media object"
 msgstr "Kan inte spara mediaobjekt"
 
 #: ../src/Editors/_EditMedia.py:240
-msgid ""
-"No data exists for this media object. Please enter data or cancel the edit."
+msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för detta mediaobjekt. Ange sådana eller avbryt "
 "redigeringen."
@@ -5070,7 +5063,7 @@ msgstr "Kan inte spara plats. ID finns redan."
 #: ../src/Editors/_EditPlace.py:287
 #, python-format
 msgid "Add Place (%s)"
-msgstr "Lägg till pats (%s)"
+msgstr "Lägg till plats (%s)"
 
 #: ../src/Editors/_EditPlace.py:292
 #, python-format
@@ -5124,8 +5117,7 @@ msgid "Cannot save repository"
 msgstr "Kan inte spara arkivplats"
 
 #: ../src/Editors/_EditRepository.py:145
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för den här arkivplatsen. Ange sådana eller avbryt "
 "redigeringen."
@@ -5344,8 +5336,7 @@ msgstr ""
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
-msgstr ""
-"Om du ser att det finns någon personlig information i felet, så ta bort den."
+msgstr "Om du ser att det finns någon personlig information i felet, så ta bort den."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 msgid "Error Details"
@@ -5435,7 +5426,7 @@ msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
-"Använd denna knapp för att starta en web-läsare och registrera en felrapport "
+"Använd denna knapp för att starta en webbläsare och registrera en felrapport "
 "i Gramps feluppföljningssystem."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
@@ -5464,7 +5455,7 @@ msgid ""
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
 "Detta är det sista steget. Använd knapparna på den här sidan för att starta "
-"en webläsare och registrera en felrapport i Gramps feluppföljningssystem."
+"en webbläsare och registrera en felrapport i Gramps feluppföljningssystem."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
 msgid "manual|General"
@@ -5878,7 +5869,7 @@ msgstr "Huruvida trädet skall komprimeras."
 
 #: ../src/plugins/AncestorTree.py:502 ../src/plugins/DescendTree.py:456
 msgid "The basic style used for the title display."
-msgstr "Grundläggande stil som används för titelvisning."
+msgstr "Grundläggande stil som används för visning av titel."
 
 #: ../src/plugins/AncestorTree.py:536
 msgid "Ancestor Tree"
@@ -6002,7 +5993,7 @@ msgstr "Filter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:66
 msgid "Select filter to restrict people"
-msgstr "Välj ett filter, som begränsar personerurvalet"
+msgstr "Välj ett filter, som begränsar personurvalet"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:521
@@ -6066,7 +6057,7 @@ msgstr "Högsta tänkbara levnadsålder"
 
 #: ../src/plugins/CalculateEstimatedDates.py:106
 msgid "Maximum sibling age difference"
-msgstr "Maximal syskonåldersskillnad"
+msgstr "Maximal åldersskillnad mellan syskon"
 
 #: ../src/plugins/CalculateEstimatedDates.py:109
 msgid "Maximum age difference between siblings"
@@ -6433,8 +6424,7 @@ msgid "Fix Capitalization of Family Names"
 msgstr "Normera stor bokstav för efternamn"
 
 #: ../src/plugins/ChangeNames.py:295
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Söker i hela databasen och försöker rätta stor bokstav för efternamn."
 
 #: ../src/plugins/ChangeTypes.py:69
@@ -6820,8 +6810,7 @@ msgid "Check and Repair Database"
 msgstr "Kontrollera och reparera"
 
 #: ../src/plugins/Check.py:1523
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt."
 
 #: ../src/plugins/CmdRef.py:241
@@ -6834,7 +6823,7 @@ msgid ""
 "and Tools."
 msgstr ""
 "Skapar en DocBook-XML-fil, som innehåller en parameterbeskrivning för "
-"rapportre och verktyg."
+"rapporter och verktyg."
 
 #: ../src/plugins/CustomBookText.py:117
 msgid "Initial Text"
@@ -7231,7 +7220,7 @@ msgid ""
 "float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-"
 "open detached the next time you start GRAMPS."
 msgstr ""
-"Väkommen till GRAMPS!\n"
+"Välkommen till GRAMPS!\n"
 "\n"
 "GRAMPS är ett programvarupaket avsett för släktforskning. Fastän det liknar "
 "andra släktforskningsprogram erbjuder GRAMPS några unika och kraftfulla "
@@ -7424,7 +7413,7 @@ msgstr "Stamtavla"
 
 #: ../src/plugins/DescendTree.py:494
 msgid "Produces a graphical descendant tree"
-msgstr "Skapar en grafisk stamträdstavla."
+msgstr "Skapar ett grafisk stamträd."
 
 #: ../src/plugins/DescendReport.py:118
 #, python-format
@@ -7779,8 +7768,7 @@ msgstr "Använd 'Record-style' (modifierat register) numrering"
 
 #: ../src/plugins/DetDescendantReport.py:695
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr ""
-"Huruvida använda 'Record-style' numrering is stället för Henry-numrering."
+msgstr "Huruvida använda 'Record-style' numrering is stället för Henry-numrering."
 
 #: ../src/plugins/DetDescendantReport.py:761
 #: ../src/plugins/KinshipReport.py:350
@@ -8157,8 +8145,7 @@ msgstr "_GeneWeb"
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
-msgstr ""
-"GRAMPS-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
+msgstr "GRAMPS-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
 
 #: ../src/plugins/ExportPkg.py:237
 msgid "GRAMPS package export options"
@@ -8758,8 +8745,7 @@ msgstr "Följ föräldrar för att bestämma släktlinjer"
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr ""
-"Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
+msgstr "Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
 
 #: ../src/plugins/GVFamilyLines.py:117
 msgid "Follow children to determine \"family lines\""
@@ -8924,10 +8910,8 @@ msgid "Include private records"
 msgstr "Ta med privata poster"
 
 #: ../src/plugins/GVFamilyLines.py:245
-msgid ""
-"Whether to include names, dates, and families that are marked as private."
-msgstr ""
-"Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
+msgid "Whether to include names, dates, and families that are marked as private."
+msgstr "Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
 
 #: ../src/plugins/GVFamilyLines.py:384
 msgid "Generating Family Lines"
@@ -9077,7 +9061,7 @@ msgid ""
 msgstr ""
 "Ta med en URL i varje diagramnod, så att det går att skapa PDF- och "
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
-"'Skapa webbplats'."
+"'Skapa webbplats."
 
 #: ../src/plugins/GVRelGraph.py:472
 msgid "Include IDs"
@@ -9093,7 +9077,7 @@ msgstr "Huruvida miniatyrbilder av personer skall tas med."
 
 #: ../src/plugins/GVRelGraph.py:483
 msgid "Thumbnail Location"
-msgstr "Bildminiatyrplats"
+msgstr "Miniatyrbildsplats"
 
 #: ../src/plugins/GVRelGraph.py:503
 msgid "Arrowhead direction"
@@ -9109,8 +9093,7 @@ msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
 #: ../src/plugins/GVRelGraph.py:518
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
+msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
 #: ../src/plugins/GVRelGraph.py:522
 msgid "Show family nodes"
@@ -9118,8 +9101,7 @@ msgstr "Visa familjenoder"
 
 #: ../src/plugins/GVRelGraph.py:523
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
+msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
 #: ../src/plugins/GVRelGraph.py:569
 msgid "Relationship Graph"
@@ -9276,7 +9258,7 @@ msgstr "CSV-import"
 
 #: ../src/plugins/ImportCsv.py:796
 msgid "CSV Spreadheet"
-msgstr "CSV kalkylḃlad"
+msgstr "CSV kalkylblad"
 
 #: ../src/plugins/ImportCsv.py:797
 msgid "Import data from CSV files"
@@ -9321,8 +9303,7 @@ msgstr "Mediamappen %s är inte skrivbar"
 #. it, have him remove it!
 #: ../src/plugins/ImportGpkg.py:82
 #, python-format
-msgid ""
-"Media directory %s exists. Delete it first, then restart the import process"
+msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "Mediamappen %s finns. Radera den först och starta sedan om importen."
 
 #: ../src/plugins/ImportGpkg.py:91
@@ -9345,7 +9326,7 @@ msgstr ""
 "Den grundläggande mediasökvägen för detta släktträd har satts till %s. "
 "Fundera på en enklare sökväg. Du kan ändra denna i Inställningar under det "
 "att du flyttar dina mediafiler till den nya platsen och använder "
-"mediahanteringshjälpmedlet, alternativ 'Byt ut delsträng i sökvägen' för att "
+"mediahanteringshjälpmedlet, alternativ 'Byt ut delsträng i sökvägen för att "
 "ställa in riktiga sökvägar för dina mediaobjekt."
 
 #: ../src/plugins/ImportGpkg.py:117
@@ -9411,7 +9392,7 @@ msgid ""
 "Your family tree groups name %s together with %s, did not change this "
 "grouping to %s"
 msgstr ""
-"Ditt släktträd grupperar namn %s tilsammans med %s, ändrade inte detta till "
+"Ditt släktträd grupperar namn %s tillsammans med %s, ändrade inte detta till "
 "gruppering till %s"
 
 #: ../src/plugins/ImportGrdb.py:2618
@@ -9424,7 +9405,7 @@ msgstr "GRAMPS 2.x databas"
 
 #: ../src/plugins/ImportGrdb.py:2687
 msgid "Import data from GRAMPS 2.x database files"
-msgstr "Importera data från GRAMPS 2.x databasfile"
+msgstr "Importera data från GRAMPS 2.x databasfil"
 
 #: ../src/plugins/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -9509,8 +9490,7 @@ msgstr "Fel vid läsning av %s"
 
 #: ../src/plugins/ImportXml.py:133
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-databas."
+msgstr "Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-databas."
 
 #: ../src/plugins/ImportXml.py:237
 #, python-format
@@ -9618,7 +9598,7 @@ msgstr ""
 "Mediaobjekt med relativa mediasökvägar har\n"
 "importerats. Dessa sökvägar ses som relativa till\n"
 "den mediamapp du kan ge i inställningar\n"
-"eller om ej given realtiv till användarmappen.\n"
+"eller om ej given relativ till användarmappen.\n"
 
 #: ../src/plugins/ImportXml.py:771
 msgid "Could not change media path"
@@ -10169,8 +10149,7 @@ msgstr "Ingen copyrightanteckning"
 
 #: ../src/plugins/NarrativeWeb.py:293
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Skapad av <a href=\"http://gramps-project.org\">GRAMPS</a> %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:304
@@ -10700,8 +10679,7 @@ msgstr "Ta med halvsyskon och styvsyskon  på de individuella sidorna"
 msgid ""
 "Whether to include half-siblings and step-siblings with the parents and "
 "siblings"
-msgstr ""
-"Huruvida ta med en halvsyskon och styvsyskon med föräldrarna och syskonen"
+msgstr "Huruvida ta med en halvsyskon och styvsyskon med föräldrarna och syskonen"
 
 #: ../src/plugins/NarrativeWeb.py:3349
 msgid "Narrated Web Site"
@@ -11030,7 +11008,7 @@ msgstr "Bygger om referenskartor."
 #: ../src/plugins/References.py:68
 #, python-format
 msgid "References for this %s"
-msgstr "%sreferenser"
+msgstr "Referenser till denna %s"
 
 #: ../src/plugins/References.py:79
 #, python-format
@@ -11040,7 +11018,7 @@ msgstr "Inga referenser för denna %s"
 #: ../src/plugins/References.py:104
 #, python-format
 msgid "%s References"
-msgstr "%sreferenser"
+msgstr "%s-referenser"
 
 #: ../src/plugins/References.py:106
 #, python-format
@@ -11068,8 +11046,7 @@ msgstr "Ingen aktiv person har valts"
 
 #: ../src/plugins/RelCalc.py:147 ../src/PluginUtils/_Tool.py:137
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
-"Du måste välja en aktiv person för att det här verktyget skall fungera."
+msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
 
 #: ../src/plugins/RelCalc.py:163
 msgid "Relationship Calculator tool"
@@ -11590,8 +11567,7 @@ msgid "Max. items for a pie"
 msgstr "Max antal objekt för en cirkel"
 
 #: ../src/plugins/StatisticsChart.py:732
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Med färre poster kommer cirkeldiagram med teckenförklaring att användas i "
 "stället för stapeldiagram."
@@ -11932,8 +11908,7 @@ msgstr "Tom kalender"
 
 #: ../src/plugins/WebCal.py:556
 #, python-format
-msgid ""
-"Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
+msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 msgstr "Skapad åt <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
 #: ../src/plugins/WebCal.py:560
@@ -12124,8 +12099,7 @@ msgid "Home link"
 msgstr "Hemlänk"
 
 #: ../src/plugins/WebCal.py:1517
-msgid ""
-"The link to be included to direct the user to the main page of the web site"
+msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Den länk, som skall tas med, för att hänvisa användaren till webbplatsens "
 "huvudsida"
@@ -12721,8 +12695,7 @@ msgstr "Riktning för diagram"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr ""
-"Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
+msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:950
 msgid "Number of Horizontal Pages"
@@ -12908,8 +12881,7 @@ msgid "File already exists"
 msgstr "Filen finns redan"
 
 #: ../src/ReportBase/_ReportDialog.py:509
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
@@ -13217,20 +13189,17 @@ msgstr "Han dog %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:174
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:175
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:176
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:179
@@ -13240,20 +13209,17 @@ msgstr "Hon dog %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:180
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:181
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:182
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:186
@@ -13305,16 +13271,14 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:195
 #, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:198
 #, python-format
@@ -13326,24 +13290,21 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:200
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:201
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:205 ../src/ReportBase/_ReportUtils.py:252
 #, python-format
@@ -13423,8 +13384,7 @@ msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:228
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:229
@@ -13481,16 +13441,14 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:242
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:245
 #, python-format
@@ -13502,24 +13460,21 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:247
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:248
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:261
 #, python-format
@@ -13588,20 +13543,17 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:281
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:282
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:283
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:286
@@ -13731,14 +13683,12 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:328
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:330
@@ -13819,20 +13769,17 @@ msgstr "Han dog %(month_year)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:362
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:363
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:364
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:367
@@ -13842,20 +13789,17 @@ msgstr "Hon dog %(month_year)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:368
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:369
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:370
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:374
@@ -13907,16 +13851,14 @@ msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr ""
-"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:383
 #, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr ""
-"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:386
 #, python-format
@@ -13928,24 +13870,21 @@ msgstr "%(female_name)s dog %(month_year)s i %(death_place)s."
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:388
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:389
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:393
 #, python-format
@@ -14034,20 +13973,17 @@ msgstr "%(unknown_gender_name)s dog %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:423
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:424
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:427
@@ -14177,20 +14113,17 @@ msgstr "%(unknown_gender_name)s dog i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:470
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:471
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:472
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:475
@@ -14360,10 +14293,8 @@ msgstr "Dog (vid %(age)d dagars ålder)."
 
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
-msgid ""
-"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
@@ -14375,8 +14306,7 @@ msgstr "Han begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
@@ -14394,8 +14324,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:559
 #, python-format
-msgid ""
-"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr "Denna person begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
@@ -14440,10 +14369,8 @@ msgstr "Begravd %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
-msgid ""
-"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
@@ -14452,10 +14379,8 @@ msgstr "Han begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
-msgid ""
-"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
@@ -14473,10 +14398,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
-msgid ""
-"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
 #, python-format
@@ -14520,10 +14443,8 @@ msgstr "Begravd i %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
@@ -14532,10 +14453,8 @@ msgstr "Han begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
-msgid ""
-"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -14553,10 +14472,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
-msgid ""
-"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
@@ -14685,8 +14602,7 @@ msgstr "Han döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
@@ -14766,8 +14682,7 @@ msgstr "Han döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
@@ -14785,8 +14700,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:725
 #, python-format
-msgid ""
-"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
@@ -14834,8 +14748,7 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
@@ -14847,8 +14760,7 @@ msgstr "Han döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
@@ -14866,8 +14778,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:757
 #, python-format
-msgid ""
-"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:759
@@ -14982,24 +14893,18 @@ msgstr "Döpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:820
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
 #, python-format
@@ -15014,8 +14919,7 @@ msgstr "Han gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:825
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:828
 #, python-format
@@ -15030,8 +14934,7 @@ msgstr "Hon gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:830
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:833
 #, python-format
@@ -15062,8 +14965,7 @@ msgstr ""
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
 #, python-format
@@ -15076,10 +14978,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:846
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:847
 #, python-format
@@ -15089,15 +14989,12 @@ msgstr "Han gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:848
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:852
 #, python-format
@@ -15107,8 +15004,7 @@ msgstr "Hon gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:853
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:856
 #, python-format
@@ -15411,24 +15307,21 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:960 ../src/ReportBase/_ReportUtils.py:983
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:961 ../src/ReportBase/_ReportUtils.py:984
 #, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:967
 #, python-format
@@ -15543,48 +15436,42 @@ msgstr ""
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:996
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:997
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1000
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1001
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1002
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1005
 #, python-format
@@ -15684,10 +15571,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1028
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1029
 #, python-format
@@ -15696,10 +15581,8 @@ msgstr "Även ett ogift förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1030
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1035
 #, python-format
@@ -15712,14 +15595,12 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1036
 #, python-format
-msgid ""
-"He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Han hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1037
 #, python-format
-msgid ""
-"She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1038
@@ -15742,16 +15623,14 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1044
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1049
 #, python-format
@@ -15776,8 +15655,7 @@ msgstr "Ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1056
 #, python-format
-msgid ""
-"This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
+msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr "Denna person hade ett ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1057
@@ -15883,8 +15761,7 @@ msgstr "Förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1088
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1094
@@ -15970,22 +15847,17 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1109
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1110
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1111
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Även ett förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)"
 "s."
@@ -16001,16 +15873,14 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1118
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s på %(full_date)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1119
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)"
 "s."
@@ -16018,8 +15888,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1122
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1123
 #, python-format
@@ -16034,8 +15903,7 @@ msgstr "Han hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s.
 #: ../src/ReportBase/_ReportUtils.py:1127
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1128
 #, python-format
@@ -16091,45 +15959,33 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1145
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1146
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1147
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1150
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1151
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1152
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1155
 #, python-format
@@ -16148,10 +16004,8 @@ msgstr "Även ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1162
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1163
 #, python-format
@@ -16170,8 +16024,7 @@ msgstr "Förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1169
 #, python-format
-msgid ""
-"This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Denna person hade också ett förhållande med %(spouse)s i %(place)s%(endnotes)"
 "s."
@@ -16574,8 +16427,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1891
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1896
@@ -16700,10 +16552,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1962
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1967
 #, python-format
@@ -16731,10 +16581,8 @@ msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2696
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"född %(birth_date)s i %(birth_place)s, död %(death_date)s i %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr "född %(birth_date)s i %(birth_place)s, död %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2699
 #, python-format
@@ -17804,10 +17652,8 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Personer med en ana gemensam med <filter>träff"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
-msgstr ""
-"Matchar personer som har en ana gemensam med någon som matchas av ett filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
+msgstr "Matchar personer som har en ana gemensam med någon som matchas av ett filter"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:52
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:48
@@ -17905,7 +17751,7 @@ msgstr "Matchar person med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
 msgid "People with <count> LDS events"
-msgstr "Personer med <count> LDS-händelser"
+msgstr "Personer med <count> SDH-händelser"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:47
 msgid "Matches people with a certain number of LDS events"
@@ -17974,8 +17820,7 @@ msgstr "Personer med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr ""
-"Matchar personer vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar personer vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:46
 msgid "Number of relationships:"
@@ -18185,8 +18030,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Anor till förvald person inte mer än N generationer bort"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr "Matchar anor till förvald person person mindre än N generationer bort"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
@@ -18225,8 +18069,7 @@ msgstr "Anor till <person> minst <N> generationer bort"
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr ""
-"Matchar personer som är anor till en angiven person minst N generationer bort"
+msgstr "Matchar personer som är anor till en angiven person minst N generationer bort"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
 msgid "Descendants of <person> at least <N> generations away"
@@ -18284,8 +18127,7 @@ msgstr "Personer med händelser matchande <event filter>"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr ""
-"Matchar personer,som har händelser, som matchas ett givet händelsefilter"
+msgstr "Matchar personer,som har händelser, som matchas ett givet händelsefilter"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
@@ -18547,8 +18389,7 @@ msgstr "Familjer med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr ""
-"Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
@@ -18757,8 +18598,7 @@ msgstr "Händelser med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr ""
-"Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
@@ -19152,8 +18992,7 @@ msgid "Media objects having notes containing <regular expression>"
 msgstr "Mediaobjekt med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr "Matchar mediaobjekt vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
@@ -19217,8 +19056,7 @@ msgid "Repositories having notes containing <regular expression>"
 msgstr "Arkivplatser med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr "Matchar arkivplatser vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
@@ -19671,8 +19509,7 @@ msgstr "<b>Förstahandsnamn</b>"
 
 #: ../src/glade/edit_person.glade.h:4
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
-msgstr ""
-"En titel som används för att referera till personen, exempelvis \"Dr.\""
+msgstr "En titel som används för att referera till personen, exempelvis \"Dr.\""
 
 #: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:39
 msgid "Abandon changes and close window"
@@ -20083,7 +19920,7 @@ msgstr "Behåll referens till den saknade filen"
 
 #: ../src/glade/gramps.glade.h:84
 msgid "LDS _Temple:"
-msgstr "LDS-_tempel:"
+msgstr "SDH-_tempel:"
 
 #: ../src/glade/gramps.glade.h:85
 msgid "L_atitude:"
@@ -20485,8 +20322,7 @@ msgid "Place 2"
 msgstr "Plats 2"
 
 #: ../src/glade/mergedata.glade.h:13
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Välj den person som kommer att tillhandahålla primärdata för den "
 "sammanslagna personen."
@@ -21029,8 +20865,7 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS Genealogisystem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
@@ -21514,7 +21349,7 @@ msgstr ""
 "I GRAMPS kan du skapa ett antal rapporter (både text och grafiska) baserat "
 "på din genealogiska information. Det är stor flexibilitet både vad gäller "
 "att välja vilka personer, som tas med i rapporterna, såväl som i "
-"utmatningsformaten (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX och "
+"utmatningsformaten (HTML, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX och "
 "vanlig text). Experimentera med rapporterna under <b>Rapport</b>menyn för "
 "att få en uppfattning om hur kraftfullt GRAMPS är."
 
@@ -21870,7 +21705,7 @@ msgid ""
 msgstr ""
 "Du kan lätt exportera ditt släktträd till en webbsida. Välj hela databasen, "
 "släktlinjer eller valda personer till en samling webbsidor, klara för "
-"uppladdning till internet."
+"uppladdning till Internet."
 
 #: ../src/data/tips.xml.in.h:74
 msgid ""
@@ -21879,3 +21714,4 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
+
