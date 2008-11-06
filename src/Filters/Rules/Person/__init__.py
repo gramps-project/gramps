@@ -156,6 +156,7 @@ editor_rule_list = [
     HasTextMatchingSubstringOf,
     HasNote,
     HasNoteRegexp,
+    HasNoteMatchingSubstringOf,
     RegExpIdOf,
     Disconnected,
 ]
