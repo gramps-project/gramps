@@ -43,9 +43,27 @@ from Filters.Rules import Rule
 class HasAssociation(Rule):
     """Rule that checks for a person with a personal association"""
 
-    name        = _('People with association')
-    description = _("Matches people with association")
+    labels      = [  _('Number of instances:'), _('Number must be:')]
+    name        = _('People with <count> association')
+    description = _("Matches people with certain number of association")
     category    = _('General filters')
     
+    def prepare(self, db):
+        # things we want to do just once, not for every handle
+        if  self.list[1] == _('lesser than'):
+           self.count_type = 0
+        elif self.list[1] == _('greater than'):
+            self.count_type = 2
+        else:
+            self.count_type = 1 # "equal to"
+
+        self.userSelectedCount = int(self.list[0])
+        
     def apply(self, db, person):
         return len( person.get_person_ref_list()) > 0
+        if self.count_type == 0:     # "lesser than"
+            return count < self.userSelectedCount
+        elif self.count_type == 2:   # "greater than"
+            return count > self.userSelectedCount
+        # "equal to"
+        return count == self.userSelectedCount

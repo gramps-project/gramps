@@ -45,7 +45,7 @@ class HasAddress(Rule):
 
     labels      = [  _('Number of instances:'), _('Number must be:')]
     name        = _('People with <count> address')
-    description = _("Matches peoplewith certain number of personal address")
+    description = _("Matches people with certain number of personal address")
     category    = _('General filters')
 
     
