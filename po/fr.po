@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:07+0100\n"
+"POT-Creation-Date: 2008-11-06 09:58+0100\n"
 "PO-Revision-Date: 2008-10-02 13:26+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
@@ -983,7 +983,7 @@ msgstr "Adresse électronique"
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCsv.py:195 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
-#: ../src/FilterEditor/_EditRule.py:274
+#: ../src/FilterEditor/_EditRule.py:276
 msgid "Person"
 msgstr "Individu"
 
@@ -997,7 +997,7 @@ msgstr "Individu"
 #: ../src/plugins/all_relations.py:270 ../src/plugins/ExportCsv.py:442
 #: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:202
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
-#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:275
+#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:277
 msgid "Family"
 msgstr "Famille"
 
@@ -1012,7 +1012,7 @@ msgstr "Famille"
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
 #: ../src/PluginUtils/_GuiOptions.py:930
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/FilterEditor/_EditRule.py:277
+#: ../src/FilterEditor/_EditRule.py:279
 msgid "Place"
 msgstr "Lieu"
 
@@ -1020,26 +1020,26 @@ msgstr "Lieu"
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCsv.py:403
 #: ../src/plugins/ImportCsv.py:167 ../src/plugins/ImportCsv.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
-#: ../src/FilterEditor/_EditRule.py:278
+#: ../src/FilterEditor/_EditRule.py:280
 msgid "Source"
 msgstr "Source"
 
 #: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
-#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:279
+#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:281
 msgid "Media Object"
 msgstr "Objet média"
 
 #: ../src/GrampsCfg.py:203 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:91
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/FilterEditor/_EditRule.py:276
+#: ../src/FilterEditor/_EditRule.py:278
 msgid "Event"
 msgstr "Événement"
 
 #: ../src/GrampsCfg.py:205 ../src/ToolTips.py:141
 #: ../src/Simple/_SimpleTable.py:226 ../src/Editors/_EditRepository.py:67
 #: ../src/Editors/_EditRepository.py:69 ../src/plugins/References.py:35
-#: ../src/plugins/References.py:94 ../src/FilterEditor/_EditRule.py:280
+#: ../src/plugins/References.py:94 ../src/FilterEditor/_EditRule.py:282
 msgid "Repository"
 msgstr "Dépôt"
 
@@ -1056,7 +1056,7 @@ msgstr "Dépôt"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/FilterEditor/_EditRule.py:281
+#: ../src/FilterEditor/_EditRule.py:283
 msgid "Note"
 msgstr "Note"
 
@@ -11496,6 +11496,8 @@ msgstr "Correspond aux individus sans prénom"
 #: ../src/Filters/Rules/_HasMarkerBase.py:50
 #: ../src/Filters/Rules/Person/_Disconnected.py:46
 #: ../src/Filters/Rules/Person/_Everyone.py:46
+#: ../src/Filters/Rules/Person/_HasAddress.py:49
+#: ../src/Filters/Rules/Person/_HasAssociation.py:48
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
@@ -18074,7 +18076,7 @@ msgstr "Correspond aux objets avec un attribut individuel de même valeur"
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/Event/_HasType.py:46
-#: ../src/FilterEditor/_EditRule.py:81
+#: ../src/FilterEditor/_EditRule.py:83
 msgid "Event type:"
 msgstr "Type d'événement :"
 
@@ -18096,7 +18098,7 @@ msgstr "Date :"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:470
+#: ../src/FilterEditor/_EditRule.py:472
 msgid "Place:"
 msgstr "Lieu :"
 
@@ -18141,7 +18143,7 @@ msgstr "Filtres événements"
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:478
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "ID:"
 msgstr "Id :"
 
@@ -18181,12 +18183,12 @@ msgid "Matches objects whose notes contain text matching a substring"
 msgstr "Correspond aux objets dont les notes contiennent une sous-chaîne"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:474
+#: ../src/FilterEditor/_EditRule.py:478
 msgid "Reference count must be:"
 msgstr "Le compteur de références doit être :"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:472
+#: ../src/FilterEditor/_EditRule.py:474
 msgid "Reference count:"
 msgstr "Compteur de références :"
 
@@ -18201,25 +18203,27 @@ msgstr "Correspond aux objets avec un certain nombre de références"
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
-#: ../src/FilterEditor/_EditRule.py:196
+#: ../src/Filters/Rules/Person/_HasAddress.py:54
+#: ../src/FilterEditor/_EditRule.py:198
 msgid "lesser than"
 msgstr "moins que"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
-#: ../src/FilterEditor/_EditRule.py:196
+#: ../src/Filters/Rules/Person/_HasAddress.py:56
+#: ../src/FilterEditor/_EditRule.py:198
 msgid "greater than"
 msgstr "plus que"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:497
+#: ../src/FilterEditor/_EditRule.py:503
 msgid "Case sensitive:"
 msgstr "Sensible à la casse (Maj/Min) :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:499
+#: ../src/FilterEditor/_EditRule.py:505
 msgid "Regular-Expression matching:"
 msgstr "Correspondance d'expression rationnelle :"
 
@@ -18250,7 +18254,7 @@ msgstr "Correspond aux objets marqués comme privés"
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:489
 msgid "Filter name:"
 msgstr "Nom du filtre :"
 
@@ -18283,7 +18287,7 @@ msgid "No description"
 msgstr "Pas de description"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
-#: ../src/FilterEditor/_EditRule.py:87
+#: ../src/FilterEditor/_EditRule.py:89
 msgid "Marker type:"
 msgstr "Type de marqueur :"
 
@@ -18328,8 +18332,41 @@ msgstr ""
 "Correspond aux individus ayant une date ou lieu manquant dans un événement "
 "de famille"
 
+#: ../src/Filters/Rules/Person/_HasAddress.py:46
+#: ../src/FilterEditor/_EditRule.py:475
+#, fuzzy
+msgid "Number of instances:"
+msgstr "Nombre de mariages"
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:46
+#: ../src/FilterEditor/_EditRule.py:480
+msgid "Number must be:"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:47
+#, fuzzy
+msgid "People with <count> address"
+msgstr "Individus avec des images"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasAddress.py:48
+#, fuzzy
+msgid "Matches peoplewith certain number of personal address"
+msgstr "Correspond aux individus avec le même prénom"
+
+#: ../src/Filters/Rules/Person/_HasAssociation.py:46
+#, fuzzy
+msgid "People with association"
+msgstr "les individus avec des images"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasAssociation.py:47
+#, fuzzy
+msgid "Matches people with association"
+msgstr "Correspond aux individus avec le même prénom"
+
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:82
+#: ../src/FilterEditor/_EditRule.py:84
 msgid "Personal attribute:"
 msgstr "Attribut personnel :"
 
@@ -18403,7 +18440,7 @@ msgid "Matches people with death data of a particular value"
 msgstr "Correspond aux individus ayant une donnée de décès particulière"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
-#: ../src/FilterEditor/_EditRule.py:79
+#: ../src/FilterEditor/_EditRule.py:81
 msgid "Personal event:"
 msgstr "Événement personnel :"
 
@@ -18418,7 +18455,7 @@ msgstr "Correspond aux individus ayant le même événement individuel"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:83
+#: ../src/FilterEditor/_EditRule.py:85
 msgid "Family attribute:"
 msgstr "Attribut familial :"
 
@@ -18434,7 +18471,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
-#: ../src/FilterEditor/_EditRule.py:80
+#: ../src/FilterEditor/_EditRule.py:82
 msgid "Family event:"
 msgstr "Événement familial :"
 
@@ -18449,13 +18486,13 @@ msgstr "Correspond aux individus ayant le même événement familial"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
 #, fuzzy
-msgid "People with media"
+msgid "People with <count> media"
 msgstr "les individus avec des images"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
 #, fuzzy
-msgid "Matches people with media object in the gallery"
+msgid "Matches people with a certain number of items in the gallery"
 msgstr "Correspond aux individus ayant des images dans la galerie"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
@@ -18470,6 +18507,26 @@ msgstr "Individus avec l'<Id>"
 #, fuzzy
 msgid "Matches person with a specified GRAMPS ID"
 msgstr "Correspond aux individus ayant l'identifiant GRAMPS spécifié"
+
+#: ../src/Filters/Rules/Person/_HasLDS.py:46
+#, fuzzy
+msgid "People with <count> LDS events"
+msgstr "Individus avec des événements incomplets"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasLDS.py:47
+#, fuzzy
+msgid "Matches people with a certain number of LDS events"
+msgstr "Correspond aux individus ayant une note"
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+msgid "People with <marker>"
+msgstr "Individus avec le <marqueur>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
+msgid "Matches people with a marker of a particular value"
+msgstr "Correspond aux individus ayant un marqueur d'une valeur particulière"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
@@ -18507,6 +18564,17 @@ msgstr "Individus avec le <nom>"
 msgid "Matches people with a specified (partial) name"
 msgstr "Correspond aux individus ayant un nom (partiel) spécifié"
 
+#: ../src/Filters/Rules/Person/_HasNote.py:46
+#, fuzzy
+msgid "People having <count> notes"
+msgstr "Individus avec une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasNote.py:47
+#, fuzzy
+msgid "Matches people having a certain number of notes"
+msgstr "Correspond aux individus ayant une note"
+
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
 msgstr "Individus dont une note contient la <sous-chaîne>"
@@ -18515,16 +18583,6 @@ msgstr "Individus dont une note contient la <sous-chaîne>"
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
 msgstr "Correspond aux individus dont une note contient une sous-chaîne"
-
-#: ../src/Filters/Rules/Person/_HasNote.py:46
-#, fuzzy
-msgid "People having note"
-msgstr "Individus avec une note"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_HasNote.py:47
-msgid "Matches people that have a note"
-msgstr "Correspond aux individus ayant une note"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
@@ -18543,7 +18601,7 @@ msgstr "Nombre de relations :"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:47
 #: ../src/Filters/Rules/Family/_HasRelType.py:46
-#: ../src/FilterEditor/_EditRule.py:86
+#: ../src/FilterEditor/_EditRule.py:88
 msgid "Relationship type:"
 msgstr "Type de relation :"
 
@@ -18567,14 +18625,25 @@ msgstr "Correspond aux individus ayant une relation particulière"
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_MissingParent.py:48
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:45
 #: ../src/Filters/Rules/Person/_NeverMarried.py:45
-#: ../src/Filters/Rules/Person/_MissingParent.py:48
 msgid "Family filters"
 msgstr "Filtres familiaux"
 
+#: ../src/Filters/Rules/Person/_HasSource.py:46
+#, fuzzy
+msgid "People with <count> source"
+msgstr "Individus avec une <source>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Person/_HasSource.py:47
+#, fuzzy
+msgid "Matches people with a certain number of items in the source"
+msgstr "Correspond aux lieux avec un certain nombre de références"
+
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:481
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Source ID:"
 msgstr "Identifiant de la source :"
 
@@ -18645,7 +18714,7 @@ msgstr "Correspond aux ascendants de tout individu issu d'un filtrage"
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:495
+#: ../src/FilterEditor/_EditRule.py:501
 msgid "Inclusive:"
 msgstr "Inclusif :"
 
@@ -18733,7 +18802,7 @@ msgstr "Correspond à toutes les femmes de la base de données"
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:476
+#: ../src/FilterEditor/_EditRule.py:482
 msgid "Number of generations:"
 msgstr "Nombre de générations :"
 
@@ -18848,7 +18917,7 @@ msgstr "Correspond aux témoins d'un événement"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:489
+#: ../src/FilterEditor/_EditRule.py:495
 msgid "Event filter name:"
 msgstr "Nom du filtre événement :"
 
@@ -18871,6 +18940,18 @@ msgstr "Individus correspondants au <filtre>"
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
 msgstr "Correspond aux individus trouvés par un filtre spécifié"
+
+#: ../src/Filters/Rules/Person/_MissingParent.py:44
+msgid "People missing parents"
+msgstr "Individus sans parent"
+
+#: ../src/Filters/Rules/Person/_MissingParent.py:45
+msgid ""
+"Matches people that are children in a family with less than two parents or "
+"are not children in any family."
+msgstr ""
+"Correspond aux individus définis comme enfants dans une famille avec moins "
+"de deux parents ou qui ne sont pas liés à une famille."
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
 msgid "People with multiple marriage records"
@@ -18990,27 +19071,6 @@ msgstr ""
 "ces individus, produisant des chemins relationnels entre les individus "
 "marqués (signets)."
 
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
-msgid "People with <marker>"
-msgstr "Individus avec le <marqueur>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
-msgid "Matches people with a marker of a particular value"
-msgstr "Correspond aux individus ayant un marqueur d'une valeur particulière"
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:44
-msgid "People missing parents"
-msgstr "Individus sans parent"
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:45
-msgid ""
-"Matches people that are children in a family with less than two parents or "
-"are not children in any family."
-msgstr ""
-"Correspond aux individus définis comme enfants dans une famille avec moins "
-"de deux parents ou qui ne sont pas liés à une famille."
-
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
 msgstr "Chaque famille"
@@ -19020,6 +19080,37 @@ msgstr "Chaque famille"
 msgid "Matches every family in the database"
 msgstr "Correspond à chaque famille de la base"
 
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
+msgid "Person ID:"
+msgstr "Identifiant de l'individu :"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
+msgid "Families with child with the <Id>"
+msgstr "Familles dont l'enfant a l'<Id>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
+msgid "Matches families where child has a specified GRAMPS ID"
+msgstr "Correspond aux familles dont l'enfant a un identifiant GRAMPS spécifié"
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchChildName.py:49
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
+msgid "Child filters"
+msgstr "Filtres sur l'enfant"
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
+msgid "Families with child with the <name>"
+msgstr "Familles dont l'enfant a pour <nom>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
+msgid "Matches families where child has a specified (partial) name"
+msgstr "Correspond aux familles dont l'enfant a un nom spécifié (partiel)"
+
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
 msgstr "Familles marquées comme privées"
@@ -19028,6 +19119,32 @@ msgstr "Familles marquées comme privées"
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
 msgstr "Correspond aux familles marquées comme privées"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
+msgid "Families with father with the <Id>"
+msgstr "Familles dont le père a l'<Id>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
+msgid "Matches families whose father has a specified GRAMPS ID"
+msgstr "Correspond aux familles dont le père a un identifiant GRAMPS spécifié"
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
+msgid "Father filters"
+msgstr "Filtres sur le père"
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
+msgid "Families with father with the <name>"
+msgstr "Familles dont le père a pour <nom>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
+msgid "Matches families whose father has a specified (partial) name"
+msgstr "Correspond aux familles dont le père a un nom spécifié (partiel)"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 msgid "Families with the family <attribute>"
@@ -19047,6 +19164,17 @@ msgstr "Familles avec l'<événement>"
 msgid "Matches families with an event of a particular value"
 msgstr "Correspond aux familles ayant un événement de même valeur"
 
+#: ../src/Filters/Rules/Family/_HasGallery.py:43
+#, fuzzy
+msgid "Families with <count> media"
+msgstr "Familles avec le <marqueur>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_HasGallery.py:44
+#, fuzzy
+msgid "Matches families with a certain number of items in the gallery"
+msgstr "Correspond aux individus ayant des images dans la galerie"
+
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
 msgstr "Familles avec l'<Id>"
@@ -19055,6 +19183,36 @@ msgstr "Familles avec l'<Id>"
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Correspond aux familles avec l'identifiant GRAMPS spécifié"
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:46
+#, fuzzy
+msgid "Families with <count> LDS events"
+msgstr "Familles avec l'<événement>"
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:47
+#, fuzzy
+msgid "Matches families with a certain number of LDS events"
+msgstr "Familles avec l'<événement>"
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
+msgid "Families with <marker>"
+msgstr "Familles avec le <marqueur>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
+msgid "Matches Families with a marker of a particular value"
+msgstr "Correspond aux familles ayant un marqueur d'une valeur particulière"
+
+#: ../src/Filters/Rules/Family/_HasNote.py:46
+#, fuzzy
+msgid "Families having <count> notes"
+msgstr "Individus avec une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_HasNote.py:47
+#, fuzzy
+msgid "Matches families having a certain number notes"
+msgstr "Correspond aux individus ayant une note"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
@@ -19098,6 +19256,17 @@ msgstr "Famille avec ce type de relation"
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Correspond aux familles ayant un type de relation de même valeur"
 
+#: ../src/Filters/Rules/Family/_HasSource.py:46
+#, fuzzy
+msgid "Families with <count> source"
+msgstr "Familles avec le <marqueur>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_HasSource.py:47
+#, fuzzy
+msgid "Matches families with a certain number of items in the source"
+msgstr "Correspond aux familles avec un certain nombre de références"
+
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
 msgstr "Familles marquées (signet)"
@@ -19108,17 +19277,6 @@ msgid "Matches the families on the bookmark list"
 msgstr "Correspond aux familles marquées (signet)"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-msgid "Families with <Id> matching regular expression"
-msgstr "Familles avec un <Id> correspondant à l'expression rationnelle"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
-msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
-"Correspond aux familles dont l'ID GRAMPS contient l'expression rationnelle"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
 msgstr "Familles correspondantes au <filtre>"
@@ -19127,12 +19285,6 @@ msgstr "Familles correspondantes au <filtre>"
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
 msgstr "Correspond aux familles trouvées par le filtre spécifié"
-
-#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-msgid "Person ID:"
-msgstr "Identifiant de l'individu :"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
@@ -19150,22 +19302,6 @@ msgstr "Correspond aux familles dont la mère a un identifiant GRAMPS spécifié
 msgid "Mother filters"
 msgstr "Filtres sur la mère"
 
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
-msgid "Families with father with the <Id>"
-msgstr "Familles dont le père a l'<Id>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Correspond aux familles dont le père a un identifiant GRAMPS spécifié"
-
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
-#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
-msgid "Father filters"
-msgstr "Filtres sur le père"
-
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
 msgstr "Familles dont la mère a pour <nom>"
@@ -19175,41 +19311,6 @@ msgstr "Familles dont la mère a pour <nom>"
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
 msgstr "Correspond aux familles dont la mère a un nom spécifié (partiel)"
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
-msgid "Families with child with the <Id>"
-msgstr "Familles dont l'enfant a l'<Id>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Correspond aux familles dont l'enfant a un identifiant GRAMPS spécifié"
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchChildName.py:49
-#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
-msgid "Child filters"
-msgstr "Filtres sur l'enfant"
-
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-msgid "Families with father with the <name>"
-msgstr "Familles dont le père a pour <nom>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-msgid "Matches families whose father has a specified (partial) name"
-msgstr "Correspond aux familles dont le père a un nom spécifié (partiel)"
-
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-msgid "Families with child with the <name>"
-msgstr "Familles dont l'enfant a pour <nom>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-msgid "Matches families where child has a specified (partial) name"
-msgstr "Correspond aux familles dont l'enfant a un nom spécifié (partiel)"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
@@ -19275,14 +19376,16 @@ msgstr ""
 "Correspond aux familles dont le nom de l'enfant contient une expression "
 "rationnelle spécifiée"
 
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
-msgid "Families with <marker>"
-msgstr "Familles avec le <marqueur>"
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
+msgid "Families with <Id> matching regular expression"
+msgstr "Familles avec un <Id> correspondant à l'expression rationnelle"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
-msgid "Matches Families with a marker of a particular value"
-msgstr "Correspond aux familles ayant un marqueur d'une valeur particulière"
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
+msgid "Matches families whose GRAMPS ID matches the regular expression"
+msgstr ""
+"Correspond aux familles dont l'ID GRAMPS contient l'expression rationnelle"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
@@ -19303,7 +19406,7 @@ msgid "Matches events that are indicated as private"
 msgstr "Correspond aux événements marqués comme privés"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:84
+#: ../src/FilterEditor/_EditRule.py:86
 msgid "Event attribute:"
 msgstr "Attribut de l'événement :"
 
@@ -19324,6 +19427,17 @@ msgstr "Événement avec la <donnée>"
 msgid "Matches events with data of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
 
+#: ../src/Filters/Rules/Event/_HasGallery.py:43
+#, fuzzy
+msgid "Events with <count> media"
+msgstr "Événement avec la <donnée>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Event/_HasGallery.py:44
+#, fuzzy
+msgid "Matches events with a certain number of items in the gallery"
+msgstr "Correspond aux individus ayant des images dans la galerie"
+
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
 msgstr "Événement avec l'<Id>"
@@ -19341,6 +19455,17 @@ msgstr "Événements avec le <marqueur>"
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
+
+#: ../src/Filters/Rules/Event/_HasNote.py:46
+#, fuzzy
+msgid "Events having <count> notes"
+msgstr "Individus avec une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Event/_HasNote.py:47
+#, fuzzy
+msgid "Matches events having a certain number of notes"
+msgstr "Correspond aux événements avec un certain nombre de références"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -19394,12 +19519,12 @@ msgstr "Correspond aux événements trouvés par le filtre spécifié"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:487
+#: ../src/FilterEditor/_EditRule.py:493
 msgid "Person filter name:"
 msgstr "Nom du filtre individu :"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:501
+#: ../src/FilterEditor/_EditRule.py:507
 msgid "Include Family events:"
 msgstr "Inclure les événements familiaux :"
 
@@ -19416,7 +19541,7 @@ msgstr ""
 "l'individu"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:491
+#: ../src/FilterEditor/_EditRule.py:497
 msgid "Source filter name:"
 msgstr "Nom du filtre source :"
 
@@ -19453,6 +19578,17 @@ msgstr "Chaque lieu"
 msgid "Matches every place in the database"
 msgstr "Correspond à tous les lieux de la base"
 
+#: ../src/Filters/Rules/Place/_HasGallery.py:43
+#, fuzzy
+msgid "Places with <count> media"
+msgstr "les individus avec des images"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Place/_HasGallery.py:44
+#, fuzzy
+msgid "Matches places with a certain number of items in the gallery"
+msgstr "Correspond aux individus ayant des images dans la galerie"
+
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
 msgstr "Lieux avec l'<Id>"
@@ -19475,6 +19611,17 @@ msgstr "Correspond aux lieux sans latitude ou longitude"
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
 msgid "Position filters"
 msgstr "Filtres sur la position"
+
+#: ../src/Filters/Rules/Place/_HasNote.py:46
+#, fuzzy
+msgid "Places having <count> notes"
+msgstr "Individus avec une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Place/_HasNote.py:47
+#, fuzzy
+msgid "Matches places having a certain number of notes"
+msgstr "Correspond aux lieux avec un certain nombre de références"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
@@ -19612,35 +19759,65 @@ msgid "Matches places whose GRAMPS ID matches the regular expression"
 msgstr ""
 "Correspond aux lieux dont l'ID GRAMPS contient une expression rationnelle"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-msgid "Sources matching the <filter>"
-msgstr "Sources correspondantes au <filtre>"
+#: ../src/Filters/Rules/Source/_AllSources.py:45
+msgid "Every source"
+msgstr "Chaque source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-msgid "Matches sources matched by the specified filter name"
-msgstr "Correspond aux sources trouvées par un filtre spécifié"
+#: ../src/Filters/Rules/Source/_AllSources.py:46
+msgid "Matches every source in the database"
+msgstr "Correspond à toutes les sources de la base"
 
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-msgid "Sources marked private"
-msgstr "Sources marquées comme privées"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-msgid "Matches sources that are indicated as private"
-msgstr "Correspond aux sources marquées comme privées"
+#: ../src/Filters/Rules/Source/_HasGallery.py:43
+#, fuzzy
+msgid "Sources with <count> media"
+msgstr "Source avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-msgid "Sources with <Id> matching regular expression"
-msgstr "Sources avec un <Id> correspondant à l'expression rationnelle"
+#: ../src/Filters/Rules/Source/_HasGallery.py:44
+#, fuzzy
+msgid "Matches sources with a certain number of items in the gallery"
+msgstr "Correspond aux individus ayant des images dans la galerie"
+
+#: ../src/Filters/Rules/Source/_HasIdOf.py:45
+msgid "Source with <Id>"
+msgstr "Source avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-msgid "Matches sources whose GRAMPS ID matches the regular expression"
+#: ../src/Filters/Rules/Source/_HasIdOf.py:46
+msgid "Matches a source with a specified GRAMPS ID"
+msgstr "Correspond à une source avec l'identifiant GRAMPS spécifié"
+
+#: ../src/Filters/Rules/Source/_HasNote.py:46
+#, fuzzy
+msgid "Sources having <count> notes"
+msgstr "Individus avec une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_HasNote.py:47
+#, fuzzy
+msgid "Matches sources having a certain number of notes"
+msgstr "Correspond aux notes avec un certain nombre de références"
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
+msgid "Sources having notes containing <regular expression>"
+msgstr "Sources dont les notes contiennent une <expression rationnelle>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
+msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
-"Correspond aux sources dont l'ID GRAMPS contient une expression rationnelle"
+"Correspond aux sources dont les notes contiennent du texte avec l'expression "
+"rationnelle"
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
+msgid "Sources having notes containing <substring>"
+msgstr "Sources dont les notes contiennent la <sous-chaîne>"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches sources whose notes contain text matching a substring"
+msgstr "Correspond aux sources dont les notes contiennent une sous-chaîne"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 #, fuzzy
@@ -19679,43 +19856,35 @@ msgstr "Sources correspondantes aux paramètres"
 msgid "Matches sources with particular parameters"
 msgstr "Correspond aux sources ayant des paramètres particuliers"
 
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-msgid "Sources having notes containing <substring>"
-msgstr "Sources dont les notes contiennent la <sous-chaîne>"
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
+msgid "Sources matching the <filter>"
+msgstr "Sources correspondantes au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-msgid "Matches sources whose notes contain text matching a substring"
-msgstr "Correspond aux sources dont les notes contiennent une sous-chaîne"
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
+msgid "Matches sources matched by the specified filter name"
+msgstr "Correspond aux sources trouvées par un filtre spécifié"
 
-#: ../src/Filters/Rules/Source/_AllSources.py:45
-msgid "Every source"
-msgstr "Chaque source"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_AllSources.py:46
-msgid "Matches every source in the database"
-msgstr "Correspond à toutes les sources de la base"
-
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-msgid "Sources having notes containing <regular expression>"
-msgstr "Sources dont les notes contiennent une <expression rationnelle>"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
+msgid "Sources marked private"
+msgstr "Sources marquées comme privées"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-msgid "Matches sources whose notes contain text matching a regular expression"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
+msgid "Matches sources that are indicated as private"
+msgstr "Correspond aux sources marquées comme privées"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
+msgid "Sources with <Id> matching regular expression"
+msgstr "Sources avec un <Id> correspondant à l'expression rationnelle"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
+msgid "Matches sources whose GRAMPS ID matches the regular expression"
 msgstr ""
-"Correspond aux sources dont les notes contiennent du texte avec l'expression "
-"rationnelle"
-
-#: ../src/Filters/Rules/Source/_HasIdOf.py:45
-msgid "Source with <Id>"
-msgstr "Source avec l'<Id>"
-
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Source/_HasIdOf.py:46
-msgid "Matches a source with a specified GRAMPS ID"
-msgstr "Correspond à une source avec l'identifiant GRAMPS spécifié"
+"Correspond aux sources dont l'ID GRAMPS contient une expression rationnelle"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
@@ -19727,7 +19896,7 @@ msgid "Matches every media object in the database"
 msgstr "Correspond à tous les objets média de la base"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:85
+#: ../src/FilterEditor/_EditRule.py:87
 msgid "Media attribute:"
 msgstr "Attribut de l'objet média :"
 
@@ -19972,7 +20141,7 @@ msgid "Text:"
 msgstr "Texte :"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:48
-#: ../src/FilterEditor/_EditRule.py:88
+#: ../src/FilterEditor/_EditRule.py:90
 msgid "Note type:"
 msgstr "Type de note :"
 
@@ -20152,45 +20321,45 @@ msgstr "Ajouter une règle"
 msgid "Edit Rule"
 msgstr "Éditer la règle"
 
-#: ../src/FilterEditor/_EditRule.py:196 ../src/FilterEditor/_EditRule.py:205
-#: ../src/FilterEditor/_EditRule.py:212
+#: ../src/FilterEditor/_EditRule.py:198 ../src/FilterEditor/_EditRule.py:207
+#: ../src/FilterEditor/_EditRule.py:214
 msgid "equal to"
 msgstr "égal à"
 
-#: ../src/FilterEditor/_EditRule.py:295
+#: ../src/FilterEditor/_EditRule.py:297
 msgid "Select..."
 msgstr "Sélectionner…"
 
-#: ../src/FilterEditor/_EditRule.py:301
+#: ../src/FilterEditor/_EditRule.py:303
 #, python-format
 msgid "Select %s from a list"
 msgstr "Sélectionner %s depuis une liste"
 
-#: ../src/FilterEditor/_EditRule.py:352
+#: ../src/FilterEditor/_EditRule.py:354
 msgid "Not a valid ID"
 msgstr "L'identifiant n'est pas valide"
 
-#: ../src/FilterEditor/_EditRule.py:496
+#: ../src/FilterEditor/_EditRule.py:502
 msgid "Include original person"
 msgstr "Inclure l'individu d'origine"
 
-#: ../src/FilterEditor/_EditRule.py:498
+#: ../src/FilterEditor/_EditRule.py:504
 msgid "Use exact case of letters"
 msgstr "Utiliser la casse exacte (Majuscule/Minuscule)"
 
-#: ../src/FilterEditor/_EditRule.py:500
+#: ../src/FilterEditor/_EditRule.py:506
 msgid "Use regular expression"
 msgstr "Utiliser une expression rationnelle"
 
-#: ../src/FilterEditor/_EditRule.py:502
+#: ../src/FilterEditor/_EditRule.py:508
 msgid "Also family events where person is wife/husband"
 msgstr "Également les événements familiaux dont l'individu est le conjoint"
 
-#: ../src/FilterEditor/_EditRule.py:516
+#: ../src/FilterEditor/_EditRule.py:522
 msgid "Rule Name"
 msgstr "Nom de la règle"
 
-#: ../src/FilterEditor/_EditRule.py:602 ../src/FilterEditor/_EditRule.py:613
+#: ../src/FilterEditor/_EditRule.py:608 ../src/FilterEditor/_EditRule.py:619
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Aucune règle retenue"
@@ -22613,6 +22782,31 @@ msgstr ""
 "Vous pouvez relier un média électronique (comprenant les informations sans "
 "texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#, fuzzy
+#~ msgid "Matches people with a source"
+#~ msgstr "Correspond aux individus avec le même prénom"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#, fuzzy
+#~ msgid "Matches families with a source"
+#~ msgstr "Correspond aux familles ayant un événement de même valeur"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#, fuzzy
+#~ msgid "Matches events that have a note"
+#~ msgstr "Correspond aux individus ayant une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#, fuzzy
+#~ msgid "Matches places that have a note"
+#~ msgstr "Correspond aux individus ayant une note"
+
+# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+#, fuzzy
+#~ msgid "Matches sources that have a note"
+#~ msgstr "Correspond aux individus ayant une note"
+
 #~ msgid ""
 #~ "Not a valid Family tree given to open\n"
 #~ "\n"
@@ -22662,9 +22856,6 @@ msgstr ""
 
 #~ msgid "Attempt to use maiden names of women"
 #~ msgstr "Tentative pour utiliser le nom de jeune fille des femmes mariées"
-
-#~ msgid "People with images"
-#~ msgstr "Individus avec des images"
 
 #~ msgid "Source objects with a reference count of <count>"
 #~ msgstr "Les sources avec un nombre de références de <nb>"

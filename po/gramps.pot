@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:07+0100\n"
+"POT-Creation-Date: 2008-11-06 09:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -862,7 +862,7 @@ msgstr ""
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCsv.py:195 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
-#: ../src/FilterEditor/_EditRule.py:274
+#: ../src/FilterEditor/_EditRule.py:276
 msgid "Person"
 msgstr ""
 
@@ -876,7 +876,7 @@ msgstr ""
 #: ../src/plugins/all_relations.py:270 ../src/plugins/ExportCsv.py:442
 #: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:202
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
-#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:275
+#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:277
 msgid "Family"
 msgstr ""
 
@@ -891,7 +891,7 @@ msgstr ""
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
 #: ../src/PluginUtils/_GuiOptions.py:930
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/FilterEditor/_EditRule.py:277
+#: ../src/FilterEditor/_EditRule.py:279
 msgid "Place"
 msgstr ""
 
@@ -899,26 +899,26 @@ msgstr ""
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCsv.py:403
 #: ../src/plugins/ImportCsv.py:167 ../src/plugins/ImportCsv.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
-#: ../src/FilterEditor/_EditRule.py:278
+#: ../src/FilterEditor/_EditRule.py:280
 msgid "Source"
 msgstr ""
 
 #: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
-#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:279
+#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:281
 msgid "Media Object"
 msgstr ""
 
 #: ../src/GrampsCfg.py:203 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:91
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/FilterEditor/_EditRule.py:276
+#: ../src/FilterEditor/_EditRule.py:278
 msgid "Event"
 msgstr ""
 
 #: ../src/GrampsCfg.py:205 ../src/ToolTips.py:141
 #: ../src/Simple/_SimpleTable.py:226 ../src/Editors/_EditRepository.py:67
 #: ../src/Editors/_EditRepository.py:69 ../src/plugins/References.py:35
-#: ../src/plugins/References.py:94 ../src/FilterEditor/_EditRule.py:280
+#: ../src/plugins/References.py:94 ../src/FilterEditor/_EditRule.py:282
 msgid "Repository"
 msgstr ""
 
@@ -935,7 +935,7 @@ msgstr ""
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/FilterEditor/_EditRule.py:281
+#: ../src/FilterEditor/_EditRule.py:283
 msgid "Note"
 msgstr ""
 
@@ -10708,6 +10708,8 @@ msgstr ""
 #: ../src/Filters/Rules/_HasMarkerBase.py:50
 #: ../src/Filters/Rules/Person/_Disconnected.py:46
 #: ../src/Filters/Rules/Person/_Everyone.py:46
+#: ../src/Filters/Rules/Person/_HasAddress.py:49
+#: ../src/Filters/Rules/Person/_HasAssociation.py:48
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
 #: ../src/Filters/Rules/Person/_HasNameOf.py:55
@@ -16710,7 +16712,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/Event/_HasType.py:46
-#: ../src/FilterEditor/_EditRule.py:81
+#: ../src/FilterEditor/_EditRule.py:83
 msgid "Event type:"
 msgstr ""
 
@@ -16732,7 +16734,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:470
+#: ../src/FilterEditor/_EditRule.py:472
 msgid "Place:"
 msgstr ""
 
@@ -16775,7 +16777,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:478
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "ID:"
 msgstr ""
 
@@ -16810,12 +16812,12 @@ msgid "Matches objects whose notes contain text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:474
+#: ../src/FilterEditor/_EditRule.py:478
 msgid "Reference count must be:"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:472
+#: ../src/FilterEditor/_EditRule.py:474
 msgid "Reference count:"
 msgstr ""
 
@@ -16829,24 +16831,26 @@ msgstr ""
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
-#: ../src/FilterEditor/_EditRule.py:196
+#: ../src/Filters/Rules/Person/_HasAddress.py:54
+#: ../src/FilterEditor/_EditRule.py:198
 msgid "lesser than"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
-#: ../src/FilterEditor/_EditRule.py:196
+#: ../src/Filters/Rules/Person/_HasAddress.py:56
+#: ../src/FilterEditor/_EditRule.py:198
 msgid "greater than"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:497
+#: ../src/FilterEditor/_EditRule.py:503
 msgid "Case sensitive:"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:499
+#: ../src/FilterEditor/_EditRule.py:505
 msgid "Regular-Expression matching:"
 msgstr ""
 
@@ -16874,7 +16878,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:489
 msgid "Filter name:"
 msgstr ""
 
@@ -16903,7 +16907,7 @@ msgid "No description"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
-#: ../src/FilterEditor/_EditRule.py:87
+#: ../src/FilterEditor/_EditRule.py:89
 msgid "Marker type:"
 msgstr ""
 
@@ -16941,8 +16945,34 @@ msgstr ""
 msgid "Matches people with missing date or place in an event of the family"
 msgstr ""
 
+#: ../src/Filters/Rules/Person/_HasAddress.py:46
+#: ../src/FilterEditor/_EditRule.py:475
+msgid "Number of instances:"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:46
+#: ../src/FilterEditor/_EditRule.py:480
+msgid "Number must be:"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:47
+msgid "People with <count> address"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAddress.py:48
+msgid "Matches peoplewith certain number of personal address"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAssociation.py:46
+msgid "People with association"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasAssociation.py:47
+msgid "Matches people with association"
+msgstr ""
+
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:82
+#: ../src/FilterEditor/_EditRule.py:84
 msgid "Personal attribute:"
 msgstr ""
 
@@ -17007,7 +17037,7 @@ msgid "Matches people with death data of a particular value"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
-#: ../src/FilterEditor/_EditRule.py:79
+#: ../src/FilterEditor/_EditRule.py:81
 msgid "Personal event:"
 msgstr ""
 
@@ -17021,7 +17051,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:83
+#: ../src/FilterEditor/_EditRule.py:85
 msgid "Family attribute:"
 msgstr ""
 
@@ -17035,7 +17065,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
-#: ../src/FilterEditor/_EditRule.py:80
+#: ../src/FilterEditor/_EditRule.py:82
 msgid "Family event:"
 msgstr ""
 
@@ -17048,11 +17078,11 @@ msgid "Matches people with a family event of a particular value"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
-msgid "People with media"
+msgid "People with <count> media"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
-msgid "Matches people with media object in the gallery"
+msgid "Matches people with a certain number of items in the gallery"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
@@ -17063,6 +17093,22 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches person with a specified GRAMPS ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasLDS.py:46
+msgid "People with <count> LDS events"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasLDS.py:47
+msgid "Matches people with a certain number of LDS events"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+msgid "People with <marker>"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
+msgid "Matches people with a marker of a particular value"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
@@ -17098,20 +17144,20 @@ msgstr ""
 msgid "Matches people with a specified (partial) name"
 msgstr ""
 
+#: ../src/Filters/Rules/Person/_HasNote.py:46
+msgid "People having <count> notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasNote.py:47
+msgid "Matches people having a certain number of notes"
+msgstr ""
+
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:45
 msgid "Matches people whose notes contain text matching a substring"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_HasNote.py:46
-msgid "People having note"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_HasNote.py:47
-msgid "Matches people that have a note"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
@@ -17128,7 +17174,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:47
 #: ../src/Filters/Rules/Family/_HasRelType.py:46
-#: ../src/FilterEditor/_EditRule.py:86
+#: ../src/FilterEditor/_EditRule.py:88
 msgid "Relationship type:"
 msgstr ""
 
@@ -17151,14 +17197,22 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:47
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:49
+#: ../src/Filters/Rules/Person/_MissingParent.py:48
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:45
 #: ../src/Filters/Rules/Person/_NeverMarried.py:45
-#: ../src/Filters/Rules/Person/_MissingParent.py:48
 msgid "Family filters"
 msgstr ""
 
+#: ../src/Filters/Rules/Person/_HasSource.py:46
+msgid "People with <count> source"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasSource.py:47
+msgid "Matches people with a certain number of items in the source"
+msgstr ""
+
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:481
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Source ID:"
 msgstr ""
 
@@ -17221,7 +17275,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:495
+#: ../src/FilterEditor/_EditRule.py:501
 msgid "Inclusive:"
 msgstr ""
 
@@ -17301,7 +17355,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:476
+#: ../src/FilterEditor/_EditRule.py:482
 msgid "Number of generations:"
 msgstr ""
 
@@ -17402,7 +17456,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:489
+#: ../src/FilterEditor/_EditRule.py:495
 msgid "Event filter name:"
 msgstr ""
 
@@ -17420,6 +17474,16 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
 msgid "Matches people matched by the specified filter name"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_MissingParent.py:44
+msgid "People missing parents"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_MissingParent.py:45
+msgid ""
+"Matches people that are children in a family with less than two parents or "
+"are not children in any family."
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
@@ -17519,24 +17583,6 @@ msgid ""
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
 
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
-msgid "People with <marker>"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
-msgid "Matches people with a marker of a particular value"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:44
-msgid "People missing parents"
-msgstr ""
-
-#: ../src/Filters/Rules/Person/_MissingParent.py:45
-msgid ""
-"Matches people that are children in a family with less than two parents or "
-"are not children in any family."
-msgstr ""
-
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
 msgstr ""
@@ -17545,12 +17591,65 @@ msgstr ""
 msgid "Matches every family in the database"
 msgstr ""
 
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
+#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
+msgid "Person ID:"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
+msgid "Families with child with the <Id>"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
+msgid "Matches families where child has a specified GRAMPS ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchChildName.py:49
+#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
+msgid "Child filters"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
+msgid "Families with child with the <name>"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
+msgid "Matches families where child has a specified (partial) name"
+msgstr ""
+
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
 msgid "Matches families that are indicated as private"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
+msgid "Families with father with the <Id>"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
+msgid "Matches families whose father has a specified GRAMPS ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
+#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
+msgid "Father filters"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
+msgid "Families with father with the <name>"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
+#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
+msgid "Matches families whose father has a specified (partial) name"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
@@ -17569,12 +17668,44 @@ msgstr ""
 msgid "Matches families with an event of a particular value"
 msgstr ""
 
+#: ../src/Filters/Rules/Family/_HasGallery.py:43
+msgid "Families with <count> media"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasGallery.py:44
+msgid "Matches families with a certain number of items in the gallery"
+msgstr ""
+
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
 msgid "Matches a family with a specified GRAMPS ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:46
+msgid "Families with <count> LDS events"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasLDS.py:47
+msgid "Matches families with a certain number of LDS events"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
+msgid "Families with <marker>"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
+msgid "Matches Families with a marker of a particular value"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasNote.py:46
+msgid "Families having <count> notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasNote.py:47
+msgid "Matches families having a certain number notes"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
@@ -17609,6 +17740,14 @@ msgstr ""
 msgid "Matches families with the relationship type of a particular value"
 msgstr ""
 
+#: ../src/Filters/Rules/Family/_HasSource.py:46
+msgid "Families with <count> source"
+msgstr ""
+
+#: ../src/Filters/Rules/Family/_HasSource.py:47
+msgid "Matches families with a certain number of items in the source"
+msgstr ""
+
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
 msgstr ""
@@ -17617,26 +17756,12 @@ msgstr ""
 msgid "Matches the families on the bookmark list"
 msgstr ""
 
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-msgid "Families with <Id> matching regular expression"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
-msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
-
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
 msgid "Families matching the <filter>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
 msgid "Matches families matched by the specified filter name"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-msgid "Person ID:"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
@@ -17654,21 +17779,6 @@ msgstr ""
 msgid "Mother filters"
 msgstr ""
 
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
-msgid "Families with father with the <Id>"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:49
-#: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
-msgid "Father filters"
-msgstr ""
-
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
 msgstr ""
@@ -17676,38 +17786,6 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
-msgid "Families with child with the <Id>"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-msgid "Matches families where child has a specified GRAMPS ID"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
-#: ../src/Filters/Rules/Family/_SearchChildName.py:49
-#: ../src/Filters/Rules/Family/_RegExpChildName.py:49
-msgid "Child filters"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-msgid "Families with father with the <name>"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
-#: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-msgid "Matches families whose father has a specified (partial) name"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-msgid "Families with child with the <name>"
-msgstr ""
-
-#: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-msgid "Matches families where child has a specified (partial) name"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
@@ -17756,12 +17834,12 @@ msgid ""
 "expression"
 msgstr ""
 
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
-msgid "Families with <marker>"
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
+msgid "Families with <Id> matching regular expression"
 msgstr ""
 
-#: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
-msgid "Matches Families with a marker of a particular value"
+#: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
+msgid "Matches families whose GRAMPS ID matches the regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
@@ -17781,7 +17859,7 @@ msgid "Matches events that are indicated as private"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:84
+#: ../src/FilterEditor/_EditRule.py:86
 msgid "Event attribute:"
 msgstr ""
 
@@ -17801,6 +17879,14 @@ msgstr ""
 msgid "Matches events with data of a particular value"
 msgstr ""
 
+#: ../src/Filters/Rules/Event/_HasGallery.py:43
+msgid "Events with <count> media"
+msgstr ""
+
+#: ../src/Filters/Rules/Event/_HasGallery.py:44
+msgid "Matches events with a certain number of items in the gallery"
+msgstr ""
+
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
 msgstr ""
@@ -17815,6 +17901,14 @@ msgstr ""
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
+msgstr ""
+
+#: ../src/Filters/Rules/Event/_HasNote.py:46
+msgid "Events having <count> notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Event/_HasNote.py:47
+msgid "Matches events having a certain number of notes"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
@@ -17859,12 +17953,12 @@ msgstr ""
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:487
+#: ../src/FilterEditor/_EditRule.py:493
 msgid "Person filter name:"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:501
+#: ../src/FilterEditor/_EditRule.py:507
 msgid "Include Family events:"
 msgstr ""
 
@@ -17877,7 +17971,7 @@ msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:491
+#: ../src/FilterEditor/_EditRule.py:497
 msgid "Source filter name:"
 msgstr ""
 
@@ -17905,6 +17999,14 @@ msgstr ""
 msgid "Matches every place in the database"
 msgstr ""
 
+#: ../src/Filters/Rules/Place/_HasGallery.py:43
+msgid "Places with <count> media"
+msgstr ""
+
+#: ../src/Filters/Rules/Place/_HasGallery.py:44
+msgid "Matches places with a certain number of items in the gallery"
+msgstr ""
+
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
 msgstr ""
@@ -17924,6 +18026,14 @@ msgstr ""
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
 msgid "Position filters"
+msgstr ""
+
+#: ../src/Filters/Rules/Place/_HasNote.py:46
+msgid "Places having <count> notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Place/_HasNote.py:47
+msgid "Matches places having a certain number of notes"
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
@@ -18040,28 +18150,52 @@ msgstr ""
 msgid "Matches places whose GRAMPS ID matches the regular expression"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
-msgid "Sources matching the <filter>"
+#: ../src/Filters/Rules/Source/_AllSources.py:45
+msgid "Every source"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
-msgid "Matches sources matched by the specified filter name"
+#: ../src/Filters/Rules/Source/_AllSources.py:46
+msgid "Matches every source in the database"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
-msgid "Sources marked private"
+#: ../src/Filters/Rules/Source/_HasGallery.py:43
+msgid "Sources with <count> media"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
-msgid "Matches sources that are indicated as private"
+#: ../src/Filters/Rules/Source/_HasGallery.py:44
+msgid "Matches sources with a certain number of items in the gallery"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-msgid "Sources with <Id> matching regular expression"
+#: ../src/Filters/Rules/Source/_HasIdOf.py:45
+msgid "Source with <Id>"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
-msgid "Matches sources whose GRAMPS ID matches the regular expression"
+#: ../src/Filters/Rules/Source/_HasIdOf.py:46
+msgid "Matches a source with a specified GRAMPS ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNote.py:46
+msgid "Sources having <count> notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNote.py:47
+msgid "Matches sources having a certain number of notes"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
+msgid "Sources having notes containing <regular expression>"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
+msgid "Matches sources whose notes contain text matching a regular expression"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
+msgid "Sources having notes containing <substring>"
+msgstr ""
+
+#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
+msgid "Matches sources whose notes contain text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
@@ -18096,36 +18230,28 @@ msgstr ""
 msgid "Matches sources with particular parameters"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
-msgid "Sources having notes containing <substring>"
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:45
+msgid "Sources matching the <filter>"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:44
-msgid "Matches sources whose notes contain text matching a substring"
+#: ../src/Filters/Rules/Source/_MatchesFilter.py:46
+msgid "Matches sources matched by the specified filter name"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_AllSources.py:45
-msgid "Every source"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:43
+msgid "Sources marked private"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_AllSources.py:46
-msgid "Matches every source in the database"
+#: ../src/Filters/Rules/Source/_SourcePrivate.py:44
+msgid "Matches sources that are indicated as private"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-msgid "Sources having notes containing <regular expression>"
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
+msgid "Sources with <Id> matching regular expression"
 msgstr ""
 
-#: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
-msgid "Matches sources whose notes contain text matching a regular expression"
-msgstr ""
-
-#: ../src/Filters/Rules/Source/_HasIdOf.py:45
-msgid "Source with <Id>"
-msgstr ""
-
-#: ../src/Filters/Rules/Source/_HasIdOf.py:46
-msgid "Matches a source with a specified GRAMPS ID"
+#: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
+msgid "Matches sources whose GRAMPS ID matches the regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
@@ -18137,7 +18263,7 @@ msgid "Matches every media object in the database"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
-#: ../src/FilterEditor/_EditRule.py:85
+#: ../src/FilterEditor/_EditRule.py:87
 msgid "Media attribute:"
 msgstr ""
 
@@ -18346,7 +18472,7 @@ msgid "Text:"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_HasNote.py:48
-#: ../src/FilterEditor/_EditRule.py:88
+#: ../src/FilterEditor/_EditRule.py:90
 msgid "Note type:"
 msgstr ""
 
@@ -18513,45 +18639,45 @@ msgstr ""
 msgid "Edit Rule"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:196 ../src/FilterEditor/_EditRule.py:205
-#: ../src/FilterEditor/_EditRule.py:212
+#: ../src/FilterEditor/_EditRule.py:198 ../src/FilterEditor/_EditRule.py:207
+#: ../src/FilterEditor/_EditRule.py:214
 msgid "equal to"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:295
+#: ../src/FilterEditor/_EditRule.py:297
 msgid "Select..."
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:301
+#: ../src/FilterEditor/_EditRule.py:303
 #, python-format
 msgid "Select %s from a list"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:352
+#: ../src/FilterEditor/_EditRule.py:354
 msgid "Not a valid ID"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:496
+#: ../src/FilterEditor/_EditRule.py:502
 msgid "Include original person"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:498
+#: ../src/FilterEditor/_EditRule.py:504
 msgid "Use exact case of letters"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:500
+#: ../src/FilterEditor/_EditRule.py:506
 msgid "Use regular expression"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:502
+#: ../src/FilterEditor/_EditRule.py:508
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:516
+#: ../src/FilterEditor/_EditRule.py:522
 msgid "Rule Name"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:602 ../src/FilterEditor/_EditRule.py:613
+#: ../src/FilterEditor/_EditRule.py:608 ../src/FilterEditor/_EditRule.py:619
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr ""
