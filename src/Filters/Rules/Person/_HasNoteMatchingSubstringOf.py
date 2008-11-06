@@ -32,24 +32,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules._HasNoteSubstrBase import HasNoteSubstrBase
 
 #-------------------------------------------------------------------------
 # "People having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasNoteMatchingSubstringOf(Rule):
+class HasNoteMatchingSubstringOf(HasNoteSubstrBase):
     """People having notes containing <subtring>"""
 
-    labels      = [ _('Substring:')]
     name        = _('People having notes containing <substring>')
     description = _("Matches people whose notes contain text matching a substring")
-    category    = _('General filters')
-
-    def apply(self,db,person):
-        notelist = person.get_note_list()
-        for notehandle in notelist:
-            note = db.get_note_from_handle(notehandle)
-            n = note.get()
-            if n.upper().find(self.list[0].upper()) != -1:
-                return True
-        return False
