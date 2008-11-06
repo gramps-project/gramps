@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-01 14:35+0100\n"
-"PO-Revision-Date: 2008-11-05 18:50+0100\n"
+"POT-Creation-Date: 2008-11-06 18:23+0100\n"
+"PO-Revision-Date: 2008-11-06 20:48+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17716,7 +17716,7 @@ msgstr "Entspricht der Hauptperson"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
 msgid "Descendant family members of <person>"
-msgstr "Ist ein Familienmitglied eines Nachkommens von <Person>"
+msgstr "Ist ein Familienmitglied eines Nachkommen von <Person>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:52
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:49
@@ -17736,7 +17736,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
 msgid "Descendants of <filter> match"
-msgstr "Ist ein Nachkommen eines <Filter>treffers"
+msgstr "Ist ein Nachkomme eines <Filter>treffers"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -18731,8 +18731,8 @@ msgstr ""
 "Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Repositories having notes containing <regular expression>"
+msgstr "Aufbewahrungsorte mit Notizen die <Regulärem Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
@@ -20087,7 +20087,7 @@ msgstr "Die gewählte Regel bearbeiten"
 
 #: ../src/glade/rule.glade.h:21
 msgid "Return values that do no_t match the filter rules"
-msgstr "Zeige Werte, die nicht den Filterregeln entsprechen"
+msgstr "Werte liefern, die nicht den Filterregeln entsprechen"
 
 #: ../src/glade/rule.glade.h:22
 msgid "Test the selected filter"
