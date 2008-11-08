@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from cgi import escape
 import math
 
@@ -69,12 +69,12 @@ from QuestionDialog import RunDatabaseRepair, ErrorDialog
 #
 #-------------------------------------------------------------------------
 _PERSON = "p"
-_BORN = _('b.')
-_DIED = _('d.')
-_BAPT = _('bap.')
-_CHRI = _('chr.')
-_BURI = _('bur.')
-_CREM = _('crem.')
+_BORN = _('short for born|b.')
+_DIED = _('short for died|d.')
+_BAPT = _('short for baptized|bap.')
+_CHRI = _('short for chistianized|chr.')
+_BURI = _('short for buried|bur.')
+_CREM = _('short for cremated|crem.')
 
 class PersonBoxWidget_old( gtk.Button):
     def __init__(self,fh,person,maxlines,image=None):
