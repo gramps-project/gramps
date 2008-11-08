@@ -25,7 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import os
 
 #-------------------------------------------------------------------------
@@ -224,7 +224,7 @@ class PaperFrame(gtk.HBox):
         else:
             self.paper_unit = 'in.'
             self.paper_unit_multiplier = 2.54
-            paper_unit_text = _("in.")
+            paper_unit_text = _("inch|in.")
             
         self.lunits1.set_text(paper_unit_text)
         self.lunits2.set_text(paper_unit_text)
