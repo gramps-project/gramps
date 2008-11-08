@@ -28,7 +28,7 @@ Relationship View
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import cgi
 
 #-------------------------------------------------------------------------
@@ -1076,9 +1076,9 @@ class RelationshipView(PageView.PersonNavView):
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("b. %s") % (bdate)
+            value = _("short for borb|b. %s") % (bdate)
         elif ddate:
-            value = _("d. %s") % (ddate)
+            value = _("short for dead|d. %s") % (ddate)
         else:
             value = ""
         return value
