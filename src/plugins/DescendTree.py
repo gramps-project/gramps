@@ -33,7 +33,7 @@ from gen.plug import PluginManager
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -49,8 +49,8 @@ cm2pt = ReportUtils.cm2pt
 # Constants
 #
 #------------------------------------------------------------------------
-_BORN = _('b.')
-_DIED = _('d.')
+_BORN = _('short for born|b.')
+_DIED = _('short for died|d.')
 
 _LINE_HORIZONTAL = 1
 _LINE_VERTICAL   = 2
