@@ -113,14 +113,14 @@ GLADEFILES = \
 	changenames.glade\
 	changetype.glade\
 	desbrowse.glade\
-	eval.glade\	
+	eval.glade\
 	eventcmp.glade\
 	ExportCsv.glade\
 	ExportFtree.glade\
 	ExportGeneWeb.glade\
 	ExportVCalendar.glade\
 	ExportVCard.glade\
-	ImportGedcom.glade\	
+	ImportGedcom.glade\
 	leak.glade\
 	merge.glade\
 	NotRelated.glade\
