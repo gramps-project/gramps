@@ -1,4 +1,4 @@
-# translation of nl_grampsbranch.po to nederlands
+# translation of nl_branch.po to nederlands
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -34,10 +34,10 @@
 # lineage	lijn
 msgid ""
 msgstr ""
-"Project-Id-Version: nl_grampsbranch\n"
+"Project-Id-Version: nl_branch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-25 18:22+0200\n"
-"PO-Revision-Date: 2008-10-30 09:20+0100\n"
+"POT-Creation-Date: 2008-11-02 16:05+0100\n"
+"PO-Revision-Date: 2008-11-09 10:28+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -476,11 +476,11 @@ msgstr ""
 msgid "Break lock"
 msgstr "Open slot"
 
-#: ../src/DbManager.py:606
+#: ../src/DbManager.py:607
 msgid "Rename failed"
 msgstr "Herbenoemen is mislukt"
 
-#: ../src/DbManager.py:607
+#: ../src/DbManager.py:608
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -491,61 +491,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:622
+#: ../src/DbManager.py:623
 msgid "Could not rename the Family Tree."
 msgstr "Kon de familiestamboom niet herbenoemen."
 
-#: ../src/DbManager.py:623
+#: ../src/DbManager.py:624
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Deze familiestamboom bestaat reeds,kies een unieke naam."
 
-#: ../src/DbManager.py:636
+#: ../src/DbManager.py:637
 msgid "Could not rename family tree"
 msgstr "Kon de familiestamboom niet herbenoemen"
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:671
 msgid "Extracting archive..."
 msgstr "Archief ophalen..."
 
-#: ../src/DbManager.py:675
+#: ../src/DbManager.py:676
 msgid "Importing archive..."
 msgstr "Importeren van archief..."
 
-#: ../src/DbManager.py:691
+#: ../src/DbManager.py:692
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Het gegevensbestand '%s' verwijderen?"
 
-#: ../src/DbManager.py:692
+#: ../src/DbManager.py:693
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Het verwijderen van deze familiestamboom zal de gegevens blijven verwijderen."
 
-#: ../src/DbManager.py:693
+#: ../src/DbManager.py:694
 msgid "Remove family tree"
 msgstr "Familiestamboom verwijderen"
 
-#: ../src/DbManager.py:699
+#: ../src/DbManager.py:700
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Verwijder de '%(revision)s' versie van '%(database)s'"
 
-#: ../src/DbManager.py:703
+#: ../src/DbManager.py:704
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Door deze versie te verwijderen, kunt u het in de toekomst niet meer ophalen."
 
-#: ../src/DbManager.py:705
+#: ../src/DbManager.py:706
 msgid "Remove version"
 msgstr "Versie verwijderen"
 
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:735
 msgid "Could not delete family tree"
 msgstr "Kon de familiestamboom niet verwijderen"
 
-#: ../src/DbManager.py:759
+#: ../src/DbManager.py:760
 msgid "Deletion failed"
 msgstr "Verwijderen mislukt"
 
-#: ../src/DbManager.py:760
+#: ../src/DbManager.py:761
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -556,23 +556,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:803
+#: ../src/DbManager.py:804
 msgid "Rebuilding database from backup files"
 msgstr "Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
 
-#: ../src/DbManager.py:838
+#: ../src/DbManager.py:839
 msgid "Could not create family tree"
 msgstr "Kon geen familiestamboom aanmaken"
 
-#: ../src/DbManager.py:928
+#: ../src/DbManager.py:929
 msgid "Could not make database directory: "
 msgstr "Kon geen gegevensbestandsmap aanmaken: "
 
-#: ../src/DbManager.py:942
+#: ../src/DbManager.py:943
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/DbManager.py:1016 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1017 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -598,11 +598,11 @@ msgstr "Nooit"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/DbManager.py:1035
+#: ../src/DbManager.py:1036
 msgid "Retrieve failed"
 msgstr "Ophalen mislukte"
 
-#: ../src/DbManager.py:1036
+#: ../src/DbManager.py:1037
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -613,11 +613,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1073 ../src/DbManager.py:1097
+#: ../src/DbManager.py:1074 ../src/DbManager.py:1098
 msgid "Archiving failed"
 msgstr "Archieveren is mislukt"
 
-#: ../src/DbManager.py:1074
+#: ../src/DbManager.py:1075
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -628,15 +628,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1079
+#: ../src/DbManager.py:1080
 msgid "Creating data to be archived..."
 msgstr "Gegevens worden aangemaakt om te archiveren..."
 
-#: ../src/DbManager.py:1084
+#: ../src/DbManager.py:1085
 msgid "Saving archive..."
 msgstr "Archief wordt opgeslagen..."
 
-#: ../src/DbManager.py:1098
+#: ../src/DbManager.py:1099
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -5166,6 +5166,7 @@ msgstr "Nieuw persoon"
 
 # patronymisch/patroniemen
 #: ../src/Editors/_EditPerson.py:266
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Patronymic:"
 msgstr "Patroniemen:"
 
@@ -7840,7 +7841,7 @@ msgid ""
 "gramplets and change the number of columns. You can also drag the Properties "
 "button to reposition the gramplet on this page, and detach the gramplet to "
 "float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-"
-"opened detached the next time you start GRAMPS."
+"open detached the next time you start GRAMPS."
 msgstr ""
 "Welkom bij GRAMPS!\n"
 "\n"
@@ -7854,7 +7855,7 @@ msgstr ""
 "is om GRAMPS steeds beter te maken, maar het gebruik van GRAMPS eenvoudig te "
 "houden.\n"
 "\n"
-"Opstarten\n"
+"Starten\n"
 "\n"
 "Het allereerste dat u dien te doen is een nieuwe familiestamboom aanmaken. "
 "Om een nieuwe familiestamboom (soms een gegevensbestand genoemd)  selecteert "
@@ -11156,7 +11157,7 @@ msgstr "Vindt personen wiens achternaam ontbreekt"
 #: ../src/Filters/Rules/Person/_Everyone.py:46
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:47
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
-#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNameOf.py:55
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:46
 #: ../src/Filters/Rules/Person/_HasNote.py:45
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:47
@@ -11173,8 +11174,8 @@ msgstr "Vindt personen wiens achternaam ontbreekt"
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:45
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:45
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:48
-#: ../src/Filters/Rules/Person/_RegExpName.py:49
-#: ../src/Filters/Rules/Person/_SearchName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:50
+#: ../src/Filters/Rules/Person/_SearchName.py:49
 #: ../src/Filters/Rules/Family/_HasRelType.py:50
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:46
 #: ../src/Filters/Rules/Event/_HasType.py:49
@@ -11197,13 +11198,13 @@ msgstr "Algemene filters"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
-#: ../src/Filters/Rules/Person/_SearchName.py:45
+#: ../src/Filters/Rules/Person/_SearchName.py:46
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Deeltekenreeks:"
 
 #: ../src/plugins/SameSurnames.py:47
-#: ../src/Filters/Rules/Person/_SearchName.py:46
+#: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
 msgstr "Personen die overeenkomen met de <naam>"
 
@@ -17702,7 +17703,7 @@ msgid "Has marker of"
 msgstr "Heeft als aanduiding"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-msgid "Matches markers of a partikular type"
+msgid "Matches markers of a particular type"
 msgstr "Vindt aanduidingen van een bepaald type"
 
 # zonder relatie, ongebonden personen
@@ -17858,29 +17859,37 @@ msgstr "Personen met <Id>"
 msgid "Matches people with a specified GRAMPS ID"
 msgstr "Vindt personen met de gespecificeerde GRAMPS-ID"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:45
+#: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
 msgstr "Voornaam:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:46
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Family name:"
 msgstr "Familienaam:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Suffix:"
 msgstr "Achtervoegsel:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
 msgstr "Titel:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+msgid "Prefix:"
+msgstr "_Voorvoegsel:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:52
+msgid "Call Name:"
+msgstr "Roepnaam:"
+
+#: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "People with the <name>"
 msgstr "Personen met de <naam>"
 
 # opgegeven ipv gespecificeerde?
-#: ../src/Filters/Rules/Person/_HasNameOf.py:50
-#: ../src/Filters/Rules/Person/_SearchName.py:47
+#: ../src/Filters/Rules/Person/_HasNameOf.py:54
+#: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
 msgstr "Vindt personen met een bepaalde (deel van) naam"
 
@@ -18310,16 +18319,16 @@ msgstr "Namen die voldoen aan een reguliere uitdrukking"
 msgid "Matches people whose GRAMPS ID matches the regular expression"
 msgstr "Vindt personen wiens GRAMPS ID voldoen aan een reguliere uitdrukking"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:46
+#: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "Expression:"
 msgstr "Uitdrukking:"
 
-#: ../src/Filters/Rules/Person/_RegExpName.py:47
+#: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
 msgstr "Personen die overeenkomen met de <naam>"
 
 # opgegeven ipv gespecificeerde?
-#: ../src/Filters/Rules/Person/_RegExpName.py:48
+#: ../src/Filters/Rules/Person/_RegExpName.py:49
 msgid "Matches people's names with a specified regular expression"
 msgstr "Vindt personen met naam gelijk aan een opgegeven reguliere uitdrukking"
 
@@ -19514,13 +19523,12 @@ msgstr "Personen:"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
 msgid ""
-"This GEDCOM file has identified itself as using ANSEL enconding. Sometimes, "
+"This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"Dit GEDCOM bestand gebruik ANSEL codering. Dit wijst waarschijnlijk op een "
-"fout. Indien de geïmporteerde gegevens niet -gebruikelijke karakters "
+"Dit GEDCOM bestand gebruikt ANSEL codering. Dit kan een fout.zijn. Indien de geïmporteerde gegevens niet -gebruikelijke karakters "
 "bevatten, doe dan het importeren teniet en overschrijf de karakterset met "
 "één van de onderstaande karaktersets."
 
@@ -21529,7 +21537,9 @@ msgstr ""
 msgid ""
 "GRAMPS works even when using KDE, as long as the required GTK libraries are "
 "installed."
-msgstr "GRAMPS werkt zelfs met KDE, maar de vereiste GTK-functies moeten wel geïnstalleerd zijn."
+msgstr ""
+"GRAMPS werkt zelfs met KDE, maar de vereiste GTK-functies moeten wel "
+"geïnstalleerd zijn."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
