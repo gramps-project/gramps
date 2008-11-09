@@ -1351,15 +1351,15 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         title = name.get_title()
         if suffix == "":
             if surprefix == "":
-                self.__writeln(1, 'NAME', '%s/%s/' % (firstname, surname))
+                self.__writeln(1, 'NAME', '%s /%s/' % (firstname, surname))
             else:
-                self.__writeln(1, 'NAME', '%s/%s %s/' % 
+                self.__writeln(1, 'NAME', '%s /%s %s/' % 
                                (firstname, surprefix, surname))
         elif surprefix == "":
-            self.__writeln(1, 'NAME', '%s/%s/ %s' % 
+            self.__writeln(1, 'NAME', '%s /%s/ %s' % 
                            (firstname, surname, suffix))
         else:
-            self.__writeln(1, 'NAME', '%s/%s %s/ %s' % 
+            self.__writeln(1, 'NAME', '%s /%s %s/ %s' % 
                            (firstname, surprefix, surname, suffix))
 
         if firstname:
