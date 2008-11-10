@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+ based genealogy program
 #
-# Copyright (C) 2008 Steve Hall <digitect dancingpaper com>
-# Copyright (C) 2008 Stephen George <steve_geo@optusnet.com.au>
+# Copyright (C) 2006-2008 Steve Hall <digitect dancingpaper com>
+# Copyright (C) 2008 Stephen George
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,13 +31,10 @@
 
 # ToDo {{{1
 #
-# o Option to remove existing installation prior to installing new
 # o More refined dependency checking (versioning)
 # o Add .gramps and .gpkg as extensions
 #   * => Need separate icons for them?
-# o Add uninstall to Windows XP manifest list
 #
-
 # 1}}}
 #               Installer Attributes
 # 0. Base Settings {{{1
@@ -48,12 +45,22 @@
 !define GRAMPS_VER_POINT $%VERSIONPT%
 !define GRAMPS_VER_BUILD $%VERSIONBUILD%
 
+; HM NIS Edit Wizard helper defines
+!define PRODUCT_NAME "GRAMPS"
+!define PRODUCT_VERSION ${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}
+!define PRODUCT_PUBLISHER "The GRAMPS project"
+!define PRODUCT_WEB_SITE "http://gramps-project.org"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+!define PRODUCT_UNINST_ROOT_KEY "HKLM"
+
+!define DESKTOP_LINK "$DESKTOP\${PRODUCT_NAME} ${PRODUCT_VERSION}.lnk"
+
 # adds Native Language Support
 !define HAVE_NLS
 
 # output file
-Name "GRAMPS"
-OutFile gramps-${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}.exe
+Name ${PRODUCT_NAME}
+OutFile gramps-${PRODUCT_VERSION}.exe
 
 # self ensure we don't have a corrupted file
 CRCCheck on
@@ -70,7 +77,7 @@ SetDatablockOptimize on
 
 SetOverwrite try
 
-# don't allow installation into C:\
+# don't allow installation into C:\ directory
 AllowRootDirInstall false
 
 # install details color scheme
@@ -85,11 +92,11 @@ XPStyle on
 InstallDir $PROGRAMFILES\gramps
 
 # Remember install folder
-InstallDirRegKey HKCU "Software\${MUI_PRODUCT}" ""
+InstallDirRegKey HKCU "Software\${PRODUCT_NAME}" ""
 
 # Remember the installer language
 !define MUI_LANGDLL_REGISTRY_ROOT "HKCU"
-!define MUI_LANGDLL_REGISTRY_KEY "Software\${MUI_PRODUCT}"
+!define MUI_LANGDLL_REGISTRY_KEY "Software\${PRODUCT_NAME}"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 # types of installs we can perform
@@ -221,6 +228,8 @@ SectionIn 1 2 3 RO
     File ..\FAQ
     File ..\AUTHORS
     #File /r ..\nsis\gramps.ico
+    WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "" "$INSTDIR"
+    WriteRegStr HKLM "SOFTWARE\${PRODUCT_NAME}" "version" ${PRODUCT_VERSION}
 
 SectionEnd
 
@@ -240,7 +249,7 @@ SectionIn 1 3
     skipStartMenuRemove:
 
     CreateDirectory "$SMPROGRAMS\$0\"
-    CreateShortCut "$SMPROGRAMS\$0\GRAMPS ${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
+    CreateShortCut "$SMPROGRAMS\$0\GRAMPS ${PRODUCT_VERSION}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
     WriteINIStr "$SMPROGRAMS\$0\GRAMPS Website.url" "InternetShortcut" "URL" "http://www.gramps-project.org/"
     CreateShortCut "$SMPROGRAMS\$0\Uninstall GRAMPS.lnk" "$\"$INSTDIR\uninstall.exe$\"" "" "" "0" "" "" "Uninstall GRAMPS"
 
@@ -250,7 +259,7 @@ Section "Add Desktop icon" Desktop
 #SectionIn 1 3
 # determines "Start In" location for shortcuts
 SetOutPath $INSTDIR
-CreateShortCut "$DESKTOP\GRAMPS ${GRAMPS_VER_MAJOR}.${GRAMPS_VER_MINOR}.${GRAMPS_VER_POINT}-${GRAMPS_VER_BUILD}.lnk" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
+CreateShortCut "${DESKTOP_LINK}" "$3" "$\"$INSTDIR\gramps.py$\"" "$INSTDIR\images\ped24.ico" "0" "" "" "GRAMPS"
 SectionEnd
 
 SubSectionEnd
@@ -468,6 +477,9 @@ Section Uninstall
     RMDir /r $INSTDIR
     Call un.StartMenu
     Call un.Desktop
+    DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
+   
+    DeleteRegKey HKLM "SOFTWARE\${PRODUCT_NAME}"   
 
     unEnd:
 
@@ -570,26 +582,17 @@ Function .onInit
         MessageBox MB_OK "Python not found."
         StrCpy $4 "flag"
         HavePython:
-#MessageBox MB_OK "DEBUG: Final path for pythonw.exe...$\n$\nFound:  $\"$3$\""
+
 
     ; extract gcheck
     SetOutPath $TEMP
-#MessageBox MB_OK "DEBUG: $$TEMP location found:$\n$\n  $TEMP"
+
     File gcheck.py
     ; set INI output location ($1)
     StrCpy $1 "$TEMP\gramps-install.ini"
-#MessageBox MB_OK "DEBUG: Attempting to run:$\n$\n  $\"$3$\" $TEMP\gcheck.py $1"
-    ; run gcheck
-    Exec '"$3" $TEMP\gcheck.py $1'
-    #Exec '"$3" "$TEMP\gcheck.py" "$1"'
-    #Exec '$\"$3$\" $\"$TEMP\gcheck.py$\" $\"$1$\"'
 
-    #; Note The Exec above is a fork, meaning the following file test
-    #;      will fail because it happens faster than the Exec can run
-    #;      to create it!
-    DetailPrint "Pausing for gcheck.py exectution..."
-    #; sleep
-    Sleep 1000
+    ; run gcheck
+    ExecWait '"$3" $TEMP\gcheck.py $1'
 
     ; verify INI created
     IfFileExists $1 YesINI 0
@@ -667,6 +670,8 @@ Function .onInit
 
     DependantsOK:
 
+    Call RemovePrevious
+   
     # default install directory ($INSTDIR)
     StrCpy $INSTDIR $PROGRAMFILES\gramps
 
@@ -676,11 +681,38 @@ Function .onInstSuccess
 
     # write uninstaller
     WriteUninstaller $INSTDIR\uninstall.exe
-
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninstall.exe"
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+#Does not display icon on win2000?    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\images\ped24.ico"
 FunctionEnd
 
 Function .onInstFailed
     MessageBox MB_OK|MB_ICONEXCLAMATION "Installation failed."
+FunctionEnd
+
+Function RemovePrevious
+    #check if gramps exists in registry
+    ClearErrors
+    Var /GLOBAL PreviousPath
+    ReadRegStr $PreviousPath HKLM "SOFTWARE\${PRODUCT_NAME}" ""
+    # do some tests to find an installed version
+    ifErrors NoPreviousVersion
+        IfFileExists $PreviousPath\uninstall.exe 0 NoPreviousVersion #Check uninstall.exe from previous version exists on HD
+        Var /GLOBAL PreviousVersion
+        ReadRegStr $PreviousVersion HKLM "SOFTWARE\${PRODUCT_NAME}" "Version"
+        #  query OK to delete old version
+        MessageBox MB_OKCANCEL|MB_ICONQUESTION|MB_DEFBUTTON2 \
+        "${PRODUCT_NAME} $PreviousVersion is already installed$\n$\nClick 'OK' to uninstall previous version or 'Cancel' to continue anyway" \
+        IDCANCEL NoPreviousVersion
+        #  uninstall old version
+        CopyFiles $PreviousPath\uninstall.exe $TEMP
+        ExecWait '"$TEMP\uninstall.exe" _?=$PreviousPath' $0
+        StrCpy $INSTDIR $PreviousPath #set the previous path as the default install path <= worth while or not?
+        ;DetailPrint "uninstaller set error level $0"
+    NoPreviousVersion:
 FunctionEnd
 
 Function WarnDirExists
@@ -688,7 +720,7 @@ Function WarnDirExists
     IfFileExists $INSTDIR\*.* DirExists DirExistsOK
     DirExists:
     MessageBox MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON2 \
-        "Install over existing?" \
+        "Install over existing installation?" \
         IDYES DirExistsOK
     Quit
     DirExistsOK:
@@ -711,8 +743,8 @@ FunctionEnd
 
 Function un.Desktop
 
-    IfFileExists "$DESKTOP\GRAMPS.lnk" 0 unNoDesktop
-    Delete "$DESKTOP\GRAMPS.lnk"
+    IfFileExists "${DESKTOP_LINK}" 0 unNoDesktop
+    Delete "${DESKTOP_LINK}"
     unNoDesktop:
 
 FunctionEnd
@@ -728,7 +760,6 @@ FunctionEnd
     LangString DESC_MenuStart ${LANG_ENGLISH} "Add icons to the Start Menu."
     LangString DESC_LangFiles ${LANG_ENGLISH} "Set up non-English languages."
     LangString DESC_FileAssoc ${LANG_ENGLISH} "Associate GRAMPS with .grdb, .gramps, .gpkg, and .ged files."
-    LangString DESC_Prog ${LANG_ENGLISH} "GRAMPS..."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 
@@ -738,7 +769,6 @@ FunctionEnd
     !insertmacro MUI_DESCRIPTION_TEXT ${MenuStart} $(DESC_MenuStart)
     !insertmacro MUI_DESCRIPTION_TEXT ${LangFiles} $(DESC_LangFiles)
     !insertmacro MUI_DESCRIPTION_TEXT ${FileAssoc} $(DESC_FileAssoc)
-    !insertmacro MUI_DESCRIPTION_TEXT ${Prog} $(DESC_Prog)
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
