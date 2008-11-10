@@ -47,8 +47,8 @@ TODO list:
  - untangle calendar_build, it's too complex the way it is
  - correct surname (prefix missing, or misinterpreted)
  - add_day_item and self.calendar seem to be adding list entries as list (list of list)
- - get rid of self.year
  - daylight saving not just for USA and Europe
+ - move the close_file() from one_day() to caller
 """
 
 #------------------------------------------------------------------------
@@ -230,8 +230,6 @@ class WebCalReport(Report):
         self.partyear = menu.get_option_by_name('partyear').get_value()
         self.multiyear = menu.get_option_by_name('multiyear').get_value()
 
-        # self.start_year, and self.year are the same value
-        self.year = menu.get_option_by_name('start_year').get_value()
         self.start_year = menu.get_option_by_name('start_year').get_value()
         self.end_year = menu.get_option_by_name('end_year').get_value()
 
@@ -333,7 +331,7 @@ class WebCalReport(Report):
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
-    def get_holidays(self, country="United States"):
+    def get_holidays(self, year, country="United States"):
         """
         Looks in multiple places for holidays.xml file.
         the holidays file will be used first if it exists in user's plugins, otherwise,
@@ -349,9 +347,9 @@ class WebCalReport(Report):
         elif os.path.exists(fname2):
             holiday_full_path = fname2
         if holiday_full_path != "":
-            self.process_holiday_file(holiday_full_path, country)
+            self.process_holiday_file(year, holiday_full_path, country)
 
-    def process_holiday_file(self, filename, country):
+    def process_holiday_file(self, year, filename, country):
         """
         This will process the holidays file for the selected country.
          
@@ -367,20 +365,20 @@ class WebCalReport(Report):
         parser = Xml2Obj()
         element = parser.Parse(filename)
         holidays_calendar = Holidays(element, country)
-        date = datetime.date(self.year, 1, 1)
-        while date.year == self.year:
+        date = datetime.date(year, 1, 1)
+        while date.year == year:
             event_date = time.strptime('%d/%d/%d' % (date.year, date.month, date.day), '%Y/%m/%d')
             holidays = holidays_calendar.check_date(date)
             for text in holidays:
                 if text == "Easter": # TODO. Verify if this needs translation, and how
-                    easter = _easter(self.year)
+                    easter = _easter(year)
                     self.add_holiday_item(_("Easter"), easter[0], easter[1], easter[2])
                 elif text == "Daylight Saving begins":  # TODO. Verify if this needs translation, and how
                     # TODO. There is more than USA and Europe.
                     if Utils.xml_lang() == "en-US": # DST for United States of America
-                        dst_start, dst_stop = _get_dst_start_stop(self.year)
+                        dst_start, dst_stop = _get_dst_start_stop(year)
                     else:                           # DST for Europe
-                        dst_start, dst_stop = _get_dst_start_stop(self.year, "eu")
+                        dst_start, dst_stop = _get_dst_start_stop(year, "eu")
                     self.add_holiday_item(_("Daylight Saving begins"), \
                         dst_start[0], dst_start[1], dst_start[2])
                     self.add_holiday_item(_("Daylight Saving ends"), \
@@ -405,7 +403,7 @@ class WebCalReport(Report):
 
     def copy_calendar_files(self):
         """
-        Copies all the necessary files...
+        Copies all the necessary files
         """
         # Copy the _CALENDARSCREEN stylesheet
         if self.css != "":
@@ -429,7 +427,7 @@ class WebCalReport(Report):
             from_path = os.path.join(const.IMAGE_DIR, f)
             self.copy_file(from_path, f, "images")
 
-    def display_month_navs(self, of, nr_up, currentsection, use_home=False):
+    def display_month_navs(self, of, nr_up, year, currentsection, use_home=False):
         """
         Will create and display the navigation menu bar
 
@@ -463,7 +461,7 @@ class WebCalReport(Report):
             if cond:
              
                 subdirs = ['..'] * nr_up
-                subdirs.append(str(self.year)) 
+                subdirs.append(str(year)) 
 
                 # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 if type(url_fname) == int:
@@ -497,7 +495,7 @@ class WebCalReport(Report):
         of.write('\t<ul>\n')
         cols = 0  
         cal_year = self.start_year
-        while ((0 <= cols <= 25) and (self.start_year <= cal_year <= self.end_year)):
+        while ((0 <= cols < 25) and (self.start_year <= cal_year <= self.end_year)):
             url = ''
             cs = False
 
@@ -513,11 +511,8 @@ class WebCalReport(Report):
                 if cal_year == self.today.year:
                     lng_month = _get_long_month_name(self.today.month)
 
-            # long month will always need an etension added to it
-            lng_month += self.ext
-
             # Note. We use '/' here because it is a URL, not a OS dependent pathname
-            url = '/'.join(subdirs + [lng_month])
+            url = '/'.join(subdirs + [lng_month]) + self.ext
 
             # determine if we need to highlight???
             if str(cal_year) == currentsection:
@@ -537,7 +532,7 @@ class WebCalReport(Report):
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
 
-    def calendar_common(self, of, nr_up, currsec1, title, body_id, year, use_home=False, add_print=False):
+    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, use_home=False, add_print=False):
         """
         Will create the common information for each calendar being created
         """
@@ -570,7 +565,7 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        self.display_month_navs(of, nr_up, currsec1, use_home)
+        self.display_month_navs(of, nr_up, year, currsec1, use_home)
 
     def calendar_build(self, of, cal, year, month):
         """
@@ -698,7 +693,7 @@ class WebCalReport(Report):
                                 # Year at a Glance
                                 if cal == "yg":
                                     # Notice the code in one_day(): cal_fname = '%s%d%s' % (shrt_month, day, self.ext)
-                                    # TODO. Perhaps pass filename to one_day()
+                                    # TODO. Create file for one_day()
                                     fname = '%s%d%s' % (shrt_month, day, self.ext)
                                     of.write('\t\t\t\t<a id="%s%d" href="%s/%s" title="%s%d">\n'
                                         % (shrt_month, day, lng_month, fname, shrt_month, day))
@@ -710,7 +705,7 @@ class WebCalReport(Report):
                                     of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
 
                                 # year_glance() and normal_cal() both need this to itemize the list
-                                self.one_day(of, evt_date, cal, holiday_list, bday_anniv_list)
+                                self.one_day(of, year, evt_date, cal, holiday_list, bday_anniv_list)
 
                             # no holiday/ bday/ anniversary this day
                             else: 
@@ -831,7 +826,7 @@ class WebCalReport(Report):
     def close_file(self, of):
         of.close()
 
-    def one_day(self, of, event_date, cal, holiday_list, bday_anniv_list):
+    def one_day(self, of, year, event_date, cal, holiday_list, bday_anniv_list):
         """
         This method creates the One Day page for "Year At A Glance"
 
@@ -860,12 +855,12 @@ class WebCalReport(Report):
             for line in bday_anniv_list:
                 for date, text, event in line: 
 
-                    # '...' signifies an incomplete date for an event
+                    # '...' signifies an incomplete date for an event. See add_day_item()
                     txt_str = None
                     if date != '...':
-                        years = self.year - date.year
+                        years = year - date.year
 
-                        # a birthday 
+                        # a birthday
                         if event == 'birthday':
                             if years == 1:
                                 txt_str = _('%(short_name)s, <em>%(age)d</em> year old') % {
@@ -882,7 +877,7 @@ class WebCalReport(Report):
                             else:
                                 txt_str = None
 
-                        # an anniversary 
+                        # an anniversary
                         elif event == 'anniversary':
 
                             # if married years is less than 76 years  
@@ -933,7 +928,7 @@ class WebCalReport(Report):
                 my_date = _dd.display(my_date)
 
                 # create calendar common info for each calendar
-                self.calendar_common(of, nr_up, lng_month, _('One Day Within A Year'), my_date, year)
+                self.calendar_common(of, nr_up, year, lng_month, _('One Day Within A Year'), my_date)
                 if self.multiyear:
                     # create Year Navigation menu
                     self.display_year_navs(of, nr_up, str(year))
@@ -970,7 +965,7 @@ class WebCalReport(Report):
             title = _('Blank Calendar')
 
         # create calendar common info for each calendar
-        self.calendar_common(of, nr_up, 'blankyear', title, 'blankcal', year)
+        self.calendar_common(of, nr_up, year, 'blankyear', title, 'blankcal')
         if self.multiyear:
             # create Year Navigation menu
             self.display_year_navs(of, nr_up, str(year))
@@ -1006,10 +1001,10 @@ class WebCalReport(Report):
         of = self.create_file(cal_fname, str(year))
 
         # page title
-        title = _("%(year)d, At A Glance") % {'year' : self.year}
+        title = _("%(year)d, At A Glance") % {'year' : year}
 
         # create calendar common info for each calendar
-        self.calendar_common(of, nr_up, 'fullyear', title, 'yearglance', year)
+        self.calendar_common(of, nr_up, year, 'fullyear', title, 'yearglance')
         if self.multiyear:
             # create Year Navigation menu
             self.display_year_navs(of, nr_up, str(year))
@@ -1030,7 +1025,7 @@ class WebCalReport(Report):
             # build the calendar
             self.calendar_build(of, "yg", year, month)
             # Note. The week rows are filled up to make them all 6 weeks long.
-            nweeks = len(calendar.monthcalendar(self.year, month))
+            nweeks = len(calendar.monthcalendar(year, month))
             for i in range(nweeks+1, 7):
                 of.write('\t\t<tr class="week%d">\n' % i)
                 of.write('\t\t\t<td id="emptyDays" colspan="7">\n')
@@ -1071,7 +1066,8 @@ class WebCalReport(Report):
         self.progress = Utils.ProgressMeter(_("Generate XHTML Calendars"), '')
 
         # get data from database for birthdays/ anniversaries
-        self.collect_data()
+        # TODO. Verify that we collect correct info based on start_year
+        self.collect_data(self.start_year)
 
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
@@ -1088,8 +1084,8 @@ class WebCalReport(Report):
         # navigation bar length will only support twenty-five years at any given time
         if self.multiyear:
             # Clip to max 25 years
-            if ((self.end_year - self.start_year) > 25):
-                self.end_year = (self.start_year + 25) 
+            if ((self.end_year - self.start_year + 1) > 25):
+                self.end_year = self.start_year + 25 - 1
 
             for cal_year in range(self.start_year, (self.end_year + 1)):
 
@@ -1101,7 +1097,7 @@ class WebCalReport(Report):
 
                 # get the information from holidays for every year being created
                 if self.country != 0: # Don't include holidays
-                    self.get_holidays(_COUNTRIES[self.country]) # _country is currently global
+                    self.get_holidays(cal_year, _COUNTRIES[self.country]) # _country is currently global
 
                 # adjust the months being created if self.partyear is True,
                 # and if the year is the current year, then start month is current month  
@@ -1113,7 +1109,7 @@ class WebCalReport(Report):
                 # create "WebCal" calendar pages
                 self.normal_cal(cal_year)
 
-                # create "Blank Year " calendar page
+                # create "Blank Year" calendar page
                 if self.blankyear:
                     self.blank_year(cal_year)
 
@@ -1121,18 +1117,15 @@ class WebCalReport(Report):
                 if self.fullyear:
                     self.year_glance(cal_year)
 
-                # increase so that birthdays and anniversaries can be 
-                # re-calculated for each year being created
-                # TODO. Ugly! Get rid of self.year
-                self.year += 1
-
         # a single year
         else:
+            cal_year = self.start_year
+
             self.holidays = {}
 
             # get the information from holidays for each year being created
             if self.country != 0: # Don't include holidays
-                self.get_holidays(_COUNTRIES[self.country]) # _COUNTRIES is currently global
+                self.get_holidays(cal_year, _COUNTRIES[self.country]) # _COUNTRIES is currently global
 
             # generate progress pass for single year 
             #self.progress.set_pass(_('Creating calendars'), self.end_month - self.start_month)
@@ -1140,20 +1133,20 @@ class WebCalReport(Report):
             # adjust the months being created if self.partyear is True,
             # and if the year is the current year, then start month is current month  
             self.start_month = 1
-            if self.year == self.today.year:
+            if cal_year == self.today.year:
                 if self.partyear:
                     self.start_month = self.today.month
 
-            # create "WebCal" 
-            self.normal_cal(self.year)
+            # create "WebCal" calendar pages
+            self.normal_cal(cal_year)
 
-            # create "Blank Year"
+            # create "Blank Year" calendar page
             if self.blankyear:
-                self.blank_year(self.year)
+                self.blank_year(cal_year)
 
             # create "Year At A Glance"
             if self.fullyear:
-                self.year_glance(self.year)
+                self.year_glance(cal_year)
 
         # Close the progress meter
         self.progress.close()
@@ -1181,7 +1174,7 @@ class WebCalReport(Report):
             of = self.create_file(cal_fname, str(year))
 
             # create calendar common info for each calendar
-            self.calendar_common(of, nr_up, cal_fname, self.title_text, 'WebCal', year, use_home=True)
+            self.calendar_common(of, nr_up, year, cal_fname, self.title_text, 'WebCal', use_home=True)
             if self.multiyear:
                 # create Year Navigation menu
                 self.display_year_navs(of, nr_up, str(year))
@@ -1209,7 +1202,7 @@ class WebCalReport(Report):
             # increase progress bar
             self.progress.step()
 
-    def collect_data(self):
+    def collect_data(self, year):
         """
         This method runs through the data, and collects the relevant dates
         and text.
@@ -1242,7 +1235,7 @@ class WebCalReport(Report):
 
             # if person is dead, STOP! Nothing further to do
             if death_date == None: 
-                living = probably_alive(person, self.database, _make_date(self.year, 1, 1), 0)
+                living = probably_alive(person, self.database, _make_date(year, 1, 1), 0)
 
                 # add birthday if requested
                 if self.birthday and birth_date != None and ((self.alive and living) or not self.alive):
@@ -1297,7 +1290,7 @@ class WebCalReport(Report):
                                     spouse_name = _get_short_name(spouse)
                                     short_name = _get_short_name(person)
                                     if self.alive:
-                                        if not probably_alive(spouse, self.database, _make_date(self.year, 1, 1), 0):
+                                        if not probably_alive(spouse, self.database, _make_date(year, 1, 1), 0):
                                             continue
                                     are_married = _get_marrital_status(fam, self.database)
                                     if are_married is not None:
