@@ -167,4 +167,4 @@ class DateDisplaySv(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('sv_SE', 'sv', 'svensk'), DateParserSv, DateDisplaySv)
+register_datehandler(('sv_SE', 'sv', 'Swedish'), DateParserSv, DateDisplaySv)
