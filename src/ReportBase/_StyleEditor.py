@@ -31,7 +31,7 @@ Paragraph/Font style editor
 # Python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import logging
 log = logging.getLogger(".")
 
@@ -204,6 +204,7 @@ class StyleEditor:
         ManagedWindow.set_titles( self.window, 
                                   self.top.get_widget('title'), 
                                   _('Style editor'))
+        self.top.get_widget("label6").set_text(_("point size|pt"))
         
         titles = [(_('Paragraph'), 0, 130)]
         self.plist = ListModel.ListModel(self.top.get_widget("ptree"), titles, 

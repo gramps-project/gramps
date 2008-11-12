@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +80,8 @@ class EditMediaRef(EditReference):
                         self.top.get_widget('title'),
                         _('Media Reference Editor'))
         self.define_warn_box(self.top.get_widget("warn_box"))
+        self.top.get_widget("label427").set_text(_("Y coordinate|Y"))
+        self.top.get_widget("label428").set_text(_("Y coordinate|Y"))
 
         tblref =  self.top.get_widget('table50')
         notebook = self.top.get_widget('notebook_ref')
