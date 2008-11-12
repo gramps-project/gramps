@@ -1076,7 +1076,7 @@ class RelationshipView(PageView.PersonNavView):
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("short for borb|b. %s") % (bdate)
+            value = _("short for born|b. %s") % (bdate)
         elif ddate:
             value = _("short for dead|d. %s") % (ddate)
         else:
