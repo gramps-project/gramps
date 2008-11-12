@@ -585,12 +585,6 @@ class RelationshipCalculator:
             # birth parent of the other person
             return self.UNKNOWN_SIB
 
-    def get_parents(self, level):
-        if level>len(_parents_level)-1:
-            return "distant ancestors (%d generations)" % level
-        else:
-            return _parents_level[level]
-
     def _get_birth_parents(self, db, person):
         """ method that returns the birthparents of a person as tuple
             (mother handle, father handle), if no known birthparent, the 
@@ -1373,20 +1367,6 @@ class RelationshipCalculator:
             common_list.append(commons[rel_str])
         return (relstrings, common_list)
 
-    def get_grandparents_string(self, db, orig_person, other_person):
-        """
-        returns a string representing the relationship between the two people
-        if the other_person is a grandparent in general terms and in plural
-        """
-        (rel_str, dist_orig, dist_other) = self.get_one_relationship(db, 
-                                            orig_person, other_person,
-                                            extra_info = True)
-
-        if dist_other == 0:
-            return self.get_parents(dist_orig)
-        else:
-            return None
-        
     def get_plural_relationship_string(self, Ga, Gb):
         """
         Provide a string that describes the relationsip between a person, and
