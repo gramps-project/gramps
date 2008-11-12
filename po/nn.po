@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-06 21:45+0100\n"
-"PO-Revision-Date: 2008-11-08 15:59+0100\n"
+"PO-Revision-Date: 2008-11-12 10:21+0100\n"
 "Last-Translator: Sigmund Lorentsen <sigmund.lorentsen@tele2.no>\n"
 "Language-Team: Norwegian Nynorsk <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"Norwegian Bokmaal <i18n-nn@lister.ping.uio.no>\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/ArgHandler.py:404 ../src/DbLoader.py:167 ../src/DbLoader.py:188
@@ -2622,31 +2622,31 @@ msgstr "FORNAMN"
 
 #: ../src/Utils.py:1195
 msgid "PREFIX"
-msgstr ""
+msgstr "FORSTAVING"
 
 #: ../src/Utils.py:1197
 msgid "SUFFIX"
-msgstr ""
+msgstr "ETTERSTAVING"
 
 #: ../src/Utils.py:1198
 msgid "PATRONYMIC"
-msgstr ""
+msgstr "PATRONYMIKON"
 
 #: ../src/Utils.py:1199
 msgid "CALL"
-msgstr ""
+msgstr "KALLENAMN"
 
 #: ../src/Utils.py:1200
 msgid "COMMON"
-msgstr ""
+msgstr "VANLEG"
 
 #: ../src/Utils.py:1201
 msgid "Initials"
-msgstr ""
+msgstr "Initialer"
 
 #: ../src/Utils.py:1201
 msgid "INITIALS"
-msgstr ""
+msgstr "INITIALER"
 
 #: ../src/UndoHistory.py:95
 msgid "Original time"
@@ -2658,235 +2658,235 @@ msgstr "Handling"
 
 #: ../src/UndoHistory.py:176
 msgid "Delete confirmation"
-msgstr ""
+msgstr "Stadfest sletting"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
-msgstr ""
+msgstr "Er du sikker på at du vil tøma angrehistorikken?"
 
 #: ../src/UndoHistory.py:217
 msgid "Database opened"
-msgstr ""
+msgstr "Databasen er opna"
 
 #: ../src/UndoHistory.py:219
 msgid "History cleared"
-msgstr ""
+msgstr "Historikken er tømd"
 
 #: ../src/ViewManager.py:350 ../src/ViewManager.py:351
 msgid "Connect to a recent database"
-msgstr ""
+msgstr "Kopla til ein nyleg brukt database"
 
 #: ../src/ViewManager.py:355 ../src/ViewManager.py:356
 #: ../src/ViewManager.py:375
 msgid "Manage databases"
-msgstr ""
+msgstr "Handsama databasar"
 
 #: ../src/ViewManager.py:373
 msgid "_Family Trees"
-msgstr ""
+msgstr "_Slektstre"
 
 #: ../src/ViewManager.py:374
 msgid "_Manage Family Trees..."
-msgstr ""
+msgstr "_Handsama slektstre..."
 
 #: ../src/ViewManager.py:376
 msgid "Open _Recent"
-msgstr ""
+msgstr "Opna _nyleg brukt"
 
 #: ../src/ViewManager.py:377
 msgid "Open an existing database"
-msgstr ""
+msgstr "Opna ein eksisterande database"
 
 #: ../src/ViewManager.py:378
 msgid "_Quit"
-msgstr ""
+msgstr "_Avslutt"
 
 #: ../src/ViewManager.py:380
 msgid "_View"
-msgstr ""
+msgstr "_Vis"
 
 #: ../src/ViewManager.py:381 ../src/ViewManager.py:446
 msgid "_Edit"
-msgstr ""
+msgstr "_Rediger"
 
 #: ../src/ViewManager.py:382
 msgid "_Preferences..."
-msgstr ""
+msgstr "_Innstillingar..."
 
 #: ../src/ViewManager.py:384
 msgid "_Help"
-msgstr ""
+msgstr "_Hjelp"
 
 #: ../src/ViewManager.py:385
 msgid "GRAMPS _Home Page"
-msgstr ""
+msgstr "GRAMPS _heimeside"
 
 #: ../src/ViewManager.py:387
 msgid "GRAMPS _Mailing Lists"
-msgstr ""
+msgstr "GRAMPS _e-postlister"
 
 #: ../src/ViewManager.py:389
 msgid "_Report a Bug"
-msgstr ""
+msgstr "_Meld ein feil"
 
 #: ../src/ViewManager.py:391
 msgid "_Extra Reports/Tools"
-msgstr ""
+msgstr "_Ekstra rapportar/verktøy"
 
 #: ../src/ViewManager.py:393
 msgid "_About"
-msgstr ""
+msgstr "O_m"
 
 #: ../src/ViewManager.py:395
 msgid "_Plugin Status"
-msgstr ""
+msgstr "_Status for programtillegg"
 
 #: ../src/ViewManager.py:397
 msgid "_FAQ"
-msgstr ""
+msgstr "O_SS"
 
 #: ../src/ViewManager.py:398
 msgid "_Key Bindings"
-msgstr ""
+msgstr "_Tastekombinasjonar"
 
 #: ../src/ViewManager.py:399
 msgid "_User Manual"
-msgstr ""
+msgstr "_Brukarmanual"
 
 #: ../src/ViewManager.py:406
 msgid "_Export..."
-msgstr ""
+msgstr "_Eksporter..."
 
 #: ../src/ViewManager.py:409
 msgid "_Abandon Changes and Quit"
-msgstr ""
+msgstr "_Avslutt uten å lagra endringar"
 
 #: ../src/ViewManager.py:410 ../src/ViewManager.py:413
 msgid "_Reports"
-msgstr ""
+msgstr "_Rapportar"
 
 #: ../src/ViewManager.py:411
 msgid "Open the reports dialog"
-msgstr ""
+msgstr "Opna rapportvindauga"
 
 #: ../src/ViewManager.py:412
 msgid "_Go"
-msgstr ""
+msgstr "_Gå"
 
 #: ../src/ViewManager.py:414
 msgid "_Windows"
-msgstr ""
+msgstr "_Vindu"
 
 #: ../src/ViewManager.py:440
 msgid "Clip_board"
-msgstr ""
+msgstr "Utklippsta_vle"
 
 #: ../src/ViewManager.py:441
 msgid "Open the Clipboard dialog"
-msgstr ""
+msgstr "Opna vinduer for utklippstavla"
 
 #: ../src/ViewManager.py:442
 msgid "_Import..."
-msgstr ""
+msgstr "_Importer..."
 
 #: ../src/ViewManager.py:444 ../src/ViewManager.py:448
 msgid "_Tools"
-msgstr ""
+msgstr "Verk_tøy"
 
 #: ../src/ViewManager.py:445
 msgid "Open the tools dialog"
-msgstr ""
+msgstr "Opna verktøyvinduet"
 
 #: ../src/ViewManager.py:447
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Bokmerke"
 
 #: ../src/ViewManager.py:452
 msgid "_Sidebar"
-msgstr ""
+msgstr "_Sidestolpe"
 
 #: ../src/ViewManager.py:454
 msgid "_Toolbar"
-msgstr ""
+msgstr "Verk_tøylinje"
 
 #: ../src/ViewManager.py:456
 msgid "_Filter Sidebar"
-msgstr ""
+msgstr "_Filter-sidestolpe"
 
 #: ../src/ViewManager.py:461 ../src/ViewManager.py:1175
 msgid "_Undo"
-msgstr ""
+msgstr "_Angra"
 
 #: ../src/ViewManager.py:466 ../src/ViewManager.py:1192
 msgid "_Redo"
-msgstr ""
+msgstr "_Gjer om"
 
 #: ../src/ViewManager.py:472
 msgid "Undo History..."
-msgstr ""
+msgstr "Angrehistorikk..."
 
 #: ../src/ViewManager.py:491
 #, python-format
 msgid "Key %s is not bound"
-msgstr ""
+msgstr "Nøkkelen %s er ikkje bunden"
 
 #. load document generators
 #: ../src/ViewManager.py:591
 msgid "Loading document formats..."
-msgstr ""
+msgstr "Lastar dokumentformat..."
 
 #. load plugins
 #: ../src/ViewManager.py:596
 msgid "Loading plugins..."
-msgstr ""
+msgstr "Lastar programtillegg..."
 
 #: ../src/ViewManager.py:610
 msgid "Ready"
-msgstr ""
+msgstr "Klar"
 
 #: ../src/ViewManager.py:642
 msgid "Autobackup..."
-msgstr ""
+msgstr "Automatisk tryggleikskopi..."
 
 #: ../src/ViewManager.py:654
 msgid "Abort changes?"
-msgstr ""
+msgstr "Avbryte endringar?"
 
 #: ../src/ViewManager.py:655
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
-msgstr ""
+msgstr "Dersom du avbryt endringane, vil databasen verta sett attende til den tilstand han var før du byrja endringane i denne økta."
 
 #: ../src/ViewManager.py:657
 msgid "Abort changes"
-msgstr ""
+msgstr "Avbryt endringane"
 
 #: ../src/ViewManager.py:658
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: ../src/ViewManager.py:667
 msgid "Cannot abandon session's changes"
-msgstr ""
+msgstr "Kan ikkje avvisa endringane som er gjorde"
 
 #: ../src/ViewManager.py:668
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
-msgstr ""
+msgstr "Endringane kan ikkje avvisast heilt då talet på endringar i denne økta overskrid grensa."
 
 #: ../src/ViewManager.py:1034
 msgid "Import Statistics"
-msgstr ""
+msgstr "Importer statistikkar"
 
 #: ../src/ViewManager.py:1064
 msgid "Could not load a recent Family Tree."
-msgstr ""
+msgstr "Kunne ikkje lasta eit nyleg brukt slektstre."
 
 #: ../src/ViewManager.py:1065
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr ""
+msgstr "Slektstreet eksisterar ikkje då det er blitt sletta."
 
 #: ../src/ViewManager.py:1121
 msgid "Read Only"
-msgstr ""
+msgstr "Berre lesing"
 
 #: ../src/Simple/_SimpleTable.py:196
 msgid "Unknown father"
@@ -2903,19 +2903,19 @@ msgstr "Ukjent mor"
 
 #: ../src/BasicUtils/_NameDisplay.py:103
 msgid "Default format (defined by GRAMPS preferences)"
-msgstr ""
+msgstr "Standard format (definert i GRAMPS-innstillingane)"
 
 #: ../src/BasicUtils/_NameDisplay.py:104
 msgid "Surname, Given Patronymic"
-msgstr ""
+msgstr "Etternamn, Fornamn Patronymikon"
 
 #: ../src/BasicUtils/_NameDisplay.py:105
 msgid "Given Surname"
-msgstr ""
+msgstr "Fornamn Etternamn"
 
 #: ../src/BasicUtils/_NameDisplay.py:106
 msgid "Patronymic, Given"
-msgstr ""
+msgstr "Patronymicon, Fornamn"
 
 #. we need the names of each of the variables or methods that are
 #. called to fill in each format flag.
@@ -2923,74 +2923,74 @@ msgstr ""
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
 #: ../src/plugins/ImportCSV.py:229
 msgid "title"
-msgstr ""
+msgstr "tittel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
 #: ../src/plugins/ImportCSV.py:223
 msgid "given"
-msgstr ""
+msgstr "fornamn"
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
 #: ../src/plugins/ImportCSV.py:231
 msgid "prefix"
-msgstr ""
+msgstr "forstaving"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
 #: ../src/plugins/ImportCSV.py:219
 msgid "surname"
-msgstr ""
+msgstr "etternamn"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
 #: ../src/plugins/ImportCSV.py:233
 msgid "suffix"
-msgstr ""
+msgstr "etterstaving"
 
 #: ../src/BasicUtils/_NameDisplay.py:284 ../src/BasicUtils/_NameDisplay.py:323
 msgid "patronymic"
-msgstr ""
+msgstr "patronymikon"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
 #: ../src/plugins/ImportCSV.py:227
 msgid "call"
-msgstr ""
+msgstr "kallenamn"
 
 #: ../src/BasicUtils/_NameDisplay.py:288 ../src/BasicUtils/_NameDisplay.py:325
 msgid "common"
-msgstr ""
+msgstr "vanleg"
 
 #: ../src/BasicUtils/_NameDisplay.py:292 ../src/BasicUtils/_NameDisplay.py:327
 msgid "initials"
-msgstr ""
+msgstr "initialar"
 
 #: ../src/Config/_GrampsConfigKeys.py:290
 msgid "Missing Surname"
-msgstr ""
+msgstr "Manglar etternamn"
 
 #: ../src/Config/_GrampsConfigKeys.py:291
 msgid "Missing Given Name"
-msgstr ""
+msgstr "Manglar fornamn"
 
 #: ../src/Config/_GrampsConfigKeys.py:292
 msgid "Missing Record"
-msgstr ""
+msgstr "Manglar post"
 
 #: ../src/Config/_GrampsConfigKeys.py:293
 #: ../src/Config/_GrampsConfigKeys.py:294 ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485 ../src/gen/proxy/living.py:443
 msgid "Living"
-msgstr ""
+msgstr "Levande"
 
 #: ../src/Config/_GrampsConfigKeys.py:295
 msgid "Private Record"
-msgstr ""
+msgstr "Privat post"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr ""
+msgstr "Flett saman _personar"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
-msgstr ""
+msgstr "Samanlikna personar"
 
 #: ../src/Merge/_MergePerson.py:97 ../src/Merge/_MergePerson.py:102
 #: ../src/Merge/_MergePerson.py:275 ../src/Merge/_MergePerson.py:282
@@ -2998,17 +2998,17 @@ msgstr ""
 #: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
 msgid "Cannot merge people"
-msgstr ""
+msgstr "Kan ikkje fletta saman personar"
 
 #: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
 #: ../src/Merge/_MergePerson.py:314
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Ektefeller kan ikkje flettast saman.  For å fletta desse personane må du først bryta relasjonen mellom dei."
 
 #: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:283
 #: ../src/Merge/_MergePerson.py:319
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Ein forelder og og eit barn kan ikkje flettast saman.  For å fletta desse personane må du først bryta relasjonen mellom dei."
 
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
@@ -3018,199 +3018,199 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:96
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
-msgstr ""
+msgstr "Kjønn"
 
 #: ../src/Merge/_MergePerson.py:140 ../src/DataViews/RelationView.py:567
 #: ../src/plugins/FamilyGroup.py:442 ../src/plugins/FamilyGroup.py:444
 #: ../src/plugins/MarkerReport.py:130 ../src/plugins/NarrativeWeb.py:854
 #: ../src/plugins/NarrativeWeb.py:996 ../src/gen/lib/eventtype.py:99
 msgid "Death"
-msgstr ""
+msgstr "Død"
 
 #: ../src/Merge/_MergePerson.py:144 ../src/plugins/IndivComplete.py:242
 msgid "Alternate Names"
-msgstr ""
+msgstr "Alternative namn"
 
 #: ../src/Merge/_MergePerson.py:162 ../src/Merge/_MergePerson.py:176
 msgid "Family ID"
-msgstr ""
+msgstr "Famile-ID"
 
 #: ../src/Merge/_MergePerson.py:168
 msgid "No parents found"
-msgstr ""
+msgstr "Fann ingen foreldre"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:170 ../src/DataViews/PedigreeView.py:1451
 #: ../src/plugins/KinshipReport.py:105
 msgid "Spouses"
-msgstr ""
+msgstr "Ektefeller"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1088
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:341
 #: ../src/plugins/ImportCSV.py:211 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
-msgstr ""
+msgstr "Ekteskap"
 
 #: ../src/Merge/_MergePerson.py:191
 msgid "No spouses or children found"
-msgstr ""
+msgstr "Ingen ektefeller eller barn er funne"
 
 #: ../src/Merge/_MergePerson.py:195 ../src/plugins/IndivComplete.py:272
 #: ../src/plugins/NarrativeWeb.py:2203
 msgid "Addresses"
-msgstr ""
+msgstr "Adresser"
 
 #: ../src/Merge/_MergePerson.py:293 ../src/Merge/_MergePerson.py:333
 msgid "Merge People"
-msgstr ""
+msgstr "Flett saman personar"
 
 #: ../src/Merge/_MergePlace.py:52
 msgid "manual|Merge_Places"
-msgstr ""
+msgstr "Flett_saman_stader"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
 msgid "Merge Places"
-msgstr ""
+msgstr "Flett saman stader"
 
 #: ../src/Merge/_MergeSource.py:42
 msgid "manual|Merge_Sources"
-msgstr ""
+msgstr "Flett_saman_kjelder"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
-msgstr ""
+msgstr "Flett saman kjelder"
 
 #: ../src/DataViews/EventView.py:74 ../src/DataViews/FamilyList.py:67
 #: ../src/DataViews/MediaView.py:84 ../src/DataViews/PlaceView.py:76
 #: ../src/DataViews/RepositoryView.py:79 ../src/DataViews/SourceView.py:71
 msgid "Last Changed"
-msgstr ""
+msgstr "Sist endra"
 
 #: ../src/DataViews/EventView.py:77 ../src/DisplayTabs/_EventEmbedList.py:53
 msgid "Add a new event"
-msgstr ""
+msgstr "Legg til ei ny hending"
 
 #: ../src/DataViews/EventView.py:78 ../src/DisplayTabs/_EventEmbedList.py:55
 msgid "Edit the selected event"
-msgstr ""
+msgstr "Rediger den valde hendinga"
 
 #: ../src/DataViews/EventView.py:79
 msgid "Delete the selected event"
-msgstr ""
+msgstr "Slett den valde hendinga"
 
 #: ../src/DataViews/EventView.py:181
 msgid "Event Filter Editor"
-msgstr ""
+msgstr "Filterhandsamar for hending"
 
 #: ../src/DataViews/EventView.py:184 ../src/DataViews/MediaView.py:214
 #: ../src/DataViews/NoteView.py:166 ../src/DataViews/PlaceView.py:117
 #: ../src/DataViews/RepositoryView.py:120 ../src/DataViews/SourceView.py:113
 msgid "_Column Editor"
-msgstr ""
+msgstr "_Kolonnehandsamar"
 
 #: ../src/DataViews/EventView.py:204
 msgid "Select Event Columns"
-msgstr ""
+msgstr "Vel kolonner for hending"
 
 #: ../src/DataViews/EventView.py:237
 msgid "This event is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
-msgstr ""
+msgstr "Denne hendinga er no i bruk.  Slettar du denne, vil ho bli fjerna frå databasen og frå alle personar og familiar ho viser til."
 
 #: ../src/DataViews/EventView.py:241
 msgid "Deleting event will remove it from the database."
-msgstr ""
+msgstr "Slettar du denne hendinga vil ho bli fjerna frå databasen."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
 #: ../src/DataViews/PersonView.py:604 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
-msgstr ""
+msgstr "Skal %s slettast?"
 
 #: ../src/DataViews/EventView.py:250
 msgid "_Delete Event"
-msgstr ""
+msgstr "_Slett hending"
 
 #: ../src/DataViews/FamilyList.py:66
 msgid "Marriage Date"
-msgstr ""
+msgstr "Dato for ekteskap"
 
 #: ../src/DataViews/FamilyList.py:70
 msgid "Add a new family"
-msgstr ""
+msgstr "Legg til ein ny familie"
 
 #: ../src/DataViews/FamilyList.py:71
 msgid "Edit the selected family"
-msgstr ""
+msgstr "Rediger den valde familien"
 
 #: ../src/DataViews/FamilyList.py:72
 msgid "Delete the selected family"
-msgstr ""
+msgstr "Slett den valde familien"
 
 #: ../src/DataViews/FamilyList.py:91 ../src/plugins/GVFamilyLines.py:138
 #: ../src/plugins/MarkerReport.py:188 ../src/plugins/NarrativeWeb.py:2362
 msgid "Families"
-msgstr ""
+msgstr "Familiar"
 
 #: ../src/DataViews/FamilyList.py:107
 msgid "Select Family Columns"
-msgstr ""
+msgstr "Vel kolonner for famile"
 
 #: ../src/DataViews/FamilyList.py:167 ../src/DataViews/PersonView.py:161
 msgid "_Column Editor..."
-msgstr ""
+msgstr "_Kolonnehandsamar..."
 
 #: ../src/DataViews/FamilyList.py:169
 msgid "Family Filter Editor"
-msgstr ""
+msgstr "Filterhandsamar for familie"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr ""
+msgstr "Rediger det valde media-objektet"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr ""
+msgstr "Slett det valde mediaobjektet"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr ""
+msgstr "Dra mediaobjekt"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
-msgstr ""
+msgstr "Handsamar for media-filter"
 
 #: ../src/DataViews/MediaView.py:218
 msgid "View in the default viewer"
-msgstr ""
+msgstr "Vis i standard visningsprogram"
 
 #: ../src/DataViews/MediaView.py:236
 #, python-format
 msgid "Cannot view %s"
-msgstr ""
+msgstr "Kan ikkje visa %s"
 
 #: ../src/DataViews/MediaView.py:237
 #, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
-msgstr ""
+msgstr "GRAMPS kan ikkje finna eit program som kan visa filer av typen %s."
 
 #: ../src/DataViews/MediaView.py:247
 msgid "Select Media Columns"
-msgstr ""
+msgstr "Vel mediakolonner"
 
 #: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
-msgstr ""
+msgstr "Dobbelklikk på bilete for å visa det i eit eksternt visningsprogram"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/MediaView.py:397
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
-msgstr ""
+msgstr "Dette media-objektet er no i bruk.  Dersom du slettar dette objektet, vil det bli fjerna frå databasen og frå alle postar som viser til det."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
-msgstr ""
+msgstr "Dersom du slettar media-objektet, vil det bli fjerna frå databasen."
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
@@ -3218,84 +3218,84 @@ msgstr "Skal media-objektet slettast?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr ""
+msgstr "Slett me_dia-objekt"
 
 #: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:840
 msgid "Unnamed Gramplet"
-msgstr ""
+msgstr "Smågramps uten namn"
 
 #: ../src/DataViews/GrampletView.py:125
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
+msgstr "Dra knappen for eigenskapar for å flytta han og klikk for oppsett"
 
 #: ../src/DataViews/GrampletView.py:146
 msgid "Gramplet"
-msgstr ""
+msgstr "Smågramps"
 
 #: ../src/DataViews/GrampletView.py:711
 msgid "Right click to add gramplets"
-msgstr ""
+msgstr "Høgreklikk for å leggja til smågramps"
 
 #: ../src/DataViews/GrampletView.py:969
 msgid "_Add a gramplet"
-msgstr ""
+msgstr "_Legg til smågramps"
 
 #: ../src/DataViews/GrampletView.py:970
 msgid "_Undelete gramplet"
-msgstr ""
+msgstr "_Angra fjerning av smågramps"
 
 #: ../src/DataViews/GrampletView.py:971
 msgid "Set Columns to _1"
-msgstr ""
+msgstr "Set tal på kolonner til _1"
 
 #: ../src/DataViews/GrampletView.py:974
 msgid "Set Columns to _2"
-msgstr ""
+msgstr "Set tal på kolonner til _2"
 
 #: ../src/DataViews/GrampletView.py:977
 msgid "Set Columns to _3"
-msgstr ""
+msgstr "Set tal på kolonner til _3"
 
 #: ../src/DataViews/NoteView.py:67 ../src/DisplayTabs/_NoteTab.py:73
 #: ../src/Selectors/_SelectNote.py:58 ../src/plugins/SimpleBookTitle.py:210
 msgid "Preview"
-msgstr ""
+msgstr "Førehandsvisning"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:61
 #: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:110
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
-msgstr ""
+msgstr "Markering"
 
 #: ../src/DataViews/NoteView.py:74 ../src/DisplayTabs/_NoteTab.py:65
 msgid "Edit the selected note"
-msgstr ""
+msgstr "Rediger det valde notatet"
 
 #: ../src/DataViews/NoteView.py:75
 msgid "Delete the selected note"
-msgstr ""
+msgstr "Slett det valde notatet"
 
 #: ../src/DataViews/NoteView.py:167
 msgid "Note Filter Editor"
-msgstr ""
+msgstr "Handsamar for notat-filter"
 
 #: ../src/DataViews/NoteView.py:182
 msgid "Select Note Columns"
-msgstr ""
+msgstr "Vel kolonner for notat"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/NoteView.py:208
 msgid "This note is currently being used. Deleting it will remove it from the database and from all other objects that reference it."
-msgstr ""
+msgstr "Dette notatet er no i bruk.  Slettar du det, vil det bli fjerna frå databasen og alle andre objekt som viser til det."
 
 #: ../src/DataViews/NoteView.py:212
 msgid "Deleting note will remove it from the database."
-msgstr ""
+msgstr "Slettar du dette notatet, vil det bli fjerna frå databasen."
 
 #: ../src/DataViews/NoteView.py:218
 msgid "_Delete Note"
-msgstr ""
+msgstr "_Slett notat"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3305,44 +3305,44 @@ msgstr ""
 #: ../src/DataViews/PedigreeView.py:72 ../src/plugins/AncestorTree.py:54
 #: ../src/plugins/DescendTree.py:53 ../src/plugins/DescendReport.py:46
 msgid "b."
-msgstr ""
+msgstr "f."
 
 #: ../src/DataViews/PedigreeView.py:73 ../src/plugins/AncestorTree.py:55
 #: ../src/plugins/DescendTree.py:54 ../src/plugins/DescendReport.py:47
 msgid "d."
-msgstr ""
+msgstr "d."
 
 #: ../src/DataViews/PedigreeView.py:74
 msgid "bap."
-msgstr ""
+msgstr "dåp."
 
 #: ../src/DataViews/PedigreeView.py:75
 msgid "chr."
-msgstr ""
+msgstr "dåp."
 
 #: ../src/DataViews/PedigreeView.py:76
 msgid "bur."
-msgstr ""
+msgstr "gravf."
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "crem."
-msgstr ""
+msgstr "krem."
 
 #: ../src/DataViews/PedigreeView.py:973
 msgid "Jump to child..."
-msgstr ""
+msgstr "Gå til barn..."
 
 #: ../src/DataViews/PedigreeView.py:983
 msgid "Jump to father"
-msgstr ""
+msgstr "Gå til far"
 
 #: ../src/DataViews/PedigreeView.py:992
 msgid "Jump to mother"
-msgstr ""
+msgstr "Gå til mor"
 
 #: ../src/DataViews/PedigreeView.py:1265
 msgid "A person was found to be his/her own ancestor."
-msgstr ""
+msgstr "Det vart funne ein person som er sin eigen ane."
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -3353,19 +3353,19 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:459 ../src/plugins/NarrativeWeb.py:1589
 #: ../src/plugins/NarrativeWeb.py:1591
 msgid "Home"
-msgstr ""
+msgstr "Heim"
 
 #: ../src/DataViews/PedigreeView.py:1331
 msgid "Show images"
-msgstr ""
+msgstr "Vis bilete"
 
 #: ../src/DataViews/PedigreeView.py:1340
 msgid "Show marriage data"
-msgstr ""
+msgstr "Vis ekteskapsdata"
 
 #: ../src/DataViews/PedigreeView.py:1349
 msgid "Tree style"
-msgstr ""
+msgstr "Trestruktur"
 
 #: ../src/DataViews/PedigreeView.py:1356
 msgid "Version A"
@@ -3386,33 +3386,33 @@ msgstr "Automatisk"
 #: ../src/DataViews/PedigreeView.py:1390
 #, python-format
 msgid "%d generations"
-msgstr ""
+msgstr "%d generasjonar"
 
 #: ../src/DataViews/PedigreeView.py:1403 ../src/DataViews/PedigreeView.py:1423
 msgid "People Menu"
-msgstr ""
+msgstr "Person-meny"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/PedigreeView.py:1485 ../src/DataViews/RelationView.py:794
 #: ../src/plugins/siblings.py:74 ../src/plugins/NarrativeWeb.py:2299
 msgid "Siblings"
-msgstr ""
+msgstr "søsken"
 
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1528 ../src/DataViews/RelationView.py:1181
 #: ../src/plugins/FamilyGroup.py:543 ../src/plugins/IndivComplete.py:333
 #: ../src/plugins/NarrativeWeb.py:2374
 msgid "Children"
-msgstr ""
+msgstr "barn"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/PedigreeView.py:1602
 msgid "Related"
-msgstr ""
+msgstr "Relatert"
 
 #: ../src/DataViews/PedigreeView.py:1653
 msgid "Family Menu"
-msgstr ""
+msgstr "Familie-meny"
 
 #: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52 ../src/plugins/siblings.py:44
@@ -3423,470 +3423,470 @@ msgstr ""
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/SameSurnames.py:75
 #: ../src/plugins/TimeLine.py:58
 msgid "Birth Date"
-msgstr ""
+msgstr "Fødselsdato"
 
 #: ../src/DataViews/PersonView.py:71 ../src/Editors/_EditFamily.py:108
 #: ../src/Selectors/_SelectPerson.py:53 ../src/plugins/RelCalc.py:58
 msgid "Birth Place"
-msgstr ""
+msgstr "Fødestad"
 
 #: ../src/DataViews/PersonView.py:72 ../src/Editors/_EditFamily.py:107
 #: ../src/Selectors/_SelectPerson.py:54 ../src/plugins/lineage.py:61
 #: ../src/plugins/lineage.py:92 ../src/plugins/RelCalc.py:59
 msgid "Death Date"
-msgstr ""
+msgstr "Dødsdato"
 
 #: ../src/DataViews/PersonView.py:73 ../src/Editors/_EditFamily.py:109
 #: ../src/Selectors/_SelectPerson.py:55 ../src/plugins/RelCalc.py:60
 msgid "Death Place"
-msgstr ""
+msgstr "Dødsstad"
 
 #: ../src/DataViews/PersonView.py:75 ../src/Selectors/_SelectPerson.py:57
 #: ../src/plugins/RelCalc.py:62
 msgid "Last Change"
-msgstr ""
+msgstr "Siste endring"
 
 #: ../src/DataViews/PersonView.py:87 ../src/plugins/MarkerReport.py:101
 msgid "People"
-msgstr ""
+msgstr "Personar"
 
 #: ../src/DataViews/PersonView.py:145
 msgid "Expand all Nodes"
-msgstr ""
+msgstr "Utvid alle knutepunkt"
 
 #: ../src/DataViews/PersonView.py:148
 msgid "Edit the selected person"
-msgstr ""
+msgstr "Rediger den valde personen"
 
 #: ../src/DataViews/PersonView.py:149
 msgid "Collapse all Nodes"
-msgstr ""
+msgstr "Slå saman alle knutepunkt"
 
 #: ../src/DataViews/PersonView.py:158
 msgid "Add a new person"
-msgstr ""
+msgstr "Legg til ein ny person"
 
 #: ../src/DataViews/PersonView.py:160
 msgid "Remove the Selected Person"
-msgstr ""
+msgstr "Fjern den valde personen"
 
 #: ../src/DataViews/PersonView.py:163
 msgid "_Compare and Merge..."
-msgstr ""
+msgstr "_Samanlikna og flett saman..."
 
 #: ../src/DataViews/PersonView.py:165
 msgid "_Fast Merge..."
-msgstr ""
+msgstr "_Rask samanfletting..."
 
 #: ../src/DataViews/PersonView.py:191 ../src/DataViews/PersonView.py:204
 #: ../src/DataViews/PersonView.py:215 ../src/DataViews/PersonView.py:229
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
-msgstr ""
+msgstr "Nøyaktig to personar må veljast for å gjennomføra ei samanfletting.  Person nummer to kan veljast ved å halda inne Ctrl-tasten medan du klikkar på ønskt person."
 
 #: ../src/DataViews/PersonView.py:237
 msgid "Select Person Columns"
-msgstr ""
+msgstr "Vel person-kolonner"
 
 #: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
-msgstr ""
+msgstr "Den aktive personen er ikkje synleg"
 
 #: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
-msgstr ""
+msgstr "Oppdaterer visninga..."
 
 #: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
-msgstr ""
+msgstr "Sletting av personen vil fjerna han frå databasen."
 
 #: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
-msgstr ""
+msgstr "_Slett ein person"
 
 #: ../src/DataViews/PersonView.py:621
 #, python-format
 msgid "Delete Person (%s)"
-msgstr ""
+msgstr "Slett person %s"
 
 #: ../src/DataViews/PersonView.py:896
 msgid "Go to default person"
-msgstr ""
+msgstr "Gå til startpersonen"
 
 #: ../src/DataViews/PersonView.py:901
 msgid "Edit selected person"
-msgstr ""
+msgstr "Rediger den valde personen"
 
 #: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
-msgstr ""
+msgstr "Slett den valde personen"
 
 #: ../src/DataViews/PlaceView.py:66
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 msgid "Place Name"
-msgstr ""
+msgstr "Stadnamn"
 
 #: ../src/DataViews/PlaceView.py:68 ../src/plugins/NarrativeWeb.py:1193
 msgid "Church Parish"
-msgstr ""
+msgstr "Kyrkjesokn"
 
 #: ../src/DataViews/PlaceView.py:71 ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/NarrativeWeb.py:1194
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
-msgstr ""
+msgstr "Fylke"
 
 #: ../src/DataViews/PlaceView.py:72 ../src/DataViews/RepositoryView.py:75
 #: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:373
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "State"
-msgstr ""
+msgstr "Stat"
 
 #: ../src/DataViews/PlaceView.py:74 ../src/plugins/NarrativeWeb.py:1206
 msgid "Latitude"
-msgstr ""
+msgstr "Breddegrad"
 
 #: ../src/DataViews/PlaceView.py:75 ../src/plugins/NarrativeWeb.py:1212
 msgid "Longitude"
-msgstr ""
+msgstr "Lengdegrad"
 
 #: ../src/DataViews/PlaceView.py:77 ../src/DataViews/RepositoryView.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
 #: ../src/plugins/NarrativeWeb.py:1191
 msgid "Street"
-msgstr ""
+msgstr "Gate"
 
 #: ../src/DataViews/PlaceView.py:81
 msgid "Edit the selected place"
-msgstr ""
+msgstr "Regiger den valde staden"
 
 #: ../src/DataViews/PlaceView.py:82
 msgid "Delete the selected place"
-msgstr ""
+msgstr "Slett den valde staden"
 
 #: ../src/DataViews/PlaceView.py:118
 msgid "_Merge..."
-msgstr ""
+msgstr "Flett sa_man..."
 
 #: ../src/DataViews/PlaceView.py:120
 msgid "_Google Maps"
-msgstr ""
+msgstr "_Google Kart"
 
 #: ../src/DataViews/PlaceView.py:122
 msgid "Attempt to map location on Google Maps"
-msgstr ""
+msgstr "Prøv å finna staden i Google kart"
 
 #: ../src/DataViews/PlaceView.py:123
 msgid "Place Filter Editor"
-msgstr ""
+msgstr "Handsamar for stad-filter"
 
 #: ../src/DataViews/PlaceView.py:157
 msgid "Select Place Columns"
-msgstr ""
+msgstr "Vel kolonner for stad"
 
 #: ../src/DataViews/PlaceView.py:244
 msgid "This place is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
-msgstr ""
+msgstr "Denne staden er no i bruk.  Sletting vil fjerna han frå databasen og frå alle personar og familiar som viser til han."
 
 #: ../src/DataViews/PlaceView.py:248
 msgid "Deleting place will remove it from the database."
-msgstr ""
+msgstr "Sletting av staden vil fjerna han frå databasen."
 
 #: ../src/DataViews/PlaceView.py:257
 msgid "_Delete Place"
-msgstr ""
+msgstr "Slett sta_d"
 
 #: ../src/DataViews/PlaceView.py:276
 msgid "Cannot merge places."
-msgstr ""
+msgstr "Kan ikkje fletta saman stader."
 
 #: ../src/DataViews/PlaceView.py:277
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
-msgstr ""
+msgstr "Nøyaktig to stader må veljast for å gjennomføra ei samanfletting.  Stad nummer to kan veljast ved å halda nede Ctrl-tasten medan du klikkar på den ønskte staden."
 
 #: ../src/DataViews/RelationView.py:323
 msgid "_Reorder"
-msgstr ""
+msgstr "_Sorter"
 
 #: ../src/DataViews/RelationView.py:324
 msgid "Change order of parents and families"
-msgstr ""
+msgstr "Endra rekkefølgje på foreldre og familiar"
 
 #: ../src/DataViews/RelationView.py:329
 msgid "Edit..."
-msgstr ""
+msgstr "Rediger..."
 
 #: ../src/DataViews/RelationView.py:330
 msgid "Edit the active person"
-msgstr ""
+msgstr "Rediger den aktive personen"
 
 #: ../src/DataViews/RelationView.py:331 ../src/plugins/all_relations.py:282
 #: ../src/plugins/NarrativeWeb.py:857 ../src/plugins/NarrativeWeb.py:998
 #: ../src/plugins/NarrativeWeb.py:2395 ../src/plugins/NarrativeWeb.py:2397
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: ../src/DataViews/RelationView.py:332 ../src/DataViews/RelationView.py:334
 #: ../src/DataViews/RelationView.py:705
 msgid "Add a new family with person as parent"
-msgstr ""
+msgstr "Legg til ein ny familie med personen som forelder"
 
 #: ../src/DataViews/RelationView.py:333
 msgid "Add Partner..."
-msgstr ""
+msgstr "Legg til partner..."
 
 #: ../src/DataViews/RelationView.py:335 ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/CalculateEstimatedDates.py:86
 msgid "Add"
-msgstr ""
+msgstr "Legg til"
 
 #: ../src/DataViews/RelationView.py:336 ../src/DataViews/RelationView.py:338
 #: ../src/DataViews/RelationView.py:699
 msgid "Add a new set of parents"
-msgstr ""
+msgstr "Legg til eit nytt sett med foreldre"
 
 #: ../src/DataViews/RelationView.py:337
 msgid "Add New Parents..."
-msgstr ""
+msgstr "Legg til nye foreldre..."
 
 #: ../src/DataViews/RelationView.py:339 ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:118
 #: ../src/DisplayTabs/_GalleryTab.py:110
 msgid "Share"
-msgstr ""
+msgstr "Del"
 
 #: ../src/DataViews/RelationView.py:340 ../src/DataViews/RelationView.py:344
 #: ../src/DataViews/RelationView.py:700
 msgid "Add person as child to an existing family"
-msgstr ""
+msgstr "Legg til personen som barn i ein eksisterande familie"
 
 #: ../src/DataViews/RelationView.py:343
 msgid "Add Existing Parents..."
-msgstr ""
+msgstr "Legg til eksisterande foreldre..."
 
 #: ../src/DataViews/RelationView.py:351
 msgid "Show Details"
-msgstr ""
+msgstr "Vis detaljar"
 
 #: ../src/DataViews/RelationView.py:354
 msgid "Show Siblings"
-msgstr ""
+msgstr "Vis søsken"
 
 #: ../src/DataViews/RelationView.py:528 ../src/DataViews/RelationView.py:857
 #: ../src/DataViews/RelationView.py:896 ../src/DataViews/RelationView.py:957
 #: ../src/DataViews/RelationView.py:1055 ../src/Editors/_EditFamily.py:836
 #, python-format
 msgid "Edit %s"
-msgstr ""
+msgstr "Rediger %s"
 
 #: ../src/DataViews/RelationView.py:615 ../src/DataViews/RelationView.py:642
 #, python-format
 msgid "%(date)s in %(place)s"
-msgstr ""
+msgstr "%(date)s i %(place)s"
 
 #: ../src/DataViews/RelationView.py:701
 msgid "Edit parents"
-msgstr ""
+msgstr "Rediger foreldre"
 
 #: ../src/DataViews/RelationView.py:702
 msgid "Reorder parents"
-msgstr ""
+msgstr "Endra rekkefølgje på foreldre"
 
 #: ../src/DataViews/RelationView.py:703
 msgid "Remove person as child of these parents"
-msgstr ""
+msgstr "Fjern personen som barn til desse foreldra"
 
 #: ../src/DataViews/RelationView.py:707
 msgid "Edit family"
-msgstr ""
+msgstr "Rediger familie"
 
 #: ../src/DataViews/RelationView.py:708
 msgid "Reorder families"
-msgstr ""
+msgstr "Endra rekkefølgje på familiar"
 
 #: ../src/DataViews/RelationView.py:709
 msgid "Remove person as parent in this family"
-msgstr ""
+msgstr "Fjern personen som forelder i denne familien"
 
 #: ../src/DataViews/RelationView.py:761
 #, python-format
 msgid " (%d siblings)"
-msgstr ""
+msgstr "(%d søsken)"
 
 #: ../src/DataViews/RelationView.py:766
 msgid " (1 brother)"
-msgstr ""
+msgstr "(1 bror)"
 
 #: ../src/DataViews/RelationView.py:768
 msgid " (1 sister)"
-msgstr ""
+msgstr "(1 søster)"
 
 #: ../src/DataViews/RelationView.py:770
 msgid " (1 sibling)"
-msgstr ""
+msgstr "(1 søsken)"
 
 #: ../src/DataViews/RelationView.py:772
 msgid " (only child)"
-msgstr ""
+msgstr "(einebarn)"
 
 #: ../src/DataViews/RelationView.py:807 ../src/DataViews/RelationView.py:1194
 msgid "Add new child to family"
-msgstr ""
+msgstr "Legg til eit barn i familien"
 
 #: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:1200
 msgid "Add existing child to family"
-msgstr ""
+msgstr "Legg eit eksiserande barn til i familien"
 
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
-msgstr ""
+msgstr "f. %(birthdate)s, d. %(deathdate)s"
 
 #: ../src/DataViews/RelationView.py:1012
 #, python-format
 msgid "b. %s"
-msgstr ""
+msgstr "f. %s"
 
 #: ../src/DataViews/RelationView.py:1014
 #, python-format
 msgid "d. %s"
-msgstr ""
+msgstr "d. %s"
 
 #: ../src/DataViews/RelationView.py:1075
 #, python-format
 msgid "Relationship type: %s"
-msgstr ""
+msgstr "Relasjonstype: %s"
 
 #: ../src/DataViews/RelationView.py:1115
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr ""
+msgstr "%(event_type)s: %(date)s i %(place)s"
 
 #: ../src/DataViews/RelationView.py:1119
 #, python-format
 msgid "%(event_type)s: %(date)s"
-msgstr ""
+msgstr "%(event_type)s: %(date)s"
 
 #: ../src/DataViews/RelationView.py:1123
 #, python-format
 msgid "%(event_type)s: %(place)s"
-msgstr ""
+msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/RelationView.py:1134
 msgid "Broken family detected"
-msgstr ""
+msgstr "Ein øydelagd famile vart oppdaga"
 
 #: ../src/DataViews/RelationView.py:1135
 msgid "Please run the Check and Repair Database tool"
-msgstr ""
+msgstr "Køyr verktøyet Kontroller og reparer databasen"
 
 #: ../src/DataViews/RelationView.py:1156
 #, python-format
 msgid " (%d children)"
-msgstr ""
+msgstr "(%d barn)"
 
 #: ../src/DataViews/RelationView.py:1158
 msgid " (1 child)"
-msgstr ""
+msgstr "(1 barn)"
 
 #: ../src/DataViews/RelationView.py:1160
 msgid " (no children)"
-msgstr ""
+msgstr "(ingen barn)"
 
 #: ../src/DataViews/RelationView.py:1315
 msgid "Add Child to Family"
-msgstr ""
+msgstr "Legg til eit barn i familien"
 
 #: ../src/DataViews/RelationView.py:1328 ../src/Editors/_EditFamily.py:246
 #: ../src/Editors/_EditFamily.py:259
 msgid "Select Child"
-msgstr ""
+msgstr "Vel barn"
 
 #: ../src/DataViews/RepositoryView.py:70
 msgid "Home URL"
-msgstr ""
+msgstr "Heimeside"
 
 #: ../src/DataViews/RepositoryView.py:78
 msgid "Search URL"
-msgstr ""
+msgstr "Leit etter nettadresse"
 
 #: ../src/DataViews/RepositoryView.py:82
 msgid "Add a new repository"
-msgstr ""
+msgstr "Legg til ein ny oppbevaringsstad"
 
 #: ../src/DataViews/RepositoryView.py:83
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
-msgstr ""
+msgstr "Rediger den valde oppbevaringsstaden"
 
 #: ../src/DataViews/RepositoryView.py:84
 msgid "Delete the selected repository"
-msgstr ""
+msgstr "Slett den valde oppbevaringsstaden"
 
 #: ../src/DataViews/RepositoryView.py:121
 msgid "Repository Filter Editor"
-msgstr ""
+msgstr "Filterhandsamar for oppbevaringsstader"
 
 #: ../src/DataViews/RepositoryView.py:128
 msgid "Select Repository Columns"
-msgstr ""
+msgstr "Vel kolonnar for oppbevaringsstader"
 
 #: ../src/DataViews/RepositoryView.py:202
 msgid "This repository is currently being used. Deleting it will remove it from the database and from all sources that reference it."
-msgstr ""
+msgstr "Denne oppbevaringstaden er no i bruk.  Slettar du han, vil har bli fjerna frå databasen og frå alle kjelder som viser til han."
 
 #: ../src/DataViews/RepositoryView.py:206
 msgid "Deleting repository will remove it from the database."
-msgstr ""
+msgstr "Sletting av oppbevaringsstaden vil fjerna han frå databasen."
 
 #: ../src/DataViews/RepositoryView.py:211
 msgid "_Delete Repository"
-msgstr ""
+msgstr "_Slett oppbevaringsstaden"
 
 #: ../src/DataViews/SourceView.py:74
 msgid "Add a new source"
-msgstr ""
+msgstr "Legg til ei ny kjelde"
 
 #: ../src/DataViews/SourceView.py:75 ../src/DisplayTabs/_SourceEmbedList.py:55
 msgid "Edit the selected source"
-msgstr ""
+msgstr "Rediger den valde kjelda"
 
 #: ../src/DataViews/SourceView.py:76
 msgid "Delete the selected source"
-msgstr ""
+msgstr "Slett den valde kjelda"
 
 #: ../src/DataViews/SourceView.py:114
 msgid "_Merge"
-msgstr ""
+msgstr "_Flett"
 
 #: ../src/DataViews/SourceView.py:116
 msgid "Source Filter Editor"
-msgstr ""
+msgstr "Filterhandsamar for kjelder"
 
 #: ../src/DataViews/SourceView.py:123
 msgid "Select Source Columns"
-msgstr ""
+msgstr "Vel kolonnar for kjelder"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/SourceView.py:193
 msgid "This source is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
-msgstr ""
+msgstr "Denn kjelda er no i bruk.  Slettar du henne vil ho bli fjerna frå databasen og frå alle personar og familiar med referanse til ho."
 
 #: ../src/DataViews/SourceView.py:197
 msgid "Deleting source will remove it from the database."
-msgstr ""
+msgstr "Sletting av kjelda vil fjerna ho frå databasen."
 
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
-msgstr ""
+msgstr "Slett kjel_de"
 
 #: ../src/DataViews/SourceView.py:225
 msgid "Cannot merge sources."
-msgstr ""
+msgstr "Kjeldene kan ikkje flettast saman."
 
 #: ../src/DataViews/SourceView.py:226
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
-msgstr ""
+msgstr "Nøyaktig to kjelder må veljast for å gjennomføra ei fletting.  Den andre kjelda kan veljast ved å halda nede Ctrl-tasten medan du klikkar på den ønskte kjelda."
 
 #: ../src/docgen/AsciiDoc.py:140 ../src/docgen/AsciiDoc.py:143
 #: ../src/docgen/HtmlDoc.py:225 ../src/docgen/HtmlDoc.py:228
@@ -3917,26 +3917,26 @@ msgstr ""
 #: ../src/plugins/WriteGeneWeb.py:256 ../src/plugins/WriteGeneWeb.py:260
 #, python-format
 msgid "Could not create %s"
-msgstr ""
+msgstr "Kunne ikkje oppretta %s"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
 #: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
-msgstr ""
+msgstr "Opna i %s"
 
 #: ../src/docgen/AsciiDoc.py:388
 msgid "Plain Text"
-msgstr ""
+msgstr "Rein tekst"
 
 #: ../src/docgen/GtkPrint.py:67
 msgid "PyGtk 2.10 or later is required"
-msgstr ""
+msgstr "PyGtk 2.10 eller nyare er påkravd"
 
 #: ../src/docgen/GtkPrint.py:496
 #, python-format
 msgid "of %d"
-msgstr ""
+msgstr "av %d"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3946,15 +3946,15 @@ msgstr ""
 #: ../src/docgen/GtkPrint.py:611 ../src/docgen/GtkPrint.py:612
 #: ../src/docgen/GtkPrint.py:613
 msgid "Print..."
-msgstr ""
+msgstr "Skriv ut..."
 
 #: ../src/docgen/HtmlDoc.py:158 ../src/docgen/HtmlDoc.py:183
 msgid "The marker '<!-- START -->' was not in the template"
-msgstr ""
+msgstr "Markøren '<!-- START -->' var ikkje i malen"
 
 #: ../src/docgen/HtmlDoc.py:159 ../src/docgen/HtmlDoc.py:184
 msgid "Template Error"
-msgstr ""
+msgstr "Feil i malen"
 
 #: ../src/docgen/HtmlDoc.py:194 ../src/docgen/HtmlDoc.py:200
 #, python-format
@@ -3962,40 +3962,42 @@ msgid ""
 "Could not open %s\n"
 "Using the default template"
 msgstr ""
+"Kunne ikkje opna %s\n"
+"Standardmalen blir brukt"
 
 #: ../src/docgen/HtmlDoc.py:494 ../src/docgen/HtmlDoc.py:498
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
 #: ../src/ReportBase/_GraphvizReportDialog.py:865
 #, python-format
 msgid "Open in %(program_name)s"
-msgstr ""
+msgstr "Opna i %(program_name)s"
 
 #: ../src/docgen/LaTeXDoc.py:536
 msgid "LaTex"
-msgstr ""
+msgstr "LaTex"
 
 #: ../src/docgen/ODFDoc.py:1159 ../src/docgen/ODFDoc.py:1160
 #: ../src/docgen/ODFDoc.py:1161
 msgid "Open Document Text"
-msgstr ""
+msgstr "Open Document tekst"
 
 #: ../src/docgen/PSDrawDoc.py:64 ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_DocReportDialog.py:113
 #: ../src/ReportBase/_DocReportDialog.py:154
 msgid "Print a copy"
-msgstr ""
+msgstr "Skriv ut ein kopi"
 
 #: ../src/docgen/PSDrawDoc.py:370
 msgid "PostScript"
-msgstr ""
+msgstr "PostScript"
 
 #: ../src/docgen/RTFDoc.py:455
 msgid "RTF document"
-msgstr ""
+msgstr "RTF-dokument"
 
 #. -------------------------------------------------------------------------
 #.
@@ -4004,143 +4006,143 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/docgen/SvgDrawDoc.py:265
 msgid "SVG (Scalable Vector Graphics)"
-msgstr ""
+msgstr "SVG (Skalerbar VektorGrafikk)"
 
 #: ../src/docgen/TextBufDoc.py:80 ../src/docgen/TextBufDoc.py:151
 msgid "Quick View"
-msgstr ""
+msgstr "Snarrapport"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 msgid "Create and add a new address"
-msgstr ""
+msgstr "Lag og legg til ei ny adresse"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
 msgid "Remove the existing address"
-msgstr ""
+msgstr "Fjern den eksisterande adressa"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:63
 msgid "Edit the selected address"
-msgstr ""
+msgstr "Rediger den valde adressa"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:64
 msgid "Move the selected address upwards"
-msgstr ""
+msgstr "Flytt den valde adressa opp"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:65
 msgid "Move the selected address downwards"
-msgstr ""
+msgstr "Flytt den valde adressa ned"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:78
 msgid "_Addresses"
-msgstr ""
+msgstr "_Adresser"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
 msgid "Create and add a new attribute"
-msgstr ""
+msgstr "Opprett og legg til ein ny eigenskap"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 msgid "Remove the existing attribute"
-msgstr ""
+msgstr "Fjern den eksisterande eigenskapen"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:54
 msgid "Edit the selected attribute"
-msgstr ""
+msgstr "Rediger den valde eigenskapen"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:55
 msgid "Move the selected attribute upwards"
-msgstr ""
+msgstr "Flytt den valde eigenskapen opp"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:56
 msgid "Move the selected attribute downwards"
-msgstr ""
+msgstr "Flytt den valde eigenskapen ned"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:66
 msgid "_Attributes"
-msgstr ""
+msgstr "Ei_genskapar"
 
 #: ../src/DisplayTabs/_BackRefList.py:64
 msgid "_References"
-msgstr ""
+msgstr "_Referansar"
 
 #: ../src/DisplayTabs/_BackRefList.py:91
 msgid "Edit reference"
-msgstr ""
+msgstr "Rediger referansar"
 
 #: ../src/DisplayTabs/_ButtonTab.py:68
 #: ../src/plugins/CalculateEstimatedDates.py:82
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: ../src/DisplayTabs/_ButtonTab.py:71
 msgid "Jump To"
-msgstr ""
+msgstr "Gå til"
 
 #: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
-msgstr ""
+msgstr "Flytt opp"
 
 #: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
-msgstr ""
+msgstr "Flytt ned"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 msgid "Create and add a new data entry"
-msgstr ""
+msgstr "Opprett og legg til eit nytt datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:50
 msgid "Remove the existing data entry"
-msgstr ""
+msgstr "Fjern det eksisterande datafeltet"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
 msgid "Edit the selected data entry"
-msgstr ""
+msgstr "Rediger det valde datafeltet"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:52
 msgid "Move the selected data entry upwards"
-msgstr ""
+msgstr "Flytt det valde datafeltet opp"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:53
 msgid "Move the selected data entry downwards"
-msgstr ""
+msgstr "Flytt det valde datafeltet ned"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:57
 msgid "Key"
-msgstr ""
+msgstr "Nøkkel"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:64
 msgid "_Data"
-msgstr ""
+msgstr "_Data"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:54
 msgid "Remove the selected event"
-msgstr ""
+msgstr "Fjern den valde hendinga"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
 msgid "Share an existing event"
-msgstr ""
+msgstr "Del ei eksisterande hending"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:57
 msgid "Move the selected event upwards"
-msgstr ""
+msgstr "Flytt den valde hendinga opp"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:58
 msgid "Move the selected event downwards"
-msgstr ""
+msgstr "Flytt den valde hendinga ned"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:67
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:72
 msgid "_Events"
-msgstr ""
+msgstr "Hen_ding"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:134
 #: ../src/DisplayTabs/_EventEmbedList.py:169
 #: ../src/DisplayTabs/_RepoEmbedList.py:152
 #: ../src/DisplayTabs/_SourceEmbedList.py:133
 msgid "Cannot edit this reference"
-msgstr ""
+msgstr "Denne referansen kan ikkje endrast"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:135
 #: ../src/DisplayTabs/_EventEmbedList.py:170
@@ -4149,164 +4151,167 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
+"Referansen til denne hendinga kan ikkje endrast no.  Enten blir denne delte hendinga endra samstundes, eller så blir ein annan referanse som er delt med den same hendinga endra.\n"
+"\n"
+"For å kunne endra referansen til denne hendinga, må hendinga lukkast."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
 msgid "Temple"
-msgstr ""
+msgstr "Tempel"
 
 #: ../src/DisplayTabs/_GalleryTab.py:76
 msgid "_Gallery"
-msgstr ""
+msgstr "Ga_lleri"
 
 #: ../src/DisplayTabs/_GalleryTab.py:122
 #, python-format
 msgid "Open with %s"
-msgstr ""
+msgstr "Opna med %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
 msgid "Non existing media found in the Gallery"
-msgstr ""
+msgstr "Ingen eksisterande media vart funne i galleriet"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr ""
+msgstr "Opprett og legg til ny LDS-ordinans"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr ""
+msgstr "Fjern den eksisterande LDS-ordinansen"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
 msgid "Edit the selected LDS ordinance"
-msgstr ""
+msgstr "Rediger den valde LDS-ordinansen"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr ""
+msgstr "Flytt den valde LDS-ordinansen opp"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
 msgid "Move the selected LDS ordinance downwards"
-msgstr ""
+msgstr "Flytt den valde LDS-ordinansen ned"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:68
 msgid "_LDS"
-msgstr ""
+msgstr "_LDS"
 
 #: ../src/DisplayTabs/_LocationEmbedList.py:62
 msgid "Alternate _Locations"
-msgstr ""
+msgstr "Alternative _stader"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 msgid "Create and add a new name"
-msgstr ""
+msgstr "Lag og legg til eit nytt namn"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:60
 msgid "Remove the existing name"
-msgstr ""
+msgstr "Fjern det eksisterande namnet"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:61
 msgid "Edit the selected name"
-msgstr ""
+msgstr "Rediger det eksisterande namnet"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:62
 msgid "Move the selected name upwards"
-msgstr ""
+msgstr "Flytt det eksisterande namnet opp"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:63
 msgid "Move the selected name downwards"
-msgstr ""
+msgstr "Flytt det eksisterande namnet ned"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:76
 msgid "_Names"
-msgstr ""
+msgstr "_Namn"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:90
 msgid "Set as default name"
-msgstr ""
+msgstr "Set som standardnamn"
 
 #: ../src/DisplayTabs/_NoteTab.py:63
 msgid "Create and add a new note"
-msgstr ""
+msgstr "Lag og legg til nytt notat"
 
 #: ../src/DisplayTabs/_NoteTab.py:64
 msgid "Remove the existing note"
-msgstr ""
+msgstr "Fjern eksisterande notat"
 
 #: ../src/DisplayTabs/_NoteTab.py:66
 msgid "Add an existing note"
-msgstr ""
+msgstr "Legg til eit eksisterande notat"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
 msgid "Move the selected note upwards"
-msgstr ""
+msgstr "Flytt det valde notatet opp"
 
 #: ../src/DisplayTabs/_NoteTab.py:68
 msgid "Move the selected note downwards"
-msgstr ""
+msgstr "Flytt det valde notatet ned"
 
 #: ../src/DisplayTabs/_NoteTab.py:82
 msgid "_Notes"
-msgstr ""
+msgstr "_Notat"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 msgid "Create and add a new association"
-msgstr ""
+msgstr "Lag og legg til ein ny relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
 msgid "Remove the existing association"
-msgstr ""
+msgstr "Fjern den eksisterande relasjonen"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Edit the selected association"
-msgstr ""
+msgstr "Rediger den valde relasjonen"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
 msgid "Move the selected association upwards"
-msgstr ""
+msgstr "Flytt den valde relasjonen opp"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:56
 msgid "Move the selected association downwards"
-msgstr ""
+msgstr "Flytt den valde relasjonen ned"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:62
 msgid "Association"
-msgstr ""
+msgstr "Relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
 msgid "_Associations"
-msgstr ""
+msgstr "_Relasjonar"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:86
 msgid "Godfather"
-msgstr ""
+msgstr "Gudfar"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 msgid "Create and add a new repository"
-msgstr ""
+msgstr "Lag og legg til eit nytt depot"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
-msgstr ""
+msgstr "Fjern det valde depotet"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 msgid "Add an existing repository"
-msgstr ""
+msgstr "Legg til eit eksisterande depot"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
 msgid "Move the selected repository upwards"
-msgstr ""
+msgstr "Flytt det valde depotet opp"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:58
 msgid "Move the selected repository downwards"
-msgstr ""
+msgstr "Flytt det valde depotet ned"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
 msgid "_Repositories"
-msgstr ""
+msgstr "_Depot"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:115
 msgid "Select repository"
-msgstr ""
+msgstr "Vel depot"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:153
 msgid ""
@@ -4314,30 +4319,33 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
+"Referansen til dette depotet kan ikkje endrast no.  Enten blir det tilhøyrande depotet alt redigert, eller så blir ein annan referanse som tilhøyrer det same depotet endra.\n"
+"\n"
+"For å redigera denne depot-henvisninga, må du lukka depotet."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
-msgstr ""
+msgstr "Lag og legg til ei ny kjelde"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 msgid "Remove the existing source"
-msgstr ""
+msgstr "Fjern den valde kjelda"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
 msgid "Add an existing source"
-msgstr ""
+msgstr "Legg til ei eksisterande kjelde"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
 msgid "Move the selected source upwards"
-msgstr ""
+msgstr "Flytt den valde kjelda opp"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:58
 msgid "Move the selected source downwards"
-msgstr ""
+msgstr "Flytt den valde kjelda ned"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:70
 msgid "_Sources"
-msgstr ""
+msgstr "_Kjelder"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:134
 msgid ""
@@ -4345,572 +4353,577 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
+"Denne kjelde-referansen kan ikkje endrast no.  Enten blir den tilhøyrande kjelda alt redigert, eller så blir ein annan referanse til den same kjelda redigert.\n"
+"\n"
+"For å endra denne kjelde-referanse, må du lukka kjelda."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
 msgid "Create and add a new web address"
-msgstr ""
+msgstr "Lag og legg til ei ny internett-adresse"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 msgid "Remove the existing web address"
-msgstr ""
+msgstr "Fjern denne internett-adressa"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:55
 msgid "Edit the selected web address"
-msgstr ""
+msgstr "Rediger den valde internett-adressa"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:56
 msgid "Move the selected web address upwards"
-msgstr ""
+msgstr "Flytt den valde internett-adressa opp"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:57
 msgid "Move the selected web address downwards"
-msgstr ""
+msgstr "Flytt den valde internett-adressa ned"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:58
 msgid "Jump to the selected web address"
-msgstr ""
+msgstr "Gå til den valde internett-adressa"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:69
 msgid "_Internet"
-msgstr ""
+msgstr "_Internett"
 
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
-msgstr ""
+msgstr "Vel eit media-objekt"
 
 #: ../src/Editors/AddMedia.py:146
 msgid "Select media object"
-msgstr ""
+msgstr "Vel eit mediaobjekt"
 
 #: ../src/Editors/AddMedia.py:156
 msgid "Import failed"
-msgstr ""
+msgstr "Importen gjekk feil"
 
 #: ../src/Editors/AddMedia.py:157 ../src/Editors/AddMedia.py:170
 msgid "The filename supplied could not be found."
-msgstr ""
+msgstr "Fann ikkje den oppgjevne fila."
 
 #: ../src/Editors/AddMedia.py:169
 #, python-format
 msgid "Cannot import %s"
-msgstr ""
+msgstr "Kan ikkje importera %s"
 
 #: ../src/Editors/AddMedia.py:232
 #, python-format
 msgid "Cannot display %s"
-msgstr ""
+msgstr "Kan ikkje visa %s"
 
 #: ../src/Editors/AddMedia.py:233
 msgid "GRAMPS is not able to display the image file. This may be caused by a corrupt file."
-msgstr ""
+msgstr "GRAMPS kan ikkje visa bilet-fila.  Dette kan skuldast ei øydelagd fil."
 
 #: ../src/Editors/_EditAddress.py:82 ../src/Editors/_EditAddress.py:148
 msgid "Address Editor"
-msgstr ""
+msgstr "Adressehandsamar"
 
 #: ../src/Editors/_EditAttribute.py:85 ../src/Editors/_EditAttribute.py:134
 msgid "Attribute Editor"
-msgstr ""
+msgstr "Handsamar for eigenskapar"
 
 #: ../src/Editors/_EditAttribute.py:128 ../src/Editors/_EditAttribute.py:132
 msgid "New Attribute"
-msgstr ""
+msgstr "Ny eigenskap"
 
 #: ../src/Editors/_EditAttribute.py:146
 msgid "Cannot save attribute"
-msgstr ""
+msgstr "Kan ikkje lagra eigenskapen"
 
 #: ../src/Editors/_EditAttribute.py:147
 msgid "The attribute type cannot be empty"
-msgstr ""
+msgstr "Eigenskapstypen kan ikkje vera tom"
 
 #: ../src/Editors/_EditChildRef.py:93 ../src/Editors/_EditChildRef.py:154
 msgid "Child Reference Editor"
-msgstr ""
+msgstr "Handsamar for barnereferansar"
 
 #: ../src/Editors/_EditChildRef.py:154
 msgid "Child Reference"
-msgstr ""
+msgstr "Barnereferansar"
 
 #: ../src/Editors/_EditEvent.py:60
 msgid "manual|Editing_Information_About_Events"
-msgstr ""
+msgstr "Rediger_informasjon _om_hendingar"
 
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
 #, python-format
 msgid "Event: %s"
-msgstr ""
+msgstr "Hending: %s"
 
 #: ../src/Editors/_EditEvent.py:89 ../src/Editors/_EditEventRef.py:223
 msgid "New Event"
-msgstr ""
+msgstr "Ny hending"
 
 #: ../src/Editors/_EditEvent.py:194 ../src/Editors/_EditEvent.py:242
 msgid "Edit Event"
-msgstr ""
+msgstr "Rediger hending"
 
 #: ../src/Editors/_EditEvent.py:203 ../src/Editors/_EditEvent.py:226
 msgid "Cannot save event"
-msgstr ""
+msgstr "Kan ikkje lagra hending"
 
 #: ../src/Editors/_EditEvent.py:204
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Det fins ikkje data for denne hendinga.  Skriv inn data eller avbryt endringa."
 
 #: ../src/Editors/_EditEvent.py:213
 msgid "Cannot save event. ID already exists."
-msgstr ""
+msgstr "Hendinga kan ikkje lagrast då ID finst frå før."
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:251
 #: ../src/Editors/_EditPerson.py:690 ../src/Editors/_EditPlace.py:275
 #: ../src/Editors/_EditRepository.py:155 ../src/Editors/_EditSource.py:172
 #, python-format
 msgid "You have attempted to use the existing GRAMPS ID with value %(id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
-msgstr ""
+msgstr "Du har prøvd å bruka ein eksisterande GRAMPS-ID med verdien %(id)s.  Denne verdien er alt i bruk for '%(prim_object)s'.  Bruk ein annan ID eller la feltet vera tomt for å bruka neste tilgjengelege ID-verdi."
 
 #: ../src/Editors/_EditEvent.py:227
 msgid "The event type cannot be empty"
-msgstr ""
+msgstr "Typen for hendinga kan ikkje vera tom"
 
 #: ../src/Editors/_EditEvent.py:234 ../src/Editors/_EditEventRef.py:234
 msgid "Add Event"
-msgstr ""
+msgstr "Legg til hending"
 
 #: ../src/Editors/_EditEvent.py:326
 #, python-format
 msgid "Delete Event (%s)"
-msgstr ""
+msgstr "Slett hendinga (%s)"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
 msgid "Event Reference Editor"
-msgstr ""
+msgstr "Handsamar for hendings-referanse"
 
 #: ../src/Editors/_EditEventRef.py:96 ../src/Editors/_EditMediaRef.py:95
 #: ../src/Editors/_EditName.py:123 ../src/Editors/_EditRepoRef.py:88
 msgid "_General"
-msgstr ""
+msgstr "_Generelt"
 
 #: ../src/Editors/_EditEventRef.py:231
 msgid "Modify Event"
-msgstr ""
+msgstr "Endre hending"
 
 #: ../src/Editors/_EditFamily.py:91
 msgid "Create a new person and add the child to the family"
-msgstr ""
+msgstr "Opprett ny person og legg til som barn i familien"
 
 #: ../src/Editors/_EditFamily.py:92
 msgid "Remove the child from the family"
-msgstr ""
+msgstr "Fjern barnet frå familien"
 
 #: ../src/Editors/_EditFamily.py:93
 msgid "Edit the child reference"
-msgstr ""
+msgstr "Rediger referansen for barnet"
 
 #: ../src/Editors/_EditFamily.py:94
 msgid "Add an existing person as a child of the family"
-msgstr ""
+msgstr "Legg til ein eksisterande person som barn i familien"
 
 #: ../src/Editors/_EditFamily.py:95
 msgid "Move the child up in the childrens list"
-msgstr ""
+msgstr "Flytt barnet opp i barnelista"
 
 #: ../src/Editors/_EditFamily.py:96
 msgid "Move the child down in the childrens list"
-msgstr ""
+msgstr "Flytt barnet ned i barnelista"
 
 #: ../src/Editors/_EditFamily.py:100
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: ../src/Editors/_EditFamily.py:104
 msgid "Paternal"
-msgstr ""
+msgstr "Far"
 
 #: ../src/Editors/_EditFamily.py:105
 msgid "Maternal"
-msgstr ""
+msgstr "Mor"
 
 #: ../src/Editors/_EditFamily.py:117 ../src/plugins/csvexport.glade.h:5
 msgid "_Children"
-msgstr ""
+msgstr "_Barn"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
-msgstr ""
+msgstr "Rediger barn"
 
 #: ../src/Editors/_EditFamily.py:125
 msgid "Add an existing child"
-msgstr ""
+msgstr "Legg til eit eksisterande barn"
 
 #: ../src/Editors/_EditFamily.py:127
 msgid "Edit relationship"
-msgstr ""
+msgstr "Endre relasjon"
 
 #: ../src/Editors/_EditFamily.py:427
 msgid "Adding parents to a person"
-msgstr ""
+msgstr "Leggje foreldre til ein person"
 
 #: ../src/Editors/_EditFamily.py:428
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
-msgstr ""
+msgstr "Det er mogeleg ved eit uhell å oppretta fleire familiar med dei same foreldra.  For å hjelpa med å unngå dette, er berre knappane for val av foreldre tilgjengelege når du lagar ein ny familie.  Dei andre felta blir tilgjengelege etter at du har prøvd å velja foreldre."
 
 #: ../src/Editors/_EditFamily.py:478
 msgid "Family has changed"
-msgstr ""
+msgstr "Familen er endra"
 
 #: ../src/Editors/_EditFamily.py:479
 msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
-msgstr ""
+msgstr "Familien du redigerar er endra.  For å sikra at databasen ikkje er øydelagd, har GRAMPS oppdatert familien for å reflektera desse endringane.  Endringar du har gjort kan vera tapt."
 
 #: ../src/Editors/_EditFamily.py:496 ../src/Editors/_EditFamily.py:499
 msgid "New Family"
-msgstr ""
+msgstr "Ny familie"
 
 #: ../src/Editors/_EditFamily.py:503 ../src/Editors/_EditFamily.py:1001
 msgid "Edit Family"
-msgstr ""
+msgstr "Rediger familie"
 
 #: ../src/Editors/_EditFamily.py:532
 msgid "Add a new person as the mother"
-msgstr ""
+msgstr "Legg til ein ny person som mor"
 
 #: ../src/Editors/_EditFamily.py:534
 msgid "Add a new person as the father"
-msgstr ""
+msgstr "Legg til ein ny person som far"
 
 #: ../src/Editors/_EditFamily.py:642
 msgid "Select a person as the father"
-msgstr ""
+msgstr "Vel ein person som far"
 
 #: ../src/Editors/_EditFamily.py:643
 msgid "Remove the person as the father"
-msgstr ""
+msgstr "Fjern personen som far"
 
 #: ../src/Editors/_EditFamily.py:649
 msgid "Select a person as the mother"
-msgstr ""
+msgstr "Vel ein person som mor"
 
 #: ../src/Editors/_EditFamily.py:650
 msgid "Remove the person as the mother"
-msgstr ""
+msgstr "Fjern personen som mor"
 
 #: ../src/Editors/_EditFamily.py:714
 msgid "Select Mother"
-msgstr ""
+msgstr "Vel mor"
 
 #: ../src/Editors/_EditFamily.py:758
 msgid "Select Father"
-msgstr ""
+msgstr "Vel far"
 
 #: ../src/Editors/_EditFamily.py:785
 msgid "Duplicate Family"
-msgstr ""
+msgstr "Dubler familien"
 
 #: ../src/Editors/_EditFamily.py:786
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
-msgstr ""
+msgstr "Ein familie med desse foreldrene fins alt i databasen.  Dersom du lagrar, vil det bli oppretta ein dobbel familie.  Du bør avslutta dette vinduet og velja ein eksisterande familie"
 
 #: ../src/Editors/_EditFamily.py:823
 msgid "Baptism:"
-msgstr ""
+msgstr "Dåp (vaksen):"
 
 #: ../src/Editors/_EditFamily.py:827
 msgid "Burial:"
-msgstr ""
+msgstr "Gravferd:"
 
 #: ../src/Editors/_EditFamily.py:902
 msgid "A father cannot be his own child"
-msgstr ""
+msgstr "Ein far kan ikkje vera sitt eige barn"
 
 #: ../src/Editors/_EditFamily.py:903
 #, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr ""
+msgstr "%s er med både som far og barn i familien."
 
 #: ../src/Editors/_EditFamily.py:912
 msgid "A mother cannot be her own child"
-msgstr ""
+msgstr "Ei mor kan ikkje vera sitt eige barn"
 
 #: ../src/Editors/_EditFamily.py:913
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr ""
+msgstr "%s er med både som mor og barn i familien."
 
 #: ../src/Editors/_EditFamily.py:920
 msgid "Cannot save family"
-msgstr ""
+msgstr "Familen kan ikkje lagrast"
 
 #: ../src/Editors/_EditFamily.py:921
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Det fins ingen data for denne familien.  Skriv inn data eller avbryt redigeringa."
 
 #: ../src/Editors/_EditFamily.py:928
 msgid "Cannot save family. ID already exists."
-msgstr ""
+msgstr "Denne familien kan ikkje lagrast. ID fins frå før."
 
 #: ../src/Editors/_EditFamily.py:929 ../src/Editors/_EditNote.py:544
 #, python-format
 msgid "You have attempted to use the existing GRAMPS ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
-msgstr ""
+msgstr "Du har prøvd å bruka ein eksisterande GRAMPS-ID med verdien %(id)s.  Denne verdien er alt i bruk.  Vel ein annan verdi, eller la feltet vera blankt for bruka neste tilgjengelege ID-verdi."
 
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
-msgstr ""
+msgstr "Legg til familie"
 
 #: ../src/Editors/_EditLdsOrd.py:151 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:417
 msgid "LDS Ordinance Editor"
-msgstr ""
+msgstr "Handsamar for LDS-ordinering"
 
 #: ../src/Editors/_EditLdsOrd.py:274
 #, python-format
 msgid "%(father)s and %(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(father)s og %(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:280
 #, python-format
 msgid "%(father)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(father)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:285
 #, python-format
 msgid "%(mother)s [%(gramps_id)s]"
-msgstr ""
+msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:416
 msgid "LDS Ordinance"
-msgstr ""
+msgstr "LDS-ordinering"
 
 #: ../src/Editors/_EditLocation.py:59
 msgid "Location Editor"
-msgstr ""
+msgstr "Stad-handsamar"
 
 #: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMediaRef.py:374
 #, python-format
 msgid "Media: %s"
-msgstr ""
+msgstr "Media: %s"
 
 #: ../src/Editors/_EditMedia.py:86 ../src/Editors/_EditMediaRef.py:376
 msgid "New Media"
-msgstr ""
+msgstr "Nytt media"
 
 #: ../src/Editors/_EditMedia.py:200
 msgid "Edit Media Object"
-msgstr ""
+msgstr "Rediger media-objekt"
 
 #: ../src/Editors/_EditMedia.py:240
 msgid "Cannot save media object"
-msgstr ""
+msgstr "Kan ikkje lagra media-objekt"
 
 #: ../src/Editors/_EditMedia.py:241
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Det fins ingen data for dette mediaobjektet. Skriv inn data eller avbryt redigeringa."
 
 #: ../src/Editors/_EditMedia.py:250
 msgid "Cannot save media object. ID already exists."
-msgstr ""
+msgstr "Mediaobjektet kan ikkje lagrast. ID fins frå før."
 
 #: ../src/Editors/_EditMedia.py:268 ../src/Editors/_EditMediaRef.py:466
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr ""
+msgstr "Legg til mediaobjekt: (%s)"
 
 #: ../src/Editors/_EditMedia.py:273 ../src/Editors/_EditMediaRef.py:462
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr ""
+msgstr "Rediger mediaobjekt (%s)"
 
 #: ../src/Editors/_EditMedia.py:363
 msgid "Remove Media Object"
-msgstr ""
+msgstr "Fjern mediaobjekt"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
-msgstr ""
+msgstr "Handsamar for media-referansar"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
-msgstr ""
+msgstr "Namne-handsamar"
 
 #: ../src/Editors/_EditName.py:276
 msgid "New Name"
-msgstr ""
+msgstr "Nytt namn"
 
 #: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
-msgstr ""
+msgstr "Skal den globale namnegrupperinga brytast opp?"
 
 #: ../src/Editors/_EditName.py:341
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
-msgstr ""
+msgstr "Alle personar med namnet %(surname)s vil ikkje lenger vera gruppert med namnet %(group_name)s."
 
 #: ../src/Editors/_EditName.py:345
 msgid "Continue"
-msgstr ""
+msgstr "Hald fram"
 
 #: ../src/Editors/_EditName.py:346
 msgid "Return to Name Editor"
-msgstr ""
+msgstr "Gå attende til namnehandsamar"
 
 #: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
-msgstr ""
+msgstr "Skal alle personar med same namn grupperast?"
 
 #: ../src/Editors/_EditName.py:372
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
-msgstr ""
+msgstr "Du har valet mellom å gruppera alle personar med namnet %(surname)s med namnet %(group_name)s, eller berre kopla dette namnet."
 
 #: ../src/Editors/_EditName.py:377
 msgid "Group all"
-msgstr ""
+msgstr "Grupper alle"
 
 #: ../src/Editors/_EditName.py:378
 msgid "Group this name only"
-msgstr ""
+msgstr "Grupper berre dette namnet"
 
 #: ../src/Editors/_EditNote.py:159
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr ""
+msgstr "Notat: %(id)s - %(context)s"
 
 #: ../src/Editors/_EditNote.py:164
 #, python-format
 msgid "Note: %s"
-msgstr ""
+msgstr "Notat: %s"
 
 #: ../src/Editors/_EditNote.py:167
 #, python-format
 msgid "New Note - %(context)s"
-msgstr ""
+msgstr "Nytt notat - %(context)s"
 
 #: ../src/Editors/_EditNote.py:171
 msgid "New Note"
-msgstr ""
+msgstr "Nytt notat"
 
 #: ../src/Editors/_EditNote.py:203
 msgid "_Note"
-msgstr ""
+msgstr "_Notat"
 
 #: ../src/Editors/_EditNote.py:535
 msgid "Cannot save note"
-msgstr ""
+msgstr "Notatet kan ikkje lagrast"
 
 #: ../src/Editors/_EditNote.py:536
 msgid "No data exists for this note. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Det fins ingen data for dette notatet.  Skriv inn data eller avslutt redigeringa."
 
 #: ../src/Editors/_EditNote.py:543
 msgid "Cannot save note. ID already exists."
-msgstr ""
+msgstr "Notatet kan ikkje lagrast. ID finst frå før."
 
 #: ../src/Editors/_EditNote.py:557
 msgid "Add Note"
-msgstr ""
+msgstr "Legg til notat"
 
 #: ../src/Editors/_EditNote.py:634
 #, python-format
 msgid "Delete Note (%s)"
-msgstr ""
+msgstr "Slett notatet (%s)"
 
 #: ../src/Editors/_EditPerson.py:119
 msgid "New Person"
-msgstr ""
+msgstr "Ny person"
 
 #: ../src/Editors/_EditPerson.py:266
 #: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Patronymic:"
-msgstr ""
+msgstr "Avstammingsnamn"
 
 #: ../src/Editors/_EditPerson.py:417
 msgid "Edit Person"
-msgstr ""
+msgstr "Rediger person"
 
 #: ../src/Editors/_EditPerson.py:478
 msgid "Edit Object Properties"
-msgstr ""
+msgstr "Rediger objekt-eigenskapar"
 
 #: ../src/Editors/_EditPerson.py:516
 msgid "Make Active Person"
-msgstr ""
+msgstr "Gjer personen aktiv"
 
 #: ../src/Editors/_EditPerson.py:520
 msgid "Make Home Person"
-msgstr ""
+msgstr "Gjer til startperson"
 
 #: ../src/Editors/_EditPerson.py:667
 msgid "Problem changing the gender"
-msgstr ""
+msgstr "Problem med å endra kjønn"
 
 #: ../src/Editors/_EditPerson.py:668
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
+"Endring av kjønn skapte problem med informasjonen om ekteskapet.\n"
+"Kontroller ekteskapsinformasjonen for denne personen."
 
 #: ../src/Editors/_EditPerson.py:679
 msgid "Cannot save person"
-msgstr ""
+msgstr "Kan ikkje lagra personen"
 
 #: ../src/Editors/_EditPerson.py:680
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr ""
+msgstr "Ingen data finst for denne personen.  Skriv inn data eller avslutt redigeringa."
 
 #: ../src/Editors/_EditPerson.py:689
 msgid "Cannot save person. ID already exists."
-msgstr ""
+msgstr "Personen kan ikkje lagrast. ID finst frå før."
 
 #: ../src/Editors/_EditPerson.py:710
 #, python-format
 msgid "Add Person (%s)"
-msgstr ""
+msgstr "Legg til person (%s)"
 
 #: ../src/Editors/_EditPerson.py:715
 #, python-format
 msgid "Edit Person (%s)"
-msgstr ""
+msgstr "Rediger person (%s)"
 
 #: ../src/Editors/_EditPerson.py:871
 msgid "Unknown gender specified"
-msgstr ""
+msgstr "Det oppgjevne kjønnet er ukjent"
 
 #: ../src/Editors/_EditPerson.py:873
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
-msgstr ""
+msgstr "Kjønnet til personen er ukjent.  Dette skuldast vanlegvis ein feil.  Spesifiser kjønn."
 
 #: ../src/Editors/_EditPerson.py:876
 msgid "_Male"
-msgstr ""
+msgstr "_Hankjønn"
 
 #: ../src/Editors/_EditPerson.py:877
 msgid "_Female"
-msgstr ""
+msgstr "Ho_kjønn"
 
 #: ../src/Editors/_EditPerson.py:878
 msgid "_Unknown"
-msgstr ""
+msgstr "_Ukjent"
 
 #: ../src/Editors/_EditPersonRef.py:82 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference Editor"
-msgstr ""
+msgstr "Handsamar for personreferanse"
 
 #: ../src/Editors/_EditPersonRef.py:158
 msgid "No person selected"
-msgstr ""
+msgstr "Ingen person er vald"
 
 #: ../src/Editors/_EditPersonRef.py:159
 msgid "You must either select a person or Cancel the edit"
-msgstr ""
+msgstr "Du må enten velja ein person eller avslutta redigeringa"
 
 #: ../src/Editors/_EditPlace.py:128
 msgid "_Location"
-msgstr ""
+msgstr "_Plassering"
 
 #: ../src/Editors/_EditPlace.py:133
 #, python-format
 msgid "Place: %s"
-msgstr ""
+msgstr "Stad: %s"
 
 #: ../src/Editors/_EditPlace.py:135
 msgid "New Place"
@@ -4926,7 +4939,7 @@ msgstr ""
 
 #: ../src/Editors/_EditPlace.py:210
 msgid "Edit Place"
-msgstr ""
+msgstr "Rediger stad"
 
 #: ../src/Editors/_EditPlace.py:264
 msgid "Cannot save place"
@@ -4986,11 +4999,11 @@ msgstr ""
 
 #: ../src/Editors/_EditRepoRef.py:198
 msgid "Add Repository"
-msgstr ""
+msgstr "Legg til bibliotek"
 
 #: ../src/Editors/_EditRepository.py:85
 msgid "Edit Repository"
-msgstr ""
+msgstr "Rediger bibliotek"
 
 #: ../src/Editors/_EditRepository.py:144
 msgid "Cannot save repository"
@@ -5042,7 +5055,7 @@ msgstr ""
 #: ../src/Editors/_EditSource.py:184
 #, python-format
 msgid "Add Source (%s)"
-msgstr ""
+msgstr "Legg til kjelde (%s)"
 
 #: ../src/Editors/_EditSource.py:189
 #, python-format
@@ -5294,7 +5307,7 @@ msgstr ""
 #: ../src/GrampsDbUtils/_ReadXML.py:261
 #, python-format
 msgid "  Sources: %d\n"
-msgstr ""
+msgstr " Kjelder: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:262
 #, python-format
@@ -5468,7 +5481,7 @@ msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:249
 msgid "System Information"
-msgstr ""
+msgstr "System-informasjon"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:254
 msgid "This is the information about your system that will help the developers to fix the bug."
@@ -5591,17 +5604,17 @@ msgstr ""
 #: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:102
 #: ../src/plugins/all_events.py:113
 msgid "Event Type"
-msgstr ""
+msgstr "Type hending"
 
 #: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:103
 #: ../src/plugins/all_events.py:114
 msgid "Event Date"
-msgstr ""
+msgstr "Dato for hending"
 
 #: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:103
 #: ../src/plugins/all_events.py:114
 msgid "Event Place"
-msgstr ""
+msgstr "Stad for hending"
 
 #. display the results
 #: ../src/plugins/all_events.py:97
@@ -5621,7 +5634,7 @@ msgstr ""
 
 #: ../src/plugins/all_events.py:144 ../src/plugins/all_events.py:155
 msgid "All Events"
-msgstr ""
+msgstr "Alle hendingar"
 
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
@@ -5749,7 +5762,7 @@ msgstr ""
 
 #: ../src/plugins/siblings.py:44
 msgid "Sibling"
-msgstr ""
+msgstr "Sysken"
 
 #: ../src/plugins/siblings.py:57
 msgid "self"
@@ -5757,7 +5770,7 @@ msgstr ""
 
 #: ../src/plugins/siblings.py:76
 msgid "Display a person's siblings."
-msgstr ""
+msgstr "Vis syskena til ein person."
 
 #: ../src/plugins/AgeOnDate.py:47
 #, python-format
@@ -5772,7 +5785,7 @@ msgstr ""
 #: ../src/plugins/AgeOnDate.py:53 ../src/plugins/StatisticsChart.py:124
 #: ../src/gen/lib/attrtype.py:73
 msgid "Age"
-msgstr ""
+msgstr "Alder"
 
 #: ../src/plugins/AgeOnDate.py:71 ../src/plugins/AgeOnDate.py:74
 #, python-format
@@ -5874,7 +5887,7 @@ msgstr ""
 
 #: ../src/plugins/AncestorTree.py:534
 msgid "Ancestor Tree"
-msgstr ""
+msgstr "Ane-tre"
 
 #: ../src/plugins/AncestorTree.py:538
 msgid "Produces a graphical ancestral tree"
@@ -5891,7 +5904,7 @@ msgstr ""
 #: ../src/plugins/EndOfLineReport.py:161
 #, python-format
 msgid "Generation %d"
-msgstr ""
+msgstr "Generasjon %d"
 
 #. #########################
 #. ###############################
@@ -5921,7 +5934,7 @@ msgstr ""
 #: ../src/plugins/DetAncestralReport.py:706
 #: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
-msgstr ""
+msgstr "Tal på generasjonar som skal vera med i rapporten"
 
 #: ../src/plugins/AncestorReport.py:258
 #: ../src/plugins/DetAncestralReport.py:709
@@ -5995,11 +6008,11 @@ msgstr ""
 #: ../src/plugins/BookReport.py:711 ../src/plugins/BookReport.py:1089
 #: ../src/plugins/BookReport.py:1140 ../src/plugins/BookReport.py:1282
 msgid "Book Report"
-msgstr ""
+msgstr "Bok-rapport"
 
 #: ../src/plugins/BookReport.py:744
 msgid "New Book"
-msgstr ""
+msgstr "Ny bok"
 
 #: ../src/plugins/BookReport.py:747
 msgid "_Available items"
@@ -11404,7 +11417,7 @@ msgstr ""
 
 #: ../src/ReportBase/_Constants.py:54
 msgid "Graphical Reports"
-msgstr ""
+msgstr "Grafiske rapportar"
 
 #: ../src/ReportBase/_Constants.py:55
 msgid "Code Generators"
@@ -11412,7 +11425,7 @@ msgstr ""
 
 #: ../src/ReportBase/_Constants.py:56
 msgid "Web Pages"
-msgstr ""
+msgstr "Nettsider"
 
 #: ../src/ReportBase/_Constants.py:58
 msgid "Books"
@@ -11438,7 +11451,7 @@ msgstr ""
 #: ../src/ReportBase/_DocReportDialog.py:161
 #: ../src/ReportBase/_GraphvizReportDialog.py:1051
 msgid "Output Format"
-msgstr ""
+msgstr "Utskriftsformat"
 
 #: ../src/ReportBase/_DocReportDialog.py:212
 msgid "Template"
@@ -11499,7 +11512,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Bottom, left"
-msgstr ""
+msgstr "Nederst til venstre"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Bottom, right"
@@ -11583,7 +11596,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "GIF image"
-msgstr ""
+msgstr "GIF-bilete"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "PNG image"
@@ -11713,11 +11726,11 @@ msgstr ""
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
-msgstr ""
+msgstr "Portrett"
 
 #: ../src/ReportBase/_PaperMenu.py:119
 msgid "Landscape"
-msgstr ""
+msgstr "Landskap"
 
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "in."
@@ -18765,11 +18778,11 @@ msgstr "Søk etter stader"
 
 #: ../src/plugins/unused.glade.h:6
 msgid "Search for repositories"
-msgstr ""
+msgstr "Søk etter oppbevaringsstader"
 
 #: ../src/plugins/unused.glade.h:7
 msgid "Search for sources"
-msgstr ""
+msgstr "Søk etter kjelder"
 
 #: ../src/plugins/unused.glade.h:8 ../src/plugins/verify.glade.h:23
 msgid "_Mark all"
@@ -18777,7 +18790,7 @@ msgstr "_Merk alt"
 
 #: ../src/plugins/unused.glade.h:9 ../src/plugins/verify.glade.h:25
 msgid "_Unmark all"
-msgstr ""
+msgstr "_Fjern all merking"
 
 #: ../src/plugins/verify.glade.h:2
 msgid "<b>Families</b>"
@@ -18965,15 +18978,15 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr ""
+msgstr "<b>Snakk med slektningar før det er for seint</b>: Dei eldste slektningane dine kan vera den beste kjelda til informasjon.  Dei veit vanlegvis noko om slekta som ikkje er skrive ned.  Dei vil kanskje kunna gi deg gode tips om personar som ein dag vil kunna leia deg inn på nye spor i slektsgranskinga.  Du vil i alle høve kunna få høyre nokre gode historiar.  Gløym ikkje å ta opp samtalane!"
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
-msgstr ""
+msgstr "<b>Familie-visninga</b>: Familie-visninga blir brukt for å visa ein vanleg familie (foreldre, ektefelle og barn) til ein person."
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr ""
+msgstr "<b>Usikker på ein dato?</b> Dersom du er usikker på kva dato ei hending skjedde (til dømes fødsel eller død), vil du i GRAMPS kunna skriva inn ei rekke ulike datoformat basert på gissing eller anslag.  Til dømes er &quot;omkring 1908&quot; ein gyldig fødselsdato i GRAMPS. I GRAMPS-manualen, seksjon 3.7.2.2, finn du ei komplett liste over alternative datoformat."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
@@ -18993,7 +19006,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:31
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr ""
+msgstr "Kven som helst kan veljast som 'startperson' i GRAMPS.  Bruk <b>Rediger&gt; Set startperson</b>.  Startpersonen er den personen som blir vald ved opning av databasen, eller når du klikkar på 'startperson'-knappen."
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -19025,7 +19038,7 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:39
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
-msgstr ""
+msgstr "GRAMPS kan eksportera data til ''Web Family Tree'' (WTF)-formatet.  Dette formatet gjer at eit slektstre kan visast på ei nettside ved å bruka ei enkelt fil istaden for mange html-filer."
 
 #: ../src/data/tips.xml.in.h:40
 msgid "GRAMPS comes with a rich set of tools. These allow you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
@@ -19109,11 +19122,11 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:60
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr ""
+msgstr "Bokrapporten, <b>Rapportar&gt; Bøker &gt; Bokrapport</b>, tillet brukaren å samla mange rapportar i eit enkelt dokument.  Denne eine rapporten er enklare å distribuera enn fleire rapportar, særleg ved utskrift."
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-msgstr ""
+msgstr "''Free/Libre and Open Source Software'' (FLOSS)-utviklingsmodellen tyder at GRAMPS kan utvidast av andre programmerarar sidan all kjeldekode er fritt tilgjengeleg under den opne lisensen."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The GRAMPS homepage is at http://gramps-project.org/"
@@ -19121,43 +19134,43 @@ msgstr "Heimesida for GRAMPS er http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:63
 msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr ""
+msgstr "Media-visninga viser ei liste over alle media som er brukt i databasen.  Desse kan vera bilete, video, lydklipp, rekneark, dokument m.m."
 
 #: ../src/data/tips.xml.in.h:64
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
-msgstr ""
+msgstr "Stamtavle-visninga viser ei vanleg stamtavle.  Hald musa over ein person for å sjå meir informasjon om personen, eller høgre-klikk på ein person for å få fram ein meny for gjev rask tilgang til ektefelle, søsken, barn eller foreldre."
 
 #: ../src/data/tips.xml.in.h:65
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr ""
+msgstr "Stad-visninga viser ei liste over alle stader som er brukte i databasen.  Lista kan sorterast på dei ymse felta, som til dømes stadnamn, kyrkjesokn eller fylke."
 
 #: ../src/data/tips.xml.in.h:66
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
-msgstr ""
+msgstr "Kjelde-visninga viser ei liste over alle kjeldene i eit eige vindauge.  Dobbelklikk på ei av dei for å redigera, leggja til notat eller sjå kva for personar som har referanse til kjelda."
 
 #: ../src/data/tips.xml.in.h:67
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking system at http://bugs.gramps-project.org"
-msgstr ""
+msgstr "Den beste måten å rapportera feil på i GRAMPS, er å bruka GRAMPS sitt feilsporingssystem på http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:68
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr ""
+msgstr "Er du lei av å måtta flytta handa frå tastaturet for å bruka musepeikaren?  Mange av funksjonane i GRAMPS har hurtigtastar.  Dersom ein funksjon har dette, vil dei bli vist til høgre i menyen."
 
 #: ../src/data/tips.xml.in.h:69
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr ""
+msgstr "For lettvint å fletta saman to personar, kan du velja begge (den andre kan veljast ved å halda nede Ctrl-tasten samstundes som du klikkar på personen) og klikka på <b>Rediger &gt; Rask Fletting</b>."
 
 #: ../src/data/tips.xml.in.h:70
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
-msgstr ""
+msgstr "For å køyra GRAMPS må du ha GNOME installert, men du treng ikkje køyra GNOME-skrivebordet."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
-msgstr ""
+msgstr "Er du usikker på kva ein knapp gjer?  Berre hald musa over ein knapp og eit verktøytips vil verta vist."
 
 #: ../src/data/tips.xml.in.h:72
 msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
-msgstr ""
+msgstr "Du kan konvertera dataene dine til ein GRAMPS-pakke som er ei komprimert fil som inneheld slektstre-dataene dine og alle andre filer som blir brukt av databasen, som til dømes bilete.  Denne fila er fullstendig portabel og kan såleis brukast som tryggleikskopi eller til deling av data med andre GRAMPS-brukarer.  Dette formatet har som føremon i høve til GEDCOM at ingen informasjon blir borte ved eksport eller import."
 
 #: ../src/data/tips.xml.in.h:73
 msgid "You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web."
