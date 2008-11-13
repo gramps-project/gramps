@@ -153,4 +153,4 @@ class DateDisplayLT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('lt_LT', 'lt', 'lithuanian'), DateParserLT, DateDisplayLT)
+register_datehandler(('lt_LT', 'lt', 'lithuanian', 'Lithuanian'), DateParserLT, DateDisplayLT)

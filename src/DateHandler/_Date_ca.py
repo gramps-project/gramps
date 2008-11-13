@@ -175,4 +175,4 @@ class DateDisplayCA(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('ca_ES', 'ca', 'català','ca_FR','ca_AD','ca_IT',), DateParserCA, DateDisplayCA)
+register_datehandler(('ca_ES', 'ca', 'català', 'Catalan', 'ca_FR', 'ca_AD', 'ca_IT'), DateParserCA, DateDisplayCA)

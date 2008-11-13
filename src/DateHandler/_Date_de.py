@@ -235,6 +235,6 @@ class DateDisplayDE(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('de_DE', 'german', 'de_AT', 'de_CH', 
+register_datehandler(('de_DE', 'german', 'German', 'de_AT', 'de_CH', 
                       'de_LI', 'de_LU', 'de_BE', 'de'), 
                      DateParserDE, DateDisplayDE)

@@ -242,5 +242,5 @@ class DateDisplayNL(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nl_NL', 'dutch', 'nl_BE', 'nl'), 
+register_datehandler(('nl_NL', 'dutch', 'Dutch', 'nl_BE', 'nl'), 
                      DateParserNL, DateDisplayNL)
