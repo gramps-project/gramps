@@ -480,8 +480,13 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # These env settings are only needed for Txn environment
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)  # clean up unused logs
-
+        
+        if db.version() < (4, 7):
+            # Python 2.5 log settings
+            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
+        else:
+            # Python 2.6 log settings (db version 4.7.25)
+            self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
@@ -1556,7 +1561,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         transaction = BdbTransaction(msg, self.undodb, batch, no_magic)
         if transaction.batch:
             self.env.txn_checkpoint()
-            self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
+            if db.version() < (4, 7):
+                self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
 
             if self.secondary_connected and not transaction.no_magic:
                 # Disconnect unneeded secondary indices
@@ -1594,7 +1600,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.txn.commit()
         if transaction.batch:
             self.env.txn_checkpoint()
-            self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
+            if db.version() < (4, 7):
+                self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed
@@ -1697,7 +1704,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # These env settings are only needed for Txn environment
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)  # clean up unused logs
+        if db.version() < (4, 7):
+            # Python 2.5 log settings
+            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
+        else:
+            # Python 2.6 log settings (db version 4.7.25)
+            self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
 
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
