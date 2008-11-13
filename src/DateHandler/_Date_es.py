@@ -159,4 +159,4 @@ class DateDisplayES(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('es_ES', 'es', 'spanish'), DateParserES, DateDisplayES)
+register_datehandler(('es_ES', 'es', 'Spanish', 'spanish'), DateParserES, DateDisplayES)

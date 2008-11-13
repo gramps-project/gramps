@@ -337,5 +337,5 @@ class DateDisplayHR(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('hr', 'HR', 'croatian', 'hrvatski', 'hr_HR'),
+register_datehandler(('hr', 'HR', 'croatian', 'Croatian', 'hrvatski', 'hr_HR'),
                                     DateParserHR, DateDisplayHR)

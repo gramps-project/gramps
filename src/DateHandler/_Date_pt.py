@@ -158,4 +158,4 @@ class DateDisplayPT(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('pt', 'pt_PT', 'pt_PT.UTF-8', 'pt_BR', 'pt_BR.UTF-8', 'pt', 'portuguese'), DateParserPT, DateDisplayPT)
+register_datehandler(('pt', 'pt_PT', 'pt_PT.UTF-8', 'pt_BR', 'pt_BR.UTF-8', 'pt', 'portuguese', 'Portuguese'), DateParserPT, DateDisplayPT)

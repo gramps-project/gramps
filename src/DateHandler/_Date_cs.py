@@ -147,4 +147,4 @@ class DateDisplayCZ(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('cs_CZ', 'cs', 'CZ'), DateParserCZ, DateDisplayCZ)
+register_datehandler(('cs_CZ', 'cs', 'CZ', 'Czech', 'czech'), DateParserCZ, DateDisplayCZ)

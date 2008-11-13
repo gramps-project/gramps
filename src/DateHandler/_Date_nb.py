@@ -162,4 +162,4 @@ class DateDisplayNb(DateDisplay):
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('nb_NO', 'nb', 'norsk'), DateParserNb, DateDisplayNb)
+register_datehandler(('nb_NO', 'nb', 'norsk', 'Norwegian', 'norwegian'), DateParserNb, DateDisplayNb)

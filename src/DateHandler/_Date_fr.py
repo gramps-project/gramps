@@ -322,5 +322,5 @@ class DateDisplayFR(DateDisplay):
 #
 #-------------------------------------------------------------------------
 register_datehandler(
-    ('fr_FR', 'fr', 'french', 'fr_CA', 'fr_BE', 'fr_CH'), 
+    ('fr_FR', 'fr', 'french', 'French', 'fr_CA', 'fr_BE', 'fr_CH'), 
     DateParserFR, DateDisplayFR)
