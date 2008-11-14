@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:05+0100\n"
+"POT-Creation-Date: 2008-11-14 13:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3894,8 +3894,8 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1460
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1465 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1466 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2698
@@ -5404,15 +5404,15 @@ msgid ""
 "upgrade to the latest version of GRAMPS and try again."
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:513
+#: ../src/GrampsDbUtils/_WriteGedcom.py:514
 msgid "Sorting"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:524
+#: ../src/GrampsDbUtils/_WriteGedcom.py:525
 msgid "Writing"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1463
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
 msgid "Export failed"
 msgstr ""
 
@@ -5421,17 +5421,17 @@ msgstr ""
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1473
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GE_DCOM"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1476
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
 msgid "GEDCOM export options"
 msgstr ""
 
@@ -17838,7 +17838,7 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositoriess having notes containing <regular expression>"
+msgid "Repositories having notes containing <regular expression>"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44

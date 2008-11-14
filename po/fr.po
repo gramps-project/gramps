@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:05+0100\n"
-"PO-Revision-Date: 2008-11-02 16:08+0100\n"
+"POT-Creation-Date: 2008-11-14 13:14+0100\n"
+"PO-Revision-Date: 2008-11-14 13:17+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -245,12 +245,12 @@ msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System)
 #: ../src/const.py:184
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"Michel Guitel     (Documentation)\n"
-"Laurent Protois   (Logiciel)\n"
-"Matthieu Pupat    (Logiciel)\n"
-"Guillaume Pratte  (Logiciel)\n"
-"Frédéric Chateaux (Logiciel)\n"
-"Jérôme Rapinat    (Logiciel et Documentation)"
+"Michel Guitel\n"
+"Laurent Protois\n"
+"Matthieu Pupat\n"
+"Guillaume Pratte\n"
+"Frédéric Chateaux\n"
+"Jérôme Rapinat"
 
 #: ../src/const.py:194
 #: ../src/const.py:195
@@ -4562,8 +4562,8 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75
 #: ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1460
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1465
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1466
 #: ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336
 #: ../src/plugins/ExportVCalendar.py:207
@@ -6156,15 +6156,15 @@ msgstr "Commentaire du témoin : %s"
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %s de GRAMPS. alors que vous utilisez une ancienne version %s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de GRAMPS et essayez de nouveau."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:513
+#: ../src/GrampsDbUtils/_WriteGedcom.py:514
 msgid "Sorting"
 msgstr "Trier"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:524
+#: ../src/GrampsDbUtils/_WriteGedcom.py:525
 msgid "Writing"
 msgstr "Écriture"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1463
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
 msgid "Export failed"
 msgstr "L'exportation a échoué"
 
@@ -6173,15 +6173,15 @@ msgstr "L'exportation a échoué"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1473
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "Le format GEDCOM est utilisé pour transférer des données entre différents logiciels de généalogie. La plupart des logiciels de généalogie acceptent ce format."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1476
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
 msgid "GEDCOM export options"
 msgstr "Options d'exportation GEDCOM"
 
@@ -18804,7 +18804,7 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Correspond aux dépôts dont les notes contiennent une sous-chaîne"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositoriess having notes containing <regular expression>"
+msgid "Repositories having notes containing <regular expression>"
 msgstr "Dépôts dont les notes contiennent une <expression rationnelle>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
