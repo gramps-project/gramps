@@ -60,7 +60,7 @@ class RegExpName(Rule):
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             for field in [name.first_name, name.surname, name.suffix, name.title,
-                          name.prefix, name.patronymic, name.call_name]:
+                          name.prefix, name.patronymic, name.call]:
                 if self.match.match(field):
                     return True
         else:
