@@ -108,9 +108,9 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.t.write('transform="rotate(%d %4.2f %4.2f)" ' % (angle,centerx,centery))
         self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
         if font.get_bold():
-            self.t.write('font-weight:"bold";')
+            self.t.write('font-weight:bold;')
         if font.get_italic():
-            self.t.write('font-style:"italic";')
+            self.t.write('font-style:italic;')
         self.t.write('font-size:%d; ' % size)
         if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
@@ -202,9 +202,9 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
                 self.t.write('y="%4.2fcm" ' % ypos)
                 self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
                 if font.get_bold():
-                    self.t.write(' font-weight:"bold";')
+                    self.t.write(' font-weight:bold;')
                 if font.get_italic():
-                    self.t.write(' font-style:"italic";')
+                    self.t.write(' font-style:italic;')
                 self.t.write(' font-size:%d;' % font_size)
                 if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                     self.t.write(' font-family:sans-serif;')
