@@ -54,7 +54,7 @@ class SearchName(Rule):
 
         for name in [person.get_primary_name()] + person.get_alternate_names():
             for field in [name.first_name, name.surname, name.suffix, name.title,
-                          name.prefix, name.patronymic, name.call_name]:
+                          name.prefix, name.patronymic, name.call]:
                 if src and field.upper().find(src) != -1:
                     return True
         else:
