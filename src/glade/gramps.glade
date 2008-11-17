@@ -3076,7 +3076,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label6">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">pt</property>
+			  <property name="label" translatable="yes">point size|pt</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -4627,7 +4627,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label428">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Y</property>
+		      <property name="label" translatable="yes">Y coordinate|Y</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -4859,7 +4859,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label427">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Y</property>
+		      <property name="label" translatable="yes">Y coordinate|Y</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
