@@ -2765,9 +2765,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkrelation target="style_name" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="padding">10</property>
@@ -7725,9 +7722,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkrelation target="county" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -7828,9 +7822,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkproperty name="AtkObject::accessible_name" translatable="yes">Country:</atkproperty>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -8117,9 +8108,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkrelation target="url_addr" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -8149,9 +8137,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkrelation target="url_des" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -8921,9 +8906,6 @@
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="sort_as" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -8953,9 +8935,6 @@
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="display_as" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -10445,9 +10424,6 @@
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
 		  <property name="angle">0</property>
-		  <accessibility>
-		    <atkrelation target="eer_role_combo" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
@@ -10619,9 +10595,6 @@
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="eer_type_combo" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -10680,9 +10653,6 @@
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="eer_description" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -10837,9 +10807,6 @@
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
 		      <property name="angle">0</property>
-		      <accessibility>
-			<atkrelation target="gid" type="label-for"/>
-		      </accessibility>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
