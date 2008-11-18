@@ -623,8 +623,9 @@ class DetAncestorReport(Report):
                     self.doc.write_text(text)
                     print_name = 0
 
-                text = ReportUtils.baptised_str(self.database, ind, print_name,
-                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
+                text = ReportUtils.baptised_str(self.database, ind, print_name, 
+                            self.verbose, self.endnotes, self.EMPTY_DATE, 
+                            self.EMPTY_PLACE)
 
                 if text:
                     self.doc.write_text(text)
@@ -639,7 +640,9 @@ class DetAncestorReport(Report):
                     print_name = 0
                 
                 text = ReportUtils.buried_str(self.database, ind, print_name,
-                        self.EMPTY_DATE, self.EMPTY_PLACE)
+                        self.verbose, self.endnotes, self.EMPTY_DATE, 
+                        self.EMPTY_PLACE)
+                
                 if text:
                     self.doc.write_text(text)
                     print_name = 0
