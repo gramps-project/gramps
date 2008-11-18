@@ -1,4 +1,4 @@
-# translation of nl_branch.po to nederlands
+# translation of nl.po to nederlands
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -34,10 +34,10 @@
 # lineage	lijn
 msgid ""
 msgstr ""
-"Project-Id-Version: nl_branch\n"
+"Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 16:05+0100\n"
-"PO-Revision-Date: 2008-11-09 10:28+0100\n"
+"POT-Creation-Date: 2008-11-14 13:14+0100\n"
+"PO-Revision-Date: 2008-11-18 15:56+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1951,16 +1951,16 @@ msgstr "echtgenoot"
 
 #: ../src/Relationship.py:1680
 msgid "unmarried|ex-husband"
-msgstr "partner of echtgenoot"
+msgstr "expartner of exechtgenoot"
 
 # maitresse?
 #: ../src/Relationship.py:1682
 msgid "unmarried|ex-wife"
-msgstr "partner of echtgenote"
+msgstr "expartner of exechtgenote"
 
 #: ../src/Relationship.py:1684
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "geslacht niet bepaald, niet-gehuwd of exechtgenoot"
+msgstr "exechtgenoot"
 
 #: ../src/Relationship.py:1687
 msgid "male,civil union|partner"
@@ -4167,8 +4167,8 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1460
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1465 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1466 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2698
@@ -5795,15 +5795,15 @@ msgstr ""
 "geimporteerd. U kunt best naar de meest recente GRAMPS-versie opwaarderen en "
 "dan opnieuw proberen."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:513
+#: ../src/GrampsDbUtils/_WriteGedcom.py:514
 msgid "Sorting"
 msgstr "Sorteren"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:524
+#: ../src/GrampsDbUtils/_WriteGedcom.py:525
 msgid "Writing"
 msgstr "Schrijven"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1463
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
 msgid "Export failed"
 msgstr "Export is mislukt"
 
@@ -5812,11 +5812,11 @@ msgstr "Export is mislukt"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1473
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
@@ -5825,7 +5825,7 @@ msgstr ""
 "wisselen. Vrijwel alle genealogische softwareprogramma's accepteren GEDCOM-"
 "bestanden."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1476
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
 msgid "GEDCOM export options"
 msgstr "GEDCOM-export opties"
 
@@ -10906,7 +10906,7 @@ msgstr "Mediamap %s is niet beschrijfbaar"
 msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "Mediamap %s bestaat reeds. Verwijder de map eerst en herstart het "
-"importproces "
+"importproces"
 
 #: ../src/plugins/ReadPkg.py:97
 #, python-format
@@ -19115,7 +19115,7 @@ msgstr ""
 "deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositoriess having notes containing <regular expression>"
+msgid "Repositories having notes containing <regular expression>"
 msgstr "Vindt bibliotheken waarvan de notities een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
@@ -19528,9 +19528,10 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"Dit GEDCOM bestand gebruikt ANSEL codering. Dit kan een fout.zijn. Indien de geïmporteerde gegevens niet -gebruikelijke karakters "
-"bevatten, doe dan het importeren teniet en overschrijf de karakterset met "
-"één van de onderstaande karaktersets."
+"Dit GEDCOM bestand gebruikt ANSEL codering. Dit kan een fout.zijn. Indien de "
+"geïmporteerde gegevens niet -gebruikelijke karakters bevatten, doe dan het "
+"importeren teniet en overschrijf de karakterset met één van de onderstaande "
+"karaktersets."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
 msgid "Version:"
@@ -21023,7 +21024,7 @@ msgid ""
 "child and its father and mother. Relationships can be any of Adopted, Birth, "
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
-"<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden "
+"<b>Kindrelatie bewerken </b>: Niet alle kinderen zijn door geboorte verbonden "
 "met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het "
 "kind de actieve persoon te maken. Klik vervolgens in het relatiescherm op de "
 "derde icoon die zich rechts naast de &quot;ouders:&quot;. bevindt. "
