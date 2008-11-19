@@ -71,9 +71,11 @@ def locale_sort(mylist):
     """
     Normal sort routine
     """
-    l = [ (locale.strxfrm(x),x) for x in mylist ]
-    l.sort()
-    return [ x[1] for x in l ]
+    #l = [ (locale.strxfrm(x),x) for x in mylist ]
+    #l.sort()
+    #return [ x[1] for x in l ]
+    c
+    return mylist
 
 class NodeTreeMap:
 
@@ -99,7 +101,9 @@ class NodeTreeMap:
         self.temp_sname_sub = {}
 
     def build_toplevel(self):
-        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
+        mylist = self.temp_sname_sub.keys()
+        mylist.sort(locale.strcoll)
+        self.temp_top_path2iter = mylist
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
 
