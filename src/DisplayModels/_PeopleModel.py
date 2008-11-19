@@ -68,14 +68,6 @@ from Lru import LRU
 _CACHE_SIZE = 250
 invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
 
-def locale_sort(mylist):
-    """
-    Normal sort routine
-    """
-    l = [ (locale.strxfrm(x),x) for x in mylist ]
-    l.sort()
-    return [ x[1] for x in l ]
-
 class NodeTreeMap:
 
     def __init__(self):
@@ -100,7 +92,9 @@ class NodeTreeMap:
         self.temp_sname_sub = {}
 
     def build_toplevel(self):
-        self.temp_top_path2iter = locale_sort(self.temp_sname_sub.keys())
+        mylist = self.temp_sname_sub.keys()
+        mylist.sort(locale.strcoll)
+        self.temp_top_path2iter = mylist
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
 
