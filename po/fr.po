@@ -6278,7 +6278,7 @@ msgstr "C'est l'opportunité pour décrire ce qu'il se passe quand l'erreur est 
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:333
 msgid "Please check that the information is correct, do not worry if you don't understand the detail of the error information. Just make sure that it does not contain anything that you do not want to be sent to the developers."
-msgstr "Veuillez vérifier que l'information est correcte, ne vous inquiétez pas si vous comprenez pas le détail de l'erreur. Seulement soyez sûr qu'elle ne contient rien que vous ne voudriez pas envoyer aux développeurs."
+msgstr "Veuillez vérifier que l'information est correcte, ne vous inquiétez pas si vous comprenez pas le détail de l'erreur. Seulement soyez sûr(e) qu'elle ne contient rien que vous ne voudriez pas envoyer aux développeurs."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:367
 msgid "Bug Report Summary"
@@ -20634,7 +20634,7 @@ msgstr "<b>GRAMPS mailing listes</b> : vous voulez des réponses à vos questio
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr "<b>Le manuel de GRAMPS</b> : le manuel de GRAMPS est très élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le."
+msgstr "<b>Le manuel de GRAMPS</b> : le manuel de GRAMPS est élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le ou complétez-le."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
@@ -20647,11 +20647,11 @@ msgstr "<b>Trucs et astuces de généalogie</b> : les informations collectées 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Feature Request at http://bugs.gramps-project.org Filing a Feature Request is preferred."
-msgstr "<b>Amélioration de GRAMPS</b> : vous êtes encouragé à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
+msgstr "<b>Amélioration de GRAMPS</b> : vous êtes encouragé(e) à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
 
 #: ../src/data/tips.xml.in.h:15
 msgid "<b>Incorrect Dates</b>: Everyone occasionally enters dates with a nonvalid format. Incorrect date formats will show up with the red button next to the date. Green means okay, and amber signifies acceptable. The Date Selection dialog can be invoked by clicking on the colored button."
-msgstr "<b>Dates incorrectes</b> : tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'afficher à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton &quot;Calendrier&quot;."
+msgstr "<b>Dates incorrectes</b> : tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton &quot;Calendrier&quot;."
 
 #: ../src/data/tips.xml.in.h:16
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
@@ -20670,7 +20670,7 @@ msgstr "<b>Localisation des individus</b> : par défaut, chaque nom de famille 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Vos préférences</b> : mécontent des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
+msgstr "<b>Vos préférences</b> : mécontent(e) des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:20
@@ -20700,7 +20700,7 @@ msgstr "<b>La vue familiale</b> : la vue familiale est utilisée pour afficher 
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Pas sûr d'une date ?</b> : si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
+msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr(e) d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
@@ -20796,7 +20796,7 @@ msgstr "GRAMPS maintient ses efforts pour garder la compatibilité avec GEDCOM, 
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue sont s'affichent correctement."
+msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
 
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
@@ -20818,7 +20818,7 @@ msgstr "Dans la plupart des cas, en double-cliquant sur un nom, une source, un l
 
 #: ../src/data/tips.xml.in.h:55
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
-msgstr "Vous voulez être alerté par la sortie des dernières versions de GRAMPS ? Rejoignez-nous sur la liste gramps-annonce sur http://lists.sourceforge.net/lists/listinfo/gramps-announce"
+msgstr "Vous voulez être alerté(e) par la sortie des dernières versions de GRAMPS ? Rejoignez-nous sur la liste gramps-annonce sur http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
 #: ../src/data/tips.xml.in.h:56
 msgid "Make your data portable --- your family tree data and media can be exported directly to the GNOME file manager (Nautilus), for burning onto a CD."
@@ -20870,7 +20870,7 @@ msgstr "Le meilleur moyen de rapporter un bogue dans GRAMPS est d'utiliser le sy
 
 #: ../src/data/tips.xml.in.h:68
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr "Fatigué de lâcher le clavier pour la souris ? De nombreuses fonctions de GRAMPS possèdent un raccourci clavier. Ils sont renseigné sur la droite des menus."
+msgstr "Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses fonctions de GRAMPS possèdent un raccourci clavier. Ils sont renseignés sur la droite des menus."
 
 #: ../src/data/tips.xml.in.h:69
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
@@ -20882,7 +20882,7 @@ msgstr "Pour utiliser GRAMPS, vous avez besoin d'installer GNOME. Mais vous n'av
 
 #: ../src/data/tips.xml.in.h:71
 msgid "Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
-msgstr "Incertain de l'action d'un bouton ? Passer simplement la souris au-dessus et une info-bulle s'affichera."
+msgstr "Incertain(e) de l'action d'un bouton ? Passez simplement la souris au-dessus et une info-bulle s'affichera."
 
 #: ../src/data/tips.xml.in.h:72
 msgid "You can convert your data into a GRAMPS package, which is a compressed file containing your family tree data and includes all other files used by the database, such as images. This file is completely portable so is useful for backups or sharing with other GRAMPS users. This format has advantages over GEDCOM in that no information is ever lost in exporting and importing."
