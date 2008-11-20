@@ -11182,7 +11182,7 @@ msgstr "Geen relatie met \"%s\""
 #: ../src/plugins/NotRelated.py:157
 #, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Iedereen in het gegevensbestand heeft een realtie met %s"
+msgstr "Iedereen in het gegevensbestand heeft een relatie met %s"
 
 #: ../src/plugins/NotRelated.py:229
 #, python-format
@@ -15569,7 +15569,7 @@ msgstr "Zij had een relatie (geen huwelijk) met %(spouse)s in %(partial_date)s  
 #: ../src/ReportBase/_ReportUtils.py:955
 #, python-format
 msgid "She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Zij had een realtie (geen huwelijk) met %(spouse)s op %(full_date)s te %(place)s%(endnotes)s."
+msgstr "Zij had een relatie (geen huwelijk) met %(spouse)s op %(full_date)s te %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:956
 #, python-format
@@ -16039,17 +16039,17 @@ msgstr "Deze persoon had tevens een relatie met %(spouse)s %(modified_date)s%(en
 #: ../src/ReportBase/_ReportUtils.py:1145
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Hij had tevens een realtie met %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hij had tevens een relatie met %(spouse)s in %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1146
 #, python-format
 msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hij had tevens een realtie met %(spouse)s op %(full_date)s%(endnotes)s."
+msgstr "Hij had tevens een relatie met %(spouse)s op %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1147
 #, python-format
 msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Hij had tevens een realtie met %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hij had tevens een relatie met %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1150
 #, python-format
@@ -20952,7 +20952,7 @@ msgstr "<b>Dubbele ingave</b>: <b>Hulpmiddelen &gt; Gegevensbestand verwerken &g
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het kind als actieve persoon te selecteren. Vervolgens klikt u in het realtiescherm op het derde icoon rechts van de &quot;Ouders&quot;. Nu wordt een scherm getoond waarin u de familie kunt aanpassen. Selecteer het kind, klik rechts en kies &quot;kind ouder relatie aanpassen&quot;. Hier kunt u nu de realtie tussen het kind en zijn/haar vader en moeder bepalen. Mogelijke relaties zijn: geboorte, adoptie, stiefkind, geen, gesponsord, pleegkind, of onbekend."
+msgstr "<b>Kindrelatie bewerken</b>: Niet alle kinderen zijn door geboorte verbonden met hun ouders. U kunt de relatie tot elke ouder apart bepalen, door het kind als actieve persoon te selecteren. Vervolgens klikt u in het relatiescherm op het derde icoon rechts van de &quot;Ouders&quot;. Nu wordt een scherm getoond waarin u de familie kunt aanpassen. Selecteer het kind, klik rechts en kies &quot;kind ouder relatie aanpassen&quot;. Hier kunt u nu de relatie tussen het kind en zijn/haar vader en moeder bepalen. Mogelijke relaties zijn: geboorte, adoptie, stiefkind, geen, gesponsord, pleegkind, of onbekend."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
