@@ -67,15 +67,6 @@ from Lru import LRU
 
 _CACHE_SIZE = 250
 
-def locale_sort(mylist):
-    """
-    Normal sort routine
-    """
-    #l = [ (locale.strxfrm(x),x) for x in mylist ]
-    #l.sort()
-    #return [ x[1] for x in l ]
-    c
-    return mylist
 
 class NodeTreeMap:
 
