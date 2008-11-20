@@ -211,13 +211,13 @@ class BaseModel(gtk.GenericTreeModel):
 
         self.total = 0
         while data:
-            key = locale.strxfrm(self.sort_func(data[1]))
-            self.sort_data.append((key,data[0]))
+            self.sort_data.append((self.sort_func(data[1]),data[0]))
             self.total += 1
             data = cursor.next()
         cursor.close()
 
-        self.sort_data.sort(reverse=self.reverse)
+        self.sort_data.sort(lambda x, y: locale.strcoll(x[0], y[0]),
+                            reverse=self.reverse)
 
         return [ x[1] for x in self.sort_data ]
 
