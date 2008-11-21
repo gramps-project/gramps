@@ -191,9 +191,9 @@ class NodeTreeMap:
         return None
 
     def build_sub_entry(self, name):
-        slist = [ (locale.strxfrm(self.sortnames[x]), x) \
+        slist = [ (self.sortnames[x], x) \
                   for x in self.temp_sname_sub[name] ]
-        slist.sort()
+        slist.sort(lambda x, y: locale.strcoll(x[0], y[0]))
 
         val = 0
         for (junk, person_handle) in slist:

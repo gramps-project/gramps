@@ -265,9 +265,9 @@ class BaseModel(gtk.GenericTreeModel):
             (self.search and self.search.match(handle, self.db)):
 
             data = self.map(handle)
-            key = locale.strxfrm(self.sort_func(data))
-            self.sort_data.append((key, handle))
-            self.sort_data.sort(reverse=self.reverse)
+            self.sort_data.append((self.sort_func(data), handle))
+            self.sort_data.sort(lambda x, y: locale.strcoll(x[0], y[0]),
+                                reverse=self.reverse)
             self.node_map.set_path_map([ x[1] for x in self.sort_data ])
 
             index = self.node_map.get_path(handle)
