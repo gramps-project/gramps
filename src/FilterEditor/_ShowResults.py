@@ -92,7 +92,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         self.get_widget('close').connect('clicked', self.close)
 
         new_list = [self.sort_val_from_handle(h) for h in handle_list]
-        new_list.sort()
+        new_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
         handle_list = [ h[1] for h in new_list ]
 
         for handle in handle_list:
@@ -141,27 +141,21 @@ class ShowResults(ManagedWindow.ManagedWindow):
     def sort_val_from_handle(self, handle):
         if self.namespace == 'Person':
             name = self.db.get_person_from_handle(handle).get_primary_name()
-            sortname = locale.strxfrm(_nd.sort_string(name))
+            sortname = _nd.sort_string(name)
         elif self.namespace == 'Family':
-            name = Utils.family_name(
+            sortname = Utils.family_name(
                 self.db.get_family_from_handle(handle),self.db)
-            sortname = locale.strxfrm(name)
         elif self.namespace == 'Event':
-            name = self.db.get_event_from_handle(handle).get_description()
-            sortname = locale.strxfrm(name)
+            sortname = self.db.get_event_from_handle(handle).get_description()
         elif self.namespace == 'Source':
-            name = self.db.get_source_from_handle(handle).get_title()
-            sortname = locale.strxfrm(name)
+            sortname = self.db.get_source_from_handle(handle).get_title()
         elif self.namespace == 'Place':
-            name = self.db.get_place_from_handle(handle).get_title()
-            sortname = locale.strxfrm(name)
+            sortname = self.db.get_place_from_handle(handle).get_title()
         elif self.namespace == 'MediaObject':
-            name = self.db.get_object_from_handle(handle).get_description()
-            sortname = locale.strxfrm(name)
+            sortname = self.db.get_object_from_handle(handle).get_description()
         elif self.namespace == 'Repository':
-            name = self.db.get_repository_from_handle(handle).get_name()
-            sortname = locale.strxfrm(name)
+            sortname = self.db.get_repository_from_handle(handle).get_name()
         elif self.namespace == 'Note':
             gid = self.db.get_note_from_handle(handle).get_gramps_id()
-            sortname = locale.strxfrm(gid)
+            sortname = gid
         return (sortname, handle)
