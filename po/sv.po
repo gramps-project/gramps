@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-14 13:14+0100\n"
-"PO-Revision-Date: 2008-11-19 12:55+0100\n"
+"PO-Revision-Date: 2008-11-21 15:46+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18495,7 +18495,7 @@ msgstr "Matchar mediaobjekt vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr "Varje arkivplats"
+msgstr "Alla arkivplatser"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
