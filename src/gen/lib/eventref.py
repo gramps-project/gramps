@@ -94,7 +94,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return self.__role.string
+        return [self.__role.string]
 
     def get_text_data_child_list(self):
         """

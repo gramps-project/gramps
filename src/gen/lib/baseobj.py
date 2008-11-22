@@ -73,6 +73,9 @@ class BaseObject:
         # Run through its own items
         patern_upper = pattern.upper()
         for item in self.get_text_data_list():
+        # Some items are strings, which will fail in item.upper(), and some items are unicode.
+        # Convert all items to unicode and the item.upper().find(patern_upper) will work OK.
+            item = unicode(item)
             if not item:
                 continue
             if case_sensitive:
