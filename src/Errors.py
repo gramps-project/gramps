@@ -140,12 +140,13 @@ class ValidationError(Exception):
     pass
 
 class DbError(Exception):
-    """Error used to report that the request window is already displayed."""
+    """Error used to report BerkeleyDB errors"""
     def __init__(self, value):
         Exception.__init__(self)
-        if type(value) == tuple:
-            self.value = value[1]
-        else:
+        try:
+            (errnum, errmsg) = value
+            self.value = errmsg
+        except:
             self.value = value
 
     def __str__(self):
