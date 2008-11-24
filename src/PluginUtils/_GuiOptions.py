@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -168,11 +169,21 @@ class GuiStringOption(gtk.Entry):
         self.connect('changed', self.__text_changed)
         tooltip.set_tip(self, self.__option.get_help())
         
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+
     def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
         Handle the change of the value.
         """
         self.__option.set_value( self.get_text() )
+
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
 
 #-------------------------------------------------------------------------
 #
@@ -304,13 +315,23 @@ class GuiBooleanOption(gtk.CheckButton):
         self.set_active(self.__option.get_value())
         self.connect('toggled', self.__value_changed)
         tooltip.set_tip(self, self.__option.get_help())
-        
+
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
         Handle the change of the value.
         """
         self.__option.set_value( self.get_active() )
         
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
+
 #-------------------------------------------------------------------------
 #
 # GuiEnumeratedListOption class
