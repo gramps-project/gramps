@@ -18907,7 +18907,7 @@ msgstr "Notes qui contiennent une <expression rationnelle>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
-msgstr "Correspond aux notes qui contiennent une <expression rationnelle>"
+msgstr "Correspond aux notes qui contiennent une expression rationnelle"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
