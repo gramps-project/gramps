@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-06 21:45+0100\n"
+"POT-Creation-Date: 2008-11-24 19:38+0100\n"
 "PO-Revision-Date: 2008-11-06 21:47+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "GRAMPS-databaser"
 
 #: ../src/Assistant.py:337 ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:90 ../src/plugins/ownereditor.glade.h:7
+#: ../src/glade/gramps.glade.h:89 ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr "Navn:"
@@ -79,7 +79,7 @@ msgid "State/Province:"
 msgstr "Stat/provins:"
 
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:60 ../src/plugins/ownereditor.glade.h:5
+#: ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Land:"
 
@@ -134,7 +134,7 @@ msgstr "Organisere bokmerker"
 #: ../src/plugins/PatchNames.py:212 ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:192
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:544
-#: ../src/PluginUtils/_GuiOptions.py:787
+#: ../src/PluginUtils/_GuiOptions.py:808
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:81
@@ -162,7 +162,7 @@ msgstr "Navn"
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:249
 #: ../src/plugins/NotRelated.py:108 ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:186
-#: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:788
+#: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:809
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -795,8 +795,8 @@ msgstr "GRAMPS Hjemmeside"
 msgid "Father's surname"
 msgstr "Fars etternavn"
 
-#: ../src/GrampsCfg.py:67 ../src/Spell.py:168 ../src/Spell.py:247
-#: ../src/Spell.py:249 ../src/plugins/Check.py:1349
+#: ../src/GrampsCfg.py:67 ../src/Spell.py:167 ../src/Spell.py:246
+#: ../src/Spell.py:248 ../src/plugins/Check.py:1349
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -833,7 +833,7 @@ msgstr "Innstillinger"
 #: ../src/GrampsCfg.py:149 ../src/Editors/_EditEventRef.py:90
 #: ../src/Editors/_EditMediaRef.py:89 ../src/Editors/_EditRepoRef.py:82
 #: ../src/Editors/_EditSourceRef.py:83 ../src/Editors/_EditSourceRef.py:89
-#: ../src/gen/lib/notetype.py:78 ../src/glade/gramps.glade.h:78
+#: ../src/gen/lib/notetype.py:78 ../src/glade/gramps.glade.h:77
 msgid "General"
 msgstr "Generelt"
 
@@ -1052,8 +1052,8 @@ msgstr "Tilpassede formateringsdetaljer"
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
-#: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:80
-#: ../src/PluginUtils/_GuiOptions.py:933
+#: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/PluginUtils/_GuiOptions.py:954
 msgid "Surname"
 msgstr "Etternavn"
 
@@ -1506,7 +1506,7 @@ msgstr "Fjern sted"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "For å velge et mediaobjekt, bruk dra-og-slipp eller bruk knappene"
 
-#: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:749
+#: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:770
 msgid "No image given, click button to select one"
 msgstr "Ingen bilder er angitt, klikk på knappen for å velge et"
 
@@ -1514,7 +1514,7 @@ msgstr "Ingen bilder er angitt, klikk på knappen for å velge et"
 msgid "Edit media object"
 msgstr "Rediger mediaobjekt"
 
-#: ../src/GrampsWidgets.py:980 ../src/PluginUtils/_GuiOptions.py:724
+#: ../src/GrampsWidgets.py:980 ../src/PluginUtils/_GuiOptions.py:745
 msgid "Select an existing media object"
 msgstr "Velg et eksisterende mediaobjekt"
 
@@ -1530,7 +1530,7 @@ msgstr "Fjern mediaobjekt"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "For å velge et notat, bruk dra-og-slipp eller bruk knappene"
 
-#: ../src/GrampsWidgets.py:1032 ../src/PluginUtils/_GuiOptions.py:672
+#: ../src/GrampsWidgets.py:1032 ../src/PluginUtils/_GuiOptions.py:693
 msgid "No note given, click button to select one"
 msgstr "Ingen notater er angitt, klikk på knappen for å velge et"
 
@@ -1539,7 +1539,7 @@ msgstr "Ingen notater er angitt, klikk på knappen for å velge et"
 msgid "Edit Note"
 msgstr "Rediger notat"
 
-#: ../src/GrampsWidgets.py:1034 ../src/PluginUtils/_GuiOptions.py:642
+#: ../src/GrampsWidgets.py:1034 ../src/PluginUtils/_GuiOptions.py:663
 msgid "Select an existing note"
 msgstr "Velg et eksisterende notat"
 
@@ -2281,194 +2281,190 @@ msgid "Hungarian"
 msgstr "ungarsk"
 
 #: ../src/Spell.py:112
-msgid "Armenian"
-msgstr "armensk"
-
-#: ../src/Spell.py:113
 msgid "Interlingua"
 msgstr "interlingua"
 
-#: ../src/Spell.py:114
+#: ../src/Spell.py:113
 msgid "Indonesian"
 msgstr "indonesisk"
 
-#: ../src/Spell.py:115
+#: ../src/Spell.py:114
 msgid "Icelandic"
 msgstr "islandsk"
 
-#: ../src/Spell.py:116
+#: ../src/Spell.py:115
 msgid "Italian"
 msgstr "italisk"
 
-#: ../src/Spell.py:117
+#: ../src/Spell.py:116
 msgid "Kurdi"
 msgstr "kurdisk"
 
-#: ../src/Spell.py:118
+#: ../src/Spell.py:117
 msgid "Latin"
 msgstr "latin"
 
-#: ../src/Spell.py:119
+#: ../src/Spell.py:118
 msgid "Lithuanian"
 msgstr "litauisk"
 
-#: ../src/Spell.py:120
+#: ../src/Spell.py:119
 msgid "Latvian"
 msgstr "latvisk"
 
-#: ../src/Spell.py:121
+#: ../src/Spell.py:120
 msgid "Malagasy"
 msgstr "enn"
 
-#: ../src/Spell.py:122
+#: ../src/Spell.py:121
 msgid "Maori"
 msgstr "maori"
 
-#: ../src/Spell.py:123
+#: ../src/Spell.py:122
 msgid "Macedonian"
 msgstr "makedonsk"
 
-#: ../src/Spell.py:124
+#: ../src/Spell.py:123
 msgid "Mongolian"
 msgstr "mongosk"
 
-#: ../src/Spell.py:125
+#: ../src/Spell.py:124
 msgid "Marathi"
 msgstr "ppsummering"
 
-#: ../src/Spell.py:126
+#: ../src/Spell.py:125
 msgid "Malay"
 msgstr "malayisk"
 
-#: ../src/Spell.py:127
+#: ../src/Spell.py:126
 msgid "Maltese"
 msgstr "maltesisk"
 
-#: ../src/Spell.py:128
+#: ../src/Spell.py:127
 msgid "Norwegian Bokmal"
 msgstr "norsk bokmål"
 
-#: ../src/Spell.py:129
+#: ../src/Spell.py:128
 msgid "Low Saxon"
 msgstr "lavsaksisk"
 
-#: ../src/Spell.py:130
+#: ../src/Spell.py:129
 msgid "Dutch"
 msgstr "nederlandsk"
 
-#: ../src/Spell.py:131
+#: ../src/Spell.py:130
 msgid "Norwegian Nynorsk"
 msgstr "norsk nynorsk"
 
-#: ../src/Spell.py:132
+#: ../src/Spell.py:131
 msgid "Chichewa"
 msgstr "ikrokort"
 
-#: ../src/Spell.py:133
+#: ../src/Spell.py:132
 msgid "Oriya"
 msgstr "oriya"
 
-#: ../src/Spell.py:134
+#: ../src/Spell.py:133
 msgid "Punjabi"
 msgstr "punjabi"
 
-#: ../src/Spell.py:135
+#: ../src/Spell.py:134
 msgid "Polish"
 msgstr "polsk"
 
-#: ../src/Spell.py:136 ../src/Spell.py:138
+#: ../src/Spell.py:135 ../src/Spell.py:137
 msgid "Portuguese"
 msgstr "portugisisk"
 
-#: ../src/Spell.py:137
+#: ../src/Spell.py:136
 msgid "Brazilian Portuguese"
 msgstr "brasiliansk portugisisk"
 
-#: ../src/Spell.py:139
+#: ../src/Spell.py:138
 msgid "Quechua"
 msgstr "quechua"
 
-#: ../src/Spell.py:140
+#: ../src/Spell.py:139
 msgid "Romanian"
 msgstr "romansk"
 
-#: ../src/Spell.py:141
+#: ../src/Spell.py:140
 msgid "Russian"
 msgstr "russisk"
 
-#: ../src/Spell.py:142
+#: ../src/Spell.py:141
 msgid "Kinyarwanda"
 msgstr "kinyarwanda"
 
-#: ../src/Spell.py:143
+#: ../src/Spell.py:142
 msgid "Sardinian"
 msgstr "sardinsk"
 
-#: ../src/Spell.py:144
+#: ../src/Spell.py:143
 msgid "Slovak"
 msgstr "slovakisk"
 
-#: ../src/Spell.py:145
+#: ../src/Spell.py:144
 msgid "Slovenian"
 msgstr "slovensk"
 
-#: ../src/Spell.py:146
+#: ../src/Spell.py:145
 msgid "Serbian"
 msgstr "serbisk"
 
-#: ../src/Spell.py:147
+#: ../src/Spell.py:146
 msgid "Swedish"
 msgstr "svensk"
 
-#: ../src/Spell.py:148
+#: ../src/Spell.py:147
 msgid "Swahili"
 msgstr "swahili"
 
-#: ../src/Spell.py:149
+#: ../src/Spell.py:148
 msgid "Tamil"
 msgstr "tamilsk"
 
-#: ../src/Spell.py:150
+#: ../src/Spell.py:149
 msgid "Telugu"
 msgstr "telugu"
 
-#: ../src/Spell.py:151
+#: ../src/Spell.py:150
 msgid "Tetum"
 msgstr "tetum"
 
-#: ../src/Spell.py:152
+#: ../src/Spell.py:151
 msgid "Tagalog"
 msgstr "tagalog"
 
-#: ../src/Spell.py:153
+#: ../src/Spell.py:152
 msgid "Setswana"
 msgstr "tswana"
 
-#: ../src/Spell.py:154
+#: ../src/Spell.py:153
 msgid "Turkish"
 msgstr "tyrkisk"
 
-#: ../src/Spell.py:155
+#: ../src/Spell.py:154
 msgid "Ukrainian"
 msgstr "ukrainsk"
 
-#: ../src/Spell.py:156
+#: ../src/Spell.py:155
 msgid "Uzbek"
 msgstr "usbekisk"
 
-#: ../src/Spell.py:157
+#: ../src/Spell.py:156
 msgid "Vietnamese"
 msgstr "vietnamesisk"
 
-#: ../src/Spell.py:158
+#: ../src/Spell.py:157
 msgid "Walloon"
 msgstr "vallonsk"
 
-#: ../src/Spell.py:159
+#: ../src/Spell.py:158
 msgid "Yiddish"
 msgstr "jiddisk"
 
-#: ../src/Spell.py:160
+#: ../src/Spell.py:159
 msgid "Zulu"
 msgstr "zulu"
 
@@ -2513,14 +2509,14 @@ msgid "Child"
 msgstr "Barn"
 
 #: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:63
-#: ../src/DisplayModels/_PeopleModel.py:237 ../src/Editors/_EditPerson.py:238
+#: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:238
 #: ../src/plugins/NarrativeWeb.py:1881
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "mann"
 
 #: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:63
-#: ../src/DisplayModels/_PeopleModel.py:237 ../src/Editors/_EditPerson.py:237
+#: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:237
 #: ../src/plugins/NarrativeWeb.py:1882
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
@@ -2533,7 +2529,7 @@ msgstr "kvinne"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:63
-#: ../src/docgen/HtmlDoc.py:493 ../src/DisplayModels/_PeopleModel.py:237
+#: ../src/docgen/HtmlDoc.py:493 ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
 #: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:496
@@ -3207,7 +3203,7 @@ msgstr "GRAMPS kan ikke finne et program som kan vise filer av type %s."
 msgid "Select Media Columns"
 msgstr "Velg mediakolonner"
 
-#: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:67
+#: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:66
 msgid "Double click image to view in an external viewer"
 msgstr "Dobbeltklikk på bildet for å vise det i et eksternt visningsprogram"
 
@@ -3916,8 +3912,8 @@ msgstr "Nøyaktig to kilder må velges for å gjennomføre en fletting.  Kilde n
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1460
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1465 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1466 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2698
@@ -5169,7 +5165,7 @@ msgstr "Linje %d: tomt notat ble ignorert."
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "hoppet over %d underordned(e) på linje %d"
 
-#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1110
+#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1115
 msgid "Rebuild reference map"
 msgstr "Gjenoppbygg referansekart"
 
@@ -5401,15 +5397,15 @@ msgstr "Vitners kommentar: %s"
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "GRAMPS-filen du importerer ble laget med GRAMPS versjon %s, men du kjører en eldre versjon %s. Filen vil ikke bli importert. Vennligst oppgrader til siste versjon av GRAMPS og prøv på nytt."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:513
+#: ../src/GrampsDbUtils/_WriteGedcom.py:514
 msgid "Sorting"
 msgstr "Sorterer"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:524
+#: ../src/GrampsDbUtils/_WriteGedcom.py:525
 msgid "Writing"
 msgstr "Skrive"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1463
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
 msgid "Export failed"
 msgstr "Eksporteringen feilet"
 
@@ -5418,15 +5414,15 @@ msgstr "Eksporteringen feilet"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1473
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "GEDCOM brukes til å overføre data mellom slektsforskningsprogrammer. De fleste slektsforskningsprogram vil godta en GEDCOM-fil som inndata."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1476
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
 msgid "GEDCOM export options"
 msgstr "GEDCOM-eksportinnstillinger"
 
@@ -5601,7 +5597,7 @@ msgstr "Velg Notat"
 msgid "Select Media Object"
 msgstr "Velg mediaobjekt"
 
-#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:881
+#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:902
 msgid "Select Person"
 msgstr "Velg en person"
 
@@ -5663,13 +5659,13 @@ msgstr "Alle hendelser"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
+#: ../src/plugins/AncestorReport.py:347 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
 #: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
-#: ../src/plugins/DetAncestralReport.py:887
+#: ../src/plugins/DetAncestralReport.py:890
 #: ../src/plugins/DetDescendantReport.py:837
 #: ../src/plugins/EndOfLineReport.py:321 ../src/plugins/Eval.py:129
 #: ../src/plugins/EventCmp.py:467 ../src/plugins/EventNames.py:161
@@ -5746,11 +5742,11 @@ msgstr "Navn på felles ane"
 msgid "Parent"
 msgstr "Forelder"
 
-#: ../src/plugins/all_relations.py:302 ../src/PluginUtils/_GuiOptions.py:884
+#: ../src/plugins/all_relations.py:302 ../src/PluginUtils/_GuiOptions.py:905
 msgid "Yes"
 msgstr "Ja"
 
-#: ../src/plugins/all_relations.py:306 ../src/PluginUtils/_GuiOptions.py:883
+#: ../src/plugins/all_relations.py:306 ../src/PluginUtils/_GuiOptions.py:904
 msgid "No"
 msgstr "Nei"
 
@@ -5838,10 +5834,10 @@ msgstr "Anetavle for %s"
 msgid "Tree Options"
 msgstr "Treopsjoner"
 
-#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:250
+#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:251
 #: ../src/plugins/Calendar.py:496 ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
-#: ../src/plugins/DetAncestralReport.py:701
+#: ../src/plugins/DetAncestralReport.py:704
 #: ../src/plugins/DetDescendantReport.py:647
 #: ../src/plugins/EndOfLineReport.py:238 ../src/plugins/FanChart.py:343
 #: ../src/plugins/GVHourGlass.py:184 ../src/plugins/KinshipReport.py:337
@@ -5852,9 +5848,9 @@ msgstr "Senterperson"
 msgid "The center person for the tree"
 msgstr "Senterpersonen for dette treet"
 
-#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:254
+#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:255
 #: ../src/plugins/DescendTree.py:419 ../src/plugins/DescendReport.py:201
-#: ../src/plugins/DetAncestralReport.py:705
+#: ../src/plugins/DetAncestralReport.py:708
 #: ../src/plugins/DetDescendantReport.py:651 ../src/plugins/FanChart.py:347
 msgid "Generations"
 msgstr "Generasjoner"
@@ -5895,8 +5891,8 @@ msgstr "Ko_mprimere tre"
 msgid "Whether to compress the tree."
 msgstr "Om treet skal komprimeres."
 
-#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:331
-#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:843
+#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:332
+#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:846
 #: ../src/plugins/DetDescendantReport.py:793
 #: ../src/plugins/EndOfLineReport.py:273 ../src/plugins/EndOfLineReport.py:291
 #: ../src/plugins/FamilyGroup.py:679 ../src/plugins/FanChart.py:403
@@ -5922,7 +5918,7 @@ msgstr "Lager en grafisk anetavle"
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafelrapport for %s"
 
-#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:584
+#: ../src/plugins/AncestorReport.py:188 ../src/plugins/DefaultGramplets.py:584
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
 #: ../src/plugins/EndOfLineReport.py:161
@@ -5932,9 +5928,9 @@ msgstr "Generasjon %d"
 
 #. #########################
 #. ###############################
-#: ../src/plugins/AncestorReport.py:248 ../src/plugins/Calendar.py:484
+#: ../src/plugins/AncestorReport.py:249 ../src/plugins/Calendar.py:484
 #: ../src/plugins/Calendar.py:642 ../src/plugins/DescendReport.py:195
-#: ../src/plugins/DetAncestralReport.py:699
+#: ../src/plugins/DetAncestralReport.py:702
 #: ../src/plugins/DetDescendantReport.py:645
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
@@ -5945,43 +5941,43 @@ msgstr "Generasjon %d"
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
 
-#: ../src/plugins/AncestorReport.py:251 ../src/plugins/Calendar.py:497
+#: ../src/plugins/AncestorReport.py:252 ../src/plugins/Calendar.py:497
 #: ../src/plugins/DescendReport.py:198
-#: ../src/plugins/DetAncestralReport.py:702
+#: ../src/plugins/DetAncestralReport.py:705
 #: ../src/plugins/DetDescendantReport.py:648
 #: ../src/plugins/EndOfLineReport.py:239 ../src/plugins/FanChart.py:344
 #: ../src/plugins/KinshipReport.py:338
 msgid "The center person for the report"
 msgstr "Senterpersonen for denne rapporten"
 
-#: ../src/plugins/AncestorReport.py:255 ../src/plugins/DescendReport.py:202
-#: ../src/plugins/DetAncestralReport.py:706
+#: ../src/plugins/AncestorReport.py:256 ../src/plugins/DescendReport.py:202
+#: ../src/plugins/DetAncestralReport.py:709
 #: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
 msgstr "Antall generasjoner som skal være med i rapporten"
 
-#: ../src/plugins/AncestorReport.py:258
-#: ../src/plugins/DetAncestralReport.py:709
+#: ../src/plugins/AncestorReport.py:259
+#: ../src/plugins/DetAncestralReport.py:712
 #: ../src/plugins/DetDescendantReport.py:655
 msgid "Page break between generations"
 msgstr "Sideskift mellom generasjoner"
 
-#: ../src/plugins/AncestorReport.py:260
-#: ../src/plugins/DetAncestralReport.py:711
+#: ../src/plugins/AncestorReport.py:261
+#: ../src/plugins/DetAncestralReport.py:714
 #: ../src/plugins/DetDescendantReport.py:657
 msgid "Whether to start a new page after each generation."
 msgstr "Begynn med ny side etter hver generasjon."
 
-#: ../src/plugins/AncestorReport.py:263
+#: ../src/plugins/AncestorReport.py:264
 msgid "Add linebreak after each name"
 msgstr "Legg til linjeskift etter hvert navn"
 
-#: ../src/plugins/AncestorReport.py:264
+#: ../src/plugins/AncestorReport.py:265
 msgid "Indicates if a line break should follow the name."
 msgstr "Indikerer om linjeskift skal komme etter navnet."
 
-#: ../src/plugins/AncestorReport.py:308 ../src/plugins/DescendReport.py:218
-#: ../src/plugins/DetAncestralReport.py:797
+#: ../src/plugins/AncestorReport.py:309 ../src/plugins/DescendReport.py:218
+#: ../src/plugins/DetAncestralReport.py:800
 #: ../src/plugins/DetDescendantReport.py:747
 #: ../src/plugins/EndOfLineReport.py:255 ../src/plugins/FamilyGroup.py:670
 #: ../src/plugins/IndivComplete.py:567 ../src/plugins/KinshipReport.py:373
@@ -5990,17 +5986,17 @@ msgstr "Indikerer om linjeskift skal komme etter navnet."
 msgid "The style used for the title of the page."
 msgstr "Stilen som brukes på sidens tittel."
 
-#: ../src/plugins/AncestorReport.py:321
-#: ../src/plugins/DetAncestralReport.py:807
+#: ../src/plugins/AncestorReport.py:322
+#: ../src/plugins/DetAncestralReport.py:810
 #: ../src/plugins/DetDescendantReport.py:757 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Stilen som brukes til generasjons-overskriften."
 
-#: ../src/plugins/AncestorReport.py:345
+#: ../src/plugins/AncestorReport.py:346
 msgid "Ahnentafel Report"
 msgstr "Ahnentafelrapport"
 
-#: ../src/plugins/AncestorReport.py:347
+#: ../src/plugins/AncestorReport.py:348
 msgid "Produces a textual ancestral report"
 msgstr "Lager en tekstbasert slektsrapport"
 
@@ -6008,15 +6004,15 @@ msgstr "Lager en tekstbasert slektsrapport"
 msgid "Not Applicable"
 msgstr "Kan ikke brukes"
 
-#: ../src/plugins/BookReport.py:160 ../src/PluginUtils/_GuiOptions.py:582
+#: ../src/plugins/BookReport.py:160 ../src/PluginUtils/_GuiOptions.py:603
 msgid "unknown father"
 msgstr "ukjent far"
 
-#: ../src/plugins/BookReport.py:166 ../src/PluginUtils/_GuiOptions.py:588
+#: ../src/plugins/BookReport.py:166 ../src/PluginUtils/_GuiOptions.py:609
 msgid "unknown mother"
 msgstr "ukjent mor"
 
-#: ../src/plugins/BookReport.py:168 ../src/PluginUtils/_GuiOptions.py:590
+#: ../src/plugins/BookReport.py:168 ../src/PluginUtils/_GuiOptions.py:611
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s og %s (%s)"
@@ -6101,7 +6097,7 @@ msgstr "Lager en bok som inneholder flere rapporter."
 #: ../src/plugins/CalculateEstimatedDates.py:62
 #: ../src/plugins/CalculateEstimatedDates.py:152
 #: ../src/plugins/GVFamilyLines.py:181 ../src/plugins/GVHourGlass.py:182
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:92
 msgid "Options"
 msgstr "Innstillinger"
 
@@ -7585,213 +7581,213 @@ msgstr "Barn til %(mother_name)s og %(father_name)s"
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Mer om %(mother_name)s og %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:714
+#: ../src/plugins/DetAncestralReport.py:717
 #: ../src/plugins/DetDescendantReport.py:660
 msgid "Content"
 msgstr "Innhold"
 
-#: ../src/plugins/DetAncestralReport.py:716
+#: ../src/plugins/DetAncestralReport.py:719
 #: ../src/plugins/DetDescendantReport.py:662
 msgid "Use callname for common name"
 msgstr "Bruk kallenavn som vanlig navn"
 
-#: ../src/plugins/DetAncestralReport.py:717
+#: ../src/plugins/DetAncestralReport.py:720
 #: ../src/plugins/DetDescendantReport.py:663
 msgid "Whether to use the call name as the first name."
 msgstr "Bruk kallenavn som første navn."
 
-#: ../src/plugins/DetAncestralReport.py:721
+#: ../src/plugins/DetAncestralReport.py:724
 #: ../src/plugins/DetDescendantReport.py:667
 msgid "Use full dates instead of only the year"
 msgstr "Bruk fulle datoer i stedet for kun årstallet"
 
-#: ../src/plugins/DetAncestralReport.py:722
+#: ../src/plugins/DetAncestralReport.py:725
 #: ../src/plugins/DetDescendantReport.py:668
 msgid "Whether to use full dates instead of just year."
 msgstr "Bruk fullstendige datoer i stedet for kun årstallet."
 
-#: ../src/plugins/DetAncestralReport.py:725
+#: ../src/plugins/DetAncestralReport.py:728
 #: ../src/plugins/DetDescendantReport.py:671
 msgid "List children"
 msgstr "Lag en liste over alle barna"
 
-#: ../src/plugins/DetAncestralReport.py:726
+#: ../src/plugins/DetAncestralReport.py:729
 #: ../src/plugins/DetDescendantReport.py:672
 msgid "Whether to list children."
 msgstr "Liste opp barna."
 
-#: ../src/plugins/DetAncestralReport.py:729
+#: ../src/plugins/DetAncestralReport.py:732
 #: ../src/plugins/DetDescendantReport.py:675
 msgid "Compute age"
 msgstr "Beregn alder"
 
-#: ../src/plugins/DetAncestralReport.py:730
+#: ../src/plugins/DetAncestralReport.py:733
 #: ../src/plugins/DetDescendantReport.py:676
 msgid "Whether to compute age."
 msgstr "Beregne alder."
 
-#: ../src/plugins/DetAncestralReport.py:733
+#: ../src/plugins/DetAncestralReport.py:736
 #: ../src/plugins/DetDescendantReport.py:679
 msgid "Omit duplicate ancestors"
 msgstr "Utelat dobbelt oppførte forfedre"
 
-#: ../src/plugins/DetAncestralReport.py:734
+#: ../src/plugins/DetAncestralReport.py:737
 #: ../src/plugins/DetDescendantReport.py:680
 msgid "Whether to omit duplicate ancestors."
 msgstr "Utelat dobbekt oppførte aner."
 
-#: ../src/plugins/DetAncestralReport.py:737
+#: ../src/plugins/DetAncestralReport.py:740
 #: ../src/plugins/DetDescendantReport.py:683
 msgid "Use Complete Sentences"
 msgstr "Bruk fullstendige setninger"
 
-#: ../src/plugins/DetAncestralReport.py:739
+#: ../src/plugins/DetAncestralReport.py:742
 #: ../src/plugins/DetDescendantReport.py:685
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Om det skal brukes fullstendige setninger eller et kompakt språk."
 
-#: ../src/plugins/DetAncestralReport.py:742
+#: ../src/plugins/DetAncestralReport.py:745
 #: ../src/plugins/DetDescendantReport.py:688
 msgid "Add descendant reference in child list"
 msgstr "Legg til en henvisning om etterkommere i lista over barn"
 
-#: ../src/plugins/DetAncestralReport.py:744
+#: ../src/plugins/DetAncestralReport.py:747
 #: ../src/plugins/DetDescendantReport.py:690
 msgid "Whether to add descendant references in child list."
 msgstr "Legg til henvisning til etterkommere i lista over barn."
 
 #. #########################
-#: ../src/plugins/DetAncestralReport.py:747
+#: ../src/plugins/DetAncestralReport.py:750
 #: ../src/plugins/DetDescendantReport.py:693 ../src/plugins/FamilyGroup.py:599
 #: ../src/plugins/NarrativeWeb.py:3081
 msgid "Include"
 msgstr "Ta med"
 
-#: ../src/plugins/DetAncestralReport.py:749
+#: ../src/plugins/DetAncestralReport.py:752
 #: ../src/plugins/DetDescendantReport.py:695
 msgid "Include notes"
 msgstr "Ta med kommentarer"
 
-#: ../src/plugins/DetAncestralReport.py:750
+#: ../src/plugins/DetAncestralReport.py:753
 #: ../src/plugins/DetDescendantReport.py:696
 msgid "Whether to include notes."
 msgstr "Ta med notater."
 
-#: ../src/plugins/DetAncestralReport.py:753
+#: ../src/plugins/DetAncestralReport.py:756
 #: ../src/plugins/DetDescendantReport.py:699
 msgid "Include attributes"
 msgstr "Ta med attributter"
 
-#: ../src/plugins/DetAncestralReport.py:754
+#: ../src/plugins/DetAncestralReport.py:757
 #: ../src/plugins/DetDescendantReport.py:700 ../src/plugins/FamilyGroup.py:621
 msgid "Whether to include attributes."
 msgstr "Ta med egenskaper."
 
-#: ../src/plugins/DetAncestralReport.py:757
+#: ../src/plugins/DetAncestralReport.py:760
 #: ../src/plugins/DetDescendantReport.py:703
 msgid "Include Photo/Images from Gallery"
 msgstr "Ta med foto/bilder fra galleriet"
 
-#: ../src/plugins/DetAncestralReport.py:758
+#: ../src/plugins/DetAncestralReport.py:761
 #: ../src/plugins/DetDescendantReport.py:704
 msgid "Whether to include images."
 msgstr "Ta med bilder."
 
-#: ../src/plugins/DetAncestralReport.py:761
+#: ../src/plugins/DetAncestralReport.py:764
 #: ../src/plugins/DetDescendantReport.py:707
 msgid "Include alternative names"
 msgstr "Ta med alternative navn"
 
-#: ../src/plugins/DetAncestralReport.py:762
+#: ../src/plugins/DetAncestralReport.py:765
 #: ../src/plugins/DetDescendantReport.py:708
 msgid "Whether to include other names."
 msgstr "Ta med andre navn."
 
-#: ../src/plugins/DetAncestralReport.py:765
+#: ../src/plugins/DetAncestralReport.py:768
 #: ../src/plugins/DetDescendantReport.py:711
 msgid "Include events"
 msgstr "Ta med hendelser"
 
-#: ../src/plugins/DetAncestralReport.py:766
+#: ../src/plugins/DetAncestralReport.py:769
 #: ../src/plugins/DetDescendantReport.py:712
 msgid "Whether to include events."
 msgstr "Ta med hendelser."
 
-#: ../src/plugins/DetAncestralReport.py:769
+#: ../src/plugins/DetAncestralReport.py:772
 #: ../src/plugins/DetDescendantReport.py:715
 msgid "Include addresses"
 msgstr "Ta med adresser"
 
-#: ../src/plugins/DetAncestralReport.py:770
+#: ../src/plugins/DetAncestralReport.py:773
 #: ../src/plugins/DetDescendantReport.py:716
 msgid "Whether to include addresses."
 msgstr "Ta med adresser."
 
-#: ../src/plugins/DetAncestralReport.py:773
+#: ../src/plugins/DetAncestralReport.py:776
 #: ../src/plugins/DetDescendantReport.py:719
 msgid "Include sources"
 msgstr "Ta med kilder"
 
-#: ../src/plugins/DetAncestralReport.py:774
+#: ../src/plugins/DetAncestralReport.py:777
 #: ../src/plugins/DetDescendantReport.py:720
 msgid "Whether to include source references."
 msgstr "Ta med kildehenvisninger."
 
-#: ../src/plugins/DetAncestralReport.py:777
+#: ../src/plugins/DetAncestralReport.py:780
 #: ../src/plugins/DetDescendantReport.py:727
 msgid "Missing information"
 msgstr "Mangler informasjon"
 
-#: ../src/plugins/DetAncestralReport.py:779
+#: ../src/plugins/DetAncestralReport.py:782
 #: ../src/plugins/DetDescendantReport.py:729
 msgid "Replace missing places with ______"
 msgstr "Erstatt manglende steder med ______"
 
-#: ../src/plugins/DetAncestralReport.py:780
+#: ../src/plugins/DetAncestralReport.py:783
 #: ../src/plugins/DetDescendantReport.py:730
 msgid "Whether to replace missing Places with blanks."
 msgstr "Erstatt manglende stedsnavn med tomrom."
 
-#: ../src/plugins/DetAncestralReport.py:783
+#: ../src/plugins/DetAncestralReport.py:786
 #: ../src/plugins/DetDescendantReport.py:733
 msgid "Replace missing dates with ______"
 msgstr "Erstatt manglende datoer med ______"
 
-#: ../src/plugins/DetAncestralReport.py:784
+#: ../src/plugins/DetAncestralReport.py:787
 #: ../src/plugins/DetDescendantReport.py:734
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Erstatt manglende datoer med tomrom."
 
-#: ../src/plugins/DetAncestralReport.py:817
+#: ../src/plugins/DetAncestralReport.py:820
 #: ../src/plugins/DetDescendantReport.py:767
 msgid "The style used for the children list title."
 msgstr "Stilen brukt på overskriften på lista over barn."
 
-#: ../src/plugins/DetAncestralReport.py:827
+#: ../src/plugins/DetAncestralReport.py:830
 #: ../src/plugins/DetDescendantReport.py:777
 msgid "The style used for the children list."
 msgstr "Stilen brukt på lista over barn."
 
-#: ../src/plugins/DetAncestralReport.py:850
+#: ../src/plugins/DetAncestralReport.py:853
 #: ../src/plugins/DetDescendantReport.py:800
 msgid "The style used for the first personal entry."
 msgstr "Stilen brukt på den første personoppføringen."
 
-#: ../src/plugins/DetAncestralReport.py:860
+#: ../src/plugins/DetAncestralReport.py:863
 #: ../src/plugins/DetDescendantReport.py:810
 msgid "The style used for the More About header."
 msgstr "Stilen som brukes for Mer om-overskriften."
 
-#: ../src/plugins/DetAncestralReport.py:870
+#: ../src/plugins/DetAncestralReport.py:873
 #: ../src/plugins/DetDescendantReport.py:820
 msgid "The style used for additional detail data."
 msgstr "Stilen brukt for tilleggsdetaljer."
 
-#: ../src/plugins/DetAncestralReport.py:886
+#: ../src/plugins/DetAncestralReport.py:889
 msgid "Detailed Ancestral Report"
 msgstr "Detaljert anerapport"
 
-#: ../src/plugins/DetAncestralReport.py:888
+#: ../src/plugins/DetAncestralReport.py:891
 msgid "Produces a detailed ancestral report"
 msgstr "Lag en detaljert rapport over forfedre"
 
@@ -8385,7 +8381,7 @@ msgstr "fødselshendelse men ingen dato"
 msgid "missing birth event"
 msgstr "mangler fødselshendelse"
 
-#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:82
 msgid "Count"
 msgstr "Tell"
 
@@ -10423,7 +10419,7 @@ msgid "From gallery..."
 msgstr "Fra galleri..."
 
 #: ../src/plugins/SimpleBookTitle.py:207 ../src/ReportBase/_PaperMenu.py:223
-#: ../src/glade/gramps.glade.h:192 ../src/glade/paper_settings.glade.h:13
+#: ../src/glade/gramps.glade.h:191 ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
 
@@ -11290,7 +11286,7 @@ msgstr "Gjenoppbygger referansekart"
 msgid "GRAMPS 2.x database"
 msgstr "GRAMPS 2.x-database"
 
-#: ../src/PluginUtils/_GuiOptions.py:74
+#: ../src/PluginUtils/_GuiOptions.py:75
 msgid "Select surname"
 msgstr "Velg etternavn"
 
@@ -11303,36 +11299,36 @@ msgstr "Velg etternavn"
 #. build up the list of surnames, keeping track of the count for each
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
-#: ../src/PluginUtils/_GuiOptions.py:108
+#: ../src/PluginUtils/_GuiOptions.py:109
 msgid "Finding Surnames"
 msgstr "Finner etternavn"
 
-#: ../src/PluginUtils/_GuiOptions.py:109
+#: ../src/PluginUtils/_GuiOptions.py:110
 msgid "Finding surnames"
 msgstr "Finner etternavn"
 
-#: ../src/PluginUtils/_GuiOptions.py:412
+#: ../src/PluginUtils/_GuiOptions.py:433
 msgid "Select a different person"
 msgstr "Velg en annen person"
 
-#: ../src/PluginUtils/_GuiOptions.py:441
+#: ../src/PluginUtils/_GuiOptions.py:462
 msgid "Select a person for the report"
 msgstr "Velg en person for rapporten"
 
-#: ../src/PluginUtils/_GuiOptions.py:500
+#: ../src/PluginUtils/_GuiOptions.py:521
 msgid "Select a different family"
 msgstr "Velg en annen familie"
 
-#: ../src/PluginUtils/_GuiOptions.py:879
+#: ../src/PluginUtils/_GuiOptions.py:900
 #, python-format
 msgid "Also include %s?"
 msgstr "Ta også med %s?"
 
-#: ../src/PluginUtils/_GuiOptions.py:934
+#: ../src/PluginUtils/_GuiOptions.py:955
 msgid "Colour"
 msgstr "Farge"
 
-#: ../src/PluginUtils/_GuiOptions.py:1104
+#: ../src/PluginUtils/_GuiOptions.py:1125
 #: ../src/ReportBase/_ReportDialog.py:161
 msgid "Save As"
 msgstr "Lagre som"
@@ -15215,7 +15211,7 @@ msgstr "_Angre %s"
 msgid "_Redo %s"
 msgstr "_Gjør om %s"
 
-#: ../src/gen/db/dbdir.py:1761
+#: ../src/gen/db/dbdir.py:1773
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -17217,7 +17213,7 @@ msgid "Type:"
 msgstr "Type:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:96
 msgid "Path:"
 msgstr "Sti:"
 
@@ -17390,8 +17386,8 @@ msgid "Notes containing <regular expression>"
 msgstr "Notater som inneholder <regular expression>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-msgid "Matches notes who contain text "
-msgstr "Samsvarer med notater som inneholder tekst "
+msgid "Matches notes who contain text matching a regular expression"
+msgstr "Samsvarer med notater som inneholder tekst fra et treff på et regulært uttrykk"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -17770,7 +17766,7 @@ msgstr ""
 msgid "Gi_ven:"
 msgstr "_Fornavn:"
 
-#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:81
+#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:80
 msgid "Indicates if the record is private"
 msgstr "Indikerer om forekomsten er privat"
 
@@ -17782,11 +17778,11 @@ msgstr "_Etterstavelse:"
 msgid "The person's given name"
 msgstr "Personens fornavn"
 
-#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:121
+#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:120
 msgid "Tit_le:"
 msgstr "Titte_l:"
 
-#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:147
+#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:146
 msgid "_Family:"
 msgstr "_Slektsnavn:"
 
@@ -17794,19 +17790,19 @@ msgstr "_Slektsnavn:"
 msgid "_Gender:"
 msgstr "Kj_ønn:"
 
-#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:149
+#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:148
 msgid "_ID:"
 msgstr "_ID:"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:156
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:155
 msgid "_Marker:"
 msgstr "_Markering:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:165
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:164
 msgid "_Prefix:"
 msgstr "Forsta_velse"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:183
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:182
 msgid "_Type:"
 msgstr "_Type:"
 
@@ -18029,187 +18025,187 @@ msgstr "La_nd:"
 msgid "Count_ry:"
 msgstr "Land:"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:60
 msgid "D_ay"
 msgstr "D_ag"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:61
 msgid "Dat_e:"
 msgstr "Da_to:"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:62
 msgid "De_scription:"
 msgstr "Be_skrivelse:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:63
 msgid "Death:"
 msgstr "Dødsfall:"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:64
 msgid "Do not ask again"
 msgstr "Ikke spør igjen"
 
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:65
 msgid "Do not show this dialog again"
 msgstr "Ikke spør igjen"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:67
 msgid "Drag to move; click to detach"
 msgstr "Dra for å flytte, klikk for å koble fra"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:68
 msgid "Example:"
 msgstr "Eksempel:"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:69
 msgid "Family Trees - GRAMPS"
 msgstr "Slektstrær - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:70
 msgid "Family:"
 msgstr "Familie:"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:71
 msgid "First li_ne:"
 msgstr "Første li_nje:"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:72
 msgid "Format _definition:"
 msgstr "Formatdefinisjon:"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:73
 msgid "Format _name:"
 msgstr "Formatnavn:"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:74
 msgid "Format definition details"
 msgstr "Detaljer for formatteringsdefinisjon"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:75
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:76
 msgid "G_roup as:"
 msgstr "G_rupper som:"
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:78
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr "Hvis mediet er et bilde, velg en region av bildet som er referert til.  Punktet (0,0) er øverste venstre hjørne.  Gjør dette ved å angi to hjørner langs en diagonal for det rektangulære området du ønsker å bruke."
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:79
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Hvis du trykker på denne knappen vil alle manglende mediafiler automatisk bli behandlet i henhold til den valgte instillingen. Ingen flere dialogvinduer vil bli vist for manglende mediafiler."
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
 msgstr "Starte datobehandler"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:82
 msgid "Keep reference to the missing file"
 msgstr "Behold henvisningen til den savnede fila"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:83
 msgid "LDS _Temple:"
 msgstr "SDH-_tempel:"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:84
 msgid "L_atitude:"
 msgstr "_Breddegrad:"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:85
 msgid "L_eft:"
 msgstr "_Venstre:"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:86
 msgid "Le_ft"
 msgstr "_Venstre"
 
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:87
 msgid "Mo_nth"
 msgstr "Må_ned"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:88
 msgid "Name Child:"
 msgstr "Navn på barn:"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:90
 msgid "O_verride"
 msgstr "O_verse"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:91
 msgid "Open person editor of this child"
 msgstr "Åpne personbehandleren til dette barnet"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:93
 msgid "Ordinance:"
 msgstr "Prestevielse:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:94
 msgid "P_atronymic:"
 msgstr "_Avstamningsnavn:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:95
 msgid "P_hone:"
 msgstr "_Telefon:"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:97
 msgid "Phon_e:"
 msgstr "T_elefon:"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:98
 msgid "R_ight:"
 msgstr "_Høyre:"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:99
 msgid "Re_pair"
 msgstr "Re_parer"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:100
 msgid "Relationship to _Father:"
 msgstr "Relasjon til far:"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:101
 msgid "Relationship to _Mother:"
 msgstr "Relasjon til mor:"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:102
 msgid "Remove object and all references to it from the database"
 msgstr "Fjern objektet og alle henvisningene til det fra databasen"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:103
 msgid "Revision comment - GRAMPS"
 msgstr "Revisjonskommentar - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:104
 msgid "Ri_ght"
 msgstr "_Høyre"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:105
 msgid "S_treet:"
 msgstr "Gate:"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:106
 msgid "Select replacement for the missing file"
 msgstr "Velg en erstatning for den savnede fila"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:107
 msgid "Show all"
 msgstr "Vis alle"
 
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:108
 msgid "Style n_ame:"
 msgstr "Stiln_avn:"
 
-#: ../src/glade/gramps.glade.h:110
+#: ../src/glade/gramps.glade.h:109
 msgid "Suffi_x:"
 msgstr "Etterstave_lse:"
 
-#: ../src/glade/gramps.glade.h:111
+#: ../src/glade/gramps.glade.h:110
 msgid "Te_xt comment:"
 msgstr "_Tekstkommentar:"
 
-#: ../src/glade/gramps.glade.h:113
+#: ../src/glade/gramps.glade.h:112
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -18230,7 +18226,7 @@ msgstr ""
 "  <b>%c</b> - Kallenavn        <b>%C</b> - KALLENAVN\n"
 "  <b>%y</b> - Patronymikon       <b>%Y</b> - PATRONYMIKON</tt>"
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:121
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -18244,247 +18240,247 @@ msgstr ""
 "Høy\n"
 "Svært høy"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:126
 msgid "Y"
 msgstr "Y"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:127
 msgid "Y_ear"
 msgstr "Å_r"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:128
 msgid "_Archive"
 msgstr "_Arkiver"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:129
 msgid "_Association:"
 msgstr "_Tilknytning"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:130
 msgid "_Attribute:"
 msgstr "Egensk_ap:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:131
 msgid "_Author:"
 msgstr "_Forfatter:"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:132
 msgid "_Bold"
 msgstr "_Fet"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:133
 msgid "_Bottom"
 msgstr "_Nederst"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:134
 msgid "_Call number:"
 msgstr "Telefonnummer:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:135
 msgid "_Center"
 msgstr "_Midtstilt"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:136
 msgid "_City/County:"
 msgstr "_By/fylke:"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:137
 msgid "_City:"
 msgstr "_By/Kommune:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:138
 msgid "_Close Window"
 msgstr "L_ukk vinduet"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:139
 msgid "_Confidence:"
 msgstr "_Troverdighet:"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:140
 msgid "_Date:"
 msgstr "Da_to:"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:141
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:142
 msgid "_Description:"
 msgstr "_Beskrivelse:"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:143
 msgid "_Display as:"
 msgstr "_Vis som:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:144
 msgid "_Display on startup"
 msgstr "_Vis ved oppstart"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:145
 msgid "_Event type:"
 msgstr "H_endelsestype:"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:147
 msgid "_Given:"
 msgstr "_Fornavn:"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:149
 msgid "_Italic"
 msgstr "_Kursiv"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:150
 msgid "_Justify"
 msgstr "_Justert"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:151
 msgid "_Keep Reference"
 msgstr "_Behold henvisningen"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:152
 msgid "_Left"
 msgstr "_Venstre"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:153
 msgid "_Load Family Tree"
 msgstr "Hent inn S_lektstre"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:154
 msgid "_Longitude:"
 msgstr "_Lengdegrad:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:156
 msgid "_Media Type:"
 msgstr "_Medietype:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:157
 msgid "_Month"
 msgstr "_Måned"
 
-#: ../src/glade/gramps.glade.h:159 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:158 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Navn:"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:159
 msgid "_Padding:"
 msgstr "_Utfylling:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:160
 msgid "_Path:"
 msgstr "_Sti:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:161
 msgid "_Person:"
 msgstr "_Person:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:162
 msgid "_Place Name:"
 msgstr "_Stedsnavn:"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:163
 msgid "_Place:"
 msgstr "Ste_d:"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:165
 msgid "_Preformatted"
 msgstr "_Formattert"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:166
 msgid "_Publication Information:"
 msgstr "_Publikasjonsinformasjon:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:167
 msgid "_Publication information:"
 msgstr "_Publiseringsinformasjon:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:168
 msgid "_Remove Object"
 msgstr "_Slett objektet"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:169
 msgid "_Rename"
 msgstr "Gi n_ytt navn"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:170
 msgid "_Right"
 msgstr "Høy_re"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:171
 msgid "_Role:"
 msgstr "_Rolle:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:172
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:173
 msgid "_Select File"
 msgstr "_Velg en fil"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:174
 msgid "_Sort as:"
 msgstr "_Sorter som:"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:175
 msgid "_Spelling:"
 msgstr "_Stavekontroll:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:176
 msgid "_State/Province:"
 msgstr "_Stat/provins:"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:177
 msgid "_State:"
 msgstr "_Stat:"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:178
 msgid "_Status:"
 msgstr "_Status:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:179
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:180
 msgid "_Title:"
 msgstr "_Tittel:"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:181
 msgid "_Top"
 msgstr "_Øverst"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:183
 msgid "_Underline"
 msgstr "_Understrek"
 
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:184
 msgid "_Use this selection for all missing media files"
 msgstr "Br_uk dette valget for alle manglende mediafiler"
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:185
 msgid "_Value:"
 msgstr "_Verdi:"
 
-#: ../src/glade/gramps.glade.h:187
+#: ../src/glade/gramps.glade.h:186
 msgid "_Volume/Page:"
 msgstr "_Bind/film/side:"
 
-#: ../src/glade/gramps.glade.h:188
+#: ../src/glade/gramps.glade.h:187
 msgid "_Web address:"
 msgstr "_Nettadresse:"
 
-#: ../src/glade/gramps.glade.h:189
+#: ../src/glade/gramps.glade.h:188
 msgid "_Year"
 msgstr "_År"
 
-#: ../src/glade/gramps.glade.h:190
+#: ../src/glade/gramps.glade.h:189
 msgid "_ZIP/Postal code:"
 msgstr "Post_nummer:"
 
-#: ../src/glade/gramps.glade.h:191
+#: ../src/glade/gramps.glade.h:190
 msgid "_Zip/Postal code:"
 msgstr "_Postnummer:"
 
-#: ../src/glade/gramps.glade.h:193
+#: ../src/glade/gramps.glade.h:192
 msgid "pt"
 msgstr "punkt"
 
@@ -19307,3 +19303,8 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
 
+#~ msgid "Armenian"
+#~ msgstr "armensk"
+
+#~ msgid "Matches notes who contain text "
+#~ msgstr "Samsvarer med notater som inneholder tekst "
