@@ -17959,7 +17959,7 @@ msgstr "Correspond aux individus sans date ou lieu dans un événement"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
 msgid "On date:"
-msgstr "A la date :"
+msgstr "À la date :"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
