@@ -361,10 +361,10 @@ class ArgHandler:
             print 'GRAMPS Family Trees:'
             summary_list = self.dbman.family_tree_summary()
             for summary in summary_list:
-                print "Family Tree \"%s\":" % dict["Family tree"]
+                print "Family Tree \"%s\":" % summary["Family tree"]
                 for item in summary:
                     if item != "Family tree":
-                        print "   %s: %s" % (item, dict[item])
+                        print "   %s: %s" % (item, summary[item])
             sys.exit(0)
             
         if self.help:
