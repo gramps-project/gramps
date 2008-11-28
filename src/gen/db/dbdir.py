@@ -32,6 +32,7 @@ This is used since GRAMPS version 3.0
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
+import sys
 import time
 from types import InstanceType
 
@@ -482,12 +483,18 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
         
-        if db.version() < (4, 7):
-            # Python 2.5 log settings
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
+        if sys.version_info < (2, 6):
+            if db.version() < (4, 7):
+                # Python 2.5 log settings
+                # clean up unused logs
+                self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) 
+            else:
+                # Python 2.5.2, DB 4.7.25  uses set_flags, too
+                self.env.set_flags(db.DB_LOG_AUTO_REMOVE, 1)
         else:
             # Python 2.6 log settings (db version 4.7.25)
             self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
+
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
@@ -1908,9 +1915,14 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # These env settings are only needed for Txn environment
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        if db.version() < (4, 7):
-            # Python 2.5 log settings
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
+        if sys.version_info < (2, 6):
+            if db.version() < (4, 7):
+                # Python 2.5 log settings
+                # clean up unused logs
+                self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) 
+            else:
+                # Python 2.5.2, DB 4.7.25  uses set_flags, too
+                self.env.set_flags(db.DB_LOG_AUTO_REMOVE, 1)
         else:
             # Python 2.6 log settings (db version 4.7.25)
             self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
