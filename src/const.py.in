@@ -200,16 +200,19 @@ NO_GIVEN     = "(%s)" % _("none")
 #
 #-------------------------------------------------------------------------
 
+# Note: Make sure to edit ArgHandler.py _help string too!
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 POPT_TABLE = [
     ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"), 
     ("import",  'i', str, None, 0, "Import file",       "FILENAME"), 
+    ("export",  'e', str, None, 0, "Export file",       "FILENAME"),
     ("output",  'o', str, None, 0, "Write file",        "FILENAME"), 
     ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"), 
     ("action",  'a', str, None, 0, 'Specify action',    "ACTION"), 
     ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"), 
     ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"), 
     ("",        'l', None, None, 0, 'List Family Trees', ""),
+    ("",        'L', None, None, 0, 'List Family Tree Details', ""),
     ("force-unlock", 'u', None, None, 0, 'Force unlock of family tree', ""),
 ]
 

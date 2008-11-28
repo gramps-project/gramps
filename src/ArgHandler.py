@@ -55,6 +55,7 @@ from PluginUtils import Tool
 from gen.plug import PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
 
+# Note: Make sure to edit const.py POPT_TABLE too!
 _help = """
 Usage: gramps.py [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
@@ -67,13 +68,14 @@ Application options
   -O, --open=FAMILY_TREE                 Open family tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
+  -o, --output=FILENAME                  Write file
   -f, --format=FORMAT                    Specify format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
   -L                                     List Family Tree Details
-  -u                                     Force unlock of family tree
+  -u, --force-unlock                     Force unlock of family tree
 """
 
 #-------------------------------------------------------------------------
