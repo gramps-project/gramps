@@ -143,7 +143,6 @@ class DbLoader:
                     extension = os.path.splitext(filename)[-1][1:].lower()
                 
                 for plugin in pmgr.get_import_plugins():
-                    print plugin.get_extension()
                     if extension == plugin.get_extension():
                         self.do_import(import_dialog, 
                                        plugin.get_import_function(), 
