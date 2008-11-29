@@ -173,9 +173,9 @@ class EmbeddedList(ButtonTab):
         else:
             dnd_types = [ self._DND_TYPE.target() ]
         
-        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL, dnd_types,
-                                gtk.gdk.ACTION_COPY)
-        self.tree.drag_source_set(gtk.gdk.BUTTON1_MASK,
+        self.tree.enable_model_drag_dest(dnd_types,
+                                         gtk.gdk.ACTION_COPY)
+        self.tree.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
                                   [self._DND_TYPE.target()],
                                   gtk.gdk.ACTION_COPY)
         self.tree.connect('drag_data_get', self.drag_data_get)
