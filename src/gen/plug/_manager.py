@@ -161,6 +161,10 @@ class PluginManager(gen.utils.Callback):
         self.__failmsg_list = []
     
         # attempt to reload all plugins that have succeeded in the past
+        # TODO: do other lists need to be reset here, too?
+        self.__import_plugins[:] = []
+        self.__export_plugins[:] = []
+
         for plugin in self.__success_list:
             filename = plugin[0]
             filename = filename.replace('pyc','py')
