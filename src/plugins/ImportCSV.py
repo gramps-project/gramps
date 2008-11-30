@@ -449,7 +449,7 @@ class CSVParser:
                     # only add note to event:
                     # append notes, if previous notes
                     if note:
-                        previous_notes_list = family.get_note_list()
+                        previous_notes_list = marriage.get_note_list()
                         updated_note = False
                         for note_handle in previous_notes_list:
                             previous_note = self.db.get_note_from_handle(note_handle)
