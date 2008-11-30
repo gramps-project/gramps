@@ -54,6 +54,7 @@ from DateHandler import parser as _dp
 from gen.plug import PluginManager, ImportPlugin
 from Utils import gender as gender_map
 from Utils import ProgressMeter
+from Utils import create_id
 
 #-------------------------------------------------------------------------
 #
@@ -444,7 +445,7 @@ class CSVParser:
                     new, marriageplace = self.get_or_create_place(marriageplace)
                 if marriagedate:
                     marriagedate = _dp.parse(marriagedate)
-                if marriagedate or marriageplace or marriagesource:
+                if marriagedate or marriageplace or marriagesource or note:
                     # add, if new; replace, if different
                     new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, marriagedate, marriageplace, marriagesource)
                     if new:
@@ -453,13 +454,29 @@ class CSVParser:
                         family.add_event_ref(mar_ref)
                         self.db.commit_family(family, self.trans)
                     # only add note to event:
+                    # append notes, if previous notes
                     if note:
-                        # append notes, if previous notes
-                        previous_notes = marriage.get_note()
-                        if previous_notes != "":
-                            if note not in previous_notes:
-                                note = previous_notes + "\n" + note
-                        marriage.set_note(note)
+                        previous_notes_list = marriage.get_note_list()
+                        updated_note = False
+                        for note_handle in previous_notes_list:
+                            previous_note = self.db.get_note_from_handle(note_handle)
+                            if previous_note.type == gen.lib.NoteType.EVENT:
+                                previous_text = previous_note.get()
+                                if note not in previous_text:
+                                    note = previous_text + "\n" + note
+                                previous_note.set(note)
+                                self.db.commit_note(previous_note, self.trans)
+                                updated_note = True
+                                break
+                        if not updated_note:
+                            # add new note here
+                            new_note = gen.lib.Note()
+                            new_note.handle = create_id()
+                            new_note.type.set(gen.lib.NoteType.EVENT)
+                            new_note.set(note)
+                            self.db.add_note(new_note, self.trans)
+                            marriage.add_note(new_note.handle)
+                            self.db.commit_note(new_note, self.trans)
                         self.db.commit_event(marriage, self.trans)
             elif "family" in header:
                 # family, child
@@ -516,12 +533,27 @@ class CSVParser:
                 # put note on child
                 if note:
                     # append notes, if previous notes
-                    previous_notes = child.get_note()
-                    if self.debug: print " previous note:", previous_notes
-                    if previous_notes != "":
-                        if note not in previous_notes:
-                            note = previous_notes + "\n" + note
-                    child.set_note(note)
+                    previous_notes_list = child.get_note_list()
+                    updated_note = False
+                    for note_handle in previous_notes_list:
+                        previous_note = self.db.get_note_from_handle(note_handle)
+                        if previous_note.type == gen.lib.NoteType.PERSON:
+                            previous_text = previous_note.get()
+                            if note not in previous_text:
+                                note = previous_text + "\n" + note
+                            previous_note.set(note)
+                            self.db.commit_note(previous_note, self.trans)
+                            updated_note = True
+                            break
+                    if not updated_note:
+                        # add new note here
+                        new_note = gen.lib.Note()
+                        new_note.handle = create_id()
+                        new_note.type.set(gen.lib.NoteType.PERSON)
+                        new_note.set(note)
+                        self.db.add_note(new_note, self.trans)
+                        child.add_note(new_note.handle)
+                        self.db.commit_note(new_note, self.trans)
                 self.db.commit_person(child, self.trans)
             elif "surname" in header:              # person data
                 # surname, and any of the following
@@ -574,11 +606,27 @@ class CSVParser:
                     name.set_suffix(suffix)
                 if note is not None:
                     # append notes, if previous notes
-                    previous_notes = person.get_note()
-                    if previous_notes != "":
-                        if note not in previous_notes:
-                            note = previous_notes + "\n" + note
-                    person.set_note(note)
+                    previous_notes_list = person.get_note_list()
+                    updated_note = False
+                    for note_handle in previous_notes_list:
+                        previous_note = self.db.get_note_from_handle(note_handle)
+                        if previous_note.type == gen.lib.NoteType.PERSON:
+                            previous_text = previous_note.get()
+                            if note not in previous_text:
+                                note = previous_text + "\n" + note
+                            previous_note.set(note)
+                            self.db.commit_note(previous_note, self.trans)
+                            updated_note = True
+                            break
+                    if not updated_note:
+                        # add new note here
+                        new_note = gen.lib.Note()
+                        new_note.handle = create_id()
+                        new_note.type.set(gen.lib.NoteType.PERSON)
+                        new_note.set(note)
+                        self.db.add_note(new_note, self.trans)
+                        person.add_note(new_note.handle)
+                        self.db.commit_note(new_note, self.trans)
                 if grampsid is not None:
                     person.gramps_id = grampsid
                 elif person_ref is not None:
