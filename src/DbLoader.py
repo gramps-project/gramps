@@ -188,7 +188,7 @@ class DbLoader:
                     _("Could not open file: %s") % filename, 
                     _('File type "%s" is unknown to GRAMPS.\n\n'
                       'Valid types are: GRAMPS database, GRAMPS XML, '
-                      'GRAMPS package, and GEDCOM.') % filetype)
+                      'GRAMPS package, GEDCOM, and others.') % filetype)
 
         choose_db_dialog.destroy()
         return False
