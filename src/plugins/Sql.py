@@ -62,10 +62,15 @@ class Database:
                 self.cursor.execute(q, args)
                 self.db.commit()
             except:
-                "no such table to drop: '%s'" % q
+                "WARN: no such table to drop: '%s'" % q
         else:
-            self.cursor.execute(q, args)
-            self.db.commit()
+            try:
+                self.cursor.execute(q, args)
+                self.db.commit()
+            except:
+                print "ERROR: query :", q
+                print "ERROR: values:", args
+                raise
             return self.cursor.fetchall()
 
     def close(self):
