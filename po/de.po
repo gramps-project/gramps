@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-25 18:23+0100\n"
-"PO-Revision-Date: 2008-11-25 18:27+0100\n"
+"POT-Creation-Date: 2008-12-01 20:49+0100\n"
+"PO-Revision-Date: 2008-12-01 20:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -306,11 +306,12 @@ msgstr "Kann von aktueller Datei nicht importieren"
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and "
+"others."
 msgstr ""
 "Dateityp \"%s\" ist GRAMPS unbekannt.\n"
 "\n"
-"Gültige Type sind: GRAMPS-Datenbank, GRAMPS-XML, GRAMPS-Paket und GEDCOM."
+"Gültige Type sind: GRAMPS-Datenbank, GRAMPS-XML, GRAMPS-Paket, GEDCOM und andere."
 
 #: ../src/DbLoader.py:213 ../src/DbLoader.py:220
 msgid "Cannot open database"
@@ -406,7 +407,7 @@ msgstr "Import abgeschlossen..."
 
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:226 ../src/plugins/ImportCSV.py:374
+#: ../src/DbManager.py:226 ../src/plugins/ImportCSV.py:375
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
@@ -975,7 +976,7 @@ msgstr "E-Mail"
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCSV.py:193 ../src/plugins/References.py:34
+#: ../src/plugins/ImportCSV.py:194 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:272
 msgid "Person"
@@ -989,7 +990,7 @@ msgstr "Person"
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266 ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:201
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:273
 msgid "Family"
@@ -1000,7 +1001,7 @@ msgstr "Familie"
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:215 ../src/plugins/MarkerReport.py:301
+#: ../src/plugins/ImportCSV.py:216 ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79 ../src/plugins/References.py:35
 #: ../src/plugins/References.py:93
@@ -1011,7 +1012,7 @@ msgstr "Ort"
 
 #: ../src/GrampsCfg.py:199 ../src/Simple/_SimpleTable.py:206
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:173 ../src/plugins/ImportCSV.py:198
+#: ../src/plugins/ImportCSV.py:174 ../src/plugins/ImportCSV.py:199
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:276
 msgid "Source"
@@ -1041,7 +1042,7 @@ msgstr "Aufbewahrungsort"
 #: ../src/Simple/_SimpleTable.py:227 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
+#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:176
 #: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1100,7 +1101,7 @@ msgstr "_Details zum selbstdefinierten Format"
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
+#: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:81
 #: ../src/PluginUtils/_GuiOptions.py:954
@@ -1113,14 +1114,14 @@ msgstr "Nachname"
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
-#: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
+#: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:160
 msgid "Given"
 msgstr "Vorname"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:593 ../src/Utils.py:1197
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:170
 msgid "Suffix"
 msgstr "Suffix"
 
@@ -1131,7 +1132,7 @@ msgstr "Rufname"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:163
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:164
 msgid "Call"
 msgstr "Rufname"
 
@@ -1320,7 +1321,7 @@ msgstr "Lesezeichen hinzufügen"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:983 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:213 ../src/plugins/MarkerReport.py:295
+#: ../src/plugins/ImportCSV.py:214 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:699 ../src/plugins/NarrativeWeb.py:1351
 #: ../src/plugins/NarrativeWeb.py:1751 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
@@ -1856,11 +1857,11 @@ msgstr "Person %s hat eine Verbindung zu sich selbst über %s"
 msgid "undefined"
 msgstr "undefiniert"
 
-#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:272
+#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:273
 msgid "husband"
 msgstr "Ehemann"
 
-#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:268
+#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:269
 msgid "wife"
 msgstr "Ehefrau"
 
@@ -1956,7 +1957,7 @@ msgstr "frühere(r) Partner(in)"
 #: ../src/Merge/_MergePerson.py:164 ../src/DataViews/FamilyList.py:63
 #: ../src/DataViews/RelationView.py:786 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:296 ../src/plugins/FamilyGroup.py:185
-#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:207
+#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:208
 #: ../src/plugins/IndivComplete.py:216 ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2288
@@ -1969,7 +1970,7 @@ msgstr "Vater"
 #: ../src/Merge/_MergePerson.py:166 ../src/DataViews/FamilyList.py:64
 #: ../src/DataViews/RelationView.py:787 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:293 ../src/plugins/FamilyGroup.py:202
-#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:203
+#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:204
 #: ../src/plugins/IndivComplete.py:225 ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2293
@@ -2115,7 +2116,7 @@ msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:165 ../src/plugins/PatchNames.py:244
+#: ../src/plugins/ImportCSV.py:166 ../src/plugins/PatchNames.py:244
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
@@ -2147,7 +2148,7 @@ msgid "Call Name"
 msgstr "Rufname"
 
 #: ../src/ScratchPad.py:591 ../src/Utils.py:1195
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:168
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 msgid "Prefix"
 msgstr "Präfix"
@@ -2577,7 +2578,7 @@ msgstr "Quellen im Aufbewahrungsort"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
-#: ../src/plugins/ExportCSV.py:474 ../src/plugins/ImportCSV.py:196
+#: ../src/plugins/ExportCSV.py:474 ../src/plugins/ImportCSV.py:197
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -3016,27 +3017,27 @@ msgstr "Vatername, Vorname"
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCSV.py:229
+#: ../src/plugins/ImportCSV.py:230
 msgid "title"
 msgstr "Titel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCSV.py:223
+#: ../src/plugins/ImportCSV.py:224
 msgid "given"
 msgstr "Vorname"
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCSV.py:231
+#: ../src/plugins/ImportCSV.py:232
 msgid "prefix"
 msgstr "Präfix"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCSV.py:219
+#: ../src/plugins/ImportCSV.py:220
 msgid "surname"
 msgstr "Nachname"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCSV.py:233
+#: ../src/plugins/ImportCSV.py:234
 msgid "suffix"
 msgstr "Suffix"
 
@@ -3045,7 +3046,7 @@ msgid "patronymic"
 msgstr "Vatername"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCSV.py:227
+#: ../src/plugins/ImportCSV.py:228
 msgid "call"
 msgstr "Rufname"
 
@@ -3116,7 +3117,7 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:44 ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:171 ../src/plugins/IndivComplete.py:437
+#: ../src/plugins/ImportCSV.py:172 ../src/plugins/IndivComplete.py:437
 #: ../src/plugins/NarrativeWeb.py:2159 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/StatisticsChart.py:96
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
@@ -3150,7 +3151,7 @@ msgstr "(Ehe-)Partner"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1088
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCSV.py:211 ../src/gen/lib/eventtype.py:131
+#: ../src/plugins/ImportCSV.py:212 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Hochzeit"
 
@@ -4712,8 +4713,8 @@ msgstr "Väterlicherseits"
 msgid "Maternal"
 msgstr "Mütterlicherseits"
 
-#: ../src/Editors/_EditFamily.py:117 ../src/plugins/csvexport.glade.h:5
-msgid "_Children"
+#: ../src/Editors/_EditFamily.py:117
+msgid "Chil_dren"
 msgstr "_Kinder"
 
 #: ../src/Editors/_EditFamily.py:122
@@ -5458,7 +5459,7 @@ msgid "Import database"
 msgstr "Datenbank importieren"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
-#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:307
+#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:308
 #: ../src/plugins/ImportGeneWeb.py:90 ../src/plugins/ImportGeneWeb.py:96
 #: ../src/plugins/ImportvCard.py:70 ../src/plugins/ImportvCard.py:76
 #, python-format
@@ -8346,41 +8347,41 @@ msgstr "Ereignisbeschreibung aus Ereignisdaten Extrahieren"
 msgid "Extracts event descriptions from the event data"
 msgstr "Extrahiert Ereignisbeschreibung aus Ereignisdaten"
 
-#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:179
+#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:180
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:177
+#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:178
 #: ../src/plugins/StatisticsChart.py:106
 msgid "Birth place"
 msgstr "Geburtsort"
 
-#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:181
+#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:182
 msgid "Birth source"
 msgstr "Geburt Quellenangabe"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterbedatum"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:183
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:184
 #: ../src/plugins/StatisticsChart.py:108
 msgid "Death place"
 msgstr "Sterbeort"
 
-#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:187
+#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:188
 msgid "Death source"
 msgstr "Sterbequelle"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCSV.py:208 ../src/plugins/NarrativeWeb.py:2391
+#: ../src/plugins/ImportCSV.py:209 ../src/plugins/NarrativeWeb.py:2391
 msgid "Husband"
 msgstr "Ehemann"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCSV.py:204 ../src/plugins/NarrativeWeb.py:2393
+#: ../src/plugins/ImportCSV.py:205 ../src/plugins/NarrativeWeb.py:2393
 msgid "Wife"
 msgstr "Ehefrau"
 
@@ -9308,152 +9309,152 @@ msgstr "Beziehungengrafik"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Erstellt eine Beziehungengrafik mit GraphViz."
 
-#: ../src/plugins/ImportCSV.py:158
+#: ../src/plugins/ImportCSV.py:159
 msgid "Given name"
 msgstr "Vorname"
 
-#: ../src/plugins/ImportCSV.py:162
+#: ../src/plugins/ImportCSV.py:163
 msgid "Call name"
 msgstr "Rufname"
 
-#: ../src/plugins/ImportCSV.py:189
+#: ../src/plugins/ImportCSV.py:190
 msgid "Death cause"
 msgstr "Todesursache"
 
-#: ../src/plugins/ImportCSV.py:191
+#: ../src/plugins/ImportCSV.py:192
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCSV.py:205
+#: ../src/plugins/ImportCSV.py:206
 msgid "Parent2"
 msgstr "Elter2"
 
-#: ../src/plugins/ImportCSV.py:209
+#: ../src/plugins/ImportCSV.py:210
 msgid "Parent1"
 msgstr "Elter1"
 
-#: ../src/plugins/ImportCSV.py:222
+#: ../src/plugins/ImportCSV.py:223
 msgid "given name"
 msgstr "Vorname"
 
-#: ../src/plugins/ImportCSV.py:226
+#: ../src/plugins/ImportCSV.py:227
 msgid "call name"
 msgstr "Rufname"
 
-#: ../src/plugins/ImportCSV.py:235
+#: ../src/plugins/ImportCSV.py:236
 msgid "gender"
 msgstr "Geschlecht"
 
-#: ../src/plugins/ImportCSV.py:237 ../src/plugins/ImportCSV.py:262
+#: ../src/plugins/ImportCSV.py:238 ../src/plugins/ImportCSV.py:263
 msgid "source"
 msgstr "Quelle"
 
-#: ../src/plugins/ImportCSV.py:239
+#: ../src/plugins/ImportCSV.py:240
 msgid "note"
 msgstr "Notiz"
 
-#: ../src/plugins/ImportCSV.py:241
+#: ../src/plugins/ImportCSV.py:242
 msgid "birth place"
 msgstr "Geburtsort"
 
-#: ../src/plugins/ImportCSV.py:243
+#: ../src/plugins/ImportCSV.py:244
 msgid "birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/plugins/ImportCSV.py:245
+#: ../src/plugins/ImportCSV.py:246
 msgid "birth source"
 msgstr "Geburtsquelle"
 
-#: ../src/plugins/ImportCSV.py:247
+#: ../src/plugins/ImportCSV.py:248
 msgid "death place"
 msgstr "Sterbeort"
 
-#: ../src/plugins/ImportCSV.py:249
+#: ../src/plugins/ImportCSV.py:250
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../src/plugins/ImportCSV.py:251
+#: ../src/plugins/ImportCSV.py:252
 msgid "death source"
 msgstr "Sterbequelle"
 
-#: ../src/plugins/ImportCSV.py:253
+#: ../src/plugins/ImportCSV.py:254
 msgid "death cause"
 msgstr "Todesursache"
 
-#: ../src/plugins/ImportCSV.py:255
+#: ../src/plugins/ImportCSV.py:256
 msgid "gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCSV.py:257
+#: ../src/plugins/ImportCSV.py:258
 msgid "person"
 msgstr "Person"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:260
+#: ../src/plugins/ImportCSV.py:261
 msgid "child"
 msgstr "Kind"
 
-#: ../src/plugins/ImportCSV.py:264
+#: ../src/plugins/ImportCSV.py:265
 msgid "family"
 msgstr "Familie"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:267
+#: ../src/plugins/ImportCSV.py:268
 msgid "mother"
 msgstr "Mutter"
 
-#: ../src/plugins/ImportCSV.py:269
+#: ../src/plugins/ImportCSV.py:270
 msgid "parent2"
 msgstr "Elter2"
 
-#: ../src/plugins/ImportCSV.py:271
+#: ../src/plugins/ImportCSV.py:272
 msgid "father"
 msgstr "Vater"
 
-#: ../src/plugins/ImportCSV.py:273
+#: ../src/plugins/ImportCSV.py:274
 msgid "parent1"
 msgstr "Elter1"
 
-#: ../src/plugins/ImportCSV.py:275
+#: ../src/plugins/ImportCSV.py:276
 msgid "marriage"
 msgstr "Hochzeit"
 
-#: ../src/plugins/ImportCSV.py:277
+#: ../src/plugins/ImportCSV.py:278
 msgid "date"
 msgstr "Datum"
 
-#: ../src/plugins/ImportCSV.py:279
+#: ../src/plugins/ImportCSV.py:280
 msgid "place"
 msgstr "Ort"
 
-#: ../src/plugins/ImportCSV.py:320
+#: ../src/plugins/ImportCSV.py:321
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "Format Fehler: Datei %s, Zeile %d: %s"
 
-#: ../src/plugins/ImportCSV.py:371
+#: ../src/plugins/ImportCSV.py:372
 msgid "CSV Import"
 msgstr "CSV Import"
 
-#: ../src/plugins/ImportCSV.py:372
+#: ../src/plugins/ImportCSV.py:373
 msgid "Reading data..."
 msgstr "Lese Daten..."
 
-#: ../src/plugins/ImportCSV.py:639 ../src/plugins/ImportGeneWeb.py:187
+#: ../src/plugins/ImportCSV.py:687 ../src/plugins/ImportGeneWeb.py:187
 #: ../src/plugins/ImportvCard.py:151
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import abgeschlossen: %d Sekunden"
 
-#: ../src/plugins/ImportCSV.py:640
+#: ../src/plugins/ImportCSV.py:688
 msgid "CSV import"
 msgstr "CSV Import"
 
-#: ../src/plugins/ImportCSV.py:788
+#: ../src/plugins/ImportCSV.py:836
 msgid "CSV spreadsheet files"
 msgstr "CSV Tabelle Dateien"
 
-#: ../src/plugins/ImportCSV.py:791
+#: ../src/plugins/ImportCSV.py:839
 msgid "CSV Spreadheet"
 msgstr "CSV Tabelle"
 
@@ -20265,6 +20266,10 @@ msgstr "Filt_er:"
 #: ../src/plugins/csvexport.glade.h:4
 msgid "I_ndividuals"
 msgstr "Perso_nen"
+
+#: ../src/plugins/csvexport.glade.h:5
+msgid "_Children"
+msgstr "_Kinder"
 
 #: ../src/plugins/csvexport.glade.h:6
 msgid "_Marriages"
