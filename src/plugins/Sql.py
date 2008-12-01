@@ -271,7 +271,6 @@ def exportData(database, filename, option_box=None, callback=None):
                  title TEXT, 
                  long FLOAT, 
                  lat FLOAT, 
-                 main_loc TEXT,
                  change TEXT, 
                  marker0 TEXT, 
                  marker1 TEXT, 
@@ -558,15 +557,15 @@ def exportData(database, filename, option_box=None, callback=None):
                  title, 
                  long, 
                  lat, 
-                 main_loc,
                  change, 
                  marker0, 
                  marker1, 
-                 private) values (?,?,?,?,?,?,?,?,?,?);""",
-                 handle, gramps_id, title, long, lat, main_loc,
+                 private) values (?,?,?,?,?,?,?,?,?);""",
+                 handle, gramps_id, title, long, lat,
                  change, marker[0], marker[1], private)
 
         # TODO: alt_location_list, urls, medias, sources, notes
+        # main_loc
         count += 1
         callback(100 * count/total)
 
