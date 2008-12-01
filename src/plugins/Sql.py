@@ -128,7 +128,6 @@ def export_name(db, handle, data):
 
         db.query("""INSERT into names (
                   private, 
-                  date, 
                   first_name, 
                   surname, 
                   suffix, 
@@ -141,9 +140,9 @@ def export_name(db, handle, data):
                   sort_as,
                   display_as, 
                   call
-                    ) values (?, ?, ?, ?, ?, ?, ?, 
+                    ) values (?, ?, ?, ?, ?, ?, 
                               ?, ?, ?, ?, ?, ?, ?);""",
-                 private, date, first_name, surname, suffix, title,
+                 private, first_name, surname, suffix, title,
                  name_type[0], name_type[1], prefix, patronymic, group_as, 
                  sort_as, display_as, call)
         export_date(db, handle, date) 
@@ -214,7 +213,6 @@ def exportData(database, filename, option_box=None, callback=None):
 
     db.query("""CREATE TABLE names (
                   private BOOLEAN, 
-                  date LONG, 
                   first_name TEXT, 
                   surname TEXT, 
                   suffix TEXT, 
