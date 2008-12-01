@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-30 20:23+0100\n"
-"PO-Revision-Date: 2008-11-30 20:24+0100\n"
+"PO-Revision-Date: 2008-12-01 09:51+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -780,7 +780,7 @@ msgstr "_Ta inte med data markerade som privata"
 #: ../src/ExportOptions.py:74 ../src/plugins/genewebexport.glade.h:9
 #: ../src/plugins/writeftree.glade.h:3
 msgid "_Restrict data on living people"
-msgstr "_Begränsa information om nu levande personer"
+msgstr "Begränsa information om nu le_vande personer"
 
 #: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:145
 #: ../src/plugins/ExportCSV.py:182 ../src/plugins/ExportVCalendar.py:88
@@ -20046,7 +20046,7 @@ msgstr "I_ndivider"
 
 #: ../src/plugins/csvexport.glade.h:5
 msgid "_Children"
-msgstr "_Barn"
+msgstr "Ba_rn"
 
 #: ../src/plugins/csvexport.glade.h:6
 msgid "_Marriages"
@@ -20094,7 +20094,7 @@ msgstr "Ta ej med _källor"
 
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Reference i_mages from path:  "
-msgstr "Referens_bilder från sökväg:  "
+msgstr "Referensbilder från _sökväg:  "
 
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "Use _Living as first name"
