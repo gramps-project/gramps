@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-06 21:45+0100\n"
-"PO-Revision-Date: 2008-11-21 20:54+0100\n"
+"PO-Revision-Date: 2008-12-01 20:38+0100\n"
 "Last-Translator: Sigmund Lorentsen <sigmund.lorentsen@tele2.no>\n"
 "Language-Team: Norwegian Nynorsk <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "By/Kommune:"
 
 #: ../src/Assistant.py:340 ../src/plugins/ownereditor.glade.h:9
 msgid "State/Province:"
-msgstr "Stat/Provins:"
+msgstr "Fylke:"
 
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:52
 #: ../src/glade/gramps.glade.h:60 ../src/plugins/ownereditor.glade.h:5
@@ -7236,40 +7236,40 @@ msgstr "Totalt tal på referansar til mediaobjekt"
 
 #: ../src/plugins/DefaultGramplets.py:717 ../src/plugins/Summary.py:132
 msgid "Number of unique media objects"
-msgstr ""
+msgstr "Tal på ulike mediaobjekt"
 
 #: ../src/plugins/DefaultGramplets.py:722 ../src/plugins/Summary.py:133
 msgid "Total size of media objects"
-msgstr ""
+msgstr "Samla storleik på mediaobjekt"
 
 #: ../src/plugins/DefaultGramplets.py:724 ../src/plugins/Summary.py:134
 msgid "bytes"
-msgstr ""
+msgstr "bytes"
 
 #: ../src/plugins/DefaultGramplets.py:726 ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
-msgstr ""
+msgstr "Manglande mediaobjekt"
 
 #: ../src/plugins/DefaultGramplets.py:734
 msgid "Enter Python expressions"
-msgstr ""
+msgstr "Skriv inn Python-uttrykk"
 
 #: ../src/plugins/DefaultGramplets.py:738
 msgid "class name|Date"
-msgstr ""
+msgstr "Dato"
 
 #: ../src/plugins/DefaultGramplets.py:748
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #. GUI setup:
 #: ../src/plugins/DefaultGramplets.py:833
 msgid "Enter text"
-msgstr ""
+msgstr "Skriv inn tekst"
 
 #: ../src/plugins/DefaultGramplets.py:835
 msgid "Enter your TODO list here."
-msgstr ""
+msgstr "Skriv inn data i gjeremålslista di her."
 
 #: ../src/plugins/DefaultGramplets.py:846
 msgid ""
@@ -7287,149 +7287,162 @@ msgid ""
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-open detached the next time you start GRAMPS."
 msgstr ""
+"Velkomen til GRAMPS!\n"
+"\n"
+"GRAMPS er ein programpakke for slektsgransking.  Sjølv om dette programmet liknar andre slektsgranskingsprogram har det ein del unike og kraftfulle eigenskapar.\n"
+"\n"
+"GRAMPS er eit fritt program med open kjeldekode.  Dette tyder at du fritt kan kopiera og dela det ut til kven du vil.  Programmet vert utvikla og vedlikehalde av frivillige frå heile verda.  Desse har som mål å gjera GRAMPS til eit kraftfullt verktøy som er lett å bruka.\n"
+"\n"
+"Å koma i gang\n"
+"\n"
+"Det første du må gjera er å laga eit slektstre.  For å laga eit nytt slektstre (også kalla ein database)vel du \"Slektstre\" frå menyen.  Vel deretter \"Handsama slektstre\", klikk på \"Ny\" og gi den nye databasen eit namn.  Fleire detaljar finn du i Brukarvegleiinga eller online-manualen på http://gramps-project.org.\n"
+"\n"
+"Du les no frå \"Smågramps\"-sida, der du kan leggja til dine eigne Smågramps.\n"
+"\n"
+"Du kan høgreklikka på bakgrunnen på denne sida for å leggja til nye smågramps eller endra talet på kolonnar.  Du kan og knappen for Eigenskapar for å flytta Smågrampsen på sida, eller kopla han frå slik at han kan flyta over GRAMPS.  Dersom du lukkar GRAMPS med ein fråkopla Smågramps, vil han verta opna som fråkopla neste gong du startar GRAMPS."
 
 #: ../src/plugins/DefaultGramplets.py:875
 msgid "Read news from the GRAMPS wiki"
-msgstr ""
+msgstr "Les nyhende frå wikien til GRAMPS"
 
 #: ../src/plugins/DefaultGramplets.py:919
 msgid "Reading"
-msgstr ""
+msgstr "Les"
 
 #. GUI setup:
 #: ../src/plugins/DefaultGramplets.py:969
 msgid "Enter a date, click Run"
-msgstr ""
+msgstr "Skriv inn ein dato og klikk på Køyr"
 
 #: ../src/plugins/DefaultGramplets.py:977
 msgid "Enter a date in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column, and double-click the row to view or edit."
-msgstr ""
+msgstr "Skriv inn ein dato i feltet under og klikk på Køyr.  Dette vil rekna ut alderen på alle i Slektstreet ditt på denne datoen.  Du kan deretter sortera eller alder og dobbelklikka på ei rad for å sjå eller redigera."
 
 #: ../src/plugins/DefaultGramplets.py:985
 msgid "Run"
-msgstr ""
+msgstr "Køyr"
 
 #: ../src/plugins/DefaultGramplets.py:1008
 msgid "Top Surnames Gramplet"
-msgstr ""
+msgstr "Smågramps for mest brukte etternamn"
 
 #: ../src/plugins/DefaultGramplets.py:1011
 msgid "Top Surnames"
-msgstr ""
+msgstr "Mest brukte etternamn"
 
 #: ../src/plugins/DefaultGramplets.py:1017
 msgid "Surname Cloud Gramplet"
-msgstr ""
+msgstr "Smågramps for etternamn-sky (-statistikk)"
 
 #: ../src/plugins/DefaultGramplets.py:1021
 msgid "Surname Cloud"
-msgstr ""
+msgstr "Etternamn-sky (statistikk)"
 
 #: ../src/plugins/DefaultGramplets.py:1026
 msgid "Statistics Gramplet"
-msgstr ""
+msgstr "Smågramps for statistikkar"
 
 #: ../src/plugins/DefaultGramplets.py:1030
 msgid "Statistics"
-msgstr ""
+msgstr "Statistikkar"
 
 #: ../src/plugins/DefaultGramplets.py:1035
 msgid "Session Log Gramplet"
-msgstr ""
+msgstr "Smågramps for økt-log"
 
 #: ../src/plugins/DefaultGramplets.py:1039
 msgid "Session Log"
-msgstr ""
+msgstr "Økt-log"
 
 #: ../src/plugins/DefaultGramplets.py:1044
 msgid "Python Gramplet"
-msgstr ""
+msgstr "Smågramps for Python"
 
 #: ../src/plugins/DefaultGramplets.py:1047
 msgid "Python Shell"
-msgstr ""
+msgstr "Python-skal"
 
 #: ../src/plugins/DefaultGramplets.py:1052
 msgid "TODO Gramplet"
-msgstr ""
+msgstr "Smågramps for gjeremål"
 
 #: ../src/plugins/DefaultGramplets.py:1056
 msgid "TODO List"
-msgstr ""
+msgstr "Gjeremåls-liste"
 
 #: ../src/plugins/DefaultGramplets.py:1061
 msgid "Welcome Gramplet"
-msgstr ""
+msgstr "Smågramps for velkomen"
 
 #: ../src/plugins/DefaultGramplets.py:1065
 msgid "Welcome to GRAMPS!"
-msgstr ""
+msgstr "Velkomen til GRAMPS!"
 
 #: ../src/plugins/DefaultGramplets.py:1070
 msgid "Calendar Gramplet"
-msgstr ""
+msgstr "Smågramps for kalendar"
 
 #: ../src/plugins/DefaultGramplets.py:1078
 msgid "News Gramplet"
-msgstr ""
+msgstr "Smågramps for nyhende"
 
 #: ../src/plugins/DefaultGramplets.py:1082
 msgid "News"
-msgstr ""
+msgstr "Nyhende"
 
 #: ../src/plugins/DefaultGramplets.py:1087
 msgid "Age on Date Gramplet"
-msgstr ""
+msgstr "Smågramps for alder ved vist dato"
 
 #: ../src/plugins/DefaultGramplets.py:1095
 msgid "Relatives Gramplet"
-msgstr ""
+msgstr "Smågramps for slektningar"
 
 #: ../src/plugins/DefaultGramplets.py:1098
 msgid "Active Person's Relatives"
-msgstr ""
+msgstr "Den aktive personen sine slektningar"
 
 #: ../src/plugins/DefaultGramplets.py:1105
 msgid "Pedigree Gramplet"
-msgstr ""
+msgstr "Smågramps for anetavle"
 
 #: ../src/plugins/Desbrowser.py:56
 msgid "manual|Interactive_Descendant_Browser..."
-msgstr ""
+msgstr "Interaktiv_Etterkomarnavigering..."
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
 msgid "Descendant Browser: %s"
-msgstr ""
+msgstr "Etterkomarutforskar: %s"
 
 #: ../src/plugins/Desbrowser.py:102
 msgid "Descendant Browser tool"
-msgstr ""
+msgstr "Etterkomarutforskar"
 
 #: ../src/plugins/Desbrowser.py:167
 msgid "Interactive Descendant Browser"
-msgstr ""
+msgstr "Interaktiv etterkomarutforskar"
 
 #: ../src/plugins/Desbrowser.py:171
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr ""
+msgstr "Gjev eit hierarki som du kan bla gjennom basert på den aktive personen"
 
 #: ../src/plugins/DescendTree.py:132
 #, python-format
 msgid "Descendant Chart for %s"
-msgstr ""
+msgstr "Etterkomartre for %s"
 
 #: ../src/plugins/DescendTree.py:437
 msgid "Whether to compress tree."
-msgstr ""
+msgstr "Skal treet kompimerast?."
 
 #: ../src/plugins/DescendTree.py:488
 msgid "Descendant Tree"
-msgstr ""
+msgstr "Etterkomartre"
 
 #: ../src/plugins/DescendTree.py:492
 msgid "Produces a graphical descendant tree"
-msgstr ""
+msgstr "Lagar eit grafisk etterkomartre"
 
 #: ../src/plugins/DescendReport.py:118
 #, python-format
@@ -7454,12 +7467,12 @@ msgstr "d. %(death_date)s"
 #: ../src/plugins/DescendReport.py:171
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr ""
+msgstr "ef. %(spouse)s"
 
 #: ../src/plugins/DescendReport.py:230
 #, python-format
 msgid "The style used for the level %d display."
-msgstr ""
+msgstr "Stilen som blir brukt for visning av nivå %d."
 
 #: ../src/plugins/DescendReport.py:239
 #, python-format
@@ -7758,117 +7771,117 @@ msgstr "Stilen som blir brukt for den første personoppføringa."
 #: ../src/plugins/DetAncestralReport.py:860
 #: ../src/plugins/DetDescendantReport.py:810
 msgid "The style used for the More About header."
-msgstr ""
+msgstr "Stilen som blir brukt for overskrifta \"Meir om\"."
 
 #: ../src/plugins/DetAncestralReport.py:870
 #: ../src/plugins/DetDescendantReport.py:820
 msgid "The style used for additional detail data."
-msgstr ""
+msgstr "Stilen som blir brukt for tilleggsdetaljar."
 
 #: ../src/plugins/DetAncestralReport.py:886
 msgid "Detailed Ancestral Report"
-msgstr ""
+msgstr "Detaljert anerapport"
 
 #: ../src/plugins/DetAncestralReport.py:888
 msgid "Produces a detailed ancestral report"
-msgstr ""
+msgstr "Lagar ein detaljert rapport over forfedrar"
 
 #: ../src/plugins/DetDescendantReport.py:181
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr ""
+msgstr "Etterkomarrapport for %(person_name)s"
 
 #: ../src/plugins/DetDescendantReport.py:723
 #: ../src/plugins/KinshipReport.py:349
 msgid "Include spouses"
-msgstr ""
+msgstr "Ta med ektefeller"
 
 #: ../src/plugins/DetDescendantReport.py:724
 msgid "Whether to include detailed spouse information."
-msgstr ""
+msgstr "Skal detaljert informasjon om ektefeller takast med?."
 
 #: ../src/plugins/DetDescendantReport.py:836
 msgid "Detailed Descendant Report"
-msgstr ""
+msgstr "Detaljert etterkomarrapport"
 
 #: ../src/plugins/DetDescendantReport.py:838
 msgid "Produces a detailed descendant report"
-msgstr ""
+msgstr "Lagar ein detaljert etterkomarrapport"
 
 #: ../src/plugins/EndOfLineReport.py:134
 #, python-format
 msgid "End of Line Report for %s"
-msgstr ""
+msgstr "Rapport som viser slutt på greinene for %s"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr ""
+msgstr "Alle forfedrene til %s som manglar ein forelder"
 
 #: ../src/plugins/EndOfLineReport.py:185 ../src/plugins/KinshipReport.py:308
 #, python-format
 msgid " (%(birth_date)s - %(death_date)s)"
-msgstr ""
+msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/EndOfLineReport.py:264 ../src/plugins/MarkerReport.py:476
 msgid "The style used for the section headers."
-msgstr ""
+msgstr "Stilen som blir brukt i kapitteloverskriftene."
 
 #: ../src/plugins/EndOfLineReport.py:282
 msgid "The basic style used for generation headings."
-msgstr ""
+msgstr "Hovudstilen som blir brukt i generasjonsoverskriftene."
 
 #: ../src/plugins/EndOfLineReport.py:320
 msgid "End of Line Report"
-msgstr ""
+msgstr "Sluttlinje-rapport"
 
 #: ../src/plugins/EndOfLineReport.py:322
 msgid "Produces a textual end of line report"
-msgstr ""
+msgstr "Lagar ein tekstrapport som viser slutt på greinene"
 
 #: ../src/plugins/Eval.py:58
 msgid "Python evaluation window"
-msgstr ""
+msgstr "Evalueringsvindauge for Python"
 
 #: ../src/plugins/Eval.py:128
 msgid "Python Evaluation Window"
-msgstr ""
+msgstr "Evalueringsvindauge for Python"
 
 #: ../src/plugins/Eval.py:132
 msgid "Provides a window that can evaluate python code"
-msgstr ""
+msgstr "Viser eit vindauge som kan evaluera python-kode"
 
 #: ../src/plugins/EventCmp.py:67
 msgid "manual|Compare_Individual_Events..."
-msgstr ""
+msgstr "Samanlikna enkelthendingar..."
 
 #: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
-msgstr ""
+msgstr "Filterval for samanlikning av hendingar"
 
 #: ../src/plugins/EventCmp.py:165
 msgid "Filter selection"
-msgstr ""
+msgstr "Filterval"
 
 #: ../src/plugins/EventCmp.py:165
 msgid "Event Comparison tool"
-msgstr ""
+msgstr "Verktøy for samanlikning av hendingar"
 
 #: ../src/plugins/EventCmp.py:178
 msgid "Comparing events"
-msgstr ""
+msgstr "Samanliknar hendingar"
 
 #: ../src/plugins/EventCmp.py:179
 msgid "Selecting people"
-msgstr ""
+msgstr "Vel personar"
 
 #: ../src/plugins/EventCmp.py:191
 msgid "No matches were found"
-msgstr ""
+msgstr "Ingen treff vart funne"
 
 #: ../src/plugins/EventCmp.py:241 ../src/plugins/EventCmp.py:264
 msgid "Event Comparison Results"
-msgstr ""
+msgstr "Resultat for samanlikning av hendingar"
 
 #: ../src/plugins/EventCmp.py:251
 msgid " Date"
@@ -7885,69 +7898,69 @@ msgstr "Samanliknar hendingar"
 
 #: ../src/plugins/EventCmp.py:298
 msgid "Building data"
-msgstr ""
+msgstr "Byggjer data"
 
 #: ../src/plugins/EventCmp.py:390
 msgid "Select filename"
-msgstr ""
+msgstr "Vel filnamn"
 
 #: ../src/plugins/EventCmp.py:466
 msgid "Compare Individual Events"
-msgstr ""
+msgstr "Samanlikna individuelle hendingar"
 
 #: ../src/plugins/EventCmp.py:470
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
-msgstr ""
+msgstr "Hjelper til med analyse av data ved å la deg laga eigne filter som kan brukast på databasen for å finna hendingar som liknar einannan"
 
 #: ../src/plugins/EventNames.py:101
 msgid "Event name changes"
-msgstr ""
+msgstr "Endringar i namn på hendingar"
 
 #: ../src/plugins/EventNames.py:160
 msgid "Extract Event Descriptions from Event Data"
-msgstr ""
+msgstr "Hent ut hendingsomtale frå hendingsdata"
 
 #: ../src/plugins/EventNames.py:164
 msgid "Extracts event descriptions from the event data"
-msgstr ""
+msgstr "Hentar ut hendingsomtale frå hendingsdata"
 
 #: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:179
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
-msgstr ""
+msgstr "Fødselsdato"
 
 #: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:177
 #: ../src/plugins/StatisticsChart.py:106
 msgid "Birth place"
-msgstr ""
+msgstr "Fødselsstad"
 
 #: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:181
 msgid "Birth source"
-msgstr ""
+msgstr "Kjelde for fødsel"
 
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
-msgstr ""
+msgstr "Dødsdato"
 
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:183
 #: ../src/plugins/StatisticsChart.py:108
 msgid "Death place"
-msgstr ""
+msgstr "Dødsstad"
 
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:187
 msgid "Death source"
-msgstr ""
+msgstr "Kjelde for død"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:524
 #: ../src/plugins/ImportCSV.py:208 ../src/plugins/NarrativeWeb.py:2391
 msgid "Husband"
-msgstr ""
+msgstr "Ektemann"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:533
 #: ../src/plugins/ImportCSV.py:204 ../src/plugins/NarrativeWeb.py:2393
 msgid "Wife"
-msgstr ""
+msgstr "Hustru"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7956,35 +7969,35 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportCSV.py:502
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr ""
+msgstr "Rekneark med komma_separerte verdiar (CSV)"
 
 #: ../src/plugins/ExportCSV.py:503
 msgid "CSV is a common spreadsheet format."
-msgstr ""
+msgstr "CSV er eit vanleg format for rekneark."
 
 #: ../src/plugins/ExportCSV.py:504
 msgid "CSV spreadsheet options"
-msgstr ""
+msgstr "Val for CSV-rekneark"
 
 #: ../src/plugins/ExportVCalendar.py:241
 #, python-format
 msgid "Marriage of %s"
-msgstr ""
+msgstr "Ekteskap til %s"
 
 #: ../src/plugins/ExportVCalendar.py:260 ../src/plugins/ExportVCalendar.py:262
 #, python-format
 msgid "Birth of %s"
-msgstr ""
+msgstr "Fødsel til %s"
 
 #: ../src/plugins/ExportVCalendar.py:273 ../src/plugins/ExportVCalendar.py:275
 #, python-format
 msgid "Death of %s"
-msgstr ""
+msgstr "Dødsfall til %s"
 
 #: ../src/plugins/ExportVCalendar.py:332
 #, python-format
 msgid "Anniversary: %s"
-msgstr ""
+msgstr "Jubileum: %s"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7993,15 +8006,15 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportVCalendar.py:353
 msgid "vC_alendar"
-msgstr ""
+msgstr "vC_alender"
 
 #: ../src/plugins/ExportVCalendar.py:354
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr ""
+msgstr "vCalendar blir brukt av mange kalendarar og program for personleg informasjonshandtering."
 
 #: ../src/plugins/ExportVCalendar.py:355
 msgid "vCalendar export options"
-msgstr ""
+msgstr "Eksportval for vCalendar"
 
 #. -------------------------------------------------------------------------
 #.
@@ -8010,449 +8023,449 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportVCard.py:269
 msgid "_vCard"
-msgstr ""
+msgstr "_vCard"
 
 #: ../src/plugins/ExportVCard.py:270
 msgid "vCard is used in many addressbook and pim applications."
-msgstr ""
+msgstr "vCard blir brukt av mange adressebøker og program for personleg informasjonshandsaming."
 
 #: ../src/plugins/ExportVCard.py:271
 msgid "vCard export options"
-msgstr ""
+msgstr "vCard eksportval"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "United States of America"
-msgstr ""
+msgstr "USA"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "Canada"
-msgstr ""
+msgstr "Canada"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "France"
-msgstr ""
+msgstr "Frankrike"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "Sweden"
-msgstr ""
+msgstr "Sverige"
 
 #: ../src/plugins/ExtractCity.py:371
 msgid "Place title"
-msgstr ""
+msgstr "Stadnamn"
 
 #: ../src/plugins/ExtractCity.py:398 ../src/plugins/ExtractCity.py:602
 msgid "Extract Place data"
-msgstr ""
+msgstr "Hent ut data om stader"
 
 #: ../src/plugins/ExtractCity.py:415
 msgid "Checking Place Titles"
-msgstr ""
+msgstr "Kontrollerer stadnamn"
 
 #: ../src/plugins/ExtractCity.py:416
 msgid "Looking for place fields"
-msgstr ""
+msgstr "Ser etter felt for stad"
 
 #: ../src/plugins/ExtractCity.py:496
 msgid "No place information could be extracted."
-msgstr ""
+msgstr "Kunne ikkje henta ut nokon informasjon om stad."
 
 #: ../src/plugins/ExtractCity.py:516
 msgid "Below is a list of Places with the possible data that can be extracted from the place title. Select the places you wish GRAMPS to convert."
-msgstr ""
+msgstr "Nedanfor er ei liste over stader med mogelege data som kan hentast ut frå stadnamnet.  Vel den staden du vil at GRAMPS skal konvertera."
 
 #: ../src/plugins/ExtractCity.py:630
 msgid "Extract Place Data from a Place Title"
-msgstr ""
+msgstr "Hent ut data om ein stad frå eit stadnamn"
 
 #: ../src/plugins/ExtractCity.py:634
 msgid "Attempts to extract city and state/province from a place title"
-msgstr ""
+msgstr "Prøver å henta ut by/kommune og fylke frå eit stadnamn"
 
 #: ../src/plugins/FamilyGroup.py:101
 #, python-format
 msgid "%(type)s: %(value)s"
-msgstr ""
+msgstr "%(type)s: %(value)s"
 
 #: ../src/plugins/FamilyGroup.py:336
 msgid "Marriage:"
-msgstr ""
+msgstr "Ekteskap"
 
 #: ../src/plugins/FamilyGroup.py:417
 msgid "acronym for male|M"
-msgstr ""
+msgstr "M"
 
 #: ../src/plugins/FamilyGroup.py:419
 msgid "acronym for female|F"
-msgstr ""
+msgstr "K"
 
 #: ../src/plugins/FamilyGroup.py:421
 #, python-format
 msgid "%dU"
-msgstr ""
+msgstr "%dU"
 
 #: ../src/plugins/FamilyGroup.py:515
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr ""
+msgstr "Familierapport - generasjon %d"
 
 #: ../src/plugins/FamilyGroup.py:517 ../src/plugins/FamilyGroup.py:566
 #: ../src/plugins/FamilyGroup.py:771
 msgid "Family Group Report"
-msgstr ""
+msgstr "Familierapport"
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:589
 msgid "Center Family"
-msgstr ""
+msgstr "Senterfamilie"
 
 #: ../src/plugins/FamilyGroup.py:590
 msgid "The center family for the report"
-msgstr ""
+msgstr "Senterfamilie for rapporten"
 
 #: ../src/plugins/FamilyGroup.py:593
 msgid "Recursive"
-msgstr ""
+msgstr "Rekursivt"
 
 #: ../src/plugins/FamilyGroup.py:594
 msgid "Create reports for all descendants of this family."
-msgstr ""
+msgstr "Lag rapportar for alle etterkomarar til denne familien."
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:602
 msgid "Generation numbers (recursive only)"
-msgstr ""
+msgstr "Generasjonsnummer (rekursivt)"
 
 #: ../src/plugins/FamilyGroup.py:604
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr ""
+msgstr "Skal generasjonar takast med på kvar rapport (berre rekursivt)?."
 
 #: ../src/plugins/FamilyGroup.py:608
 msgid "Parent Events"
-msgstr ""
+msgstr "Hendingar for foreldre"
 
 #: ../src/plugins/FamilyGroup.py:609
 msgid "Whether to include events for parents."
-msgstr ""
+msgstr "Ta med hendingar for foreldre."
 
 #: ../src/plugins/FamilyGroup.py:612
 msgid "Parent Addresses"
-msgstr ""
+msgstr "Adresser til foreldre"
 
 #: ../src/plugins/FamilyGroup.py:613
 msgid "Whether to include addresses for parents."
-msgstr ""
+msgstr "Ta med adresser til foreldre."
 
 #: ../src/plugins/FamilyGroup.py:616
 msgid "Parent Notes"
-msgstr ""
+msgstr "Notat for foreldre"
 
 #: ../src/plugins/FamilyGroup.py:617
 msgid "Whether to include notes for parents."
-msgstr ""
+msgstr "Skal notat for foreldre takast med?."
 
 #: ../src/plugins/FamilyGroup.py:620
 msgid "Parent Attributes"
-msgstr ""
+msgstr "Eigenskapar for foreldre"
 
 #: ../src/plugins/FamilyGroup.py:624
 msgid "Alternate Parent Names"
-msgstr ""
+msgstr "Alternative namn på foreldre"
 
 #: ../src/plugins/FamilyGroup.py:625
 msgid "Whether to include alternate names for parents."
-msgstr ""
+msgstr "Skal alternative namn for foreldre takast med?."
 
 #: ../src/plugins/FamilyGroup.py:629
 msgid "Parent Marriage"
-msgstr ""
+msgstr "Ekteskap mellom foreldre"
 
 #: ../src/plugins/FamilyGroup.py:630
 msgid "Whether to include marriage information for parents."
-msgstr ""
+msgstr "Skal ekteskapsinformasjon for foreldre takast med?."
 
 #: ../src/plugins/FamilyGroup.py:634
 msgid "Dates of Relatives"
-msgstr ""
+msgstr "Datoar for slektningar"
 
 #: ../src/plugins/FamilyGroup.py:635
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr ""
+msgstr "Skal datoar for slektningar (far, mor, ektefelle) takast med?."
 
 #: ../src/plugins/FamilyGroup.py:639
 msgid "Children Marriages"
-msgstr ""
+msgstr "Ekteskap for barn"
 
 #: ../src/plugins/FamilyGroup.py:640
 msgid "Whether to include marriage information for children."
-msgstr ""
+msgstr "Skal ekteskapsinformasjon for barn takast med?."
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:645
 msgid "Missing Information"
-msgstr ""
+msgstr "Manglande informasjon"
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:648
 msgid "Print fields for missing information"
-msgstr ""
+msgstr "Skriv ut felt for manglande informasjon"
 
 #: ../src/plugins/FamilyGroup.py:650
 msgid "Whether to include fields for missing information."
-msgstr ""
+msgstr "Skal felt for manglande informasjon takast med?."
 
 #: ../src/plugins/FamilyGroup.py:688
 msgid "The style used for the text related to the children."
-msgstr ""
+msgstr "Stilen som blir brukt på tekst som viser til barna."
 
 #: ../src/plugins/FamilyGroup.py:697
 msgid "The style used for the parent's name"
-msgstr ""
+msgstr "Stilen som blir brukt på foreldrene sine namn"
 
 #: ../src/plugins/FamilyGroup.py:775
 msgid "Produces a family group report showing information on a set of parents and their children."
-msgstr ""
+msgstr "Lagar ein familierapport som viser informasjon om eit foreldrepar og barna deira."
 
 #: ../src/plugins/FanChart.py:191
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr ""
+msgstr "%(generations)d Generasjonars viftetavle for %(person)s"
 
 #: ../src/plugins/FanChart.py:351
 msgid "Type of graph"
-msgstr ""
+msgstr "Graftype"
 
 #: ../src/plugins/FanChart.py:352
 msgid "full circle"
-msgstr ""
+msgstr "Heil sirkel"
 
 #: ../src/plugins/FanChart.py:353
 msgid "half circle"
-msgstr ""
+msgstr "Halvsirkel"
 
 #: ../src/plugins/FanChart.py:354
 msgid "quarter circle"
-msgstr ""
+msgstr "Kvartsirkel"
 
 #: ../src/plugins/FanChart.py:355
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr ""
+msgstr "Form på den grafiske rapporten: heilsirkel, halvsirkel eller kvartsirkel."
 
 #: ../src/plugins/FanChart.py:359
 msgid "Background color"
-msgstr ""
+msgstr "Bakgrunnsfarge"
 
 #: ../src/plugins/FanChart.py:360
 msgid "white"
-msgstr ""
+msgstr "Kvit"
 
 #: ../src/plugins/FanChart.py:361
 msgid "generation dependent"
-msgstr ""
+msgstr "Avhengig av generasjon"
 
 #: ../src/plugins/FanChart.py:362
 msgid "Background color is either white or generation dependent"
-msgstr ""
+msgstr "Bakgrunnfargen er enten kvit eller avhengig av generasjon"
 
 #: ../src/plugins/FanChart.py:366
 msgid "Orientation of radial texts"
-msgstr ""
+msgstr "Orientering av radiell tekst"
 
 #: ../src/plugins/FanChart.py:368
 msgid "upright"
-msgstr ""
+msgstr "rett linje"
 
 #: ../src/plugins/FanChart.py:369
 msgid "roundabout"
-msgstr ""
+msgstr "sirkelboge"
 
 #: ../src/plugins/FanChart.py:370
 msgid "Print raidal texts upright or roundabout"
-msgstr ""
+msgstr "Skriv radielle tekstar som rett linje eller i sirkelboge"
 
 #: ../src/plugins/FanChart.py:394
 msgid "The style used for the title."
-msgstr ""
+msgstr "Stilen som blir brukt for tittelen."
 
 #: ../src/plugins/FanChart.py:442
 msgid "Fan Chart"
-msgstr ""
+msgstr "Vifteforma slektstavle"
 
 #: ../src/plugins/FanChart.py:446
 msgid "Produces fan charts"
-msgstr ""
+msgstr "Lagar ei vikteforma slektstavle"
 
 #. force translation
 #: ../src/plugins/FilterByName.py:37
 msgid "all people"
-msgstr ""
+msgstr "alle personar"
 
 #: ../src/plugins/FilterByName.py:37
 msgid "males"
-msgstr ""
+msgstr "menn"
 
 #: ../src/plugins/FilterByName.py:37
 msgid "females"
-msgstr ""
+msgstr "kvinner"
 
 #: ../src/plugins/FilterByName.py:37
 msgid "people with unknown gender"
-msgstr ""
+msgstr "personar med ukjent kjønn"
 
 #: ../src/plugins/FilterByName.py:38
 msgid "people with incomplete names"
-msgstr ""
+msgstr "personar med ufullstendige namn"
 
 #: ../src/plugins/FilterByName.py:38
 msgid "people with missing birth dates"
-msgstr ""
+msgstr "personar som manglar fødselsdato"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "disconnected people"
-msgstr ""
+msgstr "personar utan slekt"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "all families"
-msgstr ""
+msgstr "alle familiar"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "unique surnames"
-msgstr ""
+msgstr "ulike etternamn"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "people with media"
-msgstr ""
+msgstr "personar med mediaobjekt"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "media references"
-msgstr ""
+msgstr "mediareferanse"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "unique media"
-msgstr ""
+msgstr "ulike media"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "missing media"
-msgstr ""
+msgstr "manglar media"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "media by size"
-msgstr ""
+msgstr "media etter storleik"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "list of people"
-msgstr ""
+msgstr "liste over personar"
 
 #. display the title
 #: ../src/plugins/FilterByName.py:53
 #, python-format
 msgid "Filtering on %s"
-msgstr ""
+msgstr "Filtrerar på %s"
 
 #: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
 #: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
 #: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
 msgid "Name type"
-msgstr ""
+msgstr "Namnetype"
 
 #: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
-msgstr ""
+msgstr "fødselshending men ingen dato"
 
 #: ../src/plugins/FilterByName.py:114
 msgid "missing birth event"
-msgstr ""
+msgstr "manglar fødselshending"
 
 #: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
-msgstr ""
+msgstr "Tel"
 
 #: ../src/plugins/FilterByName.py:157
 msgid "Media count"
-msgstr ""
+msgstr "Tal på media"
 
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:70
 msgid "Reference"
-msgstr ""
+msgstr "Referanse"
 
 #: ../src/plugins/FilterByName.py:176 ../src/plugins/genewebexport.glade.h:10
 msgid "media"
-msgstr ""
+msgstr "media"
 
 #: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
-msgstr ""
+msgstr "Ulike media"
 
 #: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
-msgstr ""
+msgstr "Manglar media"
 
 #: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
-msgstr ""
+msgstr "Storleik i byte"
 
 #: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
-msgstr ""
+msgstr "Filteret samsvarar med %d postar."
 
 #: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
-msgstr ""
+msgstr "Vis filtrerte data"
 
 #: ../src/plugins/FindDupes.py:64
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: ../src/plugins/FindDupes.py:68
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr ""
+msgstr "Finn mogelege duplikate personar..."
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
-msgstr ""
+msgstr "Finn mogeleg duplikate personar"
 
 #: ../src/plugins/FindDupes.py:145 ../src/plugins/Verify.py:293
 msgid "Tool settings"
-msgstr ""
+msgstr "Verktøyval"
 
 #: ../src/plugins/FindDupes.py:145
 msgid "Find Duplicates tool"
-msgstr ""
+msgstr "Finn doble oppføringar"
 
 #: ../src/plugins/FindDupes.py:178
 msgid "No matches found"
-msgstr ""
+msgstr "Ingen treff vart funne"
 
 #: ../src/plugins/FindDupes.py:179
 msgid "No potential duplicate people were found"
-msgstr ""
+msgstr "Det vart ikkje funne nokon potensielle dobbeloppføringar for personar"
 
 #: ../src/plugins/FindDupes.py:188
 msgid "Find Duplicates"
-msgstr ""
+msgstr "Finn doble oppføringar"
 
 #: ../src/plugins/FindDupes.py:189
 msgid "Looking for duplicate people"
-msgstr ""
+msgstr "Ser etter doble oppføringar for personar"
 
 #: ../src/plugins/FindDupes.py:198
 msgid "Pass 1: Building preliminary lists"
-msgstr ""
+msgstr "Fase 1: Byggjer førehandsliste"
 
 #: ../src/plugins/FindDupes.py:216
 msgid "Pass 2: Calculating potential matches"
-msgstr ""
+msgstr "Fase 2: Bereknar mogelege treff"
 
 #: ../src/plugins/FindDupes.py:563
 msgid "Potential Merges"
-msgstr ""
+msgstr "Kan kanskje flettast saman"
 
 #: ../src/plugins/FindDupes.py:573
 msgid "Rating"
-msgstr ""
+msgstr "Vurdering"
 
 #: ../src/plugins/FindDupes.py:573
 msgid "First Person"
@@ -8464,49 +8477,49 @@ msgstr "Andre person"
 
 #: ../src/plugins/FindDupes.py:582
 msgid "Merge candidates"
-msgstr ""
+msgstr "Kandidatar for fletting"
 
 #: ../src/plugins/FindDupes.py:700
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
-msgstr ""
+msgstr "Leitar gjennom heile databasen for å finna personregistreringar som kanskje kan vera den same personen."
 
 #. --------------------------------
 #: ../src/plugins/GVFamilyLines.py:95
 msgid "People of Interest"
-msgstr ""
+msgstr "Personar av interesse"
 
 #. --------------------------------
 #: ../src/plugins/GVFamilyLines.py:98
 msgid "People of interest"
-msgstr ""
+msgstr "Personar av interesse"
 
 #: ../src/plugins/GVFamilyLines.py:99
 msgid "People of interest are used as a starting point when determining \"family lines\"."
-msgstr ""
+msgstr "Personar av interesse vert brukt som utgangspunkt for å berekna \"slektslinjer\"."
 
 #: ../src/plugins/GVFamilyLines.py:102
 msgid "Follow parents to determine family lines"
-msgstr ""
+msgstr "Følgjer foreldre for å fastsetja slektslinjer"
 
 #: ../src/plugins/GVFamilyLines.py:103
 msgid "Parents and their ancestors will be considered when determining \"family lines\"."
-msgstr ""
+msgstr "Foreldre og deira aner vil bli brukt for å fastsetja \"slektslinjer\"."
 
 #: ../src/plugins/GVFamilyLines.py:106
 msgid "Follow children to determine family lines"
-msgstr ""
+msgstr "Følgjer barn for å fastsetja slektslinjer"
 
 #: ../src/plugins/GVFamilyLines.py:107
 msgid "Children will be considered when determining \"family lines\"."
-msgstr ""
+msgstr "Barn vil bli brukt for å fastsetja \"slektslinjer\"."
 
 #: ../src/plugins/GVFamilyLines.py:110
 msgid "Try to remove extra people and families"
-msgstr ""
+msgstr "Prøv å fjerna ekstra personar og familiar"
 
 #: ../src/plugins/GVFamilyLines.py:111
 msgid "People and families not directly related to people of interest will be removed when determining \"family lines\"."
-msgstr ""
+msgstr "Personar og familiar som ikkje er direkte knytte til personar av interesse vil bli fjerna ved fastsetjing av \"slektslinjer\"."
 
 #. ----------------------------
 #: ../src/plugins/GVFamilyLines.py:115
@@ -8591,31 +8604,31 @@ msgstr ""
 
 #: ../src/plugins/GVFamilyLines.py:191
 msgid "Include dates"
-msgstr ""
+msgstr "Ta med datoar"
 
 #: ../src/plugins/GVFamilyLines.py:192
 msgid "Whether to include dates for people and families."
-msgstr ""
+msgstr "Om datoar for personar og familiar skal vera med."
 
 #: ../src/plugins/GVFamilyLines.py:195
 msgid "Include places"
-msgstr ""
+msgstr "Ta med stader"
 
 #: ../src/plugins/GVFamilyLines.py:196
 msgid "Whether to include placenames for people and families."
-msgstr ""
+msgstr "Om stadnamn for personar og familiar skal vera med."
 
 #: ../src/plugins/GVFamilyLines.py:199
 msgid "Include the number of children"
-msgstr ""
+msgstr "Ta med talet på barn"
 
 #: ../src/plugins/GVFamilyLines.py:200
 msgid "Whether to include the number of children for families with more than 1 child."
-msgstr ""
+msgstr "Om talet på barn for familiar med meir enn eit barn skal vera med."
 
 #: ../src/plugins/GVFamilyLines.py:203
 msgid "Include private records"
-msgstr ""
+msgstr "Ta med private postar"
 
 #: ../src/plugins/GVFamilyLines.py:204
 msgid "Whether to include names, dates, and families that are marked as private."
@@ -8682,7 +8695,7 @@ msgstr ""
 
 #: ../src/plugins/GVHourGlass.py:209
 msgid "Hourglass Graph"
-msgstr ""
+msgstr "Graf for timeglas"
 
 #: ../src/plugins/GVHourGlass.py:213
 msgid "Produces an hourglass graph using Graphviz"
@@ -8776,12 +8789,12 @@ msgstr ""
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:491
 msgid "Graph Style"
-msgstr ""
+msgstr "Stil for grafen"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:494
 msgid "Graph coloring"
-msgstr ""
+msgstr "Fargar for grafen"
 
 #: ../src/plugins/GVRelGraph.py:497
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
@@ -8853,65 +8866,65 @@ msgstr ""
 
 #: ../src/plugins/ImportCSV.py:235
 msgid "gender"
-msgstr ""
+msgstr "kjønn"
 
 #: ../src/plugins/ImportCSV.py:237 ../src/plugins/ImportCSV.py:262
 msgid "source"
-msgstr ""
+msgstr "kjelde"
 
 #: ../src/plugins/ImportCSV.py:239
 msgid "note"
-msgstr ""
+msgstr "notat"
 
 #: ../src/plugins/ImportCSV.py:241
 msgid "birth place"
-msgstr ""
+msgstr "fødselsstad"
 
 #: ../src/plugins/ImportCSV.py:243
 msgid "birth date"
-msgstr ""
+msgstr "fødselsdato"
 
 #: ../src/plugins/ImportCSV.py:245
 msgid "birth source"
-msgstr ""
+msgstr "kjelde for fødsel"
 
 #: ../src/plugins/ImportCSV.py:247
 msgid "death place"
-msgstr ""
+msgstr "dødsstad"
 
 #: ../src/plugins/ImportCSV.py:249
 msgid "death date"
-msgstr ""
+msgstr "dødsdato"
 
 #: ../src/plugins/ImportCSV.py:251
 msgid "death source"
-msgstr ""
+msgstr "kjelde for død"
 
 #: ../src/plugins/ImportCSV.py:253
 msgid "death cause"
-msgstr ""
+msgstr "dødsårsak"
 
 #: ../src/plugins/ImportCSV.py:255
 msgid "gramps id"
-msgstr ""
+msgstr "gramps-id"
 
 #: ../src/plugins/ImportCSV.py:257
 msgid "person"
-msgstr ""
+msgstr "person"
 
 #. ----------------------------------
 #: ../src/plugins/ImportCSV.py:260
 msgid "child"
-msgstr ""
+msgstr "barn"
 
 #: ../src/plugins/ImportCSV.py:264
 msgid "family"
-msgstr ""
+msgstr "familie"
 
 #. ----------------------------------
 #: ../src/plugins/ImportCSV.py:267
 msgid "mother"
-msgstr ""
+msgstr "mor"
 
 #: ../src/plugins/ImportCSV.py:269
 msgid "parent2"
@@ -8927,15 +8940,15 @@ msgstr ""
 
 #: ../src/plugins/ImportCSV.py:275
 msgid "marriage"
-msgstr ""
+msgstr "ekteskap"
 
 #: ../src/plugins/ImportCSV.py:277
 msgid "date"
-msgstr ""
+msgstr "dato"
 
 #: ../src/plugins/ImportCSV.py:279
 msgid "place"
-msgstr ""
+msgstr "stad"
 
 #: ../src/plugins/ImportCSV.py:320
 #, python-format
@@ -9015,11 +9028,11 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:1562 ../src/plugins/NarrativeWeb.py:1607
 #: ../src/plugins/NarrativeWeb.py:1838 ../src/ReportBase/_ReportUtils.py:1717
 msgid "Could not add photo to page"
-msgstr ""
+msgstr "Foto kunne ikkje leggjast til sida"
 
 #: ../src/plugins/IndivComplete.py:421 ../src/ReportBase/_ReportUtils.py:1718
 msgid "File does not exist"
-msgstr ""
+msgstr "Fila finst ikkje"
 
 #: ../src/plugins/IndivComplete.py:439
 msgid "Male"
@@ -9065,7 +9078,7 @@ msgstr ""
 #: ../src/plugins/KinshipReport.py:132
 #, python-format
 msgid "spouses of %s"
-msgstr ""
+msgstr "ektefeller til %s"
 
 #: ../src/plugins/KinshipReport.py:342
 msgid "The maximum number of descendant generations"
@@ -9164,15 +9177,15 @@ msgstr ""
 
 #: ../src/plugins/lineage.py:92
 msgid "Name Mother"
-msgstr ""
+msgstr "Mor sitt namn"
 
 #: ../src/plugins/lineage.py:100
 msgid "Direct line female descendants"
-msgstr ""
+msgstr "Direkte linje for kvinnelege etterkomarar"
 
 #: ../src/plugins/lineage.py:124 ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr ""
+msgstr "FEIL: For mange nivå i treet (kanskje ei løkke?)."
 
 #: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
@@ -9227,11 +9240,11 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:76 ../src/plugins/MediaManager.py:585
 msgid "Media Manager"
-msgstr ""
+msgstr "Mediahandsamar"
 
 #: ../src/plugins/MediaManager.py:80
 msgid "GRAMPS Media Manager"
-msgstr ""
+msgstr "GRAMPS mediahandsamar"
 
 #: ../src/plugins/MediaManager.py:82
 msgid "Selecting operation"
@@ -11508,15 +11521,15 @@ msgstr "Vel fil"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
-msgstr ""
+msgstr "Basisstilen som blir brukt for visning av kjeldene for sluttnotat."
 
 #: ../src/ReportBase/_Endnotes.py:57
 msgid "The basic style used for the endnotes reference display."
-msgstr ""
+msgstr "Basisstilen som blir brukt for visning av referansane til sluttnotat."
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
-msgstr ""
+msgstr "Sluttnotat"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -11525,31 +11538,31 @@ msgstr ""
 #. -------------------------------------------------------------------------------
 #: ../src/ReportBase/_GraphvizReportDialog.py:64
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:65
 msgid "Postscript / Helvetica"
-msgstr ""
+msgstr "Postscript / Helvetica"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:66
 msgid "Truetype / FreeSans"
-msgstr ""
+msgstr "Truetype / FreeSans"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Vertical (top to bottom)"
-msgstr ""
+msgstr "Loddrett (topp til botn)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Vertical (bottom to top)"
-msgstr ""
+msgstr "Loddrett (botn til topp)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Horizontal (left to right)"
-msgstr ""
+msgstr "Vassrett (venstre til høgre)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Horizontal (right to left)"
-msgstr ""
+msgstr "Vassrett (høgre til venstre)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Bottom, left"
@@ -11569,67 +11582,67 @@ msgstr "Øverst til høgre"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Right, bottom"
-msgstr ""
+msgstr "Til høgre nederst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:78
 msgid "Right, top"
-msgstr ""
+msgstr "Til høgre øverst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Left, bottom"
-msgstr ""
+msgstr "Til venstre nederst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Left, top"
-msgstr ""
+msgstr "Til venstre øverst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Minimal size"
-msgstr ""
+msgstr "Minste storleik"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Fill the given area"
-msgstr ""
+msgstr "Fyll ut det oppgjevne området"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:84
 msgid "Use optimal number of pages"
-msgstr ""
+msgstr "Bruk optimalt tal på sider"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:86
 msgid "Top"
-msgstr ""
+msgstr "Øverst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:87
 msgid "Bottom"
-msgstr ""
+msgstr "Nederst"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:125
 msgid "Processing File"
-msgstr ""
+msgstr "Handsamar fil"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Graphviz Dot File"
-msgstr ""
+msgstr "Graphviz Dot-fil"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:766
 msgid "PDF (Ghostscript)"
-msgstr ""
+msgstr "PDF (Ghostscript)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
-msgstr ""
+msgstr "PDF (Graphviz)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
-msgstr ""
+msgstr "Postscript"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Structured Vector Graphics (SVG)"
-msgstr ""
+msgstr "Strukturert vektor-grafikk (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Compressed Structured Vector Graphs (SVG)"
-msgstr ""
+msgstr "Komprimert strukturert vektorgrafikk (SVG)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "JPEG image"
@@ -11646,140 +11659,140 @@ msgstr "PNG-bilete"
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:899
 msgid "GraphViz Layout"
-msgstr ""
+msgstr "Innstillingar for GraphViz"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:901
 msgid "Font family"
-msgstr ""
+msgstr "Skrifttype-familie"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:906
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-msgstr ""
+msgstr "Vel skrifttype-familie.  Dersom internasjonale teikn ikkje vert vist, kan du velja skrifttypen FreeSans.  FreeSans er tilgjengeleg frå: http://www.nongnu.org/freefont/"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:912
 msgid "Font size"
-msgstr ""
+msgstr "Skriftstorleik"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:913
 msgid "The font size, in points."
-msgstr ""
+msgstr "Skriftstorleik, tal på punkt."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:916
 msgid "Graph Direction"
-msgstr ""
+msgstr "Retning for grafen"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:921
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr ""
+msgstr "Om grafen skal gå frå topp til botn eller frå venstre til høgre."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
-msgstr ""
+msgstr "Talet på vassrette sider"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot, postscript and pdf via Ghostscript."
-msgstr ""
+msgstr "GraphViz kan laga svært store grafar ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast horisontalt.  Dette gjeld berre for dot, postscrift og pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
-msgstr ""
+msgstr "Tal på sider loddrett"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot, postscript and pdf via Ghostscript."
-msgstr ""
+msgstr "GraphViz kan laga svært store slektstre ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast loddrett.  Dette gjeld berre for dot, postscrift og pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "Paging Direction"
-msgstr ""
+msgstr "Sideretning"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
-msgstr ""
+msgstr "Rekkefølgje for utskrift av sidene for grafen.  Dette valet blir berre vist dersom talet på horisontale eller vertikale sider er større enn 1."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "GraphViz Options"
-msgstr ""
+msgstr "Innstillingar for GraphViz"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Sideforhold"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Affects greatly how the graph is layed out on the page."
-msgstr ""
+msgstr "Påverkar mykje korleis grafen vert plassert på sida."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
-msgstr ""
+msgstr "PPT"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, use 72 DPI."
-msgstr ""
+msgstr "Punkt pr. tomme.  Prøv med tal som 100 eller 300 PPT dersom du lagar .gif-  eller .png-bilete for internett.  Lagar du postscript- eller pdf-filer bør du bruka 72 PPT."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Node spacing"
-msgstr ""
+msgstr "Avstand mellom knutepunkt"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
-msgstr ""
+msgstr "Minste tomrom, i tommar, mellom individuelle knutepunkt.  For loddrette grafar svarar dette til avstand mellom kolonnar.  For vassrette grafar svarar det til avstand mellom rader."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
-msgstr ""
+msgstr "Nivå-avstand"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-msgstr ""
+msgstr "Minste tomrom, i tommar, mellom nivå.  For loddrette grafar svarar dette til avstand mellom rader.  For vassrette grafar svarar det til avstand mellom kolonnar."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1005
 msgid "Note to add to the graph"
-msgstr ""
+msgstr "Notat som skal leggjast til grafen"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1007
 msgid "This text will be added to the graph."
-msgstr ""
+msgstr "Denne teksten vil verta lagt til i grafen."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1010
 msgid "Note location"
-msgstr ""
+msgstr "Plassering av notat"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "Whether note will appear on top or bottom of the page."
-msgstr ""
+msgstr "Om notatet skal visast øverst eller nederst på sida."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1017
 msgid "Note size"
-msgstr ""
+msgstr "Storleik på notat"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
-msgstr ""
+msgstr "Storleik på notat-teksten (tal på punkt)."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1043
 #: ../src/ReportBase/_GraphvizReportDialog.py:1098
 msgid "Open with application"
-msgstr ""
+msgstr "Opna med program"
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
-msgstr "Portrett"
+msgstr "Ståande"
 
 #: ../src/ReportBase/_PaperMenu.py:119
 msgid "Landscape"
-msgstr "Landskap"
+msgstr "Liggjande"
 
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "in."
-msgstr ""
+msgstr "in."
 
 #: ../src/ReportBase/_ReportDialog.py:165
 msgid "Directory"
-msgstr ""
+msgstr "Katalog"
 
 #: ../src/ReportBase/_ReportDialog.py:167
 msgid "Filename"
@@ -11788,7 +11801,7 @@ msgstr "Filnamn"
 #: ../src/ReportBase/_ReportDialog.py:205
 #: ../src/ReportBase/_ReportDialog.py:231
 msgid "Permission problem"
-msgstr ""
+msgstr "Problem med tilgang"
 
 #: ../src/ReportBase/_ReportDialog.py:206
 #, python-format
@@ -11797,22 +11810,25 @@ msgid ""
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
+"Du har ikkje skriverettar til katalogen %s\n"
+"\n"
+"Vel ein annan katalog eller korriger rettane dine."
 
 #: ../src/ReportBase/_ReportDialog.py:216
 msgid "File already exists"
-msgstr ""
+msgstr "Fila finst frå før"
 
 #: ../src/ReportBase/_ReportDialog.py:217
 msgid "You can choose to either overwrite the file, or change the selected filename."
-msgstr ""
+msgstr "Du kan velja enten å overskriva fila, eller endra det valde filnamnet."
 
 #: ../src/ReportBase/_ReportDialog.py:219
 msgid "_Overwrite"
-msgstr ""
+msgstr "O-verskriv"
 
 #: ../src/ReportBase/_ReportDialog.py:220
 msgid "_Change filename"
-msgstr ""
+msgstr "_Endra filnamn"
 
 #: ../src/ReportBase/_ReportDialog.py:232
 #, python-format
@@ -11824,27 +11840,27 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:275
 msgid "You must select an active person for this report to work properly."
-msgstr ""
+msgstr "Du må velja ein aktiv person for at denne rapporten skal virka skikkeleg."
 
 #: ../src/ReportBase/_ReportUtils.py:59
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Denne personen vart fødd den %(birth_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:60
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Han vart fødd den %(birth_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:61
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Ho vart fødd den %(birth_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:64
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s vart fødd den %(birth_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:65
 #, python-format
@@ -11864,22 +11880,22 @@ msgstr "Fødd %(birth_date)s i %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:73
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Denne personen vart fødd den %(modified_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:74
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Han vart fødd den %(modified_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:75
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr ""
+msgstr "Ho vart fødd den %(modified_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:78
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s vart fødd den %(modified_date)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:79
 #, python-format
@@ -11964,22 +11980,22 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:110
 #, python-format
 msgid "Born %(modified_date)s."
-msgstr ""
+msgstr "Fødd %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:115
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "Denne personen blei fødd i %(month_year)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:116
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "Han vart fødd i %(month_year)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:117
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "Ho vart fødd i %(month_year)s i %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:120
 #, python-format
@@ -12404,7 +12420,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:278
 #, python-format
 msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s døydde den %(death_date)s i ein alder på %(age)d months."
 
 #: ../src/ReportBase/_ReportUtils.py:279
 #, python-format
@@ -12454,22 +12470,22 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:295 ../src/ReportBase/_ReportUtils.py:342
 #, python-format
 msgid "Died %(death_date)s."
-msgstr ""
+msgstr "Døydde den %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:296 ../src/ReportBase/_ReportUtils.py:343
 #, python-format
 msgid "Died %(death_date)s (age %(age)d years)."
-msgstr ""
+msgstr "Døydde den %(death_date)s (age %(age)d years)."
 
 #: ../src/ReportBase/_ReportUtils.py:297 ../src/ReportBase/_ReportUtils.py:344
 #, python-format
 msgid "Died %(death_date)s (age %(age)d months)."
-msgstr ""
+msgstr "Døydde den %(death_date)s (age %(age)d months)."
 
 #: ../src/ReportBase/_ReportUtils.py:298 ../src/ReportBase/_ReportUtils.py:345
 #, python-format
 msgid "Died %(death_date)s (age %(age)d days)."
-msgstr ""
+msgstr "Døydde den %(death_date)s (age %(age)d days)."
 
 #: ../src/ReportBase/_ReportUtils.py:304
 #, python-format
@@ -12854,17 +12870,17 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:436
 #, python-format
 msgid "Died %(month_year)s."
-msgstr ""
+msgstr "Døydde den %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:437
 #, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr ""
+msgstr "Døydde den %(month_year)s (age %(age)d years)."
 
 #: ../src/ReportBase/_ReportUtils.py:438
 #, python-format
 msgid "Died %(month_year)s (age %(age)d months)."
-msgstr ""
+msgstr "Døydde %(month_year)s (age %(age)d months)."
 
 #: ../src/ReportBase/_ReportUtils.py:439
 #, python-format
@@ -13739,12 +13755,12 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:837
 #, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Denne personen gifta seg og med %(spouse)s in %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:838
 #, python-format
 msgid "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Denne personen gifta seg og med %(spouse)s den %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:839
 #, python-format
@@ -15341,11 +15357,11 @@ msgstr ""
 
 #: ../src/gen/lib/childreftype.py:60 ../src/gen/lib/eventtype.py:97
 msgid "Adopted"
-msgstr ""
+msgstr "Adoptert"
 
 #: ../src/gen/lib/childreftype.py:61
 msgid "Stepchild"
-msgstr ""
+msgstr "Stebarn"
 
 #: ../src/gen/lib/childreftype.py:62
 msgid "Sponsored"
@@ -15361,7 +15377,7 @@ msgstr ""
 
 #: ../src/gen/lib/srcmediatype.py:65 ../src/plugins/book.glade.h:3
 msgid "Book"
-msgstr ""
+msgstr "Bok"
 
 #: ../src/gen/lib/srcmediatype.py:66
 msgid "Card"
@@ -15369,7 +15385,7 @@ msgstr ""
 
 #: ../src/gen/lib/srcmediatype.py:67
 msgid "Electronic"
-msgstr ""
+msgstr "Elektronisk"
 
 #: ../src/gen/lib/srcmediatype.py:68
 msgid "Fiche"
@@ -15803,7 +15819,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasEvent.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:50
 msgid "Date:"
-msgstr ""
+msgstr "Dato:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:50
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -15813,7 +15829,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/FilterEditor/_EditRule.py:468
 msgid "Place:"
-msgstr ""
+msgstr "Stad:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:51
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -15822,7 +15838,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:51
 #: ../src/Filters/Rules/Family/_HasEvent.py:48
 msgid "Description:"
-msgstr ""
+msgstr "Omtale:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:52
 msgid "Events matching parameters"
@@ -18999,23 +19015,23 @@ msgstr "<b>Finn personar</b>:  I personvisninga vert kvart etternamn som standar
 
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr ""
+msgstr "<b>Endring av instillingane dine<b>:  Er du ikkje nøgd med nokre av standardinnstillingane i GRAMPS?  <b>Rediger &gt; Innstillingar<b> lar deg endra fleire verdiar, slik at du kan tilpassa GRAMPS til ditt eige behov."
 
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
-msgstr ""
+msgstr "<b>Byte av Familievisning</b>: Det er enkelt å endra aktiv person i slektskapsvisninga.  Berre dobbelklikk på ein person for å gjera denne til aktiv person."
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
-msgstr ""
+msgstr "<b>Sjekkboks for 'Vis alle'</b>:  Når du legg til ein ektefelle eller eit barn, er den viste lista filtrert til berre å visa personar som realistisk sett kan høva i rollen (basert på datoar i databasen).  Dersom GRAMPS har gjort eit feil val, kan du overstyre dette ved å kryssa av i sjekkboksen for 'Vis alle'."
 
 #: ../src/data/tips.xml.in.h:22
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr ""
+msgstr "<b>SoundEx kan hjelpa deg med slektsgranking</b>:  SoundEx løyser eit gamalt problem i slektsgransking; korleis skal stavevariasjonar handsamast?  SoundEx-verktøyet tar eit etternamn og lagar ei forenkla form som er lik for namn som lyder likt.  Veit du SoundEx-koden for eit etternamn kan det gjera arbeidet enklare når ein til dømes arbeidar med folketeljingar (microfinche) på eit bibliotek eller andre forskningsstader.  For å finna SoundEx-kodar for etternamn i databasen din, kan du gå til <b>Verktøy &gt; Reidskap &gt; Lag SoundEx-kodar</b>."
 
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
-msgstr ""
+msgstr "<b>Å oppretta eit nytt slektstre</b>:  Ein god måte å starta eit nytt slektstre på, er å leggja alle familiemedlemene inn i databasen (bruk <b>Rediger &gt; Legg til</b> eller klikk på Legg til-knappen på Verktøylinja)  Gå deretter til Familievisninga og lag relasjonar mellom personane."
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
@@ -19031,19 +19047,19 @@ msgstr "<b>Usikker på ein dato?</b> Dersom du er usikker på kva dato ei hendin
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
-msgstr ""
+msgstr "<b>Kven vart fødd når</b>:  Verktøyet for samanlikning av enkelthendingar lar det samanlikna data for alle (eller nokre personar) i databasen din.  Dette er til nytte dersom du til dømes vil lista opp fødselsdatoar for alle i databasen."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
-msgstr ""
+msgstr "Eit datointervall kan verta angjeve ved å bruka formatet &quot;mellom 4. januar 2000 og 20. mars 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:29
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting &quot;set as default name&quot; from the menu."
-msgstr ""
+msgstr "Eit alternativt namn kan veljast som det føretrekte namnet til ein person.  Vel først det ønskte namnet i namnelista for personen,  høgreklikk deretter på namnet for å få opp valmenyen og vel &quot;Set som standardnamn&quot; frå menyen."
 
 #: ../src/data/tips.xml.in.h:30
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
-msgstr ""
+msgstr "Eit bilde kan leggjast til kva som helst galleri eller mediavisning ved å dra og sleppa frå ein filhandsamar eller nettlesar."
 
 #: ../src/data/tips.xml.in.h:31
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
@@ -19051,27 +19067,27 @@ msgstr "Kven som helst kan veljast som 'startperson' i GRAMPS.  Bruk <b>Rediger&
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
-msgstr ""
+msgstr "Ver nøyen når du samlar slektsinformasjon.  Gjer ikkje antakingar når du legg inn primær informasjon; skriv det nøyaktig som du ser det.  Bruk kommentarar i parantesar for å indikera tillegg, sletting eller andre kommentarar.  Bruk av det latinske &quot;sic&quot; vert tilrådd for å stadfesta nøyaktig gjengjeving av noko som kan sjå ut som ein feil i ei kjelde."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Birth order of children in a family can be set, even if they do not have birth dates, by using drag and drop."
-msgstr ""
+msgstr "Dersom fødselsdato manglar, kan fødselsrekkefølgja for barn i familievisninga setjast ved å dra og sleppa."
 
 #: ../src/data/tips.xml.in.h:34
 msgid "Custom reports can be created by advanced users under the &quot;plugin&quot; system. More information on custom reports can be found at http://developers.gramps-project.org"
-msgstr ""
+msgstr "Tilpassa rapportar kan lagast av avanserte brukarar under &quot;Programtillegg&quot;-systemet.  Meir informasjon om tilpassa rapportar finn du  på http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:35
 msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr ""
+msgstr "Gløym ikkje å lesa GRAMS-manualen, <b>Hjelp &gt; Brukarmanual</b>.  Utviklarande har arbeidd hardt for å gjera dei fleste operasjonane intuitive, men manualen er full av informasjon som vil gjera tida du brukar på slektsgransking meir produktiv."
 
 #: ../src/data/tips.xml.in.h:36
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
-msgstr ""
+msgstr "Filter lar deg avgrensa talet på personar som vert vist i personvisninga.  I tillegg til dei mange førehandslaga filtera, kan det lagast tilpassa filter som berre vert avgrensa av fantasien din.  Tilpassa filter kan lagast frå <b>Rediger &gt;Lag personfilter</b>."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr ""
+msgstr "GRAMPS lar deg laga mange rapportar (både tekstrapportar og grafiske rapportar) basert på slektsgranskarmaterialet ditt.  Det er mange val for kva personar som skal vera med i rapportane såvel som mange utskriftsformat (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX og rein tekst.  Prøv deg fram med rapportar under menyen for<b>Rapportar</b> for å få ein ide om kor kraftfull GRAMPS er."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "GRAMPS allows you to import from, and export to, GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange GRAMPS information to and from users of most other genealogy programs."
