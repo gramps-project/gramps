@@ -57,12 +57,12 @@ class Database:
         self.cursor = self.db.cursor()
 
     def query(self, q, *args):
-        if q.trim().upper().startswith("DROP"):
+        if q.strip().upper().startswith("DROP"):
             try:
                 self.cursor.execute(q, args)
                 self.db.commit()
             except:
-                "no such table"
+                "no such table to drop: '%s'" % q
         else:
             self.cursor.execute(q, args)
             self.db.commit()
