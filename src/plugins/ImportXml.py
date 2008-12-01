@@ -2465,7 +2465,7 @@ def version_is_valid(filename, cli):
 #
 #------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GRAMPS _XML database'), 
+plugin = ImportPlugin(name            = _('GRAMPS XML database'), 
                       description     = _('The GRAMPS XML database is a text '
                                           'version of a family tree. It is '
                                           'read-write compatible with the '

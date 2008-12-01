@@ -143,7 +143,7 @@ _description = _('GEDCOM is used to transfer data between genealogy programs. '
                 'Most genealogy software will accept a GEDCOM file as input.')
 
 pmgr = PluginManager.get_instance()
-plugin = ImportPlugin(name            = _('GE_DCOM'), 
+plugin = ImportPlugin(name            = _('GEDCOM'), 
                       description     = _description,
                       import_function = importData,
                       extension       = "ged" )
