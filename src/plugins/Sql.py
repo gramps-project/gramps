@@ -47,6 +47,129 @@ def makeDB(db):
     db.query("""drop table sources;""") 
     db.query("""drop table media;""")
 
+    db.query("""CREATE TABLE notes (
+                  handle TEXT,
+                  gid    TEXT,
+                  text   TEXT,
+                  format TEXT,
+                  note_type1   INTEGER,
+                  note_type2   TEXT,
+                  change TEXT,
+                  marker0 TEXT,
+                  marker1 TEXT,
+                  private BOOLEAN);""")
+
+    db.query("""CREATE TABLE names (
+                  private BOOLEAN, 
+                  first_name TEXT, 
+                  surname TEXT, 
+                  suffix TEXT, 
+                  title TEXT, 
+                  name_type0 TEXT, 
+                  name_type1 TEXT, 
+                  prefix TEXT, 
+                  patronymic TEXT, 
+                  group_as TEXT, 
+                  sort_as TEXT,
+                  display_as TEXT, 
+                  call TEXT);""")
+
+    db.query("""CREATE TABLE dates (
+                  calendar TEXT, 
+                  modifier TEXT, 
+                  quality TEXT,
+                  day1 INTEGER, 
+                  month1 INTEGER, 
+                  year1 INTEGER, 
+                  flag1 BOOLEAN,
+                  day2 INTEGER, 
+                  month2 INTEGER, 
+                  year2 INTEGER, 
+                  flag2 BOOLEAN,
+                  text TEXT, 
+                  sortval LONG, 
+                  newyear INTEGER);""")
+
+    db.query("""CREATE TABLE people (
+                  handle TEXT, 
+                  gramps_id TEXT, 
+                  gender CHAR(1), 
+                  death_ref_index TEXT, 
+                  birth_ref_index TEXT, 
+                  change TEXT, 
+                  marker0 TEXT, 
+                  marker1 TEXT, 
+                  private BOOLEAN);""")
+
+    db.query("""CREATE TABLE family (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 father_handle TEXT, 
+                 mother_handle TEXT,
+                 the_type0 TEXT, 
+                 the_type1 TEXT, 
+                 change TEXT, 
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE places (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 title TEXT, 
+                 long FLOAT, 
+                 lat FLOAT, 
+                 change TEXT, 
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE events (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 the_type0 TEXT, 
+                 the_type1 TEXT, 
+                 description TEXT, 
+                 place TEXT, 
+                 change TEXT, 
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE sources (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 title TEXT, 
+                 author TEXT, 
+                 pubinfo TEXT, 
+                 abbrev TEXT, 
+                 change TEXT,
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE media (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 path TEXT, 
+                 mime TEXT, 
+                 desc TEXT,
+                 change TEXT, 
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE repository (
+                 handle TEXT, 
+                 gramps_id TEXT, 
+                 the_type0 TEXT, 
+                 the_type1 TEXT,
+                 name TEXT, 
+                 change TEXT, 
+                 marker0 TEXT, 
+                 marker1 TEXT, 
+                 private BOOLEAN);""")
+
 class Database:
     """
     The db connection.
@@ -199,133 +322,9 @@ def exportData(database, filename, option_box=None, callback=None):
     db = Database(filename)
     makeDB(db)
 
-    db.query("""CREATE TABLE notes (
-                  handle TEXT,
-                  gid    TEXT,
-                  text   TEXT,
-                  format TEXT,
-                  note_type1   INTEGER,
-                  note_type2   TEXT,
-                  change TEXT,
-                  marker0 TEXT,
-                  marker1 TEXT,
-                  private BOOLEAN);""")
-
-    db.query("""CREATE TABLE names (
-                  private BOOLEAN, 
-                  first_name TEXT, 
-                  surname TEXT, 
-                  suffix TEXT, 
-                  title TEXT, 
-                  name_type0 TEXT, 
-                  name_type1 TEXT, 
-                  prefix TEXT, 
-                  patronymic TEXT, 
-                  group_as TEXT, 
-                  sort_as TEXT,
-                  display_as TEXT, 
-                  call TEXT);""")
-
-    db.query("""CREATE TABLE dates (
-                  calendar TEXT, 
-                  modifier TEXT, 
-                  quality TEXT,
-                  day1 INTEGER, 
-                  month1 INTEGER, 
-                  year1 INTEGER, 
-                  flag1 BOOLEAN,
-                  day2 INTEGER, 
-                  month2 INTEGER, 
-                  year2 INTEGER, 
-                  flag2 BOOLEAN,
-                  text TEXT, 
-                  sortval LONG, 
-                  newyear INTEGER);""")
-
-    db.query("""CREATE TABLE people (
-                  handle TEXT, 
-                  gramps_id TEXT, 
-                  gender CHAR(1), 
-                  death_ref_index TEXT, 
-                  birth_ref_index TEXT, 
-                  change TEXT, 
-                  marker0 TEXT, 
-                  marker1 TEXT, 
-                  private BOOLEAN);""")
-
-    db.query("""CREATE TABLE family (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 father_handle TEXT, 
-                 mother_handle TEXT,
-                 the_type0 TEXT, 
-                 the_type1 TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
-    db.query("""CREATE TABLE places (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 title TEXT, 
-                 long FLOAT, 
-                 lat FLOAT, 
-                 change TEXT, 
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
-    db.query("""CREATE TABLE events (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 the_type0 TEXT, 
-                 the_type1 TEXT, 
-                 description TEXT, 
-                 place TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
-    db.query("""CREATE TABLE sources (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 title TEXT, 
-                 author TEXT, 
-                 pubinfo TEXT, 
-                 abbrev TEXT, 
-                 change TEXT,
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
-    db.query("""CREATE TABLE media (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 path TEXT, 
-                 mime TEXT, 
-                 desc TEXT,
-                 change TEXT, 
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
-    db.query("""CREATE TABLE repository (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 the_type0 TEXT, 
-                 the_type1 TEXT,
-                 name TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
-                 marker1 TEXT, 
-                 private BOOLEAN);""")
-
     # ---------------------------------
     # Notes
     # ---------------------------------
-
     for note_handle in database.note_map.keys():
         note = database.note_map[note_handle]
         (handle, gramps_id, styled_text, format, note_type,
@@ -340,7 +339,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     # Event
     # ---------------------------------
-    # update dates with newyear
     for event_handle in database.event_map.keys():
         event = database.event_map[event_handle]
         (handle, gramps_id, the_type, date, description, place, 
@@ -504,7 +502,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     # Repository
     # ---------------------------------
-
     for repository_handle in database.repository_map.keys():
         repository = database.repository_map[repository_handle]
         # address
@@ -523,9 +520,6 @@ def exportData(database, filename, option_box=None, callback=None):
                  private) VALUES (?,?,?,?,?,?,?,?,?);""",
                  handle, gramps_id, the_type[0], the_type[1],
                  name, change, marker[0], marker[1], private)
-
-        print "repository:", handle, gramps_id, the_type[0], the_type[1], \
-            name, change, marker[0], marker[1], private
         #TODO: lists
 
         for address in address_list:
@@ -540,7 +534,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     # Place
     # ---------------------------------
-
     for place_handle in database.place_map.keys():
         repository = database.place_map[place_handle]
         (handle, gramps_id, title, long, lat,
@@ -572,7 +565,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     # Source
     # ---------------------------------
-
     for source_handle in database.source_map.keys():
         source = database.source_map[source_handle]
         (handle, gramps_id, title,
@@ -596,7 +588,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     # Media
     # ---------------------------------
-
     for media_handle in database.media_map.keys():
         media = database.media_map[media_handle]
         (handle, gramps_id, path, mime, desc,
