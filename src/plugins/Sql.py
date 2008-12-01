@@ -577,8 +577,9 @@ def exportData(database, filename, option_box=None, callback=None):
          marker, private) = source
         export_source(db, handle, gramps_id, title, author, pubinfo, abbrev, change,
                    marker[0], marker[1], private)
-        for note in notes:
-            export_note(db, handle, note)
+        for note_handle in notes:
+            print "NOTE:", note_handle
+
          # TODO: notes, media_list
          # reporef_list, data_map
 
