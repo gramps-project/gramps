@@ -46,6 +46,8 @@ def makeDB(db):
     db.query("""drop table places;""") 
     db.query("""drop table sources;""") 
     db.query("""drop table media;""")
+    db.query("""drop table names;""")
+    db.query("""drop table link;""")
 
     db.query("""CREATE TABLE notes (
                   handle TEXT,
@@ -130,7 +132,6 @@ def makeDB(db):
                  the_type0 TEXT, 
                  the_type1 TEXT, 
                  description TEXT, 
-                 place TEXT, 
                  change TEXT, 
                  marker0 TEXT, 
                  marker1 TEXT, 
@@ -169,6 +170,13 @@ def makeDB(db):
                  marker0 TEXT, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
+
+    db.query("""CREATE TABLE link (
+                 from_type TEXT, 
+                 from_handle TEXT, 
+                 to_type TEXT, 
+                 to_handle TEXT);""")
+
 
 class Database:
     """
@@ -270,9 +278,13 @@ def export_name(db, handle, data):
                  sort_as, display_as, call)
         export_date(db, handle, date) 
         for source_handle in source_list:
-            print "   source handle:", source_handle
+            # (None, False, ['afce5e5edf9578a8382'], 2, 'afce5e5edf4471ab79d', '')
+            #db.query("""insert into link (from_type, from_handle, to_type, to_handle) values (?, ?, ?, ?)""",
+            #         "names", handle, "sources", source_handle)
+            print "names", "to", "sources", source_handle
         for note_handle in note_list:
-            print "   note handle:", note_handle
+            db.query("""insert into link (from_type, from_handle, to_type, to_handle) values (?, ?, ?, ?)""",
+                     "names", handle, "notes", note_handle)
 
 def export_date(db, handle, data):
     if data:
@@ -305,6 +317,11 @@ def export_date(db, handle, data):
                  day2, month2, year2, flag2,
                  text, sortval, newyear)
 
+
+def export_list(db, from_type, from_handle, to_type, handle_list):
+    for handle in handle_list:
+        print from_type, "to", to_type, ":", handle
+
 def exportData(database, filename, option_box=None, callback=None):
     if not callable(callback): 
         callback = lambda (percent): None # dummy
@@ -332,7 +349,8 @@ def exportData(database, filename, option_box=None, callback=None):
         text, text_list = styled_text
         export_note(db, handle, gramps_id, text, format, note_type[0],
                     note_type[1], change, marker[0], marker[1], private)
-        #TODO: text_list
+        for text_handle in text_list:
+            print "text handle:", text_handle
         count += 1
         callback(100 * count/total)
 
@@ -352,24 +370,28 @@ def exportData(database, filename, option_box=None, callback=None):
                  the_type0, 
                  the_type1, 
                  description, 
-                 place, 
                  change, 
                  marker0, 
                  marker1, 
-                 private) VALUES (?,?,?,?,?,?,?,?,?,?);""",
+                 private) VALUES (?,?,?,?,?,?,?,?,?);""",
                  handle, 
                  gramps_id, 
                  the_type[0], 
                  the_type[1], 
                  description, 
-                 place, 
                  change, 
                  marker[0], 
                  marker[1], 
                  private)
 
-        # TODO: lists
-        # source_list, note_list, media_list, attribute_list
+        # place
+        #export_list(db, "event", event_handle, "source", source_list)
+        # (None, False, [handles], 2, 'afce5e5932061715801', '')
+        export_list(db, "event", event_handle, "note", note_list) # handles
+        export_list(db, "event", event_handle, "media", media_list) 
+        export_list(db, "event", event_handle, "attribute", attribute_list)
+        export_list(db, "event", event_handle, "text", text_list)
+
         count += 1
         callback(100 * count/total)
 
@@ -421,17 +443,16 @@ def exportData(database, filename, option_box=None, callback=None):
                   marker[1], 
                   private)
 
-        # TODO: event_ref_list, 
-        #family_list, 
-        #parent_family_list,
-        #media_list,       
-        #address_list,      
-        #attribute_list,   
-        #urls,             
-        #lds_ord_list,     
-        #psource_list,     
-        #pnote_list,       
-        #person_ref_list,   
+        # TODO: 
+        export_list(db, "people", handle, "event_ref", event_ref_list)
+        # (False, [], [], 'afce5e5f70c71376c22', (1, u''))
+        export_list(db, "people", handle, "family", family_list) # handles
+        export_list(db, "people", handle, "parent_family", parent_family_list) # handles
+        export_list(db, "people", handle, "media", media_list)
+        export_list(db, "people", handle, "attribute", attribute_list)
+        export_list(db, "people", handle, "url", urls)
+        export_list(db, "people", handle, "note", pnote_list) # handles
+        export_list(db, "people", handle, "person_ref", person_ref_list)
 
         # -------------------------------------
         # Address
@@ -441,19 +462,36 @@ def exportData(database, filename, option_box=None, callback=None):
             (street, city, county, state, country, postal, phone) = location
             print "address:", private, street, city, county, state, \
                 country, postal, phone
+            print "location:", street, city, county, state, country, postal, phone
             export_date(db, handle, date)
-            # TODO: asource_list, anote_list
+
+            # Address Sources
+            for source in asource_list:
+                # (None, False, [], 2, 'afce5e599d414695da9', '')
+                print "address", "source", source
+
 
         # -------------------------------------
         # LDS ord
         # -------------------------------------
         for ldsord in lds_ord_list:
+            # ([(None, False, [], 2, 'afce5e6189b0e06b649', '')], [], None, 0, '', None, '', 0, False)
             (lsource_list, lnote_list, date, type, place,
              famc, temple, status, lprivate) = ldsord
             print "ldsord:", type, place, famc, temple, status, lprivate
             export_date(db, handle, date)
+            export_list(db, "lds", "LDSHANDLE", "note", lnote_list)
+            for source in lsource_list:
+                # (None, False, [], 2, 'afce5e599d414695da9', '')
+                print "lds", "source", source
 
-            #TODO: lists
+
+        # -------------------------------------
+        # Source
+        # -------------------------------------
+        for source in psource_list:
+            # (None, False, [], 2, 'afce5e599d414695da9', '')
+            print "people", "source", source
 
         # -------------------------------------
         # Names
