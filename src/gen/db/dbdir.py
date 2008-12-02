@@ -480,13 +480,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # These env settings are only needed for Txn environment
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        
-        if db.version() < (4, 7):
-            # Python 2.5 log settings
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
-        else:
-            # Python 2.6 log settings (db version 4.7.25)
-            self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
+
+        self.set_auto_remove()
+
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
                     db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
@@ -1694,6 +1690,30 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 #            self.gramps_upgrade_13()
         print "Upgrade time:", int(time.time()-t), "seconds"
             
+    def set_auto_remove(self):
+        """
+        BSDDB change log settings using new method with renamed attributes
+        """
+        if db.version() < (4, 7):
+            # by the book: old method with old attribute
+            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)
+        else: # look at python interface
+            # TODO test with new version of pybsddb
+            try:
+                # try numeric compare, just first 2 digits
+                # this won't work with something like "4.10a", but
+                # hopefully they won't do that
+                old_version = map(int, db.__version__.split(".",2)[:2]) < (4, 7)
+            except:
+                # fallback, weak string compare
+                old_version = db.__version__ < "4.7"
+            if old_version:
+                # undocumented: old method with new attribute
+                self.env.set_flags(db.DB_LOG_AUTO_REMOVE, 1)
+            else:
+                # by the book: new method with new attribute
+                self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
+
     def write_version(self, name):
         """Write version number for a newly created DB."""
         full_name = os.path.abspath(name)
@@ -1704,12 +1724,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # These env settings are only needed for Txn environment
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        if db.version() < (4, 7):
-            # Python 2.5 log settings
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1) # clean up unused logs
-        else:
-            # Python 2.6 log settings (db version 4.7.25)
-            self.env.log_set_config(db.DB_LOG_AUTO_REMOVE, 1)
+
+        # clean up unused logs
+        self.set_auto_remove()
 
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE | db.DB_PRIVATE |\
