@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 17:39+0100\n"
+"POT-Creation-Date: 2008-12-02 21:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,33 +16,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/ArgHandler.py:228
+#: ../src/ArgHandler.py:230
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr ""
 
-#: ../src/ArgHandler.py:229
+#: ../src/ArgHandler.py:231
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
 msgstr ""
 
-#: ../src/ArgHandler.py:471
+#: ../src/ArgHandler.py:473
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../src/ArgHandler.py:472
+#: ../src/ArgHandler.py:474
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../src/ArgHandler.py:475
+#: ../src/ArgHandler.py:477
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
 #: ../src/Assistant.py:337 ../src/Filters/Rules/Place/_HasPlace.py:47
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:89 ../src/plugins/ownereditor.glade.h:7
+#: ../src/glade/gramps.glade.h:93 ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr ""
@@ -260,67 +260,68 @@ msgstr ""
 msgid "GRAMPS: Import database"
 msgstr ""
 
-#: ../src/DbLoader.py:155 ../src/DbLoader.py:246
+#: ../src/DbLoader.py:154 ../src/DbLoader.py:245
 #, python-format
 msgid "Could not open file: %s"
 msgstr ""
 
-#: ../src/DbLoader.py:156
+#: ../src/DbLoader.py:155
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and "
+"others."
 msgstr ""
 
-#: ../src/DbLoader.py:180 ../src/DbLoader.py:186
+#: ../src/DbLoader.py:179 ../src/DbLoader.py:185
 msgid "Cannot open file"
 msgstr ""
 
-#: ../src/DbLoader.py:181
+#: ../src/DbLoader.py:180
 msgid "The selected file is a directory, not a file.\n"
 msgstr ""
 
-#: ../src/DbLoader.py:187
+#: ../src/DbLoader.py:186
 msgid "You do not have read access to the selected file."
 msgstr ""
 
-#: ../src/DbLoader.py:196
+#: ../src/DbLoader.py:195
 msgid "Cannot create file"
 msgstr ""
 
-#: ../src/DbLoader.py:197 ../src/DbLoader.py:221
+#: ../src/DbLoader.py:196 ../src/DbLoader.py:220
 msgid "You do not have write access to the selected file."
 msgstr ""
 
-#: ../src/DbLoader.py:220
+#: ../src/DbLoader.py:219
 msgid "Read only database"
 msgstr ""
 
-#: ../src/DbLoader.py:242
+#: ../src/DbLoader.py:241
 msgid "Cannot open database"
 msgstr ""
 
-#: ../src/DbLoader.py:269
+#: ../src/DbLoader.py:268
 #, python-format
 msgid "Could not import file: %s"
 msgstr ""
 
-#: ../src/DbLoader.py:270
+#: ../src/DbLoader.py:269
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 
-#: ../src/DbLoader.py:317
+#: ../src/DbLoader.py:316
 msgid "All files"
 msgstr ""
 
-#: ../src/DbLoader.py:358
+#: ../src/DbLoader.py:357
 msgid "Automatically detected"
 msgstr ""
 
-#: ../src/DbLoader.py:367
+#: ../src/DbLoader.py:366
 msgid "Select file _type:"
 msgstr ""
 
@@ -337,7 +338,7 @@ msgstr ""
 msgid "_Extract"
 msgstr ""
 
-#: ../src/DbManager.py:101 ../src/glade/gramps.glade.h:128
+#: ../src/DbManager.py:101 ../src/glade/gramps.glade.h:131
 msgid "_Archive"
 msgstr ""
 
@@ -351,7 +352,7 @@ msgid "Import finished..."
 msgstr ""
 
 #. Create a new database
-#: ../src/DbManager.py:289 ../src/plugins/ImportCsv.py:381
+#: ../src/DbManager.py:289 ../src/plugins/ImportCsv.py:382
 msgid "Importing data..."
 msgstr ""
 
@@ -487,13 +488,13 @@ msgstr ""
 #: ../src/plugins/DefaultGramplets.py:450
 #: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:151
 #: ../src/plugins/IndivComplete.py:442 ../src/plugins/NarrativeWeb.py:620
-#: ../src/gen/plug/_manager.py:294 ../src/gen/plug/_manager.py:295
-#: ../src/gen/plug/_manager.py:296 ../src/gen/plug/_manager.py:319
-#: ../src/gen/plug/_manager.py:320 ../src/gen/plug/_manager.py:354
-#: ../src/gen/plug/_manager.py:355 ../src/gen/plug/_manager.py:356
-#: ../src/gen/plug/_manager.py:392 ../src/gen/plug/_manager.py:393
-#: ../src/gen/plug/_manager.py:394 ../src/gen/plug/_manager.py:502
-#: ../src/gen/plug/_manager.py:503 ../src/gen/plug/_manager.py:504
+#: ../src/gen/plug/_manager.py:298 ../src/gen/plug/_manager.py:299
+#: ../src/gen/plug/_manager.py:300 ../src/gen/plug/_manager.py:323
+#: ../src/gen/plug/_manager.py:324 ../src/gen/plug/_manager.py:358
+#: ../src/gen/plug/_manager.py:359 ../src/gen/plug/_manager.py:360
+#: ../src/gen/plug/_manager.py:396 ../src/gen/plug/_manager.py:397
+#: ../src/gen/plug/_manager.py:398 ../src/gen/plug/_manager.py:506
+#: ../src/gen/plug/_manager.py:507 ../src/gen/plug/_manager.py:508
 #: ../src/ReportBase/_ReportUtils.py:1311 ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76 ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62 ../src/gen/lib/childreftype.py:64
@@ -770,7 +771,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:149 ../src/Editors/_EditEventRef.py:92
 #: ../src/Editors/_EditMediaRef.py:91 ../src/Editors/_EditRepoRef.py:82
 #: ../src/Editors/_EditSourceRef.py:83 ../src/Editors/_EditSourceRef.py:89
-#: ../src/gen/lib/notetype.py:78 ../src/glade/gramps.glade.h:77
+#: ../src/gen/lib/notetype.py:78 ../src/glade/gramps.glade.h:80
 msgid "General"
 msgstr ""
 
@@ -860,7 +861,7 @@ msgstr ""
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCsv.py:195 ../src/plugins/References.py:34
+#: ../src/plugins/ImportCsv.py:196 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:276
 msgid "Person"
@@ -874,7 +875,7 @@ msgstr ""
 #: ../src/DataViews/RelationView.py:1215 ../src/DataViews/RelationView.py:1239
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:270 ../src/plugins/ExportCsv.py:442
-#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:202
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:203
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:277
 msgid "Family"
@@ -885,7 +886,7 @@ msgstr ""
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:217 ../src/plugins/MarkerReport.py:301
+#: ../src/plugins/ImportCsv.py:218 ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/NarrativeWeb.py:2014 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
@@ -897,7 +898,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:199 ../src/Simple/_SimpleTable.py:209
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:167 ../src/plugins/ImportCsv.py:200
+#: ../src/plugins/ImportCsv.py:168 ../src/plugins/ImportCsv.py:201
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:280
 msgid "Source"
@@ -927,7 +928,7 @@ msgstr ""
 #: ../src/Simple/_SimpleTable.py:230 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/ExportCsv.py:337 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCsv.py:169
+#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCsv.py:170
 #: ../src/ReportBase/_GraphvizReportDialog.py:1027
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -986,7 +987,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1199
 #: ../src/plugins/ExportCsv.py:332 ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCsv.py:149 ../src/plugins/NarrativeWeb.py:743
+#: ../src/plugins/ImportCsv.py:150 ../src/plugins/NarrativeWeb.py:743
 #: ../src/plugins/NarrativeWeb.py:873 ../src/plugins/NarrativeWeb.py:1364
 #: ../src/plugins/StatisticsChart.py:89 ../src/PluginUtils/_GuiOptions.py:82
 #: ../src/PluginUtils/_GuiOptions.py:1068
@@ -999,14 +1000,14 @@ msgstr ""
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1197 ../src/BasicUtils/_NameDisplay.py:107
-#: ../src/plugins/ExportCsv.py:332 ../src/plugins/ImportCsv.py:153
+#: ../src/plugins/ExportCsv.py:332 ../src/plugins/ImportCsv.py:154
 msgid "Given"
 msgstr ""
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:593 ../src/Utils.py:1200
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:163
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:164
 msgid "Suffix"
 msgstr ""
 
@@ -1017,7 +1018,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1202
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:157
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:158
 msgid "Call"
 msgstr ""
 
@@ -1205,7 +1206,7 @@ msgstr ""
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:1097 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:215 ../src/plugins/MarkerReport.py:295
+#: ../src/plugins/ImportCsv.py:216 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:623 ../src/plugins/NarrativeWeb.py:1252
 #: ../src/plugins/NarrativeWeb.py:1593 ../src/plugins/NarrativeWeb.py:2014
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
@@ -1636,11 +1637,11 @@ msgstr ""
 msgid "undefined"
 msgstr ""
 
-#: ../src/Relationship.py:1639 ../src/plugins/ImportCsv.py:282
+#: ../src/Relationship.py:1639 ../src/plugins/ImportCsv.py:283
 msgid "husband"
 msgstr ""
 
-#: ../src/Relationship.py:1641 ../src/plugins/ImportCsv.py:278
+#: ../src/Relationship.py:1641 ../src/plugins/ImportCsv.py:279
 msgid "wife"
 msgstr ""
 
@@ -1736,7 +1737,7 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:164 ../src/DataViews/FamilyList.py:63
 #: ../src/DataViews/RelationView.py:787 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:300 ../src/plugins/FamilyGroup.py:185
-#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCsv.py:209
+#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCsv.py:210
 #: ../src/plugins/IndivComplete.py:215 ../src/plugins/IndivComplete.py:217
 #: ../src/plugins/IndivComplete.py:473 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2192
@@ -1749,7 +1750,7 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:166 ../src/DataViews/FamilyList.py:64
 #: ../src/DataViews/RelationView.py:788 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:297 ../src/plugins/FamilyGroup.py:202
-#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCsv.py:205
+#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCsv.py:206
 #: ../src/plugins/IndivComplete.py:224 ../src/plugins/IndivComplete.py:226
 #: ../src/plugins/IndivComplete.py:478 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2197
@@ -1896,7 +1897,7 @@ msgstr ""
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCsv.py:334
-#: ../src/plugins/ImportCsv.py:159 ../src/plugins/PatchNames.py:266
+#: ../src/plugins/ImportCsv.py:160 ../src/plugins/PatchNames.py:266
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
@@ -1928,7 +1929,7 @@ msgid "Call Name"
 msgstr ""
 
 #: ../src/ScratchPad.py:591 ../src/Utils.py:1198
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:161
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:162
 #: ../src/plugins/PatchNames.py:278 ../src/plugins/PatchNames.py:290
 msgid "Prefix"
 msgstr ""
@@ -2355,7 +2356,7 @@ msgstr ""
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
-#: ../src/plugins/ExportCsv.py:442 ../src/plugins/ImportCsv.py:198
+#: ../src/plugins/ExportCsv.py:442 ../src/plugins/ImportCsv.py:199
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -2744,7 +2745,7 @@ msgstr ""
 msgid "Abort changes"
 msgstr ""
 
-#: ../src/ViewManager.py:665 ../src/gen/db/dbdir.py:570
+#: ../src/ViewManager.py:665 ../src/gen/db/dbdir.py:567
 msgid "Cancel"
 msgstr ""
 
@@ -2807,27 +2808,27 @@ msgstr ""
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCsv.py:231
+#: ../src/plugins/ImportCsv.py:232
 msgid "title"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCsv.py:225
+#: ../src/plugins/ImportCsv.py:226
 msgid "given"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCsv.py:233
+#: ../src/plugins/ImportCsv.py:234
 msgid "prefix"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCsv.py:221
+#: ../src/plugins/ImportCsv.py:222
 msgid "surname"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCsv.py:235
+#: ../src/plugins/ImportCsv.py:236
 msgid "suffix"
 msgstr ""
 
@@ -2836,7 +2837,7 @@ msgid "patronymic"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCsv.py:229
+#: ../src/plugins/ImportCsv.py:230
 msgid "call"
 msgstr ""
 
@@ -2902,7 +2903,7 @@ msgstr ""
 
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
-#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:165
+#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:166
 #: ../src/plugins/IndivComplete.py:436 ../src/plugins/NarrativeWeb.py:1992
 #: ../src/plugins/RelCalc.py:58 ../src/plugins/siblings.py:46
 #: ../src/plugins/StatisticsChart.py:93
@@ -2937,7 +2938,7 @@ msgstr ""
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1155
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCsv.py:213 ../src/gen/lib/eventtype.py:131
+#: ../src/plugins/ImportCsv.py:214 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr ""
 
@@ -3074,7 +3075,7 @@ msgstr ""
 msgid "Select Media Columns"
 msgstr ""
 
-#: ../src/DataViews/MediaView.py:290 ../src/glade/gramps.glade.h:66
+#: ../src/DataViews/MediaView.py:290 ../src/glade/gramps.glade.h:69
 msgid "Double click image to view in an external viewer"
 msgstr ""
 
@@ -4419,8 +4420,8 @@ msgstr ""
 msgid "Maternal"
 msgstr ""
 
-#: ../src/Editors/_EditFamily.py:117 ../src/plugins/ExportCsv.glade.h:5
-msgid "_Children"
+#: ../src/Editors/_EditFamily.py:117 ../src/plugins/ExportCsv.glade.h:2
+msgid "Chil_dren"
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:122
@@ -4632,7 +4633,7 @@ msgid "Media Reference Editor"
 msgstr ""
 
 #: ../src/Editors/_EditMediaRef.py:83 ../src/Editors/_EditMediaRef.py:84
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:129
 msgid "Y coordinate|Y"
 msgstr ""
 
@@ -5726,7 +5727,7 @@ msgstr ""
 #: ../src/plugins/CalculateEstimatedDates.py:63
 #: ../src/plugins/CalculateEstimatedDates.py:153
 #: ../src/plugins/GVFamilyLines.py:203 ../src/plugins/GVHourGlass.py:254
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:96
 msgid "Options"
 msgstr ""
 
@@ -7664,41 +7665,41 @@ msgstr ""
 msgid "_Export to CD (portable XML)"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:175
+#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:176
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:172
+#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:173
 #: ../src/plugins/StatisticsChart.py:103
 msgid "Birth place"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:178
+#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:179
 msgid "Birth source"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:184
+#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:181
+#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:182
 #: ../src/plugins/StatisticsChart.py:105
 msgid "Death place"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.py:337 ../src/plugins/ImportCsv.py:187
+#: ../src/plugins/ExportCsv.py:337 ../src/plugins/ImportCsv.py:188
 msgid "Death source"
 msgstr ""
 
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCsv.py:210 ../src/plugins/NarrativeWeb.py:2378
+#: ../src/plugins/ImportCsv.py:211 ../src/plugins/NarrativeWeb.py:2378
 msgid "Husband"
 msgstr ""
 
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCsv.py:206 ../src/plugins/NarrativeWeb.py:2380
+#: ../src/plugins/ImportCsv.py:207 ../src/plugins/NarrativeWeb.py:2380
 msgid "Wife"
 msgstr ""
 
@@ -7795,7 +7796,7 @@ msgstr ""
 msgid "GEDCOM export options"
 msgstr ""
 
-#: ../src/plugins/ExportGedcom.py:1532 ../src/plugins/ImportGedcom.py:146
+#: ../src/plugins/ExportGedcom.py:1532
 msgid "GE_DCOM"
 msgstr ""
 
@@ -7916,7 +7917,7 @@ msgstr ""
 msgid "GRAMPS XML export options"
 msgstr ""
 
-#: ../src/plugins/ExportXml.py:1213 ../src/plugins/ImportXml.py:2468
+#: ../src/plugins/ExportXml.py:1213
 msgid "GRAMPS _XML database"
 msgstr ""
 
@@ -8169,7 +8170,7 @@ msgid "roundabout"
 msgstr ""
 
 #: ../src/plugins/FanChart.py:369
-msgid "Print raidal texts upright or roundabout"
+msgid "Print radial texts upright or roundabout"
 msgstr ""
 
 #: ../src/plugins/FanChart.py:393
@@ -8766,121 +8767,121 @@ msgstr ""
 msgid "Produces relationship graphs using Graphviz"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:152
+#: ../src/plugins/ImportCsv.py:153
 msgid "Given name"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:156
+#: ../src/plugins/ImportCsv.py:157
 msgid "Call name"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:190
+#: ../src/plugins/ImportCsv.py:191
 msgid "Death cause"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:193
+#: ../src/plugins/ImportCsv.py:194
 msgid "Gramps id"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:207
+#: ../src/plugins/ImportCsv.py:208
 msgid "Parent2"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:211
+#: ../src/plugins/ImportCsv.py:212
 msgid "Parent1"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:224
+#: ../src/plugins/ImportCsv.py:225
 msgid "given name"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:237
+#: ../src/plugins/ImportCsv.py:238
 msgid "gender"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:239 ../src/plugins/ImportCsv.py:272
+#: ../src/plugins/ImportCsv.py:240 ../src/plugins/ImportCsv.py:273
 msgid "source"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:241
+#: ../src/plugins/ImportCsv.py:242
 msgid "note"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:244
+#: ../src/plugins/ImportCsv.py:245
 msgid "birth place"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:247
+#: ../src/plugins/ImportCsv.py:248
 msgid "birth date"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:250
+#: ../src/plugins/ImportCsv.py:251
 msgid "birth source"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:253
+#: ../src/plugins/ImportCsv.py:254
 msgid "death place"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:256
+#: ../src/plugins/ImportCsv.py:257
 msgid "death date"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:259
+#: ../src/plugins/ImportCsv.py:260
 msgid "death source"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:262
+#: ../src/plugins/ImportCsv.py:263
 msgid "death cause"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:265
+#: ../src/plugins/ImportCsv.py:266
 msgid "gramps id"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:267
+#: ../src/plugins/ImportCsv.py:268
 msgid "person"
 msgstr ""
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:270
+#: ../src/plugins/ImportCsv.py:271
 msgid "child"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:274
+#: ../src/plugins/ImportCsv.py:275
 msgid "family"
 msgstr ""
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:277
+#: ../src/plugins/ImportCsv.py:278
 msgid "mother"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:279
+#: ../src/plugins/ImportCsv.py:280
 msgid "parent2"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:281
+#: ../src/plugins/ImportCsv.py:282
 msgid "father"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:283
+#: ../src/plugins/ImportCsv.py:284
 msgid "parent1"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:285
+#: ../src/plugins/ImportCsv.py:286
 msgid "marriage"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:287
+#: ../src/plugins/ImportCsv.py:288
 msgid "date"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:289
+#: ../src/plugins/ImportCsv.py:290
 msgid "place"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:317 ../src/plugins/ImportGedcom.py:113
+#: ../src/plugins/ImportCsv.py:318 ../src/plugins/ImportGedcom.py:113
 #: ../src/plugins/ImportGedcom.py:127 ../src/plugins/ImportGeneWeb.py:83
 #: ../src/plugins/ImportGeneWeb.py:89 ../src/plugins/ImportVCard.py:63
 #: ../src/plugins/ImportVCard.py:69
@@ -8888,34 +8889,34 @@ msgstr ""
 msgid "%s could not be opened\n"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:327
+#: ../src/plugins/ImportCsv.py:328
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:378
+#: ../src/plugins/ImportCsv.py:379
 msgid "CSV Import"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:379
+#: ../src/plugins/ImportCsv.py:380
 msgid "Reading data..."
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:646 ../src/plugins/ImportGeneWeb.py:180
+#: ../src/plugins/ImportCsv.py:694 ../src/plugins/ImportGeneWeb.py:180
 #: ../src/plugins/ImportVCard.py:144
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:647
+#: ../src/plugins/ImportCsv.py:695
 msgid "CSV import"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:796
+#: ../src/plugins/ImportCsv.py:844
 msgid "CSV Spreadheet"
 msgstr ""
 
-#: ../src/plugins/ImportCsv.py:797
+#: ../src/plugins/ImportCsv.py:845
 msgid "Import data from CSV files"
 msgstr ""
 
@@ -8930,6 +8931,11 @@ msgstr ""
 
 #: ../src/plugins/ImportGedcom.py:134
 msgid "Error reading GEDCOM file"
+msgstr ""
+
+#: ../src/plugins/ImportGedcom.py:146 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
 msgstr ""
 
 #: ../src/plugins/ImportGeneWeb.py:182
@@ -9005,7 +9011,7 @@ msgstr ""
 msgid "Import data from GRAMPS packages"
 msgstr ""
 
-#: ../src/plugins/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1126
+#: ../src/plugins/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1123
 msgid "Rebuild reference map"
 msgstr ""
 
@@ -9016,7 +9022,7 @@ msgstr ""
 msgid "%s could not be opened"
 msgstr ""
 
-#: ../src/plugins/ImportGrdb.py:2460 ../src/gen/db/dbdir.py:1217
+#: ../src/plugins/ImportGrdb.py:2460 ../src/gen/db/dbdir.py:1214
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data "
@@ -9264,6 +9270,11 @@ msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
 "you are running an older version %s. The file will not be imported. Please "
 "upgrade to the latest version of GRAMPS and try again."
+msgstr ""
+
+#: ../src/plugins/ImportXml.py:2468 ../data/gramps.keys.in.h:2
+#: ../data/gramps.xml.in.h:2
+msgid "GRAMPS XML database"
 msgstr ""
 
 #: ../src/plugins/ImportXml.py:2469
@@ -12325,7 +12336,7 @@ msgstr ""
 msgid "Landscape"
 msgstr ""
 
-#: ../src/ReportBase/_PaperMenu.py:223 ../src/glade/gramps.glade.h:190
+#: ../src/ReportBase/_PaperMenu.py:223 ../src/glade/gramps.glade.h:187
 #: ../src/glade/paper_settings.glade.h:12
 msgid "cm"
 msgstr ""
@@ -16018,7 +16029,7 @@ msgstr ""
 msgid "Style editor"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:207 ../src/glade/gramps.glade.h:191
+#: ../src/ReportBase/_StyleEditor.py:207 ../src/glade/gramps.glade.h:188
 msgid "point size|pt"
 msgstr ""
 
@@ -16086,22 +16097,22 @@ msgstr ""
 msgid "_Redo %s"
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:562
+#: ../src/gen/db/dbdir.py:559
 msgid "Need to upgrade database!"
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:563
+#: ../src/gen/db/dbdir.py:560
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
 "You might want to make a backup copy first."
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:569
+#: ../src/gen/db/dbdir.py:566
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:1975
+#: ../src/gen/db/dbdir.py:1993
 #, python-format
 msgid "Locked by %s"
 msgstr ""
@@ -18297,7 +18308,7 @@ msgid "Type:"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:99
 msgid "Path:"
 msgstr ""
 
@@ -18876,7 +18887,7 @@ msgstr ""
 msgid "Gi_ven:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:80
+#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:83
 msgid "Indicates if the record is private"
 msgstr ""
 
@@ -18888,11 +18899,11 @@ msgstr ""
 msgid "The person's given name"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:120
+#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:123
 msgid "Tit_le:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:146
+#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:144
 msgid "_Family:"
 msgstr ""
 
@@ -18900,19 +18911,19 @@ msgstr ""
 msgid "_Gender:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:148
+#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:146
 msgid "_ID:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:155
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:152
 msgid "_Marker:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:164
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:161
 msgid "_Prefix:"
 msgstr ""
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:181
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:178
 msgid "_Type:"
 msgstr ""
 
@@ -19088,11 +19099,11 @@ msgid "Birth:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:45
-msgid "C_ity:"
+msgid "C_ity/County:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:46
-msgid "C_ounty:"
+msgid "C_ity:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:47
@@ -19100,236 +19111,248 @@ msgid "Calenda_r:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:49
-msgid "Church _parish:"
+msgid "Call n_umber:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:50
-msgid "Click to delete gramplet from view"
+msgid "Cen_ter"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:51
-msgid "Click to expand/collapse"
+msgid "Ch_urch parish:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:52
-msgid "Close _without saving"
+msgid "Click to delete gramplet from view"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:53
-msgid "Close window without changes"
+msgid "Click to expand/collapse"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:54
-msgid "Co_unty:"
+msgid "Close _without saving"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:55
-msgid "Convert to a relative path"
+msgid "Close window without changes"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:56
-msgid "Corner 1:  X"
+msgid "Co_unty:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:57
-msgid "Corner 2:  X"
+msgid "Con_fidence:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:58
-msgid "Cou_ntry:"
+msgid "Convert to a relative path"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:59
-msgid "Count_ry:"
+msgid "Corner 1:  X"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:60
-msgid "D_ay"
+msgid "Corner 2:  X"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:61
-msgid "Dat_e:"
+msgid "Cou_ntry:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:62
-msgid "De_scription:"
+msgid "Count_ry:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:63
-msgid "Death:"
+msgid "D_ay"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:64
-msgid "Do not ask again"
+msgid "Dat_e:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:65
-msgid "Do not show this dialog again"
+msgid "De_scription:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:66
+msgid "Death:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:67
-msgid "Drag to move; click to detach"
+msgid "Do not ask again"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:68
-msgid "Example:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:69
-msgid "Family Trees - GRAMPS"
+msgid "Do not show this dialog again"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:70
-msgid "Family:"
+msgid "Drag to move; click to detach"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:71
-msgid "First li_ne:"
+msgid "Example:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:72
-msgid "Format _definition:"
+msgid "Family Trees - GRAMPS"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:73
-msgid "Format _name:"
+msgid "Family:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:74
-msgid "Format definition details"
+msgid "First li_ne:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:75
-msgid "GRAMPS"
+msgid "Format _definition:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:76
-msgid "G_roup as:"
+msgid "Format _name:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:77
+msgid "Format definition details"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:78
+msgid "GRAMPS"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:79
+msgid "G_roup as:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:81
 msgid ""
 "If media is an image, select a region of the image that is referenced. Point "
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
 "the rectangular region you want to use."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:82
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing medial files."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:84
 msgid "Invoke date editor"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:82
-msgid "Keep reference to the missing file"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:83
-msgid "LDS _Temple:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:84
-msgid "L_atitude:"
-msgstr ""
-
 #: ../src/glade/gramps.glade.h:85
-msgid "L_eft:"
+msgid "J_ustify"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:86
-msgid "Le_ft"
+msgid "Keep reference to the missing file"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:87
-msgid "Mo_nth"
+msgid "LDS _Temple:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:88
-msgid "Name Child:"
+msgid "L_atitude:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:89
+msgid "L_eft:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:90
-msgid "O_verride"
+msgid "Le_ft"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:91
-msgid "Open person editor of this child"
+msgid "Mo_nth"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:93
-msgid "Ordinance:"
+#: ../src/glade/gramps.glade.h:92
+msgid "Name Child:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:94
-msgid "P_atronymic:"
+msgid "O_verride"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:95
-msgid "P_hone:"
+msgid "Open person editor of this child"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:97
-msgid "Phon_e:"
+msgid "Ordinance:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:98
-msgid "R_ight:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:99
-msgid "Re_pair"
+msgid "P_atronymic:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:100
-msgid "Relationship to _Father:"
+msgid "Phon_e:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:101
-msgid "Relationship to _Mother:"
+msgid "R_ight:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:102
-msgid "Remove object and all references to it from the database"
+msgid "Re_pair"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:103
-msgid "Revision comment - GRAMPS"
+msgid "Relationship to _Father:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:104
-msgid "Ri_ght"
+msgid "Relationship to _Mother:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:105
-msgid "S_treet:"
+msgid "Remove object and all references to it from the database"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:106
-msgid "Select replacement for the missing file"
+msgid "Revision comment - GRAMPS"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:107
-msgid "Show all"
+msgid "Righ_t"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:108
-msgid "Style n_ame:"
+msgid "S_treet:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:109
-msgid "Suffi_x:"
+msgid "Select replacement for the missing file"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:110
-msgid "Te_xt comment:"
+msgid "Show all"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:111
+msgid "Style n_ame:"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:112
+msgid "Suffi_x:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:113
+msgid "Te_xt comment:"
+msgstr ""
+
+#: ../src/glade/gramps.glade.h:115
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -19342,7 +19365,7 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:124
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -19351,231 +19374,207 @@ msgid ""
 "Very High"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:130
 msgid "Y_ear"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:132
 msgid "_Association:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:133
 msgid "_Attribute:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:134
 msgid "_Author:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:135
 msgid "_Bold"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:136
 msgid "_Bottom"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:134
-msgid "_Call number:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:135
-msgid "_Center"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:136
-msgid "_City/County:"
-msgstr ""
-
 #: ../src/glade/gramps.glade.h:137
-msgid "_City:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:138
 msgid "_Close Window"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:139
-msgid "_Confidence:"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:138
 msgid "_Date:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:139
 msgid "_Day"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:140
 msgid "_Description:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display as:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:142
 msgid "_Display on startup"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:143
 msgid "_Event type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:145
 msgid "_Given:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:147
 msgid "_Italic"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:150
-msgid "_Justify"
-msgstr ""
-
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:150
 msgid "_Load Family Tree"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:151
 msgid "_Longitude:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:153
 msgid "_Media Type:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:154
 msgid "_Month"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:158 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:155 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:156
 msgid "_Padding:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:157
 msgid "_Path:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:158
 msgid "_Person:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:159
 msgid "_Place Name:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:160
 msgid "_Place:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:162
 msgid "_Preformatted"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:163
 msgid "_Publication Information:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:164
 msgid "_Publication information:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:165
 msgid "_Remove Object"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:166
 msgid "_Rename"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:167
 msgid "_Right"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:168
 msgid "_Role:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:169
 msgid "_Roman (Times, serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:170
 msgid "_Select File"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:171
 msgid "_Sort as:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:172
 msgid "_State/Province:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:173
 msgid "_State:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:174
 msgid "_Status:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:175
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:176
 msgid "_Title:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:177
 msgid "_Top"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:179
 msgid "_Underline"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:180
 msgid "_Use this selection for all missing media files"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:181
 msgid "_Value:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:182
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:183
 msgid "_Web address:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:187
+#: ../src/glade/gramps.glade.h:184
 msgid "_Year"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:188
+#: ../src/glade/gramps.glade.h:185
 msgid "_ZIP/Postal code:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:189
+#: ../src/glade/gramps.glade.h:186
 msgid "_Zip/Postal code:"
 msgstr ""
 
@@ -19848,13 +19847,13 @@ msgid "<b>Output Window</b>"
 msgstr ""
 
 #: ../src/plugins/eventcmp.glade.h:1
-msgid ""
-"The event comparison utility uses the filters defined in the Custom Filter "
-"Editor."
+msgid "Custom filter _editor"
 msgstr ""
 
 #: ../src/plugins/eventcmp.glade.h:2
-msgid "_Custom filter editor"
+msgid ""
+"The event comparison utility uses the filters defined in the Custom Filter "
+"Editor."
 msgstr ""
 
 #: ../src/plugins/eventcmp.glade.h:3
@@ -19931,15 +19930,15 @@ msgid "<b>Match Threshold</b>"
 msgstr ""
 
 #: ../src/plugins/merge.glade.h:3
-msgid "Please be patient. This may take a while."
+msgid "Co_mpare"
 msgstr ""
 
 #: ../src/plugins/merge.glade.h:4
-msgid "Use soundex codes"
+msgid "Please be patient. This may take a while."
 msgstr ""
 
 #: ../src/plugins/merge.glade.h:5
-msgid "_Compare"
+msgid "Use soundex codes"
 msgstr ""
 
 #: ../src/plugins/ownereditor.glade.h:3
@@ -20014,17 +20013,17 @@ msgstr ""
 msgid "_Unmark all"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.glade.h:2
+#: ../src/plugins/ExportCsv.glade.h:3
 msgid "Export:"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.glade.h:3 ../src/plugins/ExportFtree.glade.h:2
+#: ../src/plugins/ExportCsv.glade.h:4 ../src/plugins/ExportFtree.glade.h:2
 #: ../src/plugins/ExportGeneWeb.glade.h:5 ../src/plugins/ExportVCard.glade.h:2
 #: ../src/plugins/ExportVCalendar.glade.h:2
 msgid "Filt_er:"
 msgstr ""
 
-#: ../src/plugins/ExportCsv.glade.h:4
+#: ../src/plugins/ExportCsv.glade.h:5
 msgid "I_ndividuals"
 msgstr ""
 
@@ -20037,7 +20036,7 @@ msgid "Exclude _notes"
 msgstr ""
 
 #: ../src/plugins/ExportGeneWeb.glade.h:4
-msgid "Exclude sour_ces"
+msgid "Exclude _sources"
 msgstr ""
 
 #: ../src/plugins/ExportGeneWeb.glade.h:6
@@ -20093,7 +20092,7 @@ msgid "Maximum number of _spouses for a person"
 msgstr ""
 
 #: ../src/plugins/verify.glade.h:15
-msgid "Maximum number of c_hildren"
+msgid "Maximum number of chil_dren"
 msgstr ""
 
 #: ../src/plugins/verify.glade.h:16
@@ -20131,14 +20130,6 @@ msgstr ""
 #: ../data/gramps.desktop.in.h:2
 msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-msgid "GRAMPS XML database"
 msgstr ""
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
