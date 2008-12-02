@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-19 18:38+0100\n"
-"PO-Revision-Date: 2008-11-19 20:37+0100\n"
+"POT-Creation-Date: 2008-12-02 18:05+0100\n"
+"PO-Revision-Date: 2008-12-02 18:18+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../src/ArgHandler.py:228
+#: ../src/ArgHandler.py:230
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr "Eingabestammbaum \"%s\" existiert nicht"
 
-#: ../src/ArgHandler.py:229
+#: ../src/ArgHandler.py:231
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
@@ -36,16 +36,16 @@ msgstr ""
 "Wenn gedcom, gramps-xml oder grdb die -i Option zum Import in Stammbäume "
 "stattdessen verwendet wird."
 
-#: ../src/ArgHandler.py:471
+#: ../src/ArgHandler.py:473
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank ist gesperrt, kann sie nicht öffnen!"
 
-#: ../src/ArgHandler.py:472
+#: ../src/ArgHandler.py:474
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/ArgHandler.py:475
+#: ../src/ArgHandler.py:477
 msgid "Database needs recovery, cannot open it!"
 msgstr "Datenbank benötigt Wiederherstellung, kann sie nicht öffnen!"
 
@@ -126,7 +126,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/plugins/PatchNames.py:234 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/RelCalc.py:116 ../src/plugins/RemoveUnused.py:203
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:551
-#: ../src/PluginUtils/_GuiOptions.py:790
+#: ../src/PluginUtils/_GuiOptions.py:811
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
@@ -154,8 +154,8 @@ msgstr "Name"
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:249
 #: ../src/plugins/NotRelated.py:112 ../src/plugins/PatchNames.py:225
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/RemoveUnused.py:197
-#: ../src/plugins/Verify.py:544 ../src/PluginUtils/_GuiOptions.py:791
-#: ../src/PluginUtils/_GuiOptions.py:931
+#: ../src/plugins/Verify.py:544 ../src/PluginUtils/_GuiOptions.py:812
+#: ../src/PluginUtils/_GuiOptions.py:952
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -277,56 +277,57 @@ msgstr "_Stopp"
 msgid "GRAMPS: Import database"
 msgstr "GRAMPS: Datenbank importieren"
 
-#: ../src/DbLoader.py:155 ../src/DbLoader.py:246
+#: ../src/DbLoader.py:154 ../src/DbLoader.py:245
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kann folgende Datei nicht öffnen: %s"
 
-#: ../src/DbLoader.py:156
+#: ../src/DbLoader.py:155
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and "
+"others."
 msgstr ""
 "Dateityp \"%s\" ist GRAMPS unbekannt.\n"
 "\n"
-"Gültige Type sind: GRAMPS-Datenbank, GRAMPS-XML, GRAMPS-Paket und GEDCOM."
+"Gültige Type sind: GRAMPS-Datenbank, GRAMPS-XML, GRAMPS-Paket, GEDCOM und andere."
 
-#: ../src/DbLoader.py:180 ../src/DbLoader.py:186
+#: ../src/DbLoader.py:179 ../src/DbLoader.py:185
 msgid "Cannot open file"
 msgstr "Kann Datei nicht öffnen"
 
-#: ../src/DbLoader.py:181
+#: ../src/DbLoader.py:180
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Die ausgewählte Datei ist ein Verzeichnis und keine Datei.\n"
 
-#: ../src/DbLoader.py:187
+#: ../src/DbLoader.py:186
 msgid "You do not have read access to the selected file."
 msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 
-#: ../src/DbLoader.py:196
+#: ../src/DbLoader.py:195
 msgid "Cannot create file"
 msgstr "Kann Datei nicht erstellen"
 
-#: ../src/DbLoader.py:197 ../src/DbLoader.py:221
+#: ../src/DbLoader.py:196 ../src/DbLoader.py:220
 msgid "You do not have write access to the selected file."
 msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
-#: ../src/DbLoader.py:220
+#: ../src/DbLoader.py:219
 msgid "Read only database"
 msgstr "Schreibgeschützte Datenbank"
 
-#: ../src/DbLoader.py:242
+#: ../src/DbLoader.py:241
 msgid "Cannot open database"
 msgstr "Kann Datenbank nicht öffnen"
 
-#: ../src/DbLoader.py:269
+#: ../src/DbLoader.py:268
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Kann Datei nicht importieren: %s"
 
-#: ../src/DbLoader.py:270
+#: ../src/DbLoader.py:269
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
@@ -335,15 +336,15 @@ msgstr ""
 "importiert werden. Bitte korrigiere den Zeichensatz und importiere sie "
 "erneut."
 
-#: ../src/DbLoader.py:317
+#: ../src/DbLoader.py:316
 msgid "All files"
 msgstr "Alle Dateien"
 
-#: ../src/DbLoader.py:358
+#: ../src/DbLoader.py:357
 msgid "Automatically detected"
 msgstr "Automatisch erkannt"
 
-#: ../src/DbLoader.py:367
+#: ../src/DbLoader.py:366
 msgid "Select file _type:"
 msgstr "Datei_typ auswählen:"
 
@@ -374,7 +375,7 @@ msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
 #. Create a new database
-#: ../src/DbManager.py:289 ../src/plugins/ImportCsv.py:381
+#: ../src/DbManager.py:289 ../src/plugins/ImportCsv.py:382
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
@@ -522,13 +523,13 @@ msgstr "Nie"
 #: ../src/plugins/DefaultGramplets.py:450
 #: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:151
 #: ../src/plugins/IndivComplete.py:442 ../src/plugins/NarrativeWeb.py:620
-#: ../src/gen/plug/_manager.py:294 ../src/gen/plug/_manager.py:295
-#: ../src/gen/plug/_manager.py:296 ../src/gen/plug/_manager.py:319
-#: ../src/gen/plug/_manager.py:320 ../src/gen/plug/_manager.py:354
-#: ../src/gen/plug/_manager.py:355 ../src/gen/plug/_manager.py:356
-#: ../src/gen/plug/_manager.py:392 ../src/gen/plug/_manager.py:393
-#: ../src/gen/plug/_manager.py:394 ../src/gen/plug/_manager.py:502
-#: ../src/gen/plug/_manager.py:503 ../src/gen/plug/_manager.py:504
+#: ../src/gen/plug/_manager.py:298 ../src/gen/plug/_manager.py:299
+#: ../src/gen/plug/_manager.py:300 ../src/gen/plug/_manager.py:323
+#: ../src/gen/plug/_manager.py:324 ../src/gen/plug/_manager.py:358
+#: ../src/gen/plug/_manager.py:359 ../src/gen/plug/_manager.py:360
+#: ../src/gen/plug/_manager.py:396 ../src/gen/plug/_manager.py:397
+#: ../src/gen/plug/_manager.py:398 ../src/gen/plug/_manager.py:506
+#: ../src/gen/plug/_manager.py:507 ../src/gen/plug/_manager.py:508
 #: ../src/ReportBase/_ReportUtils.py:1311 ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76 ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62 ../src/gen/lib/childreftype.py:64
@@ -949,7 +950,7 @@ msgstr "E-Mail"
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCsv.py:195 ../src/plugins/References.py:34
+#: ../src/plugins/ImportCsv.py:196 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:276
 msgid "Person"
@@ -963,7 +964,7 @@ msgstr "Person"
 #: ../src/DataViews/RelationView.py:1215 ../src/DataViews/RelationView.py:1239
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:270 ../src/plugins/ExportCsv.py:442
-#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:202
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCsv.py:203
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:277
 msgid "Family"
@@ -974,11 +975,11 @@ msgstr "Familie"
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:217 ../src/plugins/MarkerReport.py:301
+#: ../src/plugins/ImportCsv.py:218 ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/NarrativeWeb.py:2014 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:35 ../src/plugins/References.py:93
-#: ../src/PluginUtils/_GuiOptions.py:930
+#: ../src/PluginUtils/_GuiOptions.py:951
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:279
 msgid "Place"
@@ -986,7 +987,7 @@ msgstr "Ort"
 
 #: ../src/GrampsCfg.py:199 ../src/Simple/_SimpleTable.py:209
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:167 ../src/plugins/ImportCsv.py:200
+#: ../src/plugins/ImportCsv.py:168 ../src/plugins/ImportCsv.py:201
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:280
 msgid "Source"
@@ -1016,7 +1017,7 @@ msgstr "Aufbewahrungsort"
 #: ../src/Simple/_SimpleTable.py:230 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/ExportCsv.py:337 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCsv.py:169
+#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCsv.py:170
 #: ../src/ReportBase/_GraphvizReportDialog.py:1027
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1075,10 +1076,10 @@ msgstr "_Details zum selbstdefinierten Format"
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1199
 #: ../src/plugins/ExportCsv.py:332 ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCsv.py:149 ../src/plugins/NarrativeWeb.py:743
+#: ../src/plugins/ImportCsv.py:150 ../src/plugins/NarrativeWeb.py:743
 #: ../src/plugins/NarrativeWeb.py:873 ../src/plugins/NarrativeWeb.py:1364
-#: ../src/plugins/StatisticsChart.py:89 ../src/PluginUtils/_GuiOptions.py:81
-#: ../src/PluginUtils/_GuiOptions.py:1047
+#: ../src/plugins/StatisticsChart.py:89 ../src/PluginUtils/_GuiOptions.py:82
+#: ../src/PluginUtils/_GuiOptions.py:1068
 msgid "Surname"
 msgstr "Nachname"
 
@@ -1088,14 +1089,14 @@ msgstr "Nachname"
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1197 ../src/BasicUtils/_NameDisplay.py:107
-#: ../src/plugins/ExportCsv.py:332 ../src/plugins/ImportCsv.py:153
+#: ../src/plugins/ExportCsv.py:332 ../src/plugins/ImportCsv.py:154
 msgid "Given"
 msgstr "Vorname"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:593 ../src/Utils.py:1200
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:163
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:164
 msgid "Suffix"
 msgstr "Suffix"
 
@@ -1106,7 +1107,7 @@ msgstr "Rufname"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1202
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:157
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:158
 msgid "Call"
 msgstr "Rufname"
 
@@ -1296,7 +1297,7 @@ msgstr "Lesezeichen hinzufügen"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:1097 ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:215 ../src/plugins/MarkerReport.py:295
+#: ../src/plugins/ImportCsv.py:216 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:623 ../src/plugins/NarrativeWeb.py:1252
 #: ../src/plugins/NarrativeWeb.py:1593 ../src/plugins/NarrativeWeb.py:2014
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
@@ -1520,12 +1521,12 @@ msgid ""
 msgstr "Mehr als ein Element wurden zum löschen gewählt. Vor jedem löschen fragen?"
 
 #: ../src/PageView.py:275 ../src/plugins/all_relations.py:306
-#: ../src/PluginUtils/_GuiOptions.py:887
+#: ../src/PluginUtils/_GuiOptions.py:908
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/PageView.py:276 ../src/plugins/all_relations.py:310
-#: ../src/PluginUtils/_GuiOptions.py:886
+#: ../src/PluginUtils/_GuiOptions.py:907
 msgid "No"
 msgstr "Nein"
 
@@ -1755,11 +1756,11 @@ msgstr "Person %s hat eine Verbindung zu sich selbst über %s"
 msgid "undefined"
 msgstr "undefiniert"
 
-#: ../src/Relationship.py:1639 ../src/plugins/ImportCsv.py:282
+#: ../src/Relationship.py:1639 ../src/plugins/ImportCsv.py:283
 msgid "husband"
 msgstr "Ehemann"
 
-#: ../src/Relationship.py:1641 ../src/plugins/ImportCsv.py:278
+#: ../src/Relationship.py:1641 ../src/plugins/ImportCsv.py:279
 msgid "wife"
 msgstr "Ehefrau"
 
@@ -1855,7 +1856,7 @@ msgstr "frühere(r) Partner(in)"
 #: ../src/Merge/_MergePerson.py:164 ../src/DataViews/FamilyList.py:63
 #: ../src/DataViews/RelationView.py:787 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:300 ../src/plugins/FamilyGroup.py:185
-#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCsv.py:209
+#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCsv.py:210
 #: ../src/plugins/IndivComplete.py:215 ../src/plugins/IndivComplete.py:217
 #: ../src/plugins/IndivComplete.py:473 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2192
@@ -1868,7 +1869,7 @@ msgstr "Vater"
 #: ../src/Merge/_MergePerson.py:166 ../src/DataViews/FamilyList.py:64
 #: ../src/DataViews/RelationView.py:788 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:297 ../src/plugins/FamilyGroup.py:202
-#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCsv.py:205
+#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCsv.py:206
 #: ../src/plugins/IndivComplete.py:224 ../src/plugins/IndivComplete.py:226
 #: ../src/plugins/IndivComplete.py:478 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2197
@@ -2015,7 +2016,7 @@ msgstr "Band/Seite: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCsv.py:334
-#: ../src/plugins/ImportCsv.py:159 ../src/plugins/PatchNames.py:266
+#: ../src/plugins/ImportCsv.py:160 ../src/plugins/PatchNames.py:266
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
@@ -2047,7 +2048,7 @@ msgid "Call Name"
 msgstr "Rufname"
 
 #: ../src/ScratchPad.py:591 ../src/Utils.py:1198
-#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:161
+#: ../src/plugins/ExportCsv.py:333 ../src/plugins/ImportCsv.py:162
 #: ../src/plugins/PatchNames.py:278 ../src/plugins/PatchNames.py:290
 msgid "Prefix"
 msgstr "Präfix"
@@ -2477,21 +2478,21 @@ msgstr "Quellen im Aufbewahrungsort"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
-#: ../src/plugins/ExportCsv.py:442 ../src/plugins/ImportCsv.py:198
+#: ../src/plugins/ExportCsv.py:442 ../src/plugins/ImportCsv.py:199
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Kind"
 
 #: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:63
-#: ../src/DisplayModels/_PeopleModel.py:238 ../src/Editors/_EditPerson.py:238
+#: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:238
 #: ../src/plugins/NarrativeWeb.py:1698
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "männlich"
 
 #: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:63
-#: ../src/DisplayModels/_PeopleModel.py:238 ../src/Editors/_EditPerson.py:237
+#: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:237
 #: ../src/plugins/NarrativeWeb.py:1699
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
@@ -2504,7 +2505,7 @@ msgstr "weiblich"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:63
-#: ../src/docgen/HtmlDoc.py:494 ../src/DisplayModels/_PeopleModel.py:238
+#: ../src/docgen/HtmlDoc.py:494 ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
 #: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:495
@@ -2874,7 +2875,7 @@ msgstr ""
 msgid "Abort changes"
 msgstr "Änderungen verwerfen"
 
-#: ../src/ViewManager.py:665 ../src/gen/db/dbdir.py:570
+#: ../src/ViewManager.py:665 ../src/gen/db/dbdir.py:567
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -2939,27 +2940,27 @@ msgstr "Vatername, Vorname"
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCsv.py:231
+#: ../src/plugins/ImportCsv.py:232
 msgid "title"
 msgstr "Titel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCsv.py:225
+#: ../src/plugins/ImportCsv.py:226
 msgid "given"
 msgstr "Vorname"
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCsv.py:233
+#: ../src/plugins/ImportCsv.py:234
 msgid "prefix"
 msgstr "Präfix"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCsv.py:221
+#: ../src/plugins/ImportCsv.py:222
 msgid "surname"
 msgstr "Nachname"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCsv.py:235
+#: ../src/plugins/ImportCsv.py:236
 msgid "suffix"
 msgstr "Suffix"
 
@@ -2968,7 +2969,7 @@ msgid "patronymic"
 msgstr "Vatername"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCsv.py:229
+#: ../src/plugins/ImportCsv.py:230
 msgid "call"
 msgstr "Rufname"
 
@@ -3038,7 +3039,7 @@ msgstr ""
 
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
-#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:165
+#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:166
 #: ../src/plugins/IndivComplete.py:436 ../src/plugins/NarrativeWeb.py:1992
 #: ../src/plugins/RelCalc.py:58 ../src/plugins/siblings.py:46
 #: ../src/plugins/StatisticsChart.py:93
@@ -3073,7 +3074,7 @@ msgstr "(Ehe-)Partner"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1155
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCsv.py:213 ../src/gen/lib/eventtype.py:131
+#: ../src/plugins/ImportCsv.py:214 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Hochzeit"
 
@@ -4418,7 +4419,7 @@ msgstr "Ort löschen"
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:773
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 
@@ -4426,7 +4427,7 @@ msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:727
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:748
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
@@ -4438,7 +4439,7 @@ msgstr "Medienobjekt entfernen"
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Um eine Notiz zu wählen, benutze Drag-und-Drop oder die Schaltflächen"
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:675
+#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:696
 msgid "No note given, click button to select one"
 msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 
@@ -4447,7 +4448,7 @@ msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:645
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:666
 msgid "Select an existing note"
 msgstr "Einen existierende Notiz auswählen"
 
@@ -4590,8 +4591,8 @@ msgstr "Väterlicherseits"
 msgid "Maternal"
 msgstr "Mütterlicherseits"
 
-#: ../src/Editors/_EditFamily.py:117 ../src/plugins/ExportCsv.glade.h:5
-msgid "_Children"
+#: ../src/Editors/_EditFamily.py:117
+msgid "Chil_dren"
 msgstr "_Kinder"
 
 #: ../src/Editors/_EditFamily.py:122
@@ -5511,7 +5512,7 @@ msgstr "Notiz wählen"
 msgid "Select Media Object"
 msgstr "Medienobjekt wählen"
 
-#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:884
+#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:905
 msgid "Select Person"
 msgstr "Person wählen"
 
@@ -5890,15 +5891,15 @@ msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur"
 msgid "Not Applicable"
 msgstr "Nicht anwendbar"
 
-#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:585
+#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:606
 msgid "unknown father"
 msgstr "unbekannter Vater"
 
-#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:591
+#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:612
 msgid "unknown mother"
 msgstr "unbekannte Mutter"
 
-#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:593
+#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:614
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s und %s (%s)"
@@ -7999,41 +8000,41 @@ msgstr ""
 msgid "_Export to CD (portable XML)"
 msgstr "Auf CD _Exportieren (portable XML)"
 
-#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:175
+#: ../src/plugins/ExportCsv.py:334 ../src/plugins/ImportCsv.py:176
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:172
+#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:173
 #: ../src/plugins/StatisticsChart.py:103
 msgid "Birth place"
 msgstr "Geburtsort"
 
-#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:178
+#: ../src/plugins/ExportCsv.py:335 ../src/plugins/ImportCsv.py:179
 msgid "Birth source"
 msgstr "Geburt Quellenangabe"
 
-#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:184
+#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterbedatum"
 
-#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:181
+#: ../src/plugins/ExportCsv.py:336 ../src/plugins/ImportCsv.py:182
 #: ../src/plugins/StatisticsChart.py:105
 msgid "Death place"
 msgstr "Sterbeort"
 
-#: ../src/plugins/ExportCsv.py:337 ../src/plugins/ImportCsv.py:187
+#: ../src/plugins/ExportCsv.py:337 ../src/plugins/ImportCsv.py:188
 msgid "Death source"
 msgstr "Sterbequelle"
 
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCsv.py:210 ../src/plugins/NarrativeWeb.py:2378
+#: ../src/plugins/ImportCsv.py:211 ../src/plugins/NarrativeWeb.py:2378
 msgid "Husband"
 msgstr "Ehemann"
 
 #: ../src/plugins/ExportCsv.py:402 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCsv.py:206 ../src/plugins/NarrativeWeb.py:2380
+#: ../src/plugins/ImportCsv.py:207 ../src/plugins/NarrativeWeb.py:2380
 msgid "Wife"
 msgstr "Ehefrau"
 
@@ -8133,7 +8134,7 @@ msgstr ""
 msgid "GEDCOM export options"
 msgstr "GEDCOM-Exportoptionen"
 
-#: ../src/plugins/ExportGedcom.py:1532 ../src/plugins/ImportGedcom.py:146
+#: ../src/plugins/ExportGedcom.py:1532
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
@@ -8262,7 +8263,7 @@ msgstr ""
 msgid "GRAMPS XML export options"
 msgstr "GRAMPS XML Exportoptionen"
 
-#: ../src/plugins/ExportXml.py:1213 ../src/plugins/ImportXml.py:2468
+#: ../src/plugins/ExportXml.py:1213
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-Datenbank"
 
@@ -8521,7 +8522,7 @@ msgid "roundabout"
 msgstr "ringsum"
 
 #: ../src/plugins/FanChart.py:369
-msgid "Print raidal texts upright or roundabout"
+msgid "Print radial texts upright or roundabout"
 msgstr "Drucke strahlenförmigen Text aufrecht oder ringsum"
 
 #: ../src/plugins/FanChart.py:393
@@ -8618,7 +8619,7 @@ msgstr "Geburtereignis aber kein Datum"
 msgid "missing birth event"
 msgstr "Geburtereignis fehlt"
 
-#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:82
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:83
 msgid "Count"
 msgstr "Zählung"
 
@@ -9141,121 +9142,121 @@ msgstr "Beziehungengrafik"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Erstellt eine Beziehungengrafik mit GraphViz."
 
-#: ../src/plugins/ImportCsv.py:152
+#: ../src/plugins/ImportCsv.py:153
 msgid "Given name"
 msgstr "Vorname"
 
-#: ../src/plugins/ImportCsv.py:156
+#: ../src/plugins/ImportCsv.py:157
 msgid "Call name"
 msgstr "Rufname"
 
-#: ../src/plugins/ImportCsv.py:190
+#: ../src/plugins/ImportCsv.py:191
 msgid "Death cause"
 msgstr "Todesursache"
 
-#: ../src/plugins/ImportCsv.py:193
+#: ../src/plugins/ImportCsv.py:194
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCsv.py:207
+#: ../src/plugins/ImportCsv.py:208
 msgid "Parent2"
 msgstr "Elter2"
 
-#: ../src/plugins/ImportCsv.py:211
+#: ../src/plugins/ImportCsv.py:212
 msgid "Parent1"
 msgstr "Elter1"
 
-#: ../src/plugins/ImportCsv.py:224
+#: ../src/plugins/ImportCsv.py:225
 msgid "given name"
 msgstr "Vorname"
 
-#: ../src/plugins/ImportCsv.py:237
+#: ../src/plugins/ImportCsv.py:238
 msgid "gender"
 msgstr "Geschlecht"
 
-#: ../src/plugins/ImportCsv.py:239 ../src/plugins/ImportCsv.py:272
+#: ../src/plugins/ImportCsv.py:240 ../src/plugins/ImportCsv.py:273
 msgid "source"
 msgstr "Quelle"
 
-#: ../src/plugins/ImportCsv.py:241
+#: ../src/plugins/ImportCsv.py:242
 msgid "note"
 msgstr "Notiz"
 
-#: ../src/plugins/ImportCsv.py:244
+#: ../src/plugins/ImportCsv.py:245
 msgid "birth place"
 msgstr "Geburtsort"
 
-#: ../src/plugins/ImportCsv.py:247
+#: ../src/plugins/ImportCsv.py:248
 msgid "birth date"
 msgstr "Geburtsdatum"
 
-#: ../src/plugins/ImportCsv.py:250
+#: ../src/plugins/ImportCsv.py:251
 msgid "birth source"
 msgstr "Geburtsquelle"
 
-#: ../src/plugins/ImportCsv.py:253
+#: ../src/plugins/ImportCsv.py:254
 msgid "death place"
 msgstr "Sterbeort"
 
-#: ../src/plugins/ImportCsv.py:256
+#: ../src/plugins/ImportCsv.py:257
 msgid "death date"
 msgstr "Sterbedatum"
 
-#: ../src/plugins/ImportCsv.py:259
+#: ../src/plugins/ImportCsv.py:260
 msgid "death source"
 msgstr "Sterbequelle"
 
-#: ../src/plugins/ImportCsv.py:262
+#: ../src/plugins/ImportCsv.py:263
 msgid "death cause"
 msgstr "Todesursache"
 
-#: ../src/plugins/ImportCsv.py:265
+#: ../src/plugins/ImportCsv.py:266
 msgid "gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCsv.py:267
+#: ../src/plugins/ImportCsv.py:268
 msgid "person"
 msgstr "Person"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:270
+#: ../src/plugins/ImportCsv.py:271
 msgid "child"
 msgstr "Kind"
 
-#: ../src/plugins/ImportCsv.py:274
+#: ../src/plugins/ImportCsv.py:275
 msgid "family"
 msgstr "Familie"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:277
+#: ../src/plugins/ImportCsv.py:278
 msgid "mother"
 msgstr "Mutter"
 
-#: ../src/plugins/ImportCsv.py:279
+#: ../src/plugins/ImportCsv.py:280
 msgid "parent2"
 msgstr "Elter2"
 
-#: ../src/plugins/ImportCsv.py:281
+#: ../src/plugins/ImportCsv.py:282
 msgid "father"
 msgstr "Vater"
 
-#: ../src/plugins/ImportCsv.py:283
+#: ../src/plugins/ImportCsv.py:284
 msgid "parent1"
 msgstr "Elter1"
 
-#: ../src/plugins/ImportCsv.py:285
+#: ../src/plugins/ImportCsv.py:286
 msgid "marriage"
 msgstr "Hochzeit"
 
-#: ../src/plugins/ImportCsv.py:287
+#: ../src/plugins/ImportCsv.py:288
 msgid "date"
 msgstr "Datum"
 
-#: ../src/plugins/ImportCsv.py:289
+#: ../src/plugins/ImportCsv.py:290
 msgid "place"
 msgstr "Ort"
 
-#: ../src/plugins/ImportCsv.py:317 ../src/plugins/ImportGedcom.py:113
+#: ../src/plugins/ImportCsv.py:318 ../src/plugins/ImportGedcom.py:113
 #: ../src/plugins/ImportGedcom.py:127 ../src/plugins/ImportGeneWeb.py:83
 #: ../src/plugins/ImportGeneWeb.py:89 ../src/plugins/ImportVCard.py:63
 #: ../src/plugins/ImportVCard.py:69
@@ -9263,34 +9264,34 @@ msgstr "Ort"
 msgid "%s could not be opened\n"
 msgstr "%s konnte nicht geöffnet werden\n"
 
-#: ../src/plugins/ImportCsv.py:327
+#: ../src/plugins/ImportCsv.py:328
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "Format Fehler: Datei %s, Zeile %d: %s"
 
-#: ../src/plugins/ImportCsv.py:378
+#: ../src/plugins/ImportCsv.py:379
 msgid "CSV Import"
 msgstr "CSV Import"
 
-#: ../src/plugins/ImportCsv.py:379
+#: ../src/plugins/ImportCsv.py:380
 msgid "Reading data..."
 msgstr "Lese Daten..."
 
-#: ../src/plugins/ImportCsv.py:646 ../src/plugins/ImportGeneWeb.py:180
+#: ../src/plugins/ImportCsv.py:694 ../src/plugins/ImportGeneWeb.py:180
 #: ../src/plugins/ImportVCard.py:144
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import abgeschlossen: %d Sekunden"
 
-#: ../src/plugins/ImportCsv.py:647
+#: ../src/plugins/ImportCsv.py:695
 msgid "CSV import"
 msgstr "CSV Import"
 
-#: ../src/plugins/ImportCsv.py:796
+#: ../src/plugins/ImportCsv.py:844
 msgid "CSV Spreadheet"
 msgstr "CSV Tabelle"
 
-#: ../src/plugins/ImportCsv.py:797
+#: ../src/plugins/ImportCsv.py:845
 msgid "Import data from CSV files"
 msgstr "Daten aus CSV-Dateien importieren"
 
@@ -9306,6 +9307,11 @@ msgstr "%s konnte nicht importiert werden"
 #: ../src/plugins/ImportGedcom.py:134
 msgid "Error reading GEDCOM file"
 msgstr "Fehler beim Lesen der GEDCOM-Datei"
+
+#: ../src/plugins/ImportGedcom.py:146 ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
 
 #: ../src/plugins/ImportGeneWeb.py:182
 msgid "GeneWeb import"
@@ -9393,7 +9399,7 @@ msgstr "GRAMPS-Paket"
 msgid "Import data from GRAMPS packages"
 msgstr "Daten aus GRAMPS-Paketen importieren"
 
-#: ../src/plugins/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1126
+#: ../src/plugins/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1123
 msgid "Rebuild reference map"
 msgstr "Interne Referenzen neu erstellen"
 
@@ -9404,7 +9410,7 @@ msgstr "Interne Referenzen neu erstellen"
 msgid "%s could not be opened"
 msgstr "%s konnte nicht geöffnet werden"
 
-#: ../src/plugins/ImportGrdb.py:2460 ../src/gen/db/dbdir.py:1217
+#: ../src/plugins/ImportGrdb.py:2460 ../src/gen/db/dbdir.py:1214
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data "
@@ -9673,6 +9679,11 @@ msgstr ""
 "Die GRAMPS Datei die du importierst stammt aus Version %s von GRAMPS, du "
 "benutzt eine ältere Version %s. Die Datei wird nicht importiert. Bitte "
 "wechsele auf die neuste Version von GRAMPS und versuche es erneut."
+
+#: ../src/plugins/ImportXml.py:2468 ../data/gramps.keys.in.h:2
+#: ../data/gramps.xml.in.h:2
+msgid "GRAMPS XML database"
+msgstr "GRAMPS-XML-Datenbank"
 
 #: ../src/plugins/ImportXml.py:2469
 msgid ""
@@ -12292,7 +12303,7 @@ msgstr "Webkalender"
 msgid "Produces web (HTML) calendars."
 msgstr "Erstellt Web (HTML) Kalender."
 
-#: ../src/PluginUtils/_GuiOptions.py:75
+#: ../src/PluginUtils/_GuiOptions.py:76
 msgid "Select surname"
 msgstr "Nachname wählen"
 
@@ -12305,41 +12316,41 @@ msgstr "Nachname wählen"
 #. build up the list of surnames, keeping track of the count for each
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
-#: ../src/PluginUtils/_GuiOptions.py:109
+#: ../src/PluginUtils/_GuiOptions.py:110
 msgid "Finding Surnames"
 msgstr "Finde Nachnamen"
 
-#: ../src/PluginUtils/_GuiOptions.py:110
+#: ../src/PluginUtils/_GuiOptions.py:111
 msgid "Finding surnames"
 msgstr "Finde Nachnamen"
 
-#: ../src/PluginUtils/_GuiOptions.py:415
+#: ../src/PluginUtils/_GuiOptions.py:436
 msgid "Select a different person"
 msgstr "Eine andere Person wählen"
 
-#: ../src/PluginUtils/_GuiOptions.py:444
+#: ../src/PluginUtils/_GuiOptions.py:465
 msgid "Select a person for the report"
 msgstr "Eine Person für den Bericht wählen"
 
-#: ../src/PluginUtils/_GuiOptions.py:503
+#: ../src/PluginUtils/_GuiOptions.py:524
 msgid "Select a different family"
 msgstr "Eine andere Familie wählen"
 
-#: ../src/PluginUtils/_GuiOptions.py:882
+#: ../src/PluginUtils/_GuiOptions.py:903
 #, python-format
 msgid "Also include %s?"
 msgstr "%s auch berücksichtigen?"
 
-#: ../src/PluginUtils/_GuiOptions.py:1048
+#: ../src/PluginUtils/_GuiOptions.py:1069
 msgid "Colour"
 msgstr "Farbe"
 
-#: ../src/PluginUtils/_GuiOptions.py:1219
+#: ../src/PluginUtils/_GuiOptions.py:1240
 #: ../src/ReportBase/_ReportDialog.py:446
 msgid "Save As"
 msgstr "Speichern als"
 
-#: ../src/PluginUtils/_GuiOptions.py:1284
+#: ../src/PluginUtils/_GuiOptions.py:1305
 #: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stileditor"
@@ -16876,11 +16887,11 @@ msgstr "_Rückgängig %s"
 msgid "_Redo %s"
 msgstr "_Wiederherstellen %s"
 
-#: ../src/gen/db/dbdir.py:562
+#: ../src/gen/db/dbdir.py:559
 msgid "Need to upgrade database!"
 msgstr "Datenbank muss aufgerüstet werden!"
 
-#: ../src/gen/db/dbdir.py:563
+#: ../src/gen/db/dbdir.py:560
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
@@ -16891,11 +16902,11 @@ msgstr ""
 "mehr benutzen.\n"
 "Du solltest vorher eine Sicherung erstellen.."
 
-#: ../src/gen/db/dbdir.py:569
+#: ../src/gen/db/dbdir.py:566
 msgid "Upgrade now"
 msgstr "Jetzt aufrüsten"
 
-#: ../src/gen/db/dbdir.py:1975
+#: ../src/gen/db/dbdir.py:1993
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -18745,7 +18756,9 @@ msgstr "Ereignisse mit <count> Medien"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Entspricht Ereignissen mit einer bestimmten Anzahl von Objekten in der Galerie"
+msgstr ""
+"Entspricht Ereignissen mit einer bestimmten Anzahl von Objekten in der "
+"Galerie"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -19349,8 +19362,8 @@ msgid "Notes containing <regular expression>"
 msgstr "Notizen die <Regulärem Ausdruck> enthalten"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-msgid "Matches notes who contain text "
-msgstr "Liefert Notizen die Text enthalten"
+msgid "Matches notes who contain text matching a regular expression"
+msgstr "Liefert Notizen die Text, entsprechend eines regulären Ausdrucks enthalten"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -20973,6 +20986,10 @@ msgstr "Filt_er:"
 msgid "I_ndividuals"
 msgstr "Perso_nen"
 
+#: ../src/plugins/ExportCsv.glade.h:5
+msgid "_Children"
+msgstr "_Kinder"
+
 #: ../src/plugins/ExportCsv.glade.h:6
 msgid "_Marriages"
 msgstr "_Hochzeiten"
@@ -21080,14 +21097,6 @@ msgid "Manage genealogical information, perform genealogical research and analys
 msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
-
-#: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
-msgid "GRAMPS XML database"
-msgstr "GRAMPS-XML-Datenbank"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
 msgid "GRAMPS database"
