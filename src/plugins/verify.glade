@@ -574,7 +574,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label12">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Maximum number of c_hildren</property>
+		      <property name="label" translatable="yes">Maximum number of chil_dren</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -763,7 +763,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label13">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Maximum number of c_hildren</property>
+		      <property name="label" translatable="yes">Maximum number of chil_dren</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
