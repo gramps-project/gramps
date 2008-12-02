@@ -1910,7 +1910,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label279">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Church _parish:</property>
+		      <property name="label" translatable="yes">Ch_urch parish:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -3357,7 +3357,7 @@
 			<widget class="GtkRadioButton" id="jalign">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Justify</property>
+			  <property name="label" translatable="yes">J_ustify</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -3380,7 +3380,7 @@
 			<widget class="GtkRadioButton" id="calign">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">_Center</property>
+			  <property name="label" translatable="yes">Cen_ter</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -3927,7 +3927,7 @@
 			<widget class="GtkCheckButton" id="rborder">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Ri_ght</property>
+			  <property name="label" translatable="yes">Righ_t</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="focus_on_click">True</property>
@@ -7578,7 +7578,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label180">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_City:</property>
+		  <property name="label" translatable="yes">C_ity:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -7657,7 +7657,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label184">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Church _parish:</property>
+		  <property name="label" translatable="yes">Ch_urch parish:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -7707,7 +7707,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label181">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">C_ounty:</property>
+		  <property name="label" translatable="yes">Co_unty:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -7907,7 +7907,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label296">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">P_hone:</property>
+		  <property name="label" translatable="yes">Phon_e:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -11343,7 +11343,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label614">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Confidence:</property>
+		  <property name="label" translatable="yes">Con_fidence:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -12112,7 +12112,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label624">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Call number:</property>
+		      <property name="label" translatable="yes">Call n_umber:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -13310,7 +13310,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkLabel" id="label214">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_City/County:</property>
+		  <property name="label" translatable="yes">C_ity/County:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -13468,7 +13468,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkLabel" id="label295">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">P_hone:</property>
+		  <property name="label" translatable="yes">Phon_e:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
