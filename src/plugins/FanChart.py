@@ -366,7 +366,7 @@ class FanChartOptions(MenuReportOptions):
                                        RADIAL_UPRIGHT )
         radial.add_item(RADIAL_UPRIGHT,_('upright'))
         radial.add_item(RADIAL_ROUNDABOUT,_('roundabout'))
-        radial.set_help(_("Print raidal texts upright or roundabout"))
+        radial.set_help(_("Print radial texts upright or roundabout"))
         menu.add_option(category_name,"radial",radial)
 
     def make_default_style(self,default_style):
