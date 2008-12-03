@@ -48,10 +48,15 @@ def makeDB(db):
     db.query("""drop table media;""")
     db.query("""drop table names;""")
     db.query("""drop table link;""")
+    db.query("""drop table markup;""")
+    db.query("""drop table event_ref;""")
+    db.query("""drop table source_ref;""")
+    db.query("""drop table lds;""")
+    db.query("""drop table media_ref;""")
 
     db.query("""CREATE TABLE notes (
-                  handle TEXT,
-                  gid    TEXT,
+                  handle CHARACTER(25),
+                  gid    CHARACTER(25),
                   text   TEXT,
                   format TEXT,
                   note_type1   INTEGER,
@@ -77,24 +82,25 @@ def makeDB(db):
                   call TEXT);""")
 
     db.query("""CREATE TABLE dates (
-                  calendar TEXT, 
-                  modifier TEXT, 
-                  quality TEXT,
+                  type CHARACTER(10),
+                  calendar INTEGER, 
+                  modifier INTEGER, 
+                  quality INTEGER,
                   day1 INTEGER, 
                   month1 INTEGER, 
                   year1 INTEGER, 
-                  flag1 BOOLEAN,
+                  slash1 BOOLEAN,
                   day2 INTEGER, 
                   month2 INTEGER, 
                   year2 INTEGER, 
-                  flag2 BOOLEAN,
+                  slash2 BOOLEAN,
                   text TEXT, 
-                  sortval LONG, 
+                  sortval INTEGER, 
                   newyear INTEGER);""")
 
     db.query("""CREATE TABLE people (
-                  handle TEXT, 
-                  gramps_id TEXT, 
+                  handle CHARACTER(25), 
+                  gid CHARACTER(25), 
                   gender CHAR(1), 
                   death_ref_index TEXT, 
                   birth_ref_index TEXT, 
@@ -104,10 +110,10 @@ def makeDB(db):
                   private BOOLEAN);""")
 
     db.query("""CREATE TABLE family (
-                 handle TEXT, 
-                 gramps_id TEXT, 
-                 father_handle TEXT, 
-                 mother_handle TEXT,
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
+                 father_handle CHARACTER(25), 
+                 mother_handle CHARACTER(25), 
                  the_type0 TEXT, 
                  the_type1 TEXT, 
                  change TEXT, 
@@ -116,8 +122,8 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE places (
-                 handle TEXT, 
-                 gramps_id TEXT, 
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
                  title TEXT, 
                  long FLOAT, 
                  lat FLOAT, 
@@ -127,8 +133,8 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE events (
-                 handle TEXT, 
-                 gramps_id TEXT, 
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
                  the_type0 TEXT, 
                  the_type1 TEXT, 
                  description TEXT, 
@@ -138,8 +144,8 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE sources (
-                 handle TEXT, 
-                 gramps_id TEXT, 
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
                  title TEXT, 
                  author TEXT, 
                  pubinfo TEXT, 
@@ -150,8 +156,8 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE media (
-                 handle TEXT, 
-                 gramps_id TEXT, 
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
                  path TEXT, 
                  mime TEXT, 
                  desc TEXT,
@@ -161,8 +167,8 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE repository (
-                 handle TEXT, 
-                 gramps_id TEXT, 
+                 handle CHARACTER(25), 
+                 gid CHARACTER(25), 
                  the_type0 TEXT, 
                  the_type1 TEXT,
                  name TEXT, 
@@ -172,11 +178,47 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE link (
-                 from_type TEXT, 
-                 from_handle TEXT, 
-                 to_type TEXT, 
-                 to_handle TEXT);""")
+                 from_type CHARACTER(10), 
+                 from_handle CHARACTER(25), 
+                 to_type CHARACTER(10), 
+                 to_handle CHARACTER(25));""")
 
+    db.query("""CREATE TABLE markup (
+                 handle CHARACTER(25), 
+                 markup0 INTEGER, 
+                 markup1 TEXT, 
+                 value TEXT, 
+                 start_stop_list TEXT);""")
+
+    db.query("""CREATE TABLE event_ref (
+                 handle CHARACTER(25), 
+                 ref CHARACTER(25), 
+                 role0 INTEGER, 
+                 role1 TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE source_ref (
+                 handle CHARACTER(25), 
+                 ref CHARACTER(25), 
+                 confidence INTEGER,
+                 page CHARACTER(25),
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE lds (
+                 handle CHARACTER(25), 
+                 type CHARACTER(10), 
+                 place TEXT, 
+                 famc CHARACTER(25), 
+                 temple TEXT, 
+                 status TEXT, 
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE media_ref (
+                 handle CHARACTER(25),
+                 ref CHARACTER(25),
+                 role0 INTEGER,
+                 role1 TEXT,
+                 private BOOLEAN);""")
 
 class Database:
     """
@@ -209,11 +251,63 @@ class Database:
         self.cursor.close()
         self.db.close()
 
-def export_source(db, handle, gramps_id, title, author, pubinfo, abbrev, change,
+def export_event_ref(db, handle, ref, role, private):
+    db.query("""insert INTO event_ref (
+                 handle, 
+                 ref, 
+                 role0, 
+                 role1, 
+                 private) VALUES (?,?,?,?,?);""",
+             handle, 
+             ref, 
+             role[0], 
+             role[1], 
+             private) 
+
+def export_markup(db, handle, markup_code0, markup_code1, value, 
+                  start_stop_list):
+    db.query("""INSERT INTO markup (
+                 handle, 
+                 markup0, 
+                 markup1, 
+                 value, 
+                 start_stop_list) VALUES (?,?,?,?,?);""",
+             handle, markup_code0, markup_code1, value, 
+             start_stop_list)
+
+def export_lds(db, handle, type, place, famc, temple, status, private):
+    db.query("""INSERT into lds (handle, type, place, famc, temple, status, private) 
+             VALUES (?,?,?,?,?,?,?);""",
+             handle, type, place, famc, temple, status, private)
+    
+def export_media_ref(db, handle, ref, role, private):
+    db.query("""INSERT into media_ref (
+                 handle,
+                 ref,
+                 role0,
+                 role1,
+                 private) VALUES (?,?,?,?,?);""",
+             handle, ref, role[0], role[1], private)
+
+def export_source_ref(db, handle, ref, private, confidence, page):
+    db.query("""INSERT into source_ref (
+             handle, 
+             ref, 
+             confidence,
+             page,
+             private
+             ) VALUES (?,?,?,?,?);""",
+             handle, 
+             ref, 
+             confidence,
+             page,
+             private)
+
+def export_source(db, handle, gid, title, author, pubinfo, abbrev, change,
                    marker0, marker1, private):
     db.query("""INSERT into sources (
              handle, 
-             gramps_id, 
+             gid, 
              title, 
              author, 
              pubinfo, 
@@ -224,7 +318,7 @@ def export_source(db, handle, gramps_id, title, author, pubinfo, abbrev, change,
              private
              ) VALUES (?,?,?,?,?,?,?,?,?,?);""",
              handle, 
-             gramps_id, 
+             gid, 
              title, 
              author, 
              pubinfo, 
@@ -234,7 +328,7 @@ def export_source(db, handle, gramps_id, title, author, pubinfo, abbrev, change,
              marker1, 
              private)
 
-def export_note(db, handle, gramps_id, text, format, note_type0,
+def export_note(db, handle, gid, text, format, note_type0,
                 note_type1, change, marker0, marker1, private):
     db.query("""INSERT into notes (handle,
                   gid,
@@ -247,7 +341,7 @@ def export_note(db, handle, gramps_id, text, format, note_type0,
                   marker1,
                   private) values (?, ?, ?, ?, ?,
                                    ?, ?, ?, ?, ?);""", 
-             handle, gramps_id, text, format, note_type0,
+             handle, gid, text, format, note_type0,
              note_type1, change, marker0, marker1, private)
 
 def export_name(db, handle, data):
@@ -276,51 +370,76 @@ def export_name(db, handle, data):
                  private, first_name, surname, suffix, title,
                  name_type[0], name_type[1], prefix, patronymic, group_as, 
                  sort_as, display_as, call)
-        export_date(db, handle, date) 
-        for source_handle in source_list:
-            # (None, False, ['afce5e5edf9578a8382'], 2, 'afce5e5edf4471ab79d', '')
-            #db.query("""insert into link (from_type, from_handle, to_type, to_handle) values (?, ?, ?, ?)""",
-            #         "names", handle, "sources", source_handle)
-            print "names", "to", "sources", source_handle
-        for note_handle in note_list:
-            db.query("""insert into link (from_type, from_handle, to_type, to_handle) values (?, ?, ?, ?)""",
-                     "names", handle, "notes", note_handle)
 
-def export_date(db, handle, data):
+        export_date(db, "name", handle, date) 
+        export_list(db, "names", handle, "notes", note_list)
+        # Event Sources
+        for source in source_list:
+            (date, private, note_list, confidence, ref, page) = source
+            export_source_ref(db, handle, ref, private, confidence, page)
+            export_date(db, "source_ref", ref, date)
+            export_list(db, "source_ref", ref, "note", note_list) 
+
+def export_date(db, date_type, handle, data):
     if data:
         (calendar, modifier, quality, dateval, text, sortval, newyear) = data
         if len(dateval) == 4:
-            day1, month1, year1, flag1 = dateval
-            day2, month2, year2, flag2 = 0, 0, 0, 0
+            day1, month1, year1, slash1 = dateval
+            day2, month2, year2, slash2 = 0, 0, 0, 0
         elif len(dateval) == 8:
-            day1, month1, year1, flag1, day2, month2, year2, flag2 = dateval
+            day1, month1, year1, slash1, day2, month2, year2, slash2 = dateval
         else:
             raise ("ERROR:", dateval)
         db.query("""INSERT INTO dates (
+                  type,
                   calendar, 
                   modifier, 
                   quality,
                   day1, 
                   month1, 
                   year1, 
-                  flag1,
+                  slash1,
                   day2, 
                   month2, 
                   year2, 
-                  flag2,
+                  slash2,
                   text, 
                   sortval, 
-                  newyear) VALUES (?, ?, ?, ?, ?, ?, ?, 
+                  newyear) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
                                    ?, ?, ?, ?, ?, ?, ?);""",
-                 calendar, modifier, quality, 
-                 day1, month1, year1, flag1, 
-                 day2, month2, year2, flag2,
+                 date_type, calendar, modifier, quality, 
+                 day1, month1, year1, slash1, 
+                 day2, month2, year2, slash2,
                  text, sortval, newyear)
+
+def export_attribute_list(db, from_type, from_handle, attribute_list):
+    for attribute in attribute_list:
+        (private, source_list, note_list, the_type, value) = attribute
+        # (False, [], [], (6, u''), u'30x-xx-708x')
+        print "attribute:", the_type, value, private
+        export_list(db, "attribute", from_handle, "note", note_list)
+        # Event Sources
+        for source in source_list:
+            (date, private, note_list, confidence, ref, page) = source
+            export_source_ref(db, from_handle, ref, private, confidence, page)
+            export_date(db, "source_ref", ref, date)
+            export_list(db, "source_ref", ref, "note", note_list) 
 
 
 def export_list(db, from_type, from_handle, to_type, handle_list):
-    for handle in handle_list:
-        print from_type, "to", to_type, ":", handle
+    for to_handle in handle_list:
+        if type(to_handle) == type(""):
+            export_link(db, from_type, from_handle, to_type, to_handle)
+        else:
+            print from_type, from_handle, "->", to_type, to_handle
+            
+def export_link(db, from_type, from_handle, to_type, to_handle):
+    db.query("""insert into link (
+                   from_type, 
+                   from_handle, 
+                   to_type, 
+                   to_handle) values (?, ?, ?, ?)""",
+             from_type, from_handle, to_type, to_handle)
 
 def exportData(database, filename, option_box=None, callback=None):
     if not callable(callback): 
@@ -344,13 +463,15 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for note_handle in database.note_map.keys():
         note = database.note_map[note_handle]
-        (handle, gramps_id, styled_text, format, note_type,
+        (handle, gid, styled_text, format, note_type,
          change, marker, private) = note
-        text, text_list = styled_text
-        export_note(db, handle, gramps_id, text, format, note_type[0],
+        text, markup_list = styled_text
+        export_note(db, handle, gid, text, format, note_type[0],
                     note_type[1], change, marker[0], marker[1], private)
-        for text_handle in text_list:
-            print "text handle:", text_handle
+        for markup in markup_list:
+            markup_code, value, start_stop_list = markup
+            export_markup(db, handle, markup_code[0], markup_code[1], value, 
+                          str(start_stop_list))
         count += 1
         callback(100 * count/total)
 
@@ -359,14 +480,14 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for event_handle in database.event_map.keys():
         event = database.event_map[event_handle]
-        (handle, gramps_id, the_type, date, description, place, 
+        (handle, gid, the_type, date, description, place, 
          source_list, note_list, media_list, attribute_list,
          change, marker, private) = event
-        export_date(db, event_handle, date)
+        export_date(db, "event", event_handle, date)
 
         db.query("""INSERT INTO events (
                  handle, 
-                 gramps_id, 
+                 gid, 
                  the_type0, 
                  the_type1, 
                  description, 
@@ -375,7 +496,7 @@ def exportData(database, filename, option_box=None, callback=None):
                  marker1, 
                  private) VALUES (?,?,?,?,?,?,?,?,?);""",
                  handle, 
-                 gramps_id, 
+                 gid, 
                  the_type[0], 
                  the_type[1], 
                  description, 
@@ -384,13 +505,24 @@ def exportData(database, filename, option_box=None, callback=None):
                  marker[1], 
                  private)
 
-        # place
-        #export_list(db, "event", event_handle, "source", source_list)
-        # (None, False, [handles], 2, 'afce5e5932061715801', '')
-        export_list(db, "event", event_handle, "note", note_list) # handles
-        export_list(db, "event", event_handle, "media", media_list) 
-        export_list(db, "event", event_handle, "attribute", attribute_list)
-        export_list(db, "event", event_handle, "text", text_list)
+        if place:
+            export_link(db, "event", handle, "place", place)
+        export_list(db, "event", handle, "note", note_list)
+        export_attribute_list(db, "event", handle, attribute_list)
+
+        # Event Media list
+        for media in media_list:
+            (private, source_list, note_list,attribute_list,ref,rect) = media
+            export_media_ref(db, handle, ref, role, private)
+            export_list(db, "media", ref, "note", note_list)
+            export_attribute_list(db, "media", ref, attribute_list)
+
+        # Event Sources
+        for source in source_list:
+            (date, private, note_list, confidence, ref, page) = source
+            export_source_ref(db, handle, ref, private, confidence, page)
+            export_date(db, "source_ref", ref, date)
+            export_list(db, "source_ref", ref, "note", note_list) 
 
         count += 1
         callback(100 * count/total)
@@ -401,7 +533,7 @@ def exportData(database, filename, option_box=None, callback=None):
     for person_handle in database.person_map.keys():
         person = database.person_map[person_handle]
         (handle,        #  0
-         gramps_id,          #  1
+         gid,          #  1
          gender,             #  2
          primary_name,       #  3
          alternate_names,    #  4
@@ -425,7 +557,7 @@ def exportData(database, filename, option_box=None, callback=None):
 
         db.query("""INSERT INTO people (
                   handle, 
-                  gramps_id, 
+                  gid, 
                   gender, 
                   death_ref_index, 
                   birth_ref_index, 
@@ -434,7 +566,7 @@ def exportData(database, filename, option_box=None, callback=None):
                   marker1, 
                   private) values (?, ?, ?, ?, ?, ?, ?, ?, ?);""",
                   handle, 
-                  gramps_id, 
+                  gid, 
                   gender, 
                   death_ref_index, 
                   birth_ref_index, 
@@ -443,16 +575,28 @@ def exportData(database, filename, option_box=None, callback=None):
                   marker[1], 
                   private)
 
-        # TODO: 
-        export_list(db, "people", handle, "event_ref", event_ref_list)
-        # (False, [], [], 'afce5e5f70c71376c22', (1, u''))
+        export_list(db, "people", handle, "note", pnote_list)
+        export_attribute_list(db, "people", handle, attribute_list)
+
+        # Event Reference information
+        for event_ref in event_ref_list:
+            (private, note_list, attribute_list, ref, role) = event_ref
+            export_event_ref(db, handle, ref, role, private)
+
+            export_list(db, "event_ref", ref, "note", note_list)
+            export_attribute_list(db, "event_ref", ref, attribute_list)
+            
         export_list(db, "people", handle, "family", family_list) # handles
         export_list(db, "people", handle, "parent_family", parent_family_list) # handles
-        export_list(db, "people", handle, "media", media_list)
-        export_list(db, "people", handle, "attribute", attribute_list)
-        export_list(db, "people", handle, "url", urls)
         export_list(db, "people", handle, "note", pnote_list) # handles
+        export_list(db, "people", handle, "url", urls)
         export_list(db, "people", handle, "person_ref", person_ref_list)
+
+        for media in media_list:
+            (private, source_list, note_list,attribute_list,ref,rect) = media
+            export_media_ref(db, handle, ref, role, private)
+            export_list(db, "event_ref", ref, "note", note_list)
+            export_attribute_list(db, "event_ref", ref, attribute_list)
 
         # -------------------------------------
         # Address
@@ -460,38 +604,42 @@ def exportData(database, filename, option_box=None, callback=None):
         for address in address_list:
             (private, asource_list, anote_list, date, location) = address
             (street, city, county, state, country, postal, phone) = location
-            print "address:", private, street, city, county, state, \
-                country, postal, phone
+            addr_handle = "ADDRHANDLE" # FIXME
+            print "address:", private
             print "location:", street, city, county, state, country, postal, phone
-            export_date(db, handle, date)
-
+            export_date(db, "address", addr_handle, date)
+            export_list(db, "source_ref", addr_handle, "note", anote_list) 
             # Address Sources
             for source in asource_list:
-                # (None, False, [], 2, 'afce5e599d414695da9', '')
-                print "address", "source", source
-
+                (date, private, note_list, confidence, ref, page) = source
+                export_source_ref(db, addr_handle, ref, private, confidence, page)
+                export_date(db, "source_ref", ref, date)
+                export_list(db, "source_ref", ref, "note", note_list) 
 
         # -------------------------------------
         # LDS ord
         # -------------------------------------
         for ldsord in lds_ord_list:
-            # ([(None, False, [], 2, 'afce5e6189b0e06b649', '')], [], None, 0, '', None, '', 0, False)
             (lsource_list, lnote_list, date, type, place,
              famc, temple, status, lprivate) = ldsord
-            print "ldsord:", type, place, famc, temple, status, lprivate
-            export_date(db, handle, date)
-            export_list(db, "lds", "LDSHANDLE", "note", lnote_list)
+            lds_handle = "LDSHANDLE" # FIXME: use db-generated handle?
+            export_lds(db, lds_handle, type, place, famc, temple, status, lprivate)
+            export_date(db, "lds", lds_handle, date)
+            export_list(db, "lds", lds_handle, "note", lnote_list)
             for source in lsource_list:
-                # (None, False, [], 2, 'afce5e599d414695da9', '')
-                print "lds", "source", source
-
+                (date, private, note_list, confidence, ref, page) = source
+                export_source_ref(db, lds_handle, ref, private, confidence, page)
+                export_date(db, "source_ref", ref, date)
+                export_list(db, "source_ref", ref, "note", note_list) 
 
         # -------------------------------------
         # Source
         # -------------------------------------
         for source in psource_list:
-            # (None, False, [], 2, 'afce5e599d414695da9', '')
-            print "people", "source", source
+            (date, private, note_list, confidence, ref, page) = source
+            export_source_ref(db, handle, ref, private, confidence, page)
+            export_date(db, "source_ref", ref, date)
+            export_list(db, "source_ref", ref, "note", note_list) 
 
         # -------------------------------------
         # Names
@@ -506,14 +654,14 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for family_handle in database.family_map.keys():
         family = database.family_map[family_handle]
-        (handle, gramps_id, father_handle, mother_handle,
+        (handle, gid, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note_list,
          change, marker, private) = family
         # father_handle and/or mother_handle can be None
         db.query("""INSERT INTO family (
                  handle, 
-                 gramps_id, 
+                 gid, 
                  father_handle, 
                  mother_handle,
                  the_type0, 
@@ -522,18 +670,53 @@ def exportData(database, filename, option_box=None, callback=None):
                  marker0, 
                  marker1, 
                  private) values (?,?,?,?,?,?,?,?,?,?);""",
-                 handle, gramps_id, father_handle, mother_handle,
+                 handle, gid, father_handle, mother_handle,
                  the_type[0], the_type[1], change, marker[0], marker[1], 
                  private)
         #TODO: lists
 
+        export_list(db, "family", handle, "note", pnote_list)
+        export_attribute_list(db, "family", handle, attribute_list)
+
+        # Event Reference information
+        for event_ref in event_ref_list:
+            (private, note_list, attribute_list, ref, role) = event_ref
+            export_event_ref(db, handle, ref, role, private)
+
+            export_list(db, "event_ref", ref, "note", note_list)
+            export_attribute_list(db, "event_ref", ref, attribute_list)
+            
+        # -------------------------------------
+        # LDS 
+        # -------------------------------------
         for ldsord in lds_seal_list:
             (lsource_list, lnote_list, date, type, place,
              famc, temple, status, lprivate) = ldsord
-            print "ldsord:", type, place, famc, temple, status, lprivate
-            export_date(db, handle, date)
+            lds_handle = "LDSHANDLE" # FIXME: use db-generated handle?
+            export_lds(db, lds_handle, type, place, famc, temple, status, lprivate)
+            export_date(db, "lds", lds_handle, date)
+            export_list(db, "lds", lds_handle, "note", lnote_list)
+            for source in lsource_list:
+                (date, private, note_list, confidence, ref, page) = source
+                export_source_ref(db, lds_handle, ref, private, confidence, page)
+                export_date(db, "source_ref", ref, date)
+                export_list(db, "source_ref", ref, "note", note_list) 
 
-            #TODO: lists
+        # -------------------------------------
+        # Source
+        # -------------------------------------
+        for source in source_list:
+            (date, private, note_list, confidence, ref, page) = source
+            export_source_ref(db, handle, ref, private, confidence, page)
+            export_date(db, "source_ref", ref, date)
+            export_list(db, "source_ref", ref, "note", note_list) 
+
+        for media in media_list:
+            (private, source_list, note_list,attribute_list,ref,rect) = media
+            export_media_ref(db, handle, ref, role, private)
+            export_list(db, "event_ref", ref, "note", note_list)
+            export_attribute_list(db, "event_ref", ref, attribute_list)
+
         count += 1
         callback(100 * count/total)
 
@@ -543,12 +726,12 @@ def exportData(database, filename, option_box=None, callback=None):
     for repository_handle in database.repository_map.keys():
         repository = database.repository_map[repository_handle]
         # address
-        (handle, gramps_id, the_type, name, note_list,
+        (handle, gid, the_type, name, note_list,
          address_list, urls, change, marker, private) = repository
 
         db.query("""INSERT INTO repository (
                  handle, 
-                 gramps_id, 
+                 gid, 
                  the_type0, 
                  the_type1,
                  name, 
@@ -556,15 +739,23 @@ def exportData(database, filename, option_box=None, callback=None):
                  marker0, 
                  marker1, 
                  private) VALUES (?,?,?,?,?,?,?,?,?);""",
-                 handle, gramps_id, the_type[0], the_type[1],
+                 handle, gid, the_type[0], the_type[1],
                  name, change, marker[0], marker[1], private)
-        #TODO: lists
 
         for address in address_list:
             (private, asource_list, anote_list, date, location) = address
-            print "address:", private, location
-            export_date(db, handle, date)
-            #TODO: lists
+            (street, city, county, state, country, postal, phone) = location
+            addr_handle = "ADDRHANDLE"
+            print "address:", private
+            print "location:", street, city, county, state, country, postal, phone
+            export_date(db, "address", addr_handle, date)
+            export_list(db, "address", addr_handle, "note", anote_list) 
+            # Source
+            for source in asource_list:
+                (date, private, note_list, confidence, ref, page) = source
+                export_source_ref(db, addr_handle, ref, private, confidence, page)
+                export_date(db, "source_ref", ref, date)
+                export_list(db, "source_ref", ref, "note", note_list) 
 
         count += 1
         callback(100 * count/total)
@@ -574,7 +765,7 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for place_handle in database.place_map.keys():
         repository = database.place_map[place_handle]
-        (handle, gramps_id, title, long, lat,
+        (handle, gid, title, long, lat,
          main_loc, alt_location_list,
          urls,
          medias,
@@ -584,7 +775,7 @@ def exportData(database, filename, option_box=None, callback=None):
 
         db.query("""INSERT INTO places (
                  handle, 
-                 gramps_id, 
+                 gid, 
                  title, 
                  long, 
                  lat, 
@@ -592,7 +783,7 @@ def exportData(database, filename, option_box=None, callback=None):
                  marker0, 
                  marker1, 
                  private) values (?,?,?,?,?,?,?,?,?);""",
-                 handle, gramps_id, title, long, lat,
+                 handle, gid, title, long, lat,
                  change, marker[0], marker[1], private)
 
         # TODO: alt_location_list, urls, medias, sources, notes
@@ -605,7 +796,7 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for source_handle in database.source_map.keys():
         source = database.source_map[source_handle]
-        (handle, gramps_id, title,
+        (handle, gid, title,
          author, pubinfo,
          notes,
          media_list,
@@ -613,14 +804,13 @@ def exportData(database, filename, option_box=None, callback=None):
          change, datamap,
          reporef_list,
          marker, private) = source
-        export_source(db, handle, gramps_id, title, author, pubinfo, abbrev, change,
-                   marker[0], marker[1], private)
-        for note_handle in notes:
-            print "NOTE:", note_handle
-
-         # TODO: notes, media_list
-         # reporef_list, data_map
-
+        export_source(db, handle, gid, title, author, pubinfo, abbrev, change,
+                      marker[0], marker[1], private)
+        export_list(db, "source", handle, "note", note_list) 
+        
+        # TODO: notes, media_list
+        # reporef_list, data_map
+        
         count += 1
         callback(100 * count/total)
 
@@ -629,7 +819,7 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for media_handle in database.media_map.keys():
         media = database.media_map[media_handle]
-        (handle, gramps_id, path, mime, desc,
+        (handle, gid, path, mime, desc,
          attrib_list,
          source_list,
          note_list,
@@ -640,7 +830,7 @@ def exportData(database, filename, option_box=None, callback=None):
 
         db.query("""INSERT INTO media (
             handle, 
-            gramps_id, 
+            gid, 
             path, 
             mime, 
             desc,
@@ -648,10 +838,11 @@ def exportData(database, filename, option_box=None, callback=None):
             marker0, 
             marker1, 
             private) VALUES (?,?,?,?,?,?,?,?,?);""",
-                 handle, gramps_id, path, mime, desc, 
+                 handle, gid, path, mime, desc, 
                  change, marker[0], marker[1], private)
 
-        export_date(db, handle, date)
+        export_date(db, "media", handle, date)
+        export_list(db, "media", handle, "note", note_list) 
         count += 1
         callback(100 * count/total)
 
