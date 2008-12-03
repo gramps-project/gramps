@@ -851,8 +851,7 @@ class DbManager(CLIDbManager):
                                         last, tval, False, ''])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
-        self.dblist.set_cursor(path, focus_column=self.column, 
-                               start_editing=True)
+        self.dblist.set_cursor(path)
         return new_path, title
 
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 
