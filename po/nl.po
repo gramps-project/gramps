@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 19:38+0100\n"
-"PO-Revision-Date: 2008-11-25 17:15+0100\n"
+"POT-Creation-Date: 2008-12-02 16:22+0100\n"
+"PO-Revision-Date: 2008-12-03 10:36+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -388,11 +388,11 @@ msgstr "Kan niet importeren van huidig bestand"
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and others."
 msgstr ""
 "Bestandstype \"%s\" is onbekend bij GRAMPS.\n"
 "\n"
-"Geldige typen zijn: GRAMPS database, GRAMPS XML, GRAMPS pakket, en GEDCOM."
+"Geldige typen zijn: GRAMPS-gegevensbestand, GRAMPS-XML, GRAMPS-pakket, GEDCOM, en andere."
 
 #: ../src/DbLoader.py:213
 #: ../src/DbLoader.py:220
@@ -487,7 +487,7 @@ msgstr "Importeren beëindigd..."
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
 #: ../src/DbManager.py:226
-#: ../src/plugins/ImportCSV.py:374
+#: ../src/plugins/ImportCSV.py:375
 msgid "Importing data..."
 msgstr "Importeren van gegevens..."
 
@@ -932,9 +932,9 @@ msgstr "Achternaam vader"
 
 # niet/geen
 #: ../src/GrampsCfg.py:67
-#: ../src/Spell.py:167
-#: ../src/Spell.py:246
-#: ../src/Spell.py:248
+#: ../src/Spell.py:168
+#: ../src/Spell.py:247
+#: ../src/Spell.py:249
 #: ../src/plugins/Check.py:1349
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
@@ -1099,7 +1099,7 @@ msgstr "E-mail"
 #: ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168
 #: ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCSV.py:193
+#: ../src/plugins/ImportCSV.py:194
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89
 #: ../src/plugins/SameSurnames.py:75
@@ -1122,7 +1122,7 @@ msgstr "Persoon"
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/ExportCSV.py:474
 #: ../src/plugins/FilterByName.py:129
-#: ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/ImportCSV.py:201
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66
@@ -1139,7 +1139,7 @@ msgstr "Familie"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63
 #: ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:215
+#: ../src/plugins/ImportCSV.py:216
 #: ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78
@@ -1155,8 +1155,8 @@ msgstr "Locatie"
 #: ../src/Simple/_SimpleTable.py:206
 #: ../src/Editors/_EditSource.py:75
 #: ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:173
-#: ../src/plugins/ImportCSV.py:198
+#: ../src/plugins/ImportCSV.py:174
+#: ../src/plugins/ImportCSV.py:199
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:276
@@ -1202,7 +1202,7 @@ msgstr "Bibliotheek"
 #: ../src/plugins/ExportCSV.py:369
 #: ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303
-#: ../src/plugins/ImportCSV.py:175
+#: ../src/plugins/ImportCSV.py:176
 #: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1276,7 +1276,7 @@ msgstr "Detail eigen aangemaakte formaten"
 #: ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364
 #: ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCSV.py:155
+#: ../src/plugins/ImportCSV.py:156
 #: ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472
 #: ../src/plugins/NarrativeWeb.py:1474
@@ -1304,7 +1304,7 @@ msgstr "Achternaam"
 #: ../src/Utils.py:1194
 #: ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/ImportCSV.py:159
+#: ../src/plugins/ImportCSV.py:160
 msgid "Given"
 msgstr "Voornaam"
 
@@ -1317,7 +1317,7 @@ msgstr "Voornaam"
 #: ../src/ScratchPad.py:593
 #: ../src/Utils.py:1197
 #: ../src/plugins/ExportCSV.py:365
-#: ../src/plugins/ImportCSV.py:169
+#: ../src/plugins/ImportCSV.py:170
 msgid "Suffix"
 msgstr "Achtervoegsel"
 
@@ -1335,7 +1335,7 @@ msgstr "Algemeen"
 #: ../src/GrampsCfg.py:358
 #: ../src/Utils.py:1199
 #: ../src/plugins/ExportCSV.py:365
-#: ../src/plugins/ImportCSV.py:163
+#: ../src/plugins/ImportCSV.py:164
 msgid "Call"
 msgstr "Call"
 
@@ -1540,7 +1540,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:983
 #: ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:213
+#: ../src/plugins/ImportCSV.py:214
 #: ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:699
 #: ../src/plugins/NarrativeWeb.py:1351
@@ -2143,12 +2143,12 @@ msgid "undefined"
 msgstr "onbepaald"
 
 #: ../src/Relationship.py:1659
-#: ../src/plugins/ImportCSV.py:272
+#: ../src/plugins/ImportCSV.py:273
 msgid "husband"
 msgstr "echtgenoot"
 
 #: ../src/Relationship.py:1661
-#: ../src/plugins/ImportCSV.py:268
+#: ../src/plugins/ImportCSV.py:269
 msgid "wife"
 msgstr "echtgenote"
 
@@ -2251,7 +2251,7 @@ msgstr "vorige partner"
 #: ../src/plugins/all_relations.py:296
 #: ../src/plugins/FamilyGroup.py:185
 #: ../src/plugins/FamilyGroup.py:196
-#: ../src/plugins/ImportCSV.py:207
+#: ../src/plugins/ImportCSV.py:208
 #: ../src/plugins/IndivComplete.py:216
 #: ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474
@@ -2271,7 +2271,7 @@ msgstr "Vader"
 #: ../src/plugins/all_relations.py:293
 #: ../src/plugins/FamilyGroup.py:202
 #: ../src/plugins/FamilyGroup.py:213
-#: ../src/plugins/ImportCSV.py:203
+#: ../src/plugins/ImportCSV.py:204
 #: ../src/plugins/IndivComplete.py:225
 #: ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479
@@ -2468,7 +2468,7 @@ msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53
 #: ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:165
+#: ../src/plugins/ImportCSV.py:166
 #: ../src/plugins/PatchNames.py:244
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
@@ -2507,7 +2507,7 @@ msgstr "Roepnaam"
 #: ../src/ScratchPad.py:591
 #: ../src/Utils.py:1195
 #: ../src/plugins/ExportCSV.py:365
-#: ../src/plugins/ImportCSV.py:167
+#: ../src/plugins/ImportCSV.py:168
 #: ../src/plugins/PatchNames.py:256
 #: ../src/plugins/PatchNames.py:268
 msgid "Prefix"
@@ -2736,192 +2736,196 @@ msgid "Hungarian"
 msgstr "Hongaars"
 
 #: ../src/Spell.py:112
+msgid "Armenian"
+msgstr "Armeens"
+
+#: ../src/Spell.py:113
 msgid "Interlingua"
 msgstr "Interlingua"
 
-#: ../src/Spell.py:113
+#: ../src/Spell.py:114
 msgid "Indonesian"
 msgstr "Indonesisch"
 
-#: ../src/Spell.py:114
+#: ../src/Spell.py:115
 msgid "Icelandic"
 msgstr "IJslands"
 
-#: ../src/Spell.py:115
+#: ../src/Spell.py:116
 msgid "Italian"
 msgstr "Italiaans"
 
-#: ../src/Spell.py:116
+#: ../src/Spell.py:117
 msgid "Kurdi"
 msgstr "Kurdisch"
 
-#: ../src/Spell.py:117
+#: ../src/Spell.py:118
 msgid "Latin"
 msgstr "Latijns"
 
-#: ../src/Spell.py:118
+#: ../src/Spell.py:119
 msgid "Lithuanian"
 msgstr "Litouws"
 
-#: ../src/Spell.py:119
+#: ../src/Spell.py:120
 msgid "Latvian"
 msgstr "Latvian"
 
-#: ../src/Spell.py:120
+#: ../src/Spell.py:121
 msgid "Malagasy"
 msgstr "Malagasy"
 
-#: ../src/Spell.py:121
+#: ../src/Spell.py:122
 msgid "Maori"
 msgstr "Maori"
 
-#: ../src/Spell.py:122
+#: ../src/Spell.py:123
 msgid "Macedonian"
 msgstr "Macedonian"
 
-#: ../src/Spell.py:123
+#: ../src/Spell.py:124
 msgid "Mongolian"
 msgstr "Mongools"
 
-#: ../src/Spell.py:124
+#: ../src/Spell.py:125
 msgid "Marathi"
 msgstr "Marathi"
 
-#: ../src/Spell.py:125
+#: ../src/Spell.py:126
 msgid "Malay"
 msgstr "Malay"
 
-#: ../src/Spell.py:126
+#: ../src/Spell.py:127
 msgid "Maltese"
 msgstr "Maltese"
 
-#: ../src/Spell.py:127
+#: ../src/Spell.py:128
 msgid "Norwegian Bokmal"
 msgstr "Noors Bokmal"
 
-#: ../src/Spell.py:128
+#: ../src/Spell.py:129
 msgid "Low Saxon"
 msgstr "Laag saksisch"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
-#: ../src/Spell.py:129
+#: ../src/Spell.py:130
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: ../src/Spell.py:130
+#: ../src/Spell.py:131
 msgid "Norwegian Nynorsk"
 msgstr "Noors Nynorsk"
 
-#: ../src/Spell.py:131
+#: ../src/Spell.py:132
 msgid "Chichewa"
 msgstr "Chichewa"
 
-#: ../src/Spell.py:132
+#: ../src/Spell.py:133
 msgid "Oriya"
 msgstr "Oriya"
 
-#: ../src/Spell.py:133
+#: ../src/Spell.py:134
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: ../src/Spell.py:134
+#: ../src/Spell.py:135
 msgid "Polish"
 msgstr "Pools"
 
-#: ../src/Spell.py:135
-#: ../src/Spell.py:137
+#: ../src/Spell.py:136
+#: ../src/Spell.py:138
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: ../src/Spell.py:136
+#: ../src/Spell.py:137
 msgid "Brazilian Portuguese"
 msgstr "Braziliaans Portugees"
 
-#: ../src/Spell.py:138
+#: ../src/Spell.py:139
 msgid "Quechua"
 msgstr "Quechua"
 
-#: ../src/Spell.py:139
+#: ../src/Spell.py:140
 msgid "Romanian"
 msgstr "Roemeens"
 
-#: ../src/Spell.py:140
+#: ../src/Spell.py:141
 msgid "Russian"
 msgstr "Russisch"
 
-#: ../src/Spell.py:141
+#: ../src/Spell.py:142
 msgid "Kinyarwanda"
 msgstr "Kinyarwanda"
 
-#: ../src/Spell.py:142
+#: ../src/Spell.py:143
 msgid "Sardinian"
 msgstr "Sardinian"
 
-#: ../src/Spell.py:143
+#: ../src/Spell.py:144
 msgid "Slovak"
 msgstr "Slovaaks"
 
-#: ../src/Spell.py:144
+#: ../src/Spell.py:145
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: ../src/Spell.py:145
+#: ../src/Spell.py:146
 msgid "Serbian"
 msgstr "Servisch"
 
-#: ../src/Spell.py:146
+#: ../src/Spell.py:147
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: ../src/Spell.py:147
+#: ../src/Spell.py:148
 msgid "Swahili"
 msgstr "Swahili"
 
-#: ../src/Spell.py:148
+#: ../src/Spell.py:149
 msgid "Tamil"
 msgstr "Tamil"
 
-#: ../src/Spell.py:149
+#: ../src/Spell.py:150
 msgid "Telugu"
 msgstr "Telugu"
 
-#: ../src/Spell.py:150
+#: ../src/Spell.py:151
 msgid "Tetum"
 msgstr "Tetum"
 
-#: ../src/Spell.py:151
+#: ../src/Spell.py:152
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: ../src/Spell.py:152
+#: ../src/Spell.py:153
 msgid "Setswana"
 msgstr "Setswana"
 
-#: ../src/Spell.py:153
+#: ../src/Spell.py:154
 msgid "Turkish"
 msgstr "Turks"
 
-#: ../src/Spell.py:154
+#: ../src/Spell.py:155
 msgid "Ukrainian"
 msgstr "Oekraiens"
 
-#: ../src/Spell.py:155
+#: ../src/Spell.py:156
 msgid "Uzbek"
 msgstr "Usbeeks"
 
-#: ../src/Spell.py:156
+#: ../src/Spell.py:157
 msgid "Vietnamese"
 msgstr "Vietnamese"
 
-#: ../src/Spell.py:157
+#: ../src/Spell.py:158
 msgid "Walloon"
 msgstr "Waals"
 
-#: ../src/Spell.py:158
+#: ../src/Spell.py:159
 msgid "Yiddish"
 msgstr "Yiddish"
 
-#: ../src/Spell.py:159
+#: ../src/Spell.py:160
 msgid "Zulu"
 msgstr "Zulu"
 
@@ -2964,7 +2968,7 @@ msgstr "Bronnen in bibliotheek"
 #: ../src/ToolTips.py:243
 #: ../src/Merge/_MergePerson.py:189
 #: ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/ImportCSV.py:196
+#: ../src/plugins/ImportCSV.py:197
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -3422,31 +3426,31 @@ msgstr "Patroniem, voornaam"
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279
 #: ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCSV.py:229
+#: ../src/plugins/ImportCSV.py:230
 msgid "title"
 msgstr "titel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280
 #: ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCSV.py:223
+#: ../src/plugins/ImportCSV.py:224
 msgid "given"
 msgstr "voornaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:281
 #: ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCSV.py:231
+#: ../src/plugins/ImportCSV.py:232
 msgid "prefix"
 msgstr "prefix"
 
 #: ../src/BasicUtils/_NameDisplay.py:282
 #: ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCSV.py:219
+#: ../src/plugins/ImportCSV.py:220
 msgid "surname"
 msgstr "achternaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:283
 #: ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCSV.py:233
+#: ../src/plugins/ImportCSV.py:234
 msgid "suffix"
 msgstr "suffix"
 
@@ -3458,7 +3462,7 @@ msgstr "patroniem"
 
 #: ../src/BasicUtils/_NameDisplay.py:285
 #: ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCSV.py:227
+#: ../src/plugins/ImportCSV.py:228
 msgid "call"
 msgstr "call"
 
@@ -3537,7 +3541,7 @@ msgstr "Een ouder een een kind kunnen niet samengevoegd worden. Om deze personen
 #: ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:44
 #: ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:171
+#: ../src/plugins/ImportCSV.py:172
 #: ../src/plugins/IndivComplete.py:437
 #: ../src/plugins/NarrativeWeb.py:2159
 #: ../src/plugins/RelCalc.py:56
@@ -3583,7 +3587,7 @@ msgstr "Echtgenoten"
 #: ../src/DataViews/RelationView.py:1088
 #: ../src/plugins/ExportCSV.py:434
 #: ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCSV.py:211
+#: ../src/plugins/ImportCSV.py:212
 #: ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Huwelijk"
@@ -5235,8 +5239,7 @@ msgid "Maternal"
 msgstr "Materneel"
 
 #: ../src/Editors/_EditFamily.py:117
-#: ../src/plugins/csvexport.glade.h:5
-msgid "_Children"
+msgid "Chil_dren"
 msgstr "Kinderen"
 
 #: ../src/Editors/_EditFamily.py:122
@@ -5882,7 +5885,7 @@ msgid "skipped %d subordinate(s) at line %d"
 msgstr "sloeg %d subordinaten over op lijn %d"
 
 #: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073
-#: ../src/gen/db/dbdir.py:1115
+#: ../src/gen/db/dbdir.py:1111
 msgid "Rebuild reference map"
 msgstr "Opnieuw opbouwen van referentiestructuur"
 
@@ -5940,7 +5943,7 @@ msgstr "Database importeren"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
 #: ../src/GrampsDbUtils/_ReadGedcom.py:139
-#: ../src/plugins/ImportCSV.py:307
+#: ../src/plugins/ImportCSV.py:308
 #: ../src/plugins/ImportGeneWeb.py:90
 #: ../src/plugins/ImportGeneWeb.py:96
 #: ../src/plugins/ImportvCard.py:70
@@ -6409,7 +6412,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104
 #: ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:347
+#: ../src/plugins/AncestorReport.py:346
 #: ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926
 #: ../src/plugins/Calendar.py:939
@@ -6620,7 +6623,7 @@ msgid "Tree Options"
 msgstr "Stamboomopties"
 
 #: ../src/plugins/AncestorTree.py:460
-#: ../src/plugins/AncestorReport.py:251
+#: ../src/plugins/AncestorReport.py:250
 #: ../src/plugins/Calendar.py:496
 #: ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
@@ -6639,7 +6642,7 @@ msgid "The center person for the tree"
 msgstr "De centrale persoon voor de stamboom"
 
 #: ../src/plugins/AncestorTree.py:464
-#: ../src/plugins/AncestorReport.py:255
+#: ../src/plugins/AncestorReport.py:254
 #: ../src/plugins/DescendTree.py:419
 #: ../src/plugins/DescendReport.py:201
 #: ../src/plugins/DetAncestralReport.py:708
@@ -6693,7 +6696,7 @@ msgid "Whether to compress the tree."
 msgstr "Stamboom al of niet co_mprimeren."
 
 #: ../src/plugins/AncestorTree.py:494
-#: ../src/plugins/AncestorReport.py:332
+#: ../src/plugins/AncestorReport.py:331
 #: ../src/plugins/DescendTree.py:448
 #: ../src/plugins/DetAncestralReport.py:846
 #: ../src/plugins/DetDescendantReport.py:793
@@ -6725,7 +6728,7 @@ msgstr "Levert een grafische voorouderstamboom"
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafel verslag voor %s"
 
-#: ../src/plugins/AncestorReport.py:188
+#: ../src/plugins/AncestorReport.py:187
 #: ../src/plugins/DefaultGramplets.py:584
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
@@ -6736,7 +6739,7 @@ msgstr "Generatie %d"
 
 #. #########################
 #. ###############################
-#: ../src/plugins/AncestorReport.py:249
+#: ../src/plugins/AncestorReport.py:248
 #: ../src/plugins/Calendar.py:484
 #: ../src/plugins/Calendar.py:642
 #: ../src/plugins/DescendReport.py:195
@@ -6757,7 +6760,7 @@ msgstr "Generatie %d"
 msgid "Report Options"
 msgstr "Verslagopties"
 
-#: ../src/plugins/AncestorReport.py:252
+#: ../src/plugins/AncestorReport.py:251
 #: ../src/plugins/Calendar.py:497
 #: ../src/plugins/DescendReport.py:198
 #: ../src/plugins/DetAncestralReport.py:705
@@ -6768,7 +6771,7 @@ msgstr "Verslagopties"
 msgid "The center person for the report"
 msgstr "De centrale persoon voor dit verslag"
 
-#: ../src/plugins/AncestorReport.py:256
+#: ../src/plugins/AncestorReport.py:255
 #: ../src/plugins/DescendReport.py:202
 #: ../src/plugins/DetAncestralReport.py:709
 #: ../src/plugins/DetDescendantReport.py:652
@@ -6776,27 +6779,27 @@ msgstr "De centrale persoon voor dit verslag"
 msgid "The number of generations to include in the report"
 msgstr "Het aantal generaties dat getoond wordt in het verslag"
 
-#: ../src/plugins/AncestorReport.py:259
+#: ../src/plugins/AncestorReport.py:258
 #: ../src/plugins/DetAncestralReport.py:712
 #: ../src/plugins/DetDescendantReport.py:655
 msgid "Page break between generations"
 msgstr "Nieuwe pagina bij volgende generatie"
 
-#: ../src/plugins/AncestorReport.py:261
+#: ../src/plugins/AncestorReport.py:260
 #: ../src/plugins/DetAncestralReport.py:714
 #: ../src/plugins/DetDescendantReport.py:657
 msgid "Whether to start a new page after each generation."
 msgstr "Al of niet een nieuwe pagina starten na iedere generatie."
 
-#: ../src/plugins/AncestorReport.py:264
+#: ../src/plugins/AncestorReport.py:263
 msgid "Add linebreak after each name"
 msgstr "Voeg een lijn toe na iedere naam"
 
-#: ../src/plugins/AncestorReport.py:265
+#: ../src/plugins/AncestorReport.py:264
 msgid "Indicates if a line break should follow the name."
 msgstr "De lijn afbreken na de naam."
 
-#: ../src/plugins/AncestorReport.py:309
+#: ../src/plugins/AncestorReport.py:308
 #: ../src/plugins/DescendReport.py:218
 #: ../src/plugins/DetAncestralReport.py:800
 #: ../src/plugins/DetDescendantReport.py:747
@@ -6811,18 +6814,18 @@ msgstr "De lijn afbreken na de naam."
 msgid "The style used for the title of the page."
 msgstr "De gebruikte stijl voor de titel van de pagina."
 
-#: ../src/plugins/AncestorReport.py:322
+#: ../src/plugins/AncestorReport.py:321
 #: ../src/plugins/DetAncestralReport.py:810
 #: ../src/plugins/DetDescendantReport.py:757
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "De gebruikte stijl voor de generatiehoofding."
 
-#: ../src/plugins/AncestorReport.py:346
+#: ../src/plugins/AncestorReport.py:345
 msgid "Ahnentafel Report"
 msgstr "Ahnentafel verslag"
 
-#: ../src/plugins/AncestorReport.py:348
+#: ../src/plugins/AncestorReport.py:347
 msgid "Produces a textual ancestral report"
 msgstr "Levert een tekstueel voorouder-rapport"
 
@@ -8856,49 +8859,49 @@ msgid "Extracts event descriptions from the event data"
 msgstr "Haal de gebeurtenisbeschrijvingen uit de gebeurtenissengegevens"
 
 #: ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:179
+#: ../src/plugins/ImportCSV.py:180
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geboortedatum"
 
 #: ../src/plugins/ExportCSV.py:367
-#: ../src/plugins/ImportCSV.py:177
+#: ../src/plugins/ImportCSV.py:178
 #: ../src/plugins/StatisticsChart.py:106
 msgid "Birth place"
 msgstr "Geboorteplaats"
 
 #: ../src/plugins/ExportCSV.py:367
-#: ../src/plugins/ImportCSV.py:181
+#: ../src/plugins/ImportCSV.py:182
 msgid "Birth source"
 msgstr "Geboortebron"
 
 #: ../src/plugins/ExportCSV.py:368
-#: ../src/plugins/ImportCSV.py:185
+#: ../src/plugins/ImportCSV.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterfdatum"
 
 #: ../src/plugins/ExportCSV.py:368
-#: ../src/plugins/ImportCSV.py:183
+#: ../src/plugins/ImportCSV.py:184
 #: ../src/plugins/StatisticsChart.py:108
 msgid "Death place"
 msgstr "Sterfplaats"
 
 #: ../src/plugins/ExportCSV.py:369
-#: ../src/plugins/ImportCSV.py:187
+#: ../src/plugins/ImportCSV.py:188
 msgid "Death source"
 msgstr "Overlijdensbron"
 
 #: ../src/plugins/ExportCSV.py:434
 #: ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCSV.py:208
+#: ../src/plugins/ImportCSV.py:209
 #: ../src/plugins/NarrativeWeb.py:2391
 msgid "Husband"
 msgstr "Man"
 
 #: ../src/plugins/ExportCSV.py:434
 #: ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCSV.py:204
+#: ../src/plugins/ImportCSV.py:205
 #: ../src/plugins/NarrativeWeb.py:2393
 msgid "Wife"
 msgstr "Vrouw"
@@ -9810,157 +9813,157 @@ msgstr "Relatiegrafiek"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Maakt een verwantschapsgrafiek aan met \"GraphViz\""
 
-#: ../src/plugins/ImportCSV.py:158
+#: ../src/plugins/ImportCSV.py:159
 msgid "Given name"
 msgstr "Voornaam"
 
-#: ../src/plugins/ImportCSV.py:162
+#: ../src/plugins/ImportCSV.py:163
 msgid "Call name"
 msgstr "Roepnaam"
 
-#: ../src/plugins/ImportCSV.py:189
+#: ../src/plugins/ImportCSV.py:190
 msgid "Death cause"
 msgstr "Overlijdensoorzaak"
 
-#: ../src/plugins/ImportCSV.py:191
+#: ../src/plugins/ImportCSV.py:192
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCSV.py:205
+#: ../src/plugins/ImportCSV.py:206
 msgid "Parent2"
 msgstr "Ouder2"
 
-#: ../src/plugins/ImportCSV.py:209
+#: ../src/plugins/ImportCSV.py:210
 msgid "Parent1"
 msgstr "Ouder1"
 
-#: ../src/plugins/ImportCSV.py:222
+#: ../src/plugins/ImportCSV.py:223
 msgid "given name"
 msgstr "voornaam"
 
-#: ../src/plugins/ImportCSV.py:226
+#: ../src/plugins/ImportCSV.py:227
 msgid "call name"
 msgstr "roepnaam"
 
-#: ../src/plugins/ImportCSV.py:235
+#: ../src/plugins/ImportCSV.py:236
 msgid "gender"
 msgstr "geslacht"
 
-#: ../src/plugins/ImportCSV.py:237
-#: ../src/plugins/ImportCSV.py:262
+#: ../src/plugins/ImportCSV.py:238
+#: ../src/plugins/ImportCSV.py:263
 msgid "source"
 msgstr "bron"
 
 # niet/geen
-#: ../src/plugins/ImportCSV.py:239
+#: ../src/plugins/ImportCSV.py:240
 msgid "note"
 msgstr "opmerking"
 
-#: ../src/plugins/ImportCSV.py:241
+#: ../src/plugins/ImportCSV.py:242
 msgid "birth place"
 msgstr "geboorteplaats"
 
-#: ../src/plugins/ImportCSV.py:243
+#: ../src/plugins/ImportCSV.py:244
 msgid "birth date"
 msgstr "geboortedatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCSV.py:245
+#: ../src/plugins/ImportCSV.py:246
 msgid "birth source"
 msgstr "geboortebron"
 
-#: ../src/plugins/ImportCSV.py:247
+#: ../src/plugins/ImportCSV.py:248
 msgid "death place"
 msgstr "plaats van overlijden"
 
-#: ../src/plugins/ImportCSV.py:249
+#: ../src/plugins/ImportCSV.py:250
 msgid "death date"
 msgstr "sterfdatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCSV.py:251
+#: ../src/plugins/ImportCSV.py:252
 msgid "death source"
 msgstr "overlijdensbron"
 
-#: ../src/plugins/ImportCSV.py:253
+#: ../src/plugins/ImportCSV.py:254
 msgid "death cause"
 msgstr "doodsoorzaak"
 
-#: ../src/plugins/ImportCSV.py:255
+#: ../src/plugins/ImportCSV.py:256
 msgid "gramps id"
 msgstr "gramps id"
 
-#: ../src/plugins/ImportCSV.py:257
+#: ../src/plugins/ImportCSV.py:258
 msgid "person"
 msgstr "persoon"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:260
+#: ../src/plugins/ImportCSV.py:261
 msgid "child"
 msgstr "kind"
 
-#: ../src/plugins/ImportCSV.py:264
+#: ../src/plugins/ImportCSV.py:265
 msgid "family"
 msgstr "familie"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:267
+#: ../src/plugins/ImportCSV.py:268
 msgid "mother"
 msgstr "moeder"
 
-#: ../src/plugins/ImportCSV.py:269
+#: ../src/plugins/ImportCSV.py:270
 msgid "parent2"
 msgstr "ouder2"
 
-#: ../src/plugins/ImportCSV.py:271
+#: ../src/plugins/ImportCSV.py:272
 msgid "father"
 msgstr "vader"
 
-#: ../src/plugins/ImportCSV.py:273
+#: ../src/plugins/ImportCSV.py:274
 msgid "parent1"
 msgstr "ouder1"
 
-#: ../src/plugins/ImportCSV.py:275
+#: ../src/plugins/ImportCSV.py:276
 msgid "marriage"
 msgstr "huwelijk"
 
-#: ../src/plugins/ImportCSV.py:277
+#: ../src/plugins/ImportCSV.py:278
 msgid "date"
 msgstr "datum"
 
-#: ../src/plugins/ImportCSV.py:279
+#: ../src/plugins/ImportCSV.py:280
 msgid "place"
 msgstr "locatie"
 
-#: ../src/plugins/ImportCSV.py:320
+#: ../src/plugins/ImportCSV.py:321
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "formaatfout: bestand %s, lijn %d: %s"
 
-#: ../src/plugins/ImportCSV.py:371
+#: ../src/plugins/ImportCSV.py:372
 msgid "CSV Import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCSV.py:372
+#: ../src/plugins/ImportCSV.py:373
 msgid "Reading data..."
 msgstr "Gegevens worden gelezen..."
 
-#: ../src/plugins/ImportCSV.py:639
+#: ../src/plugins/ImportCSV.py:687
 #: ../src/plugins/ImportGeneWeb.py:187
 #: ../src/plugins/ImportvCard.py:151
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import voltooid: %d seconden"
 
-#: ../src/plugins/ImportCSV.py:640
+#: ../src/plugins/ImportCSV.py:688
 msgid "CSV import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCSV.py:788
+#: ../src/plugins/ImportCSV.py:836
 msgid "CSV spreadsheet files"
 msgstr "CSV rekenbladbestanden"
 
-#: ../src/plugins/ImportCSV.py:791
+#: ../src/plugins/ImportCSV.py:839
 msgid "CSV Spreadheet"
 msgstr "CSV rekenblad"
 
@@ -16340,7 +16343,7 @@ msgstr "Ongedaan maken %s"
 msgid "_Redo %s"
 msgstr "%s opnieuw doen"
 
-#: ../src/gen/db/dbdir.py:1773
+#: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
 msgstr "Op slot door %s"
@@ -20032,6 +20035,10 @@ msgstr "_Filter:"
 msgid "I_ndividuals"
 msgstr "Personen"
 
+#: ../src/plugins/csvexport.glade.h:5
+msgid "_Children"
+msgstr "Kinderen"
+
 #: ../src/plugins/csvexport.glade.h:6
 msgid "_Marriages"
 msgstr "Huwelijken"
@@ -20570,8 +20577,6 @@ msgstr "U kunt zeer eenvoudig uw familiestamboom exporteren naar een webpagina. 
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "U kunt willekeurige elektronische media (ook beeld en geluid) en andere bestandstypes koppelen aan uw GRAMPS-familiestamboom."
 
-#~ msgid "Armenian"
-#~ msgstr "Armeens"
 #~ msgid "Matches notes who contain text "
 #~ msgstr "Vindt opmerkingen die tekst bevatten "
 
