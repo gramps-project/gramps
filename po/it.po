@@ -59,8 +59,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-28 15:45+0100\n"
-"PO-Revision-Date: 2008-11-29 17:54+0100\n"
+"POT-Creation-Date: 2008-12-02 16:22+0100\n"
+"PO-Revision-Date: 2008-12-03 01:17+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -257,27 +257,26 @@ msgid "Regular"
 msgstr "Normale"
 
 #: ../src/DateEdit.py:79
-#, fuzzy
 msgid "Before"
 msgstr "Prima"
 
 #: ../src/DateEdit.py:80
-#, fuzzy
 msgid "After"
 msgstr "Dopo"
 
 #: ../src/DateEdit.py:81
-#, fuzzy
 msgid "About"
 msgstr "Circa"
 
 #: ../src/DateEdit.py:82
+#, fuzzy
 msgid "Range"
-msgstr ""
+msgstr "Intervallo"
 
 #: ../src/DateEdit.py:83
+#, fuzzy
 msgid "Span"
-msgstr ""
+msgstr "Periodo"
 
 #: ../src/DateEdit.py:84
 msgid "Text only"
@@ -354,11 +353,12 @@ msgid "Cannot import from current file"
 msgstr "Impossibile importare il file corrente"
 
 #: ../src/DbLoader.py:189
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and "
+"others."
 msgstr ""
 "GRAMPS non riconosce il tipo di file «%s».\n"
 "\n"
@@ -457,7 +457,7 @@ msgstr "Importazione terminata..."
 
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:226 ../src/plugins/ImportCSV.py:374
+#: ../src/DbManager.py:226 ../src/plugins/ImportCSV.py:375
 msgid "Importing data..."
 msgstr "Importazione dati..."
 
@@ -542,10 +542,10 @@ msgstr ""
 
 #: ../src/DbManager.py:694
 msgid "Remove family tree"
-msgstr "Rimuove albero genealogico"
+msgstr "Rimuovi albero genealogico"
 
 #: ../src/DbManager.py:700
-#, fuzzy, python-format
+#, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Rimovere la versione «%(revision)s» di «%(database)s»"
 
@@ -573,7 +573,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Il tentativo di cancellare la versione non è riuscito ed ha restituito il "
+"Il tentativo di cancellare una versione non è riuscito ed ha restituito il "
 "seguente messaggio:\n"
 "\n"
 "%s"
@@ -649,8 +649,8 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Il tentativo di creare l'archivio non è riuscito ed ha restituito il seguente "
-"messaggio:\n"
+"Il tentativo di creare l'archivio non è riuscito ed ha restituito il "
+"seguente messaggio:\n"
 "\n"
 "%s"
 
@@ -941,8 +941,9 @@ msgid "Researcher"
 msgstr "Ricercatore"
 
 #: ../src/GrampsCfg.py:163
+#, fuzzy
 msgid "Marker Colors"
-msgstr ""
+msgstr "Colori marcatore"
 
 #: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:159
 #: ../src/ScratchPad.py:176 ../src/DisplayTabs/_AddrEmbedList.py:70
@@ -1003,7 +1004,7 @@ msgstr "Email"
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCSV.py:193 ../src/plugins/References.py:34
+#: ../src/plugins/ImportCSV.py:194 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:272
 msgid "Person"
@@ -1017,7 +1018,7 @@ msgstr "Persona"
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266 ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:201
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:273
 msgid "Family"
@@ -1028,7 +1029,7 @@ msgstr "Famiglia"
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:215 ../src/plugins/MarkerReport.py:301
+#: ../src/plugins/ImportCSV.py:216 ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79 ../src/plugins/References.py:35
 #: ../src/plugins/References.py:93
@@ -1039,7 +1040,7 @@ msgstr "Luogo"
 
 #: ../src/GrampsCfg.py:199 ../src/Simple/_SimpleTable.py:206
 #: ../src/Editors/_EditSource.py:75 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:173 ../src/plugins/ImportCSV.py:198
+#: ../src/plugins/ImportCSV.py:174 ../src/plugins/ImportCSV.py:199
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:276
 msgid "Source"
@@ -1069,7 +1070,7 @@ msgstr "Depositi"
 #: ../src/Simple/_SimpleTable.py:227 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
+#: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:176
 #: ../src/ReportBase/_GraphvizReportDialog.py:1002
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1129,7 +1130,7 @@ msgstr ""
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:847
+#: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:847
 #: ../src/plugins/NarrativeWeb.py:1472 ../src/plugins/NarrativeWeb.py:1474
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:81
 #: ../src/PluginUtils/_GuiOptions.py:954
@@ -1142,14 +1143,14 @@ msgstr "Cognome"
 #: ../src/GrampsCfg.py:357 ../src/GrampsCfg.py:358 ../src/GrampsCfg.py:359
 #: ../src/GrampsCfg.py:360 ../src/GrampsCfg.py:361 ../src/ScratchPad.py:588
 #: ../src/Utils.py:1194 ../src/BasicUtils/_NameDisplay.py:107
-#: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:159
+#: ../src/plugins/ExportCSV.py:364 ../src/plugins/ImportCSV.py:160
 msgid "Given"
 msgstr "Nome"
 
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:348
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:593 ../src/Utils.py:1197
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:170
 msgid "Suffix"
 msgstr "Suffisso"
 
@@ -1160,7 +1161,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:163
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:164
 msgid "Call"
 msgstr "Pseudonimo"
 
@@ -1358,7 +1359,7 @@ msgstr "Aggiungi segnalibro"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:983 ../src/plugins/ExportCSV.py:435
-#: ../src/plugins/ImportCSV.py:213 ../src/plugins/MarkerReport.py:295
+#: ../src/plugins/ImportCSV.py:214 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:699 ../src/plugins/NarrativeWeb.py:1351
 #: ../src/plugins/NarrativeWeb.py:1751 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
@@ -1611,7 +1612,9 @@ msgstr "Per selezionare un oggetto multimediale, trascinare oppure usare i pulsa
 #: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:770
 #, fuzzy
 msgid "No image given, click button to select one"
-msgstr "Nessun oggetto multimediale indicato, fare clic sul pulsante per sceglierne uno"
+msgstr ""
+"Nessun oggetto multimediale indicato, fare clic sul pulsante per sceglierne "
+"uno"
 
 #: ../src/GrampsWidgets.py:979
 msgid "Edit media object"
@@ -1859,9 +1862,9 @@ msgid ""
 "be repaired by from the Family Tree Manager. Select the database and click "
 "on the Repair button"
 msgstr ""
-"GRAMPS ha rilevato un problema nel database sottostante di tipo Berkeley. Può "
-"essere corretto dal gestore degli alberi genealogici. Selezionare il database e "
-"fare clic sul pulsante Ripara"
+"GRAMPS ha rilevato un problema nel database sottostante di tipo Berkeley. "
+"Può essere corretto dal gestore degli alberi genealogici. Selezionare il "
+"database e fare clic sul pulsante Ripara"
 
 #: ../src/QuestionDialog.py:310 ../src/Utils.py:1112
 #, fuzzy
@@ -1905,11 +1908,11 @@ msgstr ""
 msgid "undefined"
 msgstr "non definito"
 
-#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:272
+#: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:273
 msgid "husband"
 msgstr "marito"
 
-#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:268
+#: ../src/Relationship.py:1661 ../src/plugins/ImportCSV.py:269
 msgid "wife"
 msgstr "moglie"
 
@@ -2020,7 +2023,7 @@ msgstr "partner precedente"
 #: ../src/Merge/_MergePerson.py:164 ../src/DataViews/FamilyList.py:63
 #: ../src/DataViews/RelationView.py:786 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:296 ../src/plugins/FamilyGroup.py:185
-#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:207
+#: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:208
 #: ../src/plugins/IndivComplete.py:216 ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2288
@@ -2033,7 +2036,7 @@ msgstr "Padre"
 #: ../src/Merge/_MergePerson.py:166 ../src/DataViews/FamilyList.py:64
 #: ../src/DataViews/RelationView.py:787 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:293 ../src/plugins/FamilyGroup.py:202
-#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:203
+#: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:204
 #: ../src/plugins/IndivComplete.py:225 ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2293
@@ -2185,7 +2188,7 @@ msgstr ""
 #: ../src/Selectors/_SelectObject.py:73 ../src/Selectors/_SelectPlace.py:53
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:165 ../src/plugins/PatchNames.py:244
+#: ../src/plugins/ImportCSV.py:166 ../src/plugins/PatchNames.py:244
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
@@ -2221,9 +2224,8 @@ msgid "Call Name"
 msgstr "Pseudonimo"
 
 #: ../src/ScratchPad.py:591 ../src/Utils.py:1195
-#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
+#: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:168
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
-#, fuzzy
 msgid "Prefix"
 msgstr "Prefisso"
 
@@ -2411,7 +2413,7 @@ msgstr "Gaelico mannese"
 
 #: ../src/Spell.py:106 ../src/gen/lib/date.py:141
 msgid "Hebrew"
-msgstr "Ebreo"
+msgstr "Ebraico"
 
 #: ../src/Spell.py:107
 msgid "Hindi"
@@ -2659,7 +2661,7 @@ msgstr "Fonti nei depositi"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
-#: ../src/plugins/ExportCSV.py:474 ../src/plugins/ImportCSV.py:196
+#: ../src/plugins/ExportCSV.py:474 ../src/plugins/ImportCSV.py:197
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 #, fuzzy
@@ -3107,30 +3109,29 @@ msgstr "Patronimico, nome"
 #. called to fill in each format flag.
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCSV.py:229
+#: ../src/plugins/ImportCSV.py:230
 #, fuzzy
 msgid "title"
 msgstr "titolo"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCSV.py:223
+#: ../src/plugins/ImportCSV.py:224
 msgid "given"
 msgstr "nome"
 
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCSV.py:231
-#, fuzzy
+#: ../src/plugins/ImportCSV.py:232
 msgid "prefix"
 msgstr "prefisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCSV.py:219
+#: ../src/plugins/ImportCSV.py:220
 #, fuzzy
 msgid "surname"
 msgstr "prefisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCSV.py:233
+#: ../src/plugins/ImportCSV.py:234
 msgid "suffix"
 msgstr "suffisso"
 
@@ -3140,7 +3141,7 @@ msgid "patronymic"
 msgstr "patronimico"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCSV.py:227
+#: ../src/plugins/ImportCSV.py:228
 msgid "call"
 msgstr ""
 
@@ -3213,7 +3214,7 @@ msgstr ""
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:44 ../src/plugins/ExportCSV.py:366
-#: ../src/plugins/ImportCSV.py:171 ../src/plugins/IndivComplete.py:437
+#: ../src/plugins/ImportCSV.py:172 ../src/plugins/IndivComplete.py:437
 #: ../src/plugins/NarrativeWeb.py:2159 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/StatisticsChart.py:96
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
@@ -3248,7 +3249,7 @@ msgstr "Coniugi"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1088
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCSV.py:211 ../src/gen/lib/eventtype.py:131
+#: ../src/plugins/ImportCSV.py:212 ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Matrimonio"
 
@@ -3316,9 +3317,8 @@ msgid "_Column Editor"
 msgstr "Editor _colonne"
 
 #: ../src/DataViews/EventView.py:204
-#, fuzzy
 msgid "Select Event Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne evento"
 
 #: ../src/DataViews/EventView.py:237
 #, fuzzy
@@ -3368,7 +3368,6 @@ msgid "Families"
 msgstr "Famiglie"
 
 #: ../src/DataViews/FamilyList.py:107
-#, fuzzy
 msgid "Select Family Columns"
 msgstr "Seleziona colonne famiglia"
 
@@ -3414,9 +3413,8 @@ msgid "GRAMPS cannot find an application that can view a file type of %s."
 msgstr ""
 
 #: ../src/DataViews/MediaView.py:247
-#, fuzzy
 msgid "Select Media Columns"
-msgstr "Seleziona colonne multimedia"
+msgstr "Seleziona colonne oggetto multimediale"
 
 #: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:66
 msgid "Double click image to view in an external viewer"
@@ -3490,7 +3488,6 @@ msgstr "Anteprima"
 #: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:110
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
-#, fuzzy
 msgid "Marker"
 msgstr "Marcatore"
 
@@ -3505,12 +3502,11 @@ msgstr "Cancella la nota selezionata"
 #: ../src/DataViews/NoteView.py:167
 #, fuzzy
 msgid "Note Filter Editor"
-msgstr "Editor filtri di sistema"
+msgstr "Editor filtri note"
 
 #: ../src/DataViews/NoteView.py:182
-#, fuzzy
 msgid "Select Note Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne nota"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/NoteView.py:208
@@ -3738,9 +3734,8 @@ msgstr ""
 "tasto Ctrl mentre si clicca sul luogo desiderato."
 
 #: ../src/DataViews/PersonView.py:237
-#, fuzzy
 msgid "Select Person Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne persona"
 
 #: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
@@ -3840,7 +3835,6 @@ msgid "Place Filter Editor"
 msgstr "Editor filtro luoghi"
 
 #: ../src/DataViews/PlaceView.py:157
-#, fuzzy
 msgid "Select Place Columns"
 msgstr "Seleziona colonne luoghi"
 
@@ -4118,7 +4112,7 @@ msgstr "Editor filtri depositi"
 
 #: ../src/DataViews/RepositoryView.py:128
 msgid "Select Repository Columns"
-msgstr ""
+msgstr "Seleziona colonne deposito"
 
 #: ../src/DataViews/RepositoryView.py:202
 msgid ""
@@ -4159,7 +4153,6 @@ msgid "Source Filter Editor"
 msgstr "Editor filtri di sistema"
 
 #: ../src/DataViews/SourceView.py:123
-#, fuzzy
 msgid "Select Source Columns"
 msgstr "Seleziona colonne fonte"
 
@@ -4894,9 +4887,10 @@ msgstr "Paterno"
 msgid "Maternal"
 msgstr "Materno"
 
-#: ../src/Editors/_EditFamily.py:117 ../src/plugins/csvexport.glade.h:5
-msgid "_Children"
-msgstr "_Figli"
+#: ../src/Editors/_EditFamily.py:117
+#, fuzzy
+msgid "Chil_dren"
+msgstr "Figli"
 
 #: ../src/Editors/_EditFamily.py:122
 #, fuzzy
@@ -5558,7 +5552,7 @@ msgstr "Riga %d: la nota è stata ignorata perché vuota."
 msgid "skipped %d subordinate(s) at line %d"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1115
+#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1111
 #, fuzzy
 msgid "Rebuild reference map"
 msgstr "Ricostruisce la mappa dei riferimenti"
@@ -5624,7 +5618,7 @@ msgid "Import database"
 msgstr "Importa database"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
-#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:307
+#: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:308
 #: ../src/plugins/ImportGeneWeb.py:90 ../src/plugins/ImportGeneWeb.py:96
 #: ../src/plugins/ImportvCard.py:70 ../src/plugins/ImportvCard.py:76
 #, python-format
@@ -6340,11 +6334,11 @@ msgstr ""
 
 #: ../src/plugins/AncestorTree.py:473 ../src/plugins/DescendTree.py:428
 msgid "Sc_ale to fit on a single page"
-msgstr "Sc_alare per "
+msgstr "Sc_alare per usare una sola pagina"
 
 #: ../src/plugins/AncestorTree.py:474 ../src/plugins/DescendTree.py:429
 msgid "Whether to scale to fit on a single page."
-msgstr ""
+msgstr "Indica se scalare il resoconto per usare una sola pagina"
 
 #: ../src/plugins/AncestorTree.py:477 ../src/plugins/DescendTree.py:432
 msgid "Include Blank Pages"
@@ -6381,7 +6375,6 @@ msgid "Ancestor Tree"
 msgstr "Albero ascendenti"
 
 #: ../src/plugins/AncestorTree.py:538
-#, fuzzy
 msgid "Produces a graphical ancestral tree"
 msgstr "Produce un grafico ad albero dell'ascendenza"
 
@@ -6598,13 +6591,12 @@ msgstr "Selezione filtro per restringere le persone"
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 #, fuzzy
 msgid "Filter Person"
-msgstr "Filtra persone"
+msgstr "Persona filtro"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2959 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
-#, fuzzy
 msgid "The center person for the filter"
 msgstr "La persona centrale per il filtro"
 
@@ -6825,13 +6817,12 @@ msgid "Select the format to display names"
 msgstr "Seleziona il formato con cui mostrare i nomi"
 
 #: ../src/plugins/Calendar.py:509 ../src/plugins/WebCal.py:754
-#, fuzzy
 msgid "Country for holidays"
-msgstr "Nazione per le vacanze"
+msgstr "Nazione per le festività"
 
 #: ../src/plugins/Calendar.py:514
 msgid "Select the country to see associated holidays"
-msgstr ""
+msgstr "Selezionare la nazione per vedere le relative festività"
 
 #: ../src/plugins/Calendar.py:517
 msgid "First day of week"
@@ -6842,21 +6833,20 @@ msgid "Select the first day of the week for the calendar"
 msgstr "Seleziona il primo giorno della settimana per il calendario"
 
 #: ../src/plugins/Calendar.py:524
-#, fuzzy
 msgid "Birthday surname"
-msgstr "Cognome alla nascita"
+msgstr "Cognome di nascita"
 
 #: ../src/plugins/Calendar.py:525
 msgid "Wives use husband's surname (from first family listed)"
-msgstr ""
+msgstr "Le mogli usano il cognome del marito (dalla prima famiglia elencata)"
 
 #: ../src/plugins/Calendar.py:526
 msgid "Wives use husband's surname (from last family listed)"
-msgstr ""
+msgstr "Le mogli usano il cognome del marito (dall'ultima famiglia elencata)"
 
 #: ../src/plugins/Calendar.py:527
 msgid "Wives use their own surname"
-msgstr ""
+msgstr "Le mogli usano il proprio cognome"
 
 #: ../src/plugins/Calendar.py:528
 msgid "Select married women's displayed surname"
@@ -6908,7 +6898,6 @@ msgid "Text Area 2"
 msgstr "Area di testo 2"
 
 #: ../src/plugins/Calendar.py:549
-#, fuzzy
 msgid "Produced with GRAMPS"
 msgstr "Generato con GRAMPS"
 
@@ -7002,18 +6991,16 @@ msgid "Month text style"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:895 ../src/plugins/WebCal.py:1213
-#, fuzzy
 msgid "Don't include holidays"
 msgstr "Non includere le festività"
 
 #: ../src/plugins/Calendar.py:929
-#, fuzzy
 msgid "Produces a graphical calendar"
 msgstr "Produce un calendario"
 
 #: ../src/plugins/Calendar.py:942
 msgid "Produces a report of birthdays and anniversaries"
-msgstr ""
+msgstr "Produce un resoconto dei compleanni e degli anniversari"
 
 #: ../src/plugins/ChangeNames.py:67
 #, fuzzy
@@ -8531,43 +8518,43 @@ msgstr ""
 msgid "Extracts event descriptions from the event data"
 msgstr ""
 
-#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:179
+#: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:180
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Data di nascita"
 
-#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:177
+#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:178
 #: ../src/plugins/StatisticsChart.py:106
 msgid "Birth place"
 msgstr "Luogo di nascita"
 
-#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:181
+#: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:182
 #, fuzzy
 msgid "Birth source"
 msgstr "Fonte nascita"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Data del decesso"
 
-#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:183
+#: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:184
 #: ../src/plugins/StatisticsChart.py:108
 msgid "Death place"
 msgstr "Luogo del decesso"
 
-#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:187
+#: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:188
 #, fuzzy
 msgid "Death source"
 msgstr "Fonte decesso"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCSV.py:208 ../src/plugins/NarrativeWeb.py:2391
+#: ../src/plugins/ImportCSV.py:209 ../src/plugins/NarrativeWeb.py:2391
 msgid "Husband"
 msgstr "Marito"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCSV.py:204 ../src/plugins/NarrativeWeb.py:2393
+#: ../src/plugins/ImportCSV.py:205 ../src/plugins/NarrativeWeb.py:2393
 msgid "Wife"
 msgstr "Moglie"
 
@@ -9438,7 +9425,7 @@ msgstr "Discendente - Ascendente"
 
 #: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
-msgstr ""
+msgstr "Determina quali persone sono incluse nel grafico"
 
 #: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
@@ -9562,160 +9549,160 @@ msgstr "Grafico relazioni"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Produce un grafico delle relazioni usando Graphviz."
 
-#: ../src/plugins/ImportCSV.py:158
+#: ../src/plugins/ImportCSV.py:159
 msgid "Given name"
 msgstr "Nome"
 
-#: ../src/plugins/ImportCSV.py:162
+#: ../src/plugins/ImportCSV.py:163
 msgid "Call name"
 msgstr "Pseudonimo"
 
-#: ../src/plugins/ImportCSV.py:189
+#: ../src/plugins/ImportCSV.py:190
 msgid "Death cause"
 msgstr "Causa del decesso"
 
-#: ../src/plugins/ImportCSV.py:191
+#: ../src/plugins/ImportCSV.py:192
 msgid "Gramps id"
 msgstr "Id Gramps"
 
-#: ../src/plugins/ImportCSV.py:205
+#: ../src/plugins/ImportCSV.py:206
 #, fuzzy
 msgid "Parent2"
 msgstr "Genitore2"
 
-#: ../src/plugins/ImportCSV.py:209
+#: ../src/plugins/ImportCSV.py:210
 #, fuzzy
 msgid "Parent1"
 msgstr "Genitore1"
 
-#: ../src/plugins/ImportCSV.py:222
+#: ../src/plugins/ImportCSV.py:223
 msgid "given name"
 msgstr "nome"
 
-#: ../src/plugins/ImportCSV.py:226
+#: ../src/plugins/ImportCSV.py:227
 msgid "call name"
 msgstr "pseudonimo"
 
-#: ../src/plugins/ImportCSV.py:235
+#: ../src/plugins/ImportCSV.py:236
 msgid "gender"
 msgstr "sesso"
 
-#: ../src/plugins/ImportCSV.py:237 ../src/plugins/ImportCSV.py:262
+#: ../src/plugins/ImportCSV.py:238 ../src/plugins/ImportCSV.py:263
 #, fuzzy
 msgid "source"
 msgstr "fonte"
 
-#: ../src/plugins/ImportCSV.py:239
+#: ../src/plugins/ImportCSV.py:240
 #, fuzzy
 msgid "note"
 msgstr "nota"
 
-#: ../src/plugins/ImportCSV.py:241
+#: ../src/plugins/ImportCSV.py:242
 msgid "birth place"
 msgstr "luogo di nascita"
 
-#: ../src/plugins/ImportCSV.py:243
+#: ../src/plugins/ImportCSV.py:244
 msgid "birth date"
 msgstr "data di nascita"
 
-#: ../src/plugins/ImportCSV.py:245
+#: ../src/plugins/ImportCSV.py:246
 #, fuzzy
 msgid "birth source"
 msgstr "fonte nascita"
 
-#: ../src/plugins/ImportCSV.py:247
+#: ../src/plugins/ImportCSV.py:248
 msgid "death place"
 msgstr "luogo del decesso"
 
-#: ../src/plugins/ImportCSV.py:249
+#: ../src/plugins/ImportCSV.py:250
 #, fuzzy
 msgid "death date"
 msgstr "data del decesso"
 
-#: ../src/plugins/ImportCSV.py:251
+#: ../src/plugins/ImportCSV.py:252
 msgid "death source"
 msgstr ""
 
-#: ../src/plugins/ImportCSV.py:253
+#: ../src/plugins/ImportCSV.py:254
 msgid "death cause"
 msgstr "causa del decesso"
 
-#: ../src/plugins/ImportCSV.py:255
+#: ../src/plugins/ImportCSV.py:256
 msgid "gramps id"
 msgstr "id gramps"
 
-#: ../src/plugins/ImportCSV.py:257
+#: ../src/plugins/ImportCSV.py:258
 msgid "person"
 msgstr "persona"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:260
+#: ../src/plugins/ImportCSV.py:261
 #, fuzzy
 msgid "child"
 msgstr "figlio"
 
-#: ../src/plugins/ImportCSV.py:264
+#: ../src/plugins/ImportCSV.py:265
 msgid "family"
 msgstr "famiglia"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCSV.py:267
+#: ../src/plugins/ImportCSV.py:268
 msgid "mother"
 msgstr "madre"
 
-#: ../src/plugins/ImportCSV.py:269
+#: ../src/plugins/ImportCSV.py:270
 msgid "parent2"
 msgstr "genitore2"
 
-#: ../src/plugins/ImportCSV.py:271
+#: ../src/plugins/ImportCSV.py:272
 msgid "father"
 msgstr "padre"
 
-#: ../src/plugins/ImportCSV.py:273
+#: ../src/plugins/ImportCSV.py:274
 msgid "parent1"
 msgstr "genitore1"
 
-#: ../src/plugins/ImportCSV.py:275
+#: ../src/plugins/ImportCSV.py:276
 msgid "marriage"
 msgstr "matrimonio"
 
-#: ../src/plugins/ImportCSV.py:277
+#: ../src/plugins/ImportCSV.py:278
 msgid "date"
 msgstr "data"
 
-#: ../src/plugins/ImportCSV.py:279
+#: ../src/plugins/ImportCSV.py:280
 msgid "place"
 msgstr "luogo"
 
-#: ../src/plugins/ImportCSV.py:320
+#: ../src/plugins/ImportCSV.py:321
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "errore nel formato: file %s, riga %d: %s"
 
-#: ../src/plugins/ImportCSV.py:371
+#: ../src/plugins/ImportCSV.py:372
 msgid "CSV Import"
 msgstr "Importazione CSV"
 
-#: ../src/plugins/ImportCSV.py:372
+#: ../src/plugins/ImportCSV.py:373
 msgid "Reading data..."
 msgstr "Lettura dati..."
 
-#: ../src/plugins/ImportCSV.py:639 ../src/plugins/ImportGeneWeb.py:187
+#: ../src/plugins/ImportCSV.py:687 ../src/plugins/ImportGeneWeb.py:187
 #: ../src/plugins/ImportvCard.py:151
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Importazione completata: %d secondi"
 
-#: ../src/plugins/ImportCSV.py:640
+#: ../src/plugins/ImportCSV.py:688
 msgid "CSV import"
 msgstr "Importazione CSV"
 
-#: ../src/plugins/ImportCSV.py:788
+#: ../src/plugins/ImportCSV.py:836
 #, fuzzy
 msgid "CSV spreadsheet files"
 msgstr "Fogli di calcolo CSV"
 
-#: ../src/plugins/ImportCSV.py:791
+#: ../src/plugins/ImportCSV.py:839
 msgid "CSV Spreadheet"
 msgstr "Foglio di calcolo CSV"
 
@@ -9961,7 +9948,7 @@ msgid "Display mother lineage"
 msgstr ""
 
 #: ../src/plugins/MarkerReport.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Marker Report for %s Items"
 msgstr "Resoconto marcatore per %s elementi"
 
@@ -9971,7 +9958,6 @@ msgid "Id"
 msgstr "Id"
 
 #: ../src/plugins/MarkerReport.py:449
-#, fuzzy
 msgid "The marker to use for the report"
 msgstr "Il marcatore da usare per questo resoconto"
 
@@ -9980,12 +9966,10 @@ msgid "The basic style used for table headings."
 msgstr "Lo stile base usato per le intestazioni delle tabelle."
 
 #: ../src/plugins/MarkerReport.py:524
-#, fuzzy
 msgid "Marker Report"
 msgstr "Resoconto marcatore"
 
 #: ../src/plugins/MarkerReport.py:526
-#, fuzzy
 msgid "Produces a list of people with a specified marker"
 msgstr "Estrae un elenco di persone aventi il marcatore specificato"
 
@@ -10072,9 +10056,9 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Questo strumento consente di sostituire una sottostringa presente nel percorso "
-"degli oggetti multimediali con un'altra sottostringa. È utile nel caso di "
-"spostamento dei file multimediali da una directory all'altra"
+"Questo strumento consente di sostituire una sottostringa presente nel "
+"percorso degli oggetti multimediali con un'altra sottostringa. È utile nel "
+"caso di spostamento dei file multimediali da una directory all'altra"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -10089,8 +10073,7 @@ msgid "_With:"
 msgstr "_con:"
 
 #: ../src/plugins/MediaManager.py:445
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -10284,13 +10267,12 @@ msgid ""
 "by their last names. Selecting the person&#8217;s name will take you to that "
 "person&#8217;s individual page."
 msgstr ""
-"Questa pagina contiene l'indice di tutte le persone nel database, ordinate in "
-"base al cognome. Selezionando il nome della persona si accede alla relativa "
-"pagina personale."
+"Questa pagina contiene l'indice di tutte le persone nel database, ordinate "
+"in base al cognome. Selezionando il nome della persona si accede alla "
+"relativa pagina personale."
 
 #: ../src/plugins/NarrativeWeb.py:982
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
 "surname of %s. Selecting the person&#8217;s name will take you to that "
@@ -10365,9 +10347,9 @@ msgid ""
 "link will lead to a list of individuals in the database with this same "
 "surname."
 msgstr ""
-"Questa pagina contiene l'indice di tutti i cognomi nel database. Selezionando "
-"un collegamento si raggiunge la lista di tutte le persone nel database con "
-"quello stesso cognome."
+"Questa pagina contiene l'indice di tutti i cognomi nel database. "
+"Selezionando un collegamento si raggiunge la lista di tutte le persone nel "
+"database con quello stesso cognome."
 
 #: ../src/plugins/NarrativeWeb.py:1475
 #, fuzzy
@@ -10567,9 +10549,7 @@ msgstr "Includi grafico ascendenti"
 
 #: ../src/plugins/NarrativeWeb.py:2996
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr ""
-"Indica se includere un grafico degli ascendenti nella pagina di ogni "
-"persona"
+msgstr "Indica se includere un grafico degli ascendenti nella pagina di ogni persona"
 
 #: ../src/plugins/NarrativeWeb.py:3001
 msgid "Graph generations"
@@ -10810,19 +10790,19 @@ msgid "Not related to \"%s\""
 msgstr "Non in relazione con «%s»"
 
 #: ../src/plugins/NotRelated.py:153
-#, fuzzy, python-format
+#, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Estrae tutte le persone nel database"
+msgstr "Tutte le persone nel database sono in relazione con %s"
 
 #: ../src/plugins/NotRelated.py:224
 #, python-format
 msgid "Setting marker for %d people"
-msgstr ""
+msgstr "Impostazione marcatore per %d persone"
 
 #: ../src/plugins/NotRelated.py:256
 #, fuzzy, python-format
 msgid "Finding relationships between %d people"
-msgstr "Trova le relazioni fra %d persone"
+msgstr "Ricerca delle relazioni fra %d persone"
 
 #: ../src/plugins/NotRelated.py:321
 msgid "Looking for 1 person"
@@ -10849,6 +10829,8 @@ msgstr "Non in relazione"
 #: ../src/plugins/NotRelated.py:422
 msgid "Find people who are not in any way related to the selected person"
 msgstr ""
+"Trova le persone che non sono in alcun modo correlate con la persona "
+"selezionata"
 
 #. display the title
 #: ../src/plugins/OnThisDay.py:74
@@ -10968,8 +10950,7 @@ msgstr "La directory degli oggetti multimediali %s non è scrivibile"
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
 #: ../src/plugins/ReadPkg.py:88
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
 "La directory degli oggetti multimediali %s esiste già. Bisogna eliminarla e "
@@ -11058,8 +11039,7 @@ msgid "%s References"
 msgstr "Riferimenti per %s "
 
 #: ../src/plugins/References.py:104
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "Display references for a %s"
 msgstr "Mostra riferimenti per %s"
 
@@ -11278,13 +11258,11 @@ msgid "People with the surname '%s'"
 msgstr "Persone con cognome «%s»"
 
 #: ../src/plugins/SameSurnames.py:90
-#, python-format
-#, fuzzy
+#, fuzzy, python-format
 msgid "There are %d people with a matching name, or alternate name.\n"
 msgstr "Ci sono %d persone con un nome (o nome alternativo) corrispondente.\n"
 
 #: ../src/plugins/SameSurnames.py:102
-#, fuzzy
 msgid "Same Surnames"
 msgstr "Stesso cognome"
 
@@ -12076,8 +12054,8 @@ msgid ""
 "background color sets the PAGE background. Borders DO NOT work."
 msgstr ""
 "Lo stile usato per il titolo (\"Il calendario della mia famiglia\") della "
-"pagina. Il colore di sfondo imposta lo sfondo della pagina. Non influenza "
-"i bordi."
+"pagina. Il colore di sfondo imposta lo sfondo della pagina. Non influenza i "
+"bordi."
 
 #: ../src/plugins/WebCal.py:930
 #, fuzzy
@@ -12283,7 +12261,6 @@ msgid "Select a different person"
 msgstr "Seleziona una persona differente"
 
 #: ../src/PluginUtils/_GuiOptions.py:462
-#, fuzzy
 msgid "Select a person for the report"
 msgstr "Selezionare una persona per il resoconto"
 
@@ -12362,6 +12339,8 @@ msgstr "Ricarica plugin"
 #: ../src/PluginUtils/_Plugins.py:420
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
 msgstr ""
+"Tentativo di ricaricare i plugin. Nota bene: questo stesso strumento non "
+"viene ricaricato!"
 
 #: ../src/PluginUtils/_Tool.py:64
 msgid "Debug"
@@ -16824,7 +16803,7 @@ msgstr "_Annulla %s"
 msgid "_Redo %s"
 msgstr "_Ripeti %s"
 
-#: ../src/gen/db/dbdir.py:1773
+#: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
 msgstr "Bloccato da %s"
@@ -17672,17 +17651,19 @@ msgstr "Nessuna descrizione"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:85
+#, fuzzy
 msgid "Marker type:"
 msgstr "Tipo marcatore:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
+#, fuzzy
 msgid "Has marker of"
-msgstr ""
+msgstr "Ha il marcatore"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 #, fuzzy
 msgid "Matches markers of a particular type"
-msgstr "Estrae la persona che possiede una specifica relazione"
+msgstr "Estrae un particolare tipo di marcatore"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -18394,13 +18375,14 @@ msgstr ""
 "un percorso di relazioni fra le due persone."
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
+#, fuzzy
 msgid "People with <marker>"
-msgstr "Persone con un'immagine"
+msgstr "Persone con <marker>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 #, fuzzy
 msgid "Matches people with a marker of a particular value"
-msgstr "Estrae la persona con un decesso di uno specifico valore"
+msgstr "Estrae le persone con uno specifico valore di marcatore"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:44
 #, fuzzy
@@ -18676,7 +18658,7 @@ msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 #, fuzzy
 msgid "Families with <marker>"
-msgstr "Persone con il nome incompleto"
+msgstr "Famiglie con <marker>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
 #, fuzzy
@@ -19363,13 +19345,14 @@ msgid "Matches notes whose GRAMPS ID matches the regular expression"
 msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
+#, fuzzy
 msgid "Notes marked private"
-msgstr ""
+msgstr "Note marcate come private"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 #, fuzzy
 msgid "Matches notes that are indicated as private"
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Estrae le note che sono indicate come private"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
@@ -19426,42 +19409,34 @@ msgid "Zip/Postal code"
 msgstr "CAP"
 
 #: ../src/FilterEditor/_FilterEditor.py:65
-#, fuzzy
 msgid "Person Filters"
 msgstr "Filtri persone"
 
 #: ../src/FilterEditor/_FilterEditor.py:66
-#, fuzzy
 msgid "Family Filters"
 msgstr "Filtri famiglie"
 
 #: ../src/FilterEditor/_FilterEditor.py:67
-#, fuzzy
 msgid "Event Filters"
 msgstr "Filtri eventi"
 
 #: ../src/FilterEditor/_FilterEditor.py:68
-#, fuzzy
 msgid "Place Filters"
 msgstr "Filtri luoghi"
 
 #: ../src/FilterEditor/_FilterEditor.py:69
-#, fuzzy
 msgid "Source Filters"
 msgstr "Filtri fonti"
 
 #: ../src/FilterEditor/_FilterEditor.py:70
-#, fuzzy
 msgid "Media Object Filters"
 msgstr "Filtri oggetti multimediali"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
-#, fuzzy
 msgid "Repository Filters"
 msgstr "Filtri depositi"
 
 #: ../src/FilterEditor/_FilterEditor.py:72
-#, fuzzy
 msgid "Note Filters"
 msgstr "Filtri note"
 
@@ -19478,14 +19453,14 @@ msgid "Delete Filter?"
 msgstr "Cancellare il filtro?"
 
 #: ../src/FilterEditor/_FilterEditor.py:190
-#, fuzzy
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
-"Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+"Questo filtro è attualmente usato come base per altri filtri. La sua "
+"cancellazione provocherà la rimozione dal database di tutti i filtri che vi "
+"dipendono."
 
 #: ../src/FilterEditor/_FilterEditor.py:194
 msgid "Delete Filter"
@@ -19509,7 +19484,6 @@ msgstr "Modifica regola"
 
 #: ../src/FilterEditor/_EditRule.py:194 ../src/FilterEditor/_EditRule.py:203
 #: ../src/FilterEditor/_EditRule.py:210
-#, fuzzy
 msgid "equal to"
 msgstr "uguale a"
 
@@ -19539,8 +19513,9 @@ msgid "Use regular expression"
 msgstr "Usa espressione regolare"
 
 #: ../src/FilterEditor/_EditRule.py:500
+#, fuzzy
 msgid "Also family events where person is wife/husband"
-msgstr ""
+msgstr "Anche gli eventi famigliari dove la persona è moglie/marito"
 
 #: ../src/FilterEditor/_EditRule.py:514
 msgid "Rule Name"
@@ -19556,8 +19531,9 @@ msgid "Filter Test"
 msgstr "Test filtro"
 
 #: ../src/docgen/gtkprintpreview.glade.h:1
+#, fuzzy
 msgid "Closes print preview window"
-msgstr ""
+msgstr "Chiude la finestra di anteprima"
 
 #: ../src/docgen/gtkprintpreview.glade.h:2
 msgid "Print Preview"
@@ -19604,12 +19580,13 @@ msgid "<b>Status</b>"
 msgstr "<b>Stato</b>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:2
+#, fuzzy
 msgid "<b>Warning messages</b>"
-msgstr ""
+msgstr "<b>Avvisi</b>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr ""
+msgstr "<span size=\"larger\" weight=\"bold\">Codifica GEDCOM</span>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:4
 msgid "Created by:"
@@ -19640,12 +19617,17 @@ msgid "People:"
 msgstr "Persone:"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
+#, fuzzy
 msgid ""
 "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
+"Il file GEDCOM afferma di utilizzare la condifica ANSEL. Talvolta questo "
+"è un errore. Se i dati importanti contengono caratteri strani, annullare "
+"l'importazione e riprovare, forzando la scelta della codifica dei caratteri "
+"selezionandone una dalla lista che segue."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
 msgid "Version:"
@@ -19709,7 +19691,6 @@ msgid "Call _Name:"
 msgstr "Pseudo_nimo:"
 
 #: ../src/glade/edit_person.glade.h:10
-#, fuzzy
 msgid "Edit the preferred name"
 msgstr "Modifica il nome preferito"
 
@@ -19729,7 +19710,7 @@ msgstr "_Nome:"
 
 #: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:80
 msgid "Indicates if the record is private"
-msgstr ""
+msgstr "Indica se l'informazione è privata"
 
 #: ../src/glade/edit_person.glade.h:16
 msgid "S_uffix:"
@@ -19873,8 +19854,9 @@ msgid "<b>Q_uality</b>"
 msgstr "<b>Q_ualità</b>"
 
 #: ../src/glade/gramps.glade.h:26
+#, fuzzy
 msgid "<b>Reference information</b>"
-msgstr ""
+msgstr "<b>Informazioni riferimento</b>"
 
 #: ../src/glade/gramps.glade.h:27
 #, fuzzy
@@ -20138,8 +20120,9 @@ msgid "R_ight:"
 msgstr "D_estra:"
 
 #: ../src/glade/gramps.glade.h:99
+#, fuzzy
 msgid "Re_pair"
-msgstr ""
+msgstr "Ri_para"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Relationship to _Father:"
@@ -20405,8 +20388,9 @@ msgid "_Sort as:"
 msgstr "_Ordina come:"
 
 #: ../src/glade/gramps.glade.h:175
+#, fuzzy
 msgid "_Spelling:"
-msgstr ""
+msgstr "Orto_grafia:"
 
 #: ../src/glade/gramps.glade.h:176
 msgid "_State/Province:"
@@ -20501,8 +20485,9 @@ msgid "Place 2"
 msgstr "Luogo 2"
 
 #: ../src/glade/mergedata.glade.h:13
+#, fuzzy
 msgid "Select the person that will provide the primary data for the merged person."
-msgstr ""
+msgstr "Selezionare la persona che fornirà i dati primari dopo la fusione delle persone."
 
 #: ../src/glade/mergedata.glade.h:15
 msgid "_Merge and close"
@@ -20555,11 +20540,15 @@ msgid "Add another rule to the filter"
 msgstr "Aggiunge un'altra regola al filtro"
 
 #: ../src/glade/rule.glade.h:10
+#, fuzzy
 msgid ""
 "All rules must apply\n"
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
+"Tutte le regole devono essere valide\n"
+"Almeno una regola deve essere valida\n"
+"Esattamente una regola deve essere valida"
 
 #: ../src/glade/rule.glade.h:13
 msgid "Clone the selected filter"
@@ -20595,8 +20584,9 @@ msgid "Test the selected filter"
 msgstr "Verifica il filtro selezionato"
 
 #: ../src/glade/scratchpad.glade.h:1
+#, fuzzy
 msgid "Clear _All"
-msgstr ""
+msgstr "Pulisci t_utto"
 
 #: ../src/glade/paper_settings.glade.h:1
 msgid "2.54"
@@ -20723,11 +20713,15 @@ msgid "_Export to CD"
 msgstr "_Esporta su CD"
 
 #: ../src/plugins/changenames.glade.h:1
+#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
+"Quella che segue è una lista di nomi di famiglie che \n"
+"GRAMPS può convertire in modo da correggere le maiuscole. \n"
+"Selezionare i nomi che GRAMPS deve convertire. "
 
 #: ../src/plugins/changenames.glade.h:4
 msgid "_Accept changes and close"
@@ -20761,18 +20755,20 @@ msgid "Filt_er:"
 msgstr "Filt_ro:"
 
 #: ../src/plugins/csvexport.glade.h:4
-#, fuzzy
 msgid "I_ndividuals"
 msgstr "I_ndividui"
 
+#: ../src/plugins/csvexport.glade.h:5
+msgid "_Children"
+msgstr "_Figli"
+
 #: ../src/plugins/csvexport.glade.h:6
-#, fuzzy
 msgid "_Marriages"
 msgstr "_Matrimoni"
 
 #: ../src/plugins/desbrowse.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
-msgstr ""
+msgstr "<i>Doppio clic su una riga per modificare le informazioni personali</i>"
 
 #: ../src/plugins/eval.glade.h:1
 msgid "<b>Error Window</b>"
@@ -20839,25 +20835,26 @@ msgid "_Compare"
 msgstr "_Confronta"
 
 #: ../src/plugins/ownereditor.glade.h:3
+#, fuzzy
 msgid "Copy from DB to Preferences"
-msgstr ""
+msgstr "Copia dal database alle preferenze"
 
 #: ../src/plugins/ownereditor.glade.h:4
+#, fuzzy
 msgid "Copy from Preferences to DB"
-msgstr ""
+msgstr "Copia dalle preferenze al database"
 
 #: ../src/plugins/patchnames.glade.h:1
-#, fuzzy
 msgid ""
 "Below is a list of the nicknames, titles and family name prefixes that "
 "GRAMPS can extract from the \n"
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
-"Quella sottostante è una lista dei prefissi di soprannomi, titoli e cognomi "
-"che GRAMPS\n"
-"è in grado di estrarre dal database attuale. Accettando i cambiamenti,\n"
-"GRAMPS modificherà gli elementi selezionati."
+"Quella che segue è una lista dei prefissi di soprannomi, titoli e cognomi "
+"che GRAMPS è in grado di estrarre\n"
+"dal database attuale. Accettando i cambiamenti, GRAMPS modificherà\n"
+"gli elementi selezionati."
 
 #: ../src/plugins/patchnames.glade.h:4
 msgid "_Accept and close"
@@ -20877,12 +20874,12 @@ msgstr "Codice SoundEx:"
 
 #: ../src/plugins/unused.glade.h:1 ../src/plugins/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr ""
+msgstr "<b>Doppio clic su una riga per visualizzare/modificare i dati</b>"
 
 #: ../src/plugins/unused.glade.h:2 ../src/plugins/verify.glade.h:6
 #, fuzzy
 msgid "In_vert marks"
-msgstr "In_verti segno"
+msgstr "In_verti marcatura"
 
 #: ../src/plugins/unused.glade.h:3
 msgid "Search for events"
@@ -20905,12 +20902,14 @@ msgid "Search for sources"
 msgstr "Cerca fonti"
 
 #: ../src/plugins/unused.glade.h:8 ../src/plugins/verify.glade.h:23
+#, fuzzy
 msgid "_Mark all"
-msgstr ""
+msgstr "_Marca tutti"
 
 #: ../src/plugins/unused.glade.h:9 ../src/plugins/verify.glade.h:25
+#, fuzzy
 msgid "_Unmark all"
-msgstr ""
+msgstr "Ann_ulla tutte le marcature"
 
 #: ../src/plugins/verify.glade.h:2
 msgid "<b>Families</b>"
@@ -20925,12 +20924,10 @@ msgid "<b>Women</b>"
 msgstr "<b>Donne</b>"
 
 #: ../src/plugins/verify.glade.h:7
-#, fuzzy
 msgid "Ma_ximum age to bear a child"
-msgstr "Età ma_ssima per partorire un figlio"
+msgstr "Età ma_ssima per mettere al mondo un figlio"
 
 #: ../src/plugins/verify.glade.h:8
-#, fuzzy
 msgid "Ma_ximum age to father a child"
 msgstr "Età ma_ssima per avere un figlio"
 
@@ -20945,44 +20942,37 @@ msgstr "Età m_assima"
 #: ../src/plugins/verify.glade.h:11
 #, fuzzy
 msgid "Maximum _span of years for all children"
-msgstr "Numero massimo d'anni fra il primo e l'ultimo figlio"
+msgstr "Massimo intervallo di anni tra tutti i figli"
 
 #: ../src/plugins/verify.glade.h:12
-#, fuzzy
 msgid "Maximum age for an _unmarried person"
 msgstr "Età massima per una persona non sp_osata"
 
 #: ../src/plugins/verify.glade.h:13
-#, fuzzy
 msgid "Maximum husband-wife age _difference"
 msgstr "Massima _differenza d'età tra marito e moglie"
 
 #: ../src/plugins/verify.glade.h:14
-#, fuzzy
 msgid "Maximum number of _spouses for a person"
 msgstr "Numero massimo di _coniugi per persona"
 
 #: ../src/plugins/verify.glade.h:15
-#, fuzzy
 msgid "Maximum number of c_hildren"
 msgstr "Numero massimo di fi_gli"
 
 #: ../src/plugins/verify.glade.h:16
-#, fuzzy
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
 "Numero massimo d'anni consecutivi di _vedovanza prima del matrimonio "
 "successivo"
 
 #: ../src/plugins/verify.glade.h:17
-#, fuzzy
 msgid "Maximum number of years _between children"
 msgstr "Numero massimo d'anni _fra un figlio e l'altro"
 
 #: ../src/plugins/verify.glade.h:18
-#, fuzzy
 msgid "Mi_nimum age to bear a child"
-msgstr "Età minima per partorire un figlio"
+msgstr "Età minima per mettere al mondo un figlio"
 
 #: ../src/plugins/verify.glade.h:19
 msgid "Mi_nimum age to father a child"

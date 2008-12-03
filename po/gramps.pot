@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-30 20:23+0100\n"
+"POT-Creation-Date: 2008-12-02 16:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -755,8 +755,8 @@ msgstr ""
 msgid "Father's surname"
 msgstr ""
 
-#: ../src/GrampsCfg.py:67 ../src/Spell.py:167 ../src/Spell.py:246
-#: ../src/Spell.py:248 ../src/plugins/Check.py:1349
+#: ../src/GrampsCfg.py:67 ../src/Spell.py:168 ../src/Spell.py:247
+#: ../src/Spell.py:249 ../src/plugins/Check.py:1349
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -2232,190 +2232,194 @@ msgid "Hungarian"
 msgstr ""
 
 #: ../src/Spell.py:112
-msgid "Interlingua"
+msgid "Armenian"
 msgstr ""
 
 #: ../src/Spell.py:113
-msgid "Indonesian"
+msgid "Interlingua"
 msgstr ""
 
 #: ../src/Spell.py:114
-msgid "Icelandic"
+msgid "Indonesian"
 msgstr ""
 
 #: ../src/Spell.py:115
-msgid "Italian"
+msgid "Icelandic"
 msgstr ""
 
 #: ../src/Spell.py:116
-msgid "Kurdi"
+msgid "Italian"
 msgstr ""
 
 #: ../src/Spell.py:117
-msgid "Latin"
+msgid "Kurdi"
 msgstr ""
 
 #: ../src/Spell.py:118
-msgid "Lithuanian"
+msgid "Latin"
 msgstr ""
 
 #: ../src/Spell.py:119
-msgid "Latvian"
+msgid "Lithuanian"
 msgstr ""
 
 #: ../src/Spell.py:120
-msgid "Malagasy"
+msgid "Latvian"
 msgstr ""
 
 #: ../src/Spell.py:121
-msgid "Maori"
+msgid "Malagasy"
 msgstr ""
 
 #: ../src/Spell.py:122
-msgid "Macedonian"
+msgid "Maori"
 msgstr ""
 
 #: ../src/Spell.py:123
-msgid "Mongolian"
+msgid "Macedonian"
 msgstr ""
 
 #: ../src/Spell.py:124
-msgid "Marathi"
+msgid "Mongolian"
 msgstr ""
 
 #: ../src/Spell.py:125
-msgid "Malay"
+msgid "Marathi"
 msgstr ""
 
 #: ../src/Spell.py:126
-msgid "Maltese"
+msgid "Malay"
 msgstr ""
 
 #: ../src/Spell.py:127
-msgid "Norwegian Bokmal"
+msgid "Maltese"
 msgstr ""
 
 #: ../src/Spell.py:128
-msgid "Low Saxon"
+msgid "Norwegian Bokmal"
 msgstr ""
 
 #: ../src/Spell.py:129
-msgid "Dutch"
+msgid "Low Saxon"
 msgstr ""
 
 #: ../src/Spell.py:130
-msgid "Norwegian Nynorsk"
+msgid "Dutch"
 msgstr ""
 
 #: ../src/Spell.py:131
-msgid "Chichewa"
+msgid "Norwegian Nynorsk"
 msgstr ""
 
 #: ../src/Spell.py:132
-msgid "Oriya"
+msgid "Chichewa"
 msgstr ""
 
 #: ../src/Spell.py:133
-msgid "Punjabi"
+msgid "Oriya"
 msgstr ""
 
 #: ../src/Spell.py:134
+msgid "Punjabi"
+msgstr ""
+
+#: ../src/Spell.py:135
 msgid "Polish"
 msgstr ""
 
-#: ../src/Spell.py:135 ../src/Spell.py:137
+#: ../src/Spell.py:136 ../src/Spell.py:138
 msgid "Portuguese"
 msgstr ""
 
-#: ../src/Spell.py:136
+#: ../src/Spell.py:137
 msgid "Brazilian Portuguese"
 msgstr ""
 
-#: ../src/Spell.py:138
+#: ../src/Spell.py:139
 msgid "Quechua"
 msgstr ""
 
-#: ../src/Spell.py:139
+#: ../src/Spell.py:140
 msgid "Romanian"
 msgstr ""
 
-#: ../src/Spell.py:140
+#: ../src/Spell.py:141
 msgid "Russian"
 msgstr ""
 
-#: ../src/Spell.py:141
+#: ../src/Spell.py:142
 msgid "Kinyarwanda"
 msgstr ""
 
-#: ../src/Spell.py:142
+#: ../src/Spell.py:143
 msgid "Sardinian"
 msgstr ""
 
-#: ../src/Spell.py:143
+#: ../src/Spell.py:144
 msgid "Slovak"
 msgstr ""
 
-#: ../src/Spell.py:144
+#: ../src/Spell.py:145
 msgid "Slovenian"
 msgstr ""
 
-#: ../src/Spell.py:145
+#: ../src/Spell.py:146
 msgid "Serbian"
 msgstr ""
 
-#: ../src/Spell.py:146
+#: ../src/Spell.py:147
 msgid "Swedish"
 msgstr ""
 
-#: ../src/Spell.py:147
+#: ../src/Spell.py:148
 msgid "Swahili"
 msgstr ""
 
-#: ../src/Spell.py:148
+#: ../src/Spell.py:149
 msgid "Tamil"
 msgstr ""
 
-#: ../src/Spell.py:149
+#: ../src/Spell.py:150
 msgid "Telugu"
 msgstr ""
 
-#: ../src/Spell.py:150
+#: ../src/Spell.py:151
 msgid "Tetum"
 msgstr ""
 
-#: ../src/Spell.py:151
+#: ../src/Spell.py:152
 msgid "Tagalog"
 msgstr ""
 
-#: ../src/Spell.py:152
+#: ../src/Spell.py:153
 msgid "Setswana"
 msgstr ""
 
-#: ../src/Spell.py:153
+#: ../src/Spell.py:154
 msgid "Turkish"
 msgstr ""
 
-#: ../src/Spell.py:154
+#: ../src/Spell.py:155
 msgid "Ukrainian"
 msgstr ""
 
-#: ../src/Spell.py:155
+#: ../src/Spell.py:156
 msgid "Uzbek"
 msgstr ""
 
-#: ../src/Spell.py:156
+#: ../src/Spell.py:157
 msgid "Vietnamese"
 msgstr ""
 
-#: ../src/Spell.py:157
+#: ../src/Spell.py:158
 msgid "Walloon"
 msgstr ""
 
-#: ../src/Spell.py:158
+#: ../src/Spell.py:159
 msgid "Yiddish"
 msgstr ""
 
-#: ../src/Spell.py:159
+#: ../src/Spell.py:160
 msgid "Zulu"
 msgstr ""
 
@@ -5165,7 +5169,7 @@ msgstr ""
 msgid "skipped %d subordinate(s) at line %d"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1115
+#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1111
 msgid "Rebuild reference map"
 msgstr ""
 
@@ -5706,7 +5710,7 @@ msgstr ""
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:347 ../src/plugins/BookReport.py:1283
+#: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
@@ -5881,7 +5885,7 @@ msgstr ""
 msgid "Tree Options"
 msgstr ""
 
-#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:251
+#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:250
 #: ../src/plugins/Calendar.py:496 ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
 #: ../src/plugins/DetAncestralReport.py:704
@@ -5895,7 +5899,7 @@ msgstr ""
 msgid "The center person for the tree"
 msgstr ""
 
-#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:255
+#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:254
 #: ../src/plugins/DescendTree.py:419 ../src/plugins/DescendReport.py:201
 #: ../src/plugins/DetAncestralReport.py:708
 #: ../src/plugins/DetDescendantReport.py:651 ../src/plugins/FanChart.py:347
@@ -5938,7 +5942,7 @@ msgstr ""
 msgid "Whether to compress the tree."
 msgstr ""
 
-#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:332
+#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:331
 #: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:846
 #: ../src/plugins/DetDescendantReport.py:793
 #: ../src/plugins/EndOfLineReport.py:273 ../src/plugins/EndOfLineReport.py:291
@@ -5965,7 +5969,7 @@ msgstr ""
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:188 ../src/plugins/DefaultGramplets.py:584
+#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:584
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
 #: ../src/plugins/EndOfLineReport.py:161
@@ -5975,7 +5979,7 @@ msgstr ""
 
 #. #########################
 #. ###############################
-#: ../src/plugins/AncestorReport.py:249 ../src/plugins/Calendar.py:484
+#: ../src/plugins/AncestorReport.py:248 ../src/plugins/Calendar.py:484
 #: ../src/plugins/Calendar.py:642 ../src/plugins/DescendReport.py:195
 #: ../src/plugins/DetAncestralReport.py:702
 #: ../src/plugins/DetDescendantReport.py:645
@@ -5988,7 +5992,7 @@ msgstr ""
 msgid "Report Options"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:252 ../src/plugins/Calendar.py:497
+#: ../src/plugins/AncestorReport.py:251 ../src/plugins/Calendar.py:497
 #: ../src/plugins/DescendReport.py:198
 #: ../src/plugins/DetAncestralReport.py:705
 #: ../src/plugins/DetDescendantReport.py:648
@@ -5997,33 +6001,33 @@ msgstr ""
 msgid "The center person for the report"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:256 ../src/plugins/DescendReport.py:202
+#: ../src/plugins/AncestorReport.py:255 ../src/plugins/DescendReport.py:202
 #: ../src/plugins/DetAncestralReport.py:709
 #: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:259
+#: ../src/plugins/AncestorReport.py:258
 #: ../src/plugins/DetAncestralReport.py:712
 #: ../src/plugins/DetDescendantReport.py:655
 msgid "Page break between generations"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:261
+#: ../src/plugins/AncestorReport.py:260
 #: ../src/plugins/DetAncestralReport.py:714
 #: ../src/plugins/DetDescendantReport.py:657
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:264
+#: ../src/plugins/AncestorReport.py:263
 msgid "Add linebreak after each name"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:265
+#: ../src/plugins/AncestorReport.py:264
 msgid "Indicates if a line break should follow the name."
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:309 ../src/plugins/DescendReport.py:218
+#: ../src/plugins/AncestorReport.py:308 ../src/plugins/DescendReport.py:218
 #: ../src/plugins/DetAncestralReport.py:800
 #: ../src/plugins/DetDescendantReport.py:747
 #: ../src/plugins/EndOfLineReport.py:255 ../src/plugins/FamilyGroup.py:670
@@ -6033,17 +6037,17 @@ msgstr ""
 msgid "The style used for the title of the page."
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:322
+#: ../src/plugins/AncestorReport.py:321
 #: ../src/plugins/DetAncestralReport.py:810
 #: ../src/plugins/DetDescendantReport.py:757 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:346
+#: ../src/plugins/AncestorReport.py:345
 msgid "Ahnentafel Report"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:348
+#: ../src/plugins/AncestorReport.py:347
 msgid "Produces a textual ancestral report"
 msgstr ""
 
@@ -15715,7 +15719,7 @@ msgstr ""
 msgid "_Redo %s"
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:1773
+#: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
 msgstr ""
