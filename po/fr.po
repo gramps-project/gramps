@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-30 10:43+0100\n"
-"PO-Revision-Date: 2008-11-30 10:45+0100\n"
+"POT-Creation-Date: 2008-12-02 16:22+0100\n"
+"PO-Revision-Date: 2008-12-03 17:03+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4706,7 +4706,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:78
 msgid "_Addresses"
-msgstr "_Adresses"
+msgstr "A_dresses"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
 msgid "Create and add a new attribute"
@@ -4933,7 +4933,7 @@ msgstr "Déplacer la note sélectionnée vers le bas"
 
 #: ../src/DisplayTabs/_NoteTab.py:82
 msgid "_Notes"
-msgstr "_Notes"
+msgstr "N_otes"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 msgid "Create and add a new association"
@@ -5249,9 +5249,8 @@ msgid "Maternal"
 msgstr "Maternel"
 
 #: ../src/Editors/_EditFamily.py:117
-#: ../src/plugins/csvexport.glade.h:5
-msgid "_Children"
-msgstr "_Enfants"
+msgid "Chil_dren"
+msgstr "En_fants"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
@@ -5534,7 +5533,7 @@ msgstr "Nouvelle Note"
 
 #: ../src/Editors/_EditNote.py:203
 msgid "_Note"
-msgstr "_Note"
+msgstr "N_ote"
 
 #: ../src/Editors/_EditNote.py:535
 msgid "Cannot save note"
@@ -5906,7 +5905,7 @@ msgid "skipped %d subordinate(s) at line %d"
 msgstr "A ignoré %d enregistrement(s) à la ligne %d"
 
 #: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073
-#: ../src/gen/db/dbdir.py:1115
+#: ../src/gen/db/dbdir.py:1111
 msgid "Rebuild reference map"
 msgstr "Reconstruire la table de référence"
 
@@ -16516,7 +16515,7 @@ msgstr "Ann_uler %s"
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
 
-#: ../src/gen/db/dbdir.py:1773
+#: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
 msgstr "Verrouillé par %s"
@@ -19932,7 +19931,7 @@ msgstr "_Individu :"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Place Name:"
-msgstr "N_om du lieu :"
+msgstr "No_m du lieu :"
 
 #: ../src/glade/gramps.glade.h:163
 msgid "_Place:"
@@ -20345,6 +20344,10 @@ msgstr "Filtr_e :"
 #: ../src/plugins/csvexport.glade.h:4
 msgid "I_ndividuals"
 msgstr "I_ndividus"
+
+#: ../src/plugins/csvexport.glade.h:5
+msgid "_Children"
+msgstr "_Enfants"
 
 #: ../src/plugins/csvexport.glade.h:6
 msgid "_Marriages"
