@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 17:39+0100\n"
-"PO-Revision-Date: 2008-11-25 17:14+0100\n"
+"POT-Creation-Date: 2008-12-02 21:06+0100\n"
+"PO-Revision-Date: 2008-12-03 10:41+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,32 +48,32 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/ArgHandler.py:228
+#: ../src/ArgHandler.py:230
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr "Familiestamboom \"%s\" bestaat niet."
 
-#: ../src/ArgHandler.py:229
+#: ../src/ArgHandler.py:231
 msgid "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead"
 msgstr "Indien geedcom, gramps-xml of grdb, gebruik dan de -i optie om te importeren in een familistamboom"
 
-#: ../src/ArgHandler.py:471
+#: ../src/ArgHandler.py:473
 msgid "Database is locked, cannot open it!"
 msgstr "Het gegevensbestand is op slot en kan niet geopend worden!"
 
-#: ../src/ArgHandler.py:472
+#: ../src/ArgHandler.py:474
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/ArgHandler.py:475
+#: ../src/ArgHandler.py:477
 msgid "Database needs recovery, cannot open it!"
-msgstr "Gegevensbestand moet hersteld worden en kan niet geopend worden!"
+msgstr "Gegevensbestand moet hersteld worden. Kan het bestand niet openen!"
 
 #: ../src/Assistant.py:337
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:93
 #: ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
@@ -352,71 +352,71 @@ msgstr "_Stop"
 msgid "GRAMPS: Import database"
 msgstr "GRAMPS: gegevensbestand importeren"
 
-#: ../src/DbLoader.py:155
-#: ../src/DbLoader.py:246
+#: ../src/DbLoader.py:154
+#: ../src/DbLoader.py:245
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kon bestand: %s niet openen"
 
-#: ../src/DbLoader.py:156
+#: ../src/DbLoader.py:155
 #, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
-"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
+"Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and others."
 msgstr ""
 "Bestandstype \"%s\" is onbekend bij GRAMPS.\n"
 "\n"
-"Geldige typen zijn: GRAMPS gegevensbestand, GRAMPS XML, GRAMPS pakket, en GEDCOM."
+"Geldige typen zijn: GRAMPS-gegevensbestand, GRAMPS-XML, GRAMPS-pakket, GEDCOM en andere bestanden."
 
-#: ../src/DbLoader.py:180
-#: ../src/DbLoader.py:186
+#: ../src/DbLoader.py:179
+#: ../src/DbLoader.py:185
 msgid "Cannot open file"
 msgstr "Kan gegevensbestand niet openen"
 
-#: ../src/DbLoader.py:181
+#: ../src/DbLoader.py:180
 msgid "The selected file is a directory, not a file.\n"
 msgstr "Het geselecteerde bestand is een map, geen bestand.\n"
 
-#: ../src/DbLoader.py:187
+#: ../src/DbLoader.py:186
 msgid "You do not have read access to the selected file."
 msgstr "U heeft geen leestoegangsrechten tot het geselecteerde bestand."
 
-#: ../src/DbLoader.py:196
+#: ../src/DbLoader.py:195
 msgid "Cannot create file"
 msgstr "Kan gegevensbestand niet aanmaken"
 
-#: ../src/DbLoader.py:197
-#: ../src/DbLoader.py:221
+#: ../src/DbLoader.py:196
+#: ../src/DbLoader.py:220
 msgid "You do not have write access to the selected file."
 msgstr "U heeft geen schrijftoegangsrechten tot het geselecteerde bestand."
 
-#: ../src/DbLoader.py:220
+#: ../src/DbLoader.py:219
 msgid "Read only database"
 msgstr "Alleen-lezen gegevensbestand"
 
-#: ../src/DbLoader.py:242
+#: ../src/DbLoader.py:241
 msgid "Cannot open database"
 msgstr "Kan gegevensbestand niet openen"
 
-#: ../src/DbLoader.py:269
+#: ../src/DbLoader.py:268
 #, python-format
 msgid "Could not import file: %s"
 msgstr "Kon bestand %s niet importeren"
 
-#: ../src/DbLoader.py:270
+#: ../src/DbLoader.py:269
 msgid "This file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
 msgstr "Dit bestand geeft een onjuiste karakterset. Het bestand kan dan ook niet correct geïmporteerd worden. Tracht dus eerst de karakterset te corrigeren en importeer dan opnieuw"
 
-#: ../src/DbLoader.py:317
+#: ../src/DbLoader.py:316
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: ../src/DbLoader.py:358
+#: ../src/DbLoader.py:357
 msgid "Automatically detected"
 msgstr "Automatisch gedetecteerd"
 
-#: ../src/DbLoader.py:367
+#: ../src/DbLoader.py:366
 msgid "Select file _type:"
 msgstr "Bestands_type selecteren:"
 
@@ -434,7 +434,7 @@ msgid "_Extract"
 msgstr "Ophalen"
 
 #: ../src/DbManager.py:101
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:131
 msgid "_Archive"
 msgstr "_Archiveer"
 
@@ -449,7 +449,7 @@ msgstr "Importeren beëindigd..."
 
 #. Create a new database
 #: ../src/DbManager.py:289
-#: ../src/plugins/ImportCsv.py:381
+#: ../src/plugins/ImportCsv.py:382
 msgid "Importing data..."
 msgstr "Importeren van gegevens..."
 
@@ -593,20 +593,20 @@ msgstr "Nooit"
 #: ../src/plugins/GVFamilyLines.py:151
 #: ../src/plugins/IndivComplete.py:442
 #: ../src/plugins/NarrativeWeb.py:620
-#: ../src/gen/plug/_manager.py:294
-#: ../src/gen/plug/_manager.py:295
-#: ../src/gen/plug/_manager.py:296
-#: ../src/gen/plug/_manager.py:319
-#: ../src/gen/plug/_manager.py:320
-#: ../src/gen/plug/_manager.py:354
-#: ../src/gen/plug/_manager.py:355
-#: ../src/gen/plug/_manager.py:356
-#: ../src/gen/plug/_manager.py:392
-#: ../src/gen/plug/_manager.py:393
-#: ../src/gen/plug/_manager.py:394
-#: ../src/gen/plug/_manager.py:502
-#: ../src/gen/plug/_manager.py:503
-#: ../src/gen/plug/_manager.py:504
+#: ../src/gen/plug/_manager.py:298
+#: ../src/gen/plug/_manager.py:299
+#: ../src/gen/plug/_manager.py:300
+#: ../src/gen/plug/_manager.py:323
+#: ../src/gen/plug/_manager.py:324
+#: ../src/gen/plug/_manager.py:358
+#: ../src/gen/plug/_manager.py:359
+#: ../src/gen/plug/_manager.py:360
+#: ../src/gen/plug/_manager.py:396
+#: ../src/gen/plug/_manager.py:397
+#: ../src/gen/plug/_manager.py:398
+#: ../src/gen/plug/_manager.py:506
+#: ../src/gen/plug/_manager.py:507
+#: ../src/gen/plug/_manager.py:508
 #: ../src/ReportBase/_ReportUtils.py:1311
 #: ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76
@@ -948,7 +948,7 @@ msgstr "Voorkeuren"
 #: ../src/Editors/_EditSourceRef.py:83
 #: ../src/Editors/_EditSourceRef.py:89
 #: ../src/gen/lib/notetype.py:78
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:80
 msgid "General"
 msgstr "Algemeen"
 
@@ -1064,7 +1064,7 @@ msgstr "E-mail"
 #: ../src/plugins/FilterByName.py:157
 #: ../src/plugins/FilterByName.py:168
 #: ../src/plugins/FilterByName.py:210
-#: ../src/plugins/ImportCsv.py:195
+#: ../src/plugins/ImportCsv.py:196
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89
 #: ../src/plugins/SameSurnames.py:75
@@ -1087,7 +1087,7 @@ msgstr "Persoon"
 #: ../src/plugins/all_relations.py:270
 #: ../src/plugins/ExportCsv.py:442
 #: ../src/plugins/FilterByName.py:129
-#: ../src/plugins/ImportCsv.py:202
+#: ../src/plugins/ImportCsv.py:203
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66
@@ -1104,7 +1104,7 @@ msgstr "Familie"
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:63
 #: ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:217
+#: ../src/plugins/ImportCsv.py:218
 #: ../src/plugins/MarkerReport.py:301
 #: ../src/plugins/NarrativeWeb.py:2014
 #: ../src/plugins/OnThisDay.py:77
@@ -1122,8 +1122,8 @@ msgstr "Locatie"
 #: ../src/Simple/_SimpleTable.py:209
 #: ../src/Editors/_EditSource.py:75
 #: ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:167
-#: ../src/plugins/ImportCsv.py:200
+#: ../src/plugins/ImportCsv.py:168
+#: ../src/plugins/ImportCsv.py:201
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:92
 #: ../src/FilterEditor/_EditRule.py:280
@@ -1169,7 +1169,7 @@ msgstr "Bibliotheek"
 #: ../src/plugins/ExportCsv.py:337
 #: ../src/plugins/ExportCsv.py:403
 #: ../src/plugins/FamilyGroup.py:303
-#: ../src/plugins/ImportCsv.py:169
+#: ../src/plugins/ImportCsv.py:170
 #: ../src/ReportBase/_GraphvizReportDialog.py:1027
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
@@ -1243,7 +1243,7 @@ msgstr "Detail eigen aangemaakte formaten"
 #: ../src/Utils.py:1199
 #: ../src/plugins/ExportCsv.py:332
 #: ../src/plugins/FilterByName.py:147
-#: ../src/plugins/ImportCsv.py:149
+#: ../src/plugins/ImportCsv.py:150
 #: ../src/plugins/NarrativeWeb.py:743
 #: ../src/plugins/NarrativeWeb.py:873
 #: ../src/plugins/NarrativeWeb.py:1364
@@ -1271,7 +1271,7 @@ msgstr "Achternaam"
 #: ../src/Utils.py:1197
 #: ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/ExportCsv.py:332
-#: ../src/plugins/ImportCsv.py:153
+#: ../src/plugins/ImportCsv.py:154
 msgid "Given"
 msgstr "Voornaam"
 
@@ -1284,7 +1284,7 @@ msgstr "Voornaam"
 #: ../src/ScratchPad.py:593
 #: ../src/Utils.py:1200
 #: ../src/plugins/ExportCsv.py:333
-#: ../src/plugins/ImportCsv.py:163
+#: ../src/plugins/ImportCsv.py:164
 msgid "Suffix"
 msgstr "Achtervoegsel"
 
@@ -1302,7 +1302,7 @@ msgstr "Algemeen"
 #: ../src/GrampsCfg.py:358
 #: ../src/Utils.py:1202
 #: ../src/plugins/ExportCsv.py:333
-#: ../src/plugins/ImportCsv.py:157
+#: ../src/plugins/ImportCsv.py:158
 msgid "Call"
 msgstr "Call"
 
@@ -1508,7 +1508,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:1097
 #: ../src/plugins/ExportCsv.py:403
-#: ../src/plugins/ImportCsv.py:215
+#: ../src/plugins/ImportCsv.py:216
 #: ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:623
 #: ../src/plugins/NarrativeWeb.py:1252
@@ -2026,12 +2026,12 @@ msgid "undefined"
 msgstr "onbepaald"
 
 #: ../src/Relationship.py:1639
-#: ../src/plugins/ImportCsv.py:282
+#: ../src/plugins/ImportCsv.py:283
 msgid "husband"
 msgstr "echtgenoot"
 
 #: ../src/Relationship.py:1641
-#: ../src/plugins/ImportCsv.py:278
+#: ../src/plugins/ImportCsv.py:279
 msgid "wife"
 msgstr "echtgenote"
 
@@ -2134,7 +2134,7 @@ msgstr "vorige partner"
 #: ../src/plugins/all_relations.py:300
 #: ../src/plugins/FamilyGroup.py:185
 #: ../src/plugins/FamilyGroup.py:196
-#: ../src/plugins/ImportCsv.py:209
+#: ../src/plugins/ImportCsv.py:210
 #: ../src/plugins/IndivComplete.py:215
 #: ../src/plugins/IndivComplete.py:217
 #: ../src/plugins/IndivComplete.py:473
@@ -2154,7 +2154,7 @@ msgstr "Vader"
 #: ../src/plugins/all_relations.py:297
 #: ../src/plugins/FamilyGroup.py:202
 #: ../src/plugins/FamilyGroup.py:213
-#: ../src/plugins/ImportCsv.py:205
+#: ../src/plugins/ImportCsv.py:206
 #: ../src/plugins/IndivComplete.py:224
 #: ../src/plugins/IndivComplete.py:226
 #: ../src/plugins/IndivComplete.py:478
@@ -2353,7 +2353,7 @@ msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53
 #: ../src/plugins/ExportCsv.py:334
-#: ../src/plugins/ImportCsv.py:159
+#: ../src/plugins/ImportCsv.py:160
 #: ../src/plugins/PatchNames.py:266
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
@@ -2392,7 +2392,7 @@ msgstr "Roepnaam"
 #: ../src/ScratchPad.py:591
 #: ../src/Utils.py:1198
 #: ../src/plugins/ExportCsv.py:333
-#: ../src/plugins/ImportCsv.py:161
+#: ../src/plugins/ImportCsv.py:162
 #: ../src/plugins/PatchNames.py:278
 #: ../src/plugins/PatchNames.py:290
 msgid "Prefix"
@@ -2853,7 +2853,7 @@ msgstr "Bronnen in bibliotheek"
 #: ../src/ToolTips.py:243
 #: ../src/Merge/_MergePerson.py:189
 #: ../src/plugins/ExportCsv.py:442
-#: ../src/plugins/ImportCsv.py:198
+#: ../src/plugins/ImportCsv.py:199
 #: ../src/gen/lib/ldsord.py:102
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
@@ -3275,7 +3275,7 @@ msgid "Abort changes"
 msgstr "Veranderingen teniet doen"
 
 #: ../src/ViewManager.py:665
-#: ../src/gen/db/dbdir.py:570
+#: ../src/gen/db/dbdir.py:567
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -3338,31 +3338,31 @@ msgstr "Patroniem, voornaam"
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279
 #: ../src/BasicUtils/_NameDisplay.py:318
-#: ../src/plugins/ImportCsv.py:231
+#: ../src/plugins/ImportCsv.py:232
 msgid "title"
 msgstr "titel"
 
 #: ../src/BasicUtils/_NameDisplay.py:280
 #: ../src/BasicUtils/_NameDisplay.py:319
-#: ../src/plugins/ImportCsv.py:225
+#: ../src/plugins/ImportCsv.py:226
 msgid "given"
 msgstr "voornaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:281
 #: ../src/BasicUtils/_NameDisplay.py:320
-#: ../src/plugins/ImportCsv.py:233
+#: ../src/plugins/ImportCsv.py:234
 msgid "prefix"
 msgstr "prefix"
 
 #: ../src/BasicUtils/_NameDisplay.py:282
 #: ../src/BasicUtils/_NameDisplay.py:321
-#: ../src/plugins/ImportCsv.py:221
+#: ../src/plugins/ImportCsv.py:222
 msgid "surname"
 msgstr "achternaam"
 
 #: ../src/BasicUtils/_NameDisplay.py:283
 #: ../src/BasicUtils/_NameDisplay.py:322
-#: ../src/plugins/ImportCsv.py:235
+#: ../src/plugins/ImportCsv.py:236
 msgid "suffix"
 msgstr "suffix"
 
@@ -3374,7 +3374,7 @@ msgstr "patroniem"
 
 #: ../src/BasicUtils/_NameDisplay.py:285
 #: ../src/BasicUtils/_NameDisplay.py:324
-#: ../src/plugins/ImportCsv.py:229
+#: ../src/plugins/ImportCsv.py:230
 msgid "call"
 msgstr "call"
 
@@ -3452,7 +3452,7 @@ msgstr "Een ouder een een kind kunnen niet samengevoegd worden. Om deze personen
 #: ../src/Editors/_EditFamily.py:103
 #: ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/ExportCsv.py:334
-#: ../src/plugins/ImportCsv.py:165
+#: ../src/plugins/ImportCsv.py:166
 #: ../src/plugins/IndivComplete.py:436
 #: ../src/plugins/NarrativeWeb.py:1992
 #: ../src/plugins/RelCalc.py:58
@@ -3499,7 +3499,7 @@ msgstr "Echtgenoten"
 #: ../src/DataViews/RelationView.py:1155
 #: ../src/plugins/ExportCsv.py:402
 #: ../src/plugins/FamilyGroup.py:341
-#: ../src/plugins/ImportCsv.py:213
+#: ../src/plugins/ImportCsv.py:214
 #: ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Huwelijk"
@@ -3657,7 +3657,7 @@ msgid "Select Media Columns"
 msgstr "Mediakolommen selecteren"
 
 #: ../src/DataViews/MediaView.py:290
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:69
 msgid "Double click image to view in an external viewer"
 msgstr "Klik tweemaal op het beeld om dit in een extern grafisch programma te bekijken"
 
@@ -5135,8 +5135,8 @@ msgid "Maternal"
 msgstr "Materneel"
 
 #: ../src/Editors/_EditFamily.py:117
-#: ../src/plugins/ExportCsv.glade.h:5
-msgid "_Children"
+#: ../src/plugins/ExportCsv.glade.h:2
+msgid "Chil_dren"
 msgstr "Kinderen"
 
 #: ../src/Editors/_EditFamily.py:122
@@ -5346,7 +5346,7 @@ msgstr "Bewerken van mediareferentie"
 
 #: ../src/Editors/_EditMediaRef.py:83
 #: ../src/Editors/_EditMediaRef.py:84
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:129
 msgid "Y coordinate|Y"
 msgstr "Y"
 
@@ -6510,7 +6510,7 @@ msgstr "Maakt boek aan, met verschillende verslagen."
 #: ../src/plugins/CalculateEstimatedDates.py:153
 #: ../src/plugins/GVFamilyLines.py:203
 #: ../src/plugins/GVHourGlass.py:254
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:96
 msgid "Options"
 msgstr "Opties"
 
@@ -8534,49 +8534,49 @@ msgid "_Export to CD (portable XML)"
 msgstr "Naar CD exporteren (p_orteerbaar XML)"
 
 #: ../src/plugins/ExportCsv.py:334
-#: ../src/plugins/ImportCsv.py:175
+#: ../src/plugins/ImportCsv.py:176
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geboortedatum"
 
 #: ../src/plugins/ExportCsv.py:335
-#: ../src/plugins/ImportCsv.py:172
+#: ../src/plugins/ImportCsv.py:173
 #: ../src/plugins/StatisticsChart.py:103
 msgid "Birth place"
 msgstr "Geboorteplaats"
 
 #: ../src/plugins/ExportCsv.py:335
-#: ../src/plugins/ImportCsv.py:178
+#: ../src/plugins/ImportCsv.py:179
 msgid "Birth source"
 msgstr "Geboortebron"
 
 #: ../src/plugins/ExportCsv.py:336
-#: ../src/plugins/ImportCsv.py:184
+#: ../src/plugins/ImportCsv.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterfdatum"
 
 #: ../src/plugins/ExportCsv.py:336
-#: ../src/plugins/ImportCsv.py:181
+#: ../src/plugins/ImportCsv.py:182
 #: ../src/plugins/StatisticsChart.py:105
 msgid "Death place"
 msgstr "Sterfplaats"
 
 #: ../src/plugins/ExportCsv.py:337
-#: ../src/plugins/ImportCsv.py:187
+#: ../src/plugins/ImportCsv.py:188
 msgid "Death source"
 msgstr "Overlijdensbron"
 
 #: ../src/plugins/ExportCsv.py:402
 #: ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCsv.py:210
+#: ../src/plugins/ImportCsv.py:211
 #: ../src/plugins/NarrativeWeb.py:2378
 msgid "Husband"
 msgstr "Man"
 
 #: ../src/plugins/ExportCsv.py:402
 #: ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCsv.py:206
+#: ../src/plugins/ImportCsv.py:207
 #: ../src/plugins/NarrativeWeb.py:2380
 msgid "Wife"
 msgstr "Vrouw"
@@ -8676,7 +8676,6 @@ msgid "GEDCOM export options"
 msgstr "GEDCOM-export opties"
 
 #: ../src/plugins/ExportGedcom.py:1532
-#: ../src/plugins/ImportGedcom.py:146
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
@@ -8795,7 +8794,6 @@ msgid "GRAMPS XML export options"
 msgstr "GEDCOM-XML export opties"
 
 #: ../src/plugins/ExportXml.py:1213
-#: ../src/plugins/ImportXml.py:2468
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS _XML-gegevensbestand"
 
@@ -9048,8 +9046,8 @@ msgid "roundabout"
 msgstr "omstreeks"
 
 #: ../src/plugins/FanChart.py:369
-msgid "Print raidal texts upright or roundabout"
-msgstr "Druk radiale teksten rechtop af of in een ronde vorm"
+msgid "Print radial texts upright or roundabout"
+msgstr "Druk radiale teksten rechtop af, of in een ronde vorm"
 
 #: ../src/plugins/FanChart.py:393
 msgid "The style used for the title."
@@ -9656,125 +9654,125 @@ msgstr "Relatiegrafiek"
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Maakt een verwantschapsgrafiek aan met \"GraphViz\""
 
-#: ../src/plugins/ImportCsv.py:152
+#: ../src/plugins/ImportCsv.py:153
 msgid "Given name"
 msgstr "Voornaam"
 
-#: ../src/plugins/ImportCsv.py:156
+#: ../src/plugins/ImportCsv.py:157
 msgid "Call name"
 msgstr "Roepnaam"
 
-#: ../src/plugins/ImportCsv.py:190
+#: ../src/plugins/ImportCsv.py:191
 msgid "Death cause"
 msgstr "Overlijdensoorzaak"
 
-#: ../src/plugins/ImportCsv.py:193
+#: ../src/plugins/ImportCsv.py:194
 msgid "Gramps id"
 msgstr "Gramps id"
 
-#: ../src/plugins/ImportCsv.py:207
+#: ../src/plugins/ImportCsv.py:208
 msgid "Parent2"
 msgstr "Ouder2"
 
-#: ../src/plugins/ImportCsv.py:211
+#: ../src/plugins/ImportCsv.py:212
 msgid "Parent1"
 msgstr "Ouder1"
 
-#: ../src/plugins/ImportCsv.py:224
+#: ../src/plugins/ImportCsv.py:225
 msgid "given name"
 msgstr "voornaam"
 
-#: ../src/plugins/ImportCsv.py:237
+#: ../src/plugins/ImportCsv.py:238
 msgid "gender"
 msgstr "geslacht"
 
-#: ../src/plugins/ImportCsv.py:239
-#: ../src/plugins/ImportCsv.py:272
+#: ../src/plugins/ImportCsv.py:240
+#: ../src/plugins/ImportCsv.py:273
 msgid "source"
 msgstr "bron"
 
 # niet/geen
-#: ../src/plugins/ImportCsv.py:241
+#: ../src/plugins/ImportCsv.py:242
 msgid "note"
 msgstr "opmerking"
 
-#: ../src/plugins/ImportCsv.py:244
+#: ../src/plugins/ImportCsv.py:245
 msgid "birth place"
 msgstr "geboorteplaats"
 
-#: ../src/plugins/ImportCsv.py:247
+#: ../src/plugins/ImportCsv.py:248
 msgid "birth date"
 msgstr "geboortedatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCsv.py:250
+#: ../src/plugins/ImportCsv.py:251
 msgid "birth source"
 msgstr "geboortebron"
 
-#: ../src/plugins/ImportCsv.py:253
+#: ../src/plugins/ImportCsv.py:254
 msgid "death place"
 msgstr "plaats van overlijden"
 
-#: ../src/plugins/ImportCsv.py:256
+#: ../src/plugins/ImportCsv.py:257
 msgid "death date"
 msgstr "sterfdatum"
 
 # Bronnen vermelden/citeren
-#: ../src/plugins/ImportCsv.py:259
+#: ../src/plugins/ImportCsv.py:260
 msgid "death source"
 msgstr "overlijdensbron"
 
-#: ../src/plugins/ImportCsv.py:262
+#: ../src/plugins/ImportCsv.py:263
 msgid "death cause"
 msgstr "doodsoorzaak"
 
-#: ../src/plugins/ImportCsv.py:265
+#: ../src/plugins/ImportCsv.py:266
 msgid "gramps id"
 msgstr "gramps id"
 
-#: ../src/plugins/ImportCsv.py:267
+#: ../src/plugins/ImportCsv.py:268
 msgid "person"
 msgstr "persoon"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:270
+#: ../src/plugins/ImportCsv.py:271
 msgid "child"
 msgstr "kind"
 
-#: ../src/plugins/ImportCsv.py:274
+#: ../src/plugins/ImportCsv.py:275
 msgid "family"
 msgstr "familie"
 
 #. ----------------------------------
-#: ../src/plugins/ImportCsv.py:277
+#: ../src/plugins/ImportCsv.py:278
 msgid "mother"
 msgstr "moeder"
 
-#: ../src/plugins/ImportCsv.py:279
+#: ../src/plugins/ImportCsv.py:280
 msgid "parent2"
 msgstr "ouder2"
 
-#: ../src/plugins/ImportCsv.py:281
+#: ../src/plugins/ImportCsv.py:282
 msgid "father"
 msgstr "vader"
 
-#: ../src/plugins/ImportCsv.py:283
+#: ../src/plugins/ImportCsv.py:284
 msgid "parent1"
 msgstr "ouder1"
 
-#: ../src/plugins/ImportCsv.py:285
+#: ../src/plugins/ImportCsv.py:286
 msgid "marriage"
 msgstr "huwelijk"
 
-#: ../src/plugins/ImportCsv.py:287
+#: ../src/plugins/ImportCsv.py:288
 msgid "date"
 msgstr "datum"
 
-#: ../src/plugins/ImportCsv.py:289
+#: ../src/plugins/ImportCsv.py:290
 msgid "place"
 msgstr "locatie"
 
-#: ../src/plugins/ImportCsv.py:317
+#: ../src/plugins/ImportCsv.py:318
 #: ../src/plugins/ImportGedcom.py:113
 #: ../src/plugins/ImportGedcom.py:127
 #: ../src/plugins/ImportGeneWeb.py:83
@@ -9785,35 +9783,35 @@ msgstr "locatie"
 msgid "%s could not be opened\n"
 msgstr "%s kon niet worden geopend\n"
 
-#: ../src/plugins/ImportCsv.py:327
+#: ../src/plugins/ImportCsv.py:328
 #, python-format
 msgid "format error: file %s, line %d: %s"
 msgstr "formaatfout: bestand %s, lijn %d: %s"
 
-#: ../src/plugins/ImportCsv.py:378
+#: ../src/plugins/ImportCsv.py:379
 msgid "CSV Import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCsv.py:379
+#: ../src/plugins/ImportCsv.py:380
 msgid "Reading data..."
 msgstr "Gegevens worden gelezen..."
 
-#: ../src/plugins/ImportCsv.py:646
+#: ../src/plugins/ImportCsv.py:694
 #: ../src/plugins/ImportGeneWeb.py:180
 #: ../src/plugins/ImportVCard.py:144
 #, python-format
 msgid "Import Complete: %d seconds"
 msgstr "Import voltooid: %d seconden"
 
-#: ../src/plugins/ImportCsv.py:647
+#: ../src/plugins/ImportCsv.py:695
 msgid "CSV import"
 msgstr "CSV-import"
 
-#: ../src/plugins/ImportCsv.py:796
+#: ../src/plugins/ImportCsv.py:844
 msgid "CSV Spreadheet"
 msgstr "CSV rekenblad"
 
-#: ../src/plugins/ImportCsv.py:797
+#: ../src/plugins/ImportCsv.py:845
 msgid "Import data from CSV files"
 msgstr "Importeer gegevens van CSV-bestanden"
 
@@ -9829,6 +9827,12 @@ msgstr "%s kon niet worden geïmporteerd"
 #: ../src/plugins/ImportGedcom.py:134
 msgid "Error reading GEDCOM file"
 msgstr "Fout bij lezen van GEDCOM bestand"
+
+#: ../src/plugins/ImportGedcom.py:146
+#: ../data/gramps.keys.in.h:1
+#: ../data/gramps.xml.in.h:1
+msgid "GEDCOM"
+msgstr "GEDCOM"
 
 #: ../src/plugins/ImportGeneWeb.py:182
 msgid "GeneWeb import"
@@ -9894,7 +9898,7 @@ msgid "Import data from GRAMPS packages"
 msgstr "Importeer gegevens vanuit GRAMPS-pakketten"
 
 #: ../src/plugins/ImportGrdb.py:1080
-#: ../src/gen/db/dbdir.py:1126
+#: ../src/gen/db/dbdir.py:1123
 msgid "Rebuild reference map"
 msgstr "Opnieuw opbouwen van referentiestructuur"
 
@@ -9909,7 +9913,7 @@ msgid "%s could not be opened"
 msgstr "%s kon niet worden geopend"
 
 #: ../src/plugins/ImportGrdb.py:2460
-#: ../src/gen/db/dbdir.py:1217
+#: ../src/gen/db/dbdir.py:1214
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
@@ -10168,6 +10172,12 @@ msgstr "Getuige commentaar: %s"
 #, python-format
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "Het GRAMPS-gegevensbestand die u importeert werd gemaakt met versie %s van GRAMPS. U draait een oudere versie %s. Het gegevensbestand kan niet worden geimporteerd. U kunt best naar de meest recente GRAMPS-versie opwaarderen en dan opnieuw proberen."
+
+#: ../src/plugins/ImportXml.py:2468
+#: ../data/gramps.keys.in.h:2
+#: ../data/gramps.xml.in.h:2
+msgid "GRAMPS XML database"
+msgstr "GRAMPS XML-gegevensbestand"
 
 #: ../src/plugins/ImportXml.py:2469
 msgid "The GRAMPS XML database is a text version of a family tree. It is read-write compatible with the present GRAMPS database format."
@@ -13273,7 +13283,7 @@ msgid "Landscape"
 msgstr "Liggend"
 
 #: ../src/ReportBase/_PaperMenu.py:223
-#: ../src/glade/gramps.glade.h:190
+#: ../src/glade/gramps.glade.h:187
 #: ../src/glade/paper_settings.glade.h:12
 msgid "cm"
 msgstr "cm"
@@ -16658,7 +16668,7 @@ msgid "Style editor"
 msgstr "Stijl-editor"
 
 #: ../src/ReportBase/_StyleEditor.py:207
-#: ../src/glade/gramps.glade.h:191
+#: ../src/glade/gramps.glade.h:188
 msgid "point size|pt"
 msgstr "pt"
 
@@ -16738,11 +16748,11 @@ msgstr "Ongedaan maken %s"
 msgid "_Redo %s"
 msgstr "%s opnieuw doen"
 
-#: ../src/gen/db/dbdir.py:562
+#: ../src/gen/db/dbdir.py:559
 msgid "Need to upgrade database!"
 msgstr "Gegevensbestand moet opgewaardeerd worden!"
 
-#: ../src/gen/db/dbdir.py:563
+#: ../src/gen/db/dbdir.py:560
 msgid ""
 "You cannot open this database without upgrading it.\n"
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
@@ -16752,11 +16762,11 @@ msgstr ""
 "Maar indien u opwaardeert, kunt u vorige versies van GRAMPS niet meer gebruiken.\n"
 "Daarom is het wenselijk eerst een reservekopij te maken."
 
-#: ../src/gen/db/dbdir.py:569
+#: ../src/gen/db/dbdir.py:566
 msgid "Upgrade now"
 msgstr "Opwaarderen"
 
-#: ../src/gen/db/dbdir.py:1975
+#: ../src/gen/db/dbdir.py:1993
 #, python-format
 msgid "Locked by %s"
 msgstr "Op slot door %s"
@@ -19012,7 +19022,7 @@ msgstr "Type:"
 
 # pad
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:99
 msgid "Path:"
 msgstr "Pad:"
 
@@ -19599,7 +19609,7 @@ msgid "Gi_ven:"
 msgstr "Voornaam:"
 
 #: ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:83
 msgid "Indicates if the record is private"
 msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 
@@ -19612,12 +19622,12 @@ msgid "The person's given name"
 msgstr "De voornaam van de persoon"
 
 #: ../src/glade/edit_person.glade.h:18
-#: ../src/glade/gramps.glade.h:120
+#: ../src/glade/gramps.glade.h:123
 msgid "Tit_le:"
 msgstr "Titel:"
 
 #: ../src/glade/edit_person.glade.h:19
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:144
 msgid "_Family:"
 msgstr "_Familie:"
 
@@ -19626,22 +19636,22 @@ msgid "_Gender:"
 msgstr "Geslacht:"
 
 #: ../src/glade/edit_person.glade.h:21
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:146
 msgid "_ID:"
 msgstr "_ID:"
 
 #: ../src/glade/edit_person.glade.h:22
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:152
 msgid "_Marker:"
 msgstr "Aanduiding:"
 
 #: ../src/glade/edit_person.glade.h:23
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:161
 msgid "_Prefix:"
 msgstr "_Voorvoegsel:"
 
 #: ../src/glade/edit_person.glade.h:24
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:178
 msgid "_Type:"
 msgstr "_Type:"
 
@@ -19814,248 +19824,261 @@ msgstr "Beneden:"
 msgid "Birth:"
 msgstr "Geboorte:"
 
-# Stad
 #: ../src/glade/gramps.glade.h:45
+msgid "C_ity/County:"
+msgstr "_Stad/Provincie:"
+
+# Stad
+#: ../src/glade/gramps.glade.h:46
 msgid "C_ity:"
 msgstr "_Stad, dorp:"
-
-#: ../src/glade/gramps.glade.h:46
-msgid "C_ounty:"
-msgstr "_Provincie:"
 
 #: ../src/glade/gramps.glade.h:47
 msgid "Calenda_r:"
 msgstr "_Kalender:"
 
 #: ../src/glade/gramps.glade.h:49
-msgid "Church _parish:"
-msgstr "_Parochie:"
+msgid "Call n_umber:"
+msgstr "Telefoonnummer:"
 
 #: ../src/glade/gramps.glade.h:50
+msgid "Cen_ter"
+msgstr "_Centreren"
+
+#: ../src/glade/gramps.glade.h:51
+msgid "Ch_urch parish:"
+msgstr "_Parochie:"
+
+#: ../src/glade/gramps.glade.h:52
 msgid "Click to delete gramplet from view"
 msgstr "Klik om gramplet te verwijderen van venster"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:53
 msgid "Click to expand/collapse"
 msgstr "Klik om uit te klappen/ineen te vouwen"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:54
 msgid "Close _without saving"
 msgstr "Sluiten _zonder opslaan"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:55
 msgid "Close window without changes"
 msgstr "Venster sluiten zonder veranderingen"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:56
 msgid "Co_unty:"
 msgstr "_Provincie:"
 
-#: ../src/glade/gramps.glade.h:55
+# Vertrouwen
+#: ../src/glade/gramps.glade.h:57
+msgid "Con_fidence:"
+msgstr "_Zekerheid:"
+
+#: ../src/glade/gramps.glade.h:58
 msgid "Convert to a relative path"
 msgstr "Omzetten naar relatief pad"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:59
 msgid "Corner 1:  X"
 msgstr "Hoek 1:  X"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:60
 msgid "Corner 2:  X"
 msgstr "Hoek 2:  X"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:61
 msgid "Cou_ntry:"
 msgstr "_Land:"
 
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:62
 msgid "Count_ry:"
 msgstr "L_and:"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:63
 msgid "D_ay"
 msgstr "D_ag"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:64
 msgid "Dat_e:"
 msgstr "Dat_um:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:65
 msgid "De_scription:"
 msgstr "_Beschrijving:"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:66
 msgid "Death:"
 msgstr "Overlijden:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:67
 msgid "Do not ask again"
 msgstr "Niet opnieuw vragen"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:68
 msgid "Do not show this dialog again"
 msgstr "Toon deze dialoog niet opnieuw"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:70
 msgid "Drag to move; click to detach"
 msgstr "Versleep om te verplaatsen, klik om te ontkoppelen"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:71
 msgid "Example:"
 msgstr "Voorbeeld:"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:72
 msgid "Family Trees - GRAMPS"
 msgstr "Familiestamboom - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:73
 msgid "Family:"
 msgstr "Familie:"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:74
 msgid "First li_ne:"
 msgstr "_Eerste regel:"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:75
 msgid "Format _definition:"
 msgstr "Formaat _definitie:"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:76
 msgid "Format _name:"
 msgstr "Formaat_naam:"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:77
 msgid "Format definition details"
 msgstr "Details formaatdefinities"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:78
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:79
 msgid "G_roup as:"
 msgstr "G_roeperen als:"
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:81
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr "Als het media-object een beeld is, kies dan een gedeelte van het beeld waarnaar verwezen wordt. Punt (0,0) is de linkerbovenhoek. Geef dan twee hoeken van een diagonaal op zodat een rechthoekig gebied ontstaat, die u wilt gebruiken."
 
 # spelfout in engels: medial files
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:82
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Als u deze knop aanvinkt zullen alle ontbrekende mediabestanden automatisch worden behandeld volgens de momenteel geselecteerde opties. Er zullen geen verdere dialoogvensters worden gepresenteerd voor ontbrekende mediabestanden."
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:84
 msgid "Invoke date editor"
 msgstr "Datum-editor aanroepen"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:85
+msgid "J_ustify"
+msgstr "_Uitlijnen"
+
+#: ../src/glade/gramps.glade.h:86
 msgid "Keep reference to the missing file"
 msgstr "Referentie naar het ontbrekende bestand behouden"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:87
 msgid "LDS _Temple:"
 msgstr "LDS tempel:"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:88
 msgid "L_atitude:"
 msgstr "_Breedtegraad:"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:89
 msgid "L_eft:"
 msgstr "L_inks:"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:90
 msgid "Le_ft"
 msgstr "Li_nks"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:91
 msgid "Mo_nth"
 msgstr "Maa_nd"
 
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:92
 msgid "Name Child:"
 msgstr "Naam kind:"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:94
 msgid "O_verride"
 msgstr "Overschrijven"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:95
 msgid "Open person editor of this child"
 msgstr "Open aanpasvenster voor dit kind"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:97
 msgid "Ordinance:"
 msgstr "Wijding:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:98
 msgid "P_atronymic:"
 msgstr "P_atroniemen:"
 
-#: ../src/glade/gramps.glade.h:95
-msgid "P_hone:"
-msgstr "_Tel:"
-
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:100
 msgid "Phon_e:"
 msgstr "_Tel:"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:101
 msgid "R_ight:"
 msgstr "R_echts:"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:102
 msgid "Re_pair"
 msgstr "Herstel"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:103
 msgid "Relationship to _Father:"
 msgstr "Relatie tot _vader:"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:104
 msgid "Relationship to _Mother:"
 msgstr "Relatie tot _moeder:"
 
 # referentie of verwijzing?
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:105
 msgid "Remove object and all references to it from the database"
 msgstr "Object en alle referenties ernaar, verwijderen uit het gegevensbestand"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:106
 msgid "Revision comment - GRAMPS"
 msgstr "Revisiecommentaar - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:104
-msgid "Ri_ght"
+#: ../src/glade/gramps.glade.h:107
+msgid "Righ_t"
 msgstr "R_echts"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:108
 msgid "S_treet:"
 msgstr "S_traat:"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:109
 msgid "Select replacement for the missing file"
 msgstr "Selecteer vervanging voor het ontbrekende bestand"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:110
 msgid "Show all"
 msgstr "Alles tonen"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:111
 msgid "Style n_ame:"
 msgstr "Stijl_naam:"
 
 # Achtervoegsel
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:112
 msgid "Suffi_x:"
 msgstr "Suffi_x:"
 
-#: ../src/glade/gramps.glade.h:110
+#: ../src/glade/gramps.glade.h:113
 msgid "Te_xt comment:"
 msgstr "_Tekstopmerking:"
 
-#: ../src/glade/gramps.glade.h:112
+#: ../src/glade/gramps.glade.h:115
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -20076,7 +20099,7 @@ msgstr ""
 "  <b>%c</b> - Roepnaam         <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patroniem        <b>%Y</b> - PATRONYMIC</tt>"
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:124
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -20090,238 +20113,212 @@ msgstr ""
 "Hoog\n"
 "Zeer hoog"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:130
 msgid "Y_ear"
 msgstr "Jaa_r"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:132
 msgid "_Association:"
 msgstr "Associatie:"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:133
 msgid "_Attribute:"
 msgstr "_Kenmerk:"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:134
 msgid "_Author:"
 msgstr "_Auteur:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:135
 msgid "_Bold"
 msgstr "_Vet"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:136
 msgid "_Bottom"
 msgstr "_Onder"
 
-#: ../src/glade/gramps.glade.h:134
-msgid "_Call number:"
-msgstr "Telefoonnummer:"
-
-#: ../src/glade/gramps.glade.h:135
-msgid "_Center"
-msgstr "_Centreren"
-
-#: ../src/glade/gramps.glade.h:136
-msgid "_City/County:"
-msgstr "_Stad/Provincie:"
-
-# Stad
 #: ../src/glade/gramps.glade.h:137
-msgid "_City:"
-msgstr "_Stad:"
-
-#: ../src/glade/gramps.glade.h:138
 msgid "_Close Window"
 msgstr "Venster sluiten"
 
-# Vertrouwen
-#: ../src/glade/gramps.glade.h:139
-msgid "_Confidence:"
-msgstr "_Zekerheid:"
-
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:138
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:139
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:140
 msgid "_Description:"
 msgstr "_Beschrijving:"
 
 # De weergave van Datums en kalenders, werkbalk en statusbalk.
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display as:"
 msgstr "_Weergeven als:"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:142
 msgid "_Display on startup"
 msgstr "_Tonen bij opstarten"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:143
 msgid "_Event type:"
 msgstr "_Gebeurtenistype:"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:145
 msgid "_Given:"
 msgstr "Voornaam:"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:147
 msgid "_Italic"
 msgstr "_Cursief"
 
-#: ../src/glade/gramps.glade.h:150
-msgid "_Justify"
-msgstr "_Uitlijnen"
-
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr "Referentie _behouden"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr "_Links"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:150
 msgid "_Load Family Tree"
 msgstr "Laad familiestamboom"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:151
 msgid "_Longitude:"
 msgstr "_Lengtegraad:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:153
 msgid "_Media Type:"
 msgstr "_Mediatype:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:154
 msgid "_Month"
 msgstr "_Maand"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:155
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Naam:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:156
 msgid "_Padding:"
 msgstr "_Opvulling:"
 
 # pad
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:157
 msgid "_Path:"
 msgstr "Pad:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:158
 msgid "_Person:"
 msgstr "_Persoon:"
 
 # Plaatsnaam
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:159
 msgid "_Place Name:"
 msgstr "Locatienaam:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:160
 msgid "_Place:"
 msgstr "_Locatie:"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:162
 msgid "_Preformatted"
 msgstr "Opmaak"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:163
 msgid "_Publication Information:"
 msgstr "Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:164
 msgid "_Publication information:"
 msgstr "_Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:165
 msgid "_Remove Object"
 msgstr "Object _verwijderen"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:166
 msgid "_Rename"
 msgstr "Herbenoem"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:167
 msgid "_Right"
 msgstr "_Rechts"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:168
 msgid "_Role:"
 msgstr "_Rol:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:169
 msgid "_Roman (Times, serif)"
 msgstr "_Roman  (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:170
 msgid "_Select File"
 msgstr "Bestand _selecteren"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:171
 msgid "_Sort as:"
 msgstr "_Sorteren als:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:172
 msgid "_State/Province:"
 msgstr "Deel_staat/Provincie:"
 
 # Provincie
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:173
 msgid "_State:"
 msgstr "_Staat:"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:174
 msgid "_Status:"
 msgstr "_Status:"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:175
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Zwitsers (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:176
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:177
 msgid "_Top"
 msgstr "_Boven"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:179
 msgid "_Underline"
 msgstr "_Onderstreept"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:180
 msgid "_Use this selection for all missing media files"
 msgstr "_Gebruik deze selectie voor alle ontbrekende mediabestanden"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:181
 msgid "_Value:"
 msgstr "_Waarde:"
 
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:182
 msgid "_Volume/Page:"
 msgstr "_Volume/Pagina:"
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:183
 msgid "_Web address:"
 msgstr "_Web-adres:"
 
-#: ../src/glade/gramps.glade.h:187
+#: ../src/glade/gramps.glade.h:184
 msgid "_Year"
 msgstr "_Jaar"
 
-#: ../src/glade/gramps.glade.h:188
+#: ../src/glade/gramps.glade.h:185
 msgid "_ZIP/Postal code:"
 msgstr "_Postcode:"
 
-#: ../src/glade/gramps.glade.h:189
+#: ../src/glade/gramps.glade.h:186
 msgid "_Zip/Postal code:"
 msgstr "_Postcode:"
 
@@ -20604,12 +20601,12 @@ msgid "<b>Output Window</b>"
 msgstr "<b>Uitvoervenster</b>"
 
 #: ../src/plugins/eventcmp.glade.h:1
-msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
-msgstr "De gebeurtenisvergelijking gebruikt de filters die gedefinieerd zijn in de aangepaste filter editor."
+msgid "Custom filter _editor"
+msgstr "_Bewerken van eigen gemaakte filters"
 
 #: ../src/plugins/eventcmp.glade.h:2
-msgid "_Custom filter editor"
-msgstr "_Aangepaste filter-editor"
+msgid "The event comparison utility uses the filters defined in the Custom Filter Editor."
+msgstr "De gebeurtenisvergelijking gebruikt de filters die gedefinieerd zijn in de aangepaste filter editor."
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/plugins/eventcmp.glade.h:3
@@ -20688,16 +20685,16 @@ msgid "<b>Match Threshold</b>"
 msgstr "<b>Overeenkomst drempelwaarde</b>"
 
 #: ../src/plugins/merge.glade.h:3
+msgid "Co_mpare"
+msgstr "_Vergelijken"
+
+#: ../src/plugins/merge.glade.h:4
 msgid "Please be patient. This may take a while."
 msgstr "Een ogenblik alstublieft, dit kan even duren."
 
-#: ../src/plugins/merge.glade.h:4
+#: ../src/plugins/merge.glade.h:5
 msgid "Use soundex codes"
 msgstr "Soundex-codes gebruiken"
-
-#: ../src/plugins/merge.glade.h:5
-msgid "_Compare"
-msgstr "_Vergelijken"
 
 #: ../src/plugins/ownereditor.glade.h:3
 msgid "Copy from DB to Preferences"
@@ -20777,12 +20774,12 @@ msgstr "Alles aanduiden"
 msgid "_Unmark all"
 msgstr "Niets aanduiden"
 
-#: ../src/plugins/ExportCsv.glade.h:2
+#: ../src/plugins/ExportCsv.glade.h:3
 msgid "Export:"
 msgstr "Exporteren:"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../src/plugins/ExportCsv.glade.h:3
+#: ../src/plugins/ExportCsv.glade.h:4
 #: ../src/plugins/ExportFtree.glade.h:2
 #: ../src/plugins/ExportGeneWeb.glade.h:5
 #: ../src/plugins/ExportVCard.glade.h:2
@@ -20791,7 +20788,7 @@ msgid "Filt_er:"
 msgstr "_Filter:"
 
 # Individuen
-#: ../src/plugins/ExportCsv.glade.h:4
+#: ../src/plugins/ExportCsv.glade.h:5
 msgid "I_ndividuals"
 msgstr "Personen"
 
@@ -20804,7 +20801,7 @@ msgid "Exclude _notes"
 msgstr "_Opmerkingen weglaten"
 
 #: ../src/plugins/ExportGeneWeb.glade.h:4
-msgid "Exclude sour_ces"
+msgid "Exclude _sources"
 msgstr "_Bronnen weglaten"
 
 #: ../src/plugins/ExportGeneWeb.glade.h:6
@@ -20861,7 +20858,7 @@ msgid "Maximum number of _spouses for a person"
 msgstr "Maximum aantal _echtgenoten voor een persoon"
 
 #: ../src/plugins/verify.glade.h:15
-msgid "Maximum number of c_hildren"
+msgid "Maximum number of chil_dren"
 msgstr "Maximum aantal _kinderen"
 
 #: ../src/plugins/verify.glade.h:16
@@ -20900,16 +20897,6 @@ msgstr "GRAMPS genealogie systeem"
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Beheer genealogische informatie, doe genealogisch onderzoek en analyse"
-
-#: ../data/gramps.keys.in.h:1
-#: ../data/gramps.xml.in.h:1
-msgid "GEDCOM"
-msgstr "GEDCOM"
-
-#: ../data/gramps.keys.in.h:2
-#: ../data/gramps.xml.in.h:2
-msgid "GRAMPS XML database"
-msgstr "GRAMPS XML-gegevensbestand"
 
 #: ../data/gramps.keys.in.h:3
 #: ../data/gramps.xml.in.h:3
@@ -21218,8 +21205,10 @@ msgstr "U kunt zeer eenvoudig uw familiestamboom exporteren naar een webpagina. 
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "U kunt willekeurige elektronische media (ook beeld en geluid) en andere bestandstypes koppelen aan uw GRAMPS-familiestamboom."
 
-#~ msgid "%dU"
-#~ msgstr "%dU"
-#~ msgid "Matches notes who contain text "
-#~ msgstr "Vindt opmerkingen die tekst bevatten "
+#~ msgid "_Children"
+#~ msgstr "Kinderen"
+#~ msgid "C_ounty:"
+#~ msgstr "_Provincie:"
+#~ msgid "P_hone:"
+#~ msgstr "_Tel:"
 
