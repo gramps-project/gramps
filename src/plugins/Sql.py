@@ -53,6 +53,8 @@ def makeDB(db):
     db.query("""drop table source_ref;""")
     db.query("""drop table lds;""")
     db.query("""drop table media_ref;""")
+    db.query("""drop table address;""")
+    db.query("""drop table attribute;""")
 
     db.query("""CREATE TABLE notes (
                   handle CHARACTER(25),
@@ -216,8 +218,27 @@ def makeDB(db):
     db.query("""CREATE TABLE media_ref (
                  handle CHARACTER(25),
                  ref CHARACTER(25),
-                 role0 INTEGER,
-                 role1 TEXT,
+                 role TEXT,
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE address (
+                 handle CHARACTER(25),
+                 street TEXT, 
+                 city TEXT, 
+                 county TEXT, 
+                 state TEXT, 
+                 country TEXT, 
+                 postal TEXT, 
+                 phone TEXT,
+                 private BOOLEAN);""")
+
+    db.query("""CREATE TABLE attribute (
+                 handle CHARACTER(25),
+                 from_type CHARACTER(10),
+                 from_handle CHARACTER(25),
+                 the_type0 INTEGER, 
+                 the_type1 TEXT, 
+                 value TEXT, 
                  private BOOLEAN);""")
 
 class Database:
@@ -250,6 +271,16 @@ class Database:
         """ Closes and writes out tables """
         self.cursor.close()
         self.db.close()
+
+def export_url_list(db, from_type, handle, urls):
+    for url in urls:
+        # (False, u'http://www.gramps-project.org/', u'loleach', (0, u'kaabgo'))
+        print "FIX:", url
+
+def export_person_ref_list(db, from_type, handle, person_ref_list):
+    for person_ref in person_ref_list:
+        # (False, [], ['b2c04e217fd4c3a6b35', 'b2c04e35b564b1b96b6'], 'b2c04e3741f13654287', u'chiduer')
+        print "FIX:", person_ref
 
 def export_event_ref(db, handle, ref, role, private):
     db.query("""insert INTO event_ref (
@@ -284,10 +315,9 @@ def export_media_ref(db, handle, ref, role, private):
     db.query("""INSERT into media_ref (
                  handle,
                  ref,
-                 role0,
-                 role1,
-                 private) VALUES (?,?,?,?,?);""",
-             handle, ref, role[0], role[1], private)
+                 role,
+                 private) VALUES (?,?,?,?);""",
+             handle, ref, str(role), private) # FIXME: role with two parts
 
 def export_source_ref(db, handle, ref, private, confidence, page):
     db.query("""INSERT into source_ref (
@@ -412,16 +442,27 @@ def export_date(db, date_type, handle, data):
                  day2, month2, year2, slash2,
                  text, sortval, newyear)
 
+def export_attribute(db, from_type, from_handle, attr_handle, the_type, value, private):
+    db.query("""INSERT INTO attribute (
+                 handle,
+                 from_type,
+                 from_handle,
+                 the_type0, 
+                 the_type1, 
+                 value, 
+                 private) VALUES (?,?,?,?,?,?,?);""",
+             attr_handle, from_type, from_handle, the_type[0], the_type[1], value, private)
+
 def export_attribute_list(db, from_type, from_handle, attribute_list):
     for attribute in attribute_list:
         (private, source_list, note_list, the_type, value) = attribute
-        # (False, [], [], (6, u''), u'30x-xx-708x')
-        print "attribute:", the_type, value, private
-        export_list(db, "attribute", from_handle, "note", note_list)
+        attr_handle = "ATTRHANDLE" # FIXME
+        export_attribute(db, from_type, from_handle, attr_handle, the_type, value, private)
+        export_list(db, "attribute", attr_handle, "note", note_list)
         # Event Sources
         for source in source_list:
             (date, private, note_list, confidence, ref, page) = source
-            export_source_ref(db, from_handle, ref, private, confidence, page)
+            export_source_ref(db, attr_handle, ref, private, confidence, page)
             export_date(db, "source_ref", ref, date)
             export_list(db, "source_ref", ref, "note", note_list) 
 
@@ -431,7 +472,7 @@ def export_list(db, from_type, from_handle, to_type, handle_list):
         if type(to_handle) == type(""):
             export_link(db, from_type, from_handle, to_type, to_handle)
         else:
-            print from_type, from_handle, "->", to_type, to_handle
+            print "FIX:", from_type, from_handle, "->", to_type, to_handle
             
 def export_link(db, from_type, from_handle, to_type, to_handle):
     db.query("""insert into link (
@@ -440,6 +481,20 @@ def export_link(db, from_type, from_handle, to_type, to_handle):
                    to_type, 
                    to_handle) values (?, ?, ?, ?)""",
              from_type, from_handle, to_type, to_handle)
+
+def export_address(db, handle, street, city, county, state, country, postal, phone, private):
+    db.query("""INSERT INTO address (
+                 handle,
+                 street, 
+                 city, 
+                 county, 
+                 state, 
+                 country, 
+                 postal, 
+                 phone,
+                 private) VALUES (?,?,?,?,?,?,?,?,?);""",
+             handle, street, city, county, state, country, postal, phone, private)
+
 
 def exportData(database, filename, option_box=None, callback=None):
     if not callable(callback): 
@@ -471,7 +526,7 @@ def exportData(database, filename, option_box=None, callback=None):
         for markup in markup_list:
             markup_code, value, start_stop_list = markup
             export_markup(db, handle, markup_code[0], markup_code[1], value, 
-                          str(start_stop_list))
+                          str(start_stop_list)) # Not normal form; use eval
         count += 1
         callback(100 * count/total)
 
@@ -512,7 +567,7 @@ def exportData(database, filename, option_box=None, callback=None):
 
         # Event Media list
         for media in media_list:
-            (private, source_list, note_list,attribute_list,ref,rect) = media
+            (private, source_list, note_list,attribute_list,ref,role) = media
             export_media_ref(db, handle, ref, role, private)
             export_list(db, "media", ref, "note", note_list)
             export_attribute_list(db, "media", ref, attribute_list)
@@ -589,8 +644,8 @@ def exportData(database, filename, option_box=None, callback=None):
         export_list(db, "people", handle, "family", family_list) # handles
         export_list(db, "people", handle, "parent_family", parent_family_list) # handles
         export_list(db, "people", handle, "note", pnote_list) # handles
-        export_list(db, "people", handle, "url", urls)
-        export_list(db, "people", handle, "person_ref", person_ref_list)
+        export_url_list(db, "people", handle, urls) 
+        export_person_ref_list(db, "people", handle, person_ref_list)
 
         for media in media_list:
             (private, source_list, note_list,attribute_list,ref,rect) = media
@@ -605,8 +660,7 @@ def exportData(database, filename, option_box=None, callback=None):
             (private, asource_list, anote_list, date, location) = address
             (street, city, county, state, country, postal, phone) = location
             addr_handle = "ADDRHANDLE" # FIXME
-            print "address:", private
-            print "location:", street, city, county, state, country, postal, phone
+            export_address(db, addr_handle, street, city, county, state, country, postal, phone, private)
             export_date(db, "address", addr_handle, date)
             export_list(db, "source_ref", addr_handle, "note", anote_list) 
             # Address Sources
@@ -725,7 +779,6 @@ def exportData(database, filename, option_box=None, callback=None):
     # ---------------------------------
     for repository_handle in database.repository_map.keys():
         repository = database.repository_map[repository_handle]
-        # address
         (handle, gid, the_type, name, note_list,
          address_list, urls, change, marker, private) = repository
 
@@ -745,9 +798,8 @@ def exportData(database, filename, option_box=None, callback=None):
         for address in address_list:
             (private, asource_list, anote_list, date, location) = address
             (street, city, county, state, country, postal, phone) = location
-            addr_handle = "ADDRHANDLE"
-            print "address:", private
-            print "location:", street, city, county, state, country, postal, phone
+            addr_handle = "ADDRHANDLE" # FIXME
+            export_address(db, addr_handle, street, city, county, state, country, postal, phone, private)
             export_date(db, "address", addr_handle, date)
             export_list(db, "address", addr_handle, "note", anote_list) 
             # Source
