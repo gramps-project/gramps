@@ -178,9 +178,10 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
             #allow some special unicode symbols
             val = val.replace( u'\u2033',r'"')
             val = val.replace( u'\u2032',r"'")
-            #ignore spaces
-            val = val.replace(r'\s*', r'')
-            # get the degrees, must be present
+            #ignore spaces, a regex with \s* would be better here...
+            val = val.replace(r' ', r'')
+            val = val.replace(r'\t', r'')
+            # get the degrees, must be present to parse as old degree notation
             if val.find(r'_') != -1:
                 l = val.split('_')
                 if len(l) != 2:
@@ -220,25 +221,25 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                                 error = True
                         except:
                             error = True
-                # last entry should be the direction
-                last = last.strip()             #remove leading/trailing spaces
-                if typedeg == 'lat':
-                    if last == 'N':
-                        sign = '+'
-                    elif last == 'S':
-                        sign = '-'
-                    else:
-                        error = True
-                if typedeg == 'lon':
-                    if last == 'E':
-                        sign = '+'
-                    elif last == 'W':
-                        sign = '-'
-                    else:
-                        error = True
+                    # last entry should be the direction
+                    last = last.strip()    #remove leading/trailing spaces
+                    if typedeg == 'lat':
+                        if last == 'N':
+                            sign = '+'
+                        elif last == 'S':
+                            sign = '-'
+                        else:
+                            error = True
+                    if typedeg == 'lon':
+                        if last == 'E':
+                            sign = '+'
+                        elif last == 'W':
+                            sign = '-'
+                        else:
+                            error = True
             # degs should have a value now
             if degs is None:
-                error = True  
+                error = True
 
         if error:
             return None
@@ -492,6 +493,8 @@ if __name__ == '__main__':
     test_formats_fail(lat,lon)
     lat, lon =  ' 50°59.60"N', '  2°53\'E'
     test_formats_success(lat,lon)
+    lat, lon =  ' 11° 11\' 11" N, 11° 11\' 11" O', ' '
+    test_formats_fail(lat,lon)
     # very small negative
     lat, lon =  '-0.00006', '-0.00006'
     test_formats_success(lat,lon)
