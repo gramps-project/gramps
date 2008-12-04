@@ -27,11 +27,14 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-import sets
 import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
 import re
+try:
+    set()
+except NameError:
+    from sets import Set as set
 
 #------------------------------------------------------------------------
 #
@@ -276,7 +279,7 @@ class GrampsParser(UpdateCallback):
         self.childref_map = {}
         self.change = change
         self.dp = DateHandler.parser
-        self.place_names = sets.Set()
+        self.place_names = set()
         cursor = database.get_place_cursor()
         data = cursor.next()
         while data:
