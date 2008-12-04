@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-import sets
 from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
 import re
@@ -354,16 +353,8 @@ class GrampsParser(UpdateCallback):
         self.childref_map = {}
         self.change = change
         self.dp = DateHandler.parser
-        self.place_names = sets.Set()
         self.info = ImportInfo()
         self.all_abs = True
-        cursor = database.get_place_cursor()
-        data = cursor.next()
-        while data:
-            (handle, val) = data
-            self.place_names.add(val[2])
-            data = cursor.next()
-        cursor.close()
         
         self.ord = None
         self.objref = None
@@ -1925,9 +1916,6 @@ class GrampsParser(UpdateCallback):
         if self.placeobj.title == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.title = build_place_title(loc)
-
-        # if self.placeobj.title in self.place_names:
-        #    self.placeobj.title += " [%s]" % self.placeobj.gramps_id
 
         self.db.commit_place(self.placeobj, self.trans, 
                              self.placeobj.get_change_time())
