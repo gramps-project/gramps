@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-02 16:22+0100\n"
-"PO-Revision-Date: 2008-12-04 01:56+0100\n"
+"PO-Revision-Date: 2008-12-04 16:47+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -560,20 +560,20 @@ msgstr "Rimuove versione"
 
 #: ../src/DbManager.py:735
 msgid "Could not delete family tree"
-msgstr "Impossibile cancellare l'albero genealogico"
+msgstr "Impossibile eliminare l'albero genealogico"
 
 #: ../src/DbManager.py:760
 msgid "Deletion failed"
-msgstr "Cancellazione non riuscita"
+msgstr "Eliminazione non riuscita"
 
 #: ../src/DbManager.py:761
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
-"Il tentativo di cancellare una versione non è riuscito ed ha restituito il "
+"Il tentativo di eliminare una versione non è riuscito ed ha restituito il "
 "seguente messaggio:\n"
 "\n"
 "%s"
@@ -1295,7 +1295,7 @@ msgstr "Ricorda l'ultima vista mostrata"
 #: ../src/GrampsCfg.py:748
 #, fuzzy
 msgid "Number of generations for relationship determination"
-msgstr "Numero generazione per il calcolo delle relazioni"
+msgstr "Numero generazioni per il calcolo delle relazioni"
 
 #: ../src/GrampsCfg.py:751
 msgid "Base path for relative media paths"
@@ -1558,7 +1558,6 @@ msgid "Collapse this section"
 msgstr "Contrarre sezione"
 
 #: ../src/GrampsWidgets.py:130
-#, fuzzy
 msgid ""
 "Click to make the active person\n"
 "Right click to display the edit menu"
@@ -1753,9 +1752,8 @@ msgid "Go to the default person"
 msgstr "Va alla persona predefinita"
 
 #: ../src/PageView.py:399
-#, fuzzy
 msgid "Person Filter Editor"
-msgstr "Editor filtri delle persone"
+msgstr "Editor filtri persone"
 
 #: ../src/PageView.py:404 ../src/DataViews/GrampletView.py:1002
 #, fuzzy
@@ -2082,12 +2080,12 @@ msgstr "Telefono"
 #: ../src/ScratchPad.py:234
 #, fuzzy
 msgid "Event Link"
-msgstr "Confronto eventi"
+msgstr "Collegamento evento"
 
 #: ../src/ScratchPad.py:351 ../src/ScratchPad.py:364
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
-msgstr "Eventi famigliari"
+msgstr "Eventi familiari"
 
 #. To hold the tooltip text
 #. Create the tree columns
@@ -2154,24 +2152,21 @@ msgid "Value"
 msgstr "Valore"
 
 #: ../src/ScratchPad.py:447 ../src/ScratchPad.py:455
-#, fuzzy
 msgid "Family Attribute"
-msgstr "Attributi famigliari"
+msgstr "Attributi della famiglia"
 
 #: ../src/ScratchPad.py:480 ../src/ScratchPad.py:509
-#, fuzzy
 msgid "Source Reference"
-msgstr "Selezione riferimento fonte"
+msgstr "Riferimento fonte"
 
 #: ../src/ScratchPad.py:492
-#, fuzzy
 msgid "not available|NA"
 msgstr "Non disponibile"
 
 #: ../src/ScratchPad.py:498
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
-msgstr ""
+msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 
 #. -------------------------------------------------------------------------
 #.
@@ -2753,15 +2748,16 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Relazione sconosciuta tra un uomo e una donna"
 
 #: ../src/Utils.py:107
-#, fuzzy
 msgid "An unspecified relationship between a man and woman"
-msgstr "Una relazione tra un uomo e una donna non meglio specificata"
+msgstr "Una relazione non meglio specificata tra un uomo e una donna"
 
 #: ../src/Utils.py:123
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr ""
+"I dati possono essere recuperati solo annullando l'ultima operazione "
+"oppure chiudendo il programma senza salvare le modifiche."
 
 #: ../src/Utils.py:187 ../src/Utils.py:207
 #, python-format
@@ -2828,7 +2824,7 @@ msgstr "Azione"
 
 #: ../src/UndoHistory.py:176
 msgid "Delete confirmation"
-msgstr "Conferma cancellazione"
+msgstr "Conferma eliminazione"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
@@ -2987,7 +2983,6 @@ msgid "_Toolbar"
 msgstr "Barra degli s_trumenti"
 
 #: ../src/ViewManager.py:456
-#, fuzzy
 msgid "_Filter Sidebar"
 msgstr "Barra laterale _filtri"
 
@@ -3068,9 +3063,8 @@ msgid "Could not load a recent Family Tree."
 msgstr "Impossibile caricare un albero genealogico recente"
 
 #: ../src/ViewManager.py:1065
-#, fuzzy
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "L'albero genealogico non esiste perché è stato cancellato."
+msgstr "L'albero genealogico non esiste perché è stato eliminato."
 
 #: ../src/ViewManager.py:1121
 msgid "Read Only"
@@ -3181,7 +3175,6 @@ msgid "Private Record"
 msgstr "Informazione privata"
 
 #: ../src/Merge/_MergePerson.py:45
-#, fuzzy
 msgid "manual|Merge_People"
 msgstr "Fusione persone"
 
@@ -3195,9 +3188,8 @@ msgstr "Impossibile fondere le persone."
 #: ../src/Merge/_MergePerson.py:313 ../src/Merge/_MergePerson.py:318
 #: ../src/DataViews/PersonView.py:190 ../src/DataViews/PersonView.py:203
 #: ../src/DataViews/PersonView.py:214 ../src/DataViews/PersonView.py:228
-#, fuzzy
 msgid "Cannot merge people"
-msgstr "Impossibile fondere le persone."
+msgstr "Impossibile fondere le persone"
 
 #: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
 #: ../src/Merge/_MergePerson.py:314
@@ -3279,21 +3271,18 @@ msgid "Merge Places"
 msgstr "Fusione luoghi"
 
 #: ../src/Merge/_MergeSource.py:42
-#, fuzzy
 msgid "manual|Merge_Sources"
 msgstr "Fusione fonti"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
-#, fuzzy
 msgid "Merge Sources"
 msgstr "Fusione fonti"
 
 #: ../src/DataViews/EventView.py:74 ../src/DataViews/FamilyList.py:67
 #: ../src/DataViews/MediaView.py:84 ../src/DataViews/PlaceView.py:76
 #: ../src/DataViews/RepositoryView.py:79 ../src/DataViews/SourceView.py:71
-#, fuzzy
 msgid "Last Changed"
-msgstr "Salvare le modifiche?"
+msgstr "Ultima modifica"
 
 #: ../src/DataViews/EventView.py:77 ../src/DisplayTabs/_EventEmbedList.py:53
 msgid "Add a new event"
@@ -3305,12 +3294,11 @@ msgstr "Modifica l'evento selezionato"
 
 #: ../src/DataViews/EventView.py:79
 msgid "Delete the selected event"
-msgstr "Cancella l'evento selezionato"
+msgstr "Elimina l'evento selezionato"
 
 #: ../src/DataViews/EventView.py:181
-#, fuzzy
 msgid "Event Filter Editor"
-msgstr "Editor filtro eventi"
+msgstr "Editor filtri eventi"
 
 #: ../src/DataViews/EventView.py:184 ../src/DataViews/MediaView.py:214
 #: ../src/DataViews/NoteView.py:166 ../src/DataViews/PlaceView.py:117
@@ -3323,30 +3311,28 @@ msgid "Select Event Columns"
 msgstr "Seleziona colonne evento"
 
 #: ../src/DataViews/EventView.py:237
-#, fuzzy
 msgid ""
 "This event is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Questo evento è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutte le persone e le famiglie che ne fanno "
+"Questo evento è attualmente in uso. La sua eliminazione ne provocherà la "
+"rimozione dal database e da tutte le persone e le famiglie che vi fanno "
 "riferimento."
 
 #: ../src/DataViews/EventView.py:241
-#, fuzzy
 msgid "Deleting event will remove it from the database."
-msgstr "Elimina l'evento e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di un evento ne causa la rimozione dal database."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
 #: ../src/DataViews/PersonView.py:604 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
-msgstr "Cancellare %s?"
+msgstr "Eliminare %s?"
 
 #: ../src/DataViews/EventView.py:250
 msgid "_Delete Event"
-msgstr "_Cancella evento"
+msgstr "_Elimina evento"
 
 #: ../src/DataViews/FamilyList.py:66
 msgid "Marriage Date"
@@ -3362,7 +3348,7 @@ msgstr "Modifica la famiglia selezionata"
 
 #: ../src/DataViews/FamilyList.py:72
 msgid "Delete the selected family"
-msgstr "Cancella la famiglia selezionata"
+msgstr "Elimina la famiglia selezionata"
 
 #: ../src/DataViews/FamilyList.py:91 ../src/plugins/GVFamilyLines.py:138
 #: ../src/plugins/MarkerReport.py:188 ../src/plugins/NarrativeWeb.py:2362
@@ -3378,9 +3364,8 @@ msgid "_Column Editor..."
 msgstr "Editor _colonne..."
 
 #: ../src/DataViews/FamilyList.py:169
-#, fuzzy
 msgid "Family Filter Editor"
-msgstr "Editor filtri famiglia"
+msgstr "Editor filtri famiglie"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
@@ -3388,7 +3373,7 @@ msgstr "Modifica l'oggetto multimediale selezionato"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Cancella l'oggetto multimediale selezionato"
+msgstr "Elimina l'oggetto multimediale selezionato"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 #, fuzzy
@@ -3396,7 +3381,6 @@ msgid "Drag Media Object"
 msgstr "Oggetto multimediale"
 
 #: ../src/DataViews/MediaView.py:215
-#, fuzzy
 msgid "Media Filter Editor"
 msgstr "Editor filtri oggetti multimediali"
 
@@ -3428,22 +3412,21 @@ msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Questo oggetto multimediale è attualmente in uso. La sua cancellazione ne "
-"provocherà la rimozione dal database e da tutti gli elementi che ne fanno "
+"Questo oggetto multimediale è attualmente in uso. La sua eliminazione ne "
+"provocherà la rimozione dal database e da tutti gli elementi che vi fanno "
 "riferimento."
 
 #: ../src/DataViews/MediaView.py:401
-#, fuzzy
 msgid "Deleting media object will remove it from the database."
-msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di un oggetto multimediale ne causa la rimozione dal database."
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "Cancellare l'oggetto multimediale?"
+msgstr "Eliminare l'oggetto multimediale?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr "_Cancellare l'oggetto multimediale?"
+msgstr "_Eliminare l'oggetto multimediale?"
 
 #: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:840
 msgid "Unnamed Gramplet"
@@ -3459,7 +3442,7 @@ msgstr "Gramplet"
 
 #: ../src/DataViews/GrampletView.py:711
 msgid "Right click to add gramplets"
-msgstr "Fare click con il pulsante destro per aggiungere gramplet"
+msgstr "Fare clic con il pulsante destro per aggiungere gramplet"
 
 #: ../src/DataViews/GrampletView.py:969
 msgid "_Add a gramplet"
@@ -3499,10 +3482,9 @@ msgstr "Modifica la nota selezionata"
 
 #: ../src/DataViews/NoteView.py:75
 msgid "Delete the selected note"
-msgstr "Cancella la nota selezionata"
+msgstr "Elimina la nota selezionata"
 
 #: ../src/DataViews/NoteView.py:167
-#, fuzzy
 msgid "Note Filter Editor"
 msgstr "Editor filtri note"
 
@@ -3512,22 +3494,20 @@ msgstr "Seleziona colonne nota"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/NoteView.py:208
-#, fuzzy
 msgid ""
 "This note is currently being used. Deleting it will remove it from the "
 "database and from all other objects that reference it."
 msgstr ""
-"Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+"Questa nota è attualmente in uso. La sua eliminazione ne provocherà la "
+"rimozione dal database e da tutti gli altri oggetti che vi fanno riferimento."
 
 #: ../src/DataViews/NoteView.py:212
-#, fuzzy
 msgid "Deleting note will remove it from the database."
-msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di una nota ne causa la rimozione dal database."
 
 #: ../src/DataViews/NoteView.py:218
 msgid "_Delete Note"
-msgstr "_Cancella nota"
+msgstr "_Elimina nota"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3657,7 +3637,7 @@ msgstr "Modello"
 #: ../src/DataViews/PedigreeView.py:1653
 #, fuzzy
 msgid "Family Menu"
-msgstr "Eventi famigliari"
+msgstr "Menu famiglia"
 
 #: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52 ../src/plugins/siblings.py:44
@@ -3720,9 +3700,8 @@ msgid "_Compare and Merge..."
 msgstr "_Confronta e fondi..."
 
 #: ../src/DataViews/PersonView.py:165
-#, fuzzy
 msgid "_Fast Merge..."
-msgstr "_Fusione rapida"
+msgstr "_Fusione rapida..."
 
 #: ../src/DataViews/PersonView.py:191 ../src/DataViews/PersonView.py:204
 #: ../src/DataViews/PersonView.py:215 ../src/DataViews/PersonView.py:229
@@ -3749,18 +3728,17 @@ msgid "Updating display..."
 msgstr "Aggiornamento visualizzazione..."
 
 #: ../src/DataViews/PersonView.py:601
-#, fuzzy
 msgid "Deleting the person will remove the person from the database."
-msgstr "Scegliere una persona dal database"
+msgstr "L'eliminazione di una persona ne causa la rimozione dal database."
 
 #: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
-msgstr "_Cancella persona"
+msgstr "_Elimina persona"
 
 #: ../src/DataViews/PersonView.py:621
 #, python-format
 msgid "Delete Person (%s)"
-msgstr "Cancella persona (%s)"
+msgstr "Elimina persona (%s)"
 
 #: ../src/DataViews/PersonView.py:896
 msgid "Go to default person"
@@ -3773,7 +3751,7 @@ msgstr "Modifica l'evento selezionato"
 
 #: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
-msgstr "Cancella la persona selezionata"
+msgstr "Elimina la persona selezionata"
 
 #: ../src/DataViews/PlaceView.py:66
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
@@ -3817,10 +3795,9 @@ msgstr "Modifica il luogo selezionato"
 
 #: ../src/DataViews/PlaceView.py:82
 msgid "Delete the selected place"
-msgstr "Cancella il luogo selezionato"
+msgstr "Elimina il luogo selezionato"
 
 #: ../src/DataViews/PlaceView.py:118
-#, fuzzy
 msgid "_Merge..."
 msgstr "_Fondi..."
 
@@ -3833,31 +3810,28 @@ msgid "Attempt to map location on Google Maps"
 msgstr "Cerca di individuare la posizione su Google Maps"
 
 #: ../src/DataViews/PlaceView.py:123
-#, fuzzy
 msgid "Place Filter Editor"
-msgstr "Editor filtro luoghi"
+msgstr "Editor filtri luoghi"
 
 #: ../src/DataViews/PlaceView.py:157
 msgid "Select Place Columns"
 msgstr "Seleziona colonne luoghi"
 
 #: ../src/DataViews/PlaceView.py:244
-#, fuzzy
 msgid ""
 "This place is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+"Questo luogo è attualmente in uso. La sua eliminazione ne provocherà la "
+"rimozione dal database e da tutte le persone e famiglie che vi fanno riferimento."
 
 #: ../src/DataViews/PlaceView.py:248
-#, fuzzy
 msgid "Deleting place will remove it from the database."
-msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di un luogo ne causa la rimozione dal database."
 
 #: ../src/DataViews/PlaceView.py:257
 msgid "_Delete Place"
-msgstr "_Cancella luogo"
+msgstr "_Elimina luogo"
 
 #: ../src/DataViews/PlaceView.py:276
 msgid "Cannot merge places."
@@ -3879,14 +3853,13 @@ msgstr "_Riordina"
 
 #: ../src/DataViews/RelationView.py:324
 msgid "Change order of parents and families"
-msgstr ""
+msgstr "Cambia l'ordine di genitori e famiglie"
 
 #: ../src/DataViews/RelationView.py:329
 msgid "Edit..."
 msgstr "Modifica..."
 
 #: ../src/DataViews/RelationView.py:330
-#, fuzzy
 msgid "Edit the active person"
 msgstr "Modifica la persona attiva"
 
@@ -3898,7 +3871,6 @@ msgstr "Partner"
 
 #: ../src/DataViews/RelationView.py:332 ../src/DataViews/RelationView.py:334
 #: ../src/DataViews/RelationView.py:705
-#, fuzzy
 msgid "Add a new family with person as parent"
 msgstr "Aggiunge una famiglia con questa persona come genitore"
 
@@ -4089,8 +4061,9 @@ msgid "Home URL"
 msgstr "Casa"
 
 #: ../src/DataViews/RepositoryView.py:78
+#, fuzzy
 msgid "Search URL"
-msgstr ""
+msgstr "URL di ricerca"
 
 #: ../src/DataViews/RepositoryView.py:82
 msgid "Add a new repository"
@@ -4103,10 +4076,9 @@ msgstr "Modifica il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:84
 msgid "Delete the selected repository"
-msgstr "Cancella il deposito selezionato"
+msgstr "Elimina il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:121
-#, fuzzy
 msgid "Repository Filter Editor"
 msgstr "Editor filtri depositi"
 
@@ -4119,17 +4091,16 @@ msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Questo deposito è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutte le fonti che ne fanno riferimento."
+"Questo deposito è attualmente in uso. La sua eliminazione ne provocherà la "
+"rimozione dal database e da tutte le fonti che vi fanno riferimento."
 
 #: ../src/DataViews/RepositoryView.py:206
-#, fuzzy
 msgid "Deleting repository will remove it from the database."
-msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di un deposito ne causa la rimozione dal database."
 
 #: ../src/DataViews/RepositoryView.py:211
 msgid "_Delete Repository"
-msgstr "_Cancella deposito"
+msgstr "_Elimina deposito"
 
 #: ../src/DataViews/SourceView.py:74
 msgid "Add a new source"
@@ -4141,16 +4112,15 @@ msgstr "Modifica la fonte selezionata"
 
 #: ../src/DataViews/SourceView.py:76
 msgid "Delete the selected source"
-msgstr "Cancella la fonte selezionata"
+msgstr "Elimina la fonte selezionata"
 
 #: ../src/DataViews/SourceView.py:114
 msgid "_Merge"
 msgstr "_Fondi"
 
 #: ../src/DataViews/SourceView.py:116
-#, fuzzy
 msgid "Source Filter Editor"
-msgstr "Editor filtri di sistema"
+msgstr "Editor filtri fonti"
 
 #: ../src/DataViews/SourceView.py:123
 msgid "Select Source Columns"
@@ -4158,25 +4128,22 @@ msgstr "Seleziona colonne fonte"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/SourceView.py:193
-#, fuzzy
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+"Questa fonte è attualmente in uso. La sua eliminazione ne provocherà la "
+"rimozione dal database e da tutti gli elementi che vi fanno riferimento."
 
 #: ../src/DataViews/SourceView.py:197
-#, fuzzy
 msgid "Deleting source will remove it from the database."
-msgstr "Cancella la fonte e tutti i suoi riferimenti dal database"
+msgstr "L'eliminazione di una fonte ne causa la rimozione dal database."
 
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
-msgstr "_Cancella fonte"
+msgstr "_Elimina fonte"
 
 #: ../src/DataViews/SourceView.py:225
-#, fuzzy
 msgid "Cannot merge sources."
 msgstr "Impossibile fondere le fonti."
 
@@ -4835,7 +4802,7 @@ msgstr "Aggiunge evento"
 #: ../src/Editors/_EditEvent.py:326
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Cancella evento (%s)"
+msgstr "Elimina evento (%s)"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
 #, fuzzy
@@ -5198,7 +5165,7 @@ msgstr "Note"
 #: ../src/Editors/_EditNote.py:634
 #, python-format
 msgid "Delete Note (%s)"
-msgstr "Cancella nota (%s)"
+msgstr "Elimina nota (%s)"
 
 #: ../src/Editors/_EditPerson.py:119
 msgid "New Person"
@@ -5353,7 +5320,7 @@ msgstr "Modifica luogo (%s)"
 #: ../src/Editors/_EditPlace.py:339
 #, python-format
 msgid "Delete Place (%s)"
-msgstr "Cancella luogo (%s)"
+msgstr "Elimina luogo (%s)"
 
 #: ../src/Editors/_EditPrimary.py:163
 msgid "Save Changes?"
@@ -5419,7 +5386,7 @@ msgstr "Modifica deposito (%s)"
 #: ../src/Editors/_EditRepository.py:203
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr "Cancella deposito (%s)"
+msgstr "Elimina deposito (%s)"
 
 #: ../src/Editors/_EditSource.py:77 ../src/Editors/_EditSourceRef.py:202
 msgid "New Source"
@@ -5454,7 +5421,7 @@ msgstr "Modifica fonte (%s)"
 #: ../src/Editors/_EditSource.py:255
 #, python-format
 msgid "Delete Source (%s)"
-msgstr "Cancella fonte (%s)"
+msgstr "Elimina fonte (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:73 ../src/Editors/_EditSourceRef.py:203
 #, fuzzy
@@ -5496,6 +5463,8 @@ msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
+"Il file GEDCOM è rovinato. Il file sembra codificato con la codifica UTF16, "
+"ma non è presente il marcatore BOM."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:58
 msgid "Your GEDCOM file is empty."
@@ -6148,7 +6117,7 @@ msgstr "Stabile"
 
 #: ../src/plugins/all_events.py:146
 msgid "Display a person's events, both personal and family."
-msgstr "Mostra gli eventi di una persona, sia personali che famigliari."
+msgstr "Mostra gli eventi di una persona, sia personali che familiari."
 
 #: ../src/plugins/all_events.py:157
 msgid "Display the family and family members events."
@@ -6264,7 +6233,7 @@ msgstr ""
 #: ../src/plugins/AgeOnDate.py:50
 #, python-format
 msgid "People probably alive and their ages on %s"
-msgstr ""
+msgstr "Persone probabilmente in vita e rispettive età in data %s"
 
 #: ../src/plugins/AgeOnDate.py:53 ../src/plugins/StatisticsChart.py:124
 #: ../src/gen/lib/attrtype.py:73
@@ -7072,9 +7041,8 @@ msgid "Change Event Types"
 msgstr "Modifica tipi evento"
 
 #: ../src/plugins/ChangeTypes.py:122
-#, fuzzy
 msgid "Analyzing Events"
-msgstr "Eventi famigliari"
+msgstr "Analisi eventi"
 
 #: ../src/plugins/ChangeTypes.py:135 ../src/plugins/ChangeTypes.py:161
 msgid "Change types"
@@ -7156,7 +7124,7 @@ msgstr ""
 "Il file:\n"
 " %(file_name)s \n"
 "possiede un riferimento all'interno del database, ma non è più presente. Il "
-"file potrebbe essere stato cancellato o spostato in una posizione diversa. È "
+"file potrebbe essere stato eliminato o spostato in una posizione diversa. È "
 "possibile scegliere se eliminare il riferimento dal database, tenere il "
 "riferimento al file mancante o selezionare un nuovo file."
 
@@ -7304,12 +7272,12 @@ msgstr ""
 
 #: ../src/plugins/Check.py:1360
 msgid "1 corrupted family relationship fixed\n"
-msgstr "È stato riparata una relazione famigliare corrotta\n"
+msgstr "È stato riparata una relazione familiare corrotta\n"
 
 #: ../src/plugins/Check.py:1362
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
-msgstr "Sono state riparate %d relazioni famigliari corrotte\n"
+msgstr "Sono state riparate %d relazioni familiari corrotte\n"
 
 #: ../src/plugins/Check.py:1365
 msgid "1 person was referenced but not found\n"
@@ -7575,7 +7543,6 @@ msgstr ""
 
 #: ../src/plugins/DateParserDisplayTest.py:69
 #: ../src/plugins/DateParserDisplayTest.py:157
-#, fuzzy
 msgid "Generating dates"
 msgstr "Generazione date"
 
@@ -7597,16 +7564,17 @@ msgstr ""
 
 #: ../src/plugins/DefaultGramplets.py:71
 msgid "Double-click a day for details"
-msgstr ""
+msgstr "Doppio clic su un giorno per i dettagli"
 
 #: ../src/plugins/DefaultGramplets.py:144
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
+"Fare clic sul nome per cambiare la persona attiva\n"
+"Doppio clic sul nome per modificare"
 
 #: ../src/plugins/DefaultGramplets.py:145
-#, fuzzy
 msgid "Log for this Session"
 msgstr "Registro operazioni per questa sessione"
 
@@ -7618,7 +7586,7 @@ msgstr "Aggiunto/a"
 #: ../src/plugins/DefaultGramplets.py:173
 #: ../src/plugins/DefaultGramplets.py:179
 msgid "Deleted"
-msgstr "Cancellato/a"
+msgstr "Eliminato/a"
 
 #: ../src/plugins/DefaultGramplets.py:175
 #: ../src/plugins/DefaultGramplets.py:181
@@ -7632,7 +7600,7 @@ msgstr "Selezionato/a"
 #: ../src/plugins/DefaultGramplets.py:202
 #: ../src/plugins/DefaultGramplets.py:281
 msgid "Double-click surname for details"
-msgstr ""
+msgstr "Doppio clic sul cognome per i dettagli"
 
 #. will be overwritten in load
 #: ../src/plugins/DefaultGramplets.py:204
@@ -7664,12 +7632,12 @@ msgstr "Persone totali"
 #: ../src/plugins/DefaultGramplets.py:369
 #: ../src/plugins/DefaultGramplets.py:466
 msgid "Click name to make person active\n"
-msgstr ""
+msgstr "Fare clic sul nome per rendere attiva la persona\n"
 
 #: ../src/plugins/DefaultGramplets.py:370
 #: ../src/plugins/DefaultGramplets.py:467
 msgid "Right-click name to edit person"
-msgstr ""
+msgstr "Fare clic col pulsante destro per modificare la persona"
 
 #: ../src/plugins/DefaultGramplets.py:397
 #, python-format
@@ -7703,34 +7671,33 @@ msgid "   %d.b Father: "
 msgstr "   %d.b padre: "
 
 #: ../src/plugins/DefaultGramplets.py:573
-#, fuzzy
 msgid ""
 "\n"
 "Breakdown by generation:\n"
-msgstr "Interruzioni di pagina tra le generazioni"
+msgstr ""
 
 #: ../src/plugins/DefaultGramplets.py:580
 msgid "Generation 1"
 msgstr "Generazione 1"
 
 #: ../src/plugins/DefaultGramplets.py:581
-#, fuzzy, python-format
+#, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " comprende un individuo in totale (completa al 100,00%)\n"
+msgstr " comprende una persona in totale (completa al 100,00%)\n"
 
 #: ../src/plugins/DefaultGramplets.py:585
-#, fuzzy, python-format
+#, python-format
 msgid " has %d of %d individuals (%.2f%% complete)\n"
-msgstr " comprende %d di %d individui (completa al %.2f%%)\n"
+msgstr " comprende %d di %d persone (completa al %.2f%%)\n"
 
 #: ../src/plugins/DefaultGramplets.py:587
 msgid "All generations"
 msgstr "Tutte le generazioni"
 
 #: ../src/plugins/DefaultGramplets.py:588
-#, fuzzy, python-format
+#, python-format
 msgid " have %d individuals\n"
-msgstr " comprende %d individui\n"
+msgstr " comprendono %d persone\n"
 
 #: ../src/plugins/DefaultGramplets.py:594
 msgid "Double-click item to see matches"
@@ -7741,11 +7708,11 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:463 ../src/plugins/NarrativeWeb.py:835
 #: ../src/plugins/NarrativeWeb.py:842 ../src/plugins/Summary.py:115
 msgid "Individuals"
-msgstr "Individui"
+msgstr "Persone"
 
 #: ../src/plugins/DefaultGramplets.py:671 ../src/plugins/Summary.py:117
 msgid "Number of individuals"
-msgstr "Numero di individui"
+msgstr "Numero di persone"
 
 #. -------------------------
 #: ../src/plugins/DefaultGramplets.py:675 ../src/plugins/GVFamilyLines.py:126
@@ -7760,19 +7727,19 @@ msgstr "Femmine"
 
 #: ../src/plugins/DefaultGramplets.py:681 ../src/plugins/Summary.py:120
 msgid "Individuals with unknown gender"
-msgstr "Individui dal sesso sconosciuto"
+msgstr "Persone dal sesso sconosciuto"
 
 #: ../src/plugins/DefaultGramplets.py:685 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
-msgstr "Individui con nomi incompleti"
+msgstr "Persone con nomi incompleti"
 
 #: ../src/plugins/DefaultGramplets.py:689 ../src/plugins/Summary.py:122
 msgid "Individuals missing birth dates"
-msgstr "Individui senza data di nascita"
+msgstr "Persone senza data di nascita"
 
 #: ../src/plugins/DefaultGramplets.py:693 ../src/plugins/Summary.py:123
 msgid "Disconnected individuals"
-msgstr "Individui senza nessi"
+msgstr "Persone senza nessi"
 
 #: ../src/plugins/DefaultGramplets.py:697 ../src/plugins/Summary.py:124
 msgid "Family Information"
@@ -7792,7 +7759,7 @@ msgstr "Oggetti multimediali"
 
 #: ../src/plugins/DefaultGramplets.py:709 ../src/plugins/Summary.py:130
 msgid "Individuals with media objects"
-msgstr "Individui con oggetti multimediali"
+msgstr "Persone con oggetti multimediali"
 
 #: ../src/plugins/DefaultGramplets.py:713 ../src/plugins/Summary.py:131
 msgid "Total number of media object references"
@@ -7815,7 +7782,6 @@ msgid "Missing Media Objects"
 msgstr "Oggetti multimediali mancanti"
 
 #: ../src/plugins/DefaultGramplets.py:734
-#, fuzzy
 msgid "Enter Python expressions"
 msgstr "Inserire espressioni Python"
 
@@ -7966,19 +7932,17 @@ msgstr "Gramplet Età in data"
 
 #: ../src/plugins/DefaultGramplets.py:1095
 msgid "Relatives Gramplet"
-msgstr "Gramplet Famigliari"
+msgstr "Gramplet Parenti"
 
 #: ../src/plugins/DefaultGramplets.py:1098
 msgid "Active Person's Relatives"
-msgstr "Famigliari della persona attiva"
+msgstr "Parenti della persona attiva"
 
 #: ../src/plugins/DefaultGramplets.py:1105
-#, fuzzy
 msgid "Pedigree Gramplet"
 msgstr "Gramplet Pedigree"
 
 #: ../src/plugins/Desbrowser.py:56
-#, fuzzy
 msgid "manual|Interactive_Descendant_Browser..."
 msgstr "Navigatore interattivo discendenza"
 
@@ -8069,7 +8033,7 @@ msgstr "Resoconto ascendenza per %s"
 
 #: ../src/plugins/DetAncestralReport.py:226
 #: ../src/plugins/DetDescendantReport.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s e [%(id_str)s] sono la stessa persona."
 
@@ -8713,12 +8677,12 @@ msgstr "%dU"
 #: ../src/plugins/FamilyGroup.py:515
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Resoconto gruppo famigliare - generazione %d"
+msgstr "Resoconto gruppo familiare - generazione %d"
 
 #: ../src/plugins/FamilyGroup.py:517 ../src/plugins/FamilyGroup.py:566
 #: ../src/plugins/FamilyGroup.py:771
 msgid "Family Group Report"
-msgstr "Resoconto gruppo famigliare"
+msgstr "Resoconto gruppo familiare"
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:589
@@ -8806,11 +8770,11 @@ msgstr "Indica se includere le informazioni matrimoniali per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:634
 msgid "Dates of Relatives"
-msgstr "Date dei famigliari"
+msgstr "Date dei parenti"
 
 #: ../src/plugins/FamilyGroup.py:635
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Indica se includere le date relative ai famigliari (padre, madre, coniuge)."
+msgstr "Indica se includere le date relative ai parenti (padre, madre, coniuge)."
 
 #: ../src/plugins/FamilyGroup.py:639
 #, fuzzy
@@ -8852,7 +8816,7 @@ msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
 msgstr ""
-"Produce il resoconto per un gruppo famigliare mostrando le informazioni su "
+"Produce il resoconto per un gruppo familiare mostrando le informazioni su "
 "un insieme di genitori ed i loro figli."
 
 #: ../src/plugins/FanChart.py:191
@@ -8966,9 +8930,8 @@ msgid "disconnected people"
 msgstr "Persone senza nessi"
 
 #: ../src/plugins/FilterByName.py:39
-#, fuzzy
 msgid "all families"
-msgstr "Tutti i file"
+msgstr "tutte le famiglie"
 
 #: ../src/plugins/FilterByName.py:39
 #, fuzzy
@@ -9015,9 +8978,8 @@ msgstr "Filtro su %s"
 #: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
 #: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
 #: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
-#, fuzzy
 msgid "Name type"
-msgstr "Tipi modifica"
+msgstr "Tipo nome"
 
 #: ../src/plugins/FilterByName.py:111
 #, fuzzy
@@ -9140,7 +9102,6 @@ msgid "Second Person"
 msgstr "Seconda persona"
 
 #: ../src/plugins/FindDupes.py:582
-#, fuzzy
 msgid "Merge candidates"
 msgstr "Fondi candidati"
 
@@ -9354,7 +9315,7 @@ msgstr "%d figli"
 #: ../src/plugins/GVFamilyLines.py:872
 #, fuzzy
 msgid "Family Lines Graph"
-msgstr "Grafico temporale famigliare"
+msgstr "Grafico temporale familiare"
 
 #: ../src/plugins/GVFamilyLines.py:880
 #, fuzzy
@@ -10320,7 +10281,7 @@ msgstr "Successiva"
 
 #: ../src/plugins/NarrativeWeb.py:1299 ../src/plugins/NarrativeWeb.py:1327
 msgid "The file has been moved or deleted"
-msgstr "Il file è stato spostato o cancellato"
+msgstr "Il file è stato spostato o eliminato"
 
 #: ../src/plugins/NarrativeWeb.py:1345
 #, fuzzy
@@ -10850,7 +10811,6 @@ msgid "Other events on this month/day in history"
 msgstr "Altri eventi in questo mese/giorno nella cronologia"
 
 #: ../src/plugins/OnThisDay.py:121
-#, fuzzy
 msgid "No other events on this month/day in history"
 msgstr "Nessun altro evento in questo mese/giorno nella cronologia"
 
@@ -11256,7 +11216,7 @@ msgid "People with the surname '%s'"
 msgstr "Persone con cognome «%s»"
 
 #: ../src/plugins/SameSurnames.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "There are %d people with a matching name, or alternate name.\n"
 msgstr "Ci sono %d persone con un nome (o nome alternativo) corrispondente.\n"
 
@@ -11687,17 +11647,14 @@ msgid "Old age at death"
 msgstr ""
 
 #: ../src/plugins/Verify.py:980
-#, fuzzy
 msgid "Multiple parents"
 msgstr "Troppi genitori"
 
 #: ../src/plugins/Verify.py:997
-#, fuzzy
 msgid "Married often"
 msgstr "Troppi matrimoni"
 
 #: ../src/plugins/Verify.py:1016
-#, fuzzy
 msgid "Old and unmarried"
 msgstr "Anziano/a e non sposato/a"
 
@@ -11706,17 +11663,14 @@ msgid "Too many children"
 msgstr "Troppi figli"
 
 #: ../src/plugins/Verify.py:1058
-#, fuzzy
 msgid "Same sex marriage"
 msgstr "Matrimonio dello stesso sesso"
 
 #: ../src/plugins/Verify.py:1068
-#, fuzzy
 msgid "Female husband"
 msgstr "Marito di sesso femminile"
 
 #: ../src/plugins/Verify.py:1078
-#, fuzzy
 msgid "Male wife"
 msgstr "Moglie di sesso maschile"
 
@@ -11784,7 +11738,7 @@ msgstr "Differenza di età notevole tra tutti i figli"
 #: ../src/plugins/Verify.py:1501
 #, fuzzy
 msgid "Large age differences between children"
-msgstr "Differenza di età notevole tra i figli"
+msgstr "Elevata differenza di età tra i figli"
 
 #: ../src/plugins/Verify.py:1511
 msgid "Disconnected individual"
@@ -12125,7 +12079,7 @@ msgid ""
 "missing file, or select a new file."
 msgstr ""
 "%(file_name)s possiede un riferimento all'interno del database, ma non è più "
-"presente. Il file potrebbe essere stato cancellato o spostato in una diversa "
+"presente. Il file potrebbe essere stato eliminato o spostato in una diversa "
 "posizione. È possibile scegliere se eliminare il riferimento dal database, "
 "tenere il riferimento al file mancante o selezionare un nuovo file."
 
@@ -17387,7 +17341,6 @@ msgid "Add child to family"
 msgstr "Aggiunge figlio alla famiglia"
 
 #: ../src/gen/utils/progressmon.py:64
-#, fuzzy
 msgid "Progress Information"
 msgstr "Informazioni di avanzamento"
 
@@ -17422,12 +17375,11 @@ msgstr "Valore:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:49
 msgid "Objects with the <attribute>"
-msgstr ""
+msgstr "Oggetti con <attributo>"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:50
-#, fuzzy
 msgid "Matches objects with the given attribute of a particular value"
-msgstr "Estrae la persona che possiede un evento personale con uno specifico valore"
+msgstr "Estrae gli oggetti con uno specifico valore per un certo attributo"
 
 #: ../src/Filters/Rules/_HasEventBase.py:48
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
@@ -17562,13 +17514,14 @@ msgstr "maggiore di"
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
 #: ../src/FilterEditor/_EditRule.py:495
 msgid "Case sensitive:"
-msgstr ""
+msgstr "Distingui maiuscole:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:497
+#, fuzzy
 msgid "Regular-Expression matching:"
-msgstr ""
+msgstr "Espressione regolare corrispondente:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
@@ -17607,9 +17560,8 @@ msgid "Matches objects matched by the specified filter name"
 msgstr "Estrae gli oggetti che corrispondono al filtro indicato"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
-#, fuzzy
 msgid "Objects with <Id>"
-msgstr "Persone con figli"
+msgstr "Oggetti con <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
@@ -17625,17 +17577,14 @@ msgstr "Nessuna descrizione"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:85
-#, fuzzy
 msgid "Marker type:"
 msgstr "Tipo marcatore:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
-#, fuzzy
 msgid "Has marker of"
-msgstr "Ha il marcatore"
+msgstr "Ha un marcatore"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-#, fuzzy
 msgid "Matches markers of a particular type"
 msgstr "Estrae un particolare tipo di marcatore"
 
@@ -17644,13 +17593,12 @@ msgid "Disconnected people"
 msgstr "Persone senza nessi"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
-#, fuzzy
 msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Estrae le persone che possiedono un ascendente comune a qualcuno estratto "
-"con un filtro"
+"Estrae le persone che non hanno alcuna relazione familiare con altre persone "
+"nel database"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
@@ -17661,13 +17609,12 @@ msgid "Matches everyone in the database"
 msgstr "Estrae tutte le persone nel database"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:43
-#, fuzzy
 msgid "Families with incomplete events"
 msgstr "Famiglie con eventi incompleti"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr ""
+msgstr "Estrae le persone con date o luoghi mancanti in un evento familiare"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:82
@@ -17675,32 +17622,26 @@ msgid "Personal attribute:"
 msgstr "Attributo personale:"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:46
-#, fuzzy
 msgid "People with the personal <attribute>"
-msgstr "Possiede l'attributo personale"
+msgstr "Persone con <attributo> personale"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches people with the personal attribute of a particular value"
-msgstr "Estrae la persona che possiede un evento personale con uno specifico valore"
+msgstr "Estrae le persone che possiedono un attributo personale con uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:48
-#, fuzzy
 msgid "People with the <birth data>"
-msgstr "Persone senza data di nascita"
+msgstr "Persone con <dati di nascita>"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:49
-#, fuzzy
 msgid "Matches people with birth data of a particular value"
-msgstr "Estrae la persona con una nascita di uno specifico valore"
+msgstr "Estrae le persone con dati di nascita aventi uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
-#, fuzzy
 msgid "People with a common ancestor with <filter> match"
 msgstr "Ascendenti comuni con persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-#, fuzzy
 msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Estrae le persone che possiedono un ascendente comune a qualcuno estratto "
@@ -17718,7 +17659,6 @@ msgid "Ancestral filters"
 msgstr "Filtri ascendenza"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
-#, fuzzy
 msgid "People with a common ancestor with <person>"
 msgstr "Persone il cui ascendente comune è <person>"
 
@@ -17729,23 +17669,20 @@ msgstr ""
 "specificata"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:46
-#, fuzzy
 msgid "People with complete records"
-msgstr "Persone con il nome incompleto"
+msgstr "Persone con informazioni complete"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
 msgid "Matches all people whose records are complete"
-msgstr ""
+msgstr "Estrae tutte le persone con informazioni complete"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
-#, fuzzy
 msgid "People with the <death data>"
-msgstr "Persone senza data di nascita"
+msgstr "Persone con <dati sul decesso>"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:49
-#, fuzzy
 msgid "Matches people with death data of a particular value"
-msgstr "Estrae la persona con un decesso di uno specifico valore"
+msgstr "Estrae le persone con dati sul decesso aventi uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
 #: ../src/FilterEditor/_EditRule.py:79
@@ -17753,14 +17690,12 @@ msgid "Personal event:"
 msgstr "Evento personale:"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
-#, fuzzy
 msgid "People with the personal <event>"
-msgstr "Possiede l'evento personale"
+msgstr "Persone con <evento> personale"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
-#, fuzzy
 msgid "Matches people with a personal event of a particular value"
-msgstr "Estrae la persona che possiede un evento personale con uno specifico valore"
+msgstr "Estrae le persone che possiedono un evento personale con uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
@@ -17769,35 +17704,31 @@ msgid "Family attribute:"
 msgstr "Attributo famiglia:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:46
-#, fuzzy
 msgid "People with the family <attribute>"
-msgstr "Possiede l'attributo famigliare"
+msgstr "Persone con <attributo> familiare"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
-#, fuzzy
 msgid "Matches people with the family attribute of a particular value"
-msgstr "Estrae la persona che possiede un evento famigliare con uno specifico valore"
+msgstr "Estrae le persone la cui famiglia possiede un attributo familiare con uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
 #: ../src/FilterEditor/_EditRule.py:80
 msgid "Family event:"
-msgstr "Evento famigliare:"
+msgstr "Evento familiare:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:52
-#, fuzzy
 msgid "People with the family <event>"
-msgstr "Possiede l'evento famigliare"
+msgstr "Persone con <evento> familiare"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:53
-#, fuzzy
 msgid "Matches people with a family event of a particular value"
-msgstr "Estrae la persona che possiede un evento famigliare con uno specifico valore"
+msgstr "Estrae le persone che possiedono un evento familiare con uno specifico valore"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
 msgid "People with <Id>"
-msgstr "Persona con <Id>"
+msgstr "Persone con <Id>"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
@@ -17817,7 +17748,6 @@ msgid "Suffix:"
 msgstr "Suffisso:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
-#, fuzzy
 msgid "person|Title:"
 msgstr "Titolo:"
 
@@ -17830,15 +17760,13 @@ msgid "Call Name:"
 msgstr "Pseudonimo:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
-#, fuzzy
 msgid "People with the <name>"
-msgstr "Persone con <name>"
+msgstr "Persone con <nome>"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 #: ../src/Filters/Rules/Person/_SearchName.py:48
-#, fuzzy
 msgid "Matches people with a specified (partial) name"
-msgstr "Estrae la persona con un nome (parziale) specificato"
+msgstr "Estrae le persone con un nome (parziale) specificato"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
@@ -17853,11 +17781,8 @@ msgid "People having notes"
 msgstr "Persone con note"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:44
-#, fuzzy
 msgid "Matches people that have a note"
-msgstr ""
-"Estrae le persone che possiedono un ascendente comune ad una persona "
-"specificata"
+msgstr "Estrae le persone che possiedono una nota"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
 msgid "People having notes containing <regular expression>"
@@ -17882,14 +17807,12 @@ msgid "Number of children:"
 msgstr "Numero figli:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:49
-#, fuzzy
 msgid "People with the <relationships>"
-msgstr "Persone con la <relazione>"
+msgstr "Persone con <relazione>"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:50
-#, fuzzy
 msgid "Matches people with a particular relationship"
-msgstr "Estrae la persona che possiede una specifica relazione"
+msgstr "Estrae le persone che possiedono una specifica relazione"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:51
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:46
@@ -17906,19 +17829,16 @@ msgstr "Filtri famiglia"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:479
-#, fuzzy
 msgid "Source ID:"
 msgstr "ID fonte:"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
-#, fuzzy
 msgid "People with the <source>"
-msgstr "Persone con figli"
+msgstr "Persone con <fonte>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
-#, fuzzy
 msgid "Matches people who have a particular source"
-msgstr "Estrae le persone che possiedono una specifica fonte"
+msgstr "Estrae le persone a cui è associata una specifica fonte"
 
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 msgid "People with records containing <substring>"
@@ -17934,16 +17854,15 @@ msgstr "Persone dal sesso sconosciuto"
 
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:48
 msgid "Matches all people with unknown gender"
-msgstr ""
+msgstr "Estrae tutte le persone con sesso sconosciuto"
 
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:44
 msgid "Adopted people"
 msgstr "Persone adottate"
 
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:45
-#, fuzzy
 msgid "Matches people who were adopted"
-msgstr "Persone adottate"
+msgstr "Estrae le persone adottate"
 
 #: ../src/Filters/Rules/Person/_HaveChildren.py:43
 msgid "People with children"
@@ -17955,32 +17874,28 @@ msgid "Matches people who have children"
 msgstr "Persone con figli"
 
 #: ../src/Filters/Rules/Person/_HavePhotos.py:43
-#, fuzzy
 msgid "People with images"
-msgstr "Persone con un'immagine"
+msgstr "Persone con immagini"
 
 #: ../src/Filters/Rules/Person/_HavePhotos.py:44
-#, fuzzy
 msgid "Matches people with images in the gallery"
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Estrae le persone con immagini nella galleria"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:45
 msgid "People with incomplete names"
-msgstr "Persone con il nome incompleto"
+msgstr "Persone con nome incompleto"
 
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:46
 msgid "Matches people with firstname or lastname missing"
-msgstr ""
+msgstr "Estrae le persone con nome o cognome mancante"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:48
-#, fuzzy
 msgid "Ancestors of <filter> match"
-msgstr "Ascendente di persone corrispondenti a <figlio>"
+msgstr "Ascendenti di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:50
-#, fuzzy
 msgid "Matches people that are ancestors of anybody matched by a filter"
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Estrae gli ascendenti di qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
@@ -17990,47 +17905,41 @@ msgid "Inclusive:"
 msgstr "Inclusivo:"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:46
-#, fuzzy
 msgid "Ancestors of <person>"
-msgstr "Ascendenti di <person>"
+msgstr "Ascendenti di <persona>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Estrae le persone ascendenti da una persona specificata"
+msgstr "Estrae gli ascendenti di una persona specificata"
 
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:46
-#, fuzzy
 msgid "Bookmarked people"
-msgstr "Fusione persone"
+msgstr "Persone nei segnalibri"
 
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:48
-#, fuzzy
 msgid "Matches the people on the bookmark list"
-msgstr "Estrae tutte le persone nel database"
+msgstr "Estrae le persone inserite nei segnalibri"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:47
-#, fuzzy
 msgid "Children of <filter> match"
 msgstr "Figli di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:49
 #, fuzzy
 msgid "Matches children of anybody matched by a filter"
-msgstr "Estrae la persona che è figlio di qualcuno estratto con un filtro"
+msgstr "Estrae le persone figlie di qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
 msgid "Default person"
 msgstr "Persona predefinita"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
-#, fuzzy
 msgid "Matches the default person"
-msgstr "È estratto dal filtro con nome"
+msgstr "Estrae la persona predefinita"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
-#, fuzzy
 msgid "Descendant family members of <person>"
-msgstr "Membri della famiglia discendenti da <person>"
+msgstr "Membri della famiglia discendenti da <persona>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:52
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:49
@@ -18049,19 +17958,17 @@ msgstr ""
 "persona specificata"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:48
-#, fuzzy
 msgid "Descendants of <filter> match"
 msgstr "Discendenti di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
 #, fuzzy
 msgid "Matches people that are descendants of anybody matched by a filter"
-msgstr "Estrae le persone discendenti da qualcuno estratto con un filtro"
+msgstr "Estrae le persone che discendono da qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
-#, fuzzy
 msgid "Descendants of <person>"
-msgstr "Discendenti di <person>"
+msgstr "Discendenti di <persona>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
@@ -18082,121 +17989,98 @@ msgid "Number of generations:"
 msgstr "Numero di generazioni:"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:53
-#, fuzzy
 msgid "Ancestors of bookmarked people not more than <N> generations away"
-msgstr "È un ascendente della persona da non più di N generazioni"
+msgstr "Ascendenti da non più di <N> generazioni di persone nei segnalibri"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:56
-#, fuzzy
 msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
-msgstr "È un ascendente della persona da non più di N generazioni"
+msgstr "Estrae gli ascendenti da non più di N generazioni di persone nei segnalibri"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:48
-#, fuzzy
 msgid "Ancestors of the default person not more than <N> generations away"
-msgstr "È un ascendente della persona da non più di N generazioni"
+msgstr "Ascendenti da non più di <N> generazioni della persona predefinita"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-#, fuzzy
 msgid "Matches ancestors of the default person not more than N generations away"
-msgstr "È un ascendente della persona da non più di N generazioni"
+msgstr "Estrae gli ascendenti da non più di N generazioni della persona predefinita"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:47
-#, fuzzy
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "È un ascendente della persona da non più di N generazioni"
+msgstr "Ascendenti di <persona> da non più di <N> generazioni"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:49
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
-msgstr ""
-"Estrae le persone che ascendono da una persona specificata da non più di N "
-"generazioni"
+msgstr "Estrae gli ascendenti da non più di N generazioni di una persona specificata "
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:47
-#, fuzzy
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "È un discendente della persona da non più di N generazioni"
+msgstr "Discendenti di <persona> da non più di <N> generazioni"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:50
 msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
-msgstr ""
-"Estrae le persone che discendono da un persona specificata da non più di N "
-"generazioni"
+msgstr "Estrae i discendenti da non più di N generazioni di un persona specificata"
 
 #: ../src/Filters/Rules/Person/_IsMale.py:48
 msgid "Matches all males"
 msgstr "Estrae tutti i maschi"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:47
-#, fuzzy
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "È un ascendente della persona da almeno N generazioni"
+msgstr "Ascendenti di <persona> da almeno <N> generazioni"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:49
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
-msgstr ""
-"Estrae le persone che ascendono da una persona specificata da almeno N "
-"generazioni"
+msgstr "Estrae gli ascendenti da almeno N generazioni di una persona specificata"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:47
-#, fuzzy
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "È un discendente della persona da almeno N generazioni"
+msgstr "Discendenti di <persona> da almeno <N> generazioni"
 
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:49
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
-msgstr ""
-"Estrae le persone discendenti da una persona specificata da almeno N "
-"generazioni"
+msgstr "Estrae i discendenti da almeno N generazioni di una persona specificata"
 
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:47
-#, fuzzy
 msgid "Parents of <filter> match"
 msgstr "Genitori di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:49
-#, fuzzy
 msgid "Matches parents of anybody matched by a filter"
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Estrae i genitori di qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:46
-#, fuzzy
 msgid "Siblings of <filter> match"
 msgstr "Fratelli di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:48
-#, fuzzy
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Estrae i fratelli di qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:47
-#, fuzzy
 msgid "Spouses of <filter> match"
-msgstr "Coniugi di persone corrispondenti al <filtro>"
+msgstr "Coniugi di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:48
-#, fuzzy
 msgid "Matches people married to anybody matching a filter"
-msgstr "Estrae la persona sposata con qualcuno estratto con un filtro"
+msgstr "Estrae le persone sposate con qualcuno corrispondente ad un filtro"
 
 #: ../src/Filters/Rules/Person/_IsWitness.py:45
 msgid "Witnesses"
 msgstr "Testimoni"
 
 #: ../src/Filters/Rules/Person/_IsWitness.py:46
-#, fuzzy
 msgid "Matches people who are witnesses in any event"
-msgstr "Estrae le persone ascendenti da una persona specificata"
+msgstr "Estrae i testimoni di un evento"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
@@ -18205,14 +18089,12 @@ msgid "Event filter name:"
 msgstr "Nome filtro evento:"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
-#, fuzzy
 msgid "Persons with events matching the <event filter>"
-msgstr "Problema modifica sesso"
+msgstr "Persone con eventi corrispondenti a <filtro eventi>"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
-#, fuzzy
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Estrae le persone discendenti da qualcuno estratto con un filtro"
+msgstr "Estrae le persone che hanno eventi corrispondenti ad un certo filtro eventi"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
@@ -18228,7 +18110,7 @@ msgstr "Persone con più di un matrimonio"
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:44
 msgid "Matches people who have more than one spouse"
-msgstr ""
+msgstr "Estrae le persone con più di un coniuge"
 
 #: ../src/Filters/Rules/Person/_NeverMarried.py:43
 msgid "People with no marriage records"
@@ -18236,12 +18118,12 @@ msgstr "Persone senza matrimoni"
 
 #: ../src/Filters/Rules/Person/_NeverMarried.py:44
 msgid "Matches people who have no spouse"
-msgstr ""
+msgstr "Estrae le persone mai coniugate"
 
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:43
 #, fuzzy
 msgid "People without a known birth date"
-msgstr "Persone senza data di nascita"
+msgstr "Persone senza data di nascita nota"
 
 #: ../src/Filters/Rules/Person/_NoBirthdate.py:44
 msgid "Matches people without a known birthdate"
@@ -18261,19 +18143,21 @@ msgstr "Persone con eventi incompleti"
 
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event"
-msgstr ""
+msgstr "Estrae le persone con data o luogo mancante in un evento"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
+#, fuzzy
 msgid "On date:"
-msgstr ""
+msgstr "In data:"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
-msgstr ""
+msgstr "Persone probabilmente in vita"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
+#, fuzzy
 msgid "Matches people without indications of death that are not too old"
-msgstr ""
+msgstr "Estrae le persone senza dati relativi al decesso e con un'età ragionevole"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
@@ -18288,17 +18172,14 @@ msgid "Expression:"
 msgstr "Espressione:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Persone corrispondenti a <nome_espressione_regolare>"
+msgstr "Persone corrispondenti a <espressione_regolare_nome>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:49
-#, fuzzy
 msgid "Matches people's names with a specified regular expression"
-msgstr "Estrae la persona con un nome (parziale) specificato"
+msgstr "Estrae le persone con nomi corrispondenti ad un'espressione regolare specificata"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
-#, fuzzy
 msgid "Relationship path between <persons>"
 msgstr "Percorso relazioni fra le <persone>"
 
@@ -18308,16 +18189,14 @@ msgid "Relationship filters"
 msgstr "Filtri relazione"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
-#, fuzzy
 msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
 "Estrae gli ascendenti di due persone fino ad un ascendente comune e produce "
-"un percorso di relazioni fra le due persone."
+"il percorso delle relazioni fra le due persone."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
 msgstr "Percorso relazioni fra due persone inserite nei segnalibri"
 
@@ -18327,8 +18206,8 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Estrae gli ascendenti di due persone fino ad un ascendente comune e produce "
-"un percorso di relazioni fra le due persone."
+"Estrae gli ascendenti di due persone inserite nei segnalibri fino agli ascendenti"
+"comune e produce il/i percorso/i delle relazioni fra le due persone inserite nei segnalibri."
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -18339,7 +18218,6 @@ msgid "Matches people with a marker of a particular value"
 msgstr "Estrae le persone con uno specifico marcatore"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:44
-#, fuzzy
 msgid "People missing parents"
 msgstr "Persone senza genitori"
 
@@ -18348,6 +18226,8 @@ msgid ""
 "Matches people that are children in a family with less than two parents or "
 "are not children in any family."
 msgstr ""
+"Estrae le persone che sono figlie in famiglie con meno di due genitori o "
+"che non sono figlie di alcuna famiglia."
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
 msgid "Every family"
@@ -18366,22 +18246,18 @@ msgid "Matches families that are indicated as private"
 msgstr "Estrae le famiglie che sono indicate come private"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
-#, fuzzy
 msgid "Families with the family <attribute>"
-msgstr "Famiglie che possiedono l'<attributo> famigliare"
+msgstr "Famiglie che possiedono l'<attributo> familiare"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Estrae le famiglie che possiedono un attributo famigliare con uno specifico valore"
+msgstr "Estrae le famiglie che possiedono un attributo familiare con uno specifico valore"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
-#, fuzzy
 msgid "Families with the <event>"
 msgstr "Famiglie con <evento>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
 msgstr "Estrae le famiglie con un evento avente uno specifico valore"
 
@@ -18418,12 +18294,10 @@ msgid "Matches family objects with a certain reference count"
 msgstr "Estrae le famiglie con un certo numero di riferimenti"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Family with the relationship type"
 msgstr "Famiglie con un tipo di relazione"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches family with the relationship type of a particular value"
 msgstr "Estrae le famiglie con un particolare tipo di relazione"
 
@@ -18432,7 +18306,6 @@ msgid "Bookmarked families"
 msgstr "Famiglie nei segnalibri"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:47
-#, fuzzy
 msgid "Matches the families on the bookmark list"
 msgstr "Estrae le famiglie presenti nei segnalibri"
 
@@ -18489,13 +18362,11 @@ msgid "Father filters"
 msgstr "Filtri padre"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
-#, fuzzy
 msgid "Families with mother with the <name>"
 msgstr "Famiglie con madre avente <nome>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a specified (partial) name"
 msgstr "Estrae le famiglie dove la madre ha un nome (parziale) specificato"
 
@@ -18511,25 +18382,21 @@ msgstr "Estrae le famiglie dove un figlio ha un ID GRAMPS specifico"
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchChildName.py:49
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:49
-#, fuzzy
 msgid "Child filters"
 msgstr "Filtri figlio/a"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-#, fuzzy
 msgid "Families with father with the <name>"
 msgstr "Famiglie con padre avente <nome>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a specified (partial) name"
 msgstr "Estrae le famiglie dove il padre ha un nome (parziale) specificato"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-#, fuzzy
 msgid "Families with child with the <name>"
-msgstr "Famiglie con figlio avente <nome>"
+msgstr "Famiglie con figlio/a avente <nome>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
 #, fuzzy
@@ -18537,7 +18404,6 @@ msgid "Matches families where child has a specified (partial) name"
 msgstr "Estrae le famiglie dove un figlio ha un nome (parziale) specificato"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <name>"
 msgstr "Famiglie con padre corrispondente a <nome>"
 
@@ -18552,17 +18418,14 @@ msgid "Matches families where any child has a specified (partial) name"
 msgstr "Estrae le famiglie dove un figlio ha un nome (parziale) specificato"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <name>"
 msgstr "Famiglie con madre corrispondente a <nome>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <regex_name>"
-msgstr "Famiglie con padre corrispondente a <nome_espressione_regolare>"
+msgstr "Famiglie con padre corrispondente a <espressione_regolare_nome>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
-#, fuzzy
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
@@ -18571,12 +18434,10 @@ msgstr ""
 "regolare specificata"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <regex_name>"
-msgstr "Famiglie con madre corrispondente a <nome_espressione_regolare>"
+msgstr "Famiglie con madre corrispondente a <espressione_regolare_nome>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
-#, fuzzy
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
@@ -18587,7 +18448,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 #, fuzzy
 msgid "Families with child matching the <regex_name>"
-msgstr "Famiglie con figlio corrispondente a <nome_espressione_regolare>"
+msgstr "Famiglie con figli corrispondenti a <espressione_regolare_nome>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 #, fuzzy
@@ -18595,7 +18456,7 @@ msgid ""
 "Matches families where child has a name matching a specified regular "
 "expression"
 msgstr ""
-"Estrae le famiglie il cui figlio/a ha un nome corrispondente ad un'espressione "
+"Estrae le famiglie i cui figli hanno un nome corrispondente ad un'espressione "
 "regolare specificata"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
@@ -18694,12 +18555,10 @@ msgstr "Nome filtro persona:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 #: ../src/FilterEditor/_EditRule.py:499
-#, fuzzy
 msgid "Include Family events:"
-msgstr "Includere eventi famigliari:"
+msgstr "Includere eventi familiari:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
-#, fuzzy
 msgid "Events of persons matching the <person filter>"
 msgstr "Eventi di persone che corrispondono al <filtro persona>"
 
@@ -18737,12 +18596,10 @@ msgid "Matches a place with a specified GRAMPS ID"
 msgstr "Estrae il luogo con un ID GRAMPS specifico"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:46
-#, fuzzy
 msgid "Places with no latitude or longitude given"
-msgstr "Posti senza latitudine o longitudine"
+msgstr "Posti senza dati di latitudine o longitudine"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
-#, fuzzy
 msgid "Matches places with latitude or longitude empty"
 msgstr "Estrae i luoghi con latitudine o longitudine vuota"
 
@@ -18821,7 +18678,6 @@ msgid "Places in neighborhood of given position"
 msgstr "Luoghi nelle vicinanze di una data posizione"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:50
-#, fuzzy
 msgid ""
 "Matches places with latitude or longitude positioned in a rectangle of given "
 "height and width (in degrees), and with middlepoint the given latitude and "
@@ -18840,7 +18696,6 @@ msgid "Matches places matched by the specified filter name"
 msgstr "Estrae i luoghi che corrispondono al filtro indicato"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:51
-#, fuzzy
 msgid "Places of events matching the <event filter>"
 msgstr "Luoghi di eventi che corrispondono al <filtro eventi>"
 
@@ -18848,7 +18703,7 @@ msgstr "Luoghi di eventi che corrispondono al <filtro eventi>"
 msgid ""
 "Matches places where events happened that match the specified event filter "
 "name"
-msgstr "Note che corrispondono a parametri"
+msgstr "Estrae i luoghi dove sono accaduti eventi che corrispondono al filtro specificato"
 
 #: ../src/Filters/Rules/Place/_PlacePrivate.py:43
 msgid "Places marked private"
@@ -19295,7 +19150,7 @@ msgstr "Editor filtri personalizzati"
 
 #: ../src/FilterEditor/_FilterEditor.py:189
 msgid "Delete Filter?"
-msgstr "Cancellare il filtro?"
+msgstr "Eliminare il filtro?"
 
 #: ../src/FilterEditor/_FilterEditor.py:190
 msgid ""
@@ -19304,12 +19159,12 @@ msgid ""
 "it."
 msgstr ""
 "Questo filtro è attualmente usato come base per altri filtri. La sua "
-"cancellazione provocherà la rimozione dal database di tutti i filtri che vi "
+"eliminazione provocherà la rimozione dal database di tutti i filtri che vi "
 "dipendono."
 
 #: ../src/FilterEditor/_FilterEditor.py:194
 msgid "Delete Filter"
-msgstr "Cancella filtro"
+msgstr "Elimina filtro"
 
 #: ../src/FilterEditor/_EditFilter.py:77
 msgid "Define filter"
@@ -19337,7 +19192,7 @@ msgid "Select..."
 msgstr "Seleziona..."
 
 #: ../src/FilterEditor/_EditRule.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "Select %s from a list"
 msgstr "Selezionare %s dall'elenco"
 
@@ -19358,9 +19213,8 @@ msgid "Use regular expression"
 msgstr "Usa espressione regolare"
 
 #: ../src/FilterEditor/_EditRule.py:500
-#, fuzzy
 msgid "Also family events where person is wife/husband"
-msgstr "Anche gli eventi famigliari dove la persona è moglie/marito"
+msgstr "Anche gli eventi familiari dove la persona è moglie/marito"
 
 #: ../src/FilterEditor/_EditRule.py:514
 msgid "Rule Name"
@@ -19376,7 +19230,6 @@ msgid "Filter Test"
 msgstr "Test filtro"
 
 #: ../src/docgen/gtkprintpreview.glade.h:1
-#, fuzzy
 msgid "Closes print preview window"
 msgstr "Chiude la finestra di anteprima"
 
@@ -20411,11 +20264,11 @@ msgstr "Co_mmento:"
 
 #: ../src/glade/rule.glade.h:15
 msgid "Delete the selected filter"
-msgstr "Cancella il filtro selezionato"
+msgstr "Elimina il filtro selezionato"
 
 #: ../src/glade/rule.glade.h:16
 msgid "Delete the selected rule"
-msgstr "Cancella la regola selezionata"
+msgstr "Elimina la regola selezionata"
 
 #: ../src/glade/rule.glade.h:17
 msgid "Edit the selected filter"
@@ -20426,7 +20279,6 @@ msgid "Edit the selected rule"
 msgstr "Modifica la regola selezionata"
 
 #: ../src/glade/rule.glade.h:21
-#, fuzzy
 msgid "Return values that do no_t match the filter rules"
 msgstr "Res_tituisci i valori che non corrispondono alle regole del filtro"
 
@@ -21378,21 +21230,23 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:69
-#, fuzzy
 msgid ""
 "To easily merge two people, select them both (a second person can be "
 "selected by holding the Control key while clicking) and clicking on <b>Edit "
 "&gt; Fast Merge</b>."
 msgstr ""
-"Devono essere selezionate esattamente due persone affinché la fusione sia "
-"possibile. Una seconda persona può essere selezionata mantenendo premuto il "
-"tasto Ctrl mentre si clicca sulla persona desiderata."
+"Per fondere facilmente due persone, selezionarle entrambe (la seconda persona "
+"può essere selezionate tenendo premuto il tasto Control e facendo clic) e fare "
+"clic su <b>Modifica -&gt;Fusione rapida</b>."
 
 #: ../src/data/tips.xml.in.h:70
+#, fuzzy
 msgid ""
 "To run GRAMPS, you need to have GNOME installed. But you do not need to be "
 "running the GNOME desktop."
 msgstr ""
+"Per eseguire GRAMPS bisogna installare GNOME, anche se non è necessario"
+"eseguire l'ambiente desktop GNOME."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
