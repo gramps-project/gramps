@@ -28,7 +28,10 @@ Handles generation and access to thumbnails used in GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 
 #-------------------------------------------------------------------------
 #
@@ -123,7 +126,7 @@ def __build_thumb_path(path, rectangle=None):
     extra = ""
     if rectangle is not None:
         extra = "?" + str(rectangle)
-    md5_hash = md5.md5(path+extra)
+    md5_hash = md5(path+extra)
     return os.path.join(const.THUMB_DIR, md5_hash.hexdigest()+'.png')
 
 #-------------------------------------------------------------------------

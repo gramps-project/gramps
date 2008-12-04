@@ -45,7 +45,10 @@ Narrative Web Page generator.
 #------------------------------------------------------------------------
 import os
 import re
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 import time
 import locale
 import shutil
@@ -236,7 +239,7 @@ def html_escape(text):
 
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
-    return md5.new(text).hexdigest()
+    return md5(text).hexdigest()
 
 
 class BasePage:

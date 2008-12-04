@@ -28,7 +28,10 @@
 #
 #-------------------------------------------------------------------------
 import os
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 import zipfile
 import time
 import locale
@@ -452,7 +455,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             act_width = x_cm/ratio
             
         not_extension, extension = os.path.splitext(file_name)
-        odf_name = md5.new(file_name).hexdigest() + extension
+        odf_name = md5(file_name).hexdigest() + extension
 
         media_list_item = (file_name, odf_name)
         if not media_list_item in self.media_list:
