@@ -32,7 +32,10 @@ This is the research tool, not the low-level data ingerity check.
 #------------------------------------------------------------------------
 import os
 import cPickle
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 import Errors
 
 #------------------------------------------------------------------------
@@ -551,7 +554,7 @@ class VerifyResults(ManagedWindow):
         self.window_shown = False
 
     def load_ignored(self,db_filename):
-        md5sum = md5.md5(db_filename)
+        md5sum = md5(db_filename)
         self.ignores_filename = os.path.join(
             const.HOME_DIR,md5sum.hexdigest() + os.path.extsep + 'vfm')
         if not self._load_ignored(self.ignores_filename):

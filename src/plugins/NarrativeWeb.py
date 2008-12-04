@@ -34,7 +34,10 @@ Narrative Web Page generator.
 #------------------------------------------------------------------------
 import cgi
 import os
-import md5
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 import time
 import locale
 import shutil
@@ -325,7 +328,7 @@ class BasePage:
             of.close()
 
     def lnkfmt(self,text):
-        return md5.new(text).hexdigest()
+        return md5(text).hexdigest()
 
     def display_footer(self, of,db):
         of.write('</div>\n\n')
@@ -976,7 +979,7 @@ class SurnamePage(BasePage):
 
         BasePage.__init__(self, title, options, archive, media_list, "")
 
-        of = self.create_link_file(md5.new(title).hexdigest(),'srn')
+        of = self.create_link_file(md5(title).hexdigest(),'srn')
         self.display_header(of,db,title,get_researcher().get_name(),True)
 
         msg = _("This page contains an index of all the individuals in the "
