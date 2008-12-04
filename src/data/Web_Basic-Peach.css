@@ -91,6 +91,7 @@ img {
 h1 {
     font-size:1.4em;
     font-weight:bold;
+    margin:0;
 }
 h2 {
     display:none;
@@ -118,6 +119,7 @@ h5, h6 {
 p {
     font-size:14px;
     line-height:17px;
+    margin:0;
 }
 p#description {
     padding:0 15px 1em 15px;
@@ -128,7 +130,8 @@ p a:link {
 sup {
     line-height:0;
 }
-ol {  }
+ol {
+}
 ol li a {
     text-decoration:none;
 }
@@ -170,12 +173,12 @@ a:visited {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation {
+#navigation, #subnavigation {
     margin:0;
     padding:4px 0 0 0;
     background-color:#FFE09F;
 }
-#navigation ul {
+#navigation ul, #subnavigation ul {
     list-style:none;
     min-width:770px;
     height:22px;
@@ -183,12 +186,12 @@ a:visited {
     padding:0 0 0 12px;
     border-bottom:1px solid #8C581C;
 }
-#navigation ul li {
+#navigation ul li, #subnavigation ul li {
     margin:0;
     padding:0;
     float:left;
 }
-#navigation ul li a {
+#navigation ul li a, #subnavigation ul li a {
     display:block;
     font-size:12px;
     line-height:100%;
@@ -198,11 +201,11 @@ a:visited {
     padding:5px 5px;
     background-color:#FFE09F;
 }
-#navigation ul li a:hover {
+#navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#FFC35E;
     border-bottom:solid 1px #36220B;
 }
-#navigation ul li#CurrentSection a {
+#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
     padding-bottom:4px;
     border-top:solid 1px #8C581C;
     border-right:solid 1px #8C581C;
@@ -212,6 +215,9 @@ a:visited {
 }
 #navigation ul li#CurrentSection a:hover {
     background-color:#FFFBE7;
+}
+#subnavigation ul li#CurrentSection a {
+    border-width:0 0 1px 0;
 }
 
 /* Main Table
@@ -912,7 +918,7 @@ div#sourcerefs ol li ol {
     line-height:130%;
     color:#8C581C;
     margin:0;
-    padding:0;
+    padding:15px 0 0 0;
     background-color:#FFC35E;
     border-top:solid 1px #EA8414;
 }
@@ -1021,8 +1027,7 @@ body#WebCal #CreatorInfo {
     padding:.7em 5% 1em 5%;
     border-top:solid 4px #8C581C;
 }
-.calendar tfoot tr td.note {
-    height:1cm;
+.calendar tfoot tr td {
     vertical-align:middle;
     color:#8C581C;
     background-color:#FFFBE7;
@@ -1061,7 +1066,7 @@ body#WebCal #CreatorInfo {
 .calendar tbody tr td.saturday {
 
  }
-.calendar tbody tr td.sunday {
+.calendar tbody tr td:first-child {
     border-left:none;
 }
 .calendar tbody tr:first-child td {
@@ -1110,4 +1115,30 @@ body#WebCal #CreatorInfo {
 .calendar tbody tr td.next div.date {
     color:#FFE09F;
     background-color:#FFFBE7;
+}
+
+/* Calendar : Full Year */
+body#fullyear div.content, body#fullyearlinked div.content {
+    width:963px;
+    margin:0 auto;
+    padding:15px 0 2px 2px;
+}
+body#fullyear table.calendar, body#fullyearlinked table.calendar {
+    float:left;
+    width:320px;
+    height:18em;
+    border:solid 1px #7D5925;
+}
+body#fullyear table.calendar thead tr th, body#fullyearlinked table.calendar thead tr th {
+    height:2em;
+}
+body#fullyear table.calendar thead tr th.monthName, body#fullyearlinked table.calendar thead tr th.monthName {
+    font-size:1.2em;
+    padding:2px 0;
+}
+body#fullyear table.calendar tbody tr td, body#fullyearlinked table.calendar tbody tr td {
+    height:3em;
+}
+body#fullyear table.calendar tfoot tr td, body#fullyearlinked table.calendar tfoot tr td {
+    display:none;
 }

@@ -124,9 +124,9 @@ h3 {
     line-height:1.3em;
     font-weight:normal;
     font-style:italic;
+    color:#426E40;
     text-align:center;
     margin:0;
-    color:#426E40;
     padding:.3em 20px 0 20px;
     border-bottom:double 4px #000;
 }
@@ -194,6 +194,10 @@ a:hover {
     color:#FAFAFA;
     text-decoration:none;
 }
+.grampsid {
+    font:normal .8em/1.2em monospace;
+    color:#426E40;
+}
 
 /* Header
 ----------------------------------------------------- */
@@ -215,24 +219,6 @@ a:hover {
     text-align:center;
     vertical-align:middle;
 }
-#GRAMPSinfo {
-    font:normal .8em/1.2em sans-serif;
-    float:right;
-    margin:0;
-    padding:.7em .8em;
-    color:#FAFAFA;
-}
-#GRAMPSinfo a {
-    color:#FAFAFA;
-    text-decoration:none;
-}
-#GRAMPSinfo a:hover {
-    background-color:#426E40;
-}
-.grampsid {
-    font:normal .8em/1.2em monospace;
-    color:#426E40;
-}
 p#user_header {
     font-size:1.3em;
     text-align:left;
@@ -244,7 +230,7 @@ p#user_header {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation {
+#navigation, #subnavigation {
     width:100%;
     height:35px;
     list-style-type:none;
@@ -254,24 +240,24 @@ p#user_header {
     border-top:solid 4px #D30;
     border-bottom:solid 4px #D30;
 }
-#navigation ul li {
+#navigation ul li, #subnavigation ul li {
     display:inline;
     width:2em;
     text-align:center;
     margin:0;
 }
-#navigation ul li a {
+#navigation ul li a, #subnavigation ul li a {
     font-size:14px;
     color:#000;
     text-decoration:none;
     margin:0;
     padding:4px;
 }
-#navigation ul li a:hover {
+#navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#000;
     color:#FAFAFA;
 }
-#navigation ul li#CurrentSection a {
+#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
     border-right:solid 2px #D30;
     border-left:solid 2px #D30;
     border-top:solid 2px #D30;
@@ -287,6 +273,9 @@ p#user_header {
 #navigation ul li#CurrentSection a:hover {
     background-color:#426E40;
     color:#FAFAFA;
+}
+#subnavigation ul li#CurrentSection a {
+    border-width:0 0 1px 0;
 }
 
 /* Main Table
@@ -1169,6 +1158,10 @@ div#pedigree {
     padding:.2em 0 .1em 0;
     background-color:#6AF364;
 }
+#CreatorInfo {
+    float:right;
+    margin:-24px 10px 0 0;
+}
 .calendar thead tr th.monthName {
     font-style:italic;
     width:100%;
@@ -1187,6 +1180,10 @@ div#pedigree {
 .calendar tbody tr.week5, .calendar tbody tr.week6  {
     border-bottom:solid 1px #000;
 }
+
+/* Calendar : Date Numeral */
+
+/* Calendar : Date Container */
 .calendar tbody tr td {
     vertical-align:top;
     height:10em;
@@ -1207,12 +1204,14 @@ div#pedigree {
 .calendar tbody tr td.saturday {
     border-right:solid 1px #000;
 }
-.calendar tbody tr td.sunday {
-    border-left:solid 1px #000;
+.calendar tbody tr td:first-child {
+    border-left:none;
 }
-.calendar tbody tr td#emptyDays {
-    border:solid 1px #000;
+.calendar tbody tr:first-child td {
+    border-top:none;
 }
+
+/* Calendar : Date Detail */
 .calendar tbody tr td ul {
     list-style:none;
     font-family:sans-serif;
@@ -1227,6 +1226,11 @@ div#pedigree {
     padding:.2em 0 .3em 0;
     border-top:dashed 1px #000;
 }
+.calendar tbody tr td ul li:first-child {
+    border:none;
+}
+
+/* Calendar : Birthday, Anniversary, Highlight */
 .calendar tbody tr td ul li em {
     font-style:normal;
     color:#0A65B5;
@@ -1264,4 +1268,31 @@ div#pedigree {
     color:#FAFAFA;
     font-weight:bold;
     font-style:italic;
+}
+
+/* Calendar : Full Year */
+body#fullyear div.content, body#fullyearlinked div.content {
+    width:963px;
+    margin:0 auto;
+    padding:15px 0 2px 2px;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
+}
+body#fullyear table.calendar, body#fullyearlinked table.calendar {
+    float:left;
+    width:320px;
+    height:18em;
+    border:solid 1px #7D5925;
+}
+body#fullyear table.calendar thead tr th, body#fullyearlinked table.calendar thead tr th {
+    height:2em;
+}
+body#fullyear table.calendar thead tr th.monthName, body#fullyearlinked table.calendar thead tr th.monthName {
+    font-size:1.2em;
+    padding:2px 0;
+}
+body#fullyear table.calendar tbody tr td, body#fullyearlinked table.calendar tbody tr td {
+    height:3em;
+}
+body#fullyear table.calendar tfoot tr td, body#fullyearlinked table.calendar tfoot tr td {
+    display:none;
 }

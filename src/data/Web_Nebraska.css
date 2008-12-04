@@ -199,11 +199,11 @@ p#user_header {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation {
+#navigation, #subnavigation {
     margin:0;
     padding:0;
 }
-#navigation ul {
+#navigation ul, #subnavigation ul {
     list-style:none;
     min-width:770px;
     height:32px;
@@ -212,11 +212,11 @@ p#user_header {
     background-color:#A97;
     border-bottom:solid 1px #542;
 }
-#navigation ul li {
+#navigation ul li, #subnavigation ul li {
     margin:0;
     float:left;
 }
-#navigation ul li a {
+#navigation ul li a, #subnavigation ul li a {
     display:block;
     float:left;
     font:normal 16px/100% serif;
@@ -226,11 +226,11 @@ p#user_header {
     padding:8px 13px;
 
 }
-#navigation ul li a:hover {
+#navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#C1B398;
     border-bottom:solid 1px #542;
 }
-#navigation ul li#CurrentSection a {
+#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
     font-size:19px;
     margin-top:-6px;
     padding-top:11px;
@@ -242,6 +242,9 @@ p#user_header {
 }
 #navigation ul li#CurrentSection a:hover {
     background-color:#FFF;
+}
+#subnavigation ul li#CurrentSection a {
+    border-width:0 0 1px 0;
 }
 
 /* Main Table
@@ -1063,8 +1066,7 @@ body#WebCal {
     padding:.7em 5% 1em 5%;
     border-top:solid 4px #A97;
 }
-.calendar tfoot tr td.note {
-    height:1cm;
+.calendar tfoot tr td {
     vertical-align:middle;
     color:#542;
     background-color:#F6F2EE;
@@ -1102,7 +1104,7 @@ body#WebCal {
 .calendar tbody tr td.saturday {
 
  }
-.calendar tbody tr td.sunday {
+.calendar tbody tr td:first-child {
     border-left:none;
 }
 .calendar tbody tr:first-child td {
@@ -1151,4 +1153,31 @@ body#WebCal {
 .calendar tbody tr td.next div.date {
     color:#A97;
     background-color:#F6F2EE;
+}
+
+/* Calendar : Full Year */
+body#fullyear div.content, body#fullyearlinked div.content {
+    width:963px;
+    margin:0 auto;
+    padding:15px 0 2px 2px;
+    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
+}
+body#fullyear table.calendar, body#fullyearlinked table.calendar {
+    float:left;
+    width:320px;
+    height:18em;
+    border:solid 1px #7D5925;
+}
+body#fullyear table.calendar thead tr th, body#fullyearlinked table.calendar thead tr th {
+    height:2em;
+}
+body#fullyear table.calendar thead tr th.monthName, body#fullyearlinked table.calendar thead tr th.monthName {
+    font-size:1.2em;
+    padding:2px 0;
+}
+body#fullyear table.calendar tbody tr td, body#fullyearlinked table.calendar tbody tr td {
+    height:3em;
+}
+body#fullyear table.calendar tfoot tr td, body#fullyearlinked table.calendar tfoot tr td {
+    display:none;
 }

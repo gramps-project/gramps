@@ -44,9 +44,9 @@ Refactoring. This is an ongoing job until this plugin is in a better shape.
 TODO list:
  - change filename for one_day pages to yyyy/mm/dd.html (just numbers)
  - progress bar, rethink its usage
+ - in year navigation, use month in link, or 'fullyear'
  - untangle calendar_build, it's too complex the way it is
- - correct surname (prefix missing, or misinterpreted)
- - add_day_item and self.calendar seem to be adding list entries as list (list of list)
+ - use standard Gramps method to display surname, see _get_regular_surname
  - daylight saving not just for USA and Europe
  - move the close_file() from one_day() to caller
 """
@@ -105,8 +105,6 @@ from DateHandler import parser as _dp
 # constants
 #
 #------------------------------------------------------------------------
-_CALENDARSCREEN = "calendar-screen.css"
-_CALENDARPRINT = "calendar-print.css"
 
 # This information defines the list of styles in the Web calendar
 # options dialog as well as the location of the corresponding SCREEN
@@ -325,9 +323,8 @@ class WebCalReport(Report):
                 my_date = '...'
         else:
             my_date = '...'              #Incomplete date as in about, circa, etc.
-        item = [(my_date, text, event)]   # ???? Why is this a list?
 
-        day_list.append(item)
+        day_list.append((my_date, text, event))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
@@ -405,14 +402,14 @@ class WebCalReport(Report):
         """
         Copies all the necessary files
         """
-        # Copy the _CALENDARSCREEN stylesheet
+        # Copy the normal stylesheet
         if self.css != "":
             fname = os.path.join(const.DATA_DIR, self.css)
-            self.copy_file(fname, _CALENDARSCREEN, "styles")
+            self.copy_file(fname, self.css, "styles")
 
-        # copy calendar-print stylesheet
+        # copy print stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-        self.copy_file(fname, _CALENDARPRINT, "styles")
+        self.copy_file(fname, "Web_Print-Default.css", "styles")
 
         # Copy GRAMPS favicon
         fname = os.path.join(const.IMAGE_DIR, "favicon.ico")
@@ -452,7 +449,7 @@ class WebCalReport(Report):
         # add a link to blank_year() if requested
         navs.append(('blankyear', _('Blank Calendar'), self.blankyear))
 
-        of.write('<div id="navigation">\n')
+        of.write('<div id="subnavigation">\n')
         of.write('\t<ul>\n')
 
         for url_fname, nav_text, cond in navs:
@@ -532,7 +529,7 @@ class WebCalReport(Report):
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
 
-    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, use_home=False, add_print=False):
+    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, use_home=False, add_print=True):
         """
         Will create the common information for each calendar being created
         """
@@ -556,6 +553,10 @@ class WebCalReport(Report):
             of.write('%s</p>\n' % msg)
         of.write('</div>\n')  # end header
 
+        if self.multiyear:
+            # create Year Navigation menu
+            self.display_year_navs(of, nr_up, str(year))
+
         # adjust the months being created if self.partyear is True
         # and year is eequal to current year, then start_month is current month
         self.start_month = 1
@@ -566,6 +567,8 @@ class WebCalReport(Report):
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
         self.display_month_navs(of, nr_up, year, currsec1, use_home)
+
+        of.write('<div class="content">\n')
 
     def calendar_build(self, of, cal, year, month):
         """
@@ -584,7 +587,7 @@ class WebCalReport(Report):
 
         # Note. GrampsLocale has sunday => 1, monday => 2, etc
         # We slice out the first empty element.
-        day_names = GrampsLocale.short_days
+        day_names = GrampsLocale.long_days
 
         # Translate a Gramps day number into a HTMLclass
         def get_class_for_daycol(col):
@@ -622,7 +625,9 @@ class WebCalReport(Report):
         of.write('\t\t<tr>\n')
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
-            of.write('\t\t\t<th class="%s">%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
+            dayname = get_name_for_daycol(day_col)
+            #of.write('\t\t\t<th class="%s">%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
+            of.write('\t\t\t<th class="%s"><abbr title="%s">%s</abbr></th>\n' % (dayclass, dayname, dayname[0]))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
 
@@ -652,10 +657,11 @@ class WebCalReport(Report):
         nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
             week = monthinfo[week_row]
-            of.write('\t\t<tr class="week%d">\n' % week_row)
+            of.write('\t\t<tr class="week%d">\n' % (week_row+1))
 
             for day_col in range(0, 7):
                 dayclass = get_class_for_daycol(day_col)
+                hilightday = 'highlight ' + dayclass
 
                 day = week[day_col]
                 if day == 0:                                   # a day in the previous or next month
@@ -666,46 +672,51 @@ class WebCalReport(Report):
                         specday = firstweek_nextmonth[day_col]
                         specclass = "next " + dayclass
 
-                    if specclass[0] == 'p': # previous day of last month
-                        of.write('\t\t\t<td id="prevday%d" ' % specday)
-                    else:                   # next day of next month
-                        of.write('\t\t\t<td id="nextday%d" ' % specday)
-                    of.write('class="%s">\n' % specclass)
+                    #if specclass[0] == 'p': # previous day of last month
+                    #    of.write('\t\t\t<td id="prevday%d" ' % specday)
+                    #else:                   # next day of next month
+                    #    of.write('\t\t\t<td id="nextday%d" ' % specday)
+                    of.write('\t\t\t<td class="%s">\n' % specclass)
                     of.write('\t\t\t\t<div class="date">%d</div>\n' % specday)
                     of.write('\t\t\t</td>\n')
 
                 else:                             # normal day number in current month
                     if cal == "by":               # blank_year() doesn't need any highlighting or hyperlinks
-                        of.write('\t\t\t<td id="day%d" class="%s">\n' % (day, dayclass))
+                        of.write('\t\t\t<td id="%s%02d" class="%s">\n' % (shrt_month, day, dayclass))
                         of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
                         of.write('\t\t\t</td>\n')
                     else:
                         thisday = datetime.date.fromordinal(current_ord)
-                        of.write('\t\t\t<td id="day%d" ' % day)
+                        of.write('\t\t\t<td id="%s%02d" ' % (shrt_month, day))
                         if thisday.month == month: # Something this month
                             holiday_list = self.holidays.get(month, {}).get(thisday.day, [])
                             bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
                             if (holiday_list > []) or (bday_anniv_list > []):
-                                specclass = 'highlight ' + dayclass
-                                of.write('class="%s">\n' % specclass)
                                 evt_date = time.strptime('%d/%d/%d' % (year, month, day), '%Y/%m/%d')
 
                                 # Year at a Glance
                                 if cal == "yg":
-                                    # Notice the code in one_day(): cal_fname = '%s%d%s' % (shrt_month, day, self.ext)
-                                    # TODO. Create file for one_day()
-                                    fname = '%s%d%s' % (shrt_month, day, self.ext)
-                                    of.write('\t\t\t\t<a id="%s%d" href="%s/%s" title="%s%d">\n'
-                                        % (shrt_month, day, lng_month, fname, shrt_month, day))
-                                    of.write('\t\t\t\t\t<div class="date">%d</div>\n' % day)
-                                    of.write('\t\t\t\t</a>\n')
+                                    did_some = self.one_day(of, year, evt_date, cal, holiday_list, bday_anniv_list)
+                                    if did_some:
+                                        # Notice the code in one_day(): cal_fname = '%s%d%s' % (shrt_month, day, self.ext)
+                                        # TODO. Create file for one_day()
+                                        # The HREF is relative to the year path.
+                                        fname = '%s%d%s' % (shrt_month, day, self.ext)
+                                        fname = '/'.join([lng_month, fname])
+                                        of.write('class="%s">\n' % hilightday)
+                                        of.write('\t\t\t\t<a id="%s%d" href="%s" title="%s%d">\n'
+                                                 % (shrt_month, day, fname, shrt_month, day))
+                                        of.write('\t\t\t\t\t<div class="date">%d</div>\n' % day)
+                                        of.write('\t\t\t\t</a>\n')
+                                    else: 
+                                        of.write('class="%s">\n' % dayclass)
+                                        of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
 
                                 # WebCal
-                                elif cal == 'wc': 
+                                elif cal == 'wc':
+                                    of.write('class="%s">\n' % hilightday)
                                     of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
-
-                                # year_glance() and normal_cal() both need this to itemize the list
-                                self.one_day(of, year, evt_date, cal, holiday_list, bday_anniv_list)
+                                    self.one_day(of, year, evt_date, cal, holiday_list, bday_anniv_list)
 
                             # no holiday/ bday/ anniversary this day
                             else: 
@@ -725,6 +736,16 @@ class WebCalReport(Report):
 
             # close the week/ row
             of.write('\t\t</tr>\n')
+
+        if cal == "yg":
+            # Fill up till we have 6 rows, so that the months align properly
+            for i in range(nweeks, 6):
+                of.write('\t\t<tr class="week%d">\n' % (i+1))
+                of.write('\t\t\t<td colspan="7"></td>\n')
+                of.write('\t\t</tr>\n')
+
+        # close table body
+        of.write('\t</tbody>\n')
 
     def write_header(self, of, nr_up, title, add_print=True):
         """
@@ -747,20 +768,19 @@ class WebCalReport(Report):
         of.write('\t<meta name="author" content="%s" />\n\n' % self.author)
 
         subdirs = ['..'] * nr_up
-        # Note. We use '/' here because it is a URL, not a OS dependent pathname
-        fname1 = '/'.join(subdirs + ['styles'] + [_CALENDARSCREEN])
-        fname2 = '/'.join(subdirs + ['styles'] + [_CALENDARPRINT])
-        fname3 = '/'.join(subdirs + ['images'] + ['favicon.ico'])
 
-        # link to _CALENDARSCREEN stylesheet
-        of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="screen" />\n' % fname1)
+        # link to stylesheet
+        fname = '/'.join(subdirs + ['styles'] + [self.css])
+        of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="screen" />\n' % fname)
 
         # link to _CALENDARPRINT stylesheet
         if add_print:
-            of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="print" />\n' % fname2)
+            fname = '/'.join(subdirs + ['styles'] + ["Web_Print-Default.css"])
+            of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="print" />\n' % fname)
 
         # link to GRAMPS favicon
-        of.write('\t<link rel="shortcut icon" href="%s" type="image/icon" />\n' % fname3)
+        fname = '/'.join(subdirs + ['images'] + ['favicon.ico'])
+        of.write('\t<link rel="shortcut icon" href="%s" type="image/icon" />\n' % fname)
 
         of.write('</head>\n\n')
 
@@ -770,6 +790,9 @@ class WebCalReport(Report):
         'nr_up' - number of directory levels up, started from current page, to the
         root of the directory tree (i.e. to self.html_dir).
         """
+
+        of.write('<div class="fullclear"></div>\n')
+        of.write('</div>\n')            # Closing "content"
 
         of.write('<div id="footer">\n')
 
@@ -846,61 +869,56 @@ class WebCalReport(Report):
         if holiday_list > []:
             for p in holiday_list:
                 for line in p.splitlines():
-                    item = [(event_date, line, _('Holiday'))]
-                    day_list.append(item)
+                    day_list.append((event_date, line, _('Holiday')))
 
         # birthday/ anniversary on this day
         if bday_anniv_list > []:
-            # TODO. Eliminate one level of list. See add_day_item.
-            for line in bday_anniv_list:
-                for date, text, event in line: 
+            for date, text, event in bday_anniv_list:
 
-                    # '...' signifies an incomplete date for an event. See add_day_item()
+                # '...' signifies an incomplete date for an event. See add_day_item()
+                txt_str = None
+                if date != '...':
+                    years = year - date.year
+
+                    # a birthday
+                    if event == 'birthday':
+                        if years == 1:
+                            txt_str = _('%(short_name)s, <em>%(age)d</em> year old') % {
+                                'short_name' : text,
+                                'age'        : years}
+                        elif 2 <= years <= 105:
+                            txt_str = _('%(short_name)s, <em>%(age)d</em> years old') % {
+                                'short_name' : text, 
+                                'age'        : years}
+
+                        # TODO. Think about this limit a bit more.
+                        # if age is greater than 105, 
+                        # STOP!  Do Nothing!!!
+                        else:
+                            txt_str = None
+
+                    # an anniversary
+                    elif event == 'anniversary':
+
+                        # if married years is less than 76 years  
+                        if 1 <= years < 75:
+                            txt_str = _('%(couple)s, <em>%(nyears)d</em> year anniversary') % {
+                                'couple' : text,
+                                'nyears' : years}
+                            txt_str = '<span class="yearsmarried">%s</span>' % txt_str
+
+                        # TODO. Think about this limit a bit more.
+                        # if married years is greater than 75 years, 
+                        # STOP!  Do Nothing!!!
+                        else:
+                            txt_str = None
+
+                # incomplete date
+                else:
                     txt_str = None
-                    if date != '...':
-                        years = year - date.year
 
-                        # a birthday
-                        if event == 'birthday':
-                            if years == 1:
-                                txt_str = _('%(short_name)s, <em>%(age)d</em> year old') % {
-                                           'short_name' : text,
-                                           'age'        : years}
-                            elif 2 <= years <= 105:
-                                txt_str = _('%(short_name)s, <em>%(age)d</em> years old') % {
-                                           'short_name' : text, 
-                                           'age'        : years}
-
-                            # TODO. Think about this limit a bit more.
-                            # if age is greater than 105, 
-                            # STOP!  Do Nothing!!!
-                            else:
-                                txt_str = None
-
-                        # an anniversary
-                        elif event == 'anniversary':
-
-                            # if married years is less than 76 years  
-                            if 1 <= years < 75:
-                                txt_str = _('%(couple)s, <em>%(nyears)d</em> year anniversary') % {
-                                           'couple' : text,
-                                           'nyears' : years}
-                                txt_str = '<span class="yearsmarried">%s</span>' % txt_str
-
-                            # TODO. Think about this limit a bit more.
-                            # if married years is greater than 75 years, 
-                            # STOP!  Do Nothing!!!
-                            else:
-                                txt_str = None
-
-                    # incomplete date
-                    else:
-                        txt_str = None
-
-                    if txt_str is not None:
-                        # TODO. Eliminate one level list of list
-                        item = [(date, txt_str, event)]
-                        day_list.append(item)
+                if txt_str is not None:
+                    day_list.append((date, txt_str, event))
 
         # something for this day
         if day_list > []:
@@ -908,7 +926,6 @@ class WebCalReport(Report):
             if cal == 'yg':
 
                 # This is a one_day in the year-at-a-glance calendar
-                nr_up = 2     # number of directory levels to reach self.html_dir
 
                 # slice up event_date to get year, month, and day
                 year, month, day = event_date[0], event_date[1], event_date[2]
@@ -917,7 +934,7 @@ class WebCalReport(Report):
                 lng_month = _get_long_month_name(month)
                 shrt_month = _get_short_month_name(month)
 
-                # Name the file, and create it
+                # Name the file, and create it (see code in calendar_build)
                 cal_fname = '%s%d%s' % (shrt_month, day, self.ext)
                 fpath = os.path.join(str(year), lng_month) 
                 of = self.create_file(cal_fname, fpath)
@@ -927,25 +944,22 @@ class WebCalReport(Report):
                 my_date.set_yr_mon_day(year, month, day)
                 my_date = _dd.display(my_date)
 
-                # create calendar common info for each calendar
-                self.calendar_common(of, nr_up, year, lng_month, _('One Day Within A Year'), my_date)
-                if self.multiyear:
-                    # create Year Navigation menu
-                    self.display_year_navs(of, nr_up, str(year))
+                self.calendar_common(of, 2, year, lng_month, _('One Day Within A Year'), my_date)
 
-                of.write('\t<h1 id="OneDay">%s</h1>\n' % my_date)
+                of.write('\t<h3 id="OneDay">%s</h3>\n' % my_date)
 
             of.write('\t<ul>\n')
-            for line in day_list:
-                # TODO. Eliminate one level list of list
-                for date, text, event in line: 
-                    of.write('\t\t<li>%s</li>\n' % text)
+            for date, text, event in day_list:
+                of.write('\t\t<li>%s</li>\n' % text)
             of.write('\t</ul>\n')
 
             # Only close the file for "Year At A Glance"
             if cal == 'yg':
-                self.write_footer(of, nr_up)
+                self.write_footer(of, 2)
                 self.close_file(of)
+
+        # Let caller know we did output something.
+        return day_list > []
 
     def blank_year(self, year):
         """
@@ -964,11 +978,7 @@ class WebCalReport(Report):
         else:
             title = _('Blank Calendar')
 
-        # create calendar common info for each calendar
-        self.calendar_common(of, nr_up, year, 'blankyear', title, 'blankcal')
-        if self.multiyear:
-            # create Year Navigation menu
-            self.display_year_navs(of, nr_up, str(year))
+        self.calendar_common(of, nr_up, year, 'blankyear', title, 'fullyear')
 
         # generate progress pass for "Blank Year"
         self.progress.set_pass(_('Creating Blank Year calendars'), self.end_month - self.start_month)
@@ -978,8 +988,9 @@ class WebCalReport(Report):
             # build the calendar
             self.calendar_build(of, "by", year, month)
 
-            # close table body
-            of.write('\t</tbody>\n')
+            of.write('<tfoot>\n')
+            of.write('\t<tr><td colspan="7"></td></tr>\n')
+            of.write('</tfoot>\n')
             of.write('</table>\n\n')
 
             # increase progress bar
@@ -1003,19 +1014,17 @@ class WebCalReport(Report):
         # page title
         title = _("%(year)d, At A Glance") % {'year' : year}
 
-        # create calendar common info for each calendar
-        self.calendar_common(of, nr_up, year, 'fullyear', title, 'yearglance')
-        if self.multiyear:
-            # create Year Navigation menu
-            self.display_year_navs(of, nr_up, str(year))
+        self.calendar_common(of, nr_up, year, 'fullyear', title, 'fullyearlinked')
 
         # page description 
+        of.write('<div class="content">\n')
         of.write('<p id="description">\n')
         # TODO. The "red square" is only valid for some style sheets.
         of.write(_('This calendar is meant to give you access to all your data at a glance '
-        'compressed into one page. Clicking on a <strong>red square</strong> will take you to a '
-        'page that shows all the events for that date!\n'))
-        of.write('</p>\n\n')
+        'compressed into one page. Clicking on a date will take you to a '
+        'page that shows all the events for that date, if there are any!\n'))
+        of.write('</p>\n')
+        of.write('</div>\n\n')
 
         # generate progress pass for "Year At A Glance"
         self.progress.set_pass(_('Creating Year At A Glance calendars'), self.end_month - self.start_month)
@@ -1024,25 +1033,13 @@ class WebCalReport(Report):
 
             # build the calendar
             self.calendar_build(of, "yg", year, month)
-            # Note. The week rows are filled up to make them all 6 weeks long.
-            nweeks = len(calendar.monthcalendar(year, month))
-            for i in range(nweeks+1, 7):
-                of.write('\t\t<tr class="week%d">\n' % i)
-                of.write('\t\t\t<td id="emptyDays" colspan="7">\n')
-                of.write('\t\t\t</td>\n')
-                of.write('\t\t</tr>\n')
-
-            # close table body before writing note
-            of.write('\t</tbody>\n')
 
             # create note section for "Year At A Glance"
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
             of.write('\t<tfoot>\n')
             of.write('\t\t<tr>\n')
-            of.write('\t\t\t<td class="note" colspan="7">\n')
-            of.write('\t\t\t\t%s\n' % note)
-            of.write('\t\t\t</td>\n')
+            of.write('\t\t\t<td colspan="7">%s</td>\n' % note)
             of.write('\t\t</tr>\n')
             of.write('\t</tfoot>\n')
             of.write('</table>\n\n')
@@ -1173,24 +1170,17 @@ class WebCalReport(Report):
             cal_fname = _get_long_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
-            # create calendar common info for each calendar
             self.calendar_common(of, nr_up, year, cal_fname, self.title_text, 'WebCal', use_home=True)
-            if self.multiyear:
-                # create Year Navigation menu
-                self.display_year_navs(of, nr_up, str(year))
 
             # build the calendar
             self.calendar_build(of, "wc", year, month)
-
-            # close table body before note section
-            of.write('\t</tbody>\n')
 
             # create note section for "WebCal"
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
             of.write('\t<tfoot>\n')
             of.write('\t\t<tr>\n')
-            of.write('\t\t\t<td class="note" colspan="7">%s</td>\n' % note)
+            of.write('\t\t\t<td colspan="7">%s</td>\n' % note)
             of.write('\t\t</tr>\n')
             of.write('\t</tfoot>\n')
             of.write('</table>\n\n')
@@ -1263,6 +1253,7 @@ class WebCalReport(Report):
                                             father_name = father.get_primary_name() 
                                             father_lastname = _get_regular_surname(sex, father_name)
                     short_name = _get_short_name(person, father_lastname)
+                    # Huh? Why translate this?
                     text = _('%(short_name)s') % {'short_name' : short_name}
                     self.add_day_item(text, year, month, day, 'birthday')
 
