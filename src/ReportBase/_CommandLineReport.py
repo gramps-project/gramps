@@ -288,7 +288,7 @@ class CommandLineReport:
 
         if self.category == CATEGORY_TEXT:
             for item in pmgr.get_text_doc_list():
-                if item[7] == self.options_dict['off']:
+                if item[6] == self.options_dict['off']:
                     self.format = item[1]
             if self.format is None:
                 # Pick the first one as the default.
