@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-05 10:56+0100\n"
-"PO-Revision-Date: 2008-12-05 18:03+0100\n"
+"PO-Revision-Date: 2008-12-06 00:44+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -75,10 +75,13 @@ msgid "Could not open file: %s"
 msgstr "Impossibile aprire il file %s"
 
 #: ../src/ArgHandler.py:405
+#, fuzzy
 msgid ""
 "Not a valid Family tree given to open\n"
 "\n"
 msgstr ""
+"Non è stato fornito un albero genealogico valido\n"
+"\n"
 
 #: ../src/ArgHandler.py:512
 msgid "Database is locked, cannot open it!"
@@ -591,7 +594,6 @@ msgid "Could not make database directory: "
 msgstr "Impossibile creare la directory del database: "
 
 #: ../src/DbManager.py:942
-#, fuzzy
 msgid "Never"
 msgstr "Mai"
 
@@ -2205,9 +2207,8 @@ msgid "Page"
 msgstr "Pagina"
 
 #: ../src/ScratchPad.py:523 ../src/ScratchPad.py:536
-#, fuzzy
 msgid "Repository Reference"
-msgstr "Riferimento depositi"
+msgstr "Riferimento deposito"
 
 #: ../src/ScratchPad.py:538 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
@@ -2219,9 +2220,8 @@ msgid "Media Type"
 msgstr "Tipo multimediale"
 
 #: ../src/ScratchPad.py:551
-#, fuzzy
 msgid "Event Reference"
-msgstr "Riferimento eventi"
+msgstr "Riferimento evento"
 
 #: ../src/ScratchPad.py:587
 msgid "Call Name"
@@ -2234,12 +2234,10 @@ msgid "Prefix"
 msgstr "Prefisso"
 
 #: ../src/ScratchPad.py:673 ../src/ScratchPad.py:685
-#, fuzzy
 msgid "Media Reference"
-msgstr "Modifica il nome selezionato"
+msgstr "Riferimento oggetto multimediale"
 
 #: ../src/ScratchPad.py:699 ../src/Editors/_EditPersonRef.py:142
-#, fuzzy
 msgid "Person Reference"
 msgstr "Riferimento persona"
 
@@ -2908,9 +2906,8 @@ msgid "_Report a Bug"
 msgstr "_Segnala un bug"
 
 #: ../src/ViewManager.py:391
-#, fuzzy
 msgid "_Extra Reports/Tools"
-msgstr "Resoconti testuali"
+msgstr "Ult_eriori resoconti/strumenti"
 
 #: ../src/ViewManager.py:393
 msgid "_About"
@@ -2922,10 +2919,9 @@ msgstr "Stato _plugin"
 
 #: ../src/ViewManager.py:397
 msgid "_FAQ"
-msgstr "_FAQ"
+msgstr "Domande _frequenti"
 
 #: ../src/ViewManager.py:398
-#, fuzzy
 msgid "_Key Bindings"
 msgstr "Associa_zioni di tasti"
 
@@ -4299,9 +4295,8 @@ msgid "Create and add a new address"
 msgstr "Crea e aggiunge un nuovo indirizzo"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
-#, fuzzy
 msgid "Remove the existing address"
-msgstr "Rimuove l'indirizzo esistente"
+msgstr "Rimuove l'indirizzo"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:63
 msgid "Edit the selected address"
@@ -4325,9 +4320,8 @@ msgid "Create and add a new attribute"
 msgstr "Crea e aggiunge un nuovo attributo"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
-#, fuzzy
 msgid "Remove the existing attribute"
-msgstr "Rimuove l'attributo esistente"
+msgstr "Rimuove l'attributo"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:54
 #, fuzzy
@@ -4378,9 +4372,8 @@ msgid "Create and add a new data entry"
 msgstr "Crea e aggiunge un nuovo dato"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:50
-#, fuzzy
 msgid "Remove the existing data entry"
-msgstr "Rimuove il dato esistente"
+msgstr "Rimuove il dato"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
 #, fuzzy
@@ -4403,7 +4396,6 @@ msgid "Key"
 msgstr "Chiave"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:64
-#, fuzzy
 msgid "_Data"
 msgstr "_Dati"
 
@@ -4435,7 +4427,6 @@ msgstr "_Eventi"
 #: ../src/DisplayTabs/_EventEmbedList.py:169
 #: ../src/DisplayTabs/_RepoEmbedList.py:152
 #: ../src/DisplayTabs/_SourceEmbedList.py:133
-#, fuzzy
 msgid "Cannot edit this reference"
 msgstr "Impossibile modificare il riferimento"
 
@@ -4451,7 +4442,6 @@ msgstr ""
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
-#, fuzzy
 msgid "Temple"
 msgstr "Tempio"
 
@@ -4460,36 +4450,31 @@ msgid "_Gallery"
 msgstr "_Galleria"
 
 #: ../src/DisplayTabs/_GalleryTab.py:122
-#, fuzzy, python-format
+#, python-format
 msgid "Open with %s"
 msgstr "Apri con %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
 msgid "Non existing media found in the Gallery"
-msgstr ""
+msgstr "Trovato un oggetto multimediale non esistente nella galleria"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
-#, fuzzy
 msgid "Create and add a new LDS ordinance"
 msgstr "Crea e aggiunge una nuova ordinazione LDS"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
-#, fuzzy
 msgid "Remove the existing LDS ordinance"
-msgstr "Rimuove l'ordinazione LDS esistente"
+msgstr "Rimuove l'ordinazione LDS"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
-#, fuzzy
 msgid "Edit the selected LDS ordinance"
 msgstr "Modifica l'ordinazione LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
-#, fuzzy
 msgid "Move the selected LDS ordinance upwards"
 msgstr "Sposta in alto l'ordinazione LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
-#, fuzzy
 msgid "Move the selected LDS ordinance downwards"
 msgstr "Sposta in basso l'ordinazione LDS selezionata"
 
@@ -4506,9 +4491,8 @@ msgid "Create and add a new name"
 msgstr "Crea e aggiunge un nuovo nome"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:60
-#, fuzzy
 msgid "Remove the existing name"
-msgstr "Rimuove il nome esistente"
+msgstr "Rimuove il nome"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:61
 msgid "Edit the selected name"
@@ -4527,7 +4511,6 @@ msgid "_Names"
 msgstr "_Nomi"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:90
-#, fuzzy
 msgid "Set as default name"
 msgstr "Imposta come nome predefinito"
 
@@ -4536,14 +4519,12 @@ msgid "Create and add a new note"
 msgstr "Crea e aggiunge una nuova nota"
 
 #: ../src/DisplayTabs/_NoteTab.py:64
-#, fuzzy
 msgid "Remove the existing note"
-msgstr "Rimuove la nota esistente"
+msgstr "Rimuove la nota"
 
 #: ../src/DisplayTabs/_NoteTab.py:66
-#, fuzzy
 msgid "Add an existing note"
-msgstr "Aggiunge nota esistente"
+msgstr "Aggiunge una nota esistente"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
 msgid "Move the selected note upwards"
@@ -4563,9 +4544,8 @@ msgid "Create and add a new association"
 msgstr "Crea e aggiunge una nuova associazione"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
-#, fuzzy
 msgid "Remove the existing association"
-msgstr "Rimuove l'associazione esistente"
+msgstr "Rimuove l'associazione"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 #, fuzzy
@@ -4601,14 +4581,12 @@ msgid "Create and add a new repository"
 msgstr "Crea e aggiunge un nuovo deposito"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
-#, fuzzy
 msgid "Remove the existing repository"
-msgstr "Rimuove il deposito esistente"
+msgstr "Rimuove il deposito"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
-#, fuzzy
 msgid "Add an existing repository"
-msgstr "Aggiunge deposito esistente"
+msgstr "Aggiunge un deposito esistente"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
 msgid "Move the selected repository upwards"
@@ -4640,13 +4618,12 @@ msgid "Create and add a new source"
 msgstr "Crea e aggiunge una nuova fonte"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
-#, fuzzy
 msgid "Remove the existing source"
-msgstr "Rimuove la fonte esistente"
+msgstr "Rimuove la fonte"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
 msgid "Add an existing source"
-msgstr "Aggiunge fonte esistente"
+msgstr "Aggiunge una fonte esistente"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
 msgid "Move the selected source upwards"
@@ -4675,7 +4652,7 @@ msgstr "Crea e aggiunge un nuovo indirizzo web"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 msgid "Remove the existing web address"
-msgstr "Rimuove l'indirizzo web esistente"
+msgstr "Rimuove l'indirizzo web"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:55
 msgid "Edit the selected web address"
@@ -4753,14 +4730,12 @@ msgid "The attribute type cannot be empty"
 msgstr "Il tipo dell'attributo non può essere vuoto"
 
 #: ../src/Editors/_EditChildRef.py:93 ../src/Editors/_EditChildRef.py:154
-#, fuzzy
 msgid "Child Reference Editor"
-msgstr "Editor riferimenti figlio"
+msgstr "Editor riferimento figlio"
 
 #: ../src/Editors/_EditChildRef.py:154
-#, fuzzy
 msgid "Child Reference"
-msgstr "Riferimenti figlio"
+msgstr "Riferimento figlio"
 
 #: ../src/Editors/_EditEvent.py:60
 msgid "manual|Editing_Information_About_Events"
@@ -4815,9 +4790,8 @@ msgid "Delete Event (%s)"
 msgstr "Elimina evento (%s)"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
-#, fuzzy
 msgid "Event Reference Editor"
-msgstr "Editor riferimenti evento"
+msgstr "Editor riferimento evento"
 
 #: ../src/Editors/_EditEventRef.py:96 ../src/Editors/_EditMediaRef.py:95
 #: ../src/Editors/_EditName.py:123 ../src/Editors/_EditRepoRef.py:88
@@ -4857,35 +4831,30 @@ msgid "#"
 msgstr "#"
 
 #: ../src/Editors/_EditFamily.py:104
-#, fuzzy
 msgid "Paternal"
-msgstr "Paterno"
+msgstr "Paterna"
 
 #: ../src/Editors/_EditFamily.py:105
-#, fuzzy
 msgid "Maternal"
-msgstr "Materno"
+msgstr "Materna"
 
 #: ../src/Editors/_EditFamily.py:117
-#, fuzzy
 msgid "Chil_dren"
-msgstr "Figli"
+msgstr "F_igli"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
 msgstr "Modifica figlio"
 
 #: ../src/Editors/_EditFamily.py:125
-#, fuzzy
 msgid "Add an existing child"
-msgstr "Aggiunge figlio esistente"
+msgstr "Aggiunge una persona esistente come figlio"
 
 #: ../src/Editors/_EditFamily.py:127
 msgid "Edit relationship"
 msgstr "Modifica relazione"
 
 #: ../src/Editors/_EditFamily.py:427
-#, fuzzy
 msgid "Adding parents to a person"
 msgstr "Aggiunge genitori ad una persona"
 
@@ -5034,7 +5003,6 @@ msgid "%(mother)s [%(gramps_id)s]"
 msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:416
-#, fuzzy
 msgid "LDS Ordinance"
 msgstr "Ordinazione LDS"
 
@@ -5082,8 +5050,9 @@ msgid "Remove Media Object"
 msgstr "Rimuove oggetto multimediale"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
+#, fuzzy
 msgid "Media Reference Editor"
-msgstr ""
+msgstr "Editor riferimento oggetto multimediale"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
@@ -5106,12 +5075,12 @@ msgstr ""
 
 #: ../src/Editors/_EditName.py:345
 msgid "Continue"
-msgstr ""
+msgstr "Continua"
 
 #: ../src/Editors/_EditName.py:346
 #, fuzzy
 msgid "Return to Name Editor"
-msgstr "Editor luoghi"
+msgstr "Ritorna all'editor nomi"
 
 #: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
@@ -5168,9 +5137,8 @@ msgid "Cannot save note. ID already exists."
 msgstr "Impossibile salvare la nota. ID già esistente."
 
 #: ../src/Editors/_EditNote.py:557
-#, fuzzy
 msgid "Add Note"
-msgstr "Note"
+msgstr "Aggiunge nota"
 
 #: ../src/Editors/_EditNote.py:634
 #, python-format
@@ -5195,14 +5163,13 @@ msgid "Edit Object Properties"
 msgstr "Modifica proprietà oggetto"
 
 #: ../src/Editors/_EditPerson.py:516
-#, fuzzy
 msgid "Make Active Person"
-msgstr "Persona non valida"
+msgstr "Imposta come persona attiva"
 
 #: ../src/Editors/_EditPerson.py:520
 #, fuzzy
 msgid "Make Home Person"
-msgstr "Imposta persona-casa"
+msgstr "Imposta come persona principale"
 
 #: ../src/Editors/_EditPerson.py:667
 msgid "Problem changing the gender"
@@ -5247,12 +5214,11 @@ msgid "Unknown gender specified"
 msgstr "Specificato sesso sconosciuto"
 
 #: ../src/Editors/_EditPerson.py:873
-#, fuzzy
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
 msgstr ""
-"Il sesso della persona non è stato specificato. Normalmente accade per "
+"Il sesso della persona non è stato specificato; normalmente accade per "
 "errore. Indicare il sesso."
 
 #: ../src/Editors/_EditPerson.py:876
@@ -5270,7 +5236,7 @@ msgstr "_Sconosciuto"
 #: ../src/Editors/_EditPersonRef.py:82 ../src/Editors/_EditPersonRef.py:142
 #, fuzzy
 msgid "Person Reference Editor"
-msgstr "Editor riferimenti persona"
+msgstr "Editor riferimento persona"
 
 #: ../src/Editors/_EditPersonRef.py:158
 msgid "No person selected"
@@ -5343,7 +5309,7 @@ msgstr "Se si chiude senza salvare, le modifiche apportate andranno perdute"
 #: ../src/Editors/_EditRepoRef.py:72
 #, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Editor riferimenti depositi"
+msgstr "Editor riferimento deposito"
 
 #: ../src/Editors/_EditRepoRef.py:185
 #, python-format
@@ -5357,7 +5323,7 @@ msgstr "Nuovo deposito"
 #: ../src/Editors/_EditRepoRef.py:188
 #, fuzzy
 msgid "Repo Reference Editor"
-msgstr "Editor riferimenti deposito"
+msgstr "Editor riferimento deposito"
 
 #: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
@@ -5436,7 +5402,7 @@ msgstr "Elimina fonte (%s)"
 #: ../src/Editors/_EditSourceRef.py:73 ../src/Editors/_EditSourceRef.py:203
 #, fuzzy
 msgid "Source Reference Editor"
-msgstr "Selezione riferimento fonte"
+msgstr "Editor riferimento fonte"
 
 #: ../src/Editors/_EditSourceRef.py:200
 #, python-format
@@ -5445,7 +5411,7 @@ msgstr "Fonte: %s"
 
 #: ../src/Editors/_EditSourceRef.py:210
 msgid "Modify Source"
-msgstr ""
+msgstr "Modifica fonte"
 
 #: ../src/Editors/_EditSourceRef.py:213
 msgid "Add Source"
@@ -5506,7 +5472,7 @@ msgstr "La riga %d è stata ignorata perché incomprensibile."
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/GrampsDbUtils/_GedcomParse.py:3044
-#, fuzzy, python-format
+#, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Riga %d: la nota evento è stata ignorata perché vuota."
 
@@ -5746,7 +5712,6 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsDbUtils/_ReadXML.py:756
-#, fuzzy
 msgid "Could not change media path"
 msgstr "Impossibile cambiare il percorso degli oggetti multimediali"
 
@@ -5993,7 +5958,6 @@ msgid "manual|General"
 msgstr "Generale"
 
 #: ../src/GrampsLogger/_ErrorView.py:58
-#, fuzzy
 msgid "Error Report"
 msgstr "Resoconto errori"
 
@@ -6085,7 +6049,6 @@ msgid "Family Member"
 msgstr "Membri della famiglia"
 
 #: ../src/plugins/all_events.py:112
-#, fuzzy
 msgid "Personal events of the children"
 msgstr "Eventi personali dei figli"
 
@@ -6136,7 +6099,7 @@ msgstr "Mostra gli eventi della famiglia e dei suoi membri."
 #: ../src/plugins/all_relations.py:67
 #, fuzzy
 msgid "Home person not set."
-msgstr "Persona-casa non impostata"
+msgstr "Persona principale non impostata."
 
 #: ../src/plugins/all_relations.py:76 ../src/plugins/RelCalc.py:184
 #, python-format
@@ -6173,7 +6136,6 @@ msgid "   "
 msgstr "   "
 
 #: ../src/plugins/all_relations.py:265
-#, fuzzy
 msgid "Name Common ancestor"
 msgstr "Nome ascendente comune"
 
@@ -6210,12 +6172,12 @@ msgstr "Si sono verificati i seguenti problemi:"
 #: ../src/plugins/all_relations.py:349
 #, fuzzy
 msgid "Relation to Home Person"
-msgstr "Relazione con la persona-casa"
+msgstr "Relazione con la persona principale"
 
 #: ../src/plugins/all_relations.py:351
 #, fuzzy
 msgid "Display all relationships between person and home person."
-msgstr "Mostra tutte le relazioni tra la persona e la persona-casa"
+msgstr "Mostra tutte le relazioni tra la persona e la personap principale."
 
 #. display the title
 #: ../src/plugins/siblings.py:42
@@ -6238,7 +6200,7 @@ msgstr "Mostra i fratelli di una persona"
 #: ../src/plugins/AgeOnDate.py:47
 #, python-format
 msgid "People probably alive and their ages the %s"
-msgstr ""
+msgstr "Persone probabilmente in vita e rispettive età il %s"
 
 #: ../src/plugins/AgeOnDate.py:50
 #, python-format
@@ -6492,14 +6454,13 @@ msgid "Item name"
 msgstr "Nome elemento"
 
 #: ../src/plugins/BookReport.py:762
-#, fuzzy
 msgid "Subject"
-msgstr "Seleziona"
+msgstr "Soggetto"
 
 #: ../src/plugins/BookReport.py:774
 #, fuzzy
 msgid "Book selection list"
-msgstr "Selezione strumenti"
+msgstr "Lista selezione libri"
 
 #: ../src/plugins/BookReport.py:813
 msgid "Different database"
@@ -6783,9 +6744,8 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:506
-#, fuzzy
 msgid "Select the format to display names"
-msgstr "Seleziona il formato con cui mostrare i nomi"
+msgstr "Seleziona il formato per la visualizzazione dei nomi"
 
 #: ../src/plugins/Calendar.py:509 ../src/plugins/WebCal.py:754
 msgid "Country for holidays"
@@ -6887,9 +6847,8 @@ msgid "Third line of text at bottom of calendar"
 msgstr "Terza riga di testo in fondo al calendario"
 
 #: ../src/plugins/Calendar.py:608
-#, fuzzy
 msgid "Title text and background color"
-msgstr "Titolo e colore di sfondo"
+msgstr "Testo titolo e colore di sfondo"
 
 #: ../src/plugins/Calendar.py:612
 msgid "Calendar day numbers"
@@ -6900,8 +6859,9 @@ msgid "Daily text display"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:617
+#, fuzzy
 msgid "Days of the week text"
-msgstr ""
+msgstr "Testo giorni della settimana"
 
 #: ../src/plugins/Calendar.py:621 ../src/plugins/Calendar.py:661
 #, fuzzy
@@ -6919,14 +6879,12 @@ msgid "Text at bottom, line 3"
 msgstr "Testo in basso, riga 3"
 
 #: ../src/plugins/Calendar.py:627
-#, fuzzy
 msgid "Borders"
 msgstr "Bordi"
 
 #: ../src/plugins/Calendar.py:637
-#, fuzzy
 msgid "Title text"
-msgstr "Titolo"
+msgstr "Testo titolo"
 
 #: ../src/plugins/Calendar.py:639
 msgid "Title of calendar"
@@ -6976,11 +6934,12 @@ msgstr "Produce un resoconto dei compleanni e degli anniversari"
 #: ../src/plugins/ChangeNames.py:67
 #, fuzzy
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Correggere maiuscole nei cognomi"
+msgstr "Correggere uso delle maiuscole nei cognomi"
 
 #: ../src/plugins/ChangeNames.py:77 ../src/plugins/ChangeNames.py:255
+#, fuzzy
 msgid "Capitalization changes"
-msgstr ""
+msgstr "Modifiche all'uso delle maiuscole"
 
 #: ../src/plugins/ChangeNames.py:87
 msgid "Checking Family Names"
@@ -6996,8 +6955,9 @@ msgid "No modifications made"
 msgstr "Nessuna modifica apportata"
 
 #: ../src/plugins/ChangeNames.py:146
+#, fuzzy
 msgid "No capitalization changes were detected."
-msgstr ""
+msgstr "Non è stata rilevata alcuna modifica all'uso delle maiuscole."
 
 #: ../src/plugins/ChangeNames.py:197 ../src/plugins/ExtractCity.py:527
 #: ../src/plugins/PatchNames.py:200 ../src/plugins/SimpleBookTitle.py:211
@@ -7006,33 +6966,29 @@ msgid "Select"
 msgstr "Seleziona"
 
 #: ../src/plugins/ChangeNames.py:200
-#, fuzzy
 msgid "Original Name"
-msgstr "Nomi originale"
+msgstr "Nome originale"
 
 #: ../src/plugins/ChangeNames.py:204
-#, fuzzy
 msgid "Capitalization Change"
-msgstr "Naturalizzazione"
+msgstr "Modifica uso maiuscole"
 
 #: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:290
 #: ../src/plugins/ExtractCity.py:541
 #, fuzzy
 msgid "Building display"
-msgstr "Aggiornamento visualizzazione..."
+msgstr "Costruzione visualizzazione"
 
 #: ../src/plugins/ChangeNames.py:288
-#, fuzzy
 msgid "Fix Capitalization of Family Names"
-msgstr "Correggere maiuscole nei cognomi"
+msgstr "Correggi uso delle maiuscole nei cognomi"
 
 #: ../src/plugins/ChangeNames.py:292
 #, fuzzy
 msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
-"Esegue una ricerca all'interno dell'intero database nel tentativo di "
-"estrarre i titoli ed i sporannomi che possano essere presenti nel campo nome "
-"di una persona."
+"Esegue una ricerca all'interno dell'intero database e cerca di correggere "
+"l'uso delle maiuscole nei nomi."
 
 #: ../src/plugins/ChangeTypes.py:67
 #, fuzzy
@@ -7465,12 +7421,12 @@ msgstr "Ascendenti di \"%s\""
 #: ../src/plugins/CountAncestors.py:95
 #, python-format
 msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-msgstr "La generazione %d comprende 1 individuo. (%3.2f%%)\n"
+msgstr "La generazione %d comprende 1 persona. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:98
 #, python-format
 msgid "Generation %d has %d individuals. (%3.2f%%)\n"
-msgstr "La generazione %d comprende %d individui. (%3.2f%%)\n"
+msgstr "La generazione %d comprende %d persone. (%3.2f%%)\n"
 
 #: ../src/plugins/CountAncestors.py:121
 #, python-format
@@ -8652,10 +8608,13 @@ msgid "No place information could be extracted."
 msgstr "Non può essere estratta nessuna informazione sul luogo."
 
 #: ../src/plugins/ExtractCity.py:516
+#, fuzzy
 msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish GRAMPS to convert."
 msgstr ""
+"Quella che segue è una lista di luoghi con i dati che possono essere estratti "
+"dai rispettivi titoli. Selezionare i luoghi che GRAMPS deve convertire."
 
 #: ../src/plugins/ExtractCity.py:630
 msgid "Extract Place Data from a Place Title"
@@ -9408,7 +9367,7 @@ msgstr "Includi ID"
 
 #: ../src/plugins/GVRelGraph.py:472
 msgid "Include individual and family IDs."
-msgstr "Include l'ID degli individui e delle famiglie."
+msgstr "Include l'ID delle persone e delle famiglie."
 
 #: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
@@ -10690,7 +10649,7 @@ msgstr "Sito web narrazione"
 
 #: ../src/plugins/NarrativeWeb.py:3235
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Produce delle pagine web (HTML) per gli individui o un insieme di individui"
+msgstr "Produce delle pagine web (HTML) per persone o un insieme di persone"
 
 #: ../src/plugins/NotRelated.py:59
 #, fuzzy
@@ -11696,7 +11655,7 @@ msgstr "Elevata differenza di età tra i figli"
 
 #: ../src/plugins/Verify.py:1514
 msgid "Disconnected individual"
-msgstr "Individuo senza nessi"
+msgstr "Persona senza nessi"
 
 #: ../src/plugins/Verify.py:1527
 msgid "Verify the Data"
@@ -11713,12 +11672,10 @@ msgstr "Genera calendari HTML"
 
 #. generate the report:
 #: ../src/plugins/WebCal.py:490
-#, fuzzy
 msgid "Creating Calendar pages"
 msgstr "Generazione pagine del calendario"
 
 #: ../src/plugins/WebCal.py:734
-#, fuzzy
 msgid "Content Options"
 msgstr "Opzioni contenuto"
 
@@ -16860,7 +16817,7 @@ msgstr "Numero previdenza sociale"
 
 #: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
-msgstr ""
+msgstr "Agenzia"
 
 #: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
@@ -16891,7 +16848,6 @@ msgid "Foster"
 msgstr "Affidamento"
 
 #: ../src/gen/lib/srcmediatype.py:64
-#, fuzzy
 msgid "Audio"
 msgstr "Audio"
 
@@ -16904,16 +16860,14 @@ msgid "Card"
 msgstr "Scheda"
 
 #: ../src/gen/lib/srcmediatype.py:67
-#, fuzzy
 msgid "Electronic"
 msgstr "Elettronico"
 
 #: ../src/gen/lib/srcmediatype.py:68
 msgid "Fiche"
-msgstr ""
+msgstr "Microfilm"
 
 #: ../src/gen/lib/srcmediatype.py:69
-#, fuzzy
 msgid "Film"
 msgstr "Pellicola"
 
@@ -16950,7 +16904,6 @@ msgid "Primary"
 msgstr "Principale"
 
 #: ../src/gen/lib/eventroletype.py:60
-#, fuzzy
 msgid "Clergy"
 msgstr "Clero"
 
@@ -16959,7 +16912,6 @@ msgid "Celebrant"
 msgstr "Celebrante"
 
 #: ../src/gen/lib/eventroletype.py:62
-#, fuzzy
 msgid "Aide"
 msgstr "Assistente"
 
@@ -17197,11 +17149,11 @@ msgstr "Unione civile"
 
 #: ../src/gen/lib/familyreltype.py:54
 msgid "Unmarried"
-msgstr "Celibe/nubile"
+msgstr "Non sposati"
 
 #: ../src/gen/lib/familyreltype.py:55
 msgid "Married"
-msgstr "Sposato/a"
+msgstr "Sposati"
 
 #: ../src/gen/lib/ldsord.py:92
 msgid "Endowment"
