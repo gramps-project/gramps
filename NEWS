@@ -1,3 +1,19 @@
+Version 3.0.4 -- the "All the children sing" release.
+* Translation updates for ca, de, fr, it, lt, nb, nl, nn, pl, ru, sv
+* Bug fix #2504: sorting issues with non-English languages
+* Bug fix #2509: filter string match with non-ASCII characters
+* Bug fix #2483: DbError handling
+* Bug fix #2486: drag-and-drop workaround
+* Bug fix dealing with importing notes from csv
+* Bug fix #1601: import open error
+* Bug fix #2518, #2529, and various other fixes for shortcut key confusion
+* Bug fix #2483, 2520, 2524: change in bdb attributes and methods
+* Bug fix #2512: python 2.6 support
+* Bug fix #2485: cannot create new family tree
+* Bug fix #2507: unhandled exception when pasting invalid string
+* Bug fix #2503: change to use of md5 module
+* Bug fix to .desktop file
+
 Version 3.0.3 -- the "I have this terrible feeling of déjà vu" release.
 * Fix to prevent GRAMPS from hanging when running Graphviz reports
 * New translation: Catalan (ca)
