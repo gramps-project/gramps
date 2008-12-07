@@ -177,6 +177,11 @@ PRIVATE_RECORD_TEXT  = ('preferences', 'private-record-text', 2)
 RELATION_DISPLAY_THEME= ('preferences', 'relation-display-theme', 2)
 INVALID_DATE_FORMAT  = ('preferences', 'invalid-date-format', 2)
 FULLSCREEN           = ('interface', 'fullscreen', 0)
+GEOVIEW              = ('preferences', 'geoview', 0)
+GEOVIEW_GOOGLEMAPS   = ('preferences', 'googlemap', 0)
+GEOVIEW_OPENLAYERS   = ('preferences', 'openlayers', 0)
+GEOVIEW_YAHOO        = ('preferences', 'yahoo', 0)
+GEOVIEW_MICROSOFT    = ('preferences', 'microsoft', 0)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -306,4 +311,9 @@ default_value = {
     RELATION_DISPLAY_THEME: "CLASSIC",
     INVALID_DATE_FORMAT  : "<b>%s</b>",
     FULLSCREEN           : False,
+    GEOVIEW              : False,
+    GEOVIEW_GOOGLEMAPS   : True,
+    GEOVIEW_OPENLAYERS   : False,
+    GEOVIEW_YAHOO        : False,
+    GEOVIEW_MICROSOFT    : False,
 }

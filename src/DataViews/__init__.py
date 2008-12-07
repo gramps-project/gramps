@@ -22,7 +22,7 @@
 """
 Package init for the DataViews package.
 """
-
+print 'start'
 from GrampletView import GrampletView, register, Gramplet
 from PersonView import PersonView
 from RelationView import RelationshipView
@@ -35,10 +35,32 @@ from MediaView import MediaView
 from RepositoryView import RepositoryView
 from NoteView import NoteView
 
+geopresent = True
+try:
+    from GeoView import GeoView
+except:
+    geopresent = False
+
 try:
     import Config
     DATA_VIEWS = eval("["+Config.get(Config.DATA_VIEWS)+"]")
-except:
+    #add GeoView if in config and present
+    if geopresent and Config.get(Config.GEOVIEW) and \
+                not GeoView in DATA_VIEWS:
+        DATA_VIEWS.append(GeoView)
+        Config.set(Config.DATA_VIEWS,
+                Config.get(Config.DATA_VIEWS)+",GeoView")
+    elif geopresent and not Config.get(Config.GEOVIEW) and \
+                GeoView in DATA_VIEWS:
+        DATA_VIEWS.remove(GeoView)
+        newval = Config.get(Config.DATA_VIEWS).replace('GeoView','')\
+                                                .replace(',,',',')
+        if newval[-1] == ',':
+            newval = newval[:-1]
+        Config.set(Config.DATA_VIEWS, newval)
+        print Config.get(Config.DATA_VIEWS)
+except AttributeError:
+    print 'exep'
     # Fallback if bad config line, or if no Config system
     DATA_VIEWS = [
         GrampletView,
@@ -50,10 +72,11 @@ except:
         SourceView,
         PlaceView,
         MediaView,
-        #MapView,
         RepositoryView,
         NoteView,
         ]
+    if geopresent:
+       DATA_VIEWS.append(GeoView)
 
 def get_views():
     """

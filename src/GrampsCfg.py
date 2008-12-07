@@ -56,6 +56,15 @@ from widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 
+geopresent = True
+try:
+    import DataViews.GeoView
+except:
+    geopresent = False
+#experimental feature, don't show in release
+if not const.VERSION.find('SVN') == -1:
+    gepresent = False
+
 #-------------------------------------------------------------------------
 #
 # Constants 
@@ -161,6 +170,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Researcher')))
         panel.append_page(self.add_color_panel(), 
                           MarkupLabel(_('Marker Colors')))
+        if geopresent:
+            panel.append_page(self.add_geoview_panel(), 
+                              MarkupLabel(_('GeoView')))
         self.window.show_all()
         self.show()
 
@@ -265,6 +277,50 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.custom_color.set_color(gtk.gdk.color_parse(def_cust))
         for widget in [self.comp_color, self.todo_color, self.custom_color]:
             widget.emit('color-set')
+
+    def add_geoview_panel(self):
+        table = gtk.Table(3, 8)
+        table.set_border_width(12)
+        table.set_col_spacings(12)
+        table.set_row_spacings(6)
+
+        self.add_text(
+            table, _('You need a broadband internet connection to use GeoView')
+            , 0)
+
+        self.add_checkbox(
+            table, _('Add the GeoView view.'), 
+            1, Config.GEOVIEW)
+
+        self.add_text(
+            table, _('GeoView uses OpenStreetMap and one other map provider.'), 
+            2)
+
+        self.add_text(
+            table, _('Choose one of the following map providers'), 
+            3)
+
+        maps=self.add_radiobox(
+            table, _('Google Maps'), 
+            4, Config.GEOVIEW_GOOGLEMAPS, None, 1)
+
+        self.add_radiobox(
+            table, _('OpenLayers'), 
+            4, Config.GEOVIEW_OPENLAYERS, maps, 2)
+
+        self.add_radiobox(
+            table, _('Yahoo! Maps'), 
+            4, Config.GEOVIEW_YAHOO, maps, 3)
+
+        self.add_radiobox(
+            table, _('Microsoft Maps'), 
+            4, Config.GEOVIEW_MICROSOFT, maps, 4)
+
+        self.add_text(
+            table, _('You need to restart GRAMPS for above settings to take'
+            'effect'), 6)
+
+        return table
 
     def add_name_panel(self):
         """
@@ -769,7 +825,22 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(Config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant)
-        table.attach(checkbox, 1, 3, index, index+1, yoptions=0)
+        table.attach(checkbox, 1, 9, index, index+1, yoptions=0)
+
+    def add_radiobox(self, table, label, index, constant, group, column):
+        radiobox = gtk.RadioButton(group,label)
+        if Config.get(constant) == True:
+            radiobox.set_active(True)
+        radiobox.connect('toggled', self.update_radiobox, constant)
+        table.attach(radiobox, column, column+1, index, index+1, yoptions=0)
+        return radiobox
+
+    def add_text(self, table, label, index):
+        text = gtk.Label()
+        text.set_line_wrap(True)
+        text.set_alignment(0.,0.)
+        text.set_text(label)
+        table.attach(text, 1, 9, index, index+1, yoptions=0)
 
     def add_path_box(self, table, label, index, entry, path, callback_label, 
                      callback_sel):
@@ -900,6 +971,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         Config.set(constant, hexval)
 
     def update_checkbox(self, obj, constant):
+        Config.set(constant, obj.get_active())
+
+    def update_radiobox(self, obj, constant):
         Config.set(constant, obj.get_active())
 
     def build_menu_names(self, obj):
