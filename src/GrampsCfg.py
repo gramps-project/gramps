@@ -172,7 +172,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Marker Colors')))
         if geopresent:
             panel.append_page(self.add_geoview_panel(), 
-                              MarkupLabel(_('GeoView')))
+                              MarkupLabel(_('Internet Maps')))
         self.window.show_all()
         self.show()
 
@@ -285,40 +285,39 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_row_spacings(6)
 
         self.add_text(
-            table, _('You need a broadband internet connection to use GeoView')
+            table, _('You need a broadband internet connection to use '
+            'Internet mapping applications from within GRAMPS')
             , 0)
 
         self.add_checkbox(
-            table, _('Add the GeoView view.'), 
+            table, _('Add GeoView to GRAMPS showing internet maps based on '
+            'your data.'), 
             1, Config.GEOVIEW)
 
         self.add_text(
-            table, _('GeoView uses OpenStreetMap and one other map provider.'), 
+            table, _('GeoView uses OpenStreetMap and one other map provider.\n'
+            'Choose one of the following map providers:'), 
             2)
-
-        self.add_text(
-            table, _('Choose one of the following map providers'), 
-            3)
 
         maps=self.add_radiobox(
             table, _('Google Maps'), 
-            4, Config.GEOVIEW_GOOGLEMAPS, None, 1)
+            3, Config.GEOVIEW_GOOGLEMAPS, None, 1)
 
         self.add_radiobox(
             table, _('OpenLayers'), 
-            4, Config.GEOVIEW_OPENLAYERS, maps, 2)
+            3, Config.GEOVIEW_OPENLAYERS, maps, 2)
 
         self.add_radiobox(
             table, _('Yahoo! Maps'), 
-            4, Config.GEOVIEW_YAHOO, maps, 3)
+            4, Config.GEOVIEW_YAHOO, maps, 1)
 
         self.add_radiobox(
             table, _('Microsoft Maps'), 
-            4, Config.GEOVIEW_MICROSOFT, maps, 4)
+            4, Config.GEOVIEW_MICROSOFT, maps, 2)
 
         self.add_text(
             table, _('You need to restart GRAMPS for above settings to take'
-            ' effect'), 6)
+            ' effect'), 5)
 
         return table
 
