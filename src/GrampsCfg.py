@@ -318,7 +318,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
         self.add_text(
             table, _('You need to restart GRAMPS for above settings to take'
-            'effect'), 6)
+            ' effect'), 6)
 
         return table
 
