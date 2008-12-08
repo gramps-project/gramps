@@ -219,7 +219,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.prefix1_hash = {}
         self.prefix2_hash = {}
 
-        self.progress.set_pass(_('Bulding display'),
+        self.progress.set_pass(_('Building display'),
                                len(self.nick_list)+len(self.title_list)
                                +len(self.prefix1_list)+len(self.prefix2_list))
 
