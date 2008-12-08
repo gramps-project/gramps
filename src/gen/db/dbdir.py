@@ -1738,9 +1738,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
              source_list, note_list, media_list, attribute_list,
              change, marker, private) = event
             new_date = self.convert_date_14(date)
+            new_source_list = self.new_source_list_14(source_list)
+            new_media_list = self.new_media_list_14(media_list)
+            new_attribute_list = self.new_attribute_list_14(attribute_list)
             new_event = (junk_handle, gramps_id, the_type, new_date,
-                         description, place, source_list, note_list, 
-                         media_list, attribute_list, change,marker,private)
+                         description, place, new_source_list, note_list, 
+                         new_media_list, new_attribute_list, change,marker,private)
             the_txn = self.env.txn_begin()
             self.event_map.put(str(handle), new_event, txn=the_txn)
             the_txn.commit()
@@ -1779,14 +1782,16 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             for address in address_list:
                 (privacy, asource_list, anote_list, date, location) = address
                 new_date = self.convert_date_14(date)
-                new_address_list.append((privacy, asource_list, anote_list, 
+                new_asource_list = self.new_source_list_14(asource_list)
+                new_address_list.append((privacy, new_asource_list, anote_list, 
                                          new_date, location))
             new_ord_list = []
             for ldsord in lds_ord_list:
                 (lsource_list, lnote_list, date, type, place,
                  famc, temple, status, lprivate) = ldsord
                 new_date = self.convert_date_14(date)
-                new_ord_list.append( (lsource_list, lnote_list, new_date, type, 
+                new_lsource_list = self.new_source_list_14(lsource_list)
+                new_ord_list.append( (new_lsource_list, lnote_list, new_date, type, 
                                       place, famc, temple, status, lprivate))
 
             new_primary_name = self.convert_name_14(primary_name)
@@ -1794,6 +1799,10 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             new_alternate_names = [self.convert_name_14(name) for name 
                                    in alternate_names]
             
+            new_media_list = self.new_media_list_14(media_list)
+            new_psource_list = self.new_source_list_14(psource_list)
+            new_attribute_list = self.new_attribute_list_14(attribute_list)
+
             new_person = (junk_handle,        #  0
                           gramps_id,          #  1
                           gender,             #  2
@@ -1804,18 +1813,19 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                           event_ref_list,     #  7
                           family_list,        #  8
                           parent_family_list, #  9
-                          media_list,         # 10
+                          new_media_list,         # 10
                           new_address_list,       # 11
-                          attribute_list,     # 12
+                          new_attribute_list,     # 12
                           urls,               # 13
                           new_ord_list,          # 14
-                          psource_list,       # 15
+                          new_psource_list,       # 15
                           pnote_list,         # 16
                           change,             # 17
                           marker,             # 18
                           pprivate,           # 19
                           person_ref_list,    # 20
                           )
+
             the_txn = self.env.txn_begin()
             self.person_map.put(str(handle), new_person, txn=the_txn)
             the_txn.commit()
@@ -1831,16 +1841,21 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
              child_ref_list, the_type, event_ref_list, media_list,
              attribute_list, lds_seal_list, source_list, note_list,
              change, marker, private) = family
+            new_media_list = self.new_media_list_14(media_list)
+            new_source_list = self.new_source_list_14(source_list)
+            new_attribute_list = self.new_attribute_list_14(attribute_list)
             new_seal_list = []
             for ldsord in lds_seal_list:
                 (lsource_list, lnote_list, date, type, place,
                  famc, temple, status, lprivate) = ldsord
                 new_date = self.convert_date_14(date)
-                new_seal_list.append( (lsource_list, lnote_list, new_date, type, 
+                new_lsource_list = self.new_source_list_14(lsource_list)
+                new_seal_list.append( (new_lsource_list, lnote_list, new_date, type, 
                                        place, famc, temple, status, lprivate))
+
             new_family = (junk_handle, gramps_id, father_handle, mother_handle,
-                          child_ref_list, the_type, event_ref_list, media_list,
-                          attribute_list, new_seal_list, source_list, note_list,
+                          child_ref_list, the_type, event_ref_list, new_media_list,
+                          new_attribute_list, new_seal_list, new_source_list, note_list,
                           change, marker, private)
             the_txn = self.env.txn_begin()
             self.family_map.put(str(handle), new_family, txn=the_txn)
@@ -1861,7 +1876,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             for address in address_list:
                 (privacy, asource_list, anote_list, date, location) = address
                 new_date = self.convert_date_14(date)
-                new_address_list.append((privacy, asource_list, anote_list, 
+                new_asource_list = self.new_source_list_14(asource_list)
+                new_address_list.append((privacy, new_asource_list, anote_list, 
                                          new_date, location))
 
             new_repository = (junk_handle, gramps_id, the_type, name, note_list,
@@ -1876,7 +1892,35 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         the_txn = self.env.txn_begin()
         self.metadata.put('version', 14, txn=the_txn)
         the_txn.commit()
-            
+
+    def new_source_list_14(self, source_list):
+        new_source_list = []
+        for source in source_list:
+            (date, private, note_list, confidence, ref, page) = source
+            new_date = self.convert_date_14(date)
+            new_source_list.append((new_date, private, note_list, confidence, ref, page))
+        return new_source_list
+
+    def new_attribute_list_14(self, attribute_list):
+        new_attribute_list = []
+        for attribute in attribute_list:
+            (private, asource_list, note_list, the_type, value) = attribute
+            new_asource_list = self.new_source_list_14(asource_list)
+            new_attribute_list.append((private, new_asource_list, note_list, the_type, value))
+        return new_attribute_list
+
+    def new_media_list_14(self, media_list):
+        # ---------------------------------
+        # Event Media list
+        # ---------------------------------
+        new_media_list = []
+        for media in media_list:
+            (private, source_list, note_list,attribute_list,ref,role) = media
+            new_source_list = self.new_source_list_14(source_list)
+            new_attribute_list = self.new_attribute_list_14(attribute_list)
+            new_media_list.append((private, new_source_list, note_list, new_attribute_list, ref, role))
+        return new_media_list
+
     def convert_date_14(self, date):
         if date:
             (calendar, modifier, quality, dateval, text, sortval) = date
@@ -1890,7 +1934,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
          name_type, prefix, patronymic,
          group_as, sort_as, display_as, call) = name
         new_date = self.convert_date_14(date)
-        return (privacy, source_list, note_list, new_date, 
+        new_source_list = self.new_source_list_14(source_list)
+        return (privacy, new_source_list, note_list, new_date, 
                 first_name, surname, suffix, title,
                 name_type, prefix, patronymic,
                 group_as, sort_as, display_as, call)
