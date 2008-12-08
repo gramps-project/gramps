@@ -161,6 +161,7 @@ src/images/scalable/Makefile
 src/images/16x16/Makefile
 src/images/22x22/Makefile
 src/images/48x48/Makefile
+src/mapstraction/Makefile
 data/Makefile
 data/man/Makefile
 data/man/fr/Makefile

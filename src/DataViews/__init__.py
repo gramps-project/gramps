@@ -22,7 +22,7 @@
 """
 Package init for the DataViews package.
 """
-print 'start'
+
 from GrampletView import GrampletView, register, Gramplet
 from PersonView import PersonView
 from RelationView import RelationshipView

@@ -4,28 +4,29 @@
 SUBDIRS = \
 	BasicUtils \
 	Config \
-	DateHandler \
+	data \
 	DataViews \
+	DateHandler \
+	DisplayTabs \
+	DisplayModels \
+	docgen \
 	Editors \
 	Filters \
 	FilterEditor \
 	gen \
+	glade \
 	GrampsDbUtils \
 	GrampsLocale \
-	Merge \
-	DisplayTabs \
-	DisplayModels \
 	GrampsLogger \
+	images \
+	Merge \
+	mapstraction \
 	Mime \
+	PluginUtils \
+	plugins \
+	ReportBase \
 	Selectors \
 	Simple \
-	data \
-	PluginUtils \
-	ReportBase \
-	glade \
-	docgen \
-	images \
-	plugins \
 	widgets
 
 gdirdir=$(prefix)/share/gramps
