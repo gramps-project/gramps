@@ -29,21 +29,3 @@ It provides the choice between different storage backends.
 from _GrampsConfigKeys import *
 from _GrampsIniKeys import *
 
-import os
-
-def __upgrade_gconf():
-    import _GrampsGconfKeys as GconfKeys
-    print "Upgrading INI file"
-    for key in default_value.keys():
-        data = GconfKeys.get(key)
-        set(key, data)
-
-if not os.path.exists(INIFILE):
-    try:
-        __upgrade_gconf()
-    except ImportError:
-        print "Cannot upgrade GCONF settings"
-
-
-
-   
