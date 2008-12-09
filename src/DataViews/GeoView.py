@@ -4,6 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Serge Noiraud
+# Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,11 +62,10 @@ LOG = logging.getLogger(".GeoView")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-import ViewManager
 import PageView
 import Utils
-import Errors
 import Config
+from const import TEMP_DIR
 from BasicUtils import name_displayer as _nd
 
 #-------------------------------------------------------------------------
@@ -73,17 +73,27 @@ from BasicUtils import name_displayer as _nd
 # Web interfaces
 #
 #-------------------------------------------------------------------------
-WebKit = 0
+
+NOWEB  = 0
+WEBKIT = 1
+MOZIL  = 2
+
+WebKit = NOWEB
 try:
     import webkit
-    WebKit = 1
+    LOG.info("Using Webkit for HtmlView")
+    WebKit = WEBKIT
 except:
     pass
-try:
-    import gtkmozembed
-    WebKit = 2
-except:
-    pass
+
+if WebKit == NOWEB:
+    try:
+        import gtkmozembed
+        LOG.info("Using GtkMozembed for HtmlView")
+        WebKit = MOZIL
+    except:
+        pass
+
 #no interfaces present, raise Error so that options for GeoView do not show
 if WebKit  == 0 :
     Config.set(Config.GEOVIEW, False)
@@ -92,13 +102,263 @@ if WebKit  == 0 :
 
 #-------------------------------------------------------------------------
 #
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------
+#
 # Constants
 #
 #-------------------------------------------------------------------------
 # I think we should set the two following variable in const.py
 # They are used only with gtkmozembed.
-MOZEMBED_PATH = "/tmp/"
-MOZEMBED_SUBPATH = "browser-gramps"
+MOZEMBED_PATH = TEMP_DIR
+MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
+
+#-------------------------------------------------------------------------
+#
+# Renderer
+#
+#-------------------------------------------------------------------------
+class Renderer():
+    """
+    Renderer renders the webpage. Several backend implementations are 
+    possible
+    """
+    def __init__(self):
+        self.window = None
+
+    def get_window(self):
+        """
+        Returns a container class with the widget that contains browser
+        window
+        """
+        return self.window
+    
+    def show_all(self):
+        self.window.show_all()
+    
+    def open(self, url):
+        """ open the webpage at url
+        """
+        raise NotImplementedError
+    
+        if   (self.browser == 1):
+            self.m.open("file://"+htmlfile)
+        elif (self.browser == 2):
+            self.m.load_url("file://"+htmlfile)
+        elif (self.browser == 3):
+            self.m.openURL ("file://"+htmlfile);
+
+#-------------------------------------------------------------------------
+#
+# Renderer with WebKit
+#
+#-------------------------------------------------------------------------
+class RendererWebkit(Renderer):
+    """
+    Implementation of Renderer with Webkit
+    """
+    def __init__(self):
+        Renderer.__init__(self)
+        self.window = webkit.WebView()
+    
+    def open(self, url):
+        self.window.open(url)
+        
+class RendererMozilla(Renderer):
+    """
+    Implementation of Renderer with gtkmozembed
+    """
+    def __init__(self):
+        Renderer.__init__(self)
+        if hasattr(gtkmozembed, 'set_profile_path'):
+            set_profile_path = gtkmozembed.set_profile_path
+        else:
+            set_profile_path = gtkmozembed.gtk_moz_embed_set_profile_path
+        set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
+        self.__set_mozembed_proxy()
+        self.window = gtkmozembed.MozEmbed()
+        self.window.set_size_request(800, 600)
+    
+    def open(self, url):
+        self.window.load_url(url)
+
+    def __set_mozembed_proxy(self):
+        """
+        Try to see if we have some proxy environment variable.
+        http_proxy in our case.
+        The standard format is : http://[user:password@]proxy:port/
+        """
+        try:
+            proxy = os.environ['http_proxy']
+            data = ""
+            if proxy:
+                host_port = None
+                parts = urlparse.urlparse(proxy)
+                if not parts[0] or parts[0] == 'http':
+                    host_port = parts[1]
+                    t = host_port.split(':')
+                    host = t[0].strip()
+                    if host:
+                        try:
+                            port = int(t[1])
+                        except:
+                            user = host
+                            u = t[1].split('@')
+                            password = u[0]
+                            host = u[1]
+                            port = int(t[2])
+
+                if port and host:
+                    port = str(port)
+                    data += 'user_pref("network.proxy.type", 1);\r\n'
+                    data += 'user_pref("network.proxy.http", "'+host+'");\r\n'
+                    data += 'user_pref("network.proxy.http_port", '+port+');\r\n'
+                    data += 'user_pref("network.proxy.no_proxies_on", '\
+                            '"127.0.0.1,localhost,localhost.localdomain");\r\n'
+                    data += 'user_pref("network.proxy.share_proxy_settings", true);\r\n'
+                    data += 'user_pref("network.http.proxy.pipelining", true);\r\n'
+                    data += 'user_pref("network.http.proxy.keep-alive", true);\r\n'
+                    data += 'user_pref("network.http.proxy.version", 1.1);\r\n'
+                    data += 'user_pref("network.http.sendRefererHeader, 0);\r\n'
+            fd = file(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w+")
+            fd.write(data)
+            fd.close()
+        except:
+            try: # trying to remove pref.js in case of proxy change.
+                os.remove(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js")
+            except:
+                pass
+            pass   # We don't use a proxy or the http_proxy variable is not set.
+
+#-------------------------------------------------------------------------
+#
+# HtmlView
+#
+#-------------------------------------------------------------------------
+class HtmlView(PageView.PageView):
+    """
+    HtmlView is a view showing a top widget with controls, and a bottom part
+    with an embedded webbrowser showing a given URL
+    """
+
+    def __init__(self, dbstate, uistate):
+        PageView.PageView.__init__(self, _('HtmlView'), dbstate, uistate)
+        
+        self.dbstate = dbstate
+
+    def build_widget(self):
+        """
+        Builds the interface and returns a gtk.Container type that
+        contains the interface. This containter will be inserted into
+        a gtk.Notebook page.
+        """
+        global WebKit
+
+        self.box = gtk.VBox(False, 4)
+        #top widget at the top
+        self.box.pack_start(self.top_widget(), False, False,0 )
+        #web page under it in a scrolled window
+        self.table = gtk.Table(1, 1, False)
+        frame = gtk.ScrolledWindow(None, None)
+        frame.set_shadow_type(gtk.SHADOW_NONE)
+        frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        frame.add_with_viewport(self.table)
+        self.table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
+        self.table.set_row_spacings(1)
+        self.table.set_col_spacings(0)
+
+        gobject.threads_init()
+        self.count = 0
+
+        if   (WebKit == WEBKIT) :
+            # We use webkit
+            self.renderer = RendererWebkit()
+        elif (WebKit == MOZIL) :
+            # We use gtkmozembed
+            self.renderer = RendererMozilla()
+
+        self.table.add(self.renderer.get_window())
+        self.box.pack_start(frame, True, True, 0)
+        
+        #load a welcome html page
+        urlhelp = self.create_start_page()
+        self.renderer.open(urlhelp)
+        self.renderer.show_all()
+
+        return self.box
+
+    def top_widget(self):
+        """
+        The default class gives a widget where user can type an url
+        """
+        hbox = gtk.HBox(False,4)
+        self.urlfield = gtk.Entry()
+        self.urlfield.connect('activate', self._on_activate);
+        hbox.pack_start(self.urlfield, True, True, 4)
+        button = gtk.Button(stock=gtk.STOCK_APPLY)
+        button.connect('clicked', self._on_activate)
+        hbox.pack_start(button, False, False, 4)
+        return hbox
+
+    def _on_activate(self, object):
+        url = self.urlfield.get_text()
+        if url.find('://') == -1:
+            url = 'http://'+ url
+        self.renderer.open(url)
+        
+    def build_tree(self):
+        """
+        Rebuilds the current display. Called from ViewManager
+        """
+        pass #htmlview is build on click and startup
+
+    def get_stock(self):
+        """
+        Returns the name of the stock icon to use for the display.
+        This assumes that this icon has already been registered with
+        GNOME as a stock icon.
+        """
+        return 'gramps-geo'
+
+    def define_actions(self):
+        pass
+
+    def create_start_page(self):
+        """
+        This command creates a default start page, and returns the URL of this
+        page.
+        """
+        tmpdir = Utils.get_empty_tempdir('htmlview')
+        data = """
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
+                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml"  >
+         <head>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <title>%(title)s</title>
+         </head>
+         <body >
+           <H4>%(content)s</H4>
+          </div>
+         </body>
+        </html>
+        """ % { 'height' : 600,
+                'title'  : _('Start page for the Html View'),
+                'content': _('Type an webpage address at the top, and hit'
+                             ' the execute button to load a webpage in this'
+                             ' page\n<br>\n'
+                             'For example: <b>http://gramps-project.org</p>')
+        }
+        filename = os.path.join(tmpdir, 'startpage')
+        fd = file(filename,"w+")
+        fd.write(data)
+        fd.close()
+        return 'file://'+filename
+
 
 #-------------------------------------------------------------------------
 #
@@ -111,8 +371,6 @@ class GeoView(PageView.PersonNavView):
         PageView.PersonNavView.__init__(self, _('GeoView'), dbstate, uistate)
         
         global WebKit
-        if   (WebKit == 1): LOG.info("GeoView uses WebKit")
-        elif (WebKit == 2): LOG.info("GeoView uses  gtkmozembed")
 
         self.dbstate = dbstate
         self.usedmap = "openstreetmap"
@@ -123,7 +381,7 @@ class GeoView(PageView.PersonNavView):
         # Create a temporary dot file
         (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
                                                   MOZEMBED_PATH )
-        # needed to be solved. where to remove it ?
+        # needs to be solved. where to remove it ?
 
     def __del__(self):
         """
@@ -242,11 +500,10 @@ class GeoView(PageView.PersonNavView):
             self.m = gtkmozembed.MozEmbed()
             self.m.set_size_request(800, 600)
 
-        if   (WebKit != 0) :
-            self.table_2.add(self.m)
-            self.geo_places(None,self.displaytype)
-   
-            self.m.show_all()
+        self.table_2.add(self.m)
+        self.geo_places(None,self.displaytype)
+
+        self.m.show_all()
 
         return self.notebook
 
@@ -255,37 +512,28 @@ class GeoView(PageView.PersonNavView):
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
         """
-        global WebKit
-        if  (WebKit != 0 ):
-            if Config.get(Config.GEOVIEW_GOOGLEMAPS):
-                alternate_map = "GoogleMaps"
-            elif Config.get(Config.GEOVIEW_OPENLAYERS):
-                alternate_map = "OpenLayersMaps"
-            elif Config.get(Config.GEOVIEW_YAHOO):
-                alternate_map = "YahooMaps"
-            elif Config.get(Config.GEOVIEW_MICROSOFT):
-                alternate_map = "MicrosoftMaps"
-            return '''<ui>
-              <toolbar name="ToolBar">
-                <placeholder name="CommonEdit">
-                  <toolitem action="OpenStreetMap"/>
-                  <toolitem action="%s"/>
-                  <separator/>
-                  <toolitem action="PersonMaps"/>
-                  <toolitem action="FamilyMaps"/>
-                  <toolitem action="EventMaps"/>
-                  <toolitem action="AllPlacesMaps"/>
-                </placeholder>
-              </toolbar>
-            </ui>'''  % alternate_map
-        else:
-            return '''<ui>
-              <toolbar name="ToolBar">
-                <placeholder name="CommonEdit">
-                  <toolitem action="MissingKit"/>
-                </placeholder>
-              </toolbar>
-            </ui>'''
+
+        if Config.get(Config.GEOVIEW_GOOGLEMAPS):
+            alternate_map = "GoogleMaps"
+        elif Config.get(Config.GEOVIEW_OPENLAYERS):
+            alternate_map = "OpenLayersMaps"
+        elif Config.get(Config.GEOVIEW_YAHOO):
+            alternate_map = "YahooMaps"
+        elif Config.get(Config.GEOVIEW_MICROSOFT):
+            alternate_map = "MicrosoftMaps"
+        return '''<ui>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonEdit">
+              <toolitem action="OpenStreetMap"/>
+              <toolitem action="%s"/>
+              <separator/>
+              <toolitem action="PersonMaps"/>
+              <toolitem action="FamilyMaps"/>
+              <toolitem action="EventMaps"/>
+              <toolitem action="AllPlacesMaps"/>
+            </placeholder>
+          </toolbar>
+        </ui>'''  % alternate_map
 
     def define_actions(self):
         """
@@ -300,53 +548,48 @@ class GeoView(PageView.PersonNavView):
         be able to toggle these when you are at the end of the history or
         at the beginning of the history.
         """
-        global WebKit
 
-        if  (WebKit != 0 ):
-            self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
-                             callback=self.select_OpenStreetMap_map,
-                             tip=_("Select OpenStreetMap Maps"))
-            if Config.get(Config.GEOVIEW_GOOGLEMAPS):
-                self._add_action('GoogleMaps', 'gramps-alternate-map',
-                                 _('_Google Maps'),
-                                 callback=self.select_google_map,
-                                 tip=_("Select Google Maps. If possible, "
-                                        "choose OpenStreetMap!"))
-            elif Config.get(Config.GEOVIEW_OPENLAYERS):
-                self._add_action('OpenLayersMaps', 'gramps-alternate-map',
-                                 _('_OpenLayers Maps'),
-                                 callback=self.select_openlayers_map,
-                                 tip=_("Select OpenLayers Maps. If possible,"
-                                        " choose OpenStreetMap"))
-            elif Config.get(Config.GEOVIEW_YAHOO):
-                self._add_action('YahooMaps', 'gramps-alternate-map', 
-                                 _('_Yahoo! Maps'),
-                                 callback=self.select_yahoo_map,
-                                 tip=_("Select Yahoo Maps. If possible, choose"
-                                        " OpenStreetMap"))
-            elif Config.get(Config.GEOVIEW_MICROSOFT):
-                self._add_action('MicrosoftMaps', 'gramps-alternate-map',
-                                 _('_Microsoft Maps'),
-                                 callback=self.select_microsoft_map,
-                                 tip=_("Select Microsoft Maps. If possible,"
-                                        " choose OpenStreetMap"))
-    
-            self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_AllPlacesMaps'),
-                             callback=self.all_places,
-                             tip=_("Attempt to view all database places on the Map."))
-            self._add_action('PersonMaps', 'gramps-person', _('_Person'),
-                             callback=self.person_places,
-                             tip=_("Attempt to view all the places where lived the selected people."))
-            self._add_action('FamilyMaps', 'gramps-parents-add', _('_Family'),
-                             callback=self.family_places,
-                             tip=_("Attempt to view places on the Map of the selected people's family."))
-            self._add_action('EventMaps', 'gramps-event', _('_Event'),
-                             callback=self.event_places,
-                             tip=_("Attempt to view places on the Map for all events."))
-        else:
-            self._add_action('MissingKit', gtk.STOCK_REMOVE, _('_MissingKit'),
-                             callback=None,
-                             tip=_("You can't use GeoView: webkit, gtkmozembed or gtkhtml missing"))
+        self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
+                         callback=self.select_OpenStreetMap_map,
+                         tip=_("Select OpenStreetMap Maps"))
+        if Config.get(Config.GEOVIEW_GOOGLEMAPS):
+            self._add_action('GoogleMaps', 'gramps-alternate-map',
+                             _('_Google Maps'),
+                             callback=self.select_google_map,
+                             tip=_("Select Google Maps. If possible, "
+                                    "choose OpenStreetMap!"))
+        elif Config.get(Config.GEOVIEW_OPENLAYERS):
+            self._add_action('OpenLayersMaps', 'gramps-alternate-map',
+                             _('_OpenLayers Maps'),
+                             callback=self.select_openlayers_map,
+                             tip=_("Select OpenLayers Maps. If possible,"
+                                    " choose OpenStreetMap"))
+        elif Config.get(Config.GEOVIEW_YAHOO):
+            self._add_action('YahooMaps', 'gramps-alternate-map', 
+                             _('_Yahoo! Maps'),
+                             callback=self.select_yahoo_map,
+                             tip=_("Select Yahoo Maps. If possible, choose"
+                                    " OpenStreetMap"))
+        elif Config.get(Config.GEOVIEW_MICROSOFT):
+            self._add_action('MicrosoftMaps', 'gramps-alternate-map',
+                             _('_Microsoft Maps'),
+                             callback=self.select_microsoft_map,
+                             tip=_("Select Microsoft Maps. If possible,"
+                                    " choose OpenStreetMap"))
+
+        self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_AllPlacesMaps'),
+                         callback=self.all_places,
+                         tip=_("Attempt to view all database places on the Map."))
+        self._add_action('PersonMaps', 'gramps-person', _('_Person'),
+                         callback=self.person_places,
+                         tip=_("Attempt to view all the places where lived the selected people."))
+        self._add_action('FamilyMaps', 'gramps-parents-add', _('_Family'),
+                         callback=self.family_places,
+                         tip=_("Attempt to view places on the Map of the selected people's family."))
+        self._add_action('EventMaps', 'gramps-event', _('_Event'),
+                         callback=self.event_places,
+                         tip=_("Attempt to view places on the Map for all events."))
+
         PageView.PersonNavView.define_actions(self)
 
     def goto_active_person(self,handle=None):
@@ -391,9 +634,9 @@ class GeoView(PageView.PersonNavView):
             self.createMapstraction(htmlfile,displaytype)
         LOG.debug("geo_places : in appel page")
         if   (self.browser == 1):
-	    self.m.open("file://"+htmlfile)
+            self.m.open("file://"+htmlfile)
         elif (self.browser == 2):
-	    self.m.load_url("file://"+htmlfile)
+            self.m.load_url("file://"+htmlfile)
         elif (self.browser == 3):
             self.m.openURL ("file://"+htmlfile);
 

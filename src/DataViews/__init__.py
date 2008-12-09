@@ -37,14 +37,18 @@ from NoteView import NoteView
 
 geopresent = True
 try:
-    from GeoView import GeoView
+    from GeoView import HtmlView, GeoView
 except:
     geopresent = False
 
 try:
     import Config
-    DATA_VIEWS = eval("["+Config.get(Config.DATA_VIEWS)+"]")
-    #add GeoView if in config and present
+    dv = Config.get(Config.DATA_VIEWS)
+    #remove GeoView so we do not try to eval it if import fails
+    if not geopresent and not dv.find('GeoView') == -1:
+        dv = dv.replace('GeoView','').replace(',,',',')
+    DATA_VIEWS = eval("["+dv+"]")
+    #add or remove GeoView if config says so
     if geopresent and Config.get(Config.GEOVIEW) and \
                 not GeoView in DATA_VIEWS:
         DATA_VIEWS.append(GeoView)
@@ -58,9 +62,7 @@ try:
         if newval[-1] == ',':
             newval = newval[:-1]
         Config.set(Config.DATA_VIEWS, newval)
-        print Config.get(Config.DATA_VIEWS)
 except AttributeError:
-    print 'exep'
     # Fallback if bad config line, or if no Config system
     DATA_VIEWS = [
         GrampletView,
