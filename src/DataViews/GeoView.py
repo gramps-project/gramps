@@ -57,6 +57,19 @@ LOG = logging.getLogger(".GeoView")
 
 #-------------------------------------------------------------------------
 #
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
+import gen.lib
+import ViewManager
+import PageView
+import Utils
+import Errors
+import Config
+from BasicUtils import name_displayer as _nd
+
+#-------------------------------------------------------------------------
+#
 # Web interfaces
 #
 #-------------------------------------------------------------------------
@@ -71,28 +84,11 @@ try:
     WebKit = 2
 except:
     pass
-try:
-    import gtkhtml
-    WebKit = 3
-except:
-    pass
 #no interfaces present, raise Error so that options for GeoView do not show
 if WebKit  == 0 :
+    Config.set(Config.GEOVIEW, False)
     LOG.warning(_("GeoView not enabled, no html plugin for GTK found."))
     raise ImportError, 'No GTK html plugin found'
-
-#-------------------------------------------------------------------------
-#
-# Gramps Modules
-#
-#-------------------------------------------------------------------------
-import gen.lib
-import ViewManager
-import PageView
-import Utils
-import Errors
-import Config
-from BasicUtils import name_displayer as _nd
 
 #-------------------------------------------------------------------------
 #
@@ -117,7 +113,6 @@ class GeoView(PageView.PersonNavView):
         global WebKit
         if   (WebKit == 1): LOG.info("GeoView uses WebKit")
         elif (WebKit == 2): LOG.info("GeoView uses  gtkmozembed")
-        elif (WebKit == 3): LOG.info("GeoView uses  gtkhtml")
 
         self.dbstate = dbstate
         self.usedmap = "openstreetmap"
@@ -246,14 +241,6 @@ class GeoView(PageView.PersonNavView):
             self.set_mozembed_proxy()
             self.m = gtkmozembed.MozEmbed()
             self.m.set_size_request(800, 600)
-        elif (WebKit == 3) :
-            # We use khtml
-            # Never tested. perhaps we should remove this.
-            self.browser=3
-            self.m = gtkhtml.Browser()
-            #self.m.view().resize(800,600);
-            #self.m.setJScriptEnabled(true);
-            #self.m.setPluginsEnabled(true);
 
         if   (WebKit != 0) :
             self.table_2.add(self.m)
@@ -550,7 +537,6 @@ class GeoView(PageView.PersonNavView):
             self.geo += "  </script>\n"
         else: # openstreetmap and google
             self.geo += "  <script id=\"googleapiimport\" \n"
-            self.geo += "          id=\"googleapiimport\" \n"
             self.geo += "          src=\"http://maps.google.com/maps?file=api&v=2\"\n"
             self.geo += "          type=\"text/javascript\">\n"
             self.geo += "  </script>\n"
@@ -1157,15 +1143,18 @@ class GeoView(PageView.PersonNavView):
         geo += "  <title>Geo Maps JavaScript API for Gramps</title>\n"
         geo += " </head>\n"
         geo += " <body >\n"
-        geo += "  <div id=\"map\" style=\"height: %dpx\"></div>\n" % 600
+        geo += "  <div id=\"map\" style=\"height: %dpx\">\n" % 600
         geo += "   <br><br><br><br><br>\n"
         geo += "   <H4>"
-        geo += _("You can choose between free and proprietary maps.")
+        geo += _("You can choose between two maps. One free and a second one.")
         geo += "   <br>"
-        #geo += _("The best choices are the free maps like openstreetmap or openlayers.")
         geo += _("The best choice is the free map like openstreetmap.")
         geo += "   <br>"
-        geo += _("You should use Googlemap only if the other map give no results ...")
+        geo += _("You should use the second map only if the first one give no results ...")
+        geo += "   <br>"
+        geo += _("You can select Edit/Preferences to choose the second map provider.")
+        geo += "   <br>"
+        geo += _("They are : Googlemaps, Yahoo! maps, Microsoft maps and Openlayers.")
         geo += "   </H4>"
         geo += "  </div>\n"
         geo += " </body>\n"
