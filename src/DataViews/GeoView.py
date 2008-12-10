@@ -55,6 +55,7 @@ import gtk
 #-------------------------------------------------------------------------
 import logging
 LOG = logging.getLogger(".GeoView")
+LOG.setLevel(logging.DEBUG)
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +68,7 @@ import Utils
 import Config
 from const import TEMP_DIR
 from BasicUtils import name_displayer as _nd
+from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
@@ -149,8 +151,6 @@ class Renderer():
             self.m.open("file://"+htmlfile)
         elif (self.browser == 2):
             self.m.load_url("file://"+htmlfile)
-        elif (self.browser == 3):
-            self.m.openURL ("file://"+htmlfile);
 
 #-------------------------------------------------------------------------
 #
@@ -448,16 +448,12 @@ class GeoView(PageView.PersonNavView):
             #self.m.zoom_in(); # make text bigger
         elif (self.browser == 2):
             self.m.load_url("javascript:callFromPython("+str(count)+")");
-        elif (self.browser == 3):
-            self.m.openURL("javascript:callFromPython("+str(count)+")");
 
     def change_map(self):
         if   (self.browser == 1):
             self.m.execute_script("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
         elif (self.browser == 2):
             self.m.load_url("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
-        elif (self.browser == 3):
-            self.m.openURL("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
 
     def build_widget(self):
         """
@@ -637,8 +633,6 @@ class GeoView(PageView.PersonNavView):
             self.m.open("file://"+htmlfile)
         elif (self.browser == 2):
             self.m.load_url("file://"+htmlfile)
-        elif (self.browser == 3):
-            self.m.openURL ("file://"+htmlfile);
 
         if   (self.browser != 0):
             self.m.show_all()
@@ -875,7 +869,6 @@ class GeoView(PageView.PersonNavView):
         return ret
 
     def create_markers(self,format):
-        from PlaceUtils import conv_lat_lon
         self.centered = 0
         self.geo += "  <div id=\"map\" style=\"height: %dpx\"></div>\n" % 600
         self.geo += "  <script type=\"text/javascript\">\n"
@@ -1132,6 +1125,7 @@ class GeoView(PageView.PersonNavView):
                     place = db.db.get_place_from_handle(bplace_handle)
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
+                    latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     if comment:
                         descr1=comment+" : "+_("birth place.")
                     else:
@@ -1157,6 +1151,7 @@ class GeoView(PageView.PersonNavView):
                     place = db.db.get_place_from_handle(dplace_handle)
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
+                    latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     descr = place.get_title()
                     if comment:
                         descr1=comment+" : "+_("death place.")
@@ -1196,6 +1191,7 @@ class GeoView(PageView.PersonNavView):
                 descr1 = _("Id : %s")%place.gramps_id
                 longitude = place.get_longitude()
                 latitude = place.get_latitude()
+                latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 city = place.get_main_location().get_city()
                 country = place.get_main_location().get_country()
                 if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
@@ -1255,6 +1251,7 @@ class GeoView(PageView.PersonNavView):
                     #descr = place.get_title()
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
+                    latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
                     descr2 = _("%s; %s") % (city,country)
@@ -1352,6 +1349,7 @@ class GeoView(PageView.PersonNavView):
                     place = db.db.get_place_from_handle(place_handle)
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
+                    latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     descr = place.get_title()
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
