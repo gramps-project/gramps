@@ -67,11 +67,6 @@ from gettext import gettext as _
 from xml.parsers import expat
 
 
-try:
-    set()
-except:
-    from sets import Set as set
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -1192,7 +1187,7 @@ class WebCalReport(Report):
             # increase progress bar
             self.progress.step()
 
-    def collect_data(self, year):
+    def collect_data(self, this_year):
         """
         This method runs through the data, and collects the relevant dates
         and text.
@@ -1225,7 +1220,7 @@ class WebCalReport(Report):
 
             # if person is dead, STOP! Nothing further to do
             if death_date == None: 
-                living = probably_alive(person, self.database, _make_date(year, 1, 1), 0)
+                living = probably_alive(person, self.database, _make_date(this_year, 1, 1), 0)
 
                 # add birthday if requested
                 if self.birthday and birth_date != None and ((self.alive and living) or not self.alive):
@@ -1281,7 +1276,7 @@ class WebCalReport(Report):
                                     spouse_name = _get_short_name(spouse)
                                     short_name = _get_short_name(person)
                                     if self.alive:
-                                        if not probably_alive(spouse, self.database, _make_date(year, 1, 1), 0):
+                                        if not probably_alive(spouse, self.database, _make_date(this_year, 1, 1), 0):
                                             continue
                                     are_married = _get_marrital_status(fam, self.database)
                                     if are_married is not None:
