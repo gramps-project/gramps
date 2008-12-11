@@ -533,7 +533,7 @@ class Convert2Abs(BatchOp):
 class Convert2Rel(BatchOp):
     title       = _('Convert paths from absolute to r_elative')
     description = _("This tool allows converting absolute media paths "
-                    "to the a relative path. The relative path is relative "
+                    "to a relative path. The relative path is relative "
                     "viz-a-viz the base path as given in the Preferences, "
                     "or if that is not set, user's directory. "
                     "A relative path allows to tie the file location to "
