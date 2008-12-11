@@ -973,9 +973,8 @@ div#pedigree {
 }
 #footer img {
     border:0;
-    margin:0;
+    margin:0 auto;
     vertical-align:middle;
-    horizontal-align:center;
 }
 #footer p#createdate {
     float:left;
@@ -995,7 +994,6 @@ div#pedigree {
     margin-right:10px;
 }
 #footer p#quality {
-    float:center;
     width:100%;
     text-align:center;
     color:#FFF;
@@ -1160,7 +1158,6 @@ body#fullyear div.content, body#fullyearlinked div.content {
     width:963px;
     margin:0 auto;
     padding:15px 0 2px 2px;
-    background:url(../images/Web_Mainz_Mid.png) #FFF2C6 repeat;
 }
 body#fullyear table.calendar, body#fullyearlinked table.calendar {
     float:left;

@@ -933,7 +933,6 @@ div#sourcerefs ol li ol {
     border:0;
     margin:0;
     vertical-align:middle;
-    horizontal-align:center;
 }
 #footer p#createdate {
     float:left;
@@ -951,7 +950,6 @@ div#sourcerefs ol li ol {
     margin-right:10px;
 }
 #footer p#quality {
-    float:center;
     width:100%;
     text-align:center;
     padding-bottom:14px;
