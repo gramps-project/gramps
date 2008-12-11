@@ -147,9 +147,9 @@ class Renderer():
         """
         raise NotImplementedError
     
-        if   (self.browser == 1):
+        if   (self.browser == WEBKIT):
             self.m.open("file://"+htmlfile)
-        elif (self.browser == 2):
+        elif (self.browser == MOZIL):
             self.m.load_url("file://"+htmlfile)
 
 #-------------------------------------------------------------------------
@@ -399,16 +399,23 @@ class GeoView(PageView.PersonNavView):
     #def change_page(self):
     #    self.uistate.clear_filter_results()
 
-    def init_parent_signals_cb(self, widget, event):
+    def init_parent_signals_for_map(self, widget, event):
         # required to properly bootstrap the signal handlers.
         # This handler is connected by build_widget. After the outside ViewManager
         # has placed this widget we are able to access the parent container.
         self.notebook.disconnect(self.bootstrap_handler)
-        self.notebook.parent.connect("size-allocate", self.size_request_cb)
-        self.size_request_cb(widget.parent,event)
+        self.notebook.parent.connect("size-allocate", self.size_request_for_map)
+        self.size_request_for_map(widget.parent,event)
         
+    def request_resize(self):
+        self.size_request_for_map(self.notebook.parent,None,None)
+        
+    def size_request_for_map(self, widget, event, data=None):
+        v = widget.get_allocation()
+        self.width = v.width
+        self.height = v.height
+
     def add_table_to_notebook( self, table):
-        frame = gtk.ScrolledWindow(None,None)
         frame = gtk.ScrolledWindow(None,None)
         frame.set_shadow_type(gtk.SHADOW_NONE)
         frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -469,6 +476,7 @@ class GeoView(PageView.PersonNavView):
         self.notebook = gtk.Notebook()
         self.notebook.set_show_border(False)
         self.notebook.set_show_tabs(False)
+        self.bootstrap_handler = self.notebook.connect("size-request", self.init_parent_signals_for_map)
         
         self.table_2 = gtk.Table(1,1,False)
         self.add_table_to_notebook( self.table_2)
@@ -870,7 +878,7 @@ class GeoView(PageView.PersonNavView):
 
     def create_markers(self,format):
         self.centered = 0
-        self.geo += "  <div id=\"map\" style=\"height: %dpx\"></div>\n" % 600
+        self.geo += "  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % ( ( self.width - 20 ), ( self.height - 150 ))
         self.geo += "  <script type=\"text/javascript\">\n"
         self.geo += "   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap
         self.geo += "   mapstraction.addControls({ pan: true, zoom: 'large', "
@@ -1241,7 +1249,6 @@ class GeoView(PageView.PersonNavView):
                     #
                     refs = event.get_referenced_handles_recursively()
                     if refs:
-                        print refs
                         for ref in refs:
                             person = db.db.get_person_from_handle(ref)
                             #descr = _("%s; %s for %s") % (gen.lib.EventType(event.get_type()),place.get_title(), _nd.display(person))
