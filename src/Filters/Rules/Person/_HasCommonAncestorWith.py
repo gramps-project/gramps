@@ -49,35 +49,41 @@ class HasCommonAncestorWith(Rule):
     description = _("Matches people that have a common ancestor "
                     "with a specified person")
 
-    def prepare(self,db):
+    def prepare(self, db):
         self.db = db
-        # Keys in `ancestor_cache' are ancestors of list[0].
-        # We delay the computation of ancestor_cache until the
-        # first use, because it's not uncommon to instantiate
-        # this class and not use it.
+        # For each(!) person we keep track of who their ancestors
+        # are, in a set(). So we only have to compute a person's
+        # ancestor list once.
+        # Start with filling the cache for root person (gramps_id in self.list[0])
         self.ancestor_cache = {}
+        self.root_person = db.get_person_from_gramps_id(self.list[0])
+        self.add_ancs(db, self.root_person)
+
+    def add_ancs(self, db, person):
+        if person.handle not in self.ancestor_cache:
+            self.ancestor_cache[person.handle] = set()
+
+        for fam_handle in person.get_parent_family_handle_list():
+            fam = db.get_family_from_handle(fam_handle)
+            for par_handle in (fam.get_father_handle(), fam.get_mother_handle()):
+                if par_handle:
+                    par = db.get_person_from_handle(par_handle)
+                    if par and par.handle not in self.ancestor_cache:
+                        self.add_ancs(db, par)
+                    if par:
+                        self.ancestor_cache[person.handle].add(par)
+                        self.ancestor_cache[person.handle] |= self.ancestor_cache[par.handle]
 
     def reset(self):
         self.ancestor_cache = {}
 
-    def init_ancestor_cache(self,db):
-        # list[0] is an Id, but we need to pass a Person to for_each_ancestor.
-        try:
-            handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
-            if handle:
-                def init(self, handle): self.ancestor_cache[handle] = 1
-                for_each_ancestor(db,[handle],init,self)
-        except:
-            pass
+    def has_common_ancestor(self, other):
+        if self.ancestor_cache[self.root_person.handle] & self.ancestor_cache[other.handle]:
+            return True
+        return False
 
-    def apply(self,db,person):
-        # On the first call, we build the ancestor cache for the
-        # reference person.   Then, for each person to test,
-        # we browse his ancestors until we found one in the cache.
-        if len(self.ancestor_cache) == 0:
-            self.init_ancestor_cache(db)
-        handle = person.handle
-        return for_each_ancestor(
-            db,[handle],
-            lambda self, handle: handle in self.ancestor_cache,
-            self);
+    def apply(self, db, person):
+        if person.handle not in self.ancestor_cache:
+            self.add_ancs(db, person)
+
+        return self.has_common_ancestor(person)
