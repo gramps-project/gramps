@@ -55,7 +55,7 @@ import gtk
 #-------------------------------------------------------------------------
 import logging
 LOG = logging.getLogger(".GeoView")
-LOG.setLevel(logging.DEBUG)
+#LOG.setLevel(logging.DEBUG)
 
 #-------------------------------------------------------------------------
 #
@@ -97,7 +97,7 @@ if WebKit == NOWEB:
         pass
 
 #no interfaces present, raise Error so that options for GeoView do not show
-if WebKit  == 0 :
+if WebKit == NOWEB :
     Config.set(Config.GEOVIEW, False)
     LOG.warning(_("GeoView not enabled, no html plugin for GTK found."))
     raise ImportError, 'No GTK html plugin found'
@@ -147,11 +147,11 @@ class Renderer():
         """
         raise NotImplementedError
     
-        if   (self.browser == WEBKIT):
-            self.m.open("file://"+htmlfile)
-        elif (self.browser == MOZIL):
-            self.m.load_url("file://"+htmlfile)
-
+    def execute_script(self, url):
+        """ execute script in the current html page
+        """
+        raise NotImplementedError
+    
 #-------------------------------------------------------------------------
 #
 # Renderer with WebKit
@@ -164,10 +164,14 @@ class RendererWebkit(Renderer):
     def __init__(self):
         Renderer.__init__(self)
         self.window = webkit.WebView()
+        self.browser = WEBKIT
     
     def open(self, url):
         self.window.open(url)
         
+    def execute_script(self,url):
+        self.window.execute_script(url);
+    
 class RendererMozilla(Renderer):
     """
     Implementation of Renderer with gtkmozembed
@@ -182,10 +186,14 @@ class RendererMozilla(Renderer):
         self.__set_mozembed_proxy()
         self.window = gtkmozembed.MozEmbed()
         self.window.set_size_request(800, 600)
+        self.browser = MOZIL
     
     def open(self, url):
         self.window.load_url(url)
 
+    def execute_script(self,url):
+        self.window.load_url(url);
+    
     def __set_mozembed_proxy(self):
         """
         Try to see if we have some proxy environment variable.
@@ -194,9 +202,9 @@ class RendererMozilla(Renderer):
         """
         try:
             proxy = os.environ['http_proxy']
-            data = ""
             if proxy:
                 host_port = None
+                prefs = open(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w+")
                 parts = urlparse.urlparse(proxy)
                 if not parts[0] or parts[0] == 'http':
                     host_port = parts[1]
@@ -214,19 +222,17 @@ class RendererMozilla(Renderer):
 
                 if port and host:
                     port = str(port)
-                    data += 'user_pref("network.proxy.type", 1);\r\n'
-                    data += 'user_pref("network.proxy.http", "'+host+'");\r\n'
-                    data += 'user_pref("network.proxy.http_port", '+port+');\r\n'
-                    data += 'user_pref("network.proxy.no_proxies_on", '\
-                            '"127.0.0.1,localhost,localhost.localdomain");\r\n'
-                    data += 'user_pref("network.proxy.share_proxy_settings", true);\r\n'
-                    data += 'user_pref("network.http.proxy.pipelining", true);\r\n'
-                    data += 'user_pref("network.http.proxy.keep-alive", true);\r\n'
-                    data += 'user_pref("network.http.proxy.version", 1.1);\r\n'
-                    data += 'user_pref("network.http.sendRefererHeader, 0);\r\n'
-            fd = file(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w+")
-            fd.write(data)
-            fd.close()
+                    prefs.write('user_pref("network.proxy.type", 1);\r\n')
+                    prefs.write('user_pref("network.proxy.http", "'+host+'");\r\n')
+                    prefs.write('user_pref("network.proxy.http_port", '+port+');\r\n')
+                    prefs.write('user_pref("network.proxy.no_proxies_on", '\
+                                '"127.0.0.1,localhost,localhost.localdomain");\r\n')
+                    prefs.write('user_pref("network.proxy.share_proxy_settings", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.pipelining", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.keep-alive", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.version", 1.1);\r\n')
+                    prefs.write('user_pref("network.http.sendRefererHeader, 0);\r\n')
+                prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
                 os.remove(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js")
@@ -267,12 +273,10 @@ class HtmlView(PageView.PageView):
         frame.set_shadow_type(gtk.SHADOW_NONE)
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         frame.add_with_viewport(self.table)
+        self.bootstrap_handler = self.box.connect("size-request", self.init_parent_signals_for_map)
         self.table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
         self.table.set_row_spacings(1)
         self.table.set_col_spacings(0)
-
-        gobject.threads_init()
-        self.count = 0
 
         if   (WebKit == WEBKIT) :
             # We use webkit
@@ -327,6 +331,12 @@ class HtmlView(PageView.PageView):
     def define_actions(self):
         pass
 
+    def init_parent_signals_for_map(self, widget, event):
+        # required to properly bootstrap the signal handlers.
+        # This handler is connected by build_widget. After the outside ViewManager
+        # has placed this widget we are able to access the parent container.
+        pass
+        
     def create_start_page(self):
         """
         This command creates a default start page, and returns the URL of this
@@ -365,76 +375,50 @@ class HtmlView(PageView.PageView):
 # GeoView
 #
 #-------------------------------------------------------------------------
-class GeoView(PageView.PersonNavView):
+class GeoView(HtmlView):
 
     def __init__(self,dbstate,uistate):
-        PageView.PersonNavView.__init__(self, _('GeoView'), dbstate, uistate)
+        HtmlView.__init__(self, dbstate, uistate)
         
-        global WebKit
-
-        self.dbstate = dbstate
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
-        self.minyear = int(9999)
-        self.maxyear = int(0)
 
         # Create a temporary dot file
         (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
                                                   MOZEMBED_PATH )
-        # needs to be solved. where to remove it ?
 
-    def __del__(self):
+    def on_delete(self):
         """
-        How to do this the best way. We don't go here.
-        We need to suppress this temporary file.
+        We need to suppress the html temporary file.
         """
         try:
             os.remove(self.htmlfile)
         except:
             pass
 
-    #def _quit(self, widget):
-    #    gtk.main_quit()
-
-    #def change_page(self):
-    #    self.uistate.clear_filter_results()
-
     def init_parent_signals_for_map(self, widget, event):
         # required to properly bootstrap the signal handlers.
         # This handler is connected by build_widget. After the outside ViewManager
         # has placed this widget we are able to access the parent container.
-        self.notebook.disconnect(self.bootstrap_handler)
-        self.notebook.parent.connect("size-allocate", self.size_request_for_map)
+        self.box.disconnect(self.bootstrap_handler)
+        self.box.parent.connect("size-allocate", self.size_request_for_map)
         self.size_request_for_map(widget.parent,event)
         
     def request_resize(self):
-        self.size_request_for_map(self.notebook.parent,None,None)
+        self.size_request_for_map(self.box.parent,None,None)
+        self.geo_places(self.htmlfile,self.displaytype)
         
     def size_request_for_map(self, widget, event, data=None):
         v = widget.get_allocation()
         self.width = v.width
         self.height = v.height
 
-    def add_table_to_notebook( self, table):
-        frame = gtk.ScrolledWindow(None,None)
-        frame.set_shadow_type(gtk.SHADOW_NONE)
-        frame.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        frame.add_with_viewport(table)
-        table.get_parent().set_shadow_type(gtk.SHADOW_NONE)
-        table.set_row_spacings(1)
-        table.set_col_spacings(0)
-        try:
-            self.notebook.append_page(frame,None)
-        except:
-            # for PyGtk < 2.4
-            self.notebook.append_page(frame,gtk.Label(""))
-
     def set_active(self):
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self.goto_active_person)
     
     def set_inactive(self):
-        PageView.PersonNavView.set_inactive(self)
+        HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
         
     def get_stock(self):
@@ -445,71 +429,8 @@ class GeoView(PageView.PersonNavView):
         """
         return 'gramps-geo'
 
-    def call(self):
-        self.count = self.count+1
-        gobject.idle_add(self.idle_call_js ,self.count)
-
-    def idle_call_js(self,count):
-        if   (self.browser == 1):
-            self.m.execute_script("javascript:callFromPython("+str(count)+")");
-            #self.m.zoom_in(); # make text bigger
-        elif (self.browser == 2):
-            self.m.load_url("javascript:callFromPython("+str(count)+")");
-
     def change_map(self):
-        if   (self.browser == 1):
-            self.m.execute_script("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
-        elif (self.browser == 2):
-            self.m.load_url("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
-
-    def build_widget(self):
-        """
-        Builds the interface and returns a gtk.Container type that
-        contains the interface. This containter will be inserted into
-        a gtk.Notebook page.
-        """
-        global WebKit
-
-        self.tooltips = gtk.Tooltips()
-        self.tooltips.enable()
-       
-        self.notebook = gtk.Notebook()
-        self.notebook.set_show_border(False)
-        self.notebook.set_show_tabs(False)
-        self.bootstrap_handler = self.notebook.connect("size-request", self.init_parent_signals_for_map)
-        
-        self.table_2 = gtk.Table(1,1,False)
-        self.add_table_to_notebook( self.table_2)
-        gobject.threads_init()
-        self.count = 0
-        self.browser = 0
-
-        if   (WebKit == 1) :
-            # We use webkit
-            self.browser=1
-            self.m = webkit.WebView()
-        elif (WebKit == 2) :
-            # We use gtkmozembed
-            self.browser=2
-            if hasattr(gtkmozembed, 'set_profile_path'):
-                set_profile_path = gtkmozembed.set_profile_path
-            else:
-                set_profile_path = gtkmozembed.gtk_moz_embed_set_profile_path
-            if os.path.isdir(MOZEMBED_PATH+MOZEMBED_SUBPATH):
-                pass
-            else:
-                os.system("mkdir -p "+MOZEMBED_PATH+MOZEMBED_SUBPATH)
-            set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
-            self.set_mozembed_proxy()
-            self.m = gtkmozembed.MozEmbed()
-            self.m.set_size_request(800, 600)
-
-        self.table_2.add(self.m)
-        self.geo_places(None,self.displaytype)
-
-        self.m.show_all()
-
-        return self.notebook
+        self.renderer.execute_script("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
 
     def ui_definition(self):
         """
@@ -594,7 +515,7 @@ class GeoView(PageView.PersonNavView):
                          callback=self.event_places,
                          tip=_("Attempt to view places on the Map for all events."))
 
-        PageView.PersonNavView.define_actions(self)
+        HtmlView.define_actions(self)
 
     def goto_active_person(self,handle=None):
         self.geo_places(self.htmlfile,self.displaytype)
@@ -636,14 +557,7 @@ class GeoView(PageView.PersonNavView):
             self.createHelp(htmlfile)
         else:
             self.createMapstraction(htmlfile,displaytype)
-        LOG.debug("geo_places : in appel page")
-        if   (self.browser == 1):
-            self.m.open("file://"+htmlfile)
-        elif (self.browser == 2):
-            self.m.load_url("file://"+htmlfile)
-
-        if   (self.browser != 0):
-            self.m.show_all()
+        self.renderer.open("file://"+htmlfile)
 
     def select_OpenStreetMap_map(self,handle=None):
         self.usedmap = "openstreetmap"
@@ -686,6 +600,7 @@ class GeoView(PageView.PersonNavView):
             proxy = os.environ['http_proxy']
             data = ""
             if proxy:
+                prefs = open(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w")
                 host_port = None
                 parts = urlparse.urlparse(proxy)
                 if not parts[0] or parts[0] == 'http':
@@ -704,20 +619,18 @@ class GeoView(PageView.PersonNavView):
 
                 if port and host:
                     port = str(port)
-                    data += 'user_pref("network.proxy.type", 1);\r\n'
-                    data += 'user_pref("network.proxy.http", "'+host+'");\r\n'
-                    data += 'user_pref("network.proxy.http_port", '+port+');\r\n'
-                    data += 'user_pref("network.proxy.no_proxies_on", "127.0.0.1,localhost,localhost.localdomain");\r\n'
-                    data += 'user_pref("network.proxy.share_proxy_settings", true);\r\n'
-                    data += 'user_pref("network.http.proxy.pipelining", true);\r\n'
-                    data += 'user_pref("network.http.proxy.keep-alive", true);\r\n'
-                    data += 'user_pref("network.http.proxy.version", 1.1);\r\n'
-                    data += 'user_pref("network.http.sendRefererHeader, 0);\r\n'
-            fd = file(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w+")
-            fd.write(data)
-            fd.close()
+                    prefs.write('user_pref("network.proxy.type", 1);\r\n')
+                    prefs.write('user_pref("network.proxy.http", "'+host+'");\r\n')
+                    prefs.write('user_pref("network.proxy.http_port", '+port+');\r\n')
+                    prefs.write('user_pref("network.proxy.no_proxies_on", "127.0.0.1,localhost,localhost.localdomain");\r\n')
+                    prefs.write('user_pref("network.proxy.share_proxy_settings", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.pipelining", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.keep-alive", true);\r\n')
+                    prefs.write('user_pref("network.http.proxy.version", 1.1);\r\n')
+                    prefs.write('user_pref("network.http.sendRefererHeader, 0);\r\n')
+            prefs.close()
         except:
-            try: # tryng to remove pref.js in case of proxy change.
+            try: # trying to remove pref.js in case of proxy change.
                 os.remove(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js")
             except:
                 pass
@@ -743,86 +656,85 @@ class GeoView(PageView.PersonNavView):
             self.yearint=10
         LOG.debug("period = %d, intvl = %d, interval = %d" % (period,
                                             intvl, self.yearint))
-        self.geo += "       var step = %s;\n" % self.yearint
-        self.geo += "  </script>\n"
-        self.geo += " </head>\n"
-        self.geo += " <body >\n"
+        self.mapview.write("       var step = %s;\n" % self.yearint)
+        self.mapview.write("  </script>\n")
+        self.mapview.write(" </head>\n")
+        self.mapview.write(" <body >\n")
         if self.displaytype != "places":
-            self.geo += " <Div id='btns' font=-2 >\n"
-            self.geo += "  <form method='POST'>\n"
-            self.geo += "  <input type='radio' name='years' value='All' checked\n"
-            self.geo += "         onchange=\"selectmarkers(\'All\')\"/>All\n"
+            self.mapview.write(" <Div id='btns' font=-2 >\n")
+            self.mapview.write("  <form method='POST'>\n")
+            self.mapview.write("  <input type='radio' name='years' value='All' checked\n")
+            self.mapview.write("         onchange=\"selectmarkers(\'All\')\"/>All\n")
             for year in range(self.minyear,self.maxyear+self.yearint,self.yearint):
-                self.geo += "  <input type='radio' name='years' value=\'%s\'\n" %year
-                self.geo += "         onchange=\"selectmarkers(\'%s\')\"/>%s\n" % ( year, year )
-            self.geo += "  </form></Div>\n"
+                self.mapview.write("  <input type='radio' name='years' value=\'%s\'\n" %year)
+                self.mapview.write("         onchange=\"selectmarkers(\'%s\')\"/>%s\n" % ( year, year ))
+            self.mapview.write("  </form></Div>\n")
 
     def createMapstractionHeader(self):
-        self.geo = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n"
-        self.geo += "         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n"
-        self.geo += "<html xmlns=\"http://www.w3.org/1999/xhtml\" >\n"
-        self.geo += " <head>\n"
-        self.geo += "  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n"
-        self.geo += "  <title>Geo Maps JavaScript API for Gramps</title>\n"
-        self.geo += "  <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">\n"
-        self.geo += "  <script type=\"text/javascript\"\n" 
-        self.geo += "          src=\"file://"+const.ROOT_DIR+"/mapstraction/mapstraction.js\">\n"
-        self.geo += "  </script>\n"
+        self.mapview = open(self.htmlfile,"w+")
+        self.mapview.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n")
+        self.mapview.write("         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n")
+        self.mapview.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" >\n")
+        self.mapview.write(" <head>\n")
+        self.mapview.write("  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n")
+        self.mapview.write("  <title>Geo Maps JavaScript API for Gramps</title>\n")
+        self.mapview.write("  <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">\n")
+        self.mapview.write("  <script type=\"text/javascript\"\n" )
+        self.mapview.write("          src=\"file://"+const.ROOT_DIR+"/mapstraction/mapstraction.js\">\n")
+        self.mapview.write("  </script>\n")
         if self.usedmap == "microsoft":
-            self.geo += "  <script type=\"text/javascript\"\n"
-            self.geo += "          src=\"http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6\">\n"
-            self.geo += "  </script>\n"
+            self.mapview.write("  <script type=\"text/javascript\"\n")
+            self.mapview.write("          src=\"http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6\">\n")
+            self.mapview.write("  </script>\n")
         elif self.usedmap == "yahoo":
-            self.geo += "  <script type=\"text/javascript\"\n"
-            self.geo += "          src=\"http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=MapstractionDemo\" type=\"text/javascript\">\n"
-            self.geo += "  </script>\n"
+            self.mapview.write("  <script type=\"text/javascript\"\n")
+            self.mapview.write("          src=\"http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=MapstractionDemo\" type=\"text/javascript\">\n")
+            self.mapview.write("  </script>\n")
         elif self.usedmap == "openlayers":
-            self.geo += "  <script type=\"text/javascript\"\n"
-            self.geo += "          src=\"http://openlayers.org/api/OpenLayers.js\">\n"
-            self.geo += "  </script>\n"
+            self.mapview.write("  <script type=\"text/javascript\"\n")
+            self.mapview.write("          src=\"http://openlayers.org/api/OpenLayers.js\">\n")
+            self.mapview.write("  </script>\n")
         else: # openstreetmap and google
-            self.geo += "  <script id=\"googleapiimport\" \n"
-            self.geo += "          src=\"http://maps.google.com/maps?file=api&v=2\"\n"
-            self.geo += "          type=\"text/javascript\">\n"
-            self.geo += "  </script>\n"
-        self.geo += "  <script>\n"
-        self.geo += "       var gmarkers = [];\n"
-        self.geo += "       var min = 0;\n"
-        self.geo += "       var selectedmarkers = 'All';\n"
-        self.geo += "       // shows or hide markers of a particular category\n"
-        self.geo += "       function selectmarkers(year) {\n"
-        self.geo += "         selectedmarkers = year;\n"
-        self.geo += "         for (var i=0; i<gmarkers.length; i++) {\n"
-        self.geo += "           val = gmarkers[i].getAttribute(\"year\");\n"
-        self.geo += "           min = parseInt(year);\n"
-        self.geo += "           max = min + step;\n"
-        self.geo += "           if ( selectedmarkers == \"All\" ) { min = 0; max = 9999; }\n"
-        self.geo += "           gmarkers[i].hide();\n"
+            self.mapview.write("  <script id=\"googleapiimport\" \n")
+            self.mapview.write("          src=\"http://maps.google.com/maps?file=api&v=2\"\n")
+            self.mapview.write("          type=\"text/javascript\">\n")
+            self.mapview.write("  </script>\n")
+        self.mapview.write("  <script>\n")
+        self.mapview.write("       var gmarkers = [];\n")
+        self.mapview.write("       var min = 0;\n")
+        self.mapview.write("       var selectedmarkers = 'All';\n")
+        self.mapview.write("       // shows or hide markers of a particular category\n")
+        self.mapview.write("       function selectmarkers(year) {\n")
+        self.mapview.write("         selectedmarkers = year;\n")
+        self.mapview.write("         for (var i=0; i<gmarkers.length; i++) {\n")
+        self.mapview.write("           val = gmarkers[i].getAttribute(\"year\");\n")
+        self.mapview.write("           min = parseInt(year);\n")
+        self.mapview.write("           max = min + step;\n")
+        self.mapview.write("           if ( selectedmarkers == \"All\" ) { min = 0; max = 9999; }\n")
+        self.mapview.write("           gmarkers[i].hide();\n")
         if   self.usedmap == "microsoft":
-            self.geo += ""
+            self.mapview.write("")
         elif self.usedmap == "yahoo":
-            self.geo += ""
+            self.mapview.write("")
         elif self.usedmap == "openlayers":
-            self.geo += ""
+            self.mapview.write("")
         else: # openstreetmap and google
-            self.geo += "           gmarkers[i].map.closeInfoWindow();\n"
-        self.geo += "           years = val.split(' ');\n"
-        self.geo += "           for ( j=0; j < years.length; j++) {\n"
-        self.geo += "               if ( years[j] >= min ) {\n"
-        self.geo += "                   if ( years[j] < max ) {\n"
-        self.geo += "                       gmarkers[i].show();\n"
-        self.geo += "                   }\n"
-        self.geo += "               }\n"
-        self.geo += "           }\n"
-        self.geo += "         }\n"
-        self.geo += "       }\n"
+            self.mapview.write("           gmarkers[i].map.closeInfoWindow();\n")
+        self.mapview.write("           years = val.split(' ');\n")
+        self.mapview.write("           for ( j=0; j < years.length; j++) {\n")
+        self.mapview.write("               if ( years[j] >= min ) {\n")
+        self.mapview.write("                   if ( years[j] < max ) {\n")
+        self.mapview.write("                       gmarkers[i].show();\n")
+        self.mapview.write("                   }\n")
+        self.mapview.write("               }\n")
+        self.mapview.write("           }\n")
+        self.mapview.write("         }\n")
+        self.mapview.write("       }\n")
 
     def createMapstractionTrailer(self,filename):
-        self.geo += " </body>\n"
-        self.geo += "</html>\n"
-        fd = file(filename,"w+")
-        fd.write(self.geo)
-        fd.close()
+        self.mapview.write(" </body>\n")
+        self.mapview.write("</html>\n")
+        self.mapview.close()
 
     def createMapstraction(self,filename,displaytype):
         self.createMapstractionHeader()
@@ -878,11 +790,12 @@ class GeoView(PageView.PersonNavView):
 
     def create_markers(self,format):
         self.centered = 0
-        self.geo += "  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % ( ( self.width - 20 ), ( self.height - 150 ))
-        self.geo += "  <script type=\"text/javascript\">\n"
-        self.geo += "   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap
-        self.geo += "   mapstraction.addControls({ pan: true, zoom: 'large', "
-        self.geo += "overview: true, scale: true, map_type: true });\n"
+        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % 
+                           ( ( self.width - 20 ), ( self.height - 160 )))
+        self.mapview.write("  <script type=\"text/javascript\">\n")
+        self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
+        self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
+        self.mapview.write("overview: true, scale: true, map_type: true });\n")
         sort = sorted(self.place_list)
         last = ""
         indm=0
@@ -982,24 +895,24 @@ class GeoView(PageView.PersonNavView):
             if last != mark[0]:
                 years=""
                 if last != "":
-                    self.geo += "</div>\");\n"
+                    self.mapview.write("</div>\");\n")
                     if mark[2]:
                         for y in yearinmarker:
                             years += "%d " % y
                     years += "end"
-                    self.geo += "   my_marker.setAttribute('year','%s');\n" % years
+                    self.mapview.write("   my_marker.setAttribute('year','%s');\n" % years)
                     yearinmarker = []
                     years=""
-                    self.geo += "   mapstraction.addMarker(my_marker);\n"
+                    self.mapview.write("   mapstraction.addMarker(my_marker);\n")
                     if self.mustcenter == True:
                         self.centered = 1
-                        self.geo += "   var point = new LatLonPoint(%s,%s);\n"%(self.latit,self.longt)
-                        self.geo += "   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom
+                        self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latit,longt))
+                        self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
                         self.mustcenter = False
                     if mark[2]:
-                        self.geo += "   // map locations for %s;\n"%mark[1]
+                        self.mapview.write("   // map locations for %s;\n"%mark[1])
                     else:
-                        self.geo += "   // map locations for %s;\n"%mark[0]
+                        self.mapview.write("   // map locations for %s;\n"%mark[0])
                 last = mark[0]
                 cent=int(mark[6])
                 if (cent == 1):
@@ -1026,26 +939,26 @@ class GeoView(PageView.PersonNavView):
 
                     LOG.debug("latitude centree = %s\n" % latit)
                     LOG.debug("longitude centree = %s\n" % longt)
-                    self.geo += "   var point = new LatLonPoint(%s,%s);\n"%(latit,longt)
-                    self.geo += "   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom
-                self.geo += "   var point = new LatLonPoint(%s,%s);\n"%(mark[3],mark[4])
-                self.geo += "   my_marker = new Marker(point);\n"
-                self.geo += "   gmarkers[%d]=my_marker;\n" % indm
+                    self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latit,longt))
+                    self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
+                self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(mark[3],mark[4]))
+                self.mapview.write("   my_marker = new Marker(point);\n")
+                self.mapview.write("   gmarkers[%d]=my_marker;\n" % indm)
                 indm+=1;
-                self.geo += "   my_marker.setLabel(\"%s\");\n"%mark[0]
+                self.mapview.write("   my_marker.setLabel(\"%s\");\n"%mark[0])
                 yearinmarker.append(mark[7])
                 divclose=0
-                self.geo += "   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >"
+                self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
                 if format == 1:
-                    self.geo += "%s<br>____________<br><br>%s"%(mark[0],mark[5])
+                    self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
                 elif format == 2:
-                    self.geo += "%s<br>____________<br><br>%s - %s"%(mark[1],mark[7],mark[5])
+                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[1],mark[7],mark[5]))
                 elif format == 3:
-                    self.geo += "%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5])
+                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
                 elif format == 4:
-                    self.geo += "%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5])
+                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
             else: # This marker already exists. add info.
-                self.geo += "<br>%s - %s" % (mark[7], mark[5])
+                self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
                 if self.isyearnotinmarker(yearinmarker,mark[7]):
                     yearinmarker.append(mark[7])
                 cent=int(mark[6])
@@ -1081,19 +994,19 @@ class GeoView(PageView.PersonNavView):
                             LOG.debug("longt 4 1")
                     self.mustcenter = True
         if divclose == 0:
-            self.geo += "</div>\");\n"
+            self.mapview.write("</div>\");\n")
             if mark[2]:
                 for y in yearinmarker:
                     years += "%d " % y
             years += "end"
-            self.geo += "   my_marker.setAttribute('year','%s');\n" % years
+            self.mapview.write("   my_marker.setAttribute('year','%s');\n" % years)
             yearinmarker = []
             years=""
-            self.geo += "   mapstraction.addMarker(my_marker);\n"
+            self.mapview.write("   mapstraction.addMarker(my_marker);\n")
             if self.mustcenter == True:
                 self.centered = 1
-                self.geo += "   var point = new LatLonPoint(%s,%s);\n"%(self.latit,self.longt)
-                self.geo += "   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom
+                self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(self.latit,self.longt))
+                self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
         if ( self.centered == 0 ):
             # We have no valid geographic point to center the map.
             # So you'll see the street where I live.
@@ -1105,15 +1018,15 @@ class GeoView(PageView.PersonNavView):
             #
             longitude = -1.568792
             latitude = 47.257971
-            self.geo += "   var point = new LatLonPoint(%s,%s);\n"%(latitude,longitude)
-            self.geo += "   mapstraction.setCenterAndZoom(point, %d);\n"%2
-            self.geo += "   my_marker = new Marker(point);\n"
-            self.geo += "   my_marker.setLabel(\"%s\");\n"%_("The author of this module.")
-            self.geo += "   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >"
-            self.geo += "Serge Noiraud<br>Nantes, France<br>"
-            self.geo += "%s</div>\");\n"%_("This request has no geolocation associated.")
-            self.geo += "   mapstraction.addMarker(my_marker);\n"
-        self.geo += "  </script>\n"
+            self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
+            self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
+            self.mapview.write("   my_marker = new Marker(point);\n")
+            self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
+            self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
+            self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
+            self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
+            self.mapview.write("   mapstraction.addMarker(my_marker);\n")
+        self.mapview.write("  </script>\n")
 
     def createPersonMarkers(self,db,person,comment):
         """
@@ -1183,8 +1096,6 @@ class GeoView(PageView.PersonNavView):
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
         self.maxlon = float(0.0)
-        self.minyear = int(9999)
-        self.maxyear = int(0)
  
         latitude = ""
         longitude = ""
@@ -1209,9 +1120,9 @@ class GeoView(PageView.PersonNavView):
                                                descr1, self.center, None)
                     self.center = 0
         self.createMapstractionPostHeader()
-        self.geo += "  <H3>%s</H3>"%_("All places in the database with coordinates.")
+        self.mapview.write("  <H3>%s</H3>"%_("All places in the database with coordinates."))
         if self.center == 1:
-            self.geo += "  <H4>%s</H4>"%_("Cannot center the map. No selected location.")
+            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
         self.create_markers(1)
 
     def createMapstractionEvents(self,db):
@@ -1269,9 +1180,9 @@ class GeoView(PageView.PersonNavView):
                                                    descr2, self.center, eventyear)
                         self.center = 0
         self.createMapstractionPostHeader()
-        self.geo += "  <H3>%s</H3>"%_("All events in the database with coordinates.")
+        self.mapview.write("  <H3>%s</H3>"%_("All events in the database with coordinates."))
         if self.center == 1:
-            self.geo += "  <H4>%s</H4>"%_("Cannot center the map. No selected location.")
+            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
         self.create_markers(2)
 
     def createMapstractionFamily(self,db):
@@ -1315,9 +1226,9 @@ class GeoView(PageView.PersonNavView):
                                                          _("Child"),index)
                             self.createPersonMarkers(db,child,comment)
         self.createMapstractionPostHeader()
-        self.geo += "  <H3>%s</H3>"%_("All %s people's family places in the database with coordinates.") % _nd.display(person)
+        self.mapview.write("  <H3>%s</H3>"%_("All %s people's family places in the database with coordinates.") % _nd.display(person))
         if self.center == 1:
-            self.geo += "  <H4>%s</H4>"%_("Cannot center the map. No selected location.")
+            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
         self.create_markers(3)
 
     def createMapstractionPerson(self,db):
@@ -1369,9 +1280,9 @@ class GeoView(PageView.PersonNavView):
                                                    descr1, self.center, eventyear)
                         self.center = 0
         self.createMapstractionPostHeader()
-        self.geo += "  <H3>%s</H3>"%_("All event places for %s.") % _nd.display(person)
+        self.mapview.write("  <H3>%s</H3>"%_("All event places for %s.") % _nd.display(person))
         if self.center == 1:
-            self.geo += "  <H4>%s</H4>"%_("Cannot center the map. No selected location.")
+            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
         self.create_markers(4)
 
     def createMapstractionNotImplemented(self,db):
@@ -1379,34 +1290,32 @@ class GeoView(PageView.PersonNavView):
         This function is used to inform the user this work is not implemented.
         """
         LOG.warning('createMapstractionNotImplemented')
-        self.geo += "  <H1>%s ...</H1>"%_("Not yet implemented")
+        self.mapview.write("  <H1>%s ...</H1>"%_("Not yet implemented"))
 
     def createHelp(self,filename):
-        tmpdir = MOZEMBED_PATH
-        geo = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n"
-        geo += "         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n"
-        geo += "<html xmlns=\"http://www.w3.org/1999/xhtml\"  >\n"
-        geo += " <head>\n"
-        geo += "  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n"
-        geo += "  <title>Geo Maps JavaScript API for Gramps</title>\n"
-        geo += " </head>\n"
-        geo += " <body >\n"
-        geo += "  <div id=\"map\" style=\"height: %dpx\">\n" % 600
-        geo += "   <br><br><br><br><br>\n"
-        geo += "   <H4>"
-        geo += _("You can choose between two maps. One free and a second one.")
-        geo += "   <br>"
-        geo += _("The best choice is the free map like openstreetmap.")
-        geo += "   <br>"
-        geo += _("You should use the second map only if the first one give no results ...")
-        geo += "   <br>"
-        geo += _("You can select Edit/Preferences to choose the second map provider.")
-        geo += "   <br>"
-        geo += _("They are : Googlemaps, Yahoo! maps, Microsoft maps and Openlayers.")
-        geo += "   </H4>"
-        geo += "  </div>\n"
-        geo += " </body>\n"
-        geo += "</html>\n"
-        fd = file(filename,"w+")
-        fd.write(geo)
-        fd.close()
+        help = open(self.htmlfile,"w")
+        help.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n")
+        help.write("         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n")
+        help.write("<html xmlns=\"http://www.w3.org/1999/xhtml\"  >\n")
+        help.write(" <head>\n")
+        help.write("  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n")
+        help.write("  <title>Geo Maps JavaScript API for Gramps</title>\n")
+        help.write(" </head>\n")
+        help.write(" <body >\n")
+        help.write("  <div id=\"map\" style=\"height: %dpx\">\n" % 600)
+        help.write("   <br><br><br><br><br>\n")
+        help.write("   <H4>")
+        help.write(_("You can choose between two maps. One free and a second one."))
+        help.write("   <br>")
+        help.write(_("The best choice is the free map like openstreetmap."))
+        help.write("   <br>")
+        help.write(_("You should use the second map only if the first one give no results ..."))
+        help.write("   <br>")
+        help.write(_("You can select Edit/Preferences to choose the second map provider."))
+        help.write("   <br>")
+        help.write(_("They are : Googlemaps, Yahoo! maps, Microsoft maps and Openlayers."))
+        help.write("   </H4>")
+        help.write("  </div>\n")
+        help.write(" </body>\n")
+        help.write("</html>\n")
+        help.close()
