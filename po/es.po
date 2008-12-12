@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 0.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-05 10:56+0100\n"
-"PO-Revision-Date: 2008-10-02 06:19+0200\n"
+"PO-Revision-Date: 2008-12-12 07:02+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -193,7 +193,6 @@ msgstr "Andrés Sepúlveda, Julio Sánchez"
 
 #: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1016
 #: ../src/gen/lib/date.py:1030
-#, fuzzy
 msgid "none"
 msgstr "ninguno"
 
@@ -288,7 +287,7 @@ msgid "Cannot import from current file"
 msgstr "No se pudo importar del archivo actual"
 
 #: ../src/DbLoader.py:189
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
@@ -296,7 +295,7 @@ msgid ""
 msgstr ""
 "El tipo de archivo \"%s\" es desconocido para GRAMPS.\n"
 "\n"
-"Los tipo válidos son: bsae de datos GRAMPS, XML GRAMPS, paquete GRAMPS y GEDCOM."
+"Tipos válidos son: base de datos GRAMPS, XML GRAMPS, paquete GRAMPS, GEDCOM y otros."
 
 #: ../src/DbLoader.py:213 ../src/DbLoader.py:220
 msgid "Cannot open database"
@@ -560,13 +559,13 @@ msgid "Archiving failed"
 msgstr "Falló la operación de archivo"
 
 #: ../src/DbManager.py:1074
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
-"El intento de recuperar los datos falló con el siguiente mensaje:\n"
+"El intento de crear el archivo falló con el siguiente mensaje:\n"
 "\n"
 "%s"
 
@@ -668,9 +667,9 @@ msgstr ""
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:478
-#, fuzzy, python-format
+#, python-format
 msgid "Filename: %s"
-msgstr "Nombre del Archivo"
+msgstr "Nombre del archivo: %s"
 
 #: ../src/ExportAssistant.py:480
 msgid "Saving failed"
@@ -811,13 +810,12 @@ msgid "Icelandic style"
 msgstr "Estilo islandés"
 
 #: ../src/GrampsCfg.py:119 ../src/GrampsCfg.py:122
-#, fuzzy
 msgid "Display Name Editor"
-msgstr "Editor de Nombres"
+msgstr "Mostrar el editor de nombres"
 
 #: ../src/GrampsCfg.py:133
 msgid " Name Editor"
-msgstr " Editor de Nombres"
+msgstr " Editor de nombres"
 
 #: ../src/GrampsCfg.py:133 ../src/GrampsCfg.py:141 ../src/GrampsCfg.py:144
 #: ../src/GrampsCfg.py:906
@@ -1297,9 +1295,8 @@ msgid "Gramplets"
 msgstr "Ejemplo"
 
 #: ../src/gramps_main.py:111
-#, fuzzy
 msgid "Public"
-msgstr "Publicación"
+msgstr "Público"
 
 #: ../src/gramps_main.py:112 ../src/Simple/_SimpleTable.py:215
 #: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:198
@@ -1778,9 +1775,8 @@ msgid "Person %s connects to himself via %s"
 msgstr "La persona %s está conectada consigo misma a través de %s"
 
 #: ../src/Relationship.py:1193
-#, fuzzy
 msgid "undefined"
-msgstr "_Subrayado"
+msgstr "no definido"
 
 #: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:273
 msgid "husband"
@@ -2580,7 +2576,7 @@ msgstr "Un matrimonio legal o 'de facto' entre marido y mujer"
 
 #: ../src/Utils.py:101
 msgid "No legal or common-law relationship between man and woman"
-msgstr "Ninguna relación legal o informal  entre hombre y mujer"
+msgstr "Ninguna relación legal o 'de facto' entre hombre y mujer"
 
 #: ../src/Utils.py:103
 msgid "An established relationship between members of the same sex"
@@ -2591,7 +2587,6 @@ msgid "Unknown relationship between a man and woman"
 msgstr "Relación desconocida entre hombre y mujer"
 
 #: ../src/Utils.py:107
-#, fuzzy
 msgid "An unspecified relationship between a man and woman"
 msgstr "Una relación sin especificar entre un hombre y una mujer"
 
@@ -2887,7 +2882,6 @@ msgid "Could not load a recent Family Tree."
 msgstr "No se pudo cargar un árbol genealógico reciente."
 
 #: ../src/ViewManager.py:1065
-#, fuzzy
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "No existe el árbol genealógico porque ha sido borrado."
 
@@ -4182,23 +4176,20 @@ msgid "Open with %s"
 msgstr "Abrir con %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
-#, fuzzy
 msgid "Non existing media found in the Gallery"
-msgstr "Objetos audiovisuales inexistentes encontrados en la Galería"
+msgstr "Objeto audiovisual inexistente encontrado en la galería"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
-#, fuzzy
 msgid "Create and add a new LDS ordinance"
-msgstr "Crear y agregar una nueva fuente"
+msgstr "Crear y agregar una nueva ordenanza SUD"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 msgid "Remove the existing LDS ordinance"
 msgstr "Eliminar la ordenanza SUD existente"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
-#, fuzzy
 msgid "Edit the selected LDS ordinance"
-msgstr "Modificar la fuente seleccionada"
+msgstr "Modificar la ordenanza SUD seleccionada"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 msgid "Move the selected LDS ordinance upwards"
@@ -4229,14 +4220,12 @@ msgid "Edit the selected name"
 msgstr "Modificar el nombre seleccionado"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:62
-#, fuzzy
 msgid "Move the selected name upwards"
-msgstr "Borrar la persona seleccionada"
+msgstr "Mover el nombre seleccionada hacia arriba"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:63
-#, fuzzy
 msgid "Move the selected name downwards"
-msgstr "Borrar la persona seleccionada"
+msgstr "Mover el nombre seleccionada hacia abajo"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:76
 msgid "_Names"
@@ -4247,66 +4236,56 @@ msgid "Set as default name"
 msgstr "Establecer como nombre predeterminado"
 
 #: ../src/DisplayTabs/_NoteTab.py:63
-#, fuzzy
 msgid "Create and add a new note"
-msgstr "Crear y agregar una nueva fuente"
+msgstr "Crear y agregar una nueva nota"
 
 #: ../src/DisplayTabs/_NoteTab.py:64
 msgid "Remove the existing note"
 msgstr "Eliminar la nota existente"
 
 #: ../src/DisplayTabs/_NoteTab.py:66
-#, fuzzy
 msgid "Add an existing note"
-msgstr "Agregar una fuente existente"
+msgstr "Agregar una nota existente"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
-#, fuzzy
 msgid "Move the selected note upwards"
-msgstr "Borrar la persona seleccionada"
+msgstr "Mover la nota seleccionada hacia arriba"
 
 #: ../src/DisplayTabs/_NoteTab.py:68
-#, fuzzy
 msgid "Move the selected note downwards"
-msgstr "Borrar la persona seleccionada"
+msgstr "Mover la nota seleccionada hacia abajo"
 
 #: ../src/DisplayTabs/_NoteTab.py:82
-#, fuzzy
 msgid "_Notes"
-msgstr "Notas"
+msgstr "_Notas"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
-#, fuzzy
 msgid "Create and add a new association"
-msgstr "Crear y agregar una nueva fuente"
+msgstr "Crear y agregar una nueva asociación"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
 msgid "Remove the existing association"
 msgstr "Eliminar la asociación existente"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Edit the selected association"
-msgstr "Modificar la persona seleccionada"
+msgstr "Modificar la asociación seleccionada"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
-#, fuzzy
 msgid "Move the selected association upwards"
-msgstr "Borrar el cónyuge seleccionado"
+msgstr "Mover la asociación seleccionada hacia arriba"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:56
-#, fuzzy
 msgid "Move the selected association downwards"
-msgstr "Borrar el hijo seleccionada"
+msgstr "Mover la asociación seleccionada hacia abajo"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:62
 msgid "Association"
 msgstr "Asociación"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
-#, fuzzy
 msgid "_Associations"
-msgstr "Asociaciones"
+msgstr "_Asociaciones"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:86
 msgid "Godfather"
@@ -4325,19 +4304,16 @@ msgid "Add an existing repository"
 msgstr "Agregar un repositorio existente"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
-#, fuzzy
 msgid "Move the selected repository upwards"
-msgstr "Borrar el repositorio seleccionado"
+msgstr "Mover el repositorio seleccionado hacia arriba"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:58
-#, fuzzy
 msgid "Move the selected repository downwards"
-msgstr "Borrar el repositorio seleccionado"
+msgstr "Mover el repositorio seleccionado hacia abajo"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
-#, fuzzy
 msgid "_Repositories"
-msgstr "Repositorios"
+msgstr "_Repositorios"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:115
 msgid "Select repository"
@@ -4366,19 +4342,16 @@ msgid "Add an existing source"
 msgstr "Agregar una fuente existente"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
-#, fuzzy
 msgid "Move the selected source upwards"
-msgstr "Borrar la fuente seleccionada"
+msgstr "Mover la fuente seleccionada hacia arriba"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:58
-#, fuzzy
 msgid "Move the selected source downwards"
-msgstr "Borrar la fuente seleccionada"
+msgstr "Mover la fuente seleccionada hacia abajo"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:70
-#, fuzzy
 msgid "_Sources"
-msgstr "Fuentes"
+msgstr "_Fuentes"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:134
 msgid ""
@@ -4391,38 +4364,32 @@ msgstr ""
 "Para editar esta referencia a fuente, debe cerrar la fuente antes."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
-#, fuzzy
 msgid "Create and add a new web address"
-msgstr "Crear y agregar una nueva fuente"
+msgstr "Crear y agregar una nueva dirección web"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 msgid "Remove the existing web address"
 msgstr "Eliminar la dirección web existente"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected web address"
-msgstr "Modificar la dirección seleccionada"
+msgstr "Modificar la dirección web seleccionada"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:56
-#, fuzzy
 msgid "Move the selected web address upwards"
-msgstr "Modificar la dirección seleccionada"
+msgstr "Mover la dirección web seleccionada hacia arriba"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:57
-#, fuzzy
 msgid "Move the selected web address downwards"
-msgstr "Borrar la persona seleccionada"
+msgstr "Mover la dirección web seleccionada hacia abajo"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:58
-#, fuzzy
 msgid "Jump to the selected web address"
-msgstr "Modificar la dirección seleccionada"
+msgstr "Ir a la dirección web seleccionada"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:69
-#, fuzzy
 msgid "_Internet"
-msgstr "Internet"
+msgstr "_Internet"
 
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
@@ -4508,9 +4475,8 @@ msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr "No existen datos para este evento. Por favor, introdúzcalos o cancele la modificación."
 
 #: ../src/Editors/_EditEvent.py:213
-#, fuzzy
 msgid "Cannot save event. ID already exists."
-msgstr "No se pudo salvar el evento"
+msgstr "No se pudo salvar el evento.  El ID ya existe."
 
 #: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:251
 #: ../src/Editors/_EditPerson.py:690 ../src/Editors/_EditPlace.py:275
@@ -4538,9 +4504,8 @@ msgstr "Editor de referencias a eventos"
 
 #: ../src/Editors/_EditEventRef.py:96 ../src/Editors/_EditMediaRef.py:95
 #: ../src/Editors/_EditName.py:123 ../src/Editors/_EditRepoRef.py:88
-#, fuzzy
 msgid "_General"
-msgstr "General"
+msgstr "_General"
 
 #: ../src/Editors/_EditEventRef.py:231
 msgid "Modify Event"
@@ -4555,23 +4520,20 @@ msgid "Remove the child from the family"
 msgstr "Eliminar el hijo de la familia"
 
 #: ../src/Editors/_EditFamily.py:93
-#, fuzzy
 msgid "Edit the child reference"
-msgstr "Modificar referencia"
+msgstr "Modificar referencia al hijo"
 
 #: ../src/Editors/_EditFamily.py:94
 msgid "Add an existing person as a child of the family"
 msgstr "Seleccionar una persona ya existente de la base de datos y agregarla como hija de la familia"
 
 #: ../src/Editors/_EditFamily.py:95
-#, fuzzy
 msgid "Move the child up in the childrens list"
-msgstr "Estilo utilizado para la lista de hijos."
+msgstr "Mover hacia arriba el hijo en la lista de hijos"
 
 #: ../src/Editors/_EditFamily.py:96
-#, fuzzy
 msgid "Move the child down in the childrens list"
-msgstr "Estilo utilizado para la lista de hijos."
+msgstr "Mover hacia abajo el hijo en la lista de hijos"
 
 #: ../src/Editors/_EditFamily.py:100
 msgid "#"
@@ -4586,18 +4548,16 @@ msgid "Maternal"
 msgstr "Materna"
 
 #: ../src/Editors/_EditFamily.py:117
-#, fuzzy
 msgid "Chil_dren"
-msgstr "Hijos"
+msgstr "Hi_jos"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
 msgstr "Modificar hijo/a"
 
 #: ../src/Editors/_EditFamily.py:125
-#, fuzzy
 msgid "Add an existing child"
-msgstr "Hijo inexistente"
+msgstr "Agregar un hijo existente"
 
 #: ../src/Editors/_EditFamily.py:127
 msgid "Edit relationship"
@@ -4668,14 +4628,12 @@ msgid "A family with these parents already exists in the database. If you save, 
 msgstr "Ya existe en la base de datos una familia con estos mismos padres. Si salva se creará una familia duplicada. Se recomienda que cancele la modificación de esta ventana y que seleccione la familia preexistente"
 
 #: ../src/Editors/_EditFamily.py:823
-#, fuzzy
 msgid "Baptism:"
-msgstr "Bautismo"
+msgstr "Bautismo:"
 
 #: ../src/Editors/_EditFamily.py:827
-#, fuzzy
 msgid "Burial:"
-msgstr "Entierro"
+msgstr "Entierro:"
 
 #: ../src/Editors/_EditFamily.py:902
 msgid "A father cannot be his own child"
@@ -4758,14 +4716,12 @@ msgid "Edit Media Object"
 msgstr "Editar Objeto Audiovisual"
 
 #: ../src/Editors/_EditMedia.py:240
-#, fuzzy
 msgid "Cannot save media object"
-msgstr "No se pudo salvar el evento"
+msgstr "No se pudo salvar el objeto audiovisual"
 
 #: ../src/Editors/_EditMedia.py:241
-#, fuzzy
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "No existen datos para este evento. Por favor, introdúzcalos o cancele la modificación."
+msgstr "No existen datos para este objeto audiovisual. Por favor, introdúzcalos o cancele la modificación."
 
 #: ../src/Editors/_EditMedia.py:250
 msgid "Cannot save media object. ID already exists."
@@ -4837,7 +4793,7 @@ msgid "Note: %(id)s - %(context)s"
 msgstr "Nota: %(id)s - %(context)s"
 
 #: ../src/Editors/_EditNote.py:164
-#, fuzzy, python-format
+#, python-format
 msgid "Note: %s"
 msgstr "Nota: %s"
 
@@ -4859,9 +4815,8 @@ msgid "Cannot save note"
 msgstr "No se pudo salvar la nota"
 
 #: ../src/Editors/_EditNote.py:536
-#, fuzzy
 msgid "No data exists for this note. Please enter data or cancel the edit."
-msgstr "No existen datos para este evento. Por favor, introdúzcalos o cancele la modificación."
+msgstr "No existen datos para esta nota. Por favor, introdúzcalos o cancele la modificación."
 
 #: ../src/Editors/_EditNote.py:543
 msgid "Cannot save note. ID already exists."
@@ -4894,14 +4849,12 @@ msgid "Edit Object Properties"
 msgstr "Editar propiedades del objeto"
 
 #: ../src/Editors/_EditPerson.py:516
-#, fuzzy
 msgid "Make Active Person"
-msgstr "No hay persona activa"
+msgstr "Hacer que sea la persona activa"
 
 #: ../src/Editors/_EditPerson.py:520
-#, fuzzy
 msgid "Make Home Person"
-msgstr "_Establecer Persona Inicial"
+msgstr "Establecer persona inicial"
 
 #: ../src/Editors/_EditPerson.py:667
 msgid "Problem changing the gender"
@@ -4999,14 +4952,12 @@ msgid "Cannot save place"
 msgstr "No se puede salvar el lugar"
 
 #: ../src/Editors/_EditPlace.py:265
-#, fuzzy
 msgid "No data exists for this place. Please enter data or cancel the edit."
-msgstr "No existen datos para esta persona. Por favor, introdúzcalos o cancele la edición."
+msgstr "No existen datos para este lugar. Por favor, introdúzcalos o cancele la edición."
 
 #: ../src/Editors/_EditPlace.py:274
-#, fuzzy
 msgid "Cannot save place. ID already exists."
-msgstr "El archivo ya existe"
+msgstr "No se pudo salvar el lugar.  El ID ya existe."
 
 #: ../src/Editors/_EditPlace.py:287
 #, python-format
@@ -5069,14 +5020,13 @@ msgid "No data exists for this repository. Please enter data or cancel the edit.
 msgstr "No existen datos para este repositorio. Por favor, introdúzcalos o cancele la edición."
 
 #: ../src/Editors/_EditRepository.py:154
-#, fuzzy
 msgid "Cannot save repository. ID already exists."
-msgstr "No se puede salvar el repositorio"
+msgstr "No se pudo salvar el repositorio. El ID ya existe."
 
 #: ../src/Editors/_EditRepository.py:167
-#, fuzzy, python-format
+#, python-format
 msgid "Add Repository (%s)"
-msgstr "Modificar repositorio (%s)"
+msgstr "Agregar repositorio (%s)"
 
 #: ../src/Editors/_EditRepository.py:172
 #, python-format
@@ -5105,14 +5055,13 @@ msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr "No existen datos para esta fuente. Por favor, introdúzcalos o cancele la edición."
 
 #: ../src/Editors/_EditSource.py:171
-#, fuzzy
 msgid "Cannot save source. ID already exists."
-msgstr "No se puede salvar la fuente"
+msgstr "No se pudo salvar la fuente.  El ID ya existe."
 
 #: ../src/Editors/_EditSource.py:184
-#, fuzzy, python-format
+#, python-format
 msgid "Add Source (%s)"
-msgstr "Editar Fuente (%s)"
+msgstr "Agregar Fuente (%s)"
 
 #: ../src/Editors/_EditSource.py:189
 #, python-format
@@ -5143,17 +5092,15 @@ msgstr "Agregar fuente"
 
 #: ../src/Editors/_EditUrl.py:68 ../src/Editors/_EditUrl.py:98
 msgid "Internet Address Editor"
-msgstr "Editor de Direcciones Internet"
+msgstr "Editor de direcciones internet"
 
 #: ../src/GrampsDbUtils/_Backup.py:89
-#, fuzzy
 msgid "Error saving backup data"
-msgstr "Salvando sus datos"
+msgstr "Error al salvaguardar datos"
 
 #: ../src/GrampsDbUtils/_Backup.py:157
-#, fuzzy
 msgid "Error restoring backup data"
-msgstr "Error al selecionar un hijo"
+msgstr "Error al restaurar datos salvaguardados"
 
 #. -------------------------------------------------------------------------
 #.
@@ -5165,9 +5112,8 @@ msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the U
 msgstr "Su archivo GEDCOM está corrompido. El archivo parece haberse codificado con el juego de caracteres UTF16, pero falta la marca BOM."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:58
-#, fuzzy
 msgid "Your GEDCOM file is empty."
-msgstr "Archivos GEDCOM"
+msgstr "Su archivo GEDCOM está vacío"
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:155
 #, python-format
@@ -5179,9 +5125,9 @@ msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Su archivo GEDCOM está corrupto. Parece haber sido truncado."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:276
-#, fuzzy, python-format
+#, python-format
 msgid "Import from GEDCOM (%s)"
-msgstr "Importar desde %s"
+msgstr "Importar de GEDCOM (%s)"
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:833
 msgid "GEDCOM import"
@@ -5195,9 +5141,9 @@ msgstr "La linea %d no se pudo entender, así que fue ignorada."
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/GrampsDbUtils/_GedcomParse.py:3044
-#, fuzzy, python-format
+#, python-format
 msgid "Line %d: empty event note was ignored."
-msgstr "La linea %d no se pudo entender, así que fue ignorada."
+msgstr "Línea %d: ignorada una nota de evento vacía"
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3727
 #: ../src/GrampsDbUtils/_GedcomParse.py:4286
@@ -5263,9 +5209,9 @@ msgstr "La versión de la base de datos no está soportada por esta versión de 
 
 #: ../src/GrampsDbUtils/importdbdir.py:218
 #: ../src/GrampsDbUtils/_ReadXML.py:1300 ../src/plugins/ReadGrdb.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Your family tree groups name %s together with %s, did not change this grouping to %s"
-msgstr "Su base de datos agrupa el nombre %s con %s, no se cambió este agrupamiento a %s"
+msgstr "Su árbol agrupa el nombre %s con %s, no se cambió este agrupamiento a %s"
 
 #: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:256
 msgid "Import database"
@@ -5280,14 +5226,13 @@ msgid "%s could not be opened\n"
 msgstr "%s no pudo ser abierto\n"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:125
-#, fuzzy
 msgid "Invalid GEDCOM file"
-msgstr "Archivos GEDCOM"
+msgstr "Archivo GEDCOM inválido"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "%s could not be imported"
-msgstr "%s no pudo ser abierto"
+msgstr "No se pudo importar %s"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
@@ -5475,9 +5420,8 @@ msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1475
-#, fuzzy
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
-msgstr "Se utiliza GEDCOM para transferir datos entre programas de genealogía. La mayoría de los programas de genealogía pueden leer archivos GEDCOM. "
+msgstr "Se utiliza GEDCOM para transferir datos entre programas de genealogía. La mayoría de los programas de genealogía pueden leer archivos GEDCOM."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1477
 msgid "GEDCOM export options"
@@ -5493,14 +5437,12 @@ msgid "GRAMPS _XML database"
 msgstr "Base de datos XML GRAMPS"
 
 #: ../src/GrampsDbUtils/_WriteXML.py:130
-#, fuzzy
 msgid "The GRAMPS XML database is a text version of a family tree. It is read-write compatible with the present GRAMPS database format."
-msgstr "La base de datos XML GRAMPS XML es un formato utilizado por versiones anteriores de GRAMPS. Es compatible en lectura y escritura con el formato actual de base de datos GRAMPS."
+msgstr "La base de datos XML de GRAMPS es un formato utilizado por versiones anteriores de GRAMPS. Es compatible en lectura y escritura con el formato actual de base de datos GRAMPS."
 
 #: ../src/GrampsDbUtils/_WriteXML.py:133
-#, fuzzy
 msgid "GRAMPS XML export options"
-msgstr "Opciones de exportación a GEDCOM"
+msgstr "Opciones de exportación a XML GRAMPS"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
 msgid "Report a bug"
@@ -5590,9 +5532,8 @@ msgstr "Resumen del reporte de error"
 
 #. side_label = gtk.Label(_("This is the completed bug report. The next page "#. "of the assistant will help you to send the report "#. "to the bug report mailing list."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:376
-#, fuzzy
 msgid "This is the completed bug report. The next page of the assistant will help you to file a bug  on the Gramps bug tracking system website."
-msgstr "Éste es el reporte del error completo.  La siguiente página del asistente le ayudará a enviar el reporte a la lista de correo de reportes de errores."
+msgstr "Éste es el reporte del error completo.  La siguiente página del asistente le ayudará a reportar el error en el sitio web de seguimiento de errores de Gramps."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:401
 msgid "Use the two buttons below to first copy the bug report to the clipboard and then open a webbrowser to file a bug report at "
@@ -5608,9 +5549,8 @@ msgstr "Utilice este botón para lanzar un navegador y reportar el problema en e
 #. "email client, paste the report and send it to the address "
 #. "above."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:443
-#, fuzzy
 msgid "Use this button to copy the bug report onto the clipboard. Then go to the bug tracking website by using the button below, paste the report and click submit report"
-msgstr "Si su programa de correo no arranca, puede usar este botón para copiar el reporte de error al portapapeles.  Arranque a continuación su cliente de correo, pegue el reporte en un nuevo mensaje y envíelo a la dirección indicada arriba."
+msgstr "Utilice este botón para copiar el reporte de error al portapapeles.  A continuación, vaya al sitio web de seguimiento de errores usando el botón que aparece más abajo, pegue el reporte y haga clic en \"enviar reporte\""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 msgid "Send Bug Report"
@@ -5619,9 +5559,8 @@ msgstr "Enviar el reporte de error"
 #. side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #. "page to transfer the bug report to your email client."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:491
-#, fuzzy
 msgid "This is the final step. Use the buttons on this page to start a web browser and file a bug report on the Gramps bug tracking system."
-msgstr "Éste es el último paso.  Use los botones de esta página para transferir el reporte de error a su cliente de correo."
+msgstr "Éste es el último paso.  Use los botones de esta página para arrancar un navegador y reportar el error en el sistema de seguimiento de errores de Gramps."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
 #, fuzzy
@@ -5657,9 +5596,8 @@ msgid "Select Family"
 msgstr "Seleccionar familia"
 
 #: ../src/Selectors/_SelectNote.py:51
-#, fuzzy
 msgid "Select Note"
-msgstr "Seleccionar madre"
+msgstr "Seleccionar nota"
 
 #: ../src/Selectors/_SelectObject.py:60
 msgid "Select Media Object"
@@ -5779,14 +5717,14 @@ msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s es %(relationship)s de %(active_person)s."
 
 #: ../src/plugins/all_relations.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr "%(person)s y %(active_person)s no están emparentados."
+msgstr "%(person)s y %(active_person)s no están emparentados directamente."
 
 #: ../src/plugins/all_relations.py:148
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr "%(person)s y %(active_person)s no están emparentados."
+msgstr "%(person)s y %(active_person)s tienen los siguientes parentescos políticos:"
 
 #: ../src/plugins/all_relations.py:202
 #, python-format
@@ -5940,9 +5878,8 @@ msgid "Sc_ale to fit on a single page"
 msgstr "_Ajustar a una sola página"
 
 #: ../src/plugins/AncestorTree.py:474 ../src/plugins/DescendTree.py:429
-#, fuzzy
 msgid "Whether to scale to fit on a single page."
-msgstr "_Ajustar a una sola página"
+msgstr "Si se debe ajustar a una sola página."
 
 #: ../src/plugins/AncestorTree.py:477 ../src/plugins/DescendTree.py:432
 msgid "Include Blank Pages"
@@ -7396,6 +7333,20 @@ msgid ""
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-open detached the next time you start GRAMPS."
 msgstr ""
+"¡Bienvenido a GRAMPS!\n"
+"\n"
+"GRAMPS es un programa diseñado para la investigación genealógica.  Aunque es similar a otros programas genealógicos, GRAMPS ofrece algunas características distintivas y potentes.\n"
+"\n"
+"GRAMPS es un paquete Open Source, lo que quiere decir que puede copiarlo libremente y distribuirlo a quien desee.  Está desarrollado y mantenido por un equipo mundial de voluntarios cuyo objetivo es hacer GRAMPS potente, aunque fácil de usar.\n"
+"\n"
+"\n"
+"Cómo comenzar a usar GRAMPS\n"
+"\n"
+"Lo primero que debe hacer es crear un nuevo árbol genealógico.  Para crear un nuevo árbol genealógico (a veces lo llamaremos también \"base de datos\") seleccione \"Árboles genealógicos\" del menu, escoja \"Gestionar árboles genealógicos\", haga clic en \"Nuevo\" y dé un nombre a su base de datos.  Para más detalles, consulte el Manual de Usuario o el manual en Internet disponible en http://gramps-project.org.\n"
+"\n"
+"En esto momenlo está leyendo en la página \"Gramplets\" desde la que puede agregar sus propios gramplets.\n"
+"\n"
+"Puede hacer clic con el botón derecho en el fondo de esta página para agregar gramplets adicionales y cambiar el número de columbas.  También puede arrastrar el botón de Propiedades para reposicionar el gramplet en esta página y desacoplar el gramplet para que flote por encima de GRAMPS.  Si cierra GRAMPS con un gramplet desacoplado, se volverá a abrir desacoplado la próxima vez que arraque GRAMPS."
 
 #: ../src/plugins/DefaultGramplets.py:875
 msgid "Read news from the GRAMPS wiki"
@@ -7586,7 +7537,6 @@ msgid "Descendant Report"
 msgstr "Reporte de Descendientes"
 
 #: ../src/plugins/DescendReport.py:256
-#, fuzzy
 msgid "Produces a list of descendants of the active person"
 msgstr "Genera una lista de descendientes de la persona activa"
 
@@ -7742,7 +7692,7 @@ msgstr "Usar frases completas"
 #: ../src/plugins/DetAncestralReport.py:742
 #: ../src/plugins/DetDescendantReport.py:685
 msgid "Whether to use complete sentences or succinct language."
-msgstr "Si se deben usar frases completas o una redacción más sucinta"
+msgstr "Si se deben usar frases completas o una redacción más sucinta."
 
 #: ../src/plugins/DetAncestralReport.py:745
 #: ../src/plugins/DetDescendantReport.py:688
@@ -7798,9 +7748,8 @@ msgstr "Incluir nombres alternativos"
 
 #: ../src/plugins/DetAncestralReport.py:765
 #: ../src/plugins/DetDescendantReport.py:708
-#, fuzzy
 msgid "Whether to include other names."
-msgstr "Personas con nombres incompletos"
+msgstr "Si se deben incluir otros nombres."
 
 #: ../src/plugins/DetAncestralReport.py:768
 #: ../src/plugins/DetDescendantReport.py:711
@@ -7809,9 +7758,8 @@ msgstr "Incluir eventos"
 
 #: ../src/plugins/DetAncestralReport.py:769
 #: ../src/plugins/DetDescendantReport.py:712
-#, fuzzy
 msgid "Whether to include events."
-msgstr "Incluir eventos"
+msgstr "Si se deben incluir eventos."
 
 #: ../src/plugins/DetAncestralReport.py:772
 #: ../src/plugins/DetDescendantReport.py:715
@@ -7820,9 +7768,8 @@ msgstr "Incluir direcciones"
 
 #: ../src/plugins/DetAncestralReport.py:773
 #: ../src/plugins/DetDescendantReport.py:716
-#, fuzzy
 msgid "Whether to include addresses."
-msgstr "Incluir direcciones"
+msgstr "Si se deben incluir direcciones."
 
 #: ../src/plugins/DetAncestralReport.py:776
 #: ../src/plugins/DetDescendantReport.py:719
@@ -7846,9 +7793,8 @@ msgstr "Sustituir por ______ los lugares desconocidos"
 
 #: ../src/plugins/DetAncestralReport.py:783
 #: ../src/plugins/DetDescendantReport.py:730
-#, fuzzy
 msgid "Whether to replace missing Places with blanks."
-msgstr "Sustituir por ______ los lugares desconocidos"
+msgstr "Si se deben sustituir por espacios los lugares desconocidos."
 
 #: ../src/plugins/DetAncestralReport.py:786
 #: ../src/plugins/DetDescendantReport.py:733
@@ -7857,9 +7803,8 @@ msgstr "Sustituir por ______ las fechas desconocidas"
 
 #: ../src/plugins/DetAncestralReport.py:787
 #: ../src/plugins/DetDescendantReport.py:734
-#, fuzzy
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Sustituir por ______ las fechas desconocidas"
+msgstr "Si se deben sustituir por espacios las fechas desconocidas."
 
 #: ../src/plugins/DetAncestralReport.py:820
 #: ../src/plugins/DetDescendantReport.py:767
@@ -7905,9 +7850,8 @@ msgid "Include spouses"
 msgstr "Incluir cónyuges"
 
 #: ../src/plugins/DetDescendantReport.py:724
-#, fuzzy
 msgid "Whether to include detailed spouse information."
-msgstr "No incluya comentarios y texto en la información de las fuentes"
+msgstr "Si se debe incluir información detallada de los cónyuges."
 
 #: ../src/plugins/DetDescendantReport.py:836
 msgid "Detailed Descendant Report"
@@ -7918,9 +7862,9 @@ msgid "Produces a detailed descendant report"
 msgstr "Entrega un reporte detallado de descendientes"
 
 #: ../src/plugins/EndOfLineReport.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "End of Line Report for %s"
-msgstr "Reporte Ahnentafel para %s"
+msgstr "Reporte de cabezas de linajes para %s"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
@@ -7941,21 +7885,18 @@ msgid "The basic style used for generation headings."
 msgstr "Estilo básico utilizado para el encabezado de generación."
 
 #: ../src/plugins/EndOfLineReport.py:320
-#, fuzzy
 msgid "End of Line Report"
-msgstr "Enviar el reporte de error"
+msgstr "Reporte de cabezas de linajes"
 
 #: ../src/plugins/EndOfLineReport.py:322
-#, fuzzy
 msgid "Produces a textual end of line report"
-msgstr "Entrega un texto con el reporte de los ascendientes"
+msgstr "Produce un reporte en texto con las cabezas de los linajes"
 
 #: ../src/plugins/Eval.py:58
 msgid "Python evaluation window"
 msgstr "Ventana de evaluación de Python"
 
 #: ../src/plugins/Eval.py:128
-#, fuzzy
 msgid "Python Evaluation Window"
 msgstr "Ventana de evaluación de Python"
 
@@ -7982,7 +7923,7 @@ msgstr "Herramienta de comparación de eventos"
 
 #: ../src/plugins/EventCmp.py:178
 msgid "Comparing events"
-msgstr "Comparando eventos"
+msgstr "Comparación de eventos"
 
 #: ../src/plugins/EventCmp.py:179
 msgid "Selecting people"
@@ -8006,9 +7947,8 @@ msgid " Place"
 msgstr " Lugar"
 
 #: ../src/plugins/EventCmp.py:297
-#, fuzzy
 msgid "Comparing Events"
-msgstr "Comparando eventos"
+msgstr "Comparación de eventos"
 
 #: ../src/plugins/EventCmp.py:298
 msgid "Building data"
@@ -8019,28 +7959,24 @@ msgid "Select filename"
 msgstr "Seleccionar archivo"
 
 #: ../src/plugins/EventCmp.py:466
-#, fuzzy
 msgid "Compare Individual Events"
-msgstr "Comparar eventos individuales"
+msgstr "Comparar eventos personales"
 
 #: ../src/plugins/EventCmp.py:470
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Ayuda en el análisis de la información permitiendo el desarrollo de filtos personalizados que pueden ser aplicados a la base de datos para encontrar eventos similares"
 
 #: ../src/plugins/EventNames.py:101
-#, fuzzy
 msgid "Event name changes"
-msgstr "Nombre del evento"
+msgstr "Cambio del nombre del evento"
 
 #: ../src/plugins/EventNames.py:160
-#, fuzzy
 msgid "Extract Event Descriptions from Event Data"
-msgstr "Extraer la información de los nombres"
+msgstr "Extraer descripciones para los eventos a partir de sus datos"
 
 #: ../src/plugins/EventNames.py:164
-#, fuzzy
 msgid "Extracts event descriptions from the event data"
-msgstr "Crea un nuevo evento usando los datos anteriores"
+msgstr "Extraer descripciones para los eventos a partir de sus datos"
 
 #: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:180
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
@@ -8053,9 +7989,8 @@ msgid "Birth place"
 msgstr "Lugar de nacimiento"
 
 #: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:182
-#, fuzzy
 msgid "Birth source"
-msgstr "Citar fuentes"
+msgstr "Fuente para nacimiento"
 
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
@@ -8065,12 +8000,11 @@ msgstr "Fecha de defunción"
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:184
 #: ../src/plugins/StatisticsChart.py:108
 msgid "Death place"
-msgstr "Lugar de fallecimiento"
+msgstr "Lugar de defunción"
 
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ImportCSV.py:188
-#, fuzzy
 msgid "Death source"
-msgstr "Lugar de defunción"
+msgstr "Fuente para la defunción"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:524
 #: ../src/plugins/ImportCSV.py:209 ../src/plugins/NarrativeWeb.py:2394
@@ -8281,7 +8215,7 @@ msgstr "Notas de los padres"
 
 #: ../src/plugins/FamilyGroup.py:617
 msgid "Whether to include notes for parents."
-msgstr "Si se deben incluir notas de los padres"
+msgstr "Si se deben incluir notas de los padres."
 
 #: ../src/plugins/FamilyGroup.py:620
 msgid "Parent Attributes"
@@ -8309,7 +8243,7 @@ msgstr "Fechas de los parientes"
 
 #: ../src/plugins/FamilyGroup.py:635
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Si se deben incluir fechas de los parientes (padre, madre, cónyuge)"
+msgstr "Si se deben incluir fechas de los parientes (padre, madre, cónyuge)."
 
 #: ../src/plugins/FamilyGroup.py:639
 msgid "Children Marriages"
@@ -8368,7 +8302,7 @@ msgstr "cuarto de círculo"
 
 #: ../src/plugins/FanChart.py:355
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr "Forma del gráfico: círculo completo, semicírculo o cuarto de círculo"
+msgstr "Forma del gráfico: círculo completo, semicírculo o cuadrante."
 
 #: ../src/plugins/FanChart.py:359
 msgid "Background color"
@@ -8515,14 +8449,12 @@ msgid "media"
 msgstr "medio"
 
 #: ../src/plugins/FilterByName.py:179
-#, fuzzy
 msgid "Unique Media"
-msgstr "Nuevo objeto"
+msgstr "Objeto audivisual distinto"
 
 #: ../src/plugins/FilterByName.py:187
-#, fuzzy
 msgid "Missing Media"
-msgstr "Objetos Audiovisuales Perdidos"
+msgstr "Objeto audiovisual perdido"
 
 #: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
@@ -8630,7 +8562,7 @@ msgstr "Se considerarán los padres y sus ascendientes para determinar las \"lí
 
 #: ../src/plugins/GVFamilyLines.py:106
 msgid "Follow children to determine family lines"
-msgstr "Seguir los hijos para determinar las líneas familiares."
+msgstr "Seguir los hijos para determinar las líneas familiares"
 
 #: ../src/plugins/GVFamilyLines.py:107
 msgid "Children will be considered when determining \"family lines\"."
@@ -8680,7 +8612,7 @@ msgstr "Limitar el número de ascendientes"
 
 #: ../src/plugins/GVFamilyLines.py:144 ../src/plugins/GVFamilyLines.py:149
 msgid "The maximum number of ancestors to include."
-msgstr "Número máximo de ascendientes a incluir"
+msgstr "Número máximo de ascendientes a incluir."
 
 #: ../src/plugins/GVFamilyLines.py:152
 msgid "Limit the number of children"
@@ -8723,7 +8655,7 @@ msgstr "Usar subgrafos"
 
 #: ../src/plugins/GVFamilyLines.py:185
 msgid "Subgraphs can help GraphViz position certain linked nodes closer together, but with non-trivial graphs will result in longer lines and larger graphs."
-msgstr "Los subgráfos pueden ayudar a GraphViz a posicionar más cercanos entre sí algunos nodos enlazados, pero con gráficos no triviales, se producirán líneas más largas y gráficos más grandes. "
+msgstr "Los subgráfos pueden ayudar a GraphViz a posicionar más cercanos entre sí algunos nodos enlazados, pero con gráficos no triviales, se producirán líneas más largas y gráficos más grandes."
 
 #: ../src/plugins/GVFamilyLines.py:191
 msgid "Include dates"
@@ -8731,7 +8663,7 @@ msgstr "Incluir fechas"
 
 #: ../src/plugins/GVFamilyLines.py:192
 msgid "Whether to include dates for people and families."
-msgstr "Si se deben incluir fechas de personas y familias"
+msgstr "Si se deben incluir fechas de personas y familias."
 
 #: ../src/plugins/GVFamilyLines.py:195
 msgid "Include places"
@@ -8739,7 +8671,7 @@ msgstr "Incluir lugares"
 
 #: ../src/plugins/GVFamilyLines.py:196
 msgid "Whether to include placenames for people and families."
-msgstr "Si se deben incluir lugares de personas y familias"
+msgstr "Si se deben incluir lugares de personas y familias."
 
 #: ../src/plugins/GVFamilyLines.py:199
 msgid "Include the number of children"
@@ -8878,23 +8810,20 @@ msgid "Prints just dates' year, neither month or day nor date approximation or i
 msgstr "Imprime sólo el año de las fechas, no se muestra ni el mes ni el día ni otros detalles."
 
 #: ../src/plugins/GVRelGraph.py:457
-#, fuzzy
 msgid "Use place when no date"
-msgstr "Lugar/causa si no hay fecha"
+msgstr "Usar el lugar si no hay fecha"
 
 #: ../src/plugins/GVRelGraph.py:458
-#, fuzzy
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
-msgstr "Cuando no conste fecha del nacimiento, matrimonio o defunción, se utilizará el dato del lugar correspondiente (o la causa si el lugar está en blanco)."
+msgstr "Si no consta fecha del nacimiento, matrimonio o defunción, se utilizará el dato del lugar correspondiente."
 
 #: ../src/plugins/GVRelGraph.py:463
 msgid "Include URLs"
 msgstr "Incluir URLs"
 
 #: ../src/plugins/GVRelGraph.py:464
-#, fuzzy
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
-msgstr "Incluir un URL en cada nodo del gráfico para que se puedan generar archivos PDF e imagemap que contengan links activos a los archivos generados por el reporte 'Generar Sitio Web'."
+msgstr "Incluir un URL en cada nodo del gráfico para que se puedan generar archivos PDF e imagemap que contengan enlaces activos a los archivos generados por el reporte 'Generar Sitio Web'."
 
 #: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
@@ -8905,20 +8834,17 @@ msgid "Include individual and family IDs."
 msgstr "Incluir los IDs individuales y familiares."
 
 #: ../src/plugins/GVRelGraph.py:478
-#, fuzzy
 msgid "Whether to include thumbnails of people."
-msgstr "Regresar al índice de personas"
+msgstr "Si se deben incluir miniaturas de las personas."
 
 #: ../src/plugins/GVRelGraph.py:482
-#, fuzzy
 msgid "Thumbnail Location"
-msgstr "Publicación"
+msgstr "Posición de la miniatura"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:491
-#, fuzzy
 msgid "Graph Style"
-msgstr "Estilo"
+msgstr "Estilo del gráfico"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:494
@@ -8978,19 +8904,16 @@ msgid "Gramps id"
 msgstr "Id gramps"
 
 #: ../src/plugins/ImportCSV.py:206
-#, fuzzy
 msgid "Parent2"
-msgstr "Padres"
+msgstr "padre2"
 
 #: ../src/plugins/ImportCSV.py:210
-#, fuzzy
 msgid "Parent1"
-msgstr "Padres"
+msgstr "padre1"
 
 #: ../src/plugins/ImportCSV.py:223
-#, fuzzy
 msgid "given name"
-msgstr "Nombre"
+msgstr "nombre de pila"
 
 #: ../src/plugins/ImportCSV.py:227
 msgid "call name"
@@ -9001,49 +8924,40 @@ msgid "gender"
 msgstr "sexo"
 
 #: ../src/plugins/ImportCSV.py:238 ../src/plugins/ImportCSV.py:263
-#, fuzzy
 msgid "source"
-msgstr "Fuente"
+msgstr "fuente"
 
 #: ../src/plugins/ImportCSV.py:240
-#, fuzzy
 msgid "note"
-msgstr "Nota"
+msgstr "nota"
 
 #: ../src/plugins/ImportCSV.py:242
-#, fuzzy
 msgid "birth place"
-msgstr "Lugar de nacimiento"
+msgstr "lugar de nacimiento"
 
 #: ../src/plugins/ImportCSV.py:244
-#, fuzzy
 msgid "birth date"
-msgstr "Fecha de nacimiento"
+msgstr "fecha de nacimiento"
 
 #: ../src/plugins/ImportCSV.py:246
-#, fuzzy
 msgid "birth source"
-msgstr "Citar fuentes"
+msgstr "fuente para el nacimiento"
 
 #: ../src/plugins/ImportCSV.py:248
-#, fuzzy
 msgid "death place"
-msgstr "Lugar de fallecimiento"
+msgstr "lugar de defunción"
 
 #: ../src/plugins/ImportCSV.py:250
-#, fuzzy
 msgid "death date"
-msgstr "Fecha de defunción"
+msgstr "fecha de defunción"
 
 #: ../src/plugins/ImportCSV.py:252
-#, fuzzy
 msgid "death source"
-msgstr "Modificar fuente"
+msgstr "fuente para la defunción"
 
 #: ../src/plugins/ImportCSV.py:254
-#, fuzzy
 msgid "death cause"
-msgstr "Fecha de defunción"
+msgstr "causa de la defunción"
 
 #: ../src/plugins/ImportCSV.py:256
 msgid "gramps id"
@@ -9250,9 +9164,8 @@ msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr "Si se deben incluir tías/tíos/sobrinos/sobrinas"
 
 #: ../src/plugins/KinshipReport.py:382
-#, fuzzy
 msgid "The basic style used for sub-headings."
-msgstr "Estilo básico para la presentación de texto."
+msgstr "Estilo básico a utilizar para los subencabezados."
 
 #: ../src/plugins/KinshipReport.py:404
 msgid "Kinship Report"
@@ -9379,9 +9292,8 @@ msgid "Marker Report"
 msgstr "Reporte de marcador"
 
 #: ../src/plugins/MarkerReport.py:526
-#, fuzzy
 msgid "Produces a list of people with a specified marker"
-msgstr "Coincide con las personas cuyo nombre tiene partes que coinciden con las especificadas"
+msgstr "Produce una lista de personas con un marcador especificado"
 
 #: ../src/plugins/MediaManager.py:76 ../src/plugins/MediaManager.py:585
 msgid "Media Manager"
@@ -9488,18 +9400,16 @@ msgid "Convert paths from relative to _absolute"
 msgstr "Convertir rutas de relativas a _absolutas"
 
 #: ../src/plugins/MediaManager.py:487
-#, fuzzy
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends your home directory."
-msgstr "Esta herramienta permite convertir rutas relativas a objetos a rutas absolutas.  Una ruta absoluta permite fijar la ubicación de los archivos mientras se mueve la base de datos."
+msgstr "Esta herramienta permite convertir rutas relativas a objetos a rutas absolutas.  Para ello, antepone la ruta base dada en las Preferencias o, si no se fijó un valor, la Carpeta personal."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
 msgstr "Convertir rutas de absolutas a r_elativas"
 
 #: ../src/plugins/MediaManager.py:525
-#, fuzzy
 msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Esta herramiente permite convertir rutas absolutas a los archivos de objetos en rutas relativas. Una ruta relativa permite relacionar la ubicación del archivo con la de la base de datos."
+msgstr "Esta herramiente permite convertir rutas absolutas a los archivos de objetos en rutas relativas. La ruta relativa lo es respecto a la ruta base dada en Preferencias o, si no se fijó un valor, su Carpeta personal.  Una ruta relative le permite relacionar la ubicación del archivo con una ruta base que puede cambiar según sus necesidades."
 
 #: ../src/plugins/MediaManager.py:589
 msgid "Manages batch operations on media files"
@@ -9592,9 +9502,9 @@ msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s
 msgstr "Generado por <a href=\"http://gramps-project.org\">GRAMPS</a> el %(date)s"
 
 #: ../src/plugins/NarrativeWeb.py:427
-#, fuzzy, python-format
+#, python-format
 msgid "<br />for <a href=\"%s\">%s</a>"
-msgstr "<br>para <a href=\"%s\">%s</a>"
+msgstr "<br />para <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/NarrativeWeb.py:464 ../src/plugins/NarrativeWeb.py:1547
 #: ../src/plugins/NarrativeWeb.py:1549
@@ -9643,19 +9553,17 @@ msgid "References"
 msgstr "Referencias"
 
 #: ../src/plugins/NarrativeWeb.py:841
-#, fuzzy
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
-msgstr "Esta página contiene un índice de todas las personas de la base de datos, clasificados por sus apellidos.  Seleccionar el nombre de una persona le llevará a la página individual de esa persona."
+msgstr "Esta página contiene un índice de todas las personas de la base de datos, clasificadas por sus apellidos.  Seleccionar el nombre de una persona le llevará a la página individual de esa persona."
 
 #: ../src/plugins/NarrativeWeb.py:985
-#, fuzzy, python-format
+#, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Esta página contiene un índice de todas las personas de la base de datos con los apellidos %s.  Seleccionar el nombre de una persona le llevará a la página individual de esa persona."
 
 #: ../src/plugins/NarrativeWeb.py:1111
-#, fuzzy
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
-msgstr "Esta página contiene un índice de todas los lugares de la base de datos clasificados por su nombre.  Pinchar en el nombre de un lugar le llevará a la página de ese lugar."
+msgstr "Esta página contiene un índice de todas los lugares de la base de datos clasificados por su nombre.  Hacer clic en el nombre de un lugar le llevará a la página de ese lugar."
 
 #: ../src/plugins/NarrativeWeb.py:1121 ../src/plugins/NarrativeWeb.py:1472
 msgid "Letter"
@@ -9708,18 +9616,16 @@ msgid "Number of people"
 msgstr "Número de personas"
 
 #: ../src/plugins/NarrativeWeb.py:1648
-#, fuzzy
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
-msgstr "Esta página contiene un índice de todas las fuentes de la base de datos clasificadas por su título.  Pinchar en el título de una fuente le llevará a la página de esa fuente."
+msgstr "Esta página contiene un índice de todas las fuentes de la base de datos clasificadas por su título.  Hacer clic en el título de una fuente le llevará a la página de esa fuente."
 
 #: ../src/plugins/NarrativeWeb.py:1712
 msgid "Publication information"
 msgstr "Información de la publicación"
 
 #: ../src/plugins/NarrativeWeb.py:1745
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page."
-msgstr "Esta página contiene un índice de todos los objetos de la base de datos clasificados por su título.  Pinchar en el título de un objeto le llevará a la página de ese objeto."
+msgstr "Esta página contiene un índice de todos los objetos de la base de datos clasificados por su título.  Hacer clic en el título de un objeto le llevará a la página de ese objeto."
 
 #: ../src/plugins/NarrativeWeb.py:2013
 msgid "Ancestors"
@@ -9814,7 +9720,7 @@ msgstr "Almacenar las páginas web en un archivo .tar.gz"
 #: ../src/plugins/NarrativeWeb.py:2942
 #, fuzzy
 msgid "Whether to store the web pages in an archive file"
-msgstr "Almacenar las páginas web en un archivo .tar.gz"
+msgstr "Si se deben almacenar las páginas web en un archivo"
 
 #: ../src/plugins/NarrativeWeb.py:2947 ../src/plugins/WebCal.py:704
 msgid "Destination"
@@ -9845,36 +9751,32 @@ msgid "File extension"
 msgstr "Extension de archivo"
 
 #: ../src/plugins/NarrativeWeb.py:2975 ../src/plugins/WebCal.py:713
-#, fuzzy
 msgid "The extension to be used for the web files"
-msgstr "Estilo utilizado para el título."
+msgstr "La extensión a utilizar para los archivos web"
 
 #: ../src/plugins/NarrativeWeb.py:2978 ../src/plugins/WebCal.py:716
 msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/NarrativeWeb.py:2983 ../src/plugins/WebCal.py:721
-#, fuzzy
 msgid "The copyright to be used for the web files"
-msgstr "Estilo utilizado para las etiquetas de años."
+msgstr "Indicación de copyright a utilizar en los archivos web"
 
 #: ../src/plugins/NarrativeWeb.py:2986 ../src/plugins/WebCal.py:724
 msgid "Character set encoding"
 msgstr "Codificación de caracteres"
 
 #: ../src/plugins/NarrativeWeb.py:2989 ../src/plugins/WebCal.py:727
-#, fuzzy
 msgid "The encoding to be used for the web files"
-msgstr "Estilo utilizado para las etiquetas de años."
+msgstr "Codificación a utilizar en los archivos web"
 
 #: ../src/plugins/NarrativeWeb.py:2992
 msgid "Stylesheet"
 msgstr "Hoja de estilo"
 
 #: ../src/plugins/NarrativeWeb.py:2995
-#, fuzzy
 msgid "The style sheet to be used for the web pages"
-msgstr "Estilo utilizado para las etiquetas de años."
+msgstr "Hoja de estilo a utilizar en los archivos web"
 
 #: ../src/plugins/NarrativeWeb.py:2998
 msgid "Include ancestor graph"
@@ -9897,19 +9799,16 @@ msgid "Page Generation"
 msgstr "Generación de paǵinas"
 
 #: ../src/plugins/NarrativeWeb.py:3021
-#, fuzzy
 msgid "Home page note"
-msgstr "Mezclar notas"
+msgstr "Nota para la página de inicio"
 
 #: ../src/plugins/NarrativeWeb.py:3022
-#, fuzzy
 msgid "A note to be used on the home page"
-msgstr "Estilo utilizado para el título de la página."
+msgstr "Nota a utilizar en la página de inicio"
 
 #: ../src/plugins/NarrativeWeb.py:3025
-#, fuzzy
 msgid "Home page image"
-msgstr "Calcular edad"
+msgstr "Imagen para la página de inicio"
 
 #: ../src/plugins/NarrativeWeb.py:3026
 msgid "An image to be used on the home page"
@@ -9932,9 +9831,8 @@ msgid "An image to be used as the introduction"
 msgstr "Imagen a utilizar como introducción"
 
 #: ../src/plugins/NarrativeWeb.py:3037
-#, fuzzy
 msgid "Publisher contact note"
-msgstr "ID de la nota con los datos de contacto del editor"
+msgstr "Nota con los datos de contacto del editor"
 
 #: ../src/plugins/NarrativeWeb.py:3038
 msgid "A note to be used as the publisher contact"
@@ -10037,9 +9935,8 @@ msgid "Include link to home person on every page"
 msgstr "Incluir un enlace a la persona inicial en cada página"
 
 #: ../src/plugins/NarrativeWeb.py:3107
-#, fuzzy
 msgid "Whether to include a link to the home person"
-msgstr "Incluir un enlace al índice"
+msgstr "Si se debe incluir un enlace a la persona inicial"
 
 #: ../src/plugins/NarrativeWeb.py:3110
 msgid "Include a column for birth dates on the index pages"
@@ -10086,9 +9983,8 @@ msgid "Narrated Web Site"
 msgstr "Sitio web detallado"
 
 #: ../src/plugins/NarrativeWeb.py:3235
-#, fuzzy
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Genera páginas web (HTML) para personas, o grupos de personas."
+msgstr "Genera páginas web (HTML) para personas o grupos de personas"
 
 #: ../src/plugins/NotRelated.py:59
 #, fuzzy
@@ -10101,9 +9997,9 @@ msgid "Not related to \"%s\""
 msgstr "No emparentado con \"%s\""
 
 #: ../src/plugins/NotRelated.py:153
-#, fuzzy, python-format
+#, python-format
 msgid "Everyone in the database is related to %s"
-msgstr "Concide con todas las personas de la base de datos"
+msgstr "Todos en la base de datos están relacionados con %s"
 
 #: ../src/plugins/NotRelated.py:224
 #, python-format
@@ -10160,9 +10056,8 @@ msgid "Other events on this month/day in history"
 msgstr "Otros eventos en este mes/dia en la historia"
 
 #: ../src/plugins/OnThisDay.py:121
-#, fuzzy
 msgid "No other events on this month/day in history"
-msgstr "Ir a la siguiente persona en la historia"
+msgstr "Ningún otro evento en este mes/dia en la historia"
 
 #: ../src/plugins/OnThisDay.py:126
 #, python-format
@@ -10183,9 +10078,8 @@ msgid "Display events on a particular day"
 msgstr "Muestra los eventos de un día en particular"
 
 #: ../src/plugins/OwnerEditor.py:98
-#, fuzzy
 msgid "Database Owner Editor"
-msgstr "Error en la base de datos"
+msgstr "Editor del propietario de la base de datos"
 
 #: ../src/plugins/OwnerEditor.py:156 ../src/PluginUtils/_PluginWindows.py:461
 msgid "Main window"
@@ -10202,7 +10096,7 @@ msgstr "Editar información del propietario de la base de datos"
 
 #: ../src/plugins/OwnerEditor.py:195
 msgid "Allow editing database owner information."
-msgstr "Permitir editar información del propietario de la base de datos"
+msgstr "Permitir editar información del propietario de la base de datos."
 
 #: ../src/plugins/PatchNames.py:92
 msgid "Name and title extraction tool"
@@ -10259,9 +10153,8 @@ msgid "Error extracting into %s"
 msgstr "Error extrayendo a %s"
 
 #: ../src/plugins/ReadPkg.py:113
-#, fuzzy
 msgid "Base path for relative media set"
-msgstr "Convertir rutas de relativas a _absolutas"
+msgstr "Ruta base fijada para las rutas a objetos audiovisuales"
 
 #: ../src/plugins/ReadPkg.py:114
 #, python-format
@@ -10448,7 +10341,6 @@ msgid "Finding and assigning unused IDs"
 msgstr "Buscando y asignando los IDs no utilizados"
 
 #: ../src/plugins/ReorderIds.py:240
-#, fuzzy
 msgid "Reorders the gramps IDs according to Gramps' default rules."
 msgstr "Reordena los números de identificación gramps de acuerdo con las reglas predefinidas de gramps."
 
@@ -10615,7 +10507,6 @@ msgid "SoundEx code generator"
 msgstr "Generador de códigos SoundEx"
 
 #: ../src/plugins/SoundGen.py:151
-#, fuzzy
 msgid "Generate SoundEx Codes"
 msgstr "Generar códigos SoundEx"
 
@@ -10655,7 +10546,7 @@ msgstr "Año de nacimiento"
 
 #: ../src/plugins/StatisticsChart.py:100
 msgid "Death year"
-msgstr "Año de fallecimiento"
+msgstr "Año de defunción"
 
 #: ../src/plugins/StatisticsChart.py:102
 msgid "Birth month"
@@ -10663,7 +10554,7 @@ msgstr "Mes de nacimiento"
 
 #: ../src/plugins/StatisticsChart.py:104
 msgid "Death month"
-msgstr "Mes de fallecimiento"
+msgstr "Mes de defunción"
 
 #: ../src/plugins/StatisticsChart.py:110
 msgid "Marriage place"
@@ -10691,7 +10582,7 @@ msgstr "Edad de matrimonio"
 
 #: ../src/plugins/StatisticsChart.py:122
 msgid "Age at death"
-msgstr "Edad de fallecimiento"
+msgstr "Edad de defunción"
 
 #: ../src/plugins/StatisticsChart.py:126
 msgid "Event type"
@@ -10840,35 +10731,30 @@ msgid "With fewer items pie chart and legend will be used instead of a bar chart
 msgstr "Con menos elementos, se utilizará un diagrama de tarta en vez de un diagrama de barras."
 
 #: ../src/plugins/StatisticsChart.py:746
-#, fuzzy
 msgid "Charts 1"
-msgstr "Gráficos"
+msgstr "Diagramas 1"
 
 #: ../src/plugins/StatisticsChart.py:748
-#, fuzzy
 msgid "Charts 2"
-msgstr "Gráficos"
+msgstr "Diagramas 2"
 
 #: ../src/plugins/StatisticsChart.py:751
-#, fuzzy
 msgid "Include charts with indicated data"
-msgstr "Marque las casillas para agregar diagramas con los datos respectivos"
+msgstr "Incluir diagramas con los datos indicados"
 
 #: ../src/plugins/StatisticsChart.py:791
 msgid "The style used for the items and values."
 msgstr "Estilo utilizado para el elementos y valores."
 
 #: ../src/plugins/StatisticsChart.py:906
-#, fuzzy
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr "Genera gráficos estadísticos de barras y de tarta de las personas de la base de datos."
+msgstr "Genera diagramas estadísticos de barras y de tarta de las personas de la base de datos"
 
 #: ../src/plugins/Summary.py:151
 msgid "Database summary"
 msgstr "Resumen de la base de datos"
 
 #: ../src/plugins/Summary.py:185
-#, fuzzy
 msgid "Summary of the Database"
 msgstr "Resumen de la base de datos"
 
@@ -10966,7 +10852,7 @@ msgstr "Entierro antes del bautismo"
 
 #: ../src/plugins/Verify.py:962
 msgid "Old age at death"
-msgstr "Edad avanzada al fallecimiento"
+msgstr "Edad avanzada a la defunción"
 
 #: ../src/plugins/Verify.py:983
 msgid "Multiple parents"
@@ -11065,7 +10951,6 @@ msgid "Disconnected individual"
 msgstr "Persona sin parientes"
 
 #: ../src/plugins/Verify.py:1527
-#, fuzzy
 msgid "Verify the Data"
 msgstr "Verificar los datos"
 
@@ -11074,25 +10959,21 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Verifica los datos contra pruebas definidas por el usuario"
 
 #: ../src/plugins/WebCal.py:479
-#, fuzzy
 msgid "Generate HTML Calendars"
-msgstr "Generar reportes HTML"
+msgstr "Generar calendarios HTML"
 
 #. generate the report:
 #: ../src/plugins/WebCal.py:490
-#, fuzzy
 msgid "Creating Calendar pages"
-msgstr "Creando las páginas de objetos"
+msgstr "Creando las páginas de calendarios"
 
 #: ../src/plugins/WebCal.py:734
-#, fuzzy
 msgid "Content Options"
-msgstr "Opciones del Documento"
+msgstr "Opciones de contenido"
 
 #: ../src/plugins/WebCal.py:759
-#, fuzzy
 msgid "Holidays will be included for the selected country"
-msgstr "Aplicar el firltro utilizando los controles seleccionados"
+msgstr "Se incluirán las festividades del país seleccionado"
 
 #: ../src/plugins/WebCal.py:775
 msgid "Check for wives to use maiden name"
@@ -11164,212 +11045,191 @@ msgstr "repetir verticalmente"
 
 #: ../src/plugins/WebCal.py:813
 msgid "Whether to repeat the background image"
-msgstr ""
+msgstr "Si se debe repetir o no el fondo"
 
 #: ../src/plugins/WebCal.py:820
 msgid "Months 1-6 Notes"
-msgstr ""
+msgstr "Notas de los meses 1-6"
 
 #: ../src/plugins/WebCal.py:822
-#, fuzzy
 msgid "Jan Note"
-msgstr "Notas de los padres"
+msgstr "Nota de enero"
 
 #: ../src/plugins/WebCal.py:822
-#, fuzzy
 msgid "This prints in January"
-msgstr "Este campo es obligatorio"
+msgstr "Esto se muestra en enero"
 
 #: ../src/plugins/WebCal.py:823
 msgid "The note for the month of January"
-msgstr ""
+msgstr "Nota del mes de enero"
 
 #: ../src/plugins/WebCal.py:826
-#, fuzzy
 msgid "Feb Note"
-msgstr "Nota"
+msgstr "Nota de febrero"
 
 #: ../src/plugins/WebCal.py:826
 msgid "This prints in February"
-msgstr ""
+msgstr "Esto se muestra en febrero"
 
 #: ../src/plugins/WebCal.py:827
 msgid "The note for the month of February"
-msgstr ""
+msgstr "Nota del mes de febrero"
 
 #: ../src/plugins/WebCal.py:830
-#, fuzzy
 msgid "Mar Note"
-msgstr "Notas de los padres"
+msgstr "Nota de marzo"
 
 #: ../src/plugins/WebCal.py:830
 msgid "This prints in March"
-msgstr ""
+msgstr "Esto se muestra en marzo"
 
 #: ../src/plugins/WebCal.py:831
 msgid "The note for the month of March"
-msgstr ""
+msgstr "Nota del mes de marzo"
 
 #: ../src/plugins/WebCal.py:834
-#, fuzzy
 msgid "Apr Note"
-msgstr "Nota"
+msgstr "Nota de abril"
 
 #: ../src/plugins/WebCal.py:834
 msgid "This prints in April"
-msgstr ""
+msgstr "Esto se muestra en abril"
 
 #: ../src/plugins/WebCal.py:835
-#, fuzzy
 msgid "The note for the month of April"
-msgstr "Estilo utilizado para el título."
+msgstr "Nota del mes de abril"
 
 #: ../src/plugins/WebCal.py:838
-#, fuzzy
 msgid "May Note"
-msgstr "Nota familiar"
+msgstr "Nota de mayo"
 
 #: ../src/plugins/WebCal.py:838
 msgid "This prints in May"
-msgstr ""
+msgstr "Esto se muestra en mayo"
 
 #: ../src/plugins/WebCal.py:839
-#, fuzzy
 msgid "The note for the month of May"
-msgstr "Estilo utilizado para el título de la página."
+msgstr "Nota del mes de mayo"
 
 #: ../src/plugins/WebCal.py:842
-#, fuzzy
 msgid "Jun Note"
-msgstr "Nota"
+msgstr "Nota de junio"
 
 #: ../src/plugins/WebCal.py:842
-#, fuzzy
 msgid "This prints in June"
-msgstr "El nombre de pila de la persona"
+msgstr "Esto se muestra en junio"
 
 #: ../src/plugins/WebCal.py:843
-#, fuzzy
 msgid "The note for the month of June"
-msgstr "Estilo utilizado para el nombre del padre o de la madre"
+msgstr "Nota del mes de junio"
 
 #: ../src/plugins/WebCal.py:846
 msgid "Months 7-12 Notes"
-msgstr ""
+msgstr "Notas de los meses 7-12"
 
 #: ../src/plugins/WebCal.py:848
-#, fuzzy
 msgid "Jul Note"
-msgstr "Nota"
+msgstr "Nota de julio"
 
 #: ../src/plugins/WebCal.py:848
 msgid "This prints in July"
-msgstr ""
+msgstr "Esto se muestra en julio"
 
 #: ../src/plugins/WebCal.py:849
 msgid "The note for the month of July"
-msgstr ""
+msgstr "Nota del mes de julio"
 
 #: ../src/plugins/WebCal.py:852
-#, fuzzy
 msgid "Aug Note"
-msgstr "Nota"
+msgstr "Nota de agosto"
 
 #: ../src/plugins/WebCal.py:852
 msgid "This prints in August"
-msgstr ""
+msgstr "Esto se muestra en agosto"
 
 #: ../src/plugins/WebCal.py:853
 msgid "The note for the month of August"
-msgstr ""
+msgstr "Nota del mes de agosto"
 
 #: ../src/plugins/WebCal.py:856
-#, fuzzy
 msgid "Sep Note"
-msgstr "Nota"
+msgstr "Nota de septiembre"
 
 #: ../src/plugins/WebCal.py:856
 msgid "This prints in September"
-msgstr ""
+msgstr "Esto se muestra en septiembre"
 
 #: ../src/plugins/WebCal.py:857
-#, fuzzy
 msgid "The note for the month of September"
-msgstr "Estilo utilizado para el pie."
+msgstr "Nota del mes de septiembre"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "Oct Note"
-msgstr "Nota"
+msgstr "Nota de octubre"
 
 #: ../src/plugins/WebCal.py:860
 msgid "This prints in October"
-msgstr ""
+msgstr "Esto se muestra en octubre"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "The note for the month of October"
-msgstr "Estilo utilizado para el pie."
+msgstr "Nota del mes de octubre"
 
 #: ../src/plugins/WebCal.py:864
-#, fuzzy
 msgid "Nov Note"
-msgstr "Nota"
+msgstr "Nota de noviembre"
 
 #: ../src/plugins/WebCal.py:864
 msgid "This prints in November"
-msgstr ""
+msgstr "Esto se muestra en noviembre"
 
 #: ../src/plugins/WebCal.py:865
 msgid "The note for the month of November"
-msgstr ""
+msgstr "Nota del mes de noviembre"
 
 #: ../src/plugins/WebCal.py:868
-#, fuzzy
 msgid "Dec Note"
-msgstr "Nota"
+msgstr "Nota de diciembre"
 
 #: ../src/plugins/WebCal.py:868
 msgid "This prints in December"
-msgstr ""
+msgstr "Esto se muestra en diciembre"
 
 #: ../src/plugins/WebCal.py:869
 msgid "The note for the month of December"
-msgstr ""
+msgstr "Nota del mes de diciembre"
 
 #: ../src/plugins/WebCal.py:915
 msgid "The style used for the title (\"My Family Calendar\") of the page. The background color sets the PAGE background. Borders DO NOT work."
-msgstr ""
+msgstr "Estilo a utilizar para el título (\"Mi calendario familiar\") de la página.  El color de fondo fija el fondo de la página.  Los bordes NO FUNCIONAN."
 
 #: ../src/plugins/WebCal.py:930
 msgid "The style used for the month name and year, it controls the font face, size, style, color and the background color of the block, including the day-name area. Inclusion of a graphic does not cover the day-name area."
-msgstr ""
+msgstr "Estilo a utilizar para el nombre del mes y el año, controla el tipo de letra, el tamaño, el estilo, el color y el color del fondo del bloque, incluida el área del nombre del día.  Si se incluye un gráfico, no se extiende al área del nombre del día."
 
 #: ../src/plugins/WebCal.py:946
 msgid "The style used for text in the body of the calendar, it controls font size, face, style, color, and alignment. The background color is used ONLY for cells containing text, allowing for high-lighting of dates."
-msgstr ""
+msgstr "Estilo a utilizar para el texto en el cuerpo del calendario, controla el tamaño de la letra, su tipo, estilo, color y alineación.  El color de fondo se usa SOLAMENTE para las celdas que contienen texto, permitiendo resaltar fechas."
 
 #: ../src/plugins/WebCal.py:961
 msgid "The style used for notes at the bottom of the calendar, it controls font size, face, style, color and positioning. The background color setting affect all EMPTY calendar cells."
-msgstr ""
+msgstr "Estilo a utilizar para las notas en la parte inferior del calendario, controla el tipo de letra, su tamaño, color y posición.  El ajuste de color de fondo afecta a todas las celdas VACÍAS del calendario."
 
 #: ../src/plugins/WebCal.py:975
 msgid "The style used for the table itself. This affects the color of the table lines and the color, font, size, and positioning of the calendar date numbers. It also controls the color of the day names."
-msgstr ""
+msgstr "Estilo a utilizar para la tabla propiamente dicha.  Afecta al color de las líneas de la tabla y al color, tipo de letra, tamaño y posición de los números de las fechas del calendario.  También controla el color de los nombres de los días."
 
 #: ../src/plugins/WebCal.py:1231
-#, fuzzy
 msgid "Web Calendar"
-msgstr "Calendario"
+msgstr "Calendario Web"
 
 #: ../src/plugins/WebCal.py:1235
-#, fuzzy
 msgid "Produces web (HTML) calendars."
-msgstr "Produce un calendario gráfico"
+msgstr "Produce calendarios web (HTML)."
 
 #: ../src/plugins/WriteCD.py:54
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-msgstr ""
+msgstr "WriteCD es una extensión para GNOME y no está utilizando GNOME"
 
 #: ../src/plugins/WriteCD.py:60
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -11395,9 +11255,8 @@ msgstr "Existen referencias a %(file_name)s en la base de datos, pero ya no exis
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteCD.py:301
-#, fuzzy
 msgid "_Export to CD (portable XML)"
-msgstr "Exportar a CD (XML transp_ortable)"
+msgstr "_Exportar a CD (XML transportable)"
 
 #: ../src/plugins/WriteCD.py:302
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
@@ -11430,9 +11289,8 @@ msgstr "Ninguna familia se ajustó al filtro seleccionado"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteGeneWeb.py:640
-#, fuzzy
 msgid "_GeneWeb"
-msgstr "GeneWeb"
+msgstr "_GeneWeb"
 
 #: ../src/plugins/WriteGeneWeb.py:641
 msgid "GeneWeb is a web based genealogy program."
@@ -11456,9 +11314,8 @@ msgid "GRAMPS package is an archived XML database together with the media object
 msgstr "Un paquete GRAMPS consiste en una base de datos en formato XML junto con los archivos de los objetos audiovisuales."
 
 #: ../src/plugins/WritePkg.py:226
-#, fuzzy
 msgid "GRAMPS package export options"
-msgstr "Paquetes GRAMPS"
+msgstr "Opciones de la exportación a paquete GRAMPS"
 
 #: ../src/plugins/RebuildRefMap.py:76
 msgid "Rebuilding reference maps..."
@@ -11473,7 +11330,6 @@ msgid "All reference maps have been rebuilt."
 msgstr "Se han reconstruido todos los mapas de referencias."
 
 #: ../src/plugins/RebuildRefMap.py:119
-#, fuzzy
 msgid "Rebuild Reference Maps"
 msgstr "Reconstruir los mapas de referencias"
 
@@ -11482,14 +11338,12 @@ msgid "Rebuilds reference maps"
 msgstr "Reconstruye los mapas de referencias"
 
 #: ../src/plugins/ReadGrdb.py:325 ../src/plugins/ReadGrdb.py:327
-#, fuzzy
 msgid "GRAMPS 2.x database"
-msgstr "Bases de datos GRAMPS"
+msgstr "Base de datos GRAMPS 2.x"
 
 #: ../src/PluginUtils/_GuiOptions.py:75
-#, fuzzy
 msgid "Select surname"
-msgstr "Seleccionar archivo"
+msgstr "Seleccionar apellido"
 
 #. we could use database.get_surname_list(), but if we do that
 #. all we get is a list of names without a count...therefore
@@ -11501,43 +11355,38 @@ msgstr "Seleccionar archivo"
 #. name (this can be a lengthy process, so by passing in the
 #. dictionary we can be certain we only do this once)
 #: ../src/PluginUtils/_GuiOptions.py:109
-#, fuzzy
 msgid "Finding Surnames"
-msgstr "Apellidos"
+msgstr "Búsqueda de apellidos"
 
 #: ../src/PluginUtils/_GuiOptions.py:110
-#, fuzzy
 msgid "Finding surnames"
-msgstr "Apellidos distintos"
+msgstr "Búsqueda de apellidos"
 
 #: ../src/PluginUtils/_GuiOptions.py:433
 msgid "Select a different person"
-msgstr "Seleccione una persona diferente"
+msgstr "Seleccionar una persona diferente"
 
 #: ../src/PluginUtils/_GuiOptions.py:462
-#, fuzzy
 msgid "Select a person for the report"
-msgstr "Seleccionar una persona como padre"
+msgstr "Seleccionar una persona para el reporte"
 
 #: ../src/PluginUtils/_GuiOptions.py:521
-#, fuzzy
 msgid "Select a different family"
-msgstr "Seleccionar familia"
+msgstr "Seleccionar una familia distinta"
 
 #: ../src/PluginUtils/_GuiOptions.py:900
 #, python-format
 msgid "Also include %s?"
-msgstr ""
+msgstr "¿Incluir también %s?"
 
 #: ../src/PluginUtils/_GuiOptions.py:955
-#, fuzzy
 msgid "Colour"
-msgstr "Relleno en color"
+msgstr "Color"
 
 #: ../src/PluginUtils/_GuiOptions.py:1125
 #: ../src/ReportBase/_ReportDialog.py:161
 msgid "Save As"
-msgstr "Guardar Como"
+msgstr "Guardar como"
 
 #. -------------------------------------------------------------------------
 #.
@@ -11589,7 +11438,6 @@ msgid "Run selected tool"
 msgstr "Ejecutar la herramienta soleccionada"
 
 #: ../src/PluginUtils/_Plugins.py:416
-#, fuzzy
 msgid "Reload Plugins"
 msgstr "Recargar módulos"
 
@@ -11707,16 +11555,14 @@ msgid "Code Generators"
 msgstr "Generadores de Código"
 
 #: ../src/ReportBase/_Constants.py:56
-#, fuzzy
 msgid "Web Pages"
-msgstr "Página Web"
+msgstr "Páginas web"
 
 #: ../src/ReportBase/_Constants.py:58
 msgid "Books"
 msgstr "Libros"
 
 #: ../src/ReportBase/_Constants.py:59
-#, fuzzy
 msgid "Graphs"
 msgstr "Gráficos"
 
@@ -11751,14 +11597,12 @@ msgid "Choose File"
 msgstr "Escoger Archivo"
 
 #: ../src/ReportBase/_Endnotes.py:50
-#, fuzzy
 msgid "The basic style used for the endnotes source display."
-msgstr "Estilo básico para la presentación del texto de las notas finales."
+msgstr "Estilo básico para la presentación de las fuentes en las notas finales."
 
 #: ../src/ReportBase/_Endnotes.py:57
-#, fuzzy
 msgid "The basic style used for the endnotes reference display."
-msgstr "Estilo básico para la presentación del texto de las notas finales."
+msgstr "Estilo básico para la presentación de las referencias en las notas finales."
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
@@ -11783,19 +11627,19 @@ msgstr "TrueType / FreeSans"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Vertical (top to bottom)"
-msgstr ""
+msgstr "Vertical (arriba a abajo)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Vertical (bottom to top)"
-msgstr ""
+msgstr "Vertical (abajo a arriba)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Horizontal (left to right)"
-msgstr ""
+msgstr "Horizontal (izquierda a derecha)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Horizontal (right to left)"
-msgstr ""
+msgstr "Horizontal (derecha a izquierda)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Bottom, left"
@@ -11838,9 +11682,8 @@ msgid "Fill the given area"
 msgstr "Rellenar el área dada"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:84
-#, fuzzy
 msgid "Use optimal number of pages"
-msgstr "Utilizar automáticamente el número óptimo de páginas"
+msgstr "Utilizar el número óptimo de páginas"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:86
 msgid "Top"
@@ -11851,23 +11694,20 @@ msgid "Bottom"
 msgstr "Abajo"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:125
-#, fuzzy
 msgid "Processing File"
-msgstr "Buscando registros de familia vacíos"
+msgstr "Procesando el archivo"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:757
-#, fuzzy
 msgid "Graphviz Dot File"
-msgstr "Opciones GraphViz"
+msgstr "Archivo dot de GraphViz"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:766
-#, fuzzy
 msgid "PDF (Ghostscript)"
-msgstr "PostScript"
+msgstr "PDF (Ghostscript)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:772
 msgid "PDF (Graphviz)"
-msgstr ""
+msgstr "PDF (Graphviz)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "Postscript"
@@ -11895,9 +11735,8 @@ msgstr "Imagen PNG"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:899
-#, fuzzy
 msgid "GraphViz Layout"
-msgstr "Opciones GraphViz"
+msgstr "Diseño de GraphViz"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:901
@@ -11917,43 +11756,36 @@ msgid "The font size, in points."
 msgstr "El tamaño (cuerpo) de las letras en puntos tipográficos."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:916
-#, fuzzy
 msgid "Graph Direction"
 msgstr "Dirección del gráfico"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:921
-#, fuzzy
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Determina si las generaciones progresan de arriba a abajo o de izquierda a derecha."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:925
 msgid "Number of Horizontal Pages"
-msgstr "Número de Páginas Horizontales"
+msgstr "Número de páginas horizontales"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:926
-#, fuzzy
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot, postscript and pdf via Ghostscript."
-msgstr ""
-"GraphViz puede crear gráficos muy grandes expandiendo el gráfico atraves de\n"
-"un arreglo rectangular de páginas. Eso controla el número de páginas horizontales en el arreglo."
+msgstr "GraphViz puede crear gráficos muy grandes extendiendo el gŕafico en una distribución rectangular de páginas. Aquí se controla el número de páginas en horizontal.  Sólo es válido para salidas dot, PostScript y PDF (Ghostscript)."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:933
 msgid "Number of Vertical Pages"
-msgstr "Número de Páginas Verticales"
+msgstr "Número de páginas verticales"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:934
-#, fuzzy
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot, postscript and pdf via Ghostscript."
-msgstr "GraphViz puede crear gráficos muy grandes expandiendo el gráfico atraves de un arreglo rectangular de páginas. Esto controla el número de páginas verticales en el arreglo."
+msgstr "GraphViz puede crear gráficos muy grandes extendiendo el gŕafico en una distribución rectangular de páginas. Aquí se controla el número de páginas en vertical.  Sólo es válido para salidas dot, PostScript y PDF (Ghostscript)."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:941
-#, fuzzy
 msgid "Paging Direction"
 msgstr "Orden de las páginas"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:946
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
-msgstr ""
+msgstr "Orden en que se imprimen las páginas.  Esta opción sólo se usa si el número de páginas horizontales o verticales sea mayor que 1."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:964
@@ -11966,22 +11798,20 @@ msgid "Aspect ratio"
 msgstr "Razón de aspecto"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:972
-#, fuzzy
 msgid "Affects greatly how the graph is layed out on the page."
-msgstr "Afecta de manera importante a cómo se dispone el gráfico en la página.  La selección de múltiples páginas hace que se ingnores los valores siguientes."
+msgstr "Afecta de manera importante a cómo se dispone el gráfico en la página."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "DPI"
-msgstr ""
+msgstr "Resolución"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:979
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, use 72 DPI."
 msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:985
-#, fuzzy
 msgid "Node spacing"
-msgstr "Sin descripción"
+msgstr "Espaciado de los nodos"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
@@ -11989,7 +11819,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
-msgstr ""
+msgstr "Espaciado de las filas"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
@@ -12013,9 +11843,8 @@ msgid "Whether note will appear on top or bottom of the page."
 msgstr "Si la nota aparecerá arriba o abajo en la página."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1017
-#, fuzzy
 msgid "Note size"
-msgstr "Notas"
+msgstr "Tamaño de la nota"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "The size of note text, in points."
@@ -12036,7 +11865,7 @@ msgstr "Apaisado"
 
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "in."
-msgstr ""
+msgstr "pulgadas"
 
 #: ../src/ReportBase/_ReportDialog.py:165
 msgid "Directory"
@@ -13384,564 +13213,564 @@ msgid "Died (age %(age)d days)."
 msgstr "Falleció (edad %(age)d días)."
 
 #: ../src/ReportBase/_ReportUtils.py:546
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(male_name)s recibió sepultura el %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:547
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:550
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(female_name)s recibió sepultura el %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:554
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s en %(burial_place)s.%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:557
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "Recibió sepultura %(burial_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:562
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(male_name)s recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:563
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s."
+msgstr "Recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:566
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(female_name)s recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:567
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s."
+msgstr "Recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:571
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "Recibió sepultura el %(burial_date)s."
+msgstr "Recibió sepultura el %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(burial_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Recibió sepultura %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:578
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(male_name)s recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:579
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(female_name)s recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:589
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:594
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(month_year)s."
+msgstr "%(male_name)s recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:595
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:598
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(month_year)s."
+msgstr "%(female_name)s recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:599
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:602
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s."
+msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:603
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Recibió sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:605
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s%(endnotes)s."
+msgstr "Recibió sepultura %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:610
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(male_name)s recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:611
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(female_name)s recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:621
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "Recibió sepultura %(modified_date)s en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:626
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura %(modified_date)s."
+msgstr "%(male_name)s recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:627
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:630
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura %(modified_date)s."
+msgstr "%(female_name)s recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:631
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:634
 #, fuzzy, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s."
+msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried %(modified_date)s%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:637
-#, fuzzy, python-format
+#, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Recibió sepultura %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(male_name)s recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(burial_place)s."
+msgstr "Recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:646
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(female_name)s recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:647
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(burial_place)s."
+msgstr "Recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:651
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(burial_place)s."
+msgstr "Recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:653
-#, fuzzy, python-format
+#, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Recibió sepultura en %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:658
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:659
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:662
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:663
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:666
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was buried%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s."
+msgstr "%(unknown_gender_name)s recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:667
-#, fuzzy, python-format
+#, python-format
 msgid "This person was buried%(endnotes)s."
-msgstr "Recibió sepultura %(modified_date)s."
+msgstr "Recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:669
-#, fuzzy, python-format
+#, python-format
 msgid "Buried%(endnotes)s."
-msgstr "%(endnotes)s."
+msgstr "Recibió sepultura%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:680
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(male_name)s fue bautizado el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:681
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizado el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:684
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(female_name)s fue bautizada el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:685
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizada el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió bautismo el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s en %(place)s%(endnotes)s."
+msgstr "Esta persona fue bautizada el %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:691
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Recibió bautismo %(baptism_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:696
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(male_name)s fue bautizado el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:697
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Fue bautizado el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:700
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(female_name)s fue bautizado el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:701
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Fue bautizado el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura el %(burial_date)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(partial_date)s%(endnotes)s."
+msgstr "Recibió el bautismo el %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:707
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(baptism_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s%(endnotes)s."
+msgstr "Recibió el bautismo %(baptism_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:712
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(male_name)s fue bautizado en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:713
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Fue bautizado en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:716
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(female_name)s fue bautizada en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Fue bautizada en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:720
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s en %(burial_place)s."
+msgstr "Esta persona fue bautizada en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:723
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."
-msgstr "Falleció en %(month_year)s en %(death_place)s (edad %(age)d meses)."
+msgstr "Recibió el bautismo en %(month_year)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:728
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(month_year)s."
+msgstr "%(male_name)s fue bautizado en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:729
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Fue bautizado en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(month_year)s."
+msgstr "%(female_name)s fue bautizada en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:733
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Fue bautizada en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:736
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(month_year)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo sepultura en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:737
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised in %(month_year)s%(endnotes)s."
-msgstr "Recibió sepultura en %(month_year)s."
+msgstr "Recibió el bautismo en %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:739
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(month_year)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s%(endnotes)s."
+msgstr "Recibió el bautismo %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:744
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(male_name)s fue bautizado %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:745
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s %(modified_date)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizado %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:748
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(female_name)s fue bautizada %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s %(modified_date)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizada %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:752
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s en %(place)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s en %(place)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:760
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura %(modified_date)s."
+msgstr "%(male_name)s fue bautizado %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:761
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised %(modified_date)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Fue bautizado %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:764
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura %(modified_date)s."
+msgstr "%(female_name)s fue bautizada %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised %(modified_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Fue bautizada %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:768
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:769
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised %(modified_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:771
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised %(modified_date)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Recibió el bautismo %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:776
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(male_name)s fue bautizado en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:777
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizado en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:780
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(female_name)s fue bautizada en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:781
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Fue bautizada en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura en %(burial_place)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:785
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised in %(baptism_place)s%(endnotes)s."
-msgstr "También se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Recibió el bautismo en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:787
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised in %(baptism_place)s%(endnotes)s."
-msgstr "Se casó con %(spouse)s en %(place)s%(endnotes)s."
+msgstr "Recibió el bautismo en %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:792
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was baptised%(endnotes)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s fue bautizado%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:793
-#, fuzzy, python-format
+#, python-format
 msgid "He was baptised%(endnotes)s."
-msgstr "También se casó con %(spouse)s%(endnotes)s."
+msgstr "Fue bautizado%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:796
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was baptised%(endnotes)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s fue bautizada%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
-#, fuzzy, python-format
+#, python-format
 msgid "She was baptised%(endnotes)s."
-msgstr "También se casó con %(spouse)s%(endnotes)s."
+msgstr "Fue bautizada%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:800
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was baptised%(endnotes)s."
-msgstr "%(unknown_gender_name)s recibió sepultura %(modified_date)s."
+msgstr "%(unknown_gender_name)s recibió el bautismo%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:801
-#, fuzzy, python-format
+#, python-format
 msgid "This person was baptised%(endnotes)s."
-msgstr "También se casó con %(spouse)s%(endnotes)s."
+msgstr "Recibió el bautismo%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:803
-#, fuzzy, python-format
+#, python-format
 msgid "Baptised%(endnotes)s."
-msgstr "%(endnotes)s."
+msgstr "Recibió el bautismo%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:814
 #, python-format
@@ -14901,9 +14730,9 @@ msgid "%(male_name)s was the child of %(father)s and %(mother)s."
 msgstr "%(male_name)s era hijo de %(father)s y de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1201
-#, fuzzy, python-format
+#, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr "%(father)s y %(mother)s"
+msgstr "Hijo de %(father)s y %(mother)s"
 
 #: ../src/ReportBase/_ReportUtils.py:1205
 #, python-format
@@ -14926,9 +14755,9 @@ msgid "%(male_name)s was the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s era hijo de %(father)s y de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1212
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "%(father)s y %(mother)s"
+msgstr "Hijo de %(father)s y %(mother)s"
 
 #: ../src/ReportBase/_ReportUtils.py:1216
 #, python-format
@@ -14951,9 +14780,9 @@ msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s era hija de %(father)s y de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1223
-#, fuzzy, python-format
+#, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "Es hija de %(father)s y de %(mother)s."
+msgstr "Hija de %(father)s y de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1230
 #, python-format
@@ -14976,9 +14805,9 @@ msgid "%(male_name)s was the child of %(father)s."
 msgstr "%(male_name)s era hijo de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1237
-#, fuzzy, python-format
+#, python-format
 msgid "Child of %(father)s."
-msgstr "Es hijo de %(father)s."
+msgstr "Hijo de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1241
 #, python-format
@@ -15001,9 +14830,9 @@ msgid "%(male_name)s was the son of %(father)s."
 msgstr "%(male_name)s era hijo de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1248
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(father)s."
-msgstr "Es hijo de %(father)s."
+msgstr "Hijo de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1252
 #, python-format
@@ -15026,9 +14855,9 @@ msgid "%(female_name)s was the daughter of %(father)s."
 msgstr "%(female_name)s era hija de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1259
-#, fuzzy, python-format
+#, python-format
 msgid "Daughter of %(father)s."
-msgstr "Es hija de %(father)s."
+msgstr "Hija de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1266
 #, python-format
@@ -15076,9 +14905,9 @@ msgid "%(male_name)s was the son of %(mother)s."
 msgstr "%(male_name)s era hijo de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1284
-#, fuzzy, python-format
+#, python-format
 msgid "Son of %(mother)s."
-msgstr "Es hijo de %(mother)s."
+msgstr "Hijo de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1288
 #, python-format
@@ -15101,9 +14930,9 @@ msgid "%(female_name)s was the daughter of %(mother)s."
 msgstr "%(female_name)s era hija de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1295
-#, fuzzy, python-format
+#, python-format
 msgid "Daughter of %(mother)s."
-msgstr "Es hija de %(mother)s."
+msgstr "Hija de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1305
 msgid "unmarried"
@@ -15395,37 +15224,31 @@ msgstr "Plantilla Definida por Usuario"
 
 #: ../src/gen/proxy/dbbase.py:94 ../src/gen/db/base.py:325
 msgid "Processing Person records"
-msgstr ""
+msgstr "Procesando registros de personas"
 
 #: ../src/gen/proxy/dbbase.py:100 ../src/gen/db/base.py:331
-#, fuzzy
 msgid "Processing Family records"
-msgstr "Buscando registros de familia vacíos"
+msgstr "Procesando registros de familias"
 
 #: ../src/gen/proxy/dbbase.py:106 ../src/gen/db/base.py:337
-#, fuzzy
 msgid "Processing Event records"
-msgstr "Buscando registros de evento vacíos"
+msgstr "Procesando registros de eventos"
 
 #: ../src/gen/proxy/dbbase.py:112 ../src/gen/db/base.py:343
-#, fuzzy
 msgid "Processing Place records"
-msgstr "Buscando registros de lugar vacíos"
+msgstr "Procesando registros de lugares"
 
 #: ../src/gen/proxy/dbbase.py:118 ../src/gen/db/base.py:349
-#, fuzzy
 msgid "Processing Source records"
-msgstr "Buscando registros de fuente vacíos"
+msgstr "Procesando registros de fuentes"
 
 #: ../src/gen/proxy/dbbase.py:124 ../src/gen/db/base.py:355
-#, fuzzy
 msgid "Processing Media records"
-msgstr "Objetos Audiovisuales Perdidos"
+msgstr "Procesando registros de objetos audiovisuales"
 
 #: ../src/gen/proxy/dbbase.py:130 ../src/gen/db/base.py:361
-#, fuzzy
 msgid "Processing Repository records"
-msgstr "Buscando registros de respositorio vacíos"
+msgstr "Procesando registros de repositorios"
 
 #: ../src/gen/proxy/dbbase.py:136 ../src/gen/db/base.py:367
 msgid "Processing Note records"
@@ -15445,7 +15268,7 @@ msgstr "_Rehacer %s"
 #: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "Bloqueado por by %s"
 
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
@@ -15464,104 +15287,85 @@ msgid "FTP"
 msgstr "FTP"
 
 #: ../src/gen/lib/notetype.py:79
-#, fuzzy
 msgid "Research"
-msgstr "Investigador"
+msgstr "Investigación"
 
 #: ../src/gen/lib/notetype.py:80
-#, fuzzy
 msgid "Transcript"
-msgstr "Manuscrito"
+msgstr "Transcripción"
 
 #: ../src/gen/lib/notetype.py:82
-#, fuzzy
 msgid "Citation"
-msgstr "Orientación"
+msgstr "Cita"
 
 #: ../src/gen/lib/notetype.py:87
-#, fuzzy
 msgid "Person Note"
-msgstr "Persona"
+msgstr "Nota de persona"
 
 #: ../src/gen/lib/notetype.py:88
-#, fuzzy
 msgid "Name Note"
-msgstr "Nota familiar"
+msgstr "Nota de nombre"
 
 #: ../src/gen/lib/notetype.py:89
-#, fuzzy
 msgid "Attribute Note"
-msgstr "Atributo"
+msgstr "Nota de atributo"
 
 #: ../src/gen/lib/notetype.py:90
-#, fuzzy
 msgid "Address Note"
-msgstr "Direcciones"
+msgstr "Nota la dirección"
 
 #: ../src/gen/lib/notetype.py:91
-#, fuzzy
 msgid "Association Note"
-msgstr "Asociación"
+msgstr "Nota de asociación"
 
 #: ../src/gen/lib/notetype.py:92
-#, fuzzy
 msgid "LDS Note"
-msgstr "Nota"
+msgstr "Nota SUD"
 
 #: ../src/gen/lib/notetype.py:93
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:118
 msgid "Family Note"
-msgstr "Nota familiar"
+msgstr "Nota de familia"
 
 #: ../src/gen/lib/notetype.py:94
-#, fuzzy
 msgid "Event Note"
-msgstr "Tipo de eventos"
+msgstr "Nota de evento"
 
 #: ../src/gen/lib/notetype.py:95
-#, fuzzy
 msgid "Event Reference Note"
-msgstr "Referencia a evento"
+msgstr "Nota de referencia a evento"
 
 #: ../src/gen/lib/notetype.py:96
-#, fuzzy
 msgid "Source Note"
-msgstr "Fuente"
+msgstr "Nota de fuente"
 
 #: ../src/gen/lib/notetype.py:97
-#, fuzzy
 msgid "Source Reference Note"
-msgstr "Referencia a fuente"
+msgstr "Nota de referencia a fuente"
 
 #: ../src/gen/lib/notetype.py:98
-#, fuzzy
 msgid "Place Note"
-msgstr "Editor de Nombres"
+msgstr "Nota de lugar"
 
 #: ../src/gen/lib/notetype.py:99
-#, fuzzy
 msgid "Repository Note"
-msgstr "Repositorio"
+msgstr "Nota de repositorio"
 
 #: ../src/gen/lib/notetype.py:100
-#, fuzzy
 msgid "Repository Reference Note"
-msgstr "Referencia a repositorio"
+msgstr "Nota de referencia a repositorio"
 
 #: ../src/gen/lib/notetype.py:102
-#, fuzzy
 msgid "Media Note"
-msgstr "Tipo de objeto"
+msgstr "Nota de objeto audiovisual"
 
 #: ../src/gen/lib/notetype.py:103
-#, fuzzy
 msgid "Media Reference Note"
-msgstr "Referencia a objeto"
+msgstr "Nota de referencia a objeto"
 
 #: ../src/gen/lib/notetype.py:104
-#, fuzzy
 msgid "Child Reference Note"
-msgstr "Referencia a hijo"
+msgstr "Nota de referencia a hijo"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
@@ -16214,12 +16018,12 @@ msgstr "Concide con los objetos audiovisuales que tienen ciertos parámetros"
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "lesser than"
-msgstr ""
+msgstr "menor que"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "greater than"
-msgstr ""
+msgstr "mayor que"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -16380,11 +16184,11 @@ msgstr "Coincide con todas las personas con registros completos"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
 msgid "People with the <death data>"
-msgstr "Personas fallecidas en <datos de fallecimiento>"
+msgstr "Personas fallecidas en <datos de defunción>"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:49
 msgid "Matches people with death data of a particular value"
-msgstr "Coincide con las personas cuyos datos de fallecimiento tienen un valor particular"
+msgstr "Coincide con las personas cuyos datos de defunción tienen un valor particular"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
 #: ../src/FilterEditor/_EditRule.py:79
@@ -16843,7 +16647,7 @@ msgstr "Personas probablemente vivas"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
 msgid "Matches people without indications of death that are not too old"
-msgstr "Coincide con las personas sin datos de fallecimiento y que no son demasiado viejas"
+msgstr "Coincide con las personas sin datos de defunción y que no son demasiado viejas"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
@@ -17881,7 +17685,7 @@ msgstr "Editar Regla"
 #: ../src/FilterEditor/_EditRule.py:194 ../src/FilterEditor/_EditRule.py:203
 #: ../src/FilterEditor/_EditRule.py:210
 msgid "equal to"
-msgstr ""
+msgstr "igual a"
 
 #: ../src/FilterEditor/_EditRule.py:293
 msgid "Select..."
@@ -17910,11 +17714,11 @@ msgstr "Usar expresión regular"
 
 #: ../src/FilterEditor/_EditRule.py:500
 msgid "Also family events where person is wife/husband"
-msgstr ""
+msgstr "También eventos familiares en que la persona aparece como cónyuge"
 
 #: ../src/FilterEditor/_EditRule.py:514
 msgid "Rule Name"
-msgstr "Nombre de la Regla"
+msgstr "Nombre de la regla"
 
 #: ../src/FilterEditor/_EditRule.py:600 ../src/FilterEditor/_EditRule.py:611
 #: ../src/glade/rule.glade.h:20
@@ -17923,54 +17727,51 @@ msgstr "No se seleccionó ninguna regla"
 
 #: ../src/FilterEditor/_ShowResults.py:78
 msgid "Filter Test"
-msgstr "Prueba del Filtro"
+msgstr "Prueba del filtro"
 
 #: ../src/docgen/gtkprintpreview.glade.h:1
 msgid "Closes print preview window"
-msgstr ""
+msgstr "Cierra la ventana de previsualización de la impresión"
 
 #: ../src/docgen/gtkprintpreview.glade.h:2
 msgid "Print Preview"
-msgstr "Previsualización de la Impresión"
+msgstr "Previsualización de la impresión"
 
 #: ../src/docgen/gtkprintpreview.glade.h:3
 msgid "Prints the current file"
-msgstr ""
+msgstr "Imprime el archivo actual"
 
 #: ../src/docgen/gtkprintpreview.glade.h:4
-#, fuzzy
 msgid "Shows previous page"
-msgstr "Mostrar imágenes"
+msgstr "Muestra la página anterior"
 
 #: ../src/docgen/gtkprintpreview.glade.h:5
 msgid "Shows the first page"
-msgstr ""
+msgstr "Muestra la primera página"
 
 #: ../src/docgen/gtkprintpreview.glade.h:6
 msgid "Shows the last page"
-msgstr ""
+msgstr "Muestra la última página"
 
 #: ../src/docgen/gtkprintpreview.glade.h:7
 msgid "Shows the next page"
-msgstr ""
+msgstr "Muestra la página siguiente"
 
 #: ../src/docgen/gtkprintpreview.glade.h:8
-#, fuzzy
 msgid "Zooms the page in"
-msgstr "Ir a esta página web"
+msgstr "Acerca la página"
 
 #: ../src/docgen/gtkprintpreview.glade.h:9
 msgid "Zooms the page out"
-msgstr ""
+msgstr "Aleja la página"
 
 #: ../src/docgen/gtkprintpreview.glade.h:10
 msgid "Zooms to fit the page width"
-msgstr ""
+msgstr "Ajusta al ancho de la página"
 
 #: ../src/docgen/gtkprintpreview.glade.h:11
-#, fuzzy
 msgid "Zooms to fit the whole page"
-msgstr "Ir a esta página web"
+msgstr "Ajusta toda la página"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:1
 msgid "<b>Status</b>"
@@ -18070,9 +17871,8 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Un sufijo opcional del nombre, tal como \"Jr.\" o \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
-#, fuzzy
 msgid "Call _Name:"
-msgstr "Nombre habitual:"
+msgstr "Nombre _habitual:"
 
 #: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
@@ -18089,7 +17889,6 @@ msgstr ""
 "Desconocido"
 
 #: ../src/glade/edit_person.glade.h:14
-#, fuzzy
 msgid "Gi_ven:"
 msgstr "_Nombre:"
 
@@ -18112,21 +17911,19 @@ msgstr "Título:"
 
 #: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:146
 msgid "_Family:"
-msgstr "_Familia:"
+msgstr "_Apellidos:"
 
 #: ../src/glade/edit_person.glade.h:20
-#, fuzzy
 msgid "_Gender:"
-msgstr "Sexo:"
+msgstr "_Sexo:"
 
 #: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:148
 msgid "_ID:"
 msgstr "_ID:"
 
 #: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:155
-#, fuzzy
 msgid "_Marker:"
-msgstr "Marcador"
+msgstr "_Marcador:"
 
 #: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:164
 msgid "_Prefix:"
@@ -18325,7 +18122,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:51
 msgid "Click to expand/collapse"
-msgstr ""
+msgstr "Haga click para expandir/colapsar"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
@@ -18345,11 +18142,11 @@ msgstr "Convertir a ruta relativa"
 
 #: ../src/glade/gramps.glade.h:56
 msgid "Corner 1:  X"
-msgstr ""
+msgstr "Esquina 1:  X"
 
 #: ../src/glade/gramps.glade.h:57
 msgid "Corner 2:  X"
-msgstr ""
+msgstr "Esquina 2:  X"
 
 #: ../src/glade/gramps.glade.h:58
 msgid "Cou_ntry:"
@@ -18462,9 +18259,8 @@ msgid "Mo_nth"
 msgstr "M_es"
 
 #: ../src/glade/gramps.glade.h:88
-#, fuzzy
 msgid "Name Child:"
-msgstr "Nombre:"
+msgstr "Nombre del hijo:"
 
 #: ../src/glade/gramps.glade.h:90
 #, fuzzy
@@ -18473,7 +18269,7 @@ msgstr "Manual"
 
 #: ../src/glade/gramps.glade.h:91
 msgid "Open person editor of this child"
-msgstr ""
+msgstr "Abrir el editor de persona de este hijo"
 
 #: ../src/glade/gramps.glade.h:93
 msgid "Ordinance:"
@@ -18514,7 +18310,7 @@ msgstr "Eliminar el objeto y todas las referencias al mismo de la base de datos"
 
 #: ../src/glade/gramps.glade.h:103
 msgid "Revision comment - GRAMPS"
-msgstr ""
+msgstr "Comentario de la revisión - GRAMPS"
 
 #: ../src/glade/gramps.glade.h:104
 msgid "Ri_ght"
@@ -18592,9 +18388,8 @@ msgid "_Archive"
 msgstr "_Archivar"
 
 #: ../src/glade/gramps.glade.h:129
-#, fuzzy
 msgid "_Association:"
-msgstr "Asociación"
+msgstr "_Asociación:"
 
 #: ../src/glade/gramps.glade.h:130
 msgid "_Attribute:"
@@ -18614,7 +18409,7 @@ msgstr "A_bajo"
 
 #: ../src/glade/gramps.glade.h:134
 msgid "_Call number:"
-msgstr "Nombre _habitual:"
+msgstr "_Signatura:"
 
 #: ../src/glade/gramps.glade.h:135
 msgid "_Center"
@@ -18629,9 +18424,8 @@ msgid "_City:"
 msgstr "_Ciudad:"
 
 #: ../src/glade/gramps.glade.h:138
-#, fuzzy
 msgid "_Close Window"
-msgstr "Cerrar Ventana"
+msgstr "_Cerrar ventana"
 
 #: ../src/glade/gramps.glade.h:139
 msgid "_Confidence:"
@@ -18682,9 +18476,8 @@ msgid "_Left"
 msgstr "_Izquierda"
 
 #: ../src/glade/gramps.glade.h:153
-#, fuzzy
 msgid "_Load Family Tree"
-msgstr "_Web Family Tree"
+msgstr "_Cargar árbol genealógico"
 
 #: ../src/glade/gramps.glade.h:154
 msgid "_Longitude:"
@@ -18707,18 +18500,16 @@ msgid "_Padding:"
 msgstr "Es_pacio:"
 
 #: ../src/glade/gramps.glade.h:160
-#, fuzzy
 msgid "_Path:"
-msgstr "Camino:"
+msgstr "_Ruta:"
 
 #: ../src/glade/gramps.glade.h:161
 msgid "_Person:"
 msgstr "_Persona:"
 
 #: ../src/glade/gramps.glade.h:162
-#, fuzzy
 msgid "_Place Name:"
-msgstr "Nombre del lugar"
+msgstr "Nombre del _lugar"
 
 #: ../src/glade/gramps.glade.h:163
 msgid "_Place:"
@@ -18729,9 +18520,8 @@ msgid "_Preformatted"
 msgstr "_Preformateado"
 
 #: ../src/glade/gramps.glade.h:166
-#, fuzzy
 msgid "_Publication Information:"
-msgstr "Información de la publicación:"
+msgstr "Información de la _publicación:"
 
 #: ../src/glade/gramps.glade.h:167
 msgid "_Publication information:"
@@ -18962,40 +18752,35 @@ msgstr "Borrar _todos"
 
 #: ../src/glade/paper_settings.glade.h:1
 msgid "2.54"
-msgstr ""
+msgstr "2.54"
 
 #: ../src/glade/paper_settings.glade.h:2
-#, fuzzy
 msgid "Bottom:"
-msgstr "Abajo"
+msgstr "Abajo:"
 
 #: ../src/glade/paper_settings.glade.h:3
-#, fuzzy
 msgid "Height:"
-msgstr "Alto"
+msgstr "Alto:"
 
 #: ../src/glade/paper_settings.glade.h:4
 msgid "Left:"
 msgstr "Izquierda:"
 
 #: ../src/glade/paper_settings.glade.h:5
-#, fuzzy
 msgid "Margins"
-msgstr "Tamaño del margen"
+msgstr "Márgenes"
 
 #: ../src/glade/paper_settings.glade.h:6
 msgid "Metric"
 msgstr "Métrico"
 
 #: ../src/glade/paper_settings.glade.h:7
-#, fuzzy
 msgid "Orientation:"
-msgstr "Orientación"
+msgstr "Orientación:"
 
 #: ../src/glade/paper_settings.glade.h:8
-#, fuzzy
 msgid "Paper format"
-msgstr "Formato de la fecha"
+msgstr "Formato de papel"
 
 #: ../src/glade/paper_settings.glade.h:9
 msgid "Right:"
@@ -19019,12 +18804,14 @@ msgid ""
 "\n"
 "ToDo\n"
 "NotRelated"
-msgstr "Relacionados"
+msgstr ""
+"\n"
+"Pendiente\n"
+"NoRelacionado"
 
 #: ../src/plugins/NotRelated.glade.h:4
-#, fuzzy
 msgid "_Marker"
-msgstr "Marcador"
+msgstr "_Marcador"
 
 #: ../src/plugins/book.glade.h:1 ../src/plugins/genewebexport.glade.h:1
 msgid "*"
@@ -19205,11 +18992,11 @@ msgstr "_Comparar"
 
 #: ../src/plugins/ownereditor.glade.h:3
 msgid "Copy from DB to Preferences"
-msgstr ""
+msgstr "Copiar de la BD a Preferencias"
 
 #: ../src/plugins/ownereditor.glade.h:4
 msgid "Copy from Preferences to DB"
-msgstr ""
+msgstr "Copiar de Preferencias a la BD"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -19231,7 +19018,7 @@ msgstr "Seleccione una persona para determinar el parentesco"
 
 #: ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
-msgstr "Cerrar Ventana"
+msgstr "Cerrar ventana"
 
 #: ../src/plugins/soundex.glade.h:3
 msgid "SoundEx code:"
@@ -19433,7 +19220,7 @@ msgstr "<b>Filtros Invertidos</b>: Es posible darle la vuelta con facilidad a un
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-msgstr "<b>Listar Eventos</b>: Se pueden agregar a la base de datos eventos de la vida de una persona con la opción <b>Persona &gt; Editar Persona &gt; Eventos</b>. Se puede utilizar este espacio para incluir gran variedad de optiones incluyendo adopciones, bautismos (y otras ceremonias religiosas), entierros, causas de fallecimiento, inclusión en censos, titulaciones obtenidas, elecciones, emigraciones, servicio militar, títulos nobiliarios, ocupaciones, ordenaciones, propiedades, religiones, jubilaciones, testamentos, etc."
+msgstr "<b>Listar Eventos</b>: Se pueden agregar a la base de datos eventos de la vida de una persona con la opción <b>Persona &gt; Editar Persona &gt; Eventos</b>. Se puede utilizar este espacio para incluir gran variedad de optiones incluyendo adopciones, bautismos (y otras ceremonias religiosas), entierros, causas de defunción, inclusión en censos, titulaciones obtenidas, elecciones, emigraciones, servicio militar, títulos nobiliarios, ocupaciones, ordenaciones, propiedades, religiones, jubilaciones, testamentos, etc."
 
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
@@ -19489,7 +19276,7 @@ msgstr "Se puede agregar una imagen a cualquier galería o a la vista de objetos
 
 #: ../src/data/tips.xml.in.h:31
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Puede elegir cualquier persona como 'persona inicial' en GRAMPS. Utilice <b>Editar &gt; Establecer persona inicial</b>. La persona inicial es la que resulta selecionada cuando se abre la base de datos o cuando se pulsa el botón Inicio."
+msgstr "Puede elegir cualquier persona como 'persona inicial' en GRAMPS. Utilice <b>Editar &gt; Establecer persona inicial</b>. La persona inicial es la que resulta seleccionada cuando se abre la base de datos o cuando se pulsa el botón Inicio."
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -23335,7 +23122,7 @@ msgstr "Puede enlazar cualquier clase de archivo electrónico (documentos, imág
 #~ msgstr "Agrega una nueva persona a la base de datos y a una nueva relación"
 
 #~ msgid "Selects an existing person from the database and adds to a new relationship"
-#~ msgstr "Seleciona una persona ya existente en la base de datos y la agrega a una nueva relación"
+#~ msgstr "Selecciona una persona ya existente en la base de datos y la agrega a una nueva relación"
 
 #~ msgid "Removes the currently selected spouse"
 #~ msgstr "Borrar el cónyuge actual"
