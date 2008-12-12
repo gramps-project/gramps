@@ -147,6 +147,15 @@ class Renderer():
         """
         raise NotImplementedError
     
+    def refresh(self):
+        raise NotImplementedError
+
+    def go_back(self):
+        raise NotImplementedError
+
+    def go_forward(self):
+        raise NotImplementedError
+
     def execute_script(self, url):
         """ execute script in the current html page
         """
@@ -165,10 +174,19 @@ class RendererWebkit(Renderer):
         Renderer.__init__(self)
         self.window = webkit.WebView()
         self.browser = WEBKIT
-    
+
     def open(self, url):
         self.window.open(url)
         
+    def refresh(self):
+        self.window.reload();
+
+    def go_back(self):
+        self.window.go_back();
+
+    def go_forward(self):
+        self.window.go_forward();
+
     def execute_script(self,url):
         self.window.execute_script(url);
     
@@ -194,6 +212,15 @@ class RendererMozilla(Renderer):
     def execute_script(self,url):
         self.window.load_url(url);
     
+    def refresh(self):
+        self.window.reload(0);
+
+    def go_back(self):
+        self.window.go_back();
+
+    def go_forward(self):
+        self.window.go_forward();
+
     def __set_mozembed_proxy(self):
         """
         Try to see if we have some proxy environment variable.
@@ -432,6 +459,15 @@ class GeoView(HtmlView):
     def change_map(self):
         self.renderer.execute_script("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
 
+    def refresh(self,button):
+        self.renderer.refresh();
+
+    def go_back(self,button):
+        self.renderer.go_back();
+
+    def go_forward(self,button):
+        self.renderer.go_forward();
+
     def ui_definition(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
@@ -448,6 +484,11 @@ class GeoView(HtmlView):
             alternate_map = "MicrosoftMaps"
         return '''<ui>
           <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+              <toolitem action="Refresh"/>
+            </placeholder>
             <placeholder name="CommonEdit">
               <toolitem action="OpenStreetMap"/>
               <toolitem action="%s"/>
@@ -473,6 +514,26 @@ class GeoView(HtmlView):
         be able to toggle these when you are at the end of the history or
         at the beginning of the history.
         """
+
+        # add the Backward action to handle the Forward button
+        # accel doesn't work in webkit and gtkmozembed !
+        # we must do that ...
+        self._add_action('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+                          callback=self.go_back,
+                          accel="<Alt>Right",
+                          tip=_("Go to the previous page in the history."))
+
+        # add the Forward action to handle the Forward button
+        self._add_action('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+                          callback=self.go_forward,
+                          accel="<Alt>Left",
+                          tip=_("Go to the next page in the history."))
+
+        # add the Refresh action to handle the Refresh button
+        self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
+                          callback=self.refresh,
+                          accel="<Alt>Down",
+                          tip=_("Stop and reload the page."))
 
         self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
                          callback=self.select_OpenStreetMap_map,
