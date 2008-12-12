@@ -372,8 +372,13 @@ class Reader:
                 # the space ensures no trailing whitespace on last parm
                 line = linetmp.strip(' \n\r').split(None, 2) + ['']
                 # however keep trailing whitespace on notes only
-                if line[1] in ['CONT', 'CONC'] or line[2].startswith('NOTE'):
+                if line[1] == 'CONC' or line[2].startswith('NOTE'):
                     line = linetmp.strip('\n\r').split(None, 2) + ['']
+                elif line[1] == 'CONT':
+                    # Make sure that whitespace is preserved at start and
+                    # end of CONT data
+                    part_line = linetmp.strip('\n\r').partition(' CONT ')
+                    line = [part_line[0]] + ['CONT'] + [part_line[2]] + ['']
                 level = int(line[0])
             except:
                 continue
