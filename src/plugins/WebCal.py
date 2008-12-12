@@ -813,11 +813,6 @@ class WebCalReport(Report):
             text = "&copy; %s %s" % (self.today.year, self.author)
         of.write('\t<p id="copyright">%s</p>\n' % text)
 
-        of.write('\t<p id="quality"><a href="http://validator.w3.org/check?uri=referer">')
-        of.write('<img src="http://www.w3.org/Icons/valid-xhtml10" ')
-        of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" />')
-        of.write('</a></p>\n')
-
         of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')

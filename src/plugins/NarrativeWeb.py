@@ -310,10 +310,6 @@ class BasePage:
             text = _CC[copy_nr] % {'gif_fname' : fname}
         of.write('\t<p id="copyright">%s</p>\n' % text)
 
-        of.write('\t<p id="quality"><a href="http://validator.w3.org/check?uri=referer">')
-        of.write('<img src="http://www.w3.org/Icons/valid-xhtml10" ')
-        of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></p>\n')
-
         of.write('\t\t<div class="fullclear"></div>\n')
 
         of.write('</div>\n')
@@ -3043,7 +3039,7 @@ class NavWebOptions(MenuReportOptions):
 
     def add_menu_options(self, menu):
         """
-        Add options to the menu for the web calendar.
+        Add options to the menu for the web site.
         """
         self.__add_report_options(menu)
         self.__add_page_generation_options(menu)
@@ -3077,7 +3073,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
+               _("Select filter to restrict people that appear on web site"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
