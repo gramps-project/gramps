@@ -410,6 +410,8 @@ class GedcomParser(UpdateCallback):
             TOKEN_NAME   : self.__repo_name, 
             TOKEN_ADDR   : self.__repo_addr, 
             TOKEN_RIN    : self.__ignore, 
+            TOKEN_NOTE   : self.__repo_note, 
+            TOKEN_RNOTE  : self.__repo_note, 
             }
 
         self.event_parse_tbl = {
@@ -1153,7 +1155,6 @@ class GedcomParser(UpdateCallback):
             elif key in ("REPO", "REPOSITORY"):
                 self.__parse_repo(line)
             elif key in ("SUBM", "SUBN", "SUBMITTER"):
-                print line
                 self.__skip_subordinate_levels(1)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 self.__skip_subordinate_levels(1)
@@ -1161,7 +1162,6 @@ class GedcomParser(UpdateCallback):
                 self.__parse_source(line.token_text, 1)
             elif line.data.startswith("SOUR ") or \
                     line.data.startswith("SOURCE "):
-                print line
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
                 source = self.__find_or_create_source(self.sid_map[line[3]])
@@ -3876,6 +3876,15 @@ class GedcomParser(UpdateCallback):
         """
         state.repo.set_name(line.data)
 
+    def __repo_note(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        self.__parse_note(line, state.repo, state.level+1)
+
     def __repo_addr(self, line, state):
         """
         n ADDR <ADDRESS_LINE> {0:1} 
@@ -4301,7 +4310,7 @@ class GedcomParser(UpdateCallback):
                 photo = self.dbase.get_object_from_handle(photo_handle)
             oref = gen.lib.MediaRef()
             oref.set_reference_handle(photo.handle)
-            oref.add_note(note)
+            oref.add_note(self.__find_note_handle(self.nid_map[note]))
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
