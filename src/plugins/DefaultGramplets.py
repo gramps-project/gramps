@@ -25,7 +25,7 @@ import cgi
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from PluginUtils import *
-from QuickReports import run_quick_report_by_name
+from QuickReports import run_quick_report_by_name, get_quick_report_list
 from ReportBase import ReportUtils
 from TransUtils import sgettext as _
 from Utils import media_path_full
@@ -83,8 +83,8 @@ class CalendarGramplet(Gramplet):
         for signal in db_signals:
             self.dbstate.db.connect(signal, lambda *args: self.run_update(signal, *args))
 
-        self.gui.scrolledwindow.remove(self.gui.textview)
-        self.gui.scrolledwindow.add_with_viewport(self.gui.calendar)
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()
         self.birthdays = True
         self.dates = {}
@@ -469,7 +469,7 @@ class PedigreeGramplet(Gramplet):
         self.max_generations = 100
         self.show_dates = 1
         self.box_mode = "UTF"
-        #self.set_option("max_generations", 
+        self.set_option({"Max generations": 100})
         #                NumberOption(_("Maximum generations"),
         #                             100, -1, 500))
 
@@ -685,6 +685,7 @@ class StatsGramplet(Gramplet):
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-edit', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
@@ -1104,8 +1105,8 @@ class AgeOnDateGramplet(Gramplet):
         vbox.pack_start(description, True)
         vbox.pack_start(hbox, False)
         vbox.pack_start(button, False)
-        self.gui.scrolledwindow.remove(self.gui.textview)
-        self.gui.scrolledwindow.add_with_viewport(vbox)
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(vbox)
         vbox.show_all()
 
     def run(self, obj):
@@ -1115,6 +1116,37 @@ class AgeOnDateGramplet(Gramplet):
                                  self.gui.uistate, 
                                  'ageondate', 
                                  date)
+
+class QuickViewGramplet(Gramplet):
+    def init(self):
+        pass
+        #import gtk
+        #self.tooltip = _("Double-click a day for details")
+        #self.gui.picklist = gtk.combo_box_new_text()
+        #iter = self.gui.buffer.get_end_iter()
+        #anchor = self.gui.buffer.create_child_anchor(iter)
+        #vbox = self.gui.xml.get_widget("vbox_top")
+        #vbox.add(self.gui.picklist)
+        #self.gui.picklist.show()
+
+    def active_changed(self, handle):
+        self.update()
+        
+    def main(self):
+        from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+                                 CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
+                                 CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
+                                 CATEGORY_QR_REPOSITORY)
+        self.qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
+        #(self.qv_title, self.qv_category, self.qv_name, self.qv_status)
+        quick_view = self.qv_list[0][2]
+        active_person = self.dbstate.get_active_person()
+        if active_person:
+            run_quick_report_by_name(self.gui.dbstate, 
+                                     self.gui.uistate, 
+                                     quick_view,
+                                     active_person.handle,
+                                     container=self.gui.textview)
 
 register(type="gramplet", 
          name= "Top Surnames Gramplet", 
@@ -1237,6 +1269,16 @@ register(type="gramplet",
          height=300,
          content = QueryGramplet,
          title=_("Query"),
+         detached_width = 600,
+         detached_height = 400,
+         )
+
+register(type="gramplet", 
+         name="Quick View Gramplet", 
+         tname=_("Quick View Gramplet"), 
+         height=300,
+         content = QuickViewGramplet,
+         title=_("Quick View"),
          detached_width = 600,
          detached_height = 400,
          )

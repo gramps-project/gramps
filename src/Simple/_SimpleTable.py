@@ -152,8 +152,9 @@ class SimpleTable:
         elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
-                person = self.access.dbase.get_person_from_handle(handle)
-                self.simpledoc.doc.dbstate.change_active_person(person)
+                if self.simpledoc.doc.change_active:
+                    person = self.access.dbase.get_person_from_handle(handle)
+                    self.simpledoc.doc.dbstate.change_active_person(person)
                 return True
         return False # didn't handle event
 

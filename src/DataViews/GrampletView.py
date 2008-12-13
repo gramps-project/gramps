@@ -234,7 +234,7 @@ class Gramplet(object):
         # Add options to section on detached view
         # FIXME: too many options will expand section: need scrollable area
         for item in self.option_dict:
-            self.gui.option_vbox.add(gtk.Label(item))
+            self.gui.gvoptions.add(gtk.Label(item))
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
             self.active_changed(self.dbstate.active.handle)
@@ -474,8 +474,8 @@ class Gramplet(object):
                     return True
         return False # did not handle event
 
-    def set_options(self, option_dict):
-        self.option_dict = option_dict
+    def set_option(self, option_dict):
+        self.option_dict.update(option_dict)
         
 def logical_true(value):
     return value in ["True", True, 1, "1"]
@@ -511,10 +511,10 @@ class GuiGramplet:
         self.xml = glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
         self.mainframe = self.xml.get_widget('gvgramplet')
         self.gvoptions = self.xml.get_widget('gvoptions')
-        self.option_vbox = self.xml.get_widget('option_vbox')
         self.textview = self.xml.get_widget('gvtextview')
         self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_widget('gvscrolledwindow')
+        self.vboxtop = self.xml.get_widget('vboxtop')
         self.titlelabel = self.xml.get_widget('gvtitle')
         self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
         self.titlelabel.set_use_markup(True)
@@ -718,6 +718,9 @@ class GuiGramplet:
         method as a context.
         """
         return self.gvproperties
+
+    def get_container_widget(self):
+        return self.scrolledwindow
 
 class MyScrolledWindow(gtk.ScrolledWindow):
     def show_all(self):

@@ -108,6 +108,20 @@ def by_menu_name(first, second):
 def make_quick_report_callback(lst, category, dbstate, uistate, handle):
     return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
 
+def get_quick_report_list(qv_category=None):
+    """
+    Returns a list of quick views: [(translated name, category, name, status)]
+    CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
+    CATEGORY_QR_SOURCE, CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
+    CATEGORY_QR_REPOSITORY or None for all
+    """
+    names = []
+    pmgr = PluginManager.get_instance()
+    for item in pmgr.get_quick_report_list():
+        if qv_category == item[2] or qv_category == None:
+            names.append(item[1:]) # (see below for item struct)
+    return names
+
 def run_quick_report_by_name(dbstate, uistate, report_name, handle, **kwargs):
     # [0] - function 
     # [1] - translated name
@@ -150,13 +164,24 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
         raise AttributeError, ("No such quick report '%s'" % report_name)
                             
 def run_report(dbstate, uistate, category, handle, func, **kwargs):
+        """
+        Run a Quick Report.
+        kwargs can take an optional document=obj to pass the report
+        the document, rather than putting it in a new window.
+        """
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
-        
+        container = None
         if handle:
             d = TextBufDoc(make_basic_stylesheet(), None, None)
             d.dbstate = dbstate
             d.uistate = uistate
+            if "container" in kwargs:
+                container = kwargs["container"]
+                del kwargs["container"]
+                d.change_active = False
+            else:
+                d.change_active = True
             if isinstance(handle, basestring): # a handle
                 if category == CATEGORY_QR_PERSON :
                     obj = dbstate.db.get_person_from_handle(handle)
@@ -177,10 +202,15 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
             else: # allow caller to send object directly
                 obj = handle
             if obj:
-                d.open("")
-                retval = func(dbstate.db, d, obj, **kwargs)
-                d.close()
-                return retval
+                if container:
+                    result = d.open("", container=container)
+                    func(dbstate.db, d, obj, **kwargs)
+                    return result
+                else:
+                    d.open("")
+                    retval = func(dbstate.db, d, obj, **kwargs)
+                    d.close()
+                    return retval
             else:
                 print "QuickView Error: failed to run report: no obj"
         else:

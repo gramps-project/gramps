@@ -81,6 +81,13 @@ class DisplayBuf(ManagedWindow.ManagedWindow):
     def get_title(self):
         return self.title
 
+class DocumentManager:
+    def __init__(self, title, document, text_view):
+        self.title = title
+        self.document = document
+        document.text_view = text_view
+        text_view.set_buffer(document.buffer)
+
 #------------------------------------------------------------------------
 #
 # TextBuf
@@ -93,7 +100,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
     # Opens the file, resets the text buffer.
     #
     #--------------------------------------------------------------------
-    def open(self, filename):
+    def open(self, filename, container=None):
         self.type = "gtk"
         self.tag_table = gtk.TextTagTable()
 
@@ -147,8 +154,11 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
 
             self.tag_table.add(tag)
         self.buffer = gtk.TextBuffer(self.tag_table)
-        DisplayBuf(_('Quick View'), self)
-        return
+        if container:
+            return DocumentManager(_('Quick View'), self, container)
+        else:
+            DisplayBuf(_('Quick View'), self)
+            return
 
     #--------------------------------------------------------------------
     #
