@@ -732,7 +732,7 @@ class WebCalReport(Report):
             # close the week/ row
             of.write('\t\t</tr>\n')
 
-        if cal == "yg":
+        if cal in ("yg", "by"):
             # Fill up till we have 6 rows, so that the months align properly
             for i in range(nweeks, 6):
                 of.write('\t\t<tr class="week%d">\n' % (i+1))
