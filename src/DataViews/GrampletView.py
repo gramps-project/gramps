@@ -142,6 +142,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
             gui.tooltips = gtk.Tooltips()
             gui.tooltips.set_tip(gui.scrolledwindow, msg)
             gui.tooltips_text = msg
+        gui.make_gui_options()
         gui.gvoptions.hide()
         return gui
     return None
@@ -226,7 +227,6 @@ class Gramplet(object):
         self.init()
         self.on_load()
         self.build_options()
-        self.make_gui_options()
         self.dbstate.connect('database-changed', self._db_changed)
         self.dbstate.connect('active-changed', self.active_changed)
         self.gui.textview.connect('button-press-event', 
@@ -488,22 +488,6 @@ class Gramplet(object):
                                         self.gui.uistate,None)
         self.option_dict.update({option.get_label(): (widget, option)})
 
-    def make_gui_options(self):
-        topbox = gtk.VBox()
-        hbox = gtk.HBox()
-        labels = gtk.VBox()
-        options = gtk.VBox()
-        hbox.add(labels)
-        hbox.add(options)
-        topbox.add(hbox)
-        self.gui.gvoptions.add(topbox)
-        for item in self.option_dict:
-            labels.add(gtk.Label(item + ":"))
-            options.add(self.option_dict[item][0]) # widget
-        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
-        topbox.add(save_button)
-        save_button.connect('clicked', self.save_update_options)
-
     def save_update_options(self, obj):
         self.save_options()
         self.update()
@@ -755,6 +739,24 @@ class GuiGramplet:
 
     def get_container_widget(self):
         return self.scrolledwindow
+
+    def make_gui_options(self):
+        topbox = gtk.VBox()
+        hbox = gtk.HBox()
+        labels = gtk.VBox()
+        options = gtk.VBox()
+        hbox.add(labels)
+        hbox.add(options)
+        topbox.add(hbox)
+        self.gvoptions.add(topbox)
+        for item in self.pui.option_dict:
+            labels.add(gtk.Label(item + ":"))
+            options.add(self.pui.option_dict[item][0]) # widget
+            print "adding", item, "to", self.gvoptions
+        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
+        topbox.add(save_button)
+        topbox.show_all()
+        save_button.connect('clicked', self.pui.save_update_options)
 
 class MyScrolledWindow(gtk.ScrolledWindow):
     def show_all(self):
