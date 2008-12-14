@@ -151,13 +151,13 @@ class Renderer():
         raise NotImplementedError
 
     def go_back(self):
-        raise NotImplementedError
+        self.window.go_back();
 
     def can_go_back(self):
         return self.window.can_go_back()
 
     def go_forward(self):
-        raise NotImplementedError
+        self.window.go_forward();
 
     def can_go_forward(self):
         return self.window.can_go_forward()
@@ -187,12 +187,6 @@ class RendererWebkit(Renderer):
     def refresh(self):
         self.window.reload();
 
-    def go_back(self):
-        self.window.go_back();
-
-    def go_forward(self):
-        self.window.go_forward();
-
     def execute_script(self,url):
         self.window.execute_script(url);
     
@@ -220,12 +214,6 @@ class RendererMozilla(Renderer):
     
     def refresh(self):
         self.window.reload(0);
-
-    def go_back(self):
-        self.window.go_back();
-
-    def go_forward(self):
-        self.window.go_forward();
 
     def __set_mozembed_proxy(self):
         """
