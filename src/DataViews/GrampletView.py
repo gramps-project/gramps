@@ -335,6 +335,7 @@ class Gramplet(object):
         self.gui.data.append(text)
 
     def update(self, *args):
+        if self.gui.state in ["closed", "minimized"]: return
         if self._idle_id != 0:
             if debug: print "%s interrupt!" % self.gui.title
             self.interrupt()
