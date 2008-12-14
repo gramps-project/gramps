@@ -1140,4 +1140,12 @@ class Date:
         """
         return self._get_low_item_valid(Date._POS_SL)
 
+def Today():
+    """
+    Returns a Date object set to the current date.
+    """
+    import time
+    current_date = Date()
+    current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
+    return current_date
 

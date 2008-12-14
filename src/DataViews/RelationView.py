@@ -567,11 +567,34 @@ class RelationshipView(PageView.PersonNavView):
         else:
             death_title = _("Death")
 
-        subtbl.attach(widgets.BasicLabel("%s:" % death_title),
-                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-        subtbl.attach(widgets.BasicLabel(self.format_event(death)),
-                      2, 3, 2, 3, yoptions=0)
+        showed_death = False
+        if birth:
+            birth_date = birth.get_date_object()
+            if (birth_date and birth_date.get_valid()):
+                if death:
+                    death_date = death.get_date_object()
+                    if (death_date and death_date.get_valid()):
+                        age = death_date - birth_date
+                        subtbl.attach(widgets.BasicLabel("%s:" % death_title),
+                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                        subtbl.attach(widgets.BasicLabel("%s   (%s)" % 
+                                                         (self.format_event(death),
+                                                          age)),
+                                      2, 3, 2, 3, yoptions=0)
+                        showed_death = True
+                if not showed_death:
+                    age = gen.lib.date.Today() - birth_date
+                    subtbl.attach(widgets.BasicLabel("%s:" % death_title),
+                                  1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                    subtbl.attach(widgets.BasicLabel("(%s)" % age),
+                                  2, 3, 2, 3, yoptions=0)
+                    showed_death = True
 
+        if not showed_death:
+            subtbl.attach(widgets.BasicLabel("%s:" % death_title),
+                          1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+            subtbl.attach(widgets.BasicLabel(self.format_event(death)),
+                          2, 3, 2, 3, yoptions=0)
 
         mbox = gtk.HBox()
         mbox.add(table)
