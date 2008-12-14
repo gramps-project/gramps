@@ -752,7 +752,6 @@ class GuiGramplet:
         for item in self.pui.option_dict:
             labels.add(gtk.Label(item + ":"))
             options.add(self.pui.option_dict[item][0]) # widget
-            print "adding", item, "to", self.gvoptions
         save_button = gtk.Button(stock=gtk.STOCK_SAVE)
         topbox.add(save_button)
         topbox.show_all()
