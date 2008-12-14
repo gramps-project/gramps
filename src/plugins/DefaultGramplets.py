@@ -33,6 +33,11 @@ import Config
 import DateHandler
 import gen.lib
 
+from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
+                         CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
+                         CATEGORY_QR_REPOSITORY)
+
 #
 # Hello World, in Gramps Gramplets
 #
@@ -469,9 +474,14 @@ class PedigreeGramplet(Gramplet):
         self.max_generations = 100
         self.show_dates = 1
         self.box_mode = "UTF"
-        self.set_option({"Max generations": 100})
-        #                NumberOption(_("Maximum generations"),
-        #                             100, -1, 500))
+
+    def build_options(self):
+        from gen.plug.menu import NumberOption
+        self.add_option(NumberOption(_("Max generations"), 
+                                     self.max_generations, 1, 100))
+
+    def save_options(self):
+        self.max_generations = int(self.get_option(_("Max generations")).get_value())
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -640,7 +650,7 @@ class PedigreeGramplet(Gramplet):
         """
         Generator which will be run in the background.
         """
-        self._boxes = [0] * self.max_generations
+        self._boxes = [0] * (self.max_generations + 1)
         self._generations = {}
         self.gui.buffer.set_text("")
         active_person = self.dbstate.get_active_person()
@@ -1118,35 +1128,77 @@ class AgeOnDateGramplet(Gramplet):
                                  date)
 
 class QuickViewGramplet(Gramplet):
-    def init(self):
-        pass
-        #import gtk
-        #self.tooltip = _("Double-click a day for details")
-        #self.gui.picklist = gtk.combo_box_new_text()
-        #iter = self.gui.buffer.get_end_iter()
-        #anchor = self.gui.buffer.create_child_anchor(iter)
-        #vbox = self.gui.xml.get_widget("vbox_top")
-        #vbox.add(self.gui.picklist)
-        #self.gui.picklist.show()
-
     def active_changed(self, handle):
         self.update()
         
     def main(self):
-        from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
-                                 CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
-                                 CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
-                                 CATEGORY_QR_REPOSITORY)
-        self.qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
-        #(self.qv_title, self.qv_category, self.qv_name, self.qv_status)
-        quick_view = self.qv_list[0][2]
-        active_person = self.dbstate.get_active_person()
-        if active_person:
-            run_quick_report_by_name(self.gui.dbstate, 
-                                     self.gui.uistate, 
-                                     quick_view,
-                                     active_person.handle,
-                                     container=self.gui.textview)
+        qv_type = self.get_option(_("View Type"))
+        quick_type = qv_type.get_value()
+        qv_option = self.get_option(_("Quick Views"))
+        quick_view = qv_option.get_value()
+        if quick_type == CATEGORY_QR_PERSON:
+            active = self.dbstate.get_active_person()
+            if active:
+                run_quick_report_by_name(self.gui.dbstate, 
+                                         self.gui.uistate, 
+                                         quick_view,
+                                         active.handle,
+                                         container=self.gui.textview)
+        else:
+            active_list = []
+            for item in self.gui.uistate.viewmanager.pages:
+                if (item.get_title() == _("Families") and
+                    quick_type == CATEGORY_QR_FAMILY):
+                    active_list = item.selected_handles()
+                elif (item.get_title() == _("Events") and
+                    quick_type == CATEGORY_QR_EVENT):
+                    active_list = item.selected_handles()
+                elif (item.get_title() == _("Sources") and
+                    quick_type == CATEGORY_QR_SOURCE):
+                    active_list = item.selected_handles()
+                elif (item.get_title() == _("Places") and
+                    quick_type == CATEGORY_QR_PLACE):
+                    active_list = item.selected_handles()
+                elif (item.get_title() == _("Repositories") and
+                    quick_type == CATEGORY_QR_REPOSITORY):
+                    active_list = item.selected_handles()
+            if len(active_list) > 0:
+                run_quick_report_by_name(self.gui.dbstate, 
+                                         self.gui.uistate, 
+                                         quick_view,
+                                         active_list[0],
+                                         container=self.gui.textview)
+
+    def build_options(self):
+        from gen.plug.menu import EnumeratedListOption
+        # Add types:
+        type_list = EnumeratedListOption(_("View Type"), CATEGORY_QR_PERSON)
+        for item in [(CATEGORY_QR_PERSON, "Person"), 
+                     (CATEGORY_QR_FAMILY, "Family"), 
+                     (CATEGORY_QR_EVENT, "Event"), 
+                     (CATEGORY_QR_SOURCE, "Source"), 
+                     (CATEGORY_QR_PLACE, "Place"), 
+                     (CATEGORY_QR_REPOSITORY, "Repository")]:
+            type_list.add_item(item[0], item[1])
+        # Add particular lists:
+        qv_list = get_quick_report_list(CATEGORY_QR_PERSON)
+        list_option = EnumeratedListOption(_("Quick Views"), qv_list[0][2])
+        for item in qv_list:
+            #(title, category, name, status)
+            list_option.add_item(item[2], item[0])
+        self.add_option(type_list)
+        self.add_option(list_option)
+        type_widget = self.get_option_widget(_("View Type"))
+        type_widget.value_changed = self.rebuild_option_list
+
+    def rebuild_option_list(self):
+        qv_option = self.get_option(_("View Type"))
+        list_option = self.get_option(_("Quick Views"))
+        list_option.clear()
+        qv_list = get_quick_report_list(qv_option.get_value())
+        for item in qv_list:
+            #(title, category, name, status)
+            list_option.add_item(item[2], item[0])
 
 register(type="gramplet", 
          name= "Top Surnames Gramplet", 
@@ -1277,6 +1329,7 @@ register(type="gramplet",
          name="Quick View Gramplet", 
          tname=_("Quick View Gramplet"), 
          height=300,
+         expand=True,
          content = QuickViewGramplet,
          title=_("Quick View"),
          detached_width = 600,

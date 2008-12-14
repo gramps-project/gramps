@@ -225,21 +225,22 @@ class Gramplet(object):
         self.dbstate = gui.dbstate
         self.init()
         self.on_load()
+        self.build_options()
+        self.make_gui_options()
         self.dbstate.connect('database-changed', self._db_changed)
         self.dbstate.connect('active-changed', self.active_changed)
         self.gui.textview.connect('button-press-event', 
                                   self.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
                                   self.on_motion)
-        # Add options to section on detached view
-        # FIXME: too many options will expand section: need scrollable area
-        for item in self.option_dict:
-            self.gui.gvoptions.add(gtk.Label(item))
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
             self.active_changed(self.dbstate.active.handle)
 
     def init(self): # once, constructor
+        pass
+
+    def build_options(self):
         pass
 
     def main(self): # return false finishes
@@ -474,9 +475,42 @@ class Gramplet(object):
                     return True
         return False # did not handle event
 
-    def set_option(self, option_dict):
-        self.option_dict.update(option_dict)
-        
+    def get_option_widget(self, label):
+        return self.option_dict[label][0]
+
+    def get_option(self, label):
+        return self.option_dict[label][1]
+
+    def add_option(self, option):
+        from PluginUtils import make_gui_option
+        #tooltips, dbstate, uistate, track
+        widget, label = make_gui_option(option, None, self.dbstate, 
+                                        self.gui.uistate,None)
+        self.option_dict.update({option.get_label(): (widget, option)})
+
+    def make_gui_options(self):
+        topbox = gtk.VBox()
+        hbox = gtk.HBox()
+        labels = gtk.VBox()
+        options = gtk.VBox()
+        hbox.add(labels)
+        hbox.add(options)
+        topbox.add(hbox)
+        self.gui.gvoptions.add(topbox)
+        for item in self.option_dict:
+            labels.add(gtk.Label(item + ":"))
+            options.add(self.option_dict[item][0]) # widget
+        save_button = gtk.Button(stock=gtk.STOCK_SAVE)
+        topbox.add(save_button)
+        save_button.connect('clicked', self.save_update_options)
+
+    def save_update_options(self, obj):
+        self.save_options()
+        self.update()
+
+    def save_options(self):
+        pass
+
 def logical_true(value):
     return value in ["True", True, 1, "1"]
 

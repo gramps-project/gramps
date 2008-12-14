@@ -370,6 +370,10 @@ class GuiEnumeratedListOption(gtk.HBox):
         items = self.__option.get_items()
         value, description = items[index] # IGNORE:W0612 - description is unused
         self.__option.set_value( value )
+        self.value_changed()
+
+    def value_changed(self):
+        pass
         
     def __update_options(self):
         """
@@ -1411,6 +1415,13 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
     """
     widget = None
     label = True
+    if tooltips == None:
+        tooltips = gtk.Tooltips()
+    elif type(tooltips) == type(""):
+        msg = tooltips
+        tooltips = gtk.Tooltips()
+        # FIXME: what widget?
+        #tooltips.set_tip(gui.scrolledwindow, msg)
     if isinstance(option, gen.plug.menu.PersonOption):
         widget = GuiPersonOption(option, dbstate, uistate, track, tooltips)
     elif isinstance(option, gen.plug.menu.FamilyOption):
