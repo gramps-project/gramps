@@ -153,8 +153,14 @@ class Renderer():
     def go_back(self):
         raise NotImplementedError
 
+    def can_go_back(self):
+        return self.window.can_go_back()
+
     def go_forward(self):
         raise NotImplementedError
+
+    def can_go_forward(self):
+        return self.window.can_go_forward()
 
     def execute_script(self, url):
         """ execute script in the current html page
@@ -328,6 +334,7 @@ class HtmlView(PageView.PageView):
         """
         hbox = gtk.HBox(False,4)
         self.urlfield = gtk.Entry()
+        self.urlfield.set_text("http://gramps-project.org")
         self.urlfield.connect('activate', self._on_activate);
         hbox.pack_start(self.urlfield, True, True, 4)
         button = gtk.Button(stock=gtk.STOCK_APPLY)
@@ -340,6 +347,8 @@ class HtmlView(PageView.PageView):
         if url.find('://') == -1:
             url = 'http://'+ url
         self.renderer.open(url)
+        self.forward_action.set_sensitive(self.renderer.can_go_forward())
+        self.back_action.set_sensitive(self.renderer.can_go_back())
         
     def build_tree(self):
         """
@@ -464,9 +473,13 @@ class GeoView(HtmlView):
 
     def go_back(self,button):
         self.renderer.go_back();
+        self.forward_action.set_sensitive(self.renderer.can_go_forward())
+        self.back_action.set_sensitive(self.renderer.can_go_back())
 
     def go_forward(self,button):
         self.renderer.go_forward();
+        self.forward_action.set_sensitive(self.renderer.can_go_forward())
+        self.back_action.set_sensitive(self.renderer.can_go_back())
 
     def ui_definition(self):
         """
@@ -515,24 +528,30 @@ class GeoView(HtmlView):
         at the beginning of the history.
         """
 
-        # add the Backward action to handle the Forward button
+        # add the Backward action to handle the Backward button
         # accel doesn't work in webkit and gtkmozembed !
         # we must do that ...
-        self._add_action('Back', gtk.STOCK_GO_BACK, _("_Back"), 
-                          callback=self.go_back,
-                          accel="<Alt>Right",
-                          tip=_("Go to the previous page in the history."))
-
+        self.back_action = gtk.ActionGroup(self.title + '/Back')
+        self.back_action.add_actions([
+            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+             "<ALT>Left", _("Go to the previous page in the history"), 
+             self.go_back)
+            ])
+        self._add_action_group(self.back_action)
+ 
         # add the Forward action to handle the Forward button
-        self._add_action('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
-                          callback=self.go_forward,
-                          accel="<Alt>Left",
-                          tip=_("Go to the next page in the history."))
-
+        self.forward_action = gtk.ActionGroup(self.title + '/Forward')
+        self.forward_action.add_actions([
+            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+             "<ALT>Right", _("Go to the next page in the history"), 
+             self.go_forward)
+            ])
+        self._add_action_group(self.forward_action)
+ 
         # add the Refresh action to handle the Refresh button
         self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
                           callback=self.refresh,
-                          accel="<Alt>Down",
+                          accel="<Ctl>R",
                           tip=_("Stop and reload the page."))
 
         self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
@@ -851,8 +870,9 @@ class GeoView(HtmlView):
 
     def create_markers(self,format):
         self.centered = 0
-        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % 
-                           ( ( self.width - 20 ), ( self.height - 160 )))
+        margin = 10
+        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx; margin: %d\"></div>\n" % 
+                           ( ( self.width - margin*2 ), ( self.height * 0.8 ), margin ))
         self.mapview.write("  <script type=\"text/javascript\">\n")
         self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
         self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
