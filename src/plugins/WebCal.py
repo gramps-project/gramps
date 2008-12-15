@@ -1193,9 +1193,9 @@ class WebCalReport(Report):
 
         if person is dead, then do nothing more!!!
         """
-        self.progress.set_pass(_('Applying Filter...'), '')
-        people = self.filter.apply(self.database,
-                                   self.database.get_person_handles(sort_handles=False))
+        people = self.database.get_person_handles(sort_handles=False)
+        self.progress.set_pass(_('Applying Filter...'), len(people))
+        people = self.filter.apply(self.database, people, self.progress)
 
         self.progress.set_pass(_("Reading database..."), len(people))
         for person_handle in people:

@@ -112,7 +112,7 @@ class GenericFilter:
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
 
-    def check_func(self, db, id_list, task):
+    def check_func(self, db, id_list, task, progress=None):
         final_list = []
         
         if id_list is None:
@@ -121,6 +121,8 @@ class GenericFilter:
             while data:
                 person = self.make_obj()
                 person.unserialize(data[1])
+                if progress:
+                    progress.step()
                 if task(db, person) != self.invert:
                     final_list.append(data[0])
                 data = cursor.next()
@@ -128,11 +130,13 @@ class GenericFilter:
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
+                if progress:
+                    progress.step()
                 if task(db, person) != self.invert:
                     final_list.append(handle)
         return final_list
 
-    def check_and(self, db, id_list):
+    def check_and(self, db, id_list, progress=None):
         final_list = []
         flist = self.flist
         if id_list is None:
@@ -141,6 +145,8 @@ class GenericFilter:
             while data:
                 person = self.make_obj()
                 person.unserialize(data[1])
+                if progress:
+                    progress.step()
                 val = True
                 for rule in flist:
                     if not rule.apply(db, person):
@@ -153,6 +159,8 @@ class GenericFilter:
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
+                if progress:
+                    progress.step()
                 val = True
                 for rule in flist:
                     if not rule.apply(db, person):
@@ -162,14 +170,14 @@ class GenericFilter:
                     final_list.append(handle)
         return final_list
 
-    def check_or(self, db, id_list):
-        return self.check_func(db, id_list, self.or_test)
+    def check_or(self, db, id_list, progress=None):
+        return self.check_func(db, id_list, self.or_test, progress)
 
-    def check_one(self, db, id_list):
-        return self.check_func(db, id_list, self.one_test)
+    def check_one(self, db, id_list, progress=None):
+        return self.check_func(db, id_list, self.one_test, progress)
 
-    def check_xor(self, db, id_list):
-        return self.check_func(db, id_list, self.xor_test)
+    def check_xor(self, db, id_list, progress=None):
+        return self.check_func(db, id_list, self.xor_test, progress)
 
     def xor_test(self, db, person):
         test = False
@@ -202,11 +210,12 @@ class GenericFilter:
     def check(self, db, handle):
         return self.get_check_func()(db, [handle])
 
-    def apply(self, db, id_list=None):
+    # progress is optional. If present it must be an instance of Utils.ProgressMeter
+    def apply(self, db, id_list=None, progress=None):
         m = self.get_check_func()
         for rule in self.flist:
             rule.prepare(db)
-        res = m(db, id_list)
+        res = m(db, id_list, progress)
         for rule in self.flist:
             rule.reset()
         return res

@@ -2752,8 +2752,8 @@ class NavWebReport(Report):
 
         # gets the person list and applies the requested filter
         ind_list = self.database.get_person_handles(sort_handles=False)
-        self.progress.set_pass(_('Filtering'), 1)
-        ind_list = self.filter.apply(self.database, ind_list)
+        self.progress.set_pass(_('Applying Filter...'), len(ind_list))
+        ind_list = self.filter.apply(self.database, ind_list, self.progress)
         return ind_list
 
     def copy_css(self, css_file):
