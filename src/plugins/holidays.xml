@@ -2,6 +2,7 @@
 <calendar>
   <country name="Canada">
     <date name="New Year's Day" value="*/1/1" type="national" />
+    <date name="New Year's Eve" value="*/12/31" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
     <date name="Valentine's Day" value="*/2/14" type="secular" />
     <date name="Flag Day" value="*/2/15" type="secular" />
@@ -36,7 +37,7 @@
     <date name="Yom Kippur" value="2006/10/02" type="religious" />
     <date name="Yom Kippur" value="2007/9/27" type="religious" />
     <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/9/28" type="religious" />
+    <date name="Yom Kippur" value="2009/10/02" type="religious" />
     <date name="Yom Kippur" value="2010/9/18" type="religious" />
     <date name="Hanukkah begins" value="2004/12/07" type="religious" />
     <date name="Hanukkah begins" value="2005/12/25" type="religious" />
@@ -56,7 +57,7 @@
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Labor Day" value="*/1/mon/sep" type="national" />
     <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 0" type="national" />
+    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
     <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
     <date name="Valentine's Day" value="*/2/14" type="secular" />
