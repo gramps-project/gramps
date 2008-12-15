@@ -6718,7 +6718,7 @@
 	  <child>
 	    <widget class="GtkCheckButton" id="use_always">
 	      <property name="visible">True</property>
-	      <property name="tooltip" translatable="yes">If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files.</property>
+	      <property name="tooltip" translatable="yes">If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files.</property>
 	      <property name="can_focus">True</property>
 	      <property name="label" translatable="yes">_Use this selection for all missing media files</property>
 	      <property name="use_underline">True</property>
