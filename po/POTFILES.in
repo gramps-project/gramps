@@ -28,6 +28,7 @@ src/gramps_main.py
 src/gramps.py
 src/GrampsWidgets.py
 src/ImgManip.py
+src/LdsUtils.py
 src/ListModel.py
 src/ManagedWindow.py
 src/MarkupText.py
@@ -113,6 +114,7 @@ src/docgen/LaTeXDoc.py
 src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
 src/docgen/ODSTab.py
+src/docgen/PdfDoc.py
 src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
@@ -229,6 +231,7 @@ src/GrampsLogger/_RotateHandler.py
 # Mime package
 src/Mime/_GnomeMime.py
 src/Mime/__init__.py
+src/Mime/_WinMime.py
 src/Mime/_PythonMime.py
 
 # Selectors package

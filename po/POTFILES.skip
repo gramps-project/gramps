@@ -1,6 +1,2 @@
 src/gen/lib/styledtext.py
 src/gen/lib/styledtexttagtype.py
-src/LdsUtils.py
-src/Mime/_WinMime.py
-src/ReportBase/_DocReportDialog.py
-src/docgen/PdfDoc.py
