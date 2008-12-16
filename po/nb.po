@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-05 10:56+0100\n"
+"POT-Creation-Date: 2008-12-16 14:54+0100\n"
 "PO-Revision-Date: 2008-11-06 21:47+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
@@ -521,9 +521,9 @@ msgstr "Klarte ikke å opprette databasekatalog: "
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/DbManager.py:1016 ../src/ScratchPad.py:101
-#: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
-#: ../src/DataViews/RelationView.py:901
+#: ../src/DbManager.py:1016 ../src/LdsUtils.py:82 ../src/LdsUtils.py:88
+#: ../src/ScratchPad.py:101 ../src/DataViews/RelationView.py:400
+#: ../src/DataViews/RelationView.py:863 ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:149 ../src/plugins/all_relations.py:273
 #: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1311
@@ -795,8 +795,8 @@ msgstr "GRAMPS Hjemmeside"
 msgid "Father's surname"
 msgstr "Fars etternavn"
 
-#: ../src/GrampsCfg.py:67 ../src/Spell.py:168 ../src/Spell.py:247
-#: ../src/Spell.py:249 ../src/plugins/Check.py:1349
+#: ../src/GrampsCfg.py:67 ../src/Spell.py:167 ../src/Spell.py:246
+#: ../src/Spell.py:248 ../src/plugins/Check.py:1349
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -2281,194 +2281,190 @@ msgid "Hungarian"
 msgstr "ungarsk"
 
 #: ../src/Spell.py:112
-msgid "Armenian"
-msgstr "armensk"
-
-#: ../src/Spell.py:113
 msgid "Interlingua"
 msgstr "interlingua"
 
-#: ../src/Spell.py:114
+#: ../src/Spell.py:113
 msgid "Indonesian"
 msgstr "indonesisk"
 
-#: ../src/Spell.py:115
+#: ../src/Spell.py:114
 msgid "Icelandic"
 msgstr "islandsk"
 
-#: ../src/Spell.py:116
+#: ../src/Spell.py:115
 msgid "Italian"
 msgstr "italisk"
 
-#: ../src/Spell.py:117
+#: ../src/Spell.py:116
 msgid "Kurdi"
 msgstr "kurdisk"
 
-#: ../src/Spell.py:118
+#: ../src/Spell.py:117
 msgid "Latin"
 msgstr "latin"
 
-#: ../src/Spell.py:119
+#: ../src/Spell.py:118
 msgid "Lithuanian"
 msgstr "litauisk"
 
-#: ../src/Spell.py:120
+#: ../src/Spell.py:119
 msgid "Latvian"
 msgstr "latvisk"
 
-#: ../src/Spell.py:121
+#: ../src/Spell.py:120
 msgid "Malagasy"
 msgstr "enn"
 
-#: ../src/Spell.py:122
+#: ../src/Spell.py:121
 msgid "Maori"
 msgstr "maori"
 
-#: ../src/Spell.py:123
+#: ../src/Spell.py:122
 msgid "Macedonian"
 msgstr "makedonsk"
 
-#: ../src/Spell.py:124
+#: ../src/Spell.py:123
 msgid "Mongolian"
 msgstr "mongosk"
 
-#: ../src/Spell.py:125
+#: ../src/Spell.py:124
 msgid "Marathi"
 msgstr "ppsummering"
 
-#: ../src/Spell.py:126
+#: ../src/Spell.py:125
 msgid "Malay"
 msgstr "malayisk"
 
-#: ../src/Spell.py:127
+#: ../src/Spell.py:126
 msgid "Maltese"
 msgstr "maltesisk"
 
-#: ../src/Spell.py:128
+#: ../src/Spell.py:127
 msgid "Norwegian Bokmal"
 msgstr "norsk bokmål"
 
-#: ../src/Spell.py:129
+#: ../src/Spell.py:128
 msgid "Low Saxon"
 msgstr "lavsaksisk"
 
-#: ../src/Spell.py:130
+#: ../src/Spell.py:129
 msgid "Dutch"
 msgstr "nederlandsk"
 
-#: ../src/Spell.py:131
+#: ../src/Spell.py:130
 msgid "Norwegian Nynorsk"
 msgstr "norsk nynorsk"
 
-#: ../src/Spell.py:132
+#: ../src/Spell.py:131
 msgid "Chichewa"
 msgstr "ikrokort"
 
-#: ../src/Spell.py:133
+#: ../src/Spell.py:132
 msgid "Oriya"
 msgstr "oriya"
 
-#: ../src/Spell.py:134
+#: ../src/Spell.py:133
 msgid "Punjabi"
 msgstr "punjabi"
 
-#: ../src/Spell.py:135
+#: ../src/Spell.py:134
 msgid "Polish"
 msgstr "polsk"
 
-#: ../src/Spell.py:136 ../src/Spell.py:138
+#: ../src/Spell.py:135 ../src/Spell.py:137
 msgid "Portuguese"
 msgstr "portugisisk"
 
-#: ../src/Spell.py:137
+#: ../src/Spell.py:136
 msgid "Brazilian Portuguese"
 msgstr "brasiliansk portugisisk"
 
-#: ../src/Spell.py:139
+#: ../src/Spell.py:138
 msgid "Quechua"
 msgstr "quechua"
 
-#: ../src/Spell.py:140
+#: ../src/Spell.py:139
 msgid "Romanian"
 msgstr "romansk"
 
-#: ../src/Spell.py:141
+#: ../src/Spell.py:140
 msgid "Russian"
 msgstr "russisk"
 
-#: ../src/Spell.py:142
+#: ../src/Spell.py:141
 msgid "Kinyarwanda"
 msgstr "kinyarwanda"
 
-#: ../src/Spell.py:143
+#: ../src/Spell.py:142
 msgid "Sardinian"
 msgstr "sardinsk"
 
-#: ../src/Spell.py:144
+#: ../src/Spell.py:143
 msgid "Slovak"
 msgstr "slovakisk"
 
-#: ../src/Spell.py:145
+#: ../src/Spell.py:144
 msgid "Slovenian"
 msgstr "slovensk"
 
-#: ../src/Spell.py:146
+#: ../src/Spell.py:145
 msgid "Serbian"
 msgstr "serbisk"
 
-#: ../src/Spell.py:147
+#: ../src/Spell.py:146
 msgid "Swedish"
 msgstr "svensk"
 
-#: ../src/Spell.py:148
+#: ../src/Spell.py:147
 msgid "Swahili"
 msgstr "swahili"
 
-#: ../src/Spell.py:149
+#: ../src/Spell.py:148
 msgid "Tamil"
 msgstr "tamilsk"
 
-#: ../src/Spell.py:150
+#: ../src/Spell.py:149
 msgid "Telugu"
 msgstr "telugu"
 
-#: ../src/Spell.py:151
+#: ../src/Spell.py:150
 msgid "Tetum"
 msgstr "tetum"
 
-#: ../src/Spell.py:152
+#: ../src/Spell.py:151
 msgid "Tagalog"
 msgstr "tagalog"
 
-#: ../src/Spell.py:153
+#: ../src/Spell.py:152
 msgid "Setswana"
 msgstr "tswana"
 
-#: ../src/Spell.py:154
+#: ../src/Spell.py:153
 msgid "Turkish"
 msgstr "tyrkisk"
 
-#: ../src/Spell.py:155
+#: ../src/Spell.py:154
 msgid "Ukrainian"
 msgstr "ukrainsk"
 
-#: ../src/Spell.py:156
+#: ../src/Spell.py:155
 msgid "Uzbek"
 msgstr "usbekisk"
 
-#: ../src/Spell.py:157
+#: ../src/Spell.py:156
 msgid "Vietnamese"
 msgstr "vietnamesisk"
 
-#: ../src/Spell.py:158
+#: ../src/Spell.py:157
 msgid "Walloon"
 msgstr "vallonsk"
 
-#: ../src/Spell.py:159
+#: ../src/Spell.py:158
 msgid "Yiddish"
 msgstr "jiddisk"
 
-#: ../src/Spell.py:160
+#: ../src/Spell.py:159
 msgid "Zulu"
 msgstr "zulu"
 
@@ -2535,8 +2531,9 @@ msgstr "kvinne"
 #: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:63
 #: ../src/docgen/HtmlDoc.py:493 ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
-#: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
-#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:496
+#: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_WinMime.py:107
+#: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
+#: ../src/plugins/DetAncestralReport.py:496
 #: ../src/plugins/DetAncestralReport.py:503
 #: ../src/plugins/DetAncestralReport.py:546
 #: ../src/plugins/DetAncestralReport.py:553
@@ -3928,7 +3925,8 @@ msgid "Could not create %s"
 msgstr "Kunne ikke lage %s"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/PdfDoc.py:145 ../src/docgen/RTFDoc.py:450
+#: ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr "Åpne i %s"
@@ -3992,6 +3990,10 @@ msgstr "LaTeX"
 #: ../src/docgen/ODFDoc.py:1164
 msgid "Open Document Text"
 msgstr "Open Document tekst"
+
+#: ../src/docgen/PdfDoc.py:149
+msgid "PDF document"
+msgstr "PDF-dokument"
 
 #: ../src/docgen/PSDrawDoc.py:64 ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_DocReportDialog.py:113
@@ -5131,11 +5133,11 @@ msgstr "GEDCOM-fila di er korrupt. Den ser ut til å ha blitt avkortet."
 msgid "Import from GEDCOM (%s)"
 msgstr "Import fra GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:833
+#: ../src/GrampsDbUtils/_GedcomParse.py:835
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1087
+#: ../src/GrampsDbUtils/_GedcomParse.py:1089
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Advarsel: linje %d var ikke forståelig, så den ble oversett."
@@ -5148,23 +5150,23 @@ msgid "Line %d: empty event note was ignored."
 msgstr "Linje %d: tom hendelsesnotat ble ignorert."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3727
-#: ../src/GrampsDbUtils/_GedcomParse.py:4286
+#: ../src/GrampsDbUtils/_GedcomParse.py:4295
 #, python-format
 msgid "Could not import %s"
 msgstr "Kan ikke importere %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4062
+#: ../src/GrampsDbUtils/_GedcomParse.py:4071
 #, python-format
 msgid "Import from %s"
 msgstr "Import fra %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4152
-#: ../src/GrampsDbUtils/_GedcomParse.py:4164
+#: ../src/GrampsDbUtils/_GedcomParse.py:4161
+#: ../src/GrampsDbUtils/_GedcomParse.py:4173
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Linje %d: tomt notat ble ignorert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4203
+#: ../src/GrampsDbUtils/_GedcomParse.py:4212
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "hoppet over %d underordned(e) på linje %d"
@@ -5663,7 +5665,7 @@ msgstr "Alle hendelser"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1283
+#: ../src/plugins/AncestorReport.py:347 ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:237
@@ -5767,7 +5769,7 @@ msgid "Remarks"
 msgstr "Merknader"
 
 #: ../src/plugins/all_relations.py:332
-msgid "The following problems where encountered:"
+msgid "The following problems were encountered:"
 msgstr "Følgende problem ble oppdaget:"
 
 #: ../src/plugins/all_relations.py:349
@@ -5838,7 +5840,7 @@ msgstr "Anetavle for %s"
 msgid "Tree Options"
 msgstr "Treopsjoner"
 
-#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:250
+#: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:251
 #: ../src/plugins/Calendar.py:496 ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
 #: ../src/plugins/DetAncestralReport.py:704
@@ -5852,7 +5854,7 @@ msgstr "Senterperson"
 msgid "The center person for the tree"
 msgstr "Senterpersonen for dette treet"
 
-#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:254
+#: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:255
 #: ../src/plugins/DescendTree.py:419 ../src/plugins/DescendReport.py:201
 #: ../src/plugins/DetAncestralReport.py:708
 #: ../src/plugins/DetDescendantReport.py:651 ../src/plugins/FanChart.py:347
@@ -5895,7 +5897,7 @@ msgstr "Ko_mprimere tre"
 msgid "Whether to compress the tree."
 msgstr "Om treet skal komprimeres."
 
-#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:331
+#: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:332
 #: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:846
 #: ../src/plugins/DetDescendantReport.py:793
 #: ../src/plugins/EndOfLineReport.py:273 ../src/plugins/EndOfLineReport.py:291
@@ -5922,7 +5924,7 @@ msgstr "Lager en grafisk anetavle"
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafelrapport for %s"
 
-#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:584
+#: ../src/plugins/AncestorReport.py:188 ../src/plugins/DefaultGramplets.py:584
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
 #: ../src/plugins/EndOfLineReport.py:161
@@ -5932,7 +5934,7 @@ msgstr "Generasjon %d"
 
 #. #########################
 #. ###############################
-#: ../src/plugins/AncestorReport.py:248 ../src/plugins/Calendar.py:484
+#: ../src/plugins/AncestorReport.py:249 ../src/plugins/Calendar.py:484
 #: ../src/plugins/Calendar.py:642 ../src/plugins/DescendReport.py:195
 #: ../src/plugins/DetAncestralReport.py:702
 #: ../src/plugins/DetDescendantReport.py:645
@@ -5945,7 +5947,7 @@ msgstr "Generasjon %d"
 msgid "Report Options"
 msgstr "Innstillinger for rapporter"
 
-#: ../src/plugins/AncestorReport.py:251 ../src/plugins/Calendar.py:497
+#: ../src/plugins/AncestorReport.py:252 ../src/plugins/Calendar.py:497
 #: ../src/plugins/DescendReport.py:198
 #: ../src/plugins/DetAncestralReport.py:705
 #: ../src/plugins/DetDescendantReport.py:648
@@ -5954,33 +5956,33 @@ msgstr "Innstillinger for rapporter"
 msgid "The center person for the report"
 msgstr "Senterpersonen for denne rapporten"
 
-#: ../src/plugins/AncestorReport.py:255 ../src/plugins/DescendReport.py:202
+#: ../src/plugins/AncestorReport.py:256 ../src/plugins/DescendReport.py:202
 #: ../src/plugins/DetAncestralReport.py:709
 #: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
 msgstr "Antall generasjoner som skal være med i rapporten"
 
-#: ../src/plugins/AncestorReport.py:258
+#: ../src/plugins/AncestorReport.py:259
 #: ../src/plugins/DetAncestralReport.py:712
 #: ../src/plugins/DetDescendantReport.py:655
 msgid "Page break between generations"
 msgstr "Sideskift mellom generasjoner"
 
-#: ../src/plugins/AncestorReport.py:260
+#: ../src/plugins/AncestorReport.py:261
 #: ../src/plugins/DetAncestralReport.py:714
 #: ../src/plugins/DetDescendantReport.py:657
 msgid "Whether to start a new page after each generation."
 msgstr "Begynn med ny side etter hver generasjon."
 
-#: ../src/plugins/AncestorReport.py:263
+#: ../src/plugins/AncestorReport.py:264
 msgid "Add linebreak after each name"
 msgstr "Legg til linjeskift etter hvert navn"
 
-#: ../src/plugins/AncestorReport.py:264
+#: ../src/plugins/AncestorReport.py:265
 msgid "Indicates if a line break should follow the name."
 msgstr "Indikerer om linjeskift skal komme etter navnet."
 
-#: ../src/plugins/AncestorReport.py:308 ../src/plugins/DescendReport.py:218
+#: ../src/plugins/AncestorReport.py:309 ../src/plugins/DescendReport.py:218
 #: ../src/plugins/DetAncestralReport.py:800
 #: ../src/plugins/DetDescendantReport.py:747
 #: ../src/plugins/EndOfLineReport.py:255 ../src/plugins/FamilyGroup.py:670
@@ -5990,17 +5992,17 @@ msgstr "Indikerer om linjeskift skal komme etter navnet."
 msgid "The style used for the title of the page."
 msgstr "Stilen som brukes på sidens tittel."
 
-#: ../src/plugins/AncestorReport.py:321
+#: ../src/plugins/AncestorReport.py:322
 #: ../src/plugins/DetAncestralReport.py:810
 #: ../src/plugins/DetDescendantReport.py:757 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Stilen som brukes til generasjons-overskriften."
 
-#: ../src/plugins/AncestorReport.py:345
+#: ../src/plugins/AncestorReport.py:346
 msgid "Ahnentafel Report"
 msgstr "Ahnentafelrapport"
 
-#: ../src/plugins/AncestorReport.py:347
+#: ../src/plugins/AncestorReport.py:348
 msgid "Produces a textual ancestral report"
 msgstr "Lager en tekstbasert slektsrapport"
 
@@ -6538,7 +6540,7 @@ msgid "Capitalization Change"
 msgstr "Endringer i store/små bokstaver"
 
 #: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:290
-#: ../src/plugins/ExtractCity.py:541
+#: ../src/plugins/ExtractCity.py:541 ../src/plugins/PatchNames.py:222
 msgid "Building display"
 msgstr "Oppdaterer visningen"
 
@@ -8288,7 +8290,7 @@ msgid "roundabout"
 msgstr "sirkelbue"
 
 #: ../src/plugins/FanChart.py:370
-msgid "Print raidal texts upright or roundabout"
+msgid "Print radial texts upright or roundabout"
 msgstr "Skriv ut radielle tekster som en linje eller følg sirkelbuen"
 
 #: ../src/plugins/FanChart.py:394
@@ -9362,7 +9364,7 @@ msgid "Convert paths from absolute to r_elative"
 msgstr "Konverter fra absolutt til relativ sti"
 
 #: ../src/plugins/MediaManager.py:525
-msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
+msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
 msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine media. Den relative stien er relativ vis-a-vis grunnstien som er oppgitt i egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binde filplasseringen til en grunnsti som kan endres etter dine behov."
 
 #: ../src/plugins/MediaManager.py:589
@@ -10065,10 +10067,6 @@ msgstr "Analyserer navn"
 #: ../src/plugins/PatchNames.py:167
 msgid "No titles or nicknames were found"
 msgstr "Ingen titler eller kallenavn ble funnet"
-
-#: ../src/plugins/PatchNames.py:222
-msgid "Bulding display"
-msgstr "Bygger opp visningen"
 
 #: ../src/plugins/PatchNames.py:329
 msgid "Extract information from names"
@@ -18098,7 +18096,7 @@ msgid "If media is an image, select a region of the image that is referenced. Po
 msgstr "Hvis mediet er et bilde, velg en region av bildet som er referert til.  Punktet (0,0) er øverste venstre hjørne.  Gjør dette ved å angi to hjørner langs en diagonal for det rektangulære området du ønsker å bruke."
 
 #: ../src/glade/gramps.glade.h:79
-msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
+msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files."
 msgstr "Hvis du trykker på denne knappen vil alle manglende mediafiler automatisk bli behandlet i henhold til den valgte instillingen. Ingen flere dialogvinduer vil bli vist for manglende mediafiler."
 
 #: ../src/glade/gramps.glade.h:81
@@ -19310,6 +19308,12 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
+
+#~ msgid "Armenian"
+#~ msgstr "armensk"
+
+#~ msgid "Bulding display"
+#~ msgstr "Bygger opp visningen"
 
 #~ msgid "Matches notes who contain text "
 #~ msgstr "Samsvarer med notater som inneholder tekst "
