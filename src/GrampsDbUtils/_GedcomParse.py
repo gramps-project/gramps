@@ -4310,7 +4310,8 @@ class GedcomParser(UpdateCallback):
                 photo = self.dbase.get_object_from_handle(photo_handle)
             oref = gen.lib.MediaRef()
             oref.set_reference_handle(photo.handle)
-            oref.add_note(self.__find_note_handle(self.nid_map[note]))
+            if note:
+                oref.add_note(self.__find_note_handle(self.nid_map[note]))
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
