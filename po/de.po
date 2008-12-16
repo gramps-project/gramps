@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-12 07:24+0100\n"
-"PO-Revision-Date: 2008-12-12 22:38+0100\n"
+"POT-Creation-Date: 2008-12-16 17:47+0100\n"
+"PO-Revision-Date: 2008-12-16 17:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -546,9 +546,9 @@ msgstr "Konnte Datenbankverzeichnis nicht erstellen:"
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/DbManager.py:1016 ../src/ScratchPad.py:101
-#: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
-#: ../src/DataViews/RelationView.py:901
+#: ../src/DbManager.py:1016 ../src/LdsUtils.py:82 ../src/LdsUtils.py:88
+#: ../src/ScratchPad.py:101 ../src/DataViews/RelationView.py:400
+#: ../src/DataViews/RelationView.py:863 ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:149 ../src/plugins/all_relations.py:273
 #: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1311
@@ -2608,8 +2608,9 @@ msgstr "weiblich"
 #: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:63
 #: ../src/docgen/HtmlDoc.py:493 ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
-#: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
-#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:496
+#: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_WinMime.py:107
+#: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
+#: ../src/plugins/DetAncestralReport.py:496
 #: ../src/plugins/DetAncestralReport.py:503
 #: ../src/plugins/DetAncestralReport.py:546
 #: ../src/plugins/DetAncestralReport.py:553
@@ -4067,7 +4068,8 @@ msgid "Could not create %s"
 msgstr "Konnte %s nicht erstellen"
 
 #: ../src/docgen/AsciiDoc.py:382 ../src/docgen/HtmlDoc.py:489
-#: ../src/docgen/RTFDoc.py:450 ../src/Editors/_EditPerson.py:476
+#: ../src/docgen/PdfDoc.py:145 ../src/docgen/RTFDoc.py:450
+#: ../src/Editors/_EditPerson.py:476
 #, python-format
 msgid "Open in %s"
 msgstr "Öffne in %s"
@@ -4131,6 +4133,10 @@ msgstr "LaTex"
 #: ../src/docgen/ODFDoc.py:1164
 msgid "Open Document Text"
 msgstr "Open Document Text"
+
+#: ../src/docgen/PdfDoc.py:149
+msgid "PDF document"
+msgstr "PDF-Dokument"
 
 #: ../src/docgen/PSDrawDoc.py:64 ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_DocReportDialog.py:113
@@ -5354,11 +5360,11 @@ msgstr "Deine GEDCOM-Datei ist defekt. Vermutlich ist die Datei unvollständig."
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:833
+#: ../src/GrampsDbUtils/_GedcomParse.py:835
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1087
+#: ../src/GrampsDbUtils/_GedcomParse.py:1089
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
@@ -5371,23 +5377,23 @@ msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3727
-#: ../src/GrampsDbUtils/_GedcomParse.py:4286
+#: ../src/GrampsDbUtils/_GedcomParse.py:4295
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4062
+#: ../src/GrampsDbUtils/_GedcomParse.py:4071
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4152
-#: ../src/GrampsDbUtils/_GedcomParse.py:4164
+#: ../src/GrampsDbUtils/_GedcomParse.py:4161
+#: ../src/GrampsDbUtils/_GedcomParse.py:4173
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4203
+#: ../src/GrampsDbUtils/_GedcomParse.py:4212
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "übersprungen %d untergeornet(e) in Zeile %d"
@@ -19570,11 +19576,10 @@ msgstr ""
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
-"be presented for any missing medial files."
+"be presented for any missing media files."
 msgstr ""
-"Wenn du dieses Feld markierst, werden alle fehlenden Multimedia- Dateien "
-"genauso behandelt. Es werden keine weiteren Dialoge für fehlende Multimedia-"
-"Dateien angezeigt."
+"Wenn du dieses Feld markierst, werden alle fehlenden Multimediadateien "
+"genauso behandelt. Es werden keine weiteren Dialoge für fehlende Multimediadateien angezeigt."
 
 #: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
