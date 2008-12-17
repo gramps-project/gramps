@@ -501,8 +501,11 @@ class CalendarOptions(MenuReportOptions):
         
         self.__update_filters()
 
-        name_format = EnumeratedListOption(_("Name format"), -1)
-        for num, name, fmt_str, act in name_displayer.get_name_format():
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = name_displayer.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
+        for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
         menu.add_option(category_name, "name_format", name_format)
