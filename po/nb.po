@@ -5299,7 +5299,7 @@ msgstr "  Sted %(id)s\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:249
 #, python-format
 msgid "  Repository %(id)s\n"
-msgstr "  Oppbevaringssteder %(id)s\n"
+msgstr "  Oppbevaringssted %(id)s\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:251
 #, python-format
@@ -15317,7 +15317,7 @@ msgstr "Notat for barnereferanse"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
-msgstr "Oppbevaringssteder"
+msgstr "Bibliotek"
 
 #: ../src/gen/lib/repotype.py:62
 msgid "Cemetery"
