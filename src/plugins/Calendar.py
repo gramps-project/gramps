@@ -310,13 +310,13 @@ class Calendar(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
-        self.progress.set_pass(_('Filtering data...'), 0)
-        people = self.filter.apply(self.database, 
-                                   self.database.get_person_handles(sort_handles=False))
+        people = self.database.get_person_handles(sort_handles=False)
+        self.progress.set_pass(_('Applying Filter...'), len(people))
+        people = self.filter.apply(self.database, people, self.progress)
         pmgr = PluginManager.get_instance()
         rel_calc = pmgr.get_relationship_calculator()
 
-        self.progress.set_pass(_('Filtering data...'), len(people))
+        self.progress.set_pass(_('Reading database...'), len(people))
         for person_handle in people:
             self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
