@@ -142,29 +142,25 @@ class WriterOptionBox:
     def __define_person_filters(self):
         """Add person filters if the active person is defined."""
 
+        name = name_displayer.display(self.person)
+        gramps_id = self.person.get_gramps_id()
+
         des = GenericFilter()
-        des.set_name(_("Descendants of %s") %
-                     name_displayer.display(self.person))
-        des.add_rule(Rules.Person.IsDescendantOf(
-                [self.person.get_gramps_id(), 1]))
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(Rules.Person.IsDescendantOf([gramps_id, 1]))
         
         df = GenericFilter()
-        df.set_name(_("Descendant Families of %s") %
-                     name_displayer.display(self.person))
-        df.add_rule(Rules.Person.IsDescendantFamilyOf(
-                [self.person.get_gramps_id(), 1]))
+        df.set_name(_("Descendant Families of %s") % name)
+        df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id, 1]))
         
         ans = GenericFilter()
-        ans.set_name(_("Ancestors of %s")
-                     % name_displayer.display(self.person))
-        ans.add_rule(Rules.Person.IsAncestorOf(
-                [self.person.get_gramps_id(), 1]))
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(Rules.Person.IsAncestorOf([gramps_id, 1]))
         
         com = GenericFilter()
-        com.set_name(_("People with common ancestor with %s") %
-                     name_displayer.display(self.person))
-        com.add_rule(Rules.Person.HasCommonAncestorWith(
-                [self.person.get_gramps_id()]))
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
+
         return [des, df, ans, com]
 
     def parse_options(self):
