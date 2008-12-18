@@ -4317,7 +4317,7 @@ msgstr "Flytt det valgte oppbevaringsstedet nedover"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
 msgid "_Repositories"
-msgstr "_Oppbevaringssteder"
+msgstr "Oppbe_varingssteder"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:115
 msgid "Select repository"
