@@ -1200,6 +1200,169 @@ class QuickViewGramplet(Gramplet):
             #(title, category, name, status)
             list_option.add_item(item[2], item[0])
 
+class DataEntryGramplet(Gramplet):
+    def init(self):
+        import gtk
+        rows = gtk.VBox()
+        self.dirty = False
+        self.dirty_person = None
+        self.de_widgets = {}
+        for items in [(0, _("Active person"), "", True, self.edit_person), 
+                      (1, _("Surname, Given"), "", False, None), 
+                      (2, _("Birth"), "", False, None), 
+                      (3, _("Death"), "", False, None)
+                     ]:
+            pos, text, default, readonly, callback = items
+            row = self.make_row(pos, text, default, readonly, callback)
+            rows.pack_start(row, False)
+
+        for items in [(4, _("Data Entry"), "", True), 
+                      (5, _("Surname, Given"), "", False), 
+                      (6, _("Birth"), "", False), 
+                      (7, _("Death"), "", False)
+                     ]:
+            pos, text, default, readonly = items
+            row = self.make_row(pos, text, default, readonly)
+            rows.pack_start(row, False)
+
+        # Mother, Father, Spouse (if sex known), Child of ... (if spouse)
+
+        row = gtk.HBox()
+        button = gtk.Button(_("Save edits"))
+        button.connect("clicked", self.save_data_entry)
+        row.pack_start(button, True)
+        button = gtk.Button(_("Abanadon edits"))
+        button.connect("clicked", self.abandon_data_entry)
+        row.pack_start(button, True)
+        rows.pack_start(row, False)
+
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(rows)
+        rows.show_all()
+
+    def main(self): # return false finishes
+        if self.dirty:
+            return
+        # Clear out abandoned entry data:
+        self.de_widgets[4].set_text("")
+        self.de_widgets[5].set_text("")
+        self.de_widgets[6].set_text("")
+        active_person = self.dbstate.get_active_person()
+        self.dirty_person = active_person
+        if not active_person:
+            # Clear out current person edits:
+            name = _("None")
+            self.de_widgets[0].set_text("<i>%s</i>" % name)
+            self.de_widgets[0].set_use_markup(True)
+            self.de_widgets[1].set_text("")
+            self.de_widgets[2].set_text("")
+            self.de_widgets[3].set_text("")
+        else:
+            # Fill in current pseron edits:
+            name = name_displayer.display(active_person)
+            self.de_widgets[0].set_text("<i>%s</i>" % name)
+            self.de_widgets[0].set_use_markup(True)
+            # Name:
+            name_obj = active_person.get_primary_name()
+            if name_obj:
+                self.de_widgets[1].set_text("%s, %s" %
+                   (name_obj.get_surname(), name_obj.get_first_name()))
+            # Birth:
+            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, 
+                                                      active_person)
+            birth_text = ""
+            if birth:
+                sdate = DateHandler.get_date(birth)
+                birth_text += sdate + " "
+                place_handle = birth.get_place_handle()
+                if place_handle:
+                    place = self.dbstate.db.get_place_from_handle(place_handle)
+                    place_text = place.get_title()
+                    if place_text:
+                        birth_text += _("in") + " " + place_text
+
+            self.de_widgets[2].set_text(birth_text)
+            # Death:
+            death = ReportUtils.get_death_or_fallback(self.dbstate.db, 
+                                                      active_person)
+            death_text = ""
+            if death:
+                sdate = DateHandler.get_date(death)
+                death_text += sdate + " "
+                place_handle = death.get_place_handle()
+                if place_handle:
+                    place = self.dbstate.db.get_place_from_handle(place_handle)
+                    place_text = place.get_title()
+                    if place_text:
+                        death_text += _("in") + " " + place_text
+
+            self.de_widgets[3].set_text(death_text)
+                
+    def make_row(self, pos, text,default="",readonly=False,callback=None):
+        import gtk
+        # Data Entry: Active Person
+        row = gtk.HBox()
+        label = gtk.Label()
+        if readonly:
+            label.set_text("<b>%s</b>" % text)
+            label.set_width_chars(15)
+            label.set_use_markup(True)
+            self.de_widgets[text] = gtk.Label()
+            self.de_widgets[text].set_alignment(0.0, 0.5)
+            self.de_widgets[text].set_use_markup(True)
+            label.set_alignment(0.0, 0.5)
+        else:
+            label.set_text("%s: " % text)
+            label.set_width_chars(15)
+            self.de_widgets[text] = gtk.Entry()
+            label.set_alignment(1.0, 0.5) 
+        if default != "":
+            self.de_widgets[text].set_text(default)
+        row.pack_start(label, False)
+        if callback:
+            icon = gtk.STOCK_EDIT
+            size = gtk.ICON_SIZE_MENU
+            button = gtk.Button()
+            image = gtk.Image()
+            image.set_from_stock(icon, size)
+            button.add(image)
+            button.set_relief(gtk.RELIEF_NONE)
+            button.show_all()
+            row.pack_start(button, False)
+            button.connect("clicked", callback)
+        row.pack_start(self.de_widgets[text], True)
+        # make accessible by name or position:
+        self.de_widgets[pos] =  self.de_widgets[text] 
+        return row
+
+    def edit_person(self, obj):
+        from Editors import EditPerson
+        EditPerson(self.gui.dbstate, 
+                   self.gui.uistate, [], 
+                   self.gui.dbstate.get_active_person())
+    
+    def save_data_entry(self, obj):
+        pass
+
+    def abandon_data_entry(self, obj):
+        self.dirty = False
+        self.update()
+
+    def db_changed(self):
+        """
+        If person or family changes, the relatives of active person might have
+        changed
+        """
+        self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('family-add', self.update)
+        self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
+
+    def active_changed(self, handle):
+        self.update()
+
 register(type="gramplet", 
          name= "Top Surnames Gramplet", 
          tname=_("Top Surnames Gramplet"), 
@@ -1332,6 +1495,17 @@ register(type="gramplet",
          expand=True,
          content = QuickViewGramplet,
          title=_("Quick View"),
+         detached_width = 600,
+         detached_height = 400,
+         )
+
+register(type="gramplet", 
+         name="Data Entry Gramplet", 
+         tname=_("Data Entry Gramplet"), 
+         height=300,
+         expand=True,
+         content = DataEntryGramplet,
+         title=_("Data Entry"),
          detached_width = 600,
          detached_height = 400,
          )
