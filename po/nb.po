@@ -18904,7 +18904,7 @@ msgstr "Søk etter steder"
 
 #: ../src/plugins/unused.glade.h:6
 msgid "Search for repositories"
-msgstr "Søk etter oppbevaringssted"
+msgstr "Søk etter oppbevaringssteder"
 
 #: ../src/plugins/unused.glade.h:7
 msgid "Search for sources"
