@@ -1210,6 +1210,9 @@ class DataEntryGramplet(Gramplet):
         self.de_widgets = {}
         for items in [(0, _("Active person"), None, True, self.edit_person, False), 
                       (1, _("Surname, Given"), None, False, None, True), 
+                      (9, _("Gender"), 
+                       [_("female"), _("male"), _("unknown")], 
+                       False, None, True),
                       (2, _("Birth"), None, False, None, True), 
                       (3, _("Death"), None, False, None, True)
                      ]:
@@ -1222,6 +1225,9 @@ class DataEntryGramplet(Gramplet):
                        ["Don't add"],
                        False),
                       (5, _("Surname, Given"), None, False), 
+                      (10, _("Gender"), 
+                       [_("female"), _("male"), _("unknown")], 
+                       False),
                       (6, _("Birth"), None, False), 
                       (7, _("Death"), None, False)
                      ]:
@@ -1252,7 +1258,7 @@ class DataEntryGramplet(Gramplet):
         active_person = self.dbstate.get_active_person()
         self.dirty_person = active_person
         if active_person:
-            # Fill in current pseron edits:
+            # Fill in current person edits:
             name = name_displayer.display(active_person)
             self.de_widgets[0].set_text("<i>%s</i>   " % name)
             self.de_widgets[0].set_use_markup(True)
@@ -1261,6 +1267,7 @@ class DataEntryGramplet(Gramplet):
             if name_obj:
                 self.de_widgets[1].set_text("%s, %s" %
                    (name_obj.get_surname(), name_obj.get_first_name()))
+            self.de_widgets[9].set_active(active_person.get_gender()) # gender
             # Birth:
             birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, active_person)
             birth_text = ""
@@ -1290,22 +1297,24 @@ class DataEntryGramplet(Gramplet):
             self.de_widgets[3].set_text(death_text)
         
         # Add options for adding:
+        self.reset_add_type()
+        self.dirty = False
 
+    def reset_add_type(self):
         for i in range(10):
             try:
                 self.de_widgets[8].remove_text(0)
             except:
                 break
-
-        for add_type in ["Don't add", 
-                         "Add as Mother", 
-                         "Add as Father", 
-                         "Add as Sibling", 
-                         "Add as Child"]:
+        for add_type in [_("Don't add"), 
+                         _("Add as Parent"), 
+                         _("Add as Spouse"), 
+                         _("Add as Sibling"), 
+                         _("Add as Child"),
+                         _("No Relation")]:
+            # FIXME: keep track of options so as to save
             self.de_widgets[8].append_text(add_type)
-        self.de_widgets[8].set_active(0)
-
-        self.dirty = False
+        self.de_widgets[8].set_active(0) # Don't add
                 
     def make_row(self, pos, text, choices=None, readonly=False, callback=None,
                  mark_dirty=False):
@@ -1326,9 +1335,9 @@ class DataEntryGramplet(Gramplet):
         else:
             label.set_text("%s: " % text)
             label.set_width_chars(15)
+            label.set_alignment(1.0, 0.5) 
             if choices == None:
                 self.de_widgets[text] = gtk.Entry()
-                label.set_alignment(1.0, 0.5) 
                 if mark_dirty:
                     self.de_widgets[text].connect("changed", self.mark_dirty)
                 row.pack_start(label, False)
@@ -1340,6 +1349,8 @@ class DataEntryGramplet(Gramplet):
                 for add_type in choices:
                     self.de_widgets[text].append_text(add_type)
                 self.de_widgets[text].set_active(0)
+                if mark_dirty:
+                    self.de_widgets[text].connect("changed", self.mark_dirty)
                 row.pack_start(label, False)
                 row.pack_start(eventBox, True, True)
         if callback:
@@ -1351,10 +1362,11 @@ class DataEntryGramplet(Gramplet):
             button.add(image)
             button.set_relief(gtk.RELIEF_NONE)
             button.connect("clicked", callback)
-            button.show_all()
+            #button.show_all()
             row.pack_start(button, False)
         # make accessible by name or position:
         self.de_widgets[pos] =  self.de_widgets[text] 
+        row.show_all()
         return row
 
     def mark_dirty(self, obj):
@@ -1369,7 +1381,7 @@ class DataEntryGramplet(Gramplet):
         try:
             EditPerson(self.gui.dbstate, 
                        self.gui.uistate, [], 
-                       self.gui.dbstate.get_active_person(),
+                       self.dirty_person,
                        callback=self.edit_callback)
         except Errors.WindowActiveError:
             pass
@@ -1382,6 +1394,8 @@ class DataEntryGramplet(Gramplet):
         self.de_widgets[5].set_text("")
         self.de_widgets[6].set_text("")
         self.de_widgets[7].set_text("")
+        self.reset_add_type()
+        self.de_widgets[10].set_active(2) # unknown gender
 
     def abandon_data_entry(self, obj):
         self.dirty = False
@@ -1546,6 +1560,6 @@ register(type="gramplet",
          content = DataEntryGramplet,
          title=_("Data Entry"),
          detached_width = 600,
-         detached_height = 400,
+         detached_height = 450,
          )
 
