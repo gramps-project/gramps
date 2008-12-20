@@ -9,6 +9,7 @@ pkgdata_PYTHON = \
 	all_events.py\
 	all_relations.py\
 	AgeOnDate.py\
+	AgeStats.py\
 	AncestorTree.py\
 	AncestorReport.py\
 	BookReport.py\

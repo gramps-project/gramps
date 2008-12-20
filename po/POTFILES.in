@@ -237,6 +237,7 @@ src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/AgeOnDate.py
+src/plugins/AgeStats.py
 src/plugins/all_events.py
 src/plugins/all_relations.py
 src/plugins/AncestorReport.py
