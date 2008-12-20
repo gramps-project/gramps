@@ -32,6 +32,7 @@ from Utils import media_path_full
 import Config
 import DateHandler
 import gen.lib
+import Errors
 
 from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
@@ -1207,32 +1208,37 @@ class DataEntryGramplet(Gramplet):
         self.dirty = False
         self.dirty_person = None
         self.de_widgets = {}
-        for items in [(0, _("Active person"), "", True, self.edit_person), 
-                      (1, _("Surname, Given"), "", False, None), 
-                      (2, _("Birth"), "", False, None), 
-                      (3, _("Death"), "", False, None)
+        for items in [(0, _("Active person"), None, True, self.edit_person, False), 
+                      (1, _("Surname, Given"), None, False, None, True), 
+                      (2, _("Birth"), None, False, None, True), 
+                      (3, _("Death"), None, False, None, True)
                      ]:
-            pos, text, default, readonly, callback = items
-            row = self.make_row(pos, text, default, readonly, callback)
+            pos, text, choices, readonly, callback, dirty = items
+            row = self.make_row(pos, text, choices, readonly, callback, dirty)
             rows.pack_start(row, False)
 
-        for items in [(4, _("Data Entry"), "", True), 
-                      (5, _("Surname, Given"), "", False), 
-                      (6, _("Birth"), "", False), 
-                      (7, _("Death"), "", False)
+        for items in [(4, _("Data Entry"), None, True), 
+                      (8, _("Add relation"), 
+                       ["Don't add"],
+                       False),
+                      (5, _("Surname, Given"), None, False), 
+                      (6, _("Birth"), None, False), 
+                      (7, _("Death"), None, False)
                      ]:
-            pos, text, default, readonly = items
-            row = self.make_row(pos, text, default, readonly)
+            pos, text, choices, readonly = items
+            row = self.make_row(pos, text, choices, readonly)
             rows.pack_start(row, False)
 
-        # Mother, Father, Spouse (if sex known), Child of ... (if spouse)
-
+        # Save, Abandon, Clear
         row = gtk.HBox()
-        button = gtk.Button(_("Save edits"))
+        button = gtk.Button(_("Save"))
         button.connect("clicked", self.save_data_entry)
         row.pack_start(button, True)
-        button = gtk.Button(_("Abanadon edits"))
+        button = gtk.Button(_("Abandon"))
         button.connect("clicked", self.abandon_data_entry)
+        row.pack_start(button, True)
+        button = gtk.Button(_("Clear"))
+        button.connect("clicked", self.clear_data_entry)
         row.pack_start(button, True)
         rows.pack_start(row, False)
 
@@ -1243,24 +1249,12 @@ class DataEntryGramplet(Gramplet):
     def main(self): # return false finishes
         if self.dirty:
             return
-        # Clear out abandoned entry data:
-        self.de_widgets[4].set_text("")
-        self.de_widgets[5].set_text("")
-        self.de_widgets[6].set_text("")
         active_person = self.dbstate.get_active_person()
         self.dirty_person = active_person
-        if not active_person:
-            # Clear out current person edits:
-            name = _("None")
-            self.de_widgets[0].set_text("<i>%s</i>" % name)
-            self.de_widgets[0].set_use_markup(True)
-            self.de_widgets[1].set_text("")
-            self.de_widgets[2].set_text("")
-            self.de_widgets[3].set_text("")
-        else:
+        if active_person:
             # Fill in current pseron edits:
             name = name_displayer.display(active_person)
-            self.de_widgets[0].set_text("<i>%s</i>" % name)
+            self.de_widgets[0].set_text("<i>%s</i>   " % name)
             self.de_widgets[0].set_use_markup(True)
             # Name:
             name_obj = active_person.get_primary_name()
@@ -1268,8 +1262,7 @@ class DataEntryGramplet(Gramplet):
                 self.de_widgets[1].set_text("%s, %s" %
                    (name_obj.get_surname(), name_obj.get_first_name()))
             # Birth:
-            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, 
-                                                      active_person)
+            birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, active_person)
             birth_text = ""
             if birth:
                 sdate = DateHandler.get_date(birth)
@@ -1283,8 +1276,7 @@ class DataEntryGramplet(Gramplet):
 
             self.de_widgets[2].set_text(birth_text)
             # Death:
-            death = ReportUtils.get_death_or_fallback(self.dbstate.db, 
-                                                      active_person)
+            death = ReportUtils.get_death_or_fallback(self.dbstate.db, active_person)
             death_text = ""
             if death:
                 sdate = DateHandler.get_date(death)
@@ -1295,10 +1287,28 @@ class DataEntryGramplet(Gramplet):
                     place_text = place.get_title()
                     if place_text:
                         death_text += _("in") + " " + place_text
-
             self.de_widgets[3].set_text(death_text)
+        
+        # Add options for adding:
+
+        for i in range(10):
+            try:
+                self.de_widgets[8].remove_text(0)
+            except:
+                break
+
+        for add_type in ["Don't add", 
+                         "Add as Mother", 
+                         "Add as Father", 
+                         "Add as Sibling", 
+                         "Add as Child"]:
+            self.de_widgets[8].append_text(add_type)
+        self.de_widgets[8].set_active(0)
+
+        self.dirty = False
                 
-    def make_row(self, pos, text,default="",readonly=False,callback=None):
+    def make_row(self, pos, text, choices=None, readonly=False, callback=None,
+                 mark_dirty=False):
         import gtk
         # Data Entry: Active Person
         row = gtk.HBox()
@@ -1311,14 +1321,27 @@ class DataEntryGramplet(Gramplet):
             self.de_widgets[text].set_alignment(0.0, 0.5)
             self.de_widgets[text].set_use_markup(True)
             label.set_alignment(0.0, 0.5)
+            row.pack_start(label, False)
+            row.pack_start(self.de_widgets[text], False)
         else:
             label.set_text("%s: " % text)
             label.set_width_chars(15)
-            self.de_widgets[text] = gtk.Entry()
-            label.set_alignment(1.0, 0.5) 
-        if default != "":
-            self.de_widgets[text].set_text(default)
-        row.pack_start(label, False)
+            if choices == None:
+                self.de_widgets[text] = gtk.Entry()
+                label.set_alignment(1.0, 0.5) 
+                if mark_dirty:
+                    self.de_widgets[text].connect("changed", self.mark_dirty)
+                row.pack_start(label, False)
+                row.pack_start(self.de_widgets[text], True)
+            else:
+                eventBox = gtk.EventBox()
+                self.de_widgets[text] = gtk.combo_box_new_text()
+                eventBox.add(self.de_widgets[text])
+                for add_type in choices:
+                    self.de_widgets[text].append_text(add_type)
+                self.de_widgets[text].set_active(0)
+                row.pack_start(label, False)
+                row.pack_start(eventBox, True, True)
         if callback:
             icon = gtk.STOCK_EDIT
             size = gtk.ICON_SIZE_MENU
@@ -1327,22 +1350,38 @@ class DataEntryGramplet(Gramplet):
             image.set_from_stock(icon, size)
             button.add(image)
             button.set_relief(gtk.RELIEF_NONE)
+            button.connect("clicked", callback)
             button.show_all()
             row.pack_start(button, False)
-            button.connect("clicked", callback)
-        row.pack_start(self.de_widgets[text], True)
         # make accessible by name or position:
         self.de_widgets[pos] =  self.de_widgets[text] 
         return row
 
+    def mark_dirty(self, obj):
+        self.dirty = True
+
+    def edit_callback(self, person):
+        self.dirty = False
+        self.update()
+
     def edit_person(self, obj):
         from Editors import EditPerson
-        EditPerson(self.gui.dbstate, 
-                   self.gui.uistate, [], 
-                   self.gui.dbstate.get_active_person())
+        try:
+            EditPerson(self.gui.dbstate, 
+                       self.gui.uistate, [], 
+                       self.gui.dbstate.get_active_person(),
+                       callback=self.edit_callback)
+        except Errors.WindowActiveError:
+            pass
     
     def save_data_entry(self, obj):
-        pass
+        self.dirty = False
+        # FIXME: save entries to db
+
+    def clear_data_entry(self, obj):
+        self.de_widgets[5].set_text("")
+        self.de_widgets[6].set_text("")
+        self.de_widgets[7].set_text("")
 
     def abandon_data_entry(self, obj):
         self.dirty = False
