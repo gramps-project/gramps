@@ -1,10 +1,69 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2008  Douglas S. Blank
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+"""
+This Gramplet shows textual distributions of age breakdowns of various types.
+"""
+
 from DataViews import register, Gramplet
 
 class AgeStatsGramplet(Gramplet):
+
+    def init(self):
+        self.max_age = 120
+        self.max_mother_diff = 60
+        self.max_father_diff = 60
+        self.chart_width = 60
+
+    def build_options(self):
+        from gen.plug.menu import NumberOption
+        self.add_option(NumberOption(_("Max age"), 
+                                     self.max_age, 1, 150))
+        self.add_option(NumberOption(_("Max age of Mother at birth"), 
+                                     self.max_mother_diff, 1, 150))
+        self.add_option(NumberOption(_("Max age of Father at birth"), 
+                                     self.max_father_diff, 1, 150))
+        self.add_option(NumberOption(_("Chart width"), 
+                                     self.chart_width, 1, 150))
+
+    def save_options(self):
+        self.max_age = int(self.get_option(_("Max age")).get_value())
+        self.max_mother_diff = int(self.get_option(_("Max age of Mother at birth")).get_value())
+        self.max_father_diff = int(self.get_option(_("Max age of Father at birth")).get_value())
+        self.chart_width = int(self.get_option(_("Chart width")).get_value())
+
     def on_load(self):
         self.no_wrap()
         tag = self.gui.buffer.create_tag("fixed")
         tag.set_property("font", "Courier 8")
+# FIXME: something wrong saving ordered data list?!
+#         if len(self.gui.data) > 0:
+#             self.max_age = int(self.gui.data[0])
+#         if len(self.gui.data) > 1:
+#             self.max_mother_diff = int(self.gui.data[1])
+#         if len(self.gui.data) > 2:
+#             self.max_father_diff = int(self.gui.data[2])
+#         if len(self.gui.data) > 3:
+#             self.chart_width = int(self.gui.data[3])
+
+#     def on_save(self):
+#         self.gui.data = [self.max_age, self.max_mother_diff, self.max_father_diff, self.chart_width]
 
     def db_changed(self):
         self.update()
@@ -14,9 +73,9 @@ class AgeStatsGramplet(Gramplet):
         age_dict = {}
         mother_dict = {}
         father_dict = {}
-        age_handles = [[] for age in range(120)]
-        mother_handles = [[] for age in range(60)]
-        father_handles = [[] for age in range(60)]
+        age_handles = [[] for age in range(self.max_age)]
+        mother_handles = [[] for age in range(self.max_mother_diff)]
+        father_handles = [[] for age in range(self.max_father_diff)]
         text = ""
         handles = self.dbstate.db.get_person_handles(sort_handles=False)
         for h in handles:
@@ -35,7 +94,7 @@ class AgeStatsGramplet(Gramplet):
                 death_date = death_event.get_date_object()
             if death_date and birth_date and birth_date.get_year() != 0:
                 age = death_date.get_year() - birth_date.get_year()
-                if age >= 0 and age < 120:
+                if age >= 0 and age < self.max_age:
                     age_dict[age] = age_dict.get(age, 0) + 1
                     age_handles[age].append(h)
                 #else:
@@ -58,7 +117,7 @@ class AgeStatsGramplet(Gramplet):
                             bdate  = bevent.get_date_object()
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
-                                if diff >= 0 and diff < 60:
+                                if diff >= 0 and diff < self.max_father_diff:
                                     father_dict[diff] = father_dict.get(diff, 0) + 1
                                     father_handles[diff].append(f_handle)
                                 #else:
@@ -73,18 +132,18 @@ class AgeStatsGramplet(Gramplet):
                             bdate  = bevent.get_date_object()
                             if bdate and birth_date and birth_date.get_year() != 0:
                                 diff = birth_date.get_year() - bdate.get_year()
-                                if diff >= 0 and diff < 60:
+                                if diff >= 0 and diff < self.max_mother_diff:
                                     mother_dict[diff] = mother_dict.get(diff, 0) + 1
                                     mother_handles[diff].append(m_handle)
                                 #else:
                                 #    print "Mother diff out of range: %d for %s" % (diff,
                                 #                                                   p.get_primary_name().get_first_name()
                                 #                                                   + " " + p.get_primary_name().get_surname())            
-        width = 60
+        width = self.chart_width
         graph_width = width - 8
-        self.create_bargraph(age_dict, age_handles, "Lifespan Age Distribution", "Age", graph_width, 5, 120) 
-        self.create_bargraph(father_dict, father_handles, "Father - Child Age Diff Distribution", "Diff", graph_width, 5, 60) 
-        self.create_bargraph(mother_dict, mother_handles, "Mother - Child Age Diff Distribution", "Diff", graph_width, 5, 60) 
+        self.create_bargraph(age_dict, age_handles, "Lifespan Age Distribution", "Age", graph_width, 5, self.max_age) 
+        self.create_bargraph(father_dict, father_handles, "Father - Child Age Diff Distribution", "Diff", graph_width, 5, self.max_father_diff)
+        self.create_bargraph(mother_dict, mother_handles, "Mother - Child Age Diff Distribution", "Diff", graph_width, 5, self.max_mother_diff)
         start, end = self.gui.buffer.get_bounds()
         self.gui.buffer.apply_tag_by_name("fixed", start, end)
         self.append_text("", scroll_to="begin")

@@ -217,6 +217,7 @@ class Gramplet(object):
         self._need_to_update = False
         self._tags = []
         self.option_dict = {}
+        self.option_order = []
         self.tooltip = None
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
@@ -488,6 +489,7 @@ class Gramplet(object):
         widget, label = make_gui_option(option, None, self.dbstate, 
                                         self.gui.uistate,None)
         self.option_dict.update({option.get_label(): (widget, option)})
+        self.option_order.append(option.get_label())
 
     def save_update_options(self, obj):
         self.save_options()
@@ -746,12 +748,14 @@ class GuiGramplet:
         hbox = gtk.HBox()
         labels = gtk.VBox()
         options = gtk.VBox()
-        hbox.add(labels)
-        hbox.add(options)
+        hbox.pack_start(labels, False)
+        hbox.pack_start(options, True)
         topbox.add(hbox)
         self.gvoptions.add(topbox)
-        for item in self.pui.option_dict:
-            labels.add(gtk.Label(item + ":"))
+        for item in self.pui.option_order:
+            label = gtk.Label(item + ":")
+            label.set_alignment(1.0, 0.5)
+            labels.add(label)
             options.add(self.pui.option_dict[item][0]) # widget
         save_button = gtk.Button(stock=gtk.STOCK_SAVE)
         topbox.add(save_button)
