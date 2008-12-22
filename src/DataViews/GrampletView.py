@@ -744,6 +744,7 @@ class GuiGramplet:
         return self.scrolledwindow
 
     def make_gui_options(self):
+        if not self.pui: return
         topbox = gtk.VBox()
         hbox = gtk.HBox()
         labels = gtk.VBox()
