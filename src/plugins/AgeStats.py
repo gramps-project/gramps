@@ -22,6 +22,7 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 """
 
 from DataViews import register, Gramplet
+import gen.lib
 
 class AgeStatsGramplet(Gramplet):
 
@@ -103,11 +104,21 @@ class AgeStatsGramplet(Gramplet):
                 #                                           + " " + p.get_primary_name().get_surname())
             # for each parent m/f:
             family_list = p.get_parent_family_handle_list()
-            if len(family_list) > 0:
-                family = self.dbstate.db.get_family_from_handle(family_list[0]) # first is primary, I think
+            for family_handle in family_list:
+                family = self.dbstate.db.get_family_from_handle(family_handle) 
                 if family:
-                    f_handle = family.get_father_handle()
-                    m_handle = family.get_mother_handle()
+                    childrel = [(ref.get_mother_relation(), 
+                                 ref.get_father_relation()) for ref in 
+                                family.get_child_ref_list() 
+                                if ref.ref == p.handle] # get first, if more than one
+                    if childrel[0][0] == gen.lib.ChildRefType.BIRTH:
+                        m_handle = family.get_mother_handle()
+                    else:
+                        m_handle = None
+                    if childrel[0][1] == gen.lib.ChildRefType.BIRTH:
+                        f_handle = family.get_father_handle()
+                    else:
+                        f_handle = None
                     # if they have a birth_date, compute difference each m/f
                     if f_handle:
                         f = self.dbstate.db.get_person_from_handle(f_handle)
@@ -251,7 +262,7 @@ class AgeStatsGramplet(Gramplet):
 register(type="gramplet", 
          name = "Age Stats Gramplet",
          tname = _("Age Stats Gramplet"),
-         height=300,
+         height=100,
          expand=True,
          content = AgeStatsGramplet,
          title=_("Age Stats"),
