@@ -152,9 +152,9 @@ class AgeStatsGramplet(Gramplet):
                                 #                                                   + " " + p.get_primary_name().get_surname())            
         width = self.chart_width
         graph_width = width - 8
-        self.create_bargraph(age_dict, age_handles, "Lifespan Age Distribution", "Age", graph_width, 5, self.max_age) 
-        self.create_bargraph(father_dict, father_handles, "Father - Child Age Diff Distribution", "Diff", graph_width, 5, self.max_father_diff)
-        self.create_bargraph(mother_dict, mother_handles, "Mother - Child Age Diff Distribution", "Diff", graph_width, 5, self.max_mother_diff)
+        self.create_bargraph(age_dict, age_handles, _("Lifespan Age Distribution"), _("Age"), graph_width, 5, self.max_age) 
+        self.create_bargraph(father_dict, father_handles, _("Father - Child Age Diff Distribution"), _("Diff"), graph_width, 5, self.max_father_diff)
+        self.create_bargraph(mother_dict, mother_handles, _("Mother - Child Age Diff Distribution"), _("Diff"), graph_width, 5, self.max_mother_diff)
         start, end = self.gui.buffer.get_bounds()
         self.gui.buffer.apply_tag_by_name("fixed", start, end)
         self.append_text("", scroll_to="begin")
@@ -211,12 +211,12 @@ class AgeStatsGramplet(Gramplet):
                     break
                 current += hash[k]
             average = sumval/float(count)
-        retval = "Statistics:\n"
-        retval += "  Total  : %d\n" % count
-        retval += "  Minimum: %d\n" % minval
-        retval += "  Average: %.2f\n" % average
-        retval += "  Median : %d\n" % median
-        retval += "  Maximum: %d\n" % maxval
+        retval = _("Statistics") + ":\n"
+        retval += "  " + _("Total") + ": %d\n" % count
+        retval += "  " + _("Minimum") + ": %d\n" % minval
+        retval += "  " + _("Average") + ": %.2f\n" % average
+        retval += "  " + _("Median") + ": %d\n" % median
+        retval += "  " + _("Maximum") + ": %d\n" % maxval
         return retval
     
     def make_handles_set(self, min, max, handles):
@@ -255,7 +255,7 @@ class AgeStatsGramplet(Gramplet):
                 self.append_text("\n")
                 i += 1
             self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
-            self.append_text(" Counts " + self.ticks(graph_width, start = 0, stop = int(max_bin)) + "\n\n")
+            self.append_text(" " + _("Counts") + " " + self.ticks(graph_width, start = 0, stop = int(max_bin)) + "\n\n")
             self.append_text(self.compute_stats(hash))
             self.append_text("\n")
     
