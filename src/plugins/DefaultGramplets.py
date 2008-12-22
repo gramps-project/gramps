@@ -1203,6 +1203,7 @@ class QuickViewGramplet(Gramplet):
 
 class DataEntryGramplet(Gramplet):
     def init(self):
+        self.de_column_width = 20
         import gtk
         rows = gtk.VBox()
         self.dirty = False
@@ -1260,7 +1261,7 @@ class DataEntryGramplet(Gramplet):
         if active_person:
             # Fill in current person edits:
             name = name_displayer.display(active_person)
-            self.de_widgets[0].set_text("<i>%s</i>   " % name)
+            self.de_widgets[0].set_text("<i>%s</i> " % name)
             self.de_widgets[0].set_use_markup(True)
             # Name:
             name_obj = active_person.get_primary_name()
@@ -1324,7 +1325,7 @@ class DataEntryGramplet(Gramplet):
         label = gtk.Label()
         if readonly:
             label.set_text("<b>%s</b>" % text)
-            label.set_width_chars(15)
+            label.set_width_chars(self.de_column_width)
             label.set_use_markup(True)
             self.de_widgets[text] = gtk.Label()
             self.de_widgets[text].set_alignment(0.0, 0.5)
@@ -1334,7 +1335,7 @@ class DataEntryGramplet(Gramplet):
             row.pack_start(self.de_widgets[text], False)
         else:
             label.set_text("%s: " % text)
-            label.set_width_chars(15)
+            label.set_width_chars(self.de_column_width)
             label.set_alignment(1.0, 0.5) 
             if choices == None:
                 self.de_widgets[text] = gtk.Entry()
@@ -1559,7 +1560,7 @@ register(type="gramplet",
          expand=False,
          content = DataEntryGramplet,
          title=_("Data Entry"),
-         detached_width = 600,
-         detached_height = 450,
+         detached_width = 370,
+         detached_height = 425,
          )
 
