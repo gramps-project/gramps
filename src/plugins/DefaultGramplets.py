@@ -27,6 +27,7 @@ from DataViews import register, Gramplet
 from PluginUtils import *
 from QuickReports import run_quick_report_by_name, get_quick_report_list
 from ReportBase import ReportUtils
+from gen.utils import set_birth_death_index
 from TransUtils import sgettext as _
 from Utils import media_path_full
 import Config
@@ -1221,9 +1222,19 @@ class DataEntryGramplet(Gramplet):
             row = self.make_row(pos, text, choices, readonly, callback, dirty)
             rows.pack_start(row, False)
 
-        for items in [(4, _("Data Entry"), None, True), 
+        # Save and Abandon
+        row = gtk.HBox()
+        button = gtk.Button(_("Save"))
+        button.connect("clicked", self.save_data_edit)
+        row.pack_start(button, True)
+        button = gtk.Button(_("Abandon"))
+        button.connect("clicked", self.abandon_data_edit)
+        row.pack_start(button, True)
+        rows.pack_start(row, False)
+
+        for items in [(4, _("New person"), None, True), 
                       (8, _("Add relation"), 
-                       ["Don't add"],
+                       ["No relation to active person"],
                        False),
                       (5, _("Surname, Given"), None, False), 
                       (10, _("Gender"), 
@@ -1238,11 +1249,8 @@ class DataEntryGramplet(Gramplet):
 
         # Save, Abandon, Clear
         row = gtk.HBox()
-        button = gtk.Button(_("Save"))
-        button.connect("clicked", self.save_data_entry)
-        row.pack_start(button, True)
-        button = gtk.Button(_("Abandon"))
-        button.connect("clicked", self.abandon_data_entry)
+        button = gtk.Button(_("Add"))
+        button.connect("clicked", self.add_data_entry)
         row.pack_start(button, True)
         button = gtk.Button(_("Clear"))
         button.connect("clicked", self.clear_data_entry)
@@ -1296,9 +1304,11 @@ class DataEntryGramplet(Gramplet):
                     if place_text:
                         death_text += _("in") + " " + place_text
             self.de_widgets[3].set_text(death_text)
-        
+        else:
+            self.de_widgets[9].set_active(2) # gender unknown
         # Add options for adding:
         self.reset_add_type()
+        self.clear_data_entry(None)
         self.dirty = False
 
     def reset_add_type(self):
@@ -1307,15 +1317,16 @@ class DataEntryGramplet(Gramplet):
                 self.de_widgets[8].remove_text(0)
             except:
                 break
-        for add_type in [_("Don't add"), 
-                         _("Add as Parent"), 
-                         _("Add as Spouse"), 
-                         _("Add as Sibling"), 
-                         _("Add as Child"),
-                         _("No Relation")]:
+        for add_type in [_("No relation to active person"),
+                         _("Add as a Parent"), 
+                         _("Add as a Spouse"), 
+                         _("Add as a Sibling"), 
+                         _("Add as a Child")]:
             # FIXME: keep track of options so as to save
             self.de_widgets[8].append_text(add_type)
-        self.de_widgets[8].set_active(0) # Don't add
+        # Should we reset these?:
+        #self.de_widgets[8].set_active(0) # no relation
+        #self.de_widgets[10].set_active(2) # gender unknown
                 
     def make_row(self, pos, text, choices=None, readonly=False, callback=None,
                  mark_dirty=False):
@@ -1387,18 +1398,108 @@ class DataEntryGramplet(Gramplet):
         except Errors.WindowActiveError:
             pass
     
-    def save_data_entry(self, obj):
+    def process_dateplace(self, text):
+        if text == "": return None, None
+        prep_in = _("in") # word or phrase that separates date from place
+        text = text.strip()
+        if (" %s "  % prep_in) in text:
+            date, place = text.split((" %s "  % prep_in), 1)
+        elif text.startswith("%s "  % prep_in):
+            date, place = text.split(("%s "  % prep_in), 1)
+        else:
+            date, place = text, ""
+        date = date.strip()
+        place = place.strip()
+        if date != "":
+            date = DateHandler.parser.parse(date)
+        else:
+            date = None
+        if place != "":
+            newq, place = self.get_or_create_place(place)
+        else:
+            place = None
+        return date, place
+
+    def get_or_create_place(self, place_name):
+        if place_name == "": return (-1, None)
+        place_list = self.dbstate.db.get_place_handles()
+        for place_handle in place_list:
+            place = self.dbstate.db.get_place_from_handle(place_handle)
+            if place.get_title().trim() == place_name:
+                return (0, place)
+        place = gen.lib.Place()
+        place.set_title(place_name)
+        self.dbstate.db.add_place(place,self.trans)
+        return (1, place)
+
+    def make_event(self, type, date, place):
+        if date == place == None: return None
+        event = gen.lib.Event()
+        event.set_type(gen.lib.EventType(type))
+        if date:
+            event.set_date_object(date)
+        if place:
+            event.set_place_handle(place.get_handle())
+        self.dbstate.db.add_event(event, self.trans)
+        return event
+
+    def make_person(self, firstname, surname, gender):
+        person = gen.lib.Person()
+        name = gen.lib.Name()
+        name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
+        name.set_first_name(firstname)
+        name.set_surname(surname)
+        person.set_primary_name(name)
+        person.set_gender(gender)
+        return person
+
+    def save_data_edit(self, obj):
+        # FIXME: Save it to db
         self.dirty = False
-        # FIXME: save entries to db
+        self.update()
+
+    def add_data_entry(self, obj):
+        self.trans = self.dbstate.db.transaction_begin()
+        # New person --------------------------------------------------
+        # Add birth
+        new_birth_date, new_birth_place = self.process_dateplace(self.de_widgets[6].get_text().strip())
+        birth_event = self.make_event(gen.lib.EventType.BIRTH, new_birth_date, new_birth_place)
+        # Add death
+        new_death_date, new_death_place = self.process_dateplace(self.de_widgets[7].get_text())
+        death_event = self.make_event(gen.lib.EventType.DEATH, new_death_date, new_death_place)
+        # Now, create the person and events:
+        surname, firstname = self.de_widgets[5].get_text().split(",", 1)
+        gender = self.de_widgets[10].get_active()
+        person = self.make_person(firstname, surname, gender)
+        # New birth for person:
+        if birth_event:
+            birth_ref = gen.lib.EventRef()
+            birth_ref.set_reference_handle(birth_event.get_handle())
+            person.set_birth_ref(birth_ref)
+        # New death for person:
+        if death_event:
+            death_ref = gen.lib.EventRef()
+            death_ref.set_reference_handle(death_event.get_handle())
+            person.set_death_ref(death_ref)
+        self.dbstate.db.add_person(person, self.trans)
+        # FIXME: add relation to active person
+        if self.dirty:
+            # Update the edit ----------------------------------
+            pass
+        # Done; clean up
+        self.dirty = False
+        self.dbstate.db.transaction_commit(self.trans,
+                 (_("Gramplet Data Entry: %s") %  name_displayer.display(person)))
 
     def clear_data_entry(self, obj):
         self.de_widgets[5].set_text("")
         self.de_widgets[6].set_text("")
         self.de_widgets[7].set_text("")
         self.reset_add_type()
+        self.de_widgets[8].set_active(0) # no relation
         self.de_widgets[10].set_active(2) # unknown gender
 
-    def abandon_data_entry(self, obj):
+    def abandon_data_edit(self, obj):
         self.dirty = False
         self.update()
 
@@ -1409,6 +1510,7 @@ class DataEntryGramplet(Gramplet):
         """
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('person-edit', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
         self.dbstate.db.connect('person-rebuild', self.update)
@@ -1560,7 +1662,7 @@ register(type="gramplet",
          expand=False,
          content = DataEntryGramplet,
          title=_("Data Entry"),
-         detached_width = 370,
-         detached_height = 425,
+         detached_width = 510,
+         detached_height = 480,
          )
 
