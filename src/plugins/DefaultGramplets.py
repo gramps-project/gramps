@@ -1252,6 +1252,9 @@ class DataEntryGramplet(Gramplet):
         button = gtk.Button(_("Add"))
         button.connect("clicked", self.add_data_entry)
         row.pack_start(button, True)
+        button = gtk.Button(_("Copy Name"))
+        button.connect("clicked", self.copy_data_entry)
+        row.pack_start(button, True)
         button = gtk.Button(_("Clear"))
         button.connect("clicked", self.clear_data_entry)
         row.pack_start(button, True)
@@ -1305,10 +1308,9 @@ class DataEntryGramplet(Gramplet):
                         death_text += _("in") + " " + place_text
             self.de_widgets[3].set_text(death_text)
         else:
-            self.de_widgets[9].set_active(2) # gender unknown
+            self.clear_data_entry(None)
         # Add options for adding:
         self.reset_add_type()
-        self.clear_data_entry(None)
         self.dirty = False
 
     def reset_add_type(self):
@@ -1325,7 +1327,7 @@ class DataEntryGramplet(Gramplet):
             # FIXME: keep track of options so as to save
             self.de_widgets[8].append_text(add_type)
         # Should we reset these?:
-        #self.de_widgets[8].set_active(0) # no relation
+        self.de_widgets[8].set_active(0) # no relation
         #self.de_widgets[10].set_active(2) # gender unknown
                 
     def make_row(self, pos, text, choices=None, readonly=False, callback=None,
@@ -1469,6 +1471,8 @@ class DataEntryGramplet(Gramplet):
         death_event = self.make_event(gen.lib.EventType.DEATH, new_death_date, new_death_place)
         # Now, create the person and events:
         surname, firstname = self.de_widgets[5].get_text().split(",", 1)
+        surname = surname.strip()
+        firstname = firstname.strip()
         gender = self.de_widgets[10].get_active()
         person = self.make_person(firstname, surname, gender)
         # New birth for person:
@@ -1490,6 +1494,16 @@ class DataEntryGramplet(Gramplet):
         self.dirty = False
         self.dbstate.db.transaction_commit(self.trans,
                  (_("Gramplet Data Entry: %s") %  name_displayer.display(person)))
+
+    def copy_data_entry(self, obj):
+        self.de_widgets[5].set_text(self.de_widgets[1].get_text())
+        # FIXME: put cursor in add surname
+
+    def clear_data_edit(self, obj):
+        self.de_widgets[1].set_text("")
+        self.de_widgets[2].set_text("")
+        self.de_widgets[3].set_text("")
+        self.de_widgets[9].set_active(2) # gender unknown
 
     def clear_data_entry(self, obj):
         self.de_widgets[5].set_text("")
