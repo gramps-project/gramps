@@ -1203,6 +1203,11 @@ class QuickViewGramplet(Gramplet):
             list_option.add_item(item[2], item[0])
 
 class DataEntryGramplet(Gramplet):
+    NO_REL     = 0
+    AS_PARENT  = 1
+    AS_SPOUSE  = 2
+    AS_SIBLING = 3
+    AS_CHILD   = 4
     def init(self):
         self.de_column_width = 20
         import gtk
@@ -1210,16 +1215,14 @@ class DataEntryGramplet(Gramplet):
         self.dirty = False
         self.dirty_person = None
         self.de_widgets = {}
-        for items in [(0, _("Active person"), None, True, self.edit_person, False), 
-                      (1, _("Surname, Given"), None, False, None, True), 
-                      (9, _("Gender"), 
-                       [_("female"), _("male"), _("unknown")], 
-                       False, None, True),
-                      (2, _("Birth"), None, False, None, True), 
-                      (3, _("Death"), None, False, None, True)
+        for items in [("Active person", _("Active person"), None, True, self.edit_person, False, 0), 
+                      ("APName", _("Surname, Given"), None, False, None, True, 0), 
+                      ("APGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, None, True, 2),
+                      ("APBirth", _("Birth"), None, False, None, True, 0), 
+                      ("APDeath", _("Death"), None, False, None, True, 0)
                      ]:
-            pos, text, choices, readonly, callback, dirty = items
-            row = self.make_row(pos, text, choices, readonly, callback, dirty)
+            pos, text, choices, readonly, callback, dirty, default = items
+            row = self.make_row(pos, text, choices, readonly, callback, dirty, default)
             rows.pack_start(row, False)
 
         # Save and Abandon
@@ -1232,19 +1235,15 @@ class DataEntryGramplet(Gramplet):
         row.pack_start(button, True)
         rows.pack_start(row, False)
 
-        for items in [(4, _("New person"), None, True), 
-                      (8, _("Add relation"), 
-                       ["No relation to active person"],
-                       False),
-                      (5, _("Surname, Given"), None, False), 
-                      (10, _("Gender"), 
-                       [_("female"), _("male"), _("unknown")], 
-                       False),
-                      (6, _("Birth"), None, False), 
-                      (7, _("Death"), None, False)
+        for items in [("New person", _("New person"), None, True, 0), 
+                      ("NPRelation", _("Add relation"), [_("No relation to active person")], False, 0),
+                      ("NPName", _("Surname, Given"), None, False, 0), 
+                      ("NPGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, 2),
+                      ("NPBirth", _("Birth"), None, False, 0), 
+                      ("NPDeath", _("Death"), None, False, 0)
                      ]:
-            pos, text, choices, readonly = items
-            row = self.make_row(pos, text, choices, readonly)
+            pos, text, choices, readonly, default = items
+            row = self.make_row(pos, text, choices, readonly, default=default)
             rows.pack_start(row, False)
 
         # Save, Abandon, Clear
@@ -1263,6 +1262,7 @@ class DataEntryGramplet(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(rows)
         rows.show_all()
+        self.clear_data_entry(None)
 
     def main(self): # return false finishes
         if self.dirty:
@@ -1272,14 +1272,14 @@ class DataEntryGramplet(Gramplet):
         if active_person:
             # Fill in current person edits:
             name = name_displayer.display(active_person)
-            self.de_widgets[0].set_text("<i>%s</i> " % name)
-            self.de_widgets[0].set_use_markup(True)
+            self.de_widgets["Active person"].set_text("<i>%s</i> " % name)
+            self.de_widgets["Active person"].set_use_markup(True)
             # Name:
             name_obj = active_person.get_primary_name()
             if name_obj:
-                self.de_widgets[1].set_text("%s, %s" %
+                self.de_widgets["APName"].set_text("%s, %s" %
                    (name_obj.get_surname(), name_obj.get_first_name()))
-            self.de_widgets[9].set_active(active_person.get_gender()) # gender
+            self.de_widgets["APGender"].set_active(active_person.get_gender()) # gender
             # Birth:
             birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, active_person)
             birth_text = ""
@@ -1293,7 +1293,7 @@ class DataEntryGramplet(Gramplet):
                     if place_text:
                         birth_text += _("in") + " " + place_text
 
-            self.de_widgets[2].set_text(birth_text)
+            self.de_widgets["APBirth"].set_text(birth_text)
             # Death:
             death = ReportUtils.get_death_or_fallback(self.dbstate.db, active_person)
             death_text = ""
@@ -1306,17 +1306,18 @@ class DataEntryGramplet(Gramplet):
                     place_text = place.get_title()
                     if place_text:
                         death_text += _("in") + " " + place_text
-            self.de_widgets[3].set_text(death_text)
+            self.de_widgets["APDeath"].set_text(death_text)
         else:
-            self.clear_data_entry(None)
+            self.clear_data_edit(None)
         # Add options for adding:
         self.reset_add_type()
         self.dirty = False
 
     def reset_add_type(self):
+        # We reset these in case they change
         for i in range(10):
             try:
-                self.de_widgets[8].remove_text(0)
+                self.de_widgets["NPRelation"].remove_text(0)
             except:
                 break
         for add_type in [_("No relation to active person"),
@@ -1324,14 +1325,11 @@ class DataEntryGramplet(Gramplet):
                          _("Add as a Spouse"), 
                          _("Add as a Sibling"), 
                          _("Add as a Child")]:
-            # FIXME: keep track of options so as to save
-            self.de_widgets[8].append_text(add_type)
-        # Should we reset these?:
-        self.de_widgets[8].set_active(0) # no relation
-        #self.de_widgets[10].set_active(2) # gender unknown
+            self.de_widgets["NPRelation"].append_text(add_type)
+        self.de_widgets["NPRelation"].set_active(self.NO_REL)
                 
     def make_row(self, pos, text, choices=None, readonly=False, callback=None,
-                 mark_dirty=False):
+                 mark_dirty=False, default=0):
         import gtk
         # Data Entry: Active Person
         row = gtk.HBox()
@@ -1340,31 +1338,31 @@ class DataEntryGramplet(Gramplet):
             label.set_text("<b>%s</b>" % text)
             label.set_width_chars(self.de_column_width)
             label.set_use_markup(True)
-            self.de_widgets[text] = gtk.Label()
-            self.de_widgets[text].set_alignment(0.0, 0.5)
-            self.de_widgets[text].set_use_markup(True)
+            self.de_widgets[pos] = gtk.Label()
+            self.de_widgets[pos].set_alignment(0.0, 0.5)
+            self.de_widgets[pos].set_use_markup(True)
             label.set_alignment(0.0, 0.5)
             row.pack_start(label, False)
-            row.pack_start(self.de_widgets[text], False)
+            row.pack_start(self.de_widgets[pos], False)
         else:
             label.set_text("%s: " % text)
             label.set_width_chars(self.de_column_width)
             label.set_alignment(1.0, 0.5) 
             if choices == None:
-                self.de_widgets[text] = gtk.Entry()
+                self.de_widgets[pos] = gtk.Entry()
                 if mark_dirty:
-                    self.de_widgets[text].connect("changed", self.mark_dirty)
+                    self.de_widgets[pos].connect("changed", self.mark_dirty)
                 row.pack_start(label, False)
-                row.pack_start(self.de_widgets[text], True)
+                row.pack_start(self.de_widgets[pos], True)
             else:
                 eventBox = gtk.EventBox()
-                self.de_widgets[text] = gtk.combo_box_new_text()
-                eventBox.add(self.de_widgets[text])
+                self.de_widgets[pos] = gtk.combo_box_new_text()
+                eventBox.add(self.de_widgets[pos])
                 for add_type in choices:
-                    self.de_widgets[text].append_text(add_type)
-                self.de_widgets[text].set_active(0)
+                    self.de_widgets[pos].append_text(add_type)
+                self.de_widgets[pos].set_active(default) 
                 if mark_dirty:
-                    self.de_widgets[text].connect("changed", self.mark_dirty)
+                    self.de_widgets[pos].connect("changed", self.mark_dirty)
                 row.pack_start(label, False)
                 row.pack_start(eventBox, True, True)
         if callback:
@@ -1378,13 +1376,15 @@ class DataEntryGramplet(Gramplet):
             button.connect("clicked", callback)
             #button.show_all()
             row.pack_start(button, False)
-        # make accessible by name or position:
-        self.de_widgets[pos] =  self.de_widgets[text] 
         row.show_all()
         return row
 
     def mark_dirty(self, obj):
         self.dirty = True
+
+    def abandon_data_edit(self, obj):
+        self.dirty = False
+        self.update()
 
     def edit_callback(self, person):
         self.dirty = False
@@ -1428,11 +1428,11 @@ class DataEntryGramplet(Gramplet):
         for place_handle in place_list:
             place = self.dbstate.db.get_place_from_handle(place_handle)
             if place.get_title().trim() == place_name:
-                return (0, place)
+                return (0, place) # (old, object)
         place = gen.lib.Place()
         place.set_title(place_name)
         self.dbstate.db.add_place(place,self.trans)
-        return (1, place)
+        return (1, place) # (new, object)
 
     def make_event(self, type, date, place):
         if date == place == None: return None
@@ -1456,24 +1456,70 @@ class DataEntryGramplet(Gramplet):
         return person
 
     def save_data_edit(self, obj):
-        # FIXME: Save it to db
+        if self.dirty:
+            # Update the edit ----------------------------------
+            pass
         self.dirty = False
         self.update()
 
     def add_data_entry(self, obj):
+        from QuestionDialog import ErrorDialog
+        # First, get the data:
+        if "," in self.de_widgets["NPName"].get_text():
+            surname, firstname = self.de_widgets["NPName"].get_text().split(",", 1)
+        else:
+            surname, firstname = self.de_widgets["NPName"].get_text(), ""
+        surname = surname.strip()
+        firstname = firstname.strip()
+        gender = self.de_widgets["NPGender"].get_active()
+        if self.dirty:
+            current_person = self.dirty_person
+        else:
+            current_person = self.dbstate.get_active_person()
+        # Pre-check to make sure everything is ok:
+        if surname == "" and firstname == "":
+            ErrorDialog(_("Please provide a name."), _("Can't add new person."))
+            return
+        if self.de_widgets["NPRelation"].get_active() == self.NO_REL:
+            # "No relation to active person"
+            pass
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_PARENT:
+            # "Add as a Parent"
+            if current_person == None:
+                ErrorDialog(_("Please set an active person."), _("Can't add new person as a parent."))
+                return
+            elif gender == gen.lib.Person.UNKNOWN: # unknown
+                ErrorDialog(_("Please set the new person's gender."), _("Can't add new person as a parent."))
+                return
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_SPOUSE:
+            # "Add as a Spouse"
+            if current_person == None:
+                ErrorDialog(_("Please set an active person."), _("Can't add new person as a spouse."))
+                return
+            elif (gender == gen.lib.Person.UNKNOWN and 
+                  current_person.get_gender() == gen.lib.Person.UNKNOWN): # both genders unknown
+                ErrorDialog(_("Please set the new person's gender."), _("Can't add new person as a spouse."))
+                return
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_SIBLING:
+            # "Add as a Sibling"
+            if current_person == None:
+                ErrorDialog(_("Please set an active person."), _("Can't add new person as a sibling."))
+                return
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_CHILD:
+            # "Add as a Child"
+            if current_person == None:
+                ErrorDialog(_("Please set an active person."), _("Can't add new person as a child."))
+                return
+        # Start the transaction:
         self.trans = self.dbstate.db.transaction_begin()
         # New person --------------------------------------------------
         # Add birth
-        new_birth_date, new_birth_place = self.process_dateplace(self.de_widgets[6].get_text().strip())
+        new_birth_date, new_birth_place = self.process_dateplace(self.de_widgets["NPBirth"].get_text().strip())
         birth_event = self.make_event(gen.lib.EventType.BIRTH, new_birth_date, new_birth_place)
         # Add death
-        new_death_date, new_death_place = self.process_dateplace(self.de_widgets[7].get_text())
+        new_death_date, new_death_place = self.process_dateplace(self.de_widgets["NPDeath"].get_text())
         death_event = self.make_event(gen.lib.EventType.DEATH, new_death_date, new_death_place)
         # Now, create the person and events:
-        surname, firstname = self.de_widgets[5].get_text().split(",", 1)
-        surname = surname.strip()
-        firstname = firstname.strip()
-        gender = self.de_widgets[10].get_active()
         person = self.make_person(firstname, surname, gender)
         # New birth for person:
         if birth_event:
@@ -1486,36 +1532,42 @@ class DataEntryGramplet(Gramplet):
             death_ref.set_reference_handle(death_event.get_handle())
             person.set_death_ref(death_ref)
         self.dbstate.db.add_person(person, self.trans)
-        # FIXME: add relation to active person
-        if self.dirty:
-            # Update the edit ----------------------------------
+        # All error checking done; just add relation:
+        if self.de_widgets["NPRelation"].get_active() == self.NO_REL:
+            # "No relation to active person"
             pass
-        # Done; clean up
-        self.dirty = False
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_PARENT:
+            # "Add as a Parent"
+            pass
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_SPOUSE:
+            # "Add as a Spouse"
+            pass
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_SIBLING:
+            # "Add as a Sibling"
+            pass
+        elif self.de_widgets["NPRelation"].get_active() == self.AS_CHILD:
+            # "Add as a Child"
+            pass
         self.dbstate.db.transaction_commit(self.trans,
                  (_("Gramplet Data Entry: %s") %  name_displayer.display(person)))
 
     def copy_data_entry(self, obj):
-        self.de_widgets[5].set_text(self.de_widgets[1].get_text())
+        self.de_widgets["NPName"].set_text(self.de_widgets["APName"].get_text())
         # FIXME: put cursor in add surname
 
     def clear_data_edit(self, obj):
-        self.de_widgets[1].set_text("")
-        self.de_widgets[2].set_text("")
-        self.de_widgets[3].set_text("")
-        self.de_widgets[9].set_active(2) # gender unknown
+        self.de_widgets["APName"].set_text("")
+        self.de_widgets["APBirth"].set_text("")
+        self.de_widgets["APDeath"].set_text("")
+        self.de_widgets["APGender"].set_active(gen.lib.Person.UNKNOWN) 
 
     def clear_data_entry(self, obj):
-        self.de_widgets[5].set_text("")
-        self.de_widgets[6].set_text("")
-        self.de_widgets[7].set_text("")
+        self.de_widgets["NPName"].set_text("")
+        self.de_widgets["NPBirth"].set_text("")
+        self.de_widgets["NPDeath"].set_text("")
         self.reset_add_type()
-        self.de_widgets[8].set_active(0) # no relation
-        self.de_widgets[10].set_active(2) # unknown gender
-
-    def abandon_data_edit(self, obj):
-        self.dirty = False
-        self.update()
+        self.de_widgets["NPRelation"].set_active(self.NO_REL) 
+        self.de_widgets["NPGender"].set_active(gen.lib.Person.UNKNOWN) 
 
     def db_changed(self):
         """
@@ -1529,6 +1581,9 @@ class DataEntryGramplet(Gramplet):
         self.dbstate.db.connect('family-delete', self.update)
         self.dbstate.db.connect('person-rebuild', self.update)
         self.dbstate.db.connect('family-rebuild', self.update)
+        self.dirty = False
+        self.dirty_person = None
+        self.clear_data_entry(None)
 
     def active_changed(self, handle):
         self.update()
