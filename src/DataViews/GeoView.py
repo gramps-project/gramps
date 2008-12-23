@@ -203,7 +203,7 @@ class RendererMozilla(Renderer):
         set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
         self.__set_mozembed_proxy()
         self.window = gtkmozembed.MozEmbed()
-        self.window.set_size_request(800, 600)
+        #self.window.set_size_request(800, 600)
         self.browser = MOZIL
     
     def open(self, url):
@@ -225,7 +225,7 @@ class RendererMozilla(Renderer):
             proxy = os.environ['http_proxy']
             if proxy:
                 host_port = None
-                prefs = open(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js","w+")
+                prefs = open(MOZEMBED_SUBPATH+"/prefs.js","w+")
                 parts = urlparse.urlparse(proxy)
                 if not parts[0] or parts[0] == 'http':
                     host_port = parts[1]
@@ -256,7 +256,7 @@ class RendererMozilla(Renderer):
                 prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
-                os.remove(MOZEMBED_PATH+MOZEMBED_SUBPATH+"/prefs.js")
+                os.remove(MOZEMBED_SUBPATH+"/prefs.js")
             except:
                 pass
             pass   # We don't use a proxy or the http_proxy variable is not set.
@@ -377,7 +377,6 @@ class HtmlView(PageView.PageView):
          </head>
          <body >
            <H4>%(content)s</H4>
-          </div>
          </body>
         </html>
         """ % { 'height' : 600,
@@ -409,7 +408,7 @@ class GeoView(HtmlView):
 
         # Create a temporary dot file
         (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
-                                                  MOZEMBED_PATH )
+                                                  MOZEMBED_PATH+'/htmlview' )
 
     def on_delete(self):
         """
@@ -860,7 +859,7 @@ class GeoView(HtmlView):
         self.centered = 0
         margin = 10
         self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx; margin: %d\"></div>\n" % 
-                           ( ( self.width - margin*2 ), ( self.height * 0.8 ), margin ))
+                           ( ( self.width - margin*4 ), ( self.height * 0.73 ), margin ))
         self.mapview.write("  <script type=\"text/javascript\">\n")
         self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
         self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
@@ -952,6 +951,7 @@ class GeoView(HtmlView):
            self.zoom = zoomlat
         else:
            self.zoom = zoomlong
+        self.zoom -= 1
         LOG.debug("zoomlat = %f\n" % zoomlat)
         LOG.debug("zoomlong = %f\n" % zoomlong)
         LOG.debug("self.zoom = %f\n" % self.zoom)
