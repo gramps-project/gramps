@@ -711,7 +711,7 @@ class PersonView(PageView.PersonNavView):
             return
         if self.active:
             self.dirty = False
-            for node in handle_list:
+            for node in set(handle_list):
                 person = self.dbstate.db.get_person_from_handle(node)
                 pname = person.get_primary_name()
                 top = name_displayer.name_grouping_name(self.db, pname)
