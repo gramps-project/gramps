@@ -1251,7 +1251,7 @@ class DataEntryGramplet(Gramplet):
         button = gtk.Button(_("Add"))
         button.connect("clicked", self.add_data_entry)
         row.pack_start(button, True)
-        button = gtk.Button(_("Copy Name"))
+        button = gtk.Button(_("Copy Active Data"))
         button.connect("clicked", self.copy_data_entry)
         row.pack_start(button, True)
         button = gtk.Button(_("Clear"))
@@ -1427,12 +1427,39 @@ class DataEntryGramplet(Gramplet):
         place_list = self.dbstate.db.get_place_handles()
         for place_handle in place_list:
             place = self.dbstate.db.get_place_from_handle(place_handle)
-            if place.get_title().trim() == place_name:
+            if place.get_title().strip() == place_name:
                 return (0, place) # (old, object)
         place = gen.lib.Place()
         place.set_title(place_name)
         self.dbstate.db.add_place(place,self.trans)
         return (1, place) # (new, object)
+
+    def get_or_create_event(self, object, type, date, place):
+        """ Add or find a type event on object """
+        if date == place == None: return (-1, None)
+        # first, see if it exists
+        ref_list = object.get_event_ref_list()
+        # look for a match, and possible correction
+        for ref in ref_list:
+            event = self.dbstate.db.get_event_from_handle(ref.ref)
+            if int(event.get_type()) == type:
+                # Match! Let's update
+                if date:
+                    event.set_date_object(date)
+                if place:
+                    event.set_place_handle(place.get_handle())
+                self.dbstate.db.commit_event(event, self.trans)
+                return (0, event)
+        # else create it:
+        event = gen.lib.Event()
+        if type:
+            event.set_type(gen.lib.EventType(type))
+        if date:
+            event.set_date_object(date)
+        if place:
+            event.set_place_handle(place.get_handle())
+        self.dbstate.db.add_event(event, self.trans)
+        return (1, event)
 
     def make_event(self, type, date, place):
         if date == place == None: return None
@@ -1457,8 +1484,45 @@ class DataEntryGramplet(Gramplet):
 
     def save_data_edit(self, obj):
         if self.dirty:
-            # Update the edit ----------------------------------
-            pass
+            # Save the edits ----------------------------------
+            person = self.dirty_person
+            # First, get the data:
+            gender = self.de_widgets["APGender"].get_active()
+            if "," in self.de_widgets["APName"].get_text():
+                surname, firstname = self.de_widgets["APName"].get_text().split(",", 1)
+            else:
+                surname, firstname = self.de_widgets["APName"].get_text(), ""
+            surname = surname.strip()
+            firstname = firstname.strip()
+            name = person.get_primary_name()
+            # Now, edit it:
+            self.trans = self.dbstate.db.transaction_begin()
+            name.set_surname(surname)
+            name.set_first_name(firstname)
+            person.set_gender(gender)
+            birthdate, birthplace = self.process_dateplace(self.de_widgets["APBirth"].get_text().strip())
+            new, birthevent = self.get_or_create_event(person, gen.lib.EventType.BIRTH, birthdate, birthplace)
+            # reference it, if need be:
+            birthref = person.get_birth_ref()
+            if birthevent:
+                if birthref is None:
+                    # need new
+                    birthref = gen.lib.EventRef()
+                birthref.set_reference_handle(birthevent.get_handle())
+                person.set_birth_ref(birthref)
+            deathdate, deathplace = self.process_dateplace(self.de_widgets["APDeath"].get_text().strip())
+            new, deathevent = self.get_or_create_event(person, gen.lib.EventType.DEATH, deathdate, deathplace)
+            # reference it, if need be:
+            deathref = person.get_death_ref()
+            if deathevent:
+                if deathref is None:
+                    # need new
+                    deathref = gen.lib.EventRef()
+                deathref.set_reference_handle(deathevent.get_handle())
+                person.set_death_ref(deathref)
+            self.dbstate.db.commit_person(person,self.trans)
+            self.dbstate.db.transaction_commit(self.trans,
+                    (_("Gramplet Data Edit: %s") %  name_displayer.display(person)))
         self.dirty = False
         self.update()
 
@@ -1541,18 +1605,127 @@ class DataEntryGramplet(Gramplet):
             pass
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SPOUSE:
             # "Add as a Spouse"
-            pass
+            added = False
+            family = None
+            for family_handle in person.get_family_handle_list():
+                family = self.dbstate.db.get_family_from_gramps_id(family_handle)
+                if family:
+                    fam_husband_handle = family.get_father_handle()
+                    fam_wife_handle = family.get_mother_handle()
+                    if current_person.get_handle() == fam_husband_handle:
+                        # can we add person as wife?
+                        if fam_wife_handle == None:
+                            if person.get_gender() == gen.lib.Person.FEMALE:
+                                # add the person
+                                family.set_mother_handle(person.get_handle())
+                                person.add_family_handle(family.get_handle())
+                                added = True
+                                break
+                            elif person.get_gender() == gen.lib.Person.UNKNOWN:
+                                family.set_mother_handle(person.get_handle())
+                                person.set_gender(gen.lib.Person.FEMALE)
+                                self.de_widgets["NPGender"].set_active(gen.lib.Person.FEMALE)
+                                person.add_family_handle(family.get_handle())
+                                added = True
+                                break
+                    elif current_person.get_handle() == fam_wife_handle:
+                        # can we add person as husband?
+                        if fam_husband_handle == None:
+                            if person.get_gender() == gen.lib.Person.MALE:
+                                # add the person
+                                family.set_father_handle(person.get_handle())
+                                person.add_family_handle(family.get_handle())
+                                added = True
+                                break
+                            elif person.get_gender() == gen.lib.Person.UNKNOWN:
+                                family.set_father_handle(person.get_handle())
+                                person.add_family_handle(family.get_handle())
+                                person.set_gender(gen.lib.Person.MALE)
+                                self.de_widgets["NPGender"].set_active(gen.lib.Person.MALE)
+                                added = True
+                                break
+            if added:
+                self.dbstate.db.commit_family(family, self.trans)
+            else:
+                if person.get_gender() == gen.lib.Person.UNKNOWN:
+                    if current_person.get_gender() == gen.lib.Person.UNKNOWN:
+                        print "Error, we couldn't add them: both unknown genders"
+                    elif current_person.get_gender() == gen.lib.Person.MALE:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(current_person.get_handle())
+                        family.set_mother_handle(person.get_handle())
+                        person.set_gender(gen.lib.Person.FEMALE)
+                        self.de_widgets["NPGender"].set_active(gen.lib.Person.FEMALE)
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                    elif current_person.get_gender() == gen.lib.Person.FEMALE:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(person.get_handle())
+                        family.set_mother_handle(current_person.get_handle())
+                        person.set_gender(gen.lib.Person.MALE)
+                        self.de_widgets["NPGender"].set_active(gen.lib.Person.MALE)
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                elif person.get_gender() == gen.lib.Person.MALE:
+                    if current_person.get_gender() == gen.lib.Person.UNKNOWN:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(person.get_handle())
+                        family.set_mother_handle(current_person.get_handle())
+                        current_person.set_gender(gen.lib.Person.FEMALE)
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                    elif current_person.get_gender() == gen.lib.Person.MALE:
+                        print "Error, we couldn't add them: both same gender"
+                    elif current_person.get_gender() == gen.lib.Person.FEMALE:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(person.get_handle())
+                        family.set_mother_handle(current_person.get_handle())
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                elif person.get_gender() == gen.lib.Person.FEMALE:
+                    if current_person.get_gender() == gen.lib.Person.UNKNOWN:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(current_person.get_handle())
+                        family.set_mother_handle(person.get_handle())
+                        current_person.set_gender(gen.lib.Person.MALE)
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                    elif current_person.get_gender() == gen.lib.Person.MALE:
+                        family = gen.lib.Family()
+                        self.dbstate.db.add_family(family, self.trans)
+                        family.set_father_handle(current_person.get_handle())
+                        family.set_mother_handle(person.get_handle())
+                        person.add_family_handle(family.get_handle())
+                        current_person.add_family_handle(family.get_handle())
+                        self.dbstate.db.commit_family(family, self.trans)
+                    elif current_person.get_gender() == gen.lib.Person.FEMALE:
+                        print "Error, we couldn't add them: both same gender"
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SIBLING:
             # "Add as a Sibling"
             pass
         elif self.de_widgets["NPRelation"].get_active() == self.AS_CHILD:
             # "Add as a Child"
             pass
+        self.dbstate.db.commit_person(current_person, self.trans)
+        self.dbstate.db.commit_person(person, self.trans)
         self.dbstate.db.transaction_commit(self.trans,
                  (_("Gramplet Data Entry: %s") %  name_displayer.display(person)))
 
     def copy_data_entry(self, obj):
         self.de_widgets["NPName"].set_text(self.de_widgets["APName"].get_text())
+        self.de_widgets["NPBirth"].set_text(self.de_widgets["APBirth"].get_text())
+        self.de_widgets["NPDeath"].set_text(self.de_widgets["APDeath"].get_text())
+        self.de_widgets["NPGender"].set_active(self.de_widgets["APGender"].get_active())
         # FIXME: put cursor in add surname
 
     def clear_data_edit(self, obj):
