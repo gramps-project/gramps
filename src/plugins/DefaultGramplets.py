@@ -1202,6 +1202,8 @@ class QuickViewGramplet(Gramplet):
             #(title, category, name, status)
             list_option.add_item(item[2], item[0])
 
+# 1. add marriage as default relation type
+
 class DataEntryGramplet(Gramplet):
     NO_REL     = 0
     AS_PARENT  = 1
@@ -1602,13 +1604,50 @@ class DataEntryGramplet(Gramplet):
             pass
         elif self.de_widgets["NPRelation"].get_active() == self.AS_PARENT:
             # "Add as a Parent"
-            pass
+            # Go through current_person parent families
+            added = False
+            for family_handle in current_person.get_parent_family_handle_list():
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                if family:
+                    # find one that person would fit as a parent
+                    fam_husband_handle = family.get_father_handle()
+                    fam_wife_handle = family.get_mother_handle()
+                    # can we add person as wife?
+                    if fam_wife_handle == None and person.get_gender() == gen.lib.Person.FEMALE:
+                        # add the person
+                        family.set_mother_handle(person.get_handle())
+                        person.add_family_handle(family.get_handle())
+                        added = True
+                        break
+                    elif fam_husband_handle == None and person.get_gender() == gen.lib.Person.MALE:
+                        # add the person
+                        family.set_father_handle(person.get_handle())
+                        person.add_family_handle(family.get_handle())
+                        added = True
+                        break
+            if added:
+                self.dbstate.db.commit_family(family, self.trans)
+            else:
+                family = gen.lib.Family()
+                self.dbstate.db.add_family(family, self.trans)
+                if person.get_gender() == gen.lib.Person.MALE:
+                    family.set_father_handle(person.get_handle())
+                elif person.get_gender() == gen.lib.Person.FEMALE:
+                    family.set_mother_handle(person.get_handle())
+                # add curent_person as child
+                childref = gen.lib.ChildRef()
+                childref.set_reference_handle(current_person.get_handle())
+                family.add_child_ref( childref)
+                current_person.add_parent_family_handle(family.get_handle())
+                # finalize
+                person.add_family_handle(family.get_handle())
+                self.dbstate.db.commit_family(family, self.trans)
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SPOUSE:
             # "Add as a Spouse"
             added = False
             family = None
             for family_handle in current_person.get_family_handle_list():
-                family = self.dbstate.db.get_family_from_gramps_id(family_handle)
+                family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family:
                     fam_husband_handle = family.get_father_handle()
                     fam_wife_handle = family.get_mother_handle()
@@ -1649,7 +1688,9 @@ class DataEntryGramplet(Gramplet):
             else:
                 if person.get_gender() == gen.lib.Person.UNKNOWN:
                     if current_person.get_gender() == gen.lib.Person.UNKNOWN:
-                        print "Error, we couldn't add them: both unknown genders"
+                        ErrorDialog(_("Please set gender on Active or new person."), 
+                                    _("Can't add new person as a spouse."))
+                        return
                     elif current_person.get_gender() == gen.lib.Person.MALE:
                         family = gen.lib.Family()
                         self.dbstate.db.add_family(family, self.trans)
@@ -1681,7 +1722,9 @@ class DataEntryGramplet(Gramplet):
                         current_person.add_family_handle(family.get_handle())
                         self.dbstate.db.commit_family(family, self.trans)
                     elif current_person.get_gender() == gen.lib.Person.MALE:
-                        print "Error, we couldn't add them: both same gender"
+                        ErrorDialog(_("Same genders on Active and new person."), 
+                                    _("Can't add new person as a spouse."))
+                        return
                     elif current_person.get_gender() == gen.lib.Person.FEMALE:
                         family = gen.lib.Family()
                         self.dbstate.db.add_family(family, self.trans)
@@ -1709,12 +1752,14 @@ class DataEntryGramplet(Gramplet):
                         current_person.add_family_handle(family.get_handle())
                         self.dbstate.db.commit_family(family, self.trans)
                     elif current_person.get_gender() == gen.lib.Person.FEMALE:
-                        print "Error, we couldn't add them: both same gender"
+                        ErrorDialog(_("Same genders on Active and new person."), 
+                                    _("Can't add new person as a spouse."))
+                        return
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SIBLING:
             # "Add as a Sibling"
             added = False
             for family_handle in current_person.get_parent_family_handle_list():
-                family = self.dbstate.db.get_family_from_gramps_id(family_handle)
+                family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family:
                     childref = gen.lib.ChildRef()
                     childref.set_reference_handle(person.get_handle())
@@ -1741,7 +1786,7 @@ class DataEntryGramplet(Gramplet):
             added = False
             family = None
             for family_handle in current_person.get_family_handle_list():
-                family = self.dbstate.db.get_family_from_gramps_id(family_handle)
+                family = self.dbstate.db.get_family_from_handle(family_handle)
                 if family:
                     childref = gen.lib.ChildRef()
                     childref.set_reference_handle(person.get_handle())
@@ -1753,7 +1798,9 @@ class DataEntryGramplet(Gramplet):
                 self.dbstate.db.commit_family(family, self.trans)
             else:
                 if current_person.get_gender() == gen.lib.Person.UNKNOWN:
-                    print "Error: can't add person as child. Need parent's gender."
+                    ErrorDialog(_("Please set gender on Active person."), 
+                                _("Can't add new person as a child."))
+                    return
                 else:
                     family = gen.lib.Family()
                     self.dbstate.db.add_family(family, self.trans)
@@ -1767,7 +1814,6 @@ class DataEntryGramplet(Gramplet):
                     else:
                         family.set_father_handle(current_person.get_handle())
                     self.dbstate.db.commit_family(family, self.trans)
-
         # Commit changes -------------------------------------------------
         if current_person:
             self.dbstate.db.commit_person(current_person, self.trans)
@@ -1784,6 +1830,7 @@ class DataEntryGramplet(Gramplet):
         # FIXME: put cursor in add surname
 
     def clear_data_edit(self, obj):
+        self.de_widgets["Active person"].set_text("")
         self.de_widgets["APName"].set_text("")
         self.de_widgets["APBirth"].set_text("")
         self.de_widgets["APDeath"].set_text("")
