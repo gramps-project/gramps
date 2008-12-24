@@ -1202,8 +1202,6 @@ class QuickViewGramplet(Gramplet):
             #(title, category, name, status)
             list_option.add_item(item[2], item[0])
 
-# 1. add marriage as default relation type
-
 class DataEntryGramplet(Gramplet):
     NO_REL     = 0
     AS_PARENT  = 1
@@ -1616,12 +1614,14 @@ class DataEntryGramplet(Gramplet):
                     if fam_wife_handle == None and person.get_gender() == gen.lib.Person.FEMALE:
                         # add the person
                         family.set_mother_handle(person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.add_family_handle(family.get_handle())
                         added = True
                         break
                     elif fam_husband_handle == None and person.get_gender() == gen.lib.Person.MALE:
                         # add the person
                         family.set_father_handle(person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.add_family_handle(family.get_handle())
                         added = True
                         break
@@ -1634,6 +1634,7 @@ class DataEntryGramplet(Gramplet):
                     family.set_father_handle(person.get_handle())
                 elif person.get_gender() == gen.lib.Person.FEMALE:
                     family.set_mother_handle(person.get_handle())
+                family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                 # add curent_person as child
                 childref = gen.lib.ChildRef()
                 childref.set_reference_handle(current_person.get_handle())
@@ -1657,11 +1658,13 @@ class DataEntryGramplet(Gramplet):
                             if person.get_gender() == gen.lib.Person.FEMALE:
                                 # add the person
                                 family.set_mother_handle(person.get_handle())
+                                family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                                 person.add_family_handle(family.get_handle())
                                 added = True
                                 break
                             elif person.get_gender() == gen.lib.Person.UNKNOWN:
                                 family.set_mother_handle(person.get_handle())
+                                family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                                 person.set_gender(gen.lib.Person.FEMALE)
                                 self.de_widgets["NPGender"].set_active(gen.lib.Person.FEMALE)
                                 person.add_family_handle(family.get_handle())
@@ -1673,11 +1676,13 @@ class DataEntryGramplet(Gramplet):
                             if person.get_gender() == gen.lib.Person.MALE:
                                 # add the person
                                 family.set_father_handle(person.get_handle())
+                                family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                                 person.add_family_handle(family.get_handle())
                                 added = True
                                 break
                             elif person.get_gender() == gen.lib.Person.UNKNOWN:
                                 family.set_father_handle(person.get_handle())
+                                family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                                 person.add_family_handle(family.get_handle())
                                 person.set_gender(gen.lib.Person.MALE)
                                 self.de_widgets["NPGender"].set_active(gen.lib.Person.MALE)
@@ -1696,6 +1701,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(current_person.get_handle())
                         family.set_mother_handle(person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.set_gender(gen.lib.Person.FEMALE)
                         self.de_widgets["NPGender"].set_active(gen.lib.Person.FEMALE)
                         person.add_family_handle(family.get_handle())
@@ -1706,6 +1712,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(person.get_handle())
                         family.set_mother_handle(current_person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.set_gender(gen.lib.Person.MALE)
                         self.de_widgets["NPGender"].set_active(gen.lib.Person.MALE)
                         person.add_family_handle(family.get_handle())
@@ -1717,6 +1724,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(person.get_handle())
                         family.set_mother_handle(current_person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         current_person.set_gender(gen.lib.Person.FEMALE)
                         person.add_family_handle(family.get_handle())
                         current_person.add_family_handle(family.get_handle())
@@ -1730,6 +1738,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(person.get_handle())
                         family.set_mother_handle(current_person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.add_family_handle(family.get_handle())
                         current_person.add_family_handle(family.get_handle())
                         self.dbstate.db.commit_family(family, self.trans)
@@ -1739,6 +1748,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(current_person.get_handle())
                         family.set_mother_handle(person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         current_person.set_gender(gen.lib.Person.MALE)
                         person.add_family_handle(family.get_handle())
                         current_person.add_family_handle(family.get_handle())
@@ -1748,6 +1758,7 @@ class DataEntryGramplet(Gramplet):
                         self.dbstate.db.add_family(family, self.trans)
                         family.set_father_handle(current_person.get_handle())
                         family.set_mother_handle(person.get_handle())
+                        family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.add_family_handle(family.get_handle())
                         current_person.add_family_handle(family.get_handle())
                         self.dbstate.db.commit_family(family, self.trans)
@@ -2002,7 +2013,7 @@ register(type="gramplet",
 register(type="gramplet", 
          name="Data Entry Gramplet", 
          tname=_("Data Entry Gramplet"), 
-         height=350,
+         height=375,
          expand=False,
          content = DataEntryGramplet,
          title=_("Data Entry"),
