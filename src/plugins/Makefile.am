@@ -25,6 +25,7 @@ pkgdata_PYTHON = \
 	Desbrowser.py\
 	DescendTree.py\
 	DescendReport.py\
+	DescendGramplet.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EndOfLineReport.py\

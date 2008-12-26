@@ -255,6 +255,7 @@ src/plugins/DefaultGramplets.py
 src/plugins/Desbrowser.py
 src/plugins/DescendTree.py
 src/plugins/DescendReport.py
+src/plugins/DescendGramplet.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py
 src/plugins/EndOfLineReport.py
