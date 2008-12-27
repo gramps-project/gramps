@@ -331,13 +331,18 @@ class Date:
 
             date1 = self
             date2 = other
+            negative = False
             if d1 < d2:
                 d1, d2 = d2, d1
                 date1, date2 = date2, date1
+                negative = True
             # d1 - d2 (1998, 12, 32) - (1982, 12, 15)
             if date1.calendar != date2.calendar:
                 diff = date1.sortval - date2.sortval
-                return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
+                if negative:
+                    return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
+                else:
+                    return Span(-diff/365, -((diff % 365)/30), -((diff % 365) % 30))
             # days:
             if d2[2] > d1[2]:
                 # months:
@@ -369,7 +374,10 @@ class Date:
                     eDate = eDate + (0, 0, diff)
                 if diff == 60:
                     return Span(-1, -1, -1)
-                return Span(years, months, days - diff)
+                if negative:
+                    return Span(-years, -months, -(days - diff))
+                else:
+                    return Span(years, months, days - diff)
             elif eDate > date2:
                 diff = 0
                 while eDate >> date2 and diff > -60:
@@ -377,9 +385,15 @@ class Date:
                     eDate = eDate - (0, 0, abs(diff))
                 if diff == -60:
                     return Span(-1, -1, -1)
-                return Span(years, months, days + diff)
+                if negative:
+                    return Span(-years, -months, -(days + diff))
+                else:
+                    return Span(years, months, days + diff)
             else:
-                return Span(years, months, days)
+                if negative:
+                    return Span(-years, -months, -days)
+                else:
+                    return Span(years, months, days)
         else:
             raise AttributeError, "unknown date sub type: %s " % type(other)
 
