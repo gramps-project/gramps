@@ -101,6 +101,17 @@ class Span:
             return False
         return self.diff_tuple == other.diff_tuple
 
+    def __lt__(self, other):
+        if other is None:
+            return False
+        return self.diff_tuple < other.diff_tuple
+
+    def __gt__(self, other):
+        if other is None:
+            return False
+        return self.diff_tuple > other.diff_tuple
+
+
 #-------------------------------------------------------------------------
 #
 # Date class
