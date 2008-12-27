@@ -164,7 +164,7 @@ class DescendantGramplet(Gramplet):
 register(type="gramplet", 
          name = "Descendant Gramplet", 
          tname=_("Descendant Gramplet"), 
-         height=375,
+         height=100,
          expand=True,
          content = DescendantGramplet,
          title=_("Descendants"),
