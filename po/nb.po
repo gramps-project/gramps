@@ -11424,7 +11424,7 @@ msgid ""
 msgstr ""
 "Ved å fortsette med dette verktøyet vil du tømme historikkloggen for denne sesjonen.  Du vil dermed ikke ha mulighet til å angre de endringene som blir utført av dette verktøyet, eller de endringene som ble gjort i forkant.\n"
 "\n"
-"Hvis du tror du kan komme til å angre på å ha kjørt dette verktøyet bør du stanse her og lage en sikekrhetskopi av databasen din."
+"Hvis du tror du kan komme til å angre på å ha kjørt dette verktøyet bør du stanse her og lage en sikkerhetskopi av databasen din."
 
 #: ../src/PluginUtils/_Tool.py:118
 msgid "_Proceed with the tool"
@@ -17728,7 +17728,7 @@ msgstr "<b>Foretrukket navn</b>"
 
 #: ../src/glade/edit_person.glade.h:4
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
-msgstr "Tittel som brukes for å henvise til personen, som for eksempel &quot;Dr.&quot; eller &quot;Rev.&quot;"
+msgstr "Tittel som brukes for å henvise til personen, som for eksempel \"Dr.\" eller \"Rev.\""
 
 #: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:39
 msgid "Abandon changes and close window"
@@ -17740,11 +17740,11 @@ msgstr "Godta endringene og lukk vinduet"
 
 #: ../src/glade/edit_person.glade.h:7
 msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
-msgstr "Valgfri forstavelse for familienavn som ikke er med i sortering, som for eksempel &quot;de&quot;, &quot;van&quot; eller &quot;von&quot;"
+msgstr "Valgfri forstavelse for familienavn som ikke er med i sortering, som for eksempel \"de\", \"van\" eller \"von\""
 
 #: ../src/glade/edit_person.glade.h:8
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Valgfri etterstavelse på navnet, som for eksempel &quot;Jr.&quot; eller &quot;III&quot;"
+msgstr "Valgfri etterstavelse på navnet, som for eksempel \"Jr.\" eller \"III\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
 msgid "Call _Name:"
@@ -18730,7 +18730,7 @@ msgid ""
 msgstr ""
 "Å overføre til CD vil ikke skrive CD-en med en gang. Nautilus-cd-brenner vil bli forbedret, så du kan brenne CD-en fra Nautilus.\n"
 "\n"
-"Etter overføringen, gå til <b>brenn:///</b> mappa i Nautilus og trykk på &quot;Skriv til CD&quot;-knappen."
+"Etter overføringen, gå til <b>brenn:///</b> mappa i Nautilus og velg knappen Skriv til CD."
 
 #: ../src/plugins/cdexport.glade.h:4
 msgid "_Export to CD"
