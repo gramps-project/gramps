@@ -111,6 +111,9 @@ class Span:
             return False
         return self.diff_tuple > other.diff_tuple
 
+    def __len__(self):
+        return len(self.diff_tuple)
+
 
 #-------------------------------------------------------------------------
 #
@@ -903,6 +906,12 @@ class Date:
         Return true if any part of the date is valid.
         """
         return self.modifier != Date.MOD_TEXTONLY
+
+    def is_valid(self):
+        """ 
+        Return true if any part of the date is valid.
+        """
+        return self.modifier != Date.MOD_TEXTONLY and self.sortval != 0
 
     def get_stop_year(self):
         """
