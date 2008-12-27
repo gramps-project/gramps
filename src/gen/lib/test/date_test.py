@@ -358,6 +358,7 @@ def suite2():
         ("Date(2000,1,1) - Date(1999,2,1)", "Span(0, 11, 0)"),
         ("Date(2000,1,1) - Date(1999,12,1)", "Span(0, 1, 0)"),
         ("Date(2007, 12, 23) - Date(1963, 12, 4)", "Span(44, 0, 19)"),
+        ("Date(1963, 12, 4) - Date(2007, 12, 23)", "Span(-44, 0, -19)"),
         ]
     suite = unittest.TestSuite()            
     count = 1
