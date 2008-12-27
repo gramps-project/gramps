@@ -55,6 +55,13 @@ MODE_CLI = PluginManager.REPORT_MODE_CLI
 # Global functions
 #
 #------------------------------------------------------------------------
+
+def good_date(date):
+    if RecordsReportOptions.REGULAR_DATES_ONLY:
+        return date.is_regular()
+    else:
+        return date.is_valid()
+
 def _find_records(db, filter, callname):
 
     today = datetime.date.today()
@@ -98,7 +105,7 @@ def _find_records(db, filter, callname):
         else:
             death_date = None
 
-        if not birth_date.is_valid():
+        if not good_date(birth_date):
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
@@ -108,7 +115,7 @@ def _find_records(db, filter, callname):
             # Still living, look for age records
             _record(person_youngestliving, person_oldestliving,
                     today_date - birth_date, name, 'Person', person_handle)
-        elif death_date.is_valid():
+        elif good_date(death_date):
             # Already died, look for age records
             _record(person_youngestdied, person_oldestdied,
                     death_date - birth_date, name, 'Person', person_handle)
@@ -125,12 +132,12 @@ def _find_records(db, filter, callname):
                 elif event.get_type() == EventType.DIVORCE:
                     divorce_date = event.get_date_object()
 
-            if marriage_date is not None and marriage_date.is_valid():
+            if marriage_date is not None and good_date(marriage_date):
                 _record(person_youngestmarried, person_oldestmarried,
                         marriage_date - birth_date,
                         name, 'Person', person_handle)
 
-            if divorce_date is not None and divorce_date.is_valid():
+            if divorce_date is not None and good_date(divorce_date):
                 _record(person_youngestdivorced, person_oldestdivorced,
                         divorce_date - birth_date,
                         name, 'Person', person_handle)
@@ -145,7 +152,7 @@ def _find_records(db, filter, callname):
                 child_birth = db.get_event_from_handle(child_birth_ref.ref)
                 child_birth_date = child_birth.get_date_object()
 
-                if not child_birth_date.is_valid():
+                if not good_date(child_birth_date):
                     continue
 
                 if person.get_gender() == person.MALE:
@@ -218,19 +225,19 @@ def _find_records(db, filter, callname):
             mother_death = db.get_event_from_handle(mother_death_ref.ref)
             mother_death_date = mother_death.get_date_object()
 
-        if not marriage or not marriage_date.is_valid():
+        if not marriage or not good_date(marriage_date):
             # Not married or marriage date unknown
             continue
 
-        if divorce and not divorce_date.is_valid():
+        if divorce and not good_date(divorce_date):
             # Divorced, but divorce date unknown
             continue
 
-        if father_death and (not father_death_date or not father_death_date.is_valid()):
+        if father_death and (not father_death_date or not good_date(father_death_date)):
             # Father dead, but death date unknown
             continue
 
-        if mother_death and (not mother_death_date or not mother_death_date.is_valid()):
+        if mother_death and (not mother_death_date or not good_date(mother_death_date)):
             # Mother dead, but death date unknown
             continue
 
@@ -435,6 +442,7 @@ class RecordsReportOptions(MenuReportOptions):
     CALLNAME_DONTUSE = 0
     CALLNAME_REPLACE = 1
     CALLNAME_UNDERLINE_ADD = 2
+    REGULAR_DATES_ONLY = True
 
     def __init__(self, name, dbase):
 
