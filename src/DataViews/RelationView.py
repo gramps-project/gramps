@@ -947,7 +947,22 @@ class RelationshipView(PageView.PersonNavView):
         
         if handle:
             name = self.get_name(handle, True)
-            link_label = widgets.LinkLabel(name, self._button_press, handle)
+            person = self.dbstate.db.get_person_from_handle(handle)
+            parent = len(person.get_parent_family_handle_list()) > 0
+            format = ''
+            relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+            if parent:
+                if relation_display_theme == "CLASSIC":
+                    format = 'underline="single" weight="heavy" style="italic"'
+                elif relation_display_theme == "WEBPAGE":
+                    format = 'foreground="blue" weight="heavy"'
+            else:
+                if relation_display_theme == "CLASSIC":
+                    format = 'underline="single"'
+                elif relation_display_theme == "WEBPAGE":
+                    format = 'foreground="blue"'
+            link_label = widgets.LinkLabel(name, self._button_press, 
+                                           handle, format)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             if Config.get(Config.RELEDITBTN):
