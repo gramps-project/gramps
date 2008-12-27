@@ -1214,12 +1214,15 @@ class DataEntryGramplet(Gramplet):
         rows = gtk.VBox()
         self.dirty = False
         self.dirty_person = None
+        self.dirty_family = None
         self.de_widgets = {}
-        for items in [("Active person", _("Active person"), None, True, self.edit_person, False, 0), 
-                      ("APName", _("Surname, Given"), None, False, None, True, 0), 
-                      ("APGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, None, True, 2),
-                      ("APBirth", _("Birth"), None, False, None, True, 0), 
-                      ("APDeath", _("Death"), None, False, None, True, 0)
+        for items in [("Active person", _("Active person"), None, True, 
+                       [("Edit person", "", self.edit_person), ("Edit family", "Family:", self.edit_family)], 
+                       False, 0), 
+                      ("APName", _("Surname, Given"), None, False, [], True, 0), 
+                      ("APGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, [], True, 2),
+                      ("APBirth", _("Birth"), None, False, [], True, 0), 
+                      ("APDeath", _("Death"), None, False, [], True, 0)
                      ]:
             pos, text, choices, readonly, callback, dirty, default = items
             row = self.make_row(pos, text, choices, readonly, callback, dirty, default)
@@ -1267,9 +1270,12 @@ class DataEntryGramplet(Gramplet):
     def main(self): # return false finishes
         if self.dirty:
             return
+        self.de_widgets["Active person:Edit family"].hide()
+        self.de_widgets["Active person:Edit family:Label"].hide()
         active_person = self.dbstate.get_active_person()
         self.dirty_person = active_person
         if active_person:
+            self.de_widgets["Active person:Edit person"].show()
             # Fill in current person edits:
             name = name_displayer.display(active_person)
             self.de_widgets["Active person"].set_text("<i>%s</i> " % name)
@@ -1307,8 +1313,14 @@ class DataEntryGramplet(Gramplet):
                     if place_text:
                         death_text += _("in") + " " + place_text
             self.de_widgets["APDeath"].set_text(death_text)
+            family_list = active_person.get_family_handle_list()
+            if len(family_list) > 0:
+                self.dirty_family = self.dbstate.db.get_family_from_handle(family_list[0])
+                self.de_widgets["Active person:Edit family"].show()
+                self.de_widgets["Active person:Edit family:Label"].show()
         else:
             self.clear_data_edit(None)
+            self.de_widgets["Active person:Edit person"].hide()
         # Add options for adding:
         self.reset_add_type()
         self.dirty = False
@@ -1328,7 +1340,7 @@ class DataEntryGramplet(Gramplet):
             self.de_widgets["NPRelation"].append_text(add_type)
         self.de_widgets["NPRelation"].set_active(self.NO_REL)
                 
-    def make_row(self, pos, text, choices=None, readonly=False, callback=None,
+    def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
         import gtk
         # Data Entry: Active Person
@@ -1365,7 +1377,11 @@ class DataEntryGramplet(Gramplet):
                     self.de_widgets[pos].connect("changed", self.mark_dirty)
                 row.pack_start(label, False)
                 row.pack_start(eventBox, True, True)
-        if callback:
+        for name, text, callback in callback_list:
+            label = gtk.Label()
+            label.set_text(text)
+            self.de_widgets[pos + ":" + name + ":Label"] = label
+            row.pack_start(label, False)
             icon = gtk.STOCK_EDIT
             size = gtk.ICON_SIZE_MENU
             button = gtk.Button()
@@ -1374,7 +1390,7 @@ class DataEntryGramplet(Gramplet):
             button.add(image)
             button.set_relief(gtk.RELIEF_NONE)
             button.connect("clicked", callback)
-            #button.show_all()
+            self.de_widgets[pos + ":" + name] = button
             row.pack_start(button, False)
         row.show_all()
         return row
@@ -1397,6 +1413,15 @@ class DataEntryGramplet(Gramplet):
                        self.gui.uistate, [], 
                        self.dirty_person,
                        callback=self.edit_callback)
+        except Errors.WindowActiveError:
+            pass
+
+    def edit_family(self, obj):
+        from Editors import EditFamily
+        try:
+            EditFamily(self.gui.dbstate, 
+                       self.gui.uistate, [], 
+                       self.dirty_family)
         except Errors.WindowActiveError:
             pass
     
