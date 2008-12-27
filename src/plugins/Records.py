@@ -98,7 +98,7 @@ def _find_records(db, filter, callname):
         else:
             death_date = None
 
-        if not birth_date.is_regular():
+        if not birth_date.is_valid():
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
@@ -108,7 +108,7 @@ def _find_records(db, filter, callname):
             # Still living, look for age records
             _record(person_youngestliving, person_oldestliving,
                     today_date - birth_date, name, 'Person', person_handle)
-        elif death_date.is_regular():
+        elif death_date.is_valid():
             # Already died, look for age records
             _record(person_youngestdied, person_oldestdied,
                     death_date - birth_date, name, 'Person', person_handle)
@@ -125,12 +125,12 @@ def _find_records(db, filter, callname):
                 elif event.get_type() == EventType.DIVORCE:
                     divorce_date = event.get_date_object()
 
-            if marriage_date is not None and marriage_date.is_regular():
+            if marriage_date is not None and marriage_date.is_valid():
                 _record(person_youngestmarried, person_oldestmarried,
                         marriage_date - birth_date,
                         name, 'Person', person_handle)
 
-            if divorce_date is not None and divorce_date.is_regular():
+            if divorce_date is not None and divorce_date.is_valid():
                 _record(person_youngestdivorced, person_oldestdivorced,
                         divorce_date - birth_date,
                         name, 'Person', person_handle)
@@ -145,7 +145,7 @@ def _find_records(db, filter, callname):
                 child_birth = db.get_event_from_handle(child_birth_ref.ref)
                 child_birth_date = child_birth.get_date_object()
 
-                if not child_birth_date.is_regular():
+                if not child_birth_date.is_valid():
                     continue
 
                 if person.get_gender() == person.MALE:
@@ -218,19 +218,19 @@ def _find_records(db, filter, callname):
             mother_death = db.get_event_from_handle(mother_death_ref.ref)
             mother_death_date = mother_death.get_date_object()
 
-        if not marriage or not marriage_date.is_regular():
+        if not marriage or not marriage_date.is_valid():
             # Not married or marriage date unknown
             continue
 
-        if divorce and not divorce_date.is_regular():
+        if divorce and not divorce_date.is_valid():
             # Divorced, but divorce date unknown
             continue
 
-        if father_death and (not father_death_date or not father_death_date.is_regular()):
+        if father_death and (not father_death_date or not father_death_date.is_valid()):
             # Father dead, but death date unknown
             continue
 
-        if mother_death and (not mother_death_date or not mother_death_date.is_regular()):
+        if mother_death and (not mother_death_date or not mother_death_date.is_valid()):
             # Mother dead, but death date unknown
             continue
 
@@ -304,28 +304,7 @@ def _record(lowest, highest, value, text, handle_type, handle):
 
 
 def _output(value):
-
-    if isinstance(value, tuple) and len(value) == 3:
-        # time span as years, months, days
-        (years, months, days) = value
-        result = []
-        if years == 1:
-            result.append(_("1 year"))
-        elif years != 0:
-            result.append(_("%s years") % years)
-        if months == 1:
-            result.append(_("1 month"))
-        elif months != 0:
-            result.append(_("%s months") % months)
-        if days == 1:
-            result.append(_("1 day"))
-        elif days != 0:
-            result.append(_("%s days") % days)
-        if not result:
-            result.append(_("0 days"))
-        return ", ".join(result)
-    else:
-        return str(value)
+    return str(value)
 
 
 #------------------------------------------------------------------------
