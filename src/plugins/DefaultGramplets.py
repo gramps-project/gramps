@@ -1318,6 +1318,12 @@ class DataEntryGramplet(Gramplet):
                 self.dirty_family = self.dbstate.db.get_family_from_handle(family_list[0])
                 self.de_widgets["Active person:Edit family"].show()
                 self.de_widgets["Active person:Edit family:Label"].show()
+            else:
+                family_list = active_person.get_parent_family_handle_list()
+                if len(family_list) > 0:
+                    self.dirty_family = self.dbstate.db.get_family_from_handle(family_list[0])
+                    self.de_widgets["Active person:Edit family"].show()
+                    self.de_widgets["Active person:Edit family:Label"].show()
         else:
             self.clear_data_edit(None)
             self.de_widgets["Active person:Edit person"].hide()
