@@ -599,6 +599,8 @@ class GuiGramplet:
                                      fill,
                                      padding,
                                      pack)
+            if self.pui:
+                self.pui.update()
 
     def change_state(self, obj):
         if self.state == "windowed":
