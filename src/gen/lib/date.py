@@ -78,11 +78,19 @@ class Span:
         return self.diff_tuple[pos]
 
     def __repr__(self):
+        retval = ""
+        if self.diff_tuple[0] != 0:
+            retval += (_("%d years") % self.diff_tuple[0])
         if self.diff_tuple[1] != 0:
-            retval = ((_("%d years") % self.diff_tuple[0])+ ", " +
-                      (_("%d months") % self.diff_tuple[1]))
-        else:
-            retval = (_("%d years") % self.diff_tuple[0])
+            if retval != "":
+                retval += ", "
+            retval += (_("%d months") % self.diff_tuple[1])
+        if self.diff_tuple[2] != 0 and "," not in retval:
+            if retval != "":
+                retval += ", "
+            retval += (_("%d days") % self.diff_tuple[2])
+        if retval == "":
+            retval = "0 days"
         return retval
 
     def __int__(self):
@@ -354,9 +362,9 @@ class Date:
             if date1.calendar != date2.calendar:
                 diff = date1.sortval - date2.sortval
                 if negative:
-                    return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
-                else:
                     return Span(-diff/365, -((diff % 365)/30), -((diff % 365) % 30))
+                else:
+                    return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
             # days:
             if d2[2] > d1[2]:
                 # months:
