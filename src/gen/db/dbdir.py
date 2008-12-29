@@ -393,6 +393,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             the_txn = self.env.txn_begin()
             self.metadata.put('default', str(handle), txn=the_txn)
             the_txn.commit()
+            self.emit('home-person-changed')
 
     def get_default_person(self):
         try:

@@ -164,7 +164,8 @@ class GrampsDbBase(Callback):
         'note-rebuild'       : None, 
         'long-op-start'      : (object, ),
         'long-op-heartbeat'  : None,
-        'long-op-end'        : None
+        'long-op-end'        : None,
+        'home-person-changed': None,
         }
     
     # If this is True logging will be turned on.
@@ -1924,6 +1925,7 @@ class GrampsDbBase(Callback):
         """Set the default Person to the passed instance."""
         if (self.metadata is not None) and (not self.readonly):
             self.metadata['default'] = str(handle)
+            self.emit('home-person-changed')
 
     def get_default_person(self):
         """Return the default Person of the database."""
