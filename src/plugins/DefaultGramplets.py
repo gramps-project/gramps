@@ -1239,7 +1239,13 @@ class DataEntryGramplet(Gramplet):
         rows.pack_start(row, False)
 
         for items in [("New person", _("New person"), None, True, 0), 
-                      ("NPRelation", _("Add relation"), [_("No relation to active person")], False, 0),
+                      ("NPRelation", _("Add relation"), 
+                       [_("No relation to active person"),
+                        _("Add as a Parent"), 
+                        _("Add as a Spouse"), 
+                        _("Add as a Sibling"), 
+                        _("Add as a Child")],
+                       False, 0),
                       ("NPName", _("Surname, Given"), None, False, 0), 
                       ("NPGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, 2),
                       ("NPBirth", _("Birth"), None, False, 0), 
@@ -1327,25 +1333,8 @@ class DataEntryGramplet(Gramplet):
         else:
             self.clear_data_edit(None)
             self.de_widgets["Active person:Edit person"].hide()
-        # Add options for adding:
-        self.reset_add_type()
         self.dirty = False
 
-    def reset_add_type(self):
-        # We reset these in case they change
-        for i in range(10):
-            try:
-                self.de_widgets["NPRelation"].remove_text(0)
-            except:
-                break
-        for add_type in [_("No relation to active person"),
-                         _("Add as a Parent"), 
-                         _("Add as a Spouse"), 
-                         _("Add as a Sibling"), 
-                         _("Add as a Child")]:
-            self.de_widgets["NPRelation"].append_text(add_type)
-        self.de_widgets["NPRelation"].set_active(self.NO_REL)
-                
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
                  mark_dirty=False, default=0):
         import gtk
@@ -1882,7 +1871,6 @@ class DataEntryGramplet(Gramplet):
         self.de_widgets["NPName"].set_text("")
         self.de_widgets["NPBirth"].set_text("")
         self.de_widgets["NPDeath"].set_text("")
-        self.reset_add_type()
         self.de_widgets["NPRelation"].set_active(self.NO_REL) 
         self.de_widgets["NPGender"].set_active(gen.lib.Person.UNKNOWN) 
 
