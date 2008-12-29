@@ -214,7 +214,7 @@ class AgeStatsGramplet(Gramplet):
         retval = _("Statistics") + ":\n"
         retval += "  " + _("Total") + ": %d\n" % count
         retval += "  " + _("Minimum") + ": %d\n" % minval
-        retval += "  " + _("Average") + ": %.2f\n" % average
+        retval += "  " + _("Average") + ": %.1f\n" % average
         retval += "  " + _("Median") + ": %d\n" % median
         retval += "  " + _("Maximum") + ": %d\n" % maxval
         return retval
@@ -243,19 +243,26 @@ class AgeStatsGramplet(Gramplet):
         if max_bin != 0:
             i = 0
             self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
-            self.append_text(column.center(8) + self.format(title, graph_width, align="center") + "\n")
+            self.append_text(column.center(8) + self.format(title, graph_width-4, align="center") + " % |" + "\n")
             self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
             for bin in bin:
                 self.append_text((" %3d-%3d" % (i * 5, (i+1)* 5,)))
                 selected = self.make_handles_set(i * 5, (i+1) *5, handles)
-                self.link(self.format("X" * int(bin/max_bin * graph_width), graph_width),
+                self.link(self.format("X" * int(bin/max_bin * (graph_width-4)), graph_width-4),
                           'PersonList', 
                           selected,
                           tooltip=_("Double-click to see %d people" % len(selected)))
+                procent = float(len(selected))/(float(sum(hash.values())))*100
+                if procent > 10.0:
+                    self.append_text("%2.1f" % procent)
+                else:
+                    self.append_text("%1.2f" % procent)
                 self.append_text("\n")
                 i += 1
-            self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
-            self.append_text(" " + _("Counts") + " " + self.ticks(graph_width, start = 0, stop = int(max_bin)) + "\n\n")
+            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "\n")
+            #self.append_text(" " + _("Counts") + " " + self.ticks(graph_width, start = 0, stop = int(max_bin)) + "\n\n")
+            self.append_text(" " + _("   %  ") + " " + self.ticks(graph_width-4, start = 0, stop = int(max_bin/(float(sum(hash.values())))*100)) + "\n\n")
+            #print max_bin, sum(hash.values()), int(max_bin/(float(sum(hash.values())))*100)
             self.append_text(self.compute_stats(hash))
             self.append_text("\n")
     
