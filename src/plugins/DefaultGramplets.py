@@ -151,6 +151,7 @@ class LogGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Click name to change active\nDouble-click name to edit")
         self.set_text(_("Log for this Session"))
+        self.gui.force_update = True # will always update, even if minimized
         self.append_text("\n--------------------\n")
         self.history = {}
 
