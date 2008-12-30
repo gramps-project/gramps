@@ -242,9 +242,9 @@ class AgeStatsGramplet(Gramplet):
         max_bin = float(max(bin))
         if max_bin != 0:
             i = 0
-            self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
-            self.append_text(column.center(8) + self.format(title, graph_width-4, align="center") + " % |" + "\n")
-            self.append_text("--------" + self.format("", graph_width, fill = "-", borders="++") + "\n")
+            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
+            self.append_text(column.center(8) + self.format(title, graph_width-4, align="center") + "  %  " + "\n")
+            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
             for bin in bin:
                 self.append_text((" %3d-%3d" % (i * 5, (i+1)* 5,)))
                 selected = self.make_handles_set(i * 5, (i+1) *5, handles)
@@ -254,12 +254,12 @@ class AgeStatsGramplet(Gramplet):
                           tooltip=_("Double-click to see %d people" % len(selected)))
                 procent = float(len(selected))/(float(sum(hash.values())))*100
                 if procent > 10.0:
-                    self.append_text("%2.1f" % procent)
+                    self.append_text("%2.2f" % procent)
                 else:
-                    self.append_text("%1.2f" % procent)
+                    self.append_text("% 1.2f" % procent)
                 self.append_text("\n")
                 i += 1
-            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "\n")
+            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
             self.append_text("    %   " + self.ticks(graph_width-4, start = 0, stop = int(max_bin/(float(sum(hash.values())))*100)) + "\n\n")
             self.append_text(self.compute_stats(hash))
             self.append_text("\n")
