@@ -336,7 +336,8 @@ class Gramplet(object):
         self.gui.data.append(text)
 
     def update(self, *args):
-        if self.gui.state in ["closed", "minimized"]: return
+        if (self.gui.state in ["closed", "minimized"] and 
+            not self.gui.force_update): return
         if self._idle_id != 0:
             if debug: print "%s interrupt!" % self.gui.title
             self.interrupt()
@@ -513,6 +514,7 @@ class GuiGramplet:
         self.dbstate = dbstate
         self.uistate = uistate
         self.title = title
+        self.force_update = False
         ########## Set defaults
         self.name = kwargs.get("name", "Unnamed Gramplet")
         self.tname = kwargs.get("tname", "Unnamed Gramplet")
@@ -651,6 +653,24 @@ class GuiGramplet:
     def insert_text(self, text):
         self.buffer.insert_at_cursor(text)
 
+    def len_text(self, text):
+        i = 0
+        r = 0
+        while i < len(text):
+            if ord(text[i]) > 126:
+                t = 0
+                while ord(text[i]) > 126:
+                    i += 1
+                    t += 1
+                r += t/2
+            elif text[i] == "\\":
+                r += 1
+                i += 2
+            else:
+                r += 1
+                i += 1
+        return r
+
     def render_text(self, text):
         markup_pos = {"B": [], "I": [], "U": [], "A": []}
         retval = ""
@@ -693,7 +713,7 @@ class GuiGramplet:
                 retval += text[i]
                 r += 1
                 i += 1
-        offset = len(self.get_text())
+        offset = self.len_text(self.get_text())
         self.append_text(retval)
         for (a,attributes,b) in markup_pos["B"]:
             start = self.buffer.get_iter_at_offset(a + offset)
