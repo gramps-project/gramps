@@ -33,7 +33,7 @@ import datetime
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.lib import Date, EventType, Name
+from gen.lib import ChildRefType, Date, EventType, Name
 import BaseDoc
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
@@ -143,6 +143,15 @@ def _find_records(db, filter, callname):
                         name, 'Person', person_handle)
 
             for child_ref in family.get_child_ref_list():
+                if person.get_gender() == person.MALE:
+                    relation = child_ref.get_father_relation()
+                elif person.get_gender() == person.FEMALE:
+                    relation = child_ref.get_mother_relation()
+                else:
+                    continue
+                if relation != ChildRefType.BIRTH:
+                    continue
+
                 child = db.get_person_from_handle(child_ref.ref)
 
                 child_birth_ref = child.get_birth_ref()
