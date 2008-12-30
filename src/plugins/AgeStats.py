@@ -260,9 +260,7 @@ class AgeStatsGramplet(Gramplet):
                 self.append_text("\n")
                 i += 1
             self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "\n")
-            #self.append_text(" " + _("Counts") + " " + self.ticks(graph_width, start = 0, stop = int(max_bin)) + "\n\n")
-            self.append_text(" " + _("   %  ") + " " + self.ticks(graph_width-4, start = 0, stop = int(max_bin/(float(sum(hash.values())))*100)) + "\n\n")
-            #print max_bin, sum(hash.values()), int(max_bin/(float(sum(hash.values())))*100)
+            self.append_text("    %  ") + " " + self.ticks(graph_width-4, start = 0, stop = int(max_bin/(float(sum(hash.values())))*100)) + "\n\n")
             self.append_text(self.compute_stats(hash))
             self.append_text("\n")
     
