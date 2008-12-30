@@ -567,7 +567,7 @@ class GuiGramplet:
 
     def detach(self):
         # hide buttons:
-        self.set_state("maximized")
+        self.set_state("windowed") 
         self.gvclose.hide()
         self.gvstate.hide()
         self.gvproperties.hide()
@@ -576,7 +576,6 @@ class GuiGramplet:
         self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
-        self.state = "windowed"
 
     def set_state(self, state):
         self.state = state
@@ -599,7 +598,7 @@ class GuiGramplet:
                                      fill,
                                      padding,
                                      pack)
-            if self.pui:
+            if state == "maximized" and self.pui:
                 self.pui.update()
 
     def change_state(self, obj):
