@@ -148,12 +148,12 @@ def _find_records(db, filter, callname):
                 elif event.get_type() == EventType.DIVORCE:
                     divorce_date = event.get_date_object()
 
-            if marriage_date is not None and _good_date(marriage_date):
+            if _good_date(marriage_date):
                 _record(person_youngestmarried, person_oldestmarried,
                         marriage_date - birth_date,
                         name, 'Person', person_handle)
 
-            if divorce_date is not None and _good_date(divorce_date):
+            if _good_date(divorce_date):
                 _record(person_youngestdivorced, person_oldestdivorced,
                         divorce_date - birth_date,
                         name, 'Person', person_handle)
@@ -223,39 +223,35 @@ def _find_records(db, filter, callname):
                 len(family.get_child_ref_list()),
                 name, 'Family', family_handle)
 
-        marriage = None
-        divorce = None
         marriage_date = None
         divorce_date = None
         for event_ref in family.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
             if event.get_type() == EventType.MARRIAGE:
-                marriage = event
                 marriage_date = event.get_date_object()
             elif event.get_type() == EventType.DIVORCE:
-                divorce = event
                 divorce_date = event.get_date_object()
 
         father_death_date = _find_death_date(db, father)
         mother_death_date = _find_death_date(db, mother)
 
-        if not marriage or not _good_date(marriage_date):
+        if not _good_date(marriage_date):
             # Not married or marriage date unknown
             continue
 
-        if divorce and not _good_date(divorce_date):
-            # Divorced, but divorce date unknown
-            continue
+        #if not _good_date(divorce_date):
+        #    # Divorced, but divorce date unknown
+        #    continue
 
-        if (not father_death_date or not _good_date(father_death_date)):
-            # Father dead, but death date unknown
-            continue
+        #if not _good_date(father_death_date):
+        #    # Father dead, but death date unknown
+        #    continue
 
-        if (not mother_death_date or not _good_date(mother_death_date)):
-            # Mother dead, but death date unknown
-            continue
+        #if not _good_date(mother_death_date):
+        #    # Mother dead, but death date unknown
+        #    continue
 
-        if not divorce and not father_death_date and not mother_death_date:
+        if divorce_date is None and father_death_date is None and mother_death_date is None:
             # Still married and alive
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
@@ -269,7 +265,7 @@ def _find_records(db, filter, callname):
                 end = father_death_date
             elif mother_death_date:
                 end = mother_death_date
-            if divorce:
+            if divorce_date:
                 if end:
                     end = min(end, divorce_date)
                 else:
