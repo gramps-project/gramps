@@ -2351,7 +2351,7 @@ def born_str(database, person, person_name=None, verbose=True,
 #
 #-------------------------------------------------------------------------
 def died_str(database, person, person_name=None, verbose=True, 
-             empty_date="", empty_place="", age=None, age_units=0):
+             empty_date="", empty_place="", span=None):
     """
     Write obit sentence.
         FIRSTNAME died on Date
@@ -2391,6 +2391,28 @@ def died_str(database, person, person_name=None, verbose=True,
     bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod = \
                 get_birth_death_strings(database, person, empty_date, empty_place)
 
+    # TODO: fixme to let date format itself
+    if span and span.is_valid():
+        YEARS  = 1
+        MONTHS = 2
+        DAYS   = 3
+        if span[0] != 0:
+            age = span[0]
+            age_units = YEARS
+        elif span[1] != 0:
+            age = span[1]
+            age_units = MONTHS
+        elif span[2] != 0:
+            age = span[2]
+            age_units = DAYS
+        else:
+            age = 0
+            age_units = 0
+    else:
+        age = 0
+        age_units = 0
+    # end of todo ----------------------------
+
     value_map = {
         'name'                : person_name, 
         'unknown_gender_name' : person_name, 
@@ -2399,7 +2421,7 @@ def died_str(database, person, person_name=None, verbose=True,
         'death_date'          : ddate, 
         'modified_date'       : ddate, 
         'death_place'         : dplace, 
-        'age'                 : age , 
+        'age'                 : age, 
         'month_year'          : ddate, 
         }
 
@@ -2772,22 +2794,8 @@ def old_calc_age(database, person):
     """
     Calculate age. 
     
-    Returns a tuple (age, units) where units is an integer representing
-    time units:
-        no age info:    0
-        years:          1
-        months:         2
-        days:           3
+    Returns a date difference span.
     """
-    YEARS  = 1
-    MONTHS = 2
-    DAYS   = 3
-
-    # FIXME: This is an old and ugly implementation. 
-    # It must be changed to use the new age calculator.
-    age = 0
-    units = 0
-
     birth_ref = person.get_birth_ref()
     if birth_ref:
         birth = database.get_event_from_handle(birth_ref.ref).get_date_object()
@@ -2803,50 +2811,9 @@ def old_calc_age(database, person):
 
     # wihtout at least a year for each event we're clueless
     if not (birth_year_valid and death_year_valid):
-        return (age, units)
+        return None
     
-    # FIXME: The code below uses hard-coded 31 days in a month
-    # and 12 month in a year. This is incorrect for half the Gregorian
-    # months and for other calendars.
-    # FIXME: We need to move to estimate_age !!!
-
-    # If born and died in the same year, go to the months
-    if death.get_year() == birth.get_year():
-        if birth.get_month_valid() and death.get_month_valid():
-            # if born and died in the same month, do the days
-            if birth.get_month() == death.get_month() \
-               and birth.get_day_valid() and death.get_day_valid():
-                age = death.get_day() - birth.get_day()
-                units = DAYS
-            # if not the same month, just diff the months
-            else:
-                age = death.get_month() - birth.get_month()
-                units = MONTHS
-    # Born and died in different years
-    else:
-        age = death.get_year() - birth.get_year()
-        units = YEARS
-        if birth.get_month_valid() and death.get_month_valid():
-            # Subtract one year if less than a last full year
-            if birth.get_month() > death.get_month():
-                age = age - 1
-
-            # If less than a year (but still in different years)
-            # then calculate month diff modulo 12
-            if age == 0:
-                age = 12 + death.get_month() - birth.get_month()
-                units = MONTHS
-
-    # This is the case of birth on Dec 30 and death on Jan 2
-    # or birth on May 30 and death on June 2
-    if age == 1 and units == MONTHS \
-       and birth.get_day_valid() and death.get_day_valid() \
-       and birth.get_day() > death.get_day():
-        age = death.get_day() + 31 - birth.get_day()
-        units = DAYS
-
-    return (age, units)
-
+    return death - birth
     
 def common_name(person, use_call=False):
     if use_call and person.get_primary_name().get_call_name():

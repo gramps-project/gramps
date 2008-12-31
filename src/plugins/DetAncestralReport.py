@@ -250,9 +250,9 @@ class DetAncestorReport(Report):
         if text:
             self.doc.write_text(text)
 
-        age,units = self.calc_age(person)
+        span = self.calc_age(person)
         text = ReportUtils.died_str(self.database, person, first, self.verbose,
-                                    self.EMPTY_DATE, self.EMPTY_PLACE, age, units)
+                                    self.EMPTY_DATE, self.EMPTY_PLACE, span)
         if text:
             death_ref = person.get_death_ref()
             if death_ref:
@@ -629,10 +629,10 @@ class DetAncestorReport(Report):
                     self.doc.write_text(text)
                     print_name = 0
 
-                age, units = self.calc_age(ind)
+                span = self.calc_age(ind)
                 text = ReportUtils.died_str(self.database, ind, print_name, 
                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE,
-                           age, units)
+                           span)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0
@@ -671,7 +671,7 @@ class DetAncestorReport(Report):
         if self.calcageflag:
             return ReportUtils.old_calc_age(self.database,ind)
         else:
-            return (0,0)
+            return None
 
     def endnotes(self, obj):
         if not obj or not self.inc_sources:

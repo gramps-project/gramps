@@ -77,6 +77,9 @@ class Span:
     def __getitem__(self, pos):
         return self.diff_tuple[pos]
 
+    def is_valid(self):
+        return True
+
     def __repr__(self):
         retval = ""
         if self.diff_tuple[0] != 0:
@@ -348,23 +351,20 @@ class Date:
         elif isinstance(other, type(self)):             # Date1 - Date2 -> tuple
             # We should make sure that Date2 + tuple -> Date1 and
             #                          Date1 - tuple -> Date2
-            d1 = [i or 1 for i in self.get_ymd()]
-            d2 = [i or 1 for i in other.get_ymd()]
-
             date1 = self
             date2 = other
             negative = False
+            if date1.calendar != Date.CAL_GREGORIAN:
+                date1 = date1.to_calendar("gregorian")
+            if date2.calendar != Date.CAL_GREGORIAN:
+                date2 = date2.to_calendar("gregorian")
+            d1 = [i or 1 for i in date1.get_ymd()]
+            d2 = [i or 1 for i in date2.get_ymd()]
             if d1 < d2:
                 d1, d2 = d2, d1
                 date1, date2 = date2, date1
                 negative = True
             # d1 - d2 (1998, 12, 32) - (1982, 12, 15)
-            if date1.calendar != date2.calendar:
-                diff = date1.sortval - date2.sortval
-                if negative:
-                    return Span(-diff/365, -((diff % 365)/30), -((diff % 365) % 30))
-                else:
-                    return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
             # days:
             if d2[2] > d1[2]:
                 # months:
