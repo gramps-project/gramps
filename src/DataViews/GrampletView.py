@@ -467,6 +467,29 @@ class Gramplet(object):
                     if event.button == 1: # left mouse
                         GrampsDisplay.help(handle.replace(" ", "_"))
                     return True
+                elif link_type == 'Family':
+                    family = self.dbstate.db.get_family_from_handle(handle)
+                    if family is not None:
+                        if event.button == 1: # left mouse
+                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                                try:
+                                    from Editors import EditFamily
+                                    EditFamily(self.gui.dbstate, 
+                                               self.gui.uistate, 
+                                               [], family)
+                                    return True # handled event
+                                except Errors.WindowActiveError:
+                                    pass
+                        elif event.button == 3: # right mouse
+                            #FIXME: add a popup menu with options
+                            try:
+                                from Editors import EditFamily
+                                EditFamily(self.gui.dbstate, 
+                                           self.gui.uistate, 
+                                           [], family)
+                                return True # handled event
+                            except Errors.WindowActiveError:
+                                pass
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse
                         if event.type == gtk.gdk._2BUTTON_PRESS: # double
