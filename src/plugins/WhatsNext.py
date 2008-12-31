@@ -312,19 +312,7 @@ class WhatNextGramplet(Gramplet):
             missingbits.append(_("relation type unknown"))
 
         if missingbits:
-            # TODO: When linktype 'Family' is introduced, use this:
-            # self.link(name, 'Family', family.get_handle())
-            # TODO: instead of this:
-            if person1:
-                self.link(name1, 'Person', person1.get_handle())
-            else:
-                self.append_text(name1)
-            self.append_text(_(" and "))
-            if person2:
-                self.link(name2, 'Person', person2.get_handle())
-            else:
-                self.append_text(name2)
-            # TODO: end.
+            self.link(name, 'Family', family.get_handle())
             self.append_text(_(": %(list)s\n") % {
                 'list': _(", ").join(missingbits)})
             self.__counter += 1

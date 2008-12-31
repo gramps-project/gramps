@@ -361,23 +361,7 @@ class RecordsGramplet(Gramplet):
                     last_value = value
                     rank = number
                 self.append_text("\n  %s. " % (rank+1))
-                # TODO: When linktype 'Family' is introduced, use this:
-                # self.link(name, handletype, handle)
-                # TODO: instead of this:
-                if handletype == 'Family':
-                    family = self.dbstate.db.get_family_from_handle(handle)
-                    father_handle = family.get_father_handle()
-                    father = self.dbstate.db.get_person_from_handle(father_handle)
-                    father_name = _person_get_display_name(father, RecordsReportOptions.CALLNAME_DONTUSE)
-                    self.link(father_name, 'Person', father_handle)
-                    self.append_text(_(" and "))
-                    mother_handle = family.get_mother_handle()
-                    mother = self.dbstate.db.get_person_from_handle(mother_handle)
-                    mother_name = _person_get_display_name(mother, RecordsReportOptions.CALLNAME_DONTUSE)
-                    self.link(mother_name, 'Person', mother_handle)
-                else:
-                    self.link(name, handletype, handle)
-                # TODO: end.
+                self.link(name, handletype, handle)
                 self.append_text(" (%s)" % _output(value))
             self.append_text("\n")
         self.append_text("", scroll_to='begin')
