@@ -42,7 +42,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption,
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
         CATEGORY_TEXT
 from gen.plug import PluginManager
-from gen.lib import EventType
+from Utils import probably_alive
 
 MODE_GUI = PluginManager.REPORT_MODE_GUI
 MODE_BKI = PluginManager.REPORT_MODE_BKI
@@ -58,10 +58,13 @@ MODE_CLI = PluginManager.REPORT_MODE_CLI
 #------------------------------------------------------------------------
 
 def _good_date(date):
-    if RecordsReportOptions.REGULAR_DATES_ONLY:
-        return date.is_regular()
+    if date:
+        if RecordsReportOptions.REGULAR_DATES_ONLY:
+            return date.is_regular()
+        else:
+            return date.is_valid()
     else:
-        return date.is_valid()
+        return False
 
 def _find_death_date(db, person):
     death_ref = person.get_death_ref()
@@ -124,9 +127,10 @@ def _find_records(db, filter, callname):
         name = _person_get_display_name(person, callname)
 
         if death_date is None:
-            # Still living, look for age records
-            _record(person_youngestliving, person_oldestliving,
-                    today_date - birth_date, name, 'Person', person_handle)
+            if probably_alive(person, db):
+                # Still living, look for age records
+                _record(person_youngestliving, person_oldestliving,
+                        today_date - birth_date, name, 'Person', person_handle)
         elif _good_date(death_date):
             # Already died, look for age records
             _record(person_youngestdied, person_oldestdied,
@@ -253,9 +257,10 @@ def _find_records(db, filter, callname):
 
         if not divorce and not father_death_date and not mother_death_date:
             # Still married and alive
-            _record(family_youngestmarried, family_oldestmarried,
-                    today_date - marriage_date,
-                    name, 'Family', family_handle)
+            if probably_alive(father, db) and probably_alive(mother, db):
+                _record(family_youngestmarried, family_oldestmarried,
+                        today_date - marriage_date,
+                        name, 'Family', family_handle)
         else:
             end = None
             if father_death_date and mother_death_date:
