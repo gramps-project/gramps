@@ -66,6 +66,7 @@ def _good_date(date):
     else:
         return False
 
+
 def _find_death_date(db, person):
     death_ref = person.get_death_ref()
     if death_ref:
@@ -239,33 +240,23 @@ def _find_records(db, filter, callname):
             # Not married or marriage date unknown
             continue
 
-        #if not _good_date(divorce_date):
-        #    # Divorced, but divorce date unknown
-        #    continue
-
-        #if not _good_date(father_death_date):
-        #    # Father dead, but death date unknown
-        #    continue
-
-        #if not _good_date(mother_death_date):
-        #    # Mother dead, but death date unknown
-        #    continue
-
         if divorce_date is None and father_death_date is None and mother_death_date is None:
             # Still married and alive
             if probably_alive(father, db) and probably_alive(mother, db):
                 _record(family_youngestmarried, family_oldestmarried,
                         today_date - marriage_date,
                         name, 'Family', family_handle)
-        else:
+        elif (_good_date(divorce_date) or 
+              _good_date(father_death_date) or 
+              _good_date(mother_death_date)):
             end = None
-            if father_death_date and mother_death_date:
+            if _good_date(father_death_date) and _good_date(mother_death_date):
                 end = min(father_death_date, mother_death_date)
-            elif father_death_date:
+            elif _good_date(father_death_date):
                 end = father_death_date
-            elif mother_death_date:
+            elif _good_date(mother_death_date):
                 end = mother_death_date
-            if divorce_date:
+            if _good_date(divorce_date):
                 if end:
                     end = min(end, divorce_date)
                 else:
@@ -273,7 +264,7 @@ def _find_records(db, filter, callname):
             duration = end - marriage_date
 
             _record(family_shortest, family_longest,
-                    end - marriage_date, name, 'Family', family_handle)
+                    duration, name, 'Family', family_handle)
 
     return [(text, varname, locals()[varname]) for (text, varname, default) in RECORDS]
 
