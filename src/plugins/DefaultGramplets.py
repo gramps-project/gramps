@@ -1218,7 +1218,7 @@ class DataEntryGramplet(Gramplet):
         self.dirty_family = None
         self.de_widgets = {}
         for items in [("Active person", _("Active person"), None, True, 
-                       [("Edit person", "", self.edit_person), ("Edit family", "Family:", self.edit_family)], 
+                       [("Edit person", "", self.edit_person), ("Edit family", _("Family:"), self.edit_family)], 
                        False, 0), 
                       ("APName", _("Surname, Given"), None, False, [], True, 0), 
                       ("APGender", _("Gender"), [_("female"), _("male"), _("unknown")], False, [], True, 2),
