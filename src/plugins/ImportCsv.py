@@ -510,9 +510,9 @@ class CSVParser:
                 if gender:
                     # replace
                     gender = gender.lower()
-                    if gender == gender_map[gen.lib.Person.MALE]:
+                    if gender == gender_map[gen.lib.Person.MALE].lower():
                         gender = gen.lib.Person.MALE
-                    elif gender == gender_map[gen.lib.Person.FEMALE]:
+                    elif gender == gender_map[gen.lib.Person.FEMALE].lower():
                         gender = gen.lib.Person.FEMALE
                     else:
                         gender = gen.lib.Person.UNKNOWN
@@ -634,9 +634,9 @@ class CSVParser:
                         person.gramps_id = person_ref[1:-1]
                 if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
                     gender = gender.lower()
-                    if gender == gender_map[gen.lib.Person.MALE]:
+                    if gender == gender_map[gen.lib.Person.MALE].lower():
                         gender = gen.lib.Person.MALE
-                    elif gender == gender_map[gen.lib.Person.FEMALE]:
+                    elif gender == gender_map[gen.lib.Person.FEMALE].lower():
                         gender = gen.lib.Person.FEMALE
                     else:
                         gender = gen.lib.Person.UNKNOWN
