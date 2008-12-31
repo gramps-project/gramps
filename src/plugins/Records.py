@@ -42,6 +42,7 @@ from gen.plug.menu import (BooleanOption, EnumeratedListOption,
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
         CATEGORY_TEXT
 from gen.plug import PluginManager
+from gen.lib import EventType
 
 MODE_GUI = PluginManager.REPORT_MODE_GUI
 MODE_BKI = PluginManager.REPORT_MODE_BKI
@@ -56,11 +57,27 @@ MODE_CLI = PluginManager.REPORT_MODE_CLI
 #
 #------------------------------------------------------------------------
 
-def good_date(date):
+def _good_date(date):
     if RecordsReportOptions.REGULAR_DATES_ONLY:
         return date.is_regular()
     else:
         return date.is_valid()
+
+def _find_death_date(db, person):
+    death_ref = person.get_death_ref()
+    if death_ref:
+        death = db.get_event_from_handle(death_ref.ref)
+        return death.get_date_object()
+    else:
+        event_list = person.get_primary_event_ref_list()
+        for event_ref in event_list:
+            event = db.get_event_from_handle(event_ref.ref)
+            if (event.get_type() == EventType.BURIAL or
+                event.get_type() == EventType.CAUSE_DEATH or
+                event.get_type() == EventType.CREMATION):
+                return event.get_date_object()
+    return None
+
 
 def _find_records(db, filter, callname):
 
@@ -98,24 +115,19 @@ def _find_records(db, filter, callname):
         birth = db.get_event_from_handle(birth_ref.ref)
         birth_date = birth.get_date_object()
 
-        death_ref = person.get_death_ref()
-        if death_ref:
-            death = db.get_event_from_handle(death_ref.ref)
-            death_date = death.get_date_object()
-        else:
-            death_date = None
+        death_date = _find_death_date(db, person)
 
-        if not good_date(birth_date):
+        if not _good_date(birth_date):
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
         name = _person_get_display_name(person, callname)
 
-        if death_ref is None:
+        if death_date is None:
             # Still living, look for age records
             _record(person_youngestliving, person_oldestliving,
                     today_date - birth_date, name, 'Person', person_handle)
-        elif good_date(death_date):
+        elif _good_date(death_date):
             # Already died, look for age records
             _record(person_youngestdied, person_oldestdied,
                     death_date - birth_date, name, 'Person', person_handle)
@@ -132,12 +144,12 @@ def _find_records(db, filter, callname):
                 elif event.get_type() == EventType.DIVORCE:
                     divorce_date = event.get_date_object()
 
-            if marriage_date is not None and good_date(marriage_date):
+            if marriage_date is not None and _good_date(marriage_date):
                 _record(person_youngestmarried, person_oldestmarried,
                         marriage_date - birth_date,
                         name, 'Person', person_handle)
 
-            if divorce_date is not None and good_date(divorce_date):
+            if divorce_date is not None and _good_date(divorce_date):
                 _record(person_youngestdivorced, person_oldestdivorced,
                         divorce_date - birth_date,
                         name, 'Person', person_handle)
@@ -161,7 +173,7 @@ def _find_records(db, filter, callname):
                 child_birth = db.get_event_from_handle(child_birth_ref.ref)
                 child_birth_date = child_birth.get_date_object()
 
-                if not good_date(child_birth_date):
+                if not _good_date(child_birth_date):
                     continue
 
                 if person.get_gender() == person.MALE:
@@ -220,48 +232,37 @@ def _find_records(db, filter, callname):
                 divorce = event
                 divorce_date = event.get_date_object()
 
-        father_death = None
-        father_death_date = None
-        father_death_ref = father.get_death_ref()
-        if father_death_ref:
-            father_death = db.get_event_from_handle(father_death_ref.ref)
-            father_death_date = father_death.get_date_object()
+        father_death_date = _find_death_date(db, father)
+        mather_death_date = _find_death_date(db, mother)
 
-        mother_death = None
-        mother_death_date = None
-        mother_death_ref = mother.get_death_ref()
-        if mother_death_ref:
-            mother_death = db.get_event_from_handle(mother_death_ref.ref)
-            mother_death_date = mother_death.get_date_object()
-
-        if not marriage or not good_date(marriage_date):
+        if not marriage or not _good_date(marriage_date):
             # Not married or marriage date unknown
             continue
 
-        if divorce and not good_date(divorce_date):
+        if divorce and not _good_date(divorce_date):
             # Divorced, but divorce date unknown
             continue
 
-        if father_death and (not father_death_date or not good_date(father_death_date)):
+        if (not father_death_date or not _good_date(father_death_date)):
             # Father dead, but death date unknown
             continue
 
-        if mother_death and (not mother_death_date or not good_date(mother_death_date)):
+        if (not mother_death_date or not _good_date(mother_death_date)):
             # Mother dead, but death date unknown
             continue
 
-        if not divorce and not father_death and not mother_death:
+        if not divorce and not father_death_date and not mother_death_date:
             # Still married and alive
             _record(family_youngestmarried, family_oldestmarried,
                     today_date - marriage_date,
                     name, 'Family', family_handle)
         else:
             end = None
-            if father_death and mother_death:
+            if father_death_date and mother_death_date:
                 end = min(father_death_date, mother_death_date)
-            elif father_death:
+            elif father_death_date:
                 end = father_death_date
-            elif mother_death:
+            elif mother_death_date:
                 end = mother_death_date
             if divorce:
                 if end:
