@@ -233,7 +233,7 @@ def _find_records(db, filter, callname):
                 divorce_date = event.get_date_object()
 
         father_death_date = _find_death_date(db, father)
-        mather_death_date = _find_death_date(db, mother)
+        mother_death_date = _find_death_date(db, mother)
 
         if not marriage or not _good_date(marriage_date):
             # Not married or marriage date unknown
