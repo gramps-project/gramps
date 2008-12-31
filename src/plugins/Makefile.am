@@ -72,6 +72,7 @@ pkgdata_PYTHON = \
 	PlaceReport.py\
 	Rebuild.py\
 	RebuildRefMap.py\
+	Records.py\
 	References.py\
 	RelCalc.py\
 	rel_cs.py\
@@ -99,7 +100,8 @@ pkgdata_PYTHON = \
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
-	WebCal.py
+	WebCal.py\
+	WhatsNext.py
 
 #        DateParserDisplayTest.py\
 #        DumpGenderStats.py\

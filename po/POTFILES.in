@@ -302,6 +302,7 @@ src/plugins/PatchNames.py
 src/plugins/PlaceReport.py
 src/plugins/Rebuild.py
 src/plugins/RebuildRefMap.py
+src/plugins/Records.py
 src/plugins/References.py
 src/plugins/RelCalc.py
 src/plugins/rel_da.py
@@ -328,6 +329,7 @@ src/plugins/Summary.py
 src/plugins/TimeLine.py
 src/plugins/Verify.py
 src/plugins/WebCal.py
+src/plugins/WhatsNext.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py

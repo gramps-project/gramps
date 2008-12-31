@@ -27,6 +27,7 @@
 #
 #------------------------------------------------------------------------
 import datetime
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -47,9 +48,6 @@ from Utils import probably_alive
 MODE_GUI = PluginManager.REPORT_MODE_GUI
 MODE_BKI = PluginManager.REPORT_MODE_BKI
 MODE_CLI = PluginManager.REPORT_MODE_CLI
-
-# from TransUtils import sgettext as _
-
 
 #------------------------------------------------------------------------
 #
@@ -298,7 +296,7 @@ def _record(lowest, highest, value, text, handle_type, handle):
     if lowest is not None:
         lowest.append((value, text, handle_type, handle))
         lowest.sort(lambda a,b: cmp(a[0], b[0]))
-        for i in range(3, len(lowest)):
+        for i in range(RecordsReportOptions.TOP_SIZE, len(lowest)):
             if lowest[i-1][0] < lowest[i][0]:
                 del lowest[i:]
                 break
@@ -306,7 +304,7 @@ def _record(lowest, highest, value, text, handle_type, handle):
     if highest is not None:
         highest.append((value, text, handle_type, handle))
         highest.sort(reverse=True)
-        for i in range(3, len(highest)):
+        for i in range(RecordsReportOptions.TOP_SIZE, len(highest)):
             if highest[i-1][0] > highest[i][0]:
                 del highest[i:]
                 break
@@ -345,11 +343,11 @@ class RecordsGramplet(Gramplet):
         records = _find_records(self.dbstate.db, None,
                 RecordsReportOptions.CALLNAME_DONTUSE)
         self.set_text("")
-        for (text, varname, top3) in records:
+        for (text, varname, top) in records:
             self.render_text("<b>%s</b>" % text)
             last_value = None
             rank = 0
-            for (number, (value, name, handletype, handle)) in enumerate(top3):
+            for (number, (value, name, handletype, handle)) in enumerate(top):
                 if value != last_value:
                     last_value = value
                     rank = number
@@ -393,7 +391,7 @@ class RecordsReport(Report):
         self.doc.write_text(_("Records"))
         self.doc.end_paragraph()
 
-        for (text, varname, top3) in records:
+        for (text, varname, top) in records:
             if not self.include[varname]:
                 continue
 
@@ -403,7 +401,7 @@ class RecordsReport(Report):
 
             last_value = None
             rank = 0
-            for (number, (value, name, handletype, handle)) in enumerate(top3):
+            for (number, (value, name, handletype, handle)) in enumerate(top):
                 if value != last_value:
                     last_value = value
                     rank = number
@@ -429,6 +427,7 @@ class RecordsReportOptions(MenuReportOptions):
     CALLNAME_REPLACE = 1
     CALLNAME_UNDERLINE_ADD = 2
     REGULAR_DATES_ONLY = True
+    TOP_SIZE = 3
 
     def __init__(self, name, dbase):
 
@@ -525,54 +524,6 @@ class RecordsReportOptions(MenuReportOptions):
         para.set_description(_("The style used for the report title"))
         default_style.add_paragraph_style('REC-Title', para)
 
-
-#------------------------------------------------------------------------
-#
-# Translation hack
-#
-#------------------------------------------------------------------------
-mytranslation = {
-        u"Records"                        : u"Rekorde",
-        u"%s and %s"                      : u"%s und %s",
-        u" and "                          : u" und ",
-        u"1 year"                         : u"1 Jahr",
-        u"%s years"                       : u"%s Jahre",
-        u"1 month"                        : u"1 Monat",
-        u"%s months"                      : u"%s Monate",
-        u"1 day"                          : u"1 Tag",
-        u"%s days"                        : u"%s Tage",
-        u"0 days"                         : u"0 Tage",
-        u"Youngest living person"         : u"Nesthäkchen",
-        u"Oldest living person"           : u"Älteste lebende Person",
-        u"Person died at youngest age"    : u"Am jüngsten gestorbene Person",
-        u"Person died at oldest age"      : u"Im höchsten Alter gestorbene Person",
-        u"Person married at youngest age" : u"Am jüngsten geheiratete Person",
-        u"Person married at oldest age"   : u"Am ältesten geheiratete Person",
-        u"Person divorced at youngest age": u"Am jüngsten geschiedene Person",
-        u"Person divorced at oldest age"  : u"Am ältesten geschiedene Person",
-        u"Youngest father"                : u"Jüngster Vater",
-        u"Youngest mother"                : u"Jüngste Mutter",
-        u"Oldest father"                  : u"Ältester Vater",
-        u"Oldest mother"                  : u"Älteste Mutter",
-        u"Couple with most children"      : u"Familie mit den meisten Kindern",
-        u"Couple married most recently"   : u"Zuletzt geheiratetes Paar",
-        u"Couple married most long ago"   : u"Am längsten verheiratetes Paar",
-        u"Shortest marriage"              : u"Kürzeste Ehe",
-        u"Longest marriage"               : u"Längste Ehe"}
-
-from gettext import gettext
-import locale
-lang = locale.getdefaultlocale()[0]
-if lang:
-    lang = lang.split('_')[0]
-def _(string):
-    if lang == 'de':
-        print string
-        return mytranslation.get(string, gettext(string))
-    else:
-        return gettext(string)
-
-
 #------------------------------------------------------------------------
 #
 # List of records (must be defined after declaration of _())
@@ -592,10 +543,10 @@ RECORDS = [
         (_("Oldest father"),                   'person_oldestfather',     True),
         (_("Oldest mother"),                   'person_oldestmother',     True),
         (_("Couple with most children"),       'family_mostchildren',     True),
-        (_("Couple married most recently"),    'family_youngestmarried',  True),
-        (_("Couple married most long ago"),    'family_oldestmarried',    True),
-        (_("Shortest marriage"),               'family_shortest',         False),
-        (_("Longest marriage"),                'family_longest',          True)]
+        (_("Living couple married most recently"),    'family_youngestmarried',  True),
+        (_("Living couple married most long ago"),    'family_oldestmarried',    True),
+        (_("Shortest past marriage"),          'family_shortest',         False),
+        (_("Longest past marriage"),           'family_longest',          True)]
 
 
 #------------------------------------------------------------------------

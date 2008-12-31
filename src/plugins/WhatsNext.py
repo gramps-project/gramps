@@ -30,7 +30,7 @@ from gen.lib import EventType, FamilyRelType
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from ReportBase import ReportUtils
-#from TransUtils import sgettext as _
+from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
@@ -411,42 +411,6 @@ class WhatNextGramplet(Gramplet):
             mother = None
 
         return (father, mother, family)
-
-
-#------------------------------------------------------------------------
-#
-# Translation hack
-#
-#------------------------------------------------------------------------
-mytranslation = {
-        u"first name unknown"        : u"Vorname unbekannt",
-        u"surname unknown"           : u"Familienname unbekannt",
-        u"(person with unknown name)": u"(Person mit unbekanntem Namen)",
-        u"birth event missing"       : u"Geburtsereignis fehlt",
-        u"(unknown person)"          : u"(unbekannte Person)",
-        u"%(name1)s and %(name2)s"   : u"%(name1)s und %(name2)s",
-        u" and "                     : u" und ",
-        u"marriage event missing"    : u"Hochzeitsereignis fehlt",
-        u"relation type unknown"     : u"Beziehungstyp unbekannt",
-        u"date unknown"              : u"Datum unbekannt",
-        u"date incomplete"           : u"Datum unvollständig",
-        u"place unknown"             : u"Ort unbekannt",
-        u"spouse missing"            : u"Partner fehlt",
-        u"father missing"            : u"Vater fehlt",
-        u"mother missing"            : u"Mutter fehlt",
-        u"parents missing"           : u"Eltern fehlen"}
-
-from gettext import gettext
-import locale
-lang = locale.getdefaultlocale()[0]
-if lang:
-    lang = lang.split('_')[0]
-def _(string):
-    if lang == 'de':
-        print string
-        return mytranslation.get(string, gettext(string))
-    else:
-        return gettext(string)
 
 
 #------------------------------------------------------------------------
