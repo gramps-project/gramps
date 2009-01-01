@@ -1281,8 +1281,11 @@ class DataEntryGramplet(Gramplet):
         self.de_widgets["Active person:Edit family:Label"].hide()
         active_person = self.dbstate.get_active_person()
         self.dirty_person = active_person
+        self.dirty_family = None
         if active_person:
             self.de_widgets["Active person:Edit person"].show()
+            self.de_widgets["Active person:Edit family"].hide()
+            self.de_widgets["Active person:Edit family:Label"].hide()
             # Fill in current person edits:
             name = name_displayer.display(active_person)
             self.de_widgets["Active person"].set_text("<i>%s</i> " % name)
@@ -1334,6 +1337,8 @@ class DataEntryGramplet(Gramplet):
         else:
             self.clear_data_edit(None)
             self.de_widgets["Active person:Edit person"].hide()
+            self.de_widgets["Active person:Edit family"].hide()
+            self.de_widgets["Active person:Edit family:Label"].hide()
         self.dirty = False
 
     def make_row(self, pos, text, choices=None, readonly=False, callback_list=[],
