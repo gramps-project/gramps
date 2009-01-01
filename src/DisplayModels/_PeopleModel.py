@@ -600,7 +600,7 @@ class PeopleModel(gtk.GenericTreeModel):
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
             date_str = DateHandler.get_date(event)
-            if (etype in [EventType.BURIAL, EventType.CREMATION]
+            if (etype in [EventType.BURIAL, EventType.CREMATION, EventType.CAUSE_DEATH]
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str):
                 retval = "<i>%s</i>" % cgi.escape(date_str)
@@ -667,8 +667,8 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            if etype in [EventType.BURIAL, EventType.CREMATION]\
-               and er.get_role() == EventRoleType.PRIMARY:
+            if (etype in [EventType.BURIAL, EventType.CREMATION, EventType.CAUSE_DEATH]
+                and er.get_role() == EventRoleType.PRIMARY):
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)

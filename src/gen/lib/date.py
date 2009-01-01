@@ -72,7 +72,7 @@ class DateError(Exception):
 class Span:
     """ Class used in date differences """
     def __init__(self, *diff_tuple):
-        self.diff_tuple = diff_tuple
+        self.diff_tuple = tuple(diff_tuple)
 
     def __getitem__(self, pos):
         return self.diff_tuple[pos]
@@ -81,6 +81,7 @@ class Span:
         return True
 
     def __repr__(self):
+        if self.diff_tuple == (-1, -1, -1): return _("unknown")
         retval = ""
         if self.diff_tuple[0] != 0:
             retval += (_("%d years") % self.diff_tuple[0])
@@ -358,6 +359,8 @@ class Date:
                 date1 = date1.to_calendar("gregorian")
             if date2.calendar != Date.CAL_GREGORIAN:
                 date2 = date2.to_calendar("gregorian")
+            if date1.sortval == 0 or date2.sortval == 0:
+                return Span(-1, -1, -1)
             d1 = [i or 1 for i in date1.get_ymd()]
             d2 = [i or 1 for i in date2.get_ymd()]
             if d1 < d2:

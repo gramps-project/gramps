@@ -2785,8 +2785,10 @@ def get_death_or_fallback(database, person):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event.type.value in [EventType.BURIAL, EventType.CREMATION] \
-            and event_ref.role.value == EventRoleType.PRIMARY:
+        if (event.type.value in [EventType.BURIAL, 
+                                 EventType.CREMATION, 
+                                 EventType.CAUSE_DEATH]
+            and event_ref.role.value == EventRoleType.PRIMARY):
             return event
     return None    
 

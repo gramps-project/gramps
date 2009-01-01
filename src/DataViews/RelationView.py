@@ -46,7 +46,7 @@ import gtk
 import gen.lib
 import PageView
 from BasicUtils import name_displayer
-from Utils import media_path_full
+from Utils import media_path_full, probably_alive
 import DateHandler
 import ThumbNails
 import Config
@@ -577,17 +577,23 @@ class RelationshipView(PageView.PersonNavView):
                         age = death_date - birth_date
                         subtbl.attach(widgets.BasicLabel("%s:" % death_title),
                                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                        subtbl.attach(widgets.BasicLabel("%s   (%s)" % 
+                        subtbl.attach(widgets.BasicLabel("%s (%s)" % 
                                                          (self.format_event(death),
                                                           age)),
                                       2, 3, 2, 3, yoptions=0)
                         showed_death = True
                 if not showed_death:
                     age = gen.lib.date.Today() - birth_date
-                    subtbl.attach(widgets.BasicLabel("%s:" % death_title),
-                                  1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                    subtbl.attach(widgets.BasicLabel("(%s)" % age),
-                                  2, 3, 2, 3, yoptions=0)
+                    if probably_alive(person, self.dbstate.db):
+                        subtbl.attach(widgets.BasicLabel("%s:" % _("Alive")),
+                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                        subtbl.attach(widgets.BasicLabel("(%s)" % age),
+                                      2, 3, 2, 3, yoptions=0)
+                    else:
+                        subtbl.attach(widgets.BasicLabel("%s:" % _("Death")),
+                                      1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
+                        subtbl.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age)),
+                                      2, 3, 2, 3, yoptions=0)
                     showed_death = True
 
         if not showed_death:
