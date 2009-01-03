@@ -495,7 +495,7 @@ class PedigreeGramplet(Gramplet):
             self.box_mode = self.gui.data[2] # ASCII or UTF
         # in case we need it:
         tag = self.gui.buffer.create_tag("fixed")
-        tag.set_property("font", "Courier 8")
+        tag.set_property("font", "Courier 9")
 
     def on_save(self):
         self.gui.data = [self.max_generations, self.show_dates, self.box_mode]
@@ -593,7 +593,7 @@ class PedigreeGramplet(Gramplet):
                 self.append_text(u"o" + (u"\u2500" * 3))
             elif self.box_mode == "ASCII":
                 self.append_text(u"o---")
-            self.render_text("<b>%s</b>  " % name_displayer.display_name(person.get_primary_name()))
+            self.append_text("%s  " % name_displayer.display_name(person.get_primary_name()))
             if self.show_dates:
                 self.render_text(self.info_string(person))
             self.append_text("\n")
