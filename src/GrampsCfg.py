@@ -164,6 +164,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Text')))
         panel.append_page(self.add_prefix_panel(), 
                           MarkupLabel(_('ID Formats')))
+        panel.append_page(self.add_date_panel(), 
+                          MarkupLabel(_('Dates')))
         panel.append_page(self.add_advanced_panel(), 
                           MarkupLabel(_('Warnings')))
         panel.append_page(self.add_researcher_panel(), 
@@ -781,45 +783,89 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                  _('Changing the data format will not take '
                    'effect until the next time GRAMPS is started.'))
 
+    def add_date_panel(self):
+        table = gtk.Table(2, 7)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+
+        self.add_pos_int_entry(table, 
+                _('Date about range'),
+                0, Config.DATE_ABOUT_RANGE, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Date after range'),
+                1, Config.DATE_AFTER_RANGE, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Date before range'),
+                2, Config.DATE_BEFORE_RANGE, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Maximum age probably alive'),
+                3, Config.MAX_AGE_PROB_ALIVE, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Maximum sibling age difference'),
+                4, Config.MAX_SIB_AGE_DIFF, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Minimum years between generations'),
+                5, Config.MIN_GENERATION_YEARS, self.update_entry)
+        self.add_pos_int_entry(table, 
+                _('Average years between generations'),
+                6, Config.AVG_GENERATION_GAP, self.update_entry)
+        self.add_pos_int_entry(table,
+                _('Markup for invalid date format'), 
+                7, Config.INVALID_DATE_FORMAT, self.update_entry)
+
+        return table
+        
     def add_behavior_panel(self):
         table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_checkbox(table, _('Add default source on import'), 
-                          0, Config.DEFAULT_SOURCE)
-        self.add_checkbox(table, _('Enable spelling checker'), 
-                          1, Config.SPELLCHECK)
-        self.add_checkbox(table, _('Display Tip of the Day'), 
-                          2, Config.USE_TIPS)
-        self.add_checkbox(table, _('Use shading in Relationship View'), 
-                          3, Config.RELATION_SHADE)
-        self.add_checkbox(table, _('Display edit buttons on Relationship View'), 
-                          4, Config.RELEDITBTN)
-        self.add_checkbox(table, _('Remember last view displayed'), 
-                          5, Config.USE_LAST_VIEW)
+        self.add_checkbox(table, 
+                _('Add default source on import'), 
+                0, Config.DEFAULT_SOURCE)
+        self.add_checkbox(table, 
+                _('Enable spelling checker'), 
+                1, Config.SPELLCHECK)
+        self.add_checkbox(table, 
+                _('Display Tip of the Day'), 
+                2, Config.USE_TIPS)
+        self.add_checkbox(table, 
+                _('Use shading in Relationship View'), 
+                3, Config.RELATION_SHADE)
+        self.add_checkbox(table, 
+                _('Display edit buttons on Relationship View'), 
+                4, Config.RELEDITBTN)
+        self.add_checkbox(table, 
+                _('Remember last view displayed'), 
+                5, Config.USE_LAST_VIEW)
         self.add_pos_int_entry(table, 
                 _('Number of generations for relationship determination'),
                 6, Config.GENERATION_DEPTH, self.update_gen_depth)
         self.path_entry = gtk.Entry()
-        self.add_path_box(table, _('Base path for relative media paths'),
+        self.add_path_box(table, 
+                _('Base path for relative media paths'),
                 7, self.path_entry, self.dbstate.db.get_mediapath(),
                 self.set_mediapath, self.select_mediapath)
 
         return table
 
     def add_database_panel(self):
-        table = gtk.Table(2, 8)
+        table = gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
-        self.add_entry(table, _('Database path'), 0, Config.DATABASE_PATH)
-        self.add_checkbox(table, _('Automatically load last database'), 
-                          2, Config.AUTOLOAD)
+        self.add_entry(table, 
+                _('Database path'), 
+                0, Config.DATABASE_PATH)
+        self.add_checkbox(table, 
+                _('Automatically load last database'), 
+                1, Config.AUTOLOAD)
+                
         return table
-
+        
     def add_checkbox(self, table, label, index, constant):
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(Config.get(constant))
