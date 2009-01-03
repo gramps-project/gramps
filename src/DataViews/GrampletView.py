@@ -682,7 +682,7 @@ class GuiGramplet:
         while i < len(text):
             if ord(text[i]) > 126:
                 t = 0
-                while ord(text[i]) > 126 and i < len(text):
+                while i < len(text) and ord(text[i]) > 126:
                     i += 1
                     t += 1
                 r += t/2
