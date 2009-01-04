@@ -46,8 +46,6 @@ import time
 #-------------------------------------------------------------------------
 import gtk
 
-#import pdb
-
 #-------------------------------------------------------------------------
 #
 # Set up logging
@@ -138,6 +136,9 @@ class Renderer():
         window
         """
         return self.window
+    
+    def get_uri(self):
+        return self.window.get_main_frame().get_uri()
     
     def show_all(self):
         self.window.show_all()
@@ -311,7 +312,7 @@ class HtmlView(PageView.PageView):
         
         #load a welcome html page
         urlhelp = self.create_start_page()
-        self.renderer.open(urlhelp)
+        self.open(urlhelp)
         self.renderer.show_all()
 
         return self.box
@@ -330,13 +331,20 @@ class HtmlView(PageView.PageView):
         hbox.pack_start(button, False, False, 4)
         return hbox
 
+    def set_button_sensitivity(self):
+        self.forward_action.set_sensitive(self.renderer.can_go_forward())
+        self.back_action.set_sensitive(self.renderer.can_go_back())
+        
+    def open(self, url):
+        self.renderer.open(url)
+        self.set_button_sensitivity()
+        
     def _on_activate(self, object):
         url = self.urlfield.get_text()
         if url.find('://') == -1:
             url = 'http://'+ url
-        self.renderer.open(url)
-        self.forward_action.set_sensitive(self.renderer.can_go_forward())
-        self.back_action.set_sensitive(self.renderer.can_go_back())
+        self.external_url = True
+        self.open(url)
         
     def build_tree(self):
         """
@@ -405,6 +413,8 @@ class GeoView(HtmlView):
         
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
+        self.external_url = False
+        self.need_to_resize = False
 
         # Create a temporary dot file
         (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
@@ -427,14 +437,17 @@ class GeoView(HtmlView):
         self.box.parent.connect("size-allocate", self.size_request_for_map)
         self.size_request_for_map(widget.parent,event)
         
-    def request_resize(self):
-        self.size_request_for_map(self.box.parent,None,None)
-        self.geo_places(self.htmlfile,self.displaytype)
-        
     def size_request_for_map(self, widget, event, data=None):
         v = widget.get_allocation()
         self.width = v.width
         self.height = v.height
+        uri = self.renderer.get_uri()
+        self.external_uri()
+        if self.need_to_resize != True:
+            try:
+                self.geo_places(self.htmlfile,self.displaytype)
+            except:
+                pass
 
     def set_active(self):
         self.key_active_changed = self.dbstate.connect('active-changed',
@@ -458,15 +471,30 @@ class GeoView(HtmlView):
     def refresh(self,button):
         self.renderer.refresh();
 
+    def external_uri(self):
+        uri = self.renderer.get_uri()
+        if self.external_url:
+            self.external_url = False
+            self.need_to_resize = True
+        else:
+            try:
+                if uri.find(self.htmlfile) == -1:
+                    # external web page or start_page
+                    self.need_to_resize = True
+                else:
+                    self.need_to_resize = False
+            except:
+                pass
+
     def go_back(self,button):
         self.renderer.go_back();
-        self.forward_action.set_sensitive(self.renderer.can_go_forward())
-        self.back_action.set_sensitive(self.renderer.can_go_back())
+        self.set_button_sensitivity()
+        self.external_uri()
 
     def go_forward(self,button):
         self.renderer.go_forward();
-        self.forward_action.set_sensitive(self.renderer.can_go_forward())
-        self.back_action.set_sensitive(self.renderer.can_go_back())
+        self.set_button_sensitivity()
+        self.external_uri()
 
     def ui_definition(self):
         """
@@ -619,12 +647,13 @@ class GeoView(HtmlView):
         """
         Specifies the places to display with mapstraction.
         """
+        self.external_url = False
         if htmlfile == None:
             htmlfile = MOZEMBED_PATH+"help.html"
             self.createHelp(htmlfile)
         else:
             self.createMapstraction(htmlfile,displaytype)
-        self.renderer.open("file://"+htmlfile)
+        self.open("file://"+htmlfile)
 
     def select_OpenStreetMap_map(self,handle=None):
         self.usedmap = "openstreetmap"
@@ -858,8 +887,8 @@ class GeoView(HtmlView):
     def create_markers(self,format):
         self.centered = 0
         margin = 10
-        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx; margin: %d\"></div>\n" % 
-                           ( ( self.width - margin*4 ), ( self.height * 0.73 ), margin ))
+        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % 
+                           ( ( self.width - margin*4 ), ( self.height * 0.74 )))
         self.mapview.write("  <script type=\"text/javascript\">\n")
         self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
         self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
@@ -973,7 +1002,7 @@ class GeoView(HtmlView):
                     yearinmarker = []
                     years=""
                     self.mapview.write("   mapstraction.addMarker(my_marker);\n")
-                    if self.mustcenter == True:
+                    if self.mustcenter:
                         self.centered = 1
                         self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latit,longt))
                         self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
@@ -986,7 +1015,6 @@ class GeoView(HtmlView):
                 cent=int(mark[6])
                 if (cent == 1):
                     self.centered = 1
-                    #pdb.set_trace()
                     if ( signminlat == 1 and signmaxlat == 1 ):
                         latit = self.maxlat+centerlat
                         LOG.debug("latit 1 : %f" % self.maxlat)
@@ -1021,7 +1049,7 @@ class GeoView(HtmlView):
                 if format == 1:
                     self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
                 elif format == 2:
-                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[1],mark[7],mark[5]))
+                    self.mapview.write("%s____________<br><br>%s - %s"%(mark[1],mark[7],mark[5]))
                 elif format == 3:
                     self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
                 elif format == 4:
@@ -1072,7 +1100,7 @@ class GeoView(HtmlView):
             yearinmarker = []
             years=""
             self.mapview.write("   mapstraction.addMarker(my_marker);\n")
-            if self.mustcenter == True:
+            if self.mustcenter:
                 self.centered = 1
                 self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(self.latit,self.longt))
                 self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
@@ -1222,27 +1250,24 @@ class GeoView(HtmlView):
                 descr1 = _("Id : %s (%s)")%(event.gramps_id,eventyear)
                 if pl_id:
                     place = db.db.get_place_from_handle(pl_id)
-                    #ref = db.db.get_person_from_handle(event)
-                    #
-                    # question :
-                    # how to obtain the list of the people referenced by this event ?
-                    #
-                    refs = event.get_referenced_handles_recursively()
-                    if refs:
-                        for ref in refs:
-                            person = db.db.get_person_from_handle(ref)
-                            #descr = _("%s; %s for %s") % (gen.lib.EventType(event.get_type()),place.get_title(), _nd.display(person))
-                            descr = "inconnu"
-                    else:
-                        descr = _("%s; %s") % (gen.lib.EventType(event.get_type()),place.get_title())
-                    #descr = place.get_title()
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
                     latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
-                    descr2 = _("%s; %s") % (city,country)
+                    descr2 = "%s; %s" % (city,country)
                     if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
+                        person_list = [ db.db.get_person_from_handle(ref_handle)
+                                        for (ref_type, ref_handle) in db.db.find_backlink_handles(event_handle)
+                                            if ref_type == 'Person' 
+                                      ]
+                        if person_list:
+                            descr = "<br>"
+                            for person in person_list:
+                                descr = _("%s%s<br>") % (descr, _nd.display(person))
+                            descr = _("%s; %s%s") % (gen.lib.EventType(event.get_type()),place.get_title(), descr)
+                        else:
+                            descr = _("%s; %s<br>") % (gen.lib.EventType(event.get_type()),place.get_title())
                         self.append_to_places_list(descr1, descr,
                                                    descr,
                                                    latitude, longitude,
