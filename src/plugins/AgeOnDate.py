@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009       Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,15 +64,15 @@ def run(database, document, date):
             if (birth_date.get_valid() and birth_date < date and
                 birth_date.get_year() != 0 and
                 ((death_date is None) or (death_date > date))):
-                diff_tuple = (date - birth_date)
+                diff_span = (date - birth_date)
                 if ((death_date is not None) or
                     (death_date is None and 
-                     diff_tuple[0] <= Config.get(Config.MAX_AGE_PROB_ALIVE))):
-                    birth_str = str(diff_tuple)
-                    birth_sort = int(diff_tuple)
+                     int(diff_span) <= Config.get(Config.MAX_AGE_PROB_ALIVE) * 365)):
+                    birth_str = str(diff_span)
+                    birth_sort = int(diff_span)
         if birth_str != "":
             stab.row(person, birth_str)
-            stab.row_sort_val(1, birth_sort)
+            stab.row_sort_val(1, diff_span)
             matches += 1
     sdoc.paragraph("\n%d matches.\n" % matches)
     stab.write(sdoc)

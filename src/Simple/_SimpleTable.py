@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008  Donald N. Allingham
+# Copyright (C) 2009  Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -248,7 +249,7 @@ class SimpleTable:
             elif isinstance(item, gen.lib.Span):
                 text = str(item)
                 retval.append(text)
-                self.row_sort_val(col, float(item))
+                self.row_sort_val(col, item)
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))
