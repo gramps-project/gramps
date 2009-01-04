@@ -340,10 +340,12 @@ class RecordsGramplet(Gramplet):
     def main(self):
 
         self.set_text(_("Processing...") + "\n")
+        yield True
         records = _find_records(self.dbstate.db, None,
                 RecordsReportOptions.CALLNAME_DONTUSE)
         self.set_text("")
         for (text, varname, top) in records:
+            yield True
             self.render_text("<b>%s</b>" % text)
             last_value = None
             rank = 0
@@ -356,6 +358,7 @@ class RecordsGramplet(Gramplet):
                 self.append_text(" (%s)" % _output(value))
             self.append_text("\n")
         self.append_text("", scroll_to='begin')
+        yield False
 
 
 #------------------------------------------------------------------------
