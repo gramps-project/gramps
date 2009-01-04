@@ -259,6 +259,10 @@ class Span:
     def is_valid(self):
         return self.valid
 
+    def __getitem__(self, pos):
+        # Depricated! 
+        return self._diff(self.date1, self.date2)[pos]
+
     def __int__(self):
         if self.negative:
             return -self.sort[0]
