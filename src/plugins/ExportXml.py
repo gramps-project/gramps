@@ -5,6 +5,7 @@
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
+# Copyright (C) 2009       Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -375,7 +376,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             for number, name,fmt_str,active in self.db.name_formats:
                 self.g.write('%s<format number="%d" name="%s" '
                              'fmt_str="%s" active="%d"/>\n'
-                             % ('    ', number, name,fmt_str,int(active)) )
+                             % ('    ', number, fmt_str, fmt_str, int(active)) )
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):

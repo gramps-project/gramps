@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1060,7 +1061,7 @@ class GrampsParser(UpdateCallback):
         if number in self.taken_name_format_numbers:
             number = self.remap_name_format(number)
 
-        self.name_formats.append((number, name, fmt_str, active))
+        self.name_formats.append((number, fmt_str, fmt_str, active))
 
     def remap_name_format(self, old_number):
         if old_number in self.name_formats_map: # This should not happen
