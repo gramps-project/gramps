@@ -37,6 +37,7 @@ import cgi
 #
 #-------------------------------------------------------------------------
 import gtk
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -578,8 +579,8 @@ class RelationshipView(PageView.PersonNavView):
                         subtbl.attach(widgets.BasicLabel("%s:" % death_title),
                                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
                         subtbl.attach(widgets.BasicLabel("%s (%s)" % 
-                                                         (self.format_event(death),
-                                                          age)),
+                                                         (self.format_event(death), age),
+                                                         pango.ELLIPSIZE_END),
                                       2, 3, 2, 3, yoptions=0)
                         showed_death = True
                 if not showed_death:
@@ -587,12 +588,13 @@ class RelationshipView(PageView.PersonNavView):
                     if probably_alive(person, self.dbstate.db):
                         subtbl.attach(widgets.BasicLabel("%s:" % _("Alive")),
                                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                        subtbl.attach(widgets.BasicLabel("(%s)" % age),
+                        subtbl.attach(widgets.BasicLabel("(%s)" % age, pango.ELLIPSIZE_END),
                                       2, 3, 2, 3, yoptions=0)
                     else:
                         subtbl.attach(widgets.BasicLabel("%s:" % _("Death")),
                                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-                        subtbl.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age)),
+                        subtbl.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age), 
+                                                         pango.ELLIPSIZE_END),
                                       2, 3, 2, 3, yoptions=0)
                     showed_death = True
 

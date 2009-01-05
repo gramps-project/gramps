@@ -154,9 +154,10 @@ class EditLabel(gtk.HBox):
 #-------------------------------------------------------------------------
 class BasicLabel(gtk.Label):
 
-    def __init__(self, text):
+    def __init__(self, text, ellipsize=pango.ELLIPSIZE_NONE):
         gtk.Label.__init__(self, text)
         self.set_alignment(0, 0.5)
+        self.set_ellipsize(ellipsize)
         self.show()
 
 #-------------------------------------------------------------------------
