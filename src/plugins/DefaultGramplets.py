@@ -152,59 +152,53 @@ class LogGramplet(Gramplet):
         self.tooltip = _("Click name to change active\nDouble-click name to edit")
         self.set_text(_("Log for this Session"))
         self.gui.force_update = True # will always update, even if minimized
-        self.append_text("\n--------------------\n")
-        self.history = {}
+        self.last_log = None
+        self.append_text("\n")
 
     def db_changed(self):
-        self.dbstate.db.connect('person-add', self.log_person_add)
-        self.dbstate.db.connect('person-delete', self.log_person_delete)
-        self.dbstate.db.connect('person-update', self.log_person_update)
-        self.dbstate.db.connect('family-add', self.log_family_add)
-        self.dbstate.db.connect('family-delete', self.log_family_delete)
-        self.dbstate.db.connect('family-update', self.log_family_update)
+        self.append_text("Opened data base -----------\n")
+        self.dbstate.db.connect('person-add', 
+                                lambda handles: self.log(_('Person'), _('Added'), handles))
+        self.dbstate.db.connect('person-delete', 
+                                lambda handles: self.log(_('Person'), _('Deleted'), handles))
+        self.dbstate.db.connect('person-update', 
+                                lambda handles: self.log(_('Person'), _('Edited'), handles))
+        self.dbstate.db.connect('family-add', 
+                                lambda handles: self.log(_('Family'), _('Added'), handles))
+        self.dbstate.db.connect('family-delete', 
+                                lambda handles: self.log(_('Family'), _('Deleted'), handles))
+        self.dbstate.db.connect('family-update', 
+                                lambda handles: self.log(_('Family'), _('Added'), handles))
     
-    def on_load(self):
-        if len(self.gui.data) > 0:
-            self.show_duplicates = self.gui.data[0]
-        else:
-            self.show_duplicates = "no"
-
-    def on_save(self):
-        self.gui.data = [self.show_duplicates]
-
     def active_changed(self, handle):
-        self.log_active_changed(handle)
+        self.log(_('Person'), _('Selected'), [handle])
 
-    # FIXME: added support for family display and clicks
-    def log_person_add(self, handles):
-        self.get_person(handles, _("Added"))
-    def log_person_delete(self, handles):
-        self.get_person(handles, _("Deleted"))
-    def log_person_update(self, handles):
-        self.get_person(handles, _("Updated"))
-    def log_family_add(self, handles):
-        self.append_text(_("Added") + ": family\n" )
-    def log_family_delete(self, handles):
-        self.append_text(_("Deleted") + ": family\n" )
-    def log_family_update(self, handles):
-        self.append_text(_("Updated") + ": family\n" )
-    def log_active_changed(self, handles):
-        self.get_person([handles], _("Selected"))
-
-    def get_person(self, handles, ltype):
-        for person_handle in handles:
-            if ((self.show_duplicates == "no" and 
-                 ltype + ": " + person_handle not in self.history) or
-                self.show_duplicates == "yes"):
-                self.append_text("%s: " % ltype)
-                self.history[ltype + ": " + person_handle] = 1
-                person = self.dbstate.db.get_person_from_handle(person_handle)
-                if person:
-                    self.link(name_displayer.display(person), 'Person', 
-                              person_handle)
-                else:
-                    self.link(_("Unknown"), 'Person', person_handle)
-                self.append_text("\n")
+    def log(self, ltype, action, handles):
+        for handle in set(handles):
+            if self.last_log == (ltype, action, handle):
+                continue
+            self.last_log = (ltype, action, handle)
+            self.append_text("%s: " % action)
+            if ltype == _("Person"):
+                person = self.dbstate.db.get_person_from_handle(handle)
+                name = name_displayer.display(person)
+            elif ltype == _("Family"):
+                family = self.dbstate.db.get_family_from_handle(handle)
+                father_name = _("unknown")
+                mother_name = _("unknown")
+                if family:
+                    father_handle = family.get_father_handle()
+                    if father_handle:
+                        father = self.dbstate.db.get_person_from_handle(father_handle)
+                        if father:
+                            father_name = name_displayer.display(father)
+                    mother_handle = family.get_mother_handle()
+                    if mother_handle:
+                        mother = self.dbstate.db.get_person_from_handle(mother_handle)
+                        mother_name = name_displayer.display(mother)
+                name = _("%s and %s") % (mother_name, father_name)
+            self.link(name, ltype, handle)
+            self.append_text("\n")
 
 class TopSurnamesGramplet(Gramplet):
     def init(self):
