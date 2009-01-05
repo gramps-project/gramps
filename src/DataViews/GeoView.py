@@ -138,7 +138,7 @@ class Renderer():
         return self.window
     
     def get_uri(self):
-        return self.window.get_main_frame().get_uri()
+        raise NotImplementedError
     
     def show_all(self):
         self.window.show_all()
@@ -191,6 +191,9 @@ class RendererWebkit(Renderer):
     def execute_script(self,url):
         self.window.execute_script(url);
     
+    def get_uri(self):
+        return self.window.get_main_frame().get_uri()
+
 class RendererMozilla(Renderer):
     """
     Implementation of Renderer with gtkmozembed
@@ -213,6 +216,9 @@ class RendererMozilla(Renderer):
     def execute_script(self,url):
         self.window.load_url(url);
     
+    def get_uri(self):
+        return self.window.get_location()
+
     def refresh(self):
         self.window.reload(0);
 
