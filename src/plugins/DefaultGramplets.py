@@ -1462,14 +1462,15 @@ class DataEntryGramplet(Gramplet):
         # look for a match, and possible correction
         for ref in ref_list:
             event = self.dbstate.db.get_event_from_handle(ref.ref)
-            if int(event.get_type()) == type:
-                # Match! Let's update
-                if date:
-                    event.set_date_object(date)
-                if place:
-                    event.set_place_handle(place.get_handle())
-                self.dbstate.db.commit_event(event, self.trans)
-                return (0, event)
+            if event is not None:
+                if int(event.get_type()) == type:
+                    # Match! Let's update
+                    if date:
+                        event.set_date_object(date)
+                    if place:
+                        event.set_place_handle(place.get_handle())
+                    self.dbstate.db.commit_event(event, self.trans)
+                    return (0, event)
         # else create it:
         event = gen.lib.Event()
         if type:
