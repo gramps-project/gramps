@@ -276,6 +276,7 @@ src/plugins/FamilyGroup.py
 src/plugins/FanChart.py
 src/plugins/FilterByName.py
 src/plugins/FindDupes.py
+src/plugins/GivenNameGramplet.py
 src/plugins/GVFamilyLines.py
 src/plugins/GVHourGlass.py
 src/plugins/GVRelGraph.py

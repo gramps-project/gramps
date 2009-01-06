@@ -451,6 +451,14 @@ class Gramplet(object):
                                                      'samesurnames', 
                                                      handle)
                     return True
+                elif link_type == 'Given':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.gui.dbstate, 
+                                                     self.gui.uistate, 
+                                                     'samegivens_misc', 
+                                                     handle)
+                    return True
                 elif link_type == 'Filter':
                     if event.button == 1: # left mouse
                         if event.type == gtk.gdk._2BUTTON_PRESS: # double
