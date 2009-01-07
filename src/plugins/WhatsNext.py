@@ -57,7 +57,7 @@ class WhatNextGramplet(Gramplet):
 
     def init(self):
 
-        self.tooltip = _("Double-click name for details")
+        self.set_tooltip(_("Double-click name for details"))
         self.set_text(_("No Family Tree loaded."))
 
 

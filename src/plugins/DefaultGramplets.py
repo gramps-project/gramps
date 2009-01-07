@@ -76,7 +76,7 @@ from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
 class CalendarGramplet(Gramplet):
     def init(self):
         import gtk
-        self.tooltip = _("Double-click a day for details")
+        self.set_tooltip(_("Double-click a day for details"))
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         self.gui.calendar.connect('month-changed', self.refresh)
@@ -149,7 +149,7 @@ class CalendarGramplet(Gramplet):
 
 class LogGramplet(Gramplet):
     def init(self):
-        self.tooltip = _("Click name to change active\nDouble-click name to edit")
+        self.set_tooltip(_("Click name to change active\nDouble-click name to edit"))
         self.set_text(_("Log for this Session"))
         self.gui.force_update = True # will always update, even if minimized
         self.last_log = None
@@ -202,7 +202,7 @@ class LogGramplet(Gramplet):
 
 class TopSurnamesGramplet(Gramplet):
     def init(self):
-        self.tooltip = _("Double-click surname for details")
+        self.set_tooltip(_("Double-click surname for details"))
         self.top_size = 10 # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
@@ -281,7 +281,7 @@ def make_tag_size(n, counts, mins=8, maxs=20):
 
 class SurnameCloudGramplet(Gramplet):
     def init(self):
-        self.tooltip = _("Double-click surname for details")
+        self.set_tooltip(_("Double-click surname for details"))
         self.top_size = 100 # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
@@ -369,8 +369,8 @@ class RelativesGramplet(Gramplet):
     """
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Click name to make person active\n") + \
-            _("Right-click name to edit person")
+        self.set_tooltip(_("Click name to make person active\n") +
+                         _("Right-click name to edit person"))
 
     def db_changed(self):
         """
@@ -466,7 +466,7 @@ class RelativesGramplet(Gramplet):
 class PedigreeGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Move mouse over links for options")
+        self.set_tooltip(_("Move mouse over links for options"))
         self.set_use_markup(True)
         self.max_generations = 100
         self.show_dates = 1
@@ -688,7 +688,7 @@ class PedigreeGramplet(Gramplet):
 class StatsGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Double-click item to see matches")
+        self.set_tooltip(_("Double-click item to see matches"))
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
@@ -829,7 +829,7 @@ class StatsGramplet(Gramplet):
 class PythonGramplet(Gramplet):
     def init(self):
         self.prompt = ">"
-        self.tooltip = _("Enter Python expressions")
+        self.set_tooltip(_("Enter Python expressions"))
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
                     "self": self,
@@ -928,7 +928,7 @@ class PythonGramplet(Gramplet):
 class QueryGramplet(PythonGramplet):
     def init(self):
         self.prompt = "$"
-        self.tooltip = _("Enter SQL query")
+        self.set_tooltip(_("Enter SQL query"))
         # GUI setup:
         self.gui.textview.set_editable(True)
         self.set_text("Structured Query Language\n%s " % self.prompt)
@@ -944,7 +944,7 @@ class QueryGramplet(PythonGramplet):
 class TODOGramplet(Gramplet):
     def init(self):
         # GUI setup:
-        self.tooltip = _("Enter text")
+        self.set_tooltip(_("Enter text"))
         self.gui.textview.set_editable(True)
         self.append_text(_("Enter your TODO list here."))
 
@@ -994,7 +994,7 @@ class NewsGramplet(Gramplet):
     URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
 
     def init(self):
-        self.tooltip = _("Read news from the GRAMPS wiki")
+        self.set_tooltip(_("Read news from the GRAMPS wiki"))
 
     def main(self):
         continuation = self.process('News')
@@ -1088,7 +1088,7 @@ class AgeOnDateGramplet(Gramplet):
     def init(self):
         import gtk
         # GUI setup:
-        self.tooltip = _("Enter a date, click Run")
+        self.set_tooltip(_("Enter a date, click Run"))
         vbox = gtk.VBox()
         hbox = gtk.HBox()
         # label, entry

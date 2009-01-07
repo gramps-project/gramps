@@ -133,9 +133,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
         if opts.get("content", None):
             opts["content"](gui)
         # now that we have user code, set the tooltips
-        msg = None
-        if gui.pui:
-            msg = gui.pui.tooltip
+        msg = gui.tooltip
         if msg is None:
             msg = _("Drag Properties Button to move and click it for setup")
         if msg:
@@ -215,12 +213,8 @@ class Gramplet(object):
         self._idle_id = 0
         self._generator = None
         self._need_to_update = False
-        self._tags = []
         self.option_dict = {}
         self.option_order = []
-        self.tooltip = None
-        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
-        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         # links to each other:
         self.gui = gui   # plugin gramplet has link to gui
         gui.pui = self   # gui has link to plugin ui
@@ -231,9 +225,9 @@ class Gramplet(object):
         self.dbstate.connect('database-changed', self._db_changed)
         self.dbstate.connect('active-changed', self.active_changed)
         self.gui.textview.connect('button-press-event', 
-                                  self.on_button_press) 
+                                  self.gui.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
-                                  self.on_motion)
+                                  self.gui.on_motion)
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
             self.active_changed(self.dbstate.active.handle)
@@ -273,25 +267,13 @@ class Gramplet(object):
         if debug: print "%s is connecting" % self.gui.title
         pass
 
-    def link_region(self, start, stop, link_type, url):
-        link_data = (LinkTag(self.gui.buffer), link_type, url, url)
-        self._tags.append(link_data)
-        self.gui.buffer.apply_tag(link_data[0], start, stop)
-
     def link(self, text, link_type, data, size=None, tooltip=None):
-        buffer = self.gui.buffer
-        iter = buffer.get_end_iter()
-        offset = buffer.get_char_count()
-        self.append_text(text)
-        start = buffer.get_iter_at_offset(offset)
-        end = buffer.get_end_iter()
-        link_data = (LinkTag(buffer), link_type, data, tooltip)
-        if size:
-            link_data[0].set_property("size-points", size)
-        self._tags.append(link_data)
-        buffer.apply_tag(link_data[0], start, end)
+        self.gui.link(text, link_type, data, size, tooltip)
 
     # Shortcuts to the gui functionality:
+
+    def set_tooltip(self, tip):
+        self.gui.tooltip = tip
 
     def get_text(self):
         return self.gui.get_text()
@@ -386,129 +368,6 @@ class Gramplet(object):
             self._idle_id = 0
             return False
 
-    def on_motion(self, view, event):
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
-                                                       int(event.x), 
-                                                       int(event.y))
-        iter = view.get_iter_at_location(*buffer_location)
-        cursor = self.standard_cursor
-        ttip = None
-        for (tag, link_type, handle, tooltip) in self._tags:
-            if iter.has_tag(tag):
-                tag.set_property('underline', pango.UNDERLINE_SINGLE)
-                cursor = self.link_cursor
-                ttip = tooltip
-            else:
-                tag.set_property('underline', pango.UNDERLINE_NONE)
-        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(cursor)
-        if self.gui.tooltips:
-            if ttip:
-                self.gui.tooltips.set_tip(self.gui.scrolledwindow, 
-                                          ttip)
-            else:
-                self.gui.tooltips.set_tip(self.gui.scrolledwindow, 
-                                          self.gui.tooltips_text)
-        return False # handle event further, if necessary
-
-    def on_button_press(self, view, event):
-        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
-                                                       int(event.x), 
-                                                       int(event.y))
-        iter = view.get_iter_at_location(*buffer_location)
-        for (tag, link_type, handle, tooltip) in self._tags:
-            if iter.has_tag(tag):
-                if link_type == 'Person':
-                    person = self.dbstate.db.get_person_from_handle(handle)
-                    if person is not None:
-                        if event.button == 1: # left mouse
-                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                                try:
-                                    from Editors import EditPerson
-                                    EditPerson(self.gui.dbstate, 
-                                               self.gui.uistate, 
-                                               [], person)
-                                    return True # handled event
-                                except Errors.WindowActiveError:
-                                    pass
-                            elif event.type == gtk.gdk.BUTTON_PRESS: # single click
-                                self.gui.dbstate.change_active_person(person)
-                                return True # handled event
-                        elif event.button == 3: # right mouse
-                            #FIXME: add a popup menu with options
-                            try:
-                                from Editors import EditPerson
-                                EditPerson(self.gui.dbstate, 
-                                           self.gui.uistate, 
-                                           [], person)
-                                return True # handled event
-                            except Errors.WindowActiveError:
-                                pass
-                elif link_type == 'Surname':
-                    if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.gui.dbstate, 
-                                                     self.gui.uistate, 
-                                                     'samesurnames', 
-                                                     handle)
-                    return True
-                elif link_type == 'Given':
-                    if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.gui.dbstate, 
-                                                     self.gui.uistate, 
-                                                     'samegivens_misc', 
-                                                     handle)
-                    return True
-                elif link_type == 'Filter':
-                    if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.gui.dbstate, 
-                                                     self.gui.uistate, 
-                                                     'filterbyname', 
-                                                     handle)
-                    return True
-                elif link_type == 'URL':
-                    if event.button == 1: # left mouse
-                        GrampsDisplay.url(handle)
-                    return True
-                elif link_type == 'WIKI':
-                    if event.button == 1: # left mouse
-                        GrampsDisplay.help(handle.replace(" ", "_"))
-                    return True
-                elif link_type == 'Family':
-                    family = self.dbstate.db.get_family_from_handle(handle)
-                    if family is not None:
-                        if event.button == 1: # left mouse
-                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                                try:
-                                    from Editors import EditFamily
-                                    EditFamily(self.gui.dbstate, 
-                                               self.gui.uistate, 
-                                               [], family)
-                                    return True # handled event
-                                except Errors.WindowActiveError:
-                                    pass
-                        elif event.button == 3: # right mouse
-                            #FIXME: add a popup menu with options
-                            try:
-                                from Editors import EditFamily
-                                EditFamily(self.gui.dbstate, 
-                                           self.gui.uistate, 
-                                           [], family)
-                                return True # handled event
-                            except Errors.WindowActiveError:
-                                pass
-                elif link_type == 'PersonList':
-                    if event.button == 1: # left mouse
-                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
-                            run_quick_report_by_name(self.gui.dbstate, 
-                                                     self.gui.uistate, 
-                                                     'filterbyname', 
-                                                     'list of people',
-                                                     handles=handle)
-                    return True
-        return False # did not handle event
-
     def get_option_widget(self, label):
         return self.option_dict[label][0]
 
@@ -546,6 +405,9 @@ class GuiGramplet:
         self.uistate = uistate
         self.title = title
         self.force_update = False
+        self._tags = []
+        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
+        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         ########## Set defaults
         self.name = kwargs.get("name", "Unnamed Gramplet")
         self.tname = kwargs.get("tname", "Unnamed Gramplet")
@@ -560,7 +422,8 @@ class GuiGramplet:
         ##########
         self.use_markup = False
         self.pui = None # user code
-        self.tooltips = None
+        self.tooltip = None # text
+        self.tooltips = None # gtk tooltip widget
         self.tooltips_text = None
         self.xml = glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
         self.mainframe = self.xml.get_widget('gvgramplet')
@@ -763,12 +626,17 @@ class GuiGramplet:
             stop = self.buffer.get_iter_at_offset(b + offset)
             if "href" in attributes:
                 url = attributes["href"]
-                self.pui.link_region(start, stop, "URL", url) # tooltip?
+                self.link_region(start, stop, "URL", url) # tooltip?
             elif "wiki" in attributes:
                 url = attributes["wiki"]
-                self.pui.link_region(start, stop, "WIKI", url) # tooltip?
+                self.link_region(start, stop, "WIKI", url) # tooltip?
             else:
                 print "warning: no url on link: '%s'" % text[start, stop]
+
+    def link_region(self, start, stop, link_type, url):
+        link_data = (LinkTag(self.buffer), link_type, url, url)
+        self._tags.append(link_data)
+        self.buffer.apply_tag(link_data[0], start, stop)
 
     def set_use_markup(self, value):
         if self.use_markup == value: return
@@ -814,6 +682,142 @@ class GuiGramplet:
         topbox.add(save_button)
         topbox.show_all()
         save_button.connect('clicked', self.pui.save_update_options)
+
+    def link(self, text, link_type, data, size=None, tooltip=None):
+        buffer = self.buffer
+        iter = buffer.get_end_iter()
+        offset = buffer.get_char_count()
+        self.append_text(text)
+        start = buffer.get_iter_at_offset(offset)
+        end = buffer.get_end_iter()
+        link_data = (LinkTag(buffer), link_type, data, tooltip)
+        if size:
+            link_data[0].set_property("size-points", size)
+        self._tags.append(link_data)
+        buffer.apply_tag(link_data[0], start, end)
+
+    def on_motion(self, view, event):
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        cursor = self.standard_cursor
+        ttip = None
+        for (tag, link_type, handle, tooltip) in self._tags:
+            if iter.has_tag(tag):
+                tag.set_property('underline', pango.UNDERLINE_SINGLE)
+                cursor = self.link_cursor
+                ttip = tooltip
+            else:
+                tag.set_property('underline', pango.UNDERLINE_NONE)
+        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(cursor)
+        if self.tooltips:
+            if ttip:
+                self.tooltips.set_tip(self.scrolledwindow, 
+                                          ttip)
+            else:
+                self.tooltips.set_tip(self.scrolledwindow, 
+                                          self.tooltips_text)
+        return False # handle event further, if necessary
+
+    def on_button_press(self, view, event):
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        for (tag, link_type, handle, tooltip) in self._tags:
+            if iter.has_tag(tag):
+                if link_type == 'Person':
+                    person = self.dbstate.db.get_person_from_handle(handle)
+                    if person is not None:
+                        if event.button == 1: # left mouse
+                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                                try:
+                                    from Editors import EditPerson
+                                    EditPerson(self.dbstate, 
+                                               self.uistate, 
+                                               [], person)
+                                    return True # handled event
+                                except Errors.WindowActiveError:
+                                    pass
+                            elif event.type == gtk.gdk.BUTTON_PRESS: # single click
+                                self.dbstate.change_active_person(person)
+                                return True # handled event
+                        elif event.button == 3: # right mouse
+                            #FIXME: add a popup menu with options
+                            try:
+                                from Editors import EditPerson
+                                EditPerson(self.dbstate, 
+                                           self.uistate, 
+                                           [], person)
+                                return True # handled event
+                            except Errors.WindowActiveError:
+                                pass
+                elif link_type == 'Surname':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.dbstate, 
+                                                     self.uistate, 
+                                                     'samesurnames', 
+                                                     handle)
+                    return True
+                elif link_type == 'Given':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.dbstate, 
+                                                     self.uistate, 
+                                                     'samegivens_misc', 
+                                                     handle)
+                    return True
+                elif link_type == 'Filter':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.dbstate, 
+                                                     self.uistate, 
+                                                     'filterbyname', 
+                                                     handle)
+                    return True
+                elif link_type == 'URL':
+                    if event.button == 1: # left mouse
+                        GrampsDisplay.url(handle)
+                    return True
+                elif link_type == 'WIKI':
+                    if event.button == 1: # left mouse
+                        GrampsDisplay.help(handle.replace(" ", "_"))
+                    return True
+                elif link_type == 'Family':
+                    family = self.dbstate.db.get_family_from_handle(handle)
+                    if family is not None:
+                        if event.button == 1: # left mouse
+                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                                try:
+                                    from Editors import EditFamily
+                                    EditFamily(self.dbstate, 
+                                               self.uistate, 
+                                               [], family)
+                                    return True # handled event
+                                except Errors.WindowActiveError:
+                                    pass
+                        elif event.button == 3: # right mouse
+                            #FIXME: add a popup menu with options
+                            try:
+                                from Editors import EditFamily
+                                EditFamily(self.dbstate, 
+                                           self.uistate, 
+                                           [], family)
+                                return True # handled event
+                            except Errors.WindowActiveError:
+                                pass
+                elif link_type == 'PersonList':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.dbstate, 
+                                                     self.uistate, 
+                                                     'filterbyname', 
+                                                     'list of people',
+                                                     handles=handle)
+                    return True
+        return False # did not handle event
 
 class MyScrolledWindow(gtk.ScrolledWindow):
     def show_all(self):

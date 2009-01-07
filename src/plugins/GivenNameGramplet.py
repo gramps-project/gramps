@@ -34,7 +34,7 @@ def make_tag_size(n, counts, mins=8, maxs=20):
 
 class GivenNameCloudGramplet(Gramplet):
     def init(self):
-        self.tooltip = _("Double-click given name for details")
+        self.set_tooltip(_("Double-click given name for details"))
         self.top_size = 100 # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 

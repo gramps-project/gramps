@@ -44,7 +44,7 @@ import DateHandler
 class DescendantGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Move mouse over links for options")
+        self.set_tooltip(_("Move mouse over links for options"))
         self.set_use_markup(True)
         self.no_wrap()
         self.max_generations = 100
