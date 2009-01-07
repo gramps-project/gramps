@@ -975,19 +975,19 @@ class IndividualListPage(BasePage):
 #------------------------------------------------------------------------
 class SurnamePage(BasePage):
 
-    def __init__(self, db, title, person_handle_list, options, archive, media_list):
+    def __init__(self, db, title, surname, person_handle_list, options, archive, media_list):
 
         BasePage.__init__(self, title, options, archive, media_list, "")
 
-        of = self.create_link_file(md5(title).hexdigest(),'srn')
-        self.display_header(of,db,title,get_researcher().get_name(),True)
+        of = self.create_link_file(md5(surname).hexdigest(),'srn')
+        self.display_header(of, db, "%s - %s" % (_('Surname'), surname), get_researcher().get_name(), True)
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
                 "will take you to that person&#8217;s individual page.") % title
 
         of.write('\t<h2>Surnames:</h2>\n')
-        of.write('\t<h3>%s</h3>\n' % html_escape(title))
+        of.write('\t<h3>%s</h3>\n' % html_escape(surname))
         of.write('\t<p id="description">%s</p>\n' % msg)
         of.write('\t<table class="infolist surname">\n')
         of.write('\t<thead>\n')
@@ -2816,7 +2816,7 @@ class NavWebReport(Report):
             self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
         for (surname, handle_list) in local_list:
-            SurnamePage(self.database, surname, handle_list,
+            SurnamePage(self.database, self.title, surname, handle_list,
                         self.opts, archive, self.photo_list)
             self.progress.step()
 
