@@ -381,7 +381,7 @@ class HtmlView(PageView.PageView):
         This command creates a default start page, and returns the URL of this
         page.
         """
-        tmpdir = Utils.get_empty_tempdir('htmlview')
+        tmpdir = GEOVIEW_SUBPATH
         data = """
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -423,8 +423,19 @@ class GeoView(HtmlView):
         self.external_url = False
         self.need_to_resize = False
 
-        # Create a temporary dot file
-        (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
+        # Create temporary files
+        # for people
+        (handle,self.htmlfileI) = tempfile.mkstemp(".html","GeoV-I-",
+                                                  GEOVIEW_SUBPATH)
+        self.htmlfile=self.htmlfileI
+        # for family
+        (handle,self.htmlfileF) = tempfile.mkstemp(".html","GeoV-F-",
+                                                  GEOVIEW_SUBPATH)
+        # for place
+        (handle,self.htmlfileP) = tempfile.mkstemp(".html","GeoV-P-",
+                                                  GEOVIEW_SUBPATH)
+        # for event
+        (handle,self.htmlfileE) = tempfile.mkstemp(".html","GeoV-E-",
                                                   GEOVIEW_SUBPATH)
 
     def on_delete(self):
@@ -627,6 +638,7 @@ class GeoView(HtmlView):
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
+        self.htmlfile=self.htmlfileP
         self.geo_places(self.htmlfile,self.displaytype)
 
     def person_places(self,handle=None):
@@ -634,6 +646,7 @@ class GeoView(HtmlView):
         Specifies the person places.
         """
         self.displaytype = "person"
+        self.htmlfile=self.htmlfileI
         self.geo_places(self.htmlfile,self.displaytype)
 
     def family_places(self,handle=None):
@@ -641,6 +654,7 @@ class GeoView(HtmlView):
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
+        self.htmlfile=self.htmlfileF
         self.geo_places(self.htmlfile,self.displaytype)
 
     def event_places(self,handle=None):
@@ -648,6 +662,7 @@ class GeoView(HtmlView):
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
+        self.htmlfile=self.htmlfileE
         self.geo_places(self.htmlfile,self.displaytype)
 
     def geo_places(self,htmlfile,displaytype):
