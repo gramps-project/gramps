@@ -1,5 +1,5 @@
 # French translation for gramps
-# Copyright (C) 2001-2008 Free Software Foundation, Inc.
+# Copyright (C) 2001-2009 Free Software Foundation, Inc.
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-08 10:40+0100\n"
-"PO-Revision-Date: 2009-01-08 12:28+0100\n"
+"PO-Revision-Date: 2009-01-08 18:33+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -332,8 +332,9 @@ msgstr "Importer une base GRAMPS"
 msgid "Could not open file: %s"
 msgstr "Impossible d'ouvrir le fichier : %s"
 
+# trunk
 #: ../src/DbLoader.py:155
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
@@ -341,7 +342,7 @@ msgid ""
 msgstr ""
 "Le type de fichier \"%s\" est inconnu.\n"
 "\n"
-"Les types valides sont : base de données GRAMPS, XML GRAMPS, paquet GRAMPS et GEDCOM."
+"Les types valides sont : base de données GRAMPS, XML GRAMPS, paquet GRAMPS, GEDCOM et autres."
 
 # trunk
 #: ../src/DbLoader.py:179
@@ -987,10 +988,10 @@ msgstr "Chercheur"
 msgid "Marker Colors"
 msgstr "Couleurs du marqueur"
 
+# trunk
 #: ../src/GrampsCfg.py:177
-#, fuzzy
 msgid "Internet Maps"
-msgstr "_Internet"
+msgstr "Internet Maps"
 
 #: ../src/GrampsCfg.py:190
 #: ../src/gramps_main.py:97
@@ -1259,20 +1260,20 @@ msgstr ""
 "GeoView utilise OpenStreetMap et d'autres fournisseurs d'accès.\n"
 "Choisissez l'un des fournisseurs suivants :"
 
+# trunk
 #: ../src/GrampsCfg.py:305
-#, fuzzy
 msgid "Google Maps"
-msgstr "_Google Maps"
+msgstr "Google Maps"
 
 # trunk
 #: ../src/GrampsCfg.py:309
 msgid "OpenLayers"
 msgstr "OpenLayers"
 
+# trunk
 #: ../src/GrampsCfg.py:313
-#, fuzzy
 msgid "Yahoo! Maps"
-msgstr "_Google Maps"
+msgstr "Yahoo! Maps"
 
 # trunk
 #: ../src/GrampsCfg.py:317
@@ -1859,11 +1860,11 @@ msgstr ""
 "\n"
 "GRAMPS va maintenant s'arrêter."
 
-# enlever la référence à l'événement
+# enlever la référence
+# trunk
 #: ../src/PageView.py:272
-#, fuzzy
 msgid "Remove selected items?"
-msgstr "Enlever l'événement sélectionné"
+msgstr "Enlever l'article sélectionné ?"
 
 # trunk
 #: ../src/PageView.py:273
@@ -1882,16 +1883,16 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
+# trunk
 #: ../src/PageView.py:286
-#, fuzzy
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
-msgstr "Cette note est actuellement utilisée, la supprimer l'enlèvera de la base et des enregistrements qui y font référence."
+msgstr "Cet article est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
 # Substantif (GNOME fr)
+# trunk
 #: ../src/PageView.py:290
-#, fuzzy
 msgid "Deleting item will remove it from the database."
-msgstr "La suppression de la note l'enlèvera de la base de données."
+msgstr "La suppression de l'article l'enlèvera de la base de données."
 
 #: ../src/PageView.py:297
 #: ../src/DataViews/PersonView.py:604
@@ -1900,10 +1901,10 @@ msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
 # objet sélectionné
+# trunk
 #: ../src/PageView.py:298
-#, fuzzy
 msgid "_Delete Item"
-msgstr "_Supprimer la note"
+msgstr "_Supprimer l'article"
 
 #: ../src/PageView.py:371
 #: ../src/ViewManager.py:1259
@@ -8191,10 +8192,10 @@ msgstr "Nouvel individu"
 msgid "Add relation"
 msgstr "Ajouter la relation"
 
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1238
-#, fuzzy
 msgid "No relation to active person"
-msgstr "Aucun individu actif"
+msgstr "Aucune relation à la personne active"
 
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1239
@@ -8245,28 +8246,27 @@ msgstr "Saisissez un nom. "
 msgid "Can't add new person."
 msgstr "Impossible d'ajouter un nouvel individu."
 
-# objet sélectionné
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1574
 #: ../src/plugins/DefaultGramplets.py:1582
 #: ../src/plugins/DefaultGramplets.py:1591
 #: ../src/plugins/DefaultGramplets.py:1596
-#, fuzzy
 msgid "Please set an active person."
-msgstr "Supprimer l'individu sélectionné"
+msgstr "Définir la personne active"
 
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1574
 #: ../src/plugins/DefaultGramplets.py:1577
-#, fuzzy
 msgid "Can't add new person as a parent."
-msgstr "Ajouter une nouvelle famille dont l'individu est le parent"
+msgstr "Impossible d'ajouter un nouvel individu comme parent"
 
+# trunk
 #. unknown
 #. both genders unknown
 #: ../src/plugins/DefaultGramplets.py:1577
 #: ../src/plugins/DefaultGramplets.py:1586
-#, fuzzy
 msgid "Please set the new person's gender."
-msgstr "Style pour le nom de l'individu."
+msgstr "Définir le genre du nouvel individu"
 
 #: ../src/plugins/DefaultGramplets.py:1582
 #: ../src/plugins/DefaultGramplets.py:1586
@@ -8517,10 +8517,10 @@ msgstr "Liste simplifiée des descendants"
 msgid "Produces a list of descendants of the active person"
 msgstr "Produit une liste des descendants de l'individu actif"
 
+# trunk
 #: ../src/plugins/DescendGramplet.py:60
-#, fuzzy
 msgid "No Active Person selected."
-msgstr "Aucun individu sélectionné"
+msgstr "Aucune personne active sélectionnée"
 
 # trunk
 #: ../src/plugins/DescendGramplet.py:151
@@ -8850,10 +8850,10 @@ msgstr "Liste détaillée des descendants de %(person_name)s"
 msgid "Use Record-style (Modified Register) numbering"
 msgstr "Utiliser le style enregistrement pour la numérotation"
 
+# trunk
 #: ../src/plugins/DetDescendantReport.py:695
-#, fuzzy
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr "Utiliser ou non la date complète à la place de l'année seule."
+msgstr "Utiliser ou non le style Enregistrement à la place du style Henry."
 
 #: ../src/plugins/DetDescendantReport.py:761
 #: ../src/plugins/KinshipReport.py:350
@@ -8892,7 +8892,7 @@ msgstr " (%(birth_date)s - %(death_date)s)"
 #: ../src/plugins/EndOfLineReport.py:264
 #: ../src/plugins/MarkerReport.py:476
 msgid "The style used for the section headers."
-msgstr "Le style utilisé pour les en-tête.s de section."
+msgstr "Le style utilisé pour les en-têtes de section."
 
 #: ../src/plugins/EndOfLineReport.py:282
 msgid "The basic style used for generation headings."
@@ -8918,10 +8918,11 @@ msgstr "Terminal d'évaluation Python"
 msgid "Provides a window that can evaluate python code"
 msgstr "Affiche un terminal d'évaluation du code Python"
 
+# wiki manual
+# trunk
 #: ../src/plugins/EventCmp.py:69
-#, fuzzy
 msgid "manual|Compare_Individual_Events..."
-msgstr "Edition de l'information sur les événements"
+msgstr "Comparaison_des_événements_individuels..."
 
 #: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
@@ -9152,49 +9153,51 @@ msgstr "Filtrage des données privées"
 msgid "Filtering living persons"
 msgstr "Filtrage des personnes vivantes"
 
+# trunk
 #: ../src/plugins/ExportGedcom.py:372
-#, fuzzy
 msgid "Applying selected person filter"
-msgstr "Éditer l'individu sélectionné"
+msgstr "Application du filtre sur l'individu"
 
+# trunk
 #: ../src/plugins/ExportGedcom.py:380
-#, fuzzy
 msgid "Applying selected note filter"
-msgstr "Dupliquer le filtre sélectionné"
+msgstr "Application du filtre sur la note"
 
-# pas de chaîne séparée pour 1 enregistrement
+# Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:389
-#, fuzzy
 msgid "Filtering unlinked records"
-msgstr "Le filtre a trouvé %d enregistrement(s). "
+msgstr "Filtrage d'enregistrements non-liés"
 
 # Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:559
-#, fuzzy
 msgid "Writing individuals"
-msgstr "Création des pages individu"
+msgstr "Écriture des individus"
 
 # Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:901
-#, fuzzy
 msgid "Writing families"
-msgstr "Écriture des lignées familiales"
+msgstr "Écriture des familles"
 
 # Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:1064
-#, fuzzy
 msgid "Writing sources"
-msgstr "Création des pages source"
+msgstr "Écriture des sources"
 
+# Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:1098
-#, fuzzy
 msgid "Writing notes"
-msgstr "Écriture"
+msgstr "Écriture des notes"
 
+# Substantif (GNOME fr)
+# trunk
 #: ../src/plugins/ExportGedcom.py:1135
-#, fuzzy
 msgid "Writing repositories"
-msgstr "Dépôts"
+msgstr "Écriture des dépôts"
 
 #: ../src/plugins/ExportGedcom.py:1517
 msgid "Export failed"
@@ -9585,8 +9588,8 @@ msgstr "droit"
 msgid "roundabout"
 msgstr "courbé"
 
+# trunk
 #: ../src/plugins/FanChart.py:369
-#, fuzzy
 msgid "Print radial texts upright or roundabout"
 msgstr "Imprimer les textes radiaux droits ou courbés"
 
@@ -9810,15 +9813,15 @@ msgstr "Candidats à la fusion"
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
+# trunk
 #: ../src/plugins/GivenNameGramplet.py:37
-#, fuzzy
 msgid "Double-click given name for details"
-msgstr "Double cliquer sur le nom de famille pour les détails"
+msgstr "Double cliquez sur le nom de famille pour les détails"
 
+# trunk
 #: ../src/plugins/GivenNameGramplet.py:113
-#, fuzzy
 msgid "Total unique given names"
-msgstr "Total des noms uniques"
+msgstr "Total des prénoms uniques"
 
 # trunk
 #: ../src/plugins/GivenNameGramplet.py:119
@@ -9841,13 +9844,13 @@ msgstr "Nuage de prénoms"
 msgid "B&W outline"
 msgstr "Bordures noir et blanc (intérieur vide)"
 
+# trunk
 #: ../src/plugins/GVFamilyLines.py:64
-#, fuzzy
 msgid "Coloured outline"
 msgstr "Bordure colorée"
 
+# trunk
 #: ../src/plugins/GVFamilyLines.py:65
-#, fuzzy
 msgid "Colour fill"
 msgstr "Couleur du remplissage"
 
@@ -10373,10 +10376,10 @@ msgstr "Importation de CSV"
 msgid "CSV Spreadheet"
 msgstr "Tableur CSV"
 
+# trunk
 #: ../src/plugins/ImportCsv.py:847
-#, fuzzy
 msgid "Import data from CSV files"
-msgstr "Importer depuis %s"
+msgstr "Importer les données depuis des fichiers CSV"
 
 #: ../src/plugins/ImportGedcom.py:116
 msgid "Invalid GEDCOM file"
@@ -10406,10 +10409,10 @@ msgstr "Importation GeneWeb"
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
+# trunk
 #: ../src/plugins/ImportGeneWeb.py:926
-#, fuzzy
 msgid "Import data from GeneWeb files"
-msgstr "Fichiers GeneWeb"
+msgstr "Importer les données depuis des fichiers GeneWeb"
 
 #: ../src/plugins/ImportGpkg.py:73
 #, python-format
@@ -10457,10 +10460,10 @@ msgstr "L'arbre familial que vous venez d'importer a déjà un chemin média : %
 msgid "GRAMPS package"
 msgstr "Paquet GRAMPS"
 
+# trunk
 #: ../src/plugins/ImportGpkg.py:147
-#, fuzzy
 msgid "Import data from GRAMPS packages"
-msgstr "Paquets GRAMPS"
+msgstr "Importer les données depuis des paquets GRAMPS"
 
 #: ../src/plugins/ImportGrdb.py:1080
 #: ../src/gen/db/dbdir.py:1124
@@ -10504,10 +10507,10 @@ msgstr "Importer une base de données"
 msgid "GRAMPS 2.x database"
 msgstr "Base de données GRAMPS 2.x"
 
+# trunk
 #: ../src/plugins/ImportGrdb.py:2687
-#, fuzzy
 msgid "Import data from GRAMPS 2.x database files"
-msgstr "Bases de données GRAMPS 2.x"
+msgstr "Importer les données depuis des bases de données GRAMPS 2.x"
 
 # trunk
 #: ../src/plugins/ImportProGen.py:77
@@ -10530,20 +10533,22 @@ msgstr "L'emplacement '%(fldname)s' non trouvé"
 msgid "Cannot find DEF file: %(deffname)s"
 msgstr ""
 
+# trunk
 #: ../src/plugins/ImportProGen.py:441
-#, fuzzy
 msgid "Import from Pro-Gen"
-msgstr "Importer depuis %s"
+msgstr "Importer depuis Pro-Gen"
 
 # trunk
 #: ../src/plugins/ImportProGen.py:457
 msgid "Pro-Gen import"
 msgstr "Importation Pro-Gen"
 
+# trunk
+# à tester, vérifier
 #: ../src/plugins/ImportProGen.py:634
 #, python-format
 msgid "date did not match: '%s' (%s)"
-msgstr ""
+msgstr "date n'a pas correspondu : '%s' (%s)"
 
 # Substantif (GNOME fr)
 # trunk
@@ -10595,10 +10600,10 @@ msgstr "Importation de vCard"
 msgid "vCard"
 msgstr "vCard"
 
+# trunk
 #: ../src/plugins/ImportVCard.py:224
-#, fuzzy
 msgid "Import data from vCard files"
-msgstr "Importer depuis %s"
+msgstr "Importer les données depuis des fichiers vCard"
 
 #: ../src/plugins/ImportXml.py:122
 #: ../src/plugins/ImportXml.py:132
@@ -11125,8 +11130,8 @@ msgstr "Cet outil permet de convertir les chemins média relatifs en chemins abs
 msgid "Convert paths from absolute to r_elative"
 msgstr "Convertir les chemins absolus en chemins r_elatifs"
 
+# trunk
 #: ../src/plugins/MediaManager.py:535
-#, fuzzy
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
 msgstr "Cet outil permet de convertir les chemins média absolus en chemins relatifs.  Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
 
@@ -11405,10 +11410,11 @@ msgstr "demi-frères et demi-sœurs"
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
 msgstr "%(date)s <span class=\"preposition\">à</span> %(place)s"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:2503
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
-msgstr ""
+msgstr "<span class=\"preposition\">à</span> %(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2520
 #, python-format
@@ -11505,10 +11511,10 @@ msgstr "Mon arbre généalogique"
 msgid "The title of the web site"
 msgstr "Le titre du site internet"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:3076
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
-msgstr "Sélectionne un filtre pour restreindre les individus qui apparaîtront dans le calendrier"
+msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans le site web"
 
 #: ../src/plugins/NarrativeWeb.py:3087
 #: ../src/plugins/WebCal.py:1342
@@ -12030,25 +12036,25 @@ msgstr "Le style utilisé pour le titre du rapport."
 msgid "The style used for place title."
 msgstr "Le style utilisé pour le titre du lieu."
 
+# trunk
 #: ../src/plugins/PlaceReport.py:321
-#, fuzzy
 msgid "The style used for place details."
-msgstr "Le style utilisé pour l'en-tête."
+msgstr "Le style utilisé pour les détails du lieu."
 
+# trunk
 #: ../src/plugins/PlaceReport.py:333
-#, fuzzy
 msgid "The style used for a column title."
-msgstr "Le style utilisé pour l'en-tête."
+msgstr "Le style utilisé pour la colonne titre."
 
+# trunk
 #: ../src/plugins/PlaceReport.py:347
-#, fuzzy
 msgid "The style used for each section."
-msgstr "Le style utilisé pour les en-tête.s de section."
+msgstr "Le style utilisé pour chaque section."
 
+# trunk
 #: ../src/plugins/PlaceReport.py:370
-#, fuzzy
 msgid "The style used for event and person details."
-msgstr "Style pour le nom de l'individu."
+msgstr "Le style utilisé pour les détails de l'événement et de l'individu"
 
 # à revoir
 # trunk
@@ -12098,11 +12104,11 @@ msgstr "Reconstruire les tables de références"
 msgid "Rebuilds reference maps"
 msgstr "Reconstruit les tables de références"
 
+# trunk
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/WhatsNext.py:60
-#, fuzzy
 msgid "Double-click name for details"
-msgstr "Double cliquer sur le nom de famille pour les détails"
+msgstr "Double cliquez sur le nom pour les détails"
 
 # trunk
 #: ../src/plugins/Records.py:394
@@ -13240,57 +13246,66 @@ msgstr ""
 msgid "Year Glance"
 msgstr "Lieu de décès"
 
+# trunk
 #. add a link to blank_year() if requested
 #: ../src/plugins/WebCal.py:445
 #: ../src/plugins/WebCal.py:969
-#, fuzzy
 msgid "Blank Calendar"
-msgstr "Calendrier"
+msgstr "Calendrier vide"
 
+# trunk
 #: ../src/plugins/WebCal.py:543
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
-msgstr "<br/>pour <a href=\"%s\">%s</a>"
+msgstr "Créé pour <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
+# trunk
 #: ../src/plugins/WebCal.py:547
-#, fuzzy, python-format
+#, python-format
 msgid "Created for %(author)s\n"
-msgstr "Fille de %(father)s."
+msgstr "Créé pour %(author)s\n"
 
 #: ../src/plugins/WebCal.py:862
 msgid "Holiday"
 msgstr ""
 
+# à tester
+# trunk
 #: ../src/plugins/WebCal.py:876
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> year old"
-msgstr ""
+msgstr "%(short_name)s, <em>%(age)d</em> an"
 
+# à tester
+# trunk
 #: ../src/plugins/WebCal.py:880
 #, python-format
 msgid "%(short_name)s, <em>%(age)d</em> years old"
-msgstr ""
+msgstr "%(short_name)s, <em>%(age)d</em> ans"
 
+# à tester
+# trunk
 #: ../src/plugins/WebCal.py:895
 #, python-format
 msgid "%(couple)s, <em>%(nyears)d</em> year anniversary"
-msgstr ""
+msgstr "%(couple)s, <em>%(nyears)d</em> années"
 
 #: ../src/plugins/WebCal.py:937
 msgid "One Day Within A Year"
 msgstr ""
 
+# trunk
 #: ../src/plugins/WebCal.py:967
-#, fuzzy
 msgid " Blank Calendar"
-msgstr "Calendrier"
+msgstr "Calendrier vide"
 
 # Substantif (GNOME fr)
+# trunk
+# à vérifier
 #. generate progress pass for "Blank Year"
 #: ../src/plugins/WebCal.py:974
-#, fuzzy
 msgid "Creating Blank Year calendars"
-msgstr "Création des pages calendrier"
+msgstr "Création de calendriers vides"
 
 #. page title
 #: ../src/plugins/WebCal.py:1005
@@ -13323,12 +13338,12 @@ msgid "Creating year %d calendars"
 msgstr "Création des pages calendrier"
 
 # Substantif (GNOME fr)
+# trunk
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/WebCal.py:1155
-#, fuzzy
 msgid "Creating WebCal calendars"
-msgstr "Création des pages calendrier"
+msgstr "Création des calendriers WebCal"
 
 # trunk
 #. Huh? Why translate this?
@@ -13363,38 +13378,40 @@ msgstr "La feuille de style utilisée pour la page internet"
 msgid "Content Options"
 msgstr "Options du contenu"
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1377
-#, fuzzy
 msgid "Create Partial Year calendar"
-msgstr "Le titre du calendrier"
+msgstr "Créer un calendrier avec l'année partielle"
 
 #: ../src/plugins/WebCal.py:1378
 msgid "Create a partial year calendar. The start month will be equal to the current month to the end of the year."
 msgstr ""
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1382
-#, fuzzy
 msgid "Create multiple year calendars"
-msgstr "Le titre du calendrier"
+msgstr "Créer des calendriers sur plusieurs années"
 
 #: ../src/plugins/WebCal.py:1383
 #, fuzzy
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Inclure ou non les noms alternatifs pour les parents."
 
+# trunk
 #: ../src/plugins/WebCal.py:1387
-#, fuzzy
 msgid "Start Year for the Calendar(s)"
-msgstr "Le titre du calendrier"
+msgstr "Année de départ pour les calendrier(s)"
 
 #: ../src/plugins/WebCal.py:1388
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr ""
 
+# trunk
 #: ../src/plugins/WebCal.py:1391
-#, fuzzy
 msgid "End Year for the Calendar(s)"
-msgstr "Année du calendrier"
+msgstr "Dernière année pour les calendrier(s)"
 
 #: ../src/plugins/WebCal.py:1392
 msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple years is selected, then only twenty years at any given time"
@@ -13431,10 +13448,10 @@ msgstr "URL de départ"
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr "Le lien à inclure pour rediriger l'utilisateur vers la page principale du site web "
 
+# trunk
 #: ../src/plugins/WebCal.py:1448
-#, fuzzy
 msgid "Jan - Jun Notes"
-msgstr "Note Jan"
+msgstr "Notes Jan - Juin"
 
 #: ../src/plugins/WebCal.py:1450
 msgid "Jan Note"
@@ -13514,10 +13531,10 @@ msgstr "Ceci s'imprime en juin"
 msgid "The note for the month of June"
 msgstr "La note pour le mois de juin"
 
+# trunk
 #: ../src/plugins/WebCal.py:1474
-#, fuzzy
 msgid "Jul - Dec Notes"
-msgstr "Note juil"
+msgstr "Notes juil - Déc"
 
 #: ../src/plugins/WebCal.py:1476
 msgid "Jul Note"
@@ -13615,17 +13632,17 @@ msgstr "Individu par défaut (souche) non défini."
 msgid "first name unknown"
 msgstr "prénom inconnu"
 
+# trunk
 #: ../src/plugins/WhatsNext.py:248
-#, fuzzy
 msgid "surname unknown"
-msgstr "Genre inconnu"
+msgstr "nom de famille inconnu"
 
+# trunk
 #: ../src/plugins/WhatsNext.py:252
 #: ../src/plugins/WhatsNext.py:283
 #: ../src/plugins/WhatsNext.py:290
-#, fuzzy
 msgid "(person with unknown name)"
-msgstr "les individus sans genre"
+msgstr "(individu avec un nom inconnu)"
 
 # trunk
 #: ../src/plugins/WhatsNext.py:265
@@ -13652,20 +13669,21 @@ msgstr ", "
 msgid "(unknown person)"
 msgstr "(individu inconnu)"
 
+# trunk
 #: ../src/plugins/WhatsNext.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(name1)s and %(name2)s"
-msgstr "%(father)s et %(mother)s"
+msgstr "%(name1)s et %(name2)s"
 
+# trunk
 #: ../src/plugins/WhatsNext.py:310
-#, fuzzy
 msgid "marriage event missing"
-msgstr "Événements manquants"
+msgstr "mariage manquant"
 
+# trunk
 #: ../src/plugins/WhatsNext.py:312
-#, fuzzy
 msgid "relation type unknown"
-msgstr "Genre inconnu"
+msgstr "type de relation inconnu"
 
 # trunk
 #: ../src/plugins/WhatsNext.py:327
@@ -18134,12 +18152,14 @@ msgstr "moins que"
 msgid "between"
 msgstr "entre"
 
+# à tester
+# trunk
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:363
 msgid "more than about"
-msgstr ""
+msgstr "plus que environ"
 
 # trunk
 #. v = self.date1.sortval - self.date2.sortval
@@ -18616,12 +18636,12 @@ msgstr "Compteur de références :"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:44
 msgid "Objects with a reference count of <count>"
-msgstr "Les objets avec un nombre de références de <nb>"
+msgstr "Objets avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:45
 msgid "Matches objects with a certain reference count"
-msgstr "Correspond aux objets avec un certain nombre de références"
+msgstr "Correspond aux objets ayant un nombre de références"
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
@@ -18768,24 +18788,24 @@ msgstr "Le nombre doit être :"
 # trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
 msgid "People with <count> address"
-msgstr "Individus avec <nombre> adresse"
+msgstr "Individus avec un <nombre> d'adresse"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-#, fuzzy
 msgid "Matches people with certain number of personal address"
-msgstr "Correspond aux individus avec le même prénom"
+msgstr "Correspond aux individus ayant un nombre d'adresse"
 
 # trunk
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> association"
-msgstr "Individus <nombre> association"
+msgstr "Individus avec un <nombre> d'association"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-#, fuzzy
 msgid "Matches people with certain number of association"
-msgstr "Correspond aux individus ayant une note"
+msgstr "Correspond aux individus ayant un nombre d'association"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
@@ -18904,13 +18924,13 @@ msgstr "Correspond aux individus ayant le même événement familial"
 # trunk
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
 msgid "People with <count> media"
-msgstr "Individus avec <nombre> media"
+msgstr "Individus avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
-#, fuzzy
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Correspond aux individus ayant des images dans la galerie"
+msgstr "Correspond aux individus ayant un nombre d'articles dans la galerie"
 
 # trunk
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
@@ -18919,22 +18939,22 @@ msgid "Person with <Id>"
 msgstr "Individus avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
-#, fuzzy
 msgid "Matches person with a specified GRAMPS ID"
 msgstr "Correspond aux individus ayant l'identifiant GRAMPS spécifié"
 
 # trunk
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
 msgid "People with <count> LDS events"
-msgstr "Individus avec <nombre> événements mormons"
+msgstr "Individus avec un <nombre> d'événements mormons"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasLDS.py:47
-#, fuzzy
 msgid "Matches people with a certain number of LDS events"
-msgstr "Correspond aux individus ayant une note"
+msgstr "Correspond aux individus ayant un nombre d'événements mormons"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -18984,13 +19004,13 @@ msgstr "Correspond aux individus ayant un nom (partiel) spécifié"
 # trunk
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
-msgstr "Individus avec <nombre> note"
+msgstr "Individus avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasNote.py:47
-#, fuzzy
 msgid "Matches people having a certain number of notes"
-msgstr "Correspond aux individus ayant une note"
+msgstr "Correspond aux individus ayant un nombre de notes"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
@@ -19049,13 +19069,13 @@ msgstr "Filtres familiaux"
 # trunk
 #: ../src/Filters/Rules/Person/_HasSource.py:46
 msgid "People with <count> source"
-msgstr "Individus avec <nombre> source"
+msgstr "Individus avec un <nombre> de source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-#, fuzzy
 msgid "Matches people with a certain number of items in the source"
-msgstr "Correspond aux lieux avec un certain nombre de références"
+msgstr "Correspond aux individus ayant un nombre d'articles dans la source"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:487
@@ -19545,16 +19565,16 @@ msgstr "Familles avec l'<événement>"
 msgid "Matches families with an event of a particular value"
 msgstr "Correspond aux familles ayant un événement de même valeur"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
-#, fuzzy
 msgid "Families with <count> media"
-msgstr "Familles avec le <marqueur>"
+msgstr "Familles avec un <nombre> d'objet media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
-#, fuzzy
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Correspond aux individus ayant des images dans la galerie"
+msgstr "Correspond aux familles ayant un nombre d'article dans la galerie"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -19565,15 +19585,15 @@ msgstr "Familles avec l'<Id>"
 msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Correspond aux familles avec l'identifiant GRAMPS spécifié"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
-#, fuzzy
 msgid "Families with <count> LDS events"
-msgstr "Familles avec l'<événement>"
+msgstr "Familles avec un <nombre> d'événements mormons"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasLDS.py:47
-#, fuzzy
 msgid "Matches families with a certain number of LDS events"
-msgstr "Familles avec l'<événement>"
+msgstr "Correspond aux familles ayant un nombre d'événements mormons"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
@@ -19584,16 +19604,16 @@ msgstr "Familles avec le <marqueur>"
 msgid "Matches Families with a marker of a particular value"
 msgstr "Correspond aux familles ayant un marqueur d'une valeur particulière"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasNote.py:46
-#, fuzzy
 msgid "Families having <count> notes"
-msgstr "Individus avec une note"
+msgstr "Familles avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_HasNote.py:47
-#, fuzzy
 msgid "Matches families having a certain number notes"
-msgstr "Correspond aux individus ayant une note"
+msgstr "Correspond aux familles ayant un nombre de notes"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
@@ -19613,38 +19633,38 @@ msgstr "Familles dont les notes contiennent une <expression rationnelle>"
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Correspond aux familles dont les notes contiennent du texte avec l'expression rationnelle"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Families with a reference count of <count>"
-msgstr "Les familles avec un nombre de références de <nb>"
+msgstr "Familles avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches families objects with a certain reference count"
-msgstr "Correspond aux familles avec un certain nombre de références"
+msgstr "Correspond aux familles ayant un nombre de référence"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Families with the relationship type"
-msgstr "Famille avec ce type de relation"
+msgstr "Familles avec un type de relation"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Correspond aux familles ayant un type de relation de même valeur"
 
+# trunk
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-#, fuzzy
 msgid "Families with <count> source"
-msgstr "Familles avec le <marqueur>"
+msgstr "Familles avec un <nombre> de source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-#, fuzzy
 msgid "Matches families with a certain number of items in the source"
-msgstr "Correspond aux familles avec un certain nombre de références"
+msgstr "Correspond aux familles avec un nombre d'articles dans la source"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -19791,16 +19811,16 @@ msgstr "Événement avec la <donnée>"
 msgid "Matches events with data of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
 
+# trunk
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
-#, fuzzy
 msgid "Events with <count> media"
-msgstr "Événement avec la <donnée>"
+msgstr "Événements avec un <nombre> d'objet media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
-#, fuzzy
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Correspond aux individus ayant des images dans la galerie"
+msgstr "Correspond aux événements ayant un nombre d'article dans la galerie"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -19820,16 +19840,16 @@ msgstr "Événements avec le <marqueur>"
 msgid "Matches Events with a marker of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
 
+# trunk
 #: ../src/Filters/Rules/Event/_HasNote.py:46
-#, fuzzy
 msgid "Events having <count> notes"
-msgstr "Individus avec une note"
+msgstr "Événements avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Event/_HasNote.py:47
-#, fuzzy
 msgid "Matches events having a certain number of notes"
-msgstr "Correspond aux événements avec un certain nombre de références"
+msgstr "Correspond aux événements avec un nombre de notes"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -19851,21 +19871,21 @@ msgstr "Correspond aux événements dont les notes contiennent du texte avec l'e
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
-msgstr "Les événements avec un nombre de références de <nb>"
+msgstr "Événements avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:44
 msgid "Matches events with a certain reference count"
-msgstr "Correspond aux événements avec un certain nombre de références"
+msgstr "Correspond aux événements ayant un nombre de références"
 
+# trunk
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Events with the particular type"
 msgstr "Événement avec un type particulier"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches events with the particular type "
 msgstr "Correspond à l'événement avec un type précis "
 
@@ -19934,16 +19954,16 @@ msgstr "Chaque lieu"
 msgid "Matches every place in the database"
 msgstr "Correspond à tous les lieux de la base"
 
+# trunk
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
-#, fuzzy
 msgid "Places with <count> media"
-msgstr "les individus avec des images"
+msgstr "Lieux avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
-#, fuzzy
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Correspond aux individus ayant des images dans la galerie"
+msgstr "Correspond aux lieux ayant un nombre d'articles dans la galerie"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
@@ -19968,16 +19988,16 @@ msgstr "Correspond aux lieux sans latitude ou longitude"
 msgid "Position filters"
 msgstr "Filtres sur la position"
 
+# trunk
 #: ../src/Filters/Rules/Place/_HasNote.py:46
-#, fuzzy
 msgid "Places having <count> notes"
-msgstr "Individus avec une note"
+msgstr "Lieux avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Place/_HasNote.py:47
-#, fuzzy
 msgid "Matches places having a certain number of notes"
-msgstr "Correspond aux lieux avec un certain nombre de références"
+msgstr "Correspond aux lieux ayant un nombre de notes"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
@@ -20028,16 +20048,16 @@ msgstr "Lieux correspondants aux paramètres"
 msgid "Matches places with particular parameters"
 msgstr "Correspond aux lieux ayant des paramètres précis"
 
+# trunk
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Places with a reference count of <count>"
-msgstr "Les lieux avec un nombre de références de <nb>"
+msgstr "Lieux avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches places with a certain reference count"
-msgstr "Correspond aux lieux avec un certain nombre de références"
+msgstr "Correspond aux lieux ayant un nombre de références"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -20111,16 +20131,16 @@ msgstr "Chaque source"
 msgid "Matches every source in the database"
 msgstr "Correspond à toutes les sources de la base"
 
+# trunk
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
-#, fuzzy
 msgid "Sources with <count> media"
-msgstr "Source avec l'<Id>"
+msgstr "Sources avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
-#, fuzzy
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Correspond aux individus ayant des images dans la galerie"
+msgstr "Correspond aux sources ayant un nombre d'articles dans la galerie"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -20131,16 +20151,16 @@ msgstr "Source avec l'<Id>"
 msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Correspond à une source avec l'identifiant GRAMPS spécifié"
 
+# trunk
 #: ../src/Filters/Rules/Source/_HasNote.py:46
-#, fuzzy
 msgid "Sources having <count> notes"
-msgstr "Individus avec une note"
+msgstr "Sources avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Source/_HasNote.py:47
-#, fuzzy
 msgid "Matches sources having a certain number of notes"
-msgstr "Correspond aux notes avec un certain nombre de références"
+msgstr "Correspond aux notes ayant un nombre de références"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
@@ -20160,16 +20180,16 @@ msgstr "Sources dont les notes contiennent la <sous-chaîne>"
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Correspond aux sources dont les notes contiennent une sous-chaîne"
 
+# trunk
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Sources with a reference count of <count>"
-msgstr "Les notes avec un nombre de références de <nb>"
+msgstr "Sources avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches sources with a certain reference count"
-msgstr "Correspond aux notes avec un certain nombre de références"
+msgstr "Correspond aux sources ayant un nombre de références"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -20298,12 +20318,12 @@ msgstr "Correspond aux objets média dont les notes contiennent du texte avec l'
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr "Les objets média avec un nombre de références de <nb>"
+msgstr "Objets média avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Correspond aux objets média avec un certain nombre de références"
+msgstr "Correspond aux objets média ayant un nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
@@ -20361,8 +20381,8 @@ msgstr "Dépôts dont les notes contiennent la <sous-chaîne>"
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Correspond aux dépôts dont les notes contiennent une sous-chaîne"
 
+# trunk
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "Repositories having notes containing <regular expression>"
 msgstr "Dépôts dont les notes contiennent une <expression rationnelle>"
 
@@ -20373,12 +20393,12 @@ msgstr "Correspond aux dépôts dont les notes contiennent du texte avec l'expre
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Les dépôts avec un nombre de références de <nb>"
+msgstr "Dépôts avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Correspond aux dépôts avec un certain nombre de références"
+msgstr "Correspond aux dépôts ayant un nombre de références"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -20464,10 +20484,10 @@ msgid "Notes containing <regular expression>"
 msgstr "Notes qui contiennent une <expression rationnelle>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes who contain text matching a regular expression"
-msgstr "Correspond aux événements dont les notes contiennent du texte avec l'expression rationnelle"
+msgstr "Correspond aux notes contenant du texte avec l'expression rationnelle"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -20490,12 +20510,12 @@ msgstr "Correspond aux notes ayant des paramètres particuliers"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
-msgstr "Les notes avec un nombre de références de <nb>"
+msgstr "Notes avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:44
 msgid "Matches notes with a certain reference count"
-msgstr "Correspond aux notes avec un certain nombre de références"
+msgstr "Correspond aux notes ayant un nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
