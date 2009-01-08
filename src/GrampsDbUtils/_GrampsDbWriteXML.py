@@ -377,7 +377,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             for number, name,fmt_str,active in self.db.name_formats:
                 self.g.write('%s<format number="%d" name="%s" '
                              'fmt_str="%s" active="%d"/>\n'
-                             % ('    ', number, fmt_str, fmt_str, int(active)))
+                             % ('    ', number, name, fmt_str, int(active)))
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):

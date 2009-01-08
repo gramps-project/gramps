@@ -360,14 +360,37 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
                 "%s /%s/" % (_("Given"), _("SURNAME")),
                 ]
-        f = lyst[int(random.random() * len(lyst))]
-        i = _nd.add_name_format(f, f.lower())
-        node = self.fmt_model.append(row=[i, f, f.lower(), 
-                                   _nd.format_str(self.examplename, f)])
+        fmtlyst = ["%s, %s %s (%s)" % ("Surname", "Given", "Suffix", 
+                                       "Common"),
+                   "%s, %s %s (%s)" % ("Surname", "Given", "Suffix", 
+                                       "Call"),
+                   "%s, %s %s (%s)" % ("SURNAME", "Given", "Suffix", 
+                                       "Call"),
+                   "%s, %s (%s)" % ("Surname", "Given", "Common"),
+                   "%s, %s (%s)" % ("Surname", "Given", "Call"),
+                   "%s %s" % ("Given", "Surname"),
+                   "%s %s, %s" % ("Given", "Surname", "Suffix"),
+                   "%s %s %s" % ("Given", "Surname", "Patronymic"),
+                   "%s, %s %s (%s)" % ("SURNAME", "Given", "Suffix", 
+                                       "Common"),
+                   "%s, %s (%s)" % ("SURNAME", "Given", "Common"),
+                   "%s, %s (%s)" % ("SURNAME", "Given", "Call"),
+                   "%s %s" % ("Given", "SURNAME"),
+                   "%s %s, %s" % ("Given", "SURNAME", "Suffix"),
+                   "%s /%s/" % ("Given", "SURNAME"),
+                   ]
+        rand = int(random.random() * len(lyst))
+        f = lyst[rand]
+        fmt = fmtlyst[rand]
+        i = _nd.add_name_format(f, fmt)
+        node = self.fmt_model.append(row=[i, f, fmt, 
+                                   _nd.format_str(self.examplename, fmt)])
         path = self.fmt_model.get_path(node)
         self.format_list.set_cursor(path, 
                                     focus_column=self.name_column, 
                                     start_editing=True)
+        self.__current_path = path
+        self.__current_text = f
 
     def __edit_name(self, obj):
         store, node = self.format_list.get_selection().get_selected()
@@ -394,6 +417,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                     return True
             iter = model.iter_next(iter)
         return False
+
+    def __cancel_change(self, obj):
+        self.__change_name("", self.__current_path, self.__current_text)
 
     def __change_name(self, text, path, new_text):
         """
@@ -457,6 +483,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                          text=COL_NAME)
         name_renderer.set_property('editable', False)
         name_renderer.connect('edited', self.__change_name)
+        name_renderer.connect('editing-canceled', self.__cancel_change)
         self.name_renderer = name_renderer
         format_tree.append_column(name_column)
         example_renderer = gtk.CellRendererText()
