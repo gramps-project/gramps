@@ -116,6 +116,7 @@ if WebKit == NOWEB :
 # They are used only with gtkmozembed.
 MOZEMBED_PATH = TEMP_DIR
 MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
+GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
 
 #-------------------------------------------------------------------------
 #
@@ -424,7 +425,7 @@ class GeoView(HtmlView):
 
         # Create a temporary dot file
         (handle,self.htmlfile) = tempfile.mkstemp(".html","GeoV",
-                                                  MOZEMBED_PATH+'/htmlview' )
+                                                  GEOVIEW_SUBPATH)
 
     def on_delete(self):
         """
