@@ -1061,7 +1061,7 @@ class GrampsParser(UpdateCallback):
         if number in self.taken_name_format_numbers:
             number = self.remap_name_format(number)
 
-        self.name_formats.append((number, fmt_str, fmt_str, active))
+        self.name_formats.append((number, name, fmt_str, active))
 
     def remap_name_format(self, old_number):
         if old_number in self.name_formats_map: # This should not happen
