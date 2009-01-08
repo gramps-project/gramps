@@ -8,13 +8,13 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 17:47+0100\n"
-"PO-Revision-Date: 2008-12-16 17:54+0100\n"
+"POT-Creation-Date: 2009-01-08 18:20+0100\n"
+"PO-Revision-Date: 2009-01-08 18:43+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -552,9 +552,9 @@ msgstr "Nie"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:149 ../src/plugins/all_relations.py:273
 #: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1311
-#: ../src/plugins/DefaultGramplets.py:197
-#: ../src/plugins/DefaultGramplets.py:449
-#: ../src/plugins/DefaultGramplets.py:460 ../src/plugins/GVFamilyLines.py:134
+#: ../src/plugins/DefaultGramplets.py:198
+#: ../src/plugins/DefaultGramplets.py:450
+#: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:134
 #: ../src/plugins/IndivComplete.py:443 ../src/plugins/NarrativeWeb.py:699
 #: ../src/PluginUtils/_PluginMgr.py:181 ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:184 ../src/PluginUtils/_PluginMgr.py:214
@@ -878,7 +878,7 @@ msgid " Name Editor"
 msgstr "Nameneditor"
 
 #: ../src/GrampsCfg.py:133 ../src/GrampsCfg.py:141 ../src/GrampsCfg.py:144
-#: ../src/GrampsCfg.py:906
+#: ../src/GrampsCfg.py:933
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -1103,9 +1103,9 @@ msgstr "_Details zum selbstdefinierten Format"
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1196
 #: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:850
-#: ../src/plugins/NarrativeWeb.py:1475 ../src/plugins/NarrativeWeb.py:1477
-#: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:81
-#: ../src/PluginUtils/_GuiOptions.py:954
+#: ../src/plugins/NarrativeWeb.py:983 ../src/plugins/NarrativeWeb.py:1475
+#: ../src/plugins/NarrativeWeb.py:1477 ../src/plugins/StatisticsChart.py:92
+#: ../src/PluginUtils/_GuiOptions.py:81 ../src/PluginUtils/_GuiOptions.py:954
 msgid "Surname"
 msgstr "Nachname"
 
@@ -1147,86 +1147,86 @@ msgstr "Nachname"
 msgid "Patronymic"
 msgstr "Vatername"
 
-#: ../src/GrampsCfg.py:419
+#: ../src/GrampsCfg.py:445
 msgid "This format exists already"
 msgstr "Dieses Format existiert bereits"
 
-#: ../src/GrampsCfg.py:438 ../src/GrampsCfg.py:977
+#: ../src/GrampsCfg.py:464 ../src/GrampsCfg.py:1004
 msgid "Invalid or incomplete format definition"
 msgstr "Ungültige oder unvollständige Formatdefinition"
 
-#: ../src/GrampsCfg.py:455
+#: ../src/GrampsCfg.py:481
 msgid "Format"
 msgstr "Format"
 
-#: ../src/GrampsCfg.py:463
+#: ../src/GrampsCfg.py:490
 msgid "Example"
 msgstr "Beispiel"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:624 ../src/plugins/Calendar.py:503
+#: ../src/GrampsCfg.py:651 ../src/plugins/Calendar.py:503
 msgid "Name format"
 msgstr "Namenformat"
 
-#: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
+#: ../src/GrampsCfg.py:655 ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:958
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../src/GrampsCfg.py:646
+#: ../src/GrampsCfg.py:673
 msgid "Date format"
 msgstr "Datumsformat"
 
-#: ../src/GrampsCfg.py:660
+#: ../src/GrampsCfg.py:687
 msgid "Surname guessing"
 msgstr "Nachnamen-Schätzung"
 
-#: ../src/GrampsCfg.py:667
+#: ../src/GrampsCfg.py:694
 msgid "Active person's name and ID"
 msgstr "Name und GRAMPS-ID der aktiven Person"
 
-#: ../src/GrampsCfg.py:668
+#: ../src/GrampsCfg.py:695
 msgid "Relationship to home person"
 msgstr "Verwandtschaftsverhältnis zur Hauptperson"
 
-#: ../src/GrampsCfg.py:678
+#: ../src/GrampsCfg.py:705
 msgid "Status bar"
 msgstr "Statusleiste"
 
 #. Text in sidebar:
-#: ../src/GrampsCfg.py:684
+#: ../src/GrampsCfg.py:711
 msgid "Show text in sidebar buttons (takes effect on restart)"
 msgstr "Zeige Text in Seitenleisten - Schaltflächen (aktiviert nach Neustart)"
 
-#: ../src/GrampsCfg.py:695
+#: ../src/GrampsCfg.py:722
 msgid "Missing surname"
 msgstr "Fehlender Nachname"
 
-#: ../src/GrampsCfg.py:698
+#: ../src/GrampsCfg.py:725
 msgid "Missing given name"
 msgstr "Fehlender Vorname"
 
-#: ../src/GrampsCfg.py:701
+#: ../src/GrampsCfg.py:728
 msgid "Missing record"
 msgstr "Fehlender Datensatz"
 
-#: ../src/GrampsCfg.py:704
+#: ../src/GrampsCfg.py:731
 msgid "Private surname"
 msgstr "Privater Nachname"
 
-#: ../src/GrampsCfg.py:707
+#: ../src/GrampsCfg.py:734
 msgid "Private given name"
 msgstr "Privater Vorname"
 
-#: ../src/GrampsCfg.py:710
+#: ../src/GrampsCfg.py:737
 msgid "Private record"
 msgstr "Privater Datensatz"
 
-#: ../src/GrampsCfg.py:725
+#: ../src/GrampsCfg.py:752
 msgid "Change is not immediate"
 msgstr "Änderung noch nicht wirksam"
 
-#: ../src/GrampsCfg.py:726
+#: ../src/GrampsCfg.py:753
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
@@ -1234,71 +1234,71 @@ msgstr ""
 "Das Ändern der Datumseinstellung wird erst mit einem Neustart von GRAMPS "
 "aktiv."
 
-#: ../src/GrampsCfg.py:735
+#: ../src/GrampsCfg.py:762
 msgid "Add default source on import"
 msgstr "Füge Standardquelle beim Import hinzu"
 
-#: ../src/GrampsCfg.py:737
+#: ../src/GrampsCfg.py:764
 msgid "Enable spelling checker"
 msgstr "Rechtschreibprüfung aktivieren"
 
-#: ../src/GrampsCfg.py:739
+#: ../src/GrampsCfg.py:766
 msgid "Display Tip of the Day"
 msgstr "Tipp des Tages anzeigen"
 
-#: ../src/GrampsCfg.py:741
+#: ../src/GrampsCfg.py:768
 msgid "Use shading in Relationship View"
 msgstr "Benutze Schattierungen in der Beziehungenansicht"
 
-#: ../src/GrampsCfg.py:743
+#: ../src/GrampsCfg.py:770
 msgid "Display edit buttons on Relationship View"
 msgstr "Zeige Bearbeiten Schaltflächen in der Beziehungenansicht"
 
-#: ../src/GrampsCfg.py:745
+#: ../src/GrampsCfg.py:772
 msgid "Remember last view displayed"
 msgstr "Letzte angezeigte Ansicht merken"
 
-#: ../src/GrampsCfg.py:748
+#: ../src/GrampsCfg.py:775
 msgid "Number of generations for relationship determination"
 msgstr "Anzahl der Generationen für Verwandschaftsbestimmung.."
 
-#: ../src/GrampsCfg.py:751
+#: ../src/GrampsCfg.py:778
 msgid "Base path for relative media paths"
 msgstr "Basisverzeichnis für relative Medienpfade"
 
-#: ../src/GrampsCfg.py:763
+#: ../src/GrampsCfg.py:790
 msgid "Database path"
 msgstr "Datenbankpfad"
 
-#: ../src/GrampsCfg.py:764
+#: ../src/GrampsCfg.py:791
 msgid "Automatically load last database"
 msgstr "Letzte Datenbank automatisch laden"
 
-#: ../src/GrampsCfg.py:842
+#: ../src/GrampsCfg.py:869
 msgid "Select media directory"
 msgstr "Wähle ein Medienverzeichnis"
 
-#: ../src/GrampsCfg.py:930
+#: ../src/GrampsCfg.py:957
 msgid "Name Format Editor"
 msgstr "Namensformat Editor"
 
-#: ../src/GrampsCfg.py:954
+#: ../src/GrampsCfg.py:981
 msgid "The format definition is invalid"
 msgstr "Formatdefinition ist ungültig"
 
-#: ../src/GrampsCfg.py:955
+#: ../src/GrampsCfg.py:982
 msgid "What would you like to do?"
 msgstr "Was willst du tun?"
 
-#: ../src/GrampsCfg.py:956
+#: ../src/GrampsCfg.py:983
 msgid "_Continue anyway"
 msgstr "_Trotzdem fortfahren"
 
-#: ../src/GrampsCfg.py:956
+#: ../src/GrampsCfg.py:983
 msgid "_Modify format"
 msgstr "_Format ändern"
 
-#: ../src/GrampsCfg.py:964
+#: ../src/GrampsCfg.py:991
 msgid "Both Format name and definition have to be defined"
 msgstr "Formatnamen und Definition müssen definiert werden."
 
@@ -1321,7 +1321,7 @@ msgstr "Lesezeichen hinzufügen"
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
-#: ../src/plugins/DefaultGramplets.py:983 ../src/plugins/ExportCSV.py:435
+#: ../src/plugins/DefaultGramplets.py:1071 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/ImportCSV.py:214 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:702 ../src/plugins/NarrativeWeb.py:1354
 #: ../src/plugins/NarrativeWeb.py:1754 ../src/plugins/OnThisDay.py:77
@@ -1391,7 +1391,7 @@ msgid "Select Parents"
 msgstr "Eltern wählen"
 
 #: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:457
-#: ../src/plugins/DefaultGramplets.py:1108 ../src/plugins/NarrativeWeb.py:2076
+#: ../src/plugins/DefaultGramplets.py:1196 ../src/plugins/NarrativeWeb.py:2076
 msgid "Pedigree"
 msgstr "Ahnentafel"
 
@@ -6173,7 +6173,7 @@ msgstr "%d Jahre"
 msgid "%d months"
 msgstr "%d Monate"
 
-#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1090
+#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1178
 msgid "Age on Date"
 msgstr "Alter am Datum"
 
@@ -6274,7 +6274,7 @@ msgstr "Erstellt eine grafische Ahnentafel in Baumstruktur"
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafel für %s"
 
-#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:584
+#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:666
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
 #: ../src/plugins/EndOfLineReport.py:161
@@ -6635,7 +6635,7 @@ msgstr "Kalenderbericht"
 
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:214 ../src/plugins/Calendar.py:925
-#: ../src/plugins/DefaultGramplets.py:1073
+#: ../src/plugins/DefaultGramplets.py:1161
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -7420,11 +7420,11 @@ msgstr ""
 "sicherstellen das Daten die gedruckt werden können auch korrekt Analysiert "
 "werden können."
 
-#: ../src/plugins/DefaultGramplets.py:71
+#: ../src/plugins/DefaultGramplets.py:72
 msgid "Double-click a day for details"
 msgstr "Eine Tag doppelt klicken für Details"
 
-#: ../src/plugins/DefaultGramplets.py:144
+#: ../src/plugins/DefaultGramplets.py:145
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
@@ -7432,101 +7432,124 @@ msgstr ""
 "Einmal klicken um Namen zu aktivieren\n"
 "Doppelt klicken um Namen zu bearbeiten"
 
-#: ../src/plugins/DefaultGramplets.py:145
+#: ../src/plugins/DefaultGramplets.py:146
 msgid "Log for this Session"
 msgstr "Aufzeichnungen für diese Sitzung"
 
-#: ../src/plugins/DefaultGramplets.py:171
-#: ../src/plugins/DefaultGramplets.py:177
+#: ../src/plugins/DefaultGramplets.py:172
+#: ../src/plugins/DefaultGramplets.py:178
 msgid "Added"
 msgstr "Hinzugefügt"
 
-#: ../src/plugins/DefaultGramplets.py:173
-#: ../src/plugins/DefaultGramplets.py:179
+#: ../src/plugins/DefaultGramplets.py:174
+#: ../src/plugins/DefaultGramplets.py:180
 msgid "Deleted"
 msgstr "Gelöscht"
 
-#: ../src/plugins/DefaultGramplets.py:175
-#: ../src/plugins/DefaultGramplets.py:181
+#: ../src/plugins/DefaultGramplets.py:176
+#: ../src/plugins/DefaultGramplets.py:182
 msgid "Updated"
 msgstr "Aktualisiert"
 
-#: ../src/plugins/DefaultGramplets.py:183
+#: ../src/plugins/DefaultGramplets.py:184
 msgid "Selected"
 msgstr "Ausgewählt"
 
-#: ../src/plugins/DefaultGramplets.py:202
-#: ../src/plugins/DefaultGramplets.py:281
+#: ../src/plugins/DefaultGramplets.py:203
+#: ../src/plugins/DefaultGramplets.py:282
 msgid "Double-click surname for details"
 msgstr "Nachnamen für Details doppelt-klicken"
 
 #. will be overwritten in load
-#: ../src/plugins/DefaultGramplets.py:204
-#: ../src/plugins/DefaultGramplets.py:283
-#: ../src/plugins/DefaultGramplets.py:368
-#: ../src/plugins/DefaultGramplets.py:465
-#: ../src/plugins/DefaultGramplets.py:593
+#: ../src/plugins/DefaultGramplets.py:205
+#: ../src/plugins/DefaultGramplets.py:284
+#: ../src/plugins/DefaultGramplets.py:369
+#: ../src/plugins/DefaultGramplets.py:466
+#: ../src/plugins/DefaultGramplets.py:681
 msgid "No Family Tree loaded or active person."
 msgstr "Kein Stammbaum geladen oder aktive Person."
 
-#: ../src/plugins/DefaultGramplets.py:221
-#: ../src/plugins/DefaultGramplets.py:300
-#: ../src/plugins/DefaultGramplets.py:605
+#: ../src/plugins/DefaultGramplets.py:222
+#: ../src/plugins/DefaultGramplets.py:301
+#: ../src/plugins/DefaultGramplets.py:693
 msgid "Processing..."
 msgstr "Verarbeitung..."
 
-#: ../src/plugins/DefaultGramplets.py:265
-#: ../src/plugins/DefaultGramplets.py:358
+#: ../src/plugins/DefaultGramplets.py:266
+#: ../src/plugins/DefaultGramplets.py:359
 msgid "Total unique surnames"
 msgstr "Eindeutige Nachnamen gesamt"
 
-#: ../src/plugins/DefaultGramplets.py:267
-#: ../src/plugins/DefaultGramplets.py:360
+#: ../src/plugins/DefaultGramplets.py:268
+#: ../src/plugins/DefaultGramplets.py:361
 msgid "Total people"
 msgstr "Personen gesamt"
 
-#: ../src/plugins/DefaultGramplets.py:369
-#: ../src/plugins/DefaultGramplets.py:466
+#: ../src/plugins/DefaultGramplets.py:370
+#: ../src/plugins/DefaultGramplets.py:467
 msgid "Click name to make person active\n"
 msgstr "Auf Namen klicken um Person zu aktivieren\n"
 
-#: ../src/plugins/DefaultGramplets.py:370
-#: ../src/plugins/DefaultGramplets.py:467
+#: ../src/plugins/DefaultGramplets.py:371
+#: ../src/plugins/DefaultGramplets.py:468
 msgid "Right-click name to edit person"
 msgstr "Name rechts-klicken um Person zu bearbeiten"
 
-#: ../src/plugins/DefaultGramplets.py:397
+#: ../src/plugins/DefaultGramplets.py:398
 #, python-format
 msgid "Active person: %s"
 msgstr "Aktive Person: %s"
 
-#: ../src/plugins/DefaultGramplets.py:413
+#: ../src/plugins/DefaultGramplets.py:414
 #, python-format
 msgid "%d. Partner: "
 msgstr "%d. Partner:"
 
-#: ../src/plugins/DefaultGramplets.py:417
+#: ../src/plugins/DefaultGramplets.py:418
 #, python-format
 msgid "%d. Partner: Not known"
 msgstr "%d. Partner: Nicht bekannt"
 
-#: ../src/plugins/DefaultGramplets.py:432
+#: ../src/plugins/DefaultGramplets.py:433
 msgid "Parents:"
 msgstr "Eltern:"
 
-#: ../src/plugins/DefaultGramplets.py:444
-#: ../src/plugins/DefaultGramplets.py:448
+#: ../src/plugins/DefaultGramplets.py:445
+#: ../src/plugins/DefaultGramplets.py:449
 #, python-format
 msgid "   %d.a Mother: "
 msgstr "   %d.a Muter: "
 
-#: ../src/plugins/DefaultGramplets.py:455
-#: ../src/plugins/DefaultGramplets.py:459
+#: ../src/plugins/DefaultGramplets.py:456
+#: ../src/plugins/DefaultGramplets.py:460
 #, python-format
 msgid "   %d.b Father: "
 msgstr "   %d.b Vater: "
 
-#: ../src/plugins/DefaultGramplets.py:573
+#: ../src/plugins/DefaultGramplets.py:567
+msgid "Click to make active\n"
+msgstr "Zum aktivieren klicken\n"
+
+#: ../src/plugins/DefaultGramplets.py:568
+msgid "Right-click to edit"
+msgstr "Zum bearbeiten rechts-klicken"
+
+#: ../src/plugins/DefaultGramplets.py:625
+#, python-format
+msgid "(b. %(birthdate)s, d. %(deathdate)s)"
+msgstr "(* %(birthdate)s, † %(deathdate)s)"
+
+#: ../src/plugins/DefaultGramplets.py:630
+#, python-format
+msgid "(b. %s)"
+msgstr "(* %s)"
+
+#: ../src/plugins/DefaultGramplets.py:632
+#, python-format
+msgid "(d. %s)"
+msgstr "(† %s)"
+
+#: ../src/plugins/DefaultGramplets.py:654
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -7534,133 +7557,142 @@ msgstr ""
 "\n"
 "Seitenumbruch zwischen Generationen\n"
 
-#: ../src/plugins/DefaultGramplets.py:580
+#: ../src/plugins/DefaultGramplets.py:661
 msgid "Generation 1"
 msgstr "Generation 1"
 
-#: ../src/plugins/DefaultGramplets.py:581
+#: ../src/plugins/DefaultGramplets.py:662
+#: ../src/plugins/DefaultGramplets.py:667
+msgid "Double-click to see people in generation"
+msgstr "Doppelklicken um Personen in der Generation zu sehen"
+
+#: ../src/plugins/DefaultGramplets.py:663
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " enthält 1 von 1 Personen (100.00% complete)\n"
+msgstr " enthält 1 von 1 Person (100.00% complete)\n"
 
-#: ../src/plugins/DefaultGramplets.py:585
+#: ../src/plugins/DefaultGramplets.py:668
 #, python-format
 msgid " has %d of %d individuals (%.2f%% complete)\n"
 msgstr " enthält %d von %d Personen (%.2f%% komplett)\n"
 
-#: ../src/plugins/DefaultGramplets.py:587
+#: ../src/plugins/DefaultGramplets.py:670
 msgid "All generations"
 msgstr "Alle Generationen"
 
-#: ../src/plugins/DefaultGramplets.py:588
+#: ../src/plugins/DefaultGramplets.py:671
+msgid "Double-click to see all generations"
+msgstr "Doppelklicken um alle Generationen zu sehen"
+
+#: ../src/plugins/DefaultGramplets.py:672
 #, python-format
 msgid " have %d individuals\n"
 msgstr " enthalten %d Personen\n"
 
-#: ../src/plugins/DefaultGramplets.py:594
+#: ../src/plugins/DefaultGramplets.py:682
 msgid "Double-click item to see matches"
 msgstr "Eintrag doppelt-klicken um Treffer zu sehen"
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:669 ../src/plugins/GVFamilyLines.py:123
+#: ../src/plugins/DefaultGramplets.py:757 ../src/plugins/GVFamilyLines.py:123
 #: ../src/plugins/NarrativeWeb.py:466 ../src/plugins/NarrativeWeb.py:838
 #: ../src/plugins/NarrativeWeb.py:845 ../src/plugins/Summary.py:115
 msgid "Individuals"
 msgstr "Personen"
 
-#: ../src/plugins/DefaultGramplets.py:671 ../src/plugins/Summary.py:117
+#: ../src/plugins/DefaultGramplets.py:759 ../src/plugins/Summary.py:117
 msgid "Number of individuals"
 msgstr "Personenzahl"
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:675 ../src/plugins/GVFamilyLines.py:126
+#: ../src/plugins/DefaultGramplets.py:763 ../src/plugins/GVFamilyLines.py:126
 #: ../src/plugins/Summary.py:118 ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Männer"
 
-#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/GVFamilyLines.py:130
+#: ../src/plugins/DefaultGramplets.py:766 ../src/plugins/GVFamilyLines.py:130
 #: ../src/plugins/Summary.py:119 ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Frauen"
 
-#: ../src/plugins/DefaultGramplets.py:681 ../src/plugins/Summary.py:120
+#: ../src/plugins/DefaultGramplets.py:769 ../src/plugins/Summary.py:120
 msgid "Individuals with unknown gender"
 msgstr "Personen mit unbekanntem Geschlecht"
 
-#: ../src/plugins/DefaultGramplets.py:685 ../src/plugins/Summary.py:121
+#: ../src/plugins/DefaultGramplets.py:773 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
 msgstr "Personen mit unvollständigen Namen"
 
-#: ../src/plugins/DefaultGramplets.py:689 ../src/plugins/Summary.py:122
+#: ../src/plugins/DefaultGramplets.py:777 ../src/plugins/Summary.py:122
 msgid "Individuals missing birth dates"
 msgstr "Personen ohne Geburtsdatum"
 
-#: ../src/plugins/DefaultGramplets.py:693 ../src/plugins/Summary.py:123
+#: ../src/plugins/DefaultGramplets.py:781 ../src/plugins/Summary.py:123
 msgid "Disconnected individuals"
 msgstr "Einzelstehende Personen"
 
-#: ../src/plugins/DefaultGramplets.py:697 ../src/plugins/Summary.py:124
+#: ../src/plugins/DefaultGramplets.py:785 ../src/plugins/Summary.py:124
 msgid "Family Information"
 msgstr "Familieninformation"
 
-#: ../src/plugins/DefaultGramplets.py:699 ../src/plugins/Summary.py:126
+#: ../src/plugins/DefaultGramplets.py:787 ../src/plugins/Summary.py:126
 msgid "Number of families"
 msgstr "Familienanzahl"
 
-#: ../src/plugins/DefaultGramplets.py:703 ../src/plugins/Summary.py:127
+#: ../src/plugins/DefaultGramplets.py:791 ../src/plugins/Summary.py:127
 msgid "Unique surnames"
 msgstr "Eindeutige Nachnamen"
 
-#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:128
+#: ../src/plugins/DefaultGramplets.py:795 ../src/plugins/Summary.py:128
 msgid "Media Objects"
 msgstr "Medienobjekte"
 
-#: ../src/plugins/DefaultGramplets.py:709 ../src/plugins/Summary.py:130
+#: ../src/plugins/DefaultGramplets.py:797 ../src/plugins/Summary.py:130
 msgid "Individuals with media objects"
 msgstr "Personen mit Medienobjekten"
 
-#: ../src/plugins/DefaultGramplets.py:713 ../src/plugins/Summary.py:131
+#: ../src/plugins/DefaultGramplets.py:801 ../src/plugins/Summary.py:131
 msgid "Total number of media object references"
 msgstr "Gesamtzahl der Medienobjektreferenzen"
 
-#: ../src/plugins/DefaultGramplets.py:717 ../src/plugins/Summary.py:132
+#: ../src/plugins/DefaultGramplets.py:805 ../src/plugins/Summary.py:132
 msgid "Number of unique media objects"
 msgstr "Anzahl von Medienobjekten"
 
-#: ../src/plugins/DefaultGramplets.py:722 ../src/plugins/Summary.py:133
+#: ../src/plugins/DefaultGramplets.py:810 ../src/plugins/Summary.py:133
 msgid "Total size of media objects"
 msgstr "Gesamtgröße der Medienobjekte"
 
-#: ../src/plugins/DefaultGramplets.py:724 ../src/plugins/Summary.py:134
+#: ../src/plugins/DefaultGramplets.py:812 ../src/plugins/Summary.py:134
 msgid "bytes"
 msgstr "Bytes"
 
-#: ../src/plugins/DefaultGramplets.py:726 ../src/plugins/Summary.py:137
+#: ../src/plugins/DefaultGramplets.py:814 ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
 msgstr "Fehlende Medienobjekte"
 
-#: ../src/plugins/DefaultGramplets.py:734
+#: ../src/plugins/DefaultGramplets.py:822
 msgid "Enter Python expressions"
 msgstr "Python-Ausdrücke eingeben"
 
-#: ../src/plugins/DefaultGramplets.py:738
+#: ../src/plugins/DefaultGramplets.py:826
 msgid "class name|Date"
 msgstr "Datum"
 
-#: ../src/plugins/DefaultGramplets.py:748
+#: ../src/plugins/DefaultGramplets.py:836
 msgid "Error"
 msgstr "Fehler"
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:833
+#: ../src/plugins/DefaultGramplets.py:921
 msgid "Enter text"
 msgstr "Text eingeben"
 
-#: ../src/plugins/DefaultGramplets.py:835
+#: ../src/plugins/DefaultGramplets.py:923
 msgid "Enter your TODO list here."
 msgstr "Gib deine zu erledigen Liste hier ein."
 
-#: ../src/plugins/DefaultGramplets.py:846
+#: ../src/plugins/DefaultGramplets.py:934
 msgid ""
 "Welcome to GRAMPS!\n"
 "\n"
@@ -7719,20 +7751,20 @@ msgstr ""
 "Wenn du GRAMPS mit einem geöffneten Gramplet schließt, wird es beim nächsten "
 "starten von GRAMPS mit geöffnet."
 
-#: ../src/plugins/DefaultGramplets.py:875
+#: ../src/plugins/DefaultGramplets.py:963
 msgid "Read news from the GRAMPS wiki"
 msgstr "Lese Nachrichten aus dem GRAMPS Wiki"
 
-#: ../src/plugins/DefaultGramplets.py:919
+#: ../src/plugins/DefaultGramplets.py:1007
 msgid "Reading"
 msgstr "Lese"
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:969
+#: ../src/plugins/DefaultGramplets.py:1057
 msgid "Enter a date, click Run"
 msgstr "Ein Datum eingeben. Ausführen klicken"
 
-#: ../src/plugins/DefaultGramplets.py:977
+#: ../src/plugins/DefaultGramplets.py:1065
 msgid ""
 "Enter a date in the entry below and click Run. This will compute the ages "
 "for everyone in your Family Tree on that date. You can then sort by the age "
@@ -7743,91 +7775,91 @@ msgstr ""
 "Alters Spalte sortieren und dann die Zeile doppelt klicken um sie anzuzeigen "
 "oder zu bearbeiten."
 
-#: ../src/plugins/DefaultGramplets.py:985
+#: ../src/plugins/DefaultGramplets.py:1073
 msgid "Run"
 msgstr "Starten"
 
-#: ../src/plugins/DefaultGramplets.py:1008
+#: ../src/plugins/DefaultGramplets.py:1096
 msgid "Top Surnames Gramplet"
 msgstr "Häufigste Nachnamen Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1011
+#: ../src/plugins/DefaultGramplets.py:1099
 msgid "Top Surnames"
 msgstr "Häufigsten Nachnamen"
 
-#: ../src/plugins/DefaultGramplets.py:1017
+#: ../src/plugins/DefaultGramplets.py:1105
 msgid "Surname Cloud Gramplet"
 msgstr "Nachnamen Wolke Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1021
+#: ../src/plugins/DefaultGramplets.py:1109
 msgid "Surname Cloud"
 msgstr "Nachname Wolke"
 
-#: ../src/plugins/DefaultGramplets.py:1026
+#: ../src/plugins/DefaultGramplets.py:1114
 msgid "Statistics Gramplet"
 msgstr "Statistiken Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1030
+#: ../src/plugins/DefaultGramplets.py:1118
 msgid "Statistics"
 msgstr "Statistik"
 
-#: ../src/plugins/DefaultGramplets.py:1035
+#: ../src/plugins/DefaultGramplets.py:1123
 msgid "Session Log Gramplet"
 msgstr "Sitzungsaufzeichnung Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1039
+#: ../src/plugins/DefaultGramplets.py:1127
 msgid "Session Log"
 msgstr "Sitzungaufzeichnungen"
 
-#: ../src/plugins/DefaultGramplets.py:1044
+#: ../src/plugins/DefaultGramplets.py:1132
 msgid "Python Gramplet"
 msgstr "Python Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1047
+#: ../src/plugins/DefaultGramplets.py:1135
 msgid "Python Shell"
 msgstr "Python Shell"
 
-#: ../src/plugins/DefaultGramplets.py:1052
+#: ../src/plugins/DefaultGramplets.py:1140
 msgid "TODO Gramplet"
 msgstr "TODO Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1056
+#: ../src/plugins/DefaultGramplets.py:1144
 msgid "TODO List"
 msgstr "Zu erledigen Liste"
 
-#: ../src/plugins/DefaultGramplets.py:1061
+#: ../src/plugins/DefaultGramplets.py:1149
 msgid "Welcome Gramplet"
 msgstr "Willkommen Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1065
+#: ../src/plugins/DefaultGramplets.py:1153
 msgid "Welcome to GRAMPS!"
 msgstr "Willkommen zu GRAMPS!"
 
-#: ../src/plugins/DefaultGramplets.py:1070
+#: ../src/plugins/DefaultGramplets.py:1158
 msgid "Calendar Gramplet"
 msgstr "Kalender Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1078
+#: ../src/plugins/DefaultGramplets.py:1166
 msgid "News Gramplet"
 msgstr "Nachrichten Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1082
+#: ../src/plugins/DefaultGramplets.py:1170
 msgid "News"
 msgstr "Nachrichten"
 
-#: ../src/plugins/DefaultGramplets.py:1087
+#: ../src/plugins/DefaultGramplets.py:1175
 msgid "Age on Date Gramplet"
 msgstr "Alter am Datum Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1095
+#: ../src/plugins/DefaultGramplets.py:1183
 msgid "Relatives Gramplet"
 msgstr "Angehörigen Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1098
+#: ../src/plugins/DefaultGramplets.py:1186
 msgid "Active Person's Relatives"
 msgstr "Angehörige der aktiven Person"
 
-#: ../src/plugins/DefaultGramplets.py:1105
+#: ../src/plugins/DefaultGramplets.py:1193
 msgid "Pedigree Gramplet"
 msgstr "Ahnentafel Gramplet"
 
@@ -19579,7 +19611,8 @@ msgid ""
 "be presented for any missing media files."
 msgstr ""
 "Wenn du dieses Feld markierst, werden alle fehlenden Multimediadateien "
-"genauso behandelt. Es werden keine weiteren Dialoge für fehlende Multimediadateien angezeigt."
+"genauso behandelt. Es werden keine weiteren Dialoge für fehlende "
+"Multimediadateien angezeigt."
 
 #: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
