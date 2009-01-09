@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-05 18:21+0100\n"
-"PO-Revision-Date: 2008-12-19 10:32+0100\n"
+"PO-Revision-Date: 2009-01-07 17:10+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -8867,7 +8867,7 @@ msgstr "V"
 #: ../src/plugins/FamilyGroup.py:421
 #, python-format
 msgid "%dU"
-msgstr ""
+msgstr "%dU"
 
 #: ../src/plugins/FamilyGroup.py:515
 #, python-format
