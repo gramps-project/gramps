@@ -10,17 +10,18 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-08 10:40+0100\n"
-"PO-Revision-Date: 2009-01-08 18:33+0100\n"
+"PO-Revision-Date: 2009-01-09 16:21+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# trunk
 #: ../src/ArgHandler.py:230
-#, fuzzy, python-format
+#, python-format
 msgid "Input family tree \"%s\" does not exist."
-msgstr "Fichier inexistant"
+msgstr "L'arbre familial \"%s\" n'existe pas."
 
 # trunk
 #: ../src/ArgHandler.py:231
@@ -230,12 +231,12 @@ msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System)
 #: ../src/const.py:184
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"Michel Guitel     (Documentation)\n"
-"Laurent Protois   (Logiciel)\n"
-"Matthieu Pupat    (Logiciel)\n"
-"Guillaume Pratte  (Logiciel)\n"
-"Frédéric Chateaux (Logiciel)\n"
-"Jérôme Rapinat    (Logiciel et Documentation)"
+"Michel Guitel\n"
+"Laurent Protois\n"
+"Matthieu Pupat\n"
+"Guillaume Pratte\n"
+"Frédéric Chateaux\n"
+"Jérôme Rapinat"
 
 #: ../src/const.py:194
 #: ../src/const.py:195
@@ -263,7 +264,7 @@ msgstr "Vers"
 
 #: ../src/DateEdit.py:82
 msgid "Range"
-msgstr "Étendue"
+msgstr "Étendu(e)"
 
 #: ../src/DateEdit.py:83
 msgid "Span"
@@ -789,7 +790,7 @@ msgstr "F_iltre sur l'individu"
 # trunk
 #: ../src/ExportOptions.py:79
 msgid "_Note Filter"
-msgstr "Filtres sur la _note"
+msgstr "Filtre sur la _note"
 
 #: ../src/ExportOptions.py:84
 #: ../src/plugins/ExportGeneWeb.glade.h:8
@@ -1155,7 +1156,7 @@ msgstr "Source"
 #: ../src/Editors/_EditPerson.py:471
 #: ../src/FilterEditor/_EditRule.py:281
 msgid "Media Object"
-msgstr "Objet média"
+msgstr "Objet media"
 
 #: ../src/GrampsCfg.py:217
 #: ../src/plugins/References.py:34
@@ -1425,7 +1426,7 @@ msgstr "Nom de famille proposé"
 
 #: ../src/GrampsCfg.py:724
 msgid "Active person's name and ID"
-msgstr "Activer le nom de l'individu et son identifiant"
+msgstr "Nom de l'individu actif et son identifiant"
 
 #: ../src/GrampsCfg.py:725
 msgid "Relationship to home person"
@@ -1555,7 +1556,7 @@ msgstr "Charger automatiquement la dernière base de données"
 
 #: ../src/GrampsCfg.py:958
 msgid "Select media directory"
-msgstr "Sélectionner un répertoire média"
+msgstr "Sélectionner un répertoire media"
 
 #: ../src/GrampsCfg.py:1049
 msgid "Name Format Editor"
@@ -2481,7 +2482,7 @@ msgstr "Numéro d'identifiant"
 
 #: ../src/ScratchPad.py:539
 msgid "Media Type"
-msgstr "Type de média"
+msgstr "Type de media"
 
 #: ../src/ScratchPad.py:551
 msgid "Event Reference"
@@ -2503,7 +2504,7 @@ msgstr "Préfixe"
 #: ../src/ScratchPad.py:673
 #: ../src/ScratchPad.py:685
 msgid "Media Reference"
-msgstr "Référence de média"
+msgstr "Référence de media"
 
 #: ../src/ScratchPad.py:699
 #: ../src/Editors/_EditPersonRef.py:142
@@ -3735,25 +3736,25 @@ msgstr "Éditeur de filtre sur la famille"
 #: ../src/DataViews/MediaView.py:88
 #: ../src/Editors/ObjectEntries.py:301
 msgid "Add a new media object"
-msgstr "Ajouter un nouveau média"
+msgstr "Ajouter un nouveau media"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr "Éditer l'objet média sélectionné"
+msgstr "Éditer l'objet media sélectionné"
 
 # objet sélectionné
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Supprimer l'objet média sélectionné"
+msgstr "Supprimer l'objet media sélectionné"
 
 #: ../src/DataViews/MediaView.py:197
 #: ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "Glisser un objet média"
+msgstr "Glisser un objet media"
 
 #: ../src/DataViews/MediaView.py:216
 msgid "Media Filter Editor"
-msgstr "Éditeur de filtre sur le média"
+msgstr "Éditeur de filtre sur le media"
 
 #: ../src/DataViews/MediaView.py:219
 msgid "View in the default viewer"
@@ -4819,7 +4820,7 @@ msgstr "Ouvrir avec %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
 msgid "Non existing media found in the Gallery"
-msgstr "Objet média inexistant trouvé dans la galerie"
+msgstr "Objet media inexistant trouvé dans la galerie"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 msgid "Create and add a new LDS ordinance"
@@ -5044,11 +5045,11 @@ msgstr "_Internet"
 
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
-msgstr "Sélectionner un objet média"
+msgstr "Sélectionner un objet media"
 
 #: ../src/Editors/AddMedia.py:145
 msgid "Select media object"
-msgstr "Sélectionner un objet média"
+msgstr "Sélectionner un objet media"
 
 #: ../src/Editors/AddMedia.py:155
 msgid "Import failed"
@@ -5096,7 +5097,7 @@ msgstr "Enlever le lieu"
 
 #: ../src/Editors/ObjectEntries.py:296
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "Pour sélectionner un objet média, faites un glisser-déposer ou utilisez les boutons"
+msgstr "Pour sélectionner un objet media, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../src/Editors/ObjectEntries.py:298
 #: ../src/PluginUtils/_GuiOptions.py:777
@@ -5105,17 +5106,17 @@ msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
 #: ../src/Editors/ObjectEntries.py:299
 msgid "Edit media object"
-msgstr "Éditer l'objet média"
+msgstr "Éditer l'objet media"
 
 #: ../src/Editors/ObjectEntries.py:300
 #: ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
-msgstr "Sélectionner un objet média existant"
+msgstr "Sélectionner un objet media existant"
 
 # enlever la référence au media
 #: ../src/Editors/ObjectEntries.py:302
 msgid "Remove media object"
-msgstr "Enlever un objet média"
+msgstr "Enlever un objet media"
 
 #: ../src/Editors/ObjectEntries.py:347
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -5466,41 +5467,41 @@ msgstr "Nouveau media"
 
 #: ../src/Editors/_EditMedia.py:199
 msgid "Edit Media Object"
-msgstr "Éditer l'objet média"
+msgstr "Éditer l'objet media"
 
 #: ../src/Editors/_EditMedia.py:239
 msgid "Cannot save media object"
-msgstr "Impossible d'enregistrer l'objet média"
+msgstr "Impossible d'enregistrer l'objet media"
 
 #: ../src/Editors/_EditMedia.py:240
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "Aucune donnée n'existe pour cet objet média. Veuillez entrer une donnée ou annuler l'édition."
+msgstr "Aucune donnée n'existe pour cet objet media. Veuillez entrer une donnée ou annuler l'édition."
 
 #: ../src/Editors/_EditMedia.py:249
 msgid "Cannot save media object. ID already exists."
-msgstr "Impossible d'enregistrer l'objet média. L'identifiant existe déjà."
+msgstr "Impossible d'enregistrer l'objet media. L'identifiant existe déjà."
 
 #: ../src/Editors/_EditMedia.py:267
 #: ../src/Editors/_EditMediaRef.py:565
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Ajouter l'objet média (%s)"
+msgstr "Ajouter l'objet media (%s)"
 
 #: ../src/Editors/_EditMedia.py:272
 #: ../src/Editors/_EditMediaRef.py:561
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Éditer l'objet média (%s)"
+msgstr "Éditer l'objet media (%s)"
 
 # enlever la référence au media
 #: ../src/Editors/_EditMedia.py:362
 msgid "Remove Media Object"
-msgstr "Enlever un objet média"
+msgstr "Enlever un objet media"
 
 #: ../src/Editors/_EditMediaRef.py:81
 #: ../src/Editors/_EditMediaRef.py:388
 msgid "Media Reference Editor"
-msgstr "Éditeur de référence de média"
+msgstr "Éditeur de référence de media"
 
 # trunk
 #: ../src/Editors/_EditMediaRef.py:83
@@ -6099,7 +6100,7 @@ msgstr "Sélectionner la note"
 
 #: ../src/Selectors/_SelectObject.py:60
 msgid "Select Media Object"
-msgstr "Sélectionner un objet média"
+msgstr "Sélectionner un objet media"
 
 #: ../src/Selectors/_SelectPerson.py:72
 #: ../src/PluginUtils/_GuiOptions.py:909
@@ -7344,7 +7345,7 @@ msgstr "Sélectionner un fichier"
 #: ../src/plugins/Check.py:554
 #: ../src/plugins/ExportCd.py:258
 msgid "Media object could not be found"
-msgstr "Le média est introuvable"
+msgstr "Le media est introuvable"
 
 #: ../src/plugins/Check.py:555
 #, python-format
@@ -7385,7 +7386,7 @@ msgstr "Recherche de problèmes dans les lieux"
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:633
 msgid "Looking for empty media records"
-msgstr "Recherche de problèmes dans les objets média"
+msgstr "Recherche de problèmes dans les objets media"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:642
@@ -7435,7 +7436,7 @@ msgstr "Recherche de problèmes dans la référence de la source"
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:1036
 msgid "Looking for media object reference problems"
-msgstr "Recherche de problèmes dans la référence de l'objet média"
+msgstr "Recherche de problèmes dans la référence de l'objet media"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/Check.py:1128
@@ -7536,42 +7537,42 @@ msgstr "%d dépôts ont été référencés, mais non trouvés\n"
 
 #: ../src/plugins/Check.py:1377
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 objet média a été référencé, mais non trouvé\n"
+msgstr "1 objet media a été référencé, mais non trouvé\n"
 
 #: ../src/plugins/Check.py:1379
 #: ../src/plugins/Check.py:1424
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d objets média ont été référencés, mais non trouvés\n"
+msgstr "%d objets media ont été référencés, mais non trouvés\n"
 
 #: ../src/plugins/Check.py:1382
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Une référence à 1 média manquant a été conservée\n"
+msgstr "Une référence à 1 media manquant a été conservée\n"
 
 #: ../src/plugins/Check.py:1384
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Les références à %d objets média ont été conservées\n"
+msgstr "Les références à %d objets media ont été conservées\n"
 
 #: ../src/plugins/Check.py:1387
 msgid "1 missing media object was replaced\n"
-msgstr "1 média manquant a été remplacé\n"
+msgstr "1 media manquant a été remplacé\n"
 
 #: ../src/plugins/Check.py:1389
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "%d objets média manquants ont été remplacés\n"
+msgstr "%d objets media manquants ont été remplacés\n"
 
 # supprimer de la base de données
 #: ../src/plugins/Check.py:1392
 msgid "1 missing media object was removed\n"
-msgstr "1 média manquant a été supprimé\n"
+msgstr "1 media manquant a été supprimé\n"
 
 # supprimer de la base de données
 #: ../src/plugins/Check.py:1394
 #, python-format
 msgid "%d missing media objects were removed\n"
-msgstr "%d objets média manquants ont été supprimés\n"
+msgstr "%d objets media manquants ont été supprimés\n"
 
 #: ../src/plugins/Check.py:1397
 msgid "1 invalid event reference was removed\n"
@@ -7620,7 +7621,7 @@ msgstr "%d sources ont été référencées, mais non trouvées\n"
 
 #: ../src/plugins/Check.py:1422
 msgid "1 media object was referenced but not found\n"
-msgstr "1 objet média a été référencé, mais non trouvé\n"
+msgstr "1 objet media a été référencé, mais non trouvé\n"
 
 #: ../src/plugins/Check.py:1428
 msgid "1 note object was referenced but not found\n"
@@ -7658,7 +7659,7 @@ msgstr ""
 "   %d familles\n"
 "   %d événements\n"
 "   %d sources\n"
-"   %d objets média\n"
+"   %d objets media\n"
 "   %d lieux\n"
 "   %d dépôts\n"
 "   %d notes\n"
@@ -8033,7 +8034,7 @@ msgstr "Noms uniques"
 #: ../src/plugins/DefaultGramplets.py:805
 #: ../src/plugins/Summary.py:204
 msgid "Media Objects"
-msgstr "Objets média"
+msgstr "Objets media"
 
 #: ../src/plugins/DefaultGramplets.py:807
 msgid "Individuals with media objects"
@@ -8058,7 +8059,7 @@ msgstr "octets"
 #: ../src/plugins/DefaultGramplets.py:824
 #: ../src/plugins/Summary.py:227
 msgid "Missing Media Objects"
-msgstr "Objets média manquants"
+msgstr "Objets media manquants"
 
 #: ../src/plugins/DefaultGramplets.py:832
 msgid "Enter Python expressions"
@@ -8195,7 +8196,7 @@ msgstr "Ajouter la relation"
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1238
 msgid "No relation to active person"
-msgstr "Aucune relation à la personne active"
+msgstr "Aucune relation avec l'individu actif"
 
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1239
@@ -8252,7 +8253,7 @@ msgstr "Impossible d'ajouter un nouvel individu."
 #: ../src/plugins/DefaultGramplets.py:1591
 #: ../src/plugins/DefaultGramplets.py:1596
 msgid "Please set an active person."
-msgstr "Définir la personne active"
+msgstr "Définir l'individu actif"
 
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1574
@@ -8268,25 +8269,25 @@ msgstr "Impossible d'ajouter un nouvel individu comme parent"
 msgid "Please set the new person's gender."
 msgstr "Définir le genre du nouvel individu"
 
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1582
 #: ../src/plugins/DefaultGramplets.py:1586
 #: ../src/plugins/DefaultGramplets.py:1718
 #: ../src/plugins/DefaultGramplets.py:1755
 #: ../src/plugins/DefaultGramplets.py:1788
-#, fuzzy
 msgid "Can't add new person as a spouse."
-msgstr "Ajouter un nouvel individu comme mère"
+msgstr "Impossible d'ajouter un nouvel individu comme conjoint."
 
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1591
-#, fuzzy
 msgid "Can't add new person as a sibling."
-msgstr "Affiche les frères et sœurs de l'individu."
+msgstr "Impossible d'ajouter un nouvel individu comme frère ou sœur."
 
+# trunk
 #: ../src/plugins/DefaultGramplets.py:1596
 #: ../src/plugins/DefaultGramplets.py:1834
-#, fuzzy
 msgid "Can't add new person as a child."
-msgstr "Créer un nouvel individu et ajouter l'enfant à la famille"
+msgstr "Impossible d'ajouter un nouvel individu comme enfant."
 
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1717
@@ -8302,7 +8303,7 @@ msgstr "Mêmes genres entre la personne active et le nouvel individu."
 # trunk
 #: ../src/plugins/DefaultGramplets.py:1833
 msgid "Please set gender on Active person."
-msgstr "Saisissez le genre de la personne active."
+msgstr "Saisissez le genre de l'individu actif."
 
 # à voir, à l'usage ...
 #: ../src/plugins/DefaultGramplets.py:1855
@@ -8442,7 +8443,7 @@ msgstr "Navigation interactive parmi les descendants"
 
 #: ../src/plugins/Desbrowser.py:173
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr "Permet une navigation hiérarchique sur l'individu sélectionné"
+msgstr "Permet une navigation hiérarchique sur l'individu actif"
 
 # de ou pour ?
 #: ../src/plugins/DescendTree.py:131
@@ -8520,7 +8521,7 @@ msgstr "Produit une liste des descendants de l'individu actif"
 # trunk
 #: ../src/plugins/DescendGramplet.py:60
 msgid "No Active Person selected."
-msgstr "Aucune personne active sélectionnée"
+msgstr "Aucun individu actif sélectionné"
 
 # trunk
 #: ../src/plugins/DescendGramplet.py:151
@@ -9648,19 +9649,19 @@ msgstr "les individus avec des images"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "media references"
-msgstr "les références de média"
+msgstr "les références de media"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "unique media"
-msgstr "le média unique"
+msgstr "le media unique"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "missing media"
-msgstr "le média manquant"
+msgstr "le media manquant"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "media by size"
-msgstr "la taille du média"
+msgstr "la taille du media"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "list of people"
@@ -10422,14 +10423,14 @@ msgstr "Impossible de créer le répertoire média %s"
 #: ../src/plugins/ImportGpkg.py:77
 #, python-format
 msgid "Media directory %s is not writable"
-msgstr "Le répertoire média %s n'est pas accessible en écriture"
+msgstr "Le répertoire media %s n'est pas accessible en écriture"
 
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
 #: ../src/plugins/ImportGpkg.py:82
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "Le répertoire média %s existe. Supprimez le, puis redémarrez le processus d'importation."
+msgstr "Le répertoire media %s existe. Supprimez le, puis redémarrez le processus d'importation."
 
 #: ../src/plugins/ImportGpkg.py:91
 #, python-format
@@ -10443,16 +10444,16 @@ msgstr "Base pour le chemin relatif des media défini"
 #: ../src/plugins/ImportGpkg.py:108
 #, python-format
 msgid "The base media path of this family tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "La base du chemin média pour cette arbre familial a été défini à %s. Utilisez un chemin simple. Vous pouvez le changer dans les Préférences, déplacez vos fichiers média vers un autre emplacement, et utilisez le gestionnaire de média, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets média."
+msgstr "La base du chemin media pour cette arbre familial a été défini à %s. Utilisez un chemin simple. Vous pouvez le changer dans les Préférences, déplacez vos fichiers media vers un autre emplacement, et utilisez le gestionnaire de media, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets media."
 
 #: ../src/plugins/ImportGpkg.py:117
 msgid "Cannot set base media path"
-msgstr "Impossible de définir le chemin média"
+msgstr "Impossible de définir le chemin media"
 
 #: ../src/plugins/ImportGpkg.py:118
 #, python-format
 msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr "L'arbre familial que vous venez d'importer a déjà un chemin média : %(orig_path)s. Les objets média importés sont relatifs selon le chemin %(path)s. Vous pouvez changer le chemin média dans les Préférences ou vous pouvez convertir les fichiers importés vers le chemin média de base. Vous pouvez déplacer vos fichiers média vers une nouvelle position, et utiliser le gestionnaire de média, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets média."
+msgstr "L'arbre familial que vous venez d'importer a déjà un chemin media : %(orig_path)s. Les objets media importés sont relatifs selon le chemin %(path)s. Vous pouvez changer le chemin media dans les Préférences ou vous pouvez convertir les fichiers importés vers le chemin media de base. Vous pouvez déplacer vos fichiers media vers une nouvelle position, et utiliser le gestionnaire de media, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets media."
 
 #: ../src/plugins/ImportGpkg.py:146
 #: ../data/gramps.keys.in.h:4
@@ -10528,10 +10529,11 @@ msgstr "Pas un fichier Pro-Gen valide"
 msgid "Field '%(fldname)s' not found"
 msgstr "L'emplacement '%(fldname)s' non trouvé"
 
+# trunk
 #: ../src/plugins/ImportProGen.py:399
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
-msgstr ""
+msgstr "Impossible de trouver le fichier DEF : %(deffname)s"
 
 # trunk
 #: ../src/plugins/ImportProGen.py:441
@@ -10571,15 +10573,17 @@ msgstr "Importation des familes"
 msgid "Adding children"
 msgstr "Ajout des enfants"
 
+# trunk
 #: ../src/plugins/ImportProGen.py:1181
 #, python-format
 msgid "cannot find father for I%s (father=%d)"
-msgstr ""
+msgstr "impossible de trouver le père de I%s (père=%d)"
 
+# trunk
 #: ../src/plugins/ImportProGen.py:1183
 #, python-format
 msgid "cannot find mother for I%s (mother=%d)"
-msgstr ""
+msgstr "impossible de trouver la mère de I%s (mère=%d)"
 
 # trunk
 #: ../src/plugins/ImportProGen.py:1218
@@ -10718,19 +10722,19 @@ msgid ""
 "or, if not set, relative to the user's directory.\n"
 msgstr ""
 "\n"
-"Les objets média avec chemins relatifs ont été\n"
+"Les objets media avec chemins relatifs ont été\n"
 "importés. Ces chemins sont considérés comme\n"
 "relatifs par rapport au répertoire défini dans les\n"
 "préférences, ou, si absent, le répertoire utilisateur.\n"
 
 #: ../src/plugins/ImportXml.py:763
 msgid "Could not change media path"
-msgstr "Impossible de changer le chemin média"
+msgstr "Impossible de changer le chemin media"
 
 #: ../src/plugins/ImportXml.py:764
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
-msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin média de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin média de la base de données dans les Préférences."
+msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
 
 #: ../src/plugins/ImportXml.py:776
 msgid "GRAMPS XML import"
@@ -11014,7 +11018,7 @@ msgstr "Génère une liste d'individus avec un marqueur particulier"
 
 #: ../src/plugins/MediaManager.py:65
 msgid "manual|Media_Manager..."
-msgstr "Gestionnaire de média GRAMPS"
+msgstr "Gestionnaire de media GRAMPS"
 
 #: ../src/plugins/MediaManager.py:86
 #: ../src/plugins/MediaManager.py:596
@@ -11023,7 +11027,7 @@ msgstr "Gérer les media"
 
 #: ../src/plugins/MediaManager.py:90
 msgid "GRAMPS Media Manager"
-msgstr "Gestionnaire de média GRAMPS"
+msgstr "Gestionnaire de media GRAMPS"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/MediaManager.py:92
@@ -11040,13 +11044,13 @@ msgid ""
 "\n"
 "This tool allows you to only modify the records within your GRAMPS database. If you want to move or rename the files then you need to do it on your own, outside of GRAMPS. Then you can adjust the paths using this tool so that the media objects store the correct file locations."
 msgstr ""
-"Cet outil permet des opérations groupées sur les objets média stockés dans GRAMPS. Une distinction importante doit être faite entre un objet média de GRAMPS et son fichier.\n"
+"Cet outil permet des opérations groupées sur les objets media stockés dans GRAMPS. Une distinction importante doit être faite entre un objet media de GRAMPS et son fichier.\n"
 "\n"
-"L'objet média de GRAMPS est une collection de données sur un fichier objet média : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
+"L'objet media de GRAMPS est une collection de données sur un fichier objet media : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par GRAMPS et ne sont pas inclus dans la base de données GRAMPS. La base de données GRAMPS ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
-"Cet outil vous permet de modifier seulement les enregistrements internes à la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets média conservent les bons emplacements de fichiers."
+"Cet outil vous permet de modifier seulement les enregistrements internes à la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets media conservent les bons emplacements de fichiers."
 
 #: ../src/plugins/MediaManager.py:256
 msgid "Affected path"
@@ -11089,7 +11093,7 @@ msgstr "Remplacer les _sous-chaînes dans le chemin"
 
 #: ../src/plugins/MediaManager.py:414
 msgid "This tool allows replacing specified substring in the path of media objects with another substring. This can be useful when you move your media files from one directory to another"
-msgstr "Cet outil permet de substituer une sous-chaîne spécifiée dans le chemin des objets média pour une autre sous-chaîne. Cela peut être utile en cas de déplacement de vos fichiers média"
+msgstr "Cet outil permet de substituer une sous-chaîne spécifiée dans le chemin des objets media pour une autre sous-chaîne. Cela peut être utile en cas de déplacement de vos fichiers media"
 
 #: ../src/plugins/MediaManager.py:420
 msgid "Replace substring settings"
@@ -11124,7 +11128,7 @@ msgstr "Convertir les chemins relatifs en chemins _absolus"
 
 #: ../src/plugins/MediaManager.py:497
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr "Cet outil permet de convertir les chemins média relatifs en chemins absolus. Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur."
+msgstr "Cet outil permet de convertir les chemins media relatifs en chemins absolus. Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur."
 
 #: ../src/plugins/MediaManager.py:534
 msgid "Convert paths from absolute to r_elative"
@@ -11133,37 +11137,42 @@ msgstr "Convertir les chemins absolus en chemins r_elatifs"
 # trunk
 #: ../src/plugins/MediaManager.py:535
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Cet outil permet de convertir les chemins média absolus en chemins relatifs.  Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
+msgstr "Cet outil permet de convertir les chemins media absolus en chemins relatifs.  Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
 
 #: ../src/plugins/MediaManager.py:600
 msgid "Manages batch operations on media files"
-msgstr "Gère des opérations groupées sur les fichiers média"
+msgstr "Gère des opérations groupées sur les fichiers media"
 
+# trunk
 #. First is used as default selection.
 #: ../src/plugins/NarrativeWeb.py:121
 #: ../src/plugins/WebCal.py:109
 msgid "Basic-Ash"
-msgstr ""
+msgstr "Basique - Le frêne"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:122
 #: ../src/plugins/WebCal.py:110
 msgid "Basic-Cypress"
-msgstr ""
+msgstr "Basique - Le cyprès"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:123
 #: ../src/plugins/WebCal.py:111
 msgid "Basic-Lilac"
-msgstr ""
+msgstr "Basique - Le lilas"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:124
 #: ../src/plugins/WebCal.py:112
 msgid "Basic-Peach"
-msgstr ""
+msgstr "Basique - Le pêcher"
 
+# trunk
 #: ../src/plugins/NarrativeWeb.py:125
 #: ../src/plugins/WebCal.py:113
 msgid "Basic-Spruce"
-msgstr ""
+msgstr "Basique - L'épicéa"
 
 # trunk
 #: ../src/plugins/NarrativeWeb.py:126
@@ -11176,10 +11185,12 @@ msgstr "Mayence"
 msgid "Nebraska"
 msgstr "Nebraska"
 
+# trunk
+# ??? à vérifier
 #: ../src/plugins/NarrativeWeb.py:128
 #: ../src/plugins/WebCal.py:116
 msgid "Visually Impaired"
-msgstr ""
+msgstr "Impair visuellement"
 
 #: ../src/plugins/NarrativeWeb.py:129
 #: ../src/plugins/WebCal.py:117
@@ -11353,7 +11364,7 @@ msgstr "Attributs"
 
 #: ../src/plugins/NarrativeWeb.py:1309
 msgid "Missing media object:"
-msgstr "Objet média absent :"
+msgstr "Objet media absent :"
 
 #: ../src/plugins/NarrativeWeb.py:1343
 #: ../src/plugins/NarrativeWeb.py:1344
@@ -11378,7 +11389,7 @@ msgstr "Informations de publication"
 
 #: ../src/plugins/NarrativeWeb.py:1583
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page."
-msgstr "Cette page contient un index de tous les media de la base de données, classés par titre. Cliquez sur un média pour accéder à sa page."
+msgstr "Cette page contient un index de tous les media de la base de données, classés par titre. Cliquez sur un media pour accéder à sa page."
 
 #: ../src/plugins/NarrativeWeb.py:1840
 msgid "Ancestors"
@@ -11469,7 +11480,7 @@ msgstr "Création des pages lieu"
 # Substantif (GNOME fr)
 #: ../src/plugins/NarrativeWeb.py:2825
 msgid "Creating media pages"
-msgstr "Création des pages média"
+msgstr "Création des pages media"
 
 #: ../src/plugins/NarrativeWeb.py:3014
 #: ../src/plugins/WebCal.py:298
@@ -11645,7 +11656,7 @@ msgstr "Inclure images et media"
 
 #: ../src/plugins/NarrativeWeb.py:3169
 msgid "Whether to include a gallery of media objects"
-msgstr "Inclure ou non une galerie des objets média"
+msgstr "Inclure ou non une galerie des objets media"
 
 #: ../src/plugins/NarrativeWeb.py:3172
 msgid "Include download page"
@@ -12143,9 +12154,10 @@ msgstr "Ne pas utiliser le nom usuel"
 msgid "Replace first name with call name"
 msgstr "Remplacer le prénom par le nom usuel"
 
+# trunk
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
-msgstr ""
+msgstr "Souligner ou ajouter le nom usuel dans le prénom"
 
 # trunk
 #: ../src/plugins/Records.py:470
@@ -12157,15 +12169,15 @@ msgstr "Enregistrement sur l'individu"
 msgid "Family Records"
 msgstr "Enregistrement sur la famille"
 
+# trunk
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for headings."
-msgstr "Le style de base utilisé pour les sous-titres."
+msgstr "Le style utilisé pour les en-têtes."
 
+# trunk
 #: ../src/plugins/Records.py:527
-#, fuzzy
 msgid "The style used for the report title"
-msgstr "Le style utilisé pour l'en-tête."
+msgstr "Le style utilisé pour le titre du rapport"
 
 # trunk
 #: ../src/plugins/Records.py:536
@@ -12262,10 +12274,10 @@ msgstr "Gramplet Enregistrements"
 msgid "Records Report"
 msgstr "Rapport Enregistrements"
 
+# trunk
 #: ../src/plugins/Records.py:581
-#, fuzzy
 msgid "Shows some interesting records about people and families"
-msgstr "Inclure ou non les dates pour les individus et les familles."
+msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 
 #. display the title
 #: ../src/plugins/References.py:68
@@ -12394,7 +12406,7 @@ msgstr "Réorganisation des identifiants des événements"
 # Substantif (GNOME fr)
 #: ../src/plugins/ReorderIds.py:102
 msgid "Reordering Media Object IDs"
-msgstr "Réorganisation des identifiants des objets média"
+msgstr "Réorganisation des identifiants des objets media"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/ReorderIds.py:112
@@ -12571,11 +12583,11 @@ msgstr "Affiche les individus porteurs du même nom de famille."
 msgid "Same Given Names"
 msgstr "Mêmes prénoms"
 
+# trunk
 #: ../src/plugins/SameSurnames.py:183
 #: ../src/plugins/SameSurnames.py:194
-#, fuzzy
 msgid "Display people with the same given name as a person."
-msgstr "Affiche les individus porteurs du même nom de famille."
+msgstr "Afficher les individus porteurs du même prénom."
 
 #. display the title
 #: ../src/plugins/siblings.py:44
@@ -12638,7 +12650,7 @@ msgstr "Image"
 
 #: ../src/plugins/SimpleBookTitle.py:136
 msgid "Gramps ID of the media object to use as an image."
-msgstr "L'identifiant GRAMPS ID de l'objet média utilisé comme image."
+msgstr "L'identifiant GRAMPS ID de l'objet media utilisé comme image."
 
 #: ../src/plugins/SimpleBookTitle.py:139
 msgid "Image Size"
@@ -13227,24 +13239,29 @@ msgstr "Vérifier les données"
 msgid "Verifies the data against user-defined tests"
 msgstr "Vérifie les données selon les définitions de l'utilisateur"
 
+# trunk
 #: ../src/plugins/WebCal.py:367
-#, fuzzy
 msgid "Easter"
-msgstr "Rang ou statut"
+msgstr "Pâques"
 
+# trunk
+# ???? à revoir
 #: ../src/plugins/WebCal.py:374
 msgid "Daylight Saving begins"
-msgstr ""
+msgstr "Début de l'heure d'été"
 
+# trunk
+# ??? à revoir
 #: ../src/plugins/WebCal.py:376
 msgid "Daylight Saving ends"
-msgstr ""
+msgstr "Fin de l'heure d'été"
 
+# ????
+# trunk à revoir
 #. Add a link for year_glance() if requested
 #: ../src/plugins/WebCal.py:442
-#, fuzzy
 msgid "Year Glance"
-msgstr "Lieu de décès"
+msgstr "Année visuelle"
 
 # trunk
 #. add a link to blank_year() if requested
@@ -13265,9 +13282,10 @@ msgstr "Créé pour <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n
 msgid "Created for %(author)s\n"
 msgstr "Créé pour %(author)s\n"
 
+# trunk
 #: ../src/plugins/WebCal.py:862
 msgid "Holiday"
-msgstr ""
+msgstr "Jour férié"
 
 # à tester
 # trunk
@@ -13290,9 +13308,11 @@ msgstr "%(short_name)s, <em>%(age)d</em> ans"
 msgid "%(couple)s, <em>%(nyears)d</em> year anniversary"
 msgstr "%(couple)s, <em>%(nyears)d</em> années"
 
+# ???
+# trunk
 #: ../src/plugins/WebCal.py:937
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "Un jour dans une année"
 
 # trunk
 #: ../src/plugins/WebCal.py:967
@@ -13307,23 +13327,30 @@ msgstr "Calendrier vide"
 msgid "Creating Blank Year calendars"
 msgstr "Création de calendriers vides"
 
+# ???
+# trunk
 #. page title
 #: ../src/plugins/WebCal.py:1005
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr ""
+msgstr "%(year)d, au coup d'oeil"
 
+# trunk
+# à vérifier
 #. TODO. The "red square" is only valid for some style sheets.
 #: ../src/plugins/WebCal.py:1013
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any!\n"
 msgstr ""
+"Ce calendrier est prévu pour accéder à toutes vos données pour être visible dans une page. En cliquant sur une date vous arriverez sur une page illustrant les événements pour cette date, si ils existent !\n"
+" "
 
 # Substantif (GNOME fr)
+# ???? trunk
+# à revoir
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/WebCal.py:1020
-#, fuzzy
 msgid "Creating Year At A Glance calendars"
-msgstr "Création des pages lieu"
+msgstr "Création d'un calendrier à année visuelle"
 
 #. open progress meter bar
 #: ../src/plugins/WebCal.py:1053
@@ -13331,11 +13358,13 @@ msgid "Generate XHTML Calendars"
 msgstr "Génère des calendriers XHTML"
 
 # Substantif (GNOME fr)
+# ???? trunk
+# à revoir
 #. generate progress pass for year ????
 #: ../src/plugins/WebCal.py:1080
-#, fuzzy, python-format
+#, python-format
 msgid "Creating year %d calendars"
-msgstr "Création des pages calendrier"
+msgstr "Création d'un calendrier pour l'année %d"
 
 # Substantif (GNOME fr)
 # trunk
@@ -13384,9 +13413,11 @@ msgstr "Options du contenu"
 msgid "Create Partial Year calendar"
 msgstr "Créer un calendrier avec l'année partielle"
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1378
 msgid "Create a partial year calendar. The start month will be equal to the current month to the end of the year."
-msgstr ""
+msgstr "Créé un calendrier avec une année partielle. Le mois de départ sera le mois actuel jusqu'à la fin de l'année."
 
 # trunk
 # à vérifier
@@ -13394,47 +13425,56 @@ msgstr ""
 msgid "Create multiple year calendars"
 msgstr "Créer des calendriers sur plusieurs années"
 
+# trunk
 #: ../src/plugins/WebCal.py:1383
-#, fuzzy
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Inclure ou non les noms alternatifs pour les parents."
+msgstr "Créer ou non plusieurs calendriers annuels. "
 
 # trunk
 #: ../src/plugins/WebCal.py:1387
 msgid "Start Year for the Calendar(s)"
 msgstr "Année de départ pour les calendrier(s)"
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1388
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr ""
+msgstr "Entrez le début de l'année pour les calendriers entre 1900 et 3000"
 
 # trunk
 #: ../src/plugins/WebCal.py:1391
 msgid "End Year for the Calendar(s)"
 msgstr "Dernière année pour les calendrier(s)"
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1392
 msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple years is selected, then only twenty years at any given time"
-msgstr ""
+msgstr "Entrez la fin de l'année pour les calendriers entre 1900 et 3000. If plusieurs années sont sélectionnées, alors seulement 20 années seront utilisées"
 
 # Substantif (GNOME fr)
+# ??? trunk
+# à revoir
 #: ../src/plugins/WebCal.py:1398
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar(s)"
-msgstr "Création des pages lieu"
+msgstr "Créer des calendriers à \"année visuelle\""
 
+# trunk
 #: ../src/plugins/WebCal.py:1399
-#, fuzzy
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr "Conserver ou non les pages internet dans un format d'archive"
+msgstr "Créer ou non une page avec un calendrier miniature dont les dates sont mises en relief "
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1402
 msgid "Create \"Printable Blank\" Calendar(s)"
-msgstr ""
+msgstr "Créer des calendriers \"vides\""
 
+# trunk
+# à vérifier
 #: ../src/plugins/WebCal.py:1403
 msgid "Whether to create A Full Year Printable calendar"
-msgstr ""
+msgstr "Créer ou non un calendrier imprimable avec une année complète"
 
 #: ../src/plugins/WebCal.py:1409
 msgid "Holidays will be included for the selected country"
@@ -17758,7 +17798,7 @@ msgstr "Traitement des enregistrements source"
 #: ../src/gen/proxy/dbbase.py:124
 #: ../src/gen/db/base.py:356
 msgid "Processing Media records"
-msgstr "Traitement des enregistrements média"
+msgstr "Traitement des enregistrements media"
 
 # Substantif (GNOME fr)
 #: ../src/gen/proxy/dbbase.py:130
@@ -17895,11 +17935,11 @@ msgstr "Note de la référence du dépôt"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
-msgstr "Note du média"
+msgstr "Note du media"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Media Reference Note"
-msgstr "Note de la référence du média"
+msgstr "Note de la référence du media"
 
 #: ../src/gen/lib/notetype.py:104
 msgid "Child Reference Note"
@@ -18212,7 +18252,7 @@ msgstr "Vers"
 
 #: ../src/gen/lib/date.py:1532
 msgid "range"
-msgstr "Étendue"
+msgstr "Étendu(e)"
 
 #: ../src/gen/lib/date.py:1532
 msgid "span"
@@ -20249,34 +20289,34 @@ msgstr "Correspond aux sources dont l'ID GRAMPS contient une expression rationne
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr "Chaque objet média"
+msgstr "Chaque objet media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Correspond à tous les objets média de la base"
+msgstr "Correspond à tous les objets media de la base"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
 msgid "Media attribute:"
-msgstr "Attribut de l'objet média :"
+msgstr "Attribut de l'objet media :"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
 msgid "Media objects with the attribute <attribute>"
-msgstr "Objets média avec l'<attribut>"
+msgstr "Objets media avec l'<attribut>"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:47
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Correspond aux objets média avec un attribut de même valeur"
+msgstr "Correspond aux objets media avec un attribut de même valeur"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Objet média avec l'<Id>"
+msgstr "Objet media avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Correspond à un objet média avec l'identifiant GRAMPS spécifié"
+msgstr "Correspond à un objet media avec l'identifiant GRAMPS spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -20291,68 +20331,68 @@ msgstr "Chemin :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Objets média correspondants aux paramètres"
+msgstr "Objets media correspondants aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr "Correspond aux objets média ayant un paramètre précis"
+msgstr "Correspond aux objets media ayant un paramètre précis"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Objets média dont les notes contiennent la <sous-chaîne>"
+msgstr "Objets media dont les notes contiennent la <sous-chaîne>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Correspond aux objets média dont les notes contiennent une sous-chaîne"
+msgstr "Correspond aux objets media dont les notes contiennent une sous-chaîne"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Objets média dont les notes contiennent une <expression rationnelle>"
+msgstr "Objets media dont les notes contiennent une <expression rationnelle>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Correspond aux objets média dont les notes contiennent du texte avec l'expression rationnelle"
+msgstr "Correspond aux objets media dont les notes contiennent du texte avec l'expression rationnelle"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr "Objets média avec un <nombre> de références"
+msgstr "Objets media avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Correspond aux objets média ayant un nombre de références"
+msgstr "Correspond aux objets media ayant un nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Objets média correspondants au <filtre>"
+msgstr "Objets media correspondants au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Correspond aux objets média trouvés par le filtre spécifié"
+msgstr "Correspond aux objets media trouvés par le filtre spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr "Objets média marqués comme privés"
+msgstr "Objets media marqués comme privés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr "Correspond aux objets média marqués comme privés"
+msgstr "Correspond aux objets media marqués comme privés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Objets média avec l'<Id> correspondant à une expression rationnelle"
+msgstr "Objets media avec l'<Id> correspondant à une expression rationnelle"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr "Correspond aux objets média dont l'ID GRAMPS contient une expression rationnelle"
+msgstr "Correspond aux objets media dont l'ID GRAMPS contient une expression rationnelle"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -20620,7 +20660,7 @@ msgstr "Filtres sources"
 
 #: ../src/FilterEditor/_FilterEditor.py:70
 msgid "Media Object Filters"
-msgstr "Filtres objets média"
+msgstr "Filtres objets media"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
 msgid "Repository Filters"
@@ -21258,12 +21298,12 @@ msgstr "G_rouper comme :"
 
 #: ../src/glade/gramps.glade.h:81
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
-msgstr "Si le média est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
+msgstr "Si le media est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
 
 # trunk
 #: ../src/glade/gramps.glade.h:82
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files."
-msgstr "Si vous valider cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers média manquants."
+msgstr "Si vous valider cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers media manquants."
 
 #: ../src/glade/gramps.glade.h:84
 msgid "Invoke date editor"
@@ -21316,7 +21356,7 @@ msgstr "Ordonnance :"
 
 #: ../src/glade/gramps.glade.h:98
 msgid "P_atronymic:"
-msgstr "P_atronymique :"
+msgstr "P_atronyme :"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Phon_e:"
@@ -21491,7 +21531,7 @@ msgstr "_Longitude :"
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/gramps.glade.h:153
 msgid "_Media Type:"
-msgstr "_Type de média :"
+msgstr "_Type de media :"
 
 #: ../src/glade/gramps.glade.h:154
 msgid "_Month"
@@ -21595,7 +21635,7 @@ msgstr "_Souligné"
 
 #: ../src/glade/gramps.glade.h:180
 msgid "_Use this selection for all missing media files"
-msgstr "_Utiliser cette option pour tous les fichiers média absents"
+msgstr "_Utiliser cette option pour tous les fichiers media absents"
 
 #: ../src/glade/gramps.glade.h:181
 msgid "_Value:"
@@ -22448,7 +22488,7 @@ msgstr "Allez de ce que vous savez vers ce que vous ne savez pas. Enregistrez to
 
 #: ../src/data/tips.xml.in.h:54
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr "Dans la plupart des cas, en double-cliquant sur un nom, une source, un lieu ou un média, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquer sur un parent ou un enfant ouvre l'éditeur de relations."
+msgstr "Dans la plupart des cas, en double-cliquant sur un nom, une source, un lieu ou un media, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquer sur un parent ou un enfant ouvre l'éditeur de relations."
 
 #: ../src/data/tips.xml.in.h:55
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
@@ -22528,5 +22568,5 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr "Vous pouvez relier un média électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
