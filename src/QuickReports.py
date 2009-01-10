@@ -78,7 +78,7 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     ofile = StringIO()
     ofile.write('<menu action="QuickReport">')
     
-    actions.append(('QuickReport', None, _("Quick Report"), None, None, None))
+    actions.append(('QuickReport', None, _("Quick View"), None, None, None))
         
     menu = gtk.Menu()
     menu.show()

@@ -123,7 +123,7 @@ class RepositoryView(PageView.ListView):
         self._add_action('FilterEdit', None, _('Repository Filter Editor'),
                          callback=self.filter_editor,)
         self._add_action('QuickReport', None, 
-                         _("Quick Report"), None, None, None)
+                         _("Quick View"), None, None, None)
         self._add_action('Dummy', None, 
                          '  ', None, None, self.dummy_report)
 

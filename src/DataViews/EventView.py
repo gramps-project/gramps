@@ -185,7 +185,7 @@ class EventView(PageView.ListView):
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor,)
         self._add_action('QuickReport', None, 
-                         _("Quick Report"), None, None, None)
+                         _("Quick View"), None, None, None)
         self._add_action('Dummy', None, 
                          '  ', None, None, self.dummy_report)
 

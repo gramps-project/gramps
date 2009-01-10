@@ -171,7 +171,7 @@ class FamilyListView(PageView.ListView):
                         
         self.all_action = gtk.ActionGroup(self.title + "/FamilyAll")
         self.all_action.add_actions([
-                ('QuickReport', None, _("Quick Report"), None, None, None),
+                ('QuickReport', None, _("Quick View"), None, None, None),
                 ('Dummy', None, '  ', None, None, self.dummy_report),
                 ])
         self._add_action_group(self.all_action)

@@ -148,7 +148,7 @@ class PersonView(PageView.PersonNavView):
                  _("Edit the selected person"), self.edit), 
                 ('CloseAllNodes', None, _("Collapse all Nodes"), None, None, 
                  self.close_all_nodes), 
-                ('QuickReport', None, _("Quick Report"), None, None, None), 
+                ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
                 ])
 
