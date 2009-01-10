@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-08 19:05+0100\n"
-"PO-Revision-Date: 2009-01-10 01:32+0100\n"
+"PO-Revision-Date: 2009-01-10 21:05+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21123,7 +21123,7 @@ msgstr "_Rechts"
 
 #: ../src/glade/gramps.glade.h:168
 msgid "_Role:"
-msgstr "_Funktion:"
+msgstr "_Rolle:"
 
 #: ../src/glade/gramps.glade.h:169
 msgid "_Roman (Times, serif)"
