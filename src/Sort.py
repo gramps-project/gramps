@@ -124,12 +124,52 @@ class Sort:
         return cmp(a_obj.get_date_object(), b_obj.get_date_object())
 
     def by_place_title(self, a_id, b_id):
-        """Sort routine for comparing two events by their dates. """
+        """Sort routine for comparing two places. """
         if not (a_id and b_id):
             return 0
         a_obj = self.database.get_place_from_handle(a_id)
         b_obj = self.database.get_place_from_handle(b_id)
         return locale.strcoll(a_obj.title, b_obj.title)
+
+    def by_event_place(self, a_id, b_id):
+        """Sort routine for comparing two events by their places. """
+        if not (a_id and b_id):
+            return 0
+        evt_a = self.database.get_event_from_handle(a_id)
+        evt_b = self.database.get_event_from_handle(b_id)
+        plc_a = self.database.get_place_from_handle(evt_a.get_place_handle())
+        plc_b = self.database.get_place_from_handle(evt_b.get_place_handle())
+        plc_a_title = ""
+        plc_b_title = ""
+        if plc_a:
+            plc_a_title = plc_a.title
+        if plc_b:
+            plc_b_title = plc_b.title
+        return locale.strcoll(plc_a_title, plc_b_title)
+
+    def by_event_description(self, a_id, b_id):
+        """Sort routine for comparing two events by their descriptions. """
+        if not (a_id and b_id):
+            return 0
+        evt_a = self.database.get_event_from_handle(a_id)
+        evt_b = self.database.get_event_from_handle(b_id)
+        return locale.strcoll(evt_a.get_description(), evt_b.get_description())
+
+    def by_event_id(self, a_id, b_id):
+        """Sort routine for comparing two events by their ID. """
+        if not (a_id and b_id):
+            return 0
+        evt_a = self.database.get_event_from_handle(a_id)
+        evt_b = self.database.get_event_from_handle(b_id)
+        return locale.strcoll(evt_a.get_gramps_id(), evt_b.get_gramps_id())
+
+    def by_event_type(self, a_id, b_id):
+        """Sort routine for comparing two events by their type. """
+        if not (a_id and b_id):
+            return 0
+        evt_a = self.database.get_event_from_handle(a_id)
+        evt_b = self.database.get_event_from_handle(b_id)
+        return locale.strcoll(str(evt_a.get_type()), str(evt_b.get_type()))
     
     def by_media_title(self,a_id,b_id):
         """Sort routine for comparing two media objects by their title. """
@@ -137,5 +177,5 @@ class Sort:
             return False
         a = self.database.get_object_from_handle(a_id)
         b = self.database.get_object_from_handle(b_id)
-        return locale.strcoll(a.desc,b.desc)
+        return locale.strcoll(a.desc, b.desc)
     

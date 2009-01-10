@@ -96,6 +96,7 @@ pkgdata_PYTHON = \
 	SameSurnames.py\
 	siblings.py\
 	SimpleBookTitle.py\
+	SortEvents.py\
 	SoundGen.py\
 	StatisticsChart.py\
 	Summary.py\
