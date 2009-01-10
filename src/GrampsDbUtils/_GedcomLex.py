@@ -255,7 +255,10 @@ def extract_date(text):
     """
     dateobj = gen.lib.Date()
 
-    text = text.replace('BET ABT','EST BET') # Horrible hack for Tim Lyons
+    text = text.replace('BET ABT','EST BET') # Horrible hack for importing
+                                             # illegal GEDCOM from
+                                             # Apple Macintosh Classic
+                                             # 'Gene' program
 
     try:
         # extract out the MOD line
@@ -352,9 +355,13 @@ class Reader:
     def __fix_token_conc(self, data):
         line = self.current_list[0]
         if len(line[2]) == 4:
+            # This deals with lines of the form
+            # 0 @<XREF:NOTE>@ NOTE
+            #   1 CONC <SUBMITTER TEXT>
             # The previous line contains only a tag and no data so concat a
             # space to separate the new line from the tag. This prevents the
-            # first letter of the new line being lost later.
+            # first letter of the new line being lost later
+            # in _GedcomParse.__parse_record
             new_value = line[2] + ' ' + data[2]
         else:
             new_value = line[2] + data[2]
@@ -362,29 +369,34 @@ class Reader:
 
     def __readahead(self):
         while len(self.current_list) < 5:
-            linetmp = self.ifile.readline()
+            line = self.ifile.readline()
             self.index += 1
-            if not linetmp:
+            if not line:
                 self.eof = True
                 return
 
             try:
-                # the space ensures no trailing whitespace on last parm
-                line = linetmp.strip(' \n\r').split(None, 2) + ['']
-                # however keep trailing whitespace on notes only
-                if line[1] == 'CONC' or line[2].startswith('NOTE'):
-                    line = linetmp.strip('\n\r').split(None, 2) + ['']
-                elif line[1] == 'CONT':
-                    # Make sure that whitespace is preserved at start and
-                    # end of CONT data
-                    part_line = linetmp.strip('\n\r').partition(' CONT ')
-                    line = [part_line[0]] + ['CONT'] + [part_line[2]] + ['']
+                # According to the GEDCOM 5.5 standard,
+                # Chapter 1 subsection Grammar
+                #"leading whitespace preceeding a GEDCOM line should be ignored"
+                # We will also strip the terminator which is any combination
+                # of carriage_return and line_feed
+                line = line.lstrip(' ').rstrip('\n\r')
+                # split into level+delim+rest
+                line = line.partition(' ')
                 level = int(line[0])
+                # there should only be one space after the level,
+                # but we can ignore more,
+                # then split into tag+delim+line_value
+                # or xfef_id+delim+rest
+                line = line[2].lstrip(' ').partition(' ')
+                tag = line[0]
+                line_value = line[2]
             except:
                 continue
 
-            token = GedcomTokens.TOKENS.get(line[1], GedcomTokens.TOKEN_UNKNOWN)
-            data = (level, token, line[2], line[1], self.index)
+            token = GedcomTokens.TOKENS.get(tag, GedcomTokens.TOKEN_UNKNOWN)
+            data = (level, token, line_value, tag, self.index)
 
             func = self.func_map.get(data[1])
             if func:
