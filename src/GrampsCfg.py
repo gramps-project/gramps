@@ -130,8 +130,24 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
             None, _('Display Name Editor'), None)
         table = self.dialog._build_custom_name_ui()
+        label = gtk.Label(_("""The following keywords will be replaced with the name:
+<tt>  
+  <b>Given</b>      - given name (first name)
+  <b>Surname</b>    - surname (last name)
+  <b>Title</b>      - title (Dr., Mrs.)
+  <b>Prefix</b>     - prefix (von, de, de la)
+  <b>Suffix</b>     - suffix (Jr., Sr.)
+  <b>Call</b>       - call name, or nickname
+  <b>Common</b>     - call name, otherwise first part of Given
+  <b>Patronymic</b> - patronymic (father's name)
+  <b>Initials</b>   - persons's first letters of given names
+</tt>
+Use the same keyword in UPPERCASE to force to upper. Parentheses and commas
+will be removed around empty fields. Other text will appear literally."""))
+        label.set_use_markup(True)
+        self.window.vbox.add(label)        
         self.window.vbox.add(table)
-        self.window.set_default_size(600, 300)
+        self.window.set_default_size(600, 550)
         self.window.connect('response', self.close)
         self.show()
     def close(self, *obj):
