@@ -56,10 +56,18 @@ class SimpleTable:
     def get_row_count(self):
         return len(self.__rows)
 
-    def columns(self, *columns):
+    def columns(self, *cols):
         """
         Set the columns
         """
+        # gtk tree doesn't like unicode?!
+        columns = []
+        for col in cols:
+            if type(col) == unicode:
+                columns.append(str(col))
+            else:
+                columns.append(col)
+        # end of unicode fix
         self.__columns = list(copy.copy(columns))
         self.__sort_vals = [[] for i in range(len(self.__columns))]
 
