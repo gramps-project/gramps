@@ -817,6 +817,14 @@ class GuiGramplet:
                                                      'list of people',
                                                      handles=handle)
                     return True
+                elif link_type == 'Attribute':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.dbstate, 
+                                                     self.uistate, 
+                                                     'attribute_match', 
+                                                     handle)
+                    return True
         return False # did not handle event
 
 class MyScrolledWindow(gtk.ScrolledWindow):

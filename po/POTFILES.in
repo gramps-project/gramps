@@ -241,6 +241,8 @@ src/plugins/all_events.py
 src/plugins/all_relations.py
 src/plugins/AncestorReport.py
 src/plugins/AncestorTree.py
+src/plugins/AttributeMatch.py
+src/plugins/AttributesGramplet.py
 src/plugins/BookReport.py
 src/plugins/CalculateEstimatedDates.py
 src/plugins/Calendar.py

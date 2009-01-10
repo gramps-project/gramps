@@ -12,6 +12,8 @@ pkgdata_PYTHON = \
 	AgeStats.py\
 	AncestorTree.py\
 	AncestorReport.py\
+	AttributeMatch.py\
+	AttributesGramplet.py\
 	BookReport.py\
 	CalculateEstimatedDates.py\
 	Calendar.py \
