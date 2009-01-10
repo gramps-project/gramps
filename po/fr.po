@@ -13340,9 +13340,7 @@ msgstr "%(year)d, au coup d'oeil"
 #. TODO. The "red square" is only valid for some style sheets.
 #: ../src/plugins/WebCal.py:1013
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any!\n"
-msgstr ""
-"Ce calendrier est prévu pour accéder à toutes vos données pour être visible dans une page. En cliquant sur une date vous arriverez sur une page illustrant les événements pour cette date, si ils existent !\n"
-" "
+msgstr "Ce calendrier est prévu pour accéder à toutes vos données pour être visible dans une page. En cliquant sur une date vous arriverez sur une page illustrant les événements pour cette date, si ils existent !\n"
 
 # Substantif (GNOME fr)
 # ???? trunk
@@ -14056,7 +14054,7 @@ msgstr "Le style de base utilisé pour afficher les annotations de la référenc
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
-msgstr "Annotations de fin"
+msgstr "Références bibliographiques"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -17197,7 +17195,7 @@ msgstr "Il eut également une relation avec %(spouse)s à %(place)s%(endnotes)s.
 #: ../src/ReportBase/_ReportUtils.py:1171
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation avec %(spouse)s à %(place)s%(endnotes)s%."
+msgstr "Elle eut également une relation avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1172
 #, python-format
@@ -22257,31 +22255,31 @@ msgstr "Fichier source GeneWeb"
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-msgstr "<b>L'ajout des enfants</b> : Pour ajouter des enfants dans GRAMPS, rendez les parents actifs puis basculez vers la vue &quot;Familles&quot;. Si les enfants sont dans la base de données, cliquez sur l'icône <b>Ajouter un individu existant comme enfant de la famille</b> (2e icône sur la droite). Si l'enfant n'est pas encore dans la base de données, cliquer sur <b>Créer un nouvel individu et ajouter l'enfant à la famille</b> (1re icône). Après avoir saisi les informations, l'enfant sera automatiquement ajouté à la liste des enfant de la famille active."
+msgstr "<b>L'ajout des enfants</b> : pour ajouter des enfants dans GRAMPS, rendez les parents actifs puis basculez vers la vue &quot;Familles&quot;. Si les enfants sont dans la base de données, cliquez sur l'icône <b>Ajouter un individu existant comme enfant de la famille</b> (2e icône sur la droite). Si l'enfant n'est pas encore dans la base de données, cliquer sur <b>Créer un nouvel individu et ajouter l'enfant à la famille</b> (1re icône). Après avoir saisi les informations, l'enfant sera automatiquement ajouté à la liste des enfant de la famille active."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
-msgstr "<b>Signets</b> : Ce menu conserve les noms des individus utilisés fréquemment sous forme de signet. Cliquez sur un de ces signets rendra l'individu actif. Pour créer le signet, rendez l'individu désiré actif et sélectionnez <b>Signets &gt; Ajouter un signet</b>."
+msgstr "<b>Signets</b> : ce menu conserve les noms des individus utilisés fréquemment sous forme de signet. Cliquez sur un de ces signets rendra l'individu actif. Pour créer le signet, rendez l'individu désiré actif et sélectionnez <b>Signets &gt; Ajouter un signet</b>."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
-msgstr "<b>Calcul des relations</b> : L'outil, sous <b>Outils &gt; Utilitaires &gt; Calcul Relationnel</b> vous permet de vérifier si personne d'autre dans la famille ne vous est relié (par le sang, non marié). Les relations précises tout comme les ascendants communs sont rapportés."
+msgstr "<b>Calcul des relations</b> : l'outil, sous <b>Outils &gt; Utilitaires &gt; Calcul Relationnel</b> vous permet de vérifier si personne d'autre dans la famille ne vous est relié (par le sang, non marié). Les relations précises tout comme les ascendants communs sont rapportés."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
-msgstr "<b>Changement de nom</b> : Il est facile de gérer des individus avec plusieurs noms dans GRAMPS. Rendez l'individu actif, double-cliquez sur l'enregistrement et sélectionnez l'étiquette &quot;Nom&quot;. Plusieurs types de nom peuvent être ajoutés. Par exemple, nom marital, nom de naissance, etc. Sélectionnez un nom préféré, faites un clic droit dessus et choisissez &quot; Définir comme nom par défaut &quot; dans le menu."
+msgstr "<b>Changement de nom</b> : il est facile de gérer des individus avec plusieurs noms dans GRAMPS. Rendez l'individu actif, double-cliquez sur l'enregistrement et sélectionnez l'étiquette &quot;Nom&quot;. Plusieurs types de nom peuvent être ajoutés. Par exemple, nom marital, nom de naissance, etc. Sélectionnez un nom préféré, faites un clic droit dessus et choisissez &quot; Définir comme nom par défaut &quot; dans le menu."
 
 # Substantif (GNOME fr) (aider sonne bien)
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
-msgstr "<b>Aider GRAMPS</b> : Vous voulez aider GRAMPS mais vous ne pouvez pas programmer ? Ce n'est pas un problème. Pour un aussi grand projet que GRAMPS les besoins sont divers. Documentation ou tests des versions en développement font parti de l'aide recherchée. Commencez par vous inscrire à la liste des développeurs de GRAMPS, gramps-devel. Les modalités d'inscription sont disponibles sur lists.sf.net."
+msgstr "<b>Aider GRAMPS</b> : vous voulez aider GRAMPS mais vous ne pouvez pas programmer ? Ce n'est pas un problème. Pour un aussi grand projet que GRAMPS les besoins sont divers. Documentation ou tests des versions en développement font parti de l'aide recherchée. Commencez par vous inscrire à la liste des développeurs de GRAMPS, gramps-devel. Les modalités d'inscription sont disponibles sur lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Different Views</b>: There are nine different views for navigating your family: People, Relationships, Family List, Pedigree, Events, Sources, Places, Media and Repositories. Each helps you to achieve one or more specific tasks."
-msgstr "<b>Différentes vues</b> : Il y a dix vues différentes pour naviguer dans votre famille : individus, relations, familles, arbre généalogique, événements, sources, lieux, media, dépôts et notes. Chacune vous aide à archiver chaque tâche spécifique."
+msgstr "<b>Différentes vues</b> : il y a dix vues différentes pour naviguer dans votre famille : individus, relations, familles, arbre généalogique, événements, sources, lieux, media, dépôts et notes. Chacune vous aide à archiver chaque tâche spécifique."
 
 # trunk
 #: ../src/data/tips.xml.in.h:7
@@ -22292,20 +22290,20 @@ msgstr "<b>Entrées doubles</b> : <b>Outils &gt; Modification de la base de don
 # trunk
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr "<b>Édition du lien relationnel avec un enfant</b> : Tous les enfants ne sont pas listés comme enfant naturel. Vous pouvez éditer la relation entre un enfant et chacun de ses parents en le rendant actif. Dans la vue &quot;:Relations&quot;, cliquez sur l'icône &quot;Éditer les parents&quot; à droite de la section &quot; Parents : &quot;. Cela ouvrira l'éditeur de famille. Maintenant sélectionnez l'enfant, un clic-droit, et choisissez &quot; Éditer les relations &quot;. Ici vous pouvez définir les relations entre un enfant, son père et sa mère. Les relations peuvent être naissance, adoption, enfant du conjoint, inconnu, etc.."
+msgstr "<b>Édition du lien relationnel avec un enfant</b> : tous les enfants ne sont pas listés comme enfant naturel. Vous pouvez éditer la relation entre un enfant et chacun de ses parents en le rendant actif. Dans la vue &quot;:Relations&quot;, cliquez sur l'icône &quot;Éditer les parents&quot; à droite de la section &quot; Parents : &quot;. Cela ouvrira l'éditeur de famille. Maintenant sélectionnez l'enfant, un clic-droit, et choisissez &quot; Éditer les relations &quot;. Ici vous pouvez définir les relations entre un enfant, son père et sa mère. Les relations peuvent être naissance, adoption, enfant du conjoint, inconnu, etc.."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
-msgstr "<b>Filtrage des individus</b> : Dans la vue des individus, vous pouvez filtrer les individus selon plusieurs critères. Sélectionnez <b>Affichage &gt; Filtre</b> et choisissez un des nombreux filtres présents. Par exemple, les enfants adoptés peuvent être localisés. Les individus sans date de naissance peuvent également être filtrés. Pour obtenir ce tri, cliquez sur <b>Rechercher</b>. Si la barre de filtres n'est pas visible, activez-la par <b>Affichage &gt; Filtre</b>."
+msgstr "<b>Filtrage des individus</b> : dans la vue des individus, vous pouvez filtrer les individus selon plusieurs critères. Sélectionnez <b>Affichage &gt; Filtre</b> et choisissez un des nombreux filtres présents. Par exemple, les enfants adoptés peuvent être localisés. Les individus sans date de naissance peuvent également être filtrés. Pour obtenir ce tri, cliquez sur <b>Rechercher</b>. Si la barre de filtres n'est pas visible, activez-la par <b>Affichage &gt; Filtre</b>."
 
 #: ../src/data/tips.xml.in.h:10
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
-msgstr "<b>GRAMPS mailing listes</b> : Vous voulez des réponses à vos questions sur GRAMPS ? Allez voir la liste des utilisateurs de GRAMPS (gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une réponse rapide. Si vous avez des questions sur le développement de GRAMPS, essayez gramps-devel. Toutes les informations sur les listes de diffusion peuvent être trouvées sur lists.sf.net."
+msgstr "<b>GRAMPS mailing listes</b> : vous voulez des réponses à vos questions sur GRAMPS ? Allez voir la liste des utilisateurs de GRAMPS (gramps-users list). Beaucoup de personnes sont inscrites, vous pourrez ainsi avoir une réponse rapide. Si vous avez des questions sur le développement de GRAMPS, essayez gramps-devel. Toutes les informations sur les listes de diffusion peuvent être trouvées sur lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr "<b>Le manuel de GRAMPS</b> : Le manuel de GRAMPS est très élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le."
+msgstr "<b>Le manuel de GRAMPS</b> : le manuel de GRAMPS est très élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le ou complétez-le."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
@@ -22313,69 +22311,69 @@ msgstr "<b>Rapports GRAMPS</b> : GRAMPS permet d'éditer de nombreux rapports. 
 
 #: ../src/data/tips.xml.in.h:13
 msgid "<b>Good genealogy tip</b>: Information collected about your family is only as good as the source it came from. Take time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
-msgstr "<b>Trucs et astuces de généalogie</b> : Les informations collectées sur votre famille restent la seule véritable source. Prenez le temps d'enregistrer tous les détails de vos informations. Chaque fois que c'est possible, demandez une copie des documents originaux."
+msgstr "<b>Trucs et astuces de généalogie</b> : les informations collectées sur votre famille restent la seule véritable source. Prenez le temps d'enregistrer tous les détails de vos informations. Chaque fois que c'est possible, demandez une copie des documents originaux."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Feature Request at http://bugs.gramps-project.org Filing a Feature Request is preferred."
-msgstr "<b>Amélioration de GRAMPS</b> : Vous êtes encouragé à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
+msgstr "<b>Amélioration de GRAMPS</b> : vous êtes encouragé à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
 
 #: ../src/data/tips.xml.in.h:15
 msgid "<b>Incorrect Dates</b>: Everyone occasionally enters dates with a nonvalid format. Incorrect date formats will show up with the red button next to the date. Green means okay, and amber signifies acceptable. The Date Selection dialog can be invoked by clicking on the colored button."
-msgstr "<b>Dates incorrectes</b> : Tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'afficher à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton &quot;Calendrier&quot;."
+msgstr "<b>Dates incorrectes</b> : tout le monde entre occasionnellement des dates non valides. Dans ce cas, la couleur d'arrière-plan du champ de saisie devient rouge et un bouton rouge marqué d'une croix s'affiche à droite. Le sélecteur de dates peut être appelé en cliquant sur le bouton &quot;Calendrier&quot;."
 
 #: ../src/data/tips.xml.in.h:16
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
-msgstr "<b>Filtre inversé</b> : Les filtres peuvent facilement être inversés en utilisant l'option &quot;Inverser les résultats&quot;. Par exemple, en inversant &quot;Individus avec enfants&quot; vous obtenez tous les individus sans enfant."
+msgstr "<b>Filtre inversé</b> : les filtres peuvent facilement être inversés en utilisant l'option &quot;Inverser les résultats&quot;. Par exemple, en inversant &quot;Individus avec enfants&quot; vous obtenez tous les individus sans enfant."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-msgstr "<b>Liste des événements</b> : Les événements de la vie d'un individu peuvent être ajoutés dans la base de données via l'option <b>Édition &gt; Éditer &gt; Événements</b>. Cet espace peut être utilisé pour les adoptions, le baptême (et autre cérémonies religieuses), l'inhumation, la cause du décès, les recensements, les élections, les migrations, le service militaire, les titres, les professions, l'ordination, la religion etc."
+msgstr "<b>Liste des événements</b> : les événements de la vie d'un individu peuvent être ajoutés dans la base de données via l'option <b>Édition &gt; Éditer &gt; Événements</b>. Cet espace peut être utilisé pour les adoptions, le baptême (et autre cérémonies religieuses), l'inhumation, la cause du décès, les recensements, les élections, les migrations, le service militaire, les titres, les professions, l'ordination, la religion etc."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
-msgstr "<b>Localisation des individus</b> : Par défaut, chaque nom de famille dans la vue des individus est listé une seule fois. Cliquez sur la flèche à la gauche du nom pour dérouler la liste et afficher tous les individus avec le même patronyme."
+msgstr "<b>Localisation des individus</b> : par défaut, chaque nom de famille dans la vue des individus est listé une seule fois. Cliquez sur la flèche à la gauche du nom pour dérouler la liste et afficher tous les individus avec le même patronyme."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Vos préférences</b> : Mécontent des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
+msgstr "<b>Vos préférences</b> : mécontent des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
-msgstr "<b>Modification de la vue familiale</b> : Changer l'individu actif dans la vue &quot;Relations&quot; est facile. Double-cliquez sur le nom de l'individu pour le rendre actif."
+msgstr "<b>Modification de la vue familiale</b> : changer l'individu actif dans la vue &quot;Relations&quot; est facile. Double-cliquez sur le nom de l'individu pour le rendre actif."
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
-msgstr "<b> Afficher tous les choix</b> : Quand vous ajoutez un conjoint ou un enfant, la liste des individus est filtrée pour n'afficher que les individus pouvant avoir ce statut (basé sur les dates de la base de données). Si GRAMPS a tort, vous pouvez imposer ce filtre en cochant &quot; Tout Afficher &quot;."
+msgstr "<b> Afficher tous les choix</b> : quand vous ajoutez un conjoint ou un enfant, la liste des individus est filtrée pour n'afficher que les individus pouvant avoir ce statut (basé sur les dates de la base de données). Si GRAMPS a tort, vous pouvez imposer ce filtre en cochant &quot; Tout Afficher &quot;."
 
 #: ../src/data/tips.xml.in.h:22
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr "<b>SoundEx peut vous aider dans vos recherches familiales</b> : SoundEx résout un grand problème en généalogie ---Comment retranscrire les variations d'orthographe. L'utilitaire SoundEx choisit un patronyme et génère une forme simplifiée de ses équivalences. Connaître le code SoundEx d'un patronyme est très utile pour les recensements (microfiche) à la bibliothèque ou autre. Pour obtenir le code SoundEx d'un patronyme, sélectionnez <b>Outils &gt; Utilitaires &gt; Générer les codes SoundEx</b>."
+msgstr "<b>SoundEx peut vous aider dans vos recherches familiales</b> : soundEx résout un grand problème en généalogie ---Comment retranscrire les variations d'orthographe. L'utilitaire SoundEx choisit un patronyme et génère une forme simplifiée de ses équivalences. Connaître le code SoundEx d'un patronyme est très utile pour les recensements (microfiche) à la bibliothèque ou autre. Pour obtenir le code SoundEx d'un patronyme, sélectionnez <b>Outils &gt; Utilitaires &gt; Générer les codes SoundEx</b>."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
-msgstr "<b>Un nouvel arbre généalogique</b> : Une bonne idée pour commencer une généalogie est d'éditer tous les membres de votre famille dans une base de données (utilisez <b>Édition &gt; Ajouter</b> ou cliquez sur le bouton &quot;Ajouter&quot; dans la vue &quot;Individus&quot;). Puis allez dans la vue &quot;Relations&quot; et créez les relations entre les individus."
+msgstr "<b>Un nouvel arbre généalogique</b> : une bonne idée pour commencer une généalogie est d'éditer tous les membres de votre famille dans une base de données (utilisez <b>Édition &gt; Ajouter</b> ou cliquez sur le bouton &quot;Ajouter&quot; dans la vue &quot;Individus&quot;). Puis allez dans la vue &quot;Relations&quot; et créez les relations entre les individus."
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr "<b>Parler à ses grand parents avant qu'il soit trop tard</b>  : Vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
+msgstr "<b>Parler à ses grand parents avant qu'il soit trop tard</b>  : vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
-msgstr "<b>La vue familiale</b> : La vue familiale est utilisée pour afficher une famille classique --- les parents, conjoints et enfants d'un individu."
+msgstr "<b>La vue familiale</b> : la vue familiale est utilisée pour afficher une famille classique --- les parents, conjoints et enfants d'un individu."
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Pas sûr d'une date ?</b> : Si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
+msgstr "<b>Pas sûr d'une date ?</b> : si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
-msgstr "<b>Qui est né quand</b> : La comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base."
+msgstr "<b>Qui est né quand</b> : la comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
@@ -22544,7 +22542,7 @@ msgstr "Le meilleur moyen de rapporter un bogue dans GRAMPS est d'utiliser le sy
 
 #: ../src/data/tips.xml.in.h:68
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
-msgstr "Fatigué de lâcher le clavier pour la souris ? De nombreuses fonctions de GRAMPS possèdent un raccourci clavier. Ils sont renseigné sur la droite des menus."
+msgstr "Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses fonctions de GRAMPS possèdent un raccourci clavier. Ils sont renseignés sur la droite des menus."
 
 #: ../src/data/tips.xml.in.h:69
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
