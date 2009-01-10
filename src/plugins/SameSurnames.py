@@ -187,7 +187,7 @@ pmgr.register_quick_report(
 
 pmgr.register_quick_report(
     name = 'samegivens_misc',
-    category = CATEGORY_QR_MISC, # to run with a given text
+    category = CATEGORY_QR_MISC, # to run with a given name string
     run_func = run_given,
     translated_name = _("Same Given Names"),
     status = _("Stable"),
