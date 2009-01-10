@@ -4,6 +4,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Repository
 
 pkgdata_PYTHON = \
 	_AllRepos.py\
+	_ChangedSince.py\
 	_HasIdOf.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasNoteRegexp.py\

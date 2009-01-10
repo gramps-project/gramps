@@ -4,6 +4,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/MediaObject
 
 pkgdata_PYTHON = \
 	_AllMedia.py\
+	_ChangedSince.py\
 	_HasIdOf.py\
 	_HasMedia.py\
 	_HasNoteMatchingSubstringOf.py\

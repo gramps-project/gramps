@@ -35,6 +35,7 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _NotePrivate import NotePrivate
 from _MatchesFilter import MatchesFilter
 from _HasNote import HasNote
+from _ChangedSince import ChangedSince
 
 editor_rule_list = [
     AllNotes,
@@ -47,4 +48,5 @@ editor_rule_list = [
     HasReferenceCountOf,
     NotePrivate,
     MatchesFilter,
+    ChangedSince,
 ]

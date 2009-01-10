@@ -55,6 +55,7 @@ from _MotherHasNameOf import MotherHasNameOf
 from _MotherHasIdOf import MotherHasIdOf
 from _ChildHasNameOf import ChildHasNameOf
 from _ChildHasIdOf import ChildHasIdOf
+from _ChangedSince import ChangedSince
 
 editor_rule_list = [
     AllFamilies,
@@ -80,4 +81,5 @@ editor_rule_list = [
     MotherHasIdOf,
     ChildHasNameOf,
     ChildHasIdOf,
+    ChangedSince,
 ]

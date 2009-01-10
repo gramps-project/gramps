@@ -36,6 +36,7 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _SourcePrivate import SourcePrivate
 from _MatchesFilter import MatchesFilter
 from _HasSource import HasSource
+from _ChangedSince import ChangedSince
 
 editor_rule_list = [
     AllSources,
@@ -48,4 +49,5 @@ editor_rule_list = [
     HasReferenceCountOf,
     SourcePrivate,
     MatchesFilter,
+    ChangedSince,
 ]

@@ -4,6 +4,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Family
 
 pkgdata_PYTHON = \
 	_AllFamilies.py\
+	_ChangedSince.py\
 	_FamilyPrivate.py\
 	_HasEvent.py\
 	_HasAttribute.py\

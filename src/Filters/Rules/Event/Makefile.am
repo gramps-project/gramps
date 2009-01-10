@@ -3,6 +3,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Event
 
 pkgdata_PYTHON = \
+	_ChangedSince.py\
 	_MatchesFilter.py\
 	_EventPrivate.py\
 	_HasNoteRegexp.py\

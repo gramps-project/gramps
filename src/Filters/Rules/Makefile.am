@@ -5,6 +5,7 @@ SUBDIRS = Person Family Event Place Source MediaObject Repository Note
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules
 
 pkgdata_PYTHON = \
+	_ChangedSinceBase.py\
 	_Everything.py\
 	_HasEventBase.py\
 	_HasAttributeBase.py\

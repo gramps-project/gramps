@@ -479,6 +479,7 @@ src/Filters/_SearchBar.py
 src/Filters/_SearchFilter.py
 
 # Filters.Rules package
+src/Filters/Rules/_ChangedSinceBase.py
 src/Filters/Rules/_Everything.py
 src/Filters/Rules/_HasAttributeBase.py
 src/Filters/Rules/_HasEventBase.py
@@ -496,6 +497,7 @@ src/Filters/Rules/_Rule.py
 src/Filters/Rules/_HasMarkerBase.py
 
 # Filters.Rules.Person package
+src/Filters/Rules/Person/_ChangedSince.py
 src/Filters/Rules/Person/_Disconnected.py
 src/Filters/Rules/Person/_Everyone.py
 src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py
@@ -568,6 +570,7 @@ src/Filters/Rules/Person/_SearchName.py
 # Filters.Rules.Family package
 src/Filters/Rules/Family/__init__.py
 src/Filters/Rules/Family/_AllFamilies.py
+src/Filters/Rules/Family/_ChangedSince.py
 src/Filters/Rules/Family/_ChildHasIdOf.py
 src/Filters/Rules/Family/_ChildHasNameOf.py
 src/Filters/Rules/Family/_FamilyPrivate.py
@@ -600,6 +603,7 @@ src/Filters/Rules/Family/_RegExpIdOf.py
 
 # Filters.Rules.Event package
 src/Filters/Rules/Event/_AllEvents.py
+src/Filters/Rules/Event/_ChangedSince.py
 src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasAttribute.py
 src/Filters/Rules/Event/_HasData.py
@@ -619,6 +623,7 @@ src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
 src/Filters/Rules/Place/_AllPlaces.py
+src/Filters/Rules/Place/_ChangedSince.py
 src/Filters/Rules/Place/_HasGallery.py
 src/Filters/Rules/Place/_HasIdOf.py
 src/Filters/Rules/Place/_HasNoLatOrLon.py
@@ -636,6 +641,7 @@ src/Filters/Rules/Place/__init__.py
 
 # Filters.Rules.Source package
 src/Filters/Rules/Source/_AllSources.py
+src/Filters/Rules/Source/_ChangedSince.py
 src/Filters/Rules/Source/_HasGallery.py
 src/Filters/Rules/Source/_HasIdOf.py
 src/Filters/Rules/Source/_HasNote.py
@@ -650,6 +656,7 @@ src/Filters/Rules/Source/__init__.py
 
 # Filters.Rules.MediaObject package
 src/Filters/Rules/MediaObject/_AllMedia.py
+src/Filters/Rules/MediaObject/_ChangedSince.py
 src/Filters/Rules/MediaObject/_HasAttribute.py
 src/Filters/Rules/MediaObject/_HasIdOf.py
 src/Filters/Rules/MediaObject/_HasMedia.py
@@ -663,6 +670,7 @@ src/Filters/Rules/MediaObject/__init__.py
 
 # Filters.Rules.Repository package
 src/Filters/Rules/Repository/_AllRepos.py
+src/Filters/Rules/Repository/_ChangedSince.py
 src/Filters/Rules/Repository/_HasIdOf.py
 src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Repository/_HasNoteRegexp.py
@@ -675,6 +683,7 @@ src/Filters/Rules/Repository/__init__.py
 
 # Filters.Rules.Note package
 src/Filters/Rules/Note/_AllNotes.py
+src/Filters/Rules/Note/_ChangedSince.py
 src/Filters/Rules/Note/_HasIdOf.py
 src/Filters/Rules/Note/_HasMarkerOf.py
 src/Filters/Rules/Note/_MatchesSubstringOf.py

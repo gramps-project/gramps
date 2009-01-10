@@ -33,6 +33,7 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _RepoPrivate import RepoPrivate
 from _MatchesFilter import MatchesFilter
 from _HasRepo import HasRepo
+from _ChangedSince import ChangedSince
 
 editor_rule_list = [
     AllRepos,
@@ -43,4 +44,5 @@ editor_rule_list = [
     HasReferenceCountOf,
     RepoPrivate,
     MatchesFilter,
+    ChangedSince,
 ]

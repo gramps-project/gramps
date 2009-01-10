@@ -98,7 +98,7 @@ from _SearchName import SearchName
 from _RegExpName import RegExpName
 from _MatchIdOf import MatchIdOf
 from _RegExpIdOf import RegExpIdOf
-
+from _ChangedSince import ChangedSince
 
 #-------------------------------------------------------------------------
 #
@@ -168,5 +168,6 @@ editor_rule_list = [
     HasNoteMatchingSubstringOf,
     RegExpIdOf,
     Disconnected,
+    ChangedSince,
 ]
 

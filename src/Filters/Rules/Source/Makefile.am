@@ -3,6 +3,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Source
 
 pkgdata_PYTHON = \
+	_ChangedSince.py\
 	_MatchesFilter.py\
 	_SourcePrivate.py\
 	_RegExpIdOf.py\

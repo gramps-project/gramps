@@ -4,6 +4,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Filters/Rules/Note
 
 pkgdata_PYTHON = \
 	_AllNotes.py\
+	_ChangedSince.py\
 	_HasIdOf.py\
 	_HasMarkerOf.py\
 	_MatchesSubstringOf.py\
