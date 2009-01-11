@@ -502,14 +502,24 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         if len(new_text) > 0 and text != new_text:
             # build a pattern from translated pattern:
             pattern = new_text
-            for key in Utils.get_translations():
-                if key in pattern:
-                    pattern = pattern.replace(key, Utils.get_keyword_from_translation(key))
+            if (len(new_text) > 2 and 
+                new_text[0] == '"' and 
+                new_text[-1] == '"'):
+                pass
+            else:
+                for key in Utils.get_translations():
+                    if key in pattern:
+                        pattern = pattern.replace(key, Utils.get_keyword_from_translation(key))
             # now build up a proper translation:
             translation = pattern
-            for key in Utils.get_keywords():
-                if key in translation:
-                    translation = translation.replace(key, Utils.get_translation_from_keyword(key))
+            if (len(new_text) > 2 and 
+                new_text[0] == '"' and 
+                new_text[-1] == '"'):
+                pass
+            else:
+                for key in Utils.get_keywords():
+                    if key in translation:
+                        translation = translation.replace(key, Utils.get_translation_from_keyword(key))
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)

@@ -334,45 +334,57 @@ class NameDisplay:
         Create the name display function and handles dependent
         punctuation.
         """
+        # d is a dict: dict[code] = (expr, word, translated word)
+
         # First, go through and do internationalization-based
         # key-word replacement. Just replace ikeywords with
         # %codes (ie, replace "irstnamefay" with "%f", and
         # "IRSTNAMEFAY" for %F)
-        d_keys = [(code, d[code][2]) for code in d.keys()]
-        d_keys.sort(_make_cmp) # reverse sort by ikeyword
-        for (code, ikeyword) in d_keys:
-            exp, keyword, ikeyword = d[code]
-            ikeyword = unicode(ikeyword, "utf8")
-            format_str = format_str.replace(ikeyword,"%"+ code)
-            format_str = format_str.replace(ikeyword.title(),"%"+ code)
-            format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
+        if (len(format_str) > 2 and 
+            format_str[0] == '"' and 
+            format_str[-1] == '"'):
+            pass
+        else:
+            d_keys = [(code, d[code][2]) for code in d.keys()]
+            d_keys.sort(_make_cmp) # reverse sort by ikeyword
+            for (code, ikeyword) in d_keys:
+                exp, keyword, ikeyword = d[code]
+                ikeyword = unicode(ikeyword, "utf8")
+                format_str = format_str.replace(ikeyword,"%"+ code)
+                format_str = format_str.replace(ikeyword.title(),"%"+ code)
+                format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
         # Next, go through and do key-word replacement.
         # Just replace keywords with
         # %codes (ie, replace "firstname" with "%f", and
         # "FIRSTNAME" for %F)
-        d_keys = [(code, d[code][1]) for code in d.keys()]
-        d_keys.sort(_make_cmp) # reverse sort by keyword
-        for (code, keyword) in d_keys:
-            exp, keyword, ikeyword = d[code]
-            keyword = unicode(keyword, "utf8")
-            format_str = format_str.replace(keyword,"%"+ code)
-            format_str = format_str.replace(keyword.title(),"%"+ code)
-            format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
+        if (len(format_str) > 2 and 
+            format_str[0] == '"' and 
+            format_str[-1] == '"'):
+            format_str = format_str[1:-1]
+        else:
+            d_keys = [(code, d[code][1]) for code in d.keys()]
+            d_keys.sort(_make_cmp) # reverse sort by keyword
+            # if in double quotes, just use % codes
+            for (code, keyword) in d_keys:
+                exp, keyword, ikeyword = d[code]
+                keyword = unicode(keyword, "utf8")
+                format_str = format_str.replace(keyword,"%"+ code)
+                format_str = format_str.replace(keyword.title(),"%"+ code)
+                format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
         # Get lower and upper versions of codes:
         codes = d.keys() + [c.upper() for c in d.keys()]
         # Next, list out the matching patterns:
         # If it starts with "!" however, treat the punctuation verbatim:
         if len(format_str) > 0 and format_str[0] == "!":
-            format_str = format_str[1:]
             patterns = ["%(" + ("|".join(codes)) + ")",          # %s
                         ]
+            format_str = format_str[1:]
         else:
             patterns = [",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
                         ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
                         "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
                         "%(" + ("|".join(codes)) + ")",          # %s
                         ]
-
         new_fmt = format_str
 
         # replace the specific format string flags with a 
@@ -408,7 +420,6 @@ def fn(%s):
         else:
             return p + str + s
     return "%s" %% (%s)""" % (args, new_fmt, ",".join(param))
-
         exec(s)
 
         return fn
