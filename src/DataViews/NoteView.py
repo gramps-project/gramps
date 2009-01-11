@@ -130,6 +130,11 @@ class NoteView(PageView.ListView):
         """
         return '''<ui>
           <menubar name="MenuBar">
+            <menu action="FileMenu">
+              <placeholder name="LocalExport">
+                <menuitem action="ExportTab"/>
+              </placeholder>
+            </menu>
             <menu action="BookMenu">
               <placeholder name="AddEditBook">
                 <menuitem action="AddBook"/>
