@@ -208,7 +208,6 @@ class RendererMozilla(Renderer):
         set_profile_path(MOZEMBED_PATH, MOZEMBED_SUBPATH)
         self.__set_mozembed_proxy()
         self.window = gtkmozembed.MozEmbed()
-        #self.window.set_size_request(800, 600)
         self.browser = MOZIL
     
     def open(self, url):
@@ -1012,27 +1011,32 @@ class GeoView(HtmlView):
         self.mustcenter = False
         yearinmarker = []
         for mark in sort:
+            if indm > 1000:
+                from QuestionDialog import WarningDialog
+                WarningDialog(
+                    _('Be careful: You have more than 1000 markers!'), 
+                    _("This means it could take a while to see the map on the HtmlView.\n"
+                      "This functionality use 100% of cpu during this phase."
+                      "A high cpu temperature could power off the machine.\n"
+                      ))
+		break
             if last != mark[0]:
                 years=""
                 if last != "":
-                    self.mapview.write("</div>\");\n")
+                    self.mapview.write("</div>\");")
                     if mark[2]:
                         for y in yearinmarker:
                             years += "%d " % y
                     years += "end"
-                    self.mapview.write("   my_marker.setAttribute('year','%s');\n" % years)
+                    self.mapview.write("my_marker.setAttribute('year','%s');" % years)
                     yearinmarker = []
                     years=""
-                    self.mapview.write("   mapstraction.addMarker(my_marker);\n")
+                    self.mapview.write("mapstraction.addMarker(my_marker);\n")
                     if self.mustcenter:
                         self.centered = 1
-                        self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latit,longt))
-                        self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
+                        self.mapview.write("var point = new LatLonPoint(%s,%s);"%(latit,longt))
+                        self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
                         self.mustcenter = False
-                    if mark[2]:
-                        self.mapview.write("   // map locations for %s;\n"%mark[1])
-                    else:
-                        self.mapview.write("   // map locations for %s;\n"%mark[0])
                 last = mark[0]
                 cent=int(mark[6])
                 if (cent == 1):
@@ -1058,16 +1062,16 @@ class GeoView(HtmlView):
 
                     LOG.debug("latitude centree = %s\n" % latit)
                     LOG.debug("longitude centree = %s\n" % longt)
-                    self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latit,longt))
-                    self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
-                self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(mark[3],mark[4]))
-                self.mapview.write("   my_marker = new Marker(point);\n")
-                self.mapview.write("   gmarkers[%d]=my_marker;\n" % indm)
+                    self.mapview.write("var point = new LatLonPoint(%s,%s);"%(latit,longt))
+                    self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
+                self.mapview.write("var point = new LatLonPoint(%s,%s);"%(mark[3],mark[4]))
+                self.mapview.write("my_marker = new Marker(point);")
+                self.mapview.write("gmarkers[%d]=my_marker;" % indm)
                 indm+=1;
-                self.mapview.write("   my_marker.setLabel(\"%s\");\n"%mark[0])
+                self.mapview.write("my_marker.setLabel(\"%s\");"%mark[0])
                 yearinmarker.append(mark[7])
                 divclose=0
-                self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
+                self.mapview.write("my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
                 if format == 1:
                     self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
                 elif format == 2:
@@ -1112,20 +1116,21 @@ class GeoView(HtmlView):
                             longt = str(float(mark[4])+centerlon)
                             LOG.debug("longt 4 1")
                     self.mustcenter = True
+
         if divclose == 0:
-            self.mapview.write("</div>\");\n")
+            self.mapview.write("</div>\");")
             if mark[2]:
                 for y in yearinmarker:
                     years += "%d " % y
             years += "end"
-            self.mapview.write("   my_marker.setAttribute('year','%s');\n" % years)
+            self.mapview.write("my_marker.setAttribute('year','%s');" % years)
             yearinmarker = []
             years=""
-            self.mapview.write("   mapstraction.addMarker(my_marker);\n")
+            self.mapview.write("mapstraction.addMarker(my_marker);")
             if self.mustcenter:
                 self.centered = 1
-                self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(self.latit,self.longt))
-                self.mapview.write("   mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
+                self.mapview.write("var point = new LatLonPoint(%s,%s);"%(self.latit,self.longt))
+                self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
         if ( self.centered == 0 ):
             # We have no valid geographic point to center the map.
             # So you'll see the street where I live.
@@ -1218,9 +1223,6 @@ class GeoView(HtmlView):
  
         latitude = ""
         longitude = ""
-        person = db.db.get_default_person()
-        if not person:
-            person = db.active
         self.center = 1
         for place_handle in db.db.get_place_handles():
             place = db.db.get_place_from_handle( place_handle)
@@ -1234,7 +1236,7 @@ class GeoView(HtmlView):
                 country = place.get_main_location().get_country()
                 if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
                     self.append_to_places_list(descr, None,
-                                               _nd.display(person),
+                                               "",
                                                latitude, longitude,
                                                descr1, self.center, None)
                     self.center = 0
@@ -1259,9 +1261,6 @@ class GeoView(HtmlView):
  
         latitude = ""
         longitude = ""
-        person = db.db.get_default_person()
-        if not person:
-            person = db.active
         self.center = 1
         for event_handle in db.db.get_event_handles():
             event = db.db.get_event_from_handle( event_handle)
