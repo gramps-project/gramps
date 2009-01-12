@@ -141,6 +141,9 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                 if len(l) < 2 or  len(l) > 3:
                     error = True
                 l[0]=l[0].strip()
+                # if no characters before ':' nothing useful is input!
+                if len(l[0]) == 0:
+                    return None
                 if l[0][0] == '-':
                     sign = '-'
                     l[0]=l[0][1:]
