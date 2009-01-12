@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 3.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-10 11:44+0100\n"
-"PO-Revision-Date: 2009-01-10 11:48+0100\n"
+"PO-Revision-Date: 2009-01-12 08:58+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6298,7 +6298,7 @@ msgstr "C'est le rapport de bogue complet. La prochaine page de l'assistant vous
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:401
 msgid "Use the two buttons below to first copy the bug report to the clipboard and then open a webbrowser to file a bug report at "
-msgstr "Utiliser les deux boutons ci-dessous pour copier le rapport de bogue vers le presse-papiers et ouvrir votre navigateur internet pour déposer un rapport de bogue à"
+msgstr "Utiliser les deux boutons ci-dessous pour copier le rapport de bogue vers le presse-papiers et ouvrir votre navigateur internet pour déposer un rapport de bogue à "
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:413
@@ -7891,7 +7891,7 @@ msgstr "Générer la référence des lignes de commande"
 
 #: ../src/plugins/CmdRef.py:240
 msgid "Produces a DocBook XML file that contains a parameter reference of Reports and Tools."
-msgstr "Génère un fichier DocBook XML qui contient la référence des rapports et des outils.  "
+msgstr "Génère un fichier DocBook XML qui contient la référence des rapports et des outils."
 
 #: ../src/plugins/CountAncestors.py:61
 #, python-format
@@ -8085,7 +8085,7 @@ msgstr "Individu actif : %s"
 #: ../src/plugins/DefaultGramplets.py:414
 #, python-format
 msgid "%d. Partner: "
-msgstr "%d. Conjoint :"
+msgstr "%d. Conjoint : "
 
 #: ../src/plugins/DefaultGramplets.py:418
 #, python-format
@@ -9488,7 +9488,7 @@ msgstr "Taille en bytes"
 #: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
-msgstr "Le filtre a trouvé %d enregistrement(s). "
+msgstr "Le filtre a trouvé %d enregistrement(s)."
 
 #: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
@@ -12176,7 +12176,7 @@ msgstr "URL de départ"
 
 #: ../src/plugins/WebCal.py:790
 msgid "The link to be included to direct the user to the main page of the web site"
-msgstr "Le lien à inclure pour rediriger l'utilisateur vers la page principale du site web "
+msgstr "Le lien à inclure pour rediriger l'utilisateur vers la page principale du site web"
 
 #: ../src/plugins/WebCal.py:794
 #: ../src/plugins/WebCal.py:796
@@ -16693,6 +16693,7 @@ msgstr "Coffre-fort"
 msgid "Caste"
 msgstr "Rang ou statut"
 
+# numéro
 #: ../src/gen/lib/attrtype.py:66
 msgid "Identification Number"
 msgstr "Numéro d'identification"
@@ -20936,164 +20937,1078 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
-# 3rd party plugin
-#: ../src/plugins/Records.py
-msgid "Double-click name for details"
-msgstr "Double cliquez sur le nom pour les détails"
+# 3rd party plugins
+#: Cousin.py:69
+#: Descend].py:70
+msgid "m."
+msgstr "m."
 
-msgid "Records"
-msgstr "Enregistrements"
+#: Cousin.py:1480
+#: Descend].py:1632
+msgid "Personal"
+msgstr "Individuel"
 
-msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "%(number)s. %(name)s (%(value)s)"
+#: Cousin.py:1490
+#: Descend].py:1634
+msgid ""
+"Personal\n"
+"Display Format"
+msgstr ""
+"Individuel\n"
+"Format affiché"
 
+#: Cousin.py:1495
+#: Descend].py:1639
+msgid "Bold direct descendants"
+msgstr "Les descendants directs affichés en gras"
+
+#: Cousin.py:1496
+#: Descend].py:1640
+msgid "Whether to bold those people that are direct (not step or half) decendants."
+msgstr "Mettre ou non en gras les descendants en ligne directe (pas demi ou par alliance)."
+
+#: Cousin.py:1499
+msgid "Co_mpress Personal Display Format"
+msgstr "Co_mpresser le format d'affichage de l'individu "
+
+#: Cousin.py:1500
+#: Descend].py:1644
+msgid "Whether to not print empty lines within the 'Personal Display'."
+msgstr "Imprimer ou non les lignes vides pour la 'partie individuelle'."
+
+#: Cousin.py:1505
+#: Descend].py:1628
+msgid "Level of Spouses"
+msgstr "Niveau pour les conjoints"
+
+#: Cousin.py:1506
+#: Descend].py:1629
+msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
+msgstr "0=pas de conjoints, 1=inclure les conjoints, 2=inclure les conjoints du conjoint, etc"
+
+#: Cousin.py:1509
+#: Descend].py:1658
+msgid "Indent Spouses"
+msgstr "Indenter les conjoints"
+
+#: Cousin.py:1510
+#: Descend].py:1659
+msgid "Whether to indent the spouses in the tree."
+msgstr "Indenter ou non les conjoints dans l'arbre."
+
+#: Cousin.py:1513
+#: Descend].py:1664
+msgid "Include Marriage information"
+msgstr "Inclure les informations du mariage"
+
+#: Cousin.py:1514
+#: Descend].py:1665
+msgid "Whether to include marriage information in the report."
+msgstr "Inclure ou non les informations du mariage dans le rapport."
+
+#: Cousin.py:1517
+#: Descend].py:1668
+msgid ""
+"Marraige\n"
+"Display Format"
+msgstr ""
+"Mariage\n"
+"Format affiché"
+
+#: Cousin.py:1521
+#: Descend].py:1672
+msgid "Replace"
+msgstr "Remplacer"
+
+#: Cousin.py:1523
+#: Descend].py:1674
+msgid ""
+"Replace Display Format:\n"
+"'Replace this'/'with this'"
+msgstr ""
+"Format d'affichage alternatif :\n"
+"'Remplacer ceci'/'par cela'"
+
+#: Cousin.py:1525
+#: Descend].py:1676
+msgid ""
+"ie\n"
+"United States of America/U.S.A"
+msgstr ""
+"ex\n"
+"United States of America/U.S.A"
+
+#: Cousin.py:1528
+#: Descend].py:1679
+msgid "Print"
+msgstr "Imprimer"
+
+#: Cousin.py:1530
+#: Descend].py:1681
+msgid "Scale report to fit"
+msgstr "Adapter le rapport à une page"
+
+#: Cousin.py:1534
+#: Descend].py:1685
+msgid "Wheather to scale the report to fit a specific size"
+msgstr "Adapter ou non le rapport à une taille spécifique"
+
+#: Cousin.py:1537
+#: Descend].py:1689
+msgid "One page report"
+msgstr "Rapport d'une page"
+
+#: Cousin.py:1538
+#: Descend].py:1690
+msgid "Whether to scale the size of the page to the size of the report."
+msgstr "Adapter la page à la taille du rapport."
+
+#: Cousin.py:1545
+#: Descend].py:1694
+msgid "Include Report Title"
+msgstr "Inclure le titre du rapport."
+
+#: Cousin.py:1546
+#: Descend].py:1695
+msgid "Whether to include the report title."
+msgstr "Inclure ou non le titre du rapport."
+
+#: Cousin.py:1549
+#: Descend].py:1704
+msgid "Print a border"
+msgstr "Imprimer une bordure"
+
+#: Cousin.py:1550
+#: Descend].py:1705
+msgid "Whether to make a border around the report."
+msgstr "Ajouter ou non une bordure autour du rapport."
+
+#: Cousin.py:1553
+#: Descend].py:1708
+msgid "Print Page Numbers"
+msgstr "Imprimer les numéros de page"
+
+#: Cousin.py:1554
+#: Descend].py:1709
+msgid "Whether to print page numbers on each page."
+msgstr "Imprimer ou non le numéro des pages."
+
+#: Cousin.py:1591
+#: Descend].py:1871
+msgid "The bold style used for the text display."
+msgstr "Le style de base pour afficher du texte."
+
+#: Cousin.py:1648
+msgid "Cousin Tree"
+msgstr "Arbre des cousins"
+
+#: Cousin.py:1652
+msgid "Produces a graphical cousin tree"
+msgstr "Produit un arbre graphique des cousins"
+
+#: Descend].py:1611
+#: Descend].py:1615
+msgid "Report for"
+msgstr "Rapport pour"
+
+#: Descend].py:1612
+msgid "The main person for the report"
+msgstr "L'individu central pour ce rapport"
+
+#: Descend].py:1617
+msgid "Select spouse to make the center family for a double descendant report"
+msgstr "Sélectionner un conjoint pour que la famille centrale génère un rapport de descendant double"
+
+#: Descend].py:1620
+msgid "Start with the parent(s) of the selected first"
+msgstr "Démarrer avec les parent(s) de l'individu d'abord"
+
+#: Descend].py:1621
+msgid "Will show the parents, brother and sisters of the selected person."
+msgstr "Affichera les parents, frères et soeurs de l'individu sélectionné."
+
+#: Descend].py:1643
+msgid "Co_mpress Personal and Spousal Display Formats"
+msgstr "Co_mpresser les formats d'affichage pour l'individu et son conjoint"
+
+#: Descend].py:1649
+msgid "Use seperate display format for spouses"
+msgstr "Utiliser un format d'affichage différent pour les conjoints"
+
+#: Descend].py:1650
+msgid "Whether spouses can have a different format."
+msgstr "Les conjoints utilisent un format différent."
+
+#: Descend].py:1653
+msgid ""
+"Spousal\n"
+"Display Format"
+msgstr ""
+"Conjoint\n"
+"Format affiché"
+
+#: Descend].py:1662
+msgid "Marraige"
+msgstr "Mariage"
+
+#: Descend].py:1723
+msgid "Include a personal note"
+msgstr "Inclure une note individuelle"
+
+#: Descend].py:1724
+msgid "Whether to include a personalized note on the report."
+msgstr "Inclure ou non une note personnalisée au rapport."
+
+#: Descend].py:1728
+msgid "Add a personal note"
+msgstr "Ajouter une note individuelle"
+
+#: Descend].py:1731
+msgid "Note Location"
+msgstr "Emplacement de la note"
+
+#: Descend].py:1736
+msgid "Where to place a personal note."
+msgstr "Où situer la note individuelle."
+
+#: Descend].py:1929
+msgid "Descend] Tree"
+msgstr "Arbre descendant]"
+
+#: FamilySheet.py:338
+msgid "Address (%(date)s): %(location)s"
+msgstr "Adresse (%(date)s): %(location)s"
+
+#: FamilySheet.py:342
+msgid "Address: %(location)s"
+msgstr "Adresse : %(location)s"
+
+#: FamilySheet.py:404
+#: FamilyTree.py:662
+msgid "on %(placeholder)s"
+msgstr "à %(placeholder)s"
+
+#: FamilySheet.py:407
+#: FamilyTree.py:665
+msgid "on %(placeholder)s (%(partial)s)"
+msgstr "en %(placeholder)s (%(partial)s)"
+
+#: FamilySheet.py:429
+msgid "in %s"
+msgstr "en %s"
+
+#: FamilySheet.py:435
+msgid "; %(type)s: %(value)s"
+msgstr "; %(type)s: %(value)s"
+
+#: FamilySheet.py:502
+msgid "Source references:"
+msgstr "Références de la source :"
+
+#: FamilySheet.py:516
+msgid ", page %s"
+msgstr ", page %s"
+
+#: FamilySheet.py:529
+msgid "Notes:"
+msgstr "Notes :"
+
+#: FamilySheet.py:658
+msgid "Center person"
+msgstr "Individu central"
+
+#: FamilySheet.py:659
+msgid "The person whose partners and children are printed"
+msgstr "L'individu dont les conjoints et enfants sont imprimés"
+
+#: FamilySheet.py:662
+msgid "Print sheets for:"
+msgstr "Impression des fiches pour :"
+
+#: FamilySheet.py:665
+msgid "Center person only"
+msgstr "L'individu central seulement"
+
+#: FamilySheet.py:666
+msgid "Center person and descendants in side branches"
+msgstr "L'individu central et ses descendants sur des branches"
+
+#: FamilySheet.py:667
+msgid "Center person and all descendants"
+msgstr "Individu central et ses descendants"
+
+#: FamilySheet.py:677
+msgid "Underline call name (only works with PDF output!)"
+msgstr "Souligner le nom usuel (fonctionne seulement au format PDF!)"
+
+#: FamilySheet.py:679
+msgid "Whether to underline the call name if it is a part of thefirst name."
+msgstr "Souligner ou non le nom usuel si il est dans le nom."
+
+#: FamilySheet.py:713
+msgid "The style used for names"
+msgstr "Le style utilisé pour les noms"
+
+#: FamilySheet.py:723
+msgid "The style used for numbers"
+msgstr "Le style utilisé pour les nombres"
+
+#: FamilySheet.py:732
+msgid "The style used for footnotes (notes and source references)"
+msgstr "Le style utilisé pour le pied de page (notes et références de la source)"
+
+#: FamilySheet.py:815
+msgid "Family Sheet"
+msgstr "Fiche familiale alternative"
+
+#: FamilySheet.py:819
+msgid "Produces a family sheet showing full information about a person and his/her partners and children."
+msgstr "Produit une fiche familiale affichant une information complète sur l'individu, ses conjoints et enfants."
+
+#: FamilyTree.py:74
+msgid "Family Tree for %s"
+msgstr "Arbre familial pour %s"
+
+#: FamilyTree.py:641
+msgid "born"
+msgstr "né"
+
+#: FamilyTree.py:643
+msgid "died"
+msgstr "décédé"
+
+#: FamilyTree.py:645
+msgid "married"
+msgstr "marié"
+
+#: FamilyTree.py:647
+msgid "divorced"
+msgstr "divorcé"
+
+#: FamilyTree.py:654
+msgid "on %(ymd_date)s"
+msgstr "le %(ymd_date)s"
+
+#: FamilyTree.py:656
+msgid "in %(ym_date)s"
+msgstr "en %(ym_date)s"
+
+#: FamilyTree.py:658
+msgid "in %(y_date)s"
+msgstr "en %(y_date)s"
+
+#: FamilyTree.py:678
+msgid "in %(place)s"
+msgstr "à %(place)s"
+
+#: FamilyTree.py:731
+msgid "The center family for the tree"
+msgstr "La famille centrale pour cet arbre"
+
+#: FamilyTree.py:734
+msgid "Ancestor Generations"
+msgstr "Générations des ascendants"
+
+#: FamilyTree.py:735
+msgid "The number of ancestor generations to include in the tree"
+msgstr "Le nombre de générations à inclure dans l'arbre"
+
+#: FamilyTree.py:738
+msgid "Descendant Generations"
+msgstr "Générations de descendants"
+
+#: FamilyTree.py:739
+msgid "The number of descendant generations to include in the tree"
+msgstr "Le nombre de générations de descendants à inclure dans le graphique"
+
+#: FamilyTree.py:746
+#: Records.py:479
 msgid "Use call name"
 msgstr "Utiliser nom usuel"
 
+#: FamilyTree.py:748
+#: Records.py:481
 msgid "Don't use call name"
 msgstr "Ne pas utiliser le nom usuel"
 
+#: FamilyTree.py:749
+#: Records.py:482
 msgid "Replace first name with call name"
 msgstr "Remplacer le prénom par le nom usuel"
 
+#: FamilyTree.py:750
+#: Records.py:483
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Souligner ou ajouter le nom usuel dans le prénom"
 
+#: FamilyTree.py:753
+msgid "Print event data"
+msgstr "Imprimer les données sur l'événement"
+
+#: FamilyTree.py:755
+msgid "Year only"
+msgstr "Année seulement"
+
+#: FamilyTree.py:756
+msgid "Full date"
+msgstr "Date complète"
+
+#: FamilyTree.py:757
+msgid "Full date and place"
+msgstr "date et lieu complet"
+
+#: FamilyTree.py:775
+msgid "The style used for the title display."
+msgstr "Le style de base pour afficher les titres."
+
+#: FamilyTree.py:783
+msgid "The style used for names."
+msgstr "Le style utilisé pour les noms."
+
+#: FamilyTree.py:791
+msgid "The style used for data (birth, death, marriage, divorce)."
+msgstr "Le style utilisé pour les données (naissance, décès, mariage, divorce)"
+
+#: FamilyTree.py:867
+msgid "Produces a graphical family tree"
+msgstr "Produit un arbre graphique"
+
+#: PlaceCompletion.py:75
+msgid "Place Completion by parsing, file lookup and batch setting of place attributes"
+msgstr "Arrangement du lieu par parsing, recherche et préférences batch pour les attributs du lieu"
+
+#: PlaceCompletion.py:179
+#: PlaceCompletion.py:210
+#: PlaceCompletion.py:249
+#: PlaceCompletion.py:1037
+#: PlaceCompletion.py:1077
+msgid "city"
+msgstr "ville"
+
+#: PlaceCompletion.py:179
+#: PlaceCompletion.py:218
+#: PlaceCompletion.py:257
+msgid "street"
+msgstr "rue"
+
+#: PlaceCompletion.py:179
+#: PlaceCompletion.py:220
+#: PlaceCompletion.py:259
+#: PlaceCompletion.py:1038
+msgid "parish"
+msgstr "paroisse"
+
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:212
+#: PlaceCompletion.py:251
+#: PlaceCompletion.py:1034
+#: PlaceCompletion.py:1080
+msgid "country"
+msgstr "pays"
+
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:214
+#: PlaceCompletion.py:253
+#: PlaceCompletion.py:423
+#: PlaceCompletion.py:1036
+#: PlaceCompletion.py:1078
+msgid "county"
+msgstr "département"
+
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:216
+#: PlaceCompletion.py:255
+#: PlaceCompletion.py:423
+#: PlaceCompletion.py:1035
+#: PlaceCompletion.py:1079
+msgid "state"
+msgstr "région"
+
+#: PlaceCompletion.py:180
+#: PlaceCompletion.py:222
+#: PlaceCompletion.py:261
+#: PlaceCompletion.py:1039
+#: PlaceCompletion.py:1081
+msgid "zip"
+msgstr "Code postal / INSEE"
+
+#: PlaceCompletion.py:202
+#: PlaceCompletion.py:238
+#: PlaceCompletion.py:922
+#: PlaceCompletion.py:975
+#: PlaceCompletion.py:977
+#: PlaceCompletion.py:983
+msgid "latitude"
+msgstr "latitude"
+
+#: PlaceCompletion.py:204
+#: PlaceCompletion.py:240
+#: PlaceCompletion.py:923
+#: PlaceCompletion.py:987
+#: PlaceCompletion.py:989
+#: PlaceCompletion.py:994
+msgid "longitude"
+msgstr "longitude"
+
+#: PlaceCompletion.py:225
+#: PlaceCompletion.py:264
+msgid "Error in PlaceCompletion.py"
+msgstr "Erreur dans PlaceCompletion.py"
+
+#: PlaceCompletion.py:226
+msgid "Non existing group used in get"
+msgstr "Un groupe qui n'existe pas a été appelé"
+
+#: PlaceCompletion.py:265
+msgid "Non existing group used in set"
+msgstr "Un groupe qui n'existe pas a été défini"
+
+#: PlaceCompletion.py:323
+msgid "Places tool"
+msgstr "Outil lieux"
+
+#: PlaceCompletion.py:415
+msgid "Non Valid Title Regex"
+msgstr "Titre de l'expression rationnelle non valide"
+
+#: PlaceCompletion.py:416
+msgid "Non valid regular expression given to match title. Quiting."
+msgstr "Une expression rationnelle non valide a été donnée pour titre. Quitter."
+
+#: PlaceCompletion.py:428
+#: PlaceCompletion.py:561
+#: PlaceCompletion.py:918
+#: PlaceCompletion.py:1075
+msgid "lat"
+msgstr "lat"
+
+#: PlaceCompletion.py:428
+#: PlaceCompletion.py:561
+#: PlaceCompletion.py:918
+#: PlaceCompletion.py:1076
+msgid "lon"
+msgstr "lon"
+
+#: PlaceCompletion.py:431
+msgid "Missing regex groups in match lat/lon"
+msgstr "Expression rationnelle manquante pour lat/lon"
+
+#: PlaceCompletion.py:432
+msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
+msgstr "Les groupes d'expression rationnelle %(lat)s et %(lon)s doivent être présent dans la correspondance lat/lon. Quitter."
+
+#: PlaceCompletion.py:442
+msgid "Non valid regex for match lat/lon"
+msgstr "Expression rationnelle non valide pour lat/lon"
+
+#: PlaceCompletion.py:443
+msgid "Non valid regular expression given to find lat/lon. Quiting."
+msgstr "Expression rationnelle donnée non valide pour trouver lat/lon. Quitter."
+
+#: PlaceCompletion.py:501
+msgid "Finding Places and appropriate changes"
+msgstr "Trouver les lieux et changements appropriés"
+
+#: PlaceCompletion.py:513
+msgid "Loading lat/lon file in Memory..."
+msgstr "Chargement du fichier lat/lon en mémoire..."
+
+#: PlaceCompletion.py:518
+msgid "Examining places"
+msgstr "Analyse des lieux"
+
+#: PlaceCompletion.py:706
+msgid "Doing Place changes"
+msgstr "Modifier les lieux"
+
+#: PlaceCompletion.py:743
+#: PlaceCompletion.py:753
+msgid "Change places"
+msgstr "Modification des lieux"
+
+#: PlaceCompletion.py:748
+msgid "No place record was modified."
+msgstr "Aucun lieu n'a été modifié."
+
+#: PlaceCompletion.py:750
+msgid "1 place record was modified."
+msgstr "1 lieu a été modifié."
+
+#: PlaceCompletion.py:752
+msgid "%d place records were modified."
+msgstr "%d lieux ont été modifiés."
+
+#: PlaceCompletion.py:825
+#: PlaceCompletion.py:832
+#: PlaceCompletion.py:838
+#: PlaceCompletion.py:844
+msgid "Cannot open file"
+msgstr "Impossible d'ouvrir ce fichier"
+
+#: PlaceCompletion.py:826
+msgid "The selected file is a directory, not a file."
+msgstr "La sélection est un répertoire et non un fichier."
+
+#: PlaceCompletion.py:839
+msgid "The file you want to access is not a regular file."
+msgstr "Le fichier auquel vous voulez accéder n'est pas correct."
+
+#: PlaceCompletion.py:845
+msgid "The file does not exist."
+msgstr "Fichier inexistant."
+
+#: PlaceCompletion.py:864
+msgid "Problem reading file"
+msgstr "Erreur dans le fichier"
+
+#: PlaceCompletion.py:894
+#: PlaceCompletion.py:897
+#: PlaceCompletion.py:1082
+msgid "CITY"
+msgstr "VILLE"
+
+#: PlaceCompletion.py:898
+#: PlaceCompletion.py:903
+#: PlaceCompletion.py:1084
+msgid "TITLEBEGIN"
+msgstr "DEBUTDUTITRE"
+
+#: PlaceCompletion.py:908
+#: PlaceCompletion.py:911
+#: PlaceCompletion.py:1085
+msgid "STATE"
+msgstr "RÉGION"
+
+#: PlaceCompletion.py:912
+#: PlaceCompletion.py:915
+#: PlaceCompletion.py:1086
+msgid "PARISH"
+msgstr "PAROISSE"
+
+#: PlaceCompletion.py:979
+#: PlaceCompletion.py:991
+msgid "invalid lat or lon value, %(lat)s, %(lon)s"
+msgstr "Valeur lat ou long invalide, %(lat)s, %(lon)s"
+
+#: PlaceCompletion.py:1060
+msgid "No lat/lon conversion"
+msgstr "Aucune conversion lat/lon"
+
+#: PlaceCompletion.py:1061
+msgid "All in degree notation"
+msgstr "Tout en notation dégré"
+
+#: PlaceCompletion.py:1062
+msgid "All in decimal notation"
+msgstr "Tout en notation décimale"
+
+#: PlaceCompletion.py:1063
+msgid "Correct -50° in 50°S"
+msgstr "Corriger -50° en 50°S"
+
+#: PlaceCompletion.py:1067
+msgid "No changes"
+msgstr "Aucun changement"
+
+#: PlaceCompletion.py:1068
+msgid "City[, State]"
+msgstr "Ville[, Région]"
+
+#: PlaceCompletion.py:1070
+msgid "TitleStart [, City] [, State]"
+msgstr "Début du titre [, Ville] [, Région]"
+
+#: PlaceCompletion.py:1095
+msgid "City [,|.] State"
+msgstr "Ville [,|.] Région"
+
+#: PlaceCompletion.py:1097
+msgid "City [,|.] Country"
+msgstr "Ville [,|.] Pays"
+
+#: PlaceCompletion.py:1099
+msgid "City (Country)"
+msgstr "Ville (Pays)"
+
+#: PlaceCompletion.py:1103
+msgid "City [,|,] Country"
+msgstr "Ville [,|,] Pays"
+
+#: PlaceCompletion.py:1106
+msgid "City[,|.] Code[,|.] State[,|.] Country"
+msgstr "Ville[,|.] Code[,|.] Région[,|.] Pays"
+
+#: PlaceCompletion.py:1112
+msgid "Don't search"
+msgstr "Ne pas chercher"
+
+#: PlaceCompletion.py:1115
+msgid "GeoNames country file, city search"
+msgstr "GeoNames fichier pays, recherche ville"
+
+#: PlaceCompletion.py:1120
+msgid "GeoNames country file, city localized variants search"
+msgstr "GeoNames fichier pays, ville localisée recherche diverse"
+
+#: PlaceCompletion.py:1131
+msgid "GeoNames country file, title begin, general search"
+msgstr "GeoNames fichier pays, début du titre, recherche générale"
+
+#: PlaceCompletion.py:1136
+msgid "GeoNames USA state file, city search"
+msgstr "GeoNames USA fichier région, recherche ville"
+
+#: PlaceCompletion.py:1143
+msgid "GNS Geonet country file, city search"
+msgstr "GNS Geonet fichier pays, recherche ville"
+
+#: PlaceCompletion.py:1152
+msgid "GNS Geonet country file, title begin, general search"
+msgstr "GNS Geonet fichier pays, début du titre, recherche générale"
+
+#: PlaceCompletion.py:1160
+msgid "Wikipedia CSV Dump"
+msgstr "Options du tableur CSV"
+
+#: PlaceCompletion.py:1165
+msgid "Dicoville"
+msgstr "Dicoville"
+
+#: PlaceCompletion.py:1254
+msgid "All Places"
+msgstr "Tous les lieux"
+
+#: PlaceCompletion.py:1257
+msgid "No Latitude/Longitude given"
+msgstr "Aucune latitude et longitude donnée"
+
+#: PlaceCompletion.py:1349
+msgid "Interactive place completion"
+msgstr "Arrangement interactif des lieux"
+
+#: PlaceCompletion.py:1350
+msgid "Unstable"
+msgstr "Instable"
+
+#: PlaceCompletion.py:1353
+msgid "Provides a browsable list of selected places, with possibility to complete/parse/set the attribute fields"
+msgstr "Fournit une liste consultable des lieux sélectionnés, avec la possibilité de compléter/parser/définir les champs de l'attribut"
+
+#: PlaceCompletion.glade.h:1
+msgid "<b>1. Look up latitude and longitude:</b>"
+msgstr "<b>1. Chercher la latitude et longitude :</b>"
+
+#: PlaceCompletion.glade.h:2
+msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
+msgstr "<b>2. Parser et Convertir un titre existant ou une position :</b>"
+
+#: PlaceCompletion.glade.h:3
+msgid "<b>3. Set attributes of all selected places:</b>"
+msgstr "<b>3. Définir les attributs de toutes les places sélectionnées :</b>"
+
+#: PlaceCompletion.glade.h:4
+msgid ""
+"<i>Delete to delete a row, Double-click on the row to edit place with changes pre-entered, \n"
+"Press Tab on a row or Google Maps button to see place on a map. Press Apply to do all changes automatically</i>"
+msgstr ""
+"<i>Supprimez pour enlever une ligne, cliquez deux fois sur la ligne pour éditer le lieu avec les changements pré-définis,\n"
+"Appuyez sur Tab à la ligne ou le bouton Google Maps pour voir le lieu sur une carte. Appuyez sur Appliquer pour effectuer les changements automatiquement</i>"
+
+#: PlaceCompletion.glade.h:6
+msgid "<span size=\"large\"><b>Selection of the Places you want to complete:</b></span>"
+msgstr "<span size=\"large\"><b>Sélection des lieux à compléter :</b></span>"
+
+#: PlaceCompletion.glade.h:7
+msgid "Apply all suggested changes"
+msgstr "Appliquer les changements suggérés"
+
+#: PlaceCompletion.glade.h:8
+msgid "C_enter latitude:"
+msgstr "Latitude _centrale :"
+
+#: PlaceCompletion.glade.h:10
+msgid "Center longitude:"
+msgstr "longitude centrale :"
+
+#: PlaceCompletion.glade.h:11
+msgid "Change title into:"
+msgstr "Changer le titre en :"
+
+#: PlaceCompletion.glade.h:13
+msgid "Convert lat/lon as:"
+msgstr "Convertir lat/long par :"
+
+#: PlaceCompletion.glade.h:18
+msgid "Parish"
+msgstr "Paroisse"
+
+#: PlaceCompletion.glade.h:19
+msgid "Parish:"
+msgstr "Paroisse :"
+
+#: PlaceCompletion.glade.h:20
+msgid "Parse as:"
+msgstr "Parser comme :"
+
+#: PlaceCompletion.glade.h:21
+msgid "Parse title:"
+msgstr "Parser le titre :"
+
+#: PlaceCompletion.glade.h:22
+msgid "Place _filter:"
+msgstr "_Filtre lieu :"
+
+#: PlaceCompletion.glade.h:23
+msgid "Places in a rectangle:"
+msgstr "Lieux dans un rectangle :"
+
+#: PlaceCompletion.glade.h:24
+msgid "Search in:"
+msgstr "Rechercher dans :"
+
+#: PlaceCompletion.glade.h:25
+msgid "Select A File"
+msgstr "Sélectionner un fichier"
+
+#: Records.py:180
+msgid "%s and %s"
+msgstr "%s et %s"
+
+#: Records.py:307
+msgid "1 year"
+msgstr "1 an"
+
+#: Records.py:309
+msgid "%s years"
+msgstr "%s ans"
+
+#: Records.py:311
+msgid "1 month"
+msgstr "1 mois"
+
+#: Records.py:313
+msgid "%s months"
+msgstr "%s mois"
+
+#: Records.py:315
+msgid "1 day"
+msgstr "1 jour"
+
+#: Records.py:317
+msgid "%s days"
+msgstr "%s jours"
+
+#: Records.py:319
+msgid "0 days"
+msgstr "0 jour"
+
+#: Records.py:334
+#: WhatNext.py:60
+msgid "Double-click name for details"
+msgstr "Double cliquez sur le nom pour les détails"
+
+#: Records.py:335
+#: WhatNext.py:61
+msgid "No Family Tree loaded."
+msgstr "Aucun Arbre Familial chargé."
+
+#: Records.py:372
+#: WhatNext.py:315
+msgid " and "
+msgstr " et "
+
+#: Records.py:415
+#: Records.py:634
+msgid "Records"
+msgstr "Enregistrements"
+
+#: Records.py:433
+msgid "%(number)s. %(name)s (%(value)s)"
+msgstr "%(number)s. %(name)s (%(value)s)"
+
+#: Records.py:489
 msgid "Person Records"
-msgstr "Enregistrement sur l'individu"
+msgstr "Enregistrements sur l'individu"
 
+#: Records.py:491
 msgid "Family Records"
-msgstr "Enregistrement sur la famille"
+msgstr "Enregistrements sur la famille"
 
+#: Records.py:537
 msgid "The style used for headings."
 msgstr "Le style utilisé pour les en-têtes."
 
+#: Records.py:546
 msgid "The style used for the report title"
 msgstr "Le style utilisé pour le titre du rapport"
 
+#: Records.py:603
 msgid "Youngest living person"
 msgstr "Le plus jeune individu vivant"
 
+#: Records.py:604
 msgid "Oldest living person"
 msgstr "Individu vivant le plus âgé"
 
+#: Records.py:605
 msgid "Person died at youngest age"
 msgstr "Individu décédé jeune"
 
+#: Records.py:606
 msgid "Person died at oldest age"
 msgstr "Individu décédé à un âge avancé"
 
+#: Records.py:607
 msgid "Person married at youngest age"
 msgstr "Individu marié jeune"
 
+#: Records.py:608
 msgid "Person married at oldest age"
 msgstr "Individu marié à un âge avancé"
 
+#: Records.py:609
 msgid "Person divorced at youngest age"
 msgstr "Individu divorcé jeune"
 
+#: Records.py:610
 msgid "Person divorced at oldest age"
 msgstr "Individu divorcé à un âge avancé"
 
+#: Records.py:611
 msgid "Youngest father"
 msgstr "Le plus jeune père"
 
+#: Records.py:612
 msgid "Youngest mother"
 msgstr "La plus jeune mère"
 
+#: Records.py:613
 msgid "Oldest father"
 msgstr "Le père le plus âgé"
 
+#: Records.py:614
 msgid "Oldest mother"
 msgstr "La mère la plus âgée"
 
+#: Records.py:615
 msgid "Couple with most children"
 msgstr "Couple avec le plus d'enfants"
 
-msgid "Living couple married most recently"
-msgstr "Couple vivant marié le plus récemment"
+#: Records.py:616
+msgid "Couple married most recently"
+msgstr "Couple marié il y a peu de temps"
 
-msgid "Living couple married most long ago"
-msgstr "Couple vivant marié depuis le plus longtemps"
+#: Records.py:617
+msgid "Couple married most long ago"
+msgstr "Couple marié il y a longtemps"
 
-msgid "Shortest past marriage"
+#: Records.py:618
+msgid "Shortest marriage"
 msgstr "Le mariage le plus court"
 
-msgid "Longest past marriage"
+#: Records.py:619
+msgid "Longest marriage"
 msgstr "Le mariage le plus long"
 
+#: Records.py:630
 msgid "Records Gramplet"
 msgstr "Gramplet Enregistrements"
 
+#: Records.py:642
 msgid "Records Report"
 msgstr "Rapport Enregistrements"
 
+#: Records.py:646
 msgid "Shows some interesting records about people and families"
 msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 
-#: ../src/plugins/WhatsNext.py
-msgid "No Home Person set."
-msgstr "Individu par défaut (souche) non défini."
-
+#: WhatNext.py:238
 msgid "first name unknown"
 msgstr "prénom inconnu"
 
+#: WhatNext.py:241
 msgid "surname unknown"
 msgstr "nom de famille inconnu"
 
+#: WhatNext.py:245
+#: WhatNext.py:276
+#: WhatNext.py:283
 msgid "(person with unknown name)"
 msgstr "(individu avec un nom inconnu)"
 
+#: WhatNext.py:258
 msgid "birth event missing"
 msgstr "Naissance manquante"
 
+#: WhatNext.py:262
+#: WhatNext.py:321
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
+#: WhatNext.py:263
+#: WhatNext.py:322
+#: WhatNext.py:343
 msgid ", "
 msgstr ", "
 
+#: WhatNext.py:278
+#: WhatNext.py:285
 msgid "(unknown person)"
 msgstr "(individu inconnu)"
 
+#: WhatNext.py:287
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s et %(name2)s"
 
+#: WhatNext.py:303
 msgid "marriage event missing"
 msgstr "mariage manquant"
 
+#: WhatNext.py:305
 msgid "relation type unknown"
 msgstr "type de relation inconnu"
 
+#: WhatNext.py:332
 msgid "date unknown"
 msgstr "date inconnue"
 
+#: WhatNext.py:334
 msgid "date incomplete"
 msgstr "date incomplète"
 
+#: WhatNext.py:338
 msgid "place unknown"
 msgstr "lieu inconnu"
 
+#: WhatNext.py:341
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
+#: WhatNext.py:349
 msgid "spouse missing"
 msgstr "conjoint manquant"
 
+#: WhatNext.py:353
 msgid "father missing"
 msgstr "père manquant"
 
+#: WhatNext.py:357
 msgid "mother missing"
 msgstr "mère manquante"
 
+#: WhatNext.py:361
 msgid "parents missing"
 msgstr "parents manquants"
 
+#: WhatNext.py:368
 msgid ": %s\n"
 msgstr ": %s\n"
 
-msgid "What's Next Gramplet"
+#: WhatNext.py:465
+msgid "What Next Gramplet"
 msgstr "Gramplet Et maintenant ?"
 
-msgid "What's Next?"
+#: WhatNext.py:469
+msgid "What Next?"
 msgstr "Et maintenant ?"
+
