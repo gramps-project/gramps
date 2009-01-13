@@ -52,6 +52,7 @@ class GivenNameCloudGramplet(Gramplet):
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
+        yield True
         people = self.dbstate.db.get_person_handles(sort_handles=False)
         givensubnames = {}
         representative_handle = {}
@@ -75,7 +76,7 @@ class GivenNameCloudGramplet(Gramplet):
         for givensubname in givensubnames:
             givensubname_sort.append( (givensubnames[givensubname], givensubname) )
             total += givensubnames[givensubname]
-            if cnt % 350 == 0:
+            if cnt % 100 == 0:
                 yield True
             cnt += 1
         total_givensubnames = cnt
@@ -86,8 +87,6 @@ class GivenNameCloudGramplet(Gramplet):
         for (count, givensubname) in givensubname_sort:
             cloud_names.append( (count, givensubname) )
             cloud_values.append( count )
-            if cnt > self.top_size:
-                break
             cnt += 1
         cloud_names.sort(lambda a,b: cmp(a[1], b[1]))
         counts = list(set(cloud_values))
@@ -95,23 +94,40 @@ class GivenNameCloudGramplet(Gramplet):
         counts.reverse()
         line = 0
         ### All done!
+        # Now, find out how many we can display without going over top_size:
+        totals = {}
+        for (count, givensubname) in cloud_names: # givensubname_sort:
+            totals[count] = totals.get(count, 0) + 1
+        sums = totals.keys()
+        sums.sort()
+        sums.reverse()
+        total = 0
+        include_greater_than = 0
+        for s in sums:
+            if total + totals[s] <= self.top_size:
+                total += totals[s]
+            else:
+                include_greater_than = s
+                break
+        # Ok, now we can show those counts > include_greater_than:
+        showing = 0
         self.set_text("")
         for (count, givensubname) in cloud_names: # givensubname_sort:
-            if len(givensubname) == 0:
-                text = Config.get(Config.NO_SURNAME_TEXT)
-            else:
-                text = givensubname
-            size = make_tag_size(count, counts)
-            self.link(text, 'Given', text, size,
-                      "%s, %d%% (%d)" % (text, 
-                                        int((float(count)/total) * 100), 
-                                        count))
-            self.append_text(" ")
-            line += 1
-            if line >= self.top_size:
-                break
-        self.append_text(("\n" + _("Total unique given names") + ": %d\n") % 
+            if count > include_greater_than:
+                if len(givensubname) == 0:
+                    text = Config.get(Config.NO_SURNAME_TEXT)
+                else:
+                    text = givensubname
+                size = make_tag_size(count, counts)
+                self.link(text, 'Given', text, size,
+                          "%s, %d%% (%d)" % (text, 
+                                             int((float(count)/total) * 100), 
+                                             count))
+                self.append_text(" ")
+                showing += 1
+        self.append_text(("\n\n" + _("Total unique given names") + ": %d\n") % 
                          total_givensubnames)
+        self.append_text((_("Total given names showing") + ": %d\n") % showing)
         self.append_text((_("Total people") + ": %d") % total_people, "begin")
 
 register(type="gramplet", 
