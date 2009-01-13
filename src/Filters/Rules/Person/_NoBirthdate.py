@@ -49,6 +49,10 @@ class NoBirthdate(Rule):
         if not birth_ref:
             return True
         birth = db.get_event_from_handle(birth_ref.ref)
-        if not birth.get_date_object():
-            return True
+        if birth:
+            birth_obj = birth.get_date_object()
+            if not birth_obj:
+                return True
+            if birth_obj.sortval == 0:
+                return True
         return False
