@@ -121,7 +121,7 @@ class GivenNameCloudGramplet(Gramplet):
                 size = make_tag_size(count, counts)
                 self.link(text, 'Given', text, size,
                           "%s, %d%% (%d)" % (text, 
-                                             int((float(count)/total) * 100), 
+                                             int((float(count)/total_givensubnames) * 100), 
                                              count))
                 self.append_text(" ")
                 showing += 1
