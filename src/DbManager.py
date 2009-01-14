@@ -139,7 +139,10 @@ class CLIDbManager:
             return "Unknown", "Unknown"
         dbmap1 = dbshelve.DBShelf(env)
         fname = os.path.join(file_name, META + ".db")
-        dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
+        try:
+            dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
+        except:
+            return "Unknown", "Unknown"
         version = dbmap1.get('version', default=None)
         dbmap1.close()
         dbmap2 = dbshelve.DBShelf(env)
