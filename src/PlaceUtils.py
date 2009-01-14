@@ -154,7 +154,9 @@ def __convert_using_classic_repr(stringValue, typedeg):
 
     #exchange some characters
     stringValue = stringValue.replace(u'°',r'_')
-    #allow to input ° as #
+    #allow to input ° as #, UTF-8 code c2b00a
+    stringValue = stringValue.replace(u'º',r'_')
+    #allow to input º as #, UTF-8 code c2ba0a
     stringValue = stringValue.replace(r'#',r'_')
     #allow to input " as ''
     stringValue = stringValue.replace(r"''",r'"')
@@ -274,7 +276,8 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         'D.D8'    : degree notation, 8 decimals (precision like ISO-DMS) 
                     eg +12.01543265 , -124.36473268
         'DEG'     : degree, minutes, seconds notation
-                    eg 50°52'21.92''N , 124°52'21.92''E
+                    eg 50°52'21.92''N , 124°52'21.92''E ° has UTF-8 code c2b00a
+                    or N 50º52'21.92" E 124º52'21.92"   º has UTF-8 code c2ba0a
         'DEG-:'   : degree, minutes, seconds notation with :
                     eg -50:52:21.92 , 124:52:21.92
         'ISO-D'   : ISO 6709 degree notation i.e. ±DD.DDDD±DDD.DDDD
@@ -300,10 +303,20 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
         longitude = longitude.replace(translate_en_loc['W'],'W')
         longitude = longitude.replace(translate_en_loc['E'],'E')
 
+    # take away leading spaces
+    latitude = latitude.lstrip()
+    longitude = longitude.lstrip()
+    # check if first character is alpha i.e. N or S, put it last
+    if len(latitude) > 1 and latitude[0].isalpha():
+        latitude = latitude[1:] + latitude[0]
+    # check if first character is alpha i.e. E or W, put it last
+    if len(longitude) > 1 and longitude[0].isalpha():
+        longitude = longitude[1:] + longitude[0]
+
     # convert to float
     lat_float = __convert_float_val(latitude,  'lat')
     lon_float = __convert_float_val(longitude, 'lon')
-    
+
     # give output (localized if needed)
     if lat_float is None or lon_float is None:
         if format == "ISO-D" or format == "ISO-DM" or format == "ISO-DMS":
@@ -618,4 +631,8 @@ if __name__ == '__main__':
     test_formats_success(lat,lon)
     lat, lon =  ': 0 : 1 : 1', ':1:2'
     test_formats_fail(lat,lon)
+    lat, lon = u'N 50º52\'21.92"', u'E 124º52\'21.92"'
+    test_formats_success(lat,lon, 'New format with N/E first and another º - character')
+    lat, lon = u'S 50º52\'21.92"', u'W 124º52\'21.92"'
+    test_formats_success(lat,lon, 'New format with S/W first and another º - character')
 
