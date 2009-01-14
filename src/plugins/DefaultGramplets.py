@@ -358,7 +358,6 @@ class SurnameCloudGramplet(Gramplet):
                 include_greater_than = s
                 break
         # Ok, now we can show those counts > include_greater_than:
-        print
         showing = 0
         self.set_text("")
         for (count, surname) in cloud_names: # surname_sort:
