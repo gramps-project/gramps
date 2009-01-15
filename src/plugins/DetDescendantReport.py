@@ -276,30 +276,29 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph('DDR-MoreDetails')
         evtName = str( event.get_type() )
         if date and place:
-            text +=  _('%(event_name)s: %(date)s, %(place)s') % {
-                       'event_name' : _(evtName),
-                       'date' : date,
-                       'place' : place }
+            text +=  _('%(date)s, %(place)s') % { 
+                       'date' : date, 'place' : place }
         elif date:
-            text += _('%(event_name)s: %(date)s') % {
-                      'event_name' : _(evtName),
-                      'date' : date}
+            text += _('%(date)s') % {'date' : date}
         elif place:
-            text += _('%(event_name)s: %(place)s') % {
-                      'event_name' : _(evtName),
-                      'place' : place }
-        else:
-            text += _('%(event_name)s: ') % {'event_name' : _(evtName)}
+            text += _('%(place)s') % { 'place' : place }
 
         if event.get_description():
-            if text and (date or place):
+            if text:
                 text += ". "
             text += event.get_description()
-
-        text += "%s. " % self.endnotes(event)
-
+            
+        text += self.endnotes(event)
+        
+        if text:
+            text += ". "
+            
+        text = _('%(event_name)s: %(event_text)s') % {
+                 'event_name' : _(evtName),
+                 'event_text' : text }
+        
         self.doc.write_text(text)
-
+        
         if self.inc_attrs:
             text = ""
             attr_list = event.get_attribute_list()
