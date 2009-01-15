@@ -164,12 +164,12 @@ class DetAncestorReport(Report):
                     self.doc.page_break()
                 self.doc.start_paragraph("DAR-Generation")
                 text = _("Generation %d") % (generation+1)
-                mark = BaseDoc.IndexMark(text,BaseDoc.INDEX_TYPE_TOC,2)
-                self.doc.write_text(text,mark)
+                mark = BaseDoc.IndexMark(text, BaseDoc.INDEX_TYPE_TOC, 2)
+                self.doc.write_text(text, mark)
                 self.doc.end_paragraph()
                 generation = generation + 1
                 if self.childref:
-                    self.prev_gen_handles= self.gen_handles.copy()
+                    self.prev_gen_handles = self.gen_handles.copy()
                     self.gen_handles.clear()
 
             person_handle = self.map[key]
@@ -181,7 +181,8 @@ class DetAncestorReport(Report):
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
-                        if mother_handle == None or                            \
+                        if mother_handle == None                         or    \
+                           mother_handle not in self.map.values()        or    \
                            person.get_gender() == gen.lib.Person.FEMALE:
                             if self.listchildren:
                                 self.write_children(family)
