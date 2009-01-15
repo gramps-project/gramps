@@ -530,6 +530,11 @@ class DetDescendantReport(Report):
                                         self.endnotes, self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
+            
+        text = ReportUtils.christened_str(self.database, person, first, self.verbose,
+                                        self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
     
         span = self.calc_age(person)
         text = ReportUtils.died_str(self.database, person, first, self.verbose,

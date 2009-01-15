@@ -809,6 +809,140 @@ baptised_no_date_no_place = {
 
 #------------------------------------------------------------------------
 #
+# Christened strings
+#
+#------------------------------------------------------------------------
+
+christened_full_date_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    _("He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE: [
+    _("%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    _("She was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN: [ 
+    _("%(unknown_gender_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    _("This person was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(christening_date)s in %(christening_place)s%(endnotes)s."), 
+    }
+
+christened_full_date_no_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened on %(christening_date)s%(endnotes)s."), 
+    _("He was christened on %(christening_date)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE: [
+    _("%(female_name)s was christened on %(christening_date)s%(endnotes)s."), 
+    _("She was christened on %(christening_date)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."), 
+    _("This person was christened on %(christening_date)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(christening_date)s%(endnotes)s.") 
+    }
+
+christened_partial_date_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    _("He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+Person.FEMALE: [
+    _("%(female_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    _("She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    _("This person was christened in %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(month_year)s in %(christening_place)s%(endnotes)s."), 
+    }
+
+christened_partial_date_no_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened in %(month_year)s%(endnotes)s."), 
+    _("He was christened in %(month_year)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE: [
+    _("%(female_name)s was christened in %(month_year)s%(endnotes)s."), 
+    _("She was christened in %(month_year)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."), 
+    _("This person was christened in %(month_year)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(month_year)s%(endnotes)s."), 
+    }
+
+christened_modified_date_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    _("He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE: [
+    _("%(female_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    _("She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    _("This person was christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(modified_date)s in %(christening_place)s%(endnotes)s."), 
+    }
+
+christened_modified_date_no_place = {
+    Person.MALE: [
+    _("%(male_name)s was christened %(modified_date)s%(endnotes)s."), 
+    _("He was christened %(modified_date)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE: [
+    _("%(female_name)s was christened %(modified_date)s%(endnotes)s."), 
+    _("She was christened %(modified_date)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."), 
+    _("This person was christened %(modified_date)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened %(modified_date)s%(endnotes)s."), 
+    }
+
+christened_no_date_place = {
+    Person.MALE    : [
+    _("%(male_name)s was christened in %(christening_place)s%(endnotes)s."), 
+    _("He was christened in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.FEMALE  : [
+    _("%(female_name)s was christened in %(christening_place)s%(endnotes)s."), 
+    _("She was christened in %(christening_place)s%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN : [
+    _("%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."), 
+    _("This person was christened in %(christening_place)s%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened in %(christening_place)s%(endnotes)s."), 
+    }
+
+christened_no_date_no_place = {
+    Person.MALE    : [
+    _("%(male_name)s was christened%(endnotes)s."), 
+    _("He was christened%(endnotes)s."), 
+    ], 
+    Person.FEMALE  : [
+    _("%(female_name)s was christened%(endnotes)s."), 
+    _("She was christened%(endnotes)s."), 
+    ], 
+    Person.UNKNOWN : [
+    _("%(unknown_gender_name)s was christened%(endnotes)s."), 
+    _("This person was christened%(endnotes)s."), 
+    ],
+    'succinct' : _("Christened%(endnotes)s."),
+    }
+
+#------------------------------------------------------------------------
+#
 # Marriage strings - Relationship type MARRIED
 #
 #------------------------------------------------------------------------
@@ -2609,8 +2743,8 @@ def baptised_str(database, person, person_name=None, verbose=True,
     
     text = ""
 
-    bplace = dplace = empty_place
-    bdate = ddate = empty_date
+    bplace = empty_place
+    bdate = empty_date
     bdate_full = False
     bdate_mod = False
 
@@ -2688,6 +2822,115 @@ def baptised_str(database, person, person_name=None, verbose=True,
         text = text + " "
     return text
 
+#-------------------------------------------------------------------------
+#
+# christened_str
+#
+#-------------------------------------------------------------------------
+def christened_str(database, person, person_name=None, verbose=True, 
+               endnotes=None, empty_date="", empty_place=""):
+    """ 
+    Check christening record.
+    Statement formats name precedes this
+        was christened on Date.
+        was christened on Date in Place.
+        was christened in Month_Year.
+        was christened in Month_Year in Place.
+        was christened in Place.
+        ''
+    """
+
+    if not endnotes:
+        endnotes = empty_notes
+
+    name_index = 0
+    if person_name is None:
+        person_name = _nd.display(person)
+    elif person_name == 0:
+        name_index = 1
+
+    gender = person.get_gender()
+    
+    text = ""
+
+    cplace = empty_place
+    cdate = empty_date
+    cdate_full = False
+    cdate_mod = False
+
+    christening = None
+    for event_ref in person.get_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event and event.type.value == EventType.CHRISTEN \
+            and event_ref.role.value == EventRoleType.PRIMARY:
+            christening = event
+            break
+
+    if christening:
+        cdate = DateHandler.get_date(christening)
+        cplace_handle = christening.get_place_handle()
+        if cplace_handle:
+            cplace = database.get_place_from_handle(cplace_handle).get_title()
+        cdate_obj = christening.get_date_object()
+        cdate_full = cdate_obj and cdate_obj.get_day_valid()
+        cdate_mod = cdate_obj and cdate_obj.get_modifier() != Date.MOD_NONE
+    else:
+        return text
+
+    values = {
+        'unknown_gender_name' : person_name, 
+        'male_name'           : person_name, 
+        'name'                : person_name, 
+        'female_name'         : person_name, 
+        'christening_date'    : cdate, 
+        'christening_place'   : cplace, 
+        'month_year'          : cdate, 
+        'modified_date'       : cdate,
+        'endnotes'            : endnotes(event), 
+        }
+
+    if cdate and cdate_mod and verbose:
+        if cplace: #male, date, place
+            text = christened_modified_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = christened_modified_date_no_place[gender][name_index] % values
+    elif cdate and cdate_mod:
+        if cplace: #male, date, place
+            text = christened_modified_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = christened_modified_date_no_place['succinct'] % values
+    elif cdate and cdate_full and verbose:
+        if cplace: #male, date, place
+            text = christened_full_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = christened_full_date_no_place[gender][name_index] % values
+    elif cdate and cdate_full:
+        if cplace: #male, date, place
+            text = christened_full_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = christened_full_date_no_place['succinct'] % values
+    elif cdate and verbose:
+        if cplace: #male, month_year, place
+            text = christened_partial_date_place[gender][name_index] % values
+        else:      #male, month_year, no place
+            text = christened_partial_date_no_place[gender][name_index] % values
+    elif cdate:
+        if cplace: #male, month_year, place
+            text = christened_partial_date_place['succinct'] % values
+        else:      #male, month_year, no place
+            text = christened_partial_date_no_place['succinct'] % values
+    elif cplace and verbose:   #male, no date, place
+        text = christened_no_date_place[gender][name_index] % values
+    elif cplace:   #male, no date, place
+        text = christened_no_date_place['succinct'] % values
+    elif verbose:
+        text = christened_no_date_no_place[gender][name_index] % values
+    else:          #male, no date, no place
+        text = christened_no_date_no_place['succinct'] % values
+        
+    if text:
+        text = text + " "
+    return text
 
 #-------------------------------------------------------------------------
 #
