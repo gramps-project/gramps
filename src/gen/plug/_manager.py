@@ -123,34 +123,36 @@ class PluginManager(gen.utils.Callback):
         if not os.path.isdir(direct):
             return False # return value is True for error
     
-        # if the path has not already been loaded, save it in the loaddir_list
-        # list for use on reloading
-    
-        if direct not in self.__loaddir_list:
-            self.__loaddir_list.append(direct)
-    
-        # add the directory to the python search path
-        sys.path.append(direct)
-    
         pymod = re.compile(r"^(.*)\.py$")
     
         # loop through each file in the directory, looking for files that
         # have a .py extention, and attempt to load the file. If it succeeds,
         # add it to the success_list list. If it fails, add it to the _failure
         # list
-        
-        for filename in os.listdir(direct):
-            name = os.path.split(filename)
-            match = pymod.match(name[1])
-            if not match:
-                continue
-            self.__attempt_list.append(filename)
-            plugin = match.groups()[0]
-            try: 
-                _module = __import__(plugin)
-                self.__success_list.append((filename, _module))
-            except:
-                self.__failmsg_list.append((filename, sys.exc_info()))
+
+        for (dirpath, dirnames, filenames) in os.walk(direct):
+            
+            # add the directory to the python search path
+            sys.path.append(dirpath)
+            
+            # if the path has not already been loaded, save it in the 
+            # loaddir_list list for use on reloading.
+            if dirpath not in self.__loaddir_list:
+                self.__loaddir_list.append(dirpath)
+                       
+            for filename in filenames:
+                name = os.path.split(filename)
+                match = pymod.match(name[1])
+                if not match:
+                    continue
+                self.__attempt_list.append(filename)
+                plugin = match.groups()[0]
+                try: 
+                    _module = __import__(plugin)
+                    self.__success_list.append((filename, _module))
+                except:
+                    self.__failmsg_list.append((filename, sys.exc_info()))
+                    
         return len(self.__failmsg_list) != 0 # return True if there are errors
 
     def reload_plugins(self):
