@@ -236,14 +236,8 @@ src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/AgeStats.py
-src/plugins/AncestorReport.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
-src/plugins/CustomBookText.py
-src/plugins/DescendReport.py
-src/plugins/DetAncestralReport.py
-src/plugins/DetDescendantReport.py
-src/plugins/EndOfLineReport.py
 src/plugins/ExportCd.py
 src/plugins/ExportCsv.py
 src/plugins/ExportFtree.py
@@ -253,7 +247,6 @@ src/plugins/ExportPkg.py
 src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/ExportXml.py
-src/plugins/FamilyGroup.py
 src/plugins/GVFamilyLines.py
 src/plugins/GVHourGlass.py
 src/plugins/GVRelGraph.py
@@ -265,15 +258,8 @@ src/plugins/ImportGrdb.py
 src/plugins/ImportProGen.py
 src/plugins/ImportVCard.py
 src/plugins/ImportXml.py
-src/plugins/IndivComplete.py
-src/plugins/KinshipReport.py
-src/plugins/MarkerReport.py
 src/plugins/NarrativeWeb.py
-src/plugins/NumberOfAncestorsReport.py
-src/plugins/PlaceReport.py
 src/plugins/Records.py
-src/plugins/SimpleBookTitle.py
-src/plugins/Summary.py
 src/plugins/WebCal.py
 
 # plugins/drawreport directory
@@ -319,6 +305,22 @@ src/plugins/rel/rel_pt.py
 src/plugins/rel/rel_ru.py
 src/plugins/rel/rel_sk.py
 src/plugins/rel/rel_sv.py
+
+# plugins/textreport directory
+src/plugins/textreport/AncestorReport.py
+src/plugins/textreport/CustomBookText.py
+src/plugins/textreport/DescendReport.py
+src/plugins/textreport/DetAncestralReport.py
+src/plugins/textreport/DetDescendantReport.py
+src/plugins/textreport/EndOfLineReport.py
+src/plugins/textreport/FamilyGroup.py
+src/plugins/textreport/IndivComplete.py
+src/plugins/textreport/KinshipReport.py
+src/plugins/textreport/MarkerReport.py
+src/plugins/textreport/NumberOfAncestorsReport.py
+src/plugins/textreport/PlaceReport.py
+src/plugins/textreport/SimpleBookTitle.py
+src/plugins/textreport/Summary.py
 
 # plugins/tool directory
 src/plugins/tool/CalculateEstimatedDates.py

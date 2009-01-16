@@ -14,12 +14,10 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
 	AgeStats.py\
-	AncestorTree.py\
 	AncestorReport.py\
 	BookReport.py\
 	Calendar.py \
 	CustomBookText.py\
-	DescendTree.py\
 	DescendReport.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
@@ -34,7 +32,6 @@ pkgdata_PYTHON = \
 	ExportVCard.py\
 	ExportXml.py\
 	FamilyGroup.py\
-	FanChart.py\
 	GVFamilyLines.py \
 	GVHourGlass.py\
 	GVRelGraph.py\
@@ -54,9 +51,7 @@ pkgdata_PYTHON = \
 	PlaceReport.py\
 	Records.py\
 	SimpleBookTitle.py\
-	StatisticsChart.py\
 	Summary.py\
-	TimeLine.py\
 	WebCal.py\
 	WhatsNext.py
 
