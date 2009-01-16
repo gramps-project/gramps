@@ -5,6 +5,7 @@
 
 SUBDIRS = \
 	drawreport \
+	gramplet \
 	quickview \
 	rel \
 	tool
@@ -15,14 +16,11 @@ pkgdata_PYTHON = \
 	AgeStats.py\
 	AncestorTree.py\
 	AncestorReport.py\
-	AttributesGramplet.py\
 	BookReport.py\
 	Calendar.py \
 	CustomBookText.py\
-	DefaultGramplets.py\
 	DescendTree.py\
 	DescendReport.py\
-	DescendGramplet.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EndOfLineReport.py\
@@ -37,7 +35,6 @@ pkgdata_PYTHON = \
 	ExportXml.py\
 	FamilyGroup.py\
 	FanChart.py\
-	GivenNameGramplet.py\
 	GVFamilyLines.py \
 	GVHourGlass.py\
 	GVRelGraph.py\

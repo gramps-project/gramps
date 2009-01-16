@@ -237,13 +237,10 @@ src/Selectors/__init__.py
 # plugins directory
 src/plugins/AgeStats.py
 src/plugins/AncestorReport.py
-src/plugins/AttributesGramplet.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
 src/plugins/CustomBookText.py
-src/plugins/DefaultGramplets.py
 src/plugins/DescendReport.py
-src/plugins/DescendGramplet.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py
 src/plugins/EndOfLineReport.py
@@ -257,7 +254,6 @@ src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/ExportXml.py
 src/plugins/FamilyGroup.py
-src/plugins/GivenNameGramplet.py
 src/plugins/GVFamilyLines.py
 src/plugins/GVHourGlass.py
 src/plugins/GVRelGraph.py
@@ -279,7 +275,6 @@ src/plugins/Records.py
 src/plugins/SimpleBookTitle.py
 src/plugins/Summary.py
 src/plugins/WebCal.py
-src/plugins/WhatsNext.py
 
 # plugins/drawreport directory
 src/plugins/drawreport/AncestorTree.py
@@ -287,6 +282,14 @@ src/plugins/drawreport/DescendTree.py
 src/plugins/drawreport/FanChart.py
 src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
+
+# plugins/gramplet directory
+src/plugins/gramplet/AttributesGramplet.py
+src/plugins/gramplet/DefaultGramplets.py
+src/plugins/gramplet/DescendGramplet.py
+src/plugins/gramplet/GivenNameGramplet.py
+src/plugins/gramplet/NoteGramplet.py
+src/plugins/gramplet/WhatsNext.py
 
 # plugins/quickview directory
 src/plugins/quickview/AgeOnDate.py
