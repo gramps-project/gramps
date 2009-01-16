@@ -329,6 +329,12 @@ class Gramplet(object):
         self._idle_id = gobject.idle_add(self._updater, 
                                          priority=gobject.PRIORITY_LOW - 10)
 
+    def update_all(self, *args):
+        self._generator = self.main()
+        if isinstance(self._generator, types.GeneratorType):
+            for step in self._generator:
+                pass
+
     def interrupt(self):
         """
         Force the generator to stop running.
