@@ -3,27 +3,17 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/rel
+pkgdatadir = $(datadir)/@PACKAGE@/plugins/drawreport
 
 pkgdata_PYTHON = \
-	rel_cs.py\
-	rel_da.py\
-	rel_de.py\
-	rel_es.py\
-	rel_fi.py\
-	rel_fr.py\
-	rel_hu.py\
-	rel_it.py\
-	rel_nl.py\
-	rel_no.py\
-	rel_pl.py\
-	rel_pt.py\
-	rel_ru.py\
-	rel_sk.py\
-	rel_sv.py
+	AncestorTree.py \
+	DescendTree.py \
+	FanChart.py \
+	StatisticsChart.py \
+	TimeLine.py
 
-pkgpyexecdir = @pkgpyexecdir@/plugins/rel
-pkgpythondir = @pkgpythondir@/plugins/rel
+pkgpyexecdir = @pkgpyexecdir@/plugins/drawreport
+pkgpythondir = @pkgpythondir@/plugins/drawreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

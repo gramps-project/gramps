@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/rel
+pkgdatadir = $(datadir)/@PACKAGE@/plugins/tool
 
 pkgdata_PYTHON = \
 	CalculateEstimatedDates.py \
@@ -36,8 +36,8 @@ pkgdata_PYTHON = \
 #	PHPGedViewConnector.py \
 #	TestcaseGenerator.py \
 
-pkgpyexecdir = @pkgpyexecdir@/gen/proxy
-pkgpythondir = @pkgpythondir@/gen/proxy
+pkgpyexecdir = @pkgpyexecdir@/plugins/tool
+pkgpythondir = @pkgpythondir@/plugins/tool
 
 GLADEFILES = \
 	changenames.glade \
