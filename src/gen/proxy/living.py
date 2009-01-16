@@ -443,6 +443,8 @@ class LivingProxyDb(ProxyDbBase):
             new_name.set_first_name(_(u'Living'))
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
+            new_name.set_suffix(old_name.get_suffix())
+            new_name.set_title(old_name.get_title())
         new_name.set_patronymic(old_name.get_patronymic())
         new_name.set_surname(old_name.get_surname())
         new_name.set_privacy(old_name.get_privacy())
