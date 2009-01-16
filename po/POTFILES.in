@@ -235,12 +235,8 @@ src/Selectors/_SelectorFactory.py
 src/Selectors/__init__.py
 
 # plugins directory
-src/plugins/AgeOnDate.py
 src/plugins/AgeStats.py
-src/plugins/all_events.py
-src/plugins/all_relations.py
 src/plugins/AncestorReport.py
-src/plugins/AttributeMatch.py
 src/plugins/AttributesGramplet.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
@@ -261,7 +257,6 @@ src/plugins/ExportVCalendar.py
 src/plugins/ExportVCard.py
 src/plugins/ExportXml.py
 src/plugins/FamilyGroup.py
-src/plugins/FilterByName.py
 src/plugins/GivenNameGramplet.py
 src/plugins/GVFamilyLines.py
 src/plugins/GVHourGlass.py
@@ -276,16 +271,11 @@ src/plugins/ImportVCard.py
 src/plugins/ImportXml.py
 src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
-src/plugins/lineage.py
 src/plugins/MarkerReport.py
 src/plugins/NarrativeWeb.py
 src/plugins/NumberOfAncestorsReport.py
-src/plugins/OnThisDay.py
 src/plugins/PlaceReport.py
 src/plugins/Records.py
-src/plugins/References.py
-src/plugins/SameSurnames.py
-src/plugins/siblings.py
 src/plugins/SimpleBookTitle.py
 src/plugins/Summary.py
 src/plugins/WebCal.py
@@ -297,6 +287,18 @@ src/plugins/drawreport/DescendTree.py
 src/plugins/drawreport/FanChart.py
 src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
+
+# plugins/quickview directory
+src/plugins/quickview/AgeOnDate.py
+src/plugins/quickview/all_events.py
+src/plugins/quickview/all_relations.py
+src/plugins/quickview/AttributeMatch.py
+src/plugins/quickview/FilterByName.py
+src/plugins/quickview/lineage.py
+src/plugins/quickview/OnThisDay.py
+src/plugins/quickview/References.py
+src/plugins/quickview/SameSurnames.py
+src/plugins/quickview/siblings.py
 
 # plugins/rel directory
 src/plugins/rel/rel_cs.py

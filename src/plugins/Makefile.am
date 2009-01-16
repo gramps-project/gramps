@@ -4,19 +4,17 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
+	drawreport \
+	quickview \
 	rel \
 	tool
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
-	all_events.py\
-	all_relations.py\
-	AgeOnDate.py\
 	AgeStats.py\
 	AncestorTree.py\
 	AncestorReport.py\
-	AttributeMatch.py\
 	AttributesGramplet.py\
 	BookReport.py\
 	Calendar.py \
@@ -39,7 +37,6 @@ pkgdata_PYTHON = \
 	ExportXml.py\
 	FamilyGroup.py\
 	FanChart.py\
-	FilterByName.py\
 	GivenNameGramplet.py\
 	GVFamilyLines.py \
 	GVHourGlass.py\
@@ -54,16 +51,11 @@ pkgdata_PYTHON = \
 	ImportXml.py\
 	IndivComplete.py\
 	KinshipReport.py\
-	lineage.py\
 	MarkerReport.py\
 	NarrativeWeb.py\
 	NumberOfAncestorsReport.py\
-	OnThisDay.py\
 	PlaceReport.py\
 	Records.py\
-	References.py\
-	SameSurnames.py\
-	siblings.py\
 	SimpleBookTitle.py\
 	StatisticsChart.py\
 	Summary.py\

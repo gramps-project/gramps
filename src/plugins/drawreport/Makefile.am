@@ -1,4 +1,4 @@
-# This is the src/plugins/rel level Makefile for Gramps
+# This is the src/plugins/drawreport level Makefile for Gramps
 # We could use GNU make's ':=' syntax for nice wildcard use,
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
