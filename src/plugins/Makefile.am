@@ -24,13 +24,7 @@ pkgdata_PYTHON = \
 	EndOfLineReport.py\
 	ExportXml.py\
 	FamilyGroup.py\
-	ImportCsv.py\
-	ImportGedcom.py\
-	ImportGeneWeb.py\
 	ImportGpkg.py\
-	ImportGrdb.py\
-	ImportProGen.py\
-	ImportVCard.py\
 	ImportXml.py\
 	IndivComplete.py\
 	KinshipReport.py\

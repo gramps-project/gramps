@@ -240,13 +240,7 @@ src/plugins/BookReport.py
 src/plugins/Calendar.py
 src/plugins/ExportCd.py
 src/plugins/ExportXml.py
-src/plugins/ImportCsv.py
-src/plugins/ImportGedcom.py
-src/plugins/ImportGeneWeb.py
 src/plugins/ImportGpkg.py
-src/plugins/ImportGrdb.py
-src/plugins/ImportProGen.py
-src/plugins/ImportVCard.py
 src/plugins/ImportXml.py
 src/plugins/NarrativeWeb.py
 src/plugins/Records.py
@@ -280,6 +274,15 @@ src/plugins/gramplet/WhatsNext.py
 src/plugins/graph/GVFamilyLines.py
 src/plugins/graph/GVHourGlass.py
 src/plugins/graph/GVRelGraph.py
+
+# plugins/import directory
+src/plugins/import/ImportCsv.py
+src/plugins/import/ImportGedcom.py
+src/plugins/import/ImportGeneWeb.py
+src/plugins/import/ImportGpkg.py
+src/plugins/import/ImportGrdb.py
+src/plugins/import/ImportProGen.py
+src/plugins/import/ImportVCard.py
 
 # plugins/quickview directory
 src/plugins/quickview/AgeOnDate.py
