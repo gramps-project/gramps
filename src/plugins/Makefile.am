@@ -32,9 +32,6 @@ pkgdata_PYTHON = \
 	ExportVCard.py\
 	ExportXml.py\
 	FamilyGroup.py\
-	GVFamilyLines.py \
-	GVHourGlass.py\
-	GVRelGraph.py\
 	ImportCsv.py\
 	ImportGedcom.py\
 	ImportGeneWeb.py\
