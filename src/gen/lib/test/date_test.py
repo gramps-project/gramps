@@ -303,6 +303,7 @@ def suite():
              ("about 1995", "after 2005", False),
              ("about 2007", "about 2003", True), 
              ("before 2007", "2000", True), 
+             # offsets
              # different calendar, same date
              ("Aug 3, 1982", "14 Thermidor 190 (French Republican)", True),  
              ("after Aug 3, 1982", 
@@ -353,12 +354,12 @@ def suite2():
         ("Date(2000) - 1", "Date(1999)"),
         ("Date(2000) + 1", "Date(2001)"),
         # Date +/- Date -> Span
-        ("Date(1876,5,7) - Date(1876,5,1)", "Span(0, 0, 6)"),
-        ("Date(1876,5,7) - Date(1876,4,30)", "Span(0, 0, 7)"),
-        ("Date(2000,1,1) - Date(1999,2,1)", "Span(0, 11, 0)"),
-        ("Date(2000,1,1) - Date(1999,12,1)", "Span(0, 1, 0)"),
-        ("Date(2007, 12, 23) - Date(1963, 12, 4)", "Span(44, 0, 19)"),
-        ("Date(1963, 12, 4) - Date(2007, 12, 23)", "Span(-44, 0, -19)"),
+        ("(Date(1876,5,7) - Date(1876,5,1)).tuple()", "(0, 0, 6)"),
+        ("(Date(1876,5,7) - Date(1876,4,30)).tuple()", "(0, 0, 7)"),
+        ("(Date(2000,1,1) - Date(1999,2,1)).tuple()", "(0, 11, 0)"),
+        ("(Date(2000,1,1) - Date(1999,12,1)).tuple()", "(0, 1, 0)"),
+        ("(Date(2007, 12, 23) - Date(1963, 12, 4)).tuple()", "(44, 0, 19)"),
+        ("(Date(1963, 12, 4) - Date(2007, 12, 23)).tuple()", "(-44, 0, -19)"),
         ]
     suite = unittest.TestSuite()            
     count = 1
