@@ -259,6 +259,9 @@ class Span:
     def is_valid(self):
         return self.valid
 
+    def tuple(self):
+        return self._diff(self.date1, self.date2)
+
     def __getitem__(self, pos):
         # Depricated! 
         return self._diff(self.date1, self.date2)[pos]
@@ -664,6 +667,8 @@ class Date:
         if isinstance(source, tuple):
             if calendar is None:
                 self.calendar = Date.CAL_GREGORIAN
+            elif isinstance(calendar, int):
+                self.calendar = calendar
             else:
                 self.calendar = self.lookup_calendar(calendar)
             if modifier is None:
@@ -1165,6 +1170,18 @@ class Date:
         """
         return self._get_low_item(Date._POS_YR)
 
+    def get_new_year(self):
+        """
+        Return the new year code associated with the date. 
+        """
+        return self.newyear
+
+    def set_new_year(self, value):
+        """
+        Set the new year code associated with the date. 
+        """
+        self.newyear = value
+
     def set_yr_mon_day(self, year, month, day):
         """
         Set the year, month, and day values.
@@ -1335,7 +1352,8 @@ class Date:
         """
         return self.text
 
-    def set(self, quality, modifier, calendar, value, text=None):
+    def set(self, quality, modifier, calendar, value, text=None, 
+            newyear=0):
         """
         Set the date to the specified value. 
         
@@ -1379,14 +1397,38 @@ class Date:
         self.modifier = modifier
         self.calendar = calendar
         self.dateval = value
+        self.set_new_year(newyear)
         year = max(value[Date._POS_YR], 1)
         month = max(value[Date._POS_MON], 1)
         day = max(value[Date._POS_DAY], 1)
+
         if year == month == 0 and day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[calendar]
             self.sortval = func(year, month, day)
+
+        if self.get_slash() and self.get_calendar() != Date.CAL_JULIAN:
+            self.set_calendar(Date.CAL_JULIAN)
+            self.recalc_sort_value()
+
+        ny = self.get_new_year() 
+        if ny: # new year offset?
+            if ny == Date.NEWYEAR_MAR1:
+                split = (3, 1)
+            elif ny == Date.NEWYEAR_MAR25:
+                split = (3, 25)
+            elif ny == Date.NEWYEAR_SEP1:
+                split = (9, 1)
+            if (self.get_month(), self.get_day()) >= split:
+                d1 = Date(self.get_year(), 1, 1, calendar=self.calendar).sortval
+                d2 = Date(self.get_year(), split[0], split[1], calendar=self.calendar).sortval
+                self.sortval -= (d2 - d1)
+            else:
+                d1 = Date(self.get_year(), 12, 31, calendar=self.calendar).sortval
+                d2 = Date(self.get_year(), split[0], split[1], calendar=self.calendar).sortval
+                self.sortval += (d1 - d2) + 1
+
         if text:
             self.text = text
 
@@ -1551,9 +1593,15 @@ class Date:
 
     def get_slash(self):
         """
-        Return true if the date is a slash-date.
+        Return true if the date is a slash-date (dual dated).
         """
         return self._get_low_item_valid(Date._POS_SL)
+
+    def set_slash(self, value):
+        """
+        Set to 1 if the date is a slash-date (dual dated).
+        """
+        self.dateval[Date._POS_SL] = value
 
 def Today():
     """

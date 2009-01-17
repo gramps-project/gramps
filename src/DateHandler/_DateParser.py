@@ -173,6 +173,12 @@ class DateParser:
         'persian'          : Date.CAL_PERSIAN,
         'p'                : Date.CAL_PERSIAN,
         }
+
+    newyear_to_int = {
+        "mar1":  Date.NEWYEAR_MAR1,
+        "mar25": Date.NEWYEAR_MAR25, 
+        "sep1" : Date.NEWYEAR_SEP1,
+        }
     
     quality_to_int = {
         'estimated'  : Date.QUAL_ESTIMATED,
@@ -240,6 +246,7 @@ class DateParser:
         self._pmon_str = self.re_longest_first(self.persian_to_int.keys())
         self._imon_str = self.re_longest_first(self.islamic_to_int.keys())
         self._cal_str  = self.re_longest_first(self.calendar_to_int.keys())
+        self._ny_str = self.re_longest_first(self.newyear_to_int.keys())
 
         # bce, calendar type and quality may be either at the end or at
         # the beginning of the given date string, therefore they will
@@ -248,6 +255,11 @@ class DateParser:
 
         self._cal      = re.compile("(.*)\s+\(%s\)( ?.*)" % self._cal_str,
                                     re.IGNORECASE)
+        self._calny    = re.compile("(.*)\s+\(%s,%s\)( ?.*)" % (self._cal_str,
+                                                                self._ny_str),
+                                   re.IGNORECASE)
+        self._ny    = re.compile("(.*)\s+\(%s\)( ?.*)" % self._ny_str,
+                                 re.IGNORECASE)
         self._qual     = re.compile("(.* ?)%s\s+(.+)" % self._qual_str,
                                     re.IGNORECASE)
         
@@ -448,6 +460,31 @@ class DateParser:
             text = match.group(1) + match.group(3)
         return (text, cal)
 
+    def match_calendar_newyear(self, text, cal, newyear):
+        """
+        Try parsing calendar and newyear code.
+        
+        Return newyear index and the text with calendar removed.
+        """
+        match = self._calny.match(text)
+        if match:
+            cal = self.calendar_to_int[match.group(2).lower()]
+            newyear = self.newyear_to_int[match.group(3).lower()]
+            text = match.group(1) + match.group(4)
+        return (text, cal, newyear)
+
+    def match_newyear(self, text, newyear):
+        """
+        Try parsing calendar and newyear code.
+        
+        Return newyear index and the text with calendar removed.
+        """
+        match = self._ny.match(text)
+        if match:
+            newyear = self.newyear_to_int[match.group(2).lower()]
+            text = match.group(1) + match.group(3)
+        return (text, newyear)
+
     def match_quality(self, text, qual):
         """
         Try matching quality.
@@ -460,7 +497,7 @@ class DateParser:
             text = match.group(1) + match.group(3)
         return (text, qual)
 
-    def match_span(self, text, cal, qual, date):
+    def match_span(self, text, cal, ny, qual, date):
         """
         Try matching span date.
         
@@ -479,11 +516,11 @@ class DateParser:
             if bc2:
                 stop = self.invert_year(stop)
 
-            date.set(qual, Date.MOD_SPAN, cal, start + stop)
+            date.set(qual, Date.MOD_SPAN, cal, start + stop, newyear=ny)
             return 1
         return 0
 
-    def match_range(self, text, cal, qual, date):
+    def match_range(self, text, cal, ny, qual, date):
         """
         Try matching range date.
         
@@ -502,7 +539,7 @@ class DateParser:
             if bc2:
                 stop = self.invert_year(stop)
             
-            date.set(qual, Date.MOD_RANGE, cal, start + stop)
+            date.set(qual, Date.MOD_RANGE, cal, start + stop, newyear=ny)
             return 1
         return 0
 
@@ -523,7 +560,7 @@ class DateParser:
             bc = True
         return (text, bc)
 
-    def match_modifier(self, text, cal, qual, bc, date):
+    def match_modifier(self, text, cal, ny, qual, bc, date):
         """
         Try matching date with modifier.
         
@@ -539,9 +576,9 @@ class DateParser:
                 date.set_modifier(Date.MOD_TEXTONLY)
                 date.set_text_value(text)
             elif bc:
-                date.set(qual, mod, cal, self.invert_year(start))
+                date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
             else:
-                date.set(qual, mod, cal, start)
+                date.set(qual, mod, cal, start, newyear=ny)
             return True
         # modifiers after the date
         if self.modifier_after_to_int:
@@ -552,9 +589,9 @@ class DateParser:
                 mod = self.modifier_after_to_int.get(grps[1].lower(),
                                                      Date.MOD_NONE)
                 if bc:
-                    date.set(qual, mod, cal, self.invert_year(start))
+                    date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
                 else:
-                    date.set(qual, mod, cal, start)
+                    date.set(qual, mod, cal, start, newyear=ny)
                 return True
         match = self._abt2.match(text)
         if match:
@@ -562,9 +599,9 @@ class DateParser:
             start = self._parse_subdate(grps[0])
             mod = Date.MOD_ABOUT
             if bc:
-                date.set(qual, mod, cal, self.invert_year(start))
+                date.set(qual, mod, cal, self.invert_year(start), newyear=ny)
             else:
-                date.set(qual, mod, cal, start)
+                date.set(qual, mod, cal, start, newyear=ny)
             return True
         return False
 
@@ -576,17 +613,20 @@ class DateParser:
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
+        newyear = Date.NEWYEAR_JAN1
         
+        (text, cal, newyear) = self.match_calendar_newyear(text, cal, newyear)
         (text, cal) = self.match_calendar(text, cal)
+        (text, newyear) = self.match_newyear(text, newyear)
         (text, qual) = self.match_quality(text, qual)
 
-        if self.match_span(text, cal, qual, date):
+        if self.match_span(text, cal, newyear, qual, date):
             return
-        if self.match_range(text, cal, qual, date):
+        if self.match_range(text, cal, newyear, qual, date):
             return
 
         (text, bc) = self.match_bce(text)
-        if self.match_modifier(text, cal, qual, bc, date):
+        if self.match_modifier(text, cal, newyear, qual, bc, date):
             return
 
         try:
@@ -599,13 +639,9 @@ class DateParser:
             return
 
         if bc:
-            date.set(qual, Date.MOD_NONE, cal, self.invert_year(subdate))
+            date.set(qual, Date.MOD_NONE, cal, self.invert_year(subdate), newyear=newyear)
         else:
-            date.set(qual, Date.MOD_NONE, cal, subdate)
-
-        if date.get_slash():
-            date.set_calendar(Date.CAL_JULIAN)
-            date.recalc_sort_value() # needed after the calendar change
+            date.set(qual, Date.MOD_NONE, cal, subdate, newyear=newyear)
 
     def invert_year(self, subdate):
         return (subdate[0], subdate[1], -subdate[2], subdate[3])

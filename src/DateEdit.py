@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2009       Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -248,10 +249,22 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.start_year.set_sensitive(0)
             self.calendar_box.set_sensitive(0)
             self.quality_box.set_sensitive(0)
+            self.dual_dated.set_sensitive(0)
+            self.new_year.set_sensitive(0)
 
         self.text_entry = self.top.get_widget('date_text_entry')
         self.text_entry.set_text(self.date.get_text())
-        
+
+        self.dual_dated = self.top.get_widget('dualdated')
+        if self.date.get_slash():
+            self.dual_dated.set_active(1)
+            self.calendar_box.set_sensitive(0)
+            self.calendar_box.set_active(Date.CAL_JULIAN)
+        self.dual_dated.connect('toggled', self.switch_dual_dated)
+
+        self.new_year = self.top.get_widget('newyear')
+        self.new_year.set_active(self.date.get_new_year())
+
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
         # loose track of which is which. Much like opening files.
@@ -270,14 +283,15 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             else:
                 if response == gtk.RESPONSE_OK:
                     (the_quality, the_modifier, the_calendar,
-                     the_value, the_text) = self.build_date_from_ui()
+                     the_value, the_text, the_newyear) = self.build_date_from_ui()
                     self.return_date = Date(self.date)
                     self.return_date.set(
                         quality=the_quality,
                         modifier=the_modifier,
                         calendar=the_calendar,
                         value=the_value,
-                        text=the_text)
+                        text=the_text,
+                        newyear=the_newyear)
                 self.close()
                 break
 
@@ -313,19 +327,20 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 self.start_day.get_value_as_int(),
                 self.start_month_box.get_active(),
                 self.start_year.get_value_as_int(),
-                False,
+                self.dual_dated.get_active(),
                 self.stop_day.get_value_as_int(),
                 self.stop_month_box.get_active(),
                 self.stop_year.get_value_as_int(),
-                False)
+                self.dual_dated.get_active())
         else:
             value = (
                 self.start_day.get_value_as_int(),
                 self.start_month_box.get_active(),
                 self.start_year.get_value_as_int(),
-                False)
+                self.dual_dated.get_active())
         calendar = self.calendar_box.get_active()
-        return (quality, modifier, calendar, value, text)
+        newyear = self.new_year.get_active()
+        return (quality, modifier, calendar, value, text, newyear)
 
     def switch_type(self, obj):
         """
@@ -352,6 +367,20 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.start_year.set_sensitive(date_sensitivity)
         self.calendar_box.set_sensitive(date_sensitivity)
         self.quality_box.set_sensitive(date_sensitivity)
+        self.dual_dated.set_sensitive(date_sensitivity)
+        self.new_year.set_sensitive(date_sensitivity)
+
+    def switch_dual_dated(self, obj):
+        """
+        Changed whether this is a dual dated year, or not.
+        Dual dated years are represented in the Julian calendar
+        so that the day/months don't changed in the Text representation.
+        """
+        if self.dual_dated.get_active():
+            self.calendar_box.set_active(Date.CAL_JULIAN)
+            self.calendar_box.set_sensitive(0)
+        else:
+            self.calendar_box.set_sensitive(1)
 
     def switch_calendar(self, obj):
         """
@@ -362,14 +391,15 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         old_cal = self.date.get_calendar()
         new_cal = self.calendar_box.get_active()
 
-        (the_quality, the_modifier, the_calendar, the_value, the_text) = \
-                                        self.build_date_from_ui()
+        (the_quality, the_modifier, the_calendar, 
+         the_value, the_text, the_newyear) = self.build_date_from_ui()
         self.date.set(
                 quality=the_quality,
                 modifier=the_modifier,
                 calendar=old_cal,
                 value=the_value,
-                text=the_text)
+                text=the_text,
+                newyear=the_newyear)
 
         if not self.date.is_empty():
             self.date.convert_calendar(new_cal)

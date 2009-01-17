@@ -91,9 +91,11 @@ class DateDisplay:
     formats = ("YYYY-MM-DD (ISO)", )
 
     calendar = (
-        "", " (Julian)", " (Hebrew)", " (French Republican)", 
-        " (Persian)", " (Islamic)"
+        "", "Julian", "Hebrew", "French Republican", 
+        "Persian", "Islamic"
         )
+
+    newyear = ("", "Mar1", "Mar25", "Sep1")
     
     _mod_str = ("", "before ", "after ", "about ", "", "", "")
 
@@ -133,6 +135,22 @@ class DateDisplay:
         else:
             return self.display(date)
 
+    def format_extras(self, cal, newyear):
+        """
+        Formats the extra items (calendar, newyear) for a date.
+        """
+        scal = self.calendar[cal]
+        snewyear = self.newyear[newyear]
+        retval = ""
+        for item in [scal, snewyear]:
+            if item:
+                if retval:
+                    retval += ","
+                retval += item
+        if retval:
+            return " (%s)" % retval
+        return ""
+
     def display(self, date):
         """
         Return a text string representing the date.
@@ -141,6 +159,7 @@ class DateDisplay:
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -151,11 +170,12 @@ class DateDisplay:
         elif mod == Date.MOD_SPAN or mod == Date.MOD_RANGE:
             d1 = self.display_iso(start)
             d2 = self.display_iso(date.get_stop_date())
-            return "%s %s - %s%s" % (qual_str, d1, d2, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%s %s - %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_iso(start)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
-                                 self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
 
     def _slash_year(self, val, slash):
         if val < 0:
@@ -328,6 +348,7 @@ class DateDisplayEn(DateDisplay):
         cal = date.get_calendar()
         qual = date.get_quality()
         start = date.get_start_date()
+        newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
         
@@ -338,13 +359,14 @@ class DateDisplayEn(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sfrom %s to %s%s" % (qual_str, d1, d2, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%sfrom %s to %s%s" % (qual_str, d1, d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sbetween %s and %s%s" % (qual_str, d1, d2, 
-                                              self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%sbetween %s and %s%s" % (qual_str, d1, d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str, self._mod_str[mod], 
-                                 text, self.calendar[cal])
+            scal = self.format_extras(cal, newyear)
+            return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, scal)
