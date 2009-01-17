@@ -22,14 +22,6 @@ pkgdata_PYTHON = \
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EndOfLineReport.py\
-	ExportCd.py\
-	ExportCsv.py\
-	ExportFtree.py\
-	ExportGedcom.py\
-	ExportGeneWeb.py\
-	ExportPkg.py\
-	ExportVCalendar.py\
-	ExportVCard.py\
 	ExportXml.py\
 	FamilyGroup.py\
 	ImportCsv.py\

@@ -239,17 +239,7 @@ src/plugins/AgeStats.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
 src/plugins/ExportCd.py
-src/plugins/ExportCsv.py
-src/plugins/ExportFtree.py
-src/plugins/ExportGedcom.py
-src/plugins/ExportGeneWeb.py
-src/plugins/ExportPkg.py
-src/plugins/ExportVCalendar.py
-src/plugins/ExportVCard.py
 src/plugins/ExportXml.py
-src/plugins/GVFamilyLines.py
-src/plugins/GVHourGlass.py
-src/plugins/GVRelGraph.py
 src/plugins/ImportCsv.py
 src/plugins/ImportGedcom.py
 src/plugins/ImportGeneWeb.py
@@ -269,6 +259,15 @@ src/plugins/drawreport/FanChart.py
 src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
 
+# plugins/export directory
+src/plugins/export/ExportCsv.py
+src/plugins/export/ExportFtree.py
+src/plugins/export/ExportGedcom.py
+src/plugins/export/ExportGeneWeb.py
+src/plugins/export/ExportPkg.py
+src/plugins/export/ExportVCalendar.py
+src/plugins/export/ExportVCard.py
+
 # plugins/gramplet directory
 src/plugins/gramplet/AttributesGramplet.py
 src/plugins/gramplet/DefaultGramplets.py
@@ -276,6 +275,11 @@ src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py
 src/plugins/gramplet/NoteGramplet.py
 src/plugins/gramplet/WhatsNext.py
+
+# plugins/graph directory
+src/plugins/graph/GVFamilyLines.py
+src/plugins/graph/GVHourGlass.py
+src/plugins/graph/GVRelGraph.py
 
 # plugins/quickview directory
 src/plugins/quickview/AgeOnDate.py
