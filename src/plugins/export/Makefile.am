@@ -18,6 +18,19 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/plugins/export
 pkgpythondir = @pkgpythondir@/plugins/export
 
+GLADEFILES = \
+	ExportCsv.glade \
+	ExportFtree.glade \
+	ExportGeneWeb.glade \
+	ExportVCalendar.glade \
+	ExportVCard.glade
+
+GRAPHICS = 
+
+DATAFILES = 
+
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 

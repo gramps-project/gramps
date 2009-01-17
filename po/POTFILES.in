@@ -242,7 +242,6 @@ src/plugins/ExportCd.py
 src/plugins/ExportXml.py
 src/plugins/ImportGpkg.py
 src/plugins/ImportXml.py
-src/plugins/NarrativeWeb.py
 src/plugins/Records.py
 src/plugins/WebCal.py
 
@@ -355,6 +354,9 @@ src/plugins/tool/ReorderIds.py
 src/plugins/tool/SortEvents.py
 src/plugins/tool/SoundGen.py
 src/plugins/tool/Verify.py
+
+# plugins/webreport directory
+src/plugins/webreport/NarrativeWeb.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py

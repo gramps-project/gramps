@@ -16,6 +16,15 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
 pkgpythondir = @pkgpythondir@/plugins/import
 
+GLADEFILES = \
+	ImportGedcom.glade
+
+GRAPHICS = 
+
+DATAFILES = 
+
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 

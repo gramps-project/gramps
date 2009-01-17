@@ -5,50 +5,33 @@
 
 SUBDIRS = \
 	drawreport \
+	export \
 	gramplet \
+	graph \
+	import \
 	quickview \
 	rel \
-	tool
+	textreport \
+	tool \
+	webreport
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
 	AgeStats.py\
-	AncestorReport.py\
 	BookReport.py\
 	Calendar.py \
-	CustomBookText.py\
-	DescendReport.py\
-	DetAncestralReport.py\
-	DetDescendantReport.py\
-	EndOfLineReport.py\
 	ExportXml.py\
-	FamilyGroup.py\
 	ImportGpkg.py\
 	ImportXml.py\
-	IndivComplete.py\
-	KinshipReport.py\
-	MarkerReport.py\
-	NarrativeWeb.py\
-	NumberOfAncestorsReport.py\
-	PlaceReport.py\
 	Records.py\
-	SimpleBookTitle.py\
-	Summary.py\
 	WebCal.py\
-	WhatsNext.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 
 GLADEFILES = \
-	book.glade\
-	ExportCsv.glade\
-	ExportFtree.glade\
-	ExportGeneWeb.glade\
-	ExportVCalendar.glade\
-	ExportVCard.glade\
-	ImportGedcom.glade
+	book.glade
 
 GRAPHICS = 
 
