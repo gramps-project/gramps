@@ -79,62 +79,11 @@ class CalendarGramplet(Gramplet):
         self.set_tooltip(_("Double-click a day for details"))
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
-        self.gui.calendar.connect('month-changed', self.refresh)
-        self.dbstate.db.connect('person-rebuild', self.update)
-
-        db_signals = ['event-add',
-                      'event-update', 
-                      'event-delete', 
-                      'event-rebuild',
-                      ]
-        for signal in db_signals:
-            self.dbstate.db.connect(signal, lambda *args: self.run_update(signal, *args))
-
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()
         self.birthdays = True
         self.dates = {}
-
-    def db_changed(self):
-        self.update()
-
-    def run_update(self, signal, *args):
-        self.update()
-
-    def refresh(self, *obj):
-        self.gui.calendar.freeze()
-        self.gui.calendar.clear_marks()
-        year, month, day = self.gui.calendar.get_date()
-        for date in self.dates:
-            if ((date[0] == year) and
-                (date[1] == month + 1) and
-                (date[2] > 0 and date[2] <= day)):
-                self.gui.calendar.mark_day(date[2])
-        self.gui.calendar.thaw()
-
-    def main(self):
-        self.dates = {}
-        # for each day in events
-        people = self.gui.dbstate.db.get_person_handles(sort_handles=False)
-        cnt = 0
-        for person_handle in people:
-            if cnt % 350 == 0:
-                yield True
-            person = self.gui.dbstate.db.get_person_from_handle(person_handle)
-            birth_ref = person.get_birth_ref()
-            birth_date = None
-            if birth_ref:
-                birth_event = self.gui.dbstate.db.get_event_from_handle(birth_ref.ref)
-                birth_date = birth_event.get_date_object()
-            if self.birthdays and birth_date is not None:
-                year = birth_date.get_year()
-                month = birth_date.get_month()
-                day = birth_date.get_day()
-                #age = self.year - year
-                self.dates[(year, month, day)] = birth_event.handle
-            cnt += 1
-        self.refresh()
 
     def double_click(self, obj):
         # bring up events on this day
