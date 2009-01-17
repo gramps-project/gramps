@@ -507,6 +507,15 @@ class Span:
     def _diff(self, date1, date2):
         # We should make sure that Date2 + tuple -> Date1 and
         #                          Date1 - tuple -> Date2
+        if date1.get_new_year() or date2.get_new_year():
+            days = date1.sortval - date2.sortval
+            years = days/365
+            months = (days - years * 365) / 30
+            days = (days - years * 365) - months * 30
+            if self.negative:
+                return (-years, -months, -days)
+            else:
+                return (years, months, days)
         d1 = [i or 1 for i in date1.get_ymd()]
         d2 = [i or 1 for i in date2.get_ymd()]
         # d1 - d2 (1998, 12, 32) - (1982, 12, 15)
