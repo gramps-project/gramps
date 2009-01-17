@@ -175,6 +175,7 @@ class DateParser:
         }
 
     newyear_to_int = {
+        "jan1":  Date.NEWYEAR_JAN1,
         "mar1":  Date.NEWYEAR_MAR1,
         "mar25": Date.NEWYEAR_MAR25, 
         "sep1" : Date.NEWYEAR_SEP1,
@@ -616,8 +617,8 @@ class DateParser:
         newyear = Date.NEWYEAR_JAN1
         
         (text, cal, newyear) = self.match_calendar_newyear(text, cal, newyear)
-        (text, cal) = self.match_calendar(text, cal)
         (text, newyear) = self.match_newyear(text, newyear)
+        (text, cal) = self.match_calendar(text, cal)
         (text, qual) = self.match_quality(text, qual)
 
         if self.match_span(text, cal, newyear, qual, date):
