@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/gramplet
 
 pkgdata_PYTHON = \
+	AgeStats.py \
 	AttributesGramplet.py \
 	DefaultGramplets.py \
 	DescendGramplet.py \

@@ -18,7 +18,6 @@ SUBDIRS = \
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
-	AgeStats.py\
 	BookReport.py\
 	Calendar.py \
 	ExportXml.py\

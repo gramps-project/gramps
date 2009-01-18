@@ -235,7 +235,6 @@ src/Selectors/_SelectorFactory.py
 src/Selectors/__init__.py
 
 # plugins directory
-src/plugins/AgeStats.py
 src/plugins/BookReport.py
 src/plugins/Calendar.py
 src/plugins/ExportCd.py
@@ -262,6 +261,7 @@ src/plugins/export/ExportVCalendar.py
 src/plugins/export/ExportVCard.py
 
 # plugins/gramplet directory
+src/plugins/gramplet/AgeStats.py
 src/plugins/gramplet/AttributesGramplet.py
 src/plugins/gramplet/DefaultGramplets.py
 src/plugins/gramplet/DescendGramplet.py
