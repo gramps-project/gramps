@@ -103,17 +103,9 @@ src/DateHandler/_Date_sv.py
 src/DateHandler/__init__.py
 
 # docgen directory
-src/docgen/AsciiDoc.py
-src/docgen/GtkPrint.py
-src/docgen/HtmlDoc.py
-src/docgen/LaTeXDoc.py
 src/docgen/ODSDoc.py
-src/docgen/ODFDoc.py
 src/docgen/ODSTab.py
-src/docgen/PSDrawDoc.py
-src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
-src/docgen/SvgDrawDoc.py
 src/docgen/TextBufDoc.py
 
 # DisplayModels package
@@ -243,6 +235,16 @@ src/plugins/ImportGpkg.py
 src/plugins/ImportXml.py
 src/plugins/Records.py
 src/plugins/WebCal.py
+
+# plugins/docgen directory
+src/plugins/docgen/AsciiDoc.py
+src/plugins/docgen/GtkPrint.py
+src/plugins/docgen/HtmlDoc.py
+src/plugins/docgen/LaTeXDoc.py
+src/plugins/docgen/ODFDoc.py
+src/plugins/docgen/PSDrawDoc.py
+src/plugins/docgen/RTFDoc.py
+src/plugins/docgen/SvgDrawDoc.py
 
 # plugins/drawreport directory
 src/plugins/drawreport/AncestorTree.py

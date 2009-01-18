@@ -596,21 +596,15 @@ class ViewManager:
 
     def __do_load_plugins(self):
         """
-        Loads the plugins at initialization time.  We load the document 
-        generators and the plugins. The plugin status window is opened
-        on an error if the user has requested.
+        Loads the plugins at initialization time. The plugin status window is 
+        opened on an error if the user has requested.
         """
-        # load document generators
-        self.uistate.status_text(_('Loading document formats...'))
-        error  = self.__pmgr.load_plugins(const.DOCGEN_DIR)
-        error |= self.__pmgr.load_plugins(const.USER_DOCGEN)
-
         # load plugins
         self.uistate.status_text(_('Loading plugins...'))
-        error |= self.__pmgr.load_plugins(const.PLUGINS_DIR)
+        error = self.__pmgr.load_plugins(const.PLUGINS_DIR)
         error |= self.__pmgr.load_plugins(const.USER_PLUGINS)
 
-        #  get to ssee if we need to open the plugin status window
+        #  get to see if we need to open the plugin status window
         if error and Config.get(Config.POP_PLUGIN_STATUS):
             self.__plugin_status()
 

@@ -5,28 +5,13 @@
 docgendir=$(prefix)/share/gramps/docgen
 
 docgen_PYTHON = \
-	__init__.py\
-	AsciiDoc.py\
-    CairoDoc.py\
-	CSVTab.py\
-	HtmlDoc.py\
-	LaTeXDoc.py\
-	ODFDoc.py\
-	ODSDoc.py\
-	ODSTab.py\
-	SpreadSheetDoc.py\
-	TabbedDoc.py\
-	PdfDoc.py\
-	PSDrawDoc.py\
-	RTFDoc.py\
-	SvgDrawDoc.py\
-	TextBufDoc.py \
-	GtkPrint.py
-
-docgen_DATA = \
-	gtkprintpreview.glade
-
-dist_docgen_DATA = $(docgen_DATA)
+	__init__.py \
+	CSVTab.py \
+	ODSDoc.py \
+	ODSTab.py \
+	SpreadSheetDoc.py \
+	TabbedDoc.py \
+	TextBufDoc.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
