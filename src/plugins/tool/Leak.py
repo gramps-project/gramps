@@ -92,8 +92,11 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
                     mylist.append(str(each))
                 except DBError:
                     mylist.append('db.DB instance at %s' % id(each))
-            self.ebuf.set_text(_("Uncollected objects:\n\n")
-                               + '\n\n'.join(mylist))
+            self.ebuf.set_text(_("%d uncollected objects:\n\n" % len(mylist)))
+            count = 1
+            for line in mylist:
+                self.ebuf.insert_at_cursor("   %d) %s\n" % (count, line))
+                count += 1
         else:
             self.ebuf.set_text(_("No uncollected objects\n")
                                + str(gc.get_debug()))
