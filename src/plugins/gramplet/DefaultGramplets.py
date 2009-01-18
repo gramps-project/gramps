@@ -793,10 +793,14 @@ class StatsGramplet(Gramplet):
 
 class PythonGramplet(Gramplet):
     def init(self):
+        import gc
+        gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
         self.prompt = ">"
         self.set_tooltip(_("Enter Python expressions"))
+        self.gc = gc
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
+                    "gc": self.gc,
                     "self": self,
                     _("class name|Date"): gen.lib.Date,
                     }
