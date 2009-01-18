@@ -704,7 +704,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def add_formats_panel(self):
         row = 0
-        table = gtk.Table(4, 8)
+        table = gtk.Table(4, 4)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -791,8 +791,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         row += 1
 
         # Text in sidebar:
-        self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"), 
-                          row, Config.SIDEBAR_TEXT)
+        self.add_checkbox(table, 
+                          _("Show text in sidebar buttons (requires restart)"), 
+                          row, Config.SIDEBAR_TEXT, stop=3)
         row += 1
         return table
 
@@ -894,7 +895,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 _('Remember last view displayed'), 
                 5, Config.USE_LAST_VIEW)
         self.add_pos_int_entry(table, 
-                _('Number of generations for relationship determination'),
+                _('Max generations for relationships'),
                 6, Config.GENERATION_DEPTH, self.update_gen_depth)
         self.path_entry = gtk.Entry()
         self.add_path_box(table, 
@@ -919,11 +920,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 
         return table
         
-    def add_checkbox(self, table, label, index, constant):
+    def add_checkbox(self, table, label, index, constant, start=1, stop=9):
         checkbox = gtk.CheckButton(label)
         checkbox.set_active(Config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant)
-        table.attach(checkbox, 1, 9, index, index+1, yoptions=0)
+        table.attach(checkbox, start, stop, index, index+1, yoptions=0)
 
     def add_radiobox(self, table, label, index, constant, group, column):
         radiobox = gtk.RadioButton(group,label)
