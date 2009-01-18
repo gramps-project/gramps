@@ -134,7 +134,7 @@ class FanChartWidget(gtk.Widget):
         cr.translate(w/2., h/2.)
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
-            slice = 360 / len(self.data[generation])
+            slice = 360.0 / len(self.data[generation])
             current = 0
             for person in self.data[generation]:
                 if person:
@@ -214,7 +214,8 @@ class FanChartWidget(gtk.Widget):
 
 class FanChartGramplet(Gramplet):
     def init(self):
-        self.gui.fan = FanChartWidget(4)
+        self.generations = 6
+        self.gui.fan = FanChartWidget(self.generations)
         self.gui.get_container_widget().remove(self.gui.textview)
         vbox = gtk.VBox()
         self.scale = gtk.HScale()
@@ -253,7 +254,8 @@ class FanChartGramplet(Gramplet):
         pos = (rads/(math.pi * 2) - self.gui.fan.rotate_value/360.)
         pos = int(math.floor(pos * 2 ** generation))
         pos = pos % (2 ** generation)
-        if 0 < generation < 4 and 0 <= pos < len(self.gui.fan.data[generation]):
+        if (0 < generation < self.generations and 
+            0 <= pos < len(self.gui.fan.data[generation])):
             person = self.gui.fan.data[generation][pos]
             if person:
                 #name = name_displayer.display(person)
@@ -271,7 +273,7 @@ class FanChartGramplet(Gramplet):
 
     def main(self):
         self.gui.fan.data[0][0] = self.dbstate.get_active_person()
-        for current in range(1, 4):
+        for current in range(1, self.generations):
             parent = 0
             for p in self.gui.fan.data[current - 1]:
                 self.gui.fan.data[current][parent] = self.sa.father(p)
