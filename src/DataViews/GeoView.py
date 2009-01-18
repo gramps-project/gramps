@@ -1218,6 +1218,8 @@ class GeoView(HtmlView):
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
         self.maxlon = float(0.0)
+        self.minyear = int(9999)
+        self.maxyear = int(0)
  
         latitude = ""
         longitude = ""
