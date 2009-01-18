@@ -296,13 +296,29 @@ class Gramplet(object):
     def set_use_markup(self, value):
         self.gui.set_use_markup(value)
 
-    def no_wrap(self):
+    def set_wrap(self, value):
         """
-        The view in gramplet should not wrap.
+        Set the textview to wrap or not.
         """
         self.gui.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, 
                                            gtk.POLICY_AUTOMATIC)
-        self.gui.textview.set_wrap_mode(gtk.WRAP_NONE)
+        # gtk.WRAP_NONE, gtk.WRAP_CHAR, gtk.WRAP_WORD or gtk.WRAP_WORD_CHAR.
+        if value in [True, 1]:
+            self.gui.textview.set_wrap_mode(gtk.WRAP_WORD)
+        elif value in [False, 0, None]:
+            self.gui.textview.set_wrap_mode(gtk.WRAP_NONE)
+        elif value in ["char"]:
+            self.gui.textview.set_wrap_mode(gtk.WRAP_CHAR)
+        elif value in ["word char"]:
+            self.gui.textview.set_wrap_mode(gtk.WRAP_WORD_CHAR)
+        else:
+            raise Exception("Unknown wrap mode: '%s': use 0,1,'char' or 'word char')" % value)
+
+    def no_wrap(self):
+        """
+        The view in gramplet should not wrap. DEPRICATED: use set_wrap instead.
+        """
+        self.set_wrap(False)
 
     # Other functions of the gramplet:
 
