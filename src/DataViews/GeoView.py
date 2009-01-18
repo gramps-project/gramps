@@ -38,6 +38,7 @@ import const
 import gobject
 import threading
 import time
+import operator
 
 #-------------------------------------------------------------------------
 #
@@ -52,8 +53,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".GeoView")
-#LOG.setLevel(logging.DEBUG)
 
 #-------------------------------------------------------------------------
 #
@@ -81,7 +80,6 @@ MOZIL  = 2
 WebKit = NOWEB
 try:
     import webkit
-    LOG.info("Using Webkit for HtmlView")
     WebKit = WEBKIT
 except:
     pass
@@ -89,7 +87,6 @@ except:
 if WebKit == NOWEB:
     try:
         import gtkmozembed
-        LOG.info("Using GtkMozembed for HtmlView")
         WebKit = MOZIL
     except:
         pass
@@ -97,7 +94,6 @@ if WebKit == NOWEB:
 #no interfaces present, raise Error so that options for GeoView do not show
 if WebKit == NOWEB :
     Config.set(Config.GEOVIEW, False)
-    LOG.warning(_("GeoView not enabled, no html plugin for GTK found."))
     raise ImportError, 'No GTK html plugin found'
 
 #-------------------------------------------------------------------------
@@ -117,6 +113,7 @@ if WebKit == NOWEB :
 MOZEMBED_PATH = TEMP_DIR
 MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
 GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
+NB_MARKERS_PER_PAGE = 200
 
 #-------------------------------------------------------------------------
 #
@@ -421,30 +418,16 @@ class GeoView(HtmlView):
         self.displaytype = "person"
         self.external_url = False
         self.need_to_resize = False
+        self.nbmarkers = 0
+        self.nbpages = 0
 
-        # Create temporary files
-        # for people
-        (handle,self.htmlfileI) = tempfile.mkstemp(".html","GeoV-I-",
-                                                  GEOVIEW_SUBPATH)
-        self.htmlfile=self.htmlfileI
-        # for family
-        (handle,self.htmlfileF) = tempfile.mkstemp(".html","GeoV-F-",
-                                                  GEOVIEW_SUBPATH)
-        # for place
-        (handle,self.htmlfileP) = tempfile.mkstemp(".html","GeoV-P-",
-                                                  GEOVIEW_SUBPATH)
-        # for event
-        (handle,self.htmlfileE) = tempfile.mkstemp(".html","GeoV-E-",
-                                                  GEOVIEW_SUBPATH)
+        self.htmlfile=self.create_start_page()
 
     def on_delete(self):
         """
-        We need to suppress the html temporary file.
+        We need to suppress temporary files here.
         """
-        try:
-            os.remove(self.htmlfile)
-        except:
-            pass
+        pass
 
     def init_parent_signals_for_map(self, widget, event):
         # required to properly bootstrap the signal handlers.
@@ -482,8 +465,8 @@ class GeoView(HtmlView):
         """
         return 'gramps-geo'
 
-    def change_map(self):
-        self.renderer.execute_script("javascript:mapstraction.swap(map,'"+self.usedmap+"')");
+    def change_map(self,usedmap):
+        self.renderer.execute_script("javascript:mapstraction.swap(map,'"+usedmap+"')");
 
     def refresh(self,button):
         self.renderer.refresh();
@@ -630,81 +613,59 @@ class GeoView(HtmlView):
         HtmlView.define_actions(self)
 
     def goto_active_person(self,handle=None):
-        self.geo_places(self.htmlfile,self.displaytype)
+        self.geo_places(self.displaytype)
 
     def all_places(self,handle=None):
         """
         Specifies the place for the home person to display with mapstraction.
         """
         self.displaytype = "places"
-        self.htmlfile=self.htmlfileP
-        self.geo_places(self.htmlfile,self.displaytype)
+        self.geo_places(self.displaytype)
 
     def person_places(self,handle=None):
         """
         Specifies the person places.
         """
         self.displaytype = "person"
-        self.htmlfile=self.htmlfileI
-        self.geo_places(self.htmlfile,self.displaytype)
+        self.geo_places(self.displaytype)
 
     def family_places(self,handle=None):
         """
         Specifies the family places to display with mapstraction.
         """
         self.displaytype = "family"
-        self.htmlfile=self.htmlfileF
-        self.geo_places(self.htmlfile,self.displaytype)
+        self.geo_places(self.displaytype)
 
     def event_places(self,handle=None):
         """
         Specifies all event places to display with mapstraction.
         """
         self.displaytype = "event"
-        self.htmlfile=self.htmlfileE
-        self.geo_places(self.htmlfile,self.displaytype)
+        self.geo_places(self.displaytype)
 
-    def geo_places(self,htmlfile,displaytype):
+    def geo_places(self,displaytype):
         """
         Specifies the places to display with mapstraction.
         """
         self.external_url = False
-        if htmlfile == None:
-            htmlfile = MOZEMBED_PATH+"help.html"
-            self.createHelp(htmlfile)
-        else:
-            self.createMapstraction(htmlfile,displaytype)
-        self.open("file://"+htmlfile)
+        self.nbmarkers = 0
+        self.createMapstraction(displaytype)
+        self.open("file://"+self.htmlfile)
 
     def select_OpenStreetMap_map(self,handle=None):
-        self.usedmap = "openstreetmap"
-        LOG.debug("geo_places : call %s page from select_OpenStreetMap_map\n"
-                                                % self.usedmap)
-        self.change_map()
+        self.change_map("openstreetmap")
 
     def select_openlayers_map(self,handle=None):
-        self.usedmap = "openlayers"
-        LOG.debug("geo_places : call %s page from select_openlayers_map\n"
-                                                 % self.usedmap)
-        self.change_map()
+        self.change_map("openlayers")
 
     def select_google_map(self,handle=None):
-        self.usedmap = "google"
-        LOG.debug("geo_places : call %s page from select_google_map\n"
-                                                 % self.usedmap)
-        self.change_map()
+        self.change_map("google")
 
     def select_yahoo_map(self,handle=None):
-        self.usedmap = "yahoo"
-        LOG.debug("geo_places : call %s page from select_yahoo_map\n"
-                                                % self.usedmap)
-        self.change_map()
+        self.change_map("yahoo")
 
     def select_microsoft_map(self,handle=None):
-        self.usedmap = "microsoft"
-        LOG.debug("geo_places : call %s page from select_microsoft_map\n"
-                                                 % self.usedmap)
-        self.change_map()
+        self.change_map("microsoft")
 
     def set_mozembed_proxy(self):
         """
@@ -753,7 +714,7 @@ class GeoView(HtmlView):
                 pass
             pass   # We don't use a proxy or the http_proxy variable is not set.
 
-    def createMapstractionPostHeader(self):
+    def createMapstractionPostHeader(self,h3mess,h4mess,maxpages,curpage,ftype):
         self.maxgen=Config.get(Config.GENERATION_DEPTH)
         if self.maxyear == 0:
             self.maxyear=2100
@@ -771,14 +732,33 @@ class GeoView(HtmlView):
         self.yearint=( self.yearint - ( self.yearint % modulo ) )
         if self.yearint == 0:
             self.yearint=10
-        LOG.debug("period = %d, intvl = %d, interval = %d" % (period,
-                                            intvl, self.yearint))
         self.mapview.write("       var step = %s;\n" % self.yearint)
         self.mapview.write("  </script>\n")
         self.mapview.write(" </head>\n")
         self.mapview.write(" <body >\n")
+        if maxpages > 1:
+            message = _("We have %d markers, so I split this document in %d pages of %d markers : " % (self.nbmarkers, maxpages, NB_MARKERS_PER_PAGE))
+            self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
+            if curpage != 1:
+                priorfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,curpage-1)
+                self.mapview.write(" <a href='%s' >--</a>" % priorfile)
+            else:
+                self.mapview.write(" --")
+            for page in range(1,maxpages+1,1):
+                if page == curpage:
+                    self.mapview.write(" %d" % page)
+                else:
+                    if ( page < curpage + 10 ) and ( page > curpage - 10 ):
+                        nextfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,page)
+                        self.mapview.write(" <a href='%s' >%d</a>" % (nextfile, page))
+            if curpage != maxpages:
+                nextfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,curpage+1)
+                self.mapview.write(" <a href='%s' >++</a>" % nextfile)
+            else:
+                self.mapview.write(" ++")
+            self.mapview.write("\n</div>\n")
         if self.displaytype != "places":
-            self.mapview.write(" <Div id='btns' font=-2 >\n")
+            self.mapview.write(" <Div id='btns' font=-4 >\n")
             self.mapview.write("  <form method='POST'>\n")
             self.mapview.write("  <input type='radio' name='years' value='All' checked\n")
             self.mapview.write("         onchange=\"selectmarkers(\'All\')\"/>All\n")
@@ -786,9 +766,12 @@ class GeoView(HtmlView):
                 self.mapview.write("  <input type='radio' name='years' value=\'%s\'\n" %year)
                 self.mapview.write("         onchange=\"selectmarkers(\'%s\')\"/>%s\n" % ( year, year ))
             self.mapview.write("  </form></Div>\n")
+        self.mapview.write("<H3>%s</H3>" % h3mess)
+        if h4mess:
+            self.mapview.write("<H4>%s</H4>" % h4mess)
 
-    def createMapstractionHeader(self):
-        self.mapview = open(self.htmlfile,"w+")
+    def createMapstractionHeader(self,filename):
+        self.mapview = open(filename,"w+")
         self.mapview.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n")
         self.mapview.write("         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n")
         self.mapview.write("<html xmlns=\"http://www.w3.org/1999/xhtml\" >\n")
@@ -848,77 +831,28 @@ class GeoView(HtmlView):
         self.mapview.write("         }\n")
         self.mapview.write("       }\n")
 
-    def createMapstractionTrailer(self,filename):
+    def createMapstractionTrailer(self):
         self.mapview.write(" </body>\n")
         self.mapview.write("</html>\n")
         self.mapview.close()
 
-    def createMapstraction(self,filename,displaytype):
-        self.createMapstractionHeader()
-        if displaytype == "places":
-            self.createMapstractionPlaces(self.dbstate)
-        elif displaytype == "family":
-            self.createMapstractionFamily(self.dbstate)
-        elif displaytype == "person":
-            self.createMapstractionPerson(self.dbstate)
-        elif displaytype == "event":
-            self.createMapstractionEvents(self.dbstate)
-        else:
-            self.createMapstractionNotImplemented(self.dbstate)
-        self.createMapstractionTrailer(filename)
-
-    def append_to_places_list(self, Place, evttype, name, lat, long, descr, center, year):
-        self.place_list.append([Place, name, evttype, lat, long, descr, int(center), year])
-
-        a = float(lat)
-        b = float(long)
-        if not year == None:
-            c = int(year)
-            if c != 0:
-                if c < self.minyear:
-                    self.minyear = c
-                if c > self.maxyear:
-                    self.maxyear = c
-
-        if self.minlat == 0.0:
-            self.minlat = a
-        if a < self.minlat:
-            self.minlat = a
-        if self.maxlat == 0.0:
-            self.maxlat = a
-        if a > self.maxlat:
-            self.maxlat = a
-
-        if self.minlon == 0.0:
-            self.minlon = b
-        if b < self.minlon:
-            self.minlon = b
-        if self.maxlon == 0.0:
-            self.maxlon = b
-        if b > self.maxlon:
-            self.maxlon = b
-
-    def isyearnotinmarker(self,allyears,year):
-        ret = 1
-        for y in allyears:
-            if year == y:
-                ret = 0
-        return ret
-
-    def create_markers(self,format):
+    def create_pages(self,type,h3mess,h4mess):
+        nbmarkers = 0
+        self.nbpages = 0
+        pages = ( self.nbmarkers / NB_MARKERS_PER_PAGE ) + 1
+        if (nbmarkers % NB_MARKERS_PER_PAGE) == 0:
+            try:
+                self.createMapstractionTrailer()
+            except:
+                pass
+        # Select the center of the map and the zoom
         self.centered = 0
-        margin = 10
-        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % 
-                           ( ( self.width - margin*4 ), ( self.height * 0.74 )))
-        self.mapview.write("  <script type=\"text/javascript\">\n")
-        self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
-        self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
-        self.mapview.write("overview: true, scale: true, map_type: true });\n")
-        sort = sorted(self.place_list)
-        last = ""
-        indm=0
-        divclose=1
-        # Calculate the zoom. all places must be displayed on the map.
+        if   type == 2:
+            # Sort by year for events
+            self.sort = sorted(self.place_list, key=operator.itemgetter(7))
+        else:
+            # Sort by place
+            self.sort = sorted(self.place_list)
         if self.minlon < 0.0:
             signminlon=1
         else:
@@ -943,17 +877,8 @@ class GeoView(HtmlView):
             maxlat=abs(abs(self.minlat)-abs(self.maxlat))
         else:
             maxlat=abs(abs(self.minlat)+abs(self.maxlat))
+        # Calculate the zoom. all places must be displayed on the map.
         zoomlat=2
-        LOG.debug( "self.maxlon = %f\n" % self.maxlon)
-        LOG.debug("self.minlon = %f\n" % self.minlon)
-        LOG.debug("self.maxlat = %f\n" % self.maxlat)
-        LOG.debug("self.minlat = %f\n" % self.minlat)
-        LOG.debug("signminlon = %f\n" % signminlon )
-        LOG.debug("signmaxlon = %f\n" % signmaxlon )
-        LOG.debug("signminlat = %f\n" % signminlat )
-        LOG.debug("signmaxlat = %f\n" % signmaxlat )
-        LOG.debug("maxlong = %f\n" % maxlong)
-        LOG.debug("maxlat = %f\n" % maxlat)
         if maxlat < 80.0 :
             zoomlat = 3
         if maxlat < 40.0 :
@@ -1002,155 +927,230 @@ class GeoView(HtmlView):
         else:
            self.zoom = zoomlong
         self.zoom -= 1
-        LOG.debug("zoomlat = %f\n" % zoomlat)
-        LOG.debug("zoomlong = %f\n" % zoomlong)
-        LOG.debug("self.zoom = %f\n" % self.zoom)
-        # We could center the map on a point at the center of all markers
-        centerlat = maxlat/2
-        centerlon = maxlong/2
-        self.mustcenter = False
-        yearinmarker = []
-        for mark in sort:
-            if indm > 1000:
-                from QuestionDialog import WarningDialog
-                WarningDialog(
-                    _('Be careful: You have more than 1000 markers!'), 
-                    _("This means it could take a while to see the map on the HtmlView.\n"
-                      "This functionality use 100% of cpu during this phase."
-                      "A high cpu temperature could power off the machine.\n"
-                      ))
-		break
-            if last != mark[0]:
-                years=""
-                if last != "":
-                    self.mapview.write("</div>\");")
-                    if mark[2]:
-                        for y in yearinmarker:
-                            years += "%d " % y
-                    years += "end"
-                    self.mapview.write("my_marker.setAttribute('year','%s');" % years)
-                    yearinmarker = []
-                    years=""
-                    self.mapview.write("mapstraction.addMarker(my_marker);\n")
-                    if self.mustcenter:
+        # We center the map on a point at the center of all markers
+        self.centerlat = maxlat/2
+        self.centerlon = maxlong/2
+        for mark in self.sort:
+            cent=int(mark[6])
+            if (cent == 1):
+                self.centered = 1
+                if ( signminlat == 1 and signmaxlat == 1 ):
+                    latit = self.maxlat+self.centerlat
+                elif ( signminlat == 0 and signmaxlat == 0 ): 
+                    latit = self.maxlat-self.centerlat
+                else:
+                    latit = self.maxlat+self.centerlat
+                if ( signminlon == 1 and signmaxlon == 1 ):
+                    longt = self.maxlon-self.centerlon
+                elif ( signminlon == 0 and signmaxlon == 0 ): 
+                    longt = self.maxlon+self.centerlon
+                else:
+                    longt = self.maxlon-self.centerlon
+        self.latit = latit
+        self.longt = longt
+        self.mustcenter = True
+        for page in range(0,pages,1):
+            self.nbpages += 1
+            if   type == 1:
+                ftype = "P"
+            elif type == 2:
+                ftype = "E"
+            elif type == 3:
+                ftype = "F"
+            elif type == 4:
+                ftype = "I"
+            else:
+                ftype = "X"
+            filename = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,self.nbpages)
+            if self.nbpages == 1:
+                self.htmlfile=filename
+            self.createMapstractionHeader(filename)
+            self.createMapstractionPostHeader(h3mess,h4mess,pages,self.nbpages,ftype)
+            first = ( self.nbpages - 1 ) * NB_MARKERS_PER_PAGE 
+            last = ( self.nbpages * NB_MARKERS_PER_PAGE ) - 1
+            self.create_markers(type,first,last)
+            self.createMapstractionTrailer()
+            if self.nbpages == 1:
+                self.open(self.htmlfile)
+
+    def createMapstraction(self,displaytype):
+        if displaytype == "places":
+            self.createMapstractionPlaces(self.dbstate)
+        elif displaytype == "family":
+            self.createMapstractionFamily(self.dbstate)
+        elif displaytype == "person":
+            self.createMapstractionPerson(self.dbstate)
+        elif displaytype == "event":
+            self.createMapstractionEvents(self.dbstate)
+        else:
+            self.createMapstractionHeader(GEOVIEW_SUBPATH+"/error.html")
+            self.createMapstractionNotImplemented(self.dbstate)
+            self.createMapstractionTrailer()
+
+    def append_to_places_list(self, Place, evttype, name, lat, long, descr, center, year):
+        self.place_list.append([Place, name, evttype, lat, long, descr, int(center), year])
+        self.nbmarkers += 1
+
+        a = float(lat)
+        b = float(long)
+        if not year == None:
+            c = int(year)
+            if c != 0:
+                if c < self.minyear:
+                    self.minyear = c
+                if c > self.maxyear:
+                    self.maxyear = c
+
+        if self.minlat == 0.0:
+            self.minlat = a
+        if a < self.minlat:
+            self.minlat = a
+        if self.maxlat == 0.0:
+            self.maxlat = a
+        if a > self.maxlat:
+            self.maxlat = a
+
+        if self.minlon == 0.0:
+            self.minlon = b
+        if b < self.minlon:
+            self.minlon = b
+        if self.maxlon == 0.0:
+            self.maxlon = b
+        if b > self.maxlon:
+            self.maxlon = b
+
+    def isyearnotinmarker(self,allyears,year):
+        ret = 1
+        for y in allyears:
+            if year == y:
+                ret = 0
+        return ret
+
+    def create_markers(self,format,firstm,lastm):
+        margin = 10
+        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; height: %dpx\"></div>\n" % 
+                           ( ( self.width - margin*4 ), ( self.height * 0.74 )))
+        self.mapview.write("  <script type=\"text/javascript\">\n")
+        self.mapview.write("   var mapstraction = new Mapstraction('map','%s');\n"%self.usedmap)
+        self.mapview.write("   mapstraction.addControls({ pan: true, zoom: 'large', ")
+        self.mapview.write("overview: true, scale: true, map_type: true });\n")
+        last = ""
+        indm=0
+        divclose=1
+        self.yearinmarker = []
+        InInterval = False
+        self.setattr = True
+        if self.mustcenter:
+            self.centered = 1
+            self.mapview.write("var point = new LatLonPoint(%s,%s);"%(self.latit,self.longt))
+            self.mapview.write("mapstraction.setCenterAndZoom(point, %s);"%self.zoom)
+            self.setattr = False
+        for mark in self.sort:
+            if ( indm >= firstm ) and ( indm <= lastm ):
+                InInterval = True
+            if InInterval:
+                if last != mark[0]:
+                    self.setattr = True
+                    last = mark[0]
+                    self.mapview.write("\nvar point = new LatLonPoint(%s,%s);"%(mark[3],mark[4]))
+                    self.mapview.write("my_marker = new Marker(point);")
+                    self.mapview.write("gmarkers[%d]=my_marker;" % (indm % NB_MARKERS_PER_PAGE))
+                    indm += 1;
+                    if ( indm > lastm ):
+                        InInterval = False
+                    if ( indm >= firstm ) and ( indm <= lastm ):
+                        self.mapview.write("my_marker.setLabel(\"%s\");"%mark[0])
+                        self.yearinmarker.append(mark[7])
+                        divclose=0
+                        self.mapview.write("my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
+                        if format == 1:
+                            self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
+                        elif format == 2:
+                            self.mapview.write("%s____________<br><br>%s - %s"%(mark[1],mark[7],mark[5]))
+                        elif format == 3:
+                            self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
+                        elif format == 4:
+                            self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
+                else: # This marker already exists. add info.
+                    self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
+                    if self.isyearnotinmarker(self.yearinmarker,mark[7]):
+                        self.yearinmarker.append(mark[7])
+                    cent=int(mark[6])
+                    if (cent == 1):
                         self.centered = 1
-                        self.mapview.write("var point = new LatLonPoint(%s,%s);"%(latit,longt))
-                        self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
-                        self.mustcenter = False
-                last = mark[0]
-                cent=int(mark[6])
-                if (cent == 1):
-                    self.centered = 1
-                    if ( signminlat == 1 and signmaxlat == 1 ):
-                        latit = self.maxlat+centerlat
-                        LOG.debug("latit 1 : %f" % self.maxlat)
-                    elif ( signminlat == 0 and signmaxlat == 0 ): 
-                        latit = self.maxlat-centerlat
-                        LOG.debug("latit 2 : %f" % self.maxlat)
-                    else:
-                        latit = self.maxlat+centerlat
-                        LOG.debug("latit 3 : %f" % self.maxlat)
-                    if ( signminlon == 1 and signmaxlon == 1 ):
-                        longt = self.maxlon-centerlon
-                        LOG.debug("longt 1 : %f" % self.maxlon)
-                    elif ( signminlon == 0 and signmaxlon == 0 ): 
-                        longt = self.maxlon+centerlon
-                        LOG.debug("longt 2 : %f" % self.maxlon)
-                    else:
-                        longt = self.maxlon-centerlon
-                        LOG.debug("longt 3 : %f" % self.maxlon)
-
-                    LOG.debug("latitude centree = %s\n" % latit)
-                    LOG.debug("longitude centree = %s\n" % longt)
-                    self.mapview.write("var point = new LatLonPoint(%s,%s);"%(latit,longt))
-                    self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
-                self.mapview.write("var point = new LatLonPoint(%s,%s);"%(mark[3],mark[4]))
-                self.mapview.write("my_marker = new Marker(point);")
-                self.mapview.write("gmarkers[%d]=my_marker;" % indm)
-                indm+=1;
-                self.mapview.write("my_marker.setLabel(\"%s\");"%mark[0])
-                yearinmarker.append(mark[7])
-                divclose=0
-                self.mapview.write("my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
-                if format == 1:
-                    self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
-                elif format == 2:
-                    self.mapview.write("%s____________<br><br>%s - %s"%(mark[1],mark[7],mark[5]))
-                elif format == 3:
-                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
-                elif format == 4:
-                    self.mapview.write("%s<br>____________<br><br>%s - %s"%(mark[0],mark[7],mark[5]))
-            else: # This marker already exists. add info.
-                self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
-                if self.isyearnotinmarker(yearinmarker,mark[7]):
-                    yearinmarker.append(mark[7])
-                cent=int(mark[6])
-                if (cent == 1):
-                    self.centered = 1
-                    if float(mark[3]) == self.minlat:
-                        if signminlat == 1: 
-                            latit = str(float(mark[3])+centerlat)
-                            LOG.debug("latit 1 1")
+                        if float(mark[3]) == self.minlat:
+                            if signminlat == 1: 
+                                latit = str(float(mark[3])+self.centerlat)
+                            else:
+                                latit = str(float(mark[3])-self.centerlat)
                         else:
-                            latit = str(float(mark[3])-centerlat)
-                            LOG.debug("latit 2 1")
-                    else:
-                        if signminlat == 1: 
-                            latit = str(float(mark[3])-centerlat)
-                            LOG.debug("latit 3 1")
+                            if signminlat == 1: 
+                                latit = str(float(mark[3])-self.centerlat)
+                            else:
+                                latit = str(float(mark[3])+self.centerlat)
+                        if float(mark[4]) == self.minlon:
+                            if signminlon == 1:
+                                longt = str(float(mark[4])+self.centerlon)
+                            else:
+                                longt = str(float(mark[4])-self.centerlon)
                         else:
-                            latit = str(float(mark[3])+centerlat)
-                            LOG.debug("latit 4 1")
-                    if float(mark[4]) == self.minlon:
-                        if signminlon == 1:
-                            longt = str(float(mark[4])+centerlon)
-                            LOG.debug("longt 1 1")
-                        else:
-                            longt = str(float(mark[4])-centerlon)
-                            LOG.debug("longt 2 1")
-                    else:
-                        if signminlon == 1:
-                            longt = str(float(mark[4])-centerlon)
-                            LOG.debug("longt 3 1")
-                        else:
-                            longt = str(float(mark[4])+centerlon)
-                            LOG.debug("longt 4 1")
-                    self.mustcenter = True
-
-        if divclose == 0:
-            self.mapview.write("</div>\");")
+                            if signminlon == 1:
+                                longt = str(float(mark[4])-self.centerlon)
+                            else:
+                                longt = str(float(mark[4])+self.centerlon)
+                if divclose == 0:
+                    if InInterval:
+                        self.mapview.write("</div>\");")
+                years = ""
+                if mark[2]:
+                    for y in self.yearinmarker:
+                        years += "%d " % y
+                years += "end"
+            else:
+                indm += 1
+            if self.setattr:
+                years=""
+                if mark[2]:
+                    for y in self.yearinmarker:
+                        years += "%d " % y
+                years += "end"
+                self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+                self.yearinmarker = []
+                self.mapview.write("mapstraction.addMarker(my_marker);")
+                self.setattr = False
+            if ( self.centered == 0 ):
+                # We have no valid geographic point to center the map.
+                # So you'll see the street where I live.
+                # I think another place should be better :
+                #          Where is the place where the gramps project began ?
+                #
+                # I think we should put here all gramps developpers.
+                # not only me ...
+                #
+                longitude = -1.568792
+                latitude = 47.257971
+                self.mapview.write("\nvar point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
+                self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
+                self.mapview.write("   my_marker = new Marker(point);\n")
+                self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
+                self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
+                self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
+                self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
+                self.mapview.write("   mapstraction.addMarker(my_marker);")
+                self.setattr = False
+        if self.setattr:
+            years = ""
             if mark[2]:
-                for y in yearinmarker:
+                for y in self.yearinmarker:
                     years += "%d " % y
             years += "end"
             self.mapview.write("my_marker.setAttribute('year','%s');" % years)
-            yearinmarker = []
+            self.yearinmarker = []
             years=""
             self.mapview.write("mapstraction.addMarker(my_marker);")
-            if self.mustcenter:
-                self.centered = 1
-                self.mapview.write("var point = new LatLonPoint(%s,%s);"%(self.latit,self.longt))
-                self.mapview.write("mapstraction.setCenterAndZoom(point, %s);\n"%self.zoom)
-        if ( self.centered == 0 ):
-            # We have no valid geographic point to center the map.
-            # So you'll see the street where I live.
-            # I think another place should be better :
-            #          Where is the place where the gramps project began ?
-            #
-            # I think we should put here all gramps developpers.
-            # not only me ...
-            #
-            longitude = -1.568792
-            latitude = 47.257971
-            self.mapview.write("   var point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
-            self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
-            self.mapview.write("   my_marker = new Marker(point);\n")
-            self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
-            self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
-            self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
-            self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
-            self.mapview.write("   mapstraction.addMarker(my_marker);\n")
-        self.mapview.write("  </script>\n")
+            self.setattr = False
+        self.mapview.write("\n  </script>\n")
+
 
     def createPersonMarkers(self,db,person,comment):
         """
@@ -1164,7 +1164,6 @@ class GeoView(HtmlView):
                 birth = db.db.get_event_from_handle(birth_ref.ref)
                 birthdate = birth.get_date_object()
                 birthyear = birthdate.get_year()
-                LOG.debug("birth year = %s" % birthyear)
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
                     place = db.db.get_place_from_handle(bplace_handle)
@@ -1190,7 +1189,6 @@ class GeoView(HtmlView):
                 death = db.db.get_event_from_handle(death_ref.ref)
                 deathdate = death.get_date_object()
                 deathyear = deathdate.get_year()
-                LOG.debug("death year = %s" % deathyear)
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
                     place = db.db.get_place_from_handle(dplace_handle)
@@ -1240,11 +1238,11 @@ class GeoView(HtmlView):
                                                latitude, longitude,
                                                descr1, self.center, None)
                     self.center = 0
-        self.createMapstractionPostHeader()
-        self.mapview.write("  <H3>%s</H3>"%_("All places in the database with coordinates."))
         if self.center == 1:
-            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
-        self.create_markers(1)
+            mess = _("Cannot center the map. No selected location.")
+        else:
+            mess = ""
+        self.create_pages(1,_("All places in the database with coordinates."),mess)
 
     def createMapstractionEvents(self,db):
         """
@@ -1294,11 +1292,11 @@ class GeoView(HtmlView):
                                                    latitude, longitude,
                                                    descr2, self.center, eventyear)
                         self.center = 0
-        self.createMapstractionPostHeader()
-        self.mapview.write("  <H3>%s</H3>"%_("All events in the database with coordinates."))
         if self.center == 1:
-            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
-        self.create_markers(2)
+            mess = _("Cannot center the map. No selected location.")
+        else:
+            mess = ""
+        self.create_pages(2,_("All events in the database with coordinates."),mess)
 
     def createMapstractionFamily(self,db):
         """
@@ -1340,11 +1338,14 @@ class GeoView(HtmlView):
                             comment = "Id : %s : %s %d"%(child.gramps_id,
                                                          _("Child"),index)
                             self.createPersonMarkers(db,child,comment)
-        self.createMapstractionPostHeader()
-        self.mapview.write("  <H3>%s</H3>"%_("All %s people's family places in the database with coordinates.") % _nd.display(person))
         if self.center == 1:
-            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
-        self.create_markers(3)
+            mess = _("Cannot center the map. No selected location.")
+        else:
+            mess = ""
+        self.create_pages(3,
+                          ( _("All %s people's familiy places in the database with coordinates.") % 
+                              _nd.display(person) ),
+                          mess)
 
     def createMapstractionPerson(self,db):
         """
@@ -1366,7 +1367,6 @@ class GeoView(HtmlView):
         self.center = 1
         if person:
             # For each event, if we have a place, set a marker.
-            LOG.debug("event for %s" % person.gramps_id)
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
@@ -1376,7 +1376,6 @@ class GeoView(HtmlView):
                 event = db.db.get_event_from_handle(event_ref.ref)
                 eventdate = event.get_date_object()
                 eventyear = eventdate.get_year()
-                LOG.debug("event year = %s" % eventyear)
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = db.db.get_place_from_handle(place_handle)
@@ -1394,43 +1393,15 @@ class GeoView(HtmlView):
                                                    latitude, longitude,
                                                    descr1, self.center, eventyear)
                         self.center = 0
-        self.createMapstractionPostHeader()
-        self.mapview.write("  <H3>%s</H3>"%_("All event places for %s.") % _nd.display(person))
         if self.center == 1:
-            self.mapview.write("  <H4>%s</H4>"%_("Cannot center the map. No selected location."))
-        self.create_markers(4)
+            mess = _("Cannot center the map. No selected location.")
+        else:
+            mess = ""
+        self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ) ,mess)
 
     def createMapstractionNotImplemented(self,db):
         """
         This function is used to inform the user this work is not implemented.
         """
-        LOG.warning('createMapstractionNotImplemented')
         self.mapview.write("  <H1>%s ...</H1>"%_("Not yet implemented"))
 
-    def createHelp(self,filename):
-        help = open(self.htmlfile,"w")
-        help.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \n")
-        help.write("         \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n")
-        help.write("<html xmlns=\"http://www.w3.org/1999/xhtml\"  >\n")
-        help.write(" <head>\n")
-        help.write("  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"/>\n")
-        help.write("  <title>Geo Maps JavaScript API for Gramps</title>\n")
-        help.write(" </head>\n")
-        help.write(" <body >\n")
-        help.write("  <div id=\"map\" style=\"height: %dpx\">\n" % 600)
-        help.write("   <br><br><br><br><br>\n")
-        help.write("   <H4>")
-        help.write(_("You can choose between two maps. One free and a second one."))
-        help.write("   <br>")
-        help.write(_("The best choice is the free map like openstreetmap."))
-        help.write("   <br>")
-        help.write(_("You should use the second map only if the first one give no results ..."))
-        help.write("   <br>")
-        help.write(_("You can select Edit/Preferences to choose the second map provider."))
-        help.write("   <br>")
-        help.write(_("They are : Googlemaps, Yahoo! maps, Microsoft maps and Openlayers."))
-        help.write("   </H4>")
-        help.write("  </div>\n")
-        help.write(" </body>\n")
-        help.write("</html>\n")
-        help.close()
