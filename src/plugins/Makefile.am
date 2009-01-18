@@ -4,6 +4,7 @@
 # If not using GNU make, then list all .py files individually
 
 SUBDIRS = \
+	docgen \
 	drawreport \
 	export \
 	gramplet \
