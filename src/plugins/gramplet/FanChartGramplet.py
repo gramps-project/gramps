@@ -93,8 +93,10 @@ class FanChartWidget(gtk.Widget):
         self.pixels_per_generation = 50
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
+        ## Other fonts will have different settings. Can you compute that
+        ## from the font size? I have no idea.
         self.generations = generations
-        self.rotate_value = 90
+        self.rotate_value = 90 # initially, put 1st gen male on right half
         self.set_generations(self.generations)
         self.center = 50
         self.layout = self.create_pango_layout('cairo')
@@ -198,7 +200,8 @@ class FanChartWidget(gtk.Widget):
                     name = name_displayer.display(person)
                     gender = person.get_gender()
                     if state > 0:
-                        self.draw_person(cr, gender, name, start, stop, generation, state)
+                        self.draw_person(cr, gender, name, start, stop, 
+                                         generation, state)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
@@ -214,10 +217,6 @@ class FanChartWidget(gtk.Widget):
             cr.save()
             name = name_displayer.display(person)
             self.draw_text(cr, name, self.center - 10, 95, 455)
-            #layout = self.create_pango_layout(name)
-            #layout.set_font_description(pango.FontDescription("sans serif 8"))
-            #cr.move_to(-self.center + 10, -4) # start place for center text
-            #cr.show_layout(layout)
             cr.restore()
         fontw, fonth = self.layout.get_pixel_size()
         cr.move_to((w - fontw - 4), (h - fonth ))
@@ -279,8 +278,8 @@ class FanChartWidget(gtk.Widget):
         # trim to fit:
         text = self.text_limit(text, stop - start, radius - 15)
         # center text:
+        # offset for cairo-font system is 90:
         pos = start + ((stop - start) - self.text_degrees(text, radius))/2.0 + 90
-        # offset for cairo-font system is 90
         x, y, w, h = self.allocation
         cr.save()
         # Create a PangoLayout, set the font and text 
@@ -390,7 +389,6 @@ class FanChartGramplet(Gramplet):
                 start,stop,male,state = self.gui.fan.angle[generation][selected-1]
                 self.gui.fan.angle[generation][selected-1] = [start,start,male,0]
                 self.hide_parents(generation+1, selected-1, start)
-                # now we need to expand each of the slices outward:
         elif gstate == 2: # expanded, let's shrink
             if gmale:
                 # shrink from right
@@ -439,10 +437,16 @@ class FanChartGramplet(Gramplet):
             if radius < self.gui.fan.center:
                 print "TODO: select children"
                 pass # TODO: select children
-            elif e.x > cx: # on right, rotate clockwise
-                self.gui.fan.rotate_value += 90.0
-            else: # on left, rotate counterclockwise
-                self.gui.fan.rotate_value -= 90.0
+            elif e.x > cx: # on right
+                if e.y > cy: # bottom right, rotate clockwise
+                    self.gui.fan.rotate_value += 45.0
+                else: # top right, rotate counter clockwise
+                    self.gui.fan.rotate_value -= 45.0
+            else: # on left
+                if e.y > cy: # bottom left, rotate counter clockwise
+                    self.gui.fan.rotate_value -= 45.0
+                else: # top left, rotate clockwise
+                    self.gui.fan.rotate_value += 45.0
             self.gui.fan.rotate_value %= 360
             self.gui.fan.queue_draw()
             return True
@@ -461,8 +465,7 @@ class FanChartGramplet(Gramplet):
         self.sa = SimpleAccess(self.dbstate.db)
 
     def active_changed(self, handle):
-        # Reset everything
-        #self.gui.fan.rotate_value = 90 # leave angle rotated
+        # Reset everything but rotation angle (leave it as is)
         self.gui.fan.reset_generations()
         self.update()
 
@@ -493,7 +496,7 @@ register(type="gramplet",
          name= "Fan Chart Gramplet", 
          tname=_("Fan Chart Gramplet"), 
          height=430,
-         expand=False,
+         expand=True,
          content = FanChartGramplet,
          detached_height = 550,
          detached_width = 475,
