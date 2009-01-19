@@ -280,6 +280,9 @@ class HtmlView(PageView.PageView):
         PageView.PageView.__init__(self, _('HtmlView'), dbstate, uistate)
         
         self.dbstate = dbstate
+        
+        self.external_url = False
+        self.need_to_resize = False
 
     def build_widget(self):
         """
@@ -339,9 +342,39 @@ class HtmlView(PageView.PageView):
         self.back_action.set_sensitive(self.renderer.can_go_back())
         
     def open(self, url):
+        """ open an url
+        """
         self.renderer.open(url)
         self.set_button_sensitivity()
-        
+
+    def go_back(self, button):
+        self.renderer.go_back();
+        self.set_button_sensitivity()
+        self.external_uri()
+
+    def go_forward(self, button):
+        self.renderer.go_forward();
+        self.set_button_sensitivity()
+        self.external_uri()
+
+    def refresh(self,button):
+        self.renderer.refresh();
+
+    def external_uri(self):
+        uri = self.renderer.get_uri()
+        if self.external_url:
+            self.external_url = False
+            self.need_to_resize = True
+        else:
+            try:
+                if uri.find(self.htmlfile) == -1:
+                    # external web page or start_page
+                    self.need_to_resize = True
+                else:
+                    self.need_to_resize = False
+            except:
+                pass
+
     def _on_activate(self, object):
         url = self.urlfield.get_text()
         if url.find('://') == -1:
@@ -363,8 +396,54 @@ class HtmlView(PageView.PageView):
         """
         return 'gramps-geo'
 
+    def ui_definition(self):
+        """
+        Specifies the UIManager XML code that defines the menus and buttons
+        associated with the interface.
+        """
+        return '''<ui>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+              <toolitem action="Refresh"/>
+            </placeholder>
+          </toolbar>
+        </ui>'''
+
     def define_actions(self):
-        pass
+        """
+        Required define_actions function for PageView. Builds the action
+        group information required. 
+        """
+        HtmlView._define_actions_fw_bw(self)
+    
+    def _define_actions_fw_bw(self):
+        # add the Backward action to handle the Backward button
+        # accel doesn't work in webkit and gtkmozembed !
+        # we must do that ...
+        self.back_action = gtk.ActionGroup(self.title + '/Back')
+        self.back_action.add_actions([
+            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+             "<ALT>Left", _("Go to the previous page in the history"), 
+             self.go_back)
+            ])
+        self._add_action_group(self.back_action)
+ 
+        # add the Forward action to handle the Forward button
+        self.forward_action = gtk.ActionGroup(self.title + '/Forward')
+        self.forward_action.add_actions([
+            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+             "<ALT>Right", _("Go to the next page in the history"), 
+             self.go_forward)
+            ])
+        self._add_action_group(self.forward_action)
+ 
+        # add the Refresh action to handle the Refresh button
+        self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
+                          callback=self.refresh,
+                          accel="<Ctl>R",
+                          tip=_("Stop and reload the page."))
 
     def init_parent_signals_for_map(self, widget, event):
         # required to properly bootstrap the signal handlers.
@@ -416,8 +495,6 @@ class GeoView(HtmlView):
         
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
-        self.external_url = False
-        self.need_to_resize = False
         self.nbmarkers = 0
         self.nbpages = 0
 
@@ -468,34 +545,6 @@ class GeoView(HtmlView):
     def change_map(self,usedmap):
         self.renderer.execute_script("javascript:mapstraction.swap(map,'"+usedmap+"')");
 
-    def refresh(self,button):
-        self.renderer.refresh();
-
-    def external_uri(self):
-        uri = self.renderer.get_uri()
-        if self.external_url:
-            self.external_url = False
-            self.need_to_resize = True
-        else:
-            try:
-                if uri.find(self.htmlfile) == -1:
-                    # external web page or start_page
-                    self.need_to_resize = True
-                else:
-                    self.need_to_resize = False
-            except:
-                pass
-
-    def go_back(self,button):
-        self.renderer.go_back();
-        self.set_button_sensitivity()
-        self.external_uri()
-
-    def go_forward(self,button):
-        self.renderer.go_forward();
-        self.set_button_sensitivity()
-        self.external_uri()
-
     def ui_definition(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
@@ -532,42 +581,10 @@ class GeoView(HtmlView):
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
-        group information required. We extend beyond the normal here,
-        since we want to have more than one action group for the PersonView.
-        Most PageViews really won't care about this.
-
-        Special action groups for Forward and Back are created to allow the
-        handling of navigation buttons. Forward and Back allow the user to
-        advance or retreat throughout the history, and we want to have these
-        be able to toggle these when you are at the end of the history or
-        at the beginning of the history.
+        group information required. 
         """
 
-        # add the Backward action to handle the Backward button
-        # accel doesn't work in webkit and gtkmozembed !
-        # we must do that ...
-        self.back_action = gtk.ActionGroup(self.title + '/Back')
-        self.back_action.add_actions([
-            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
-             "<ALT>Left", _("Go to the previous page in the history"), 
-             self.go_back)
-            ])
-        self._add_action_group(self.back_action)
- 
-        # add the Forward action to handle the Forward button
-        self.forward_action = gtk.ActionGroup(self.title + '/Forward')
-        self.forward_action.add_actions([
-            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
-             "<ALT>Right", _("Go to the next page in the history"), 
-             self.go_forward)
-            ])
-        self._add_action_group(self.forward_action)
- 
-        # add the Refresh action to handle the Refresh button
-        self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
-                          callback=self.refresh,
-                          accel="<Ctl>R",
-                          tip=_("Stop and reload the page."))
+        HtmlView._define_actions_fw_bw(self)
 
         self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
                          callback=self.select_OpenStreetMap_map,
@@ -610,7 +627,6 @@ class GeoView(HtmlView):
                          callback=self.event_places,
                          tip=_("Attempt to view places on the Map for all events."))
 
-        HtmlView.define_actions(self)
 
     def goto_active_person(self,handle=None):
         self.geo_places(self.displaytype)
