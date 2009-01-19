@@ -88,6 +88,13 @@ class DateDisplay:
         "Ramadan", "Shawwal", "Dhu l-Qa`da", "Dhu l-Hijja"
         )
 
+    swedish = (
+        "", "Januari", "Februari", "Mars",
+        "April", "Maj", "Juni",
+        "Juli", "Augusti", "September",
+        "Oktober", "November", "December"
+        )
+
     formats = ("YYYY-MM-DD (ISO)", )
 
     calendar = (
@@ -111,7 +118,7 @@ class DateDisplay:
             self._display_french, 
             self._display_persian, 
             self._display_islamic, 
-            ]
+            self._display_swedish]
 
         self.verify_format(format)
         if format is None:
@@ -320,6 +327,9 @@ class DateDisplay:
 
     def _display_islamic(self, date_val):
         return self._display_calendar(date_val, self.islamic)
+
+    def _display_swedish(self, date_val):
+        return self._display_calendar(date_val, self.swedish)
 
 class DateDisplayEn(DateDisplay):
     """

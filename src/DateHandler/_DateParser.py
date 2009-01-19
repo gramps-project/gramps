@@ -75,6 +75,20 @@ def gregorian_valid(date_tuple):
         valid = False
     return valid
 
+def swedish_valid(date_tuple):
+    valid = gregorian_valid(date_tuple)
+    # not sure how <= and >= works with tuples???
+    date_tuple = (date_tuple[2], date_tuple[1], date_tuple[0])
+    if date_tuple <= (1700,2,28):
+        valid = False 
+    if date_tuple == (1700,2,29):  # leapday 1700 was skipped
+        valid = False 
+    if date_tuple == (1712,2,30):  # extra day was inserted 1712
+        valid = True 
+    if date_tuple >= (1712,3,1):   # back to julian
+        valid = False 
+    return valid
+
 #-------------------------------------------------------------------------
 #
 # Parser class
@@ -156,6 +170,16 @@ class DateParser:
         "bahman"      : 11, "esfand"      : 12,
         }
 
+    swedish_to_int = {
+        "januari"    :  1, "februari"   :  2,
+        "mars"       :  3, "april"      :  4,
+        "maj"        :  5, "juni"       :  6,
+        "juli"       :  7, "augisti"    :  8,
+        "september"  :  9, "oktober"    : 10,
+        "november"   : 11, "december"   : 12,
+        }
+        
+
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC" ]
 
     calendar_to_int = {
@@ -171,7 +195,9 @@ class DateParser:
         'french republican': Date.CAL_FRENCH,
         'f'                : Date.CAL_FRENCH,
         'persian'          : Date.CAL_PERSIAN,
-        'p'                : Date.CAL_PERSIAN,
+        'p'                : Date.CAL_PERSIAN, 
+        'swedish'          : Date.CAL_SWEDISH,
+        's'                : Date.CAL_SWEDISH,
         }
 
     newyear_to_int = {
@@ -199,6 +225,7 @@ class DateParser:
             Date.CAL_PERSIAN   : self._parse_persian,
             Date.CAL_HEBREW    : self._parse_hebrew,
             Date.CAL_ISLAMIC   : self._parse_islamic,
+            Date.CAL_SWEDISH   : self._parse_swedish,
             }
 
         fmt = GrampsLocale.tformat
@@ -246,6 +273,7 @@ class DateParser:
         self._fmon_str = self.re_longest_first(self.french_to_int.keys())
         self._pmon_str = self.re_longest_first(self.persian_to_int.keys())
         self._imon_str = self.re_longest_first(self.islamic_to_int.keys())
+        self._smon_str = self.re_longest_first(self.swedish_to_int.keys())
         self._cal_str  = self.re_longest_first(self.calendar_to_int.keys())
         self._ny_str = self.re_longest_first(self.newyear_to_int.keys())
 
@@ -293,6 +321,10 @@ class DateParser:
                                     re.IGNORECASE)
         self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._imon_str,
                                     re.IGNORECASE)
+        self._stext     = re.compile('%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._smon_str,
+                                    re.IGNORECASE)
+        self._stext2    = re.compile('(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$' % self._smon_str,
+                                    re.IGNORECASE)
         self._numeric  = re.compile("((\d+)[/\.]\s*)?((\d+)[/\.]\s*)?(\d+)\s*$")
         self._iso      = re.compile("(\d+)(/(\d+))?-(\d+)-(\d+)\s*$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
@@ -327,6 +359,10 @@ class DateParser:
     def _parse_greg_julian(self, text):
         return self._parse_calendar(text, self._text, self._text2,
                                     self.month_to_int, gregorian_valid)
+    def _parse_swedish(self, text):
+        return self._parse_calendar(text, self._stext, self._stext2,
+                                    self.swedish_to_int,swedish_valid)
+
                              
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
@@ -390,13 +426,20 @@ class DateParser:
 
         if subparser == self._parse_greg_julian:
             check = gregorian_valid
+        if subparser == self._parse_swedish:
+            check = swedish_valid
         else:
             check = None
-            
+        
         value = subparser(text)
         if value != Date.EMPTY:
             return value
-        
+        # if 8 digits are entered and month and day in range
+        # assume yyyymmdd and convert to yyyy-mm-dd
+        if len(text) == 8 and text.isdigit() \
+            and (int(text[4:6]) in range(1,13)) \
+            and (int(text[6:8]) in range(1,32)):
+            text = text[0:4] + "-" + text[4:6] + "-" + text[6:8]
         match = self._iso.match(text)
         if match:
             groups = match.groups()

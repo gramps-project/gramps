@@ -59,6 +59,7 @@ pkgdata_PYTHON = \
 	_MultipleMarriages.py \
 	_NeverMarried.py \
 	_NoBirthdate.py \
+	_NoDeathdate.py \
 	_PeoplePrivate.py \
 	_PersonWithIncompleteEvent.py \
 	_ProbablyAlive.py \

@@ -1,4 +1,4 @@
-#
+ #
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
@@ -53,8 +53,10 @@ log = logging.getLogger(".Date")
 #------------------------------------------------------------------------
 from gen.lib.calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                               french_sdn, persian_sdn, islamic_sdn, 
+                              swedish_sdn,
                               gregorian_ymd, julian_ymd, hebrew_ymd, 
-                              french_ymd, persian_ymd, islamic_ymd)
+                              french_ymd, persian_ymd, islamic_ymd,
+                              swedish_ymd)
 import Config
 
 #-------------------------------------------------------------------------
@@ -601,6 +603,7 @@ class Date:
     CAL_FRENCH     = 3
     CAL_PERSIAN    = 4
     CAL_ISLAMIC    = 5
+    CAL_SWEDISH    = 6
 
     NEWYEAR_JAN1   = 0 # CODE
     NEWYEAR_MAR1   = 1
@@ -625,6 +628,7 @@ class Date:
         french_sdn, 
         persian_sdn, 
         islamic_sdn, 
+        swedish_sdn, 
         ]
 
     _calendar_change = [
@@ -634,6 +638,7 @@ class Date:
         french_ymd, 
         persian_ymd, 
         islamic_ymd, 
+        swedish_ymd, 
         ]
 
     calendar_names = ["Gregorian", 
@@ -641,7 +646,8 @@ class Date:
                       "Hebrew", 
                       "French Republican", 
                       "Persian", 
-                      "Islamic"]
+                      "Islamic", 
+                      "Swedish"]
 
 
     ui_calendar_names = [_("Gregorian"), 
@@ -649,7 +655,8 @@ class Date:
                          _("Hebrew"), 
                          _("French Republican"), 
                          _("Persian"), 
-                         _("Islamic")]
+                         _("Islamic"),
+                         _("Swedish")]
 
     def __init__(self, *source, **kwargs):
         """
@@ -1099,6 +1106,7 @@ class Date:
            CAL_FRENCH     - French Republican calendar
            CAL_PERSIAN    - Persian calendar
            CAL_ISLAMIC    - Islamic calendar
+           CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
         """
         return self.calendar
 
@@ -1107,7 +1115,7 @@ class Date:
         Set the calendar selected for the date.
         """
         if val not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_HEBREW, 
-                       Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC):
+                       Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC, Date-CAL_SWEDISH):
             raise DateError("Invalid calendar")
         self.calendar = val
 
@@ -1399,7 +1407,8 @@ class Date:
             raise DateError("Invalid quality")
         if calendar not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN,
                             Date.CAL_HEBREW, Date.CAL_FRENCH,
-                            Date.CAL_PERSIAN, Date.CAL_ISLAMIC):
+                            Date.CAL_PERSIAN, Date.CAL_ISLAMIC,
+                            Date.CAL_SWEDISH):
             raise DateError("Invalid calendar")
 
         self.quality = quality
