@@ -88,7 +88,6 @@ from _MissingParent import MissingParent
 from _MultipleMarriages import MultipleMarriages
 from _NeverMarried import NeverMarried
 from _NoBirthdate import NoBirthdate
-from _NoDeathdate import NoDeathdate
 from _PeoplePrivate import PeoplePrivate
 from _PersonWithIncompleteEvent import PersonWithIncompleteEvent
 from _ProbablyAlive import ProbablyAlive
@@ -136,7 +135,6 @@ editor_rule_list = [
     NeverMarried,
     MultipleMarriages,
     NoBirthdate,
-    NoDeathdate,
     PersonWithIncompleteEvent,
     FamilyWithIncompleteEvent,
     ProbablyAlive,
