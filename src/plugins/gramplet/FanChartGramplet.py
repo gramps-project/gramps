@@ -18,6 +18,21 @@
 
 # $Id$
 
+## Based on the paper:
+##   http://www.cs.utah.edu/~draperg/research/fanchart/draperg_FHT08.pdf
+## and the applet:
+##   http://www.cs.utah.edu/~draperg/research/fanchart/demo/
+
+## Found by redwood:
+## http://www.gramps-project.org/bugs/view.php?id=2611
+
+## TODO:
+##    1) add arrows to show rotation ability (click on background)
+##    2) add center popup to pick center's children
+##    3) perhaps right-click shows choice to edit, or make active, quick views, 
+##       etc
+##    4) add animations
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -53,6 +68,10 @@ from DataViews import Gramplet, register
 #
 #-------------------------------------------------------------------------
 class FanChartWidget(gtk.Widget):
+    """
+    Widget to do most of the FanChart work. Some of this is currently in
+    the Gramplet (below) but should probably be moved here.
+    """
     BORDER_WIDTH = 10
     __gsignals__ = { 'realize':          'override',
                      'expose-event' :    'override',
@@ -82,9 +101,15 @@ class FanChartWidget(gtk.Widget):
         self.layout.set_font_description(pango.FontDescription("sans serif 8"))
 
     def reset_generations(self):
+        """
+        Reset all of the data on where slices appear, and if they are expanded.
+        """
         self.set_generations(self.generations)
 
     def set_generations(self, generations):
+        """
+        Set the generations to max, and fill data structures with initial data.
+        """
         self.generations = generations
         self.angle = {}
         self.data = {}
@@ -101,6 +126,9 @@ class FanChartWidget(gtk.Widget):
                 gender = not gender
                                            
     def do_realize(self):
+        """
+        Overriden method to handle the realize event.
+        """
         self.set_flags(self.flags() | gtk.REALIZED)
         self.window = gdk.Window(self.get_parent_window(),
                                  width=self.allocation.width,
@@ -120,11 +148,17 @@ class FanChartWidget(gtk.Widget):
         self.window.move_resize(*self.allocation)
 
     def do_size_request(self, requisition):
+        """
+        Overridden method to handle size request events.
+        """
 	width, height = self.layout.get_size()
 	requisition.width = (width // pango.SCALE + self.BORDER_WIDTH*4)* 1.45
 	requisition.height = (3 * height // pango.SCALE + self.BORDER_WIDTH*4) * 1.2
 
     def do_size_allocate(self, allocation):
+        """
+        Overridden method to handle size allocation events.
+        """
         self.allocation = allocation
         if self.flags() & gtk.REALIZED:
             self.window.move_resize(*allocation)
@@ -139,6 +173,9 @@ class FanChartWidget(gtk.Widget):
                                 self.layout)
 
     def do_expose_event(self, event):
+        """
+        Overridden method to handle expose events.
+        """
         try:
             cr = self.window.cairo_create()
         except AttributeError:
@@ -146,6 +183,9 @@ class FanChartWidget(gtk.Widget):
         return self._expose_cairo(event, cr)
 
     def _expose_cairo(self, event, cr):
+        """
+        The main method to do the drawing.
+        """
         x, y, w, h = self.allocation
         cr.translate(w/2., h/2.)
         cr.save()
@@ -208,7 +248,10 @@ class FanChartWidget(gtk.Widget):
         cr.line_to(0, 0)
         cr.arc(0, 0, radius, start_rad, stop_rad) 
         cr.line_to(0, 0)
-        cr.set_line_width(state)
+        if state == 1: # normal
+            cr.set_line_width(1)
+        else: # expanded
+            cr.set_line_width(3)
         cr.stroke()
         self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
                        start, stop)
@@ -220,6 +263,10 @@ class FanChartWidget(gtk.Widget):
         return 360.0 * len(text)/(radius * self.degrees_per_radius)
 
     def text_limit(self, text, degrees, radius):
+        """
+        Trims the text to fit a given angle at a given radius. Probably 
+        a better way to do this.
+        """
         while self.text_degrees(text, radius) > degrees:
             text = text[:-1]
         return text
@@ -254,7 +301,12 @@ class FanChartWidget(gtk.Widget):
         cr.restore()
 
 class FanChartGramplet(Gramplet):
+    """
+    The Gramplet code that realizes the FanChartWidget. Some of this should be moved to
+    the widget itself.
+    """
     def init(self):
+        self.set_tooltip("Click to expand/contract person\nRight-click to make person active")
         self.generations = 6
         self.gui.fan = FanChartWidget(self.generations)
         self.gui.get_container_widget().remove(self.gui.textview)
@@ -264,36 +316,20 @@ class FanChartGramplet(Gramplet):
         container.connect("button-press-event", self.on_mouse_down)
         self.gui.fan.show()
 
-    def expand_parents(self, generation, selected, to_right):
-        print "expanding", generation, selected
+    def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        if to_right:
-            start,stop,male,state = self.gui.fan.angle[generation][selected]
-            current = start
-            if state > 0:
-                slice = (stop - start) * 2.0
-                current = start+slice
-                self.gui.fan.angle[generation][selected] = [start,current,male,state]
-                self.expand_parents(generation + 1, selected, to_right)
-            start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-            if state > 0:
-                slice = (stop - start) * 2.0
-                self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
-                self.expand_parents(generation + 1, selected+1, to_right)
-        else: # expand to left
-            start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-            current = stop
-            if state > 0:
-                slice = (stop - start) * 2.0
-                current = stop-slice
-                self.gui.fan.angle[generation][selected+1] = [current,stop,male,state]
-                self.expand_parents(generation + 1, selected+1, to_right)
-            start,stop,male,state = self.gui.fan.angle[generation][selected]
-            if state > 0:
-                slice = (stop - start) * 2.0
-                self.gui.fan.angle[generation][selected] = [current-slice,current,male,state]
-                self.expand_parents(generation + 1, selected, to_right)
+        start,stop,male,state = self.gui.fan.angle[generation][selected]
+        if state > 0:
+            slice = (stop - start) * 2.0
+            self.gui.fan.angle[generation][selected] = [current,current+slice,male,state]
+            self.expand_parents(generation + 1, selected, current)
+            current += slice
+        start,stop,male,state = self.gui.fan.angle[generation][selected+1]
+        if state > 0:
+            slice = (stop - start) * 2.0
+            self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
+            self.expand_parents(generation + 1, selected+1, current)
 
     def show_parents(self, generation, selected, angle):
         if generation >= self.generations: return
@@ -306,7 +342,7 @@ class FanChartGramplet(Gramplet):
         self.gui.fan.angle[generation][selected+1][0] = angle + slice
         self.gui.fan.angle[generation][selected+1][1] = angle + slice + slice
         self.gui.fan.angle[generation][selected+1][3] = 1
-        self.show_parents(generation+1, selected + 1, angle)
+        self.show_parents(generation+1, selected + 1, angle + slice)
 
     def hide_parents(self, generation, selected, angle):
         if generation >= self.generations: return
@@ -320,36 +356,20 @@ class FanChartGramplet(Gramplet):
         self.gui.fan.angle[generation][selected+1][3] = 0
         self.hide_parents(generation + 1, selected+1, angle)
 
-    def shrink_parents(self, generation, selected, from_right):
-        print "shrinking", generation, selected
+    def shrink_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        if from_right:
-            start,stop,male,state = self.gui.fan.angle[generation][selected]
-            current = start
-            if state > 0:
-                slice = (stop - start) / 2.0
-                current = start+slice
-                self.gui.fan.angle[generation][selected] = [start,current,male,state]
-                self.shrink_parents(generation + 1, selected, from_right)
-            start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-            if state > 0:
-                slice = (stop - start) / 2.0
-                self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
-                self.shrink_parents(generation + 1, selected+1, from_right)
-        else: # shrink from left
-            start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-            current = stop
-            if state > 0:
-                slice = (stop - start) / 2.0
-                current = stop-slice
-                self.gui.fan.angle[generation][selected+1] = [current,stop,male,state]
-                self.shrink_parents(generation + 1, selected+1, from_right)
-            start,stop,male,state = self.gui.fan.angle[generation][selected]
-            if state > 0:
-                slice = (stop - start) / 2.0
-                self.gui.fan.angle[generation][selected] = [current-slice,current,male,state]
-                self.shrink_parents(generation + 1, selected, from_right)
+        start,stop,male,state = self.gui.fan.angle[generation][selected]
+        if state > 0:
+            slice = (stop - start) / 2.0
+            self.gui.fan.angle[generation][selected] = [current, current + slice, male,state]
+            self.shrink_parents(generation + 1, selected, current)
+            current = current + slice
+        start,stop,male,state = self.gui.fan.angle[generation][selected+1]
+        if state > 0:
+            slice = (stop - start) / 2.0
+            self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
+            self.shrink_parents(generation + 1, selected+1, current)
 
     def change_slice(self, generation, selected):
         gstart, gstop, gmale, gstate = self.gui.fan.angle[generation][selected]
@@ -358,6 +378,7 @@ class FanChartGramplet(Gramplet):
                 # go to right
                 stop = gstop + (gstop - gstart)
                 self.gui.fan.angle[generation][selected] = [gstart,stop,gmale,2]
+                self.expand_parents(generation + 1, selected, gstart)
                 start,stop,male,state = self.gui.fan.angle[generation][selected+1]
                 self.gui.fan.angle[generation][selected+1] = [stop,stop,male,0]
                 self.hide_parents(generation+1, selected+1, stop)
@@ -365,17 +386,18 @@ class FanChartGramplet(Gramplet):
                 # go to left
                 start = gstart - (gstop - gstart)
                 self.gui.fan.angle[generation][selected] = [start,gstop,gmale,2]
+                self.expand_parents(generation + 1, selected, start)
                 start,stop,male,state = self.gui.fan.angle[generation][selected-1]
                 self.gui.fan.angle[generation][selected-1] = [start,start,male,0]
                 self.hide_parents(generation+1, selected-1, start)
-            # now we need to expand each of the slices outward:
-            self.expand_parents(generation + 1, selected, gmale)
+                # now we need to expand each of the slices outward:
         elif gstate == 2: # expanded, let's shrink
             if gmale:
                 # shrink from right
                 slice = (gstop - gstart)/2.0
                 stop = gstop - slice
                 self.gui.fan.angle[generation][selected] = [gstart,stop,gmale,1]
+                self.shrink_parents(generation+1, selected, gstart)
                 start,stop,male,state = self.gui.fan.angle[generation][selected+1]
                 self.gui.fan.angle[generation][selected+1] = [stop-slice,stop,male,1]
                 self.show_parents(generation+1, selected+1, stop-slice)
@@ -384,11 +406,10 @@ class FanChartGramplet(Gramplet):
                 slice = (gstop - gstart)/2.0
                 start = gstop - slice
                 self.gui.fan.angle[generation][selected] = [start,gstop,gmale,1]
+                self.shrink_parents(generation+1, selected, start)
                 start,stop,male,state = self.gui.fan.angle[generation][selected-1]
                 self.gui.fan.angle[generation][selected-1] = [start,start+slice,male,1]
                 self.show_parents(generation+1, selected-1, start)
-            # now we need to shrink each of the slices outward:
-            self.shrink_parents(generation + 1, selected, gmale)
 
     def on_mouse_down(self, widget, e):
         # compute angle, radius, find out who would be there (rotated)
@@ -414,12 +435,9 @@ class FanChartGramplet(Gramplet):
                 if start <= pos <= stop:
                     selected = p
                     break
-        print "---------------"
-        print "   angle:", pos
-        print "   generation:", generation
-        print "   selected:", selected
         if selected == None: 
             if radius < self.gui.fan.center:
+                print "TODO: select children"
                 pass # TODO: select children
             elif e.x > cx: # on right, rotate clockwise
                 self.gui.fan.rotate_value += 90.0
@@ -428,12 +446,14 @@ class FanChartGramplet(Gramplet):
             self.gui.fan.rotate_value %= 360
             self.gui.fan.queue_draw()
             return True
-        self.change_slice(generation, selected)
-        person = self.gui.fan.data[generation][selected]
-        if person:
-            name = name_displayer.display(person)
-            print name, start, stop
-                #self.dbstate.change_active_person(person)
+        # Do things based on state, e.state, or button, e.button
+        if e.button == 1: # left mouse
+            self.change_slice(generation, selected)
+        elif e.button == 3: # right mouse
+            person = self.gui.fan.data[generation][selected]
+            if person:
+                name = name_displayer.display(person)
+                self.dbstate.change_active_person(person)
         self.gui.fan.queue_draw()
         return True
 
@@ -442,11 +462,14 @@ class FanChartGramplet(Gramplet):
 
     def active_changed(self, handle):
         # Reset everything
-        self.gui.fan.rotate_value = 90
+        #self.gui.fan.rotate_value = 90 # leave angle rotated
         self.gui.fan.reset_generations()
         self.update()
 
     def main(self):
+        """
+        Fill the data structures with the active data. This initializes all data.
+        """
         self.gui.fan.data[0][0] = self.dbstate.get_active_person()
         for current in range(1, self.generations):
             parent = 0
@@ -461,6 +484,11 @@ class FanChartGramplet(Gramplet):
                 parent += 1
         self.gui.fan.queue_draw()
 
+#-------------------------------------------------------------------------
+#
+# Register the Gramplet
+#
+#-------------------------------------------------------------------------
 register(type="gramplet", 
          name= "Fan Chart Gramplet", 
          tname=_("Fan Chart Gramplet"), 
