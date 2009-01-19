@@ -144,6 +144,17 @@ src/GrampsLocale/Makefile
 src/PluginUtils/Makefile
 src/ReportBase/Makefile
 src/plugins/Makefile
+src/plugins/docgen/Makefile
+src/plugins/drawreport/Makefile
+src/plugins/export/Makefile
+src/plugins/gramplet/Makefile
+src/plugins/graph/Makefile
+src/plugins/import/Makefile
+src/plugins/quickview/Makefile
+src/plugins/rel/Makefile
+src/plugins/textreport/Makefile
+src/plugins/tool/Makefile
+src/plugins/webreport/Makefile
 src/DateHandler/Makefile
 src/widgets/Makefile
 src/gen/Makefile

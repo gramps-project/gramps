@@ -19,7 +19,7 @@ pkgdata_PYTHON = \
 	NumberOfAncestorsReport.py\
 	PlaceReport.py\
 	SimpleBookTitle.py\
-	Summary.py\
+	Summary.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport
 pkgpythondir = @pkgpythondir@/plugins/textreport

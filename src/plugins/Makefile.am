@@ -25,7 +25,7 @@ pkgdata_PYTHON = \
 	ImportGpkg.py\
 	ImportXml.py\
 	Records.py\
-	WebCal.py\
+	WebCal.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins

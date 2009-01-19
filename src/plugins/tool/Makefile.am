@@ -31,10 +31,9 @@ pkgdata_PYTHON = \
 	SortEvents.py \
 	SoundGen.py \
 	Verify.py
-	
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \
-#	TestcaseGenerator.py \
+#	TestcaseGenerator.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/tool
 pkgpythondir = @pkgpythondir@/plugins/tool
