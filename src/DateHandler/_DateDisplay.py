@@ -99,7 +99,7 @@ class DateDisplay:
 
     calendar = (
         "", "Julian", "Hebrew", "French Republican", 
-        "Persian", "Islamic"
+        "Persian", "Islamic", "Swedish" 
         )
 
     newyear = ("", "Mar1", "Mar25", "Sep1")
