@@ -243,6 +243,8 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.stop_month_box.set_sensitive(0)
             self.stop_year.set_sensitive(0)
 
+        self.dual_dated = self.top.get_widget('dualdated')
+
         # Disable the rest of controls if a text-only date
         if self.date.get_modifier() == Date.MOD_TEXTONLY:
             self.start_day.set_sensitive(0)
@@ -256,7 +258,6 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.text_entry = self.top.get_widget('date_text_entry')
         self.text_entry.set_text(self.date.get_text())
 
-        self.dual_dated = self.top.get_widget('dualdated')
         if self.date.get_slash():
             self.dual_dated.set_active(1)
             self.calendar_box.set_sensitive(0)
