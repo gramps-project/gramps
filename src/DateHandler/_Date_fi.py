@@ -87,6 +87,8 @@ class DateParserFI(DateParser):
         u'ranskan v.'      : Date.CAL_FRENCH, 
         u'persialainen'    : Date.CAL_PERSIAN, 
         u'pers.'           : Date.CAL_PERSIAN, 
+        u'svensk'          : Date.CAL_SWEDISH, 
+        u's'               : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
@@ -117,7 +119,9 @@ class DateDisplayFI(DateDisplay):
 	u"(heprealainen)", 
         u"(ranskan v.)", 
 	u"(persialainen)", 
-	u"(islamilainen)")
+	u"(islamilainen)", 
+    u" (svensk)" 
+    )
 
     _qual_str = (u"", u"arviolta", u"laskettuna")
     

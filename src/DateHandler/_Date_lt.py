@@ -68,6 +68,8 @@ class DateParserLT(DateParser):
         u'r'                 : Date.CAL_FRENCH, 
         u'persų'             : Date.CAL_PERSIAN, 
         u'p'             : Date.CAL_PERSIAN, 
+        u'swedish'      : Date.CAL_SWEDISH, 
+        u's'            : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
@@ -102,7 +104,8 @@ class DateDisplayLT(DateDisplay):
         u" (hebrajų)", 
         u" (prancuzų respublikos)", 
         u" (persų)", 
-        u" (islamo)"
+        u" (islamo)", 
+        u" (swedish)" 
         )
 
     _mod_str = (u"", 

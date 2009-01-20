@@ -80,6 +80,8 @@ class DateParserNb(DateParser):
         u'f'                   : Date.CAL_FRENCH, 
         u'persisk'             : Date.CAL_PERSIAN, 
         u'p'                   : Date.CAL_PERSIAN, 
+        u'svensk'              : Date.CAL_SWEDISH, 
+        u's'                   : Date.CAL_SWEDISH, 
         }
     
     quality_to_int = {
@@ -119,7 +121,8 @@ class DateDisplayNb(DateDisplay):
         " (hebraisk)", 
         " (fransk republikansk)", 
         " (persisk)", 
-        " (islamisk)"
+        " (islamisk)", 
+        " (svensk)" 
         )
     
     _mod_str = ("", u"før ", u"etter ", u"ca ", "", "", "")

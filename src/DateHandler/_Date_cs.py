@@ -69,6 +69,8 @@ class DateParserCZ(DateParser):
         u'r'             : Date.CAL_FRENCH, 
         u'perský'       : Date.CAL_PERSIAN, 
         u'p'             : Date.CAL_PERSIAN, 
+        u'swedish'       : Date.CAL_SWEDISH, 
+        u's'             : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
@@ -100,7 +102,8 @@ class DateDisplayCZ(DateDisplay):
 
     calendar = (
         "", u" (juliánský)", u" (hebrejský)", 
-        u" (republikánský)", u" (perský)", u" (islámský)"
+        u" (republikánský)", u" (perský)", u" (islámský)", 
+        u" (swedish)" 
         )
 
     _mod_str = ("", u"před ", u"po ", u"kolem ", "", "", "")

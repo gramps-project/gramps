@@ -99,6 +99,8 @@ class DateParserDE(DateParser):
         u'französisch republikanisch': Date.CAL_FRENCH, 
         u'franz.'         : Date.CAL_FRENCH, 
         u'persisch'       : Date.CAL_PERSIAN, 
+        u'schwedisch'     : Date.CAL_SWEDISH, 
+        u's'              : Date.CAL_SWEDISH, 
         }
 
     quality_to_int = {
@@ -134,7 +136,8 @@ class DateDisplayDE(DateDisplay):
 
     calendar = (
         "", u" (julianisch)", u" (hebräisch)", 
-        u" (französisch republikanisch)", u" (persisch)", u" (islamisch)"
+        u" (französisch republikanisch)", u" (persisch)", u" (islamisch)", 
+        u" (schwedisch)" 
         )
 
     _mod_str = ("", u"vor ", u"nach ", u"etwa ", "", "", "")
