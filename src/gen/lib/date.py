@@ -1115,7 +1115,7 @@ class Date:
         Set the calendar selected for the date.
         """
         if val not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_HEBREW, 
-                       Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC, Date-CAL_SWEDISH):
+                       Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC, Date.CAL_SWEDISH):
             raise DateError("Invalid calendar")
         self.calendar = val
 
