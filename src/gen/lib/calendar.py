@@ -549,21 +549,3 @@ def swedish_ymd(sdn):
     if sdn == 2346425:
         return (1712,2,30)
     return julian_ymd(sdn+1)
-"""
-print "1700-02-28J=", julian_sdn(1700,2,28)
-print "1700-02-29S=", swedish_sdn(1700,2,29)
-print "1700-03-01S=", swedish_sdn(1700,3,1)
-print
-print "1712-02-29S=", swedish_sdn(1712,2,29)
-print "1712-02-30S=", swedish_sdn(1712,2,30)
-print "1712-03-01J=", julian_sdn(1712,3,1)
-print
-print "1753-02-17J=", julian_sdn(1753,2,17)
-print "1753-03-01G=", gregorian_sdn(1753,3,1)
-print
-print "2346424S=", swedish_ymd(2346424)
-print "2346425S=", swedish_ymd(2346425)
-print "2346426J=", julian_ymd(2346426)
-print
-quit()
-"""
