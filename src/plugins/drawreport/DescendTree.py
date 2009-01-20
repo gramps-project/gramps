@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009  Craig J. Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,11 +51,15 @@ cm2pt = ReportUtils.cm2pt
 #
 #------------------------------------------------------------------------
 _BORN = _('short for born|b.')
+_MARR = _('short for married|m.')
 _DIED = _('short for died|d.')
 
 _LINE_HORIZONTAL = 1
 _LINE_VERTICAL   = 2
 _LINE_ANGLE      = 3
+
+_PERSON_DIRECT = 1
+_PERSON_SPOUSE = 2
 
 #------------------------------------------------------------------------
 #
@@ -63,20 +68,21 @@ _LINE_ANGLE      = 3
 #------------------------------------------------------------------------
 class GenChart:
 
-    def __init__(self,generations):
+    def __init__(self, generations):
         self.generations = generations
         self.map = {}
         
         self.array = {}
+        self.sparray = {}
         self.max_x = 0
         self.max_y = 0
         
-    def get_xy(self,x,y):
+    def get_xy(self, x, y):
         if y not in self.array:
             return 0
         return self.array[y].get(x,0)
 
-    def set_xy(self,x,y,value):
+    def set_xy(self, x, y, value):
         self.max_x = max(self.max_x,x)
         self.max_y = max(self.max_y,y)
 
@@ -84,10 +90,22 @@ class GenChart:
             self.array[y] = {}
         self.array[y][x] = value
 
-    def dimensions(self):
-        return (self.max_y+1,self.max_x+1)
+    def get_sp(self, col_x, row_y):
+        """gets whether person at x,y
+        is a direct descendent or a spouse"""
+        if (col_x, row_y) not in self.sparray:
+            return None
+        return self.sparray[col_x, row_y]
 
-    def not_blank(self,line):
+    def set_sp(self, col_x, row_y, value):
+        """sets whether person at x,y
+        is a direct descendent or a spouse"""
+        self.sparray[col_x, row_y] = value
+
+    def dimensions(self):
+        return (self.max_y+1, self.max_x+1)
+
+    def not_blank(self, line):
         for i in line:
             if i and isinstance(i, tuple):
                 return 1
@@ -127,6 +145,8 @@ class DescendTree(Report):
         pid = menu.get_option_by_name('pid').get_value()
         center_person = database.get_person_from_gramps_id(pid)
         
+        self.showspouse = menu.get_option_by_name('shows').get_value()
+        
         name = name_displayer.display_formal(center_person)
         self.title = _("Descendant Chart for %s") % name
 
@@ -148,19 +168,13 @@ class DescendTree(Report):
         if self.force_fit:
             self.scale_styles()
 
-    def apply_filter(self,person_handle,x,y):
-        """traverse the ancestors recursively until either the end
-        of a line is found, or until we reach the maximum number of 
-        generations that we want to deal with"""
-
-        if x/2 >= self.max_generations:
-            return 0
-
-        self.genchart.set_xy(x,y,person_handle)
-        
-        person = self.database.get_person_from_handle(person_handle)
-
-        index = 0
+    def add_person(self, person_handle, col_x, row_y, spouse_level):
+        """Add a new person into the x,y position
+        also sets wether the person is:
+        - a direct descendent or a spouse
+        - the max length of the text/box, and number of lines"""
+        self.genchart.set_xy(col_x, row_y, person_handle)
+        self.genchart.set_sp(col_x, row_y, spouse_level)
         
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style("DC2-Normal")
@@ -168,60 +182,81 @@ class DescendTree(Report):
 
         em = self.doc.string_width(font,"m")
 
-        subst = SubstKeywords(self.database,person_handle)
-        self.text[(x,y)] = subst.replace_and_clean(self.display)
-        for line in self.text[(x,y)]:
-            this_box_width = self.doc.string_width(font,line) + 2*em
-            self.box_width = max(self.box_width,this_box_width)
+        subst = SubstKeywords(self.database, person_handle)
+        self.text[(col_x, row_y)] = subst.replace_and_clean(self.display)
+        for line in self.text[(col_x, row_y)]:
+            this_box_width = self.doc.string_width(font, line) + 2*em
+            self.box_width = max(self.box_width, this_box_width)
 
-        self.lines = max(self.lines,len(self.text[(x,y)]))    
+        self.lines = max(self.lines, len(self.text[(col_x, row_y)]))    
 
-        new_y = y
+    def apply_filter(self, person_handle, col_x, row_y):
+        """traverse the ancestors recursively until either the end
+        of a line is found, or until we reach the maximum number of 
+        generations that we want to deal with"""
+
+        if col_x/2 >= self.max_generations:
+            return 0
+
+        person = self.database.get_person_from_handle(person_handle)
+        self.add_person(person_handle, col_x, row_y, _PERSON_DIRECT)
+
+        working_col = 1
+        next_col = 0
         for family_handle in person.get_family_handle_list():
             
             family = self.database.get_family_from_handle(family_handle)
 
-            for child_ref in family.get_child_ref_list():
-                sub = self.apply_filter(child_ref.ref, x+2, new_y)
-                index += sub
-                new_y += sub
+            if self.showspouse:
+                spouse_handle = ReportUtils.find_spouse(person, family)
+                self.add_person(spouse_handle, col_x, row_y+working_col,
+                                _PERSON_SPOUSE)
+                working_col += 1
 
-        return max(1,index)
+            for child_ref in family.get_child_ref_list():
+                next_col += self.apply_filter(child_ref.ref, col_x+2, 
+                                              row_y+next_col)
+
+            working_col = next_col = max(working_col, next_col)
+
+        return working_col
+
 
     def add_lines(self):
+        (maxy, maxx) = self.genchart.dimensions()
 
-        (maxy,maxx) = self.genchart.dimensions()
-
-        for y in range(0,maxy+1):
-            for x in range(0,maxx+1):
+        for y in range(0, maxy+1):
+            for x in range(0, maxx+1):
                 # skip columns reserved for rows - no data here
                 if x%2:
                     continue
 
-                # if we have a person directly next to a person, that
-                # person must be a child of the first person
-                
-                if self.genchart.get_xy(x,y) and self.genchart.get_xy(x+2,y):
-                    self.genchart.set_xy(x+1,y,_LINE_HORIZONTAL)
+                # if we have a direct child to the right of a person
+                # check to see if the child is a descendant of the person
+                if self.genchart.get_sp(x+2, y) == _PERSON_DIRECT:
+                    if self.genchart.get_sp(x, y) == _PERSON_DIRECT:
+                        self.genchart.set_xy(x+1, y , _LINE_HORIZONTAL)
+                        continue
+                    elif self.genchart.get_sp(x, y) == _PERSON_SPOUSE and \
+                    self.genchart.get_sp(x, y-1) != _PERSON_DIRECT:
+                        self.genchart.set_xy(x+1, y , _LINE_HORIZONTAL)
+                        continue
                 else:
                     continue
 
-                # look through the entries below this one. All people in the
-                # next column are descendants until we hit a person in our own
-                # column.
+                self.genchart.set_xy(x+1, y, _LINE_ANGLE)
 
-                last = y
-                for newy in range(y+1,maxy+1):
-                    if self.genchart.get_xy(x, newy):
+                # look through the entries ABOVE this one. All direct people
+                # in the next column are descendants until we hit the first
+                #  direct person (marked with _LINE_HORIZONTAL)
+                last = y-1
+                while last > 0:
+                    if self.genchart.get_xy(x+1, last) == 0:
+                        self.genchart.set_xy(x+1, last, _LINE_VERTICAL)
+                    else:
                         break
+                    last -= 1
 
-                    # if the next position is occupied, we need an
-                    # angle, otherwise, we may need a vertical line.
-                    if self.genchart.get_xy(x+2, newy):
-                        self.genchart.set_xy(x+1, newy,_LINE_ANGLE)
-                        for tempy in range(last+1, newy):
-                            self.genchart.set_xy(x+1,tempy,_LINE_VERTICAL)
-                        last = newy
 
     def write_report(self):
 
@@ -230,7 +265,7 @@ class DescendTree(Report):
         maxh = int((self.uh-0.75)/(self.box_height*1.25))
 
         if self.force_fit:
-            self.print_page(0,maxx,0,maxy,0,0)
+            self.print_page(0, maxx, 0, maxy, 0, 0)
         else:
             starty = 0
             coly = 0
@@ -238,9 +273,9 @@ class DescendTree(Report):
                 startx = 0
                 colx = 0
                 while startx < maxx:
-                    stopx = min(maxx,startx+self.generations_per_page*2)
-                    stopy = min(maxy,starty+maxh)
-                    self.print_page(startx,stopx,starty,stopy,colx,coly)
+                    stopx = min(maxx, startx+self.generations_per_page*2)
+                    stopy = min(maxy, starty+maxh)
+                    self.print_page(startx, stopx, starty, stopy, colx, coly)
                     colx += 1
                     startx += self.generations_per_page*2
                 coly += 1
@@ -287,12 +322,12 @@ class DescendTree(Report):
         self.scale = 1
         
         if self.force_fit:
-            (maxy,maxx) = self.genchart.dimensions()
+            (maxy, maxx) = self.genchart.dimensions()
 
             bw = (calc_width/(uw/(maxx+1)))
             bh = (self.box_height*(1.25)+self.box_gap)/(self.uh/maxy)
             
-            self.scale = max(bw/2,bh)
+            self.scale = max(bw/2, bh)
             self.box_width = self.box_width/self.scale
             self.box_height = self.box_height/self.scale
             self.box_pad_pts = self.box_pad_pts/self.scale
@@ -308,7 +343,8 @@ class DescendTree(Report):
         self.delta = pt2cm(self.box_pad_pts) + self.box_width + self.box_gap
         if not self.force_fit:
             calc_width = self.box_width + pt2cm(self.box_pad_pts)
-            remain = self.doc.get_usable_width() - ((self.generations_per_page)*calc_width)
+            remain = self.doc.get_usable_width() - \
+                     ((self.generations_per_page)*calc_width)
             self.delta += remain/float(self.generations_per_page)
 
     def scale_styles(self):
@@ -326,17 +362,16 @@ class DescendTree(Report):
         font = p.get_font()
         font.set_size(font.get_size()/self.scale)
         p.set_font(font)
-        style_sheet.add_paragraph_style("DC2-Normal",p)
+        style_sheet.add_paragraph_style("DC2-Normal", p)
             
         self.doc.set_style_sheet(style_sheet)
 
-    def print_page(self,startx,stopx,starty,stopy,colx,coly):
-
+    def print_page(self, startx, stopx, starty, stopy, colx, coly):
         if not self.incblank:
             blank = True
-            for y in range(starty,stopy):
-                for x in range(startx,stopx):
-                    if self.genchart.get_xy(x,y) != 0:
+            for y in range(starty, stopy):
+                for x in range(startx, stopx):
+                    if self.genchart.get_xy(x, y) != 0:
                         blank = False
                         break
                 if not blank: break
@@ -344,15 +379,16 @@ class DescendTree(Report):
 
         self.doc.start_page()
         if self.title and self.force_fit:
-            self.doc.center_text('DC2-title',self.title,self.doc.get_usable_width()/2,0)
+            self.doc.center_text('DC2-title', self.title,
+                                 self.doc.get_usable_width()/2,0)
         phys_y = 1
         bh = self.box_height * 1.25
-        for y in range(starty,stopy):
+        for y in range(starty, stopy):
             phys_x = 0
-            for x in range(startx,stopx):
-                value = self.genchart.get_xy(x,y)
+            for x in range(startx, stopx):
+                value = self.genchart.get_xy(x, y)
                 if isinstance(value, basestring):
-                    text = '\n'.join(self.text[(x,y)])
+                    text = '\n'.join(self.text[(x, y)])
                     xbegin = phys_x*self.delta
                     yend   = phys_y*bh+self.offset
                     self.doc.draw_box("DC2-box",
@@ -366,7 +402,8 @@ class DescendTree(Report):
                     ystart = (phys_y*bh + self.box_height/2.0) + self.offset
                     xstart = xbegin + self.box_width
                     xstop  = (phys_x+1)*self.delta
-                    self.doc.draw_line('DC2-line', xstart, ystart, xstop, ystart)
+                    self.doc.draw_line('DC2-line', xstart, ystart, xstop, 
+                                       ystart)
                 elif value == _LINE_VERTICAL:
                     ystart = ((phys_y-1)*bh + self.box_height/2.0) + self.offset
                     ystop  = (phys_y*bh + self.box_height/2.0) + self.offset
@@ -386,7 +423,7 @@ class DescendTree(Report):
                     
         if not self.force_fit:
             self.doc.draw_text('DC2-box',
-                               '(%d,%d)' % (colx+1,coly+1),
+                               '(%d,%d)' % (colx+1, coly+1),
                                self.page_label_x_offset,
                                self.page_label_y_offset)
         self.doc.end_page()
@@ -432,10 +469,10 @@ class DescendTreeOptions(MenuReportOptions):
         blank.set_help(_("Whether to include pages that are blank."))
         menu.add_option(category_name, "incblank", blank)
         
-        compress = BooleanOption(_('Co_mpress tree'),True)
-        compress.set_help(_("Whether to compress tree."))
-        menu.add_option(category_name, "compress", compress)
-        
+        shows = BooleanOption(_('Show Sp_ouses'), True)
+        shows.set_help(_("Whether to show spouses in the tree."))
+        menu.add_option(category_name, "shows", shows)
+
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Tree."""
         ## Paragraph Styles:
@@ -445,7 +482,7 @@ class DescendTreeOptions(MenuReportOptions):
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("DC2-Normal",p)
+        default_style.add_paragraph_style("DC2-Normal", p)
 
         f = BaseDoc.FontStyle()
         f.set_size(16)
@@ -454,24 +491,24 @@ class DescendTreeOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the title display.'))
-        default_style.add_paragraph_style("DC2-Title",p)
+        default_style.add_paragraph_style("DC2-Title", p)
         
         ## Draw styles
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("DC2-Normal")
-        g.set_shadow(1,0.2)
-        g.set_fill_color((255,255,255))
-        default_style.add_draw_style("DC2-box",g)
+        g.set_shadow(1, 0.2)
+        g.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("DC2-box", g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("DC2-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
+        g.set_color((0, 0, 0))
+        g.set_fill_color((255, 255, 255))
         g.set_line_width(0)
-        default_style.add_draw_style("DC2-title",g)
+        default_style.add_draw_style("DC2-title", g)
 
         g = BaseDoc.GraphicsStyle()
-        default_style.add_draw_style("DC2-line",g)
+        default_style.add_draw_style("DC2-line", g)
 
 #------------------------------------------------------------------------
 #
