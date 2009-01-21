@@ -320,7 +320,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
 
         if modifier == Date.MOD_TEXTONLY:
             return (Date.QUAL_NONE, Date.MOD_TEXTONLY, Date.CAL_GREGORIAN,
-                    Date.EMPTY,text)
+                    Date.EMPTY,text, Date.NEWYEAR_JAN1)
 
         quality = QUAL_TEXT[self.quality_box.get_active()][0]
 
