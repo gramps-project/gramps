@@ -89,7 +89,11 @@ class FanChartWidget(gtk.Widget):
         Highly experimental... documents forthcoming...
         """
         gtk.Widget.__init__(self)
-        self.draw_gc = None
+        self.connect("button_release_event", self.button_release)
+        self.connect("motion_notify_event", self.motion_notify)
+        self.add_events(gdk.BUTTON_PRESS_MASK |
+                        gdk.BUTTON_RELEASE_MASK |
+                        gdk.POINTER_MOTION_MASK)
         self.pixels_per_generation = 50
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
@@ -101,6 +105,14 @@ class FanChartWidget(gtk.Widget):
         self.center = 50
         self.layout = self.create_pango_layout('cairo')
         self.layout.set_font_description(pango.FontDescription("sans serif 8"))
+
+    def button_release(self, widget, event):
+        #print "up!"
+        return True
+
+    def motion_notify(self, widget, event):
+        #print "move!"
+        return True
 
     def reset_generations(self):
         """
