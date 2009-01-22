@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-22 15:23+0100\n"
-"PO-Revision-Date: 2009-01-22 16:12+0100\n"
+"PO-Revision-Date: 2009-01-22 18:33+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -435,7 +435,7 @@ msgstr "Importation finie..."
 #: ../src/DbManager.py:292
 #: ../src/plugins/import/ImportCsv.py:382
 msgid "Importing data..."
-msgstr "Importation des données…"
+msgstr "Importation des données..."
 
 #: ../src/DbManager.py:490
 msgid "Family tree name"
@@ -495,12 +495,12 @@ msgstr "Impossible de renommer l'arbre familial"
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:733
 msgid "Extracting archive..."
-msgstr "Extraction de l'archive…"
+msgstr "Extraction de l'archive..."
 
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:738
 msgid "Importing archive..."
-msgstr "Importation de l'archive…"
+msgstr "Importation de l'archive..."
 
 # objet sélectionné
 # Supprimer car efface
@@ -651,12 +651,12 @@ msgstr ""
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:1143
 msgid "Creating data to be archived..."
-msgstr "Création des données à archiver…"
+msgstr "Création des données à archiver..."
 
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:1148
 msgid "Saving archive..."
-msgstr "Enregistrement de l'archive…"
+msgstr "Enregistrement de l'archive..."
 
 #: ../src/DbManager.py:1162
 #, python-format
@@ -931,6 +931,7 @@ msgstr "Style islandais"
 msgid "Display Name Editor"
 msgstr "Affichage de l'éditeur de nom"
 
+# trunk
 #: ../src/GrampsCfg.py:133
 msgid ""
 "The following keywords will be replaced with the name:\n"
@@ -948,6 +949,20 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
+"Les mots clé suivants seront remplacés par le nom :\n"
+"<tt>  \n"
+"  <b>Prénom</b>      - prénom\n"
+"  <b>Nom</b>    - nom\n"
+"  <b>Titre</b>      - titre (Dr., Me.)\n"
+"  <b>Préfixe</b>     - préfixe (von, de, de la)\n"
+"  <b>Suffixe</b>     - suffixe (Jr., Sr.)\n"
+"  <b>Usuel</b>       - nom usuel, ou surnom\n"
+"  <b>Commun</b>     - nom usuel, ou première partie du prénom\n"
+"  <b>Patronyme</b> - patronyme (nom du père)\n"
+"  <b>Initiales</b>   - premières lettres du prénom\n"
+"</tt>\n"
+"Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
+"seront enlevées des champs vides. Un texte autre apparaîtra literallement."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1832,6 +1847,7 @@ msgstr "URL"
 msgid "Danger: This is unstable code!"
 msgstr "Danger : ce code est instable !"
 
+# trunk
 #: ../src/gramps_main.py:202
 msgid ""
 "This GRAMPS 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
@@ -1845,6 +1861,16 @@ msgid ""
 "\n"
 "<b>BACKUP</b> your existing databases before opening them with this version, and make sure to export your data to XML every now and then."
 msgstr ""
+"GRAMPS 3.x-trunk est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
+"\n"
+"Cette version peut:\n"
+"1) Fonctionner différement de vos attentes.\n"
+"2) Ne pas fonctionner.\n"
+"3) Planter souvent.\n"
+"4) Corrompre vos données.\n"
+"5) Sauver vos données dans un format incompatible avec la version stable.\n"
+"\n"
+"<b>SAUVEGARDER</b> vos bases de données existantes avant de les ouvrir avec cette version, soyez certain d'exporter vos données au format XML."
 
 #: ../src/gramps_main.py:240
 #: ../src/gramps_main.py:242
@@ -3381,7 +3407,7 @@ msgstr "La clé %s n'est pas définie"
 #. load plugins
 #: ../src/ViewManager.py:603
 msgid "Loading plugins..."
-msgstr "Chargement des greffons…"
+msgstr "Chargement des greffons..."
 
 #: ../src/ViewManager.py:611
 msgid "Ready"
@@ -3389,7 +3415,7 @@ msgstr "Prêt"
 
 #: ../src/ViewManager.py:643
 msgid "Autobackup..."
-msgstr "Sauvegarde automatique…"
+msgstr "Sauvegarde automatique..."
 
 #: ../src/ViewManager.py:655
 msgid "Abort changes?"
@@ -3919,7 +3945,7 @@ msgstr "crem."
 
 #: ../src/DataViews/PedigreeView.py:980
 msgid "Jump to child..."
-msgstr "Aller à l'enfant…"
+msgstr "Aller à l'enfant..."
 
 #: ../src/DataViews/PedigreeView.py:989
 msgid "Jump to father"
@@ -4113,7 +4139,7 @@ msgstr "Individu actif non visible"
 #: ../src/DataViews/PersonView.py:580
 #: ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
-msgstr "Chargement en cours…"
+msgstr "Chargement en cours..."
 
 # Substantif (GNOME fr)
 #: ../src/DataViews/PersonView.py:601
@@ -6238,7 +6264,7 @@ msgstr "Calendrier"
 #: ../src/plugins/Calendar.py:221
 #: ../src/plugins/Calendar.py:444
 msgid "Formatting months..."
-msgstr "Formatage des mois…"
+msgstr "Formatage des mois..."
 
 # trunk
 #: ../src/plugins/Calendar.py:314
@@ -6595,7 +6621,7 @@ msgstr "Base de données GRAMPS _XML"
 #: ../src/plugins/ImportGpkg.py:73
 #, python-format
 msgid "Could not create media directory %s"
-msgstr "Impossible de créer le répertoire média %s"
+msgstr "Impossible de créer le répertoire media %s"
 
 #: ../src/plugins/ImportGpkg.py:77
 #, python-format
@@ -6693,7 +6719,7 @@ msgstr "  Événement %(id)s\n"
 #: ../src/plugins/ImportXml.py:247
 #, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "  Objet Média %(id)s\n"
+msgstr "  Objet Media%(id)s\n"
 
 #: ../src/plugins/ImportXml.py:249
 #, python-format
@@ -6733,7 +6759,7 @@ msgstr "  Événements : %d\n"
 #: ../src/plugins/ImportXml.py:264
 #, python-format
 msgid "  Media Objects: %d\n"
-msgstr "  Objets Média : %d\n"
+msgstr "  Objets Media: %d\n"
 
 #: ../src/plugins/ImportXml.py:265
 #, python-format
@@ -6866,7 +6892,7 @@ msgstr "Aucun Arbre Familial chargé."
 #: ../src/plugins/gramplet/DefaultGramplets.py:668
 #: ../src/plugins/gramplet/GivenNameGramplet.py:54
 msgid "Processing..."
-msgstr "Traitement…"
+msgstr "Traitement..."
 
 # trunk
 #: ../src/plugins/Records.py:394
@@ -7036,12 +7062,12 @@ msgstr "Couple avec le plus d'enfants"
 # trunk
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr "Couple vivant marié le plus récemment"
+msgstr "Couple marié il y a peu de temps"
 
 # trunk
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr "Couple vivant marié depuis le plus longtemps"
+msgstr "Couple marié il y a longtemps"
 
 # trunk
 #: ../src/plugins/Records.py:551
@@ -7061,7 +7087,7 @@ msgstr "Gramplet Enregistrements"
 # trunk
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
-msgstr "Rapport Enregistrements"
+msgstr "Rapport d'enregistrements"
 
 # trunk
 #: ../src/plugins/Records.py:581
@@ -7073,31 +7099,31 @@ msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 #: ../src/plugins/WebCal.py:109
 #: ../src/plugins/webreport/NarrativeWeb.py:121
 msgid "Basic-Ash"
-msgstr "Basique - Le frêne"
+msgstr "Basique - Frêne"
 
 # trunk
 #: ../src/plugins/WebCal.py:110
 #: ../src/plugins/webreport/NarrativeWeb.py:122
 msgid "Basic-Cypress"
-msgstr "Basique - Le cyprès"
+msgstr "Basique - Cyprès"
 
 # trunk
 #: ../src/plugins/WebCal.py:111
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 msgid "Basic-Lilac"
-msgstr "Basique - Le lilas"
+msgstr "Basique - Lilas"
 
 # trunk
 #: ../src/plugins/WebCal.py:112
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 msgid "Basic-Peach"
-msgstr "Basique - Le pêcher"
+msgstr "Basique - Pêcher"
 
 # trunk
 #: ../src/plugins/WebCal.py:113
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 msgid "Basic-Spruce"
-msgstr "Basique - L'épicéa"
+msgstr "Basique - Épicéa"
 
 # trunk
 #: ../src/plugins/WebCal.py:114
@@ -7669,7 +7695,7 @@ msgstr "sur %d"
 #: ../src/plugins/docgen/GtkPrint.py:624
 #: ../src/plugins/docgen/GtkPrint.py:625
 msgid "Print..."
-msgstr "Imprimer…"
+msgstr "Imprimer..."
 
 #: ../src/plugins/docgen/HtmlDoc.py:158
 #: ../src/plugins/docgen/HtmlDoc.py:183
@@ -8082,12 +8108,12 @@ msgstr "Diagrammes statistiques"
 #. extract requested items from the database and count them
 #: ../src/plugins/drawreport/StatisticsChart.py:503
 msgid "Collecting data..."
-msgstr "Collecte des données…"
+msgstr "Collecte des données..."
 
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/StatisticsChart.py:509
 msgid "Sorting data..."
-msgstr "Tri des données…"
+msgstr "Tri des données..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:519
 #, python-format
@@ -8102,7 +8128,7 @@ msgstr "Individus nés entre %(year_from)04d et %(year_to)04d : %(chart_title)s
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/StatisticsChart.py:556
 msgid "Saving charts..."
-msgstr "Enregistrement des diagrammes…"
+msgstr "Enregistrement des diagrammes..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:603
 #: ../src/plugins/drawreport/StatisticsChart.py:639
@@ -8229,7 +8255,7 @@ msgstr "L'intervalle des dates sélectionnées est invalide"
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/TimeLine.py:134
 msgid "Sorting dates..."
-msgstr "Tri des dates…"
+msgstr "Tri des dates..."
 
 # Substantif (GNOME fr)
 #: ../src/plugins/drawreport/TimeLine.py:136
@@ -10047,7 +10073,7 @@ msgstr "Importation de CSV"
 # Substantif (GNOME fr)
 #: ../src/plugins/import/ImportCsv.py:380
 msgid "Reading data..."
-msgstr "Lecture des données…"
+msgstr "Lecture des données..."
 
 #: ../src/plugins/import/ImportCsv.py:694
 #: ../src/plugins/import/ImportGeneWeb.py:180
@@ -10508,11 +10534,11 @@ msgstr "media"
 
 #: ../src/plugins/quickview/FilterByName.py:179
 msgid "Unique Media"
-msgstr "Média unique"
+msgstr "Mediaunique"
 
 #: ../src/plugins/quickview/FilterByName.py:187
 msgid "Missing Media"
-msgstr "Média manquant"
+msgstr "Mediamanquant"
 
 #: ../src/plugins/quickview/FilterByName.py:198
 msgid "Size in bytes"
@@ -11956,11 +11982,11 @@ msgstr "Résultats"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:157
 msgid "Processing...\n"
-msgstr "Traitement…\n"
+msgstr "Traitement...\n"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:175
 msgid "Replacing...\n"
-msgstr "Remplacement…\n"
+msgstr "Remplacement...\n"
 
 # Substantif (GNOME fr)
 # enlever car utilisé pour un calcul
@@ -13054,7 +13080,7 @@ msgstr "Recherche dans la base les titres, surnoms et particules inclus dans le 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/Rebuild.py:77
 msgid "Rebuilding secondary indices..."
-msgstr "Reconstruire les seconds indices…"
+msgstr "Reconstruire les seconds indices..."
 
 #: ../src/plugins/tool/Rebuild.py:86
 msgid "Secondary indices rebuilt"
@@ -13075,7 +13101,7 @@ msgstr "Reconstruit les seconds indices"
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/RebuildRefMap.py:78
 msgid "Rebuilding reference maps..."
-msgstr "Reconstruction des tables de références…"
+msgstr "Reconstruction des tables de références..."
 
 #: ../src/plugins/tool/RebuildRefMap.py:91
 msgid "Reference maps rebuilt"
@@ -16102,7 +16128,7 @@ msgstr "Inhumé(e) à %(burial_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:662
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s a été inhumés%(endnotes)s."
+msgstr "%(male_name)s a été inhumé%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:663
 #, python-format
@@ -16426,277 +16452,329 @@ msgstr "%(male_name)s a été baptisé le %(christening_date)s à %(christening_
 msgid "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Il a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# christening ?
 # trunk
 #: ../src/ReportBase/_ReportUtils.py:822
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée le %(burial_date)s à %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:823
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Elle a été inhumée le %(burial_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Elle a été baptisée le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:826
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé le %(burial_date)s à %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:827
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Cet individu a été inhumé le %(burial_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Cet individu a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:829
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Inhumé(e) le %(burial_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Baptisé(e) le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé le %(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr "Il a été inhumé le %(burial_date)s%(endnotes)s."
+msgstr "Il a été baptisé le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:838
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée le %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:839
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr "Elle a été inhumée le %(burial_date)s%(endnotes)s."
+msgstr "Elle a été baptisée le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:842
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé le %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:843
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "Cet individu a été inhumé le %(burial_date)s%(endnotes)s."
+msgstr "Cet individu a été baptisé le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "Inhumé(e) le %(burial_date)s%(endnotes)s."
+msgstr "Baptisé(e) le %(christening_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:850
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:851
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Il a été inhumé en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "Il a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:854
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:855
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Elle a été inhumée en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "Elle a été baptisée en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:858
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:859
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Cet individu a été inhumé en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "Cet individu a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Inhumé(e) en %(month_year)s à %(burial_place)s%(endnotes)s."
+msgstr "Baptisé(e) en %(month_year)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:866
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé en %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "Il a été inhumé en %(month_year)s%(endnotes)s."
+msgstr "Il a été baptisé en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée en %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "Elle a été inhumée en %(month_year)s%(endnotes)s."
+msgstr "Elle a été baptisée en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:874
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé en %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:875
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "Cet individu a été inhumé en %(month_year)s%(endnotes)s."
+msgstr "Cet individu a été baptisé en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:877
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "Inhumé(e) en %(month_year)s%(endnotes)s."
+msgstr "Baptisé(e) en %(month_year)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:882
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:883
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Il a été inhumé %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Il a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:886
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:887
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Elle a été inhumée %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Elle a été baptisée %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:890
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:891
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Cet individu a été inhumé %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Cet individu a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:893
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Inhumé(e) %(modified_date)s à %(burial_place)s%(endnotes)s."
+msgstr "Baptisé(e) %(modified_date)s à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Il a été inhumé %(modified_date)s%(endnotes)s."
+msgstr "Il a été baptisé %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Elle a été inhumée %(modified_date)s%(endnotes)s."
+msgstr "Elle a été baptisée %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Cet individu a été inhumé %(modified_date)s%(endnotes)s."
+msgstr "Cet individu a été baptisé %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "Inhumé(e) %(modified_date)s%(endnotes)s."
+msgstr "Baptisé(e) %(modified_date)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:914
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s a été inhumé à %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s a été baptisé à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:915
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr "Il a été inhumé à %(burial_place)s%(endnotes)s."
+msgstr "Il a été baptisé à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:918
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s a été inhumée à %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s a été baptisée à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:919
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
-msgstr "Elle a été inhumée à %(burial_place)s%(endnotes)s."
+msgstr "Elle a été baptisée à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:922
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé à %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:923
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr "Cet individu a été inhumé à %(burial_place)s%(endnotes)s."
+msgstr "Cet individu a été baptisé à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:925
-#, fuzzy, python-format
+#, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr "Inhumé(e) à %(burial_place)s%(endnotes)s."
+msgstr "Baptisé(e) à %(christening_place)s%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s a été inhumés%(endnotes)s."
+msgstr "%(male_name)s a été baptisé%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "Il a été inhumé%(endnotes)s."
+msgstr "Il a été baptisé%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr "%(female_name)s a été inhumée%(endnotes)s."
+msgstr "%(female_name)s a été baptisée%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:935
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened%(endnotes)s."
-msgstr "Elle a été inhumée%(endnotes)s."
+msgstr "Elle a été baptisée%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%(unknown_gender_name)s a été inhumé%(endnotes)s."
+msgstr "%(unknown_gender_name)s a été baptisé%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr "Cet individu a été inhumé%(endnotes)s."
+msgstr "Cet individu a été baptisé%(endnotes)s."
 
+# trunk
 #: ../src/ReportBase/_ReportUtils.py:941
-#, fuzzy, python-format
+#, python-format
 msgid "Christened%(endnotes)s."
-msgstr "Inhumé(e)%(endnotes)s."
+msgstr "Baptisé(e)%(endnotes)s."
 
 # en 1900
 #: ../src/ReportBase/_ReportUtils.py:952
@@ -18873,7 +18951,7 @@ msgstr "Dossier de divorce (action)"
 msgid "Annulment"
 msgstr "Annulation de mariage"
 
-# peut être mariage de remplacement…
+# peut être mariage de remplacement...
 #: ../src/gen/lib/eventtype.py:140
 msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
@@ -18975,10 +19053,10 @@ msgstr "Modifié après :"
 msgid "but before:"
 msgstr "mais avant :"
 
+# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Objets avec l'<attribut>"
+msgstr "Objets modifiés après la <date>"
 
 # trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
@@ -20000,11 +20078,10 @@ msgstr "Chaque famille"
 msgid "Matches every family in the database"
 msgstr "Correspond à chaque famille de la base"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#, fuzzy
 msgid "Families changed before <date time>"
-msgstr "Familles correspondantes au <filtre>"
+msgstr "Familles modifiées avant la <date>"
 
 # trunk
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
@@ -20676,11 +20753,10 @@ msgstr "Chaque source"
 msgid "Matches every source in the database"
 msgstr "Correspond à toutes les sources de la base"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Source/_ChangedSince.py:23
-#, fuzzy
 msgid "Sources changed after <date time>"
-msgstr "Sources correspondantes au <filtre>"
+msgstr "Sources modifiées après la <date>"
 
 # trunk
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
@@ -20812,11 +20888,10 @@ msgstr "Chaque objet media"
 msgid "Matches every media object in the database"
 msgstr "Correspond à tous les objets media de la base"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#, fuzzy
 msgid "Media objects changed before <date time>"
-msgstr "Objets media correspondants au <filtre>"
+msgstr "Objets media modifiés avant la <date>"
 
 # trunk
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
@@ -20930,11 +21005,10 @@ msgstr "Chaque dépôt"
 msgid "Matches every repository in the database"
 msgstr "Correspond à tous les dépôts de la base"
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
+# trunk
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#, fuzzy
 msgid "Repositories changed after <date time>"
-msgstr "Dépôts correspondants au <filtre>"
+msgstr "Dépôts modifiés après la <date>"
 
 # trunk
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
@@ -21264,7 +21338,7 @@ msgstr "égal à"
 
 #: ../src/FilterEditor/_EditRule.py:297
 msgid "Select..."
-msgstr "Sélectionner…"
+msgstr "Sélectionner..."
 
 #: ../src/FilterEditor/_EditRule.py:303
 #, python-format
@@ -22881,7 +22955,7 @@ msgstr "<b>GRAMPS mailing listes</b> : vous voulez des réponses à vos questio
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr "<b>Le manuel de GRAMPS</b> : le manuel de GRAMPS est très élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le ou complétez-le."
+msgstr "<b>Le manuel de GRAMPS</b> : le manuel de GRAMPS est élaboré et bien écrit. Il comprend les détails des raccourcis clavier et certaines astuces qui vous aideront dans votre travail de recherche généalogique. Lisez-le ou complétez-le."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
@@ -22894,7 +22968,7 @@ msgstr "<b>Trucs et astuces de généalogie</b> : les informations collectées 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:14
 msgid "<b>Improving GRAMPS</b>: Users are encouraged to request enhancements to GRAMPS. Requesting an enhancement can be done either through the gramps-users or gramps-devel mailing lists, or by creating a Feature Request at http://bugs.gramps-project.org Filing a Feature Request is preferred."
-msgstr "<b>Amélioration de GRAMPS</b> : vous êtes encouragé à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
+msgstr "<b>Amélioration de GRAMPS</b> : vous êtes encouragé(e) à proposer des améliorations pour GRAMPS. Proposer une amélioration est possible par les listes de diffusion gramps-users ou gramps-devel ou en créant une demande d'amélioration (Request for Enhancement - RFE) sur http://bugs.gramps-project.org/."
 
 #: ../src/data/tips.xml.in.h:15
 msgid "<b>Incorrect Dates</b>: Everyone occasionally enters dates with a nonvalid format. Incorrect date formats will show up with the red button next to the date. Green means okay, and amber signifies acceptable. The Date Selection dialog can be invoked by clicking on the colored button."
@@ -22917,7 +22991,7 @@ msgstr "<b>Localisation des individus</b> : par défaut, chaque nom de famille 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Vos préférences</b> : mécontent des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
+msgstr "<b>Vos préférences</b> : mécontent(e) des options par défaut de GRAMPS ? Vous pouvez modifier certaines options dans <b>Édition &gt; Préférences</b>, pour personnaliser GRAMPS à votre goût."
 
 # Substantif (GNOME fr)
 #: ../src/data/tips.xml.in.h:20
@@ -22939,7 +23013,7 @@ msgstr "<b>Un nouvel arbre généalogique</b> : une bonne idée pour commencer 
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
-msgstr "<b>Parler à ses grand parents avant qu'il soit trop tard</b>  : vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
+msgstr "<b>Parlez à vos grand parents avant qu'il soit trop tard</b>  : vos plus anciens parents peuvent être la plus importante source d'informations. Ils savent des choses qui ne seront jamais écrites. Ils peuvent vous fournir de vraies pépites et vous conduire sur des nouvelles pistes. Enfin, vous entendrez des histoires passionnantes. N'oubliez pas d'enregistrer vos conversations !"
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
@@ -22947,7 +23021,7 @@ msgstr "<b>La vue familiale</b> : la vue familiale est utilisée pour afficher 
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Pas sûr d'une date ?</b> : si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
+msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
@@ -23045,14 +23119,14 @@ msgstr "GRAMPS maintient ses efforts pour garder la compatibilité avec GEDCOM, 
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue sont s'affichent correctement."
+msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
 
 # trunk
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
-msgstr "GRAMPS fonctionne même sous KDE, tant que les librairies GTK nécessaires sont installées."
+msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires sont installées."
 
-# Récits pour Narratives plutôt que sagas…
+# Récits pour Narratives plutôt que sagas...
 #: ../src/data/tips.xml.in.h:52
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
 msgstr "La généalogie n'est pas seulement des dates et des noms. C'est aussi des individus. Soyez descriptif. Ajouter le <b>pourquoi</b> de chaque action, pour que vos descendants comprennent les événements. Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."

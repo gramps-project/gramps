@@ -10,7 +10,6 @@ pkgdata_PYTHON = \
 	ImportGedcom.py \
 	ImportGeneWeb.py \
 	ImportGrdb.py \
-	ImportGpkg.py \
 	ImportProGen.py \
 	ImportVCard.py
 
