@@ -87,7 +87,7 @@ def swedish_valid(date_tuple):
         valid = True 
     if date_tuple >= (1712,3,1):   # back to julian
         valid = False
-    valid = True 
+    valid = True                   # for the moment, working on it ldnp
     return valid
 
 def french_valid(date_tuple):
@@ -434,13 +434,12 @@ class DateParser:
 
         if subparser == self._parse_greg_julian:
             check = gregorian_valid
-        if subparser == self._parse_swedish:
+        elif subparser == self._parse_swedish:
             check = swedish_valid
-        if subparser == self._parse_french:
+        elif subparser == self._parse_french:
             check = french_valid
         else:
             check = None
-        
         value = subparser(text)
         if value != Date.EMPTY:
             return value
