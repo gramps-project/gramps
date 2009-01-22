@@ -229,7 +229,6 @@ src/Selectors/__init__.py
 # plugins directory
 src/plugins/BookReport.py
 src/plugins/Calendar.py
-src/plugins/ExportCd.py
 src/plugins/ExportXml.py
 src/plugins/ImportGpkg.py
 src/plugins/ImportXml.py
@@ -254,6 +253,7 @@ src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
 
 # plugins/export directory
+src/plugins/export/ExportCd.py
 src/plugins/export/ExportCsv.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
@@ -280,7 +280,6 @@ src/plugins/graph/GVRelGraph.py
 src/plugins/import/ImportCsv.py
 src/plugins/import/ImportGedcom.py
 src/plugins/import/ImportGeneWeb.py
-src/plugins/import/ImportGpkg.py
 src/plugins/import/ImportGrdb.py
 src/plugins/import/ImportProGen.py
 src/plugins/import/ImportVCard.py
@@ -749,7 +748,7 @@ src/widgets/validatedmaskedentry.py
 #
 #	Glade files
 #
-src/docgen/gtkprintpreview.glade
+src/plugins/docgen/gtkprintpreview.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade
 src/glade/mergedata.glade
@@ -757,28 +756,28 @@ src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
 src/glade/paper_settings.glade
-src/plugins/NotRelated.glade
+src/plugins/tool/NotRelated.glade
 src/plugins/book.glade
-src/plugins/changenames.glade
-src/plugins/changetype.glade
-src/plugins/desbrowse.glade
-src/plugins/eval.glade
-src/plugins/eventcmp.glade
-src/plugins/ImportGedcom.glade
-src/plugins/leak.glade
-src/plugins/merge.glade
-src/plugins/ownereditor.glade
-src/plugins/patchnames.glade
-src/plugins/relcalc.glade
-src/plugins/soundex.glade
-src/plugins/summary.glade
-src/plugins/unused.glade
-src/plugins/ExportCsv.glade
-src/plugins/ExportFtree.glade
-src/plugins/ExportGeneWeb.glade
-src/plugins/ExportVCard.glade
-src/plugins/ExportVCalendar.glade
-src/plugins/verify.glade
+src/plugins/tool/changenames.glade
+src/plugins/tool/changetype.glade
+src/plugins/tool/desbrowse.glade
+src/plugins/tool/eval.glade
+src/plugins/tool/eventcmp.glade
+src/plugins/import/ImportGedcom.glade
+src/plugins/tool/leak.glade
+src/plugins/tool/merge.glade
+src/plugins/tool/ownereditor.glade
+src/plugins/tool/patchnames.glade
+src/plugins/tool/relcalc.glade
+src/plugins/tool/soundex.glade
+src/plugins/tool/summary.glade
+src/plugins/tool/unused.glade
+src/plugins/export/ExportCsv.glade
+src/plugins/export/ExportFtree.glade
+src/plugins/export/ExportGeneWeb.glade
+src/plugins/export/ExportVCard.glade
+src/plugins/export/ExportVCalendar.glade
+src/plugins/tool/verify.glade
 #
 #	Files to extract from and then merge into
 #
