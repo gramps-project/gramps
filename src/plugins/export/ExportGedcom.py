@@ -81,6 +81,7 @@ CALENDAR_MAP = {
     gen.lib.Date.CAL_HEBREW : (HMONTH, '@#DHEBREW@'), 
     gen.lib.Date.CAL_FRENCH : (FMONTH, '@#DFRENCH R@'), 
     gen.lib.Date.CAL_JULIAN : (MONTH, '@#DJULIAN@'), 
+    gen.lib.Date.CAL_SWEDISH : (MONTH, '@#DUNKNOWN@'), 
     }
 
 DATE_MODIFIER = {
@@ -196,7 +197,7 @@ def make_date(subdate, calendar, mode, quality):
     (day, mon, year) = subdate[0:3]
     
     (mmap, prefix) = CALENDAR_MAP.get(calendar, (MONTH, ""))
-
+        
     if year < 0:
         year = -year
         bce = " B.C."
@@ -208,7 +209,21 @@ def make_date(subdate, calendar, mode, quality):
     except IndexError:
         print "Month index error - %d" % mon
         retval = "%d%s" % (year, bce)
-
+    
+    if calendar == gen.lib.Date.CAL_SWEDISH:
+        # If Swedish calendar use ISO for for date and append (swedish)
+        # to indicate calandar
+        if year and not mon and not day:
+            retval = "%i" % (year)
+        else:
+            retval = "%i-%02i-%02i" % (year, mon, day)
+        retval = retval + " (swedish)"
+        # Skip prefix @#DUNKNOWN@ as it seems
+        # not used in all other genealogy applications.
+        # GRAMPS can handle it on import, but not with (swedish) appended
+        # to explain what calendar, the unknown refer to
+        prefix = ""
+    
     if prefix:
         retval = "%s %s" % (prefix, retval)
 
@@ -217,7 +232,7 @@ def make_date(subdate, calendar, mode, quality):
 
     if quality in DATE_QUALITY:
         retval = "%s %s" % (DATE_QUALITY[quality], retval)
-        
+
     return retval
 
 #-------------------------------------------------------------------------
