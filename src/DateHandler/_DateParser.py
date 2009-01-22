@@ -86,7 +86,8 @@ def swedish_valid(date_tuple):
     if date_tuple == (1712,2,30):  # extra day was inserted 1712
         valid = True 
     if date_tuple >= (1712,3,1):   # back to julian
-        valid = False 
+        valid = False
+    valid = True 
     return valid
 
 def french_valid(date_tuple):
