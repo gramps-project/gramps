@@ -61,6 +61,7 @@ from BasicUtils import name_displayer
 from Simple import SimpleAccess
 from gettext import gettext as _
 from DataViews import Gramplet, register
+from gen.lib import Person
 
 #-------------------------------------------------------------------------
 #
@@ -69,8 +70,7 @@ from DataViews import Gramplet, register
 #-------------------------------------------------------------------------
 class FanChartWidget(gtk.Widget):
     """
-    Widget to do most of the FanChart work. Some of this is currently in
-    the Gramplet (below) but should probably be moved here.
+    Interactive Fan Chart Widget. 
     """
     BORDER_WIDTH = 10
     __gsignals__ = { 'realize':          'override',
@@ -84,25 +84,31 @@ class FanChartWidget(gtk.Widget):
                 (183,219,197),
                 (206,246,209))
 
-    def __init__(self, generations):
+    COLLAPSED = 0
+    NORMAL = 1
+    EXPANDED = 2
+
+    def __init__(self, generations, right_click_callback=None):
         """
         Highly experimental... documents forthcoming...
         """
         gtk.Widget.__init__(self)
         self.connect("button_release_event", self.button_release)
         self.connect("motion_notify_event", self.motion_notify)
+        self.connect("button-press-event", self.on_mouse_down)
+        self.right_click_callback = right_click_callback
         self.add_events(gdk.BUTTON_PRESS_MASK |
                         gdk.BUTTON_RELEASE_MASK |
                         gdk.POINTER_MOTION_MASK)
-        self.pixels_per_generation = 50
+        self.pixels_per_generation = 50 # size of radius for generation
         ## gotten from experiments with "sans serif 8":
         self.degrees_per_radius = .80
         ## Other fonts will have different settings. Can you compute that
         ## from the font size? I have no idea.
         self.generations = generations
-        self.rotate_value = 90 # initially, put 1st gen male on right half
+        self.rotate_value = 90 # degrees, initially, 1st gen male on right half
         self.set_generations(self.generations)
-        self.center = 50
+        self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
         self.layout.set_font_description(pango.FontDescription("sans serif 8"))
 
@@ -135,7 +141,7 @@ class FanChartWidget(gtk.Widget):
             gender = True
             for a in range(len(self.data[i])):
                 # start, stop, male, state
-                self.angle[i].append([angle, angle + slice, gender, 1])
+                self.angle[i].append([angle, angle + slice,gender,self.NORMAL])
                 angle += slice
                 gender = not gender
                                            
@@ -211,7 +217,7 @@ class FanChartWidget(gtk.Widget):
                     start, stop, male, state = self.angle[generation][p]
                     name = name_displayer.display(person)
                     gender = person.get_gender()
-                    if state > 0:
+                    if state in [self.NORMAL, self.EXPANDED]:
                         self.draw_person(cr, gender, name, start, stop, 
                                          generation, state)
         cr.set_source_rgb(1, 1, 1) # white
@@ -222,8 +228,8 @@ class FanChartWidget(gtk.Widget):
         cr.set_source_rgb(0, 0, 0) # black
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
         cr.stroke()
-        person = self.data[0][0]
         # Draw center person:
+        person = self.data[0][0]
         cr.restore()
         if person:
             cr.save()
@@ -244,7 +250,7 @@ class FanChartWidget(gtk.Widget):
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
-        if gender == 1:
+        if gender == Person.MALE:
             r -= r * .10
             g -= g * .10
             b -= b * .10
@@ -259,9 +265,9 @@ class FanChartWidget(gtk.Widget):
         cr.line_to(0, 0)
         cr.arc(0, 0, radius, start_rad, stop_rad) 
         cr.line_to(0, 0)
-        if state == 1: # normal
+        if state == self.NORMAL: # normal
             cr.set_line_width(1)
-        else: # expanded
+        else: # EXPANDED
             cr.set_line_width(3)
         cr.stroke()
         self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
@@ -291,7 +297,7 @@ class FanChartWidget(gtk.Widget):
         text = self.text_limit(text, stop - start, radius - 15)
         # center text:
         # offset for cairo-font system is 90:
-        pos = start + ((stop - start) - self.text_degrees(text, radius))/2.0 + 90
+        pos = start + ((stop - start) - self.text_degrees(text,radius))/2.0 + 90
         x, y, w, h = self.allocation
         cr.save()
         # Create a PangoLayout, set the font and text 
@@ -311,179 +317,195 @@ class FanChartWidget(gtk.Widget):
             cr.restore()
         cr.restore()
 
-class FanChartGramplet(Gramplet):
-    """
-    The Gramplet code that realizes the FanChartWidget. Some of this should be moved to
-    the widget itself.
-    """
-    def init(self):
-        self.set_tooltip("Click to expand/contract person\nRight-click to make person active")
-        self.generations = 6
-        self.gui.fan = FanChartWidget(self.generations)
-        self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.gui.fan)
-        #container is a gtk.ScrolledWindow
-        container = self.gui.get_container_widget()
-        container.connect("button-press-event", self.on_mouse_down)
-        self.gui.fan.show()
-
     def expand_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        start,stop,male,state = self.gui.fan.angle[generation][selected]
-        if state > 0:
+        start,stop,male,state = self.angle[generation][selected]
+        if state in [self.NORMAL, self.EXPANDED]:
             slice = (stop - start) * 2.0
-            self.gui.fan.angle[generation][selected] = [current,current+slice,male,state]
+            self.angle[generation][selected] = [current,current+slice,
+                                                male,state]
             self.expand_parents(generation + 1, selected, current)
             current += slice
-        start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-        if state > 0:
+        start,stop,male,state = self.angle[generation][selected+1]
+        if state in [self.NORMAL, self.EXPANDED]:
             slice = (stop - start) * 2.0
-            self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
+            self.angle[generation][selected+1] = [current,current+slice,
+                                                  male,state]
             self.expand_parents(generation + 1, selected+1, current)
 
-    def show_parents(self, generation, selected, angle):
+    def show_parents(self, generation, selected, angle, slice):
         if generation >= self.generations: return
-        slice = 360.0 / (2 ** generation)
         selected = selected * 2
-        self.gui.fan.angle[generation][selected][0] = angle
-        self.gui.fan.angle[generation][selected][1] = angle + slice
-        self.gui.fan.angle[generation][selected][3] = 1
-        self.show_parents(generation+1, selected, angle)
-        self.gui.fan.angle[generation][selected+1][0] = angle + slice
-        self.gui.fan.angle[generation][selected+1][1] = angle + slice + slice
-        self.gui.fan.angle[generation][selected+1][3] = 1
-        self.show_parents(generation+1, selected + 1, angle + slice)
+        self.angle[generation][selected][0] = angle
+        self.angle[generation][selected][1] = angle + slice
+        self.angle[generation][selected][3] = self.NORMAL
+        self.show_parents(generation+1, selected, angle, slice/2.0)
+        self.angle[generation][selected+1][0] = angle + slice
+        self.angle[generation][selected+1][1] = angle + slice + slice
+        self.angle[generation][selected+1][3] = self.NORMAL
+        self.show_parents(generation+1, selected + 1, angle + slice, slice/2.0)
 
     def hide_parents(self, generation, selected, angle):
         if generation >= self.generations: return
         selected = 2 * selected
-        self.gui.fan.angle[generation][selected][0] = angle
-        self.gui.fan.angle[generation][selected][1] = angle
-        self.gui.fan.angle[generation][selected][3] = 0
+        self.angle[generation][selected][0] = angle
+        self.angle[generation][selected][1] = angle
+        self.angle[generation][selected][3] = self.COLLAPSED
         self.hide_parents(generation + 1, selected, angle)
-        self.gui.fan.angle[generation][selected+1][0] = angle
-        self.gui.fan.angle[generation][selected+1][1] = angle
-        self.gui.fan.angle[generation][selected+1][3] = 0
+        self.angle[generation][selected+1][0] = angle
+        self.angle[generation][selected+1][1] = angle
+        self.angle[generation][selected+1][3] = self.COLLAPSED
         self.hide_parents(generation + 1, selected+1, angle)
 
     def shrink_parents(self, generation, selected, current):
         if generation >= self.generations: return
         selected = 2 * selected
-        start,stop,male,state = self.gui.fan.angle[generation][selected]
-        if state > 0:
+        start,stop,male,state = self.angle[generation][selected]
+        if state in [self.NORMAL, self.EXPANDED]:
             slice = (stop - start) / 2.0
-            self.gui.fan.angle[generation][selected] = [current, current + slice, male,state]
+            self.angle[generation][selected] = [current, current + slice, 
+                                                male,state]
             self.shrink_parents(generation + 1, selected, current)
             current = current + slice
-        start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-        if state > 0:
+        start,stop,male,state = self.angle[generation][selected+1]
+        if state in [self.NORMAL, self.EXPANDED]:
             slice = (stop - start) / 2.0
-            self.gui.fan.angle[generation][selected+1] = [current,current+slice,male,state]
+            self.angle[generation][selected+1] = [current,current+slice,
+                                                  male,state]
             self.shrink_parents(generation + 1, selected+1, current)
 
     def change_slice(self, generation, selected):
-        gstart, gstop, gmale, gstate = self.gui.fan.angle[generation][selected]
-        if gstate == 1: # normal, let's expand
+        gstart, gstop, gmale, gstate = self.angle[generation][selected]
+        if gstate == self.NORMAL: # let's expand
             if gmale:
                 # go to right
                 stop = gstop + (gstop - gstart)
-                self.gui.fan.angle[generation][selected] = [gstart,stop,gmale,2]
+                self.angle[generation][selected] = [gstart,stop,gmale,
+                                                    self.EXPANDED]
                 self.expand_parents(generation + 1, selected, gstart)
-                start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-                self.gui.fan.angle[generation][selected+1] = [stop,stop,male,0]
+                start,stop,male,state = self.angle[generation][selected+1]
+                self.angle[generation][selected+1] = [stop,stop,male,
+                                                      self.COLLAPSED]
                 self.hide_parents(generation+1, selected+1, stop)
             else:
                 # go to left
                 start = gstart - (gstop - gstart)
-                self.gui.fan.angle[generation][selected] = [start,gstop,gmale,2]
+                self.angle[generation][selected] = [start,gstop,gmale,
+                                                    self.EXPANDED]
                 self.expand_parents(generation + 1, selected, start)
-                start,stop,male,state = self.gui.fan.angle[generation][selected-1]
-                self.gui.fan.angle[generation][selected-1] = [start,start,male,0]
+                start,stop,male,state = self.angle[generation][selected-1]
+                self.angle[generation][selected-1] = [start,start,male,
+                                                      self.COLLAPSED]
                 self.hide_parents(generation+1, selected-1, start)
-        elif gstate == 2: # expanded, let's shrink
+        elif gstate == self.EXPANDED: # let's shrink
             if gmale:
                 # shrink from right
                 slice = (gstop - gstart)/2.0
                 stop = gstop - slice
-                self.gui.fan.angle[generation][selected] = [gstart,stop,gmale,1]
+                self.angle[generation][selected] = [gstart,stop,gmale,
+                                                    self.NORMAL]
                 self.shrink_parents(generation+1, selected, gstart)
-                start,stop,male,state = self.gui.fan.angle[generation][selected+1]
-                self.gui.fan.angle[generation][selected+1] = [stop-slice,stop,male,1]
-                self.show_parents(generation+1, selected+1, stop-slice)
+                self.angle[generation][selected+1][0] = stop # start
+                self.angle[generation][selected+1][1] = stop + slice # stop
+                self.angle[generation][selected+1][3] = self.NORMAL
+                self.show_parents(generation+1, selected+1, stop, slice/2.0)
             else:
                 # shrink from left
                 slice = (gstop - gstart)/2.0
                 start = gstop - slice
-                self.gui.fan.angle[generation][selected] = [start,gstop,gmale,1]
+                self.angle[generation][selected] = [start,gstop,gmale,
+                                                    self.NORMAL]
                 self.shrink_parents(generation+1, selected, start)
-                start,stop,male,state = self.gui.fan.angle[generation][selected-1]
-                self.gui.fan.angle[generation][selected-1] = [start,start+slice,male,1]
-                self.show_parents(generation+1, selected-1, start)
+                start,stop,male,state = self.angle[generation][selected-1]
+                self.angle[generation][selected-1] = [start,start+slice,male,
+                                                      self.NORMAL]
+                self.show_parents(generation+1, selected-1, start, slice/2.0)
 
     def on_mouse_down(self, widget, e):
         # compute angle, radius, find out who would be there (rotated)
-        x, y, w, h = self.gui.fan.allocation
+        x, y, w, h = self.allocation
         cx = w/2
         cy = h/2
         radius = math.sqrt((e.x - cx) ** 2 + (e.y - cy) ** 2)
-        if radius < self.gui.fan.center:
+        if radius < self.center:
             generation = 0
         else:
-            generation = int((radius - self.gui.fan.center) / 
-                             self.gui.fan.pixels_per_generation) + 1
+            generation = int((radius - self.center) / 
+                             self.pixels_per_generation) + 1
         rads = math.atan2( (e.y - cy), (e.x - cx) )
-        if rads < 0:
+        if rads < 0: # second half of unit circle
             rads = math.pi + (math.pi + rads)
-        pos = ((rads/(math.pi * 2) - self.gui.fan.rotate_value/360.) * 360.0) % 360
+        pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
         # find what person is in this position:
         selected = None
         if (0 < generation < self.generations):
-            for p in range(len(self.gui.fan.angle[generation])):
-                start, stop, male, state = self.gui.fan.angle[generation][p]
-                if state == 0: continue
+            for p in range(len(self.angle[generation])):
+                start, stop, male, state = self.angle[generation][p]
+                if state == self.COLLAPSED: continue
                 if start <= pos <= stop:
                     selected = p
                     break
         if selected == None: 
-            if radius < self.gui.fan.center:
+            if radius < self.center:
                 print "TODO: select children"
-                pass # TODO: select children
             elif e.x > cx: # on right
                 if e.y > cy: # bottom right, rotate clockwise
-                    self.gui.fan.rotate_value += 45.0
+                    self.rotate_value += 45.0
                 else: # top right, rotate counter clockwise
-                    self.gui.fan.rotate_value -= 45.0
+                    self.rotate_value -= 45.0
             else: # on left
                 if e.y > cy: # bottom left, rotate counter clockwise
-                    self.gui.fan.rotate_value -= 45.0
+                    self.rotate_value -= 45.0
                 else: # top left, rotate clockwise
-                    self.gui.fan.rotate_value += 45.0
-            self.gui.fan.rotate_value %= 360
-            self.gui.fan.queue_draw()
+                    self.rotate_value += 45.0
+            self.rotate_value %= 360
+            self.queue_draw()
             return True
         # Do things based on state, e.state, or button, e.button
         if e.button == 1: # left mouse
             self.change_slice(generation, selected)
         elif e.button == 3: # right mouse
-            person = self.gui.fan.data[generation][selected]
-            if person:
-                name = name_displayer.display(person)
-                self.dbstate.change_active_person(person)
-        self.gui.fan.queue_draw()
+            person = self.data[generation][selected]
+            if person and self.right_click_callback:
+                self.right_click_callback(person)
+        self.queue_draw()
         return True
 
+class FanChartGramplet(Gramplet):
+    """
+    The Gramplet code that realizes the FanChartWidget. 
+    """
+    def init(self):
+        self.set_tooltip("Click to expand/contract person\nRight-click to make person active")
+        self.generations = 6
+        self.gui.fan = FanChartWidget(self.generations, 
+                        right_click_callback=self.dbstate.change_active_person)
+        # Replace the standard textview with the fan chart widget:
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.fan)
+        # Make sure it is visible:
+        self.gui.fan.show()
+
     def db_changed(self):
+        """
+        Method called when database changes.
+        """
+        # reset the db connection
         self.sa = SimpleAccess(self.dbstate.db)
 
     def active_changed(self, handle):
+        """
+        Method called when active person changes.
+        """
         # Reset everything but rotation angle (leave it as is)
         self.gui.fan.reset_generations()
         self.update()
 
     def main(self):
         """
-        Fill the data structures with the active data. This initializes all data.
+        Fill the data structures with the active data. This initializes all 
+        data.
         """
         self.gui.fan.data[0][0] = self.dbstate.get_active_person()
         for current in range(1, self.generations):
@@ -491,11 +513,13 @@ class FanChartGramplet(Gramplet):
             for p in self.gui.fan.data[current - 1]:
                 self.gui.fan.data[current][parent] = self.sa.father(p)
                 if self.gui.fan.data[current][parent] is None:
-                    self.gui.fan.angle[current][parent][3] = 0 # start,stop,g,state
+                    # start,stop,male/right,state
+                    self.gui.fan.angle[current][parent][3] = self.gui.fan.COLLAPSED
                 parent += 1
                 self.gui.fan.data[current][parent] = self.sa.mother(p)
                 if self.gui.fan.data[current][parent] is None:
-                    self.gui.fan.angle[current][parent][3] = 0 # start,stop,g,state
+                    # start,stop,male/left,state
+                    self.gui.fan.angle[current][parent][3] = self.gui.fan.COLLAPSED
                 parent += 1
         self.gui.fan.queue_draw()
 
