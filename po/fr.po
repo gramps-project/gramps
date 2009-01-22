@@ -467,7 +467,7 @@ msgstr "Importation finie..."
 #: ../src/DbManager.py:226
 #: ../src/plugins/ImportCSV.py:375
 msgid "Importing data..."
-msgstr "Importation des données…"
+msgstr "Importation des données..."
 
 #: ../src/DbManager.py:429
 msgid "Family tree name"
@@ -527,12 +527,12 @@ msgstr "Impossible de renommer l'arbre familial"
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:671
 msgid "Extracting archive..."
-msgstr "Extraction de l'archive…"
+msgstr "Extraction de l'archive..."
 
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:676
 msgid "Importing archive..."
-msgstr "Importation de l'archive…"
+msgstr "Importation de l'archive..."
 
 # objet sélectionné
 # Supprimer car efface
@@ -686,12 +686,12 @@ msgstr ""
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:1079
 msgid "Creating data to be archived..."
-msgstr "Création des données à archiver…"
+msgstr "Création des données à archiver..."
 
 # Substantif (GNOME fr)
 #: ../src/DbManager.py:1084
 msgid "Saving archive..."
-msgstr "Enregistrement de l'archive…"
+msgstr "Enregistrement de l'archive..."
 
 #: ../src/DbManager.py:1098
 #, python-format
@@ -3314,13 +3314,13 @@ msgstr "La clé %s n'est pas définie"
 #. load document generators
 #: ../src/ViewManager.py:591
 msgid "Loading document formats..."
-msgstr "Chargement des formats…"
+msgstr "Chargement des formats..."
 
 # Substantif (GNOME fr)
 #. load plugins
 #: ../src/ViewManager.py:596
 msgid "Loading plugins..."
-msgstr "Chargement des greffons…"
+msgstr "Chargement des greffons..."
 
 #: ../src/ViewManager.py:610
 msgid "Ready"
@@ -3328,7 +3328,7 @@ msgstr "Prêt"
 
 #: ../src/ViewManager.py:642
 msgid "Autobackup..."
-msgstr "Sauvegarde automatique…"
+msgstr "Sauvegarde automatique..."
 
 #: ../src/ViewManager.py:654
 msgid "Abort changes?"
@@ -3900,7 +3900,7 @@ msgstr "crém."
 
 #: ../src/DataViews/PedigreeView.py:973
 msgid "Jump to child..."
-msgstr "Aller à l'enfant…"
+msgstr "Aller à l'enfant..."
 
 #: ../src/DataViews/PedigreeView.py:983
 msgid "Jump to father"
@@ -4092,7 +4092,7 @@ msgstr "Individu actif non visible"
 #: ../src/DataViews/PersonView.py:580
 #: ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
-msgstr "Chargement en cours…"
+msgstr "Chargement en cours..."
 
 # Substantif (GNOME fr)
 #: ../src/DataViews/PersonView.py:601
@@ -4614,7 +4614,7 @@ msgstr "sur %d"
 #: ../src/docgen/GtkPrint.py:612
 #: ../src/docgen/GtkPrint.py:613
 msgid "Print..."
-msgstr "Imprimer…"
+msgstr "Imprimer..."
 
 #: ../src/docgen/HtmlDoc.py:158
 #: ../src/docgen/HtmlDoc.py:183
@@ -7084,11 +7084,11 @@ msgstr "Résultats"
 
 #: ../src/plugins/CalculateEstimatedDates.py:156
 msgid "Processing...\n"
-msgstr "Traitement…\n"
+msgstr "Traitement...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:174
 msgid "Replacing...\n"
-msgstr "Remplacement…\n"
+msgstr "Remplacement...\n"
 
 # Substantif (GNOME fr)
 # enlever car utilisé pour un calcul
@@ -7166,13 +7166,13 @@ msgstr "Calendrier"
 #: ../src/plugins/Calendar.py:222
 #: ../src/plugins/Calendar.py:443
 msgid "Formatting months..."
-msgstr "Formatage des mois…"
+msgstr "Formatage des mois..."
 
 # Substantif (GNOME fr)
 #: ../src/plugins/Calendar.py:314
 #: ../src/plugins/Calendar.py:318
 msgid "Filtering data..."
-msgstr "Filtrage des données…"
+msgstr "Filtrage des données..."
 
 #: ../src/plugins/Calendar.py:400
 #: ../src/plugins/WebCal.py:666
@@ -8055,7 +8055,7 @@ msgstr "Aucun Arbre Familial chargé ou de personne active définie."
 #: ../src/plugins/DefaultGramplets.py:301
 #: ../src/plugins/DefaultGramplets.py:693
 msgid "Processing..."
-msgstr "Traitement…"
+msgstr "Traitement..."
 
 #: ../src/plugins/DefaultGramplets.py:266
 #: ../src/plugins/DefaultGramplets.py:359
@@ -10059,7 +10059,7 @@ msgstr "Importation de CSV"
 # Substantif (GNOME fr)
 #: ../src/plugins/ImportCSV.py:373
 msgid "Reading data..."
-msgstr "Lecture des données…"
+msgstr "Lecture des données..."
 
 #: ../src/plugins/ImportCSV.py:687
 #: ../src/plugins/ImportGeneWeb.py:187
@@ -11305,7 +11305,7 @@ msgstr "Paquet GRAMPS"
 # Substantif (GNOME fr)
 #: ../src/plugins/Rebuild.py:75
 msgid "Rebuilding secondary indices..."
-msgstr "Reconstruire les seconds indices…"
+msgstr "Reconstruire les seconds indices..."
 
 #: ../src/plugins/Rebuild.py:84
 msgid "Secondary indices rebuilt"
@@ -11617,7 +11617,7 @@ msgstr "Pied de page"
 
 #: ../src/plugins/SimpleBookTitle.py:186
 msgid "From gallery..."
-msgstr "À partir de la galerie…"
+msgstr "À partir de la galerie..."
 
 #: ../src/plugins/SimpleBookTitle.py:207
 #: ../src/ReportBase/_PaperMenu.py:223
@@ -11804,12 +11804,12 @@ msgstr "Diagrammes statistiques"
 #. extract requested items from the database and count them
 #: ../src/plugins/StatisticsChart.py:506
 msgid "Collecting data..."
-msgstr "Collecte des données…"
+msgstr "Collecte des données..."
 
 # Substantif (GNOME fr)
 #: ../src/plugins/StatisticsChart.py:512
 msgid "Sorting data..."
-msgstr "Tri des données…"
+msgstr "Tri des données..."
 
 #: ../src/plugins/StatisticsChart.py:522
 #, python-format
@@ -11824,7 +11824,7 @@ msgstr "Individus nés entre %(year_from)04d et %(year_to)04d : %(chart_title)s
 # Substantif (GNOME fr)
 #: ../src/plugins/StatisticsChart.py:559
 msgid "Saving charts..."
-msgstr "Enregistrement des diagrammes…"
+msgstr "Enregistrement des diagrammes..."
 
 #: ../src/plugins/StatisticsChart.py:606
 #: ../src/plugins/StatisticsChart.py:642
@@ -12508,7 +12508,7 @@ msgstr "Options d'exportation du paquet GRAMPS"
 # Substantif (GNOME fr)
 #: ../src/plugins/RebuildRefMap.py:76
 msgid "Rebuilding reference maps..."
-msgstr "Reconstruction des tables de références…"
+msgstr "Reconstruction des tables de références..."
 
 #: ../src/plugins/RebuildRefMap.py:89
 msgid "Reference maps rebuilt"
@@ -14676,7 +14676,7 @@ msgstr "Inhumé(e) à %(burial_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:658
 #, python-format
 msgid "%(male_name)s was buried%(endnotes)s."
-msgstr "%(male_name)s a été inhumés%(endnotes)s."
+msgstr "%(male_name)s a été inhumé%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:659
 #, python-format
@@ -17042,7 +17042,7 @@ msgstr "Dossier de divorce (action)"
 msgid "Annulment"
 msgstr "Annulation de mariage"
 
-# peut être mariage de remplacement…
+# peut être mariage de remplacement...
 #: ../src/gen/lib/eventtype.py:140
 msgid "Alternate Marriage"
 msgstr "Mariage alternatif"
@@ -17310,7 +17310,7 @@ msgstr "Les objets avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:45
 msgid "Matches objects with a certain reference count"
-msgstr "Correspond aux objets avec un certain nombre de références"
+msgstr "Correspond aux objets ayant un nombre de références"
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
@@ -18140,7 +18140,7 @@ msgstr "Les familles avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
 msgid "Matches family objects with a certain reference count"
-msgstr "Correspond aux familles avec un certain nombre de références"
+msgstr "Correspond aux familles ayant un nombre de références"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 msgid "Family with the relationship type"
@@ -18357,7 +18357,7 @@ msgstr "Les événements avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:44
 msgid "Matches events with a certain reference count"
-msgstr "Correspond aux événements avec un certain nombre de références"
+msgstr "Correspond aux événements ayant un nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
@@ -18534,7 +18534,7 @@ msgstr "Les lieux avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
 msgid "Matches place objects with a certain reference count"
-msgstr "Correspond aux lieux avec un certain nombre de références"
+msgstr "Correspond aux lieux ayant un nombre de références"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -18635,7 +18635,7 @@ msgstr "Les sources avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
 msgid "Matches source objects with a certain reference count"
-msgstr "Correspond aux sources avec un certain nombre de références"
+msgstr "Correspond aux sources ayant un nombre de références"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -18775,7 +18775,7 @@ msgstr "Les objets media avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Correspond aux objets media avec un certain nombre de références"
+msgstr "Correspond aux objets media ayant un nombre de références"
 
 # média ?
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -18855,7 +18855,7 @@ msgstr "Les dépôts avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Correspond aux dépôts avec un certain nombre de références"
+msgstr "Correspond aux dépôts ayant un nombre de références"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -18943,7 +18943,7 @@ msgstr "Notes qui contiennent une <expression rationnelle>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
-msgstr "Correspond aux notes qui contiennent une expression rationnelle"
+msgstr "Correspond aux notes contenant du texte avec l'expression rationnelle"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -18971,7 +18971,7 @@ msgstr "Les notes avec un nombre de références de <nb>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:44
 msgid "Matches notes with a certain reference count"
-msgstr "Correspond aux notes avec un certain nombre de références"
+msgstr "Correspond aux notes ayant un nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
@@ -19133,7 +19133,7 @@ msgstr "égal à"
 
 #: ../src/FilterEditor/_EditRule.py:293
 msgid "Select..."
-msgstr "Sélectionner…"
+msgstr "Sélectionner..."
 
 #: ../src/FilterEditor/_EditRule.py:299
 #, python-format
@@ -20744,7 +20744,7 @@ msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr(e) d'une da
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
-msgstr "<b>Qui est né quand</b> : La comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base."
+msgstr "<b>Qui est né quand</b> : la comparaison des événements individuels permet de comparer toutes les données des individus de la base. C'est utile si vous voulez une liste des dates de naissance de tous les individus de votre base."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
@@ -20842,7 +20842,7 @@ msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue 
 msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
 msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires sont installées."
 
-# Récits pour Narratives plutôt que sagas…
+# Récits pour Narratives plutôt que sagas...
 #: ../src/data/tips.xml.in.h:52
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
 msgstr "La généalogie n'est pas seulement des dates et des noms. C'est aussi des individus. Soyez descriptif. Ajouter le <b>pourquoi</b> de chaque action, pour que vos descendants comprennent les événements. Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
@@ -21916,7 +21916,7 @@ msgstr "Gramplet Enregistrements"
 
 #: Records.py:642
 msgid "Records Report"
-msgstr "Rapport Enregistrements"
+msgstr "Rapport d'enregistrements"
 
 #: Records.py:646
 msgid "Shows some interesting records about people and families"
