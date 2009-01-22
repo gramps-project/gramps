@@ -237,13 +237,15 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.stop_year = self.top.get_widget('stop_year')
         self.stop_year.set_value(self.date.get_stop_year())
         
+        self.dual_dated = self.top.get_widget('dualdated')
+        self.new_year = self.top.get_widget('newyear')
+        self.new_year.set_active(self.date.get_new_year())
+
         # Disable second date controls if not compound date
         if not self.date.is_compound():
             self.stop_day.set_sensitive(0)
             self.stop_month_box.set_sensitive(0)
             self.stop_year.set_sensitive(0)
-
-        self.dual_dated = self.top.get_widget('dualdated')
 
         # Disable the rest of controls if a text-only date
         if self.date.get_modifier() == Date.MOD_TEXTONLY:
@@ -263,9 +265,6 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.calendar_box.set_sensitive(0)
             self.calendar_box.set_active(Date.CAL_JULIAN)
         self.dual_dated.connect('toggled', self.switch_dual_dated)
-
-        self.new_year = self.top.get_widget('newyear')
-        self.new_year.set_active(self.date.get_new_year())
 
         # The dialog is modal -- since dates don't have names, we don't
         # want to have several open dialogs, since then the user will
