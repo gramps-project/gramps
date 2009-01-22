@@ -89,6 +89,13 @@ def swedish_valid(date_tuple):
         valid = False 
     return valid
 
+def french_valid(date_tuple):
+    valid = True
+    # year 1 starts on 22.9.1792
+    if date_tuple[2] < 1:
+        valid = False       
+    return valid
+
 #-------------------------------------------------------------------------
 #
 # Parser class
@@ -354,7 +361,7 @@ class DateParser:
 
     def _parse_french(self, text):
         return self._parse_calendar(text, self._ftext, self._ftext2,
-                                    self.french_to_int)
+                                    self.french_to_int, french_valid)
 
     def _parse_greg_julian(self, text):
         return self._parse_calendar(text, self._text, self._text2,
@@ -428,6 +435,8 @@ class DateParser:
             check = gregorian_valid
         if subparser == self._parse_swedish:
             check = swedish_valid
+        if subparser == self._parse_french:
+            check = french_valid
         else:
             check = None
         

@@ -167,7 +167,7 @@ class DateParserFR(DateParser):
         # This self._numeric is different from the base
         # avoid bug gregorian / french calendar conversion (+/-10 days)
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
-        self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)", re.IGNORECASE)
+        self._span     = re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)", re.IGNORECASE)
         self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)", re.IGNORECASE)
     # This self._text are different from the base
         # by adding ".?" after the first date and removing "\s*$" at the end
@@ -186,6 +186,9 @@ class DateParserFR(DateParser):
     #islamic
         self._itext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str, 
                                   re.IGNORECASE)
+    #swedish
+        self._stext2    = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._smon_str,
+                                    re.IGNORECASE)
         
 #-------------------------------------------------------------------------
 #
@@ -247,7 +250,7 @@ class DateDisplayFR(DateDisplay):
             else:
                 value = "%s %d, %s" % (self.MONS[date_val[1]], date_val[0], year)
         elif self.format == 4:
-            # Day Month Year
+            # Day. Month Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -258,7 +261,7 @@ class DateDisplayFR(DateDisplay):
         # value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
                 value = "%d. %s %s" % (date_val[0], self._months[date_val[1]], year)
         else:
-            # Day MON Year
+            # Day. MON Year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -273,23 +276,6 @@ class DateDisplayFR(DateDisplay):
         else:
             return value
             
-    def _display_french(self, date_val):
-        year = date_val[2]          
-        if date_val[0] == 0:
-            if date_val[1] == 0:
-                return year
-            else:
-                return u"%s %d" % (self.french[date_val[1]], year) 
-        # convertion mistake before 22.9.1792        
-        elif date_val[2] == 0 and date_val[1] == 13:
-            # from 17.9.1792 to 21.9.1792 : trap for Extra months, we cannot date back
-            return self._bce_str % year
-        # on 1792 before 22.9.1792, no negative years    
-        elif date_val[2] < 0: 
-            return self._bce_str % year
-        # valid dates on 1792        
-        else:
-            return u"%s %s %d" % (date_val[0], self.french[date_val[1]], year)       
 
     def display(self, date):
         """
