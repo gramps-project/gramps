@@ -93,8 +93,9 @@ class FanChartWidget(gtk.Widget):
         Highly experimental... documents forthcoming...
         """
         gtk.Widget.__init__(self)
-        self.connect("button_release_event", self.button_release)
-        self.connect("motion_notify_event", self.motion_notify)
+        self.last_x, self.last_y = None, None
+        self.connect("button_release_event", self.on_mouse_up)
+        self.connect("motion_notify_event", self.on_mouse_move)
         self.connect("button-press-event", self.on_mouse_down)
         self.right_click_callback = right_click_callback
         self.add_events(gdk.BUTTON_PRESS_MASK |
@@ -111,14 +112,6 @@ class FanChartWidget(gtk.Widget):
         self.center = 50 # pixel radius of center
         self.layout = self.create_pango_layout('cairo')
         self.layout.set_font_description(pango.FontDescription("sans serif 8"))
-
-    def button_release(self, widget, event):
-        #print "up!"
-        return True
-
-    def motion_notify(self, widget, event):
-        #print "move!"
-        return True
 
     def reset_generations(self):
         """
@@ -270,8 +263,9 @@ class FanChartWidget(gtk.Widget):
         else: # EXPANDED
             cr.set_line_width(3)
         cr.stroke()
-        self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
-                       start, stop)
+        if self.last_x == None or self.last_y == None: 
+            self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
+                           start, stop)
 
     def text_degrees(self, text, radius):
         """
@@ -422,18 +416,44 @@ class FanChartWidget(gtk.Widget):
                                                       self.NORMAL]
                 self.show_parents(generation+1, selected-1, start, slice/2.0)
 
-    def on_mouse_down(self, widget, e):
+    def on_mouse_up(self, widget, event):
+        # Done with mouse movement
+        if self.last_x == None or self.last_y == None: return True
+        self.queue_draw()
+        self.last_x, self.last_y = None, None
+        return True
+
+    def on_mouse_move(self, widget, event):
+        if self.last_x == None or self.last_y == None: return False
+        x, y, w, h = self.allocation
+        cx = w/2
+        cy = h/2
+        # get the angles of the two points from the center:
+        start_angle = math.atan2(event.y - cy, event.x - cx)
+        end_angle = math.atan2(self.last_y - cy, self.last_x - cx)
+        if start_angle < 0: # second half of unit circle
+            start_angle = math.pi + (math.pi + start_angle)
+        if end_angle < 0: # second half of unit circle
+            end_angle = math.pi + (math.pi + end_angle)
+        # now look at change in angle:
+        diff_angle = (end_angle - start_angle) % (math.pi * 2.0)
+        self.rotate_value -= diff_angle * 180.0/ math.pi
+        self.queue_draw()
+        self.last_x, self.last_y = event.x, event.y
+        return True
+
+    def on_mouse_down(self, widget, event):
         # compute angle, radius, find out who would be there (rotated)
         x, y, w, h = self.allocation
         cx = w/2
         cy = h/2
-        radius = math.sqrt((e.x - cx) ** 2 + (e.y - cy) ** 2)
+        radius = math.sqrt((event.x - cx) ** 2 + (event.y - cy) ** 2)
         if radius < self.center:
             generation = 0
         else:
             generation = int((radius - self.center) / 
                              self.pixels_per_generation) + 1
-        rads = math.atan2( (e.y - cy), (e.x - cx) )
+        rads = math.atan2( (event.y - cy), (event.x - cx) )
         if rads < 0: # second half of unit circle
             rads = math.pi + (math.pi + rads)
         pos = ((rads/(math.pi * 2) - self.rotate_value/360.) * 360.0) % 360
@@ -446,26 +466,19 @@ class FanChartWidget(gtk.Widget):
                 if start <= pos <= stop:
                     selected = p
                     break
-        if selected == None: 
+        if selected == None: # click in open area
+            # save the mouse location for movements
             if radius < self.center:
                 print "TODO: select children"
-            elif e.x > cx: # on right
-                if e.y > cy: # bottom right, rotate clockwise
-                    self.rotate_value += 45.0
-                else: # top right, rotate counter clockwise
-                    self.rotate_value -= 45.0
-            else: # on left
-                if e.y > cy: # bottom left, rotate counter clockwise
-                    self.rotate_value -= 45.0
-                else: # top left, rotate clockwise
-                    self.rotate_value += 45.0
-            self.rotate_value %= 360
-            self.queue_draw()
-            return True
-        # Do things based on state, e.state, or button, e.button
-        if e.button == 1: # left mouse
+                self.queue_draw()
+                return True
+            else:
+                self.last_x, self.last_y = event.x, event.y
+                return True
+        # Do things based on state, event.state, or button, event.button
+        if event.button == 1: # left mouse
             self.change_slice(generation, selected)
-        elif e.button == 3: # right mouse
+        elif event.button == 3: # right mouse
             person = self.data[generation][selected]
             if person and self.right_click_callback:
                 self.right_click_callback(person)
