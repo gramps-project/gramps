@@ -895,13 +895,27 @@ class Date:
         year = max(value[Date._POS_YR], 1)
         month = max(value[Date._POS_MON], 1)
         day = max(value[Date._POS_DAY], 1)
+
         if year == 0 and month == 0 and day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[calendar]
             self.sortval = func(year, month, day)
+
+        if self.get_slash() and self.get_calendar() != Date.CAL_JULIAN:
+            self.set_calendar(Date.CAL_JULIAN)
+            self.recalc_sort_value()
+
         if text:
             self.text = text
+
+    def recalc_sort_value(self):
+        """
+        Recalculates the numerical sort value associated with the date
+        and returns it. Public method.
+        """
+        self._calc_sort_value()
+        return self.sortval
 
     def _calc_sort_value(self):
         """

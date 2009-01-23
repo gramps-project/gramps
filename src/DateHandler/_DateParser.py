@@ -330,8 +330,12 @@ class DateParser:
                 s = False
             else:
                 d = self._get_int(groups[1])
-                y = int(groups[3])
-                s = groups[4] != None
+                if groups[4] is not None: # slash year "/80"
+                    y = int(groups[3]) + 1 # fullyear + 1
+                    s = True
+                else: # regular, non-slash date
+                    y = int(groups[3])
+                    s = False
             value = (d, m, y, s)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
@@ -351,8 +355,12 @@ class DateParser:
                 y = None
                 s = False
             else:
-                y = int(groups[3])
-                s = groups[4] != None
+                if groups[4] is not None: # slash year digit
+                    y = int(groups[3]) + 1 # fullyear + 1
+                    s = True
+                else: # regular year
+                    y = int(groups[3])
+                    s = False
             value = (d, m, y, s)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
@@ -384,8 +392,8 @@ class DateParser:
             d = self._get_int(groups[4])
             if check and not check((d, m, y)):
                 return Date.EMPTY
-            if groups[2]:
-                return (d, m, y, True)
+            if groups[2]: # slash year digit
+                return (d, m, y + 1, True)
             else:
                 return (d, m, y, False)
 
@@ -511,7 +519,7 @@ class DateParser:
             try:
                 text = match.group(1) + match.group(3)
             except:
-                print "MATCH:", match.groups()
+                print "ERROR MATCH:", match.groups()
             bc = True
         return (text, bc)
 
@@ -564,7 +572,7 @@ class DateParser:
         """
         Parses the text and sets the date according to the parsing.
         """
-
+        text = text.strip() # otherwise spaces can make it a bad date
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
@@ -594,10 +602,6 @@ class DateParser:
             date.set(qual, Date.MOD_NONE, cal, self.invert_year(subdate))
         else:
             date.set(qual, Date.MOD_NONE, cal, subdate)
-
-        if date.get_slash():
-            date.set_calendar(Date.CAL_JULIAN)
-            date.set_year(date.get_year() + 1) # year++ and forces recalc
 
     def invert_year(self, subdate):
         return (subdate[0], subdate[1], -subdate[2], subdate[3])
