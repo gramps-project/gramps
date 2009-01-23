@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-22 15:23+0100\n"
-"PO-Revision-Date: 2009-01-22 20:44+0100\n"
+"PO-Revision-Date: 2009-01-23 09:51+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1501,19 +1501,16 @@ msgid "Changing the data format will not take effect until the next time GRAMPS 
 msgstr "Het veranderen van het gegevensformaat is enkel van toepassing bij de volgende start van GRAMPS."
 
 #: ../src/GrampsCfg.py:847
-#, fuzzy
 msgid "Date about range"
-msgstr "Hoge leeftijd bij huwelijk"
+msgstr "Datum ongeveer bereik"
 
 #: ../src/GrampsCfg.py:850
-#, fuzzy
 msgid "Date after range"
-msgstr "Hoge leeftijd bij huwelijk"
+msgstr "Datum na bereik"
 
 #: ../src/GrampsCfg.py:853
-#, fuzzy
 msgid "Date before range"
-msgstr "Overlijden voor geboorte"
+msgstr "Datum voor bereik"
 
 #: ../src/GrampsCfg.py:856
 msgid "Maximum age probably alive"
@@ -1535,9 +1532,8 @@ msgid "Average years between generations"
 msgstr "Gemiddeld leeftijdsverschil tussen generaties"
 
 #: ../src/GrampsCfg.py:868
-#, fuzzy
 msgid "Markup for invalid date format"
-msgstr "Zoeken naar ongeldige verwijzingen naar naam formaten"
+msgstr "Aanduiding voor ongeldig datumformaat"
 
 #: ../src/GrampsCfg.py:880
 msgid "Add default source on import"
@@ -7700,9 +7696,8 @@ msgid "Produces a graphical ancestral tree"
 msgstr "Levert een grafische voorouderstamboom"
 
 #: ../src/plugins/drawreport/DescendTree.py:54
-#, fuzzy
 msgid "short for married|m."
-msgstr "o."
+msgstr "verkorte vorm voor gehuwd|h."
 
 #: ../src/plugins/drawreport/DescendTree.py:151
 #, python-format
@@ -7710,14 +7705,12 @@ msgid "Descendant Chart for %s"
 msgstr "Afstammelingsverslag voor %s"
 
 #: ../src/plugins/drawreport/DescendTree.py:472
-#, fuzzy
 msgid "Show Sp_ouses"
-msgstr "Echtgenoten"
+msgstr "Toon echtgenoten"
 
 #: ../src/plugins/drawreport/DescendTree.py:473
-#, fuzzy
 msgid "Whether to show spouses in the tree."
-msgstr "Stamboom al of niet comprimeren."
+msgstr "De echtgenoten al of niet tonen in de stamboom."
 
 #: ../src/plugins/drawreport/DescendTree.py:527
 msgid "Descendant Tree"
@@ -8433,9 +8426,8 @@ msgstr "Ma_ximum leeftijd om vader van een kind te zijn"
 
 #: ../src/plugins/gramplet/AgeStats.py:43
 #: ../src/plugins/gramplet/AgeStats.py:50
-#, fuzzy
 msgid "Chart width"
-msgstr "Eerste grafiek"
+msgstr "Breedte grafiek"
 
 #: ../src/plugins/gramplet/AgeStats.py:155
 msgid "Lifespan Age Distribution"
@@ -8460,19 +8452,16 @@ msgid "Statistics"
 msgstr "Statistieken"
 
 #: ../src/plugins/gramplet/AgeStats.py:215
-#, fuzzy
 msgid "Total"
-msgstr "Hulpmiddelen"
+msgstr "Totaal"
 
 #: ../src/plugins/gramplet/AgeStats.py:216
-#, fuzzy
 msgid "Minimum"
-msgstr "Medium"
+msgstr "Minimum"
 
 #: ../src/plugins/gramplet/AgeStats.py:217
-#, fuzzy
 msgid "Average"
-msgstr "bereik"
+msgstr "Gemiddelde"
 
 #: ../src/plugins/gramplet/AgeStats.py:218
 msgid "Median"
@@ -8483,12 +8472,11 @@ msgid "Maximum"
 msgstr "Maximum "
 
 #: ../src/plugins/gramplet/AgeStats.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "Double-click to see %d people"
-msgstr "Dubbelklikken om de personen in de generatie te zien"
+msgstr "Dubbelklikken om %d personen te zien"
 
 #: ../src/plugins/gramplet/AgeStats.py:269
-#, fuzzy
 msgid "Age Stats Gramplet"
 msgstr "Leeftijd op datum gramplet"
 
@@ -8497,14 +8485,13 @@ msgid "Age Stats"
 msgstr "Leeftijdsstatistiek"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Active person: <b>%s</b>"
-msgstr "Actieve persoon: %s"
+msgstr "Actieve persoon:<b> %s<b>"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:54
-#, fuzzy
 msgid "Attributes Gramplet"
-msgstr "Statistiekengramplet"
+msgstr "Kenmerkengramplet"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:58
 #: ../src/plugins/webreport/NarrativeWeb.py:1279
@@ -8540,9 +8527,8 @@ msgid "Deleted"
 msgstr "Verwijderd"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:114
-#, fuzzy
 msgid "Edited"
-msgstr "Bewerken"
+msgstr "Bewerkt"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:123
 msgid "Selected"
@@ -8869,14 +8855,12 @@ msgstr "Uitvoeren"
 #: ../src/plugins/gramplet/DefaultGramplets.py:1141
 #: ../src/plugins/gramplet/DefaultGramplets.py:1157
 #: ../src/plugins/gramplet/DefaultGramplets.py:1161
-#, fuzzy
 msgid "View Type"
-msgstr "Bestandstype"
+msgstr "Schermtype"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1103
 #: ../src/plugins/gramplet/DefaultGramplets.py:1151
 #: ../src/plugins/gramplet/DefaultGramplets.py:1162
-#, fuzzy
 msgid "Quick Views"
 msgstr "Snelscherm"
 
@@ -8902,9 +8886,8 @@ msgstr "Opslaan"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1200
 #: ../src/plugins/gramplet/NoteGramplet.py:90
-#, fuzzy
 msgid "Abandon"
-msgstr "en"
+msgstr "Verlaat"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1205
 msgid "New person"
@@ -8985,15 +8968,13 @@ msgid "Can't add new person as a spouse."
 msgstr "Kan de nieuwe persoon niet als echtgeno(o)t(e) toeveogen."
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1560
-#, fuzzy
 msgid "Can't add new person as a sibling."
-msgstr "Toon de broers en de zussen van een persoon."
+msgstr "Kan de nieuwe persoon niet als broer/zus toevoegen."
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1565
 #: ../src/plugins/gramplet/DefaultGramplets.py:1803
-#, fuzzy
 msgid "Can't add new person as a child."
-msgstr "Maak een nieuwe persoon aan en voeg kind toe aan de familie"
+msgstr "Kan de nieuwe persoon niet toevoegen als kind."
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1686
 msgid "Please set gender on Active or new person."
@@ -9116,14 +9097,12 @@ msgid "Query"
 msgstr "Query"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1993
-#, fuzzy
 msgid "Quick View Gramplet"
-msgstr "Query-Gramplet"
+msgstr "Snelschermgramplet"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:2004
-#, fuzzy
 msgid "Data Entry Gramplet"
-msgstr "Kalendergramplet"
+msgstr "Datumingavegramplet"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:2008
 msgid "Data Entry"
@@ -9158,42 +9137,36 @@ msgid "d. %(death_date)s"
 msgstr "o. %(death_date)s"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
-#, fuzzy
 msgid "   sp. "
-msgstr "   "
+msgstr "sp.   "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
-#, fuzzy
 msgid "Descendant Gramplet"
-msgstr "Afstammelingenstamboom"
+msgstr "Afstammelingengramplet"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
 msgid "Descendants"
 msgstr "Afstammelingen"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
-#, fuzzy
 msgid "Double-click given name for details"
-msgstr "Dubbelklikken op de achternaam voor meer details"
+msgstr "Dubbelklik op de voornaam voor meer details"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
 msgid "Total unique given names"
 msgstr "Totaal aantal unieke achternamen "
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
-#, fuzzy
 msgid "Total given names showing"
-msgstr "Totaal aantal unieke achternamen"
+msgstr "Totaal aantal voornamen"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#, fuzzy
 msgid "Given Name Cloud Gramplet"
-msgstr "Achternamenwolk gramplet"
+msgstr "Voornamenwolkgramplet"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
-#, fuzzy
 msgid "Given Name Cloud"
-msgstr "Voornaam"
+msgstr "Voornamenwolk"
 
 #: ../src/plugins/gramplet/NoteGramplet.py:149
 #: ../src/plugins/gramplet/NoteGramplet.py:230
@@ -9221,9 +9194,8 @@ msgstr "achternaam onbekend"
 #: ../src/plugins/gramplet/WhatsNext.py:252
 #: ../src/plugins/gramplet/WhatsNext.py:283
 #: ../src/plugins/gramplet/WhatsNext.py:290
-#, fuzzy
 msgid "(person with unknown name)"
-msgstr "personen met onbekend geslacht"
+msgstr "(persoon met onbekende naam)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:265
 msgid "birth event missing"
@@ -9269,14 +9241,13 @@ msgid "date incomplete"
 msgstr "onvolledige datum"
 
 #: ../src/plugins/gramplet/WhatsNext.py:333
-#, fuzzy
 msgid "place unknown"
-msgstr "onbekend"
+msgstr "locatie onbekend"
 
 #: ../src/plugins/gramplet/WhatsNext.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "%(type)s: %(list)s"
-msgstr "%(type)s: %(value)s"
+msgstr "%(type)s: %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:344
 msgid "spouse missing"
@@ -9301,9 +9272,8 @@ msgid ": %s\n"
 msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
-#, fuzzy
 msgid "What's Next Gramplet"
-msgstr "Statistiekengramplet"
+msgstr "Nog-te-doen gramplet"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
@@ -10149,14 +10119,14 @@ msgid "Display all relationships between person and home person."
 msgstr "Toont alle verwantschappen tussen persoon en de beginpersoon."
 
 #: ../src/plugins/quickview/AttributeMatch.py:29
-#, fuzzy, python-format
+#, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Personen met persoonlijk <kenmerk>"
+msgstr "Personen met het '%s' kenmerk"
 
 #: ../src/plugins/quickview/AttributeMatch.py:42
-#, fuzzy, python-format
+#, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "Er zijn %d personen met een overeenkomende naam of een alternatieve naam.\n"
+msgstr "Er zijn %d personen met een overeenkomend kenmerk.\n"
 
 #: ../src/plugins/quickview/AttributeMatch.py:50
 msgid "Attribute Match"
@@ -10519,9 +10489,8 @@ msgid "Matches people with same lastname"
 msgstr "Vindt personen met dezelfde achternaam"
 
 #: ../src/plugins/quickview/SameSurnames.py:62
-#, fuzzy
 msgid "People matching the <given>"
-msgstr "Personen die uit het <filter> komen"
+msgstr "Personen die overeenkomen met <opgegeven>"
 
 #: ../src/plugins/quickview/SameSurnames.py:63
 msgid "Matches people with same given name"
@@ -10532,9 +10501,8 @@ msgid "People with incomplete given names"
 msgstr "Personen met onvolledige voornamen"
 
 #: ../src/plugins/quickview/SameSurnames.py:80
-#, fuzzy
 msgid "Matches people with firstname missing"
-msgstr "Vindt personen wiens achternaam ontbreekt"
+msgstr "Vindt personen waarvan de voornaam ontbreekt"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:104
@@ -10550,9 +10518,9 @@ msgstr "Er zijn %d personen met een overeenkomende naam of een alternatieve naam
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:140
-#, fuzzy, python-format
+#, python-format
 msgid "People with the given name '%s'"
-msgstr "Personen met de achternaam '%s'"
+msgstr "Personen met de voornaam '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:170
 msgid "Same Surnames"
@@ -12493,12 +12461,12 @@ msgid "Uncollected Objects Tool"
 msgstr "Niet-verzamelde objecten"
 
 #: ../src/plugins/tool/Leak.py:95
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%d uncollected objects:\n"
 "\n"
 msgstr ""
-"Niet-verzamelde objecten:\n"
+"%d niet-verzamelde objecten:\n"
 "\n"
 
 #: ../src/plugins/tool/Leak.py:101
@@ -12631,9 +12599,8 @@ msgid "Convert paths from absolute to r_elative"
 msgstr "Omzetten naar paden van absoluut naar relatief"
 
 #: ../src/plugins/tool/MediaManager.py:535
-#, fuzzy
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Dit hulpmiddel laat toe om absolute mediapaden om te zetten naar een relatief pad. Een relatief pad wordt gerelateerd t.o.v. het basispad dat in Voorkeuren wordt opgegeven. Indien dit niet werd opgegeven wordt uw thuismap gebruikt. Een relatief pad laat toe om de bestandslocatie te verbinden met dit basispad dat volgens uw eisen kan veranderd worden."
+msgstr "Dit hulpmiddel laat toe om absolute mediapaden om te zetten naar een relatief pad. Een relatief pad wordt gerelateerd t.o.v. het basispad dat in <b>Voorkeuren</b> wordt opgegeven. Indien dit niet werd opgegeven wordt uw thuismap gebruikt. Een relatief pad laat toe om de bestandslocatie te verbinden met dit basispad dat volgens uw eisen kan veranderd worden."
 
 #: ../src/plugins/tool/MediaManager.py:600
 msgid "Manages batch operations on media files"
@@ -12935,18 +12902,16 @@ msgid "Sort event changes"
 msgstr "Sorteer gebeurtenisveranderingen"
 
 #: ../src/plugins/tool/SortEvents.py:114
-#, fuzzy
 msgid "Sorting personal events..."
-msgstr "Datums sorteren..."
+msgstr "Persoonlijk gebeurtenissen sorteren..."
 
 #: ../src/plugins/tool/SortEvents.py:136
 msgid "Sorting family events..."
 msgstr "Familiegebeurtenissen sorteren..."
 
 #: ../src/plugins/tool/SortEvents.py:167
-#, fuzzy
 msgid "Tool Options"
-msgstr "Stamboomopties"
+msgstr "Gereedschapsopties"
 
 #: ../src/plugins/tool/SortEvents.py:170
 msgid "Select the people to sort"
@@ -16074,149 +16039,149 @@ msgid "Baptised%(endnotes)s."
 msgstr "Gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt op %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Hij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt op %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:822
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Zij werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt op %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:826
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt op %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Deze persoon werd begraven op %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt op %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:829
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Begraven %(burial_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Gedoopt %(christening_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr "Hij werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "Hij werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:838
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:839
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr "Zij werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "Zij werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:842
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "Deze persoon werd begraven op %(burial_date)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt op %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "Begraven %(burial_date)s%(endnotes)s."
+msgstr "Gedoopt %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:850
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Hij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "Hij werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:854
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s te%(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:855
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Zij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:858
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:859
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Deze persoon werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt in %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Begraven %(month_year)s te %(burial_place)s%(endnotes)s."
+msgstr "Gedoopt %(month_year)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:866
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven in %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "Hij werd begraven in %(month_year)s%(endnotes)s."
+msgstr "Hij werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "Zij werd begraven in %(month_year)s%(endnotes)s."
+msgstr "Zij werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:874
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:875
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "Deze persoon werd begraven in %(month_year)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt in %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:877
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "Begraven %(month_year)s%(endnotes)s."
+msgstr "Gedoopt %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:882
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(christening)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
@@ -16224,59 +16189,59 @@ msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s.
 msgstr "Hij werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:886
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:887
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Zij werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Zij werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:890
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:891
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Deze persoon werd begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:893
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Begraven %(modified_date)s te %(burial_place)s%(endnotes)s."
+msgstr "Gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Hij werd begraven %(modified_date)s%(endnotes)s."
+msgstr "Hij werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Zij werd begraven %(modified_date)s%(endnotes)s."
+msgstr "Zij werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Deze persoon werd begraven %(modified_date)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
 #, python-format
@@ -16284,9 +16249,9 @@ msgid "Christened %(modified_date)s%(endnotes)s."
 msgstr "Gedoopt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:914
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt in %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:915
 #, python-format
@@ -16304,34 +16269,34 @@ msgid "She was christened in %(christening_place)s%(endnotes)s."
 msgstr "Zij werd gedoopt te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:922
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven te %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt te %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:923
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr "Deze persoon werd begraven te %(burial_place)s%(endnotes)s."
+msgstr "Deze persoon werd gedoopt te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:925
-#, fuzzy, python-format
+#, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr "Begraven te %(burial_place)s%(endnotes)s."
+msgstr "Gedoopt te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s werd begraven%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "Hij werd begraven %(endnotes)s."
+msgstr "Hij werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr "%(female_name)s werd begraven%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:935
 #, python-format
@@ -16339,9 +16304,9 @@ msgid "She was christened%(endnotes)s."
 msgstr "Zij werd gedoopt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven %(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:939
 #, python-format
@@ -18224,7 +18189,6 @@ msgstr "meer dan"
 #: ../src/gen/lib/date.py:326
 #: ../src/gen/lib/date.py:336
 #: ../src/gen/lib/date.py:423
-#, fuzzy
 msgid "less than"
 msgstr "minder dan"
 
@@ -21263,7 +21227,6 @@ msgstr "Als het media-object een beeld is, kies dan een gedeelte van het beeld w
 
 # spelfout in engels: medial files
 #: ../src/glade/gramps.glade.h:83
-#, fuzzy
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files."
 msgstr "Als u deze knop aanvinkt zullen alle ontbrekende mediabestanden automatisch worden behandeld volgens de momenteel geselecteerde opties. Er zullen geen verdere dialoogvensters worden gepresenteerd voor ontbrekende mediabestanden."
 
@@ -21975,9 +21938,8 @@ msgid "People:"
 msgstr "Personen:"
 
 #: ../src/plugins/import/ImportGedcom.glade.h:11
-#, fuzzy
 msgid "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below."
-msgstr "Dit GEDCOM-bestand gebruikt blijkbaar een  ANSEL codering. Soms duidt dit op een fout. Indien de geïmporteerde gegevens niet -gebruikelijke karakters bevatten, doe dan het importeren teniet en overschrijf de karakterset met één van de onderstaande karaktersets."
+msgstr "Dit GEDCOM-bestand gebruikt blijkbaar een  ANSEL codering. Soms duidt dit op een fout. Indien de geïmporteerde gegevens niet-gebruikelijke karakters bevatten, onderbreek dan het importeren en overschrijf de karakterset met één van de onderstaande karaktersets."
 
 #: ../src/plugins/import/ImportGedcom.glade.h:12
 msgid "Version:"
