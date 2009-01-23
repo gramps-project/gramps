@@ -87,7 +87,6 @@ def swedish_valid(date_tuple):
         valid = True 
     if date_tuple >= (1712,3,1):   # back to julian
         valid = False
-    valid = True                   # for the moment, working on it ldnp
     return valid
 
 def french_valid(date_tuple):
