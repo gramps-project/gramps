@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-22 15:23+0100\n"
-"PO-Revision-Date: 2009-01-23 09:51+0100\n"
+"PO-Revision-Date: 2009-01-23 10:12+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Adres:"
 #: ../src/Filters/Rules/Place/_HasPlace.py:51
 #: ../src/plugins/tool/ownereditor.glade.h:2
 msgid "City:"
-msgstr "Dorp of stad:   "
+msgstr "Dorp of stad:"
 
 #: ../src/Assistant.py:340
 #: ../src/plugins/tool/ownereditor.glade.h:9
@@ -961,6 +961,8 @@ msgstr ""
 "  <b>Patroniem</b>  -patroniem(naam van de vader)\n"
 "  <b>Initialen</b>   - de eerste letters van de voornaam\n"
 "</tt>\n"
+"Gebruik het zelfde sleutelwoord in HOOFDLETTERS om in hoofdletters weer te geven. Aanhalingstekens\n"
+"en komma's zullen verwijderd worden rond de lege velden. De overige tekst wordt letterlijk weergegeven."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1465,7 +1467,7 @@ msgstr "Statusbalk"
 
 #: ../src/GrampsCfg.py:795
 msgid "Show text in sidebar buttons (requires restart)"
-msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart) "
+msgstr "Toon tekst in de knoppen van de zijbalk (enkel van toepassing na herstart)"
 
 #: ../src/GrampsCfg.py:806
 msgid "Missing surname"
@@ -6824,7 +6826,7 @@ msgstr "Het GRAMPS XML-gegevensbestand is een tekstversie van een familiestamboo
 #: ../src/plugins/gramplet/DefaultGramplets.py:148
 #, python-format
 msgid "%s and %s"
-msgstr "%s en %s "
+msgstr "%s en %s"
 
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/gramplet/WhatsNext.py:60
@@ -6904,7 +6906,7 @@ msgstr "Gebruik de roepnaam niet"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
-msgstr "Vervang de voornaam door de roepnaam "
+msgstr "Vervang de voornaam door de roepnaam"
 
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
@@ -6942,7 +6944,7 @@ msgstr "De gebruikte stijl voor de hoofding."
 
 #: ../src/plugins/Records.py:527
 msgid "The style used for the report title"
-msgstr "De gebruikte stijl voor de verslagtitel."
+msgstr "De gebruikte stijl voor de verslagtitel"
 
 #: ../src/plugins/Records.py:536
 msgid "Youngest living person"
@@ -7697,7 +7699,7 @@ msgstr "Levert een grafische voorouderstamboom"
 
 #: ../src/plugins/drawreport/DescendTree.py:54
 msgid "short for married|m."
-msgstr "verkorte vorm voor gehuwd|h."
+msgstr "verkorte vorm voor gehuwd :h."
 
 #: ../src/plugins/drawreport/DescendTree.py:151
 #, python-format
@@ -8469,7 +8471,7 @@ msgstr "Mediaan"
 
 #: ../src/plugins/gramplet/AgeStats.py:219
 msgid "Maximum"
-msgstr "Maximum "
+msgstr "Maximum"
 
 #: ../src/plugins/gramplet/AgeStats.py:254
 #, python-format
@@ -8930,7 +8932,7 @@ msgstr "in"
 #: ../src/plugins/gramplet/DefaultGramplets.py:1515
 #, python-format
 msgid "Gramplet Data Edit: %s"
-msgstr "Gramps gegevens aanpassen: %s "
+msgstr "Gramps gegevens aanpassen: %s"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1535
 msgid "Please provide a name."
@@ -8938,7 +8940,7 @@ msgstr "Geef een naam op."
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1535
 msgid "Can't add new person."
-msgstr "Kan nieuwe persoon niet toevoegen"
+msgstr "Kan nieuwe persoon niet toevoegen."
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:1543
 #: ../src/plugins/gramplet/DefaultGramplets.py:1551
@@ -9154,7 +9156,7 @@ msgstr "Dubbelklik op de voornaam voor meer details"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
 msgid "Total unique given names"
-msgstr "Totaal aantal unieke achternamen "
+msgstr "Totaal aantal unieke achternamen"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
 msgid "Total given names showing"
@@ -9211,7 +9213,7 @@ msgstr ":%(list)s\n"
 #: ../src/plugins/gramplet/WhatsNext.py:317
 #: ../src/plugins/gramplet/WhatsNext.py:338
 msgid ", "
-msgstr ","
+msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
@@ -9221,7 +9223,7 @@ msgstr "(onbekende persoon)"
 #: ../src/plugins/gramplet/WhatsNext.py:294
 #, python-format
 msgid "%(name1)s and %(name2)s"
-msgstr "%(name1father)s en %(name2)s"
+msgstr "%(name1)s en %(name2)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:310
 msgid "marriage event missing"
@@ -12685,7 +12687,7 @@ msgstr "Laat toe om de eigenaarsinformatie aan te passen."
 
 #: ../src/plugins/tool/PatchNames.py:63
 msgid "manual|Extract_Information_from_Names"
-msgstr "Informatie_uit_namen_halen..."
+msgstr "Informatie_uit_namen_halen"
 
 # betere vertaling voor extractie tool
 #: ../src/plugins/tool/PatchNames.py:106
@@ -16181,7 +16183,7 @@ msgstr "Gedoopt %(month_year)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:882
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(christening)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt %(modified_date)s te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
@@ -16251,7 +16253,7 @@ msgstr "Gedoopt %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:914
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd gedoopt in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s werd gedoopt in %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:915
 #, python-format
@@ -16261,7 +16263,7 @@ msgstr "Hij werd gedoopt te %(christening_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:918
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt te %(hristening_place)s%(endnotes)s."
+msgstr "%(female_name)s werd gedoopt te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:919
 #, python-format
@@ -16271,7 +16273,7 @@ msgstr "Zij werd gedoopt te %(christening_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:922
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt te %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s werd gedoopt te %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:923
 #, python-format
@@ -18222,7 +18224,7 @@ msgstr "meer dan ongeveer"
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
 msgid "less than about"
-msgstr "minder dan ..."
+msgstr "minder dan rond"
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
@@ -21249,7 +21251,6 @@ msgstr ""
 "1 Maart\n"
 "25 Maart\n"
 "1 September\n"
-" "
 
 #: ../src/glade/gramps.glade.h:92
 msgid "Keep reference to the missing file"
@@ -21281,7 +21282,7 @@ msgstr "Naam kind:"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Ne_w year begins:  "
-msgstr "Nieuwjaar begint:"
+msgstr "Nieuwjaar begint: "
 
 #: ../src/glade/gramps.glade.h:101
 msgid "O_verride"
