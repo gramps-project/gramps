@@ -491,7 +491,7 @@ msgstr "Enlever le verrou sur la base de données '%s' ?"
 
 #: ../src/DbManager.py:525
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr "GRAMPS pense cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
+msgstr "GRAMPS pense que cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
 
 #: ../src/DbManager.py:531
 msgid "Break lock"
@@ -8548,7 +8548,7 @@ msgstr "Notes pour %s"
 #: ../src/plugins/DetDescendantReport.py:588
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr "Encore à propos de %(person_name)s :"
+msgstr "Plus de détails sur %(person_name)s :"
 
 #: ../src/plugins/DetAncestralReport.py:304
 #: ../src/plugins/DetDescendantReport.py:547
@@ -8608,7 +8608,7 @@ msgstr "Enfants de %(mother_name)s et %(father_name)s"
 #: ../src/plugins/DetDescendantReport.py:464
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "Encore à propos de %(mother_name)s et %(father_name)s :"
+msgstr "Plus de détails sur %(mother_name)s et %(father_name)s :"
 
 #: ../src/plugins/DetAncestralReport.py:717
 #: ../src/plugins/DetDescendantReport.py:660
@@ -8807,7 +8807,7 @@ msgstr "Style pour la première entrée personnelle."
 #: ../src/plugins/DetAncestralReport.py:863
 #: ../src/plugins/DetDescendantReport.py:810
 msgid "The style used for the More About header."
-msgstr "Le style utilisé pour l'en-tête À propos."
+msgstr "Le style utilisé pour l'en-tête Plus de détails."
 
 #: ../src/plugins/DetAncestralReport.py:873
 #: ../src/plugins/DetDescendantReport.py:820
@@ -17316,12 +17316,12 @@ msgstr "Correspond aux objets ayant un nombre de références"
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "lesser than"
-msgstr "moins que"
+msgstr "moins de"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "greater than"
-msgstr "plus que"
+msgstr "plus de"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
