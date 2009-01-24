@@ -75,6 +75,23 @@ def gregorian_valid(date_tuple):
         valid = False
     return valid
 
+def julian_valid(date_tuple):
+    day = date_tuple[0]
+    month = date_tuple[1]
+    valid = True
+    try:
+        if month > 12:
+            valid = False
+        elif (date_tuple[2]) % 4 == 0:
+            # julian always have leapyear every 4 year
+            if day > _leap_days[month-1]:
+                valid = False
+        elif day > _max_days[month-1]:
+            valid = False
+    except:
+        valid = False
+    return valid
+
 #-------------------------------------------------------------------------
 #
 # Parser class
@@ -186,8 +203,8 @@ class DateParser:
     def __init__(self):
         self.init_strings()
         self.parser = {
-            Date.CAL_GREGORIAN : self._parse_greg_julian,
-            Date.CAL_JULIAN    : self._parse_greg_julian,
+            Date.CAL_GREGORIAN : self._parse_gregorian,
+            Date.CAL_JULIAN    : self._parse_julian,
             Date.CAL_FRENCH    : self._parse_french,
             Date.CAL_PERSIAN   : self._parse_persian,
             Date.CAL_HEBREW    : self._parse_hebrew,
@@ -311,9 +328,13 @@ class DateParser:
         return self._parse_calendar(text, self._ftext, self._ftext2,
                                     self.french_to_int)
 
-    def _parse_greg_julian(self, text):
+    def _parse_gregorian(self, text):
         return self._parse_calendar(text, self._text, self._text2,
                                     self.month_to_int, gregorian_valid)
+                             
+    def _parse_julian(self, text):
+        return self._parse_calendar(text, self._text, self._text2,
+                                    self.month_to_int, julian_valid)
                              
     def _parse_calendar(self, text, regex1, regex2, mmap, check=None):
         match = regex1.match(text.lower())
@@ -373,17 +394,21 @@ class DateParser:
         Convert only the date portion of a date.
         """
         if subparser == None:
-            subparser = self._parse_greg_julian
+            subparser = self._parse_gregorian
 
-        if subparser == self._parse_greg_julian:
+        if subparser == self._parse_gregorian:
             check = gregorian_valid
+
+        elif subparser == self._parse_julian:
+            check = julian_valid
+
         else:
             check = None
             
         value = subparser(text)
         if value != Date.EMPTY:
             return value
-        
+
         match = self._iso.match(text)
         if match:
             groups = match.groups()
