@@ -883,7 +883,7 @@ class GeoView(HtmlView):
             except:
                 pass
         # Select the center of the map and the zoom
-        self.centered = 0
+        self.centered = False
         if   type == 2:
             # Sort by year for events
             self.sort = sorted(self.place_list, key=operator.itemgetter(7))
@@ -968,9 +968,9 @@ class GeoView(HtmlView):
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
         for mark in self.sort:
-            cent=int(mark[6])
-            if (cent == 1):
-                self.centered = 1
+            cent = int(mark[6])
+            if cent:
+                self.centered = True
                 if ( signminlat == 1 and signmaxlat == 1 ):
                     latit = self.maxlat+self.centerlat
                 elif ( signminlat == 0 and signmaxlat == 0 ): 
@@ -1030,7 +1030,7 @@ class GeoView(HtmlView):
 
         a = float(lat)
         b = float(long)
-        if not year == None:
+        if year is not None:
             c = int(year)
             if c != 0:
                 if c < self.minyear:
@@ -1078,7 +1078,7 @@ class GeoView(HtmlView):
         InInterval = False
         self.setattr = True
         if self.mustcenter:
-            self.centered = 1
+            self.centered = True
             self.mapview.write("var point = new LatLonPoint(%s,%s);"%(self.latit,self.longt))
             self.mapview.write("mapstraction.setCenterAndZoom(point, %s);"%self.zoom)
             self.setattr = False
@@ -1112,9 +1112,9 @@ class GeoView(HtmlView):
                     self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
                     if self.isyearnotinmarker(self.yearinmarker,mark[7]):
                         self.yearinmarker.append(mark[7])
-                    cent=int(mark[6])
-                    if (cent == 1):
-                        self.centered = 1
+                    cent = int(mark[6])
+                    if cent:
+                        self.centered = True
                         if float(mark[3]) == self.minlat:
                             if signminlat == 1: 
                                 latit = str(float(mark[3])+self.centerlat)
@@ -1155,7 +1155,7 @@ class GeoView(HtmlView):
                 self.yearinmarker = []
                 self.mapview.write("mapstraction.addMarker(my_marker);")
                 self.setattr = False
-            if ( self.centered == 0 ):
+            if not self.centered:
                 # We have no valid geographic point to center the map.
                 # So you'll see the street where I live.
                 # I think another place should be better :
@@ -1218,7 +1218,7 @@ class GeoView(HtmlView):
                 self.append_to_places_list(descr, gen.lib.EventType.BIRTH, 
                                            _nd.display(person), latitude, longitude,
                                            descr1, int(self.center), birthyear)
-                self.center = 0
+                self.center = False
             latitude = ""
             longitude = ""
             death_ref = person.get_death_ref()
@@ -1243,7 +1243,7 @@ class GeoView(HtmlView):
                 self.append_to_places_list(descr, gen.lib.EventType.DEATH,
                                            _nd.display(person), latitude, longitude,
                                            descr1, int(self.center), deathyear)
-                self.center = 0
+                self.center = False
 
     def createMapstractionPlaces(self,db):
         """
@@ -1260,7 +1260,7 @@ class GeoView(HtmlView):
  
         latitude = ""
         longitude = ""
-        self.center = 1
+        self.center = True
         for place_handle in db.db.get_place_handles():
             place = db.db.get_place_from_handle( place_handle)
             if place:
@@ -1276,8 +1276,8 @@ class GeoView(HtmlView):
                                                "",
                                                latitude, longitude,
                                                descr1, self.center, None)
-                    self.center = 0
-        if self.center == 1:
+                    self.center = False
+        if self.center:
             mess = _("Cannot center the map. No selected location.")
         else:
             mess = ""
@@ -1298,7 +1298,7 @@ class GeoView(HtmlView):
  
         latitude = ""
         longitude = ""
-        self.center = 1
+        self.center = True
         for event_handle in db.db.get_event_handles():
             event = db.db.get_event_from_handle( event_handle)
             if event:
@@ -1330,8 +1330,8 @@ class GeoView(HtmlView):
                                                    descr,
                                                    latitude, longitude,
                                                    descr2, self.center, eventyear)
-                        self.center = 0
-        if self.center == 1:
+                        self.center = False
+        if self.center:
             mess = _("Cannot center the map. No selected location.")
         else:
             mess = ""
@@ -1349,7 +1349,7 @@ class GeoView(HtmlView):
         self.maxlon = float(0.0)
         self.minyear = int(9999)
         self.maxyear = int(0)
-        self.center = 1
+        self.center = True
         if db.active:
             person = db.active
         if person:
@@ -1377,7 +1377,7 @@ class GeoView(HtmlView):
                             comment = "Id : %s : %s %d"%(child.gramps_id,
                                                          _("Child"),index)
                             self.createPersonMarkers(db,child,comment)
-        if self.center == 1:
+        if self.center:
             mess = _("Cannot center the map. No selected location.")
         else:
             mess = ""
@@ -1403,7 +1403,7 @@ class GeoView(HtmlView):
         longitude = ""
         if db.active:
             person = db.active
-        self.center = 1
+        self.center = True
         if person:
             # For each event, if we have a place, set a marker.
             for event_ref in person.get_event_ref_list():
@@ -1431,8 +1431,8 @@ class GeoView(HtmlView):
                                                    _nd.display(person),
                                                    latitude, longitude,
                                                    descr1, self.center, eventyear)
-                        self.center = 0
-        if self.center == 1:
+                        self.center = False
+        if self.center:
             mess = _("Cannot center the map. No selected location.")
         else:
             mess = ""
