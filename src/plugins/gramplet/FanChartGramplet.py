@@ -490,6 +490,7 @@ class FanChartGramplet(Gramplet):
     The Gramplet code that realizes the FanChartWidget. 
     """
     def init(self):
+        self.sa = SimpleAccess(self.dbstate.db)
         self.set_tooltip("Click to expand/contract person\nRight-click to make person active")
         self.generations = 6
         self.gui.fan = FanChartWidget(self.generations, 
