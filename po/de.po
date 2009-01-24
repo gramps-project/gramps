@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 18:17+0100\n"
-"PO-Revision-Date: 2009-01-22 22:49+0100\n"
+"POT-Creation-Date: 2009-01-24 20:31+0100\n"
+"PO-Revision-Date: 2009-01-24 20:52+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -895,8 +895,10 @@ msgstr ""
 "  <b>Patronymikon</b> - Patronymikon (Vatersname)\n"
 "  <b>Initialen</b>   - persons's first letters of given names\n"
 "</tt>\n"
-"Benutze das selbe Schlüsselwort in GROSSSCHREIBUNG um diese zu erzwingen. Klammern und Kommas\n"
-"werden um leeren Feldern entfernt. Andere Texte werden wörtlich wiedergegeben."
+"Benutze das selbe Schlüsselwort in GROSSSCHREIBUNG um diese zu erzwingen. "
+"Klammern und Kommas\n"
+"werden um leeren Feldern entfernt. Andere Texte werden wörtlich "
+"wiedergegeben."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1171,7 +1173,9 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr "GeoView zu GRAMPS hinzufügen zeigt Internetkarten die auf deinen Daten beruhen."
+msgstr ""
+"GeoView zu GRAMPS hinzufügen zeigt Internetkarten die auf deinen Daten "
+"beruhen."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
@@ -1515,7 +1519,7 @@ msgstr "Schriftfarbe"
 msgid "Font Background Color"
 msgstr "Schrifthintergrundfarbe"
 
-#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:875
+#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:883
 msgid "Gramplets"
 msgstr "Gramplets"
 
@@ -1779,27 +1783,27 @@ msgstr "Lesezeichen _hinzufügen"
 msgid "%(title)s..."
 msgstr "%(title)s..."
 
-#: ../src/PageView.py:431 ../src/DataViews/GrampletView.py:1161
+#: ../src/PageView.py:431 ../src/DataViews/GrampletView.py:1169
 msgid "_Forward"
 msgstr "_Vor"
 
-#: ../src/PageView.py:432 ../src/DataViews/GrampletView.py:1162
+#: ../src/PageView.py:432 ../src/DataViews/GrampletView.py:1170
 msgid "Go to the next person in the history"
 msgstr "Gehe zur nächsten Person in der Chronik"
 
-#: ../src/PageView.py:439 ../src/DataViews/GrampletView.py:1169
+#: ../src/PageView.py:439 ../src/DataViews/GrampletView.py:1177
 msgid "_Back"
 msgstr "_Zurück"
 
-#: ../src/PageView.py:440 ../src/DataViews/GrampletView.py:1170
+#: ../src/PageView.py:440 ../src/DataViews/GrampletView.py:1178
 msgid "Go to the previous person in the history"
 msgstr "Gehe zur vorherigen Person in der Chronik"
 
-#: ../src/PageView.py:444 ../src/DataViews/GrampletView.py:1173
+#: ../src/PageView.py:444 ../src/DataViews/GrampletView.py:1181
 msgid "_Home"
 msgstr "_Anfang"
 
-#: ../src/PageView.py:446 ../src/DataViews/GrampletView.py:1175
+#: ../src/PageView.py:446 ../src/DataViews/GrampletView.py:1183
 msgid "Go to the default person"
 msgstr "Springe zur Hauptperson"
 
@@ -1807,7 +1811,7 @@ msgstr "Springe zur Hauptperson"
 msgid "Person Filter Editor"
 msgstr "Filtereditor für Person"
 
-#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1178
+#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1186
 msgid "Set _Home Person"
 msgstr "Hauptperson _setzen"
 
@@ -3470,7 +3474,7 @@ msgstr "Medienspalten auswählen"
 msgid "Double click image to view in an external viewer"
 msgstr "Doppelklick, um das Bild in einem externen Programm anzuzeigen"
 
-#: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:1016
+#: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:1024
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
@@ -3482,27 +3486,27 @@ msgstr "Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einric
 msgid "Gramplet"
 msgstr "Gramplet"
 
-#: ../src/DataViews/GrampletView.py:887
+#: ../src/DataViews/GrampletView.py:895
 msgid "Right click to add gramplets"
 msgstr "Rechtsklick zum hinzufügen von Gramplets"
 
-#: ../src/DataViews/GrampletView.py:1145
+#: ../src/DataViews/GrampletView.py:1153
 msgid "_Add a gramplet"
 msgstr "Ein Gramplet _hinzufügen"
 
-#: ../src/DataViews/GrampletView.py:1146
+#: ../src/DataViews/GrampletView.py:1154
 msgid "_Undelete gramplet"
 msgstr "Gramplet _wiederherstellen"
 
-#: ../src/DataViews/GrampletView.py:1147
+#: ../src/DataViews/GrampletView.py:1155
 msgid "Set Columns to _1"
 msgstr "Setze Spalten auf _1"
 
-#: ../src/DataViews/GrampletView.py:1150
+#: ../src/DataViews/GrampletView.py:1158
 msgid "Set Columns to _2"
 msgstr "Setze Spalten auf _2"
 
-#: ../src/DataViews/GrampletView.py:1153
+#: ../src/DataViews/GrampletView.py:1161
 msgid "Set Columns to _3"
 msgstr "Setze Spalten auf _3"
 
@@ -16131,8 +16135,8 @@ msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft am %(christening_date)s in %(christening_place)s"
-"%(endnotes)s."
+"%(male_name)s wurde getauft am %(christening_date)s in %(christening_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
 #, python-format
@@ -16149,8 +16153,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft am %(christening_date)s in %"
-"(christening_place)s%(endnotes)s."
+"%(female_name)s wurde getauft am %(christening_date)s in %(christening_place)"
+"s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
 #, python-format
@@ -16158,8 +16162,8 @@ msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"Sie wurde getauft am %(christening_date)s in %(christening_place)s%"
-"(endnotes)s."
+"Sie wurde getauft am %(christening_date)s in %(christening_place)s%(endnotes)"
+"s."
 
 #: ../src/ReportBase/_ReportUtils.py:826
 #, python-format
@@ -18670,6 +18674,15 @@ msgstr "mehr als"
 msgid "less than"
 msgstr "weniger als"
 
+#. v = self.date1.sortval - self.date2.sortval
+#. self.sort = (v, -Span.ABOUT)
+#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
+#: ../src/gen/lib/date.py:309 ../src/gen/lib/date.py:341
+#: ../src/gen/lib/date.py:380 ../src/gen/lib/date.py:395
+#: ../src/gen/lib/date.py:401 ../src/gen/lib/date.py:428
+msgid "about|age"
+msgstr "Alter"
+
 #. v1 = self.date1.sortval - stop.sortval  # min
 #. v2 = self.date1.sortval - start.sortval # max
 #. self.sort = (v1, v2 - v1)
@@ -18700,6 +18713,36 @@ msgstr "mehr als etwa"
 #: ../src/gen/lib/date.py:390
 msgid "less than about"
 msgstr "weniger als etwa"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d year"
+msgstr "%d Jahr"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d years"
+msgstr "%d Jahre"
+
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d month"
+msgstr "%d Monat"
+
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d months"
+msgstr "%d Monate"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d day"
+msgstr "%d Tag"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d days"
+msgstr "%d Tage"
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
@@ -19027,7 +19070,10 @@ msgstr "Objekte geändert nach <Datum Zeit>"
 msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in range, if a second date/time is given"
-msgstr "Entspricht Objektdatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Objektdatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
+"Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -19038,7 +19084,9 @@ msgstr "Falsches Format für Datum-Zeit"
 msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
-msgstr "Nur Daten-Zeit im ISO-Format JJJJ-MM-TT HH:MM:SS, wobei der Zeitteil optional ist, werden akzeptiert. %s entspricht dem nicht."
+msgstr ""
+"Nur Daten-Zeit im ISO-Format JJJJ-MM-TT HH:MM:SS, wobei der Zeitteil "
+"optional ist, werden akzeptiert. %s entspricht dem nicht."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -19296,7 +19344,10 @@ msgstr "Personen geändert nach <Datum Zeit>"
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
-msgstr "Entspricht Personendatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Personendatensätzen die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites "
+"Datum/Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -20022,7 +20073,10 @@ msgstr "Familien geändert vor <Datum Zeit>"
 msgid ""
 "Matches family records changed before a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given"
-msgstr "Entspricht Familiendatensätzen die vor einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Familiendatensätzen die vor einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites "
+"Datum/Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -20301,7 +20355,10 @@ msgstr "Ereignisse geändert vor <Datum Zeit>"
 msgid ""
 "Matches event records changed before a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given"
-msgstr "Entspricht Ereignisdatensätzen die vor einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Ereignisdatensätzen die vor einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites "
+"Datum/Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -20462,7 +20519,10 @@ msgstr "Liefert alle Orte in der Datenbank"
 msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
-msgstr "Entspricht Ortedatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Ortedatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
+"Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
@@ -20640,7 +20700,10 @@ msgstr "Quellen geändert nach <Datum Zeit>"
 msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
-msgstr "Entspricht Quellendatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Quellendatensätzen die nach einem bestimmten Datum/Zeitpunkt "
+"(JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites "
+"Datum/Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
@@ -20758,7 +20821,10 @@ msgstr "Multimediaobjekte geändert vor <Datum Zeit>"
 msgid ""
 "Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given"
-msgstr "Entspricht Medienobjekten die vor einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Medienobjekten die vor einem bestimmten Datum/Zeitpunkt (JJJJ-MM-"
+"TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
+"Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
@@ -20869,7 +20935,10 @@ msgstr "Aufbewahrungsorte geändert nach <Datum Zeit>"
 msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given"
-msgstr "Entspricht Aufbewahrungsortedatensätzen die nach einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Aufbewahrungsortedatensätzen die nach einem bestimmten Datum/"
+"Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn "
+"ein zweites Datum/Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -20959,7 +21028,10 @@ msgstr "Notizen geändert vor <Datum Zeit>"
 msgid ""
 "Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
-msgstr "Entspricht Notizdatensätzen die seit einem bestimmten Datum/Zeitpunkt (JJJJ-MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/Zeitpunkt angegeben ist."
+msgstr ""
+"Entspricht Notizdatensätzen die seit einem bestimmten Datum/Zeitpunkt (JJJJ-"
+"MM-TT HH:MM) oder in einem Zeitraum geändert wurden, wenn ein zweites Datum/"
+"Zeitpunkt angegeben ist."
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
@@ -21775,8 +21847,8 @@ msgid ""
 "be presented for any missing media files."
 msgstr ""
 "Wenn du dieses Feld markierst, werden alle fehlenden Multimedia- Dateien "
-"entsprechend der aktuell gewählten Option behandelt. Es werden keine weiteren Dialoge für fehlende Multimedia-"
-"Dateien angezeigt."
+"entsprechend der aktuell gewählten Option behandelt. Es werden keine "
+"weiteren Dialoge für fehlende Multimedia-Dateien angezeigt."
 
 #: ../src/glade/gramps.glade.h:85
 msgid "Invoke date editor"
