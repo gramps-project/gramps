@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 15:23+0100\n"
-"PO-Revision-Date: 2009-01-22 18:33+0100\n"
+"POT-Creation-Date: 2009-01-24 10:07+0100\n"
+"PO-Revision-Date: 2009-01-24 10:10+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -459,7 +459,7 @@ msgstr "Enlever le verrou sur la base de données '%s' ?"
 
 #: ../src/DbManager.py:586
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr "GRAMPS pense cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
+msgstr "GRAMPS pense que cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
 
 #: ../src/DbManager.py:592
 msgid "Break lock"
@@ -3083,7 +3083,7 @@ msgstr "Très haut"
 
 #: ../src/Utils.py:92
 #: ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/tool/FindDupes.py:67
+#: ../src/plugins/tool/FindDupes.py:68
 msgid "High"
 msgstr "Haut"
 
@@ -3095,7 +3095,7 @@ msgstr "Normal"
 
 #: ../src/Utils.py:94
 #: ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/tool/FindDupes.py:65
+#: ../src/plugins/tool/FindDupes.py:66
 msgid "Low"
 msgstr "Bas"
 
@@ -6226,7 +6226,7 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/tool/EventCmp.py:468
 #: ../src/plugins/tool/EventNames.py:164
 #: ../src/plugins/tool/ExtractCity.py:649
-#: ../src/plugins/tool/FindDupes.py:702
+#: ../src/plugins/tool/FindDupes.py:703
 #: ../src/plugins/tool/Leak.py:135
 #: ../src/plugins/tool/NotRelated.py:438
 #: ../src/plugins/tool/PatchNames.py:375
@@ -10996,7 +10996,7 @@ msgstr "Notes pour %s"
 #: ../src/plugins/textreport/DetDescendantReport.py:625
 #, python-format
 msgid "More about %(person_name)s:"
-msgstr "Encore à propos de %(person_name)s :"
+msgstr "Plus de détails sur %(person_name)s :"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:309
 #: ../src/plugins/textreport/DetDescendantReport.py:584
@@ -11055,7 +11055,7 @@ msgstr "Enfants de %(mother_name)s et %(father_name)s"
 #: ../src/plugins/textreport/DetDescendantReport.py:496
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "Encore à propos de %(mother_name)s et %(father_name)s :"
+msgstr "Plus de détails sur %(mother_name)s et %(father_name)s :"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:719
 #: ../src/plugins/textreport/DetDescendantReport.py:702
@@ -11254,7 +11254,7 @@ msgstr "Style pour la première entrée personnelle."
 #: ../src/plugins/textreport/DetAncestralReport.py:865
 #: ../src/plugins/textreport/DetDescendantReport.py:852
 msgid "The style used for the More About header."
-msgstr "Le style utilisé pour l'en-tête À propos."
+msgstr "Le style utilisé pour l'en-tête Plus de détails."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:875
 #: ../src/plugins/textreport/DetDescendantReport.py:862
@@ -12722,78 +12722,78 @@ msgstr "Extraire les données du lieu depuis son titre"
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Tentative d'extraction de la ville et de la région depuis le titre du lieu"
 
-#: ../src/plugins/tool/FindDupes.py:66
+#: ../src/plugins/tool/FindDupes.py:67
 msgid "Medium"
 msgstr "Moyen"
 
 # wiki manual
 # trunk
-#: ../src/plugins/tool/FindDupes.py:71
+#: ../src/plugins/tool/FindDupes.py:72
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Trouver_des_boublons_potentiels..."
 
-#: ../src/plugins/tool/FindDupes.py:136
-#: ../src/plugins/tool/FindDupes.py:701
+#: ../src/plugins/tool/FindDupes.py:137
+#: ../src/plugins/tool/FindDupes.py:702
 msgid "Find Possible Duplicate People"
 msgstr "Recherche des doublons"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 #: ../src/plugins/tool/Verify.py:301
 msgid "Tool settings"
 msgstr "Propriétés de l'outil"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 msgid "Find Duplicates tool"
 msgstr "Recherche des doublons"
 
-#: ../src/plugins/tool/FindDupes.py:182
+#: ../src/plugins/tool/FindDupes.py:183
 msgid "No matches found"
 msgstr "Aucune correspondance trouvée"
 
-#: ../src/plugins/tool/FindDupes.py:183
+#: ../src/plugins/tool/FindDupes.py:184
 msgid "No potential duplicate people were found"
 msgstr "Aucun doublon potentiel n'a été trouvé"
 
-#: ../src/plugins/tool/FindDupes.py:192
+#: ../src/plugins/tool/FindDupes.py:193
 msgid "Find Duplicates"
 msgstr "Recherche des doublons"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:193
+#: ../src/plugins/tool/FindDupes.py:194
 msgid "Looking for duplicate people"
 msgstr "Recherche de doublons"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:202
+#: ../src/plugins/tool/FindDupes.py:203
 msgid "Pass 1: Building preliminary lists"
 msgstr "Étape 1 : Construction d'une liste préliminaire"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:220
+#: ../src/plugins/tool/FindDupes.py:221
 msgid "Pass 2: Calculating potential matches"
 msgstr "Étape 2 : Calcul des correspondances possibles"
 
-#: ../src/plugins/tool/FindDupes.py:567
+#: ../src/plugins/tool/FindDupes.py:568
 msgid "Potential Merges"
 msgstr "Fusions potentielles"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "Rating"
 msgstr "Évaluation"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "First Person"
 msgstr "Premier individu"
 
-#: ../src/plugins/tool/FindDupes.py:578
+#: ../src/plugins/tool/FindDupes.py:579
 msgid "Second Person"
 msgstr "Second individu"
 
-#: ../src/plugins/tool/FindDupes.py:586
+#: ../src/plugins/tool/FindDupes.py:587
 msgid "Merge candidates"
 msgstr "Candidats à la fusion"
 
-#: ../src/plugins/tool/FindDupes.py:705
+#: ../src/plugins/tool/FindDupes.py:706
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
@@ -18667,7 +18667,7 @@ msgstr "Fiancé"
 #: ../src/gen/lib/date.py:385
 #: ../src/gen/lib/date.py:418
 msgid "more than"
-msgstr "plus que"
+msgstr "plus de"
 
 # trunk
 #. v = self.date1.sortval - self.date2.sortval
@@ -18687,7 +18687,20 @@ msgstr "plus que"
 #: ../src/gen/lib/date.py:336
 #: ../src/gen/lib/date.py:423
 msgid "less than"
-msgstr "moins que"
+msgstr "moins de"
+
+# trunk
+#. v = self.date1.sortval - self.date2.sortval
+#. self.sort = (v, -Span.ABOUT)
+#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
+#: ../src/gen/lib/date.py:309
+#: ../src/gen/lib/date.py:341
+#: ../src/gen/lib/date.py:380
+#: ../src/gen/lib/date.py:395
+#: ../src/gen/lib/date.py:401
+#: ../src/gen/lib/date.py:428
+msgid "about|age"
+msgstr "environ"
 
 # trunk
 #. v1 = self.date1.sortval - stop.sortval  # min
@@ -18715,7 +18728,7 @@ msgstr "entre"
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:368
 msgid "more than about"
-msgstr "plus que environ"
+msgstr "plus d'environ"
 
 # trunk
 #. v = self.date1.sortval - self.date2.sortval
@@ -18723,7 +18736,37 @@ msgstr "plus que environ"
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
 msgid "less than about"
-msgstr "moins que environ"
+msgstr "moins d'environ"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d year"
+msgstr "%d an"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d years"
+msgstr "%d ans"
+
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d month"
+msgstr "%d mois"
+
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d months"
+msgstr "%d mois"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d day"
+msgstr "%d jour"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d days"
+msgstr "%d jours"
 
 # trunk
 #: ../src/gen/lib/date.py:506
@@ -19236,14 +19279,14 @@ msgstr "Correspond aux objets ayant un nombre de références"
 #: ../src/Filters/Rules/Person/_HasAssociation.py:53
 #: ../src/FilterEditor/_EditRule.py:198
 msgid "lesser than"
-msgstr "moins que"
+msgstr "moins de"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
 #: ../src/Filters/Rules/Person/_HasAddress.py:56
 #: ../src/Filters/Rules/Person/_HasAssociation.py:55
 #: ../src/FilterEditor/_EditRule.py:198
 msgid "greater than"
-msgstr "plus que"
+msgstr "plus de"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -21889,7 +21932,7 @@ msgstr "Glisser pour déplacer; cliquer pour détacher"
 # trunk
 #: ../src/glade/gramps.glade.h:71
 msgid "Dua_l dated"
-msgstr "Date d_ouble"
+msgstr "Date _double"
 
 #: ../src/glade/gramps.glade.h:72
 msgid "Example:"

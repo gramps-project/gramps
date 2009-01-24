@@ -28,7 +28,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext
 from gettext import ngettext as _s
 
 #------------------------------------------------------------------------
@@ -306,7 +306,7 @@ class Span:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start, stop = self.date2.get_start_stop_range()
@@ -338,7 +338,7 @@ class Span:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     #v = self.date1.sortval - self.date2.sortval
@@ -377,7 +377,7 @@ class Span:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
                 elif self.date2.get_modifier() == Date.MOD_BEFORE:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.BEFORE)
@@ -392,13 +392,13 @@ class Span:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
             elif (self.date1.get_modifier() == Date.MOD_RANGE or 
                   self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
@@ -425,7 +425,7 @@ class Span:
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                    self.repr = "about " + self._format(self._diff(self.date1, self.date2))
+                    self.repr = _("about|age") + " " + self._format(self._diff(self.date1, self.date2))
                 elif (self.date2.get_modifier() == Date.MOD_RANGE or 
                       self.date2.get_modifier() == Date.MOD_SPAN):
                     start1, stop1 = self.date1.get_start_stop_range()
@@ -484,21 +484,21 @@ class Span:
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            retval += (_s("%d year", "%d years", diff_tuple[0]) % diff_tuple[0])
+            retval += (_s(_("%d year"), _("%d years"), diff_tuple[0]) % diff_tuple[0])
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
                 retval += ", "
-            retval += (_s("%d month", "%d months", diff_tuple[1]) % diff_tuple[1])
+            retval += (_s(_("%d month"), _("%d months"), diff_tuple[1]) % diff_tuple[1])
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
                 retval += ", "
-            retval += (_s("%d day", "%d days", diff_tuple[2]) % diff_tuple[2])
+            retval += (_s(_("%d day"), _("%d days"), diff_tuple[2]) % diff_tuple[2])
             detail += 1
         if self.precision == detail:
             return retval
