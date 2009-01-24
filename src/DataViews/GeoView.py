@@ -127,6 +127,7 @@ class Renderer():
     """
     def __init__(self):
         self.window = None
+        self.fct = None
 
     def get_window(self):
         """
@@ -166,6 +167,16 @@ class Renderer():
         """
         raise NotImplementedError
     
+    #def page_loaded(self,obj,status):
+    def page_loaded(self):
+        raise NotImplementedError
+    
+    def set_button_sensitivity(self):
+        """
+        We must set the back and forward button in the HtmlView class.
+        """
+        self.fct()
+
 #-------------------------------------------------------------------------
 #
 # Renderer with WebKit
@@ -179,7 +190,11 @@ class RendererWebkit(Renderer):
         Renderer.__init__(self)
         self.window = webkit.WebView()
         self.browser = WEBKIT
+        self.window.get_main_frame().connect("load-done", self.page_loaded)
 
+    def page_loaded(self,obj,status):
+        self.set_button_sensitivity()
+    
     def open(self, url):
         self.window.open(url)
         
@@ -206,6 +221,10 @@ class RendererMozilla(Renderer):
         self.__set_mozembed_proxy()
         self.window = gtkmozembed.MozEmbed()
         self.browser = MOZIL
+        self.handler = self.window.connect("net-stop", self.page_loaded)
+    
+    def page_loaded(self,obj):
+        self.set_button_sensitivity()
     
     def open(self, url):
         self.window.load_url(url)
@@ -315,11 +334,14 @@ class HtmlView(PageView.PageView):
 
         self.table.add(self.renderer.get_window())
         self.box.pack_start(frame, True, True, 0)
+
+        # this is used to activate the back and forward button from the renderer class.
+        self.renderer.fct = self.set_button_sensitivity
+        self.renderer.show_all()
         
         #load a welcome html page
         urlhelp = self.create_start_page()
         self.open(urlhelp)
-        self.renderer.show_all()
 
         return self.box
 
@@ -345,7 +367,6 @@ class HtmlView(PageView.PageView):
         """ open an url
         """
         self.renderer.open(url)
-        self.set_button_sensitivity()
 
     def go_back(self, button):
         self.renderer.go_back();
@@ -498,8 +519,6 @@ class GeoView(HtmlView):
         self.nbmarkers = 0
         self.nbpages = 0
 
-        self.htmlfile=self.create_start_page()
-
     def on_delete(self):
         """
         We need to suppress temporary files here.
@@ -522,7 +541,7 @@ class GeoView(HtmlView):
         self.external_uri()
         if self.need_to_resize != True:
             try:
-                self.geo_places(self.htmlfile,self.displaytype)
+                self.geo_places(self.displaytype)
             except:
                 pass
 
@@ -585,6 +604,8 @@ class GeoView(HtmlView):
         """
 
         HtmlView._define_actions_fw_bw(self)
+        self.forward_action.set_sensitive(False)
+        self.back_action.set_sensitive(False)
 
         self._add_action('OpenStreetMap', 'gramps-openstreetmap', _('_OpenStreetMap'),
                          callback=self.select_OpenStreetMap_map,
