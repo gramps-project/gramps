@@ -631,29 +631,37 @@ class GuiGramplet:
                 i += 1
         offset = self.len_text(self.get_text())
         self.append_text(retval)
-        for (a,attributes,b) in markup_pos["B"]:
-            start = self.buffer.get_iter_at_offset(a + offset)
-            stop = self.buffer.get_iter_at_offset(b + offset)
-            self.buffer.apply_tag_by_name("bold", start, stop)
-        for (a,attributes,b) in markup_pos["I"]:
-            start = self.buffer.get_iter_at_offset(a + offset)
-            stop = self.buffer.get_iter_at_offset(b + offset)
-            self.buffer.apply_tag_by_name("italic", start, stop)
-        for (a,attributes,b) in markup_pos["U"]:
-            start = self.buffer.get_iter_at_offset(a + offset)
-            stop = self.buffer.get_iter_at_offset(b + offset)
-            self.buffer.apply_tag_by_name("underline", start, stop)
-        for (a,attributes,b) in markup_pos["A"]:
-            start = self.buffer.get_iter_at_offset(a + offset)
-            stop = self.buffer.get_iter_at_offset(b + offset)
-            if "href" in attributes:
-                url = attributes["href"]
-                self.link_region(start, stop, "URL", url) # tooltip?
-            elif "wiki" in attributes:
-                url = attributes["wiki"]
-                self.link_region(start, stop, "WIKI", url) # tooltip?
-            else:
-                print "warning: no url on link: '%s'" % text[start, stop]
+        for items in markup_pos["B"]:
+            if len(items) == 3:
+                (a,attributes,b) = items
+                start = self.buffer.get_iter_at_offset(a + offset)
+                stop = self.buffer.get_iter_at_offset(b + offset)
+                self.buffer.apply_tag_by_name("bold", start, stop)
+        for items in markup_pos["I"]:
+            if len(items) == 3:
+                (a,attributes,b) = items
+                start = self.buffer.get_iter_at_offset(a + offset)
+                stop = self.buffer.get_iter_at_offset(b + offset)
+                self.buffer.apply_tag_by_name("italic", start, stop)
+        for items in markup_pos["U"]:
+            if len(items) == 3:
+                (a,attributes,b) = items
+                start = self.buffer.get_iter_at_offset(a + offset)
+                stop = self.buffer.get_iter_at_offset(b + offset)
+                self.buffer.apply_tag_by_name("underline", start, stop)
+        for items in markup_pos["A"]:
+            if len(items) == 3:
+                (a,attributes,b) = items
+                start = self.buffer.get_iter_at_offset(a + offset)
+                stop = self.buffer.get_iter_at_offset(b + offset)
+                if "href" in attributes:
+                    url = attributes["href"]
+                    self.link_region(start, stop, "URL", url) # tooltip?
+                elif "wiki" in attributes:
+                    url = attributes["wiki"]
+                    self.link_region(start, stop, "WIKI", url) # tooltip?
+                else:
+                    print "warning: no url on link: '%s'" % text[start, stop]
 
     def link_region(self, start, stop, link_type, url):
         link_data = (LinkTag(self.buffer), link_type, url, url)
