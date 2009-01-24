@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-17 12:17+0100\n"
-"PO-Revision-Date: 2009-01-17 12:19+0100\n"
+"POT-Creation-Date: 2009-01-24 20:09+0100\n"
+"PO-Revision-Date: 2009-01-24 20:24+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -200,8 +200,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
-#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1016
-#: ../src/gen/lib/date.py:1030
+#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "none"
 msgstr "kein"
 
@@ -13524,7 +13524,7 @@ msgstr "Er starb im %(month_year)s in %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:358
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr "Er starb un %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
+msgstr "Er starb im %(month_year)s in %(death_place)s im Alter von %(age)d Jahren."
 
 #: ../src/ReportBase/_ReportUtils.py:359
 #, python-format
@@ -16838,35 +16838,35 @@ msgstr "Französisch-Republikanisch"
 msgid "Islamic"
 msgstr "Islamisch"
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "estimated"
 msgstr "geschätzt"
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "calculated"
 msgstr "berechnet"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "before"
 msgstr "vor"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "after"
 msgstr "nach"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "about"
 msgstr "um"
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "range"
 msgstr "Zeitraum"
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "span"
 msgstr "Zeitspanne"
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "textonly"
 msgstr "nur Text"
 
@@ -19226,7 +19226,7 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:8
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Ein optionaler Suffix eines Namens, z.B. \"Jr.\" oder \"III\""
+msgstr "Ein optionaler Suffix eines Namens, z.B. \"Jr.\" oder \"III.\""
 
 #: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
 msgid "Call _Name:"
@@ -19754,7 +19754,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:126
 msgid "Y"
-msgstr "J"
+msgstr "Y"
 
 #: ../src/glade/gramps.glade.h:127
 msgid "Y_ear"
