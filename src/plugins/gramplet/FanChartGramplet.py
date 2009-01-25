@@ -531,7 +531,7 @@ class FanChartGramplet(Gramplet):
     The Gramplet code that realizes the FanChartWidget. 
     """
     def init(self):
-        self.set_tooltip("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate")
+        self.set_tooltip(_("Click to expand/contract person\nRight-click for options\nClick and drag in open area to rotate"))
         self.generations = 6
         self.format_helper = FormattingHelper(self.dbstate)
         self.gui.fan = FanChartWidget(self.generations, 
