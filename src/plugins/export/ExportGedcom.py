@@ -1005,12 +1005,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                     self.__writeln(1, val, 'Y')
 
                 if event.get_type() == gen.lib.EventType.MARRIAGE:
-                    ftype = family.get_relationship()
-                    if ftype != gen.lib.FamilyRelType.MARRIED and str(ftype):
-                        self.__writeln(2, 'TYPE', str(ftype))
-
                     self.__family_event_attrs(event.get_attribute_list(), 2) 
-                elif event.get_description().strip() != "":
+
+                if event.get_description().strip() != "":
                     self.__writeln(2, 'TYPE', event.get_description())
             else:
                 self.__writeln(1, 'EVEN')
