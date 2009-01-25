@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 15:23+0100\n"
-"PO-Revision-Date: 2009-01-23 10:12+0100\n"
+"POT-Creation-Date: 2009-01-24 10:07+0100\n"
+"PO-Revision-Date: 2009-01-25 18:05+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1286,14 +1286,14 @@ msgstr "U moet over een breedbandverbinding beschikken om de kaarttoepassingen v
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr "GeoViaw aan GRAMPS toevoegen om internetkaarten te tonen, gebaseerd op uw gegevens."
+msgstr "GeoView aan GRAMPS toevoegen om internetkaarten te tonen die gebaseerd op uw gegevens."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
 "Choose one of the following map providers:"
 msgstr ""
-"GeoView gebruikt <i>OpenStreetMap</i> en een andere kaartleverancier.\n"
+"GeoView gebruikt 'OpenStreetMap' en één andere kaartleverancier.\n"
 "Kies er een uit:"
 
 #: ../src/GrampsCfg.py:321
@@ -3075,7 +3075,7 @@ msgstr "Zeer hoog"
 
 #: ../src/Utils.py:92
 #: ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/tool/FindDupes.py:67
+#: ../src/plugins/tool/FindDupes.py:68
 msgid "High"
 msgstr "Hoog"
 
@@ -3087,7 +3087,7 @@ msgstr "Normaal"
 
 #: ../src/Utils.py:94
 #: ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/tool/FindDupes.py:65
+#: ../src/plugins/tool/FindDupes.py:66
 msgid "Low"
 msgstr "Laag"
 
@@ -6191,7 +6191,7 @@ msgstr "GRAMPS-boek"
 #: ../src/plugins/tool/EventCmp.py:468
 #: ../src/plugins/tool/EventNames.py:164
 #: ../src/plugins/tool/ExtractCity.py:649
-#: ../src/plugins/tool/FindDupes.py:702
+#: ../src/plugins/tool/FindDupes.py:703
 #: ../src/plugins/tool/Leak.py:135
 #: ../src/plugins/tool/NotRelated.py:438
 #: ../src/plugins/tool/PatchNames.py:375
@@ -6948,11 +6948,11 @@ msgstr "De gebruikte stijl voor de verslagtitel"
 
 #: ../src/plugins/Records.py:536
 msgid "Youngest living person"
-msgstr "Jongst levende persoon"
+msgstr "Jongste persoon nog in leven"
 
 #: ../src/plugins/Records.py:537
 msgid "Oldest living person"
-msgstr "Oudst nog levende persoon"
+msgstr "Oudste persoon nog in leven"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
@@ -7002,11 +7002,11 @@ msgstr "Koppel met de meeste kinderen"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr "Koppel nog in leven dat het recenste gehuwd is"
+msgstr "Koppel nog in leven dat het korst geleden gehuwd is"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr "koppel nog in leven dat het langst geleden gehuwd is"
+msgstr "Koppel nog in leven dat het langst geleden gehuwd is"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
@@ -7725,7 +7725,7 @@ msgstr "Levert een grafische afstammelingenstamboom"
 #: ../src/plugins/drawreport/FanChart.py:190
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "%(generations)d generatiwaaiergrafiek voor %(person)s"
+msgstr "%(generations)d generatiewaaiergrafiek voor %(person)s"
 
 #: ../src/plugins/drawreport/FanChart.py:347
 #: ../src/plugins/textreport/AncestorReport.py:254
@@ -9275,7 +9275,7 @@ msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
 msgid "What's Next Gramplet"
-msgstr "Nog-te-doen gramplet"
+msgstr "Volgende stappen-gramplet"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
@@ -10280,7 +10280,7 @@ msgstr "Familielijn langs vaderszijde voor %s"
 
 #: ../src/plugins/quickview/lineage.py:55
 msgid "This report shows the father lineage, also called patronymic lineage or Y-line. People in this lineage all share the same Y-chromosone."
-msgstr "Dit verslag toont de familieband langs vaderszijde, ook de patronymische lijn of Y- lijn. Personen in deze lijn hebben allemaal de zelfde Y-chromosoom."
+msgstr "Dit verslag toont de familieband langs vaderszijde, ook de patronymische lijn of Y- lijn. Personen in deze lijn hebben allemaal dezelfde Y-chromosoom."
 
 #: ../src/plugins/quickview/lineage.py:62
 msgid "Name Father"
@@ -12383,78 +12383,78 @@ msgstr "Haal locatiegegevens uit een plaatsnaam"
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Tracht de stad en de staat/provincie uit de plaatsnaam te halen"
 
-#: ../src/plugins/tool/FindDupes.py:66
+#: ../src/plugins/tool/FindDupes.py:67
 msgid "Medium"
 msgstr "Medium"
 
 # Duplicaat
-#: ../src/plugins/tool/FindDupes.py:71
+#: ../src/plugins/tool/FindDupes.py:72
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Mogelijke_dubbele_personen_zoeken..."
 
 # Duplicaat
-#: ../src/plugins/tool/FindDupes.py:136
-#: ../src/plugins/tool/FindDupes.py:701
+#: ../src/plugins/tool/FindDupes.py:137
+#: ../src/plugins/tool/FindDupes.py:702
 msgid "Find Possible Duplicate People"
 msgstr "Mogelijke dubbele personen zoeken"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 #: ../src/plugins/tool/Verify.py:301
 msgid "Tool settings"
 msgstr "Instellingen van de hulpmiddelen"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 msgid "Find Duplicates tool"
 msgstr "Duplicaten zoeken"
 
-#: ../src/plugins/tool/FindDupes.py:182
+#: ../src/plugins/tool/FindDupes.py:183
 msgid "No matches found"
 msgstr "Geen overeenkomsten gevonden"
 
 # Duplicaat
-#: ../src/plugins/tool/FindDupes.py:183
+#: ../src/plugins/tool/FindDupes.py:184
 msgid "No potential duplicate people were found"
 msgstr "Er zijn geen mogelijke dubbele personen gevonden"
 
-#: ../src/plugins/tool/FindDupes.py:192
+#: ../src/plugins/tool/FindDupes.py:193
 msgid "Find Duplicates"
 msgstr "Duplicaten zoeken"
 
 # Duplicaat-voorouders
-#: ../src/plugins/tool/FindDupes.py:193
+#: ../src/plugins/tool/FindDupes.py:194
 msgid "Looking for duplicate people"
 msgstr "Duplicaat-personen zoeken"
 
-#: ../src/plugins/tool/FindDupes.py:202
+#: ../src/plugins/tool/FindDupes.py:203
 msgid "Pass 1: Building preliminary lists"
 msgstr "Stap 1: Opbouwen van de voorlopige lijsten"
 
-#: ../src/plugins/tool/FindDupes.py:220
+#: ../src/plugins/tool/FindDupes.py:221
 msgid "Pass 2: Calculating potential matches"
 msgstr "Stap 2: Bereken van mogelijke overeenkomsten"
 
-#: ../src/plugins/tool/FindDupes.py:567
+#: ../src/plugins/tool/FindDupes.py:568
 msgid "Potential Merges"
 msgstr "Mogelijke samenvoegingen"
 
 # Classificatie, taxering
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "Rating"
 msgstr "Kwaliteit"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "First Person"
 msgstr "Eerste persoon"
 
-#: ../src/plugins/tool/FindDupes.py:578
+#: ../src/plugins/tool/FindDupes.py:579
 msgid "Second Person"
 msgstr "Tweede persoon"
 
-#: ../src/plugins/tool/FindDupes.py:586
+#: ../src/plugins/tool/FindDupes.py:587
 msgid "Merge candidates"
 msgstr "Kandidaten samenvoegen"
 
-#: ../src/plugins/tool/FindDupes.py:705
+#: ../src/plugins/tool/FindDupes.py:706
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Het volledige gegevensbestand doorzoeken naar personen die mogelijk dubbels zijn van één en dezelfde persoon."
 
@@ -18194,6 +18194,19 @@ msgstr "meer dan"
 msgid "less than"
 msgstr "minder dan"
 
+#. v = self.date1.sortval - self.date2.sortval
+#. self.sort = (v, -Span.ABOUT)
+#. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
+#: ../src/gen/lib/date.py:309
+#: ../src/gen/lib/date.py:341
+#: ../src/gen/lib/date.py:380
+#: ../src/gen/lib/date.py:395
+#: ../src/gen/lib/date.py:401
+#: ../src/gen/lib/date.py:428
+#, fuzzy
+msgid "about|age"
+msgstr "rond"
+
 #. v1 = self.date1.sortval - stop.sortval  # min
 #. v2 = self.date1.sortval - start.sortval # max
 #. self.sort = (v1, v2 - v1)
@@ -18225,6 +18238,38 @@ msgstr "meer dan ongeveer"
 #: ../src/gen/lib/date.py:390
 msgid "less than about"
 msgstr "minder dan rond"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d year"
+msgstr "%d jaar"
+
+#: ../src/gen/lib/date.py:487
+#, python-format
+msgid "%d years"
+msgstr "%d jaren"
+
+# tablabel voor de beginletters van de namen (de overige dan)
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d month"
+msgstr "%d maand"
+
+# tablabel voor de beginletters van de namen (de overige dan)
+#: ../src/gen/lib/date.py:494
+#, python-format
+msgid "%d months"
+msgstr "%d maanden"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d day"
+msgstr "%d dag"
+
+#: ../src/gen/lib/date.py:501
+#, python-format
+msgid "%d days"
+msgstr "%d dagen"
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
@@ -22511,6 +22556,4 @@ msgstr "U kunt willekeurige elektronische media (ook beeld en geluid) en andere 
 #~ msgstr "%(event_name)s: "
 #~ msgid "Filtering"
 #~ msgstr "Filter"
-#~ msgid "%d years"
-#~ msgstr "%d jaren"
 
