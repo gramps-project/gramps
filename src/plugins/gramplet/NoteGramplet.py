@@ -246,7 +246,7 @@ register(type="gramplet",
          height=100,
          expand=True,
          content = NoteGramplet,
-         title=_("Person Note"),
+         title=_("Note"),
          detached_width = 500,
          detached_height = 400,
          )
