@@ -58,10 +58,13 @@ if gtk.pygtk_version < (2,3,93):
 #
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from Simple import SimpleAccess
 from gettext import gettext as _
 from DataViews import Gramplet, register
-from gen.lib import Person
+import gen.lib
+
+def gender_code(is_male):
+    if is_male: return 1
+    return 0
 
 #-------------------------------------------------------------------------
 #
@@ -127,7 +130,7 @@ class FanChartWidget(gtk.Widget):
         self.angle = {}
         self.data = {}
         for i in range(self.generations):
-            self.data[i] = [None for j in range(2 ** i)]
+            self.data[i] = [(None, None, None) for j in range(2 ** i)]
             self.angle[i] = []
             angle = 0
             slice = 360.0 / (2 ** i)
@@ -205,14 +208,13 @@ class FanChartWidget(gtk.Widget):
         cr.rotate(self.rotate_value * math.pi/180)
         for generation in range(self.generations - 1, 0, -1):
             for p in range(len(self.data[generation])):
-                person = self.data[generation][p]
+                (text, person, parents) = self.data[generation][p]
                 if person:
                     start, stop, male, state = self.angle[generation][p]
-                    name = name_displayer.display(person)
-                    gender = person.get_gender()
                     if state in [self.NORMAL, self.EXPANDED]:
-                        self.draw_person(cr, gender, name, start, stop, 
-                                         generation, state)
+                        self.draw_person(cr, gender_code(male), 
+                                         text, start, stop, 
+                                         generation, state, parents)
         cr.set_source_rgb(1, 1, 1) # white
         cr.move_to(0,0)
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
@@ -222,7 +224,7 @@ class FanChartWidget(gtk.Widget):
         cr.arc(0, 0, self.center, 0, 2 * math.pi)
         cr.stroke()
         # Draw center person:
-        person = self.data[0][0]
+        (text, person, parents) = self.data[0][0]
         cr.restore()
         if person:
             cr.save()
@@ -234,7 +236,8 @@ class FanChartWidget(gtk.Widget):
         cr.update_layout(self.layout)
         cr.show_layout(self.layout)
 
-    def draw_person(self, cr, gender, name, start, stop, generation, state):
+    def draw_person(self, cr, gender, name, start, stop, generation, 
+                    state, parents):
         """
         Display the piece of pie for a given person. start and stop
         are in degrees.
@@ -243,12 +246,25 @@ class FanChartWidget(gtk.Widget):
         start_rad = start * math.pi/180
         stop_rad = stop * math.pi/180
         r,g,b = self.GENCOLOR[generation % len(self.GENCOLOR)]
-        if gender == Person.MALE:
+        if gender == gen.lib.Person.MALE:
             r -= r * .10
             g -= g * .10
             b -= b * .10
-        cr.set_source_rgb(r/255., g/255., b/255.) 
         radius = generation * self.pixels_per_generation + self.center
+        # If max generation, and they have parents:
+        if generation == self.generations - 1 and parents:
+            # draw an indicator
+            cr.move_to(0, 0)
+            #cr.set_source_rgba(1, 0.2, 0.2, 0.6) # pink
+            cr.set_source_rgb(255, 255, 255) # white
+            cr.arc(0, 0, radius + 5, start_rad, stop_rad) 
+            cr.fill()
+            cr.move_to(0, 0)
+            cr.set_source_rgb(0, 0, 0) # black
+            cr.arc(0, 0, radius + 5, start_rad, stop_rad) 
+            cr.line_to(0, 0)
+            cr.stroke()
+        cr.set_source_rgb(r/255., g/255., b/255.) 
         cr.move_to(0, 0)
         cr.arc(0, 0, radius, start_rad, stop_rad) 
         cr.move_to(0, 0)
@@ -263,6 +279,7 @@ class FanChartWidget(gtk.Widget):
         else: # EXPANDED
             cr.set_line_width(3)
         cr.stroke()
+        cr.set_line_width(1)
         if self.last_x == None or self.last_y == None: 
             self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
                            start, stop)
@@ -461,25 +478,27 @@ class FanChartWidget(gtk.Widget):
         selected = None
         if (0 < generation < self.generations):
             for p in range(len(self.angle[generation])):
-                start, stop, male, state = self.angle[generation][p]
-                if state == self.COLLAPSED: continue
-                if start <= pos <= stop:
-                    selected = p
-                    break
-        if selected == None: # click in open area
-            # save the mouse location for movements
+                if self.data[generation][p][1]: # there is a person there
+                    start, stop, male, state = self.angle[generation][p]
+                    if state == self.COLLAPSED: continue
+                    if start <= pos <= stop:
+                        selected = p
+                        break
+        # Handle the click:
+        if selected == None: # clicked in open area
             if radius < self.center:
-                print "TODO: select children"
+                print "TODO: select child, spouse"
                 self.queue_draw()
                 return True
             else:
+                # save the mouse location for movements
                 self.last_x, self.last_y = event.x, event.y
                 return True
         # Do things based on state, event.state, or button, event.button
         if event.button == 1: # left mouse
             self.change_slice(generation, selected)
         elif event.button == 3: # right mouse
-            person = self.data[generation][selected]
+            text, person, parents = self.data[generation][selected]
             if person and self.right_click_callback:
                 self.right_click_callback(person)
         self.queue_draw()
@@ -490,7 +509,6 @@ class FanChartGramplet(Gramplet):
     The Gramplet code that realizes the FanChartWidget. 
     """
     def init(self):
-        self.sa = SimpleAccess(self.dbstate.db)
         self.set_tooltip("Click to expand/contract person\nRight-click to make person active")
         self.generations = 6
         self.gui.fan = FanChartWidget(self.generations, 
@@ -501,41 +519,87 @@ class FanChartGramplet(Gramplet):
         # Make sure it is visible:
         self.gui.fan.show()
 
-    def db_changed(self):
-        """
-        Method called when database changes.
-        """
-        # reset the db connection
-        self.sa = SimpleAccess(self.dbstate.db)
-
     def active_changed(self, handle):
         """
         Method called when active person changes.
         """
         # Reset everything but rotation angle (leave it as is)
-        self.gui.fan.reset_generations()
         self.update()
+
+    def have_parents(self, person):
+        """
+        Returns True if a person has parents.
+        """
+        if person:
+            m = self.get_parent(person, "female")
+            f = self.get_parent(person, "male")
+            return m != None or f != None
+        return False
+            
+    def get_parent(self, person, gender):
+        """
+        Get the father if gender == "male", or get mother otherwise.
+        """
+        if person:
+            parent_handle_list = person.get_parent_family_handle_list()
+            if parent_handle_list:
+                family_id = parent_handle_list[0]
+                family = self.dbstate.db.get_family_from_handle(family_id)
+                if family:
+                    if gender == "male":
+                        person_handle = gen.lib.Family.get_father_handle(family)
+                    else:
+                        person_handle = gen.lib.Family.get_mother_handle(family)
+                    if person_handle:
+                        return self.dbstate.db.get_person_from_handle(person_handle)
+        return None
 
     def main(self):
         """
         Fill the data structures with the active data. This initializes all 
         data.
         """
-        self.gui.fan.data[0][0] = self.dbstate.get_active_person()
+        self.gui.fan.reset_generations()
+        person = self.dbstate.get_active_person()
+        if not person: 
+            name = None
+        else:
+            name = name_displayer.display(person)
+        parents = self.have_parents(person)
+        self.gui.fan.data[0][0] = (name, person, parents)
         for current in range(1, self.generations):
             parent = 0
-            for p in self.gui.fan.data[current - 1]:
-                self.gui.fan.data[current][parent] = self.sa.father(p)
-                if self.gui.fan.data[current][parent] is None:
+            # name, person, parents
+            for (n,p,q) in self.gui.fan.data[current - 1]:
+                # Get father's details:
+                person = self.get_parent(p, "male")
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                if current == self.generations - 1:
+                    parents = self.have_parents(person)
+                else:
+                    parents = None
+                self.gui.fan.data[current][parent] = (name, person, parents)
+                if person is None:
                     # start,stop,male/right,state
                     self.gui.fan.angle[current][parent][3] = self.gui.fan.COLLAPSED
                 parent += 1
-                self.gui.fan.data[current][parent] = self.sa.mother(p)
-                if self.gui.fan.data[current][parent] is None:
-                    # start,stop,male/left,state
+                # Get mother's details:
+                person = self.get_parent(p, "female")
+                if person:
+                    name = name_displayer.display(person)
+                else:
+                    name = None
+                parents = self.have_parents(person)
+                self.gui.fan.data[current][parent] = (name, person, parents)
+                if person is None:
+                    # start,stop,male/right,state
                     self.gui.fan.angle[current][parent][3] = self.gui.fan.COLLAPSED
                 parent += 1
         self.gui.fan.queue_draw()
+
 
 #-------------------------------------------------------------------------
 #
