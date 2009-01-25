@@ -1986,7 +1986,7 @@ register(type="gramplet",
          tname=_("Relatives Gramplet"), 
          height=200,
          content = RelativesGramplet,
-         title=_("Active Person's Relatives"),
+         title=_("Relatives"),
          detached_width = 250,
          detached_height = 300,
          )
