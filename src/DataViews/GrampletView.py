@@ -219,6 +219,7 @@ class Gramplet(object):
         self.gui = gui   # plugin gramplet has link to gui
         gui.pui = self   # gui has link to plugin ui
         self.dbstate = gui.dbstate
+        self.uistate = gui.uistate
         self.init()
         self.on_load()
         self.build_options()
@@ -400,7 +401,7 @@ class Gramplet(object):
         from PluginUtils import make_gui_option
         #tooltips, dbstate, uistate, track
         widget, label = make_gui_option(option, None, self.dbstate, 
-                                        self.gui.uistate,None)
+                                        self.uistate,None)
         self.option_dict.update({option.get_label(): (widget, option)})
         self.option_order.append(option.get_label())
 
