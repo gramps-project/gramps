@@ -989,7 +989,7 @@ class HeadlineNewsGramplet(Gramplet):
         matches = pattern.findall(text)
         for (g1, g2) in matches:
             text = text.replace("[[%s|%s]]" % (g1, g2), 
-                                ("""<A HREF="%s%s">%s</A>""" % 
+                                ("""<A HREF="%s">%s</A>""" % 
                                  (self.wiki(g1), self.nice_title(g2))))
         ### Internal wiki URL:
         pattern = re.compile('\[\[(.*?)\]\]')
