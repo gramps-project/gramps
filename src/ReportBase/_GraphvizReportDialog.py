@@ -206,7 +206,8 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self.write( '  mclimit="99";\n'             )
         self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
         self.write( '  outputorder="edgesfirst";\n' )
-        self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
+        if self.hpages != 1 or self.vpages != 1:
+            self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
         self.write( '  pagedir="%s";\n'             % self.pagedir      )
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
         self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
