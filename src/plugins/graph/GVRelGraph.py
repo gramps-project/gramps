@@ -9,6 +9,7 @@
 #    Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #    Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #    Copyright (C) 2008       Stephane Charette <stephanecharette@gmail.com>
+#    Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -99,7 +100,8 @@ class RelGraphReport(Report):
         url        - Whether to include URLs.
         inclimg    - Include images or not
         imgpos     - Image position, above/beside name
-        color      - Whether to use outline, colored outline or filled color in graph
+        color      - Whether to use outline, colored outline or filled color
+                     in graph
         dashed     - Whether to use dashed lines for non-birth relationships.
         use_roundedcorners - Whether to use rounded corners for females
         """
@@ -129,7 +131,8 @@ class RelGraphReport(Report):
         self.includeurl = menu.get_option_by_name('url').get_value()
         self.includeimg = menu.get_option_by_name('includeImages').get_value()
         self.imgpos     = menu.get_option_by_name('imageOnTheSide').get_value()
-        self.use_roundedcorners = menu.get_option_by_name('useroundedcorners').get_value()
+        self.use_roundedcorners = \
+           menu.get_option_by_name('useroundedcorners').get_value()
         self.adoptionsdashed = menu.get_option_by_name('dashed').get_value()
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
@@ -160,7 +163,8 @@ class RelGraphReport(Report):
             self.add_child_links_to_families()
 
     def add_child_links_to_families(self):
-        "returns string of GraphViz edges linking parents to families or children"
+        "returns string of GraphViz edges linking parents to families or \
+         children"
         person_dict = {}
         # Hash people in a dictionary for faster inclusion checking
         for person_handle in self.person_handles:
@@ -181,13 +185,13 @@ class RelGraphReport(Report):
                     ((father_handle and father_handle in person_dict) or
                      (mother_handle and mother_handle in person_dict))):
                     # Link to the family node if either parent is in graph
-                    self.add_family_link(p_id,family,frel,mrel)
+                    self.add_family_link(p_id, family, frel, mrel)
                 else:
                     # Link to the parents' nodes directly, if they are in graph
                     if father_handle and father_handle in person_dict:
-                        self.add_parent_link(p_id,father_handle,frel)
+                        self.add_parent_link(p_id, father_handle, frel)
                     if mother_handle and mother_handle in person_dict:
-                        self.add_parent_link(p_id,mother_handle,mrel)
+                        self.add_parent_link(p_id, mother_handle, mrel)
 
     def add_family_link(self, p_id, family, frel, mrel):
         "Links the child to a family"
@@ -224,7 +228,7 @@ class RelGraphReport(Report):
             p_id = person.get_gramps_id()
             # Output the person's node
             label = self.get_person_label(person)
-            (shape,style,color,fill) = self.get_gender_style(person)
+            (shape, style, color, fill) = self.get_gender_style(person)
             url = ""
             if self.includeurl:
                 h = person_handle
@@ -232,7 +236,7 @@ class RelGraphReport(Report):
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
                 
-            self.doc.add_node(p_id,label,shape,color,style,fill,url)
+            self.doc.add_node(p_id, label, shape, color, style, fill, url)
   
             # Output families where person is a parent
             if self.show_families:
@@ -259,7 +263,8 @@ class RelGraphReport(Report):
                         elif self.colorize == 'filled':
                             fill = self.colors['family']
                             style = "filled"
-                        self.doc.add_node(fam_id,label,"ellipse",color,style,fill)
+                        self.doc.add_node(fam_id, label, "ellipse",
+                                          color, style, fill)
                     # Link this person to all his/her families.
                     self.doc.add_link( fam_id, p_id, "", 
                                       self.arrowheadstyle, self.arrowtailstyle )
@@ -273,9 +278,9 @@ class RelGraphReport(Report):
         fill = ""
 
         if gender == person.FEMALE and self.use_roundedcorners:
-            style="rounded"
+            style = "rounded"
         elif gender == person.UNKNOWN:
-            shape="hexagon"
+            shape = "hexagon"
 
         if self.colorize == 'colored':
             if gender == person.MALE:
@@ -292,7 +297,7 @@ class RelGraphReport(Report):
                 fill = self.colors['female']
             else:
                 fill = self.colors['unknown']
-        return(shape,style,color,fill)
+        return(shape, style, color, fill)
 
     def get_person_label(self, person):
         "return person label string"
@@ -308,16 +313,20 @@ class RelGraphReport(Report):
                     imagePath = ThumbNails.get_thumbnail_path(
                                     Utils.media_path_full(self.database, 
                                                           media.get_path()))
-                    #test if thumbnail actually exists in thumbs (import of data means media files might not be present
+                    # test if thumbnail actually exists in thumbs
+                    # (import of data means media files might not be present
                     imagePath = Utils.find_file(imagePath)
 
         label = u""
         lineDelimiter = '\\n'
 
-        # If we have an image, then start an HTML table; remember to close the table afterwards!
+        # If we have an image, then start an HTML table; remember to close
+        # the table afterwards!
         #
-        # This isn't a free-form HTML format here...just a few keywords that happen to be
-        # simillar to keywords commonly seen in HTML.  For additional information on what
+        # This isn't a free-form HTML format here...just a few keywords that
+        # happen to be
+        # simillar to keywords commonly seen in HTML.  For additional
+        # information on what
         # is allowed, see:
         #
         #       http://www.graphviz.org/info/shapes.html#html
@@ -338,7 +347,7 @@ class RelGraphReport(Report):
         nm =  name_displayer.display_name(person.get_primary_name())
         if self.bUseHtmlOutput :
             # avoid < and > in the name, as this is html text
-            label += nm.replace('<','&#60;').replace('>','&#62;')
+            label += nm.replace('<', '&#60;').replace('>', '&#62;')
         else :
             label += nm
         p_id = person.get_gramps_id()
@@ -346,7 +355,7 @@ class RelGraphReport(Report):
             label += " (%s)" % p_id
         if self.includedates:
             birth, death = self.get_date_strings(person)
-            label = label + '%s(%s - %s)' % (lineDelimiter,birth, death)
+            label = label + '%s(%s - %s)' % (lineDelimiter, birth, death)
             
         # see if we have a table that needs to be terminated
         if self.bUseHtmlOutput:
@@ -358,29 +367,18 @@ class RelGraphReport(Report):
     
     def get_date_strings(self, person):
         "returns tuple of birth/christening and death/burying date strings"
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth_event = self.database.get_event_from_handle(birth_ref.ref)
+        birth_event = ReportUtils.get_birth_or_fallback(self.database, person)
+        if birth_event:
             birth = self.get_event_string(birth_event)
         else:
-            birth = ''
-        death_ref = person.get_death_ref()
-        if death_ref:
-            death_event = self.database.get_event_from_handle(death_ref.ref)
+            birth = ""
+
+        death_event = ReportUtils.get_death_or_fallback(self.database, person)
+        if death_event:
             death = self.get_event_string(death_event)
         else:
-            death = ''
-        if birth and death:
-            return (birth, death)
-        # missing info, use (first) christening/burial instead
-        for event_ref in person.get_primary_event_ref_list():
-            event = self.database.get_event_from_handle(event_ref.ref)
-            if event.type == gen.lib.EventType.CHRISTEN:
-                if not birth:
-                    birth = self.get_event_string(event)
-            elif event.type ==  gen.lib.EventType.BURIAL:
-                if not death:
-                    death = self.get_event_string(event)
+            death = ""
+
         return (birth, death)
 
     def get_event_string(self, event):
