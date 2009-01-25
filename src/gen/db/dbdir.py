@@ -1710,7 +1710,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # This upgrade modifies notes and dates
         length = (len(self.note_map) + len(self.person_map) +
                   len(self.event_map) + len(self.family_map) +
-                  len(self.repository_map))
+                  len(self.repository_map) + len(self.media_map) +
+                  len(self.place_map) + len(self.source_map))
         self.set_total(length)
 
         # ---------------------------------
@@ -1886,6 +1887,64 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
             the_txn = self.env.txn_begin()
             self.repository_map.put(str(handle), new_repository, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Media
+        # ---------------------------------
+        for media_handle in self.media_map.keys():
+            media = self.media_map[media_handle]
+            (handle, gramps_id, path, mime, desc,
+             attribute_list, source_list, note_list, change,
+             date, marker, private) = media
+            new_source_list = self.new_source_list_14(source_list)
+            new_date = self.convert_date_14(date)
+            new_media = (handle, gramps_id, path, mime, desc,
+                         attribute_list, new_source_list, note_list, change,
+                         new_date, marker, private)
+
+            the_txn = self.env.txn_begin()
+            self.media_map.put(str(handle), new_media, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Place
+        # ---------------------------------
+        for place_handle in self.place_map.keys():
+            place = self.place_map[place_handle]
+            (handle, gramps_id, title, long, lat,
+             main_loc, alt_loc, urls, media_list, source_list, note_list,
+             change, marker, private) = place
+            new_media_list = self.new_media_list_14(media_list)
+            new_source_list = self.new_source_list_14(source_list)
+            new_place = (handle, gramps_id, title, long, lat,
+                         main_loc, alt_loc, urls, new_media_list, 
+                         new_source_list, note_list, change, marker, private) 
+
+            the_txn = self.env.txn_begin()
+            self.place_map.put(str(handle), new_place, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Source
+        # ---------------------------------
+        for source_handle in self.source_map.keys():
+            source = self.source_map[source_handle]
+            (handle, gramps_id, title, author,
+             pubinfo, note_list, media_list,
+             abbrev, change, datamap, reporef_list,
+             marker, private) = source
+            new_media_list = self.new_media_list_14(media_list)
+            new_source = (handle, gramps_id, title, author,
+                          pubinfo, note_list, new_media_list,
+                          abbrev, change, datamap, reporef_list,
+                          marker, private)
+
+            the_txn = self.env.txn_begin()
+            self.source_map.put(str(handle), new_source, txn=the_txn)
             the_txn.commit()
             self.update()
 
