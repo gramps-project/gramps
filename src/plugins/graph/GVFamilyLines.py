@@ -225,16 +225,17 @@ class FamilyLinesOptions(MenuReportOptions):
                                 "in longer lines and larger graphs."))
         menu.add_option(category, "usesubgraphs", use_subgraphs)
 
-        include_dates = BooleanOption(_('Include dates'), True)
-        include_dates.set_help(_('Whether to include dates for people and ' \
-                                'families.'))
-        menu.add_option(category, 'incdates', include_dates)
+        self.include_dates = BooleanOption(_('Include dates'), True)
+        self.include_dates.set_help(_('Whether to include dates for people ' \
+                                      'and families.'))
+        menu.add_option(category, 'incdates', self.include_dates)
+        self.include_dates.connect('value-changed', self.include_dates_changed)
 
-        justyears = BooleanOption(_("Limit dates to years only"), False)
-        justyears.set_help(_("Prints just dates' year, neither "
-                             "month or day nor date approximation "
-                             "or interval are shown."))
-        menu.add_option(category, "justyears", justyears)
+        self.justyears = BooleanOption(_("Limit dates to years only"), False)
+        self.justyears.set_help(_("Prints just dates' year, neither "
+                                  "month or day nor date approximation "
+                                  "or interval are shown."))
+        menu.add_option(category, "justyears", self.justyears)
 
         include_places = BooleanOption(_('Include places'), True)
         include_places.set_help(_('Whether to include placenames for people ' \
@@ -268,6 +269,15 @@ class FamilyLinesOptions(MenuReportOptions):
         Handle the change of including images.
         """
         self.image_location.set_available(self.include_images.get_value())
+
+    def include_dates_changed(self):
+        """
+        Enable/disable menu items if dates are required
+        """
+        if self.include_dates.get_value():
+            self.justyears.set_available(True)
+        else:
+            self.justyears.set_available(False)
 
 #------------------------------------------------------------------------
 #

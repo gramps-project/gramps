@@ -441,17 +441,18 @@ class RelGraphOptions(MenuReportOptions):
         
         self.__update_filters()
         
-        incdate = BooleanOption(
+        self.incdate = BooleanOption(
                             _("Include Birth, Marriage and Death dates"), True)
-        incdate.set_help(_("Include the dates that the individual was born, "
-                           "got married and/or died in the graph labels."))
-        menu.add_option(category_name, "incdate", incdate)
+        self.incdate.set_help(_("Include the dates that the individual was "
+                          "born, got married and/or died in the graph labels."))
+        menu.add_option(category_name, "incdate", self.incdate)
+        self.incdate.connect('value-changed', self.__include_dates_changed)
         
-        justyears = BooleanOption(_("Limit dates to years only"), False)
-        justyears.set_help(_("Prints just dates' year, neither "
-                             "month or day nor date approximation "
-                             "or interval are shown."))
-        menu.add_option(category_name, "justyears", justyears)
+        self.justyears = BooleanOption(_("Limit dates to years only"), False)
+        self.justyears.set_help(_("Prints just dates' year, neither "
+                                  "month or day nor date approximation "
+                                  "or interval are shown."))
+        menu.add_option(category_name, "justyears", self.justyears)
         
         use_place = BooleanOption(_("Use place when no date"), True)
         use_place.set_help(_("When no birth, marriage, or death date is "
@@ -531,6 +532,15 @@ class RelGraphOptions(MenuReportOptions):
         filter_list = ReportUtils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
         
+    def __include_dates_changed(self):
+        """
+        Enable/disable menu items if dates are required
+        """
+        if self.incdate.get_value():
+            self.justyears.set_available(True)
+        else:
+            self.justyears.set_available(False)
+
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,
