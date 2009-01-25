@@ -46,7 +46,7 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, EnumeratedListOption, FilterOption, \
-                          PersonOption
+                          PersonOption, ColorOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
 import DateHandler
@@ -102,27 +102,15 @@ class RelGraphReport(Report):
         imgpos     - Image position, above/beside name
         color      - Whether to use outline, colored outline or filled color
                      in graph
-        dashed     - Whether to use dashed lines for non-birth relationships.
+        color_males    - Colour to apply to males
+        color_females  - Colour to apply to females
+        color_unknown  - Colour to apply to unknown genders
+        color_families - Colour to apply to families
+        dashed         - Whether to use dashed lines for non-birth relationships
         use_roundedcorners - Whether to use rounded corners for females
         """
         Report.__init__(self, database, options_class)
         
-        # Would be nice to get rid of these 2 hard-coded arrays of colours
-        # and instead allow the user to pick-and-choose whatever colour they
-        # want.  When/if this is done, take a look at the colour-selection
-        # widget and code used in the FamilyLines graph.
-        colored = {
-            'male': 'dodgerblue4',
-            'female': 'deeppink',
-            'unknown': 'black',
-            'family': 'darkgreen'
-        }
-        filled = {
-            'male': 'lightblue',
-            'female': 'lightpink',
-            'unknown': 'lightgray',
-            'family': 'lightyellow'
-        }
         self.database = database
 
         menu = options_class.menu
@@ -137,11 +125,19 @@ class RelGraphReport(Report):
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
         self.use_place = menu.get_option_by_name('use_place').get_value()
+
         self.colorize = menu.get_option_by_name('color').get_value()
-        if self.colorize == 'colored':
-            self.colors = colored
-        elif self.colorize == 'filled':
-            self.colors = filled
+        color_males = menu.get_option_by_name('colormales').get_value()
+        color_females = menu.get_option_by_name('colorfemales').get_value()
+        color_unknown = menu.get_option_by_name('colorunknown').get_value()
+        color_families = menu.get_option_by_name('colorfamilies').get_value()
+        self.colors = {
+            'male': color_males,
+            'female': color_females,
+            'unknown': color_unknown,
+            'family': color_families
+        }
+
         arrow_str = menu.get_option_by_name('arrow').get_value()
         if arrow_str.find('a') + 1:
             self.arrowheadstyle = 'normal'
@@ -498,6 +494,23 @@ class RelGraphOptions(MenuReportOptions):
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
+
+        color_males = ColorOption(_('Males'), '#e0e0ff')
+        color_males.set_help(_('The colour to use to display men.'))
+        menu.add_option(category_name, 'colormales', color_males)
+
+        color_females = ColorOption(_('Females'), '#ffe0e0')
+        color_females.set_help(_('The colour to use to display women.'))
+        menu.add_option(category_name, 'colorfemales', color_females)
+
+        color_unknown = ColorOption(_('Unknown'), '#e0e0e0')
+        color_unknown.set_help(_('The colour to use when the gender is ' \
+                                 'unknown.'))
+        menu.add_option(category_name, 'colorunknown', color_unknown)
+
+        color_family = ColorOption(_('Families'), '#ffffe0')
+        color_family.set_help(_('The colour to use to display families.'))
+        menu.add_option(category_name, 'colorfamilies', color_family)
         
         arrow = EnumeratedListOption(_("Arrowhead direction"), 'd')
         for i in range( 0, len(_ARROWS) ):
