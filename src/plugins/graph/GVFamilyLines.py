@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009       Gary Burton 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -229,6 +230,12 @@ class FamilyLinesOptions(MenuReportOptions):
                                 'families.'))
         menu.add_option(category, 'incdates', include_dates)
 
+        justyears = BooleanOption(_("Limit dates to years only"), False)
+        justyears.set_help(_("Prints just dates' year, neither "
+                             "month or day nor date approximation "
+                             "or interval are shown."))
+        menu.add_option(category, "justyears", justyears)
+
         include_places = BooleanOption(_('Include places'), True)
         include_places.set_help(_('Whether to include placenames for people ' \
                                   'and families.'))
@@ -339,6 +346,9 @@ class FamilyLinesReport(Report):
         
         _opt = menu.get_option_by_name('incdates')
         self._incdates = _opt.get_value()
+
+        _opt = menu.get_option_by_name('justyears')
+        self._just_years = _opt.get_value()
         
         _opt = menu.get_option_by_name('incplaces')
         self._incplaces = _opt.get_value()
@@ -775,7 +785,10 @@ class FamilyLinesReport(Report):
                 if (bth_event.private and self._incprivate) or \
                         not bth_event.private:
                     date = bth_event.get_date_object()
-                    birthStr = _dd.display(date)
+                    if self._just_years:
+                        birthStr = '%i' % date.get_year()
+                    else:
+                        birthStr = _dd.display(date)
 
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
@@ -798,7 +811,10 @@ class FamilyLinesReport(Report):
                 if (dth_event.private and self._incprivate) or \
                         not dth_event.private:
                     date = dth_event.get_date_object()
-                    deathStr = _dd.display(date)
+                    if self._just_years:
+                        deathStr = '%i' % date.get_year()
+                    else:
+                        deathStr = _dd.display(date)
 
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
@@ -918,7 +934,10 @@ class FamilyLinesReport(Report):
                         if (event.private and self._incprivate) or not event.private:
                             if self._incdates:
                                 date = event.get_date_object()
-                                weddingDate = _dd.display(date)
+                                if self._just_years:
+                                    weddingDate = '%i' % date.get_year()
+                                else:
+                                    weddingDate = _dd.display(date)
                             # get the wedding location
                             if self._incplaces:
                                 place = self._db.get_place_from_handle(event.get_place_handle())
