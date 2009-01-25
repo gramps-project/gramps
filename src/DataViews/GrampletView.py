@@ -93,7 +93,7 @@ def parse_tag_attr(text):
     if len(parts) == 2:
         attr_values = parts[1].split(" ") # "name=value name=value"
         for av in attr_values:
-            attribute, value = av.split("=")
+            attribute, value = av.split("=", 1)
             value = value.strip()
             # trim off quotes:
             if value[0] == value[-1] and value[0] in ['"', "'"]:

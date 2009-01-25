@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007-2009  Douglas S. Blank
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,12 +16,25 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+# $Id$
+
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 import sys
 import re
 import urllib
 import posixpath
 import cgi
+import gobject
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from PluginUtils import *
@@ -34,45 +47,17 @@ import Config
 import DateHandler
 import gen.lib
 import Errors
-
 from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                          CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, 
                          CATEGORY_QR_MISC, CATEGORY_QR_PLACE, 
                          CATEGORY_QR_REPOSITORY)
+from const import URL_WIKISTRING, URL_MANUAL_PAGE
 
+#------------------------------------------------------------------------
 #
-# Hello World, in Gramps Gramplets
+# Gramplets
 #
-# First, you need a function or class that takes a single argument
-# a GuiGramplet:
-
-#from DataViews import register
-#def init(gui):
-#    gui.set_text("Hello world!")
-
-# In this function, you can do some things to update the gramplet,
-# like set text of the main scroll window.
-
-# Then, you need to register the gramplet:
-
-#register(type="gramplet", # case in-senstitive keyword "gramplet"
-#         name="Hello World Gramplet", # gramplet name, unique among gramplets
-#         height = 20,
-#         content = init, # function/class; takes guigramplet
-#         title="Sample Gramplet", # default title, user changeable
-#         )
-
-# There are a number of arguments that you can provide, including:
-# name, height, content, title, expand, state, data
-
-# Here is a Gramplet object. It has a number of method possibilities:
-#  init- run once, on construction
-#  active_changed- run when active-changed is triggered
-#  db_changed- run when db-changed is triggered
-#  main- run once per db change, main process (a generator)
-
-# You should call update() to run main; don't call main directly
-
+#------------------------------------------------------------------------
 class CalendarGramplet(Gramplet):
     def init(self):
         import gtk
@@ -959,14 +944,31 @@ def make_welcome_content(gui):
             )
     gui.set_text(text)
 
-class NewsGramplet(Gramplet):
-    URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
+class HeadlineNewsGramplet(Gramplet):
+    """
+    Headlines News Gramplet reads the Headline News every hour.
+    """
+    RAW = URL_WIKISTRING + "%s&action=raw"
+    URL = URL_WIKISTRING + "%s"
 
     def init(self):
-        self.set_tooltip(_("Read news from the GRAMPS wiki"))
+        """
+        Initialize gramplet. Start up update timer.
+        """
+        self.set_tooltip(_("Read headline news from the GRAMPS wiki"))
+        self.update_interval = 3600 * 1000 # in miliseconds (1 hour)
+        self.timer = gobject.timeout_add(self.update_interval, 
+                                         self.update_by_timer)
+
+    def update_by_timer(self):
+        """
+        Update, and return True to continually update on interval.
+        """
+        self.update()
+        return True # keep updating!
 
     def main(self):
-        continuation = self.process('News')
+        continuation = self.process('HeadlineNews')
         retval = True
         while retval:
             retval, text = continuation.next()
@@ -982,33 +984,63 @@ class NewsGramplet(Gramplet):
             text = text.replace("\n\n\n", "\n\n")
         text = text.strip()
         ## Wiki text:
+        ### Internal wiki URL with title:
         pattern = re.compile('\[\[(.*?)\|(.*?)\]\]')
         matches = pattern.findall(text)
         for (g1, g2) in matches:
-            text = text.replace("[[%s|%s]]" % (g1, g2), "<U>%s</U>" % g2)
+            text = text.replace("[[%s|%s]]" % (g1, g2), 
+                                ("""<A HREF="%s%s">%s</A>""" % 
+                                 (self.wiki(g1), self.nice_title(g2))))
+        ### Internal wiki URL:
         pattern = re.compile('\[\[(.*?)\]\]')
         matches = pattern.findall(text)
         for match in matches:
-            text = text.replace("[[%s]]" % match, "<U>%s</U>" % match)
-        pattern = re.compile('\[(.*?) (.*?)\]')
+            text = text.replace("[[%s]]" % match, 
+                                ("""<A HREF="%s">%s</A>""" % 
+                                 (self.wiki(match), self.nice_title(match))))
+        ### URL with title:
+        pattern = re.compile('\[http\:\/\/(.*?) (.*?)\]')
         matches = pattern.findall(text)
         for (g1, g2) in matches:
-            text = text.replace("[%s %s]" % (g1, g2), "<U>%s</U>" % g2)
+            text = text.replace("[http://%s %s]" % (g1, g2), 
+                                ("""<A HREF="http://%s">%s</A>""" % 
+                                 (g1, g2)))
+        ### URL:
+        pattern = re.compile('\[http\:\/\/(.*?)\]')
+        matches = pattern.findall(text)
+        count = 1
+        for g1 in matches:
+            text = text.replace("[http://%s]" % (g1), 
+                                ("""<A HREF="http://%s">%s</A>""" % 
+                                 (g1, ("[%d]" % count))))
+            count += 1
+        ### Bold:
         pattern = re.compile("'''(.*?)'''")
         matches = pattern.findall(text)
         for match in matches:
             text = text.replace("'''%s'''" % match, "<B>%s</B>" % match)
-        text = "News from <I>www.gramps-project.org</I>:\n\n" + text
+        text = """<I>Live update from <A HREF="http://gramps-project.org/">www.gramps-project.org</A></I>:\n\n""" + text
         self.clear_text()
         self.set_use_markup(True)
-        self.render_text(text)
+        try:
+            self.render_text(text)
+        except:
+            cla, exc, trbk = sys.exc_info()
+            self.append_text(_("Error") + (" : %s %s\n\n" %(cla, exc)))
+            self.append_text(text)
         self.append_text("", scroll_to="begin")
+
+    def wiki(self, title):
+        return (self.URL % title)
+
+    def nice_title(self, title):
+        return title.replace("_", " ")
         
     def process(self, title):
         #print "processing '%s'..." % title
-        title = title.replace(" ", "_")
+        title = self.nice_title(title)
         yield True, (_("Reading") + " '%s'..." % title)
-        fp = urllib.urlopen(self.URL % title)
+        fp = urllib.urlopen(self.RAW % title)
         text = fp.read()
         #text = text.replace("\n", " ")
         html = re.findall('<.*?>', text)
@@ -1027,7 +1059,7 @@ class NewsGramplet(Gramplet):
                 if template.lower() == "release":
                     newtext = "GRAMPS " + heading + " released.<BR><BR>"
                 else:
-                    newtext = heading + "<BR><BR>"
+                    newtext = "<B>%s</B><BR><BR>" % heading
                 newtext += body + "<BR>"
                 text = text.replace(oldtext, newtext)
             else: # a macro/redirect
@@ -1933,12 +1965,12 @@ register(type="gramplet",
          )
 
 register(type="gramplet", 
-         name="News Gramplet", 
-         tname=_("News Gramplet"), 
+         name="Headline News Gramplet", 
+         tname=_("Headline News Gramplet"), 
          height=300,
          expand=True,
-         content = NewsGramplet,
-         title=_("News"),
+         content = HeadlineNewsGramplet,
+         title=_("Headline News"),
          )
 
 register(type="gramplet", 
