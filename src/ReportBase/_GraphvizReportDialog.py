@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2007-2008  Stephane Charette
+# Copyright (C) 2007-2009  Stephane Charette
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -206,8 +206,9 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self.write( '  mclimit="99";\n'             )
         self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
         self.write( '  outputorder="edgesfirst";\n' )
-        if self.hpages != 1 or self.vpages != 1:
-            self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
+        if self.hpages == 1 and self.vpages == 1:
+            self.write( '#' )   # comment out "page=" if the graph is on 1 page
+        self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
         self.write( '  pagedir="%s";\n'             % self.pagedir      )
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
         self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
