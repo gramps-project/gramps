@@ -96,6 +96,7 @@ if WebKit == NOWEB :
     Config.set(Config.GEOVIEW, False)
     raise ImportError, 'No GTK html plugin found'
 
+
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
@@ -114,6 +115,7 @@ MOZEMBED_PATH = TEMP_DIR
 MOZEMBED_SUBPATH = Utils.get_empty_tempdir('mozembed_gramps')
 GEOVIEW_SUBPATH = Utils.get_empty_tempdir('geoview')
 NB_MARKERS_PER_PAGE = 200
+
 
 #-------------------------------------------------------------------------
 #
@@ -135,18 +137,18 @@ class Renderer():
         window
         """
         return self.window
-    
+
     def get_uri(self):
         raise NotImplementedError
-    
+
     def show_all(self):
         self.window.show_all()
-    
+
     def open(self, url):
         """ open the webpage at url
         """
         raise NotImplementedError
-    
+
     def refresh(self):
         raise NotImplementedError
 
@@ -166,16 +168,16 @@ class Renderer():
         """ execute script in the current html page
         """
         raise NotImplementedError
-    
-    #def page_loaded(self,obj,status):
+
     def page_loaded(self):
         raise NotImplementedError
-    
+
     def set_button_sensitivity(self):
         """
         We must set the back and forward button in the HtmlView class.
         """
         self.fct()
+
 
 #-------------------------------------------------------------------------
 #
@@ -194,16 +196,16 @@ class RendererWebkit(Renderer):
 
     def page_loaded(self,obj,status):
         self.set_button_sensitivity()
-    
+
     def open(self, url):
         self.window.open(url)
-        
+
     def refresh(self):
         self.window.reload();
 
     def execute_script(self,url):
         self.window.execute_script(url);
-    
+
     def get_uri(self):
         return self.window.get_main_frame().get_uri()
 
@@ -222,16 +224,16 @@ class RendererMozilla(Renderer):
         self.window = gtkmozembed.MozEmbed()
         self.browser = MOZIL
         self.handler = self.window.connect("net-stop", self.page_loaded)
-    
+
     def page_loaded(self,obj):
         self.set_button_sensitivity()
-    
+
     def open(self, url):
         self.window.load_url(url)
 
     def execute_script(self,url):
         self.window.load_url(url);
-    
+
     def get_uri(self):
         return self.window.get_location()
 
@@ -283,6 +285,7 @@ class RendererMozilla(Renderer):
             except:
                 pass
             pass   # We don't use a proxy or the http_proxy variable is not set.
+
 
 #-------------------------------------------------------------------------
 #
@@ -438,7 +441,7 @@ class HtmlView(PageView.PageView):
         group information required. 
         """
         HtmlView._define_actions_fw_bw(self)
-    
+
     def _define_actions_fw_bw(self):
         # add the Backward action to handle the Backward button
         # accel doesn't work in webkit and gtkmozembed !
@@ -450,7 +453,7 @@ class HtmlView(PageView.PageView):
              self.go_back)
             ])
         self._add_action_group(self.back_action)
- 
+
         # add the Forward action to handle the Forward button
         self.forward_action = gtk.ActionGroup(self.title + '/Forward')
         self.forward_action.add_actions([
@@ -459,7 +462,7 @@ class HtmlView(PageView.PageView):
              self.go_forward)
             ])
         self._add_action_group(self.forward_action)
- 
+
         # add the Refresh action to handle the Refresh button
         self._add_action('Refresh', gtk.STOCK_REFRESH, _("_Refresh"), 
                           callback=self.refresh,
@@ -471,7 +474,7 @@ class HtmlView(PageView.PageView):
         # This handler is connected by build_widget. After the outside ViewManager
         # has placed this widget we are able to access the parent container.
         pass
-        
+
     def create_start_page(self):
         """
         This command creates a default start page, and returns the URL of this
@@ -513,7 +516,7 @@ class GeoView(HtmlView):
 
     def __init__(self,dbstate,uistate):
         HtmlView.__init__(self, dbstate, uistate, title=_('GeoView'))
-        
+
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
         self.nbmarkers = 0
@@ -538,7 +541,7 @@ class GeoView(HtmlView):
         self.box.disconnect(self.bootstrap_handler)
         self.box.parent.connect("size-allocate", self.size_request_for_map)
         self.size_request_for_map(widget.parent,event)
-        
+
     def size_request_for_map(self, widget, event, data=None):
         v = widget.get_allocation()
         self.width = v.width
@@ -554,11 +557,11 @@ class GeoView(HtmlView):
     def set_active(self):
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self.goto_active_person)
-    
+
     def set_inactive(self):
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
-        
+
     def get_stock(self):
         """
         Returns the name of the stock icon to use for the display.
@@ -653,7 +656,6 @@ class GeoView(HtmlView):
         self._add_action('EventMaps', 'gramps-event', _('_Event'),
                          callback=self.event_places,
                          tip=_("Attempt to view places on the Map for all events."))
-
 
     def goto_active_person(self,handle=None):
         self.geo_places(self.displaytype)
@@ -768,7 +770,7 @@ class GeoView(HtmlView):
         modulo = intvl - ( intvl % 10 )
         if modulo == 0:
             modulo = 10
-       
+
         self.minyear=( self.minyear - ( self.minyear % 10 ) )
         self.maxyear=( self.maxyear - ( self.maxyear % 10 ) )
         self.yearint=(self.maxyear-self.minyear)/self.maxgen
@@ -890,7 +892,7 @@ class GeoView(HtmlView):
                 pass
         # Select the center of the map and the zoom
         self.centered = False
-        if   type == 2:
+        if type == 2:
             # Sort by year for events
             self.sort = sorted(self.place_list, key=operator.itemgetter(7))
         else:
@@ -973,8 +975,8 @@ class GeoView(HtmlView):
         # We center the map on a point at the center of all markers
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
-        latit = self.centerlat
-        longt = self.centerlon
+        latit = 0.0
+        longt = 0.0
         for mark in self.sort:
             cent = int(mark[6])
             if cent:
@@ -991,9 +993,11 @@ class GeoView(HtmlView):
                     longt = self.maxlon+self.centerlon
                 else:
                     longt = self.maxlon-self.centerlon
-        self.latit = latit
-        self.longt = longt
-        self.mustcenter = True
+        self.mustcenter = False
+        if latit != 0.0 or longt != 0.0:
+            self.latit = latit
+            self.longt = longt
+            self.mustcenter = True
         for page in range(0,pages,1):
             self.nbpages += 1
             if   type == 1:
@@ -1163,39 +1167,39 @@ class GeoView(HtmlView):
                 self.yearinmarker = []
                 self.mapview.write("mapstraction.addMarker(my_marker);")
                 self.setattr = False
-            if not self.centered:
-                # We have no valid geographic point to center the map.
-                # So you'll see the street where I live.
-                # I think another place should be better :
-                #          Where is the place where the gramps project began ?
-                #
-                # I think we should put here all gramps developpers.
-                # not only me ...
-                #
-                longitude = -1.568792
-                latitude = 47.257971
-                self.mapview.write("\nvar point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
-                self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
-                self.mapview.write("   my_marker = new Marker(point);\n")
-                self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
-                self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
-                self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
-                self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
-                self.mapview.write("   mapstraction.addMarker(my_marker);")
+        if self.nbmarkers > 0:
+            if self.setattr:
+                years = ""
+                if mark[2]:
+                    for y in self.yearinmarker:
+                        years += "%d " % y
+                years += "end"
+                self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+                self.yearinmarker = []
+                years=""
+                self.mapview.write("mapstraction.addMarker(my_marker);")
                 self.setattr = False
-        if self.setattr:
-            years = ""
-            if mark[2]:
-                for y in self.yearinmarker:
-                    years += "%d " % y
-            years += "end"
-            self.mapview.write("my_marker.setAttribute('year','%s');" % years)
-            self.yearinmarker = []
-            years=""
-            self.mapview.write("mapstraction.addMarker(my_marker);")
+        else:
+            # We have no valid geographic point to center the map.
+            # So you'll see the street where I live.
+            # I think another place should be better :
+            #          Where is the place where the gramps project began ?
+            #
+            # I think we should put here all gramps developpers.
+            # not only me ...
+            #
+            longitude = -1.568792
+            latitude = 47.257971
+            self.mapview.write("\nvar point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
+            self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
+            self.mapview.write("   my_marker = new Marker(point);\n")
+            self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
+            self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
+            self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
+            self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
+            self.mapview.write("   mapstraction.addMarker(my_marker);")
             self.setattr = False
         self.mapview.write("\n  </script>\n")
-
 
     def createPersonMarkers(self,db,person,comment):
         """
@@ -1303,7 +1307,7 @@ class GeoView(HtmlView):
         self.maxlon = float(0.0)
         self.minyear = int(9999)
         self.maxyear = int(0)
- 
+
         latitude = ""
         longitude = ""
         self.center = True
