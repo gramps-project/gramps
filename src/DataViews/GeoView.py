@@ -295,8 +295,8 @@ class HtmlView(PageView.PageView):
     with an embedded webbrowser showing a given URL
     """
 
-    def __init__(self, dbstate, uistate):
-        PageView.PageView.__init__(self, _('HtmlView'), dbstate, uistate)
+    def __init__(self, dbstate, uistate, title=_('HtmlView')):
+        PageView.PageView.__init__(self, title, dbstate, uistate)
         
         self.dbstate = dbstate
         
@@ -512,12 +512,18 @@ class HtmlView(PageView.PageView):
 class GeoView(HtmlView):
 
     def __init__(self,dbstate,uistate):
-        HtmlView.__init__(self, dbstate, uistate)
+        HtmlView.__init__(self, dbstate, uistate, title=_('GeoView'))
         
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
         self.nbmarkers = 0
         self.nbpages = 0
+
+    def top_widget(self):
+        """
+        The top widget to use, for GeoView, none
+        """
+        return gtk.Label()
 
     def on_delete(self):
         """
@@ -967,6 +973,8 @@ class GeoView(HtmlView):
         # We center the map on a point at the center of all markers
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
+        latit = self.centerlat
+        longt = self.centerlon
         for mark in self.sort:
             cent = int(mark[6])
             if cent:
