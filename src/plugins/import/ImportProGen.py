@@ -211,7 +211,54 @@ def _get_mem_text(mems, i):
     #print text.encode('utf-8')
     return text
 
+month_values = {
+    'jan' : 1,
+    'feb' : 2,
+    'febr' : 2,
+    'maa' : 3,
+    'mrt' : 3,
+    'maart' : 3,
+    'apr' : 4,
+    'mei' : 5,
+    'may' : 5,
+    'jun' : 6,
+    'juni' : 6,
+    'jul' : 7,
+    'juli' : 7,
+    'aug' : 8,
+    'sep' : 9,
+    'sept' : 9,
+    'ok' : 10,
+    'okt' : 10,
+    'oct' : 10,
+    'nov' : 11,
+    'dec' : 12,
+}
+def _cnv_month_to_int(m):
+    return month_values.get(m, 0)
 
+
+# Split "van", "de" prefixes
+_surname_prefixes = [
+    "'t ",
+    'den ',
+    'der ',
+    'de ',
+    'het ',
+    'in den ',
+    'ten ',
+    'ter ',
+    'te ',
+    'van den ',
+    'van der ',
+    'van de ',
+    'van ',
+]
+def _split_surname(surname):
+    for p in _surname_prefixes:
+        if surname.startswith(p):
+            return p.strip(), surname[len(p):].strip()
+    return '', surname
 
 # Example field:
 # ['Voornaam', '47', '64', '4', '2', '15', '""', '""']
@@ -561,9 +608,10 @@ class ProgenParser:
 
     __date_pat1 = re.compile(r'(?P<day>\d{1,2}) (-|=) (?P<month>\d{1,2}) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (-|=) (?P<year>\d{4})', re.VERBOSE)
-    __date_pat3 = re.compile(r'(?P<year>\d{4})', re.VERBOSE)
-    __date_pat4 = re.compile(ur'(v|vóór|voor|na|circa|ca|rond|±) \s* (?P<year>\d{4})', re.VERBOSE)
+    __date_pat3 = re.compile(r'(?P<year>\d{3,4})', re.VERBOSE)
+    __date_pat4 = re.compile(ur'(v|vóór|voor|na|circa|ca|rond|±) (\.|\s)* (?P<year>\d{3,4})', re.VERBOSE)
     __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
+    __date_pat6 = re.compile(r'(?P<month>(%s)) (\.|\s)* (?P<year>\d{3,4})' % '|'.join(month_values.keys()), re.VERBOSE | re.IGNORECASE)
     def __create_date_from_text(self, txt, diag_msg=None):
         '''
         Pro-Gen has a text field for the date. It can be anything. Mostly it will be dd-mm-yyyy,
@@ -605,7 +653,7 @@ class ProgenParser:
             date.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_ABOUT, gen.lib.Date.CAL_GREGORIAN, (0, month, year, None))
             return date
 
-        # yyyy
+        # yyy or yyyy
         m = self.__date_pat3.match(txt)
         if m:
             year = int(m.group('year'))
@@ -629,6 +677,14 @@ class ProgenParser:
         if m:
             year = int(m.group('year'))
             date.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_ABOUT, gen.lib.Date.CAL_GREGORIAN, (0, 0, year, None))
+            return date
+
+        # mmm yyyy (textual month)
+        m = self.__date_pat6.match(txt)
+        if m:
+            year = int(m.group('year'))
+            month = _cnv_month_to_int(m.group('month'))
+            date.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_ABOUT, gen.lib.Date.CAL_GREGORIAN, (0, month, year, None))
             return date
 
         log.warning(_("date did not match: '%s' (%s)") % (txt.encode('utf-8'), diag_msg or ''))
@@ -719,7 +775,7 @@ class ProgenParser:
                 recflds = table.convert_record_to_list(rec, self.mems)
 
                 first_name = recflds[first_name_ix]
-                surname = recflds[surname_ix]
+                surname_prefix, surname = _split_surname(recflds[surname_ix])
                 gender = recflds[gender_ix]
                 if gender == 'M':
                     gender = gen.lib.Person.MALE
@@ -733,15 +789,18 @@ class ProgenParser:
                 #log.info(diag_msg)
 
                 patronym = recflds[patron_ix]
+
                 name = gen.lib.Name()
                 name.set_type(gen.lib.NameType.BIRTH)
                 name.set_surname(surname)
+                if surname_prefix:
+                    name.set_surname_prefix(surname_prefix)
                 name.set_first_name(first_name)
                 if recflds[call_name_ix]:
                     name.set_call_name(recflds[call_name_ix])
                 if patronym:
-                    log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
-                    #name.set_patronymic(patronym)
+                    #log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
+                    name.set_patronymic(patronym)
                 person.set_primary_name(name)
                 person.set_gender(gender)
 
