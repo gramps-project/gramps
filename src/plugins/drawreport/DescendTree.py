@@ -173,8 +173,15 @@ class DescendTree(Report):
         also sets wether the person is:
         - a direct descendent or a spouse
         - the max length of the text/box, and number of lines"""
-        self.genchart.set_xy(col_x, row_y, person_handle)
         self.genchart.set_sp(col_x, row_y, spouse_level)
+        if person_handle is not None:
+            self.genchart.set_xy(col_x, row_y, person_handle)
+        else:
+            #make sure that a box prints
+            self.genchart.set_xy(col_x, row_y, ".")
+            #make a blank box.
+            self.text[(col_x, row_y)] = [""]
+            return
         
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style("DC2-Normal")
