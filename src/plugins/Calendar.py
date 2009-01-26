@@ -309,6 +309,8 @@ class Calendar(Report):
         """
         This method runs through the data, and collects the relevant dates
         and text.
+
+        age and years must be greater than zero, else why do it???
         """
         people = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Applying Filter...'), len(people))
@@ -349,7 +351,7 @@ class Calendar(Report):
                                     if father is not None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_name(person, father_lastname)
-                if age >= 0:
+                if age > 0:
                     alive = probably_alive(person, self.database, make_date(self.year, month, day))
                     if ((self.alive and alive) or not self.alive):
                         comment = ""
@@ -397,8 +399,8 @@ class Calendar(Report):
                                     month = event_obj.get_month()
                                     day = event_obj.get_day()
                                     years = self.year - year
-                                    if years >= 0:
-                                        text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
+                                    if years > 0:
+                                        text = _("%(spouse)s and\n %(person)s, %(nyears)d year anniversary") % {
                                             'spouse' : spouse_name, 
                                             'person' : short_name, 
                                             'nyears' : years, 

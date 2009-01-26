@@ -7,6 +7,7 @@
 # Copyright (C) 2007-2009  Stephane Charette <stephanecharette@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2008       Jason M. Simanek <jason@bohemianalps.com>
+# Copyright (C) 2008-2009  Rob G. Healey <robhealey1@gmail.com>	
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -780,8 +781,8 @@ class IndividualListPage(BasePage):
                 # firstname column
                 of.write('\t\t\t<td class="ColumnName">')
                 url = self.report.build_url_fname_html(person.handle, 'ppl')
-                self.person_link(of, url,
-                                 _nd.display_given(person), person.gramps_id)
+                first_suffix = _get_prefix_suffix_name(person.gender, person.primary_name)
+                self.person_link(of, url, first_suffix, person.gramps_id)
                 of.write('</td>\n')
 
                 # birth column
@@ -909,9 +910,8 @@ class SurnamePage(BasePage):
             of.write('\t\t<tr>\n')
             of.write('\t\t\t<td class="ColumnName">')
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
-            self.person_link(of, url,
-                             person.get_primary_name().get_first_name(),
-                             person.gramps_id)
+            first_suffix = _get_prefix_suffix_name(person.gender, person.primary_name)
+            self.person_link(of, url, first_suffix, person.gramps_id)
             of.write('</td>\n')
 
             # birth column
@@ -1352,6 +1352,20 @@ class SurnameListPage(BasePage):
             'will lead to a list of individuals in the '
             'database with this same surname.'))
 
+        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+                    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        alpha_list = self.get_alpha_list(person_handle_list)
+        of.write('\t<table id="alpha_list"\n')
+        of.write('\t\t<tr>\n')
+        for ltr in alphabet:
+            of.write('\t\t\t<td class="ColumnLetter">')
+            if ltr in alpha_list:
+                of.write('<a href="#%s">%s</a></td>\n' % (ltr, ltr))
+            else:
+                of.write('%s</td>\n' % ltr)
+        of.write('\t\t</tr>\n')
+        of.write('\t</table>\n')   
+
         if order_by == self.ORDER_BY_COUNT:
             of.write('\t<table id="SortByCount" class="infolist surnamelist">\n')
             of.write('\t<thead>\n')
@@ -1393,10 +1407,11 @@ class SurnameListPage(BasePage):
             # the surname
             letter = normalize('NFC', surname)[0].upper()
 
-            if letter != last_letter:
+            if letter is not last_letter:
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
-                of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
+                of.write('\t\t\t<td class="ColumnLetter">')
+                of.write('<a name="%s">%s</a></td>\n' % (last_letter, last_letter))
                 of.write('\t\t\t<td class="ColumnSurname">')
                 self.surname_link(of, name_to_md5(surname), surname)
                 of.write('</td>\n')
@@ -1422,6 +1437,27 @@ class SurnameListPage(BasePage):
         if opt_val is not None:
             of.write('&nbsp;(%d)' % opt_val)
         of.write('</a>')
+
+    def get_alpha_list(self, ind_list):
+        """
+        Will get the alphabetical list for the surname list page
+        """
+
+        alpha_list = []
+        for person_handle in ind_list:
+            person = self.report.database.get_person_from_handle(person_handle)
+            primary_name = person.get_primary_name()
+            surname = primary_name.get_surname()
+
+            if surname:
+                alpha_ltr = surname[0]
+                if alpha_ltr in alpha_list:
+                    pass
+                else:
+                    alpha_list.append(alpha_ltr)
+
+        alpha_list.sort()
+        return alpha_list
 
 class IntroductionPage(BasePage):
 
@@ -2757,6 +2793,7 @@ class NavWebReport(Report):
         ind_list = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Applying Filter...'), len(ind_list))
         ind_list = self.filter.apply(self.database, ind_list, self.progress)
+
         return ind_list
 
     def copy_css(self, css_file):
@@ -2791,6 +2828,7 @@ class NavWebReport(Report):
         """
 
         local_list = sort_people(self.database, ind_list)
+
         self.progress.set_pass(_("Creating surname pages"), len(local_list))
 
         SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME, self.surname_fname)
@@ -3300,11 +3338,6 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__yearsafterdeath.set_available(True)
 
-    def make_default_style(self, default_style):
-        """Make the default output style for the Web Pages Report."""
-        pass
-
-
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
     sname_sub = {}
@@ -3334,7 +3367,24 @@ def sort_people(db, handle_list):
         slist.sort(lambda x, y: locale.strcoll(x[0], y[0]))
         entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
+
     return sorted_lists
+
+# Modified _get_regular_surname from WebCal.py to get prefix, first name, and suffix
+def _get_prefix_suffix_name(sex, name):
+    """ Will get prefix and suffix for all people passed through it """
+
+    first = name.get_first_name()
+    prefix = name.get_surname_prefix()
+    if prefix:
+        first = prefix + " " + first
+    if sex == gen.lib.Person.FEMALE:
+        return first
+    else: 
+        suffix = name.get_suffix()
+        if suffix:
+            first = first + ", " + suffix
+    return first
 
 pmgr = PluginManager.get_instance()
 pmgr.register_report(

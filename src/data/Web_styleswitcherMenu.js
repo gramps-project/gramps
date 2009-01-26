@@ -1,1 +1,0 @@
-document.write(<ul id="styleswitcherMenu"><li id="style"><a href="javascript: document.cookie='style='; window.location.reload();">Normal View</a></li><li id="style2"><a href="javascript: document.cookie='style=2'; window.location.reload();">High Contrast View</a></li></ul>);
