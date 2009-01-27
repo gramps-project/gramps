@@ -1294,7 +1294,7 @@ class GeoView(HtmlView):
                                                descr1, self.center, None)
                     self.center = False
         if self.center:
-            mess = _("Cannot center the map. No selected location.")
+            mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
         self.create_pages(1,_("All places in the database with coordinates."),mess)
@@ -1348,7 +1348,7 @@ class GeoView(HtmlView):
                                                    descr2, self.center, eventyear)
                         self.center = False
         if self.center:
-            mess = _("Cannot center the map. No selected location.")
+            mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
         self.create_pages(2,_("All events in the database with coordinates."),mess)
@@ -1394,7 +1394,7 @@ class GeoView(HtmlView):
                                                          _("Child"),index)
                             self.createPersonMarkers(db,child,comment)
         if self.center:
-            mess = _("Cannot center the map. No selected location.")
+            mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
         self.create_pages(3,
@@ -1449,7 +1449,7 @@ class GeoView(HtmlView):
                                                    descr1, self.center, eventyear)
                         self.center = False
         if self.center:
-            mess = _("Cannot center the map. No selected location.")
+            mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
         self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ) ,mess)
