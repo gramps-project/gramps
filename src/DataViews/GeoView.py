@@ -786,14 +786,14 @@ class GeoView(HtmlView):
             self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
             if curpage != 1:
                 priorfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,curpage-1)
-                self.mapview.write(" <a href='%s' >--</a>" % priorfile)
+                self.mapview.write("<a href='%s' >--</a>" % priorfile)
             else:
                 self.mapview.write(" --")
             for page in range(1,maxpages+1,1):
                 if page == curpage:
                     self.mapview.write(" %d" % page)
                 else:
-                    if ( page < curpage + 10 ) and ( page > curpage - 10 ):
+                    if ( page < curpage + 11 ) and ( page > curpage - 11 ):
                         nextfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,page)
                         self.mapview.write(" <a href='%s' >%d</a>" % (nextfile, page))
             if curpage != maxpages:
@@ -1085,7 +1085,7 @@ class GeoView(HtmlView):
         self.mapview.write("overview: true, scale: true, map_type: true });\n")
         last = ""
         indm=0
-        divclose=1
+        divclose=True
         self.yearinmarker = []
         InInterval = False
         self.setattr = True
@@ -1099,18 +1099,30 @@ class GeoView(HtmlView):
                 InInterval = True
             if InInterval:
                 if last != mark[0]:
-                    self.setattr = True
-                    last = mark[0]
-                    self.mapview.write("\nvar point = new LatLonPoint(%s,%s);"%(mark[3],mark[4]))
-                    self.mapview.write("my_marker = new Marker(point);")
-                    self.mapview.write("gmarkers[%d]=my_marker;" % (indm % NB_MARKERS_PER_PAGE))
+                    if not divclose:
+                        if InInterval:
+                            self.mapview.write("</div>\");")
+                            divclose = True
+                        years = ""
+                        if mark[2]:
+                            for y in self.yearinmarker:
+                                years += "%d " % y
+                        years += "end"
+                        self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+                        self.yearinmarker = []
+                        self.mapview.write("mapstraction.addMarker(my_marker);")
                     indm += 1;
                     if ( indm > lastm ):
-                        InInterval = False
+                        if (indm % NB_MARKERS_PER_PAGE) == 0:
+                            InInterval = False
+                    last = mark[0]
                     if ( indm >= firstm ) and ( indm <= lastm ):
+                        self.mapview.write("\nvar point = new LatLonPoint(%s,%s);"%(mark[3],mark[4]))
+                        self.mapview.write("my_marker = new Marker(point);")
+                        self.mapview.write("gmarkers[%d]=my_marker;" % (( indm - 1 ) % NB_MARKERS_PER_PAGE))
                         self.mapview.write("my_marker.setLabel(\"%s\");"%mark[0])
                         self.yearinmarker.append(mark[7])
-                        divclose=0
+                        divclose=False
                         self.mapview.write("my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
                         if format == 1:
                             self.mapview.write("%s<br>____________<br><br>%s"%(mark[0],mark[5]))
@@ -1124,62 +1136,18 @@ class GeoView(HtmlView):
                     self.mapview.write("<br>%s - %s" % (mark[7], mark[5]))
                     if self.isyearnotinmarker(self.yearinmarker,mark[7]):
                         self.yearinmarker.append(mark[7])
-                    cent = int(mark[6])
-                    if cent:
-                        self.centered = True
-                        if float(mark[3]) == self.minlat:
-                            if signminlat == 1: 
-                                latit = str(float(mark[3])+self.centerlat)
-                            else:
-                                latit = str(float(mark[3])-self.centerlat)
-                        else:
-                            if signminlat == 1: 
-                                latit = str(float(mark[3])-self.centerlat)
-                            else:
-                                latit = str(float(mark[3])+self.centerlat)
-                        if float(mark[4]) == self.minlon:
-                            if signminlon == 1:
-                                longt = str(float(mark[4])+self.centerlon)
-                            else:
-                                longt = str(float(mark[4])-self.centerlon)
-                        else:
-                            if signminlon == 1:
-                                longt = str(float(mark[4])-self.centerlon)
-                            else:
-                                longt = str(float(mark[4])+self.centerlon)
-                if divclose == 0:
-                    if InInterval:
-                        self.mapview.write("</div>\");")
-                years = ""
-                if mark[2]:
-                    for y in self.yearinmarker:
-                        years += "%d " % y
-                years += "end"
             else:
                 indm += 1
-            if self.setattr:
-                years=""
-                if mark[2]:
-                    for y in self.yearinmarker:
-                        years += "%d " % y
-                years += "end"
-                self.mapview.write("my_marker.setAttribute('year','%s');" % years)
-                self.yearinmarker = []
-                self.mapview.write("mapstraction.addMarker(my_marker);")
-                self.setattr = False
-        if self.nbmarkers > 0:
-            if self.setattr:
-                years = ""
-                if mark[2]:
-                    for y in self.yearinmarker:
-                        years += "%d " % y
-                years += "end"
-                self.mapview.write("my_marker.setAttribute('year','%s');" % years)
-                self.yearinmarker = []
-                years=""
-                self.mapview.write("mapstraction.addMarker(my_marker);")
-                self.setattr = False
-        else:
+        if self.nbmarkers > 0 and InInterval:
+            years = ""
+            if mark[2]:
+                for y in self.yearinmarker:
+                    years += "%d " % y
+            years += "end"
+            self.mapview.write("</div>\");")
+            self.mapview.write("my_marker.setAttribute('year','%s');" % years)
+            self.mapview.write("mapstraction.addMarker(my_marker);")
+        if self.nbmarkers == 0:
             # We have no valid geographic point to center the map.
             # So you'll see the street where I live.
             # I think another place should be better :
@@ -1188,8 +1156,6 @@ class GeoView(HtmlView):
             # I think we should put here all gramps developpers.
             # not only me ...
             #
-            #longitude = -1.568792
-            #latitude = 47.257971
             longitude = 0.0
             latitude = 0.0
             self.mapview.write("\nvar point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
@@ -1202,7 +1168,6 @@ class GeoView(HtmlView):
             self.mapview.write(_("This is why you see this map."))
             self.mapview.write("</div>\");\n")
             self.mapview.write("   mapstraction.addMarker(my_marker);")
-            self.setattr = False
         self.mapview.write("\n  </script>\n")
 
     def createPersonMarkers(self,db,person,comment):
@@ -1366,9 +1331,10 @@ class GeoView(HtmlView):
         self.minyear = int(9999)
         self.maxyear = int(0)
         self.center = True
+        person = None
         if db.active:
             person = db.active
-        if person:
+        if person is not None:
             family_list = person.get_family_handle_list()
             if len(family_list) > 0:
                 fhandle = family_list[0] # first is primary
@@ -1395,12 +1361,13 @@ class GeoView(HtmlView):
                             self.createPersonMarkers(db,child,comment)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
+            self.create_pages(3, _("You have no active person to see this person's family places."),
+                              mess)
         else:
             mess = ""
-        self.create_pages(3,
-                          ( _("All %s people's familiy places in the database with coordinates.") % 
-                              _nd.display(person) ),
-                          mess)
+            self.create_pages(3, ( _("All %s people's family places in the database with coordinates.") % 
+                                     _nd.display(person) ),
+                              mess)
 
     def createMapstractionPerson(self,db):
         """
@@ -1417,10 +1384,11 @@ class GeoView(HtmlView):
 
         latitude = ""
         longitude = ""
+        person = None
         if db.active:
             person = db.active
         self.center = True
-        if person:
+        if person is not None:
             # For each event, if we have a place, set a marker.
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
@@ -1450,9 +1418,10 @@ class GeoView(HtmlView):
                         self.center = False
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
+            self.create_pages(4, _("You have no active person to see this person's places."), mess)
         else:
             mess = ""
-        self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ) ,mess)
+            self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ), mess)
 
     def createMapstractionNotImplemented(self,db):
         """
