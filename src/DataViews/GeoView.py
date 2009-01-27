@@ -1188,15 +1188,19 @@ class GeoView(HtmlView):
             # I think we should put here all gramps developpers.
             # not only me ...
             #
-            longitude = -1.568792
-            latitude = 47.257971
+            #longitude = -1.568792
+            #latitude = 47.257971
+            longitude = 0.0
+            latitude = 0.0
             self.mapview.write("\nvar point = new LatLonPoint(%s,%s);\n"%(latitude,longitude))
             self.mapview.write("   mapstraction.setCenterAndZoom(point, %d);\n"%2)
             self.mapview.write("   my_marker = new Marker(point);\n")
-            self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("The author of this module."))
+            self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("No location."))
             self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
-            self.mapview.write("Serge Noiraud<br>Nantes, France<br>")
-            self.mapview.write("%s</div>\");\n"%_("This request has no geolocation associated."))
+            self.mapview.write(_("You have no place in your database with coordinates."))
+            self.mapview.write("<br>")
+            self.mapview.write(_("This is why you see this map."))
+            self.mapview.write("</div>\");\n")
             self.mapview.write("   mapstraction.addMarker(my_marker);")
             self.setattr = False
         self.mapview.write("\n  </script>\n")
