@@ -191,12 +191,16 @@ class EditPlace(EditPrimary):
             self.obj.set_longitude, self.obj.get_longitude,
             self.db.readonly)
         self.longitude.connect("validate", self._validate_coordinate, "lon")
+        #force validation now with initial entry
+        self.top.get_widget("lon_entry").validate(force=True)
 
         self.latitude = MonitoredEntry(
             self.top.get_widget("lat_entry"),
             self.obj.set_latitude, self.obj.get_latitude,
             self.db.readonly)
         self.latitude.connect("validate", self._validate_coordinate, "lat")
+        #force validation now with initial entry
+        self.top.get_widget("lat_entry").validate(force=True)
         
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
