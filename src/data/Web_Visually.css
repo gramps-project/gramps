@@ -38,7 +38,6 @@ brown light     #C1B398
 gray            #696969
 green           #6AF364
 green lighter   #D8F3D6
-green lightest  #5D835F
 
 ===== Ancestor Graph Color Scheme =====
 Males		#E5F2FE
@@ -69,6 +68,7 @@ table {
     border-collapse:collapse;
 }
 th {
+    color:#000;
     font-weight:bold;
     text-align:left;
     padding:1px 3em 1px 0.5em;
@@ -86,6 +86,7 @@ img {
 }
 .content {
     background-color:#FFF;
+    color:#000;
 }
 .content div.snapshot {
     float:right;
@@ -123,7 +124,7 @@ h3 {
     text-align:left;
     margin:0;
     padding:.5em 20px .2em 20px;
-    border:double 4px #453619;
+    border-bottom:double 4px #453619;
 }
 h4 {
     font:normal 1.2em/1.2em serif;
@@ -242,6 +243,7 @@ p#user_header {
     border-bottom:solid 1px #453619;
 }
 #navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
+    font-weight:bold;
     font-size:19px;
     margin-top:-6px;
     padding-top:11px;
@@ -264,7 +266,7 @@ table.infolist {
     width:100%;
     margin:0;
     padding:0;
-    background-color:#D8F3D6;
+    background-color:#FFF;
 }
 table.infolist tr th {
     font:normal 1.1em/1.2em serif;
@@ -540,7 +542,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     padding-bottom:0;
     margin-top:1.5em;
     margin-bottom:0;
-    background-color:#D8F3D6;
+    background-color:#FFF;
     border-style:solid;
     border-width:8px 0 0 0;
     border-color:#453619;
@@ -573,7 +575,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-right:.4em;
 }
 #streetaddress {
-    width:70%;
+    width:80%;
 }
 #city:after {
     content:",";
@@ -609,7 +611,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 div.subsection{
     padding-bottom:.5em;
-    background-color:#D8F3D6;
+    background-color:#FFF;
 }
 div.subsection h4 {
     margin-bottom:.5em;
@@ -811,6 +813,7 @@ div#pedigree {
 }
 #pedigree a {
     text-decoration:none;
+    color:#000;
 }
 #pedigree a:hover {
     text-decoration:underline;
@@ -841,7 +844,7 @@ div#pedigree {
 .spouse a {
     font-weight:normal;
     font-style:normal;
-    color:#6AF364;
+    color:#000;
 }
 .spouse:before {
     content: "+ ";
@@ -880,7 +883,7 @@ div#pedigree {
     padding:5px 20px 7px 20px;
     margin-top:-25px;
     margin-left:16px;
-    background-color:#D8F3D6;
+    background-color:#FFF;
     border:solid 1px #453619;
 }
 #treeContainer div.boxbg a:hover {
@@ -1083,7 +1086,7 @@ body#WebCal {
 }
 .calendar tfoot tr td {
     vertical-align:middle;
-    color:#542;
+    color:#453619;
     background-color:#D8F3D6;
 }
 

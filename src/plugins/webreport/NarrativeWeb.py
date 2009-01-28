@@ -101,8 +101,6 @@ from gen.lib.eventroletype import EventRoleType
 #
 #------------------------------------------------------------------------
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
-_NARRATIVESCREEN = "narrative-screen.css"
-_NARRATIVEPRINT = "narrative-print.css"
 _NAME_COL  = 3
 
 _MAX_IMG_WIDTH = 800   # resize images that are wider than this
@@ -242,7 +240,6 @@ def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
     return md5(text).hexdigest()
 
-
 class BasePage:
     """
     This is the base class to write certain HTML pages.
@@ -276,6 +273,49 @@ class BasePage:
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
+
+    def alphabet_navigation(self, of, ind_list):
+        """
+        Will create the alphabetical navigation bar...
+        """
+
+        def get_alpha_list(ind_list):
+            """ Will produce the active letters in the alphabet """
+
+            alpha_list = []
+            for person_handle in ind_list:
+                person = self.report.database.get_person_from_handle(person_handle)
+                primary_name = person.get_primary_name()
+
+                alpha_name = primary_name.get_surname()
+
+                if alpha_name:
+                    alpha_ltr = alpha_name[0].upper()
+                    if alpha_ltr in alpha_list:
+                        pass
+                    else:
+                        alpha_list.append(alpha_ltr)
+
+            if len(alpha_list) > 1:
+                alpha_list.sort()
+            return alpha_list
+
+        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+                    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+        alpha_list = get_alpha_list(ind_list)
+
+        of.write('\t<div id="navigation">\n')
+        of.write('\t\t<ul>\n')
+        for ltr in alphabet:
+            of.write('\t\t\t<li>')
+            if ltr in alpha_list:
+                of.write('<a href="#%s">%s</a>' % (_(ltr), _(ltr)))
+            else:
+                of.write(' %s ' % _(ltr))
+            of.write(' |</li>\n')
+        of.write('\t\t</ul>\n')
+        of.write('\t</div>\n')   
 
     def write_footer(self, of):
 
@@ -732,6 +772,9 @@ class IndividualListPage(BasePage):
         showspouse = report.options['showspouse']
         showparents = report.options['showparents']
 
+        # begin alphabetical navigation
+        self.alphabet_navigation(of, person_handle_list) 
+
         of.write('\t<h2>%s</h2>\n' % _('Individuals'))
         of.write('\t<p id="description">%s</p>\n' % msg)
         of.write('\t<table class="infolist individuallist">\n')
@@ -766,7 +809,12 @@ class IndividualListPage(BasePage):
                 # surname column
                 if first:
                     of.write('\t\t<tr class="BeginSurname">\n')
-                    of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' % (name_to_md5(surname), surname))
+                    if surname:
+                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' 
+                            % (surname[0].upper(), surname))
+                    else:
+                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' 
+                            % (name_to_md5(surname), surname))
                 else:
                     of.write('\t\t<tr>\n')
                     of.write('\t\t\t<td class="ColumnSurname">&nbsp;')
@@ -1340,6 +1388,9 @@ class SurnameListPage(BasePage):
             self.write_header(of, _('Surnames by person count'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
+        # beginning of Alphabetical Navigation
+        self.alphabet_navigation(of, person_handle_list)
+
         of.write('\t<p id="description">%s</p>\n' % _(
             'This page contains an index of all the '
             'surnames in the database. Selecting a link '
@@ -1417,27 +1468,6 @@ class SurnameListPage(BasePage):
         if opt_val is not None:
             of.write('&nbsp;(%d)' % opt_val)
         of.write('</a>')
-
-    def get_alpha_list(self, ind_list):
-        """
-        Will get the alphabetical list for the surname list page
-        """
-
-        alpha_list = []
-        for person_handle in ind_list:
-            person = self.report.database.get_person_from_handle(person_handle)
-            primary_name = person.get_primary_name()
-            surname = primary_name.get_surname()
-
-            if surname:
-                alpha_ltr = surname[0]
-                if alpha_ltr in alpha_list:
-                    pass
-                else:
-                    alpha_list.append(alpha_ltr)
-
-        alpha_list.sort()
-        return alpha_list
 
 class IntroductionPage(BasePage):
 
