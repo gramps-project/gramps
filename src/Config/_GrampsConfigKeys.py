@@ -82,6 +82,8 @@ NOTE_HEIGHT          = ('interface', 'note-height', 1)
 NOTE_WIDTH           = ('interface', 'note-width', 1)
 PERSON_HEIGHT        = ('interface', 'person-height', 1)
 PERSON_WIDTH         = ('interface', 'person-width', 1)
+PREFIX_SUFFIX        = ('interface', 'prefix-suffix', 1)
+PATRO_TITLE          = ('interface', 'patro-title', 1)
 EVENT_HEIGHT         = ('interface', 'event-height', 1)
 EVENT_WIDTH          = ('interface', 'event-width', 1)
 EVENT_REF_HEIGHT     = ('interface', 'event-ref-height', 1)
@@ -211,6 +213,8 @@ default_value = {
     NOTE_WIDTH           : 700, 
     PERSON_HEIGHT        : 550, 
     PERSON_WIDTH         : 750, 
+    PREFIX_SUFFIX        : 0, 
+    PATRO_TITLE          : 0, 
     EVENT_HEIGHT         : 450, 
     EVENT_WIDTH          : 600, 
     EVENT_REF_HEIGHT     : 450, 

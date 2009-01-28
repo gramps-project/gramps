@@ -76,10 +76,6 @@ _select_gender = ((True, False, False),
                   (False, True, False),
                   (False, False, True))
 
-_use_patronymic = set(
-    ["ru", "RU", "ru_RU", "koi8r", "ru_koi8r", "russian", "Russian"]
-    )
-
 class EditPerson(EditPrimary):
     """
     The EditPerson dialog is derived from the EditPrimary class. 
@@ -88,7 +84,6 @@ class EditPerson(EditPrimary):
     
     """
 
-    use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     QR_CATEGORY = CATEGORY_QR_PERSON
 
     def __init__(self, dbstate, uistate, track, person, callback=None):
@@ -114,9 +109,13 @@ class EditPerson(EditPrimary):
     def get_menu_title(self):
         if self.obj.get_handle():
             name = name_displayer.display(self.obj)
-            title = _('Person') + ': %s' % name
+            title = _('Person: %(name)s') % {'name': name}
         else:
-            title = _('New Person')
+            name = name_displayer.display(self.obj)
+            if name:
+                title = _('New Person: %(name)s')  % {'name': name}
+            else:
+                title = _('New Person')
         return title
 
     def _local_init(self):
@@ -255,28 +254,23 @@ class EditPerson(EditPrimary):
             self.db.readonly,
             self.db.get_name_types())
 
-        if self.use_patronymic:
-            self.prefix = widgets.MonitoredEntry(
-                self.top.get_widget("prefix"), 
-                self.pname.set_patronymic, 
-                self.pname.get_patronymic, 
-                self.db.readonly)
-            
-            prefix_label = self.top.get_widget('prefix_label')
-            prefix_label.set_text(_('Patronymic:'))
-            prefix_label.set_use_underline(True)
-        else:
-            self.prefix = widgets.MonitoredEntry(
-                self.top.get_widget("prefix"), 
-                self.pname.set_surname_prefix, 
-                self.pname.get_surname_prefix, 
-                self.db.readonly)
-
-        self.suffix = widgets.MonitoredEntry(
-            self.top.get_widget("suffix"), 
-            self.pname.set_suffix, 
-            self.pname.get_suffix, 
-            self.db.readonly)
+        self.prefix_suffix = widgets.MonitoredComboSelectedEntry(
+                self.top.get_widget("prefixcmb"), 
+                self.top.get_widget("prefixentry"),
+                [_('Prefix'), _('Suffix')],
+                [self.pname.set_surname_prefix, self.pname.set_suffix], 
+                [self.pname.get_surname_prefix, self.pname.get_suffix],
+                default = Config.get(Config.PREFIX_SUFFIX),
+                read_only = self.db.readonly)
+        
+        self.patro_title = widgets.MonitoredComboSelectedEntry(
+                self.top.get_widget("patrocmb"), 
+                self.top.get_widget("patroentry"),
+                [_('Patronymic'), _('Title')],
+                [self.pname.set_patronymic, self.pname.set_title], 
+                [self.pname.get_patronymic, self.pname.get_title],
+                default = Config.get(Config.PATRO_TITLE),
+                read_only = self.db.readonly)
 
         self.call = widgets.MonitoredEntry(
             self.top.get_widget("call"), 
@@ -290,12 +284,6 @@ class EditPerson(EditPrimary):
             self.pname.get_first_name, 
             self.db.readonly)
 
-        self.title = widgets.MonitoredEntry(
-            self.top.get_widget("title"), 
-            self.pname.set_title, 
-            self.pname.get_title, 
-            self.db.readonly)
-        
         self.surname_field = widgets.MonitoredEntry(
             self.top.get_widget("surname"), 
             self.pname.set_surname, 
@@ -308,6 +296,15 @@ class EditPerson(EditPrimary):
             self.obj.set_gramps_id, 
             self.obj.get_gramps_id, 
             self.db.readonly)
+
+        #make sure title updates automatically
+        for obj in [self.top.get_widget("surname"),
+                    self.top.get_widget("given_name"),
+                    self.top.get_widget("patroentry"),
+                    self.top.get_widget("call"),
+                    self.top.get_widget("prefixentry"),
+                    ]:
+            obj.connect('changed', self._changed_title)
 
     def _create_tabbed_pages(self):
         """
@@ -376,23 +373,26 @@ class EditPerson(EditPrimary):
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook, True)
 
+    def _changed_title(self, obj):
+        """
+        callback to changes typed by user to the person name.
+        Update the window title
+        """
+        self.update_title(self.get_menu_title())
+
     def name_callback(self):
+        """
+        Callback if changes happen in the name tab.
+        The Preferred Name is _NOT_ part of the name tab, but name tab allows
+        reorder and hence setting of new primary name.
+        """
         self.pname = self.obj.get_primary_name()
 
         self.ntype_field.reinit(self.pname.set_type, self.pname.get_type)
 
-        if self.use_patronymic:
-            self.prefix.reinit(
-                self.pname.set_patronymic,
-                self.pname.get_patronymic)
-        else:
-            self.prefix.reinit(
-                self.pname.set_surname_prefix, 
-                self.pname.get_surname_prefix)
-
-        self.suffix.reinit(
-            self.pname.set_suffix, 
-            self.pname.get_suffix)
+        self.prefix_suffix.reinit(
+            [self.pname.set_surname_prefix, self.pname.set_suffix],
+            [self.pname.get_surname_prefix, self.pname.get_suffix])
 
         self.call.reinit(
             self.pname.set_call_name, 
@@ -402,9 +402,9 @@ class EditPerson(EditPrimary):
             self.pname.set_first_name, 
             self.pname.get_first_name)
 
-        self.title.reinit(
-            self.pname.set_title, 
-            self.pname.get_title)
+        self.patro_title.reinit(
+            [self.pname.set_patronymic, self.pname.set_title], 
+            [self.pname.get_patronymic, self.pname.get_title])
         
         self.surname_field.reinit(
             self.pname.set_surname, 
@@ -740,7 +740,7 @@ class EditPerson(EditPrimary):
         This allows us to update the main form in response to any changes.
         
         """
-        for obj in (self.suffix, self.prefix, self.given, self.title, 
+        for obj in (self.prefix_suffix, self.patro_title, self.given,  
                     self.ntype_field, self.surname_field, self.call):
             obj.update()
 
@@ -855,6 +855,8 @@ class EditPerson(EditPrimary):
         (width, height) = self.window.get_size()
         Config.set(Config.PERSON_WIDTH, width)
         Config.set(Config.PERSON_HEIGHT, height)
+        Config.set(Config.PREFIX_SUFFIX, self.prefix_suffix.active_key)
+        Config.set(Config.PATRO_TITLE, self.patro_title.active_key)
         Config.sync()
 
 

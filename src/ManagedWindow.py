@@ -379,6 +379,8 @@ class ManagedWindow:
         
         """
         self.isWindow = isWindow
+        self.msg = msg
+        self.titlelabel = title
         if self.isWindow :
             set_titles(self, title, text, msg)
         else :
@@ -386,6 +388,12 @@ class ManagedWindow:
             #closing the gtk.Window must also close ManagedWindow
             self.window = window
             self.window.connect('delete-event', self.close)
+    
+    def update_title(self, text):
+        if self.isWindow:
+            set_titles(self, self.titlelabel, text, self.msg)
+        else:
+            set_titles(self.window, self.titlelabel, text, self.msg)
 
     def build_menu_names(self, obj):
         return ('Undefined Menu','Undefined Submenu')

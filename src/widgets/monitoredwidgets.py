@@ -22,7 +22,8 @@
 
 __all__ = ["MonitoredCheckbox", "MonitoredEntry", "MonitoredSpinButton",
            "MonitoredText", "MonitoredType", "MonitoredDataType",
-           "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate"]
+           "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate",
+           "MonitoredComboSelectedEntry"]
 
 #-------------------------------------------------------------------------
 #
@@ -31,6 +32,7 @@ __all__ = ["MonitoredCheckbox", "MonitoredEntry", "MonitoredSpinButton",
 #-------------------------------------------------------------------------
 import logging
 _LOG = logging.getLogger(".widgets.monitoredwidgets")
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -479,3 +481,119 @@ class MonitoredDate:
         field.set_editable(not readonly)
         button.set_sensitive(not readonly)
 
+#-------------------------------------------------------------------------
+#
+# MonitoredComboSelectedEntry class
+#
+#-------------------------------------------------------------------------
+class MonitoredComboSelectedEntry:
+    """
+    A MonitoredEntry driven by a Combobox to select what the entry field
+    works upon
+    """
+    def __init__(self, objcombo, objentry, textlist, set_val_list, 
+                 get_val_list, default=0, read_only=False):
+        """
+        Create a MonitoredComboSelectedEntry
+        Objcombo and objentry should be the gtk widgets to use
+        textlist is the values that must be used in the combobox
+        Every value needs an entry in set/get_val_list with the data retrieval
+         and storage method of the data entered in the entry box
+        Read_only should be true if no changes may be done
+        default is the entry in the combobox that must be preselected
+        """
+        self.objcombo = objcombo
+        self.objentry = objentry
+        self.set_val_list = set_val_list
+        self.get_val_list = get_val_list
+        
+        #fill the combobox, set on a specific entry
+        self.mapping = dict([[i,x] for (i,x) in zip(range(len(textlist)),
+                                                    textlist)])
+
+        self.active_key = default
+        self.active_index = 0
+        
+        self.__fill()
+        self.objcombo.clear()
+        self.objcombo.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.objcombo.pack_start(cell, True)
+        self.objcombo.add_attribute(cell, 'text', 1)
+        self.objcombo.set_active(self.active_index)
+        self.objcombo.connect('changed', self.on_combochange)
+        
+        #fill the entrybox with required data
+        self.entry_reinit()
+        self.objentry.connect('changed', self._on_change_entry)
+        
+        #set correct editable
+        self.enable(not read_only)
+
+    def __fill(self):
+        """
+        Fill combo with data
+        """
+        self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
+        keys = self.mapping.keys()
+        keys.sort(self.__by_value)
+        index = 0
+        for key in keys:
+            self.store.append(row=[key, self.mapping[key]])
+            if key == self.active_key:
+                self.active_index = index
+            index = index + 1
+
+    def __by_value(self, first, second):
+        """
+        Method for sorting keys based on the values.
+        """
+        fvalue = self.mapping[first]
+        svalue = self.mapping[second]
+        return locale.strcoll(fvalue, svalue)
+
+    def on_combochange(self, obj):
+        """
+        callback for change on the combo, change active iter, update 
+        associated entrybox
+        """
+        self.active_key = self.store.get_value(self.objcombo.get_active_iter(),
+                                               0)
+        self.entry_reinit()
+    
+    def reinit(self, set_val_list, get_val_list):
+        """
+        The interface is attached to another object, so the methods need to be
+        reset.
+        """
+        self.set_val_list = set_val_list
+        self.get_val_list = get_val_list
+        self.update()
+
+    def entry_reinit(self):
+        """
+        Make the entry field show the value corresponding to the active key
+        """
+        self.objentry.set_text(self.get_val_list[self.active_key]())
+        self.set_val = self.set_val_list[self.active_key]
+        self.get_val = self.get_val_list[self.active_key]
+
+    def _on_change_entry(self, obj):
+        """
+        Callback when the entry field changes
+        """
+        self.set_val_list[self.active_key](self.get_value_entry())
+
+    def get_value_entry(self):
+        return unicode(self.objentry.get_text())
+
+    def enable(self, value):
+        self.objentry.set_sensitive(value)
+        self.objentry.set_editable(value)
+
+    def update(self):
+        """
+        Method called when object changed without interface change
+        Eg: name editor save brings you back to person editor that must update
+        """
+        self.entry_reinit()
