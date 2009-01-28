@@ -1156,6 +1156,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.end_paragraph()
 
     def write_text(self, text, mark=None):
+        text = text.replace('&','&amp;')
         # FIXME this is ugly, do we really need it?
         text = text.replace('<super>', '<small><sup>')
         text = text.replace('</super>', '</sup></small>')
