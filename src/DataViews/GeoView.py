@@ -53,6 +53,8 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import logging
+LOG = logging.getLogger(".GeoView")
+#LOG.setLevel(logging.DEBUG)
 
 #-------------------------------------------------------------------------
 #
@@ -172,6 +174,9 @@ class Renderer():
     def page_loaded(self):
         raise NotImplementedError
 
+    def page_begin_load(self):
+        raise NotImplementedError
+
     def set_button_sensitivity(self):
         """
         We must set the back and forward button in the HtmlView class.
@@ -193,9 +198,13 @@ class RendererWebkit(Renderer):
         self.window = webkit.WebView()
         self.browser = WEBKIT
         self.window.get_main_frame().connect("load-done", self.page_loaded)
+        self.window.connect("load-started", self.page_begin_load)
 
     def page_loaded(self,obj,status):
         self.set_button_sensitivity()
+
+    def page_begin_load(self,obj,stat):
+        pass
 
     def open(self, url):
         self.window.open(url)
@@ -224,9 +233,13 @@ class RendererMozilla(Renderer):
         self.window = gtkmozembed.MozEmbed()
         self.browser = MOZIL
         self.handler = self.window.connect("net-stop", self.page_loaded)
+        self.handler = self.window.connect("net-start", self.page_begin_load)
 
     def page_loaded(self,obj):
         self.set_button_sensitivity()
+
+    def page_begin_load(self,obj):
+        pass
 
     def open(self, url):
         self.window.load_url(url)
@@ -520,6 +533,7 @@ class GeoView(HtmlView):
         self.usedmap = "openstreetmap"
         self.displaytype = "person"
         self.nbmarkers = 0
+        self.without = 0
         self.nbpages = 0
 
     def top_widget(self):
@@ -694,6 +708,7 @@ class GeoView(HtmlView):
         """
         self.external_url = False
         self.nbmarkers = 0
+        self.without = 0
         self.createMapstraction(displaytype)
         self.open("file://"+self.htmlfile)
 
@@ -759,6 +774,42 @@ class GeoView(HtmlView):
                 pass
             pass   # We don't use a proxy or the http_proxy variable is not set.
 
+    def create_page_for_places_without_coordinates(self):
+        """
+        This command creates a page with the list of all places without coordinates
+        page.
+        """
+        data = """
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" \
+                 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml"  >
+         <head>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <title>%(title)s</title>
+         </head>
+         <body >
+           <H4>%(content)s</H4>
+        """ % { 'title'  : _('List of places without coordinates'),
+                'content': _('Here is the list of all places in the databases'
+                             ' for which we have no coordinates.<br>'
+                             ' This means no longitude or latitude.<p>')
+        }
+        end = """
+          </table>
+         </body>
+        </html>
+        """
+        fd = open(self.without_coord_file,"w+")
+        fd.write(data)
+        self.places = sorted(self.place_without_coordinates)
+        i = 1
+        fd.write("<table border=1 ><th width=10%>NB</th><th width=20%>Gramps ID</th><th>Place</th>")
+        for place in self.places:
+            fd.write("<tr><td>%d</td><td>%s</td><td>%s</td>" % ( i, place[0], place[1] ))
+            i += 1
+        fd.write(end)
+        fd.close()
+
     def createMapstractionPostHeader(self,h3mess,h4mess,maxpages,curpage,ftype):
         self.maxgen=Config.get(Config.GENERATION_DEPTH)
         if self.maxyear == 0:
@@ -802,6 +853,11 @@ class GeoView(HtmlView):
             else:
                 self.mapview.write(" ++")
             self.mapview.write("\n</div>\n")
+            if self.without != 0:
+                self.without_coord_file = GEOVIEW_SUBPATH+"/without_coord.html"
+                self.mapview.write("<div id='coord' font=-4 >You have <a href=\"%s\" >%d<a>" % ( self.without_coord_file, self.without ) )
+                self.mapview.write(" places without coordinates</div>\n" )
+                self.create_page_for_places_without_coordinates()
         if self.displaytype != "places":
             self.mapview.write(" <Div id='btns' font=-4 >\n")
             self.mapview.write("  <form method='POST'>\n")
@@ -972,6 +1028,8 @@ class GeoView(HtmlView):
         else:
            self.zoom = zoomlong
         self.zoom -= 1
+        if self.zoom < 1:
+            self.zoom = 1
         # We center the map on a point at the center of all markers
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
@@ -981,18 +1039,41 @@ class GeoView(HtmlView):
             cent = int(mark[6])
             if cent:
                 self.centered = True
-                if ( signminlat == 1 and signmaxlat == 1 ):
-                    latit = self.maxlat+self.centerlat
-                elif ( signminlat == 0 and signmaxlat == 0 ): 
+
+                if ( signminlat == signmaxlat ):
+                    if self.maxlat > self.centerlat:
+                        latit = self.maxlat-self.centerlat
+                    else:
+                        latit = self.maxlat+self.centerlat
+                elif self.maxlat > self.centerlat:
                     latit = self.maxlat-self.centerlat
                 else:
                     latit = self.maxlat+self.centerlat
-                if ( signminlon == 1 and signmaxlon == 1 ):
+
+                if ( signminlon == signmaxlon ):
+                    if self.maxlon > self.centerlon:
+                        longt = self.maxlon-self.centerlon
+                    else:
+                        longt = self.maxlon+self.centerlon
+                elif self.maxlon > self.centerlon:
                     longt = self.maxlon-self.centerlon
-                elif ( signminlon == 0 and signmaxlon == 0 ): 
-                    longt = self.maxlon+self.centerlon
                 else:
-                    longt = self.maxlon-self.centerlon
+                    longt = self.maxlon+self.centerlon
+        LOG.debug( "self.maxlon = %f\n" % self.maxlon)
+        LOG.debug("self.minlon = %f\n" % self.minlon)
+        LOG.debug("self.maxlat = %f\n" % self.maxlat)
+        LOG.debug("self.minlat = %f\n" % self.minlat)
+        LOG.debug("signminlon = %f\n" % signminlon )
+        LOG.debug("signmaxlon = %f\n" % signmaxlon )
+        LOG.debug("signminlat = %f\n" % signminlat )
+        LOG.debug("signmaxlat = %f\n" % signmaxlat )
+        LOG.debug("maxlong = %f\n" % maxlong)
+        LOG.debug("maxlat = %f\n" % maxlat)
+        LOG.debug("zoomlat = %f\n" % zoomlat)
+        LOG.debug("zoomlong = %f\n" % zoomlong)
+        LOG.debug("latit = %f\n" % latit)
+        LOG.debug("longt = %f\n" % longt)
+
         self.mustcenter = False
         if latit != 0.0 or longt != 0.0:
             self.latit = latit
@@ -1035,6 +1116,10 @@ class GeoView(HtmlView):
             self.createMapstractionHeader(GEOVIEW_SUBPATH+"/error.html")
             self.createMapstractionNotImplemented(self.dbstate)
             self.createMapstractionTrailer()
+
+    def append_to_places_without_coordinates(self, ID, Place):
+        self.place_without_coordinates.append([ID, Place])
+        self.without += 1
 
     def append_to_places_list(self, Place, evttype, name, lat, long, descr, center, year):
         self.place_list.append([Place, name, evttype, lat, long, descr, int(center), year])
@@ -1195,11 +1280,15 @@ class GeoView(HtmlView):
                     descr = place.get_title()
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
-            if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
-                self.append_to_places_list(descr, gen.lib.EventType.BIRTH, 
-                                           _nd.display(person), latitude, longitude,
-                                           descr1, int(self.center), birthyear)
-                self.center = False
+                    # place.get_longitude and place.get_latitude return one string.
+                    # We have coordinates when the two values contains non null string.
+                    if ( longitude and latitude ):
+                        self.append_to_places_list(descr, gen.lib.EventType.BIRTH, 
+                                                   _nd.display(person), latitude, longitude,
+                                                   descr1, int(self.center), birthyear)
+                        self.center = False
+                    else:
+                        self.append_to_places_without_coordinates(place.gramps_id,descr)
             latitude = ""
             longitude = ""
             death_ref = person.get_death_ref()
@@ -1220,11 +1309,15 @@ class GeoView(HtmlView):
                         descr1=_("death place.")
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
-            if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
-                self.append_to_places_list(descr, gen.lib.EventType.DEATH,
-                                           _nd.display(person), latitude, longitude,
-                                           descr1, int(self.center), deathyear)
-                self.center = False
+                    # place.get_longitude and place.get_latitude return one string.
+                    # We have coordinates when the two values contains non null string.
+                    if ( longitude and latitude ):
+                        self.append_to_places_list(descr, gen.lib.EventType.DEATH,
+                                                   _nd.display(person), latitude, longitude,
+                                                   descr1, int(self.center), deathyear)
+                        self.center = False
+                    else:
+                        self.append_to_places_without_coordinates(place.gramps_id,descr)
 
     def createMapstractionPlaces(self,db):
         """
@@ -1232,6 +1325,7 @@ class GeoView(HtmlView):
         which has a lat/lon.
         """
         self.place_list = []
+        self.place_without_coordinates = []
         self.minlat = float(0.0)
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
@@ -1252,12 +1346,16 @@ class GeoView(HtmlView):
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                 city = place.get_main_location().get_city()
                 country = place.get_main_location().get_country()
-                if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
+                # place.get_longitude and place.get_latitude return one string.
+                # We have coordinates when the two values contains non null string.
+                if ( longitude and latitude ):
                     self.append_to_places_list(descr, None,
                                                "",
                                                latitude, longitude,
                                                descr1, self.center, None)
                     self.center = False
+                else:
+                    self.append_to_places_without_coordinates(place.gramps_id,descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
@@ -1270,6 +1368,7 @@ class GeoView(HtmlView):
         which has a lat/lon.
         """
         self.place_list = []
+        self.place_without_coordinates = []
         self.minlat = float(0.0)
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
@@ -1295,7 +1394,9 @@ class GeoView(HtmlView):
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
                     descr2 = "%s; %s" % (city,country)
-                    if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
+                    # place.get_longitude and place.get_latitude return one string.
+                    # We have coordinates when the two values contains non null string.
+                    if ( longitude and latitude ):
                         person_list = [ db.db.get_person_from_handle(ref_handle)
                                         for (ref_type, ref_handle) in db.db.find_backlink_handles(event_handle)
                                             if ref_type == 'Person' 
@@ -1312,6 +1413,8 @@ class GeoView(HtmlView):
                                                    latitude, longitude,
                                                    descr2, self.center, eventyear)
                         self.center = False
+                    else:
+                        self.append_to_places_without_coordinates(place.gramps_id,descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
@@ -1324,6 +1427,7 @@ class GeoView(HtmlView):
         in the database which has a lat/lon.
         """
         self.place_list = []
+        self.place_without_coordinates = []
         self.minlat = float(0.0)
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
@@ -1361,8 +1465,10 @@ class GeoView(HtmlView):
                             self.createPersonMarkers(db,child,comment)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
-            self.create_pages(3, _("You have no active person to see this person's family places."),
-                              mess)
+            if person is not None:
+                self.create_pages(3, _("The active person's family members have no places with coordinates."), mess)
+            else:
+                self.create_pages(3, _("You have no active person to see this person's family places."), mess)
         else:
             mess = ""
             self.create_pages(3, ( _("All %s people's family places in the database with coordinates.") % 
@@ -1375,6 +1481,7 @@ class GeoView(HtmlView):
         in the database which has a lat/lon.
         """
         self.place_list = []
+        self.place_without_coordinates = []
         self.minlat = float(0.0)
         self.maxlat = float(0.0)
         self.minlon = float(0.0)
@@ -1410,15 +1517,22 @@ class GeoView(HtmlView):
                     country = place.get_main_location().get_country()
                     evt=gen.lib.EventType(event.get_type())
                     descr1=_("%s : %s")%(evt,_nd.display(person))
-                    if ( cmp(longitude,"") == 1 | cmp(latitude,"") == 1 ):
+                    # place.get_longitude and place.get_latitude return one string.
+                    # We have coordinates when the two values contains non null string.
+                    if ( longitude and latitude ):
                         self.append_to_places_list(descr, evt,
                                                    _nd.display(person),
                                                    latitude, longitude,
                                                    descr1, self.center, eventyear)
                         self.center = False
+                    else:
+                        self.append_to_places_without_coordinates(place.gramps_id,descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
-            self.create_pages(4, _("You have no active person to see this person's places."), mess)
+            if person is not None:
+                self.create_pages(4, _("The active person has no places with coordinates."), mess)
+            else:
+                self.create_pages(4, _("You have no active person to see this person's places."), mess)
         else:
             mess = ""
             self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ), mess)
