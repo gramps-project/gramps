@@ -331,55 +331,49 @@ class BasePage:
         """
 
         of.write('<!DOCTYPE html PUBLIC \n')
-        of.write('         "-//W3C//DTD XHTML 1.0 Strict//EN" \n')
-        of.write('         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" \n')
+        of.write('\t\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
         xmllang = Utils.xml_lang()
         of.write('xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
 
         of.write('<head>\n')
-        of.write('     <title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
-        of.write('     <meta http-equiv="Content-Type" content="text/html; ')
+        of.write('\t<title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
+        of.write('\t<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.report.encoding)
-        of.write('     <meta name="robots" content="noindex" />\n')
-        of.write('     <meta name="generator" content="GRAMPS 3.1.x: ')
+        of.write('\t<meta name="robots" content="noindex" />\n')
+        of.write('\y<meta name="generator" content="GRAMPS 3.1.x: ')
         of.write('http://www.gramps-project.org" />\n')
-        author = get_researcher().get_name()
-        if author:
-            author = author.replace(',,,', '')
-        of.write('     <meta name="author" content="%s" />\n' % author)
+        of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
-        # Link to narrative.css
-        fname = os.path.join("styles", _NARRATIVESCREEN)
+        # Link to screen stylesheet
+        fname = os.path.join("styles", self.report.css)
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('     <link href="%s" rel="stylesheet" type="text/css" '
+        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
                  'media="screen" />\n' % url)
 
-        # Link to narrativePrint.css
-        fname = os.path.join("styles", _NARRATIVEPRINT)
+        # Link to printer stylesheet
+        fname = os.path.join("styles", "Web_Print-Default.css")
         url = self.report.build_url_fname(fname, None, self.up)
         of.write('     <link href="%s" rel="stylesheet" type="text/css" '
                  'media="print" />\n' % url)
 
-        # Link to favicon.ico
+        # Link to GRAMPS favicon
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('     <link href="%s" rel="Shortcut Icon" />\n' % url)
-        of.write('     <!-- %sId%s -->\n' % ('$', '$'))
+        of.write('\t<link href="%s" rel="Shortcut Icon" />\n' % url)
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
         of.write('<div id="header">\n')
 
-        db = self.report.database
-
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
         header = self.report.options['headernote']
         if header:
-            note = db.get_note_from_gramps_id(header)
+            note = self.report.database.get_note_from_gramps_id(header)
             of.write('\t<p id="user_header">')
             of.write(note.get())
             of.write('</p>\n')
-        of.write('</div>\n\n')
+        of.write('</div>\n')
 
         # Begin Navigation Menu
         of.write('<div id="navigation">\n')
@@ -1351,20 +1345,6 @@ class SurnameListPage(BasePage):
             'surnames in the database. Selecting a link '
             'will lead to a list of individuals in the '
             'database with this same surname.'))
-
-        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        alpha_list = self.get_alpha_list(person_handle_list)
-        of.write('\t<table id="alpha_list"\n')
-        of.write('\t\t<tr>\n')
-        for ltr in alphabet:
-            of.write('\t\t\t<td class="ColumnLetter">')
-            if ltr in alpha_list:
-                of.write('<a href="#%s">%s</a></td>\n' % (ltr, ltr))
-            else:
-                of.write('%s</td>\n' % ltr)
-        of.write('\t\t</tr>\n')
-        of.write('\t</table>\n')   
 
         if order_by == self.ORDER_BY_COUNT:
             of.write('\t<table id="SortByCount" class="infolist surnamelist">\n')
@@ -2657,6 +2637,7 @@ class NavWebReport(Report):
                         self.options['homeimg']
         self.use_contact = self.options['contactnote'] or \
                            self.options['contactimg']
+        self.graph = self.options['graph']
 
         if self.use_home:
             self.index_fname = "index"
@@ -2737,33 +2718,8 @@ class NavWebReport(Report):
         # Build the person list
         ind_list = self.build_person_list()
 
-        # Generate the CSS file if requested
-        if self.css:
-            self.copy_css(self.css)
-
-        imgs = []
-        if self.css == "Web_Mainz.css":
-            # Copy Mainz Style Images
-            imgs += ["Web_Mainz_Bkgd.png",
-                     "Web_Mainz_Header.png",
-                     "Web_Mainz_Mid.png",
-                     "Web_Mainz_MidLight.png",
-                     "document.png"]
-
-        # Copy the Creative Commons icon if the Creative Commons
-        # license is requested
-        if 0 < self.copyright < len(_CC):
-            imgs += ["somerights20.gif"]
-
-        imgs += ["favicon.ico",
-                 "Web_Gender_Female.png",
-                 "Web_Gender_FemaleFFF.png",
-                 "Web_Gender_Male.png",
-                 "Web_Gender_MaleFFF.png"]
-
-        for f in imgs:
-            from_path = os.path.join(const.IMAGE_DIR, f)
-            self.copy_file(from_path, f, "images")
+        # copy all of the neccessary files
+        self.copy_narrated_files()
 
         place_list = {}
         source_list = {}
@@ -2796,15 +2752,47 @@ class NavWebReport(Report):
 
         return ind_list
 
-    def copy_css(self, css_file):
+    def copy_narrated_files(self):
         """
-        Copy the CSS files to the target directory.
+        Copy all of the CSS and image files
         """
 
-        fname = os.path.join(const.DATA_DIR, css_file)
-        self.copy_file(fname, _NARRATIVESCREEN, "styles")
+        # copy screen stylesheet
+        fname = os.path.join(const.DATA_DIR, self.css)
+        self.copy_file(fname, self.css, "styles")
+
+        # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-        self.copy_file(fname, _NARRATIVEPRINT, "styles")
+        self.copy_file(fname, "Web_Print-Default.css", "styles")
+
+        imgs = []
+
+        # Copy Mainz Style Images
+        if self.css == "Web_Mainz.css":
+            imgs += ["Web_Mainz_Bkgd.png",
+                     "Web_Mainz_Header.png",
+                     "Web_Mainz_Mid.png",
+                     "Web_Mainz_MidLight.png",
+                     "document.png"]
+
+        # Copy the Creative Commons icon if the Creative Commons
+        # license is requested???
+        if 0 < self.copyright < len(_CC):
+            imgs += ["somerights20.gif"]
+
+        # include GRAMPS favicon
+        imgs += ["favicon.ico"]
+
+        # copy Ancestor Tree graphics if needed???
+        if self.graph:
+            imgs += ["Web_Gender_Female.png",
+                 "Web_Gender_FemaleFFF.png",
+                 "Web_Gender_Male.png",
+                 "Web_Gender_MaleFFF.png"]
+
+        for f in imgs:
+            from_path = os.path.join(const.IMAGE_DIR, f)
+            self.copy_file(from_path, f, "images")
 
     def person_pages(self, ind_list, place_list, source_list):
 
@@ -3283,10 +3271,10 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         menu.add_option(category_name, 'showparents', showparents)
 
-        showallsiblings = BooleanOption(_("Include half-siblings and "
+        showallsiblings = BooleanOption(_("Include half and/ or "
                                            "step-siblings on the individual "
                                            "pages"), False)
-        showallsiblings.set_help(_( "Whether to include half-siblings and "
+        showallsiblings.set_help(_( "Whether to include half and/ or "
                                     "step-siblings with the parents and "
                                     "siblings"))
         menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
