@@ -88,6 +88,7 @@ import Utils
 import ThumbNails
 import ImgManip
 import Mime
+from Utils import probably_alive
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
@@ -282,7 +283,7 @@ class BasePage:
         def get_alpha_list(ind_list):
             """ Will produce the active letters in the alphabet """
 
-            alpha_list = []
+            firstletter_list = []
             for person_handle in ind_list:
                 person = self.report.database.get_person_from_handle(person_handle)
                 primary_name = person.get_primary_name()
@@ -290,30 +291,19 @@ class BasePage:
                 alpha_name = primary_name.get_surname()
 
                 if alpha_name:
-                    alpha_ltr = alpha_name[0].upper()
-                    if alpha_ltr in alpha_list:
-                        pass
-                    else:
-                        alpha_list.append(alpha_ltr)
+                    alpha_ltr = alpha_name[0]
+                    if alpha_ltr not in firstletter_list:
+                        firstletter_list.append(alpha_ltr)
 
-            if len(alpha_list) > 1:
-                alpha_list.sort()
-            return alpha_list
+            firstletter_list.sort()
+            return firstletter_list
 
-        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-
-        alpha_list = get_alpha_list(ind_list)
+        namedict = get_alpha_list(ind_list)
 
         of.write('\t<div id="navigation">\n')
         of.write('\t\t<ul>\n')
-        for ltr in alphabet:
-            of.write('\t\t\t<li>')
-            if ltr in alpha_list:
-                of.write('<a href="#%s">%s</a>' % (_(ltr), _(ltr)))
-            else:
-                of.write(' %s ' % _(ltr))
-            of.write(' |</li>\n')
+        for ltr in namedict:
+            of.write('\t\t\t<li><a href="#%s">%s</a> |</li>' % (ltr, ltr))
         of.write('\t\t</ul>\n')
         of.write('\t</div>\n')   
 
@@ -382,7 +372,7 @@ class BasePage:
         of.write('\t<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.report.encoding)
         of.write('\t<meta name="robots" content="noindex" />\n')
-        of.write('\y<meta name="generator" content="GRAMPS 3.1.x: ')
+        of.write('\t<meta name="generator" content="GRAMPS 3.1.x: ')
         of.write('http://www.gramps-project.org" />\n')
         of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
@@ -2009,6 +1999,23 @@ class IndividualPage(BasePage):
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist">\n')
 
+        primary_name = self.person.get_primary_name()
+        # Names [and their sources]
+        for name in [primary_name] + self.person.get_alternate_names():
+            pname = _nd.display_name(name)
+            pname += self.get_citation_links( name.get_source_references() )
+            of.write('\t\t\t<tr>\n')
+            type_ = str( name.get_type() )
+
+            # if name is equal to birth name, do not re-print it???
+            if type_ == "Birth Name":
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Name Type'))
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % type_)
+            else:
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % pname)
+            of.write('\t\t\t</tr>\n')
+
         # GRAMPS ID
         if not self.noid:
             of.write('\t\t\t<tr>\n')
@@ -2016,23 +2023,21 @@ class IndividualPage(BasePage):
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % self.person.gramps_id)
             of.write('\t\t\t</tr>\n')
 
-        # Names [and their sources]
-        for name in [self.person.get_primary_name()] + self.person.get_alternate_names():
-            pname = _nd.display_name(name)
-            pname += self.get_citation_links( name.get_source_references() )
-            type_ = str( name.get_type() )
-            of.write('\t\t\t<tr>\n')
-            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
-            of.write('\t\t\t\t<td class="ColumnValue">%s' % pname)
-            of.write('</td>\n')
-            of.write('\t\t\t</tr>\n')
-
-        # Gender
+        # Nick Name, if there is one???
+        nick_name = False
         nick = self.person.get_nick_name()
-        if nick:
-            of.write('\t\t\t<tr>\n')
-            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Nickname'))
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % nick)
+        call_name = primary_name.get_call_name()
+        first_name = primary_name.get_first_name()
+
+        # if (nick and call_name) != first_name???
+        if (nick is not first_name and call_name is not first_name):
+            nick_name = True
+
+        if nick_name:    
+            if call_name:
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' 
+                    % _('Nick Name'))
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % call_name)
             of.write('\t\t\t</tr>\n')
 
         # Gender
@@ -2041,6 +2046,32 @@ class IndividualPage(BasePage):
         gender = self.gender_map[self.person.gender]
         of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % gender)
         of.write('\t\t\t</tr>\n')
+
+        # Age At Death???
+        birth_ref = self.person.get_birth_ref()
+        birth_date = None
+        if birth_ref:
+            birth_event = self.report.database.get_event_from_handle(birth_ref.ref)
+            birth_date = birth_event.get_date_object()
+
+        if (birth_date is not None and birth_date.get_valid()):
+            alive = probably_alive(self.person, self.report.database, gen.lib.date.Today())
+            death_ref = self.person.get_death_ref()
+            death_date = None
+            if death_ref:
+                death_event = self.report.database.get_event_from_handle(death_ref.ref)
+                death_date = death_event.get_date_object()
+
+            if not alive and (death_date is not None and death_date.is_valid()):
+                of.write('\t\t\t<tr>\n')
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n'
+                    % _('Age at Death'))
+                nyears = death_date - birth_date
+                nyears.format(precision=3)
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % nyears)
+                of.write('\t\t\t</tr>\n') 
+
+        # close table, and end section...
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -2784,7 +2815,7 @@ class NavWebReport(Report):
 
     def copy_narrated_files(self):
         """
-        Copy all of the CSS and image files
+        Copy all of the CSS and image files for Narrated Web
         """
 
         # copy screen stylesheet
