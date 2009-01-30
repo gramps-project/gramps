@@ -150,6 +150,7 @@ src/plugins/export/Makefile
 src/plugins/gramplet/Makefile
 src/plugins/graph/Makefile
 src/plugins/import/Makefile
+src/plugins/lib/Makefile
 src/plugins/quickview/Makefile
 src/plugins/rel/Makefile
 src/plugins/textreport/Makefile
