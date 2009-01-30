@@ -11,6 +11,15 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib
 
+GLADEFILES = 
+
+GRAPHICS = 
+
+DATAFILES = \
+	holidays.xml
+
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 

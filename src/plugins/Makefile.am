@@ -24,8 +24,7 @@ pkgdata_PYTHON = \
 	ExportXml.py\
 	ImportGpkg.py\
 	ImportXml.py\
-	Records.py\
-	WebCal.py
+	Records.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
@@ -35,8 +34,7 @@ GLADEFILES = \
 
 GRAPHICS = 
 
-DATAFILES = \
-	holidays.xml
+DATAFILES = 
 
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) $(DATAFILES)
 

@@ -228,12 +228,10 @@ src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/BookReport.py
-src/plugins/Calendar.py
 src/plugins/ExportXml.py
 src/plugins/ImportGpkg.py
 src/plugins/ImportXml.py
 src/plugins/Records.py
-src/plugins/WebCal.py
 
 # plugins/docgen directory
 src/plugins/docgen/AsciiDoc.py
@@ -247,6 +245,7 @@ src/plugins/docgen/SvgDrawDoc.py
 
 # plugins/drawreport directory
 src/plugins/drawreport/AncestorTree.py
+src/plugins/drawreport/Calendar.py
 src/plugins/drawreport/DescendTree.py
 src/plugins/drawreport/FanChart.py
 src/plugins/drawreport/StatisticsChart.py
@@ -284,6 +283,9 @@ src/plugins/import/ImportGrdb.py
 src/plugins/import/ImportProGen.py
 src/plugins/import/ImportVCard.py
 
+# plugins/lib directory
+src/plugins/lib/libholiday.py
+
 # plugins/quickview directory
 src/plugins/quickview/AgeOnDate.py
 src/plugins/quickview/all_events.py
@@ -315,6 +317,7 @@ src/plugins/rel/rel_sv.py
 
 # plugins/textreport directory
 src/plugins/textreport/AncestorReport.py
+src/plugins/textreport/BirthdayReport.py
 src/plugins/textreport/CustomBookText.py
 src/plugins/textreport/DescendReport.py
 src/plugins/textreport/DetAncestralReport.py
@@ -358,6 +361,7 @@ src/plugins/tool/Verify.py
 
 # plugins/webreport directory
 src/plugins/webreport/NarrativeWeb.py
+src/plugins/webreport/WebCal.py
 
 # PluginUtils package
 src/PluginUtils/_GuiOptions.py
