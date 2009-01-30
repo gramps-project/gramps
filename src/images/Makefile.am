@@ -77,9 +77,7 @@ dist_pkgdata_DATA = \
 	Web_Gender_Male.png\
 	Web_Gender_Female.png\
 	Web_Gender_MaleFFF.png\
-	Web_Gender_FemaleFFF.png\
-	arrow102.gif\
-	arrow231.gif
+	Web_Gender_FemaleFFF.png
 
 EXTRA_DIST = gramps.svg 
 
