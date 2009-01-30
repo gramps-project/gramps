@@ -82,12 +82,13 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         self.list.append_column(
             gtk.TreeViewColumn(_('Status'), gtk.CellRendererText(),
                                markup=0))
-        self.list.append_column(
-            gtk.TreeViewColumn(_('File'), gtk.CellRendererText(),
-                               text=1))
-        self.list.append_column(
-            gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(),
-                               text=2))
+        col1 = gtk.TreeViewColumn(_('File'), gtk.CellRendererText(), text=1)
+        col1.set_sort_column_id(1)
+        self.list.append_column(col1)
+        col2 = gtk.TreeViewColumn(_('Message'), gtk.CellRendererText(), text=2)
+        col2.set_sort_column_id(2)
+        self.list.append_column(col2)
+        self.list.set_search_column(1)
 
         scrolled_window.add(self.list)
         self.window.vbox.add(scrolled_window)
