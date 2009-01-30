@@ -2,8 +2,10 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007      Thom Sturgill
-# Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2007-2009 Brian G. Matherly
 # Copyright (C) 2008      Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2008      Jason Simanek
+# Copyright (C) 2008      Kees Bakker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -25,21 +27,6 @@
 """
 Web Calendar generator.
 
-Menu selection: Reports -> Web Page -> Web Calendar
-
-Created 4/22/07 by Thom Sturgill based on Calendar.py (with patches)
-by Doug Blank with input dialog based on NarrativeWeb.py by Don Allingham.
-
-2008-05-11 Jason Simanek
-Improving markup for optimal separation of content and presentation.
-
-2008-June-22 Rob G. Healey
-*** Remove StyleEditor, make it css based as is NarrativeWeb,
-move title to first tab, re-word note tabs, complete re-write of
-calendar build, added year glance, and blank year, added easter and
-dst start/stop from Calendar.py, etc.
-
-2008 Kees Bakker
 Refactoring. This is an ongoing job until this plugin is in a better shape.
 TODO list:
  - change filename for one_day pages to yyyy/mm/dd.html (just numbers)
@@ -60,12 +47,9 @@ import os
 import time
 import datetime
 import calendar
-import math
 import codecs
 import shutil
 from gettext import gettext as _
-from xml.parsers import expat
-
 
 #------------------------------------------------------------------------
 #
@@ -90,10 +74,12 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           DestinationOption
 import Utils
 import GrampsLocale
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import WarningDialog
 from Utils import probably_alive
 from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
+
+import libholiday
 
 #------------------------------------------------------------------------
 #
@@ -256,8 +242,8 @@ class WebCalReport(Report):
             self.author = self.author.replace(',,,', '')
         self.email = researcher.email
 
-        self.start_month = 1            # set to January, and it can change
-        self.end_month = 12             # set to December, this value never changes
+        self.start_month = 1         # set to January, and it can change
+        self.end_month = 12          # set to December, this value never changes
 
         today = time.localtime()        # set to today's date
         self.today = datetime.date(today[0], today[1], today[2])
@@ -316,68 +302,22 @@ class WebCalReport(Report):
             except ValueError:
                 my_date = '...'
         else:
-            my_date = '...'              #Incomplete date as in about, circa, etc.
+            my_date = '...'            #Incomplete date as in about, circa, etc.
 
         day_list.append((text, event, my_date))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
-    def get_holidays(self, year, country="United States"):
-        """
-        Looks in multiple places for holidays.xml file.
-        the holidays file will be used first if it exists in user's plugins, otherwise,
-        the GRAMPS plugins will be checked.
-        """
-
-        holiday_file = 'holidays.xml'
-        holiday_full_path = ""
-        fname1 = os.path.join(const.USER_PLUGINS, holiday_file)
-        fname2 = os.path.join(const.PLUGINS_DIR, holiday_file)
-        if os.path.exists(fname1):
-            holiday_full_path = fname1
-        elif os.path.exists(fname2):
-            holiday_full_path = fname2
-        if holiday_full_path != "":
-            self.process_holiday_file(year, holiday_full_path, country)
-
-    def process_holiday_file(self, year, filename, country):
-        """
-        This will process the holidays file for the selected country.
-         
-        All holidays, except Easter, and Daylight Saving start/ stop, will be
-        processed from the holidays.xml file.  Easter and DST will be handled by
-        specific mathematical formulas within this plugin ...
-
-        "Easter" -- _easter()
-        "Daylight Saving Time" -- _get_dst_start_stop() 
-        0 = year, 1 = month, 2 = day  
-        """
-
-        parser = Xml2Obj()
-        element = parser.Parse(filename)
-        holidays_calendar = Holidays(element, country)
-        date = datetime.date(year, 1, 1)
-        while date.year == year:
-            holidays = holidays_calendar.check_date(date)
-            for text in holidays:
-                if text == "Easter": # TODO. Verify if this needs translation, and how
-                    easter = _easter(year)
-                    self.add_holiday_item(_("Easter"), easter.get_year(), easter.get_month(), easter.get_day())
-                elif text == "Daylight Saving begins":  
-                    # TODO. There is more than USA and Europe.
-                    if Utils.xml_lang() == "en-US": # DST for United States of America
-                        dst_start, dst_stop = _get_dst_start_stop(year)
-                    else:                           # DST for Europe
-                        dst_start, dst_stop = _get_dst_start_stop(year, "eu")
-                    self.add_holiday_item(_("Daylight Saving begins"), \
-                        dst_start[0], dst_start[1], dst_start[2])
-                    self.add_holiday_item(_("Daylight Saving ends"), \
-                        dst_stop[0], dst_stop[1], dst_stop[2])
-                elif text == "Daylight Saving ends":
-                    pass                # end is already done above
-                else: # not easter, or Daylight Saving Time
-                    self.add_holiday_item(text, date.year, date.month, date.day)
-            date = date.fromordinal( date.toordinal() + 1)
+    def __get_holidays(self, year):
+        """ Get the holidays for the specified country and year """
+        holiday_table = libholiday.HolidayTable()
+        country = holiday_table.get_countries()[self.country]
+        holiday_table.load_holidays(year, country)
+        for month in range(1, 13):
+            for day in range(1, 32):
+                holiday_names = holiday_table.get_holidays(month, day) 
+                for holiday_name in holiday_names:
+                    self.add_holiday_item(holiday_name, year, month, day)
 
     def add_holiday_item(self, text, year, month, day):
         if day == 0:
@@ -481,7 +421,8 @@ class WebCalReport(Report):
         of.write('\t<ul>\n')
         cols = 0  
         cal_year = self.start_year
-        while ((0 <= cols < 25) and (self.start_year <= cal_year <= self.end_year)):
+        while ((0 <= cols < 25) and 
+              (self.start_year <= cal_year <= self.end_year)):
             url = ''
             cs = False
 
@@ -497,7 +438,8 @@ class WebCalReport(Report):
                 if cal_year == self.today.year:
                     lng_month = _get_long_month_name(self.today.month)
 
-            # Note. We use '/' here because it is a URL, not a OS dependent pathname
+            # Note. We use '/' here because it is a URL, not a OS dependent 
+            # pathname.
             url = '/'.join(subdirs + [lng_month]) + self.ext
 
             # determine if we need to highlight???
@@ -518,7 +460,8 @@ class WebCalReport(Report):
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
 
-    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, use_home=False, add_print=True):
+    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, 
+                        use_home=False, add_print=True):
         """
         Will create the common information for each calendar being created
         """
@@ -591,13 +534,13 @@ class WebCalReport(Report):
             day = col2day[col]
             return day_names[day]
 
-        # monthinfo is filled using standard Python library calendar.monthcalendar
-        # It fills a list of 7-day-lists. The first day of the 7-day-list is
-        # determined by calendar.firstweekday
+        # monthinfo is filled using standard Python library 
+        # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
+        # of the 7-day-list is determined by calendar.firstweekday.
         monthinfo = calendar.monthcalendar(year, month)
 
-        # Begin calendar head. We'll use the capitalized name, because here it seems
-        # appropriate for most countries.
+        # Begin calendar head. We'll use the capitalized name, because here it 
+        # seems appropriate for most countries.
         month_name = lng_month.capitalize()
         th_txt = month_name
         if cal == 'wc': # normal_cal()
@@ -653,11 +596,11 @@ class WebCalReport(Report):
                 dayclass = get_class_for_daycol(day_col)
 
                 day = week[day_col]
-                if day == 0:                                   # a day in the previous or next month
-                    if week_row == 0:                          # a day in the previous month
+                if day == 0:               # a day in the previous or next month
+                    if week_row == 0:      # a day in the previous month
                         specday = lastweek_prevmonth[day_col]
                         specclass = "previous " + dayclass
-                    elif week_row == nweeks-1:                 # a day in the next month
+                    elif week_row == nweeks-1:         # a day in the next month
                         specday = firstweek_nextmonth[day_col]
                         specclass = "next " + dayclass
 
@@ -665,7 +608,7 @@ class WebCalReport(Report):
                     of.write('\t\t\t\t<div class="date">%d</div>\n' % specday)
                     of.write('\t\t\t</td>\n')
 
-                else:                             # normal day number in current month
+                else:                # normal day number in current month
                     thisday = datetime.date.fromordinal(current_ord)
                     of.write('\t\t\t<td id="%s%02d" ' % (shrt_month, day))
                     if thisday.month == month: # Something this month
@@ -799,7 +742,6 @@ class WebCalReport(Report):
             # Note. We use '/' here because it is a URL, not a OS dependent pathname
             fname = '/'.join(subdirs + ['images'] + ['somerights20.gif'])
             text = _CC[copy_nr] % {'gif_fname' : fname}
-            self.use_copyright = True
         else:
             text = "&copy; %s %s" % (self.today.year, self.author)
         of.write('\t<p id="copyright">%s</p>\n' % text)
@@ -981,9 +923,9 @@ class WebCalReport(Report):
                 # initialize the holidays dict to fill:
                 self.holidays = {}
 
-                # get the information from holidays for every year being created
-                if self.country != 0: # Don't include holidays
-                    self.get_holidays(cal_year, _COUNTRIES[self.country]) # _country is currently global
+                # get the information, first from holidays:
+                if self.country != 0:
+                    self.__get_holidays(cal_year)
 
                 # adjust the months being created if self.partyear is True,
                 # and if the year is the current year, then start month is current month  
@@ -1004,10 +946,10 @@ class WebCalReport(Report):
             cal_year = self.start_year
 
             self.holidays = {}
-
-            # get the information from holidays for each year being created
-            if self.country != 0: # Don't include holidays
-                self.get_holidays(cal_year, _COUNTRIES[self.country]) # _COUNTRIES is currently global
+                
+            # get the information, first from holidays:
+            if self.country != 0:
+                self.__get_holidays(cal_year)
 
             # generate progress pass for single year 
             #self.progress.set_pass(_('Creating calendars'), self.end_month - self.start_month)
@@ -1263,7 +1205,7 @@ class WebCalOptions(MenuReportOptions):
         # set to today's date for use in menu, etc.
         # 0 = year, 1 = month, 2 = day
         today = time.localtime()
-        self.today = datetime.date(today[0], today[1], today[2]) 
+        today = datetime.date(today[0], today[1], today[2]) 
 
         partyear = BooleanOption(_('Create Partial Year calendar'), False)
         partyear.set_help(_('Create a partial year calendar. The start month will be'
@@ -1275,11 +1217,11 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'multiyear', self.__multiyear)
         self.__multiyear.connect('value-changed', self.__multiyear_changed) 
 
-        self.__start_year = NumberOption(_('Start Year for the Calendar(s)'), self.today.year, 1900, 3000)
+        self.__start_year = NumberOption(_('Start Year for the Calendar(s)'), today.year, 1900, 3000)
         self.__start_year.set_help(_('Enter the starting year for the calendars between 1900 - 3000'))
         menu.add_option(category_name, 'start_year', self.__start_year)
 
-        self.__end_year = NumberOption(_('End Year for the Calendar(s)'), self.today.year, 1900, 3000)
+        self.__end_year = NumberOption(_('End Year for the Calendar(s)'), today.year, 1900, 3000)
         self.__end_year.set_help(_('Enter the ending year for the calendars between 1900 - 3000.'
                                    '  if multiple years is selected, then only twenty years at any given time'))
         menu.add_option(category_name, 'end_year', self.__end_year)
@@ -1291,7 +1233,8 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'fullyear', fullyear)
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
-        for index, item in enumerate(_COUNTRIES):
+        holiday_table = libholiday.HolidayTable()
+        for index, item in enumerate(holiday_table.get_countries()):
             country.add_item(index, item)
         country.set_help(_("Holidays will be included for the selected "
                             "country"))
@@ -1417,292 +1360,6 @@ class WebCalOptions(MenuReportOptions):
         else:
             self.__end_year.set_available(False)
 
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
-class Element:
-    """ A parsed XML element """
-    def __init__(self, name, attributes):
-        'Element constructor'
-        # The element's tag name
-        self.name = name
-        # The element's attribute dictionary
-        self.attributes = attributes
-        # The element's cdata
-        self.cdata = ''
-        # The element's child element list (sequence)
-        self.children = []
-
-    def addChild(self, element):
-        'Add a reference to a child element'
-        self.children.append(element)
-
-    def getAttribute(self, key):
-        'Get an attribute value'
-        return self.attributes.get(key)
-
-    def getData(self):
-        'Get the cdata'
-        return self.cdata
-
-    def getElements(self, name=''):
-        'Get a list of child elements'
-        #If no tag name is specified, return the all children
-        if not name:
-            return self.children
-        else:
-            # else return only those children with a matching tag name
-            elements = []
-            for element in self.children:
-                if element.name == name:
-                    elements.append(element)
-            return elements
-
-    def toString(self, level=0):
-        retval = " " * level
-        retval += "<%s" % self.name
-        for attribute in self.attributes:
-            retval += " %s=\"%s\"" % (attribute, self.attributes[attribute])
-        c = ""
-        for child in self.children:
-            c += child.toString(level+1)
-        if c == "":
-            retval += "/>\n"
-        else:
-            retval += ">\n" + c + ("</%s>\n" % self.name)
-        return retval
-
-
-class Xml2Obj:
-    """ XML to Object """
-    def __init__(self):
-        self.root = None
-        self.nodeStack = []
-
-    def StartElement(self, name, attributes):
-        'SAX start element even handler'
-        # Instantiate an Element object
-        element = Element(name.encode(), attributes)
-        # Push element onto the stack and make it a child of parent
-        if len(self.nodeStack) > 0:
-            parent = self.nodeStack[-1]
-            parent.addChild(element)
-        else:
-            self.root = element
-        self.nodeStack.append(element)
-
-    def EndElement(self, name):
-        'SAX end element event handler'
-        self.nodeStack = self.nodeStack[:-1]
-
-    def CharacterData(self, data):
-        'SAX character data event handler'
-        if data.strip():
-            data = data.encode()
-            element = self.nodeStack[-1]
-            element.cdata += data
-            return
-
-    def Parse(self, filename):
-        # Create a SAX parser
-        Parser = expat.ParserCreate()
-        # SAX event handlers
-        Parser.StartElementHandler = self.StartElement
-        Parser.EndElementHandler = self.EndElement
-        Parser.CharacterDataHandler = self.CharacterData
-        # Parse the XML File
-        ParserStatus = Parser.Parse(open(filename, 'r').read(), 1)
-        return self.root
-
-class Holidays:
-    """ Class used to read XML holidays to add to calendar. """
-    def __init__(self, elements, country="US"):
-        self.debug = 0
-        self.elements = elements
-        self.country = country
-        self.dates = []
-        self.initialize()
-
-    def set_country(self, country):
-        self.country = country
-        self.dates = []
-        self.initialize()
-
-    def initialize(self):
-        # parse the date objects
-        for country_set in self.elements.children:
-            if country_set.name == "country" and country_set.attributes["name"] == self.country:
-                for date in country_set.children:
-                    if date.name == "date":
-                        data = {"value" : "",
-                                "name" : "",
-                                "offset": "",
-                                "type": "",
-                                "if": "",
-                                } # defaults
-                        for attr in date.attributes:
-                            data[attr] = date.attributes[attr]
-                        self.dates.append(data)
-
-    def get_daynames(self, y, m, dayname):
-        if self.debug:
-            print "%s's in %d %d..." % (dayname, m, y)
-        retval = [0]
-        dow = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].index(dayname)
-        for d in range(1, 32):
-            try:
-                date = datetime.date(y, m, d)
-            except ValueError:
-                continue
-            if date.weekday() == dow:
-                retval.append( d )
-        if self.debug:
-            print "dow=", dow, "days=", retval
-        return retval
-
-    def check_date(self, date):
-        retval = []
-        for rule in self.dates:
-            if self.debug:
-                print "Checking ", rule["name"], "..."
-            offset = 0
-            if rule["offset"] != "":
-                if rule["offset"].isdigit():
-                    offset = int(rule["offset"])
-                elif rule["offset"][0] in ["-", "+"] and rule["offset"][1:].isdigit():
-                    offset = int(rule["offset"])
-                else:
-                    # must be a dayname
-                    offset = rule["offset"]
-            if rule["value"].count("/") == 3: # year/num/day/month, "3rd wednesday in april"
-                y, num, dayname, mon = rule["value"].split("/")
-                if y == "*":
-                    y = date.year
-                else:
-                    y = int(y)
-                if mon.isdigit():
-                    m = int(mon)
-                elif mon == "*":
-                    m = date.month
-                else:
-                    m = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-                         'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].index(mon) + 1
-                dates_of_dayname = self.get_daynames(y, m, dayname)
-                if self.debug:
-                    print "num =", num
-                d = dates_of_dayname[int(num)]
-            elif rule["value"].count("/") == 2: # year/month/day
-                y, m, d = rule["value"].split("/")
-                if y == "*":
-                    y = date.year
-                else:
-                    y = int(y)
-                if m == "*":
-                    m = date.month
-                else:
-                    m = int(m)
-                if d == "*":
-                    d = date.day
-                else:
-                    d = int(d)
-            ndate = datetime.date(y, m, d)
-            if self.debug:
-                print ndate, offset, type(offset)
-            if isinstance(offset, int):
-                if offset != 0:
-                    ndate = ndate.fromordinal(ndate.toordinal() + offset)
-            elif isinstance(offset, basestring):
-                dir_ = 1
-                if offset[0] == "-":
-                    dir_ = -1
-                    offset = offset[1:]
-                if offset in ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']:
-                    # next tuesday you come to, including this one
-                    dow = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'].index(offset)
-                    ord_ = ndate.toordinal()
-                    while ndate.fromordinal(ord_).weekday() != dow:
-                        ord_ += dir_
-                    ndate = ndate.fromordinal(ord_)
-            if self.debug:
-                print "ndate:", ndate, "date:", date
-            if ndate == date:
-                if rule["if"] != "":
-                    if not eval(rule["if"]):
-                        continue
-                retval.append(rule["name"])
-        return retval
-
-def _get_countries_from_holiday_file(filename):
-    """ This will process a holiday file for country names """
-    parser = Xml2Obj()
-    element = parser.Parse(filename)
-    country_list = []
-    for country_set in element.children:
-        if country_set.name == "country":
-            if country_set.attributes["name"] not in country_list:
-                country_list.append(country_set.attributes["name"])
-    return country_list
-
-def _get_countries():
-    """ Looks in multiple places for holidays.xml files """
-    locations = [const.PLUGINS_DIR, const.USER_PLUGINS]
-    holiday_file = 'holidays.xml'
-    country_list = []
-    for dir_ in locations:
-        holiday_full_path = os.path.join(dir_, holiday_file)
-        if os.path.exists(holiday_full_path):
-            cs = _get_countries_from_holiday_file(holiday_full_path)
-            for c in cs:
-                if c not in country_list:
-                    country_list.append(c)
-    country_list.sort()
-    country_list.insert(0, _("Don't include holidays"))
-    return country_list
-
-# TODO: Only load this once the first time it is actually needed so Gramps
-# doesn't take so long to start up.
-_COUNTRIES = _get_countries()
-
-# code snippets for Easter and Daylight saving start/ stop
-# are borrowed from Calendar.py
-def _easter(year):
-    """
-    Computes the year/month/day of easter. Based on work by
-    J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
-    to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
-    Ash Wednesday is 46 days before Easter Sunday.
-    """
-    c = year / 100
-    n = year - 19 * (year / 19)
-    k = (c - 17) / 25
-    i = c - c / 4 - (c - k) / 3 + 19 * n + 15
-    i = i - 30 * (i / 30)
-    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1)) * ((21 - n) / 11))
-    j = year + year / 4 + i + 2 - c + c / 4
-    j = j - 7 * (j / 7)
-    l = i - j
-    month = 3 + (l + 40) / 44
-    day = l + 28 - 31 * (month / 4)
-    return _make_date(year, month, day)
-
-def _get_dst_start_stop(year, area="us"):
-    """
-    Return Daylight Saving Time start/stop in a given area ("us", "eu").
-    US calculation valid 1976-2099; EU 1996-2099
-    """
-    if area == "us":
-        if year > 2006:
-            start = "%d/%d/%d" % (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
-            stop = "%d/%d/%d" % (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
-        else:
-            start = "%d/%d/%d" % (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
-            stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
-    elif area == "eu":
-        start = "%d/%d/%d" % (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
-        stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
-    return (start, stop)
 
 def _get_regular_surname(sex, name):
     """

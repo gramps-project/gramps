@@ -10,6 +10,7 @@ SUBDIRS = \
 	gramplet \
 	graph \
 	import \
+	lib \
 	quickview \
 	rel \
 	textreport \
@@ -20,7 +21,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
 	BookReport.py\
-	Calendar.py \
 	ExportXml.py\
 	ImportGpkg.py\
 	ImportXml.py\
