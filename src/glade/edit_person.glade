@@ -709,7 +709,6 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
 		  <child>
 		    <widget class="GtkEntry" id="gid">
 		      <property name="visible">True</property>
-		      <property name="tooltip" translatable="yes">Part of the Given name that is the normally used name. </property>
 		      <property name="can_focus">True</property>
 		      <property name="editable">True</property>
 		      <property name="visibility">True</property>
