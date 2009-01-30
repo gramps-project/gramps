@@ -29,7 +29,7 @@
 #
 #------------------------------------------------------------------------
 from TransUtils import sgettext as _
-from gettext import ngettext as _s
+from gettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -484,21 +484,21 @@ class Span:
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            retval += (_s(_("%d year"), _("%d years"), diff_tuple[0]) % diff_tuple[0])
+            retval += ngettext("%d year", "%d years", diff_tuple[0]) % diff_tuple[0]
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
                 retval += ", "
-            retval += (_s(_("%d month"), _("%d months"), diff_tuple[1]) % diff_tuple[1])
+            retval += ngettext("%d month", "%d months", diff_tuple[1]) % diff_tuple[1]
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
                 retval += ", "
-            retval += (_s(_("%d day"), _("%d days"), diff_tuple[2]) % diff_tuple[2])
+            retval += ngettext("%d day", "%d days", diff_tuple[2]) % diff_tuple[2]
             detail += 1
         if self.precision == detail:
             return retval
