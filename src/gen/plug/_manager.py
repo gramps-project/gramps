@@ -95,6 +95,7 @@ class PluginManager(gen.utils.Callback):
         self.__tool_list         = []
         self.__import_plugins    = []
         self.__export_plugins    = []
+        self.__general_plugins   = []
         self.__attempt_list      = []
         self.__loaddir_list      = []
         self.__textdoc_list      = []
@@ -129,12 +130,12 @@ class PluginManager(gen.utils.Callback):
         # have a .py extention, and attempt to load the file. If it succeeds,
         # add it to the success_list list. If it fails, add it to the _failure
         # list
-
+        
         for (dirpath, dirnames, filenames) in os.walk(direct):
-            
             # add the directory to the python search path
             sys.path.append(dirpath)
-            
+
+        for (dirpath, dirnames, filenames) in os.walk(direct):
             # if the path has not already been loaded, save it in the 
             # loaddir_list list for use on reloading.
             if dirpath not in self.__loaddir_list:
@@ -275,10 +276,12 @@ class PluginManager(gen.utils.Callback):
         """
         if isinstance(plugin, gen.plug.ImportPlugin):
             self.__import_plugins.append(plugin)
-            self.__mod2text[plugin.get_module_name()] = plugin.get_description()
-        if isinstance(plugin, gen.plug.ExportPlugin):
+        elif isinstance(plugin, gen.plug.ExportPlugin):
             self.__export_plugins.append(plugin)
-            self.__mod2text[plugin.get_module_name()] = plugin.get_description()
+        elif isinstance(plugin, gen.plug.Plugin):
+            self.__general_plugins.append(plugin)
+        
+        self.__mod2text[plugin.get_module_name()] = plugin.get_description()
             
     def get_import_plugins(self):
         """
@@ -540,10 +543,12 @@ class PluginManager(gen.utils.Callback):
             for filename, junk in self.__failmsg_list
             ]
     
+        self.__general_plugins[:] = [ item for item in self.__export_plugins
+                    if item.get_module_name() not in self.__general_plugins ][:]
         self.__export_plugins[:] = [ item for item in self.__export_plugins
-                        if item.get_module_name not in failed_module_names ][:]
+                    if item.get_module_name() not in failed_module_names ][:]
         self.__import_plugins[:] = [ item for item in self.__import_plugins
-                        if item.get_module_name not in failed_module_names ][:]
+                    if item.get_module_name() not in failed_module_names ][:]
         self.__tool_list[:] = [ item for item in self.__tool_list
                       if item[0].__module__ not in failed_module_names ][:]
         self.__cli_tool_list[:] = [ item for item in self.__cli_tool_list

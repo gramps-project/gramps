@@ -28,18 +28,22 @@ class Plugin:
     This class serves as a base class for all plugins that can be registered
     with the plugin manager
     """
-    def __init__(self, name, description):
+    def __init__(self, name, description, module_name):
         """
         @param name: A friendly name to call this plugin.
             Example: "GEDCOM Import"
         @type name: string
-        @param description: An short description of the plugin.
+        @param description: A short description of the plugin.
             Example: "This plugin will import a GEDCOM file into a database"
         @type description: string
+        @param module_name: The name of the module that contains this plugin.
+            Example: "gedcom"
+        @type module_name: string
         @return: nothing
         """
         self.__name = name
         self.__desc = description
+        self.__mod_name = module_name
         
     def get_name(self):
         """
@@ -63,5 +67,5 @@ class Plugin:
         
         @return: a string representing the name of the module for this plugin
         """
-        raise NotImplementedError
+        return self.__mod_name
     

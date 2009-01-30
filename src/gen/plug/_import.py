@@ -34,7 +34,7 @@ class ImportPlugin(Plugin):
         @param name: A friendly name to call this plugin.
             Example: "GEDCOM Import"
         @type name: string
-        @param description: An short description of the plugin.
+        @param description: A short description of the plugin.
             Example: "This plugin will import a GEDCOM file into a database"
         @type description: string
         @param import_function: A function to call to perform the import.
@@ -52,17 +52,9 @@ class ImportPlugin(Plugin):
         @type extension: str
         @return: nothing
         """
-        Plugin.__init__(self, name, description)
+        Plugin.__init__(self, name, description, import_function.__module__ )
         self.__import_func = import_function
         self.__extension = extension
-    
-    def get_module_name(self):
-        """
-        Get the name of the module that this plugin lives in.
-        
-        @return: a string representing the name of the module for this plugin
-        """
-        return self.__import_func.__module__
     
     def get_import_function(self):
         """

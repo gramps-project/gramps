@@ -35,7 +35,7 @@ class ExportPlugin(Plugin):
         @param name: A friendly name to call this plugin.
             Example: "GEDCOM Export"
         @type name: string
-        @param description: An short description of the plugin.
+        @param description: A short description of the plugin.
             Example: "This plugin will export a GEDCOM file from database"
         @type description: string
         @param export_function: A function to call to perform the export.
@@ -55,27 +55,10 @@ class ExportPlugin(Plugin):
         @type config: tuple (??,??)
         @return: nothing
         """
-        Plugin.__init__(self, name, description)
-        self.__name = name
+        Plugin.__init__(self, name, description, export_function.__module__)
         self.__export_func = export_function
         self.__extension = extension
         self.__config = config
-
-    def get_module_name(self):
-        """
-        Get the name of the module that this plugin lives in.
-        
-        @return: a string representing the name of the module for this plugin
-        """
-        return self.__export_func.__module__
-    
-    def get_name(self):
-        """
-        Get the short name for this plugins.
-        
-        @return: str
-        """
-        return self.__name
     
     def get_export_function(self):
         """
