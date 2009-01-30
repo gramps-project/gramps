@@ -685,15 +685,15 @@ class WebCalReport(Report):
 
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n')
         of.write('     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
-        of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
         xmllang = Utils.xml_lang()
-        of.write('xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
+        of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
+            'xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
         of.write('<head>\n')
         of.write('\t<title>%s</title>\n\n' % title)
         of.write('\t<meta http-equiv="Content-Type" content="text/html;charset=%s" />\n'
                 % self.encoding)
-        of.write('\t<meta name="robots" content="noindex" />\n')
-        of.write('\t<meta name="generator" content="GRAMPS 3.1.x: http://www.gramps-project.org" />\n')
+        of.write('\t<meta name="generator" content="%s %s %s" />\n' %
+            (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
         of.write('\t<meta name="author" content="%s" />\n\n' % self.author)
 
         subdirs = ['..'] * nr_up

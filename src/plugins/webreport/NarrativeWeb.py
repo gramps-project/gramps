@@ -363,17 +363,16 @@ class BasePage:
         of.write('<!DOCTYPE html PUBLIC \n')
         of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" \n')
         of.write('\t\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
-        of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
         xmllang = Utils.xml_lang()
-        of.write('xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
+        of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
+            'xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
 
         of.write('<head>\n')
         of.write('\t<title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
-        of.write('\t<meta http-equiv="Content-Type" content="text/html; ')
-        of.write('charset=%s" />\n' % self.report.encoding)
-        of.write('\t<meta name="robots" content="noindex" />\n')
-        of.write('\t<meta name="generator" content="GRAMPS 3.1.x: ')
-        of.write('http://www.gramps-project.org" />\n')
+        of.write('\t<meta http-equiv="Content-Type" content="text/html; charset=%s" />\n'
+            % self.report.encoding)
+        of.write('\t<meta name="generator" content="%s %s %s" />\n' %
+            (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
         of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
         # Link to screen stylesheet
@@ -385,7 +384,7 @@ class BasePage:
         # Link to printer stylesheet
         fname = os.path.join("styles", "Web_Print-Default.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('     <link href="%s" rel="stylesheet" type="text/css" '
+        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
                  'media="print" />\n' % url)
 
         # Link to GRAMPS favicon
