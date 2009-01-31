@@ -620,7 +620,7 @@ class GuiGramplet:
         return r
 
     def render_text(self, text):
-        markup_pos = {"B": [], "I": [], "U": [], "A": []}
+        markup_pos = {"B": [], "I": [], "U": [], "A": [], "TT": []}
         retval = ""
         i = 0
         r = 0
@@ -663,6 +663,12 @@ class GuiGramplet:
                 i += 1
         offset = self.len_text(self.get_text())
         self.append_text(retval)
+        for items in markup_pos["TT"]:
+            if len(items) == 3:
+                (a,attributes,b) = items
+                start = self.buffer.get_iter_at_offset(a + offset)
+                stop = self.buffer.get_iter_at_offset(b + offset)
+                self.buffer.apply_tag_by_name("fixed", start, stop)
         for items in markup_pos["B"]:
             if len(items) == 3:
                 (a,attributes,b) = items
@@ -707,6 +713,7 @@ class GuiGramplet:
             self.buffer.create_tag("bold",weight=pango.WEIGHT_HEAVY)
             self.buffer.create_tag("italic",style=pango.STYLE_ITALIC)
             self.buffer.create_tag("underline",underline=pango.UNDERLINE_SINGLE)
+            self.buffer.create_tag("fixed", font="monospace")
         else:
             tag_table = self.buffer.get_tag_table()
             tag_table.foreach(lambda tag, data: tag_table.remove(tag))
