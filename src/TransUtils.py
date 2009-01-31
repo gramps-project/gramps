@@ -24,7 +24,7 @@
 Provide translation assistance
 """
 
-from gettext import gettext
+from gettext import (gettext, ngettext)
 
 def sgettext(msgid, sep='|'):
     """
@@ -47,4 +47,32 @@ def sgettext(msgid, sep='|'):
     if msgval == msgid:
         sep_idx = msgid.rfind(sep)
         msgval = msgid[sep_idx+1:]
+    return msgval
+
+def sngettext(singular, plural, n, sep='|'):
+    """
+    Strip the context used for resolving translation ambiguities.
+    
+    The translation of singular/plural is returned unless the translation is
+    not available and the singular contains the separator. In that case,
+    the returned value is the portion of singular following the last
+    separator. Default separator is '|'.
+
+    @param singular: The singular form of the string to be translated.
+                      may contain a context seperator
+    @type singular: unicode
+    @param plural: The plural form of the string to be translated.
+    @type plural: unicode
+    @param n: the amount for which to decide the translation
+    @type n: int
+    @param sep: The separator marking the context.
+    @type sep: unicode
+    @return: Translation or the original with context stripped.
+    @rtype: unicode
+
+    """
+    msgval = ngettext(singular, plural,n)
+    if msgval == singular:
+        sep_idx = singular.rfind(sep)
+        msgval = singular[sep_idx+1:]
     return msgval
