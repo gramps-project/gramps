@@ -165,7 +165,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
     def __init__(self, gramplet):
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
-        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], gramplet)
+        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.__class__)
         self.set_window(gtk.Dialog("",gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
@@ -176,7 +176,16 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         # add gramplet:
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.connect('response', self.handle_response)
-        self.window.show()
+        # HACK: must show window to make it work right:
+        self.show()
+        # But that shows everything, hide them here:
+        self.gramplet.gvclose.hide()
+        self.gramplet.gvstate.hide()
+        self.gramplet.gvproperties.hide()
+        if self.gramplet.pui and len(self.gramplet.pui.option_dict) > 0:
+            self.gramplet.gvoptions.show()
+        else:
+            self.gramplet.gvoptions.hide()
 
     def handle_response(self, object, response):
         if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
@@ -518,11 +527,6 @@ class GuiGramplet:
     def detach(self):
         # hide buttons:
         self.set_state("windowed") 
-        self.gvclose.hide()
-        self.gvstate.hide()
-        self.gvproperties.hide()
-        if self.pui and len(self.pui.option_dict) > 0:
-            self.gvoptions.show()
         self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
