@@ -54,7 +54,7 @@ import GrampsDisplay
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Gramplets'
+WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
 
 #-------------------------------------------------------------------------
 #
@@ -145,6 +145,12 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
         return gui
     return None
 
+def logical_true(value):
+    """
+    Used for converting text file values to booleans.
+    """
+    return value in ["True", True, 1, "1"]
+
 class LinkTag(gtk.TextTag):
     lid = 0
     def __init__(self, buffer):
@@ -211,6 +217,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
 class Gramplet(object):
     def __init__(self, gui):
         self._idle_id = 0
+        self._pause = False
         self._generator = None
         self._need_to_update = False
         self.option_dict = {}
@@ -335,6 +342,9 @@ class Gramplet(object):
         self.gui.data.append(text)
 
     def update(self, *args):
+        """
+        The main interface for running the main method.
+        """
         if (self.gui.state in ["closed", "minimized"] and 
             not self.gui.force_update): return
         if self._idle_id != 0:
@@ -343,30 +353,9 @@ class Gramplet(object):
         if debug: print "%s creating generator" % self.gui.title
         self._generator = self.main()
         if debug: print "%s adding to gobject" % self.gui.title
+        self._pause = False
         self._idle_id = gobject.idle_add(self._updater, 
                                          priority=gobject.PRIORITY_LOW - 10)
-
-    def update_all(self, *args):
-        self._generator = self.main()
-        if isinstance(self._generator, types.GeneratorType):
-            for step in self._generator:
-                pass
-
-    def interrupt(self):
-        """
-        Force the generator to stop running.
-        """
-        if self._idle_id == 0:
-            if debug: print "%s removing from gobject" % self.gui.title
-            gobject.source_remove(self._idle_id)
-            self._idle_id = 0
-
-    def _db_changed(self, db):
-        if debug: print "%s is _connecting" % self.gui.title
-        self.dbstate.db = db
-        self.gui.dbstate.db = db
-        self.db_changed()
-        self.update()
 
     def _updater(self):
         """
@@ -380,8 +369,13 @@ class Gramplet(object):
             retval = self._generator.next()
             if not retval:
                 self._idle_id = 0
+            if self._pause:
+                return False
             return retval
         except StopIteration:
+            self._idle_id = 0
+            return False
+        except PauseIteration:
             self._idle_id = 0
             return False
         except Exception, e:
@@ -390,6 +384,46 @@ class Gramplet(object):
             print "Continuing after gramplet error..."
             self._idle_id = 0
             return False
+
+    def pause(self, *args):
+        """
+        Pause the main method.
+        """
+        self._pause = True
+
+    def resume(self, *args):
+        """
+        Resume the main method that has previously paused.
+        """
+        self._pause = False
+        self._idle_id = gobject.idle_add(self._updater, 
+                                         priority=gobject.PRIORITY_LOW - 10)
+
+    def update_all(self, *args):
+        """
+        Force the main loop to run right now (as opposed to running in background).
+        """
+        self._generator = self.main()
+        if isinstance(self._generator, types.GeneratorType):
+            for step in self._generator:
+                pass
+
+    def interrupt(self, *args):
+        """
+        Force the generator to stop running.
+        """
+        self._pause = True
+        if self._idle_id == 0:
+            if debug: print "%s removing from gobject" % self.gui.title
+            gobject.source_remove(self._idle_id)
+            self._idle_id = 0
+
+    def _db_changed(self, db):
+        if debug: print "%s is _connecting" % self.gui.title
+        self.dbstate.db = db
+        self.gui.dbstate.db = db
+        self.db_changed()
+        self.update()
 
     def get_option_widget(self, label):
         return self.option_dict[label][0]
@@ -411,9 +445,6 @@ class Gramplet(object):
 
     def save_options(self):
         pass
-
-def logical_true(value):
-    return value in ["True", True, 1, "1"]
 
 class GuiGramplet:
     """
