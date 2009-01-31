@@ -77,25 +77,25 @@ class DeepConnectionsGramplet(Gramplet):
             family = self.dbstate.db.get_family_from_handle(family_handle)
             children = family.get_child_ref_list()
             for child_ref in children:
-                retval += [(child_ref.ref, (path, (_("child of"), person_handle)))]
+                retval += [(child_ref.ref, (path, (_("child"), person_handle)))]
             husband = family.get_father_handle()
             if husband:
-                retval += [(husband, (path, (_("husband of"), person_handle)))]
+                retval += [(husband, (path, (_("husband"), person_handle)))]
             wife = family.get_mother_handle()
             if wife:
-                retval += [(wife, (path, (_("wife of"), person_handle)))]
+                retval += [(wife, (path, (_("wife"), person_handle)))]
         parent_family_list = person.get_parent_family_handle_list()
         for family_handle in parent_family_list:
             family = self.dbstate.db.get_family_from_handle(family_handle)
             children = family.get_child_ref_list()
             for child_ref in children:
-                retval += [(child_ref.ref, (path, (_("sibling of"), person_handle)))]
+                retval += [(child_ref.ref, (path, (_("sibling"), person_handle)))]
             husband = family.get_father_handle()
             if husband:
-                retval += [(husband, (path, (_("father of"), person_handle)))]
+                retval += [(husband, (path, (_("father"), person_handle)))]
             wife = family.get_mother_handle()
             if wife:
-                retval += [(wife, (path, (_("mother of"), person_handle)))]
+                retval += [(wife, (path, (_("mother"), person_handle)))]
         return retval
 
     def active_changed(self, handle):
