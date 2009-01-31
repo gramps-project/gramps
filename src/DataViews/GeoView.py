@@ -197,13 +197,47 @@ class RendererWebkit(Renderer):
         Renderer.__init__(self)
         self.window = webkit.WebView()
         self.browser = WEBKIT
-        self.window.get_main_frame().connect("load-done", self.page_loaded)
+        self.frame = self.window.get_main_frame()
+        self.frame.connect("load-done", self.page_loaded)
         self.window.connect("load-started", self.page_begin_load)
+        self.window.connect("hovering-over-link", self.hover_link_cb) 
+        #self.window.connect("navigation-requested", self.navigation) 
+        self.window.connect("load-progress-changed", self.load_progress) 
+        #self.window.connect("script-alert", self.script_alert_cb) 
+        #self.window.connect("script-confirm", self.script_confirm_cb) 
+        #self.window.connect("script-prompt", self.script_prompt_cb)
 
     def page_loaded(self,obj,status):
         self.set_button_sensitivity()
 
-    def page_begin_load(self,obj,stat):
+    def page_begin_load(self,view,frame):
+        if frame is self.frame:
+            LOG.debug(_("load-started : %s") % self.get_uri())
+        pass
+
+    def navigation(self,view,frame,networkrequest):
+        LOG.debug(_("navigation-requested : %s") % frame.get_uri())
+        return 1
+
+    def load_progress(self,view,percent):
+        #LOG.debug(_("load-progress-changed : load %s : %s%%") % (view.get_main_frame().get_uri(), percent))
+        pass
+
+    def hover_link_cb(self,view,title,url):
+        if view and url:
+            LOG.debug(_("hovering-over-link : %s - %s") % (title, url))
+
+    def script_confirm_cb(self, view, frame, message, isConfirmed):
+        LOG.debug("script confirm")
+        pass
+   
+    def window_event_cb(self, view, event, message, fromwindow):
+        LOG.debug("event!", event, view, message )
+        LOG.debug(event.get_event_type() )
+        return True
+   
+    def script_prompt_cb(self, view, frame, message, default, text):
+        LOG.debug("script prompt")
         pass
 
     def open(self, url):
@@ -239,6 +273,7 @@ class RendererMozilla(Renderer):
         self.set_button_sensitivity()
 
     def page_begin_load(self,obj):
+        LOG.debug(_("Loading - %s") % self.get_uri())
         pass
 
     def open(self, url):
@@ -856,7 +891,7 @@ class GeoView(HtmlView):
             if self.without != 0:
                 self.without_coord_file = GEOVIEW_SUBPATH+"/without_coord.html"
                 self.mapview.write("<div id='coord' font=-4 >You have <a href=\"%s\" >%d<a>" % ( self.without_coord_file, self.without ) )
-                self.mapview.write(" places without coordinates</div>\n" )
+                self.mapview.write(" places without coordinates<a href=\"gramps://place:P0005\" >test</a></div>\n" )
                 self.create_page_for_places_without_coordinates()
         if self.displaytype != "places":
             self.mapview.write(" <Div id='btns' font=-4 >\n")
@@ -1028,8 +1063,8 @@ class GeoView(HtmlView):
         else:
            self.zoom = zoomlong
         self.zoom -= 1
-        if self.zoom < 1:
-            self.zoom = 1
+        if self.zoom < 2:
+            self.zoom = 2
         # We center the map on a point at the center of all markers
         self.centerlat = maxlat/2
         self.centerlon = maxlong/2
@@ -1041,24 +1076,29 @@ class GeoView(HtmlView):
                 self.centered = True
 
                 if ( signminlat == signmaxlat ):
-                    if self.maxlat > self.centerlat:
-                        latit = self.maxlat-self.centerlat
+                    if signminlat == 1: 
+                        latit = self.minlat+self.centerlat
                     else:
-                        latit = self.maxlat+self.centerlat
+                        latit = self.maxlat-self.centerlat
                 elif self.maxlat > self.centerlat:
                     latit = self.maxlat-self.centerlat
                 else:
-                    latit = self.maxlat+self.centerlat
+                    latit = self.minlat+self.centerlat
 
                 if ( signminlon == signmaxlon ):
-                    if self.maxlon > self.centerlon:
-                        longt = self.maxlon-self.centerlon
+                    if signminlon == 1: 
+                        longt = self.minlon+self.centerlon
                     else:
-                        longt = self.maxlon+self.centerlon
+                        longt = self.maxlon-self.centerlon
                 elif self.maxlon > self.centerlon:
                     longt = self.maxlon-self.centerlon
                 else:
-                    longt = self.maxlon+self.centerlon
+                    longt = self.minlon+self.centerlon
+                # for all maps, 0.0 for longitude and latitude means no location.
+                if latit == 0.0 and longt == 0.0:
+                   latit = 0.00000001
+                   longt = 0.00000001
+
         LOG.debug( "self.maxlon = %f\n" % self.maxlon)
         LOG.debug("self.minlon = %f\n" % self.minlon)
         LOG.debug("self.maxlat = %f\n" % self.maxlat)
@@ -1135,23 +1175,38 @@ class GeoView(HtmlView):
                 if c > self.maxyear:
                     self.maxyear = c
 
+        if a < 0.0:
+            a = a - 0.00000001
+        else:
+            a = a + 0.00000001
+        if b < 0.0:
+            b = b - 0.00000001
+        else:
+            b = b + 0.00000001
+
         if self.minlat == 0.0:
             self.minlat = a
         if a < self.minlat:
-            self.minlat = a
+            if a < 0.0:
+                self.minlat = a
+
         if self.maxlat == 0.0:
             self.maxlat = a
         if a > self.maxlat:
-            self.maxlat = a
+            if a > 0.0:
+                self.maxlat = a
 
         if self.minlon == 0.0:
             self.minlon = b
         if b < self.minlon:
-            self.minlon = b
+            if b < 0.0:
+                self.minlon = b
+
         if self.maxlon == 0.0:
             self.maxlon = b
         if b > self.maxlon:
-            self.maxlon = b
+            if b > 0.0:
+                self.maxlon = b
 
     def isyearnotinmarker(self,allyears,year):
         ret = 1
