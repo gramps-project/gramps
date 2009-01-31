@@ -29,6 +29,7 @@ Relationship View
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
+from gettext import ngettext
 import cgi
 
 #-------------------------------------------------------------------------
@@ -790,7 +791,7 @@ class RelationshipView(PageView.PersonNavView):
             else:
                 count = 0
             if count > 1 :
-                childmsg = _(" (%d siblings)") % count
+                childmsg = ngettext(" (1 sibling)", " (%d siblings)", count) % count
             elif count == 1 :
                 gender = self.dbstate.db.get_person_from_handle(\
                                         child_list[0]).gender
@@ -846,7 +847,7 @@ class RelationshipView(PageView.PersonNavView):
                     else:
                         count = 0
                     if count > 1 :
-                        childmsg = _(" (%d siblings)") % count
+                        childmsg = ngettext(" (1 sibling)"," (%d siblings)", count) % count
                     elif count == 1 :
                         gender = self.dbstate.db.get_person_from_handle(\
                                                 child_list[0]).gender
@@ -1265,10 +1266,8 @@ class RelationshipView(PageView.PersonNavView):
                 count = len(child_list)
             else:
                 count = 0
-            if count > 1 :
-                childmsg = _(" (%d children)") % count
-            elif count == 1 :
-                childmsg = _(" (1 child)")
+            if count >= 1 :
+                childmsg = ngettext(" (1 child)"," (%d children)", count) % count
             else :
                 childmsg = _(" (no children)")
             box = self.get_people_box(handle, post_msg=childmsg)
@@ -1313,10 +1312,8 @@ class RelationshipView(PageView.PersonNavView):
                     count = len(child_list)
                 else:
                     count = 0
-                if count > 1 :
-                    childmsg = _(" (%d children)") % count
-                elif count == 1 :
-                    childmsg = _(" (1 child)")
+                if count >= 1 :
+                    childmsg = ngettext(" (1 child)"," (%d children)", count) % count
                 else :
                     childmsg = _(" (no children)")
                 box = self.get_people_box(post_msg=childmsg)

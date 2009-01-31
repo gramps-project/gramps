@@ -31,6 +31,7 @@
 import re
 import time
 from gettext import gettext as _
+from gettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -141,7 +142,7 @@ class VCardParser:
             self.errmsg(str(err))
             
         t = time.time() - t
-        msg = _('Import Complete: %d seconds') % t
+        msg = ngettext('Import Complete: 1 second','Import Complete: %d seconds', t ) % t
 
         self.db.transaction_commit(self.trans,_("vCard import"))
         self.db.enable_signals()

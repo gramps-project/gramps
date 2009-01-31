@@ -31,6 +31,7 @@
 #-------------------------------------------------------------------------
 import time
 from gettext import gettext as _
+from gettext import ngettext
 import csv
 import codecs
 import cStringIO
@@ -691,7 +692,7 @@ class CSVParser:
             else:
                 print "Warning: ignoring line %d" % line_number
         t = time.time() - t
-        msg = _('Import Complete: %d seconds') % t
+        msg = ngettext('Import Complete: 1 second','Import Complete: %d seconds', t ) % t
         self.db.transaction_commit(self.trans,_("CSV import"))
         self.db.enable_signals()
         self.db.request_rebuild()

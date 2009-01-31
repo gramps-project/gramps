@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-30 14:43+0100\n"
-"PO-Revision-Date: 2009-01-30 15:27+0100\n"
+"POT-Creation-Date: 2009-01-31 11:08+0100\n"
+"PO-Revision-Date: 2009-01-31 11:09+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -175,7 +175,7 @@ msgstr "Nom"
 #: ../src/DataViews/NoteView.py:68
 #: ../src/DataViews/PersonView.py:68
 #: ../src/DataViews/PlaceView.py:68
-#: ../src/DataViews/RelationView.py:548
+#: ../src/DataViews/RelationView.py:549
 #: ../src/DataViews/RepositoryView.py:68
 #: ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_BackRefList.py:57
@@ -575,9 +575,9 @@ msgstr "Jamais"
 
 #: ../src/DbManager.py:1076
 #: ../src/ScratchPad.py:101
-#: ../src/DataViews/RelationView.py:401
-#: ../src/DataViews/RelationView.py:931
-#: ../src/DataViews/RelationView.py:983
+#: ../src/DataViews/RelationView.py:402
+#: ../src/DataViews/RelationView.py:932
+#: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:148
 #: ../src/plugins/gramplet/DefaultGramplets.py:402
@@ -587,7 +587,7 @@ msgstr "Jamais"
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:442
-#: ../src/plugins/tool/Check.py:1313
+#: ../src/plugins/tool/Check.py:1312
 #: ../src/plugins/webreport/NarrativeWeb.py:647
 #: ../src/gen/plug/_manager.py:303
 #: ../src/gen/plug/_manager.py:304
@@ -907,7 +907,7 @@ msgstr "Nom du père"
 #: ../src/Spell.py:168
 #: ../src/Spell.py:247
 #: ../src/Spell.py:249
-#: ../src/plugins/tool/Check.py:1351
+#: ../src/plugins/tool/Check.py:1346
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -1131,9 +1131,9 @@ msgstr "Individu"
 #: ../src/gramps_main.py:106
 #: ../src/ScratchPad.py:589
 #: ../src/ToolTips.py:228
-#: ../src/DataViews/RelationView.py:466
-#: ../src/DataViews/RelationView.py:1261
-#: ../src/DataViews/RelationView.py:1285
+#: ../src/DataViews/RelationView.py:467
+#: ../src/DataViews/RelationView.py:1262
+#: ../src/DataViews/RelationView.py:1284
 #: ../src/Editors/_EditFamily.py:497
 #: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/DefaultGramplets.py:101
@@ -1727,10 +1727,10 @@ msgstr "Notes"
 #. don't show rest
 #: ../src/gramps_main.py:115
 #: ../src/Merge/_MergePerson.py:159
-#: ../src/DataViews/PedigreeView.py:1571
-#: ../src/DataViews/RelationView.py:453
-#: ../src/DataViews/RelationView.py:783
-#: ../src/DataViews/RelationView.py:817
+#: ../src/DataViews/PedigreeView.py:1572
+#: ../src/DataViews/RelationView.py:454
+#: ../src/DataViews/RelationView.py:784
+#: ../src/DataViews/RelationView.py:818
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:113
 #: ../src/plugins/webreport/NarrativeWeb.py:786
@@ -1748,7 +1748,7 @@ msgid "Select Parents"
 msgstr "Sélectionner les parents"
 
 #: ../src/gramps_main.py:118
-#: ../src/DataViews/PedigreeView.py:465
+#: ../src/DataViews/PedigreeView.py:466
 #: ../src/plugins/gramplet/DefaultGramplets.py:1999
 #: ../src/plugins/webreport/NarrativeWeb.py:1940
 msgid "Pedigree"
@@ -1767,7 +1767,7 @@ msgid "Places"
 msgstr "Lieux"
 
 #: ../src/gramps_main.py:121
-#: ../src/DataViews/RelationView.py:116
+#: ../src/DataViews/RelationView.py:117
 msgid "Relationships"
 msgstr "Relations"
 
@@ -2161,7 +2161,7 @@ msgid "Quick View"
 msgstr "Rapport express"
 
 #: ../src/Relationship.py:792
-#: ../src/DataViews/PedigreeView.py:1270
+#: ../src/DataViews/PedigreeView.py:1271
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
@@ -2290,7 +2290,7 @@ msgstr "le partenaire"
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:164
 #: ../src/DataViews/FamilyList.py:63
-#: ../src/DataViews/RelationView.py:818
+#: ../src/DataViews/RelationView.py:819
 #: ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/import/ImportCsv.py:210
 #: ../src/plugins/quickview/all_relations.py:300
@@ -2310,7 +2310,7 @@ msgstr "Père"
 #: ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:166
 #: ../src/DataViews/FamilyList.py:64
-#: ../src/DataViews/RelationView.py:819
+#: ../src/DataViews/RelationView.py:820
 #: ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/import/ImportCsv.py:206
 #: ../src/plugins/quickview/all_relations.py:297
@@ -2328,7 +2328,7 @@ msgstr "Mère"
 #: ../src/Reorder.py:32
 #: ../src/Merge/_MergePerson.py:180
 #: ../src/DataViews/PersonView.py:74
-#: ../src/DataViews/RelationView.py:1287
+#: ../src/DataViews/RelationView.py:1286
 #: ../src/Selectors/_SelectPerson.py:56
 #: ../src/plugins/textreport/FamilyGroup.py:478
 #: ../src/plugins/tool/RelCalc.py:63
@@ -2581,7 +2581,7 @@ msgstr "Lien d'individu"
 #: ../src/ScratchPad.py:743
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:137
-#: ../src/DataViews/RelationView.py:558
+#: ../src/DataViews/RelationView.py:559
 #: ../src/plugins/gramplet/DefaultGramplets.py:1220
 #: ../src/plugins/gramplet/DefaultGramplets.py:1247
 #: ../src/plugins/quickview/all_relations.py:270
@@ -3050,7 +3050,7 @@ msgstr "féminin"
 #: ../src/Utils.py:84
 #: ../src/Utils.py:177
 #: ../src/Merge/_MergePerson.py:63
-#: ../src/DataViews/RelationView.py:596
+#: ../src/DataViews/RelationView.py:597
 #: ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:238
 #: ../src/Mime/_GnomeMime.py:67
@@ -3472,7 +3472,7 @@ msgid "Unknown father"
 msgstr "Père inconnu"
 
 #: ../src/Simple/_SimpleTable.py:210
-#: ../src/DataViews/RelationView.py:913
+#: ../src/DataViews/RelationView.py:914
 #: ../src/plugins/quickview/all_relations.py:282
 #: ../src/gen/lib/date.py:320
 #: ../src/gen/lib/date.py:413
@@ -3630,8 +3630,8 @@ msgid "Gender"
 msgstr "Genre"
 
 #: ../src/Merge/_MergePerson.py:140
-#: ../src/DataViews/RelationView.py:569
-#: ../src/DataViews/RelationView.py:594
+#: ../src/DataViews/RelationView.py:570
+#: ../src/DataViews/RelationView.py:595
 #: ../src/plugins/gramplet/DefaultGramplets.py:1221
 #: ../src/plugins/gramplet/DefaultGramplets.py:1248
 #: ../src/plugins/textreport/FamilyGroup.py:442
@@ -3659,13 +3659,13 @@ msgstr "Aucun parent"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:170
-#: ../src/DataViews/PedigreeView.py:1457
+#: ../src/DataViews/PedigreeView.py:1458
 #: ../src/plugins/textreport/KinshipReport.py:106
 msgid "Spouses"
 msgstr "Conjoints"
 
 #: ../src/Merge/_MergePerson.py:186
-#: ../src/DataViews/RelationView.py:1201
+#: ../src/DataViews/RelationView.py:1202
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:214
 #: ../src/plugins/textreport/FamilyGroup.py:341
@@ -3918,52 +3918,52 @@ msgstr "Sélectionner les colonnes note"
 #. Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/DataViews/PedigreeView.py:72
+#: ../src/DataViews/PedigreeView.py:73
 #: ../src/plugins/drawreport/AncestorTree.py:52
 #: ../src/plugins/drawreport/DescendTree.py:53
 msgid "short for born|b."
 msgstr "n."
 
 # trunk
-#: ../src/DataViews/PedigreeView.py:73
+#: ../src/DataViews/PedigreeView.py:74
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:55
 msgid "short for died|d."
 msgstr "d."
 
 # trunk
-#: ../src/DataViews/PedigreeView.py:74
+#: ../src/DataViews/PedigreeView.py:75
 msgid "short for baptized|bap."
 msgstr "bap."
 
 # trunk
-#: ../src/DataViews/PedigreeView.py:75
+#: ../src/DataViews/PedigreeView.py:76
 msgid "short for chistianized|chr."
 msgstr "bap."
 
 # trunk
-#: ../src/DataViews/PedigreeView.py:76
+#: ../src/DataViews/PedigreeView.py:77
 msgid "short for buried|bur."
 msgstr "inh."
 
 # trunk
-#: ../src/DataViews/PedigreeView.py:77
+#: ../src/DataViews/PedigreeView.py:78
 msgid "short for cremated|crem."
 msgstr "crem."
 
-#: ../src/DataViews/PedigreeView.py:980
+#: ../src/DataViews/PedigreeView.py:981
 msgid "Jump to child..."
 msgstr "Aller à l'enfant..."
 
-#: ../src/DataViews/PedigreeView.py:989
+#: ../src/DataViews/PedigreeView.py:990
 msgid "Jump to father"
 msgstr "Aller au père"
 
-#: ../src/DataViews/PedigreeView.py:998
+#: ../src/DataViews/PedigreeView.py:999
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
-#: ../src/DataViews/PedigreeView.py:1271
+#: ../src/DataViews/PedigreeView.py:1272
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
 
@@ -3972,8 +3972,8 @@ msgstr "Un individu est défini comme son propre ascendant."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/DataViews/PedigreeView.py:1314
-#: ../src/DataViews/PedigreeView.py:1323
+#: ../src/DataViews/PedigreeView.py:1315
+#: ../src/DataViews/PedigreeView.py:1324
 #: ../src/plugins/webreport/NarrativeWeb.py:424
 #: ../src/plugins/webreport/NarrativeWeb.py:1495
 #: ../src/plugins/webreport/NarrativeWeb.py:1497
@@ -3981,55 +3981,58 @@ msgstr "Un individu est défini comme son propre ascendant."
 msgid "Home"
 msgstr "Souche"
 
-#: ../src/DataViews/PedigreeView.py:1337
+#: ../src/DataViews/PedigreeView.py:1338
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/DataViews/PedigreeView.py:1346
+#: ../src/DataViews/PedigreeView.py:1347
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
-#: ../src/DataViews/PedigreeView.py:1355
+#: ../src/DataViews/PedigreeView.py:1356
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/DataViews/PedigreeView.py:1362
+#: ../src/DataViews/PedigreeView.py:1363
 msgid "Version A"
 msgstr "Version A"
 
-#: ../src/DataViews/PedigreeView.py:1369
+#: ../src/DataViews/PedigreeView.py:1370
 msgid "Version B"
 msgstr "Version B"
 
-#: ../src/DataViews/PedigreeView.py:1381
+#: ../src/DataViews/PedigreeView.py:1382
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/DataViews/PedigreeView.py:1388
+#: ../src/DataViews/PedigreeView.py:1389
 msgid "Automatic"
 msgstr "Automatique"
 
-#: ../src/DataViews/PedigreeView.py:1396
+# ngettext
+#: ../src/DataViews/PedigreeView.py:1397
 #, python-format
-msgid "%d generations"
-msgstr "%d générations"
+msgid "1 generation"
+msgid_plural "%d generations"
+msgstr[0] "1 génération"
+msgstr[1] "%d générations"
 
-#: ../src/DataViews/PedigreeView.py:1409
-#: ../src/DataViews/PedigreeView.py:1429
+#: ../src/DataViews/PedigreeView.py:1410
+#: ../src/DataViews/PedigreeView.py:1430
 msgid "People Menu"
 msgstr "Menu Individus"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/PedigreeView.py:1491
-#: ../src/DataViews/RelationView.py:833
+#: ../src/DataViews/PedigreeView.py:1492
+#: ../src/DataViews/RelationView.py:834
 #: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2282
 msgid "Siblings"
 msgstr "Frères et sœurs"
 
 #. Go over children and build their menu
-#: ../src/DataViews/PedigreeView.py:1534
-#: ../src/DataViews/RelationView.py:1302
+#: ../src/DataViews/PedigreeView.py:1535
+#: ../src/DataViews/RelationView.py:1301
 #: ../src/plugins/textreport/FamilyGroup.py:543
 #: ../src/plugins/textreport/IndivComplete.py:332
 #: ../src/plugins/webreport/NarrativeWeb.py:2437
@@ -4037,11 +4040,11 @@ msgid "Children"
 msgstr "Enfants"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/PedigreeView.py:1608
+#: ../src/DataViews/PedigreeView.py:1609
 msgid "Related"
 msgstr "en relation avec"
 
-#: ../src/DataViews/PedigreeView.py:1659
+#: ../src/DataViews/PedigreeView.py:1660
 msgid "Family Menu"
 msgstr "Menu Famille"
 
@@ -4264,23 +4267,23 @@ msgstr "Impossible de fusionner les lieux."
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
-#: ../src/DataViews/RelationView.py:324
+#: ../src/DataViews/RelationView.py:325
 msgid "_Reorder"
 msgstr "_Réorganiser"
 
-#: ../src/DataViews/RelationView.py:325
+#: ../src/DataViews/RelationView.py:326
 msgid "Change order of parents and families"
 msgstr "Changer l'ordre des parents et familles"
 
-#: ../src/DataViews/RelationView.py:330
+#: ../src/DataViews/RelationView.py:331
 msgid "Edit..."
 msgstr "Éditer..."
 
-#: ../src/DataViews/RelationView.py:331
+#: ../src/DataViews/RelationView.py:332
 msgid "Edit the active person"
 msgstr "Éditer l'individu actif"
 
-#: ../src/DataViews/RelationView.py:332
+#: ../src/DataViews/RelationView.py:333
 #: ../src/plugins/quickview/all_relations.py:286
 #: ../src/plugins/webreport/NarrativeWeb.py:783
 #: ../src/plugins/webreport/NarrativeWeb.py:931
@@ -4289,207 +4292,205 @@ msgstr "Éditer l'individu actif"
 msgid "Partner"
 msgstr "Conjoint"
 
-#: ../src/DataViews/RelationView.py:333
-#: ../src/DataViews/RelationView.py:335
-#: ../src/DataViews/RelationView.py:736
+#: ../src/DataViews/RelationView.py:334
+#: ../src/DataViews/RelationView.py:336
+#: ../src/DataViews/RelationView.py:737
 msgid "Add a new family with person as parent"
 msgstr "Ajouter une nouvelle famille dont l'individu est le parent"
 
-#: ../src/DataViews/RelationView.py:334
+#: ../src/DataViews/RelationView.py:335
 msgid "Add Partner..."
 msgstr "Ajouter un conjoint..."
 
-#: ../src/DataViews/RelationView.py:336
+#: ../src/DataViews/RelationView.py:337
 #: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/gramplet/DefaultGramplets.py:1256
 #: ../src/plugins/tool/CalculateEstimatedDates.py:87
 msgid "Add"
 msgstr "Ajouter"
 
-#: ../src/DataViews/RelationView.py:337
-#: ../src/DataViews/RelationView.py:339
-#: ../src/DataViews/RelationView.py:730
+#: ../src/DataViews/RelationView.py:338
+#: ../src/DataViews/RelationView.py:340
+#: ../src/DataViews/RelationView.py:731
 msgid "Add a new set of parents"
 msgstr "Ajouter un nouveau couple de parents"
 
-#: ../src/DataViews/RelationView.py:338
+#: ../src/DataViews/RelationView.py:339
 msgid "Add New Parents..."
 msgstr "Ajouter des nouveaux parents..."
 
-#: ../src/DataViews/RelationView.py:340
+#: ../src/DataViews/RelationView.py:341
 #: ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:118
 #: ../src/DisplayTabs/_GalleryTab.py:110
 msgid "Share"
 msgstr "Partager"
 
-#: ../src/DataViews/RelationView.py:341
-#: ../src/DataViews/RelationView.py:345
-#: ../src/DataViews/RelationView.py:731
+#: ../src/DataViews/RelationView.py:342
+#: ../src/DataViews/RelationView.py:346
+#: ../src/DataViews/RelationView.py:732
 msgid "Add person as child to an existing family"
 msgstr "Définir l'individu comme enfant d'une famille existante"
 
-#: ../src/DataViews/RelationView.py:344
+#: ../src/DataViews/RelationView.py:345
 msgid "Add Existing Parents..."
 msgstr "Ajouter des parents existants..."
 
-#: ../src/DataViews/RelationView.py:352
+#: ../src/DataViews/RelationView.py:353
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: ../src/DataViews/RelationView.py:355
+#: ../src/DataViews/RelationView.py:356
 msgid "Show Siblings"
 msgstr "Afficher les frères et sœurs"
 
-#: ../src/DataViews/RelationView.py:530
-#: ../src/DataViews/RelationView.py:925
-#: ../src/DataViews/RelationView.py:978
-#: ../src/DataViews/RelationView.py:1065
-#: ../src/DataViews/RelationView.py:1168
+#: ../src/DataViews/RelationView.py:531
+#: ../src/DataViews/RelationView.py:926
+#: ../src/DataViews/RelationView.py:979
+#: ../src/DataViews/RelationView.py:1066
+#: ../src/DataViews/RelationView.py:1169
 #: ../src/Editors/_EditFamily.py:836
 #, python-format
 msgid "Edit %s"
 msgstr "Éditer %s"
 
 # trunk
-#: ../src/DataViews/RelationView.py:589
+#: ../src/DataViews/RelationView.py:590
 msgid "Alive"
 msgstr "En vie"
 
-#: ../src/DataViews/RelationView.py:647
-#: ../src/DataViews/RelationView.py:674
+#: ../src/DataViews/RelationView.py:648
+#: ../src/DataViews/RelationView.py:675
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s à %(place)s"
 
-#: ../src/DataViews/RelationView.py:732
+#: ../src/DataViews/RelationView.py:733
 msgid "Edit parents"
 msgstr "Éditer les parents"
 
-#: ../src/DataViews/RelationView.py:733
+#: ../src/DataViews/RelationView.py:734
 msgid "Reorder parents"
 msgstr "Réorganiser les parents"
 
 # enlever la référence aux parents
-#: ../src/DataViews/RelationView.py:734
+#: ../src/DataViews/RelationView.py:735
 msgid "Remove person as child of these parents"
 msgstr "Enlever l'individu comme enfant de ces parents"
 
-#: ../src/DataViews/RelationView.py:738
+#: ../src/DataViews/RelationView.py:739
 msgid "Edit family"
 msgstr "Éditer la famille"
 
-#: ../src/DataViews/RelationView.py:739
+#: ../src/DataViews/RelationView.py:740
 msgid "Reorder families"
 msgstr "Réorganiser les familles"
 
 # enlever la référence au père
-#: ../src/DataViews/RelationView.py:740
+#: ../src/DataViews/RelationView.py:741
 msgid "Remove person as parent in this family"
 msgstr "Enlever l'individu comme parent dans cette famille"
 
-#: ../src/DataViews/RelationView.py:793
-#: ../src/DataViews/RelationView.py:849
+# ngettext
+#: ../src/DataViews/RelationView.py:794
+#: ../src/DataViews/RelationView.py:803
+#: ../src/DataViews/RelationView.py:850
+#: ../src/DataViews/RelationView.py:859
 #, python-format
-msgid " (%d siblings)"
-msgstr "(%d frères et sœurs)"
+msgid " (1 sibling)"
+msgid_plural " (%d siblings)"
+msgstr[0] "(1 frère ou sœur)"
+msgstr[1] "(%d frères et sœurs)"
 
-#: ../src/DataViews/RelationView.py:798
-#: ../src/DataViews/RelationView.py:854
+#: ../src/DataViews/RelationView.py:799
+#: ../src/DataViews/RelationView.py:855
 msgid " (1 brother)"
 msgstr "(1 frère)"
 
-#: ../src/DataViews/RelationView.py:800
-#: ../src/DataViews/RelationView.py:856
+#: ../src/DataViews/RelationView.py:801
+#: ../src/DataViews/RelationView.py:857
 msgid " (1 sister)"
 msgstr "(1 sœur)"
 
-#: ../src/DataViews/RelationView.py:802
-#: ../src/DataViews/RelationView.py:858
-msgid " (1 sibling)"
-msgstr "(1 frère ou sœur)"
-
-#: ../src/DataViews/RelationView.py:804
-#: ../src/DataViews/RelationView.py:860
+#: ../src/DataViews/RelationView.py:805
+#: ../src/DataViews/RelationView.py:861
 msgid " (only child)"
 msgstr "(seulement l'enfant)"
 
-#: ../src/DataViews/RelationView.py:876
-#: ../src/DataViews/RelationView.py:1337
+#: ../src/DataViews/RelationView.py:877
+#: ../src/DataViews/RelationView.py:1334
 msgid "Add new child to family"
 msgstr "Ajouter un nouvel enfant à la famille"
 
-#: ../src/DataViews/RelationView.py:881
-#: ../src/DataViews/RelationView.py:1342
+#: ../src/DataViews/RelationView.py:882
+#: ../src/DataViews/RelationView.py:1339
 msgid "Add existing child to family"
 msgstr "Ajouter un enfant existant à la famille"
 
-#: ../src/DataViews/RelationView.py:1120
+#: ../src/DataViews/RelationView.py:1121
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "n. %(birthdate)s, d. %(deathdate)s"
 
 # trunk
-#: ../src/DataViews/RelationView.py:1125
+#: ../src/DataViews/RelationView.py:1126
 #, python-format
 msgid "short for born|b. %s"
 msgstr "b. %s"
 
 # trunk
-#: ../src/DataViews/RelationView.py:1127
+#: ../src/DataViews/RelationView.py:1128
 #, python-format
 msgid "short for dead|d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/RelationView.py:1188
+#: ../src/DataViews/RelationView.py:1189
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Type de relation : %s"
 
-#: ../src/DataViews/RelationView.py:1228
+#: ../src/DataViews/RelationView.py:1229
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s : %(date)s à %(place)s"
 
-#: ../src/DataViews/RelationView.py:1232
+#: ../src/DataViews/RelationView.py:1233
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s : %(date)s"
 
-#: ../src/DataViews/RelationView.py:1236
+#: ../src/DataViews/RelationView.py:1237
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s : %(place)s"
 
-#: ../src/DataViews/RelationView.py:1247
+#: ../src/DataViews/RelationView.py:1248
 msgid "Broken family detected"
 msgstr "Famille brisée détectée"
 
-#: ../src/DataViews/RelationView.py:1248
+#: ../src/DataViews/RelationView.py:1249
 msgid "Please run the Check and Repair Database tool"
 msgstr "Veuillez lancer l'outil Vérifier et réparer la base de données"
 
-#: ../src/DataViews/RelationView.py:1269
-#: ../src/DataViews/RelationView.py:1317
+# ngettext
+#: ../src/DataViews/RelationView.py:1270
+#: ../src/DataViews/RelationView.py:1316
 #, python-format
-msgid " (%d children)"
-msgstr " (%d enfants)"
-
-#: ../src/DataViews/RelationView.py:1271
-#: ../src/DataViews/RelationView.py:1319
 msgid " (1 child)"
-msgstr " (1 enfant)"
+msgid_plural " (%d children)"
+msgstr[0] " (1 enfant)"
+msgstr[1] " (%d enfants)"
 
-#: ../src/DataViews/RelationView.py:1273
-#: ../src/DataViews/RelationView.py:1321
+#: ../src/DataViews/RelationView.py:1272
+#: ../src/DataViews/RelationView.py:1318
 msgid " (no children)"
 msgstr " (pas d'enfant)"
 
-#: ../src/DataViews/RelationView.py:1458
+#: ../src/DataViews/RelationView.py:1455
 msgid "Add Child to Family"
 msgstr "Ajouter un enfant à la famille"
 
-#: ../src/DataViews/RelationView.py:1471
+#: ../src/DataViews/RelationView.py:1468
 #: ../src/Editors/_EditFamily.py:246
 #: ../src/Editors/_EditFamily.py:259
 msgid "Select Child"
@@ -6232,8 +6233,8 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:292
-#: ../src/plugins/tool/ChangeTypes.py:208
-#: ../src/plugins/tool/Check.py:1520
+#: ../src/plugins/tool/ChangeTypes.py:205
+#: ../src/plugins/tool/Check.py:1497
 #: ../src/plugins/tool/CmdRef.py:242
 #: ../src/plugins/tool/Desbrowser.py:170
 #: ../src/plugins/tool/Eval.py:132
@@ -7726,12 +7727,12 @@ msgstr "Échec de la préparation de l'exportation sur CD"
 
 #: ../src/plugins/export/ExportCd.py:236
 #: ../src/plugins/export/ExportPkg.py:174
-#: ../src/plugins/tool/Check.py:535
+#: ../src/plugins/tool/Check.py:536
 msgid "Select file"
 msgstr "Sélectionner un fichier"
 
 #: ../src/plugins/export/ExportCd.py:258
-#: ../src/plugins/tool/Check.py:554
+#: ../src/plugins/tool/Check.py:555
 msgid "Media object could not be found"
 msgstr "Le media est introuvable"
 
@@ -8251,7 +8252,7 @@ msgstr "Cliquez deux fois pour afficher les individus de la génération"
 #: ../src/plugins/gramplet/DefaultGramplets.py:622
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " contient 1 individu sur 1 (complet à 100.00%)\n"
+msgstr " contient 1 individu sur 1 (100.00% complet)\n"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:625
 #: ../src/plugins/textreport/AncestorReport.py:186
@@ -8262,11 +8263,10 @@ msgstr " contient 1 individu sur 1 (complet à 100.00%)\n"
 msgid "Generation %d"
 msgstr "Génération %d"
 
-# contient ?
 #: ../src/plugins/gramplet/DefaultGramplets.py:627
 #, python-format
 msgid " has %d of %d individuals (%.2f%% complete)\n"
-msgstr " contient %d individus sur %d (%.2f%% complet)\n"
+msgstr " contient %d individus sur %d (%.2f%%)\n"
 
 #: ../src/plugins/gramplet/DefaultGramplets.py:629
 msgid "All generations"
@@ -9495,12 +9495,15 @@ msgstr "Importation de CSV"
 msgid "Reading data..."
 msgstr "Lecture des données..."
 
+# ngettext
 #: ../src/plugins/import/ImportCsv.py:694
 #: ../src/plugins/import/ImportGeneWeb.py:180
 #: ../src/plugins/import/ImportVCard.py:144
 #, python-format
-msgid "Import Complete: %d seconds"
-msgstr "Importation terminée : %d secondes"
+msgid "Import Complete: 1 second"
+msgid_plural "Import Complete: %d seconds"
+msgstr[0] "Importation terminée : %d seconde"
+msgstr[1] "Importation terminée : %d secondes"
 
 #: ../src/plugins/import/ImportCsv.py:695
 msgid "CSV import"
@@ -9969,9 +9972,9 @@ msgstr "Mediamanquant"
 msgid "Size in bytes"
 msgstr "Taille en bytes"
 
-# pas de chaîne séparée pour 1 enregistrement
+# ngettext
 #: ../src/plugins/quickview/FilterByName.py:219
-#, python-format
+#, fuzzy, python-format
 msgid "Filter matched %d records."
 msgstr "Le filtre a trouvé %d enregistrement(s). "
 
@@ -10227,9 +10230,10 @@ msgstr "Correspond aux individus sans prénom"
 msgid "People with the surname '%s'"
 msgstr "Individus ayant le même nom que '%s'"
 
+# ngettext
 #: ../src/plugins/quickview/SameSurnames.py:121
 #: ../src/plugins/quickview/SameSurnames.py:157
-#, python-format
+#, fuzzy, python-format
 msgid "There are %d people with a matching name, or alternate name.\n"
 msgstr "Il y a %d individus portant ce nom, ou ce nom alternatif.\n"
 
@@ -11583,76 +11587,71 @@ msgstr "Réparer la casse des noms de famille"
 msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Recherche dans toute la base pour tenter de réparer la casse des noms."
 
-#: ../src/plugins/tool/ChangeTypes.py:69
+#: ../src/plugins/tool/ChangeTypes.py:70
 msgid "Change Event Types"
 msgstr "Échanger des types d'événement"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/ChangeTypes.py:124
+#: ../src/plugins/tool/ChangeTypes.py:125
 msgid "Analyzing Events"
 msgstr "Analyse des événements"
 
-#: ../src/plugins/tool/ChangeTypes.py:137
-#: ../src/plugins/tool/ChangeTypes.py:163
+#: ../src/plugins/tool/ChangeTypes.py:138
+#: ../src/plugins/tool/ChangeTypes.py:160
 msgid "Change types"
 msgstr "Changer les types"
 
+# ngettext
 #: ../src/plugins/tool/ChangeTypes.py:142
-msgid "No event record was modified."
-msgstr "Aucun événement n'a été modifié."
-
-#: ../src/plugins/tool/ChangeTypes.py:144
-msgid "1 event record was modified."
-msgstr "1 enregistrement d'événement a été modifié."
-
-#: ../src/plugins/tool/ChangeTypes.py:146
 #, python-format
-msgid "%d event records were modified."
-msgstr "%d événements ont été modifiés."
+msgid "1 event record was modified."
+msgid_plural "%d event records were modified."
+msgstr[0] "1 événement a été modifié."
+msgstr[1] "%d événements ont été modifiés."
 
-#: ../src/plugins/tool/ChangeTypes.py:207
+#: ../src/plugins/tool/ChangeTypes.py:204
 msgid "Rename Event Types"
 msgstr "Renommer les types d'événement"
 
-#: ../src/plugins/tool/ChangeTypes.py:211
+#: ../src/plugins/tool/ChangeTypes.py:208
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr "Permet de renommer un certain événement par un autre."
 
-#: ../src/plugins/tool/Check.py:197
+#: ../src/plugins/tool/Check.py:198
 msgid "Check Integrity"
 msgstr "Contrôle d'intégrité"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:242
+#: ../src/plugins/tool/Check.py:243
 msgid "Checking Database"
 msgstr "Vérification de la base de données"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:259
+#: ../src/plugins/tool/Check.py:260
 msgid "Looking for invalid name format references"
 msgstr "Recherche de références à un format de nom invalide"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:307
+#: ../src/plugins/tool/Check.py:308
 msgid "Looking for duplicate spouses"
 msgstr "Recherche de doublons de conjoint"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:325
+#: ../src/plugins/tool/Check.py:326
 msgid "Looking for character encoding errors"
 msgstr "Recherche les erreurs d'encodage de caractères"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:352
+#: ../src/plugins/tool/Check.py:353
 msgid "Looking for broken family links"
 msgstr "Recherche de liens familiaux brisés"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:475
+#: ../src/plugins/tool/Check.py:476
 msgid "Looking for unused objects"
 msgstr "Recherche d'objets non référencés"
 
-#: ../src/plugins/tool/Check.py:555
+#: ../src/plugins/tool/Check.py:556
 #, python-format
 msgid ""
 "The file:\n"
@@ -11664,289 +11663,274 @@ msgstr ""
 "est référencé dans la base mais n'existe plus. Le fichier a sans doute été effacé ou déplacé. Vous pouvez choisir de retirer la référence de la base, de garder la référence à un fichier absent ou de sélectionner un nouveau fichier."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:594
+#: ../src/plugins/tool/Check.py:595
 msgid "Looking for empty people records"
 msgstr "Recherche d'individus vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:602
+#: ../src/plugins/tool/Check.py:603
 msgid "Looking for empty family records"
 msgstr "Recherche de familles vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:610
+#: ../src/plugins/tool/Check.py:611
 msgid "Looking for empty event records"
 msgstr "Recherche de problèmes dans les événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:618
+#: ../src/plugins/tool/Check.py:619
 msgid "Looking for empty source records"
 msgstr "Recherche de problèmes dans les sources"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:626
+#: ../src/plugins/tool/Check.py:627
 msgid "Looking for empty place records"
 msgstr "Recherche de problèmes dans les lieux"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:633
+#: ../src/plugins/tool/Check.py:634
 msgid "Looking for empty media records"
 msgstr "Recherche de problèmes dans les objets media"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:642
+#: ../src/plugins/tool/Check.py:643
 msgid "Looking for empty repository records"
 msgstr "Recherche de problèmes dans les dépôts"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:650
+#: ../src/plugins/tool/Check.py:651
 msgid "Looking for empty note records"
 msgstr "Recherche de notes vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:692
+#: ../src/plugins/tool/Check.py:693
 msgid "Looking for empty families"
 msgstr "Recherche de familles vides"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:719
+#: ../src/plugins/tool/Check.py:720
 msgid "Looking for broken parent relationships"
 msgstr "Recherche de relations parentales brisées"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:751
 msgid "Looking for event problems"
 msgstr "Recherche de problèmes pour les événements"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:833
+#: ../src/plugins/tool/Check.py:834
 msgid "Looking for person reference problems"
 msgstr "Recherche de problèmes dans la référence de l'individu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:849
+#: ../src/plugins/tool/Check.py:850
 msgid "Looking for repository reference problems"
 msgstr "Recherche de problèmes dans la référence de dépôt"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:866
+#: ../src/plugins/tool/Check.py:867
 msgid "Looking for place reference problems"
 msgstr "Recherche de problèmes dans la référence du lieu"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:913
+#: ../src/plugins/tool/Check.py:914
 msgid "Looking for source reference problems"
 msgstr "Recherche de problèmes dans la référence de la source"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1036
+#: ../src/plugins/tool/Check.py:1037
 msgid "Looking for media object reference problems"
 msgstr "Recherche de problèmes dans la référence de l'objet media"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/Check.py:1128
+#: ../src/plugins/tool/Check.py:1129
 msgid "Looking for note reference problems"
 msgstr "Recherche de problèmes dans la référence de la note"
 
-#: ../src/plugins/tool/Check.py:1293
+#: ../src/plugins/tool/Check.py:1294
 msgid "No errors were found"
 msgstr "Aucune erreur trouvée"
 
 # avec succès
-#: ../src/plugins/tool/Check.py:1294
+#: ../src/plugins/tool/Check.py:1295
 msgid "The database has passed internal checks"
 msgstr "Test de la base de données terminé"
 
+# ngettext
 #: ../src/plugins/tool/Check.py:1300
-msgid "1 broken child/family link was fixed\n"
-msgstr "1 lien enfant/famille a été réparé\n"
-
-#: ../src/plugins/tool/Check.py:1302
 #, python-format
-msgid "%d broken child/family links were found\n"
-msgstr "%d liens brisés enfant/famille ont été trouvés\n"
+msgid "1 broken child/family link was fixed\n"
+msgid_plural "%d broken child-family links were found\n"
+msgstr[0] "1 lien enfant/famille a été réparé\n"
+msgstr[1] "%d liens enfant/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1308
+#: ../src/plugins/tool/Check.py:1307
 msgid "Non existing child"
 msgstr "Enfant non existant"
 
-#: ../src/plugins/tool/Check.py:1315
+#: ../src/plugins/tool/Check.py:1314
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s a été supprimé(e) de la famille de %s\n"
 
-#: ../src/plugins/tool/Check.py:1319
-msgid "1 broken spouse/family link was fixed\n"
-msgstr "1 lien conjoint/famille a été réparé\n"
-
-#: ../src/plugins/tool/Check.py:1321
+# ngettext
+#: ../src/plugins/tool/Check.py:1317
 #, python-format
-msgid "%d broken spouse/family links were found\n"
-msgstr "%d liens brisés conjoint/famille ont été trouvés\n"
+msgid "1 broken spouse/family link was fixed\n"
+msgid_plural "%d broken spouse/family links were found\n"
+msgstr[0] "1 lien conjoint/famille a été réparé\n"
+msgstr[1] "%d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1327
-#: ../src/plugins/tool/Check.py:1346
+#: ../src/plugins/tool/Check.py:1324
+#: ../src/plugins/tool/Check.py:1341
 msgid "Non existing person"
 msgstr "Individu non existant"
 
-#: ../src/plugins/tool/Check.py:1334
-#: ../src/plugins/tool/Check.py:1353
+#: ../src/plugins/tool/Check.py:1331
+#: ../src/plugins/tool/Check.py:1348
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s a été restitué(e) dans la famille de %s\n"
 
-#: ../src/plugins/tool/Check.py:1338
-msgid "1 duplicate spouse/family link was found\n"
-msgstr "1 lien conjoint/famille a été réparé\n"
-
-#: ../src/plugins/tool/Check.py:1340
+# ngettext
+#: ../src/plugins/tool/Check.py:1334
 #, python-format
-msgid "%d duplicate spouse/family links were found\n"
-msgstr "%d liens conjoint/famille ont été trouvés\n"
+msgid "1 duplicate spouse/family link was found\n"
+msgid_plural "%d duplicate spouse/family links were found\n"
+msgstr[0] "1 lien conjoint/famille a été réparé\n"
+msgstr[1] "%d liens conjoint/famille ont été réparés\n"
 
-#: ../src/plugins/tool/Check.py:1356
+#: ../src/plugins/tool/Check.py:1351
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 famille sans parent ni enfant a été trouvée et effacée.\n"
 
-#: ../src/plugins/tool/Check.py:1359
+#: ../src/plugins/tool/Check.py:1354
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
 msgstr "%d familles sans parent ni enfant ont été trouvées et effacées.\n"
 
-#: ../src/plugins/tool/Check.py:1362
-msgid "1 corrupted family relationship fixed\n"
-msgstr "1 relation familiale corrompue a été corrigée\n"
-
-#: ../src/plugins/tool/Check.py:1364
+# ngettext
+#: ../src/plugins/tool/Check.py:1357
 #, python-format
-msgid "%d corrupted family relationship fixed\n"
-msgstr "%d relations familiales corrompues ont été corrigées\n"
+msgid "1 corrupted family relationship fixed\n"
+msgid_plural "%d corrupted family relationship fixed\n"
+msgstr[0] "1 relation familiale corrompue a été corrigée\n"
+msgstr[1] "%d relations familiales corrompues ont été corrigées\n"
 
-#: ../src/plugins/tool/Check.py:1367
+# ngettext
+#: ../src/plugins/tool/Check.py:1361
+#, python-format
 msgid "1 person was referenced but not found\n"
-msgstr "1 individu a été référencé, mais non trouvé\n"
+msgid_plural "%d persons were referenced, but not found\n"
+msgstr[0] "1 individu a été référencé, mais non trouvé\n"
+msgstr[1] "%d individus ont été référencés, mais non trouvés\n"
 
+# ngettext
+#: ../src/plugins/tool/Check.py:1365
+#, python-format
+msgid "1 repository was referenced but not found\n"
+msgid_plural "%d repositories were referenced, but not found\n"
+msgstr[0] "1 dépôt a été référencé, mais non trouvé\n"
+msgstr[1] "%d dépôts ont été référencés, mais non trouvés\n"
+
+# ngettext
 #: ../src/plugins/tool/Check.py:1369
 #, python-format
-msgid "%d persons were referenced, but not found\n"
-msgstr "%d individus ont été référencés, mais non trouvés\n"
-
-#: ../src/plugins/tool/Check.py:1372
-msgid "1 repository was referenced but not found\n"
-msgstr "1 dépôt a été référencé, mais non trouvé\n"
-
-#: ../src/plugins/tool/Check.py:1374
-#, python-format
-msgid "%d repositories were referenced, but not found\n"
-msgstr "%d dépôts ont été référencés, mais non trouvés\n"
-
-#: ../src/plugins/tool/Check.py:1377
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 objet media a été référencé, mais non trouvé\n"
+msgid_plural "%d media objects were referenced, but not found\n"
+msgstr[0] "1 objet media a été référencé, mais non trouvé\n"
+msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
 
-#: ../src/plugins/tool/Check.py:1379
-#: ../src/plugins/tool/Check.py:1424
+# ngettext
+#: ../src/plugins/tool/Check.py:1373
 #, python-format
-msgid "%d media objects were referenced, but not found\n"
-msgstr "%d objets media ont été référencés, mais non trouvés\n"
-
-#: ../src/plugins/tool/Check.py:1382
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Une référence à 1 media manquant a été conservée\n"
+msgid_plural "References to %d media objects were kept\n"
+msgstr[0] "Une référence à 1 media manquant a été conservée\n"
+msgstr[1] "Les références à %d media manquants ont été conservées\n"
 
-#: ../src/plugins/tool/Check.py:1384
+# ngettext
+#: ../src/plugins/tool/Check.py:1377
 #, python-format
-msgid "References to %d media objects were kept\n"
-msgstr "Les références à %d objets media ont été conservées\n"
-
-#: ../src/plugins/tool/Check.py:1387
 msgid "1 missing media object was replaced\n"
-msgstr "1 media manquant a été remplacé\n"
+msgid_plural "%d missing media objects were replaced\n"
+msgstr[0] "1 media manquant a été remplacé\n"
+msgstr[1] "%d media manquants ont été remplacés\n"
 
+# ngettext
+# supprimer de la base de données
+#: ../src/plugins/tool/Check.py:1381
+#, python-format
+msgid "1 missing media object was removed\n"
+msgid_plural "%d missing media objects were removed\n"
+msgstr[0] "1 media manquant a été supprimé\n"
+msgstr[1] "%d media manquants ont été supprimés\n"
+
+# ngettext
+#: ../src/plugins/tool/Check.py:1385
+#, python-format
+msgid "1 invalid event reference was removed\n"
+msgid_plural "%d invalid event references were removed\n"
+msgstr[0] "1 événement non référencé a été enlevé\n"
+msgstr[1] "%d événements non référencés ont été enlevés\n"
+
+# ngettext
 #: ../src/plugins/tool/Check.py:1389
 #, python-format
-msgid "%d missing media objects were replaced\n"
-msgstr "%d objets media manquants ont été remplacés\n"
-
-# supprimer de la base de données
-#: ../src/plugins/tool/Check.py:1392
-msgid "1 missing media object was removed\n"
-msgstr "1 media manquant a été supprimé\n"
-
-# supprimer de la base de données
-#: ../src/plugins/tool/Check.py:1394
-#, python-format
-msgid "%d missing media objects were removed\n"
-msgstr "%d objets media manquants ont été supprimés\n"
-
-#: ../src/plugins/tool/Check.py:1397
-msgid "1 invalid event reference was removed\n"
-msgstr "1 événement non référencé a été enlevé\n"
-
-#: ../src/plugins/tool/Check.py:1399
-#, python-format
-msgid "%d invalid event references were removed\n"
-msgstr "%d événements invalides ont été enlevés\n"
-
-#: ../src/plugins/tool/Check.py:1402
 msgid "1 invalid birth event name was fixed\n"
-msgstr "1 naissance invalide a été réparée\n"
+msgid_plural "%d invalid birth event names were fixed\n"
+msgstr[0] "1 naissance invalide a été réparée\n"
+msgstr[1] "%d naissances invalides ont été réparées\n"
 
-#: ../src/plugins/tool/Check.py:1404
+# ngettext
+#: ../src/plugins/tool/Check.py:1393
 #, python-format
-msgid "%d invalid birth event names were fixed\n"
-msgstr "%d noms d'événement de naissance invalides ont été réparés\n"
-
-#: ../src/plugins/tool/Check.py:1407
 msgid "1 invalid death event name was fixed\n"
-msgstr "1 décès invalide a été réparé\n"
+msgid_plural "%d invalid death event names were fixed\n"
+msgstr[0] "1 décès invalide a été réparé\n"
+msgstr[1] "%d décès invalides ont été réparés\n"
 
+# ngettext
+#: ../src/plugins/tool/Check.py:1397
+#, python-format
+msgid "1 place was referenced but not found\n"
+msgid_plural "%d places were referenced, but not found\n"
+msgstr[0] "1 lieu a été référencé, mais non trouvé\n"
+msgstr[1] "%d lieux ont été référencés, mais non trouvés\n"
+
+# ngettext
+#: ../src/plugins/tool/Check.py:1401
+#, python-format
+msgid "1 source was referenced but not found\n"
+msgid_plural "%d sources were referenced, but not found\n"
+msgstr[0] "1 source a été référencée, mais non trouvée\n"
+msgstr[1] "%d sources ont été référencées, mais non trouvées\n"
+
+# ngettext
+#: ../src/plugins/tool/Check.py:1405
+#, python-format
+msgid "1 media object was referenced but not found\n"
+msgid_plural "%d media objects were referenced but not found\n"
+msgstr[0] "1 objet media a été référencé, mais non trouvé\n"
+msgstr[1] "%d objets media ont été référencés, mais non trouvés\n"
+
+# ngettext
 #: ../src/plugins/tool/Check.py:1409
 #, python-format
-msgid "%d invalid death event names were fixed\n"
-msgstr "%d noms d'événement de décès invalides ont été réparés\n"
+msgid "1 note object was referenced but not found\n"
+msgid_plural "%d note objects were referenced but not found\n"
+msgstr[0] "1 note a été référencée, mais non trouvée\n"
+msgstr[1] "%d notes ont été référencées, mais non trouvées\n"
 
-#: ../src/plugins/tool/Check.py:1412
-msgid "1 place was referenced but not found\n"
-msgstr "1 lieu a été référencé, mais non trouvé\n"
-
-#: ../src/plugins/tool/Check.py:1414
+# ngettext
+#: ../src/plugins/tool/Check.py:1413
 #, python-format
-msgid "%d places were referenced, but not found\n"
-msgstr "%d lieux ont été référencés, mais non trouvés\n"
+msgid "1 invalid name format reference was removed\n"
+msgid_plural "%d invalid name format references were removed\n"
+msgstr[0] "1 référence à un format de nom invalide a été enlevée\n"
+msgstr[1] "%d références à un format de nom invalide ont été enlevées\n"
 
 #: ../src/plugins/tool/Check.py:1417
-msgid "1 source was referenced but not found\n"
-msgstr "1 source a été référencée, mais non trouvée\n"
-
-#: ../src/plugins/tool/Check.py:1419
-#, python-format
-msgid "%d sources were referenced, but not found\n"
-msgstr "%d sources ont été référencées, mais non trouvées\n"
-
-#: ../src/plugins/tool/Check.py:1422
-msgid "1 media object was referenced but not found\n"
-msgstr "1 objet media a été référencé, mais non trouvé\n"
-
-#: ../src/plugins/tool/Check.py:1428
-msgid "1 note object was referenced but not found\n"
-msgstr "1 note a été référencée, mais non trouvée\n"
-
-#: ../src/plugins/tool/Check.py:1430
-#, python-format
-msgid "%d note objects were referenced, but not found\n"
-msgstr "%d notes ont été référencées, mais non trouvées\n"
-
-#: ../src/plugins/tool/Check.py:1434
-msgid "1 invalid name format reference was removed\n"
-msgstr "1 référence à un format de nom invalide a été enlevée\n"
-
-#: ../src/plugins/tool/Check.py:1436
-#, python-format
-msgid "%d invalid name format references were removed\n"
-msgstr "%d références à un format de nom invalide ont été enlevées\n"
-
-#: ../src/plugins/tool/Check.py:1440
 #, python-format
 msgid ""
 "%d empty objects removed:\n"
@@ -11969,19 +11953,19 @@ msgstr ""
 "   %d dépôts\n"
 "   %d notes\n"
 
-#: ../src/plugins/tool/Check.py:1487
+#: ../src/plugins/tool/Check.py:1464
 msgid "Integrity Check Results"
 msgstr "Résultats de la vérification de l'intégrité"
 
-#: ../src/plugins/tool/Check.py:1492
+#: ../src/plugins/tool/Check.py:1469
 msgid "Check and Repair"
 msgstr "Vérifier et réparer"
 
-#: ../src/plugins/tool/Check.py:1519
+#: ../src/plugins/tool/Check.py:1496
 msgid "Check and Repair Database"
 msgstr "Vérifier et réparer la base de données"
 
-#: ../src/plugins/tool/Check.py:1523
+#: ../src/plugins/tool/Check.py:1500
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
@@ -12492,7 +12476,7 @@ msgid "Database Owner Editor"
 msgstr "Éditeur du propriétaire de la base de données"
 
 #: ../src/plugins/tool/OwnerEditor.py:166
-#: ../src/PluginUtils/_PluginWindows.py:483
+#: ../src/PluginUtils/_PluginWindows.py:484
 msgid "Main window"
 msgstr "Fenêtre principale"
 
@@ -14092,33 +14076,33 @@ msgid "Run selected tool"
 msgstr "Exécuter l'outil sélectionné"
 
 #: ../src/PluginUtils/_PluginWindows.py:61
-#: ../src/PluginUtils/_PluginWindows.py:157
+#: ../src/PluginUtils/_PluginWindows.py:158
 msgid "Plugin Status"
 msgstr "État du greffon"
 
-#: ../src/PluginUtils/_PluginWindows.py:86
+#: ../src/PluginUtils/_PluginWindows.py:85
 msgid "File"
 msgstr "Fichier"
 
-#: ../src/PluginUtils/_PluginWindows.py:89
+#: ../src/PluginUtils/_PluginWindows.py:88
 msgid "Message"
 msgstr "Message"
 
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
-#: ../src/PluginUtils/_PluginWindows.py:98
+#: ../src/PluginUtils/_PluginWindows.py:99
 msgid "Reload"
 msgstr "Recharger"
 
-#: ../src/PluginUtils/_PluginWindows.py:114
+#: ../src/PluginUtils/_PluginWindows.py:115
 msgid "Unavailable"
 msgstr "Non-disponible"
 
-#: ../src/PluginUtils/_PluginWindows.py:118
+#: ../src/PluginUtils/_PluginWindows.py:119
 msgid "Fail"
 msgstr "Échec"
 
-#: ../src/PluginUtils/_PluginWindows.py:126
+#: ../src/PluginUtils/_PluginWindows.py:127
 msgid "OK"
 msgstr "OK"
 
@@ -18770,6 +18754,7 @@ msgstr "plus d'environ"
 msgid "less than about"
 msgstr "moins d'environ"
 
+# ngettext
 # trunk
 #: ../src/gen/lib/date.py:487
 #, python-format
@@ -18778,6 +18763,7 @@ msgid_plural "%d years"
 msgstr[0] "%d an"
 msgstr[1] "%d ans"
 
+# ngettext
 # trunk
 #: ../src/gen/lib/date.py:494
 #, python-format
@@ -18786,6 +18772,7 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
+# ngettext
 # trunk
 #: ../src/gen/lib/date.py:501
 #, python-format
@@ -23313,8 +23300,20 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
-#~ msgid "Calendar Report"
-#~ msgstr "Calendrier"
-#~ msgid "Don't include holidays"
-#~ msgstr "Ne pas inclure les jours fériés"
+#~ msgid "%d broken spouse/family links were found\n"
+#~ msgstr "%d liens brisés conjoint/famille ont été trouvés\n"
+#~ msgid "%d duplicate spouse/family links were found\n"
+#~ msgstr "%d liens conjoint/famille ont été trouvés\n"
+#~ msgid "%d corrupted family relationship fixed\n"
+#~ msgstr "%d relations familiales corrompues ont été corrigées\n"
+#~ msgid "%d persons were referenced, but not found\n"
+#~ msgstr "%d individus ont été référencés, mais non trouvés\n"
+#~ msgid "%d repositories were referenced, but not found\n"
+#~ msgstr "%d dépôts ont été référencés, mais non trouvés\n"
+#~ msgid "%d media objects were referenced, but not found\n"
+#~ msgstr "%d objets media ont été référencés, mais non trouvés\n"
+#~ msgid "References to %d media objects were kept\n"
+#~ msgstr "Les références à %d objets media ont été conservées\n"
+#~ msgid "%d missing media objects were replaced\n"
+#~ msgstr "%d objets media manquants ont été remplacés\n"
 

@@ -30,6 +30,7 @@
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
+from gettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -138,12 +139,8 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-        if modified == 0:
-            msg = _("No event record was modified.")
-        elif modified == 1:
-            msg = _("1 event record was modified.")
-        else:
-            msg = _("%d event records were modified.") % modified
+        msg = ngettext("1 event record was modified.", \
+        "%d event records were modified.", modified) % modified
 
         if cli:
             print "Done: ", msg
