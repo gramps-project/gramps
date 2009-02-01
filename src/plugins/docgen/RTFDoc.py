@@ -129,12 +129,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.f.write('}\n')
         self.f.close()
 
-        if self.print_req:
-            try:
-                app = Mime.get_application(mime_type)[0]
-                Utils.launch(app,self.filename)
-            except:
-                pass
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
 
     #--------------------------------------------------------------------
     #
@@ -443,14 +439,5 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #
 #------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-try:
-    mprog = Mime.get_application(mime_type)
-    mtype = Mime.get_description(mime_type)
-
-    if Utils.search_for(mprog[0]):
-        print_label=_("Open in %s") % mprog[1]
-    else:
-        print_label=None
-    pmgr.register_text_doc(mtype, RTFDoc, 1, 1, ".rtf", print_label)
-except:
-    pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, ".rtf", None)
+pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, ".rtf", 
+                       _("Open with default viewer"))

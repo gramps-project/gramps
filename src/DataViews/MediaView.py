@@ -55,7 +55,7 @@ import Utils
 import Bookmarks
 import Mime
 import gen.lib
-
+from QuestionDialog import ErrorDialog
 from Editors import EditMedia, DeleteMediaQuery
 import Errors
 from Filters.SideBar import MediaSidebarFilter
@@ -221,19 +221,12 @@ class MediaView(PageView.ListView):
                         
     def view_media(self, obj):
         """
-        Launch external viewers based of mime types for the selected objects.
+        Launch external viewers for the selected objects.
         """
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
-            mime_type = ref_obj.get_mime_type()
-            app = Mime.get_application(mime_type)
-            if app:
-                Utils.launch(app[0], Utils.media_path_full(self.dbstate.db, 
-                                                           ref_obj.get_path()))
-            else:
-                ErrorDialog(_("Cannot view %s") % ref_obj.get_path(), 
-                            _("GRAMPS cannot find an application that can view "
-                              "a file type of %s.") % mime_type)
+            mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+            Utils.open_file_with_default_application(mpath)
 
     def _column_editor(self, obj):
         """

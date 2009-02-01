@@ -434,9 +434,8 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._write_meta_file()
         self._write_mimetype_file()
         self._write_zip()
-        if self.print_req:
-            app = Mime.get_application(_apptype)
-            Utils.launch(app[0], self.filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
 
     def add_media_object(self, file_name, pos, x_cm, y_cm):
 
@@ -1147,18 +1146,8 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 # Register plugins
 #
 #--------------------------------------------------------------------------
-print_label = None
+print_label = _("Open with default viewer")
 pmgr = PluginManager.get_instance()
-try:
-    mprog = Mime.get_application(_apptype)
-
-    if Utils.search_for(mprog[0]):
-        print_label = _("Open in %(program_name)s") % { 'program_name':
-                                                        mprog[1]}
-    else:
-        print_label = None
-except:
-    print_label = None
 
 pmgr.register_text_doc(_('Open Document Text'), 
                        ODFDoc, 1, 1, ".odt", print_label)

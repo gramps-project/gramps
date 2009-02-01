@@ -57,8 +57,8 @@ from DisplayTabs._ButtonTab import ButtonTab
 # 
 #
 #-------------------------------------------------------------------------
-def make_launcher(prog, path):
-    return lambda x: Utils.launch(prog, path)
+def make_launcher(path):
+    return lambda x: Utils.open_file_with_default_application(path)
 
 #-------------------------------------------------------------------------
 #
@@ -115,19 +115,15 @@ class GalleryTab(ButtonTab):
         menu = gtk.Menu()
 
         ref_obj = self.dbstate.db.get_object_from_handle(obj.ref)
-        mime_type = ref_obj.get_mime_type()
-        if mime_type:
-            app = Mime.get_application(mime_type)
-            if app:
-                item = gtk.MenuItem(_('Open with %s') % app[1])
-                item.connect('activate', make_launcher(app[0],
-                                    Utils.media_path_full(self.dbstate.db, 
-                                                          ref_obj.get_path())))
-                item.show()
-                menu.append(item)
-                item = gtk.SeparatorMenuItem()
-                item.show()
-                menu.append(item)
+        media_path = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
+        if media_path:
+            item = gtk.MenuItem(_('View'))
+            item.connect('activate', make_launcher(media_path))
+            item.show()
+            menu.append(item)
+            item = gtk.SeparatorMenuItem()
+            item.show()
+            menu.append(item)
         
         for (needs_write_access, image, title, func) in itemlist:
             if image:

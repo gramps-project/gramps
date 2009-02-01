@@ -1356,15 +1356,15 @@ class BaseDoc:
         self.paper = paper_style
         self._style_sheet = styles
         self._creator = ""
-        self.print_req = 0
+        self.open_req = 0
         self.init_called = False
         self.type = "standard"
 
     def init(self):
         self.init_called = True
         
-    def print_requested(self):
-        self.print_req = 1
+    def open_requested(self):
+        self.open_req = 1
 
     def set_creator(self, name):
         "Set the owner name"

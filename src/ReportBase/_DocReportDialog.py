@@ -95,7 +95,7 @@ class DocReportDialog(ReportDialog):
         self.options.set_document(self.doc)
 
         if self.print_report.get_active():
-            self.doc.print_requested()
+            self.doc.open_requested()
 
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
@@ -110,7 +110,7 @@ class DocReportDialog(ReportDialog):
             self.print_report.set_label (label)
             self.print_report.set_sensitive (True)
         else:
-            self.print_report.set_label (_("Print a copy"))
+            self.print_report.set_label (_("Open with default viewer"))
             self.print_report.set_sensitive (False)
 
         # Is this to be a printed report or an electronic report

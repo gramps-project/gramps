@@ -376,9 +376,8 @@ class GVDotDoc(GVDocBase):
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         
-        if self.print_req:
-            app = Mime.get_application("text/x-graphviz")
-            Utils.launch(app[0], self._filename) 
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename) 
 
 #-------------------------------------------------------------------------------
 #
@@ -422,9 +421,8 @@ class GVPsDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("application/postscript")
-            Utils.launch(app[0], self._filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -469,9 +467,8 @@ class GVSvgDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("image/svg")
-            Utils.launch(app[0], self._filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)
             
 #-------------------------------------------------------------------------------
 #
@@ -516,9 +513,8 @@ class GVSvgzDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("image/svgz")
-            Utils.launch(app[0], self._filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -563,9 +559,8 @@ class GVPngDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("image/png")
-            Utils.launch(app[0], self._filename)     
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)     
 
 #-------------------------------------------------------------------------------
 #
@@ -610,9 +605,8 @@ class GVJpegDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("image/jpeg")
-            Utils.launch(app[0], self._filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -657,9 +651,8 @@ class GVGifDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("image/gif")
-            Utils.launch(app[0], self._filename)     
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)     
 
 #-------------------------------------------------------------------------------
 #
@@ -707,9 +700,8 @@ class GVPdfGvDoc(GVDocBase):
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("application/pdf")
-            Utils.launch(app[0], self._filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -768,9 +760,8 @@ class GVPdfGsDoc(GVDocBase):
         os.remove(tmp_ps)
         os.remove(tmp_dot)
         
-        if self.print_req:
-            app = Mime.get_application("application/pdf")
-            Utils.launch(app[0], self._filename) 
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename) 
 
 #-------------------------------------------------------------------------------
 #
@@ -1107,20 +1098,16 @@ class GraphvizReportDialog(ReportDialog):
         ReportDialog.setup_report_options_frame(self)
 
     def doc_type_changed(self, obj):
-        """This routine is called when the user selects a new file
+        """
+        This routine is called when the user selects a new file
         formats for the report.  It adjust the various dialog sections
         to reflect the appropriate values for the currently selected
         file format.  For example, a HTML document doesn't need any
         paper size/orientation options, but it does need a template
-        file.  Those chances are made here."""
-
-        label = obj.get_printable()
-        if label:
-            self.print_report.set_label (label)
-            self.print_report.set_sensitive (True)
-        else:
-            self.print_report.set_label (_("Open with application"))
-            self.print_report.set_sensitive (False)
+        file.  Those chances are made here.
+        """
+        self.print_report.set_label (_("Open with default application"))
+        self.print_report.set_sensitive(True)
             
         fname = self.target_fileentry.get_full_path(0)
         (spath, ext) = os.path.splitext(fname)
@@ -1142,7 +1129,7 @@ class GraphvizReportDialog(ReportDialog):
         self.options.set_document(self.doc)
 
         if self.print_report.get_active():
-            self.doc.print_requested()
+            self.doc.open_requested()
             
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate

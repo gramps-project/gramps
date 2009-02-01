@@ -125,9 +125,8 @@ class PdfDoc(CairoDoc):
         fontmap.set_resolution(saved_resolution)
 
         # load the result into an external viewer
-        if self.print_req:
-            app = Mime.get_application('application/pdf')
-            Utils.launch(app[0], self._filename) 
+        if self.open_req:
+            Utils.open_file_with_default_application(self._filename) 
             
 #------------------------------------------------------------------------
 #
@@ -137,17 +136,8 @@ class PdfDoc(CairoDoc):
 def register_docgen():
     """Register the docgen with the GRAMPS plugin system.
     """
-    try:
-        mprog = Mime.get_application("application/pdf")
-        mtype = Mime.get_description("application/pdf")
-        
-        if Utils.search_for(mprog[0]):
-            print_label = _("Open in %s") % mprog[1]
-        else:
-            print_label = None
-    except:
-        mtype = _('PDF document')
-        print_label = None
+    mtype = _('PDF document')
+    print_label = _("Open with default viewer")
         
     pmgr = PluginManager.get_instance()
     pmgr.register_text_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)

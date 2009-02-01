@@ -263,5 +263,5 @@ def units(val):
 #
 #-------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-pmgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"),
-                       SvgDrawDoc, 1, 1, ".svg");
+pmgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"), SvgDrawDoc, 1, 1, 
+                       ".svg", _("Open with default viewer"))

@@ -470,12 +470,8 @@ class EditPerson(EditPrimary):
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
-        mtype = obj.get_mime_type()
-        progname = Mime.get_application(mtype)
-        
-        if progname and len(progname) > 1:
-            Utils.add_menuitem(menu, _("Open in %s") % progname[1], 
-                               photo, self._popup_view_photo)
+        if obj:
+            Utils.add_menuitem(menu, _("View"), photo, self._popup_view_photo)
         Utils.add_menuitem(menu, _("Edit Object Properties"), photo, 
                            self._popup_change_description)
         menu.popup(None, None, None, event.button, event.time)
@@ -488,8 +484,9 @@ class EditPerson(EditPrimary):
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
-            Utils.view_photo(self.db.get_object_from_handle(object_handle), 
-                             self.db)
+            ref_obj = self.db.get_object_from_handle(object_handle)
+            photo_path = Utils.media_path_full(self.db, ref_obj.get_path())
+            Utils.open_file_with_default_application(photo_path)
 
     def _popup_change_description(self, obj):
         """

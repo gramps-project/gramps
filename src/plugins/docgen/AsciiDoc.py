@@ -153,10 +153,8 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     def close(self):
         self.f.close()
 
-        if self.print_req:
-            apptype = 'text/plain'
-            prog = Mime.get_application(apptype)
-            Utils.launch(prog[0],self.filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
 
     def get_usable_width(self):
         return _WIDTH_IN_CHARS
@@ -375,16 +373,6 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #------------------------------------------------------------------------
 print_label = None
 pmgr = PluginManager.get_instance()
-try:
-    mprog = Mime.get_application("text/plain")
-    mtype = Mime.get_description('text/plain')
-
-    if Utils.search_for(mprog[0]):
-        print_label=_("Open in %s") % mprog[1]
-    else:
-        print_label=None
-
-    pmgr.register_text_doc(mtype, AsciiDoc, 1, 1, ".txt", print_label)
-except:
-    pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt", None)
+pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt", 
+                       _("Open with default viewer"))
 

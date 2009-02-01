@@ -44,7 +44,7 @@ import const
 import Config
 import Mime
 import ThumbNails
-from Utils import media_path_full
+import Utils
 from gen.lib import NoteType
 
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
@@ -102,7 +102,7 @@ class EditMediaRef(EditReference):
         the path.
         """
         self.mtype = self.source.get_mime_type()
-        fullpath = media_path_full(self.db, self.source.get_path())
+        fullpath = Utils.media_path_full(self.db, self.source.get_path())
         self.pix = ThumbNails.get_thumbnail_image(fullpath,
                                                   self.mtype)
         self.pixmap.set_from_pixbuf(self.pix)
@@ -350,7 +350,7 @@ class EditMediaRef(EditReference):
             self.subpixmap.hide()
         else:
             try:
-                fullpath = media_path_full(self.db, path)
+                fullpath = Utils.media_path_full(self.db, path)
                 pixbuf = gtk.gdk.pixbuf_new_from_file(fullpath)
                 width = pixbuf.get_width()
                 height = pixbuf.get_height()
@@ -389,7 +389,8 @@ class EditMediaRef(EditReference):
     
     def button_press_event(self, obj, event):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
-            self.view_media(obj)
+            photo_path = Utils.media_path_full(self.db, self.source.get_path())
+            Utils.open_file_with_default_application(photo_path)
 
     def button_press_event_ref(self, widget, event):
         """
@@ -488,13 +489,6 @@ class EditMediaRef(EditReference):
         for obj in (self.descr_window, self.path_obj):
             obj.update()
         self.draw_preview()
-
-    def view_media(self, obj):
-        mime_type = self.source.get_mime_type()
-        app = Mime.get_application(mime_type)
-        if app:
-            from Utils import launch
-            launch(app[0], media_path_full(self.db, self.source.get_path()))
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('button84'))

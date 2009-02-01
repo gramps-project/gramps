@@ -336,10 +336,8 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.f.close()
         self.write_support_files()
 
-        if self.print_req:
-            apptype = 'text/html'
-            app = Mime.get_application(apptype)
-            Utils.launch(app[0],self.filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
 
     def write_support_files(self):
         if self.map:
@@ -482,18 +480,5 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #------------------------------------------------------------------------
 print_label = None
 pmgr = PluginManager.get_instance()
-try:
-    prog = Mime.get_application("text/html")
-    mtype = Mime.get_description("text/html")
-    
-    if Utils.search_for(prog[0]):
-        print_label=_("Open in %s") % prog[1]
-    else:
-        print_label=None
-        
-    if mtype == _("unknown"):
-        mtype = _('HTML')
-        
-    pmgr.register_text_doc(mtype, HtmlDoc, 0, 1, ".html", print_label)
-except:
-    pmgr.register_text_doc(_('HTML'), HtmlDoc, 0, 1, ".html", None)
+pmgr.register_text_doc(_('HTML'), HtmlDoc, 0, 1, ".html", 
+                       _("Open with default viewer"))

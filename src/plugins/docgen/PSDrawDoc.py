@@ -46,22 +46,6 @@ def lrgb(grp):
 
 def coords(grp):
     return (gformat(grp[0]),gformat(grp[1]))
-    
-_apptype = 'application/postscript'
-print_label = None
-
-try:
-    # First try to find a viewer program
-    mprog = Mime.get_application(_apptype)
-    if Utils.search_for(mprog[0]):
-        print_label = _("Open in %(program_name)s") % {'program_name': mprog[1]}
-except:
-    pass
-
-if print_label is None:
-    # Second, try to print directly
-    if get_print_dialog_app() is not None:
-        print_label = _("Print a copy")
 
 #-------------------------------------------------------------------------
 #
@@ -152,15 +136,8 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('%d\n' % self.page)
         self.f.write('%%EOF\n')
         self.f.close()
-        if self.print_req:
-            if print_label == _("Print a copy"):
-                run_print_dialog (self.filename)
-            elif print_label:
-                app = Mime.get_application(_apptype)
-                Utils.launch(app[0],self.filename)
-            else:
-                # This should never happen
-                print "Invalid print request"
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
         
     def write_text(self,text,mark=None):
         pass
@@ -368,4 +345,5 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('grestore\n')
 
 pmgr = PluginManager.get_instance()
-pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps", print_label);
+pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps", 
+                       _("Open with default viewer"))

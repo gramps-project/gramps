@@ -262,18 +262,6 @@ def add_menuitem(menu, msg, obj, func):
 #
 #
 #-------------------------------------------------------------------------
-def view_photo(photo, db):
-    """
-    photo is a mediaobject, this utility launches a viewing application
-    """
-    mime_type = photo.get_mime_type()
-    try:
-        data = Mime.get_application(mime_type)
-        prog = data[0]
-    except:
-        return
-    launch(prog, media_path_full(db, photo.get_path()))
-
 def find_file( filename):
     # try the filename we got
     try:
@@ -1122,53 +1110,30 @@ class ProgressMeter:
         Close the progress meter
         """
         self.__dialog.destroy()
-
-def launch(prog_str, path):
-    
-    if sys.platform == "win32":
         
-        import subprocess
-        if prog_str.find("%1") != -1:
-            prog_str = prog_str.replace("%1", path)
-        else:
-            prog_str = '%s "%s"' % (prog_str, path)
+def open_file_with_default_application( file_path ):
+    """
+    Launch a program to open an arbitrary file. The file will be opened using 
+    whatever program is configured on the host as the default program for that 
+    type of file.
+    
+    @param file_path: The path to the file to be opened.
+        Example: "c:\foo.txt"
+    @type file_path: string
+    @return: nothing
+    """
+    norm_path = os.path.normpath( file_path )
 
-        # The string must be encoded using the filesystem encoding on Windows.
-        # Otherwise, files with non-ascii characters in their names will not 
-        # open.
-        prog_str = prog_str.encode(sys.getfilesystemencoding())
-        subprocess.Popen(prog_str)
-
+    if os.sys.platform == 'win32':
+        norm_path = norm_path.encode(os.sys.getfilesystemencoding())
+        os.startfile(norm_path)
     else:
-        subval = {
-            '%F'   : path, 
-            '%f'   : path, 
-            '%u'   : path, 
-            '%U'   : path, 
-            '%n'   : path, 
-            '%N'   : path, 
-            }
-        
-        prog_data = prog_str.split()
-        prog = prog_data[0]
-        prog_list = []
-        need_path = True
-    
-        if len(prog_data) > 1:
-            for item in prog_data:
-                if item in subval:
-                    need_path = False
-                    value = subval[item]
-                else:
-                    value = item
-                prog_list.append(value)
-        else:
-            prog_list = [prog_data[0]]
-    
-        if need_path:
-            prog_list.append(path)
-    
-        os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)
+        search = os.environ['PATH'].split(':')
+        for lpath in search:
+            prog = os.path.join(lpath, 'xdg-open')
+            if os.path.isfile(prog):
+                os.spawnvpe(os.P_NOWAIT, prog, [prog, norm_path], os.environ)
+                return
 
 def profile(func, *args):
     import hotshot.stats

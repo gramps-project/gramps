@@ -1135,7 +1135,7 @@ class BookReportDialog(DocReportDialog):
         self.doc.open(self.target_path)
         
         if self.print_report.get_active():
-            self.doc.print_requested ()
+            self.doc.open_requested ()
 
     def make_report(self):
         """The actual book report. Start it out, then go through the item list 

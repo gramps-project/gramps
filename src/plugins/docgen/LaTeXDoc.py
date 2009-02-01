@@ -303,9 +303,8 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('\\end{enumerate}\n')
         self.f.write('\n\\end{document}\n')
         self.f.close()
-        if self.print_req:
-            app = Mime.get_application(_apptype)
-            Utils.launch(app[0], self.filename)
+        if self.open_req:
+            Utils.open_file_with_default_application(self.filename)
 
     def end_page(self):
         """Issue a new page command"""
