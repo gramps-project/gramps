@@ -329,7 +329,6 @@ class GedcomParser(UpdateCallback):
             TOKEN_RELI  : self.__person_reli, 
             TOKEN_ADOP  : self.__person_adop, 
             TOKEN_DEAT  : self.__person_deat, 
-            TOKEN_RESI  : self.__person_resi, 
             # +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M}
             # +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1}
             TOKEN_ATTR  : self.__person_std_attr, 
@@ -498,22 +497,6 @@ class GedcomParser(UpdateCallback):
             TOKEN_SOUR   : self.__person_famc_sour, 
             # GEDit
             TOKEN_STAT   : self.__ignore, 
-            }
-
-        self.resi_parse_tbl = {
-            TOKEN_DATE   : self.__person_resi_date, 
-            TOKEN_ADDR   : self.__person_resi_addr, 
-            TOKEN_SOUR   : self.__person_resi_sour, 
-            TOKEN_PLAC   : self.__person_resi_plac, 
-            TOKEN_PHON   : self.__person_resi_phon, 
-            TOKEN_NOTE   : self.__person_resi_note, 
-            TOKEN_RNOTE  : self.__person_resi_note, 
-            TOKEN_IGNORE : self.__ignore, 
-            TOKEN_CAUS   : self.__ignore, 
-            TOKEN_STAT   : self.__ignore, 
-            TOKEN_TEMP   : self.__ignore, 
-            TOKEN_OBJE   : self.__ignore, 
-            TOKEN_TYPE   : self.__ignore, 
             }
 
         self.person_fact_parse_tbl = {
@@ -1815,115 +1798,6 @@ class GedcomParser(UpdateCallback):
         """
         sref = self.handle_source(line, state.level)
         state.name.add_source_reference(sref)
-
-    def __person_resi(self, line, state):
-        """
-        The RESI tag follows the EVENT_DETAIL structure, which is:
-
-          n TYPE <EVENT_DESCRIPTOR> {0:1}
-          n DATE <DATE_VALUE> {0:1}
-          n <<PLACE_STRUCTURE>> {0:1}
-          n <<ADDRESS_STRUCTURE>> {0:1}
-          n AGE <AGE_AT_EVENT> {0:1}
-          n AGNC <RESPONSIBLE_AGENCY> {0:1}
-          n CAUS <CAUSE_OF_EVENT> {0:1}
-          n <<SOURCE_CITATION>> {0:M}
-          n <<MULTIMEDIA_LINK>> {0:M}
-          n <<NOTE_STRUCTURE>> {0:M}
-
-        Currently, the TYPE, AGE, CAUSE, STAT, and other tags which
-        do not apply to an address are ignored.
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-
-        addr = gen.lib.Address()
-
-        sub_state = GedcomUtils.CurrentState()
-        sub_state.person = state.person
-        sub_state.level = state.level+1
-        sub_state.addr = addr
-        sub_state.person.add_address(addr)
-
-        self.__parse_level(sub_state, self.resi_parse_tbl, self.__undefined)
-
-    def __person_resi_date(self, line, state): 
-        """
-        Set the date on the address associated with and Address.
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr.set_date_object(line.data)
-        
-    def __person_resi_addr(self, line, state):
-        """
-        Parses the ADDR line of a RESI tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr.set_street(line.data)
-
-        sub_state = GedcomUtils.CurrentState()
-        sub_state.addr = state.addr
-        sub_state.level = state.level + 1
-        sub_state.person = state.person
-        self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
-
-    def __person_resi_sour(self, line, state):
-        """
-        Parses the source connected to a RESI tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr.add_source_reference(self.handle_source(line, state.level))
-
-    def __person_resi_plac(self, line, state):
-        """
-        Parses the PLAC tag connected to a RESI tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        state.addr.set_street(line.data)
-        self.__parse_level(state, self.parse_addr_tbl, self.__ignore)
-
-    def __person_resi_phon(self, line, state): 
-        """
-        Parses the source connected to a PHON tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if state.addr.get_street() == "":
-            state.addr.set_street("Unknown")
-        state.addr.set_phone(line.data)
-
-    def __person_resi_note(self, line, state):
-        """
-        Parses the NOTE connected to a RESI tag
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        self.__parse_note(line, state.addr, state.level+1)
 
     def __ignore(self, line, state):
         """
