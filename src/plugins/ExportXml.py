@@ -822,8 +822,9 @@ class GrampsDbXmlWriter(UpdateCallback):
             d1 = self.get_iso_date(date.get_start_date())
             d2 = self.get_iso_date(date.get_stop_date())
             if d1 != "" or d2 != "":
-                self.g.write('%s<%s start="%s" stop="%s"%s%s/>\n'
-                             % (sp,tagname,d1,d2,qual_str,calstr))
+                self.g.write('%s<%s start="%s" stop="%s"%s%s%s%s/>\n'
+                             % (sp,tagname,d1,d2,qual_str,calstr,
+                                dualdated_str, newyear_str))
         elif mode != gen.lib.Date.MOD_TEXTONLY:
             date_str = self.get_iso_date(date.get_start_date())
             if date_str == "":

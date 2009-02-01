@@ -379,26 +379,32 @@ SHARED ELEMENTS
 -->
 <!ELEMENT daterange    EMPTY>
 <!ATTLIST daterange
-        start   CDATA #REQUIRED
-        stop    CDATA #REQUIRED
-        quality (estimated|calculated) #IMPLIED
-        cformat CDATA #IMPLIED
+        start     CDATA                  #REQUIRED
+        stop      CDATA                  #REQUIRED
+        quality   (estimated|calculated) #IMPLIED
+        cformat   CDATA                  #IMPLIED
+        dualdated (0|1)                  #IMPLIED
+        newyear   CDATA                  #IMPLIED 
 >
 
 <!ELEMENT datespan    EMPTY>
 <!ATTLIST datespan
-        start   CDATA #REQUIRED
-        stop    CDATA #REQUIRED
-        quality (estimated|calculated) #IMPLIED
-        cformat CDATA #IMPLIED
+        start   CDATA                    #REQUIRED
+        stop    CDATA                    #REQUIRED
+        quality (estimated|calculated)   #IMPLIED
+        cformat CDATA                    #IMPLIED
+        dualdated (0|1)                  #IMPLIED
+        newyear   CDATA                  #IMPLIED 
 >
 
 <!ELEMENT dateval    EMPTY>
 <!ATTLIST dateval
-        val     CDATA                  #REQUIRED
-        type    (before|after|about)   #IMPLIED
-        quality (estimated|calculated) #IMPLIED
-        cformat CDATA                  #IMPLIED
+        val       CDATA                  #REQUIRED
+        type      (before|after|about)   #IMPLIED
+        quality   (estimated|calculated) #IMPLIED
+        cformat   CDATA                  #IMPLIED
+        dualdated (0|1)                  #IMPLIED
+        newyear   CDATA                  #IMPLIED 
 >
 
 <!ELEMENT datestr    EMPTY>
