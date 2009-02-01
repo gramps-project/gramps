@@ -384,9 +384,6 @@ class Gramplet(object):
         except StopIteration:
             self._idle_id = 0
             return False
-        except PauseIteration:
-            self._idle_id = 0
-            return False
         except Exception, e:
             print "Gramplet gave an error"
             traceback.print_exc()
