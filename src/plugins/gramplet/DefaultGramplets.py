@@ -437,9 +437,6 @@ class PedigreeGramplet(Gramplet):
             self.show_dates = int(self.gui.data[1])
         if len(self.gui.data) > 2:
             self.box_mode = self.gui.data[2] # ASCII or UTF
-        # in case we need it:
-        tag = self.gui.buffer.create_tag("fixed")
-        tag.set_property("font", "Courier 9")
 
     def on_save(self):
         self.gui.data = [self.max_generations, self.show_dates, self.box_mode]
