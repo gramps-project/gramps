@@ -9,11 +9,11 @@ The following packages *MUST* be installed in order for Gramps to work:
    PyGTK2 2.10 or greater
    Python Glade bindings 
    librsvg2 (svg icon view)
+   xdg-utils
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
-   xdg              Freedesktop utilities, eg xdg-open
 
 The following packages are optional
    gtkspell         Enable spell checking in the notes
