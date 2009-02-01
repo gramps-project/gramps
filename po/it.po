@@ -67,6 +67,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural_Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/ArgHandler.py:228
 #, fuzzy, python-format

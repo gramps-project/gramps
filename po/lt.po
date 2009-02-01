@@ -17,6 +17,7 @@ msgstr ""
 "X-Generator: KBabel 1.11\n"
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-Country: LITHUANIA\n"
+"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 or n%100>=20) ? 1 : 2)"
 
 #: ../src/ArgHandler.py:228
 #, python-format
