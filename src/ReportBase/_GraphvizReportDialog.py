@@ -206,8 +206,8 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self.write( '  mclimit="99";\n'             )
         self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
         self.write( '  outputorder="edgesfirst";\n' )
-        if self.hpages == 1 and self.vpages == 1:
-            self.write( '#' )   # comment out "page=" if the graph is on 1 page
+#        if self.hpages == 1 and self.vpages == 1:
+#            self.write( '#' )   # comment out "page=" if the graph is on 1 page
         self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
         self.write( '  pagedir="%s";\n'             % self.pagedir      )
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
@@ -322,6 +322,17 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
 
         self.write('\n')
 
+    def add_invis_links(self, persons_id):
+        """
+        Adds a sequence of links of the style:
+        
+        node1 -> node2 -> ... -> node3 [ style = invis ];
+        """
+        
+        if len(persons_id) > 1:
+            ids = " -> ".join(persons_id)
+            self.write('  { rank=same; %s [ style = invis ]; }\n' % ids)
+        
     def add_comment(self, comment):
         """
         Add a comment.
@@ -361,7 +372,7 @@ class GVDotDoc(GVDocBase):
         GVDocBase.close(self)
         
         # Make sure the extension is correct
-        if self._filename[-4:] != ".gv":
+        if self._filename[-3:] != ".gv":
             self._filename += ".gv"
         
         _run_long_process_in_thread(self.__generate, self._filename)
@@ -822,7 +833,7 @@ if _DOT_FOUND:
                    'class': GVPngDoc }]
 
 _FORMATS += [{ 'type' : "dot",
-               'ext'  : "dot",
+               'ext'  : "gv",
                'descr': _("Graphviz File"), 
                'mime' : "text/x-graphviz", 
                'class': GVDotDoc }]
