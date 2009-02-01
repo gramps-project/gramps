@@ -799,6 +799,18 @@ class GrampsDbXmlWriter(UpdateCallback):
         else:
             qual_str = ""
             
+        dualdated = date.get_slash()
+        if dualdated:
+            dualdated_str = ' dualdated="1"'
+        else:
+            dualdated_str = ''
+
+        newyear = date.get_new_year()
+        if newyear != gen.lib.Date.NEWYEAR_JAN1:
+            newyear_str = ' newyear="%d"' % newyear
+        else:
+            newyear_str = ''
+
         mode = date.get_modifier()
         
         if date.is_compound():
@@ -826,8 +838,9 @@ class GrampsDbXmlWriter(UpdateCallback):
             else:
                 mode_str = ""
 
-            self.g.write('%s<dateval val="%s"%s%s%s/>\n'
-                         % (sp,date_str,mode_str,qual_str,calstr))
+            self.g.write('%s<dateval val="%s"%s%s%s%s%s/>\n'
+                         % (sp, date_str, mode_str, qual_str,
+                            calstr, dualdated_str, newyear_str))
         else:
             self.g.write('%s<datestr val="%s"/>\n'
                          %(sp,self.fix(date.get_text())))

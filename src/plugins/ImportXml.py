@@ -1817,8 +1817,19 @@ class GrampsParser(UpdateCallback):
                 qual = gen.lib.Date.QUAL_NONE
         else:
             qual = gen.lib.Date.QUAL_NONE
-        
-        date_value.set(qual, mod, cal, (day, month, year, False))
+
+        dualdated = False
+        if 'dualdated' in attrs:
+            val = attrs['dualdated']
+            if val == "1":
+                dualdated = True
+
+        newyear = gen.lib.Date.NEWYEAR_JAN1
+        if 'newyear' in attrs:
+            newyear = int(attrs['newyear'])
+
+        date_value.set(qual, mod, cal, (day, month, year, dualdated), 
+                       newyear=newyear)
 
     def start_datestr(self, attrs):
         if self.source_ref:
