@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2009  Douglas S. Blank
+# Copyright (C) 2007-2009  Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,16 +16,34 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
+# $Id$
+
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 import gtk
 import pango
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 from DataViews import Gramplet, register
 from BasicUtils import name_displayer
 from TransUtils import sgettext as _
 from const import GLADE_FILE
 from widgets import StyledTextEditor
 from gen.lib import StyledText, Note
+import Errors
 
+#------------------------------------------------------------------------
+#
+# Gramplet class
+#
+#------------------------------------------------------------------------
 class NoteGramplet(Gramplet):
     """
     Gramplet that gives simplified interface to a Person's primary note.
@@ -240,6 +258,11 @@ class NoteGramplet(Gramplet):
             self.dbstate.db.transaction_commit(trans, msg)
         self.dirty = False
 
+#------------------------------------------------------------------------
+#
+# Register Gramplet
+#
+#------------------------------------------------------------------------
 register(type="gramplet", 
          name="Note Gramplet", 
          tname=_("Note Gramplet"), 
