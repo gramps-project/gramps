@@ -262,12 +262,27 @@ src/plugins/export/ExportVCalendar.py
 src/plugins/export/ExportVCard.py
 
 # plugins/gramplet directory
+src/plugins/gramplet/AgeOnDateGramplet.py
 src/plugins/gramplet/AgeStats.py
 src/plugins/gramplet/AttributesGramplet.py
-src/plugins/gramplet/DefaultGramplets.py
+src/plugins/gramplet/CalendarGramplet.py
+src/plugins/gramplet/DataEntryGramplet.py
 src/plugins/gramplet/DescendGramplet.py
+src/plugins/gramplet/FanChartGramplet.py
+src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py
+src/plugins/gramplet/HeadlineNewsGramplet.py
 src/plugins/gramplet/NoteGramplet.py
+src/plugins/gramplet/PedigreeGramplet.py
+src/plugins/gramplet/PythonGramplet.py
+src/plugins/gramplet/QuickViewGramplet.py
+src/plugins/gramplet/RelativeGramplet.py
+src/plugins/gramplet/SessionLogGramplet.py
+src/plugins/gramplet/StatsGramplet.py
+src/plugins/gramplet/SurnameCloudGramplet.py
+src/plugins/gramplet/ToDoGramplet.py
+src/plugins/gramplet/TopSurnamesGramplet.py
+src/plugins/gramplet/WelcomeGramplet.py
 src/plugins/gramplet/WhatsNext.py
 
 # plugins/graph directory

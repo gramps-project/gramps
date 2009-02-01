@@ -6,12 +6,27 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/gramplet
 
 pkgdata_PYTHON = \
+	AgeOnDateGramplet.py \
 	AgeStats.py \
 	AttributesGramplet.py \
-	DefaultGramplets.py \
+	CalendarGramplet.py \
+	DataEntryGramplet.py \
 	DescendGramplet.py \
+	FanChartGramplet.py \
+	FaqGramplet.py \
 	GivenNameGramplet.py \
+	HeadlineNewsGramplet.py \
 	NoteGramplet.py \
+	PedigreeGramplet.py \
+	PythonGramplet.py \
+	QuickViewGramplet.py \
+	RelativeGramplet.py \
+	SessionLogGramplet.py \
+	StatsGramplet.py \
+	SurnameCloudGramplet.py \
+	ToDoGramplet.py \
+	TopSurnamesGramplet.py \
+	WelcomeGramplet.py \
 	WhatsNext.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/gramplet
