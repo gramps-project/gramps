@@ -757,7 +757,8 @@ class FamilyLinesReport(Report):
 
         self.doc.add_comment('')
 
-        # if we're going to attempt to include images, then use the HTML style of .dot file
+        # If we're going to attempt to include images, then use the HTML style 
+        # of .gv file.
         bUseHtmlOutput = False
         if self._incimages:
             bUseHtmlOutput = True

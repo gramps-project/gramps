@@ -354,15 +354,15 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
 #
 #-------------------------------------------------------------------------------
 class GVDotDoc(GVDocBase):
-    """ GVDoc implementation that generates a .dot text file. """
+    """ GVDoc implementation that generates a .gv text file. """
     
     def close(self):
         """ Implements GVDocBase.close() """
         GVDocBase.close(self)
         
         # Make sure the extension is correct
-        if self._filename[-4:] != ".dot":
-            self._filename += ".dot"
+        if self._filename[-4:] != ".gv":
+            self._filename += ".gv"
         
         _run_long_process_in_thread(self.__generate, self._filename)
         
@@ -410,7 +410,7 @@ class GVPsDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -456,7 +456,7 @@ class GVSvgDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -502,7 +502,7 @@ class GVSvgzDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -548,7 +548,7 @@ class GVPngDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -594,7 +594,7 @@ class GVJpegDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -640,7 +640,7 @@ class GVGifDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -689,7 +689,7 @@ class GVPdfGvDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -733,7 +733,7 @@ class GVPdfGsDoc(GVDocBase):
         application does not appear to hang.
         """
         # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".gv" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
@@ -823,7 +823,7 @@ if _DOT_FOUND:
 
 _FORMATS += [{ 'type' : "dot",
                'ext'  : "dot",
-               'descr': _("Graphviz Dot File"), 
+               'descr': _("Graphviz File"), 
                'mime' : "text/x-graphviz", 
                'class': GVDotDoc }]
 
