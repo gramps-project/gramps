@@ -45,11 +45,10 @@ import gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Mime
 from BasicUtils import name_displayer
 import gen.lib
 import Errors
-from QuestionDialog import WarningDialog
+from QuestionDialog import WarningDialog, ErrorDialog
 
 from const import TEMP_DIR, USER_HOME
 import shutil
@@ -1123,10 +1122,17 @@ def open_file_with_default_application( file_path ):
     @return: nothing
     """
     norm_path = os.path.normpath( file_path )
-
+    
+    if not os.path.exists(norm_path):
+        ErrorDialog(_("Error Opening File"), _("File does not exist"))
+        return
+        
     if os.sys.platform == 'win32':
         norm_path = norm_path.encode(os.sys.getfilesystemencoding())
-        os.startfile(norm_path)
+        try:
+            os.startfile(norm_path)
+        except WindowsError, msg:
+            ErrorDialog(_("Error Opening File"), str(msg))
     else:
         search = os.environ['PATH'].split(':')
         for lpath in search:
