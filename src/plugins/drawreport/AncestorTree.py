@@ -41,8 +41,8 @@ from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
 from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions
 from BasicUtils import name_displayer
+
 pt2cm = ReportUtils.pt2cm
-cm2pt = ReportUtils.cm2pt
 
 #------------------------------------------------------------------------
 #
@@ -58,6 +58,9 @@ _DIED = _('short for died|d.')
 #
 #------------------------------------------------------------------------
 def log2(val):
+    """
+    Calculate the log base 2 of a value.
+    """
     return int(math.log10(val)/math.log10(2))
 
 #------------------------------------------------------------------------
@@ -67,7 +70,7 @@ def log2(val):
 #------------------------------------------------------------------------
 class GenChart:
 
-    def __init__(self,generations):
+    def __init__(self, generations):
         self.generations = generations
         self.size = (2**(generations))
         self.array = {}
@@ -75,20 +78,20 @@ class GenChart:
         self.compress_map = {}
 
         self.max_x = 0
-        self.ad = (self.size,generations)
+        self.ad = (self.size, generations)
 
-    def set(self,index,value):
+    def set(self, index, value):
         x = log2(index)
         y = index - (2**x)
         delta = int((self.size/(2**(x))))
         new_y = int((delta/2) + (y)*delta)
         if not new_y in self.array:
             self.array[new_y] = {}
-        self.array[new_y][x] = (value,index)
-        self.max_x = max(x,self.max_x)
-        self.map[value] = (new_y,x)
+        self.array[new_y][x] = (value, index)
+        self.max_x = max(x, self.max_x)
+        self.map[value] = (new_y, x)
 
-    def index_to_xy(self,index):
+    def index_to_xy(self, index):
         if index:
             x = log2(index)
             ty = index - (2**x)
@@ -99,28 +102,28 @@ class GenChart:
             y = self.size/2
         
         if len(self.compress_map) > 0:
-            return (x,self.compress_map[y])
+            return (x, self.compress_map[y])
         else:
-            return (x,y)
+            return (x, y)
     
-    def get(self,index):
+    def get(self, index):
         (x,y) = self.index_to_xy(index)
-        return self.get_xy(x,y)
+        return self.get_xy(x, y)
 
-    def get_xy(self,x,y):
+    def get_xy(self, x, y):
         value = 0
         if y in self.array:
             if x in self.array[y]:
                 value = self.array[y][x]
         return value
 
-    def set_xy(self,x,y,value):
+    def set_xy(self, x, y, value):
         if not y in self.array:
             self.array[y] = {}
         self.array[y][x] = value
 
     def dimensions(self):
-        return (max(self.array.keys())+1,self.max_x+1)
+        return (max(self.array.keys())+1, self.max_x+1)
 
     def compress(self):
         new_map = {}
@@ -136,14 +139,14 @@ class GenChart:
                 new_array[new_y] = i
                 x = 0
                 for entry in i:
-                    new_map[entry] = (new_y,x)
-                    x =+ 1
+                    new_map[entry] = (new_y, x)
+                    x += 1
                 new_y += 1
         self.array = new_array
         self.map = new_map
-        self.ad = (new_y,self.ad[1])
+        self.ad = (new_y, self.ad[1])
 
-    def not_blank(self,line):
+    def not_blank(self, line):
         for i in line:
             if i and isinstance(i, tuple):
                 return 1
@@ -199,7 +202,7 @@ class AncestorTree(Report):
         self.lines = 0
         self.scale = 1
 
-        self.apply_filter(center_person.get_handle(),1)
+        self.apply_filter(center_person.get_handle(), 1)
 
         keys = self.map.keys()
         keys.sort()
@@ -213,7 +216,7 @@ class AncestorTree(Report):
         if self.force_fit:
             self.scale_styles()
 
-    def apply_filter(self,person_handle,index):
+    def apply_filter(self, person_handle, index):
         """traverse the ancestors recursively until either the end
         of a line is found, or until we reach the maximum number of 
         generations that we want to deal with"""
@@ -230,29 +233,29 @@ class AncestorTree(Report):
 
         em = self.doc.string_width(font,"m")
 
-        subst = SubstKeywords(self.database,person_handle)
+        subst = SubstKeywords(self.database, person_handle)
         self.text[index] = subst.replace_and_clean(self.display)
 
         for line in self.text[index]:
             this_box_width = self.doc.string_width(font,line)
-            self.box_width = max(self.box_width,this_box_width)
+            self.box_width = max(self.box_width, this_box_width)
 
-        self.lines = max(self.lines,len(self.text[index]))    
+        self.lines = max(self.lines, len(self.text[index]))    
 
         person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            self.apply_filter(family.get_father_handle(),index*2)
-            self.apply_filter(family.get_mother_handle(),(index*2)+1)
+            self.apply_filter(family.get_father_handle(), index*2)
+            self.apply_filter(family.get_mother_handle(), (index*2)+1)
 
     def write_report(self):
 
-        (maxy,maxx) = self.genchart.dimensions()
+        (maxy, maxx) = self.genchart.dimensions()
         maxh = int(self.uh/self.box_height)
         
         if self.force_fit:
-            self.print_page(0,maxx,0,maxy,0,0)
+            self.print_page(0, maxx, 0, maxy, 0, 0)
         else:
             starty = 0
             coly = 0
@@ -260,9 +263,9 @@ class AncestorTree(Report):
                 startx = 0
                 colx = 0
                 while startx < maxx:
-                    stopx = min(maxx,startx+self.generations_per_page)
-                    stopy = min(maxy,starty+maxh)
-                    self.print_page(startx,stopx,starty,stopy,colx,coly)
+                    stopx = min(maxx, startx + self.generations_per_page)
+                    stopy = min(maxy, starty + maxh)
+                    self.print_page(startx, stopx, starty, stopy, colx, coly)
                     colx += 1
                     startx += self.generations_per_page
                 coly += 1
@@ -293,7 +296,7 @@ class AncestorTree(Report):
             p = style_sheet.get_paragraph_style("AC2-Normal")
             font = p.get_font()
             lheight = pt2cm(1.2*font.get_size())
-            lwidth = pt2cm(1.1*self.doc.string_width(font,"(00,00)"))
+            lwidth = pt2cm(1.1*self.doc.string_width(font, "(00,00)"))
             self.page_label_x_offset = self.doc.get_usable_width()  - lwidth
             self.page_label_y_offset = self.doc.get_usable_height() - lheight
 
@@ -309,18 +312,18 @@ class AncestorTree(Report):
         self.box_height = self.lines*pt2cm(1.25*font.get_size())
 
         if self.force_fit:
-            (maxy,maxx) = self.genchart.dimensions()
+            (maxy, maxx) = self.genchart.dimensions()
 
-            bw = calc_width/(uw/maxx)
-            bh = self.box_height/(self.uh/maxy)
+            bw = calc_width / (uw/maxx)
+            bh = self.box_height / (self.uh/maxy)
             
-            self.scale = max(bw,bh)
-            self.box_width = self.box_width/self.scale
-            self.box_height = self.box_height/self.scale
-            self.box_pad_pts = self.box_pad_pts/self.scale
+            self.scale = max(bw ,bh)
+            self.box_width = self.box_width / self.scale
+            self.box_height = self.box_height / self.scale
+            self.box_pad_pts = self.box_pad_pts / self.scale
 
-        maxh = int(self.uh/self.box_height)
-        maxw = int(uw/calc_width) 
+        maxh = int(self.uh / self.box_height)
+        maxw = int(uw / calc_width) 
 
         if log2(maxh) < maxw:
             self.generations_per_page = int(log2(maxh))
@@ -332,8 +335,9 @@ class AncestorTree(Report):
         self.delta = pt2cm(self.box_pad_pts) + self.box_width + 0.2
         if not self.force_fit:
             calc_width = self.box_width + 0.2 + pt2cm(self.box_pad_pts)
-            remain = self.doc.get_usable_width() - ((self.generations_per_page)*calc_width)
-            self.delta += remain/(self.generations_per_page)
+            remain = self.doc.get_usable_width() -                             \
+                     ((self.generations_per_page)*calc_width)
+            self.delta += remain / (self.generations_per_page)
             
     def scale_styles(self):
         """
@@ -342,41 +346,44 @@ class AncestorTree(Report):
         style_sheet = self.doc.get_style_sheet()
         
         g = style_sheet.get_draw_style("AC2-box")
-        g.set_shadow(g.get_shadow(),g.get_shadow_space()/self.scale)
-        g.set_line_width(g.get_line_width()/self.scale)
-        style_sheet.add_draw_style("AC2-box",g)
+        g.set_shadow(g.get_shadow(), g.get_shadow_space() / self.scale)
+        g.set_line_width(g.get_line_width() / self.scale)
+        style_sheet.add_draw_style("AC2-box", g)
 
         p = style_sheet.get_paragraph_style("AC2-Normal")
         font = p.get_font()
-        font.set_size(font.get_size()/self.scale)
+        font.set_size(font.get_size() / self.scale)
         p.set_font(font)
-        style_sheet.add_paragraph_style("AC2-Normal",p)
+        style_sheet.add_paragraph_style("AC2-Normal", p)
             
         self.doc.set_style_sheet(style_sheet)
 
-    def print_page(self,startx,stopx,starty,stopy,colx,coly):
+    def print_page(self, startx, stopx, starty, stopy, colx, coly):
         
         if not self.incblank:
             blank = True
-            for y in range(starty,stopy):
-                for x in range(startx,stopx):
-                    if self.genchart.get_xy(x,y) != 0:
+            for y in range(starty, stopy):
+                for x in range(startx, stopx):
+                    if self.genchart.get_xy(x, y) != 0:
                         blank = False
                         break
-                if not blank: break
-            if blank: return
+                if not blank: 
+                    break
+            if blank: 
+                return
 
         self.doc.start_page()
         if self.title and self.force_fit:
-            self.doc.center_text('AC2-title',self.title,self.doc.get_usable_width()/2,0)
+            self.doc.center_text('AC2-title', self.title, 
+                                 self.doc.get_usable_width() / 2, 0)
         phys_y = 0
-        for y in range(starty,stopy):
+        for y in range(starty, stopy):
             phys_x = 0
-            for x in range(startx,stopx):
-                value = self.genchart.get_xy(x,y)
+            for x in range(startx, stopx):
+                value = self.genchart.get_xy(x, y)
                 if value:
                     if isinstance(value, tuple):
-                        (person,index) = value
+                        (person, index) = value
                         text = '\n'.join(self.text[index])
                         self.doc.draw_box("AC2-box",
                                           text,
@@ -386,56 +393,56 @@ class AncestorTree(Report):
                                           self.box_height )
                     elif value == 2:
                         self.doc.draw_line("AC2-line",
-                                           phys_x*self.delta+self.box_width*0.5,
-                                           phys_y*self.box_height+self.offset,
-                                           phys_x*self.delta+self.box_width*0.5,
-                                           (phys_y+1)*self.box_height+self.offset)
+                                           phys_x * self.delta+self.box_width * 0.5,
+                                           phys_y * self.box_height + self.offset,
+                                           phys_x * self.delta+self.box_width * 0.5,
+                                           (phys_y + 1) * self.box_height + self.offset)
                     elif value == 1:
-                        x1 = phys_x*self.delta+self.box_width*0.5
-                        x2 = (phys_x+1)*self.delta
-                        y1 = phys_y*self.box_height+self.offset+self.box_height/2
-                        y2 = (phys_y+1)*self.box_height+self.offset
-                        self.doc.draw_line("AC2-line",x1,y1,x1,y2)
-                        self.doc.draw_line("AC2-line",x1,y1,x2,y1)
+                        x1 = phys_x * self.delta + self.box_width * 0.5
+                        x2 = (phys_x + 1) * self.delta
+                        y1 = phys_y * self.box_height + self.offset + self.box_height / 2
+                        y2 = (phys_y + 1) * self.box_height + self.offset
+                        self.doc.draw_line("AC2-line", x1, y1, x1, y2)
+                        self.doc.draw_line("AC2-line", x1, y1, x2, y1)
                     elif value == 3:
-                        x1 = phys_x*self.delta+self.box_width*0.5
-                        x2 = (phys_x+1)*self.delta
-                        y1 = (phys_y)*self.box_height+self.offset+self.box_height/2
-                        y2 = (phys_y)*self.box_height+self.offset
-                        self.doc.draw_line("AC2-line",x1,y1,x1,y2)
-                        self.doc.draw_line("AC2-line",x1,y1,x2,y1)
+                        x1 = phys_x * self.delta + self.box_width * 0.5
+                        x2 = (phys_x + 1) * self.delta
+                        y1 = (phys_y) * self.box_height + self.offset + self.box_height / 2
+                        y2 = (phys_y) * self.box_height + self.offset
+                        self.doc.draw_line("AC2-line", x1, y1, x1, y2)
+                        self.doc.draw_line("AC2-line", x1, y1, x2, y1)
                         
                 phys_x +=1
             phys_y += 1
                     
         if not self.force_fit:
             self.doc.draw_text('AC2-box',
-                               '(%d,%d)' % (colx+1,coly+1),
+                               '(%d,%d)' % (colx + 1, coly + 1),
                                self.page_label_x_offset,
                                self.page_label_y_offset)
         self.doc.end_page()
 
     def add_lines(self):
 
-        (my,mx) = self.genchart.dimensions()
+        (my , mx) = self.genchart.dimensions()
         
-        for y in range(0,my):
-            for x in range(0,mx):
-                value = self.genchart.get_xy(x,y)
+        for y in range(0, my):
+            for x in range(0, mx):
+                value = self.genchart.get_xy(x, y)
                 if not value:
                     continue
                 if isinstance(value, tuple):
-                    (person,index) = value
-                    if self.genchart.get(index*2):
-                        (px,py) = self.genchart.index_to_xy(index*2)
-                        self.genchart.set_xy(x,py,1)
-                        for ty in range(py+1,y):
-                            self.genchart.set_xy(x,ty,2)
-                    if self.genchart.get(index*2+1):
-                        (px,py) = self.genchart.index_to_xy(index*2+1)
-                        self.genchart.set_xy(px-1,py,3)
-                        for ty in range(y+1,py):
-                            self.genchart.set_xy(x,ty,2)
+                    (person, index) = value
+                    if self.genchart.get(index * 2):
+                        (px, py) = self.genchart.index_to_xy(index * 2)
+                        self.genchart.set_xy(x, py, 1)
+                        for ty in range(py + 1, y):
+                            self.genchart.set_xy(x, ty, 2)
+                    if self.genchart.get(index * 2 + 1):
+                        (px, py) = self.genchart.index_to_xy(index * 2 + 1)
+                        self.genchart.set_xy(px - 1, py, 3)
+                        for ty in range(y + 1, py):
+                            self.genchart.set_xy(x, ty, 2)
 
 #------------------------------------------------------------------------
 #
