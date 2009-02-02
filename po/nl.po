@@ -5,9 +5,7 @@
 #
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
-# Frederik De Richter <frederik@googlemail.com>, 2008.
-# Erik De Richter <frederik.de.richter@googlemail.com>, 2008.
+# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008, 2009.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -36,19 +34,18 @@
 # lineage	lijn
 msgid ""
 msgstr ""
-"Project-Id-Version: nl\n"
+"Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-24 10:07+0100\n"
-"PO-Revision-Date: 2009-01-30 11:42+0100\n"
+"PO-Revision-Date: 2009-02-01 21:17+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Dutch\n"
-"X-Poedit-Country: BELGIUM\n"
+"X-Poedit-Language: Nederlands\n"
+"X-Poedit-Country: België\n"
 
 #: ../src/ArgHandler.py:230
 #, python-format
