@@ -6224,7 +6224,7 @@ msgstr "Kalender"
 #: ../src/plugins/Calendar.py:221
 #: ../src/plugins/Calendar.py:444
 msgid "Formatting months..."
-msgstr "UMaanden formateren..."
+msgstr "Maanden formateren..."
 
 #: ../src/plugins/Calendar.py:314
 #: ../src/plugins/WebCal.py:1197
