@@ -24,7 +24,7 @@ Display references for any object
 """
 from ReportBase import (CATEGORY_QR_SOURCE, CATEGORY_QR_PERSON, 
                         CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
-                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
+                        CATEGORY_QR_PLACE)
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
@@ -32,7 +32,7 @@ from gen.plug import PluginManager
 
 # mention so that will be translated for below
 [_('Person'), _('Family'), _('Event'), _('Source'), 
- _('Place'), _('Repository')]
+ _('Place')]
 
 def get_ref(db, objclass, handle):
     """
@@ -48,8 +48,6 @@ def get_ref(db, objclass, handle):
         ref = db.get_source_from_handle(handle)
     elif objclass == 'Place':
         ref = db.get_place_from_handle(handle)
-    elif objclass == 'Repository':
-        ref = db.get_repository_from_handle(handle)
     else:
         ref = objclass
     return ref
@@ -91,7 +89,6 @@ refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")),
             (CATEGORY_QR_EVENT, 'event', _("Event")), 
             (CATEGORY_QR_SOURCE, 'source', _("Source")), 
             (CATEGORY_QR_PLACE, 'place', _("Place")), 
-            (CATEGORY_QR_REPOSITORY, 'repository', _("Repository")), 
             ]
 pmgr = PluginManager.get_instance()
 
