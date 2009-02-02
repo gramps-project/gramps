@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 11:16+0100\n"
+"POT-Creation-Date: 2009-02-02 22:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,8 +189,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
-#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1016
-#: ../src/gen/lib/date.py:1030
+#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "none"
 msgstr ""
 
@@ -3896,8 +3896,8 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1466 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1458
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1463 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2701
@@ -5137,40 +5137,40 @@ msgstr ""
 msgid "Import from GEDCOM (%s)"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:835
+#: ../src/GrampsDbUtils/_GedcomParse.py:818
 msgid "GEDCOM import"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1089
+#: ../src/GrampsDbUtils/_GedcomParse.py:1072
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr ""
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3044
+#: ../src/GrampsDbUtils/_GedcomParse.py:2918
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3727
-#: ../src/GrampsDbUtils/_GedcomParse.py:4295
+#: ../src/GrampsDbUtils/_GedcomParse.py:3601
+#: ../src/GrampsDbUtils/_GedcomParse.py:4169
 #, python-format
 msgid "Could not import %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4071
+#: ../src/GrampsDbUtils/_GedcomParse.py:3945
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4161
-#: ../src/GrampsDbUtils/_GedcomParse.py:4173
+#: ../src/GrampsDbUtils/_GedcomParse.py:4035
+#: ../src/GrampsDbUtils/_GedcomParse.py:4047
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr ""
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4212
+#: ../src/GrampsDbUtils/_GedcomParse.py:4086
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr ""
@@ -5419,7 +5419,7 @@ msgstr ""
 msgid "Writing"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
 msgid "Export failed"
 msgstr ""
 
@@ -5428,17 +5428,17 @@ msgstr ""
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1471
 msgid "GE_DCOM"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1472
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GEDCOM export options"
 msgstr ""
 
@@ -5729,7 +5729,7 @@ msgstr ""
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
-#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:560
+#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:565
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -5990,7 +5990,7 @@ msgstr ""
 #: ../src/plugins/DetAncestralReport.py:701
 #: ../src/plugins/DetDescendantReport.py:644
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2938
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
@@ -6156,7 +6156,7 @@ msgstr ""
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:432
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:437
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2955
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -6168,14 +6168,14 @@ msgid "Select filter to restrict people"
 msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:443 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2961 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
 msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:444 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2962 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
@@ -8671,7 +8671,7 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:481
 msgid "Include thumbnail images of people"
 msgstr ""
 
@@ -8679,15 +8679,15 @@ msgstr ""
 msgid "Thumbnail location"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:488
 msgid "Above the name"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:489
 msgid "Beside the name"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
+#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:491
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 
@@ -8837,112 +8837,112 @@ msgstr ""
 msgid "Descendants - Ancestors"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:434
+#: ../src/plugins/GVRelGraph.py:439
 msgid "Determines what people are included in the graph"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:446
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Include Birth, Marriage and Death dates"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:452
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:451
+#: ../src/plugins/GVRelGraph.py:456
 msgid "Limit dates to years only"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:457
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:457
+#: ../src/plugins/GVRelGraph.py:462
 msgid "Use place when no date"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:463
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:463
+#: ../src/plugins/GVRelGraph.py:468
 msgid "Include URLs"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:464
+#: ../src/plugins/GVRelGraph.py:469
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:471
+#: ../src/plugins/GVRelGraph.py:476
 msgid "Include IDs"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:477
 msgid "Include individual and family IDs."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:478
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Whether to include thumbnails of people."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:487
 msgid "Thumbnail Location"
 msgstr ""
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:491
+#: ../src/plugins/GVRelGraph.py:496
 msgid "Graph Style"
 msgstr ""
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:494
+#: ../src/plugins/GVRelGraph.py:499
 msgid "Graph coloring"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:497
+#: ../src/plugins/GVRelGraph.py:502
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:502
+#: ../src/plugins/GVRelGraph.py:507
 msgid "Arrowhead direction"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:505
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Choose the direction that the arrows point."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:509
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:510
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:514
+#: ../src/plugins/GVRelGraph.py:519
 msgid "Show family nodes"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:515
+#: ../src/plugins/GVRelGraph.py:520
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:564
 msgid "Relationship Graph"
 msgstr ""
 
-#: ../src/plugins/GVRelGraph.py:561
+#: ../src/plugins/GVRelGraph.py:566
 msgid "Produces relationship graphs using Graphviz"
 msgstr ""
 
@@ -16026,35 +16026,35 @@ msgstr ""
 msgid "Islamic"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "estimated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "calculated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "before"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "after"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "about"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "range"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "span"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "textonly"
 msgstr ""
 
