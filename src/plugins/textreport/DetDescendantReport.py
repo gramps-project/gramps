@@ -5,7 +5,7 @@
 # Copyright (C) 2000-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2007      Robert Cawley  <rjc@cawley.id.au>
-# Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
+# Copyright (C) 2008-2009 James Friedmann <jfriedmannj@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -179,56 +179,44 @@ class DetDescendantReport(Report):
                 self.mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
 
     def mod_reg_filter(self,person_handle):
-    	self.mod_reg_filter_aux(person_handle, 1, 1)
-    	mod_reg_number = 1
+        self.mod_reg_filter_aux(person_handle, 1, 1)
+        mod_reg_number = 1
         for generation in xrange(len(self.gen_keys)):
             for key in self.gen_keys[generation]:
                 person_handle = self.map[key]
                 self.henry[person_handle] = mod_reg_number
                 mod_reg_number += 1
 
-
     def write_report(self):
+        """
+        This function is called by the report system and writes the report.
+        """
         if self.record_num:
             self.mod_reg_filter(self.center_person.get_handle())
         else:
-            self.apply_filter(self.center_person.get_handle(),1,"1")
+            self.apply_filter(self.center_person.get_handle(), 1, "1")
 
         name = _nd.display_name(self.center_person.get_primary_name())
-
-        spouseName = ""
-        nspouses = 0
-        for family_handle in self.center_person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
-            if self.center_person.get_gender() == gen.lib.Person.MALE:
-                spouse_handle = family.get_mother_handle()
-            else:
-                spouse_handle = family.get_father_handle()
-            if spouse_handle:
-                nspouses += 1
-                spouse = self.database.get_person_from_handle(spouse_handle)
-                spouseName = _nd.display(spouse)
 
         self.doc.start_paragraph("DDR-Title")
 
         title = _("Descendant Report for %(person_name)s") % {
                     'person_name' : name }
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
         keys = self.map.keys()
         keys.sort()
         generation = 0
-        need_header = 1
 
         for generation in xrange(len(self.gen_keys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
             text = _("Generation %d") % (generation+1)
-            mark = BaseDoc.IndexMark(text,BaseDoc.INDEX_TYPE_TOC,2)
-            self.doc.write_text(text,mark)
+            mark = BaseDoc.IndexMark(text, BaseDoc.INDEX_TYPE_TOC, 2)
+            self.doc.write_text(text, mark)
             self.doc.end_paragraph()
             if self.childref:
                 self.prev_gen_handles = self.gen_handles.copy()
@@ -236,7 +224,6 @@ class DetDescendantReport(Report):
 
             for key in self.gen_keys[generation]:
                 person_handle = self.map[key]
-                person = self.database.get_person_from_handle(person_handle)
                 self.gen_handles[person_handle] = key
                 self.write_person(key)
 
@@ -256,7 +243,7 @@ class DetDescendantReport(Report):
         mark = ReportUtils.get_person_mark(self.database, person)
 
         self.doc.start_bold()
-        self.doc.write_text(name,mark)
+        self.doc.write_text(name, mark)
         if name[-1:] == '.':
             self.doc.write_text("%s " % self.endnotes(person))
         else:
@@ -284,17 +271,11 @@ class DetDescendantReport(Report):
             for family_handle in person.get_family_handle_list():
                 family = self.database.get_family_from_handle(family_handle)
                 if self.inc_mates:
-                    if person.get_gender() == gen.lib.Person.MALE:
-                        mate_handle = family.get_mother_handle()
-                    else:
-                        mate_handle = family.get_father_handle()
-                    if mate_handle:
-                        mate = self.database.get_person_from_handle(mate_handle)
-                        self.write_person_info(mate)
+                    self.__write_mate(person, family)
                 if self.listchildren:
-                    self.write_children(family)
+                    self.__write_children(family)
                 if self.inc_events:
-                    self.write_family_events(family)
+                    self.__write_family_events(family)
 
     def write_event(self, event_ref):
         text = ""
@@ -307,7 +288,7 @@ class DetDescendantReport(Report):
             place = u''
 
         self.doc.start_paragraph('DDR-MoreDetails')
-        evtName = str( event.get_type() )
+        event_name = str( event.get_type() )
         if date and place:
             text +=  _('%(date)s, %(place)s') % { 
                        'date' : date, 'place' : place }
@@ -327,7 +308,7 @@ class DetDescendantReport(Report):
             text += ". "
             
         text = _('%(event_name)s: %(event_text)s') % {
-                 'event_name' : _(evtName),
+                 'event_name' : _(event_name),
                  'event_text' : text }
         
         self.doc.write_text(text)
@@ -386,9 +367,9 @@ class DetDescendantReport(Report):
             if text:
                 self.doc.write_text(text)
                 if father_mark:
-                    self.doc.write_text("",father_mark)
+                    self.doc.write_text("", father_mark)
                 if mother_mark:
-                    self.doc.write_text("",mother_mark)
+                    self.doc.write_text("", mother_mark)
 
     def write_marriage(self, person):
         """ 
@@ -397,25 +378,51 @@ class DetDescendantReport(Report):
         is_first = True
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            spouse_handle = ReportUtils.find_spouse(person,family)
+            spouse_handle = ReportUtils.find_spouse(person, family)
             spouse = self.database.get_person_from_handle(spouse_handle)
             text = ""
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
-            text = ReportUtils.married_str(self.database,person,family,
+            text = ReportUtils.married_str(self.database, person, family,
                                             self.verbose,
                                             self.endnotes,
                                             self.EMPTY_DATE,self.EMPTY_PLACE,
                                             is_first)
             
             if text:
-                self.doc.write_text(text,spouse_mark)
+                self.doc.write_text(text, spouse_mark)
                 is_first = False
-
-    def write_children(self, family):
-        """ List children.
+                
+    def __write_mate(self, person, family):
         """
+        Write information about the person's spouse/mate.
+        """
+        if person.get_gender() == gen.lib.Person.MALE:
+            mate_handle = family.get_mother_handle()
+        else:
+            mate_handle = family.get_father_handle()
+            
+        if mate_handle:
+            mate = self.database.get_person_from_handle(mate_handle)
 
+            self.doc.start_paragraph("DDR-MoreHeader")
+            name = _nd.display_formal(mate)
+            mark = ReportUtils.get_person_mark(self.database, mate)
+            if family.get_relationship() == gen.lib.FamilyRelType.MARRIED:
+                self.doc.write_text(_("Spouse: %s") % name, mark)
+            else:
+                self.doc.write_text(_("Relationship with: %s") % name, mark)
+            if name[-1:] != '.':
+                self.doc.write_text(".")
+            self.doc.write_text(self.endnotes(mate))
+            self.doc.end_paragraph()
+
+            self.write_person_info(mate)
+
+    def __write_children(self, family):
+        """ 
+        List the children for the given family.
+        """
         if not family.get_child_ref_list():
             return
 
@@ -446,7 +453,7 @@ class DetDescendantReport(Report):
             child_handle = child_ref.ref
             child = self.database.get_person_from_handle(child_handle)
             child_name = _nd.display(child)
-            child_mark = ReportUtils.get_person_mark(self.database,child)
+            child_mark = ReportUtils.get_person_mark(self.database, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
@@ -461,7 +468,7 @@ class DetDescendantReport(Report):
                                                    self.henry[child_handle]),
                                     child_mark )
             else:
-                self.doc.write_text("%s. " % child_name,child_mark)
+                self.doc.write_text("%s. " % child_name, child_mark)
                 
             self.doc.write_text(ReportUtils.born_str( self.database, child, 0, 
                           self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
@@ -469,8 +476,10 @@ class DetDescendantReport(Report):
                           self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
             self.doc.end_paragraph()
 
-    def write_family_events(self,family):
-        
+    def __write_family_events(self, family):
+        """ 
+        List the events for the given family.
+        """
         if not family.get_event_ref_list():
             return
 
@@ -500,17 +509,17 @@ class DetDescendantReport(Report):
                 first = 0
             self.write_event(event_ref)
 
-    def write_person_info(self,person):
+    def write_person_info(self, person):
         name = _nd.display_formal(person)
         
         plist = person.get_media_list()
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self.database,self.doc,photo)
+            ReportUtils.insert_image(self.database, self.doc, photo)
         
         self.doc.start_paragraph("DDR-Entry")
         # Check birth record
-        first = ReportUtils.common_name(person,self.usecall)
+        first = ReportUtils.common_name(person, self.usecall)
         
         if not self.verbose:
             self.write_parents(person, first)
@@ -526,13 +535,15 @@ class DetDescendantReport(Report):
             self.doc.write_text(text)
             first = 0
 
-        text = ReportUtils.baptised_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE,self.EMPTY_PLACE)
+        text = ReportUtils.baptised_str(self.database, person, first, 
+                                        self.verbose, self.endnotes, 
+                                        self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
             
-        text = ReportUtils.christened_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
+        text = ReportUtils.christened_str(self.database, person, first, 
+                                          self.verbose, self.endnotes, 
+                                          self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
     
@@ -548,12 +559,13 @@ class DetDescendantReport(Report):
             self.doc.write_text(text)
             first = 0
 
-        text = ReportUtils.buried_str(self.database, person, first, self.verbose,
-                                        self.endnotes, self.EMPTY_DATE,self.EMPTY_PLACE)
+        text = ReportUtils.buried_str(self.database, person, first, 
+                                      self.verbose, self.endnotes, 
+                                      self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
 
-        first = ReportUtils.common_name(person,self.usecall)
+        first = ReportUtils.common_name(person, self.usecall)
 
         if self.verbose:
             self.write_parents(person, first)
@@ -685,101 +697,105 @@ class DetDescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
-        gen = NumberOption(_("Generations"),10,1,100)
-        gen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"gen",gen)
+        generations = NumberOption(_("Generations"), 10, 1, 100)
+        generations.set_help(_("The number of generations to include in the " \
+                               "report"))
+        menu.add_option(category_name, "gen", generations)
         
-        pagebbg = BooleanOption(_("Page break between generations"),False)
+        pagebbg = BooleanOption(_("Page break between generations"), False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
-        menu.add_option(category_name,"pagebbg",pagebbg)
+        menu.add_option(category_name, "pagebbg", pagebbg)
 
-        record_num = BooleanOption(_("Use Record-style (Modified Register) numbering"),False)
-        record_num.set_help(
-                 _("Whether to use Record-style numbering instead of Henry-style."))
-        menu.add_option(category_name,"record_num",record_num)
+        record_num = BooleanOption(_("Use Record-style (Modified Register) " \
+                                     "numbering"),
+                                   False)
+        record_num.set_help(_("Whether to use Record-style numbering instead" \
+                              " of Henry-style."))
+        menu.add_option(category_name, "record_num", record_num)
         
         category_name = _("Content")
 
-        usecall = BooleanOption(_("Use callname for common name"),False)
+        usecall = BooleanOption(_("Use callname for common name"), False)
         usecall.set_help(_("Whether to use the call name as the first name."))
-        menu.add_option(category_name,"usecall",usecall)
+        menu.add_option(category_name, "usecall", usecall)
         
-        fulldates = BooleanOption(
-                              _("Use full dates instead of only the year"),True)
+        fulldates = BooleanOption(_("Use full dates instead of only the year"),
+                                  True)
         fulldates.set_help(_("Whether to use full dates instead of just year."))
-        menu.add_option(category_name,"fulldates",fulldates)
+        menu.add_option(category_name, "fulldates", fulldates)
         
-        listc = BooleanOption(_("List children"),True)
+        listc = BooleanOption(_("List children"), True)
         listc.set_help(_("Whether to list children."))
-        menu.add_option(category_name,"listc",listc)
+        menu.add_option(category_name, "listc", listc)
         
-        computeage = BooleanOption(_("Compute age"),True)
+        computeage = BooleanOption(_("Compute age"), True)
         computeage.set_help(_("Whether to compute age."))
-        menu.add_option(category_name,"computeage",computeage)
+        menu.add_option(category_name, "computeage", computeage)
         
-        omitda = BooleanOption(_("Omit duplicate ancestors"),True)
+        omitda = BooleanOption(_("Omit duplicate ancestors"), True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
-        menu.add_option(category_name,"omitda", omitda)
+        menu.add_option(category_name, "omitda", omitda)
         
-        verbose = BooleanOption(_("Use Complete Sentences"),True)
+        verbose = BooleanOption(_("Use Complete Sentences"), True)
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
-        menu.add_option(category_name,"verbose",verbose)
+        menu.add_option(category_name, "verbose", verbose)
 
-        desref = BooleanOption(_("Add descendant reference in child list"),True)
+        desref = BooleanOption(_("Add descendant reference in child list"),
+                               True)
         desref.set_help(
                     _("Whether to add descendant references in child list."))
-        menu.add_option(category_name,"desref",desref)
+        menu.add_option(category_name, "desref", desref)
 
         category_name = _("Include")
         
-        incnotes = BooleanOption(_("Include notes"),True)
+        incnotes = BooleanOption(_("Include notes"), True)
         incnotes.set_help(_("Whether to include notes."))
-        menu.add_option(category_name,"incnotes",incnotes)
+        menu.add_option(category_name, "incnotes", incnotes)
 
-        incattrs = BooleanOption(_("Include attributes"),False)
+        incattrs = BooleanOption(_("Include attributes"), False)
         incattrs.set_help(_("Whether to include attributes."))
-        menu.add_option(category_name,"incattrs",incattrs)
+        menu.add_option(category_name, "incattrs", incattrs)
         
-        incphotos = BooleanOption(_("Include Photo/Images from Gallery"),False)
+        incphotos = BooleanOption(_("Include Photo/Images from Gallery"), False)
         incphotos.set_help(_("Whether to include images."))
-        menu.add_option(category_name,"incphotos",incphotos)
+        menu.add_option(category_name, "incphotos", incphotos)
 
-        incnames = BooleanOption(_("Include alternative names"),False)
+        incnames = BooleanOption(_("Include alternative names"), False)
         incnames.set_help(_("Whether to include other names."))
-        menu.add_option(category_name,"incnames",incnames)
+        menu.add_option(category_name, "incnames", incnames)
 
-        incevents = BooleanOption(_("Include events"),False)
+        incevents = BooleanOption(_("Include events"), False)
         incevents.set_help(_("Whether to include events."))
-        menu.add_option(category_name,"incevents",incevents)
+        menu.add_option(category_name, "incevents", incevents)
 
-        incaddresses = BooleanOption(_("Include addresses"),False)
+        incaddresses = BooleanOption(_("Include addresses"), False)
         incaddresses.set_help(_("Whether to include addresses."))
-        menu.add_option(category_name,"incaddresses",incaddresses)
+        menu.add_option(category_name, "incaddresses", incaddresses)
 
-        incsources = BooleanOption(_("Include sources"),False)
+        incsources = BooleanOption(_("Include sources"), False)
         incsources.set_help(_("Whether to include source references."))
-        menu.add_option(category_name,"incsources",incsources)
+        menu.add_option(category_name, "incsources", incsources)
 
-        incmates = BooleanOption(_("Include spouses"),False)
+        incmates = BooleanOption(_("Include spouses"), False)
         incmates.set_help(_("Whether to include detailed spouse information."))
-        menu.add_option(category_name,"incmates",incmates)
+        menu.add_option(category_name, "incmates", incmates)
 
         category_name = _("Missing information")        
 
-        repplace = BooleanOption(_("Replace missing places with ______"),False)
+        repplace = BooleanOption(_("Replace missing places with ______"), False)
         repplace.set_help(_("Whether to replace missing Places with blanks."))
-        menu.add_option(category_name,"repplace",repplace)
+        menu.add_option(category_name, "repplace", repplace)
 
-        repdate = BooleanOption(_("Replace missing dates with ______"),False)
+        repdate = BooleanOption(_("Replace missing dates with ______"), False)
         repdate.set_help(_("Whether to replace missing Dates with blanks."))
-        menu.add_option(category_name,"repdate",repdate)
+        menu.add_option(category_name, "repdate", repdate)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Detailed Ancestral Report"""
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
@@ -787,80 +803,80 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
-        default_style.add_paragraph_style("DDR-Title",para)
+        default_style.add_paragraph_style("DDR-Title", para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the generation header.'))
-        default_style.add_paragraph_style("DDR-Generation",para)
+        default_style.add_paragraph_style("DDR-Generation", para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=10, italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_left_margin(1.5)   # in centimeters
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the children list title.'))
-        default_style.add_paragraph_style("DDR-ChildTitle",para)
+        default_style.add_paragraph_style("DDR-ChildTitle", para)
 
         font = BaseDoc.FontStyle()
         font.set(size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=-0.75,lmargin=2.25)
+        para.set(first_indent=-0.75, lmargin=2.25)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)
         para.set_description(_('The style used for the children list.'))
-        default_style.add_paragraph_style("DDR-ChildList",para)
+        default_style.add_paragraph_style("DDR-ChildList", para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=10, italic=0, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.5)
+        para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        default_style.add_paragraph_style("DDR-NoteHeader",para)
+        default_style.add_paragraph_style("DDR-NoteHeader", para)
 
         para = BaseDoc.ParagraphStyle()
         para.set(lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("DDR-Entry",para)
+        default_style.add_paragraph_style("DDR-Entry", para)
 
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-1.5,lmargin=1.5)
+        para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)        
         para.set_description(_('The style used for the first personal entry.'))
-        default_style.add_paragraph_style("DDR-First-Entry",para)
+        default_style.add_paragraph_style("DDR-First-Entry", para)
 
         font = BaseDoc.FontStyle()
-        font.set(size=10,face=BaseDoc.FONT_SANS_SERIF,bold=1)
+        font.set(size=10, face=BaseDoc.FONT_SANS_SERIF, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.5)
+        para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the More About header.'))
-        default_style.add_paragraph_style("DDR-MoreHeader",para)
+        default_style.add_paragraph_style("DDR-MoreHeader", para)
 
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF,size=10)
+        font.set(face=BaseDoc.FONT_SERIF, size=10)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(first_indent=0.0,lmargin=1.5)
+        para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for additional detail data.'))
-        default_style.add_paragraph_style("DDR-MoreDetails",para)
+        default_style.add_paragraph_style("DDR-MoreDetails", para)
 
         Endnotes.add_endnote_styles(default_style)
 
