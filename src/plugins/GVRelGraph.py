@@ -187,6 +187,11 @@ class RelGraphReport(Report):
         style = 'solid'
         adopted = ((int(frel) != gen.lib.ChildRefType.BIRTH) or
                    (int(mrel) != gen.lib.ChildRefType.BIRTH))
+        # If birth relation to father is NONE, mening there is no father and
+        # if birth relation to mother is BIRTH then solid line
+        if ((int(frel) == gen.lib.ChildRefType.NONE) and
+           (int(mrel) == gen.lib.ChildRefType.BIRTH)):
+            adopted = False
         if adopted and self.adoptionsdashed:
             style = 'dotted'
         self.doc.add_link( p_id, family.get_gramps_id(), style, 
