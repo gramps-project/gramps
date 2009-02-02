@@ -178,7 +178,7 @@ class GeneWebParser:
             self.errmsg(str(err))
             
         t = time.time() - t
-        msg = ngettext('Import Complete: 1 second','Import Complete: %d seconds', t ) % t
+        msg = ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
 
         self.db.transaction_commit(self.trans,_("GeneWeb import"))
         self.db.enable_signals()

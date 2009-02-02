@@ -32,6 +32,7 @@ import DateHandler
 
 import posixpath
 from gettext import gettext as _
+from gettext import ngettext
 
 # force translation
 [_('all people'), _('males'), _('females'), _('people with unknown gender'),
@@ -216,7 +217,9 @@ def run(database, document, filter_name, *args, **kwargs):
             matches += 1
     else:
         raise AttributeError, ("invalid filter name: '%s'" % filter_name)
-    sdoc.paragraph(_("Filter matched %d records.") % matches)
+    sdoc.paragraph(ngettext("Filter matched %d record."
+                   ,
+                   "Filter matched %d records.", matches) % matches)
     sdoc.paragraph("")
     if matches > 0:
         stab.write(sdoc)

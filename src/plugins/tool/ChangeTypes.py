@@ -139,8 +139,11 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-        msg = ngettext("1 event record was modified.", \
-        "%d event records were modified.", modified) % modified
+        if modified == 0:
+            msg = _("No event record was modified.")
+        else:
+            msg = ngettext("%d event record was modified."
+                  , "%d event records were modified.", modified) % modified
 
         if cli:
             print "Done: ", msg

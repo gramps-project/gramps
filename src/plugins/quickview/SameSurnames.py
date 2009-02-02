@@ -26,6 +26,7 @@ Display a people who have a person's same surname or given name
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
+from gettext import ngettext
 from gen.plug import PluginManager
 import gen.lib
 from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_MISC
@@ -118,7 +119,10 @@ def run(database, document, person):
         stab.row(person, sdb.birth_date_obj(person),
                  str(person.get_primary_name().get_type()))
         matches += 1
-    sdoc.paragraph(_("There are %d people with a matching name, or alternate name.\n") % matches)
+    sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
+                   ,
+                   "There are %d people with a matching name, or alternate name.\n"
+                   , matches) % matches)
     stab.write(sdoc)
 
 def run_given(database, document, person):
@@ -154,7 +158,10 @@ def run_given(database, document, person):
         stab.row(person, sdb.birth_date_obj(person),
                  str(person.get_primary_name().get_type()))
         matches += 1
-    sdoc.paragraph(_("There are %d people with a matching name, or alternate name.\n") % matches)
+    sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
+                   ,
+                   "There are %d people with a matching name, or alternate name.\n"
+                   , matches) % matches)
     stab.write(sdoc)
 
 #------------------------------------------------------------------------
