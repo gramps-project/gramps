@@ -101,8 +101,6 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
-_PERSON = 0
-_PLACE = 1
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -247,8 +245,7 @@ class BasePage:
     """
     This is the base class to write certain HTML pages.
     """
-    _KEYNAME_METHOD = [self.get_person_keyname, self.get_place_keyname]
-    
+
     def __init__(self, report, title, gid=None):
         """
         report - instance of NavWebReport
@@ -278,42 +275,34 @@ class BasePage:
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
 
-    def get_person_keyname(self, handle):
-        """ .... """ 
-        person = self.report.database.get_person_from_handle(person_handle)
-        return person.get_primary_name().surname
-
-    def get_place_keyname(self, handle):
-        """ ... """
-        place = self.report.database.get_place_from_handle(handle)
-        place_title = ReportUtils.place_name(self.report.database, handle)  
-
-    def get_first_letter_dict(self, handle_list, key):
-        """ key is _PLACE or _PERSON ...."""
-        namedict = {}
-        for handle in handle_list:
-            keyname = self._KEYNAME_METHOD[key](handle)
-            if keyname:
-                firstletter = normalize('NFC', keyname)[0].upper()
-
-                if firstletter in namedict:
-                    namedict[firstletter] += 1
-                else:
-                    namedict[firstletter] = 1
-        return namedict
-
-    def alphabet_navigation(self, of, ind_list, key):
+    def alphabet_navigation(self, of, ind_list):
         """
         Will create the alphabetical navigation bar...
         """
 
-        first_letter_dict = self.get_first_letter_dict(ind_list, key)
-        sorted_first_letter = first_letter_dict.keys().sort(locale.strcoll)
+        def get_alpha_list(ind_list):
+            """ Will produce the active letters in the alphabet """
+
+            firstletter_list = []
+            for person_handle in ind_list:
+                person = self.report.database.get_person_from_handle(person_handle)
+                primary_name = person.get_primary_name()
+
+                alpha_name = primary_name.get_surname()
+
+                if alpha_name:
+                    alpha_ltr = alpha_name[0]
+                    if alpha_ltr not in firstletter_list:
+                        firstletter_list.append(alpha_ltr)
+
+            firstletter_list.sort()
+            return firstletter_list
+
+        namedict = get_alpha_list(ind_list)
 
         of.write('\t<div id="navigation">\n')
         of.write('\t\t<ul>\n')
-        for ltr in  sorted_first_letter:
-
+        for ltr in namedict:
             of.write('\t\t\t<li><a href="#%s">%s</a> |</li>' % (ltr, ltr))
         of.write('\t\t</ul>\n')
         of.write('\t</div>\n')   
@@ -772,8 +761,8 @@ class IndividualListPage(BasePage):
         showspouse = report.options['showspouse']
         showparents = report.options['showparents']
 
-        # begin alphabetic navigation
-        self.alphabet_navigation(of, person_handle_list, _PERSON) 
+        # begin alphabetical navigation
+        self.alphabet_navigation(of, person_handle_list) 
 
         of.write('\t<h2>%s</h2>\n' % _('Individuals'))
         of.write('\t<p id="description">%s</p>\n' % msg)
@@ -1043,9 +1032,6 @@ class PlaceListPage(BasePage):
         db = report.database
         of = self.report.create_file("places")
         self.write_header(of, _('Places'), content_divid='Places')
-
-        # begin of Alphabetic Navigation
-        self.alphabet_navigation(of, person_handle_list, _PLACE)
 
         msg = _("This page contains an index of all the places in the "
                 "database, sorted by their title. Clicking on a place&#8217;s "
@@ -1391,8 +1377,8 @@ class SurnameListPage(BasePage):
             self.write_header(of, _('Surnames by person count'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
-        # begin of Alphabetic Navigation
-        self.alphabet_navigation(of, person_handle_list, _PERSON)
+        # beginning of Alphabetical Navigation
+        self.alphabet_navigation(of, person_handle_list)
 
         of.write('\t<p id="description">%s</p>\n' % _(
             'This page contains an index of all the '
