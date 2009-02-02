@@ -96,6 +96,7 @@ class PluginManager(gen.utils.Callback):
         self.__import_plugins    = []
         self.__export_plugins    = []
         self.__general_plugins   = []
+        self.__mapservice_list   = []
         self.__attempt_list      = []
         self.__loaddir_list      = []
         self.__textdoc_list      = []
@@ -240,6 +241,10 @@ class PluginManager(gen.utils.Callback):
         """ Return the list of quick report plugins. """
         return self.__quick_report_list
     
+    def get_mapservice_list(self):
+        """ Return the list of map services"""
+        return self.__mapservice_list
+
     def get_book_item_list(self):
         """ Return the list of book plugins. """
         return self.__bkitems_list
@@ -534,6 +539,30 @@ class PluginManager(gen.utils.Callback):
                             
         self.__mod2text[run_func.__module__] = description
 
+    def register_mapservice(self, name, mapservice, translated_name,
+                            status=_("Unknown"), tooltip=_UNAVAILABLE,
+                            author_name=_("Unknown"),
+                            author_email=_("Unknown"), unsupported=False ):
+        """
+        Register map services for the place view.
+        A map service is a MapService class. The class can be called with a
+        list of (place handle, description) values, and manipulate this data
+        to show on a map.
+        """
+        del_index = -1
+        for i in range(0, len(self.__mapservice_list)):
+            val = self.__mapservice_list[i]
+            if val[2] == name:
+                del_index = i
+        if del_index != -1:
+            del self.__mapservice_list[del_index]
+    
+        self.__mapservice_list.append( (mapservice, translated_name, 
+                            name, tooltip, status,
+                            author_name, author_email, unsupported))
+                            
+        self.__mod2text[mapservice.__module__] = tooltip
+        
     def __purge_failed(self):
         """
         Purge the failed plugins from the corresponding lists.

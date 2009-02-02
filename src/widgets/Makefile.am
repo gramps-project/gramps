@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	expandcollapsearrow.py \
 	labels.py \
 	linkbox.py \
+	menutoolbuttonaction.py \
 	monitoredwidgets.py \
 	shortlistcomboentry.py \
 	springseparator.py \

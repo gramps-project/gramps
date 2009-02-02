@@ -300,6 +300,11 @@ src/plugins/import/ImportVCard.py
 
 # plugins/lib directory
 src/plugins/lib/libholiday.py
+src/plugins/lib/libmapservice.py
+
+# plugins/mapservices directory
+src/plugins/mapservices/googlemap.py
+src/plugins/mapservices/openstreetmap.py
 
 # plugins/quickview directory
 src/plugins/quickview/AgeOnDate.py
@@ -761,6 +766,7 @@ src/FilterEditor/_ShowResults.py
 src/widgets/buttons.py
 src/widgets/expandcollapsearrow.py
 src/widgets/labels.py
+src/widgets/menutoolbuttonaction.py
 src/widgets/styledtexteditor.py
 src/widgets/validatedmaskedentry.py
 

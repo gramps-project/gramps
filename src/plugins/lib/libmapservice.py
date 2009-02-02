@@ -22,6 +22,13 @@
 Google Maps map service. Open place in maps.google.com
 """
 
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -36,7 +43,11 @@ class MapService():
        A service is a singleton, we only need one to exist
        Usage is as a callable when used 
     """
-    
+    def __init__(self):
+        self.database = None
+        self.items = None
+        self.url = ''
+
     def __call__(self, database, items):
         """Callable class, usable as a function. This guarantees the class is
            instantiated once when a service is registered. Afterward only calls
@@ -45,11 +56,11 @@ class MapService():
            items: list of tuples (place_handle, description), where description
                   is None or a string to use for marker (eg 'birth John Doe')
         """
-        self.db = database
+        self.database = database
         self.items = items
         self.url = ''
         #An instance is called, we display the result
-        self._calc_url()
+        self.calc_url()
         self.__display()
         self._free()
 
@@ -57,23 +68,24 @@ class MapService():
         """Obtain the first place object"""
         place_handle = self.items[0][0]
         
-        return self.db.get_place_from_handle(place_handle), self.items[0][1]
+        return self.database.get_place_from_handle(place_handle), \
+                        self.items[0][1]
         
     def _all_places(self):
         """Obtain a list generator of all place objects
             Usage: for place, descr in mapservice.all_places()
         """
-        for handle, descr in db.get_handles():
-         yield self.db.get_place_from_handle(handle), descr
+        for handle, descr in self.database.get_handles():
+            yield self.database.get_place_from_handle(handle), descr
     
     def _lat_lon(self, place, format="D.D8"):
         """return the lat, lon value of place in the requested format
            None, None if invalid
         """
-        return PlaceUtils.conv_lat_lon(place.get_latitude(), 
+        return conv_lat_lon(place.get_latitude(), 
                                        place.get_longitude(), format)
 
-    def _calc_url(self):
+    def calc_url(self):
         """Base class needs to overwrite this, calculation of the self.path"""
         raise NotImplementedError
 

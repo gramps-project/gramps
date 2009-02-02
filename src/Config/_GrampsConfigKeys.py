@@ -150,6 +150,7 @@ LDS_HEIGHT           = ('interface', 'lds-height', 1)
 LDS_WIDTH            = ('interface', 'lds-width', 1)
 LOCATION_HEIGHT      = ('interface', 'location-height', 1)
 LOCATION_WIDTH       = ('interface', 'location-width', 1)
+MAPSERVICE           = ('interface', 'mapservice', 2)
 MEDIA_REF_HEIGHT     = ('interface', 'media-ref-height', 1)
 MEDIA_REF_WIDTH      = ('interface', 'media-ref-width', 1)
 URL_HEIGHT           = ('interface', 'url-height', 1)
@@ -280,7 +281,8 @@ default_value = {
     LDS_HEIGHT           : 450, 
     LDS_WIDTH            : 600, 
     LOCATION_HEIGHT      : 250, 
-    LOCATION_WIDTH       : 600, 
+    LOCATION_WIDTH       : 600,
+    MAPSERVICE           : 'OpenStreetMap',
     MEDIA_REF_HEIGHT     : 450, 
     MEDIA_REF_WIDTH      : 600, 
     URL_HEIGHT           : 150, 

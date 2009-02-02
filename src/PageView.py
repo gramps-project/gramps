@@ -51,6 +51,8 @@ import Errors
 from Filters import SearchBar
 import Utils
 import const
+from widgets.menutoolbuttonaction import MenuToolButtonAction
+
 from TransUtils import sgettext as _
 from QuestionDialog import QuestionDialog, QuestionDialog2
 
@@ -75,6 +77,8 @@ class PageView:
         self.uistate = uistate
         self.action_list = []
         self.action_toggle_list = []
+        self.action_toolmenu_list = []
+        self.action_toolmenu = {} #easy access to toolmenuaction and proxies
         self.action_group = None
         self.additional_action_groups = []
         self.additional_uis = []
@@ -206,13 +210,24 @@ class PageView:
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
+        for action_toolmenu in self.action_toolmenu_list:
+            self.action_toolmenu[action_toolmenu[0]] = \
+                    MenuToolButtonAction(action_toolmenu[0], #unique name
+                                         action_toolmenu[1], #label
+                                         action_toolmenu[2], #tooltip
+                                         action_toolmenu[3], #callback
+                                         action_toolmenu[4]  #arrow tooltip
+                                        )
+            self.action_group.add_action(
+                                    self.action_toolmenu[action_toolmenu[0]])
 
     def _add_action(self, name, stock_icon, label, accel=None, tip=None, 
                    callback=None):
         """
         Add an action to the action list for the current view. 
         """
-        self.action_list.append((name, stock_icon, label, accel, tip, callback))
+        self.action_list.append((name, stock_icon, label, accel, tip, 
+                                 callback))
 
     def _add_toggle_action(self, name, stock_icon, label, accel=None, 
                            tip=None, callback=None, value=False):
@@ -221,6 +236,11 @@ class PageView:
         """
         self.action_toggle_list.append((name, stock_icon, label, accel, 
                                         tip, callback, value))
+    
+    def _add_toolmenu_action(self, name, label, tooltip, callback, 
+                             arrowtooltip):
+        self.action_toolmenu_list.append((name, label, tooltip, callback,
+                                          arrowtooltip))
 
     def get_actions(self):
         """

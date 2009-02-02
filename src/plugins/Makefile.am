@@ -11,6 +11,7 @@ SUBDIRS = \
 	graph \
 	import \
 	lib \
+	mapservices \
 	quickview \
 	rel \
 	textreport \

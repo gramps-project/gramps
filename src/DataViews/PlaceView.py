@@ -26,6 +26,13 @@ Place View
 
 #-------------------------------------------------------------------------
 #
+# Global modules
+#
+#-------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -44,6 +51,7 @@ import Errors
 import Bookmarks
 import Config
 from QuestionDialog import ErrorDialog
+from gen.plug import PluginManager
 from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery
 from Filters.SideBar import PlaceSidebarFilter
@@ -97,6 +105,9 @@ class PlaceView(PageView.ListView):
             '<CONTROL>BackSpace' : self.key_delete,
             }
 
+        self.mapservice = Config.get(Config.MAPSERVICE)
+        self.mapservicedata = {}
+
         PageView.ListView.__init__(
             self, _('Places'), dbstate, uistate, PlaceView.COLUMN_NAMES,
             len(PlaceView.COLUMN_NAMES), 
@@ -118,39 +129,119 @@ class PlaceView(PageView.ListView):
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge...'),
                          callback=self.fast_merge)
-        self._add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
-                         callback=self.google,
-                         tip=_("Attempt to map location on Google Maps"))
+        self._add_toolmenu_action('MapsList', 'Loading...',
+                        _("Attempt to see selected locations with a Map "
+                                "Service (OpenstreetMap, Google Maps, ..."),
+                        self.gotomap,
+                        _('Select a Map Service'))
+        self._add_action('GotoMap', gtk.STOCK_JUMP_TO, 
+                        _('_Look up with Map Service'),
+                        callback=self.gotomap,
+                        tip=_("Attempt to see this location with a Map "
+                                "Service (OpenstreetMap, Google Maps, ..."))
         self._add_action('FilterEdit', None, _('Place Filter Editor'),
-                         callback=self.filter_editor,)
+                         callback=self.filter_editor)
+
+    def change_page(self):
+        """
+        Called by viewmanager at end of realization when arriving on the page
+        At this point the Toolbar is created. We need to:
+          1. get the menutoolbutton
+          2. add all possible map services in the drop down menu
+          3. add the actions that correspond to clicking in this drop down menu
+          4. set icon and label of the menutoolbutton now that it is realized
+          5. store label so it can be changed when selection changes
+        """
+        PageView.ListView.change_page(self)
+        #menutoolbutton actions are stored in PageView class, 
+        # obtain the widgets where we need to add to menu
+        actionservices = self.action_toolmenu['MapsList']
+        widgets = actionservices.get_proxies()
+        mmenu = self.__create_maps_menu_actions()
+
+        if not self.mapservicedata:
+            return
+        if not self.mapservice in self.mapservicedata: 
+            #stored val no longer exists, use the first key instead
+            self.set_mapservice(self.mapservicedata.keys()[0])
+
+        #store all gtk labels to be able to update label on selection change
+        self.mapslistlabel = []
+        for widget in widgets :
+            if isinstance(widget, gtk.MenuToolButton):
+                widget.set_menu(mmenu)
+                widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
+                hbox=gtk.HBox()
+                img = gtk.Image()
+                img.set_from_stock(gtk.STOCK_JUMP_TO, 
+                                   gtk.ICON_SIZE_LARGE_TOOLBAR)
+                hbox.pack_start(img)
+                self.mapslistlabel.append(gtk.Label(self.mapservice_label()))
+                hbox.pack_start(self.mapslistlabel[-1])
+                hbox.show_all()
+                widget.set_icon_widget(hbox)
+
+    def __create_maps_menu_actions(self):
+        """
+        Function creating a menu and actions that are used as dropdown menu
+        from the menutoolbutton
+        """
+        menu = gtk.Menu()
+        
+        #select the map services to show
+        self.mapservicedata = {}
+        servlist = PluginManager.get_instance().get_mapservice_list()
+        for i, service in zip(range(len(servlist)), servlist):
+            key = service[2].replace(' ', '-')
+            Utils.add_menuitem(menu, service[1], None, 
+                               make_callback(self.set_mapservice, key))
+            self.mapservicedata[key] = (service[0], service[2], service[3])
+
+        return menu
+
+    def set_mapservice(self, mapkey):
+        """
+        change the service that runs on click of the menutoolbutton
+        used as callback menu on menu clicks
+        """
+        self.mapservice = mapkey
+        for label in self.mapslistlabel:
+            label.set_label(self.mapservice_label())
+            label.show()
+        Config.set(Config.MAPSERVICE, mapkey)
+        Config.sync()
+    
+    def mapservice_label(self):
+        """
+        return the current label for the menutoolbutton
+        """
+        return self.mapservicedata[self.mapservice][1]
+
+    def gotomap(self, obj):
+        """
+        Run the map service 
+        """
+        place_handles = self.selected_handles()
+        try:
+            place_handle = self.selected_handles()[0]
+        except IndexError:
+            msg = _("No place selected.")
+            msg2 = _("You need to select a place to be able to view it"
+                     " on a map. Some Map Services might support multiple"
+                     " selections.")
+            ErrorDialog(msg, msg2)
+            return
+        
+        #TODO: support for descriptions in some cases. For now, pass None
+        #TODO: Later this might be 'Birth of William' ....
+        places = [(x, None) for x in place_handles]
+        
+        #run the mapservice:
+        self.mapservicedata[self.mapservice][0](self.dbstate.db, places)
 
     def drag_info(self):
         return DdTargets.PLACE_LINK
 
-    def google(self, obj):
-        import GrampsDisplay
-        from PlaceUtils import conv_lat_lon
-
-        try:
-            place_handle = self.selected_handles()[0]
-        except IndexError:
-            return
-        place = self.dbstate.db.get_place_from_handle(place_handle)
-        descr = place.get_title()
-        longitude = place.get_longitude()
-        latitude = place.get_latitude()
-        latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
-        city = place.get_main_location().get_city()
-        country = place.get_main_location().get_country()
-
-        if longitude and latitude:
-            path = "http://maps.google.com/?sll=%s,%s&z=15" % (latitude, longitude)
-        elif city and country:
-            path = "http://maps.google.com/maps?q=%s,%s" % (city, country)
-        else:
-            path = "http://maps.google.com/maps?q=%s" % '+'.join(descr.split())
-        GrampsDisplay.url(path)
-        
     def _column_editor(self, obj):
         import ColumnOrder
 
@@ -204,14 +295,14 @@ class PlaceView(PageView.ListView):
               <toolitem action="Edit"/>
               <toolitem action="Remove"/>
               <separator/>
-              <toolitem action="GoogleMaps"/>
+              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
-            <menuitem action="GoogleMaps"/>
+            <menuitem action="GotoMap"/>
           </popup>
         </ui>'''
 
@@ -271,3 +362,6 @@ class PlaceView(PageView.ListView):
             return obj.get_handle()
         else:
             return None
+
+def make_callback(func, val):
+    return lambda x: func(val)
