@@ -129,7 +129,7 @@ class PlaceView(PageView.ListView):
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FastMerge', None, _('_Merge...'),
                          callback=self.fast_merge)
-        self._add_toolmenu_action('MapsList', 'Loading...',
+        self._add_toolmenu_action('MapsList', _('Loading...'),
                         _("Attempt to see selected locations with a Map "
                                 "Service (OpenstreetMap, Google Maps, ..."),
                         self.gotomap,
