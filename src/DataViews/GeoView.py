@@ -212,11 +212,11 @@ class RendererWebkit(Renderer):
 
     def page_begin_load(self,view,frame):
         if frame is self.frame:
-            LOG.debug(_("load-started : %s") % self.get_uri())
+            LOG.debug("load-started : %s" % self.get_uri())
         pass
 
     def navigation(self,view,frame,networkrequest):
-        LOG.debug(_("navigation-requested : %s") % frame.get_uri())
+        LOG.debug("navigation-requested : %s" % frame.get_uri())
         return 1
 
     def load_progress(self,view,percent):
@@ -225,7 +225,7 @@ class RendererWebkit(Renderer):
 
     def hover_link_cb(self,view,title,url):
         if view and url:
-            LOG.debug(_("hovering-over-link : %s - %s") % (title, url))
+            LOG.debug("hovering-over-link : %s - %s" % (title, url))
 
     def script_confirm_cb(self, view, frame, message, isConfirmed):
         LOG.debug("script confirm")
@@ -273,7 +273,7 @@ class RendererMozilla(Renderer):
         self.set_button_sensitivity()
 
     def page_begin_load(self,obj):
-        LOG.debug(_("Loading - %s") % self.get_uri())
+        LOG.debug("Loading - %s" % self.get_uri())
         pass
 
     def open(self, url):
@@ -672,39 +672,35 @@ class GeoView(HtmlView):
             self._add_action('GoogleMaps', 'gramps-alternate-map',
                              _('_Google Maps'),
                              callback=self.select_google_map,
-                             tip=_("Select Google Maps. If possible, "
-                                    "choose OpenStreetMap!"))
+                             tip=_("Select Google Maps."))
         elif Config.get(Config.GEOVIEW_OPENLAYERS):
             self._add_action('OpenLayersMaps', 'gramps-alternate-map',
                              _('_OpenLayers Maps'),
                              callback=self.select_openlayers_map,
-                             tip=_("Select OpenLayers Maps. If possible,"
-                                    " choose OpenStreetMap"))
+                             tip=_("Select OpenLayers Maps."))
         elif Config.get(Config.GEOVIEW_YAHOO):
             self._add_action('YahooMaps', 'gramps-alternate-map', 
                              _('_Yahoo! Maps'),
                              callback=self.select_yahoo_map,
-                             tip=_("Select Yahoo Maps. If possible, choose"
-                                    " OpenStreetMap"))
+                             tip=_("Select Yahoo Maps."))
         elif Config.get(Config.GEOVIEW_MICROSOFT):
             self._add_action('MicrosoftMaps', 'gramps-alternate-map',
                              _('_Microsoft Maps'),
                              callback=self.select_microsoft_map,
-                             tip=_("Select Microsoft Maps. If possible,"
-                                    " choose OpenStreetMap"))
+                             tip=_("Select Microsoft Maps"))
 
-        self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_AllPlacesMaps'),
+        self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_All Places'),
                          callback=self.all_places,
-                         tip=_("Attempt to view all database places on the Map."))
+                         tip=_("Attempt to view all places in the family tree."))
         self._add_action('PersonMaps', 'gramps-person', _('_Person'),
                          callback=self.person_places,
-                         tip=_("Attempt to view all the places where lived the selected people."))
+                         tip=_("Attempt to view all the places where the selected people lived."))
         self._add_action('FamilyMaps', 'gramps-parents-add', _('_Family'),
                          callback=self.family_places,
-                         tip=_("Attempt to view places on the Map of the selected people's family."))
+                         tip=_("Attempt to view places of the selected people's family."))
         self._add_action('EventMaps', 'gramps-event', _('_Event'),
                          callback=self.event_places,
-                         tip=_("Attempt to view places on the Map for all events."))
+                         tip=_("Attempt to view places connected to all events."))
 
     def goto_active_person(self,handle=None):
         self.geo_places(self.displaytype)
@@ -825,7 +821,7 @@ class GeoView(HtmlView):
          <body >
            <H4>%(content)s</H4>
         """ % { 'title'  : _('List of places without coordinates'),
-                'content': _('Here is the list of all places in the databases'
+                'content': _('Here is the list of all places in the family tree'
                              ' for which we have no coordinates.<br>'
                              ' This means no longitude or latitude.<p>')
         }
@@ -868,7 +864,9 @@ class GeoView(HtmlView):
         self.mapview.write(" </head>\n")
         self.mapview.write(" <body >\n")
         if maxpages > 1:
-            message = _("We have %d markers, so I split this document in %d pages of %d markers : " % (self.nbmarkers, maxpages, NB_MARKERS_PER_PAGE))
+            message = _("There are %d markers to display. They are split up "
+                        "over %d pages of %d markers : " % (self.nbmarkers, 
+                                            maxpages, NB_MARKERS_PER_PAGE))
             self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
             if curpage != 1:
                 priorfile=GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % (ftype,curpage-1)
@@ -1303,9 +1301,10 @@ class GeoView(HtmlView):
             self.mapview.write("   my_marker = new Marker(point);\n")
             self.mapview.write("   my_marker.setLabel(\"%s\");\n"%_("No location."))
             self.mapview.write("   my_marker.setInfoBubble(\"<div style='white-space:nowrap;' >")
-            self.mapview.write(_("You have no place in your database with coordinates."))
+            self.mapview.write(_("You have no places in your family tree "
+                                 " with coordinates."))
             self.mapview.write("<br>")
-            self.mapview.write(_("This is why you see this map."))
+            self.mapview.write(_("You are looking at the default map."))
             self.mapview.write("</div>\");\n")
             self.mapview.write("   mapstraction.addMarker(my_marker);")
         self.mapview.write("\n  </script>\n")
@@ -1329,7 +1328,8 @@ class GeoView(HtmlView):
                     latitude = place.get_latitude()
                     latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     if comment:
-                        descr1=comment+" : "+_("birth place.")
+                        descr1= _("%(comment) : birth place.") % {
+                                            'comment': comment}
                     else:
                         descr1=_("birth place.")
                     descr = place.get_title()
@@ -1359,7 +1359,8 @@ class GeoView(HtmlView):
                     latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     descr = place.get_title()
                     if comment:
-                        descr1=comment+" : "+_("death place.")
+                        descr1= _("%(comment) : death place.") % {
+                                            'comment': comment} 
                     else:
                         descr1=_("death place.")
                     city = place.get_main_location().get_city()
@@ -1395,7 +1396,7 @@ class GeoView(HtmlView):
             place = db.db.get_place_from_handle( place_handle)
             if place:
                 descr = place.get_title()
-                descr1 = _("Id : %s")%place.gramps_id
+                descr1 = _("Id : %s") % place.gramps_id
                 longitude = place.get_longitude()
                 latitude = place.get_latitude()
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
@@ -1410,12 +1411,14 @@ class GeoView(HtmlView):
                                                descr1, self.center, None)
                     self.center = False
                 else:
-                    self.append_to_places_without_coordinates(place.gramps_id,descr)
+                    self.append_to_places_without_coordinates(place.gramps_id,
+                                                              descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
-        self.create_pages(1,_("All places in the database with coordinates."),mess)
+        self.create_pages(1,_("All places in the family tree with coordinates."),
+                          mess)
 
     def createMapstractionEvents(self,db):
         """
@@ -1440,29 +1443,42 @@ class GeoView(HtmlView):
                 pl_id = event.get_place_handle()
                 eventdate = event.get_date_object()
                 eventyear = eventdate.get_year()
-                descr1 = _("Id : %s (%s)")%(event.gramps_id,eventyear)
+                descr1 = _("Id : %(id)s (%(year)s)") % {
+                                'id' : event.gramps_id,
+                                'year' : eventyear}
                 if pl_id:
                     place = db.db.get_place_from_handle(pl_id)
                     longitude = place.get_longitude()
                     latitude = place.get_latitude()
-                    latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
+                    latitude, longitude = conv_lat_lon(latitude, longitude, 
+                                                       "D.D8")
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
                     descr2 = "%s; %s" % (city,country)
                     # place.get_longitude and place.get_latitude return one string.
                     # We have coordinates when the two values contains non null string.
                     if ( longitude and latitude ):
-                        person_list = [ db.db.get_person_from_handle(ref_handle)
-                                        for (ref_type, ref_handle) in db.db.find_backlink_handles(event_handle)
-                                            if ref_type == 'Person' 
+                        person_list = [db.db.get_person_from_handle(ref_handle)
+                            for (ref_type, ref_handle) in \
+                                    db.db.find_backlink_handles(event_handle)
+                                    if ref_type == 'Person' 
                                       ]
                         if person_list:
                             descr = "<br>"
                             for person in person_list:
-                                descr = _("%s%s<br>") % (descr, _nd.display(person))
-                            descr = _("%s; %s%s") % (gen.lib.EventType(event.get_type()),place.get_title(), descr)
+                                descr = _("%(description)s%(name)s<br>") % {
+                                            'description' : descr, 
+                                            'name' : _nd.display(person)}
+                            descr = _("%(eventtype)s; %(place)s%(description)s"
+                                     ) % { 'eventtype': gen.lib.EventType(
+                                                            event.get_type()),
+                                            'place': place.get_title(), 
+                                            'description': descr}
                         else:
-                            descr = _("%s; %s<br>") % (gen.lib.EventType(event.get_type()),place.get_title())
+                            descr = _("%(eventtype)s; %(place)s<br>") % {
+                                            'eventtype': gen.lib.EventType(
+                                                            event.get_type()),
+                                            'place': place.get_title()}
                         self.append_to_places_list(descr1, descr,
                                                    descr,
                                                    latitude, longitude,
@@ -1474,9 +1490,10 @@ class GeoView(HtmlView):
             mess = _("Cannot center the map. No location with coordinates.")
         else:
             mess = ""
-        self.create_pages(2,_("All events in the database with coordinates."),mess)
+        self.create_pages(2,_("All events in the family tree with coordinates."
+                             ), mess)
 
-    def createMapstractionFamily(self,db):
+    def createMapstractionFamily(self, db):
         """
         This function create all markers for each people of a family
         in the database which has a lat/lon.
@@ -1501,12 +1518,12 @@ class GeoView(HtmlView):
                 father_handle = fam.get_father_handle()
                 father = db.db.get_person_from_handle(father_handle)
                 if father:
-                    comment = "Id : %s : %s"%(father.gramps_id,_("Father"))
+                    comment = _("Id : Father : %s") % father.gramps_id
                     self.createPersonMarkers(db,father,comment)
                 mother_handle = fam.get_mother_handle()
                 mother = db.db.get_person_from_handle(mother_handle)
                 if mother:
-                    comment = "Id : %s : %s"%(mother.gramps_id,_("Mother"))
+                    comment = _("Id : Mother : %s") % mother.gramps_id
                     self.createPersonMarkers(db,mother,comment)
                 index = 0
                 child_ref_list = fam.get_child_ref_list()
@@ -1515,20 +1532,24 @@ class GeoView(HtmlView):
                         child = db.db.get_person_from_handle(child_ref.ref)
                         if child:
                             index += 1
-                            comment = "Id : %s : %s %d"%(child.gramps_id,
-                                                         _("Child"),index)
+                            comment = _("Id : Child : %(id)s %(index)d") % {
+                                            'id' : child.gramps_id,
+                                            'index': index}
                             self.createPersonMarkers(db,child,comment)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
             if person is not None:
-                self.create_pages(3, _("The active person's family members have no places with coordinates."), mess)
+                self.create_pages(3, _("The active person's family members "
+                                        "have no places with coordinates."), 
+                                    mess)
             else:
-                self.create_pages(3, _("You have no active person to see this person's family places."), mess)
+                self.create_pages(3, _("No active person set."), mess)
         else:
             mess = ""
-            self.create_pages(3, ( _("All %s people's family places in the database with coordinates.") % 
-                                     _nd.display(person) ),
-                              mess)
+            self.create_pages(3, ( _("All %(name)s people's family places in the "
+                                        "family tree with coordinates.") % {
+                                     'name' :_nd.display(person) }),
+                                mess)
 
     def createMapstractionPerson(self,db):
         """
@@ -1571,30 +1592,36 @@ class GeoView(HtmlView):
                     city = place.get_main_location().get_city()
                     country = place.get_main_location().get_country()
                     evt=gen.lib.EventType(event.get_type())
-                    descr1=_("%s : %s")%(evt,_nd.display(person))
+                    descr1=_("%(eventtype)s : %(name)s") % {
+                                    'eventtype': evt,
+                                    'name': _nd.display(person)}
                     # place.get_longitude and place.get_latitude return one string.
                     # We have coordinates when the two values contains non null string.
                     if ( longitude and latitude ):
                         self.append_to_places_list(descr, evt,
                                                    _nd.display(person),
                                                    latitude, longitude,
-                                                   descr1, self.center, eventyear)
+                                                   descr1, self.center, 
+                                                   eventyear)
                         self.center = False
                     else:
-                        self.append_to_places_without_coordinates(place.gramps_id,descr)
+                        self.append_to_places_without_coordinates(
+                                                        place.gramps_id,descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
             if person is not None:
-                self.create_pages(4, _("The active person has no places with coordinates."), mess)
+                self.create_pages(4, 
+                _("The active person has no places with coordinates."), mess)
             else:
-                self.create_pages(4, _("You have no active person to see this person's places."), mess)
+                self.create_pages(4, _("No active person set."), mess)
         else:
             mess = ""
-            self.create_pages(4,( _("All event places for %s.") % _nd.display(person) ), mess)
+            self.create_pages(4,( _("All event places for %s.") % 
+                                        _nd.display(person) ), mess)
 
     def createMapstractionNotImplemented(self,db):
         """
         This function is used to inform the user this work is not implemented.
         """
-        self.mapview.write("  <H1>%s ...</H1>"%_("Not yet implemented"))
+        self.mapview.write("  <H1>%s </H1>" % _("Not yet implemented ..."))
 
