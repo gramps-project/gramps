@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007      Thom Sturgill
 # Copyright (C) 2007-2009 Brian G. Matherly
-# Copyright (C) 2008      Rob G. Healey <robhealey1@gmail.com>
+# Copyright (C) 2008-2009 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
 # Copyright (C) 2008      Kees Bakker
 #
@@ -29,10 +29,8 @@ Web Calendar generator.
 
 Refactoring. This is an ongoing job until this plugin is in a better shape.
 TODO list:
- - change filename for one_day pages to yyyy/mm/dd.html (just numbers)
  - progress bar, rethink its usage
  - in year navigation, use month in link, or 'fullyear'
- - untangle calendar_build, it's too complex the way it is
  - use standard Gramps method to display surname, see _get_regular_surname
  - daylight saving not just for USA and Europe
  - move the close_file() from one_day() to caller
@@ -177,6 +175,38 @@ def _make_date(year, month, day):
     retval = gen.lib.Date()
     retval.set_yr_mon_day(year, month, day)
     return retval
+
+# Compute the first day to display for this month.
+# It can also be a day in the previous month.
+def get_first_day(year, month):
+    current_date = datetime.date(year, month, 1) # first day of the month
+
+    # monthinfo is filled using standard Python library 
+    # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
+    # of the 7-day-list is determined by calendar.firstweekday.
+    monthinfo = calendar.monthcalendar(year, month)
+
+    current_ord = current_date.toordinal() - monthinfo[0].count(0)
+    return current_date, current_ord, monthinfo
+
+# get last month's last week for previous days in the month
+def get_previous_day(year, month, day_col):
+    if month == 1:
+        prevmonth = calendar.monthcalendar(year - 1, 12)
+    else:
+        prevmonth = calendar.monthcalendar(year, month-1)
+    num_weeks = len(prevmonth)
+    lastweek_prevmonth = prevmonth[num_weeks - 1]
+    return lastweek_prevmonth[day_col]
+
+# get next month's first week for next days in the month
+def get_next_day(year, month, day_col):  
+    if month == 12:
+        nextmonth = calendar.monthcalendar(year + 1, 1)
+    else:
+        nextmonth = calendar.monthcalendar(year, month + 1)
+    firstweek_nextmonth = nextmonth[0]
+    return firstweek_nextmonth[day_col]
 
 #------------------------------------------------------------------------
 #
@@ -460,16 +490,10 @@ class WebCalReport(Report):
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
 
-    def calendar_common(self, of, nr_up, year, currsec1, title, body_id, 
-                        use_home=False, add_print=True):
+    def calendar_common(self, of, nr_up, year, currsec1, title, use_home=False):
         """
         Will create the common information for each calendar being created
         """
-
-        # Add Header
-        self.write_header(of, nr_up, title, add_print)
-
-        of.write('<body id="%s">\n' % body_id)
 
         # Header Title
         of.write('<div id="header">\n')
@@ -517,10 +541,6 @@ class WebCalReport(Report):
         start_dow = self.start_dow
         col2day = [(x-1)%7+1 for x in range(start_dow, start_dow + 7)]
 
-        # Note. GrampsLocale has sunday => 1, monday => 2, etc
-        # We slice out the first empty element.
-        day_names = GrampsLocale.long_days
-
         # Translate a Gramps day number into a HTMLclass
         def get_class_for_daycol(col):
             day = col2day[col]
@@ -534,10 +554,9 @@ class WebCalReport(Report):
             day = col2day[col]
             return day_names[day]
 
-        # monthinfo is filled using standard Python library 
-        # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
-        # of the 7-day-list is determined by calendar.firstweekday.
-        monthinfo = calendar.monthcalendar(year, month)
+        # Note. GrampsLocale has sunday => 1, monday => 2, etc
+        # We slice out the first empty element.
+        day_names = GrampsLocale.long_days
 
         # Begin calendar head. We'll use the capitalized name, because here it 
         # seems appropriate for most countries.
@@ -558,33 +577,15 @@ class WebCalReport(Report):
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
             dayname = get_name_for_daycol(day_col)
-            #of.write('\t\t\t<th class="%s">%s</th>\n' % (dayclass, get_name_for_daycol(day_col)))
-            of.write('\t\t\t<th class="%s"><abbr title="%s">%s</abbr></th>\n' % (dayclass, dayname, dayname[0]))
+            of.write('\t\t\t<th class="%s"><abbr title="%s">\n' % (dayclass, dayname))
+            of.write('\t\t\t\t%s</abbr></th>\n' % dayname[0])
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
 
         # begin table body
         of.write('\t<tbody>\n')
 
-        # Compute the first day to display for this month.
-        # It can also be a day in the previous month.
-        current_date = datetime.date(year, month, 1) # first day of the month
-        current_ord = current_date.toordinal() - monthinfo[0].count(0)
-
-        # get last month's last week for previous days in the month
-        if month == 1:
-            prevmonth = calendar.monthcalendar(year - 1, 12)
-        else:
-            prevmonth = calendar.monthcalendar(year, month-1)
-        num_weeks = len(prevmonth)
-        lastweek_prevmonth = prevmonth[num_weeks - 1]
-
-        # get next month's first week for next days in the month
-        if month == 12:
-            nextmonth = calendar.monthcalendar(year + 1, 1)
-        else:
-            nextmonth = calendar.monthcalendar(year, month + 1)
-        firstweek_nextmonth = nextmonth[0]
+        current_date, current_ord, monthinfo = get_first_day(year, month)
 
         nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
@@ -598,10 +599,10 @@ class WebCalReport(Report):
                 day = week[day_col]
                 if day == 0:               # a day in the previous or next month
                     if week_row == 0:      # a day in the previous month
-                        specday = lastweek_prevmonth[day_col]
+                        specday = get_previous_day(year, month, day_col)
                         specclass = "previous " + dayclass
                     elif week_row == nweeks-1:         # a day in the next month
-                        specday = firstweek_nextmonth[day_col]
+                        specday = get_next_day(year, month, day_col)   
                         specclass = "next " + dayclass
 
                     of.write('\t\t\t<td class="%s">\n' % specclass)
@@ -621,31 +622,34 @@ class WebCalReport(Report):
                             # specify day class for this day
                             of.write('class="%s">\n' % hilightday)
 
-                            # Year at a Glance
-                            if cal == "yg":
-                                # create yyyymmdd date string for 
-                                # "One Day" calendar pages filename
-                                two_digit_month = '%02d' % month
-                                two_digit_day = '%02d' % day
-                                fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
-
-                                # create web link to corresponding "One Day" page...
-                                # The HREF is relative to the year path.
-                                fname_date = '/'.join([lng_month, fname_date])
-                                fname_date += self.ext
-                                of.write('\t\t\t\t<a href="%s" title="%s%d">\n'
-                                             % (fname_date, shrt_month, day))
-                                of.write('\t\t\t\t\t<div class="date">%d</div>\n' % day)
-                                of.write('\t\t\t\t</a>\n')
-                                one_day_cal = "OneDay"
-
-                            # WebCal
-                            else:
-                                one_day_cal = "WebCal"
-                                of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
-
                             evt_dte = _make_date(thisday.year, thisday.month, thisday.day)
-                            self.one_day(of, evt_dte, one_day_cal, holiday_list, bday_anniv_list)
+                            day_list = get_day_list(evt_dte, holiday_list, bday_anniv_list) 
+
+                            if day_list:
+                                # Year at a Glance
+                                if cal == "yg":
+                                    # create yyyymmdd date string for 
+                                    # "One Day" calendar page filename
+                                    two_digit_month = '%02d' % month
+                                    two_digit_day = '%02d' % day
+                                    fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
+
+                                    # create web link to corresponding "One Day" page...
+                                    # The HREF is relative to the year path.
+                                    fname_date = '/'.join([lng_month, fname_date])
+                                    fname_date += self.ext
+                                    of.write('\t\t\t\t<a href="%s" title="%s%d">\n'
+                                             % (fname_date, shrt_month, day))
+                                    of.write('\t\t\t\t\t<div class="date">%d</div></a>\n' % day)
+                                    one_day_cal = "OneDay"
+
+                                # WebCal
+                                else:
+                                    one_day_cal = "WebCal"
+                                    of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
+
+                                # both WebCal and Year_Glance needs day_list displayed
+                                self.one_day(of, evt_dte, one_day_cal, day_list)
 
                         # no holiday/ bday/ anniversary this day
                         else: 
@@ -684,7 +688,7 @@ class WebCalReport(Report):
         """
 
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n')
-        of.write('     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
             'xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
@@ -698,18 +702,21 @@ class WebCalReport(Report):
 
         subdirs = ['..'] * nr_up
 
-        # link to stylesheet
+        # link to screen stylesheet
         fname = '/'.join(subdirs + ['styles'] + [self.css])
-        of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="screen" />\n' % fname)
+        of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
+        of.write('\t\ttype="text/css" media="screen">\n')
 
-        # link to _CALENDARPRINT stylesheet
+        # link to print stylesheet
         if add_print:
             fname = '/'.join(subdirs + ['styles'] + ["Web_Print-Default.css"])
-            of.write('\t<link rel="stylesheet" href="%s" type="text/css" media="print" />\n' % fname)
+            of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
+            of.write('\t\ttype="text/css" media="print">\n')
 
         # link to GRAMPS favicon
         fname = '/'.join(subdirs + ['images'] + ['favicon.ico'])
-        of.write('\t<link rel="shortcut icon" href="%s" type="image/icon" />\n' % fname)
+        of.write('\t<link rel="shortcut icon" href="%s" \n' % fname)
+        of.write('\t\ttype="image/icon" />\n')
 
         of.write('</head>\n\n')
 
@@ -772,23 +779,14 @@ class WebCalReport(Report):
     def close_file(self, of):
         of.close()
 
-    def one_day(self, of, evt_dte, one_day_cal, holiday_list, bday_anniv_list):
+    def one_day(self, of, evt_dte, one_day_cal, day_list):
         """
         This method creates the One Day page for "Year At A Glance"
-
-        'holiday_list' - list of holidays to display on this day
-        'bday_anniv_list' - list of birthdays and anniversaries to display on this day
 
         'day_list' - a combination of both dictionaries to be able to create one day
              nyears, date, text, event --- are necessary for figuring the age or years married
              for each year being created...
         """
-
-        # initialize day_list
-        day_list = []
-
-        # call day_list to fill
-        day_list = fill_day_list(evt_dte, holiday_list, bday_anniv_list) 
 
         # This is one_day in the year-at-a-glance calendar
         if one_day_cal == "OneDay":
@@ -816,7 +814,15 @@ class WebCalReport(Report):
             # set date display as in user prevferences 
             pg_date = _dd.display(evt_dte)
 
-            self.calendar_common(of, nr_up, year, lng_month, _('One Day Within A Year'), pg_date)
+            # page title
+            title =  _('One Day Within A Year')
+
+            # Add Header
+            self.write_header(of, nr_up, title, False)
+
+            of.write('<body id="%s">\n' % pg_date)
+
+            self.calendar_common(of, nr_up, year, lng_month, title)
 
             of.write('\t<h3 id="OneDay">%s</h3>\n' % pg_date)
 
@@ -845,7 +851,12 @@ class WebCalReport(Report):
         # page title
         title = _("%(year)d, At A Glance") % {'year' : year}
 
-        self.calendar_common(of, nr_up, year, 'fullyear', title, 'fullyearlinked')
+        # Add Header
+        self.write_header(of, nr_up, title, False)
+
+        of.write('<body id="fullyearlinked">\n')
+
+        self.calendar_common(of, nr_up, year, 'fullyear', title)
 
         # page description 
         of.write('<div class="content">\n')
@@ -993,7 +1004,12 @@ class WebCalReport(Report):
             cal_fname = _get_long_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
-            self.calendar_common(of, nr_up, year, cal_fname, self.title_text, 'WebCal', use_home=True)
+            # Add Header
+            self.write_header(of, nr_up, self.title_text, True)
+
+            of.write('<body id="Web Calendar">\n')
+
+            self.calendar_common(of, nr_up, year, cal_fname, self.title_text, True)
 
             # build the calendar
             self.calendar_build(of, "wc", year, month)
@@ -1454,9 +1470,9 @@ def _get_long_month_name(month):
 def _get_short_month_name(month):
     return _shrt_month[month]   
 
-def fill_day_list(evt_dte, holiday_list, bday_anniv_list):
+def get_day_list(evt_dte, holiday_list, bday_anniv_list):
     """
-    Will fill day_list and return it to its caller one_day()
+    Will fill day_list and return it to its caller: calendar_build()
 
     holiday_list, or bday_anniv_list -- will always have something in it...
 
@@ -1464,7 +1480,7 @@ def fill_day_list(evt_dte, holiday_list, bday_anniv_list):
 
     'day_list' - a combination of both dictionaries to be able to create one day
          nyears, date, text, event --- are necessary for figuring the age or years married
-         for each year being created...
+         for each day being created...
     """
 
     # initialize day_list
@@ -1521,12 +1537,10 @@ def fill_day_list(evt_dte, holiday_list, bday_anniv_list):
             if txt_str is not None:
                 day_list.append((nyears, date, txt_str, event))
 
-    # if there is more than one event on any given date, sort them based on years
-    # for birthdays and anniversaries.
-    # holidays will always appear first in the list.    
-    if len(day_list) > 1:
-        day_list.sort()
-
+    # sort them based on number of years
+    # holidays will always be on top of day 
+    day_list.sort()
+ 
     return day_list
 
 def get_marrital_status(family, db):
@@ -1547,6 +1561,9 @@ def get_marrital_status(family, db):
                             gen.lib.EventType.DIV_FILING]:
             are_married = None
     return are_married
+
+def gen_key(event):
+    return ((event.get_year(), event.get_month(), event.get_day()))
 
 #-------------------------------------------------------------------------
 #

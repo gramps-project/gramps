@@ -6,7 +6,6 @@ GRAMPS Cascading Style Sheet
 Style Name: Basic - Cypress
 Style Author: Jason Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Tranquil' stylesheet
-$Id$
 **************************************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
 --------------------------------------------------------------------------------------------------
@@ -44,7 +43,11 @@ white                   #FFF
 */
 
 /* General Elements
------------------------------------------------------ */
+----------------------------------------------------- 
+
+# $Id$
+
+*/
 body {
     font-family:sans-serif;
     color:#000;

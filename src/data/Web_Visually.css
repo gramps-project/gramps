@@ -5,7 +5,6 @@ Copyright Holder and License
 GRAMPS Cascading Style Sheet
 Style Name: Visually Impaired Stylesheet
 Style Author: Jason M. Simanek (2008)
-Modified by Rob G. Healey (C) 2008-2009
 **************************************************************************************************
 This website was created with GRAMPS
 http://www.gramps-project.org
@@ -52,7 +51,11 @@ Females		Web_Gender_Female.png
 -------------------------------------------------------------------------------------------- */
 
 /* General Elements
------------------------------------------------------ */
+----------------------------------------------------- 
+
+# $Id$
+
+*/
 body {
     color:#000;
     margin:0;

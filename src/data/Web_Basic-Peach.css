@@ -6,7 +6,7 @@ GRAMPS Cascading Style Sheet
 Style Name: Basic-Peach Stylesheet
 Style Author: Jason M. Simanek (2008)
 Note: Adapted from GRAMPS original Modern Style stylesheet with a new orange color scheme.
-$Id$
+
 **************************************************************************************************
 This website was created with GRAMPS <http://www.gramps-project.org/>
 --------------------------------------------------------------------------------------------------
@@ -47,7 +47,11 @@ yellow light            #FFFBE7
 -------------------------------------------------------------------------------------------- */
 
 /* General Elements
------------------------------------------------------ */
+----------------------------------------------------- 
+
+# $Id$
+
+*/
 body {
     font-family:sans-serif;
     color:#36220B;

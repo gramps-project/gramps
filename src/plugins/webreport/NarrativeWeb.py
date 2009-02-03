@@ -78,6 +78,7 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
+import GrampsLocale
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
@@ -101,6 +102,8 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
+_PERSON = 0
+_PLACE = 1
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -236,7 +239,6 @@ def html_escape(text):
 
     return text
 
-
 def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
     return md5(text).hexdigest()
@@ -245,7 +247,7 @@ class BasePage:
     """
     This is the base class to write certain HTML pages.
     """
-
+    
     def __init__(self, report, title, gid=None):
         """
         report - instance of NavWebReport
@@ -274,38 +276,6 @@ class BasePage:
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
-
-    def alphabet_navigation(self, of, ind_list):
-        """
-        Will create the alphabetical navigation bar...
-        """
-
-        def get_alpha_list(ind_list):
-            """ Will produce the active letters in the alphabet """
-
-            firstletter_list = []
-            for person_handle in ind_list:
-                person = self.report.database.get_person_from_handle(person_handle)
-                primary_name = person.get_primary_name()
-
-                alpha_name = primary_name.get_surname()
-
-                if alpha_name:
-                    alpha_ltr = alpha_name[0]
-                    if alpha_ltr not in firstletter_list:
-                        firstletter_list.append(alpha_ltr)
-
-            firstletter_list.sort()
-            return firstletter_list
-
-        namedict = get_alpha_list(ind_list)
-
-        of.write('\t<div id="navigation">\n')
-        of.write('\t\t<ul>\n')
-        for ltr in namedict:
-            of.write('\t\t\t<li><a href="#%s">%s</a> |</li>' % (ltr, ltr))
-        of.write('\t\t</ul>\n')
-        of.write('\t</div>\n')   
 
     def write_footer(self, of):
 
@@ -355,7 +325,7 @@ class BasePage:
         of.write('</body>\n')
         of.write('</html>')
 
-    def write_header(self, of, title, content_divid=None):
+    def write_header(self, of, title):
         """
         Note. 'title' is used as currentsection in the navigation links.
         """
@@ -405,72 +375,82 @@ class BasePage:
         of.write('</div>\n')
 
         # Begin Navigation Menu
-        of.write('<div id="navigation">\n')
-        of.write('\t<ul>\n') 
-
         self.display_nav_links(of, title)
 
-        of.write('\t</ul>\n')
-        of.write('</div>\n') # End Navigation Menu
-
-        divid = ''
-        if content_divid:
-            divid = ' id="%s"' % content_divid
-        of.write('<div%s class="content">\n' % divid)
-
     def display_nav_links(self, of, currentsection):
+        """
+        Creates the navigation menu
+        """
+
+        # Determine if there will be a link to WebCal or not???
+        use_webcal = False
+        webcal_link = self.report.webcal_link
+        if webcal_link.strip() != '':
+            if not webcal_link.endswith(self.ext):
+                webcal_link += self.ext
+            if os.path.isfile(webcal_link): 
+                use_webcal = True
+
         navs = [
-            (self.report.index_fname, _('Home'), self.report.use_home),
-            (self.report.intro_fname, _('Introduction'), self.report.use_intro),
-            (self.report.surname_fname, _('Surnames'), True),
-            ('individuals', _('Individuals'), True),
-            ('places', _('Places'), True),
-            ('gallery', _('Gallery'), self.use_gallery),
-            ('download', _('Download'), self.report.inc_download),
-            ('contact', _('Contact'), self.report.use_contact),
-            ('sources', _('Sources'), True),
+            (self.report.index_fname,      _('Home'),            self.report.use_home),
+            (self.report.intro_fname,      _('Introduction'),    self.report.use_intro),
+            (self.report.surname_fname,    _('Surnames'),        True),
+            ('individuals',                _('Individuals'),     True),
+            ('places',                     _('Places'),          True),
+            ('gallery',                    _('Gallery'),         self.use_gallery),
+            ('download',                   _('Download'),         self.report.inc_download),
+            ('contact',                    _('Contact'),          self.report.use_contact),
+            ('sources',                    _('Sources'),          True),
+            (webcal_link,                  _('Web Calendar'),     use_webcal),
                 ]
+
+        of.write('\t<div id="navigation">\n')
+        of.write('\t\t<ul>\n') 
 
         for url_fname, nav_text, cond in navs:
             if cond:
-                url = url_fname + self.ext
+
+                if not url_fname.endswith(self.ext):
+                    url_fname += self.ext
+
                 if self.up:
                     # TODO. Check if build_url_fname can be used.
-                    url = '/'.join(['..']*3 + [url])
-                self.display_nav_link(of, url, nav_text, currentsection)
+                    url_fname = '/'.join(['..']*3 + [url_fname])
 
-    # TODO. Move this logic to a higher level (caller of write_header).
+                # TODO. Move this logic to a higher level (caller of write_header).
 
-    # Define 'currentsection' to correctly set navlink item CSS id
-    # 'CurrentSection' for Navigation styling.
-    # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
-    # elements for Navigation styling.
+                # Define 'currentsection' to correctly set navlink item CSS id
+                # 'CurrentSection' for Navigation styling.
+                # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+                # elements for Navigation styling.
 
-    def display_nav_link(self, of, url, title, currentsection):
-        # Figure out if we need <li id="CurrentSection"> of just plain <li>
-        cs = False
-        if title == currentsection:
-            cs = True
-        elif title == _('Surnames'):
-            if "srn" in self.report.cur_fname:
-                cs = True
-            elif _('Surnames') in currentsection:
-                cs = True
-        elif title == _('Individuals'):
-            if "ppl" in self.report.cur_fname:
-                cs = True
-        elif title == _('Sources'):
-            if "src" in self.report.cur_fname:
-                cs = True
-        elif title == _('Places'):
-            if "plc" in self.report.cur_fname:
-                cs = True
-        elif title == _('Gallery'):
-            if "img" in self.report.cur_fname:
-                cs = True
+                # Figure out if we need <li id="CurrentSection"> of just plain <li>
+                cs = False
+                if nav_text == currentsection:
+                    cs = True
+                elif nav_text == _('Surnames'):
+                    if "srn" in self.report.cur_fname:
+                        cs = True
+                    elif _('Surnames') in currentsection:
+                        cs = True
+                elif nav_text == _('Individuals'):
+                    if "ppl" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _('Sources'):
+                    if "src" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _('Places'):
+                    if "plc" in self.report.cur_fname:
+                        cs = True
+                elif nav_text == _('Gallery'):
+                    if "img" in self.report.cur_fname:
+                        cs = True
 
-        cs = cs and ' id="CurrentSection"' or ''
-        of.write('\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url, title))
+                cs = cs and ' id="CurrentSection"' or ''
+                of.write('\t\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url_fname, nav_text))
+
+        of.write('\t\t</ul>\n')
+        of.write('\t</div>\n') # End Navigation Menu
 
     def display_first_image_as_thumbnail( self, of, photolist=None):
         if not photolist or not self.use_gallery:
@@ -750,7 +730,9 @@ class IndividualListPage(BasePage):
 
         db = report.database
         of = self.report.create_file("individuals")
-        self.write_header(of, _('Individuals'), content_divid='Individuals')
+        self.write_header(of, _('Individuals'))
+
+        of.write('<div id="Individuals" class="content">\n')
 
         msg = _("This page contains an index of all the individuals in the "
                 "database, sorted by their last names. Selecting the person&#8217;s "
@@ -760,9 +742,6 @@ class IndividualListPage(BasePage):
         showdeath = report.options['showdeath']
         showspouse = report.options['showspouse']
         showparents = report.options['showparents']
-
-        # begin alphabetical navigation
-        self.alphabet_navigation(of, person_handle_list) 
 
         of.write('\t<h2>%s</h2>\n' % _('Individuals'))
         of.write('\t<p id="description">%s</p>\n' % msg)
@@ -799,11 +778,10 @@ class IndividualListPage(BasePage):
                 if first:
                     of.write('\t\t<tr class="BeginSurname">\n')
                     if surname:
-                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' 
-                            % (surname[0].upper(), surname))
-                    else:
-                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' 
+                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>\n' 
                             % (name_to_md5(surname), surname))
+                    else:
+                        of.write('\t\t\t<td class="ColumnSurname">&nbsp;\n')
                 else:
                     of.write('\t\t<tr>\n')
                     of.write('\t\t\t<td class="ColumnSurname">&nbsp;')
@@ -904,7 +882,9 @@ class SurnamePage(BasePage):
         db = report.database
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
-        self.write_header(of, "%s - %s" % (_('Surname'), surname), content_divid='SurnameDetail')
+        self.write_header(of, "%s - %s" % (_('Surname'), surname))
+
+        of.write('<div id="SurnameDetail" class="content">\n')
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
@@ -1031,7 +1011,9 @@ class PlaceListPage(BasePage):
 
         db = report.database
         of = self.report.create_file("places")
-        self.write_header(of, _('Places'), content_divid='Places')
+        self.write_header(of, _('Places'))
+
+        of.write('<div id="Places" class="content">\n')
 
         msg = _("This page contains an index of all the places in the "
                 "database, sorted by their title. Clicking on a place&#8217;s "
@@ -1096,7 +1078,9 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        self.write_header(of, "%s - %s" % (_('Places'), self.page_title), content_divid='PlaceDetail')
+        self.write_header(of, "%s - %s" % (_('Places'), self.page_title))
+
+        of.write('<div id="PlaceDetail" class="content">\n')
 
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1178,7 +1162,9 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        self.write_header(of, "%s - %s" % (_('Gallery'), self.page_title), content_divid='GalleryDetail')
+        self.write_header(of, "%s - %s" % (_('Gallery'), self.page_title))
+
+        of.write('<div id="GalleryDetail" class="content">\n')
 
         of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
 
@@ -1370,15 +1356,14 @@ class SurnameListPage(BasePage):
         db = report.database
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            self.write_header(of, _('Surnames'), content_divid='Surnames')
+            self.write_header(of, _('Surnames'))
+            of.write('<div id="Surnames" class="content">\n')
             of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            self.write_header(of, _('Surnames by person count'), content_divid='Surnames')
+            self.write_header(of, _('Surnames by person count'))
+            of.write('<div id="Surnames" class="content">\n')
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
-
-        # beginning of Alphabetical Navigation
-        self.alphabet_navigation(of, person_handle_list)
 
         of.write('\t<p id="description">%s</p>\n' % _(
             'This page contains an index of all the '
@@ -1430,8 +1415,7 @@ class SurnameListPage(BasePage):
             if letter is not last_letter:
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
-                of.write('\t\t\t<td class="ColumnLetter">')
-                of.write('<a name="%s">%s</a></td>\n' % (last_letter, last_letter))
+                of.write('\t\t\t<td class="ColumnLetter">%s</td?\n' % last_letter)
                 of.write('\t\t\t<td class="ColumnSurname">')
                 self.surname_link(of, name_to_md5(surname), surname)
                 of.write('</td>\n')
@@ -1466,7 +1450,9 @@ class IntroductionPage(BasePage):
         db = report.database
         of = self.report.create_file(report.intro_fname)
         # Note. In old NarrativeWeb.py the content_divid depended on filename.
-        self.write_header(of, _('Introduction'), content_divid='Introduction')
+        self.write_header(of, _('Introduction'))
+
+        of.write('<div id="Introduction" class="content">\n')
 
         of.write('\t<h2>%s</h2>\n' % _('Introduction'))
 
@@ -1491,7 +1477,9 @@ class HomePage(BasePage):
 
         db = report.database
         of = self.report.create_file("index")
-        self.write_header(of, _('Home'), content_divid='Home')
+        self.write_header(of, _('Home'))
+
+        of.write('<div id="Home" class="content">\n')
 
         of.write('\t<h2>%s</h2>\n' % _('Home'))
 
@@ -1516,7 +1504,9 @@ class SourcesPage(BasePage):
 
         db = report.database
         of = self.report.create_file("sources")
-        self.write_header(of, _('Sources'), content_divid='Sources')
+        self.write_header(of, _('Sources'))
+
+        of.write('<div id="Sources" class="content">\n')
 
         handle_list = list(handle_set)
         source_dict = {}
@@ -1572,7 +1562,9 @@ class SourcePage(BasePage):
         of = self.report.create_file(source.get_handle(), 'src')
         self.up = True
         self.page_title = source.get_title()
-        self.write_header(of, "%s - %s" % (_('Sources'), self.page_title), content_divid='SourceDetail')
+        self.write_header(of, "%s - %s" % (_('Sources'), self.page_title))
+
+        of.write('<div id="SourceDetail" class="content">\n')
 
         media_list = source.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1613,7 +1605,9 @@ class GalleryPage(BasePage):
 
         db = report.database
         of = self.report.create_file("gallery")
-        self.write_header(of, _('Gallery'), content_divid='Gallery')
+        self.write_header(of, _('Gallery'))
+
+        of.write('<div id="Gallery" class="content">\n')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
         of.write('\t<p id="description">')
@@ -1671,7 +1665,9 @@ class DownloadPage(BasePage):
         BasePage.__init__(self, report, title)
 
         of = self.report.create_file("download")
-        self.write_header(of, _('Download'), content_divid='Download')
+        self.write_header(of, _('Download'))
+
+        of.write('<div id="Download" class="content">\n')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Download'))
 
@@ -1685,7 +1681,9 @@ class ContactPage(BasePage):
 
         db = report.database
         of = self.report.create_file("contact")
-        self.write_header(of, _('Contact'), content_divid='Contact')
+        self.write_header(of, _('Contact'))
+
+        of.write('<div id="Contact" class="content">\n')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
         of.write('\t<div id="summaryarea">\n')
@@ -1750,7 +1748,9 @@ class IndividualPage(BasePage):
         db = report.database
         of = self.report.create_file(person.handle, 'ppl')
         self.up = True
-        self.write_header(of, self.sort_name, content_divid='IndividualDetail')
+        self.write_header(of, self.sort_name)
+
+        of.write('<div id="IndividualDetail" class="content">\n')
 
         self.display_ind_general(of)
         self.display_ind_events(of)
@@ -2697,7 +2697,10 @@ class NavWebReport(Report):
                         self.options['homeimg']
         self.use_contact = self.options['contactnote'] or \
                            self.options['contactimg']
+
         self.graph = self.options['graph']
+
+        self.webcal_link = self.options['webcal_link']
 
         if self.use_home:
             self.index_fname = "index"
@@ -2713,7 +2716,8 @@ class NavWebReport(Report):
             self.intro_fname = None
 
         self.archive = None
-        self.cur_fname = None            # Internal use. The name of the output file, to be used for the tar archive.
+        self.cur_fname = None            # Internal use. The name of the output file, 
+                                         # to be used for the tar archive.
         self.string_io = None
         if self.use_archive:
             self.html_dir = None
@@ -3266,6 +3270,13 @@ class NavWebOptions(MenuReportOptions):
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
 
+        today = time.localtime()
+        lng_month = GrampsLocale.long_months[today[1]]
+        fpath = '/'.join([const.USER_HOME] + ['WEBCAL'] + [str(today[0])] + [lng_month])
+        webcal_link = StringOption(_('Link to Web Calendar'), fpath)
+        webcal_link.set_help(_('Choose your link to Web Calendars if you want?'))
+        menu.add_option(category_name, 'webcal_link', webcal_link)  
+
     def __add_privacy_options(self, menu):
         """
         Options on the "Privacy" tab.
@@ -3434,6 +3445,18 @@ def _get_prefix_suffix_name(sex, name):
             first = first + ", " + suffix
     return first
 
+def get_people(db):
+    for handle in db.get_handles():
+        yield db.get_person_from_handle(handle)
+
+def get_place(db, handle):
+    """ ... """
+    place = db.get_place_from_handle(handle)
+    return place  
+
+# *****************************************
+#                 Register Plugin
+# *****************************************
 pmgr = PluginManager.get_instance()
 pmgr.register_report(
     name = 'navwebpage',

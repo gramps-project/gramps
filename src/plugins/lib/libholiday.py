@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
+# Copyright (C) 2009       Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -114,9 +115,24 @@ class HolidayTable:
         self.__init_table()             
      
     def __find_holiday_files(self):
-        """ Looks in multiple places for holidays.xml files """
+        """ Looks in multiple places for holidays.xml files 
+        It will search for the file in user;s plugin directories first,
+        then it will search in program's plugins directories. """
+
         holiday_file = 'holidays.xml'
         
+        # Look for holiday files in the user plugins directory and all
+        # subdirectories.
+        holiday_full_path = os.path.join(const.USER_PLUGINS, holiday_file)
+        if os.path.exists(holiday_full_path):
+            HolidayTable.__holiday_files.append(holiday_full_path)
+            
+        for (dirpath, dirnames, filenames) in os.walk(const.USER_PLUGINS):
+            for directory in dirnames:
+                holiday_full_path = os.path.join(directory, holiday_file)
+                if os.path.exists(holiday_full_path):
+                    HolidayTable.__holiday_files.append(holiday_full_path)
+
         # Look for holiday files in the installation plugins directory and all
         # subdirectories.
         holiday_full_path = os.path.join(const.PLUGINS_DIR, holiday_file)
@@ -129,18 +145,6 @@ class HolidayTable:
                 if os.path.exists(holiday_full_path):
                     HolidayTable.__holiday_files.append(holiday_full_path)
             
-        # Look for holiday files in the user plugins directory and all
-        # subdirectories.
-        holiday_full_path = os.path.join(const.USER_PLUGINS, holiday_file)
-        if os.path.exists(holiday_full_path):
-            HolidayTable.__holiday_files.append(holiday_full_path)
-            
-        for (dirpath, dirnames, filenames) in os.walk(const.USER_PLUGINS):
-            for directory in dirnames:
-                holiday_full_path = os.path.join(directory, holiday_file)
-                if os.path.exists(holiday_full_path):
-                    HolidayTable.__holiday_files.append(holiday_full_path)
-        
     def __build_country_list(self):
         """ Generate the list of countries that have holiday information. """
         for holiday_file_path in HolidayTable.__holiday_files:
