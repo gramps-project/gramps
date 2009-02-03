@@ -11,7 +11,6 @@ pkgdata_PYTHON = \
 	ChangeTypes.py \
 	Check.py \
 	CmdRef.py \
-	DateParserDisplayTest.py \
 	Desbrowser.py \
 	Eval.py \
 	EventCmp.py \
