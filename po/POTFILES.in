@@ -302,6 +302,11 @@ src/plugins/import/ImportVCard.py
 src/plugins/lib/libholiday.py
 src/plugins/lib/libmapservice.py
 
+# plugins/mapservices
+src/plugins/mapservices/eniroswedenmap.py
+src/plugins/mapservices/googlemap.py
+src/plugins/mapservices/openstreetmap.py
+
 # plugins/mapservices directory
 src/plugins/mapservices/googlemap.py
 src/plugins/mapservices/openstreetmap.py
