@@ -72,6 +72,7 @@ src/Merge/_MergeSource.py
 # DataViews package
 src/DataViews/EventView.py
 src/DataViews/FamilyList.py
+#src/DataViews/GeoView.py
 src/DataViews/__init__.py
 src/DataViews/MediaView.py
 src/DataViews/GrampletView.py
@@ -258,6 +259,7 @@ src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
 src/plugins/export/ExportGeneWeb.py
 src/plugins/export/ExportPkg.py
+#src/plugins/export/ExportSql.py
 src/plugins/export/ExportVCalendar.py
 src/plugins/export/ExportVCard.py
 
@@ -319,7 +321,9 @@ src/plugins/quickview/AttributeMatch.py
 src/plugins/quickview/FilterByName.py
 src/plugins/quickview/lineage.py
 src/plugins/quickview/OnThisDay.py
+#src/plugins/quickview/Query.py
 src/plugins/quickview/References.py
+src/plugins/quickview/Reporef.py
 src/plugins/quickview/SameSurnames.py
 src/plugins/quickview/siblings.py
 
