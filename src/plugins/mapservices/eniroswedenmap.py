@@ -20,7 +20,7 @@
 #
 
 """
-Eniro Sweden (Denmark) Maps map service plugin. Opens place in kartor.eniro.se
+Eniro Sweden (Denmark) map service plugin. Opens place in kartor.eniro.se
 """
 
 #------------------------------------------------------------------------
@@ -37,7 +37,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug import PluginManager
 from libmapservice import MapService
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import WarningDialog, QuestionDialog2
 
 MAP_NAMES_SWEDEN = ("SVERIGE", "SWEDEN", "SUEDOIS", "ROUTSI", "SCHWEDEN")
 MAP_NAMES_DENMARK = ("DANMARK", "DENMARK", "DANOIS", "TANSKA", "DÄNEMARK")
@@ -58,11 +58,33 @@ class EniroSVMapService(MapService):
         """
         place = self._get_first_place()[0]
         path= ""
-        # First see if we are in Sweden or Denmark
+        # First see if we are in or near Sweden or Denmark
         country = place.get_main_location().get_country()
-        if country.upper() in MAP_NAMES_SWEDEN or country.upper() in MAP_NAMES_DENMARK:
+        country_given = country.upper() in MAP_NAMES_SWEDEN or country.upper() in MAP_NAMES_DENMARK
+        # if no country given, check if we might be in the vicinity defined by
+        # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
+        # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15 
+        latitude, longitude = self._lat_lon(place)
+        if latitude == None or longitude == None:
+            coord_ok = False
+        else:
+            LAT = float(latitude)
+            LON = float(longitude)
+            # Check if coordinates are inside Sweden and Denmark
+            if (54.55 < LAT < 69.05) and (8.05 < LON < 24.15):
+                coord_ok = True
+            else:
+                q = QuestionDialog2(_("Coordinates outside Sweden/Denmark"),
+                                    _("Try another map service?"),
+                                    _("Yes"),
+                                    _("No"))
+                if q.run():
+                    return
+                else:
+                    coord_ok = True
+        # Now check if country is defined
+        if country_given or coord_ok:
             descr = place.get_title()
-            x, y = self._lat_lon(place, format="RT90")
             city = place.get_main_location().get_city()
             street = place.get_main_location().get_street()
             parish = place.get_main_location().get_parish()
@@ -79,16 +101,17 @@ class EniroSVMapService(MapService):
             if city:
                 place_descr += u',  ' + city 
 
-            if x and y:
-                    if county:
-                        place_descr += u' ' + county
-                    if state:
-                        place_descr += u' ' + state + u' län'
-                    path = "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s&zoom_level=5" \
-                           "&map_size=0&title=%s&city=%s&partner=gramps"
-                    # Note x and y are swapped!
-                    path = path % (y , x, place_descr.strip(), parish.strip())
-                    path = path.replace(" ","%20")
+            if coord_ok:
+                x, y = self._lat_lon(place, format="RT90")
+                if county:
+                    place_descr += u' ' + county
+                if state:
+                    place_descr += u' ' + state + u' län'
+                path = "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s&zoom_level=5" \
+                       "&map_size=0&title=%s&city=%s&partner=gramps"
+                # Note x and y are swapped!
+                path = path % (y , x, place_descr.strip(), parish.strip())
+                path = path.replace(" ","%20")
 
             elif city and country:
                 if country.upper() in MAP_NAMES_SWEDEN:
@@ -101,9 +124,9 @@ class EniroSVMapService(MapService):
                     self.url = ""
                     return
             else:
-                WarningDialog(_("You need latitude and longitud,\n or city and country") )
+                WarningDialog(_("You need latitude and longitud,\nor city and country") )
         else:
-            WarningDialog(_("Map not availabel for %s,\n only for Sweden and Denmark") % country)
+            WarningDialog(_("Map not availabel for %s,\nonly for Sweden and Denmark") % country)
 
         self.url = path
 
@@ -113,7 +136,6 @@ class EniroSVMapService(MapService):
 # Register map service
 #
 #------------------------------------------------------------------------
-
 PluginManager.get_instance().register_mapservice(
     name = 'EniroMaps',
     mapservice = EniroSVMapService(),
@@ -123,4 +145,3 @@ PluginManager.get_instance().register_mapservice(
     author_name="Peter Landgren",
     author_email="peter.talken@telia.com"
     )
-
