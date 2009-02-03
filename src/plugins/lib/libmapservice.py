@@ -61,7 +61,9 @@ class MapService():
         self.url = ''
         #An instance is called, we display the result
         self.calc_url()
-        self.__display()
+        # Don't call the map if empty url.
+        if len(self.url) >0:
+            self.__display()
         self._free()
 
     def _get_first_place(self):
