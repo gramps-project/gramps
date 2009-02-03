@@ -10,6 +10,7 @@ Note: Adapted from GRAMPS original Modern Style stylesheet
 This website was created with GRAMPS <http://www.gramps-project.org/>
 --------------------------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional
+/*
 genealogy program, and a wiki open to all. It is a community project, created,
 developed and governed by genealogists.
 
@@ -34,6 +35,7 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 
 Color Palette
 --------------------------------------------------------------------------------------------------
+/*
 black                   #000
 gray dark               #333
 gray                    #999
