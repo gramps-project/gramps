@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-Country: POLAND\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ~/.poedit/a\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10< =4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/ArgHandler.py:228
 #, fuzzy, python-format
