@@ -22,6 +22,7 @@
 #   he was son of          fu figlio di
 #   home person            persona-casa
 #   family (adj)           famigliare
+#   half-sibling           fratelli unilaterali
 #   in %(place)s           in quel di (copes with all sort of place names)
 #   location               località
 #   merge, to              fondere
@@ -31,6 +32,7 @@
 #   relationship path      percorso (delle) relazioni
 #   report                 resoconto
 #   state (geog)           regione, stato
+#   step-sibling           fratellastri
 #   thumbnail              anteprima
 #   unmarried              celibe/nubile
 #
@@ -59,8 +61,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-22 11:16+0100\n"
-"PO-Revision-Date: 2009-02-02 01:17+0100\n"
+"POT-Creation-Date: 2009-02-02 22:56+0100\n"
+"PO-Revision-Date: 2009-02-03 02:17+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +75,7 @@ msgstr ""
 #: ../src/DbLoader.py:276
 #, python-format
 msgid "Could not open file: %s"
-msgstr "Impossibile aprire il file %s"
+msgstr "Impossibile aprire il file: %s"
 
 #: ../src/ArgHandler.py:405
 msgid ""
@@ -249,8 +251,8 @@ msgstr ""
 "Lorenzo Cappelletti\n"
 "Marco Molteni"
 
-#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1016
-#: ../src/gen/lib/date.py:1030
+#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 #, fuzzy
 msgid "none"
 msgstr "nessuna"
@@ -437,10 +439,9 @@ msgstr "Selezione _tipo di file:"
 #. -------------------------------------------------------------------------
 #: ../src/DbManager.py:89
 msgid "Family Tree"
-msgstr "Albero genalogico"
+msgstr "Albero genealogico"
 
 #: ../src/DbManager.py:103
-#, fuzzy
 msgid "Extract"
 msgstr "Estrazione"
 
@@ -504,7 +505,7 @@ msgid "Rename failed"
 msgstr "Rinominazione non riuscita"
 
 #: ../src/DbManager.py:608
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
 "\n"
@@ -559,6 +560,8 @@ msgstr "Rimovere la versione «%(revision)s» di «%(database)s»"
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
+"La rimozione di questa versione ne impedirà l'estrazione in un momento "
+"successivo."
 
 #: ../src/DbManager.py:706
 msgid "Remove version"
@@ -585,7 +588,6 @@ msgstr ""
 "%s"
 
 #: ../src/DbManager.py:804
-#, fuzzy
 msgid "Rebuilding database from backup files"
 msgstr "Ricostruzione database dai file di backup"
 
@@ -686,12 +688,10 @@ msgstr "Nessuna persona attiva"
 #. # end
 #. set up ManagedWindow
 #: ../src/ExportAssistant.py:117
-#, fuzzy
 msgid "Export Assistant"
 msgstr "Assistente esportazione"
 
 #: ../src/ExportAssistant.py:176
-#, fuzzy
 msgid "Saving your data"
 msgstr "Salvataggio dei dati"
 
@@ -700,12 +700,10 @@ msgid "Choose the output format"
 msgstr "Scelta del formato di output"
 
 #: ../src/ExportAssistant.py:300
-#, fuzzy
 msgid "Select Save File"
 msgstr "Selezione file per il salvataggio"
 
 #: ../src/ExportAssistant.py:338 ../src/plugins/MediaManager.py:261
-#, fuzzy
 msgid "Final confirmation"
 msgstr "Conferma definitiva"
 
@@ -753,7 +751,6 @@ msgid "Your data has been saved"
 msgstr "I dati sono stati salvati"
 
 #: ../src/ExportAssistant.py:470
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -767,7 +764,7 @@ msgstr ""
 "\n"
 "Nota: il database aperto attualmente nella finestra di GRAMPS NON è il file "
 "appena salvato. Le modifiche che saranno apportate da ora al database aperto "
-"non modificheranno la copia appena creata."
+"non modificheranno la copia appena creata. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:478
@@ -881,11 +878,11 @@ msgid ""
 "Create Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
-"Buona parte della grafica viene dal\n"
-"progetto Tango o è derivata dal progetto\n"
-"Tango. Questa grafica è rilasciata sotto\n"
+"Buona parte della grafica proviene\n"
+"o è derivata dal progetto Tango.\n"
+"Questa grafica è rilasciata sotto\n"
 "licenza Creative Commons \n"
-"Attribuzione-Condividi allo stesso modo 2.5"
+"Attribuzione-Condividi allo stesso modo 2.5."
 
 #: ../src/GrampsAboutDialog.py:94
 msgid "GRAMPS Homepage"
@@ -1104,23 +1101,20 @@ msgid "Note"
 msgstr "Note"
 
 #: ../src/GrampsCfg.py:217
-#, fuzzy
 msgid "Suppress warning when adding parents to a child"
 msgstr "Sopprimi avvisi quando si aggiungono genitori ad un figlio"
 
 #: ../src/GrampsCfg.py:221
-#, fuzzy
 msgid "Suppress warning when cancelling with changed data"
-msgstr "Sopprimi avvisi per la cancellazione di dati modificati"
+msgstr ""
+"Sopprimi avvisi nel caso di cancellazioni in presenza di dati modificati"
 
 #: ../src/GrampsCfg.py:225
-#, fuzzy
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr ""
 "Sopprimi avvisi sul ricercatore mancante quando si esporta in formato GEDCOM"
 
 #: ../src/GrampsCfg.py:230
-#, fuzzy
 msgid "Show plugin status dialog on plugin load error"
 msgstr ""
 "Mostra finestra di stato plugin in caso di errore di caricamento di plugin"
@@ -1183,7 +1177,7 @@ msgstr "Suffisso"
 #: ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:356
 #: ../src/GrampsCfg.py:357 ../src/Utils.py:1200
 msgid "Common"
-msgstr ""
+msgstr "Comune"
 
 #: ../src/GrampsCfg.py:347 ../src/GrampsCfg.py:349 ../src/GrampsCfg.py:351
 #: ../src/GrampsCfg.py:358 ../src/Utils.py:1199
@@ -1203,11 +1197,11 @@ msgstr "Patronimico"
 
 #: ../src/GrampsCfg.py:445
 msgid "This format exists already"
-msgstr ""
+msgstr "Formato già esistente"
 
 #: ../src/GrampsCfg.py:464 ../src/GrampsCfg.py:1004
 msgid "Invalid or incomplete format definition"
-msgstr ""
+msgstr "Definizione del formato non valida o incompleta"
 
 #: ../src/GrampsCfg.py:481
 msgid "Format"
@@ -1232,16 +1226,14 @@ msgid "Date format"
 msgstr "Formato data"
 
 #: ../src/GrampsCfg.py:687
-#, fuzzy
 msgid "Surname guessing"
-msgstr "Riconoscimento cognome"
+msgstr "Stima cognome"
 
 #: ../src/GrampsCfg.py:694
 msgid "Active person's name and ID"
 msgstr "Nome e ID persona attiva"
 
 #: ../src/GrampsCfg.py:695
-#, fuzzy
 msgid "Relationship to home person"
 msgstr "Relazione con la persona principale"
 
@@ -1293,7 +1285,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:762
 msgid "Add default source on import"
-msgstr ""
+msgstr "Aggiunge fonte predefinita in fase di importazione"
 
 #: ../src/GrampsCfg.py:764
 msgid "Enable spelling checker"
@@ -1308,17 +1300,14 @@ msgid "Use shading in Relationship View"
 msgstr "Usa ombreggiature nella vista relazioni"
 
 #: ../src/GrampsCfg.py:770
-#, fuzzy
 msgid "Display edit buttons on Relationship View"
 msgstr "Mostra pulsanti di modifica nella vista relazioni"
 
 #: ../src/GrampsCfg.py:772
-#, fuzzy
 msgid "Remember last view displayed"
 msgstr "Ricorda l'ultima vista mostrata"
 
 #: ../src/GrampsCfg.py:775
-#, fuzzy
 msgid "Number of generations for relationship determination"
 msgstr "Numero generazioni per il calcolo delle relazioni"
 
@@ -1336,10 +1325,9 @@ msgstr "Carica automaticamente ultimo database"
 
 #: ../src/GrampsCfg.py:869
 msgid "Select media directory"
-msgstr "Selezionare directory oggetto multimediale"
+msgstr "Selezionare directory oggetti multimediali"
 
 #: ../src/GrampsCfg.py:957
-#, fuzzy
 msgid "Name Format Editor"
 msgstr "Editor formato nome"
 
@@ -1348,7 +1336,6 @@ msgid "The format definition is invalid"
 msgstr "Definizione del formato non corretta"
 
 #: ../src/GrampsCfg.py:982
-#, fuzzy
 msgid "What would you like to do?"
 msgstr "Cosa fare?"
 
@@ -1603,12 +1590,10 @@ msgid "Record is public"
 msgstr "Questa informazione è pubblica"
 
 #: ../src/GrampsWidgets.py:922
-#, fuzzy
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Per selezionare un luogo, trascinare oppure usare i pulsanti"
 
 #: ../src/GrampsWidgets.py:924
-#, fuzzy
 msgid "No place given, click button to select one"
 msgstr "Nessun luogo indicato, fare clic sul pulsante per sceglierne uno"
 
@@ -1629,17 +1614,13 @@ msgid "Remove place"
 msgstr "Rimuove luogo"
 
 #: ../src/GrampsWidgets.py:976
-#, fuzzy
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 "Per selezionare un oggetto multimediale, trascinare oppure usare i pulsanti"
 
 #: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:770
-#, fuzzy
 msgid "No image given, click button to select one"
-msgstr ""
-"Nessun oggetto multimediale indicato, fare clic sul pulsante per sceglierne "
-"uno"
+msgstr "Nessuna immagine indicata, fare clic sul pulsante per sceglierne una"
 
 #: ../src/GrampsWidgets.py:979
 msgid "Edit media object"
@@ -1658,12 +1639,10 @@ msgid "Remove media object"
 msgstr "Rimuove oggetto multimediale"
 
 #: ../src/GrampsWidgets.py:1030
-#, fuzzy
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Per selezionare una nota, trascinare oppure usare i pulsanti"
 
 #: ../src/GrampsWidgets.py:1032 ../src/PluginUtils/_GuiOptions.py:693
-#, fuzzy
 msgid "No note given, click button to select one"
 msgstr "Nessuna nota indicata, fare clic sul pulsante per sceglierne una"
 
@@ -1915,14 +1894,13 @@ msgid ""
 msgstr ""
 
 #: ../src/Relationship.py:927
-#, fuzzy
 msgid "Relationship loop detected:"
-msgstr "Rilevato un circolo vizioso di relazioni"
+msgstr "Rilevato un circolo vizioso di relazioni:"
 
 #: ../src/Relationship.py:928
 #, python-format
 msgid "Person %s connects to himself via %s"
-msgstr ""
+msgstr "La persona %s è connessa a se stessa tramite %s"
 
 #: ../src/Relationship.py:1193
 #, fuzzy
@@ -1978,62 +1956,50 @@ msgid "gender unknown,unmarried|ex-spouse"
 msgstr "ex compagno/a"
 
 #: ../src/Relationship.py:1687
-#, fuzzy
 msgid "male,civil union|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1689
-#, fuzzy
 msgid "female,civil union|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1691
-#, fuzzy
 msgid "gender unknown,civil union|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1694
-#, fuzzy
 msgid "male,civil union|former partner"
 msgstr "partner precedente"
 
 #: ../src/Relationship.py:1696
-#, fuzzy
 msgid "female,civil union|former partner"
 msgstr "partner precedente"
 
 #: ../src/Relationship.py:1698
-#, fuzzy
 msgid "gender unknown,civil union|former partner"
 msgstr "partner precedente"
 
 #: ../src/Relationship.py:1701
-#, fuzzy
 msgid "male,unknown relation|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1703
-#, fuzzy
 msgid "female,unknown relation|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1705
-#, fuzzy
 msgid "gender unknown,unknown relation|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1710
-#, fuzzy
 msgid "male,unknown relation|former partner"
 msgstr "partner precedente"
 
 #: ../src/Relationship.py:1712
-#, fuzzy
 msgid "female,unknown relation|former partner"
 msgstr "partner precedente"
 
 #: ../src/Relationship.py:1714
-#, fuzzy
 msgid "gender unknown,unknown relation|former partner"
 msgstr "partner precedente"
 
@@ -2098,7 +2064,6 @@ msgid "Telephone"
 msgstr "Telefono"
 
 #: ../src/ScratchPad.py:234
-#, fuzzy
 msgid "Event Link"
 msgstr "Collegamento evento"
 
@@ -2137,7 +2102,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #: ../src/ScratchPad.py:368 ../src/gen/lib/attrtype.py:71
-#, fuzzy
 msgid "Cause"
 msgstr "Causa"
 
@@ -2155,7 +2119,6 @@ msgid "Primary source"
 msgstr "Fonte principale"
 
 #: ../src/ScratchPad.py:392 ../src/ScratchPad.py:400
-#, fuzzy
 msgid "Url"
 msgstr "URL"
 
@@ -2220,12 +2183,11 @@ msgstr "Riferimento deposito"
 
 #: ../src/ScratchPad.py:538 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
-msgstr ""
+msgstr "Segnatura"
 
 #: ../src/ScratchPad.py:539
-#, fuzzy
 msgid "Media Type"
-msgstr "Tipo multimediale"
+msgstr "Tipo supporto"
 
 #: ../src/ScratchPad.py:551
 msgid "Event Reference"
@@ -2250,9 +2212,8 @@ msgid "Person Reference"
 msgstr "Riferimento persona"
 
 #: ../src/ScratchPad.py:716 ../src/ScratchPad.py:741
-#, fuzzy
 msgid "Person Link"
-msgstr "Persona"
+msgstr "Collegamento persona"
 
 #: ../src/ScratchPad.py:743 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:137 ../src/DataViews/RelationView.py:556
@@ -2265,9 +2226,8 @@ msgid "Birth"
 msgstr "Nascita"
 
 #: ../src/ScratchPad.py:775 ../src/ScratchPad.py:793
-#, fuzzy
 msgid "Source Link"
-msgstr "Menù fonti"
+msgstr "Collegamento fonte"
 
 #: ../src/ScratchPad.py:795 ../src/DataViews/SourceView.py:69
 #: ../src/plugins/NarrativeWeb.py:1713
@@ -2286,9 +2246,8 @@ msgid "Publication Information"
 msgstr "Informazioni pubblicazione"
 
 #: ../src/ScratchPad.py:816 ../src/ScratchPad.py:831
-#, fuzzy
 msgid "Repository Link"
-msgstr "Collegamenti depositi"
+msgstr "Collegamento deposito"
 
 #: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1235
 #: ../src/glade/scratchpad.glade.h:2
@@ -2818,7 +2777,7 @@ msgstr ""
 
 #: ../src/Utils.py:1200
 msgid "COMMON"
-msgstr ""
+msgstr "COMUNE"
 
 #: ../src/Utils.py:1201
 msgid "Initials"
@@ -3071,9 +3030,8 @@ msgid "Import Statistics"
 msgstr "Statistiche importazione"
 
 #: ../src/ViewManager.py:1064
-#, fuzzy
 msgid "Could not load a recent Family Tree."
-msgstr "Impossibile caricare un albero genealogico recente"
+msgstr "Impossibile caricare un albero genealogico recente."
 
 #: ../src/ViewManager.py:1065
 msgid "Family Tree does not exist, as it has been deleted."
@@ -3155,9 +3113,8 @@ msgid "call"
 msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:288 ../src/BasicUtils/_NameDisplay.py:325
-#, fuzzy
 msgid "common"
-msgstr "Commento"
+msgstr "comune"
 
 #: ../src/BasicUtils/_NameDisplay.py:292 ../src/BasicUtils/_NameDisplay.py:327
 #, fuzzy
@@ -3901,14 +3858,12 @@ msgstr "Aggiungi"
 
 #: ../src/DataViews/RelationView.py:336 ../src/DataViews/RelationView.py:338
 #: ../src/DataViews/RelationView.py:699
-#, fuzzy
 msgid "Add a new set of parents"
-msgstr "Aggiunge un nuovo insieme di genitori"
+msgstr "Aggiungi un nuovo insieme di genitori"
 
 #: ../src/DataViews/RelationView.py:337
-#, fuzzy
 msgid "Add New Parents..."
-msgstr "Aggiunge un nuovo elemento"
+msgstr "Aggiungi nuovi genitori..."
 
 #: ../src/DataViews/RelationView.py:339 ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:118
@@ -3922,9 +3877,8 @@ msgid "Add person as child to an existing family"
 msgstr "Aggiunge figlio/a ad una famiglia esistente"
 
 #: ../src/DataViews/RelationView.py:343
-#, fuzzy
 msgid "Add Existing Parents..."
-msgstr "Aggiunge genitori esistenti..."
+msgstr "Aggiungi genitori esistenti..."
 
 #: ../src/DataViews/RelationView.py:351
 msgid "Show Details"
@@ -4194,8 +4148,8 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1466 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1458
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1463 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2701
@@ -5472,40 +5426,40 @@ msgstr "Il file GEDCOM è rovinato. Sembra essere troncato."
 msgid "Import from GEDCOM (%s)"
 msgstr "Importa da GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:835
+#: ../src/GrampsDbUtils/_GedcomParse.py:818
 msgid "GEDCOM import"
 msgstr "Importazione GEDCOM"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1089
+#: ../src/GrampsDbUtils/_GedcomParse.py:1072
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "La riga %d è stata ignorata perché incomprensibile."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3044
+#: ../src/GrampsDbUtils/_GedcomParse.py:2918
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Riga %d: la nota evento è stata ignorata perché vuota."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3727
-#: ../src/GrampsDbUtils/_GedcomParse.py:4295
+#: ../src/GrampsDbUtils/_GedcomParse.py:3601
+#: ../src/GrampsDbUtils/_GedcomParse.py:4169
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossibile importare %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4071
+#: ../src/GrampsDbUtils/_GedcomParse.py:3945
 #, python-format
 msgid "Import from %s"
 msgstr "Importa da %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4161
-#: ../src/GrampsDbUtils/_GedcomParse.py:4173
+#: ../src/GrampsDbUtils/_GedcomParse.py:4035
+#: ../src/GrampsDbUtils/_GedcomParse.py:4047
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Riga %d: la nota è stata ignorata perché vuota."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4212
+#: ../src/GrampsDbUtils/_GedcomParse.py:4086
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr ""
@@ -5766,7 +5720,7 @@ msgstr "Ordinamento"
 msgid "Writing"
 msgstr "Scrittura"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1464
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1461
 msgid "Export failed"
 msgstr "Esportazione non riuscita"
 
@@ -5775,11 +5729,11 @@ msgstr "Esportazione non riuscita"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1471
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1475
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1472
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
@@ -5787,7 +5741,7 @@ msgstr ""
 "GEDCOM è utilizzato per trasferire dati tra programmi di genealogia. Molti "
 "programmi di genealogia possono leggere file GEDCOM."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1477
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1474
 msgid "GEDCOM export options"
 msgstr "Opzioni esportazione GEDCOM"
 
@@ -5963,9 +5917,11 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
+"Questo è l'ultimo passo. Premendo il pulsante presente in questa pagina "
+"viene eseguito un browser web che permette di segnalare un bug nel sistema "
+"di gestione dei bug di Gramps."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
-#, fuzzy
 msgid "manual|General"
 msgstr "Generale"
 
@@ -5975,7 +5931,7 @@ msgstr "Resoconto errori"
 
 #: ../src/GrampsLogger/_ErrorView.py:69
 msgid "GRAMPS has experienced an unexpected error"
-msgstr ""
+msgstr "Si è verificato un errore inaspettato in GRAMPS"
 
 #: ../src/GrampsLogger/_ErrorView.py:78
 msgid ""
@@ -6027,7 +5983,7 @@ msgstr "Seleziona fonte"
 
 #. display the results
 #: ../src/plugins/all_events.py:55
-#, fuzzy, python-format
+#, python-format
 msgid "Sorted events of %s"
 msgstr "Eventi ordinati di %s"
 
@@ -6084,7 +6040,7 @@ msgstr "Tutti gli eventi"
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:877
-#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:560
+#: ../src/plugins/GVHourGlass.py:210 ../src/plugins/GVRelGraph.py:565
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6182,7 +6138,6 @@ msgid "The following problems were encountered:"
 msgstr "Si sono verificati i seguenti problemi:"
 
 #: ../src/plugins/all_relations.py:349
-#, fuzzy
 msgid "Relation to Home Person"
 msgstr "Relazione con la persona principale"
 
@@ -6351,7 +6306,7 @@ msgstr "Generazione %d"
 #: ../src/plugins/DetAncestralReport.py:701
 #: ../src/plugins/DetDescendantReport.py:644
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
-#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:429
+#: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:434
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2938
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
@@ -6525,7 +6480,7 @@ msgstr "Opzioni"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:432
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:437
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2955
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -6533,20 +6488,18 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: ../src/plugins/CalculateEstimatedDates.py:65
-#, fuzzy
 msgid "Select filter to restrict people"
-msgstr "Selezione filtro per restringere le persone"
+msgstr "Seleziona filtro per restringere le persone"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:522
+#: ../src/plugins/GVRelGraph.py:443 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2961 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
-#, fuzzy
 msgid "Filter Person"
-msgstr "Filtro persona"
+msgstr "Filtro su persona"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:439 ../src/plugins/IndivComplete.py:523
+#: ../src/plugins/GVRelGraph.py:444 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2962 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
@@ -6626,48 +6579,41 @@ msgstr "Numero medio di anni tra due generazioni"
 
 #: ../src/plugins/CalculateEstimatedDates.py:149
 #: ../src/plugins/CalculateEstimatedDates.py:491
-#, fuzzy
 msgid "Calculate Estimated Dates"
-msgstr "Stima date"
+msgstr "Effettua stima date"
 
 #: ../src/plugins/CalculateEstimatedDates.py:155
 msgid "Results"
 msgstr "Risultati"
 
 #: ../src/plugins/CalculateEstimatedDates.py:156
-#, fuzzy
 msgid "Processing...\n"
 msgstr "Elaborazione in corso...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:174
-#, fuzzy
 msgid "Replacing...\n"
 msgstr "Sostituzione...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:175
-#, fuzzy, python-format
+#, python-format
 msgid "Removing '%s'..."
 msgstr "Rimozione di «%s»..."
 
 #: ../src/plugins/CalculateEstimatedDates.py:216
-#, fuzzy
 msgid "Calculating...\n"
 msgstr "Calcolo in corso...\n"
 
 #: ../src/plugins/CalculateEstimatedDates.py:217
-#, fuzzy
 msgid "Calculating estimated dates..."
 msgstr "Stima delle date in corso..."
 
 #. print "added birth"
 #: ../src/plugins/CalculateEstimatedDates.py:231
-#, fuzzy
 msgid "Estimated birth date"
 msgstr "Data di nascita stimata"
 
 #. print "added death"
 #: ../src/plugins/CalculateEstimatedDates.py:247
-#, fuzzy
 msgid "Estimated death date"
 msgstr "Data di decesso stimata"
 
@@ -6682,9 +6628,8 @@ msgid " added death on %s"
 msgstr " aggiunto decesso in data %s"
 
 #: ../src/plugins/CalculateEstimatedDates.py:263
-#, fuzzy
 msgid "Calculate date estimates"
-msgstr "Calcolo stima date"
+msgstr "Effettua stima date"
 
 #: ../src/plugins/CalculateEstimatedDates.py:266
 msgid "Done!\n"
@@ -6701,9 +6646,8 @@ msgid "Beta"
 msgstr "Beta"
 
 #: ../src/plugins/CalculateEstimatedDates.py:495
-#, fuzzy
 msgid "Calculates estimated dates for birth and death."
-msgstr "Stima date di nascita e di decesso."
+msgstr "Effettua stima per date di nascita e di decesso."
 
 #: ../src/plugins/Calendar.py:149
 msgid "Calendar Report"
@@ -6740,7 +6684,7 @@ msgid "Birthday and Anniversary Report"
 msgstr "Resoconto compleanni ed anniversari"
 
 #: ../src/plugins/Calendar.py:441
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships shown are to %s"
 msgstr "Le relazioni mostrate sono relative a %s"
 
@@ -6752,6 +6696,7 @@ msgstr "Anno del calendario"
 #: ../src/plugins/Calendar.py:493 ../src/plugins/WebCal.py:743
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
+"Seleziona filtro per restringere le persone che compaiono nel calendario"
 
 #: ../src/plugins/Calendar.py:506
 msgid "Select the format to display names"
@@ -7030,9 +6975,8 @@ msgid "%d event records were modified."
 msgstr "Sono stati modificati %d elementi evento."
 
 #: ../src/plugins/ChangeTypes.py:204
-#, fuzzy
 msgid "Rename Event Types"
-msgstr "Rinomina tipi evento"
+msgstr "Rinomina tipi eventi"
 
 #: ../src/plugins/ChangeTypes.py:208
 msgid "Allows all the events of a certain name to be renamed to a new name."
@@ -7048,12 +6992,10 @@ msgid "Checking Database"
 msgstr "Controllo database"
 
 #: ../src/plugins/Check.py:257
-#, fuzzy
 msgid "Looking for invalid name format references"
 msgstr "Ricerca di riferimenti non validi a formati di nomi"
 
 #: ../src/plugins/Check.py:305
-#, fuzzy
 msgid "Looking for duplicate spouses"
 msgstr "Ricerca di coniugi duplicati"
 
@@ -7062,9 +7004,8 @@ msgid "Looking for character encoding errors"
 msgstr "Ricerca di errori di codifica"
 
 #: ../src/plugins/Check.py:350
-#, fuzzy
 msgid "Looking for broken family links"
-msgstr "Ricerca di collegamenti familiari rotti"
+msgstr "Ricerca di collegamenti familiari danneggiati"
 
 #: ../src/plugins/Check.py:473
 msgid "Looking for unused objects"
@@ -7097,42 +7038,34 @@ msgstr ""
 "riferimento al file mancante o selezionare un nuovo file."
 
 #: ../src/plugins/Check.py:592
-#, fuzzy
 msgid "Looking for empty people records"
 msgstr "Ricerca di schede di persone senza dati"
 
 #: ../src/plugins/Check.py:600
-#, fuzzy
 msgid "Looking for empty family records"
 msgstr "Ricerca di schede di famiglie senza dati"
 
 #: ../src/plugins/Check.py:608
-#, fuzzy
 msgid "Looking for empty event records"
 msgstr "Ricerca di schede di eventi senza dati"
 
 #: ../src/plugins/Check.py:616
-#, fuzzy
 msgid "Looking for empty source records"
 msgstr "Ricerca di schede di fonti senza dati"
 
 #: ../src/plugins/Check.py:624
-#, fuzzy
 msgid "Looking for empty place records"
 msgstr "Ricerca di schede di luoghi senza dati"
 
 #: ../src/plugins/Check.py:631
-#, fuzzy
 msgid "Looking for empty media records"
 msgstr "Ricerca di schede di oggetti multimediali senza dati"
 
 #: ../src/plugins/Check.py:640
-#, fuzzy
 msgid "Looking for empty repository records"
 msgstr "Ricerca di schede di depositi senza dati"
 
 #: ../src/plugins/Check.py:648
-#, fuzzy
 msgid "Looking for empty note records"
 msgstr "Ricerca di schede di note senza dati"
 
@@ -7141,42 +7074,34 @@ msgid "Looking for empty families"
 msgstr "Ricerca di famiglie senza dati"
 
 #: ../src/plugins/Check.py:717
-#, fuzzy
 msgid "Looking for broken parent relationships"
-msgstr "Ricerca di relazioni di tipo genitore rotte"
+msgstr "Ricerca di relazioni danneggiate di tipo genitore"
 
 #: ../src/plugins/Check.py:748
-#, fuzzy
 msgid "Looking for event problems"
 msgstr "Ricerca di problemi negli eventi"
 
 #: ../src/plugins/Check.py:831
-#, fuzzy
 msgid "Looking for person reference problems"
 msgstr "Ricerca di problemi nei riferimenti a persone"
 
 #: ../src/plugins/Check.py:847
-#, fuzzy
 msgid "Looking for repository reference problems"
 msgstr "Ricerca di problemi nei riferimenti a depositi"
 
 #: ../src/plugins/Check.py:864
-#, fuzzy
 msgid "Looking for place reference problems"
 msgstr "Ricerca di problemi nei riferimenti a luoghi"
 
 #: ../src/plugins/Check.py:911
-#, fuzzy
 msgid "Looking for source reference problems"
 msgstr "Ricerca di problemi nei riferimenti a fonti"
 
 #: ../src/plugins/Check.py:1034
-#, fuzzy
 msgid "Looking for media object reference problems"
 msgstr "Ricerca di problemi nei riferimenti a oggetti multimediali"
 
 #: ../src/plugins/Check.py:1126
-#, fuzzy
 msgid "Looking for note reference problems"
 msgstr "Ricerca di problemi nei riferimenti a note"
 
@@ -7190,12 +7115,12 @@ msgstr "Il database ha passato i controlli interni"
 
 #: ../src/plugins/Check.py:1298
 msgid "1 broken child/family link was fixed\n"
-msgstr "È stato riparato 1 collegamento non funzionante a figlio/famiglia\n"
+msgstr "È stato corretto un collegamento figlio/famiglia non funzionante\n"
 
 #: ../src/plugins/Check.py:1300
 #, python-format
 msgid "%d broken child/family links were found\n"
-msgstr "Sono stati riparati %d collegamenti non funzionanti a figli/famiglie\n"
+msgstr "Sono stati trovati %d collegamenti figlio/famiglia non funzionanti \n"
 
 #: ../src/plugins/Check.py:1306
 msgid "Non existing child"
@@ -7208,13 +7133,12 @@ msgstr "%s è stato rimosso dalla famiglia di %s\n"
 
 #: ../src/plugins/Check.py:1317
 msgid "1 broken spouse/family link was fixed\n"
-msgstr "È stato riparato 1 collegamento non funzionante a coniuge/famiglia\n"
+msgstr "È stato corretto un collegamento coniuge/famiglia non funzionante\n"
 
 #: ../src/plugins/Check.py:1319
 #, python-format
 msgid "%d broken spouse/family links were found\n"
-msgstr ""
-"Sono stati riparati %d collegamenti non funzionanti a coniugi/famiglie\n"
+msgstr "Sono stati trovati %d collegamenti coniuge/famiglia non funzionanti\n"
 
 #: ../src/plugins/Check.py:1325 ../src/plugins/Check.py:1344
 msgid "Non existing person"
@@ -7226,33 +7150,31 @@ msgid "%s was restored to the family of %s\n"
 msgstr "%s è stato ripristinato nella famiglia di %s\n"
 
 #: ../src/plugins/Check.py:1336
-#, fuzzy
 msgid "1 duplicate spouse/family link was found\n"
-msgstr "È stato riparato 1 collegamento non funzionante a coniuge/famiglia\n"
+msgstr "È stato trovato un collegamento duplicato coniuge/famiglia\n"
 
 #: ../src/plugins/Check.py:1338
-#, fuzzy, python-format
+#, python-format
 msgid "%d duplicate spouse/family links were found\n"
-msgstr ""
-"Sono stati riparati %d collegamenti non funzionanti a coniugi/famiglie\n"
+msgstr "Sono stati trovati %d collegamenti coniuge/famiglia non funzionanti\n"
 
 #: ../src/plugins/Check.py:1354
 msgid "1 family with no parents or children found, removed.\n"
-msgstr ""
+msgstr "Trovata una famiglia senza genitori o figli, è stata rimossa.\n"
 
 #: ../src/plugins/Check.py:1357
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
-msgstr ""
+msgstr "Trovate %d famiglie senza genitori o figli, sono state rimosse.\n"
 
 #: ../src/plugins/Check.py:1360
 msgid "1 corrupted family relationship fixed\n"
-msgstr "È stato riparata una relazione familiare corrotta\n"
+msgstr "È stato corretta una relazione familiare danneggiata\n"
 
 #: ../src/plugins/Check.py:1362
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
-msgstr "Sono state riparate %d relazioni familiari corrotte\n"
+msgstr "Sono state corrette %d relazioni familiari danneggiate\n"
 
 #: ../src/plugins/Check.py:1365
 msgid "1 person was referenced but not found\n"
@@ -7321,21 +7243,21 @@ msgstr "Sono stati rimossi %d riferimenti non validi ad eventi\n"
 
 #: ../src/plugins/Check.py:1400
 msgid "1 invalid birth event name was fixed\n"
-msgstr ""
+msgstr "È stato corretto un evento di tipo nascita non valido\n"
 
 #: ../src/plugins/Check.py:1402
 #, python-format
 msgid "%d invalid birth event names were fixed\n"
-msgstr ""
+msgstr "Sono stati corretti %d eventi di tipo nascita non validi\n"
 
 #: ../src/plugins/Check.py:1405
 msgid "1 invalid death event name was fixed\n"
-msgstr ""
+msgstr "È stato corretto un evento di tipo decesso non valido\n"
 
 #: ../src/plugins/Check.py:1407
 #, python-format
 msgid "%d invalid death event names were fixed\n"
-msgstr ""
+msgstr "Sono stati corretti %d eventi di tipo decesso non validi\n"
 
 #: ../src/plugins/Check.py:1410
 msgid "1 place was referenced but not found\n"
@@ -7360,23 +7282,22 @@ msgid "1 media object was referenced but not found\n"
 msgstr "Era presente un riferimento ad un oggetto multimediale mancante\n"
 
 #: ../src/plugins/Check.py:1426
-#, fuzzy
 msgid "1 note object was referenced but not found\n"
 msgstr "Era presente un riferimento ad una nota mancante\n"
 
 #: ../src/plugins/Check.py:1428
-#, fuzzy, python-format
+#, python-format
 msgid "%d note objects were referenced, but not found\n"
 msgstr "Erano presenti %d riferimenti a note mancanti\n"
 
 #: ../src/plugins/Check.py:1432
 msgid "1 invalid name format reference was removed\n"
-msgstr ""
+msgstr "È stato rimosso un riferimento non valido ad un formato di nome\n"
 
 #: ../src/plugins/Check.py:1434
 #, python-format
 msgid "%d invalid name format references were removed\n"
-msgstr ""
+msgstr "Sono stati rimossi %d riferimenti non validi a formati di nome\n"
 
 #: ../src/plugins/Check.py:1438
 #, python-format
@@ -7527,7 +7448,6 @@ msgid "Generating dates"
 msgstr "Generazione date"
 
 #: ../src/plugins/DateParserDisplayTest.py:218
-#, fuzzy
 msgid "Date Test Plugin"
 msgstr "Plugin test data"
 
@@ -7652,29 +7572,27 @@ msgid "   %d.b Father: "
 msgstr "   %d.b padre: "
 
 #: ../src/plugins/DefaultGramplets.py:567
-#, fuzzy
 msgid "Click to make active\n"
-msgstr "Fare clic sul nome per rendere attiva la persona\n"
+msgstr "Fare clic per rendere attiva la persona\n"
 
 #: ../src/plugins/DefaultGramplets.py:568
-#, fuzzy
 msgid "Right-click to edit"
-msgstr "Fare clic col pulsante destro per modificare la persona"
+msgstr "Fare clic col pulsante destro per modificare"
 
 #: ../src/plugins/DefaultGramplets.py:625
-#, fuzzy, python-format
+#, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "n. %(birthdate)s, d. %(deathdate)s"
+msgstr "(n. %(birthdate)s, d. %(deathdate)s)"
 
 #: ../src/plugins/DefaultGramplets.py:630
-#, fuzzy, python-format
+#, python-format
 msgid "(b. %s)"
-msgstr "n. %s"
+msgstr "(n. %s)"
 
 #: ../src/plugins/DefaultGramplets.py:632
-#, fuzzy, python-format
+#, python-format
 msgid "(d. %s)"
-msgstr "d. %s"
+msgstr "(d. %s)"
 
 #: ../src/plugins/DefaultGramplets.py:654
 msgid ""
@@ -7690,8 +7608,7 @@ msgstr "Generazione 1"
 #: ../src/plugins/DefaultGramplets.py:667
 #, fuzzy
 msgid "Double-click to see people in generation"
-msgstr ""
-"<i>Doppio clic su una riga per modificare le informazioni personali</i>"
+msgstr "Doppio clic per vedere le persone della generazione"
 
 #: ../src/plugins/DefaultGramplets.py:663
 #, fuzzy, python-format
@@ -7708,9 +7625,8 @@ msgid "All generations"
 msgstr "Tutte le generazioni"
 
 #: ../src/plugins/DefaultGramplets.py:671
-#, fuzzy
 msgid "Double-click to see all generations"
-msgstr "Doppio clic sull'elemento per vedere le corrispondenze"
+msgstr "Doppio clic per vedere tutte le generazioni"
 
 #: ../src/plugins/DefaultGramplets.py:672
 #, python-format
@@ -7805,7 +7721,7 @@ msgstr "Inserire espressioni Python"
 
 #: ../src/plugins/DefaultGramplets.py:826
 msgid "class name|Date"
-msgstr ""
+msgstr "Data"
 
 #: ../src/plugins/DefaultGramplets.py:836
 msgid "Error"
@@ -8141,9 +8057,8 @@ msgstr "Indice"
 
 #: ../src/plugins/DetAncestralReport.py:718
 #: ../src/plugins/DetDescendantReport.py:661
-#, fuzzy
 msgid "Use callname for common name"
-msgstr "Usa pseudonimo come nome"
+msgstr "Usa pseudonimo come nome comune"
 
 #: ../src/plugins/DetAncestralReport.py:719
 #: ../src/plugins/DetDescendantReport.py:662
@@ -8218,7 +8133,7 @@ msgstr ""
 #: ../src/plugins/DetDescendantReport.py:692 ../src/plugins/FamilyGroup.py:599
 #: ../src/plugins/NarrativeWeb.py:3084
 msgid "Include"
-msgstr "Includi"
+msgstr "Includere"
 
 #: ../src/plugins/DetAncestralReport.py:751
 #: ../src/plugins/DetDescendantReport.py:694
@@ -8377,12 +8292,12 @@ msgstr "Produce un resoconto dettagliato della discendenza"
 #: ../src/plugins/EndOfLineReport.py:134
 #, python-format
 msgid "End of Line Report for %s"
-msgstr ""
+msgstr "Resoconto fine-linea per %s"
 
 #: ../src/plugins/EndOfLineReport.py:140
-#, fuzzy, python-format
+#, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "Tutti gli ascendenti di %s che non hanno un genitore"
+msgstr "Tutti gli ascendenti di %s a cui manca un genitore"
 
 #: ../src/plugins/EndOfLineReport.py:185 ../src/plugins/KinshipReport.py:308
 #, python-format
@@ -8399,10 +8314,9 @@ msgstr "Lo stile base usato per le intestazioni delle generazioni."
 
 #: ../src/plugins/EndOfLineReport.py:320
 msgid "End of Line Report"
-msgstr ""
+msgstr "Resoconto fine-linea"
 
 #: ../src/plugins/EndOfLineReport.py:322
-#, fuzzy
 msgid "Produces a textual end of line report"
 msgstr "Produce un resoconto testuale fine-linea"
 
@@ -8419,21 +8333,18 @@ msgid "Provides a window that can evaluate python code"
 msgstr "Fornisce una finestra per la valutazione di codice Python"
 
 #: ../src/plugins/EventCmp.py:67
-#, fuzzy
 msgid "manual|Compare_Individual_Events..."
-msgstr "Confronta eventi individuali"
+msgstr "Confronta eventi individuali..."
 
 #: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
 msgstr "Selezione filtro confronto eventi"
 
 #: ../src/plugins/EventCmp.py:165
-#, fuzzy
 msgid "Filter selection"
 msgstr "Selezione filtro"
 
 #: ../src/plugins/EventCmp.py:165
-#, fuzzy
 msgid "Event Comparison tool"
 msgstr "Strumento di confronto eventi"
 
@@ -8442,7 +8353,6 @@ msgid "Comparing events"
 msgstr "Confronta eventi"
 
 #: ../src/plugins/EventCmp.py:179
-#, fuzzy
 msgid "Selecting people"
 msgstr "Selezione persone"
 
@@ -8464,17 +8374,14 @@ msgid " Place"
 msgstr " Luogo"
 
 #: ../src/plugins/EventCmp.py:297
-#, fuzzy
 msgid "Comparing Events"
-msgstr "Confronta eventi"
+msgstr "Confronto eventi"
 
 #: ../src/plugins/EventCmp.py:298
-#, fuzzy
 msgid "Building data"
 msgstr "Costruzione dati"
 
 #: ../src/plugins/EventCmp.py:390
-#, fuzzy
 msgid "Select filename"
 msgstr "Seleziona file"
 
@@ -8491,17 +8398,14 @@ msgstr ""
 "da applicare al database per trovare eventi simili"
 
 #: ../src/plugins/EventNames.py:101
-#, fuzzy
 msgid "Event name changes"
 msgstr "Modifiche nome evento"
 
 #: ../src/plugins/EventNames.py:160
-#, fuzzy
 msgid "Extract Event Descriptions from Event Data"
-msgstr "Estrazione descrizioni eventi dai rispettivi dati"
+msgstr "Estrai descrizioni eventi dai rispettivi dati"
 
 #: ../src/plugins/EventNames.py:164
-#, fuzzy
 msgid "Extracts event descriptions from the event data"
 msgstr "Estrae le descrizioni degli eventi dai rispettivi dati"
 
@@ -8637,7 +8541,6 @@ msgid "Place title"
 msgstr "Titolo luogo"
 
 #: ../src/plugins/ExtractCity.py:398 ../src/plugins/ExtractCity.py:602
-#, fuzzy
 msgid "Extract Place data"
 msgstr "Estrae dati dei luoghi"
 
@@ -8666,12 +8569,10 @@ msgstr ""
 "convertire."
 
 #: ../src/plugins/ExtractCity.py:630
-#, fuzzy
 msgid "Extract Place Data from a Place Title"
-msgstr "Estrazione dati del luogo dal titolo del luogo"
+msgstr "Estrai dati del luogo dal titolo del luogo"
 
 #: ../src/plugins/ExtractCity.py:634
-#, fuzzy
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Cerca di estrarre la città e lo stato/provincia dal titolo del luogo"
 
@@ -9090,47 +8991,58 @@ msgstr ""
 
 #. --------------------------------
 #: ../src/plugins/GVFamilyLines.py:95
+#, fuzzy
 msgid "People of Interest"
-msgstr ""
+msgstr "Persone interessate"
 
 #. --------------------------------
 #: ../src/plugins/GVFamilyLines.py:98
+#, fuzzy
 msgid "People of interest"
-msgstr ""
+msgstr "Persone interessate"
 
 #: ../src/plugins/GVFamilyLines.py:99
+#, fuzzy
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
+"Le persone interessate sono usate come punto di partenza per determinare le "
+"\"linee familiari\"."
 
 #: ../src/plugins/GVFamilyLines.py:102
 msgid "Follow parents to determine family lines"
-msgstr ""
+msgstr "Segui i genitori per determinare le linee familiari"
 
 #: ../src/plugins/GVFamilyLines.py:103
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
 msgstr ""
+"I genitori e i rispettivi ascendenti saranno considerati per la "
+"determinazione delle \"linee familiari\"."
 
 #: ../src/plugins/GVFamilyLines.py:106
 msgid "Follow children to determine family lines"
-msgstr ""
+msgstr "Segui i figli per determinare le linee familiari"
 
 #: ../src/plugins/GVFamilyLines.py:107
 msgid "Children will be considered when determining \"family lines\"."
 msgstr ""
+"I figli saranno considerati per la determinazione delle \"linee familiari\"."
 
 #: ../src/plugins/GVFamilyLines.py:110
 msgid "Try to remove extra people and families"
 msgstr "Tenta di rimuovere persone e famiglie superflue"
 
 #: ../src/plugins/GVFamilyLines.py:111
+#, fuzzy
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
+"Le persone e le famiglie non correlate direttamente alle persone interessate "
+"saranno rimosse nella determinazione delle \"linee familiari\"."
 
 #. ----------------------------
 #: ../src/plugins/GVFamilyLines.py:115
@@ -9144,7 +9056,7 @@ msgstr "Colori famiglia"
 
 #: ../src/plugins/GVFamilyLines.py:119
 msgid "Colours to use for various family lines."
-msgstr ""
+msgstr "Colori da usare per le varie linee familiari."
 
 #: ../src/plugins/GVFamilyLines.py:127
 msgid "The colour to use to display men."
@@ -9184,7 +9096,7 @@ msgstr "Numero massimo di figli da includere."
 msgid "Images"
 msgstr "Immagini"
 
-#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVFamilyLines.py:168 ../src/plugins/GVRelGraph.py:481
 msgid "Include thumbnail images of people"
 msgstr "Include miniature delle persone"
 
@@ -9192,15 +9104,15 @@ msgstr "Include miniature delle persone"
 msgid "Thumbnail location"
 msgstr "Posizione miniature"
 
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVRelGraph.py:488
 msgid "Above the name"
 msgstr "Sopra il nome"
 
-#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVFamilyLines.py:175 ../src/plugins/GVRelGraph.py:489
 msgid "Beside the name"
 msgstr "Sotto il nome"
 
-#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:486
+#: ../src/plugins/GVFamilyLines.py:177 ../src/plugins/GVRelGraph.py:491
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Posizione della miniatura rispetto al nome"
 
@@ -9260,12 +9172,11 @@ msgstr "Indica se includere nomi, date e famiglie marcate come private."
 #. from the database is going to be output into the report
 #: ../src/plugins/GVFamilyLines.py:297
 msgid "Generating Family Lines"
-msgstr ""
+msgstr "Generazione linee familiari"
 
 #. start the progress indicator
 #: ../src/plugins/GVFamilyLines.py:297 ../src/plugins/NotRelated.py:94
 #: ../src/plugins/NotRelated.py:223
-#, fuzzy
 msgid "Starting"
 msgstr "Inizio"
 
@@ -9279,7 +9190,7 @@ msgstr "Ricerca ascendenti e figli"
 #. number
 #: ../src/plugins/GVFamilyLines.py:322
 msgid "Writing family lines"
-msgstr ""
+msgstr "Scrittura linee familiari"
 
 #: ../src/plugins/GVFamilyLines.py:805
 #, python-format
@@ -9287,14 +9198,12 @@ msgid "%d children"
 msgstr "%d figli"
 
 #: ../src/plugins/GVFamilyLines.py:872
-#, fuzzy
 msgid "Family Lines Graph"
-msgstr "Grafico temporale familiare"
+msgstr "Grafico linee familiari"
 
 #: ../src/plugins/GVFamilyLines.py:880
-#, fuzzy
 msgid "Produces family line graphs using GraphViz"
-msgstr "Genera un grafico temporale tramite GraphViz"
+msgstr "Genera un grafico delle linee familiari tramite GraphViz"
 
 #: ../src/plugins/GVHourGlass.py:185
 msgid "The center person for the graph"
@@ -9357,15 +9266,15 @@ msgstr "Discendente <-> Ascendente"
 msgid "Descendants - Ancestors"
 msgstr "Discendente - Ascendente"
 
-#: ../src/plugins/GVRelGraph.py:434
+#: ../src/plugins/GVRelGraph.py:439
 msgid "Determines what people are included in the graph"
 msgstr "Determina quali persone sono incluse nel grafico"
 
-#: ../src/plugins/GVRelGraph.py:446
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Include date di nascita, matrimonio e decesso"
 
-#: ../src/plugins/GVRelGraph.py:447
+#: ../src/plugins/GVRelGraph.py:452
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -9373,11 +9282,11 @@ msgstr ""
 "Include nelle etichette del nodo del grafico la data in cui la persona è "
 "nata, si è sposata ed è deceduta."
 
-#: ../src/plugins/GVRelGraph.py:451
+#: ../src/plugins/GVRelGraph.py:456
 msgid "Limit dates to years only"
 msgstr "Limita le date al solo anno"
 
-#: ../src/plugins/GVRelGraph.py:452
+#: ../src/plugins/GVRelGraph.py:457
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -9385,11 +9294,11 @@ msgstr ""
 "Stampa solo l'anno delle date, senza mostrare né il mese o il giorno, né "
 "l'approssimazione o l'intervallo."
 
-#: ../src/plugins/GVRelGraph.py:457
+#: ../src/plugins/GVRelGraph.py:462
 msgid "Use place when no date"
 msgstr "Usa luogo se data assente"
 
-#: ../src/plugins/GVRelGraph.py:458
+#: ../src/plugins/GVRelGraph.py:463
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -9397,48 +9306,47 @@ msgstr ""
 "Quando non è disponibile una data di nascita, matrimonio o decesso, sarà "
 "usato il corrispondente campo relativo al luogo."
 
-#: ../src/plugins/GVRelGraph.py:463
+#: ../src/plugins/GVRelGraph.py:468
 msgid "Include URLs"
 msgstr "Includi URL"
 
-#: ../src/plugins/GVRelGraph.py:464
-#, fuzzy
+#: ../src/plugins/GVRelGraph.py:469
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Include, per ogni nodo del grafico, una URL affinché i file PDF e imagemap "
+"Include una URL in ogni nodo del grafico affinché i file PDF e imagemap "
 "possano essere generati includendo dei collegamenti attivi verso i file "
-"prodotti con il resoconto «Genera sito web»."
+"prodotti con il resoconto «Sito web narrativo»."
 
-#: ../src/plugins/GVRelGraph.py:471
+#: ../src/plugins/GVRelGraph.py:476
 msgid "Include IDs"
 msgstr "Includi ID"
 
-#: ../src/plugins/GVRelGraph.py:472
+#: ../src/plugins/GVRelGraph.py:477
 msgid "Include individual and family IDs."
 msgstr "Include l'ID delle persone e delle famiglie."
 
-#: ../src/plugins/GVRelGraph.py:478
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Whether to include thumbnails of people."
 msgstr "Indica se includere le miniature delle persone."
 
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:487
 msgid "Thumbnail Location"
 msgstr "Posizione miniature"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:491
+#: ../src/plugins/GVRelGraph.py:496
 msgid "Graph Style"
 msgstr "Stile grafico"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:494
+#: ../src/plugins/GVRelGraph.py:499
 msgid "Graph coloring"
 msgstr "Colorazione grafico"
 
-#: ../src/plugins/GVRelGraph.py:497
+#: ../src/plugins/GVRelGraph.py:502
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -9446,41 +9354,40 @@ msgstr ""
 "I maschi saranno evidenziati con il blu, le femmine con il rosso. Se il "
 "sesso di una persona non è noto, sarà evidenziato in grigio."
 
-#: ../src/plugins/GVRelGraph.py:502
+#: ../src/plugins/GVRelGraph.py:507
 msgid "Arrowhead direction"
 msgstr "Opzioni punta freccia"
 
-#: ../src/plugins/GVRelGraph.py:505
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Choose the direction that the arrows point."
 msgstr "Scegliere la direzione puntata dalle frecce."
 
-#: ../src/plugins/GVRelGraph.py:509
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indica relazioni non-nascita con linee puntinate"
 
-#: ../src/plugins/GVRelGraph.py:510
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 "Le relazioni che non siano di nascita appariranno sul grafico come linee "
 "puntinate."
 
-#: ../src/plugins/GVRelGraph.py:514
+#: ../src/plugins/GVRelGraph.py:519
 msgid "Show family nodes"
 msgstr "Mostra nodi di famiglia"
 
-#: ../src/plugins/GVRelGraph.py:515
+#: ../src/plugins/GVRelGraph.py:520
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 "Le famiglie appariranno come ellissi collegati ai genitori ed ai figli."
 
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:564
 msgid "Relationship Graph"
 msgstr "Grafico relazioni"
 
-#: ../src/plugins/GVRelGraph.py:561
-#, fuzzy
+#: ../src/plugins/GVRelGraph.py:566
 msgid "Produces relationship graphs using Graphviz"
-msgstr "Produce un grafico delle relazioni usando Graphviz."
+msgstr "Produce un grafico delle relazioni usando Graphviz"
 
 #: ../src/plugins/ImportCSV.py:159
 msgid "Given name"
@@ -10175,9 +10082,8 @@ msgid "Weblinks"
 msgstr "Collegamenti web"
 
 #: ../src/plugins/NarrativeWeb.py:672
-#, fuzzy
 msgid "Source References"
-msgstr "Riferimenti fonte"
+msgstr "Riferimenti fonti"
 
 #: ../src/plugins/NarrativeWeb.py:704
 #, fuzzy
@@ -10313,15 +10219,15 @@ msgid "Nickname"
 msgstr "Soprannome"
 
 #: ../src/plugins/NarrativeWeb.py:2348
-#, fuzzy
 msgid "Half Siblings"
-msgstr "Fratelli"
+msgstr "Fratelli unilaterali"
 
 #: ../src/plugins/NarrativeWeb.py:2518
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr ""
-"%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
+"%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;in quel di&nbsp;&nbsp;%"
+"(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2520
 #, python-format
@@ -10368,7 +10274,6 @@ msgid "Generate HTML reports"
 msgstr "Genera resoconti HTML"
 
 #: ../src/plugins/NarrativeWeb.py:2758
-#, fuzzy
 msgid "Filtering"
 msgstr "Filtraggio"
 
@@ -10409,9 +10314,9 @@ msgid "The destination directory for the web files"
 msgstr "La directory di destinazione per i file web"
 
 #: ../src/plugins/NarrativeWeb.py:2957
-#, fuzzy
 msgid "Select filter to restrict people that appear on web files"
-msgstr "Selezione filtro per restringere le persone che compaiono nei file web"
+msgstr ""
+"Seleziona il filtro per restringere le persone che compaiono nei file web"
 
 #: ../src/plugins/NarrativeWeb.py:2968
 msgid "Web site title"
@@ -10419,7 +10324,7 @@ msgstr "Titolo del sito web"
 
 #: ../src/plugins/NarrativeWeb.py:2968
 msgid "My Family Tree"
-msgstr "Il mio albero genalogico"
+msgstr "Il mio albero genealogico"
 
 #: ../src/plugins/NarrativeWeb.py:2969
 msgid "The title of the web site"
@@ -10480,11 +10385,11 @@ msgstr "Generazione pagina"
 
 #: ../src/plugins/NarrativeWeb.py:3021
 msgid "Home page note"
-msgstr "Nota pagina iniziale "
+msgstr "Nota pagina iniziale"
 
 #: ../src/plugins/NarrativeWeb.py:3022
 msgid "A note to be used on the home page"
-msgstr "Una nota da usare nella pagina iniziale"
+msgstr "Nota da usare nella pagina iniziale"
 
 #: ../src/plugins/NarrativeWeb.py:3025
 msgid "Home page image"
@@ -10492,7 +10397,7 @@ msgstr "Immagine pagina iniziale"
 
 #: ../src/plugins/NarrativeWeb.py:3026
 msgid "An image to be used on the home page"
-msgstr "Un'immagine da usare nella pagina iniziale"
+msgstr "Immagine da usare nella pagina iniziale"
 
 #: ../src/plugins/NarrativeWeb.py:3029
 msgid "Introduction note"
@@ -10500,7 +10405,7 @@ msgstr "Nota introduttiva"
 
 #: ../src/plugins/NarrativeWeb.py:3030
 msgid "A note to be used as the introduction"
-msgstr "Una nota da usare come introduzione"
+msgstr "Nota da usare come introduzione"
 
 #: ../src/plugins/NarrativeWeb.py:3033
 msgid "Introduction image"
@@ -10508,26 +10413,23 @@ msgstr "Immagine introduttiva"
 
 #: ../src/plugins/NarrativeWeb.py:3034
 msgid "An image to be used as the introduction"
-msgstr "Un'immagine da usare come introduzione"
+msgstr "Immagine da usare come introduzione"
 
 #: ../src/plugins/NarrativeWeb.py:3037
-#, fuzzy
 msgid "Publisher contact note"
 msgstr "Nota contatti editore"
 
 #: ../src/plugins/NarrativeWeb.py:3038
-#, fuzzy
 msgid "A note to be used as the publisher contact"
-msgstr "Una nota da usare come contatto per l'editore"
+msgstr "Nota da usare come contatto per l'editore"
 
 #: ../src/plugins/NarrativeWeb.py:3041
 msgid "Publisher contact image"
 msgstr "Immagine contatti editore"
 
 #: ../src/plugins/NarrativeWeb.py:3042
-#, fuzzy
 msgid "An image to be used as the publisher contact"
-msgstr "Un'immagine da usare come contatto per l'editore"
+msgstr "Immagine da usare come contatto per l'editore"
 
 #: ../src/plugins/NarrativeWeb.py:3045
 msgid "HTML user header"
@@ -10538,7 +10440,6 @@ msgid "A note to be used as the page header"
 msgstr "Una nota da usare come intestazione di pagina"
 
 #: ../src/plugins/NarrativeWeb.py:3049
-#, fuzzy
 msgid "HTML user footer"
 msgstr "Piè di pagina HTML personalizzato"
 
@@ -10603,7 +10504,6 @@ msgid "How to handle living people"
 msgstr "Modalità di gestione delle persone in vita"
 
 #: ../src/plugins/NarrativeWeb.py:3089
-#, fuzzy
 msgid "Years from death to consider living"
 msgstr "Anni dal decesso per considerare \"in vita\""
 
@@ -10628,66 +10528,56 @@ msgid "Whether to include a link to the home person"
 msgstr "Indica se includere un collegamento alla persona principale"
 
 #: ../src/plugins/NarrativeWeb.py:3110
-#, fuzzy
 msgid "Include a column for birth dates on the index pages"
-msgstr "Includere una colonna per le date di nascita nelle pagine degli indici"
+msgstr "Includere una colonna per le date di nascita nella pagina degli indici"
 
 #: ../src/plugins/NarrativeWeb.py:3112
-#, fuzzy
 msgid "Whether to include a birth column"
 msgstr "Indica se includere una colonna per le date di nascita"
 
 #: ../src/plugins/NarrativeWeb.py:3115
-#, fuzzy
 msgid "Include a column for death dates on the index pages"
-msgstr "Includere una colonna per le date di decesso nelle pagine degli indici"
+msgstr "Includere una colonna per le date di decesso nella pagina degli indici"
 
 #: ../src/plugins/NarrativeWeb.py:3117
-#, fuzzy
 msgid "Whether to include a death column"
 msgstr "Indica se includere una colonna per le date di decesso"
 
 #: ../src/plugins/NarrativeWeb.py:3120
-#, fuzzy
 msgid "Include a column for partners on the index pages"
-msgstr "Includere una colonna per i compagni nelle pagine degli indici"
+msgstr "Includere una colonna per i partner nella pagina degli indici"
 
 #: ../src/plugins/NarrativeWeb.py:3122
-#, fuzzy
 msgid "Whether to include a partners column"
-msgstr "Indica se includere una colonna per i compagni"
+msgstr "Indica se includere una colonna per i partner"
 
 #: ../src/plugins/NarrativeWeb.py:3125
-#, fuzzy
 msgid "Include a column for parents on the index pages"
-msgstr "Includere una colonna per i genitori nelle pagine degli indici"
+msgstr "Includere una colonna per i genitori nella pagina degli indici"
 
 #: ../src/plugins/NarrativeWeb.py:3127
-#, fuzzy
 msgid "Whether to include a parents column"
 msgstr "Indica se includere una colonna per i genitori"
 
 #: ../src/plugins/NarrativeWeb.py:3130
 msgid "Include half-siblings on the individual pages"
-msgstr ""
+msgstr "Includi i fratelli unilaterali nelle pagine personali"
 
 #: ../src/plugins/NarrativeWeb.py:3132
 msgid "Whether to include half-siblings with the parents and siblings"
-msgstr ""
+msgstr "Indica se includere i fratelli unilaterali con i genitori e i fratelli"
 
 #: ../src/plugins/NarrativeWeb.py:3231
-#, fuzzy
 msgid "Narrated Web Site"
-msgstr "Sito web narrazione"
+msgstr "Sito web narrativo"
 
 #: ../src/plugins/NarrativeWeb.py:3235
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Produce delle pagine web (HTML) per persone o un insieme di persone"
 
 #: ../src/plugins/NotRelated.py:59
-#, fuzzy
 msgid "manual|Not_Related..."
-msgstr "Non in relazione"
+msgstr "Non in relazione..."
 
 #: ../src/plugins/NotRelated.py:71
 #, python-format
@@ -10705,9 +10595,9 @@ msgid "Setting marker for %d people"
 msgstr "Impostazione marcatore per %d persone"
 
 #: ../src/plugins/NotRelated.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "Finding relationships between %d people"
-msgstr "Ricerca delle relazioni fra %d persone"
+msgstr "Ricerca delle relazioni tra %d persone"
 
 #: ../src/plugins/NotRelated.py:321
 msgid "Looking for 1 person"
@@ -10752,7 +10642,6 @@ msgid "No events on this exact date"
 msgstr "Nessun evento in questa data"
 
 #: ../src/plugins/OnThisDay.py:118
-#, fuzzy
 msgid "Other events on this month/day in history"
 msgstr "Altri eventi in questo mese/giorno nella cronologia"
 
@@ -10775,7 +10664,6 @@ msgid "On This Day"
 msgstr "In questo giorno"
 
 #: ../src/plugins/OnThisDay.py:146
-#, fuzzy
 msgid "Display events on a particular day"
 msgstr "Mostra gli eventi di un giorno particolare"
 
@@ -10806,9 +10694,8 @@ msgid "Name and title extraction tool"
 msgstr "Strumento di estrazione nomi e titoli"
 
 #: ../src/plugins/PatchNames.py:107
-#, fuzzy
 msgid "Extracting Information from Names"
-msgstr "Estrae informazioni dai nomi"
+msgstr "Estrazione informazioni dai nomi"
 
 #: ../src/plugins/PatchNames.py:108
 msgid "Analyzing names"
@@ -10820,10 +10707,9 @@ msgstr "Non è stato trovato nessun titolo o soprannome"
 
 #: ../src/plugins/PatchNames.py:329
 msgid "Extract information from names"
-msgstr "Estrae informazioni dai nomi"
+msgstr "Estrai informazioni dai nomi"
 
 #: ../src/plugins/PatchNames.py:359
-#, fuzzy
 msgid "Extract Information from Names"
 msgstr "Estrae informazioni dai nomi"
 
@@ -10913,25 +10799,23 @@ msgid "All secondary indices have been rebuilt."
 msgstr "Tutti gli indici secondari sono stati ricostruiti."
 
 #: ../src/plugins/Rebuild.py:117
-#, fuzzy
 msgid "Rebuild Secondary Indices"
-msgstr "Ricostruzione indici secondari"
+msgstr "Ricostruisci indici secondari"
 
 #: ../src/plugins/Rebuild.py:121
-#, fuzzy
 msgid "Rebuilds secondary indices"
-msgstr "Ricostruzione indici secondari"
+msgstr "Ricostruzione degli indici secondari"
 
 #. display the title
 #: ../src/plugins/References.py:68
-#, fuzzy, python-format
+#, python-format
 msgid "References for this %s"
-msgstr "Riferimenti per questo %s"
+msgstr "Riferimenti per questo/a %s"
 
 #: ../src/plugins/References.py:79
-#, fuzzy, python-format
+#, python-format
 msgid "No references for this %s"
-msgstr "Nessun riferimento per questo %s"
+msgstr "Nessun riferimento per %s"
 
 #: ../src/plugins/References.py:102
 #, python-format
@@ -10939,7 +10823,7 @@ msgid "%s References"
 msgstr "Riferimenti per %s "
 
 #: ../src/plugins/References.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "Display references for a %s"
 msgstr "Mostra riferimenti per %s"
 
@@ -11712,15 +11596,15 @@ msgstr "Opzioni contenuto"
 
 #: ../src/plugins/WebCal.py:759
 msgid "Holidays will be included for the selected country"
-msgstr ""
+msgstr "Saranno incluse le festività della nazione selezionata"
 
 #: ../src/plugins/WebCal.py:775
 msgid "Check for wives to use maiden name"
-msgstr ""
+msgstr "Controlla l'uso del nome da nubile per le mogli"
 
 #: ../src/plugins/WebCal.py:776
 msgid "Attempt to use maiden names of women"
-msgstr ""
+msgstr "Cerca di usare il nome da nubile per le donne"
 
 #: ../src/plugins/WebCal.py:783
 msgid "Misc Options"
@@ -11942,23 +11826,21 @@ msgid "The note for the month of December"
 msgstr "Le note per il mese di dicembre"
 
 #: ../src/plugins/WebCal.py:915
-#, fuzzy
 msgid ""
 "The style used for the title (\"My Family Calendar\") of the page. The "
 "background color sets the PAGE background. Borders DO NOT work."
 msgstr ""
 "Lo stile usato per il titolo (\"Il calendario della mia famiglia\") della "
-"pagina. Il colore di sfondo imposta lo sfondo della pagina. Non influenza i "
-"bordi."
+"pagina. Il colore di sfondo imposta lo sfondo della pagina. I bordi in "
+"questo caso NON sono considerati."
 
 #: ../src/plugins/WebCal.py:930
-#, fuzzy
 msgid ""
 "The style used for the month name and year, it controls the font face, size, "
 "style, color and the background color of the block, including the day-name "
 "area. Inclusion of a graphic does not cover the day-name area."
 msgstr ""
-"Lo stile usato per il nome del mese e dell'anno, controlla l'apparenza, la "
+"Lo stile usato per il nome del mese e dell'anno; controlla l'apparenza, la "
 "dimensione, lo stile, il colore e lo sfondo del blocco, inclusa l'area con "
 "il nome del giorno. L'inclusione di grafica non copre l'area con il nome del "
 "giorno."
@@ -11969,6 +11851,10 @@ msgid ""
 "face, style, color, and alignment. The background color is used ONLY for "
 "cells containing text, allowing for high-lighting of dates."
 msgstr ""
+"Lo stile usato per il testo nel corpo del calendario; controlla la "
+"dimensione, l'apparenza, lo stile, il colore e l'allineamento dei caratteri. "
+"Il colore di sfondo è usato SOLO per le celle contenenti testo, permettendo "
+"così l'evidenziazione delle date."
 
 #: ../src/plugins/WebCal.py:961
 msgid ""
@@ -11976,6 +11862,10 @@ msgid ""
 "size, face, style, color and positioning. The background color setting "
 "affect all EMPTY calendar cells."
 msgstr ""
+"Lo stile usato per le note in fondo al calendario; controlla la dimensione, "
+"l'apparenza, lo stile, il colore ed il posizionamento dei caratteri. Le "
+"impostazioni del colore di sfondo influenzano tutte le celle VUOTE del "
+"calendario."
 
 #: ../src/plugins/WebCal.py:975
 msgid ""
@@ -11983,6 +11873,9 @@ msgid ""
 "lines and the color, font, size, and positioning of the calendar date "
 "numbers. It also controls the color of the day names."
 msgstr ""
+"Lo stile usato per la tabella. Influenza il colore delle righe della tabella "
+"ed il colore, il carattere, la dimensione ed il posizionamento dei valori "
+"delle date del calendario. Controlla anche il colore dei nomi dei giorni."
 
 #: ../src/plugins/WebCal.py:1231
 msgid "Web Calendar"
@@ -11997,7 +11890,6 @@ msgid "WriteCD is a GNOME plugin and you are not running GNOME"
 msgstr "WriteCD è un plugin per GNOME, ma GNOME non è in esecuzione"
 
 #: ../src/plugins/WriteCD.py:60
-#, fuzzy
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
 msgstr ""
 "Impossibile caricare il plugin perché i binding python per GNOME non sono "
@@ -12099,28 +11991,24 @@ msgid "GRAMPS package export options"
 msgstr "Opzioni esportazione pacchetto GRAMPS"
 
 #: ../src/plugins/RebuildRefMap.py:76
-#, fuzzy
 msgid "Rebuilding reference maps..."
 msgstr "Ricostruzione mappe dei riferimenti..."
 
 #: ../src/plugins/RebuildRefMap.py:89
-#, fuzzy
 msgid "Reference maps rebuilt"
 msgstr "Mappe dei riferimenti ricostruite"
 
 #: ../src/plugins/RebuildRefMap.py:90
-#, fuzzy
 msgid "All reference maps have been rebuilt."
 msgstr "Tutte le mappe dei riferimenti sono state ricostruite."
 
 #: ../src/plugins/RebuildRefMap.py:119
-#, fuzzy
 msgid "Rebuild Reference Maps"
-msgstr "Ricostruisce mappe riferimenti"
+msgstr "Ricostruisci mappe riferimenti"
 
 #: ../src/plugins/RebuildRefMap.py:123
 msgid "Rebuilds reference maps"
-msgstr ""
+msgstr "Ricostruzione delle mappe dei riferimenti"
 
 #: ../src/plugins/ReadGrdb.py:325 ../src/plugins/ReadGrdb.py:327
 msgid "GRAMPS 2.x database"
@@ -16874,7 +16762,6 @@ msgid "E-mail"
 msgstr "Email"
 
 #: ../src/gen/lib/urltype.py:57
-#, fuzzy
 msgid "Web Home"
 msgstr "Home web"
 
@@ -17145,35 +17032,35 @@ msgstr "Repubblicano francese"
 msgid "Islamic"
 msgstr "Islamico"
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "estimated"
 msgstr "stimata"
 
-#: ../src/gen/lib/date.py:1016
+#: ../src/gen/lib/date.py:1030
 msgid "calculated"
 msgstr "calcolata"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "before"
 msgstr "prima"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "after"
 msgstr "dopo"
 
-#: ../src/gen/lib/date.py:1030
+#: ../src/gen/lib/date.py:1044
 msgid "about"
 msgstr "circa"
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "range"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "span"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1031
+#: ../src/gen/lib/date.py:1045
 msgid "textonly"
 msgstr "solo testo"
 
@@ -20127,7 +20014,7 @@ msgstr "In _basso"
 
 #: ../src/glade/gramps.glade.h:134
 msgid "_Call number:"
-msgstr ""
+msgstr "Segna_tura:"
 
 #: ../src/glade/gramps.glade.h:135
 msgid "_Center"
@@ -20202,9 +20089,8 @@ msgid "_Longitude:"
 msgstr "Lon_gitudine:"
 
 #: ../src/glade/gramps.glade.h:156
-#, fuzzy
 msgid "_Media Type:"
-msgstr "Tipo _multimediale:"
+msgstr "Tipo _supporto:"
 
 #: ../src/glade/gramps.glade.h:157
 msgid "_Month"
@@ -20275,7 +20161,6 @@ msgid "_Sort as:"
 msgstr "_Ordina come:"
 
 #: ../src/glade/gramps.glade.h:175
-#, fuzzy
 msgid "_Spelling:"
 msgstr "Orto_grafia:"
 
@@ -20473,7 +20358,6 @@ msgid "Test the selected filter"
 msgstr "Verifica il filtro selezionato"
 
 #: ../src/glade/scratchpad.glade.h:1
-#, fuzzy
 msgid "Clear _All"
 msgstr "Pulisci t_utto"
 
@@ -20602,14 +20486,13 @@ msgid "_Export to CD"
 msgstr "_Esporta su CD"
 
 #: ../src/plugins/changenames.glade.h:1
-#, fuzzy
 msgid ""
 "Below is a list of the family names that \n"
 "GRAMPS can convert to correct capitalization. \n"
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
-"Quella che segue è una lista di nomi di famiglie che \n"
-"GRAMPS può convertire in modo da correggere le maiuscole. \n"
+"Quella che segue è una lista di nomi di famiglie \n"
+"per cui GRAMPS può correggere le maiuscole. \n"
 "Selezionare i nomi che GRAMPS deve convertire. "
 
 #: ../src/plugins/changenames.glade.h:4
@@ -20725,12 +20608,10 @@ msgid "_Compare"
 msgstr "_Confronta"
 
 #: ../src/plugins/ownereditor.glade.h:3
-#, fuzzy
 msgid "Copy from DB to Preferences"
 msgstr "Copia dal database alle preferenze"
 
 #: ../src/plugins/ownereditor.glade.h:4
-#, fuzzy
 msgid "Copy from Preferences to DB"
 msgstr "Copia dalle preferenze al database"
 
@@ -20767,7 +20648,6 @@ msgid "<b>Double-click on a row to view/edit data</b>"
 msgstr "<b>Doppio clic su una riga per visualizzare/modificare i dati</b>"
 
 #: ../src/plugins/unused.glade.h:2 ../src/plugins/verify.glade.h:6
-#, fuzzy
 msgid "In_vert marks"
 msgstr "In_verti marcatura"
 
@@ -21152,6 +21032,10 @@ msgid ""
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
+"Chiunque può essere scelto come 'persona principale' in GRAMPS, tramite "
+"<b>Modifica &gt; Imposta persona principale</b>. La persona principale è la "
+"persona selezionata dopo l'apertura del database o quando viene premuto il "
+"pulsante 'home'."
 
 #: ../src/data/tips.xml.in.h:32
 msgid ""
