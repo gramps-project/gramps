@@ -31,6 +31,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from gettext import ngettext
 import math
 
 #------------------------------------------------------------------------
@@ -94,13 +95,14 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent = ( sum(thisgen.values()) / theoretical ) * 100
-                if thisgensize == 1 :
-                    text = _("Generation %d has 1 individual. (%3.2f%%)") \
-                            % (gen, percent)
-                else:
-                    text = _("Generation %d has %d individuals. (%3.2f%%)")\
-                            % (gen, thisgensize, percent)
+                percent =  '(%3.2f%%)' % ((sum(thisgen.values()) / theoretical ) * 100)
+                
+                # TC # English return something like:
+                # Generation 3 has 2 individuals. (50.00%)
+                text = ngettext(
+                    "Generation %(generation)d has %(count)d individual. %(percent)s",
+                    "Generation %(generation)d has %(count)d individuals. %(percent)s",
+                    thisgensize) % {'generation': gen, 'count': thisgensize, 'percent': percent}
                             
                 self.doc.start_paragraph('NOA-Normal')
                 self.doc.write_text(text)
@@ -129,12 +131,16 @@ class NumberOfAncestorsReport(Report):
                                             temp[person_handle]
 
         if( total_theoretical != 1 ):
-            percent = ( sum(all_people.values()) / (total_theoretical-1) ) * 100
+            percent = '(%3.2f%%)' % (( sum(all_people.values()) / (total_theoretical-1) ) * 100)
         else:
             percent = 0
 
-        text = _("Total ancestors in generations 2 to %d is %d. (%3.2f%%)") \
-                % (gen, len(all_people.keys()) ,percent)
+        # TC # English return something like:
+        # Total ancestors in generations 2 to 3 is 4. (66.67%) 
+        text = _("Total ancestors in generations %(second_generation)d to \
+        %(last_generation)d is %(count)d. %(percent)s") %  {
+            'second_generation':2, 'last_generation': gen,
+            'count':len(all_people.keys()), 'percent': percent}
                 
         self.doc.start_paragraph('NOA-Normal')
         self.doc.write_text(text)
