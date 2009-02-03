@@ -1394,7 +1394,7 @@ class PedigreeView(PageView.PersonNavView):
         size_menu.append(entry)
 
         for n in range(2,6):
-            entry = gtk.ImageMenuItem(ngettext("1 generation", "%d generations", n) %n)
+            entry = gtk.ImageMenuItem(ngettext("%d generation", "%d generations", n) %n)
             if self.force_size == n:
                 entry.set_image(current_size_image)
             entry.connect("activate", self.change_force_size_cb, n)

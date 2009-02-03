@@ -1297,7 +1297,7 @@ class CheckIntegrity:
 
         self.text = cStringIO.StringIO()
         if blink > 0:
-            self.text.write(ngettext("1 broken child/family link was fixed\n", \
+            self.text.write(ngettext("%d broken child/family link was fixed\n", \
             "%d broken child-family links were found\n", blink) % blink)
             for (person_handle,family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
@@ -1314,7 +1314,7 @@ class CheckIntegrity:
                 self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
 
         if plink > 0:
-            self.text.write(ngettext("1 broken spouse/family link was fixed\n", \
+            self.text.write(ngettext("%d broken spouse/family link was fixed\n", \
             "%d broken spouse/family links were found\n", plink) % plink)
             for (person_handle,family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
@@ -1331,7 +1331,7 @@ class CheckIntegrity:
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if slink > 0:
-            self.text.write(ngettext("1 duplicate spouse/family link was found\n", \
+            self.text.write(ngettext("%d duplicate spouse/family link was found\n", \
             "%d duplicate spouse/family links were found\n", slink) % slink)
             for (person_handle,family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
@@ -1348,69 +1348,69 @@ class CheckIntegrity:
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
-            self.text.write(_("1 family with no parents or children found, removed.\n"))
+            self.text.write(_("%d family with no parents or children found, removed.\n"))
             self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
             self.text.write(_("%d families with no parents or children, removed.\n") % efam)
 
         if rel:
-            self.text.write(ngettext("1 corrupted family relationship fixed\n", \
+            self.text.write(ngettext("%d corrupted family relationship fixed\n", \
             "%d corrupted family relationship fixed\n", rel) % rel )
 
         if person_references:
-            self.text.write(ngettext("1 person was referenced but not found\n", \
+            self.text.write(ngettext("%d person was referenced but not found\n", \
             "%d persons were referenced, but not found\n", person_references) % person_references)
         
         if repo_references:
-            self.text.write(ngettext("1 repository was referenced but not found\n", \
+            self.text.write(ngettext("%d repository was referenced but not found\n", \
             "%d repositories were referenced, but not found\n", repo_references) % repo_references)
 
         if photos:
-            self.text.write(ngettext("1 media object was referenced, but not found\n", \
+            self.text.write(ngettext("%d media object was referenced, but not found\n", \
             "%d media objects were referenced, but not found\n", photos) % photos)
 
         if bad_photos:
-            self.text.write(ngettext("Reference to 1 missing media object was kept\n", \
+            self.text.write(ngettext("Reference to %d missing media object was kept\n", \
             "References to %d media objects were kept\n", bad_photos) % bad_photos)
 
         if replaced_photos:
-            self.text.write(ngettext("1 missing media object was replaced\n", \
+            self.text.write(ngettext("%d missing media object was replaced\n", \
             "%d missing media objects were replaced\n", replaced_photos) % replaced_photos)
 
         if removed_photos:
-            self.text.write(ngettext("1 missing media object was removed\n", \
+            self.text.write(ngettext("%d missing media object was removed\n", \
             "%d missing media objects were removed\n", removed_photos) % removed_photos)
 
         if event_invalid:
-            self.text.write(ngettext("1 invalid event reference was removed\n", \
+            self.text.write(ngettext("%d invalid event reference was removed\n", \
             "%d invalid event references were removed\n", event_invalid) % event_invalid)
 
         if birth_invalid:
-            self.text.write(ngettext("1 invalid birth event name was fixed\n", \
+            self.text.write(ngettext("%d invalid birth event name was fixed\n", \
             "%d invalid birth event names were fixed\n", birth_invalid) % birth_invalid)
 
         if death_invalid:
-            self.text.write(ngettext("1 invalid death event name was fixed\n", \
+            self.text.write(ngettext("%d invalid death event name was fixed\n", \
             "%d invalid death event names were fixed\n", death_invalid) % death_invalid)
 
         if place_references:
-            self.text.write(ngettext("1 place was referenced but not found\n", \
+            self.text.write(ngettext("%d place was referenced but not found\n", \
             "%d places were referenced, but not found\n", place_references) % place_references)
 
         if source_references:
-            self.text.write(ngettext("1 source was referenced but not found\n", \
+            self.text.write(ngettext("%d source was referenced but not found\n", \
             "%d sources were referenced, but not found\n", source_references) % source_references)
 
         if media_references:
-            self.text.write(ngettext("1 media object was referenced but not found\n", \
+            self.text.write(ngettext("%d media object was referenced but not found\n", \
             "%d media objects were referenced but not found\n", media_references) % media_references)
 
         if note_references:
-            self.text.write(ngettext("1 note object was referenced but not found\n", \
+            self.text.write(ngettext("%d note object was referenced but not found\n", \
             "%d note objects were referenced but not found\n", note_references) % note_references)
 
         if name_format:
-            self.text.write(ngettext("1 invalid name format reference was removed\n", \
+            self.text.write(ngettext("%d invalid name format reference was removed\n", \
             "%d invalid name format references were removed\n", name_format) % name_format)
 
         if empty_objs > 0 :
