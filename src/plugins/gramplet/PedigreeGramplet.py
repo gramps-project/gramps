@@ -32,6 +32,7 @@ import cgi
 #------------------------------------------------------------------------
 from DataViews import register, Gramplet
 from TransUtils import sgettext as _
+from gettext import ngettext
 from BasicUtils import name_displayer
 from ReportBase import ReportUtils
 import DateHandler
@@ -250,11 +251,17 @@ class PedigreeGramplet(Gramplet):
                 all.extend(handles)
                 self.link(_("Generation %d") % g, 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation"))
-                self.append_text(_(" has %d of %d individuals (%.2f%% complete)\n") % 
-                                 (count, 2**(g-1), float(count)/2**(g-1) * 100))
+                percent = '%.2f%%' % ( float(count)/2**(g-1) * 100)
+                self.append_text(ngettext(
+                    " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
+                    " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
+                    2**(g-1)) %  {'count_person': count, 'max_count_person': 2**(g-1), 'percent': percent})
         self.link(_("All generations"), 'PersonList', all,
                   tooltip=_("Double-click to see all generations"))
-        self.append_text(_(" have %d individuals\n") % len(all))
+        self.append_text(ngettext(
+            " have %d individual\n",
+            " have %d individuals\n",
+            len(all)) % len(all))
         # Set to a fixed font
         if self.box_mode == "UTF":
             start, end = self.gui.buffer.get_bounds()
