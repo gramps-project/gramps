@@ -19,7 +19,7 @@
 #
 
 """
-Google Maps map service. Open place in maps.google.com
+Base class for map services. Example: open place in openstreetmap.org
 """
 
 #------------------------------------------------------------------------
@@ -93,7 +93,8 @@ class MapService():
 
     def __display(self):
         """Show the url in an external browser"""
-        GrampsDisplay.url(self.url)
+        if self.url:
+            GrampsDisplay.url(self.url)
     
     def _free(self):
         """Allow garbage collection to do it's work"""
