@@ -1788,14 +1788,15 @@ class IndividualPage(BasePage):
     def draw_box(self, of, center, col, person):
         top = center - _HEIGHT/2
         xoff = _XOFFSET+col*(_WIDTH+_HGAP)
-        sex = person.get_gender()
+        sex = person.gender
         if sex == gen.lib.Person.MALE:
             divclass = "male"
         elif sex == gen.lib.Person.FEMALE:
             divclass = "female"
         else:
             divclass = "unknown"
-        of.write('\t\t\t<div class="boxbg %s AncCol%s" style="top: %dpx; left: %dpx;">\n' % (divclass, col, top, xoff+1))
+        of.write('\t\t\t<div class="boxbg %s AncCol%s" style="top: %dpx; left: %dpx;">\n' 
+            % (divclass, col, top, xoff+1))
         of.write('\t\t\t\t')
         if person.handle in self.ind_list:
             thumbnailUrl = None
@@ -1812,9 +1813,12 @@ class IndividualPage(BasePage):
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
             self.person_link(of, url, person_name, thumbnailUrl=thumbnailUrl)
         else:
+            of.write('<span>')
             of.write(_nd.display(person))
+            of.write('</span>\n')
         of.write('\n\t\t\t</div>\n')
-        of.write('\t\t\t<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+_SHADOW, xoff+_SHADOW))
+        of.write('\t\t\t<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' 
+            % (top+_SHADOW, xoff+_SHADOW))
 
     def extend_line(self, of, y0, x0):
         of.write('\t\t\t<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
@@ -1858,7 +1862,8 @@ class IndividualPage(BasePage):
 
         of.write('\t<div id="tree" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Ancestors'))
-        of.write('\t\t<div id="treeContainer" style="width:%dpx; height:%dpx;">\n' % (_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP, max_size))
+        of.write('\t\t<div id="treeContainer" style="width:%dpx; height:%dpx;">\n' 
+            % (_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP, max_size))
 
         self.draw_tree(of, 1, generations, max_size, 0, center, self.person.handle)
 
