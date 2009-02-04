@@ -36,12 +36,21 @@ import os
 #
 #------------------------------------------------------------------------
 from gen.plug import PluginManager, Plugin
+import gen.lib
 
 #------------------------------------------------------------------------
 #
 # Support functions
 #
 #------------------------------------------------------------------------
+def _make_date(year, month, day):
+    """
+    Return a Date object of the particular year/month/day.
+    """
+    retval = gen.lib.Date()
+    retval.set_yr_mon_day(year, month, day)
+    return retval
+
 def easter(year):
     """
     Computes the year/month/day of easter. Based on work by

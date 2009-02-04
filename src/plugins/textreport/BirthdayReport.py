@@ -42,19 +42,7 @@ import gen.lib
 from Utils import probably_alive, ProgressMeter
 
 import libholiday
-
-#------------------------------------------------------------------------
-#
-# Support functions
-#
-#------------------------------------------------------------------------
-def make_date(year, month, day):
-    """
-    Return a Date object of the particular year/month/day.
-    """
-    retval = gen.lib.Date()
-    retval.set_yr_mon_day(year, month, day)
-    return retval
+from libholiday import _make_date
 
 #------------------------------------------------------------------------
 #
@@ -239,7 +227,7 @@ class CalendarReport(Report):
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_name(person, father_lastname)
                 if age >= 0:
-                    alive = probably_alive(person, self.database, make_date(self.year, month, day))
+                    alive = probably_alive(person, self.database, _make_date(self.year, month, day))
                     if ((self.alive and alive) or not self.alive):
                         comment = ""
                         if self.relationships:
@@ -292,8 +280,8 @@ class CalendarReport(Report):
                                             'person' : short_name, 
                                             'nyears' : years, 
                                             }
-                                        alive1 = probably_alive(person, self.database, make_date(self.year, month, day))
-                                        alive2 = probably_alive(spouse, self.database, make_date(self.year, month, day))
+                                        alive1 = probably_alive(person, self.database, _make_date(self.year, month, day))
+                                        alive2 = probably_alive(spouse, self.database, _make_date(self.year, month, day))
                                         if ((self.alive and alive1 and alive2) or not self.alive):
                                             self.add_day_item(text, month, day)
 

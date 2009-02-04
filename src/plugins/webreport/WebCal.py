@@ -78,6 +78,7 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
+from libholiday import _make_date
 
 #------------------------------------------------------------------------
 #
@@ -167,14 +168,6 @@ _COPY_OPTIONS = [
 
         _('No copyright notice'),
         ]
-
-def _make_date(year, month, day):
-    """
-    Return a Date object of the particular year/month/day.
-    """
-    retval = gen.lib.Date()
-    retval.set_yr_mon_day(year, month, day)
-    return retval
 
 # Compute the first day to display for this month.
 # It can also be a day in the previous month.
@@ -463,14 +456,13 @@ class WebCalReport(Report):
             # each year will link to January, unless self.partyear is True,
             # then it will link to current month.
             # this will always need an extension added
-            lng_month = _get_long_month_name(1)
-            if self.partyear:
-                if cal_year == self.today.year:
-                    lng_month = _get_long_month_name(self.today.month)
+            full_month_name = _get_long_month_name(1)
+            if self.partyear and cal_year == self.today.year:
+                full_month_name = _get_long_month_name(self.today.month)
 
             # Note. We use '/' here because it is a URL, not a OS dependent 
             # pathname.
-            url = '/'.join(subdirs + [lng_month]) + self.ext
+            url = '/'.join(subdirs + [full_month_name]) + self.ext
 
             # determine if we need to highlight???
             if str(cal_year) == currentsection:
@@ -534,8 +526,8 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        lng_month = _get_long_month_name(month)
-        shrt_month = _get_short_month_name(month)
+        full_month_name = _get_long_month_name(month)
+        abbr_month_name = _get_short_month_name(month)
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
         start_dow = self.start_dow
@@ -560,7 +552,7 @@ class WebCalReport(Report):
 
         # Begin calendar head. We'll use the capitalized name, because here it 
         # seems appropriate for most countries.
-        month_name = lng_month.capitalize()
+        month_name = full_month_name.capitalize()
         th_txt = month_name
         if cal == 'wc': # normal_cal()
             if not self.multiyear:
@@ -611,7 +603,7 @@ class WebCalReport(Report):
 
                 else:                # normal day number in current month
                     thisday = datetime.date.fromordinal(current_ord)
-                    of.write('\t\t\t<td id="%s%02d" ' % (shrt_month, day))
+                    of.write('\t\t\t<td id="%s%02d" ' % (abbr_month_name, day))
                     if thisday.month == month: # Something this month
                         holiday_list = self.holidays.get(month, {}).get(thisday.day, [])
                         bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
@@ -622,8 +614,8 @@ class WebCalReport(Report):
                             # specify day class for this day
                             of.write('class="%s">\n' % hilightday)
 
-                            evt_dte = _make_date(thisday.year, thisday.month, thisday.day)
-                            day_list = get_day_list(evt_dte, holiday_list, bday_anniv_list) 
+                            event_date = _make_date(thisday.year, thisday.month, thisday.day)
+                            day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
 
                             if day_list:
                                 # Year at a Glance
@@ -636,10 +628,10 @@ class WebCalReport(Report):
 
                                     # create web link to corresponding "One Day" page...
                                     # The HREF is relative to the year path.
-                                    fname_date = '/'.join([lng_month, fname_date])
+                                    fname_date = '/'.join([full_month_name, fname_date])
                                     fname_date += self.ext
                                     of.write('\t\t\t\t<a href="%s" title="%s%d">\n'
-                                             % (fname_date, shrt_month, day))
+                                             % (fname_date, abbr_month_name, day))
                                     of.write('\t\t\t\t\t<div class="date">%d</div></a>\n' % day)
                                     one_day_cal = "OneDay"
 
@@ -649,7 +641,7 @@ class WebCalReport(Report):
                                     of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
 
                                 # both WebCal and Year_Glance needs day_list displayed
-                                self.one_day(of, evt_dte, one_day_cal, day_list)
+                                self.one_day(of, event_date, one_day_cal, day_list)
 
                         # no holiday/ bday/ anniversary this day
                         else: 
@@ -779,7 +771,7 @@ class WebCalReport(Report):
     def close_file(self, of):
         of.close()
 
-    def one_day(self, of, evt_dte, one_day_cal, day_list):
+    def one_day(self, of, event_date, one_day_cal, day_list):
         """
         This method creates the One Day page for "Year At A Glance"
 
@@ -791,10 +783,10 @@ class WebCalReport(Report):
         # This is one_day in the year-at-a-glance calendar
         if one_day_cal == "OneDay":
 
-            # break up evt_dte to get year, month, day for this day
-            year = evt_dte.get_year()
-            month = evt_dte.get_month()   
-            day = evt_dte.get_day()
+            # break up event_date to get year, month, day for this day
+            year = event_date.get_year()
+            month = event_date.get_month()   
+            day = event_date.get_day()
 
             # create fname date string for "One Day" calendar pages filename
             # using yyyymmdd for filename
@@ -803,16 +795,16 @@ class WebCalReport(Report):
             fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
 
             # define names for long month
-            lng_month = _get_long_month_name(month)
+            full_month_name = _get_long_month_name(month)
 
             # Name the file, and create it (see code in calendar_build)
-            fpath = os.path.join(str(year), lng_month) 
+            fpath = os.path.join(str(year), full_month_name) 
             of = self.create_file(fname_date, fpath)
 
             nr_up = 2                    # number of directory levels up to get to root
 
             # set date display as in user prevferences 
-            pg_date = _dd.display(evt_dte)
+            pg_date = _dd.display(event_date)
 
             # page title
             title =  _('One Day Within A Year')
@@ -822,7 +814,7 @@ class WebCalReport(Report):
 
             of.write('<body id="%s">\n' % pg_date)
 
-            self.calendar_common(of, nr_up, year, lng_month, title)
+            self.calendar_common(of, nr_up, year, full_month_name, title)
 
             of.write('\t<h3 id="OneDay">%s</h3>\n' % pg_date)
 
@@ -1461,22 +1453,22 @@ def _gramps2iso(dow):
     return (dow + 5) % 7 + 1
 
 # define names for long and short month in GrampsLocale
-_lng_month = GrampsLocale.long_months
-_shrt_month = GrampsLocale.short_months
+_full_month_name = GrampsLocale.long_months
+_abbr_month_name = GrampsLocale.short_months
 
 def _get_long_month_name(month):
-    return _lng_month[month]
+    return _full_month_name[month]
 
 def _get_short_month_name(month):
-    return _shrt_month[month]   
+    return _abbr_month_name[month]   
 
-def get_day_list(evt_dte, holiday_list, bday_anniv_list):
+def get_day_list(event_date, holiday_list, bday_anniv_list):
     """
     Will fill day_list and return it to its caller: calendar_build()
 
     holiday_list, or bday_anniv_list -- will always have something in it...
 
-    evt_dte -- date for this day_list 
+    event_date -- date for this day_list 
 
     'day_list' - a combination of both dictionaries to be able to create one day
          nyears, date, text, event --- are necessary for figuring the age or years married
@@ -1494,7 +1486,7 @@ def get_day_list(evt_dte, holiday_list, bday_anniv_list):
 
         for p in holiday_list:
             for line in p.splitlines():
-                day_list.append((nyears, evt_dte, line, _('Holiday')))
+                day_list.append((nyears, event_date, line, _('Holiday')))
 
     # birthday/ anniversary on this day
     if bday_anniv_list > []:
@@ -1505,10 +1497,10 @@ def get_day_list(evt_dte, holiday_list, bday_anniv_list):
             if date != '...':
 
                 # number of years married, ex: 10
-                nyears = evt_dte.get_year() - date.get_year()
+                nyears = event_date.get_year() - date.get_year()
 
                 # number of years for birthday, ex: 10 years
-                age_str = evt_dte - date
+                age_str = event_date - date
                 age_str.format(precision=1)
 
                 # a birthday
