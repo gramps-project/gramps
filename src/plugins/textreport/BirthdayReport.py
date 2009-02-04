@@ -42,7 +42,6 @@ import gen.lib
 from Utils import probably_alive, ProgressMeter
 
 import libholiday
-from libholiday import _make_date
 
 #------------------------------------------------------------------------
 #
@@ -202,11 +201,15 @@ class CalendarReport(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
+
             if self.birthdays and birth_date is not None:
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
-                age = self.year - year
+
+                prob_alive_date = gen.lib.Date(self.year, month, day)
+
+                nyears = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
                 if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
@@ -224,20 +227,31 @@ class CalendarReport(Report):
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father is not None:
-                                        father_lastname = father.get_primary_name().get_surname()
+                                        father_lastname = father.get_primary_name().surname
                 short_name = self.get_name(person, father_lastname)
-                if age >= 0:
-                    alive = probably_alive(person, self.database, _make_date(self.year, month, day))
-                    if ((self.alive and alive) or not self.alive):
-                        comment = ""
-                        if self.relationships:
-                            relation = rel_calc.get_one_relationship(
-                                                             self.database, 
-                                                             self.center_person, 
-                                                             person)
-                            if relation:
-                                comment = " --- %s" % relation
-                        self.add_day_item("%s, %d%s" % (short_name, age, comment), month, day)
+
+                alive = probably_alive(person, self.database, prob_alive_date)
+                if ((self.alive and alive) or not self.alive):
+
+                    comment = ""
+                    if self.relationships:
+                        relation = rel_calc.get_one_relationship(
+                                                         self.database, 
+                                                         self.center_person, 
+                                                         person)
+                        if relation:
+                            comment = " --- %s" % relation
+                    if nyears == 0:
+                        text = _('%(person)s, birth%(relation)s') % {
+                            'person'   : short_name,
+                            'relation' : comment}
+                    else:
+                        text = _('%(person)s, %(age)d%(relation)s') % {
+                            'person'   : short_name,
+                            'age'      : nyears,
+                            'relation' : comment}
+
+                    self.add_day_item(text, month, day)
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -273,16 +287,23 @@ class CalendarReport(Report):
                                     year = event_obj.get_year()
                                     month = event_obj.get_month()
                                     day = event_obj.get_day()
-                                    years = self.year - year
-                                    if years >= 0:
+                                    nyears = self.year - year
+                                    if nyears == 0:
+                                        text = _("%(spouse)s and\n %(person)s, wedding") % {
+                                            'spouse' : spouse_name, 
+                                            'person' : short_name}
+                                    else:
                                         text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
                                             'spouse' : spouse_name, 
                                             'person' : short_name, 
-                                            'nyears' : years, 
-                                            }
-                                        alive1 = probably_alive(person, self.database, _make_date(self.year, month, day))
-                                        alive2 = probably_alive(spouse, self.database, _make_date(self.year, month, day))
-                                        if ((self.alive and alive1 and alive2) or not self.alive):
+                                            'nyears' : nyears}
+ 
+                                        prob_alive_date = gen.lib.Date(self.year, month, day)
+                                        alive1 = probably_alive(person, self.database, \
+                                            prob_alive_date)
+                                        alive2 = probably_alive(spouse, self.database, \
+                                            prob_alive_date)
+                                        if (self.alive and alive1 and alive2) or not self.alive:
                                             self.add_day_item(text, month, day)
 
 #------------------------------------------------------------------------

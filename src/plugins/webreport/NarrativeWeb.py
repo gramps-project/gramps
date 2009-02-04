@@ -2758,7 +2758,7 @@ class NavWebReport(Report):
                             value)
                 return
 
-        self.progress = Utils.ProgressMeter(_("Generate XHTML Reports"), '')
+        self.progress = Utils.ProgressMeter(_("Narrated Web Site Report"), '')
 
         # Build the person list
         ind_list = self.build_person_list()

@@ -78,7 +78,6 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
-from libholiday import _make_date
 
 #------------------------------------------------------------------------
 #
@@ -321,13 +320,14 @@ class WebCalReport(Report):
 
         if month > 0:
             try:
-                my_date = _make_date(year, month, day)
+                event_date = gen.lib.Date()
+                event_date.set_yr_mon_day(year, month, day)
             except ValueError:
-                my_date = '...'
+                event_date = '...'
         else:
-            my_date = '...'            #Incomplete date as in about, circa, etc.
+            event_date = '...'            #Incomplete date as in about, circa, etc.
 
-        day_list.append((text, event, my_date))
+        day_list.append((text, event, event_date))
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
@@ -614,7 +614,8 @@ class WebCalReport(Report):
                             # specify day class for this day
                             of.write('class="%s">\n' % hilightday)
 
-                            event_date = _make_date(thisday.year, thisday.month, thisday.day)
+                            event_date = gen.lib.Date()
+                            event_date.set_yr_mon_day(thisday.year, thisday.month, thisday.day)
                             day_list = get_day_list(event_date, holiday_list, bday_anniv_list) 
 
                             if day_list:
@@ -902,7 +903,7 @@ class WebCalReport(Report):
         """
 
         # open progress meter bar
-        self.progress = Utils.ProgressMeter(_("Generate XHTML Calendars"), '')
+        self.progress = Utils.ProgressMeter(_("Web Calendar Report"), '')
 
         # get data from database for birthdays/ anniversaries
         # TODO. Verify that we collect correct info based on start_year
@@ -998,7 +999,7 @@ class WebCalReport(Report):
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
         # generate progress pass for "WebCal"
-        self.progress.set_pass(_('Creating WebCal calendars'), self.end_month - self.start_month)
+        self.progress.set_pass(_('Formatting months ...'), self.end_month - self.start_month)
 
         for month in range(self.start_month, self.end_month + 1):
 
@@ -1072,11 +1073,15 @@ class WebCalReport(Report):
                     month = birth_date.get_month()
                     day = birth_date.get_day()
 
+                    prob_alive_date = gen.lib.Date(this_year, month, day)
+
                     # add some things to handle maiden name:
                     father_lastname = None # husband, actually
                     sex = person.get_gender()
                     if sex == gen.lib.Person.FEMALE:
-                        if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
+
+                        # get husband's last name:
+                        if self.maiden_name in ['spouse_first', 'spouse_last']: 
                             if len(family_list) > 0:
                                 if self.maiden_name == 'spouse_first':
                                     fhandle = family_list[0]
@@ -1092,9 +1097,9 @@ class WebCalReport(Report):
                                             father_name = father.get_primary_name() 
                                             father_lastname = _get_regular_surname(sex, father_name)
                     short_name = _get_short_name(person, father_lastname)
-                    alive = probably_alive(person, self.database, _make_date(this_year, month, day))
+                    alive = probably_alive(person, self.database, prob_alive_date)
                     text = _('%(short_name)s') % {'short_name' : short_name}
-                    if ((self.alive and alive) or not self.alive):
+                    if (self.alive and alive) or not self.alive:
                         self.add_day_item(text, year, month, day, 'Birthday')
 
             # add anniversary if requested
@@ -1122,6 +1127,8 @@ class WebCalReport(Report):
                                 month = event_obj.get_month()
                                 day = event_obj.get_day()
 
+                                prob_alive_date = gen.lib.Date(this_year, month, day)
+
                                 # determine if anniversary date is a valid date???
                                 complete_date = False
                                 if event_obj.get_valid():
@@ -1132,8 +1139,8 @@ class WebCalReport(Report):
                                              'spouse' : spouse_name,
                                              'person' : short_name}
 
-                                    alive1 = probably_alive(person, self.database, _make_date(this_year, month, day))
-                                    alive2 = probably_alive(spouse, self.database, _make_date(this_year, month, day))
+                                    alive1 = probably_alive(person, self.database, prob_alive_date)
+                                    alive2 = probably_alive(spouse, self.database, prob_alive_date)
                                     if ((self.alive and alive1 and alive2) or not self.alive):
                                         self.add_day_item(text, year, month, day, 'Anniversary')
 
