@@ -55,8 +55,9 @@ class Rule:
     def set_list(self, arg):
         assert isinstance(arg, list) or arg is None, "Argument is not a list"
         assert len(arg) == len(self.labels), \
-               "Number of arguments does not match number of labels.\n"\
-               "list: %s\nlabels: %s" % (arg,self.labels)
+               "ERROR: Number of arguments does not match number of labels.\n"\
+               "       list:   %s\n"\
+               "       labels: %s" % (arg,self.labels)
         self.list = arg
 
     def values(self):

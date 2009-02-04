@@ -108,16 +108,26 @@ class FilterParser(handler.ContentHandler):
     def endElement(self, tag):
         if tag == "rule" and self.r is not None:
             if len(self.r.labels) < len(self.a):
-                print "WARNING: Invalid number of arguments in filter '%s'!" %\
-                      self.f.get_name()
+                print _("WARNING: To many arguments in filter '%s'!\n"\
+                        "Trying to load with subset of arguments.")  %\
+                        self.f.get_name()
                 nargs = len(self.r.labels)
                 rule = self.r(self.a[0:nargs])
                 self.f.add_rule(rule)
-            elif len(self.r.labels) > len(self.a):
-                print "ERROR: Invalid number of arguments in filter '%s'!" % \
-                            self.f.get_name()
             else:
-                rule = self.r(self.a)
+                if len(self.r.labels) > len(self.a):
+                    print _("WARNING: To few arguments in filter '%s'!\n" \
+                            "         Trying to load anyway in the hope this "\
+                            "will be upgraded.") %\
+                            self.f.get_name()
+                try:
+                    rule = self.r(self.a)
+                except AssertionError, msg:
+                    print msg
+                    print _("ERROR: filter %s could not be correctly loaded. "
+                            "Edit the filter!") % self.f.get_name()
+                    return
+                
                 self.f.add_rule(rule)
             
     def characters(self, data):

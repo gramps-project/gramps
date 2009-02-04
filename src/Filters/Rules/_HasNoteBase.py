@@ -46,6 +46,14 @@ class HasNoteBase(Rule):
     description = _("Matches objects that have a certain number of notes")
     category    = _('General filters')
 
+    def __init__(self, arg):
+        # Upgrade from pre 3.1 HasNote filter, use defaults that correspond
+        # Previous filter had 0 arguments
+        if len(arg) == 0:
+            Rule.__init__(self, ["0", 'greater than'])
+        else:
+            Rule.__init__(self, arg)
+
     def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[1] == _('lesser than'):
