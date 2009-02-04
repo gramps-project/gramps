@@ -743,7 +743,6 @@ class IndividualListPage(BasePage):
         showspouse = report.options['showspouse']
         showparents = report.options['showparents']
 
-        of.write('\t<h2>%s</h2>\n' % _('Individuals'))
         of.write('\t<p id="description">%s</p>\n' % msg)
         of.write('\t<table class="infolist individuallist">\n')
         of.write('\t<thead>\n')
@@ -895,7 +894,6 @@ class SurnamePage(BasePage):
         showspouse = report.options['showspouse']
         showparents = report.options['showparents']
 
-        of.write('\t<h2>%s:</h2>\n' % _('Surnames'))
         of.write('\t<h3>%s</h3>\n' % html_escape(surname))
         of.write('\t<p id="description">%s</p>\n' % msg)
         of.write('\t<table class="infolist surname">\n')
@@ -1019,7 +1017,6 @@ class PlaceListPage(BasePage):
                 "database, sorted by their title. Clicking on a place&#8217;s "
                 "title will take you to that place&#8217;s page.")
 
-        of.write('\t<h2>%s</h2>\n' % _('Places'))
         of.write('\t<p id="description">%s</p>\n' % msg )
 
         of.write('\t<table class="infolist placelist">\n')
@@ -1085,7 +1082,6 @@ class PlacePage(BasePage):
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
 
-        of.write('\t<h2>%s:</h2>\n' % _('Places'))
         of.write('\t<h3>%s</h3>\n\n' % html_escape(self.page_title.strip()))
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist place">\n')
@@ -1165,8 +1161,6 @@ class MediaPage(BasePage):
         self.write_header(of, "%s - %s" % (_('Gallery'), self.page_title))
 
         of.write('<div id="GalleryDetail" class="content">\n')
-
-        of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
 
         # gallery navigation
         of.write('\t<div id="GalleryNav">\n')
@@ -1358,12 +1352,10 @@ class SurnameListPage(BasePage):
             of = self.report.create_file(filename)
             self.write_header(of, _('Surnames'))
             of.write('<div id="Surnames" class="content">\n')
-            of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
             self.write_header(of, _('Surnames by person count'))
             of.write('<div id="Surnames" class="content">\n')
-            of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
         of.write('\t<p id="description">%s</p>\n' % _(
             'This page contains an index of all the '
@@ -1454,8 +1446,6 @@ class IntroductionPage(BasePage):
 
         of.write('<div id="Introduction" class="content">\n')
 
-        of.write('\t<h2>%s</h2>\n' % _('Introduction'))
-
         report.add_image(of, 'introimg')
 
         note_id = report.options['intronote']
@@ -1480,8 +1470,6 @@ class HomePage(BasePage):
         self.write_header(of, _('Home'))
 
         of.write('<div id="Home" class="content">\n')
-
-        of.write('\t<h2>%s</h2>\n' % _('Home'))
 
         report.add_image(of, 'homeimg')
 
@@ -1523,7 +1511,6 @@ class SourcesPage(BasePage):
                 "database, sorted by their title. Clicking on a source&#8217;s "
                 "title will take you to that source&#8217;s page.")
 
-        of.write('\t<h2>%s</h2>\n' % _('Sources'))
         of.write('\t<p id="description">')
         of.write(msg)
         of.write('</p>\n')
@@ -1569,7 +1556,6 @@ class SourcePage(BasePage):
         media_list = source.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
 
-        of.write('\t<h2>%s:</h2>\n' % _('Sources'))
         of.write('\t<h3>%s</h3>\n\n' % html_escape(self.page_title.strip()))
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist source">\n')
@@ -1609,7 +1595,6 @@ class GalleryPage(BasePage):
 
         of.write('<div id="Gallery" class="content">\n')
 
-        of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
         of.write('\t<p id="description">')
 
         of.write(_("This page contains an index of all the media objects "
@@ -1669,8 +1654,6 @@ class DownloadPage(BasePage):
 
         of.write('<div id="Download" class="content">\n')
 
-        of.write('\t<h2>%s</h2>\n\n' % _('Download'))
-
         self.write_footer(of)
         self.report.close_file(of)
 
@@ -1685,7 +1668,6 @@ class ContactPage(BasePage):
 
         of.write('<div id="Contact" class="content">\n')
 
-        of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
         of.write('\t<div id="summaryarea">\n')
 
         report.add_image(of, 'contactimg', 200)
@@ -1993,7 +1975,6 @@ class IndividualPage(BasePage):
         self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.person.get_media_list())
 
-        of.write('\t<h2>%s:</h2>\n' % _('Individuals'))
         of.write('\t<h3>%s</h3>\n' % self.sort_name.strip())
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist">\n')
