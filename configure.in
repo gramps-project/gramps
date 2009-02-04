@@ -110,7 +110,6 @@ AC_MSG_RESULT($has_pyglade)
 
 AC_CONFIG_FILES([
 po/Makefile.in
-po/Makevars
 m4/Makefile
 Makefile
 gramps.sh
