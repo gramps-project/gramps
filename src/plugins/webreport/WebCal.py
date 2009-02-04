@@ -414,7 +414,7 @@ class WebCalReport(Report):
 
                 # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 if type(url_fname) == int:
-                    url_fname = _get_long_month_name(url_fname)
+                    url_fname = _get_full_month_name(url_fname)
 
                 if type(nav_text) == int:
                     nav_text = _get_short_month_name(nav_text)
@@ -456,9 +456,9 @@ class WebCalReport(Report):
             # each year will link to January, unless self.partyear is True,
             # then it will link to current month.
             # this will always need an extension added
-            full_month_name = _get_long_month_name(1)
+            full_month_name = _get_full_month_name(1)
             if self.partyear and cal_year == self.today.year:
-                full_month_name = _get_long_month_name(self.today.month)
+                full_month_name = _get_full_month_name(self.today.month)
 
             # Note. We use '/' here because it is a URL, not a OS dependent 
             # pathname.
@@ -526,7 +526,7 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        full_month_name = _get_long_month_name(month)
+        full_month_name = _get_full_month_name(month)
         abbr_month_name = _get_short_month_name(month)
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
@@ -676,7 +676,7 @@ class WebCalReport(Report):
         """
         This creates the header for the Calendars including style embedded for special purpose
         'nr_up' - number of directory levels up, started from current page, to the
-        root of the directory tree (i.e. to self.html_dir).
+                  root of the directory tree (i.e. to self.html_dir).
         """
 
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n')
@@ -775,7 +775,11 @@ class WebCalReport(Report):
         """
         This method creates the One Day page for "Year At A Glance"
 
-        'day_list' - a combination of both dictionaries to be able to create one day
+        event_date -- date for this file and events
+
+        one_day_cal -- either year_glance() or WebCal()  
+
+        day_list - a combination of both dictionaries to be able to create one day
              nyears, date, text, event --- are necessary for figuring the age or years married
              for each year being created...
         """
@@ -795,11 +799,11 @@ class WebCalReport(Report):
             fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
 
             # define names for long month
-            full_month_name = _get_long_month_name(month)
+            full_month_name = _get_full_month_name(month)
 
             # Name the file, and create it (see code in calendar_build)
             fpath = os.path.join(str(year), full_month_name) 
-            of = self.create_file(fname_date, fpath)
+            one_day_fname = self.create_file(fname_date, fpath)
 
             nr_up = 2                    # number of directory levels up to get to root
 
@@ -810,13 +814,15 @@ class WebCalReport(Report):
             title =  _('One Day Within A Year')
 
             # Add Header
-            self.write_header(of, nr_up, title, False)
+            self.write_header(one_day_fname, nr_up, title, False)
 
-            of.write('<body id="%s">\n' % pg_date)
+            one_day_fname.write('<body id="%s">\n' % pg_date)
 
-            self.calendar_common(of, nr_up, year, full_month_name, title)
+            self.calendar_common(one_day_fname, nr_up, year, full_month_name, title)
 
-            of.write('\t<h3 id="OneDay">%s</h3>\n' % pg_date)
+            one_day_fname.write('\t<h3 id="OneDay">%s</h3>\n' % pg_date)
+            of = one_day_fname # because of two different fnames needing 
+                               # to access this variable
 
         # for both "WebCal" and "One Day"
         of.write('\t\t\t\t\t<ul>\n')
@@ -832,58 +838,60 @@ class WebCalReport(Report):
     def year_glance(self, year):
         """
         This method will create the Full Year At A Glance Page...
+        year -- year being created
         """
 
         nr_up = 1                       # Number of directory levels up to get to root
 
         # Name the file, and create it
         cal_fname = 'fullyear'
-        of = self.create_file(cal_fname, str(year))
+        year_glance_fname = self.create_file(cal_fname, str(year))
 
         # page title
         title = _("%(year)d, At A Glance") % {'year' : year}
 
         # Add Header
-        self.write_header(of, nr_up, title, False)
+        self.write_header(year_glance_fname, nr_up, title, False)
 
-        of.write('<body id="fullyearlinked">\n')
+        year_glance_fname.write('<body id="fullyearlinked">\n')
 
-        self.calendar_common(of, nr_up, year, 'fullyear', title)
+        self.calendar_common(year_glance_fname, nr_up, year, 'fullyear', title)
 
         # page description 
-        of.write('<div class="content">\n')
-        of.write('<p id="description">\n')
+        year_glance_fname.write('<div class="content">\n')
+        year_glance_fname.write('<p id="description">\n')
         # TODO. The "red square" is only valid for some style sheets.
-        of.write(_('This calendar is meant to give you access to all your data at a glance '
-        'compressed into one page. Clicking on a date will take you to a '
-        'page that shows all the events for that date, if there are any!\n'))
-        of.write('</p>\n')
-        of.write('</div>\n\n')
+        year_glance_fname.write(_('This calendar is meant to give you access '
+         'to all your data at a glance compressed into one page. Clicking '
+         'on a date will take you to a page that shows all the events for '
+         'that date, if there are any!</p>\n'))
+        year_glance_fname.write('</div>\n')
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendars'), self.end_month - self.start_month)
+        self.progress.set_pass(_('Creating Year At A Glance calendars'), \
+            self.end_month - self.start_month)
 
         for month in range(self.start_month, self.end_month + 1):
 
             # build the calendar
-            self.calendar_build(of, "yg", year, month)
+            self.calendar_build(year_glance_fname, "yg", year, month)
 
             # create note section for "Year At A Glance"
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
-            of.write('\t<tfoot>\n')
-            of.write('\t\t<tr>\n')
-            of.write('\t\t\t<td colspan="7">%s</td>\n' % note)
-            of.write('\t\t</tr>\n')
-            of.write('\t</tfoot>\n')
-            of.write('</table>\n\n')
+            year_glance_fname.write('\t<tfoot>\n')
+            year_glance_fname.write('\t\t<tr>\n')
+            year_glance_fname.write('\t\t\t<td colspan="7">%s</td>\n' % note)
+            year_glance_fname.write('\t\t</tr>\n')
+            year_glance_fname.write('\t</tfoot>\n')
+            year_glance_fname.write('</table>\n\n')
 
             # increase progress bar
             self.progress.step()
 
         # write footer section, and close file
-        self.write_footer(of, nr_up)
-        self.close_file(of)
+        self.write_footer(year_glance_fname, nr_up)
+        self.close_file(year_glance_fname)
 
     def write_report(self):
         """
@@ -977,6 +985,8 @@ class WebCalReport(Report):
     def normal_cal(self, year):
         """
         This method provides information and header/ footer to the calendar month
+
+        year -- year being created
         """
 
         # do some error correcting if needed
@@ -993,32 +1003,32 @@ class WebCalReport(Report):
         for month in range(self.start_month, self.end_month + 1):
 
             # Name the file, and create it
-            cal_fname = _get_long_month_name(month)
-            of = self.create_file(cal_fname, str(year))
+            cal_fname = _get_full_month_name(month)
+            webcal_fname = self.create_file(cal_fname, str(year))
 
             # Add Header
-            self.write_header(of, nr_up, self.title_text, True)
+            self.write_header(webcal_fname, nr_up, self.title_text, True)
 
-            of.write('<body id="Web Calendar">\n')
+            webcal_fname.write('<body id="Web Calendar">\n')
 
-            self.calendar_common(of, nr_up, year, cal_fname, self.title_text, True)
+            self.calendar_common(webcal_fname, nr_up, year, cal_fname, self.title_text, True)
 
             # build the calendar
-            self.calendar_build(of, "wc", year, month)
+            self.calendar_build(webcal_fname, "wc", year, month)
 
             # create note section for "WebCal"
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
-            of.write('\t<tfoot>\n')
-            of.write('\t\t<tr>\n')
-            of.write('\t\t\t<td colspan="7">%s</td>\n' % note)
-            of.write('\t\t</tr>\n')
-            of.write('\t</tfoot>\n')
-            of.write('</table>\n\n')
+            webcal_fname.write('\t<tfoot>\n')
+            webcal_fname.write('\t\t<tr>\n')
+            webcal_fname.write('\t\t\t<td colspan="7">%s</td>\n' % note)
+            webcal_fname.write('\t\t</tr>\n')
+            webcal_fname.write('\t</tfoot>\n')
+            webcal_fname.write('</table>\n\n')
 
             # write footer section, and close file
-            self.write_footer(of, nr_up)
-            self.close_file(of)
+            self.write_footer(webcal_fname, nr_up)
+            self.close_file(webcal_fname)
 
             # increase progress bar
             self.progress.step()
@@ -1456,7 +1466,7 @@ def _gramps2iso(dow):
 _full_month_name = GrampsLocale.long_months
 _abbr_month_name = GrampsLocale.short_months
 
-def _get_long_month_name(month):
+def _get_full_month_name(month):
     return _full_month_name[month]
 
 def _get_short_month_name(month):
