@@ -7,7 +7,7 @@ top_builddir = ..
 # These options get passed to xgettext.
 
 
-XGETTEXT_OPTIONS = -d=@PACKAGE@ --add-comments="TRANS:" --no-wrap             
+XGETTEXT_OPTIONS =             
                         
 # possible options to include:
 #           -c, --add-comments[=TAG]           place comment block with TAG (or those 
