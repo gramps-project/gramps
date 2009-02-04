@@ -60,33 +60,3 @@ class MarkerType(GrampsType):
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
 
-    def set(self, value):
-        """
-        Set the marker value.
-        """
-        if isinstance(value, self.__class__):
-            if value.val == self.CUSTOM and value.string == u'':
-                self.val = self.NONE
-                self.string = u''
-            else:
-                self.val = value.val
-                self.string = value.string
-        elif isinstance(value, tuple):
-            if value[0] == self.CUSTOM and value[1] == u'':
-                self.value = self.NONE
-                self.string = u''
-            else:
-                self.val = value[0]
-                self.string = value[1]
-        elif isinstance(value, int):
-            self.val = value
-            self.string = u''
-        elif isinstance(value, str):
-            self.val = self._S2IMAP.get(value, self._CUSTOM)
-            if self.val == self._CUSTOM:
-                self.string = value
-            else:
-                self.string = u''
-        else:
-            self.val = self._DEFAULT
-            self.string = u''
