@@ -106,6 +106,7 @@ src/DateHandler/__init__.py
 # docgen directory
 src/docgen/ODSDoc.py
 src/docgen/ODSTab.py
+src/docgen/OpenSpreadSheet.py
 src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
 
