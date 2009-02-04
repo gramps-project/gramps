@@ -480,6 +480,10 @@ table.individuallist tbody tr td.ColumnName a:hover {
     font-weight:normal;
 }
 #GalleryDisplay {
+    margin:0 auto;
+    padding:0;
+    position:relative;
+    overflow:hidden;
     text-align:center;
 }
 #GalleryDisplay img {

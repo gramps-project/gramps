@@ -54,6 +54,7 @@ map_tile_images = \
 
 dist_pkgdata_DATA = \
 	bad.png\
+	blank.gif\
 	caution.png\
 	good.png\
 	gramps.png\

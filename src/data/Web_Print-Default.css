@@ -296,6 +296,10 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     display:none;
 }
 #GalleryDisplay {
+    margin:0 auto;
+    padding:0;
+    position:relative;
+    overflow:hidden;
     text-align:center;
 }
 #GalleryDisplay img {

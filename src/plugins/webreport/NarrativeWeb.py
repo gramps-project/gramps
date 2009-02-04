@@ -345,6 +345,12 @@ class BasePage:
             (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
         of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
+        # Link to css behaviours
+        fname = os.path.join("styles", "behaviour.css")
+        url = self.report.build_url_fname(fname, None, self.up)
+        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
+                 'media="screen" />\n' % url)
+
         # Link to screen stylesheet
         fname = os.path.join("styles", self.report.css)
         url = self.report.build_url_fname(fname, None, self.up)
@@ -568,7 +574,6 @@ class BasePage:
         of.write('\t\t<h4>%s</h4>\n' % _('Weblinks'))
         of.write('\t\t<ol>\n')
 
-        index = 1
         for url in urllist:
             uri = url.get_path()
             descr = url.get_description()
@@ -583,7 +588,6 @@ class BasePage:
             else:
                 of.write('\t\t\t<li><a href="%s">%s</a>' % (uri, descr))
             of.write('</li>\n')
-            index = index + 1
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n\n')
 
@@ -656,14 +660,12 @@ class BasePage:
                           key = operator.itemgetter(1),
                           cmp = locale.strcoll)
 
-        index = 1
         for (path, name, gid) in sortlist:
-            of.write('\t\t\t<li>')
+            of.write('\t\t\t<li>TEST ')
             # Note. 'path' already has a filename extension
             url = self.report.build_url_fname(path, None, self.up)
             self.person_link(of, url, name, gid)
             of.write('</li>\n')
-            index = index + 1
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n')
 
@@ -1140,6 +1142,73 @@ class MediaPage(BasePage):
         # TODO. How do we pass my_media_list down for use in BasePage?
         BasePage.__init__(self, report, title, photo.gramps_id)
 
+        """
+        *************************************
+        GRAMPS feature #2634 -- attempt to highlight subregions in media
+        objects and link back to the relevant web page.
+
+        This next section of code builds up the "records" we'll need to
+        generate the html/css code to support the subregions
+        *************************************
+        """
+
+        # TODO, FIXME:  Please code review this next block!
+
+        # get all of the backlinks to this media object; meaning all of
+        # the people, events, places, etc..., that use this image
+        _region_items = set()
+        for (classname, newhandle) in db.find_backlink_handles(handle):
+
+            # for each of the backlinks, get the relevant object from the db
+            # and determine a few important things, such as a text name we
+            # can use, and the URL to a relevant web page
+            _obj     = None
+            _name    = ""
+            _linkurl = "#"
+            if classname == "Person":
+                _obj = db.get_person_from_handle( newhandle )
+                # what is the shortest possible name we could use for this person?
+                _name = _obj.get_primary_name().get_call_name()
+                if not _name or _name == "":
+                    _name = _obj.get_primary_name().get_first_name()
+                _linkurl = report.build_url_fname_html(_obj.handle, 'ppl', True)
+            if classname == "Event":
+                _obj = db.get_event_from_handle( newhandle )
+                _name = _obj.get_description()
+
+            # if we found a db object to work with...
+            if _obj:
+
+                # get a list of all media refs for this object
+                medialist = _obj.get_media_list()
+
+                # go media refs looking for one that points to this image
+                for mediaref in medialist:
+                    rh = mediaref.get_referenced_handles()
+                    (classname, h) = rh[0]
+
+                    # if the handles indicate this is a match...
+                    if h == handle:
+
+                        # get the rectangle (if any) defined in this media ref
+                        rectangle = mediaref.get_rectangle()
+                        if rectangle:
+                            (x1, y1, x2, y2) = rectangle
+                            # GRAMPS gives us absolute coordinates,
+                            # but we need relative width + height
+                            w = x2 - x1
+                            h = y2 - y1
+
+                            # remember all this information, cause we'll need
+                            # need it later when we output the <li>...</li> tags
+                            item = (_name, x1, y1, w, h, _linkurl)
+                            _region_items.add(item)
+        """
+        *************************************
+        end of code that looks for and prepares the media object regions
+        *************************************
+        """
+
         of = self.report.create_file(handle, 'img')
         self.up = True
 
@@ -1178,8 +1247,10 @@ class MediaPage(BasePage):
         of.write('\t<div id="summaryarea">\n')
         if mime_type:
             if mime_type.startswith("image/"):
-                of.write('\t\t<div id="GalleryDisplay">\n')
-                if target_exists:
+                if not target_exists:
+                    of.write('\t\t<div id="GalleryDisplay">\n')
+                    of.write('\t\t\t<span class="MissingImage">(%s)</span>' % _("The file has been moved or deleted"))
+                else:
                     # if the image is spectacularly large, then force the client
                     # to resize it, and include a "<a href=" link to the actual
                     # image; most web browsers will dynamically resize an image
@@ -1188,7 +1259,6 @@ class MediaPage(BasePage):
                     (width, height) = ImgManip.image_size(
                             Utils.media_path_full(db, photo.get_path()))
                     scale = 1.0
-                    of.write('\t\t\t')
                     # TODO. Convert disk path to URL.
                     url = self.report.build_url_fname(newpath, None, self.up)
                     if width > _MAX_IMG_WIDTH or height > _MAX_IMG_HEIGHT:
@@ -1196,14 +1266,33 @@ class MediaPage(BasePage):
                         scale = min(float(_MAX_IMG_WIDTH)/float(width), float(_MAX_IMG_HEIGHT)/float(height))
                         width = int(width * scale)
                         height = int(height * scale)
+                    of.write('\t\t<div id="GalleryDisplay" style="width:%dpx; height:%dpx;">\n' % (width, height))
+
+                    # Feature #2634; display the mouse-selectable regions.
+                    # See the large block at the top of this function where
+                    # the various regions are stored in _region_items
+                    if len(_region_items) > 0:
+                        of.write('\t\t\t<ol class="RegionBox">\n')
+                        while len(_region_items) > 0:
+                            (name, x, y, w, h, linkurl) = _region_items.pop()
+                            of.write('\t\t\t\t<li style="'
+                                'left:%d%%; '
+                                'top:%d%%; '
+                                'width:%d%%; '
+                                'height:%d%%;">'
+                                '<a href="%s">%s</a></li>\n' %
+                                (x, y, w, h, linkurl, name))
+                        of.write('\t\t\t</ol>\n')
+
+                    # display the image
+                    of.write('\t\t\t')
+                    if scale != 1.0:
                         of.write('<a href="%s">' % url)
                     of.write('<img width="%d" height="%d" src="%s" alt="%s" />' % (width, height, url, html_escape(self.page_title)))
                     if scale != 1.0:
                         of.write('</a>')
                     of.write('\n')
 
-                else:
-                    of.write('\t\t\t<span class="MissingImage">(%s)</span>' % _("The file has been moved or deleted"))
                 of.write('\t\t</div>\n\n')
             else:
                 import tempfile
@@ -2807,6 +2896,10 @@ class NavWebReport(Report):
         Copy all of the CSS and image files for Narrated Web
         """
 
+        # copy behaviour stylesheet
+        fname = os.path.join(const.DATA_DIR, "behaviour.css")
+        self.copy_file(fname, "behaviour.css", "styles")
+
         # copy screen stylesheet
         fname = os.path.join(const.DATA_DIR, self.css)
         self.copy_file(fname, self.css, "styles")
@@ -2832,6 +2925,9 @@ class NavWebReport(Report):
 
         # include GRAMPS favicon
         imgs += ["favicon.ico"]
+
+        # we need the blank image gif neede by behaviour.css
+        imgs += ["blank.gif"]
 
         # copy Ancestor Tree graphics if needed???
         if self.graph:

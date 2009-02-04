@@ -1,0 +1,89 @@
+/*
+-------------------------------------------------------------------------------
+GRAMPS cascading style sheet for common behaviour independant of styles
+Style Name: n/a (used by many different styles)
+Style Author: Stephane Charette and Jason Simanek
+-------------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional
+genealogy program, and a wiki open to all. It is a community project, created,
+developed and governed by genealogists.
+
+Go to <http://www.gramps-project.org/> to learn more!
+
+License
+-------------------------------------------------------------------------------
+Copyright 2009 Stephane Charette and Jason Simanek
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+-------------------------------------------------------------------------------
+$Id: NWeb-Screen_Basic-Ash.css 11712 2009-01-25 10:00:30Z s_charette $
+*/
+
+/* ------------- */
+/* Image Gallery */
+/* ------------- */
+
+/* ensure RegionBox <ol> is hidden and has no margins/padding that would shift the image */
+ol.RegionBox {
+	display:none;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+/* show the RegionBox <ol> When the mouse hovers over the gallery */
+div#GalleryDisplay:hover ol.RegionBox {
+	display:block;
+}
+
+/* define how <li> tags should normally look within RegionBox */
+ol.RegionBox li {
+	margin:0;
+	padding:0;
+	display:block;
+	position:absolute;
+	text-align:center;
+	text-decoration:none;
+	border:dashed 1px #999;
+	background:url(../../../images/blank.gif) repeat;
+	/* IE doesn't work correctly with "hover" if the <li> tag is empty,
+	 * so fill the <li> with a blank image; this way the mouse will be
+	 * considered in the <li> tag anywhere over the background image
+	 */
+}
+
+/* use a solid border when the mouse hovers over the <li> tags */
+ol.RegionBox li:hover {
+	z-index:100;
+	border:solid 1px #FFF;
+}
+
+/* links are kept hidden... */
+ol.RegionBox li a {
+	display:none;
+}
+
+/* ...until we hover over them */
+ol.RegionBox li:hover a {
+	display:block;
+	text-decoration:none;
+	border-bottom:solid 1px #FFF;
+	background-color:#888;
+	color:#FFF;
+}
+
+/* underline is hidden until we hover over the links */
+ol.RegionBox li:hover a:hover {
+	text-decoration:underline;
+}
+

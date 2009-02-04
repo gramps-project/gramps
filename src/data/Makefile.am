@@ -12,6 +12,7 @@ dist_pkgdata_DATA = \
 	system_filters.xml \
 	tips.xml\
 	lds.xml\
+	behaviour.css\
 	Web_Basic-Ash.css\
 	Web_Basic-Cypress.css\
 	Web_Basic-Lilac.css\
