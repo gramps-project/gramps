@@ -23,6 +23,7 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from gettext import ngettext
 import datetime
 import time
 
@@ -290,10 +291,11 @@ class Calendar(Report):
                             'person' : short_name,
                             'relation' : ""}
                     else:
-                         text = _('%(person)s, %(age)d%(relation)s') % {
-                            'person'   : short_name,
-                            'age'      : nyears,  
-                            'relation' : ""}
+                         text = ngettext('%(person)s, %(age)d%(relation)s',
+                                  '%(person)s, %(age)d%(relation)s', nyears)
+                                 % {'person'   : short_name,
+                                    'age'      : nyears,  
+                                    'relation' : ""}
                     self.add_day_item(text, month, day)
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
@@ -340,10 +342,11 @@ class Calendar(Report):
                                             'person' : short_name, 
                                             }
                                     else:
-                                        text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                            'spouse' : spouse_name, 
-                                            'person' : short_name, 
-                                            'nyears' : nyears}
+                                        text = ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
+                                                 "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
+                                                  % {'spouse' : spouse_name, 
+                                                     'person' : short_name, 
+                                                     'nyears' : nyears}
 
                                     alive1 = probably_alive(person, self.database, \
                                         prob_alive_date)
