@@ -1355,6 +1355,11 @@ class GrampsParser(UpdateCallback):
                 self.info.add('merge-overwrite', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
+            # Old and new markers: complete=1 and marker=word both have to work
+            if attrs.get('complete'): # this is only true for complete=1
+                self.note.marker.set(gen.lib.MarkerType.COMPLETE)
+            else:
+                self.note.marker.set_from_xml_str(attrs.get("marker", ''))
             
             # Since StyledText was introduced (XML v1.3.0) the clear text
             # part of the note is moved between <text></text> tags.
