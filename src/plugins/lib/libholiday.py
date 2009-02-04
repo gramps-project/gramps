@@ -132,27 +132,17 @@ class HolidayTable:
         
         # Look for holiday files in the user plugins directory and all
         # subdirectories.
-        holiday_full_path = os.path.join(const.USER_PLUGINS, holiday_file)
-        if os.path.exists(holiday_full_path):
-            HolidayTable.__holiday_files.append(holiday_full_path)
-            
         for (dirpath, dirnames, filenames) in os.walk(const.USER_PLUGINS):
-            for directory in dirnames:
-                holiday_full_path = os.path.join(directory, holiday_file)
-                if os.path.exists(holiday_full_path):
-                    HolidayTable.__holiday_files.append(holiday_full_path)
+            holiday_full_path = os.path.join(dirpath, holiday_file)
+            if os.path.exists(holiday_full_path):
+                HolidayTable.__holiday_files.append(holiday_full_path)
 
         # Look for holiday files in the installation plugins directory and all
         # subdirectories.
-        holiday_full_path = os.path.join(const.PLUGINS_DIR, holiday_file)
-        if os.path.exists(holiday_full_path):
-            HolidayTable.__holiday_files.append(holiday_full_path)
-        
         for (dirpath, dirnames, filenames) in os.walk(const.PLUGINS_DIR):
-            for directory in dirnames:
-                holiday_full_path = os.path.join(directory, holiday_file)
-                if os.path.exists(holiday_full_path):
-                    HolidayTable.__holiday_files.append(holiday_full_path)
+            holiday_full_path = os.path.join(dirpath, holiday_file)
+            if os.path.exists(holiday_full_path):
+                HolidayTable.__holiday_files.append(holiday_full_path)
             
     def __build_country_list(self):
         """ Generate the list of countries that have holiday information. """
