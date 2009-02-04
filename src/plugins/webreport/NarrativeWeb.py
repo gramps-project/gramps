@@ -661,7 +661,7 @@ class BasePage:
                           cmp = locale.strcoll)
 
         for (path, name, gid) in sortlist:
-            of.write('\t\t\t<li>TEST ')
+            of.write('\t\t\t<li>')
             # Note. 'path' already has a filename extension
             url = self.report.build_url_fname(path, None, self.up)
             self.person_link(of, url, name, gid)
