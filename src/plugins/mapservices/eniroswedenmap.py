@@ -37,13 +37,21 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug import PluginManager
 from libmapservice import MapService
-from QuestionDialog import WarningDialog, QuestionDialog2
+from QuestionDialog import WarningDialog
 
 # Make upper case of translaed country so string search works later
-MAP_NAMES_SWEDEN = _("Sweden").upper() + " SVERIGE SWEDEN" + \
-                                         " SUEDOIS ROUTSI SCHWEDEN"
-MAP_NAMES_DENMARK = _("Denmark").upper() + " DANMARK DENMARK" + \
-                                           " DANOIS TANSKA DÄNEMARK"
+MAP_NAMES_SWEDEN = [_("Sweden").upper(), 
+                      "SVERIGE", 
+                      "SWEDEN",
+                      "SUEDOIS", 
+                      "ROUTSI",
+                      "SCHWEDEN", ]
+MAP_NAMES_DENMARK = [_("Denmark").upper(), 
+                       "DANMARK", 
+                       "DENMARK", 
+                       "DANOIS", 
+                       "TANSKA", 
+                       "DÄNEMARK", ]
 
 
 def _strip_leading_comma(descr):
@@ -110,9 +118,9 @@ class EniroSVMapService(MapService):
         path = ""
         # First see if we are in or near Sweden or Denmark
         # Change country to upper case
-        country = place.get_main_location().get_country().upper()
-        country_given = country in MAP_NAMES_SWEDEN or \
-                        country in MAP_NAMES_DENMARK
+        country = place.get_main_location().get_country().upper().strip()
+        country_given = (country in MAP_NAMES_SWEDEN or \
+                        country in MAP_NAMES_DENMARK) and (country != "")
         # if no country given, check if we might be in the vicinity defined by
         # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
         # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15 
@@ -126,14 +134,11 @@ class EniroSVMapService(MapService):
             if (54.55 < latitude < 69.05) and (8.05 < longitude < 24.15):
                 coord_ok = True
             else:
-                dlgan = QuestionDialog2(_("Coordinates outside Sweden/Denmark"),
-                                    _("Try another map service?"),
-                                    _("Yes"),
-                                    _("No"))
-                if dlgan.run():
-                    return
-                else:
-                    coord_ok = True
+                msg2 = _("Latitude not within %s to %s\n") + \
+                       _("Longitude not within %s to %s")
+                msg2 = msg2 % (54.55, 69.05, 8.05, 24.15)
+                WarningDialog(_("Eniro map not available"), msg2 )
+                return
         # Now check if country is defined
         if not (country_given or coord_ok):
             WarningDialog(_("Eniro map not available"), 
@@ -144,10 +149,14 @@ class EniroSVMapService(MapService):
             place_title = _build_title(place)
             place_city =  _build_city(place)
             x_coord, y_coord = self._lat_lon(place, format="RT90")
+            # Set zoom level to 5 if Sweden/Denmark, others 3
+            zoom = 5
+            if not country_given:
+                zoom = 3
             path = "http://www.eniro.se/partner.fcgi?pis=1&x=%s&y=%s" \
-                   "&zoom_level=5&map_size=0&title=%s&city=%s&partner=gramps"
+                   "&zoom_level=%i&map_size=0&title=%s&city=%s&partner=gramps"
             # Note x and y are swapped!
-            path = path % (y_coord , x_coord, place_title, place_city)
+            path = path % (y_coord , x_coord, zoom, place_title, place_city)
             self.url = path.replace(" ","%20")
             return
 
@@ -160,12 +169,12 @@ class EniroSVMapService(MapService):
                 self.url = path.replace(" ","%20")
                 return
             else:
-                WarningDialog(_("Eniro map not available"), 
+                WarningDialog(_("Eniro map not available"), \
                               _("Coordinates needed in Denmark") )
                 self.url = ""
                 return
         else:
-            WarningDialog(_("Eniro map not available for %s") % country, 
+            WarningDialog(_("Eniro map not available for %s") % country, \
                           _("Only for Sweden and Denmark") )
     
 #------------------------------------------------------------------------
