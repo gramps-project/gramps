@@ -7,7 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
 pkgdata_PYTHON = \
 	libholiday.py\
-	libmapservices.py
+	libmapservice.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib
