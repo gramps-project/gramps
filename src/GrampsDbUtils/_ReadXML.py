@@ -1330,6 +1330,10 @@ class GrampsParser(UpdateCallback):
                 self.info.add('merge-overwrite', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
+            if attrs.get('complete'): # this is only true for complete=1
+                self.note.marker.set(gen.lib.MarkerType.COMPLETE)
+            else:
+                self.note.marker.set_from_xml_str(attrs.get("marker", ''))
         else:
             # GRAMPS LEGACY: old notes that were written inside other objects
             # We need to create a top-level note, it's type depends on 
