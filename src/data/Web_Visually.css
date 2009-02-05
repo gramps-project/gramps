@@ -11,7 +11,7 @@ http://www.gramps-project.org
 --------------------------------------------------------------------------------------------------
 GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
 and a wiki open to all. It is a community project, created, developed and governed by genealogists.
-/*
+
 Go to http://gramps-project.org to learn more!
 
 --------------------------------------------------------------------------------------------------
@@ -47,15 +47,14 @@ Unknown		#000
 Males		Web_Gender_Male.png
 Females		Web_Gender_Female.png
 
- NarrativeWeb Styles
--------------------------------------------------------------------------------------------- */
-
-/* General Elements
------------------------------------------------------ 
-
 # $Id$
 
-*/
+ NarrativeWeb Styles
+-------------------------------------------------------------------------------------------- 
+
+ General Elements
+----------------------------------------------------- */
+
 body {
     color:#000;
     margin:0;
@@ -131,11 +130,11 @@ h3 {
 }
 h4 {
     font:normal 1.2em/1.2em serif;
-    color:$FFF;
+    color:#FFF;
     margin:0;
     padding:.2em 0 .2em 20px;
-    background-color:#C1B398;
-    border-bottom:solid 1px #453619;
+    background-color:#453619;
+    border-bottom:solid 1px #6AF364;
 }
 h5, h6 {
     font:normal 1em/1.2em serif;
@@ -877,6 +876,25 @@ div#pedigree {
     margin:0;
     padding:0;
     background:none;
+}
+#tree #treeContainer div.boxbg span.unlinked {
+    position:absolute;
+    margin:0;
+    padding:0;
+    height:40px;
+    width:174px;
+    border:1px solid #000;
+    text-align:center;
+}
+#treeContainer div.male span.unlinked {
+    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
+}
+#treeContainer div.female span.unlinked {
+    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
+}
+#treeContainer div.unknown span.unlinked {
+    background-color:#000;
+    color:#FFF;
 }
 #treeContainer div.boxbg a {
     position:relative;

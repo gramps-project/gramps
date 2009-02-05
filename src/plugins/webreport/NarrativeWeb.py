@@ -102,8 +102,6 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
-_PERSON = 0
-_PLACE = 1
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -348,24 +346,25 @@ class BasePage:
         # Link to css behaviours
         fname = os.path.join("styles", "behaviour.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
-                 'media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="screen">\n' % url)
 
         # Link to screen stylesheet
         fname = os.path.join("styles", self.report.css)
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
-                 'media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="screen" />\n' % url)
 
         # Link to printer stylesheet
         fname = os.path.join("styles", "Web_Print-Default.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" type="text/css" '
-                 'media="print" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="print" />\n' % url)
 
         # Link to GRAMPS favicon
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('\t<link href="%s" rel="Shortcut Icon" />\n' % url)
+        of.write('\t<link href="%s" rel="Shortcut Icon"\n'
+            '\t\ttype="image/icon">\n' % url)
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
@@ -1902,9 +1901,9 @@ class IndividualPage(BasePage):
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
             self.person_link(of, url, person_name, thumbnailUrl=thumbnailUrl)
         else:
-            of.write('<span>')
+            of.write('<span class="unlinked">')
             of.write(_nd.display(person))
-            of.write('</span>\n')
+            of.write('</span>')
         of.write('\n\t\t\t</div>\n')
         of.write('\t\t\t<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' 
             % (top+_SHADOW, xoff+_SHADOW))
