@@ -45,6 +45,7 @@ log = logging.getLogger(".")
 import gtk
 from gtk import glade
 from gtk import gdk
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -836,7 +837,7 @@ class EditFamily(EditPrimary):
             self.tooltips.set_tip(edit_btn, _('Edit %s') % name)
 
             box.pack_start(LinkBox(
-                BasicLabel(name),
+                BasicLabel(name, ellipsize=pango.ELLIPSIZE_END),
                 edit_btn)
                 )
         else:
