@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 22:56+0100\n"
-"PO-Revision-Date: 2009-02-05 02:11+0100\n"
+"PO-Revision-Date: 2009-02-05 19:48+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -253,9 +253,8 @@ msgstr ""
 
 #: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1030
 #: ../src/gen/lib/date.py:1044
-#, fuzzy
 msgid "none"
-msgstr "nessuna"
+msgstr "nessuno"
 
 #: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
@@ -791,7 +790,6 @@ msgstr ""
 "salvataggio di una copia dei dati."
 
 #: ../src/ExportAssistant.py:519
-#, fuzzy
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -809,12 +807,12 @@ msgstr ""
 "\n"
 "Questa procedura aiuta a salvare una copia dei dati in uno degli "
 "innumerevoli formati supportati da GRAMPS. Può essere usata per effettuare "
-"una copia dei dati, effettuare un backup, o convertirli un formato che ne "
-"consenta il trasferimento in un altro programma.\n"
+"una copia dei dati, effettuare un backup, o convertire i dati in un formato "
+"che ne consenta il trasferimento in un altro programma.\n"
 "\n"
 "Se si cambia idea durante l'esecuzione di questa procedura, è possibile "
-"premere in modo sicuro il pulsante Annulla in ogni momento senza modificare "
-"le informazioni del database."
+"premere in modo sicuro il pulsante Annulla in ogni momento; in questo modo "
+"il database non sarà modificato."
 
 #: ../src/ExportOptions.py:67
 msgid "Filt_er"
@@ -1283,12 +1281,10 @@ msgid "Private record"
 msgstr "Informazione privata"
 
 #: ../src/GrampsCfg.py:752
-#, fuzzy
 msgid "Change is not immediate"
 msgstr "Modifica non immediata"
 
 #: ../src/GrampsCfg.py:753
-#, fuzzy
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
@@ -1590,9 +1586,8 @@ msgstr ""
 "Fare clic con il pulsante destro per mostrare il menu modifica"
 
 #: ../src/GrampsWidgets.py:133
-#, fuzzy
 msgid "Edit icons can be enabled in the Preferences dialog"
-msgstr "La modifica delle icone può essere abilitata dalle preferenze"
+msgstr "Le icone di modifica possono essere abilitate nelle preferenze"
 
 #: ../src/GrampsWidgets.py:343
 msgid "Record is private"
@@ -1702,9 +1697,8 @@ msgid "Background Color"
 msgstr "Colore di sfondo"
 
 #: ../src/MarkupText.py:502 ../src/UndoHistory.py:178
-#, fuzzy
 msgid "Clear"
-msgstr "Pulisce"
+msgstr "Pulisci"
 
 #: ../src/MarkupText.py:847
 msgid "Select font color"
@@ -1761,7 +1755,6 @@ msgid "Go to the previous person in the history"
 msgstr "Va alla persona precedente nella cronologia"
 
 #: ../src/PageView.py:396 ../src/DataViews/GrampletView.py:997
-#, fuzzy
 msgid "_Home"
 msgstr "_Casa"
 
@@ -1849,12 +1842,10 @@ msgid "%(west_longitude)s W"
 msgstr "%(west_longitude)s W"
 
 #: ../src/QuestionDialog.py:187
-#, fuzzy
 msgid "Error detected in database"
 msgstr "Rilevato un errore nel database"
 
 #: ../src/QuestionDialog.py:188
-#, fuzzy
 msgid ""
 "GRAMPS has detected an error in the database. This can usually be resolved "
 "by running the \"Check and Repair Database\" tool.\n"
@@ -1872,28 +1863,24 @@ msgstr ""
 "\n"
 
 #: ../src/QuestionDialog.py:198
-#, fuzzy
 msgid "Low level database corruption detected"
 msgstr "Rilevato danneggiamento a basso livello del database"
 
 #: ../src/QuestionDialog.py:199
-#, fuzzy
 msgid ""
 "GRAMPS has detected a problem in the underlying Berkeley database. This can "
 "be repaired by from the Family Tree Manager. Select the database and click "
 "on the Repair button"
 msgstr ""
-"GRAMPS ha rilevato un problema nel database sottostante di tipo Berkeley. "
+"GRAMPS ha rilevato un problema nel database di tipo Berkeley sottostante. "
 "Può essere corretto dal gestore degli alberi genealogici. Selezionare il "
 "database e fare clic sul pulsante Ripara"
 
 #: ../src/QuestionDialog.py:310 ../src/Utils.py:1112
-#, fuzzy
 msgid "Attempt to force closing the dialog"
-msgstr "Accetta le modifiche e chiude il dialogo"
+msgstr "Tentativo di chiusura forzata della finestra di dialogo"
 
 #: ../src/QuestionDialog.py:311
-#, fuzzy
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
@@ -1930,9 +1917,8 @@ msgid "Person %s connects to himself via %s"
 msgstr "La persona %s è connessa a se stessa tramite %s"
 
 #: ../src/Relationship.py:1193
-#, fuzzy
 msgid "undefined"
-msgstr "non definito"
+msgstr "non definita"
 
 #: ../src/Relationship.py:1659 ../src/plugins/ImportCSV.py:273
 msgid "husband"
@@ -2642,17 +2628,14 @@ msgstr ""
 "%s"
 
 #: ../src/ToolTips.py:151
-#, fuzzy
 msgid "Search Url"
-msgstr "Indirizzo di ricerca"
+msgstr "URL di ricerca"
 
 #: ../src/ToolTips.py:152
-#, fuzzy
 msgid "Home Url"
-msgstr "Indirizzo iniziale"
+msgstr "URL della pagina principale"
 
 #: ../src/ToolTips.py:168
-#, fuzzy
 msgid "Sources in repository"
 msgstr "Fonti nel deposito"
 
@@ -2704,9 +2687,8 @@ msgid "unknown"
 msgstr "sconosciuto"
 
 #: ../src/Utils.py:88
-#, fuzzy
 msgid "Invalid"
-msgstr "Non valida"
+msgstr "Non valido"
 
 #: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:138
 msgid "Very High"
@@ -2770,14 +2752,13 @@ msgid "default"
 msgstr "predefinito"
 
 #: ../src/Utils.py:713 ../src/plugins/CalculateEstimatedDates.py:415
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Errore nel database: %s è definito come ascendente di se stesso/a"
 
 #: ../src/Utils.py:1113
-#, fuzzy
 msgid "Please do not force closing this important dialog."
-msgstr "Non chiudere forzatamente questa importante finestra di dialogo.n"
+msgstr "Non chiudere forzatamente questa importante finestra di dialogo."
 
 #: ../src/Utils.py:1193
 msgid "TITLE"
@@ -2840,9 +2821,8 @@ msgid "History cleared"
 msgstr "Cancellazione cronologia"
 
 #: ../src/ViewManager.py:350 ../src/ViewManager.py:351
-#, fuzzy
 msgid "Connect to a recent database"
-msgstr "Impossibile aprire il database"
+msgstr "Connessione ad un database recente"
 
 #: ../src/ViewManager.py:355 ../src/ViewManager.py:356
 #: ../src/ViewManager.py:375
@@ -2862,7 +2842,6 @@ msgid "Open _Recent"
 msgstr "Apri _recenti"
 
 #: ../src/ViewManager.py:377
-#, fuzzy
 msgid "Open an existing database"
 msgstr "Apre un database esistente"
 
@@ -2887,14 +2866,12 @@ msgid "_Help"
 msgstr "_Aiuto"
 
 #: ../src/ViewManager.py:385
-#, fuzzy
 msgid "GRAMPS _Home Page"
-msgstr "_Homepage GRAMPS"
+msgstr "Pagina _web GRAMPS"
 
 #: ../src/ViewManager.py:387
-#, fuzzy
 msgid "GRAMPS _Mailing Lists"
-msgstr "_Liste distribuzione GRAMPS"
+msgstr "_Mailing list GRAMPS"
 
 #: ../src/ViewManager.py:389
 msgid "_Report a Bug"
@@ -2965,7 +2942,6 @@ msgid "_Tools"
 msgstr "S_trumenti"
 
 #: ../src/ViewManager.py:445
-#, fuzzy
 msgid "Open the tools dialog"
 msgstr "Apre la finestra di dialogo degli strumenti"
 
@@ -2998,15 +2974,14 @@ msgid "Undo History..."
 msgstr "Cronologia annullamenti..."
 
 #: ../src/ViewManager.py:491
-#, fuzzy, python-format
+#, python-format
 msgid "Key %s is not bound"
 msgstr "Il pulsante %s non è associato"
 
 #. load document generators
 #: ../src/ViewManager.py:591
-#, fuzzy
 msgid "Loading document formats..."
-msgstr "Caricamento formati documenti ..."
+msgstr "Caricamento formati documenti..."
 
 #. load plugins
 #: ../src/ViewManager.py:596
@@ -3014,7 +2989,6 @@ msgid "Loading plugins..."
 msgstr "Caricamento plugin..."
 
 #: ../src/ViewManager.py:610
-#, fuzzy
 msgid "Ready"
 msgstr "Pronto"
 
@@ -3023,12 +2997,10 @@ msgid "Autobackup..."
 msgstr "Copia di sicurezza automatica..."
 
 #: ../src/ViewManager.py:654
-#, fuzzy
 msgid "Abort changes?"
 msgstr "Annullare le modifiche?"
 
 #: ../src/ViewManager.py:655
-#, fuzzy
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
@@ -3037,7 +3009,6 @@ msgstr ""
 "prima dell'ultima sessione di modifiche."
 
 #: ../src/ViewManager.py:657
-#, fuzzy
 msgid "Abort changes"
 msgstr "Annulla modifiche"
 
@@ -3050,7 +3021,6 @@ msgid "Cannot abandon session's changes"
 msgstr "Impossibile annullare le modifiche della sessione di lavoro"
 
 #: ../src/ViewManager.py:668
-#, fuzzy
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -3059,7 +3029,6 @@ msgstr ""
 "effettuati durante la sessione di lavoro è superiore al limite."
 
 #: ../src/ViewManager.py:1034
-#, fuzzy
 msgid "Import Statistics"
 msgstr "Statistiche importazione"
 
@@ -3076,7 +3045,6 @@ msgid "Read Only"
 msgstr "Sola lettura"
 
 #: ../src/Simple/_SimpleTable.py:196
-#, fuzzy
 msgid "Unknown father"
 msgstr "Padre ignoto"
 
@@ -3086,7 +3054,6 @@ msgid "and"
 msgstr "e"
 
 #: ../src/Simple/_SimpleTable.py:201
-#, fuzzy
 msgid "Unknown mother"
 msgstr "Madre ignota"
 
@@ -3111,7 +3078,6 @@ msgstr "Patronimico, nome"
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
 #: ../src/plugins/ImportCSV.py:230
-#, fuzzy
 msgid "title"
 msgstr "titolo"
 
@@ -3127,9 +3093,8 @@ msgstr "prefisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
 #: ../src/plugins/ImportCSV.py:220
-#, fuzzy
 msgid "surname"
-msgstr "prefisso"
+msgstr "cognome"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
 #: ../src/plugins/ImportCSV.py:234
@@ -3137,7 +3102,6 @@ msgid "suffix"
 msgstr "suffisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:284 ../src/BasicUtils/_NameDisplay.py:323
-#, fuzzy
 msgid "patronymic"
 msgstr "patronimico"
 
@@ -3169,9 +3133,8 @@ msgstr "Informazione mancante"
 #: ../src/Config/_GrampsConfigKeys.py:293
 #: ../src/Config/_GrampsConfigKeys.py:294 ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485 ../src/gen/proxy/living.py:443
-#, fuzzy
 msgid "Living"
-msgstr "Vivente"
+msgstr "In vita"
 
 #: ../src/Config/_GrampsConfigKeys.py:295
 msgid "Private Record"
@@ -3179,12 +3142,11 @@ msgstr "Informazione privata"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr "Fusione persone"
+msgstr "Fusione_persone"
 
 #: ../src/Merge/_MergePerson.py:82
-#, fuzzy
 msgid "Compare People"
-msgstr "Impossibile fondere le persone."
+msgstr "Confronto persone"
 
 #: ../src/Merge/_MergePerson.py:97 ../src/Merge/_MergePerson.py:102
 #: ../src/Merge/_MergePerson.py:275 ../src/Merge/_MergePerson.py:282
@@ -3196,7 +3158,6 @@ msgstr "Impossibile fondere le persone"
 
 #: ../src/Merge/_MergePerson.py:98 ../src/Merge/_MergePerson.py:276
 #: ../src/Merge/_MergePerson.py:314
-#, fuzzy
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
@@ -3206,7 +3167,6 @@ msgstr ""
 
 #: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:283
 #: ../src/Merge/_MergePerson.py:319
-#, fuzzy
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -3236,7 +3196,6 @@ msgid "Alternate Names"
 msgstr "Nomi alternativi"
 
 #: ../src/Merge/_MergePerson.py:162 ../src/Merge/_MergePerson.py:176
-#, fuzzy
 msgid "Family ID"
 msgstr "ID famiglia"
 
@@ -3257,9 +3216,8 @@ msgid "Marriage"
 msgstr "Matrimonio"
 
 #: ../src/Merge/_MergePerson.py:191
-#, fuzzy
 msgid "No spouses or children found"
-msgstr "Nessun coniuge o figli trovato"
+msgstr "Non sono stati trovati né coniugi né figli"
 
 #: ../src/Merge/_MergePerson.py:195 ../src/plugins/IndivComplete.py:272
 #: ../src/plugins/NarrativeWeb.py:2206
@@ -3387,7 +3345,7 @@ msgstr "Elimina l'oggetto multimediale selezionato"
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 #, fuzzy
 msgid "Drag Media Object"
-msgstr "Oggetto multimediale"
+msgstr "Trascinare oggetto multimediale"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
@@ -3398,12 +3356,12 @@ msgid "View in the default viewer"
 msgstr "Mostra nel visualizzatore predefinito"
 
 #: ../src/DataViews/MediaView.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Cannot view %s"
 msgstr "Impossibile visualizzare %s"
 
 #: ../src/DataViews/MediaView.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
 msgstr "GRAMPS non ha trovato l'applicazione per aprire un file di tipo %s."
 
@@ -3412,9 +3370,8 @@ msgid "Select Media Columns"
 msgstr "Seleziona colonne oggetto multimediale"
 
 #: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:66
-#, fuzzy
 msgid "Double click image to view in an external viewer"
-msgstr "Doppio clic sull'immagine per aprirla in un visualizzatore esterno."
+msgstr "Doppio clic sull'immagine per aprirla in un visualizzatore esterno"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/MediaView.py:397
@@ -3444,7 +3401,6 @@ msgid "Unnamed Gramplet"
 msgstr "Gramplet senza nome"
 
 #: ../src/DataViews/GrampletView.py:125
-#, fuzzy
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Trascinare il pulsante delle proprietà per spostare e fare clic su di esso "
@@ -3539,7 +3495,6 @@ msgid "d."
 msgstr "d."
 
 #: ../src/DataViews/PedigreeView.py:74
-#, fuzzy
 msgid "bap."
 msgstr "batt."
 
@@ -3549,12 +3504,10 @@ msgid "chr."
 msgstr "batt."
 
 #: ../src/DataViews/PedigreeView.py:76
-#, fuzzy
 msgid "bur."
 msgstr "sep."
 
 #: ../src/DataViews/PedigreeView.py:77
-#, fuzzy
 msgid "crem."
 msgstr "crem."
 
@@ -3571,7 +3524,6 @@ msgid "Jump to mother"
 msgstr "Vai alla madre"
 
 #: ../src/DataViews/PedigreeView.py:1265
-#, fuzzy
 msgid "A person was found to be his/her own ancestor."
 msgstr "Trovata persona definita come ascendente di se stessa."
 
@@ -3583,7 +3535,6 @@ msgstr "Trovata persona definita come ascendente di se stessa."
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:462 ../src/plugins/NarrativeWeb.py:1592
 #: ../src/plugins/NarrativeWeb.py:1594
-#, fuzzy
 msgid "Home"
 msgstr "Casa"
 
@@ -3600,21 +3551,18 @@ msgid "Tree style"
 msgstr "Stile albero"
 
 #: ../src/DataViews/PedigreeView.py:1356
-#, fuzzy
 msgid "Version A"
-msgstr "Versione:"
+msgstr "Versione A"
 
 #: ../src/DataViews/PedigreeView.py:1363
-#, fuzzy
 msgid "Version B"
-msgstr "Versione:"
+msgstr "Versione B"
 
 #: ../src/DataViews/PedigreeView.py:1375
 msgid "Tree size"
 msgstr "Dimensione albero"
 
 #: ../src/DataViews/PedigreeView.py:1382
-#, fuzzy
 msgid "Automatic"
 msgstr "Automatico"
 
@@ -3642,12 +3590,10 @@ msgstr "Figli"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/PedigreeView.py:1602
-#, fuzzy
 msgid "Related"
-msgstr "Modello"
+msgstr "In relazione"
 
 #: ../src/DataViews/PedigreeView.py:1653
-#, fuzzy
 msgid "Family Menu"
 msgstr "Menu famiglia"
 
@@ -3717,15 +3663,14 @@ msgstr "_Fusione rapida..."
 
 #: ../src/DataViews/PersonView.py:191 ../src/DataViews/PersonView.py:204
 #: ../src/DataViews/PersonView.py:215 ../src/DataViews/PersonView.py:229
-#, fuzzy
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"Devono essere selezionati esattamente due luoghi affinché la fusione sia "
-"possibile. Un secondo luogo può essere selezionato mantenendo premuto il "
-"tasto Ctrl mentre si clicca sul luogo desiderato."
+"Devono essere selezionate esattamente due persone affinché la fusione sia "
+"possibile. Una seconda persona può essere selezionata mantenendo premuto il "
+"tasto Ctrl mentre si fa clic sulla persona desiderata."
 
 #: ../src/DataViews/PersonView.py:237
 msgid "Select Person Columns"
@@ -3757,9 +3702,8 @@ msgid "Go to default person"
 msgstr "Va alla persona predefinita"
 
 #: ../src/DataViews/PersonView.py:901
-#, fuzzy
 msgid "Edit selected person"
-msgstr "Modifica l'evento selezionato"
+msgstr "Modifica la persona selezionata"
 
 #: ../src/DataViews/PersonView.py:907
 msgid "Delete selected person"
@@ -3858,7 +3802,7 @@ msgid ""
 msgstr ""
 "Devono essere selezionati esattamente due luoghi affinché la fusione sia "
 "possibile. Un secondo luogo può essere selezionato mantenendo premuto il "
-"tasto Ctrl mentre si clicca sul luogo desiderato."
+"tasto Ctrl mentre si fa clic sul luogo desiderato."
 
 #: ../src/DataViews/RelationView.py:323
 msgid "_Reorder"
@@ -3949,7 +3893,6 @@ msgid "Reorder parents"
 msgstr "Riordina genitori"
 
 #: ../src/DataViews/RelationView.py:703
-#, fuzzy
 msgid "Remove person as child of these parents"
 msgstr "Rimuove la persona come figlia dei genitori correnti"
 
@@ -3958,12 +3901,10 @@ msgid "Edit family"
 msgstr "Modifica famiglia"
 
 #: ../src/DataViews/RelationView.py:708
-#, fuzzy
 msgid "Reorder families"
 msgstr "Riordina famiglie"
 
 #: ../src/DataViews/RelationView.py:709
-#, fuzzy
 msgid "Remove person as parent in this family"
 msgstr "Rimuove dal ruolo di genitore per la famiglia corrente"
 
@@ -3981,23 +3922,20 @@ msgid " (1 sister)"
 msgstr " (una sorella)"
 
 #: ../src/DataViews/RelationView.py:770
-#, fuzzy
 msgid " (1 sibling)"
-msgstr " (un fratello)"
+msgstr " (un fratello/sorella)"
 
 #: ../src/DataViews/RelationView.py:772
 msgid " (only child)"
 msgstr " (figlio/a unico/a)"
 
 #: ../src/DataViews/RelationView.py:807 ../src/DataViews/RelationView.py:1194
-#, fuzzy
 msgid "Add new child to family"
 msgstr "Aggiunge nuovo figlio alla famiglia"
 
 #: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:1200
-#, fuzzy
 msgid "Add existing child to family"
-msgstr "Aggiunta figlio esistente alla famiglia"
+msgstr "Aggiunge figlio esistente alla famiglia"
 
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
@@ -4035,12 +3973,10 @@ msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/RelationView.py:1134
-#, fuzzy
 msgid "Broken family detected"
 msgstr "Rilevata famiglia danneggiata"
 
 #: ../src/DataViews/RelationView.py:1135
-#, fuzzy
 msgid "Please run the Check and Repair Database tool"
 msgstr "Eseguire lo strumento Controlla e ripara database"
 
@@ -4067,12 +4003,10 @@ msgid "Select Child"
 msgstr "Seleziona figlio"
 
 #: ../src/DataViews/RepositoryView.py:70
-#, fuzzy
 msgid "Home URL"
-msgstr "Home URL"
+msgstr "URL della pagina principale"
 
 #: ../src/DataViews/RepositoryView.py:78
-#, fuzzy
 msgid "Search URL"
 msgstr "URL di ricerca"
 
@@ -4159,15 +4093,14 @@ msgid "Cannot merge sources."
 msgstr "Impossibile fondere le fonti."
 
 #: ../src/DataViews/SourceView.py:226
-#, fuzzy
 msgid ""
 "Exactly two sources must be selected to perform a merge. A second source can "
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
-"Devono essere selezionati esattamente due luoghi affinché la fusione sia "
-"possibile. Un secondo luogo può essere selezionato mantenendo premuto il "
-"tasto Ctrl mentre si clicca sul luogo desiderato."
+"Devono essere selezionati esattamente due fonti affinché la fusione sia "
+"possibile. Una seconda fonte può essere selezionata mantenendo premuto il "
+"tasto Ctrl mentre si fa clic sulla fonte desiderata."
 
 #: ../src/docgen/AsciiDoc.py:140 ../src/docgen/AsciiDoc.py:143
 #: ../src/docgen/HtmlDoc.py:225 ../src/docgen/HtmlDoc.py:228
@@ -4235,7 +4168,6 @@ msgid "The marker '<!-- START -->' was not in the template"
 msgstr "Il marcatore \"<!-- START -->\" non è presente nel modello"
 
 #: ../src/docgen/HtmlDoc.py:159 ../src/docgen/HtmlDoc.py:184
-#, fuzzy
 msgid "Template Error"
 msgstr "Errore nel modello"
 
@@ -4265,14 +4197,12 @@ msgstr "LaTeX"
 
 #: ../src/docgen/ODFDoc.py:1162 ../src/docgen/ODFDoc.py:1163
 #: ../src/docgen/ODFDoc.py:1164
-#, fuzzy
 msgid "Open Document Text"
-msgstr "Open Document Text"
+msgstr "Testo OpenDocument"
 
 #: ../src/docgen/PdfDoc.py:149
-#, fuzzy
 msgid "PDF document"
-msgstr "Documento RTF"
+msgstr "Documento PDF"
 
 #: ../src/docgen/PSDrawDoc.py:64 ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_DocReportDialog.py:113
@@ -4298,9 +4228,8 @@ msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
 #: ../src/docgen/TextBufDoc.py:80 ../src/docgen/TextBufDoc.py:151
-#, fuzzy
 msgid "Quick View"
-msgstr "Anteprima"
+msgstr "Vista rapida"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 msgid "Create and add a new address"
@@ -4327,7 +4256,6 @@ msgid "_Addresses"
 msgstr "I_ndirizzi"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
-#, fuzzy
 msgid "Create and add a new attribute"
 msgstr "Crea e aggiunge un nuovo attributo"
 
@@ -4336,7 +4264,6 @@ msgid "Remove the existing attribute"
 msgstr "Rimuove l'attributo"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:54
-#, fuzzy
 msgid "Edit the selected attribute"
 msgstr "Modifica l'attributo selezionato"
 
@@ -4357,7 +4284,6 @@ msgid "_References"
 msgstr "_Riferimenti"
 
 #: ../src/DisplayTabs/_BackRefList.py:91
-#, fuzzy
 msgid "Edit reference"
 msgstr "Modifica riferimento"
 
@@ -4379,7 +4305,6 @@ msgid "Move Down"
 msgstr "Sposta in basso"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
-#, fuzzy
 msgid "Create and add a new data entry"
 msgstr "Crea e aggiunge un nuovo dato"
 
@@ -4388,22 +4313,18 @@ msgid "Remove the existing data entry"
 msgstr "Rimuove il dato"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
-#, fuzzy
 msgid "Edit the selected data entry"
 msgstr "Modifica i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:52
-#, fuzzy
 msgid "Move the selected data entry upwards"
 msgstr "Sposta in alto i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:53
-#, fuzzy
 msgid "Move the selected data entry downwards"
 msgstr "Sposta in basso i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:57
-#, fuzzy
 msgid "Key"
 msgstr "Chiave"
 
@@ -4453,8 +4374,8 @@ msgid ""
 "To edit this event reference, you need to close the event."
 msgstr ""
 "Questo riferimento ad un evento non può essere modificato adesso. Uno tra "
-"l'evento associato o un altro riferimento ad evento associato con lo stesso "
-"evento sta venendo modificato.\n"
+"l'evento associato o un altro riferimento ad evento, associato con lo stesso "
+"evento, sta venendo modificato.\n"
 "\n"
 "Per modificare questo riferimento ad un evento è necessario chiudere "
 "l'evento."
@@ -4627,8 +4548,8 @@ msgid ""
 "To edit this repository reference, you need to close the repository."
 msgstr ""
 "Questo riferimento ad un deposito non può essere modificato adesso. Uno tra "
-"il deposito associato o un altro riferimento a deposito associato con lo "
-"stesso deposito sta venendo modificato.\n"
+"il deposito associato o un altro riferimento a deposito, associato con lo "
+"stesso deposito, sta venendo modificato.\n"
 "\n"
 "Per modificare questo riferimento ad un deposito è necessario chiudere il "
 "deposito."
@@ -4667,8 +4588,8 @@ msgid ""
 "To edit this source reference, you need to close the source."
 msgstr ""
 "Questo riferimento ad una fonte non può essere modificato adesso. Una tra la "
-"fonte associata o un altro riferimento ad fonte associato con la stessa "
-"fonte sta venendo modificata.\n"
+"fonte associata o un altro riferimento a fonte, associato con la stessa "
+"fonte, sto venendo modificato.\n"
 "\n"
 "Per modificare questo riferimento ad una fonte è necessario chiudere la "
 "fonte."
@@ -4706,7 +4627,6 @@ msgid "Select a media object"
 msgstr "Selezionare un oggetto multimediale"
 
 #: ../src/Editors/AddMedia.py:146
-#, fuzzy
 msgid "Select media object"
 msgstr "Selezionare un oggetto multimediale"
 
@@ -4767,7 +4687,7 @@ msgstr "Riferimento figlio"
 #: ../src/Editors/_EditEvent.py:60
 #, fuzzy
 msgid "manual|Editing_Information_About_Events"
-msgstr "Modifica informazioni degli eventi"
+msgstr "Modifica_informazioni_eventi"
 
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
 #, python-format
@@ -4805,6 +4725,9 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
+"Si è tentato di usare l'ID GRAMPS con valore %(id)s già esistente. Questo "
+"valore è già usato da '%(prim_object)s'. Inserire un ID differente o "
+"lasciare il campo vuoto per ottenere il successivo ID disponibile."
 
 #: ../src/Editors/_EditEvent.py:227
 msgid "The event type cannot be empty"
@@ -4895,9 +4818,12 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
+"È possibile creare per errore diverse famiglie con gli stessi genitori. Per "
+"aiutare ad evitare tale problema, durante la creazione di una nuova famiglia "
+"sono attivi solo i pulsanti per la selezione dei genitori. Gli altri campi "
+"diventano disponibili solo dopo la scelta dei genitori."
 
 #: ../src/Editors/_EditFamily.py:478
-#, fuzzy
 msgid "Family has changed"
 msgstr "Famiglia modificata"
 
@@ -4907,6 +4833,10 @@ msgid ""
 "not corrupted, GRAMPS has updated the family to reflect these changes. Any "
 "edits you have made may have been lost."
 msgstr ""
+"I dati della famiglia attualmente in fase di modifica sono stati cambiati. "
+"Per essere sicuro che il database non sia danneggiato, GRAMPS ha aggiornato "
+"la famiglia per riflettere tali modifiche. Ogni altra modifica effettuata su "
+"questi dati potrebbe essere stata persa."
 
 #: ../src/Editors/_EditFamily.py:496 ../src/Editors/_EditFamily.py:499
 msgid "New Family"
@@ -4958,6 +4888,10 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
+"Nel database è già presente una famiglia con questi genitori. Se questa "
+"viene salvata, sarà creata una famiglia duplicata. Si raccomanda di "
+"annullare le modifiche effettuate in questa finestra e selezionare la "
+"famiglia preesistente."
 
 #: ../src/Editors/_EditFamily.py:823
 msgid "Baptism:"
@@ -5006,9 +4940,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Si è tentato di modificare l'ID GRAMPS con il valore %(id)s. Questo valore è "
-"già in uso. Inserire un ID differente o lasciare vuoto il campo per ottenere "
-"il successivo ID disponibile."
+"Si è tentato di usare l'ID GRAMPS con valore %(id)s già esistente. Questo "
+"valore è già in uso. Inserire un ID differente o lasciare il campo vuoto per "
+"ottenere il successivo ID disponibile."
 
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
@@ -5017,7 +4951,7 @@ msgstr "Aggiunge famiglia"
 #: ../src/Editors/_EditLdsOrd.py:151 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:417
 msgid "LDS Ordinance Editor"
-msgstr ""
+msgstr "Editor ordinanza LDS"
 
 #: ../src/Editors/_EditLdsOrd.py:274
 #, python-format
@@ -5097,8 +5031,9 @@ msgid "New Name"
 msgstr "Nuovo nome"
 
 #: ../src/Editors/_EditName.py:340
+#, fuzzy
 msgid "Break global name grouping?"
-msgstr ""
+msgstr "Disattivare raggruppamento globale dei nomi?"
 
 #: ../src/Editors/_EditName.py:341
 #, fuzzy, python-format
@@ -5114,12 +5049,10 @@ msgid "Continue"
 msgstr "Continua"
 
 #: ../src/Editors/_EditName.py:346
-#, fuzzy
 msgid "Return to Name Editor"
-msgstr "Ritorna all'editor nomi"
+msgstr "Ritorna all'editor dei nomi"
 
 #: ../src/Editors/_EditName.py:371
-#, fuzzy
 msgid "Group all people with the same name?"
 msgstr "Raggruppare tutte le persone con lo stesso nome?"
 
@@ -5131,12 +5064,10 @@ msgid ""
 msgstr ""
 
 #: ../src/Editors/_EditName.py:377
-#, fuzzy
 msgid "Group all"
 msgstr "Raggruppare tutti"
 
 #: ../src/Editors/_EditName.py:378
-#, fuzzy
 msgid "Group this name only"
 msgstr "Raggruppare solo questo nome"
 
@@ -5249,7 +5180,6 @@ msgid "Edit Person (%s)"
 msgstr "Modifica persona (%s)"
 
 #: ../src/Editors/_EditPerson.py:871
-#, fuzzy
 msgid "Unknown gender specified"
 msgstr "Specificato sesso sconosciuto"
 
@@ -5537,12 +5467,11 @@ msgid "Line %d: empty note was ignored."
 msgstr "Riga %d: la nota è stata ignorata perché vuota."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:4086
-#, fuzzy, python-format
+#, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "saltata/e %d subordinata/e alla riga %d"
 
 #: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1111
-#, fuzzy
 msgid "Rebuild reference map"
 msgstr "Ricostruisce la mappa dei riferimenti"
 
@@ -5554,7 +5483,6 @@ msgid "Failure writing %s"
 msgstr "Errore durante la scrittura di %s"
 
 #: ../src/GrampsDbUtils/_GrampsDbWriteXML.py:129
-#, fuzzy
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the directory. Please make sure you have write access to the directory and "
@@ -5565,7 +5493,6 @@ msgstr ""
 "directory e riprovare."
 
 #: ../src/GrampsDbUtils/_GrampsDbWriteXML.py:139
-#, fuzzy
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
@@ -5893,14 +5820,13 @@ msgid "Report a bug: Step 5 of 5"
 msgstr "Segnalazione bug: passo 5 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
-#, fuzzy
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"GRAMPS è un progetto a sorgente aperto. Il suo successo dipende dagli utenti "
-"e per questo motivo il loro riscontro è importante. Grazie per il tempo "
-"dedicato a segnalare un problema. "
+"GRAMPS è un progetto Open Source (a sorgente aperto). Il suo successo "
+"dipende dagli utenti e per questo motivo il loro riscontro è importante. "
+"Grazie per il tempo dedicato a segnalare un problema."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:134
 msgid ""
@@ -6172,10 +6098,11 @@ msgid "%(person)s and %(active_person)s are not directly related."
 msgstr "%(person)s e %(active_person)s non sono in relazione diretta."
 
 #: ../src/plugins/all_relations.py:148
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr ""
-"%(person)s e %(active_person)s condividono le seguenti relazioni legali:"
+"%(person)s e %(active_person)s condividono le seguenti relazioni come "
+"parenti acquisiti:"
 
 #: ../src/plugins/all_relations.py:202
 #, python-format
@@ -6213,15 +6140,13 @@ msgstr "Parziale"
 
 #: ../src/plugins/all_relations.py:328
 msgid "Remarks with inlaw family"
-msgstr ""
+msgstr "Osservazioni sulla famiglia acquisita"
 
 #: ../src/plugins/all_relations.py:330
-#, fuzzy
 msgid "Remarks"
-msgstr "Commenti"
+msgstr "Osservazioni"
 
 #: ../src/plugins/all_relations.py:332
-#, fuzzy
 msgid "The following problems were encountered:"
 msgstr "Si sono verificati i seguenti problemi:"
 
@@ -6513,7 +6438,6 @@ msgid "Subject"
 msgstr "Soggetto"
 
 #: ../src/plugins/BookReport.py:774
-#, fuzzy
 msgid "Book selection list"
 msgstr "Lista selezione libri"
 
@@ -6625,7 +6549,6 @@ msgid "Display detailed results"
 msgstr "Mostra risultati dettagliati"
 
 #: ../src/plugins/CalculateEstimatedDates.py:94
-#, fuzzy
 msgid "Show details for every date entered"
 msgstr "Mostra i dettagli per ogni data inserita"
 
@@ -6864,7 +6787,6 @@ msgid "My Calendar"
 msgstr "Il mio calendario"
 
 #: ../src/plugins/Calendar.py:546
-#, fuzzy
 msgid "First line of text at bottom of calendar"
 msgstr "Prima riga di testo in fondo al calendario"
 
@@ -6877,7 +6799,6 @@ msgid "Produced with GRAMPS"
 msgstr "Generato con GRAMPS"
 
 #: ../src/plugins/Calendar.py:550
-#, fuzzy
 msgid "Second line of text at bottom of calendar"
 msgstr "Seconda riga di testo in fondo al calendario"
 
@@ -6886,7 +6807,6 @@ msgid "Text Area 3"
 msgstr "Area di testo 3"
 
 #: ../src/plugins/Calendar.py:554
-#, fuzzy
 msgid "Third line of text at bottom of calendar"
 msgstr "Terza riga di testo in fondo al calendario"
 
@@ -6897,7 +6817,7 @@ msgstr "Testo titolo e colore di sfondo"
 #: ../src/plugins/Calendar.py:612
 #, fuzzy
 msgid "Calendar day numbers"
-msgstr "Numeri giorni del calendario"
+msgstr "Numeri dei giorni del calendario"
 
 #: ../src/plugins/Calendar.py:615
 #, fuzzy
@@ -6972,10 +6892,9 @@ msgstr "Produce un resoconto dei compleanni e degli anniversari"
 #: ../src/plugins/ChangeNames.py:67
 #, fuzzy
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Correggere uso delle maiuscole nei cognomi..."
+msgstr "Correzione_uso_delle_maiuscole_nei_cognomi..."
 
 #: ../src/plugins/ChangeNames.py:77 ../src/plugins/ChangeNames.py:255
-#, fuzzy
 msgid "Capitalization changes"
 msgstr "Modifiche all'uso delle maiuscole"
 
@@ -6993,7 +6912,6 @@ msgid "No modifications made"
 msgstr "Nessuna modifica apportata"
 
 #: ../src/plugins/ChangeNames.py:146
-#, fuzzy
 msgid "No capitalization changes were detected."
 msgstr "Non è stata rilevata alcuna modifica all'uso delle maiuscole."
 
@@ -7013,7 +6931,6 @@ msgstr "Modifica uso maiuscole"
 
 #: ../src/plugins/ChangeNames.py:211 ../src/plugins/EventCmp.py:290
 #: ../src/plugins/ExtractCity.py:541 ../src/plugins/PatchNames.py:222
-#, fuzzy
 msgid "Building display"
 msgstr "Costruzione visualizzazione"
 
@@ -7022,7 +6939,6 @@ msgid "Fix Capitalization of Family Names"
 msgstr "Correggi uso delle maiuscole nei cognomi"
 
 #: ../src/plugins/ChangeNames.py:292
-#, fuzzy
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
@@ -7502,7 +7418,6 @@ msgstr "Testo personalizzato"
 
 #. Running with gui -> Show message
 #: ../src/plugins/DateParserDisplayTest.py:62
-#, fuzzy
 msgid "Start date test?"
 msgstr "Avviare il test delle date?"
 
@@ -7513,12 +7428,10 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/DateParserDisplayTest.py:62
-#, fuzzy
 msgid "Run test"
 msgstr "Esegui test"
 
 #: ../src/plugins/DateParserDisplayTest.py:68
-#, fuzzy
 msgid "Running Date Test"
 msgstr "Esecuzione test date"
 
@@ -7589,14 +7502,12 @@ msgstr "Doppio clic sul cognome per i dettagli"
 #: ../src/plugins/DefaultGramplets.py:369
 #: ../src/plugins/DefaultGramplets.py:466
 #: ../src/plugins/DefaultGramplets.py:681
-#, fuzzy
 msgid "No Family Tree loaded or active person."
-msgstr "Nessun albero genealogico caricato."
+msgstr "Nessun albero genealogico caricato o nessuna persona attiva."
 
 #: ../src/plugins/DefaultGramplets.py:222
 #: ../src/plugins/DefaultGramplets.py:301
 #: ../src/plugins/DefaultGramplets.py:693
-#, fuzzy
 msgid "Processing..."
 msgstr "Elaborazione in corso..."
 
@@ -7679,6 +7590,8 @@ msgid ""
 "\n"
 "Breakdown by generation:\n"
 msgstr ""
+"\n"
+"Analisi per generazione:\n"
 
 #: ../src/plugins/DefaultGramplets.py:661
 msgid "Generation 1"
@@ -7686,7 +7599,6 @@ msgstr "Generazione 1"
 
 #: ../src/plugins/DefaultGramplets.py:662
 #: ../src/plugins/DefaultGramplets.py:667
-#, fuzzy
 msgid "Double-click to see people in generation"
 msgstr "Doppio clic per vedere le persone della generazione"
 
@@ -7809,7 +7721,6 @@ msgstr "Errore"
 
 #. GUI setup:
 #: ../src/plugins/DefaultGramplets.py:921
-#, fuzzy
 msgid "Enter text"
 msgstr "Inserire il testo"
 
@@ -7892,7 +7803,6 @@ msgid "Enter a date, click Run"
 msgstr "Inserire una data, premere Esegui"
 
 #: ../src/plugins/DefaultGramplets.py:1065
-#, fuzzy
 msgid ""
 "Enter a date in the entry below and click Run. This will compute the ages "
 "for everyone in your Family Tree on that date. You can then sort by the age "
@@ -7900,8 +7810,8 @@ msgid ""
 msgstr ""
 "Inserire una data nella casella sottostante e premere Esegui. Saranno "
 "calcolate le età di tutti i componenti l'albero genealogico in quella data. "
-"È possibile ordinare in base alla colonna dell'età, e tramite doppio clic "
-"sulla riga visualizzare o modificare i dati."
+"È possibile ordinare tramite la colonna dell'età, e visualizzare o "
+"modificare i dati facendo doppio clic sulla riga."
 
 #: ../src/plugins/DefaultGramplets.py:1073
 msgid "Run"
@@ -7992,8 +7902,9 @@ msgid "Pedigree Gramplet"
 msgstr "Gramplet Pedigree"
 
 #: ../src/plugins/Desbrowser.py:56
+#, fuzzy
 msgid "manual|Interactive_Descendant_Browser..."
-msgstr "Navigatore interattivo discendenza"
+msgstr "Navigatore_interattivo_discendenza..."
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
@@ -8001,7 +7912,6 @@ msgid "Descendant Browser: %s"
 msgstr "Navigatore discendenza: %s"
 
 #: ../src/plugins/Desbrowser.py:102
-#, fuzzy
 msgid "Descendant Browser tool"
 msgstr "Navigatore discendenza"
 
@@ -8019,7 +7929,6 @@ msgid "Descendant Chart for %s"
 msgstr "Grafico discendenza per %s"
 
 #: ../src/plugins/DescendTree.py:437
-#, fuzzy
 msgid "Whether to compress tree."
 msgstr "Indica se comprimere l'albero."
 
@@ -8071,7 +7980,6 @@ msgid "Descendant Report"
 msgstr "Resoconto discendenza"
 
 #: ../src/plugins/DescendReport.py:256
-#, fuzzy
 msgid "Produces a list of descendants of the active person"
 msgstr "Genera una lista di discendenti della persona attiva"
 
@@ -8112,9 +8020,8 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:340
 #: ../src/plugins/DetDescendantReport.py:576
-#, fuzzy
 msgid "Address: "
-msgstr "Indirizzo:"
+msgstr "Indirizzo: "
 
 #: ../src/plugins/DetAncestralReport.py:358
 #: ../src/plugins/DetAncestralReport.py:410
@@ -8126,7 +8033,7 @@ msgstr "%(type)s: %(value)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:380
 #: ../src/plugins/DetDescendantReport.py:279
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s in quel di %(place)s"
 
@@ -8217,7 +8124,6 @@ msgstr "Indica se omettere gli ascendenti duplicati."
 
 #: ../src/plugins/DetAncestralReport.py:739
 #: ../src/plugins/DetDescendantReport.py:682
-#, fuzzy
 msgid "Use Complete Sentences"
 msgstr "Usa frasi complete"
 
@@ -8225,7 +8131,7 @@ msgstr "Usa frasi complete"
 #: ../src/plugins/DetDescendantReport.py:684
 #, fuzzy
 msgid "Whether to use complete sentences or succinct language."
-msgstr "Indica se usare frasi complete oppure un linguaggio sintetico"
+msgstr "Indica se usare frasi complete oppure un linguaggio sintetico."
 
 #: ../src/plugins/DetAncestralReport.py:744
 #: ../src/plugins/DetDescendantReport.py:687
@@ -8342,13 +8248,11 @@ msgstr "Indica se sostituire le date mancanti con degli spazi."
 
 #: ../src/plugins/DetAncestralReport.py:819
 #: ../src/plugins/DetDescendantReport.py:766
-#, fuzzy
 msgid "The style used for the children list title."
 msgstr "Lo stile usato per il titolo della lista dei figli."
 
 #: ../src/plugins/DetAncestralReport.py:829
 #: ../src/plugins/DetDescendantReport.py:776
-#, fuzzy
 msgid "The style used for the children list."
 msgstr "Lo stile usato per la lista dei figli."
 
@@ -8367,7 +8271,7 @@ msgstr "Lo stile usato per l'intestazione «Altre informazioni»."
 #: ../src/plugins/DetDescendantReport.py:819
 #, fuzzy
 msgid "The style used for additional detail data."
-msgstr "Lo stile usato per i dettagli ulteriori."
+msgstr "Lo stile usato per gli ulteriori dettagli."
 
 #: ../src/plugins/DetAncestralReport.py:888
 msgid "Detailed Ancestral Report"
@@ -8444,7 +8348,7 @@ msgstr "Fornisce una finestra per la valutazione di codice Python"
 
 #: ../src/plugins/EventCmp.py:67
 msgid "manual|Compare_Individual_Events..."
-msgstr "Confronta eventi individuali..."
+msgstr "Confronta_eventi_individuali..."
 
 #: ../src/plugins/EventCmp.py:140
 msgid "Event comparison filter selection"
@@ -8604,9 +8508,9 @@ msgid "vC_alendar"
 msgstr "vC_alendar"
 
 #: ../src/plugins/ExportVCalendar.py:354
-#, fuzzy
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "vCalendar è usato in molte applicazioni di calendario e di pim."
+msgstr ""
+"vCalendar è un formato usato in molte applicazioni di calendario e di PIM."
 
 #: ../src/plugins/ExportVCalendar.py:355
 msgid "vCalendar export options"
@@ -8622,9 +8526,8 @@ msgid "_vCard"
 msgstr "_vCard"
 
 #: ../src/plugins/ExportVCard.py:270
-#, fuzzy
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "vCalendar è usato in molte applicazioni di rubrica e di pim."
+msgstr "vCard è un formato usato in molte applicazioni di rubrica e di PIM."
 
 #: ../src/plugins/ExportVCard.py:271
 msgid "vCard export options"
@@ -8659,24 +8562,21 @@ msgid "Checking Place Titles"
 msgstr "Controllo titoli luoghi"
 
 #: ../src/plugins/ExtractCity.py:416
-#, fuzzy
 msgid "Looking for place fields"
 msgstr "Ricerca campi dei luoghi"
 
 #: ../src/plugins/ExtractCity.py:496
-#, fuzzy
 msgid "No place information could be extracted."
 msgstr "Non può essere estratta nessuna informazione sul luogo."
 
 #: ../src/plugins/ExtractCity.py:516
-#, fuzzy
 msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish GRAMPS to convert."
 msgstr ""
 "Quella che segue è una lista di luoghi con i dati che possono essere "
 "estratti dai rispettivi titoli. Selezionare i luoghi che GRAMPS deve "
-"convertire."
+"estrarre."
 
 #: ../src/plugins/ExtractCity.py:630
 msgid "Extract Place Data from a Place Title"
@@ -8704,7 +8604,7 @@ msgid "acronym for female|F"
 msgstr "F"
 
 #: ../src/plugins/FamilyGroup.py:421
-#, fuzzy, python-format
+#, python-format
 msgid "%dU"
 msgstr "%dU"
 
@@ -8880,15 +8780,15 @@ msgstr "Il colore di sfondo è o bianco o dipendente dalla generazione"
 
 #: ../src/plugins/FanChart.py:366
 msgid "Orientation of radial texts"
-msgstr ""
+msgstr "Orientamento dei testi radiali:"
 
 #: ../src/plugins/FanChart.py:368
 msgid "upright"
-msgstr ""
+msgstr "verso l'alto"
 
 #: ../src/plugins/FanChart.py:369
 msgid "roundabout"
-msgstr ""
+msgstr "circolare"
 
 #: ../src/plugins/FanChart.py:370
 msgid "Print radial texts upright or roundabout"
@@ -9033,7 +8933,7 @@ msgstr "Media"
 
 #: ../src/plugins/FindDupes.py:68
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Trova possibili persone duplicate"
+msgstr "Trova_possibili_persone_duplicate..."
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
@@ -9813,7 +9713,7 @@ msgstr "Fornisce una finestra elencante tutti gli oggetti non raccolti"
 
 #. display the results
 #: ../src/plugins/lineage.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Father lineage for %s"
 msgstr "Discendenza paterna per %s"
 
@@ -9822,6 +9722,9 @@ msgid ""
 "This report shows the father lineage, also called patronymic lineage or Y-"
 "line. People in this lineage all share the same Y-chromosone."
 msgstr ""
+"Questo resoconto mostra la discendenza paterna, chiamata anche discendenza "
+"patrilineare o Y-line. Le persone in questa discendenza condividono lo "
+"stesso cromosoma Y."
 
 #: ../src/plugins/lineage.py:61
 msgid "Name Father"
@@ -9833,28 +9736,29 @@ msgid "Remark"
 msgstr "Annotazione"
 
 #: ../src/plugins/lineage.py:69
-#, fuzzy
 msgid "Direct line male descendants"
 msgstr "Discendenti diretti maschi"
 
 #. display the results
 #: ../src/plugins/lineage.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "Mother lineage for %s"
-msgstr "Discendenza materna per %"
+msgstr "Discendenza materna per %s"
 
 #: ../src/plugins/lineage.py:84
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage or M-"
 "line. People in this lineage all share the same RNA."
 msgstr ""
+"Questo resoconto mostra la discendenza materna, chiamata anche discendenza "
+"matrilineare o M-line. Le persone in questa discendenza condividono lo "
+"stesso RNA."
 
 #: ../src/plugins/lineage.py:92
 msgid "Name Mother"
 msgstr "Nome madre"
 
 #: ../src/plugins/lineage.py:100
-#, fuzzy
 msgid "Direct line female descendants"
 msgstr "Discendenti diretti femmine"
 
@@ -9863,7 +9767,6 @@ msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
 msgstr "ERRORE : troppi livelli nell'albero (forse a causa di un ciclo?)."
 
 #: ../src/plugins/lineage.py:153
-#, fuzzy
 msgid "No birth relation with child"
 msgstr "Nessuna relazione di nascita con il figlio"
 
@@ -9980,9 +9883,11 @@ msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
 msgstr ""
+"Si è verificato un errore durante l'esecuzione dell'operazione richiesta. Si "
+"può provare ad eseguirla nuovamente."
 
 #: ../src/plugins/MediaManager.py:330
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -10019,7 +9924,7 @@ msgid "_With:"
 msgstr "_con:"
 
 #: ../src/plugins/MediaManager.py:445
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following action is to be performed:\n"
 "\n"
@@ -10043,21 +9948,30 @@ msgid ""
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends your home directory."
 msgstr ""
+"Questo strumento permette la conversione dei percorsi relativi di file "
+"multimediali in percorsi assoluti. Svolge il suo compito facendo precedere "
+"al percorso assoluto, il percorso base specificato nelle preferenze o, se "
+"non impostato, la directory personale dell'utente."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
 msgstr "Converti i percorsi da assoluti a r_elativi"
 
 #: ../src/plugins/MediaManager.py:525
+#, fuzzy
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
 "Preferences, or if that is not set, your home directory. A relative path "
 "allows to tie the file location to a base path that can change to your needs."
 msgstr ""
+"Questo strumento permette la conversione dei percorsi assoluti di file "
+"multimediali in percorsi relativi. I percorsi relativi sono relativi al "
+"percorso base specificato nelle preferenze o, se non impostato, alla "
+"directory personale dell'utente. Un percorso relativo consente di legare la "
+"posizione del file ad un percorso base che può cambiare secondo necessità."
 
 #: ../src/plugins/MediaManager.py:589
-#, fuzzy
 msgid "Manages batch operations on media files"
 msgstr "Gestisce operazioni batch (in blocco) sugli oggetti multimediali"
 
@@ -10131,7 +10045,6 @@ msgid "No copyright notice"
 msgstr "Nessun copyright"
 
 #: ../src/plugins/NarrativeWeb.py:257
-#, fuzzy
 msgid "Possible destination error"
 msgstr "Probabile errore nella destinazione"
 
@@ -10142,6 +10055,9 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
+"La directory di destinazione impostata è una directory giù usata per "
+"l'immagazzinamento di dati. Si raccomanda di utilizzare una directory "
+"differente per memorizzare le pagine web generate."
 
 #: ../src/plugins/NarrativeWeb.py:349
 #, python-format
@@ -10178,9 +10094,8 @@ msgstr "Galleria"
 
 #: ../src/plugins/NarrativeWeb.py:472 ../src/plugins/NarrativeWeb.py:1800
 #: ../src/plugins/NarrativeWeb.py:1803
-#, fuzzy
 msgid "Download"
-msgstr "Scarica"
+msgstr "Scaricamento"
 
 #: ../src/plugins/NarrativeWeb.py:474 ../src/plugins/NarrativeWeb.py:1819
 #: ../src/plugins/NarrativeWeb.py:1822
@@ -10188,12 +10103,10 @@ msgid "Contact"
 msgstr "Contatti"
 
 #: ../src/plugins/NarrativeWeb.py:634 ../src/plugins/NarrativeWeb.py:2452
-#, fuzzy
 msgid "Narrative"
-msgstr "Narrativa"
+msgstr "Narrazione"
 
 #: ../src/plugins/NarrativeWeb.py:646
-#, fuzzy
 msgid "Weblinks"
 msgstr "Collegamenti web"
 
@@ -10202,7 +10115,6 @@ msgid "Source References"
 msgstr "Riferimenti fonti"
 
 #: ../src/plugins/NarrativeWeb.py:704
-#, fuzzy
 msgid "Confidence"
 msgstr "Confidenza"
 
@@ -10284,7 +10196,6 @@ msgid "Missing media object:"
 msgstr "Oggetti multimediali mancanti:"
 
 #: ../src/plugins/NarrativeWeb.py:1454 ../src/plugins/NarrativeWeb.py:1456
-#, fuzzy
 msgid "Surnames by person count"
 msgstr "Cognomi per totale persone"
 
@@ -10694,7 +10605,7 @@ msgstr "Produce delle pagine web (HTML) per persone o un insieme di persone"
 
 #: ../src/plugins/NotRelated.py:59
 msgid "manual|Not_Related..."
-msgstr "Non in relazione..."
+msgstr "Non_in_relazione..."
 
 #: ../src/plugins/NotRelated.py:71
 #, python-format
@@ -10785,7 +10696,6 @@ msgid "Display events on a particular day"
 msgstr "Mostra gli eventi di un giorno particolare"
 
 #: ../src/plugins/OwnerEditor.py:98
-#, fuzzy
 msgid "Database Owner Editor"
 msgstr "Editor proprietario del database"
 
@@ -10852,7 +10762,7 @@ msgstr "La directory degli oggetti multimediali %s non è scrivibile"
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
 #: ../src/plugins/ReadPkg.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
 msgstr ""
@@ -10878,7 +10788,6 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/ReadPkg.py:123
-#, fuzzy
 msgid "Cannot set base media path"
 msgstr "Impossibile importare il percorso base per gli oggetti multimediali"
 
@@ -10954,18 +10863,16 @@ msgid "Relationship calculator: %(person_name)s"
 msgstr "Calcolatrice relazioni: %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "Relazioni di %(person_name)s"
+msgstr "Relazione con %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:143 ../src/PluginUtils/_Tool.py:139
 #: ../src/ReportBase/_ReportDialog.py:274
-#, fuzzy
 msgid "Active person has not been set"
 msgstr "Persona attiva non impostata"
 
 #: ../src/plugins/RelCalc.py:144 ../src/PluginUtils/_Tool.py:140
-#, fuzzy
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 "Perché questo strumento funzioni correttamente deve essere selezionata una "
@@ -11009,9 +10916,8 @@ msgstr "Oggetti inutilizzati"
 #. Add mark column
 #. Add ignore column
 #: ../src/plugins/RemoveUnused.py:175 ../src/plugins/Verify.py:522
-#, fuzzy
 msgid "Mark"
-msgstr "Segna"
+msgstr "Marca"
 
 #: ../src/plugins/RemoveUnused.py:301
 msgid "Remove unused objects"
@@ -11144,9 +11050,8 @@ msgstr "Sottostringa:"
 
 #: ../src/plugins/SameSurnames.py:47
 #: ../src/Filters/Rules/Person/_SearchName.py:47
-#, fuzzy
 msgid "People matching the <name>"
-msgstr "Persone con il nome incompleto"
+msgstr "Persone corrispondenti a <nome>"
 
 #: ../src/plugins/SameSurnames.py:48
 msgid "Matches people with same lastname"
@@ -11229,7 +11134,7 @@ msgstr "Titolo pagina"
 #: ../src/plugins/SoundGen.py:56
 #, fuzzy
 msgid "manual|Generate_SoundEx_codes"
-msgstr "Genera codici SoundEx"
+msgstr "Genera_codici_SoundEx"
 
 #: ../src/plugins/SoundGen.py:66
 msgid "SoundEx code generator"
@@ -11286,12 +11191,10 @@ msgid "Death month"
 msgstr "Mese del decesso"
 
 #: ../src/plugins/StatisticsChart.py:110
-#, fuzzy
 msgid "Marriage place"
 msgstr "Luogo del matrimonio"
 
 #: ../src/plugins/StatisticsChart.py:112
-#, fuzzy
 msgid "Number of relationships"
 msgstr "Numero relazioni"
 
@@ -11459,7 +11362,6 @@ msgid "Max. items for a pie"
 msgstr "Max.elementi per grafico"
 
 #: ../src/plugins/StatisticsChart.py:735
-#, fuzzy
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
@@ -11475,9 +11377,8 @@ msgid "Charts 2"
 msgstr "Grafico 2"
 
 #: ../src/plugins/StatisticsChart.py:751
-#, fuzzy
 msgid "Include charts with indicated data"
-msgstr "Includere grafici con i dati indicati"
+msgstr "Include i grafici con i dati indicati"
 
 #: ../src/plugins/StatisticsChart.py:791
 msgid "The style used for the items and values."
@@ -11574,12 +11475,10 @@ msgid "Death before baptism"
 msgstr "Decesso prima del battesimo"
 
 #: ../src/plugins/Verify.py:902
-#, fuzzy
 msgid "Burial before birth"
 msgstr "Sepoltura prima della nascita"
 
 #: ../src/plugins/Verify.py:916
-#, fuzzy
 msgid "Burial before death"
 msgstr "Sepoltura prima del decesso"
 
@@ -11588,7 +11487,6 @@ msgid "Death before birth"
 msgstr "Decesso prima della nascita"
 
 #: ../src/plugins/Verify.py:944
-#, fuzzy
 msgid "Burial before baptism"
 msgstr "Sepoltura prima del battesimo"
 
@@ -11641,14 +11539,12 @@ msgid "Marriage after death"
 msgstr "Matrimonio dopo il decesso"
 
 #: ../src/plugins/Verify.py:1229
-#, fuzzy
 msgid "Early marriage"
 msgstr "Matrimonio da giovane"
 
 #: ../src/plugins/Verify.py:1261
-#, fuzzy
 msgid "Late marriage"
-msgstr "Matrimonio da adulto"
+msgstr "Matrimonio in età avanzata"
 
 #: ../src/plugins/Verify.py:1322
 msgid "Old father"
@@ -11668,19 +11564,19 @@ msgstr "Madre giovane"
 
 #: ../src/plugins/Verify.py:1409
 msgid "Unborn father"
-msgstr ""
+msgstr "Padre non ancora nato"
 
 #: ../src/plugins/Verify.py:1412
 msgid "Unborn mother"
-msgstr ""
+msgstr "Madre non ancora nata"
 
 #: ../src/plugins/Verify.py:1457
 msgid "Dead father"
-msgstr ""
+msgstr "Padre deceduto"
 
 #: ../src/plugins/Verify.py:1460
 msgid "Dead mother"
-msgstr ""
+msgstr "Madre deceduta"
 
 #: ../src/plugins/Verify.py:1482
 #, fuzzy
@@ -11704,7 +11600,6 @@ msgid "Verifies the data against user-defined tests"
 msgstr "Verifica i dati rispetto ad alcuni test definiti dall'utente"
 
 #: ../src/plugins/WebCal.py:479
-#, fuzzy
 msgid "Generate HTML Calendars"
 msgstr "Genera calendari HTML"
 
@@ -12050,11 +11945,16 @@ msgid "_Export to CD (portable XML)"
 msgstr "_Esporta su CD (XML portabile)"
 
 #: ../src/plugins/WriteCD.py:302
+#, fuzzy
 msgid ""
 "Exporting to CD copies all your data and media object files to the CD "
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
 msgstr ""
+"L'esportazione su CD copia tutti i dati ed i file degli oggetti multimediali "
+"verso il masterizzatore di CD. È possibile poi masterizzare il CD con questi "
+"dati e la copia ottenuta sarà completamente portabile su differenti macchine "
+"e architetture binarie."
 
 #. -------------------------------------------------------------------------
 #.
@@ -12104,12 +12004,11 @@ msgid "GRAM_PS package (portable XML)"
 msgstr "Pacchetto GRAM_PS (XML portabile)"
 
 #: ../src/plugins/WritePkg.py:224
-#, fuzzy
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
 msgstr ""
-"I pacchetti GRAMPS sono costituiti dal database salvato in formato XML "
+"Un pacchetto GRAMPS è costituito dal database salvato in formato XML "
 "aggregato ai file multimediali."
 
 #: ../src/plugins/WritePkg.py:226
@@ -12197,7 +12096,6 @@ msgid "No description was provided"
 msgstr "Non è stata fornita nessuna descrizione"
 
 #: ../src/PluginUtils/_Plugins.py:70
-#, fuzzy
 msgid "Unsupported"
 msgstr "Non supportato"
 
@@ -12348,7 +12246,6 @@ msgstr "Editor stile"
 #: ../src/ReportBase/_CommandLineReport.py:167
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:363 ../src/ReportBase/_PaperMenu.py:385
-#, fuzzy
 msgid "Custom Size"
 msgstr "Dimensione personalizzata"
 
@@ -12666,7 +12563,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "Rank spacing"
-msgstr ""
+msgstr "Spaziatura linee"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid ""
@@ -12674,6 +12571,9 @@ msgid ""
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
 "this corresponds to spacing between columns."
 msgstr ""
+"Il quantitativo minimo di spazio, in pollici, tra le file.  Per i grafici "
+"verticali corrisponde alla spaziatura tra le righe.  Nel caso dei grafici "
+"orizzontali corrisponde alla spaziatura tra le colonne."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1005
@@ -12772,7 +12672,6 @@ msgstr ""
 "Selezionare un altro percorso o correggere i permessi."
 
 #: ../src/ReportBase/_ReportDialog.py:275
-#, fuzzy
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Bisogna selezionare una persona attiva perché questo resoconto funzioni."
@@ -16979,7 +16878,6 @@ msgid "Media Reference Note"
 msgstr "Nota riferimento oggetto multimediale"
 
 #: ../src/gen/lib/notetype.py:104
-#, fuzzy
 msgid "Child Reference Note"
 msgstr "Nota rifermento figlio"
 
@@ -17013,7 +16911,7 @@ msgstr "Collezione"
 
 #: ../src/gen/lib/repotype.py:69
 msgid "Safe"
-msgstr ""
+msgstr "Cassaforte"
 
 #: ../src/gen/lib/attrtype.py:64
 msgid "Caste"
@@ -17377,15 +17275,13 @@ msgstr "Sposati"
 
 #: ../src/gen/lib/ldsord.py:92
 msgid "Endowment"
-msgstr "Dote"
+msgstr "Investitura"
 
 #: ../src/gen/lib/ldsord.py:94
-#, fuzzy
 msgid "Sealed to Parents"
 msgstr "Suggellamento ai genitori"
 
 #: ../src/gen/lib/ldsord.py:95
-#, fuzzy
 msgid "Sealed to Spouse"
 msgstr "Suggellamento al coniuge"
 
@@ -17412,9 +17308,8 @@ msgid "Completed"
 msgstr "Finito"
 
 #: ../src/gen/lib/ldsord.py:105
-#, fuzzy
 msgid "DNS"
-msgstr "DNS"
+msgstr ""
 
 #: ../src/gen/lib/ldsord.py:106
 msgid "Infant"
@@ -18574,9 +18469,8 @@ msgid "Families with father matching the <name>"
 msgstr "Famiglie con padre corrispondente a <nome>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
-#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr "Famiglie con figlio corrispondente a <nome>"
+msgstr "Famiglie con un qualsiasi figlio corrispondente a <nome>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 #, fuzzy
@@ -19455,20 +19349,24 @@ msgid "Shows the next page"
 msgstr "Mostra pagina successiva"
 
 #: ../src/docgen/gtkprintpreview.glade.h:8
+#, fuzzy
 msgid "Zooms the page in"
-msgstr ""
+msgstr "Ingrandisci pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:9
+#, fuzzy
 msgid "Zooms the page out"
-msgstr ""
+msgstr "Riduci pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:10
+#, fuzzy
 msgid "Zooms to fit the page width"
-msgstr ""
+msgstr "Ingrandisci su larghezza pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:11
+#, fuzzy
 msgid "Zooms to fit the whole page"
-msgstr ""
+msgstr "Ingrandisci a pagina intera"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:1
 msgid "<b>Status</b>"
@@ -19946,18 +19844,26 @@ msgid "G_roup as:"
 msgstr "Ra_ggruppa come:"
 
 #: ../src/glade/gramps.glade.h:78
+#, fuzzy
 msgid ""
 "If media is an image, select a region of the image that is referenced. Point "
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
 "the rectangular region you want to use."
 msgstr ""
+"Se l'oggetto multimediale è un'immagine, selezionarne l'area considerata. Il "
+"punto (0,0) è l'angolo superiore sinistro. Bisogna indicare due angoli su "
+"una diagonale dell'area da usare."
 
 #: ../src/glade/gramps.glade.h:79
+#, fuzzy
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
+"Marcando questa casella tutti i file multimediali mancanti saranno trattati "
+"automaticamente in base all'opzione selezionata. Non saranno mostrate altre "
+"finestre di dialogo per gli ulteriori file mancanti."
 
 #: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
@@ -19997,7 +19903,7 @@ msgstr "For_za"
 
 #: ../src/glade/gramps.glade.h:91
 msgid "Open person editor of this child"
-msgstr ""
+msgstr "Apre la scheda del figlio nell'editor"
 
 #: ../src/glade/gramps.glade.h:93
 #, fuzzy
@@ -20320,7 +20226,7 @@ msgstr "_Sottolineato"
 
 #: ../src/glade/gramps.glade.h:184
 msgid "_Use this selection for all missing media files"
-msgstr ""
+msgstr "_Applica questa scelta per tutti gli oggetti multimediali mancanti"
 
 #: ../src/glade/gramps.glade.h:185
 msgid "_Value:"
@@ -20408,7 +20314,7 @@ msgstr "Stato:"
 
 #: ../src/glade/plugins.glade.h:6
 msgid "_Automatically pop out when problems are detected"
-msgstr ""
+msgstr "Mostra _automaticamente se vengono rilevati problemi"
 
 #: ../src/glade/rule.glade.h:1
 msgid "<b>Definition</b>"
