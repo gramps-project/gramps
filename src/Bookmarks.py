@@ -231,12 +231,17 @@ class Bookmarks :
         delete.connect('clicked', self.delete_clicked)
         self.top.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
         self.top.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.top.connect('delete-event', self.close)
         bbox.add(up)
         bbox.add(down)
         bbox.add(delete)
         box.pack_start(bbox, 0, 0, 5)
         self.top.show_all()
-        
+    
+    def close(self, widget, event):
+        """Stop the bookmark organizer"""
+        self.top.response(gtk.RESPONSE_CLOSE)
+
     def edit(self):
         """
         Display the bookmark editor.
