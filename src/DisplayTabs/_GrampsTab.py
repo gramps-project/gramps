@@ -36,7 +36,7 @@ _RIGHT = gtk.gdk.keyval_from_name("Right")
 #
 #-------------------------------------------------------------------------
 
-class GrampsTab(gtk.HBox):
+class GrampsTab(gtk.VBox):
     """
     This class provides the base level class for 'tabs', which are used to
     fill in notebook tabs for GRAMPS edit dialogs. 
@@ -63,7 +63,7 @@ class GrampsTab(gtk.HBox):
         @param name: Notebook label name
         @type name: str/unicode
         """
-        gtk.HBox.__init__(self)
+        gtk.VBox.__init__(self)
 
         # store information to pass to child windows
         self.dbstate = dbstate

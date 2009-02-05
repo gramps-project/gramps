@@ -150,20 +150,20 @@ class ButtonTab(GrampsTab):
         else:
             self.jump_btn = None
 
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        vbox.pack_start(self.add_btn, False)
+        hbox = gtk.HBox()
+        hbox.set_spacing(6)
+        hbox.pack_start(self.add_btn, False)
         if share_button:
-            vbox.pack_start(self.share_btn, False)
-        vbox.pack_start(self.edit_btn, False)
-        vbox.pack_start(self.del_btn, False)
+            hbox.pack_start(self.share_btn, False)
+        hbox.pack_start(self.edit_btn, False)
+        hbox.pack_start(self.del_btn, False)
         if move_buttons:
-            vbox.pack_start(self.up_btn, False)
-            vbox.pack_start(self.down_btn, False)
+            hbox.pack_start(self.up_btn, False)
+            hbox.pack_start(self.down_btn, False)
         if jump_button:
-            vbox.pack_start(self.jump_btn, False)
-        vbox.show_all()
-        self.pack_start(vbox, False)
+            hbox.pack_start(self.jump_btn, False)
+        hbox.show_all()
+        self.pack_start(hbox, False)
 
     def double_click(self, obj, event):
         """

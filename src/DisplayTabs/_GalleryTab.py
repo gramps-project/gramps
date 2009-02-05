@@ -194,7 +194,7 @@ class GalleryTab(ButtonTab):
         
         # put everything together
         scroll.add(self.iconlist)
-        self.pack_start(scroll, True)
+        self.pack_end(scroll, True)
 
     def _update_internal_list(self, *obj):
         newlist = []

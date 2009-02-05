@@ -90,11 +90,11 @@ class BackRefList(EmbeddedList):
         self.tooltips = gtk.Tooltips()
         self.tooltips.set_tip(self.edit_btn, _('Edit reference'))
 
-        vbox = gtk.VBox()
-        vbox.set_spacing(6)
-        vbox.pack_start(self.edit_btn, False)
-        vbox.show_all()
-        self.pack_start(vbox, False)
+        hbox = gtk.HBox()
+        hbox.set_spacing(6)
+        hbox.pack_start(self.edit_btn, False)
+        hbox.show_all()
+        self.pack_start(hbox, False)
         
         self.add_btn = None
         self.del_btn = None

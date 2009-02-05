@@ -347,7 +347,7 @@ class EmbeddedList(ButtonTab):
         scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         scroll.add(self.tree)
-        self.pack_start(scroll, True)
+        self.pack_end(scroll, True)
 
     def get_selected(self):
         """
