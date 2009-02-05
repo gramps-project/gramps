@@ -1528,9 +1528,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                         txt_str = _('%(person)s, <em>birth</em>') % {
                                     'person' : text}
                     else: 
-                        txt_str = (ngettext('%(person)s, <em>%(age)s</em> old',
-                                            '%(person)s, <em>%(age)s</em> old', age_str)
-                                   % {'person' : text, 'age' : age_str})
+                        txt_str = _('%(person)s, <em>%(age)s</em> old')
+                                   % {'person' : text, 'age' : age_str}
 
                 # an anniversary
                 elif event == 'Anniversary':
