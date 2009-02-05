@@ -1415,6 +1415,8 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
     """
     widget = None
     label = True
+    pmgr = gen.plug.PluginManager.get_instance()
+    external_options = pmgr.get_external_opt_dict()
     if tooltips == None:
         tooltips = gtk.Tooltips()
     elif type(tooltips) == type(""):
@@ -1455,6 +1457,9 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
                                        tooltips)
     elif isinstance(option, gen.plug.menu.PlaceListOption):
         widget = GuiPlaceListOption(option, dbstate, uistate, track, tooltips)
+    elif option.__class__ in external_options:
+        widget = external_options[option.__class__](option, dbstate, uistate,
+                                                    track, tooltips)
     else:
         raise AttributeError(
                      "can't make GuiOption: unknown option type: '%s'" % option)

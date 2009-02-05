@@ -106,6 +106,7 @@ class PluginManager(gen.utils.Callback):
         self.__bkitems_list      = []
         self.__cl_list           = []
         self.__cli_tool_list     = []
+        self.__external_opt_dict = {}
         self.__success_list      = []
         self.__relcalc_class = Relationship.RelationshipCalculator
 
@@ -268,6 +269,10 @@ class PluginManager(gen.utils.Callback):
     def get_cl_tool_list(self):
         """ Return the list of command line tool plugins. """
         return self.__cli_tool_list
+    
+    def get_external_opt_dict(self):
+        """ Return the dictionary of external options. """
+        return self.__external_opt_dict
     
     def get_module_description(self, module):
         """ Given a module name, return the module description. """
@@ -563,6 +568,21 @@ class PluginManager(gen.utils.Callback):
                             
         self.__mod2text[mapservice.__module__] = tooltip
         
+    def register_option(self, option, guioption):
+        """
+        Register an external option.
+
+        Register a mapping from option to guioption for an option
+        that is not native to Gramps but provided by the plugin writer.
+        This should typically be called during initialisation of a
+        ReportOptions class.
+        @param option:      the option class
+        @type option:       class that inherits from gen.plug.menu.Option
+        @param guioption:   the gui-option class
+        @type guioption:    class that inherits from gtk.Widget.
+        """
+        self.__external_opt_dict[option] = guioption;
+
     def __purge_failed(self):
         """
         Purge the failed plugins from the corresponding lists.
