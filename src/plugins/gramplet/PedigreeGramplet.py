@@ -246,7 +246,7 @@ class PedigreeGramplet(Gramplet):
             if g == 0:
                 self.link(_("Generation 1"), 'PersonList', handles, 
                           tooltip=_("Double-click to see people in generation"))
-                self.append_text(_(" has 1 of 1 individual (100.00% complete)\n"))
+                self.append_text(_(" has 1 of 1 individual (100.00%% complete)\n"))
             else:
                 all.extend(handles)
                 self.link(_("Generation %d") % g, 'PersonList', handles,
