@@ -571,11 +571,12 @@ class GeoView(HtmlView):
         self.without = 0
         self.nbpages = 0
 
-    def top_widget(self):
-        """
-        The top widget to use, for GeoView, none
-        """
-        return gtk.Label()
+    # We use the top_widget method defined in HtmlView.
+    #def top_widget(self):
+    #    """
+    #    The top widget to use, for GeoView, none
+    #    """
+    #    return gtk.Label()
 
     def on_delete(self):
         """
