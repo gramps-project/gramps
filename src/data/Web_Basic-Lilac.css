@@ -19,7 +19,7 @@ Go to <http://gramps-project.org/> to learn more!
 Copyright 2008 Jason M. Simanek
 
 This file is part of the GRAMPS program.
-/*
+
 GRAMPS is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, version 2 of the License.
@@ -40,17 +40,16 @@ lilac                   #669
 lilac light             #B4B4CB
 lilac very light        #E0E0E9
 white                   #FAFAFF
-*/
-
-/* NarrativeWeb Styles
--------------------------------------------------------------------------------------------- */
-
-/* General Elements
------------------------------------------------------ 
+-------------------------------------------------------------------------------------------
 
 # $Id$
 
-*/
+ NarrativeWeb Styles
+-------------------------------------------------------------------------------------------- 
+
+ General Elements
+----------------------------------------------------- */
+
 body {
     font-family:sans-serif;
     color:#000;

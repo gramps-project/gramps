@@ -10,7 +10,7 @@ This website was created with GRAMPS
 GRAMPS is a Free Software Project for Genealogy, offering a professional
 genealogy program, and a wiki open to all. It is a community project, created,
 developed and governed by genealogists.
-/*
+
 Go to <http://gramps-project.org/> to learn more!
 
 License
@@ -49,17 +49,15 @@ Header                  images/Web_Mainz_Header.png
 Middle                  images/Web_Mainz_Mid.png
 Middle Light            images/Web_Mainz_MidLight.png
 ----------------------------------------------------------------------------
-*/
-
-/* NarrativeWeb Styles
--------------------------------------------------------------------------------------------- */
-
-/* General Elements
------------------------------------------------------ 
 
 # $Id$
 
-*/
+ NarrativeWeb Styles
+-------------------------------------------------------------------------------------------- 
+
+ General Elements
+----------------------------------------------------- */
+
 body {
     font-family:Georgia, serif;
     color:#7D5925;

@@ -26,14 +26,14 @@ A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 GRAMPS. If not, see <http://www.gnu.org/licenses/>.
 -------------------------------------------------------------------------------
-$Id: NWeb-Screen_Basic-Ash.css 11712 2009-01-25 10:00:30Z s_charette $
-*/
 
-/* ------------- */
-/* Image Gallery */
-/* ------------- */
+ ------------- 
+ Image Gallery 
+ ------------- 
 
-/* ensure RegionBox <ol> is hidden and has no margins/padding that would shift the image */
+# $Id: $
+
+ ensure RegionBox <ol> is hidden and has no margins/padding that would shift the image */
 ol.RegionBox {
 	display:none;
 	list-style:none;
