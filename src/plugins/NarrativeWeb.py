@@ -984,7 +984,7 @@ class SurnamePage(BasePage):
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
-                "will take you to that person&#8217;s individual page.") % title
+                "will take you to that person&#8217;s individual page.") % surname
 
         of.write('\t<h2>Surnames:</h2>\n')
         of.write('\t<h3>%s</h3>\n' % html_escape(surname))
