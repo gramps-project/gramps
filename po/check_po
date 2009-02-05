@@ -44,6 +44,9 @@ def strip_quotes(st):
 		st = st.strip()[1:-1]
 	return st
 
+class CheckException( Exception ):
+	pass
+
 # This is a base class for all checks
 class Check:
 	def __init__( self ):
@@ -63,13 +66,22 @@ class Check_fmt( Check ):
 		self.diag_header = "-------- %s mismatches --------------" % fmt
 		self.summary_text = "%s mismatches:" % fmt
 		self.fmt = fmt
-	def process( self, msg ):
-		msgid = msg.msgid
-		msgstr = msg.msgstr
+
+	def __process( self, msg, msgid, msgstr ):
 		cnt1 = msgid.count( self.fmt )
 		cnt2 = msgstr.count( self.fmt )
 		if cnt1 != cnt2:
 			self.msgs.append( msg )
+
+	def process( self, msg ):
+		msgid = msg.msgid
+		msgstr = msg.msgstr[0]
+		self.__process( msg, msgid, msgstr )
+
+		if msg.msgidp and len(msg.msgstr) >= 2:
+			msgid = msg.msgidp
+			msgstr = msg.msgstr[1]
+			self.__process( msg, msgid, msgstr )
 
 class Check_named_fmt( Check ):
 	# A pattern to find all %()
@@ -79,9 +91,8 @@ class Check_named_fmt( Check ):
 		Check.__init__( self )
 		self.diag_header = "-------- %() name mismatches --------------"
 		self.summary_text = "%() name mismatches:"
-	def process( self, msg ):
-		msgid = msg.msgid
-		msgstr = msg.msgstr
+
+	def __process( self, msg, msgid, msgstr ):
 		# Same number of named formats?
 		fmts1 = self.find_named_fmt_pat.findall( msgid )
 		fmts2 = self.find_named_fmt_pat.findall( msgstr )
@@ -94,6 +105,16 @@ class Check_named_fmt( Check ):
 			if fmts1 != fmts2:
 				self.msgs.append( msg )
 
+	def process( self, msg ):
+		msgid = msg.msgid
+		msgstr = msg.msgstr[0]
+		self.__process( msg, msgid, msgstr )
+
+		if msg.msgidp and len(msg.msgstr) >= 2:
+			msgid = msg.msgidp
+			msgstr = msg.msgstr[1]
+			self.__process( msg, msgid, msgstr )
+
 class Check_missing_sd( Check ):
 	# A pattern to find %() without s or d
 	# Here is a command to use for testing
@@ -105,26 +126,34 @@ class Check_missing_sd( Check ):
 		self.diag_header = "-------- %() without 's' or 'd' mismatches --------------"
 		self.summary_text = "%() missing s/d:"
 	def process( self, msg ):
-		msgstr = msg.msgstr
-		fmts = self.find_named_fmt_pat2.findall( msgstr )
-		for f in fmts:
-			if not f in ('s', 'd'):
-				self.msgs.append( msg )
-				break
+		for msgstr in msg.msgstr:
+			fmts = self.find_named_fmt_pat2.findall( msgstr )
+			for f in fmts:
+				if not f in ('s', 'd'):
+					self.msgs.append( msg )
+					break
 
 class Check_runaway( Check ):
 	def __init__( self ):
 		Check.__init__( self )
 		self.diag_header = "-------- Runaway context in translation ---------"
 		self.summary_text = "Runaway context:"
-	def process( self, msg ):
-		msgid = msg.msgid
-		msgstr = msg.msgstr
 
+	def __process( self, msg, msgid, msgstr ):
 		# Runaway context. In the translated part we only to see
 		# the translation of the word after the |
 		if msgid.count('|') > 0 and msgstr.count('|') > 0 and msgid != msgstr:
 			self.msgs.append( msg )
+
+	def process( self, msg ):
+		msgid = msg.msgid
+		msgstr = msg.msgstr[0]
+		self.__process( msg, msgid, msgstr )
+
+		if msg.msgidp and len(msg.msgstr) >= 2:
+			msgid = msg.msgidp
+			msgstr = msg.msgstr[1]
+			self.__process( msg, msgid, msgstr )
 
 class Check_xml_chars( Check ):
 	# Special XML characters
@@ -135,9 +164,10 @@ class Check_xml_chars( Check ):
 		Check.__init__( self )
 		self.diag_header = "-------- unescaped XML special characters ---------"
 		self.summary_text = "XML special chars:"
+
 	def process( self, msg ):
 		msgid = msg.msgid
-		msgstr = msg.msgstr
+		msgstr = msg.msgstr[0]
 
 		# XML errors
 		# Only look at messages in the tips.xml
@@ -150,14 +180,8 @@ class Check_last_char( Check ):
 		Check.__init__( self )
 		self.diag_header = "-------- last character not identical ---------"
 		self.summary_text = "Last character:"
-	def process( self, msg ):
-		msgid = msg.msgid
-		msgstr = msg.msgstr
 
-		# Last character of msgid? White space? Period?
-		if msg.is_fuzzy:
-			return
-
+	def __process( self, msg, msgid, msgstr ):
 		msgid_last = msgid[-1:]
 		msgstr_last = msgstr[-1:]
 		if msgid_last.isspace() != msgstr_last.isspace():
@@ -165,26 +189,49 @@ class Check_last_char( Check ):
 		elif (msgid_last == '.') != (msgstr_last == '.'):
 			self.msgs.append( msg )
 
+	def process( self, msg ):
+		# Last character of msgid? White space? Period?
+		if msg.is_fuzzy:
+			return
+		msgid = msg.msgid
+		msgstr = msg.msgstr[0]
+		self.__process( msg, msgid, msgstr )
+
+		if msg.msgidp and len(msg.msgstr) >= 2:
+			msgid = msg.msgidp
+			msgstr = msg.msgstr[1]
+			self.__process( msg, msgid, msgstr )
+
 class Check_shortcut_trans( Check ):
 	def __init__( self ):
 		Check.__init__( self )
 		self.diag_header = "-------- shortcut key in translation ---------"
 		self.summary_text = "Shortcut in msgstr:"
-	def process( self, msg ):
-		msgid = msg.msgid
-		msgstr = msg.msgstr
 
+	def __process( self, msg, msgid, msgstr ):
 		if msgid.count('_') == 0 and msgstr.count('_') > 0:
 			self.msgs.append( msg )
+
+	def process( self, msg ):
+		msgid = msg.msgid
+		msgstr = msg.msgstr[0]
+		self.__process( msg, msgid, msgstr )
+
+		if msg.msgidp and len(msg.msgstr) >= 2:
+			msgid = msg.msgidp
+			msgstr = msg.msgstr[1]
+			self.__process( msg, msgid, msgstr )
 
 class Msgid:
 	fuzzy_pat = re.compile( 'fuzzy' )
 	tips_xml_pat = re.compile( r'tips\.xml' )
 	def __init__( self, msgnr, lineno ):
-		self._msgid = []
-		self._msgstr = []
+		self._msgid = []	# For debugging purpose the original text
+		self._msgidp = []	# For debugging purpose the original text
+		self._msgstr = []	# For debugging purpose the original text
 		self.msgid = ''
-		self.msgstr = ''
+		self.msgidp = ''
+		self.msgstr = []	# This is a list to support plural
 		self._cmnt = []
 		self.nr = msgnr
 		self.lineno = lineno
@@ -192,14 +239,11 @@ class Msgid:
 		self.is_tips_xml = 0
 
 	def diag( self ):
-		if 1:
-			print
-			print "msg nr: %d, lineno: %d%s" % ( self.nr, self.lineno, self.is_fuzzy and " (fuzzy)" or "" )
-			sys.stdout.write( ''.join( self._msgid ) )
-			sys.stdout.write( ''.join( self._msgstr ) )
-		else:
-			# Compatible with the old check_po
-			print "%d '%s' : '%s'" % ( self.lineno, self.msgid, self.msgstr )
+		print
+		print "msg nr: %d, lineno: %d%s" % ( self.nr, self.lineno, self.is_fuzzy and " (fuzzy)" or "" )
+		sys.stdout.write( ''.join( self._msgid ) )
+		sys.stdout.write( ''.join( self._msgidp ) )
+		sys.stdout.write( ''.join( self._msgstr ) )
 
 	def add_msgid( self, line, lineno ):
 		self._msgid.append( line )
@@ -210,14 +254,27 @@ class Msgid:
 		line = strip_quotes( line )
 		self.msgid += line
 
-	def add_msgstr( self, line, lineno ):
-		self._msgstr.append( line )
-		line = re.sub( r'msgstr\s+', '', line )
+	def add_msgidp( self, line, lineno ):
+		self._msgidp.append( line )
+		line = re.sub( r'msgid_plural\s+', '', line )
 		line = line.strip()
 		if line[0] != '"' or line[-1:] != '"':
 			print "ERROR at line %d: Missing quote." % lineno
 		line = strip_quotes( line )
-		self.msgstr += line
+		self.msgidp += line
+
+	def add_new_msgstr( self, line, lineno ):
+		self.msgstr.append( '' )	# Start a new msgstr
+		self.add_msgstr( line, lineno )
+
+	def add_msgstr( self, line, lineno ):
+		self._msgstr.append( line )
+		line = re.sub( r'msgstr(\[\d\])?\s+', '', line )
+		line = line.strip()
+		if line[0] != '"' or line[-1:] != '"':
+			print "ERROR at line %d: Missing quote." % lineno
+		line = strip_quotes( line )
+		self.msgstr[-1] += line
 
 	def add_cmnt( self, line ):
 		self._cmnt.append( line )
@@ -226,32 +283,41 @@ class Msgid:
 		if not self.is_tips_xml and self.tips_xml_pat.search( line ):
 			self.is_tips_xml = 1
 
+msgs = []
+msgnr = 0			# This is the message number of the next message to read. The first real message is 1.
+def create_new_Msgid( lineno ):
+	global msgnr
+	msg = Msgid( msgnr, lineno )
+	msgnr += 1
+	msgs.append( msg )
+	return msg
+
 def read_msgs( fname ):
 	empty_pat   = re.compile( r'^ \s* $',      re.VERBOSE )
 	comment_pat = re.compile( r'\#',           re.VERBOSE )
 	msgid_pat   = re.compile( r'msgid \s+ "',  re.VERBOSE )
-	msgstr_pat  = re.compile( r'msgstr \s+ "', re.VERBOSE )
+	msgid_plural_pat = re.compile( r'msgid_plural \s+ "', re.VERBOSE )
+	msgstr_pat  = re.compile( r'msgstr (\[\d\])? \s+ "', re.VERBOSE )
 	str_pat     = re.compile( r'"',            re.VERBOSE )
 	old_pat     = re.compile( r'\#~ \s+ ',     re.VERBOSE )
 
-	msgnr = 0			# This is the message number of the next message to read. The first real message is 1.
 	f = open( fname )
 	lines = f.readlines()
 	
 	# parse it like a statemachine
-	NONE   = 0			# Nothing detected, yet
-	CMNT   = 1			# Inside comment part
-	MSGID  = 2			# Inside msgid part
-	MSGSTR = 3			# Inside msgstr part
-	STR    = 4			# A continuation string
-	OLD    = 5			# An old pattern with #~
+	NONE   = 'NONE'			# Nothing detected, yet
+	CMNT   = 'CMNT'			# Inside comment part
+	MSGID  = 'msgid'       		# Inside msgid part
+	MSGIDP = 'msgid_plural'		# Inside msgid_plural part
+	MSGSTR = 'msgstr'		# Inside msgstr part
+	STR    = 'STR'			# A continuation string
+	OLD    = 'OLD'			# An old pattern with #~
 
+	global msgs
 	state = NONE
 	msg = None
-	msgs = []
 
-	for ix in range( len(lines) ):	# Use line numbers for messages
-		line = lines[ix]
+	for ix, line in enumerate( lines ):	# Use line numbers for messages
 		lineno = ix + 1
 
 		m = empty_pat.match( line )
@@ -265,6 +331,8 @@ def read_msgs( fname ):
 			next_state = CMNT
 		elif msgid_pat.match( line ):
 			next_state = MSGID
+		elif msgid_plural_pat.match( line ):
+			next_state = MSGIDP
 		elif msgstr_pat.match( line ):
 			next_state = MSGSTR
 		elif str_pat.match( line ):
@@ -278,25 +346,22 @@ def read_msgs( fname ):
 			# expect msgid or comment or old stuff
 			if next_state == CMNT:
 				state = CMNT
-				msg = Msgid( msgnr, lineno ) # Start with an empty new item
-				msgnr += 1
-				msgs.append( msg )
+				msg = create_new_Msgid( lineno ) # Start with an empty new item
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = Msgid( msgnr, lineno ) # Start with an empty new item
-				msgnr += 1
-				msgs.append( msg )
+				msg = create_new_Msgid( lineno ) # Start with an empty new item
 				msg.add_msgid( line, lineno )
+
+			elif next_state == MSGIDP:
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = Msgid( msgnr, lineno ) # Start with an empty new item
-				msgnr += 1
-				msgs.append( msg )
-				msg.add_msgstr( line, lineno )
+				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
 				print 'WARNING: Wild string at %(fname)s:%(lineno)d' % vars()
@@ -304,7 +369,11 @@ def read_msgs( fname ):
 			elif next_state == OLD:
 				pass	# Just skip
 
+			else:
+				raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
+
 		elif state == CMNT:
+			# Expect more comment, or msgid. If msgstr or string it is flagged as error.
 			if next_state == CMNT:
 				if msg:
 					msg.add_cmnt( line )
@@ -316,18 +385,17 @@ def read_msgs( fname ):
 			elif next_state == MSGID:
 				state = MSGID
 				if not msg:
-					msg = Msgid( msgnr, lineno ) # Start with an empty new item
-					msgnr += 1
-					msgs.append( msg )
+					msg = create_new_Msgid( lineno ) # Start with an empty new item
 				msg.add_msgid( line, lineno )
+
+			elif next_state == MSGIDP:
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
 
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = Msgid( msgnr, lineno ) # Start with an empty new item
-				msgnr += 1
-				msgs.append( msg )
-				msg.add_msgstr( line, lineno )
+				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
 				print 'WARNING: Wild string at %(fname)s:%(lineno)d' % vars()
@@ -336,43 +404,84 @@ def read_msgs( fname ):
 				msg = None
 				pass	# Just skip
 
+			else:
+				raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
+
 		elif state == MSGID:
+			# Expect msgstr or msgid_plural or string
 			if next_state == CMNT:
 				# Hmmm. A comment here?
 				print 'WARNING: Unexpted comment at %(fname)s:%(lineno)d' % vars()
 
 			elif next_state == MSGID:
-				raise Exception( 'Unexpected msgid at %(fname)s:%(lineno)d' % vars() )
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
+
+			elif next_state == MSGIDP:
+				state = MSGIDP
+				msg.add_msgidp( line, lineno )
 
 			elif next_state == MSGSTR:
 				state = MSGSTR
-				msg.add_msgstr( line, lineno )
+				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
+				# Continuation of msgid, stay in state MSGID
 				msg.add_msgid( line, lineno )
 
 			elif next_state == OLD:
 				msg = None
 				pass	# Just skip
 
+			else:
+				raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
+
+		elif state == MSGIDP:
+			# Expect msgstr or string or comment
+			if next_state == CMNT:
+				# Hmmm. A comment here?
+				print 'WARNING: Unexpted comment at %(fname)s:%(lineno)d' % vars()
+
+			elif next_state == MSGID:
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
+
+			elif next_state == MSGIDP:
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
+
+			elif next_state == MSGSTR:
+				state = MSGSTR
+				msg.add_new_msgstr( line, lineno )
+
+			elif next_state == STR:
+				# Continuation of msgid_plural, stay in state MSGIDP
+				msg.add_msgidp( line, lineno )
+
+			elif next_state == OLD:
+				msg = None
+				pass	# Just skip
+
+			else:
+				raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
+
 		elif state == MSGSTR:
+			# Expect comment, or msgid, or string.
 			if next_state == CMNT:
 				# A comment probably starts a new item
 				state = CMNT
-				msg = Msgid( msgnr, lineno )
-				msgnr += 1
-				msgs.append( msg )
+				msg = create_new_Msgid( lineno )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = Msgid( msgnr, lineno )
-				msgnr += 1
-				msgs.append( msg )
+				msg = create_new_Msgid( lineno )
 				msg.add_msgid( line, lineno )
 
+			elif next_state == MSGIDP:
+				raise CheckException( 'Unexpected %(next_state)s at %(fname)s:%(lineno)d' % vars() )
+
 			elif next_state == MSGSTR:
-				raise Exception( 'Unexpected msgstr at %(fname)s:%(lineno)d' % vars() )
+				# New msgstr, probably for plural form
+				# Stay in MSGSTR state
+				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
 				msg.add_msgstr( line, lineno )
@@ -381,8 +490,11 @@ def read_msgs( fname ):
 				msg = None
 				pass	# Just skip
 
+			else:
+				raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
+
 		else:
-			raise Exception( 'Unexpected state in po parsing (state = %d)' % state )
+			raise CheckException( 'Unexpected state in po parsing (state = %(state)s)' % vars() )
 
 	# Strip items with just comments. (Can this happen?)
 	msgs1 = []
@@ -416,7 +528,7 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 		#print "msgid: %(msgid)s" % vars()
 		#print "msgstr: %(msgstr)s" % vars()
 
-		if not msgstr:
+		if ''.join(msgstr) == '':
 			nr_untranslated += 1
 			continue
 
@@ -473,8 +585,9 @@ def main():
 			analyze_msgs( options, fname, msgs, nr_templates, nth )
 			nth += 1
 
-	except Exception, e:
-		print e
+	except CheckException, e:
+		print 'Oops.', e
+		print 'Bailing out'
 
 if __name__ == "__main__":
 	main()
