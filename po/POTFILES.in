@@ -72,7 +72,7 @@ src/Merge/_MergeSource.py
 # DataViews package
 src/DataViews/EventView.py
 src/DataViews/FamilyList.py
-#src/DataViews/GeoView.py
+src/DataViews/GeoView.py
 src/DataViews/__init__.py
 src/DataViews/MediaView.py
 src/DataViews/GrampletView.py

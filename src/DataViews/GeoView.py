@@ -1466,16 +1466,16 @@ class GeoView(HtmlView):
                         if person_list:
                             descr = "<br>"
                             for person in person_list:
-                                descr = _("%(description)s%(name)s<br>") % {
+                                descr = ("%(description)s%(name)s<br>") % {
                                             'description' : descr, 
                                             'name' : _nd.display(person)}
-                            descr = _("%(eventtype)s; %(place)s%(description)s"
+                            descr = ("%(eventtype)s; %(place)s%(description)s"
                                      ) % { 'eventtype': gen.lib.EventType(
                                                             event.get_type()),
                                             'place': place.get_title(), 
                                             'description': descr}
                         else:
-                            descr = _("%(eventtype)s; %(place)s<br>") % {
+                            descr = ("%(eventtype)s; %(place)s<br>") % {
                                             'eventtype': gen.lib.EventType(
                                                             event.get_type()),
                                             'place': place.get_title()}
