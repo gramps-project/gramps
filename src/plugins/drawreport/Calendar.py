@@ -291,11 +291,11 @@ class Calendar(Report):
                             'person' : short_name,
                             'relation' : ""}
                     else:
-                         text = ngettext('%(person)s, %(age)d%(relation)s',
-                                  '%(person)s, %(age)d%(relation)s', nyears)
+                         text = (ngettext('%(person)s, %(age)d%(relation)s',
+                                          '%(person)s, %(age)d%(relation)s', nyears)
                                  % {'person'   : short_name,
                                     'age'      : nyears,  
-                                    'relation' : ""}
+                                    'relation' : ""})
                     self.add_day_item(text, month, day)
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
@@ -342,11 +342,11 @@ class Calendar(Report):
                                             'person' : short_name, 
                                             }
                                     else:
-                                        text = ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
-                                                 "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
-                                                  % {'spouse' : spouse_name, 
-                                                     'person' : short_name, 
-                                                     'nyears' : nyears}
+                                        text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
+                                                         "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
+                                                % {'spouse' : spouse_name, 
+                                                   'person' : short_name, 
+                                                   'nyears' : nyears})
 
                                     alive1 = probably_alive(person, self.database, \
                                         prob_alive_date)
@@ -539,3 +539,4 @@ pmgr.register_report(
     author_email = "dblank@cs.brynmawr.edu", 
     description = _("Produces a graphical calendar"), 
     )
+

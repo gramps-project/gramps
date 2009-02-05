@@ -1528,9 +1528,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                         txt_str = _('%(person)s, <em>birth</em>') % {
                                     'person' : text}
                     else: 
-                        txt_str = ngettext('%(person)s, <em>%(age)s</em> old',
-                                           '%(person)s, <em>%(age)s</em> old', age_str)
-                                            % {'person' : text, 'age' : age_str}
+                        txt_str = (ngettext('%(person)s, <em>%(age)s</em> old',
+                                            '%(person)s, <em>%(age)s</em> old', age_str)
+                                   % {'person' : text, 'age' : age_str})
 
                 # an anniversary
                 elif event == 'Anniversary':
@@ -1539,9 +1539,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                         txt_str = _('%(couple)s, <em>wedding</em>') % {
                                     'couple' : text}
                     else: 
-                        txt_str = ngettext('%(couple)s, <em>%(years)d</em> year anniversary'
-                                           '%(couple)s, <em>%(years)d</em> year anniversary', nyears)
-                                            % {'couple' : text, 'years'  : nyears}    
+                        txt_str = (ngettext('%(couple)s, <em>%(years)d</em> year anniversary'
+                                            '%(couple)s, <em>%(years)d</em> year anniversary', nyears)
+                                   % {'couple' : text, 'years'  : nyears})
                     txt_str = '<span class="yearsmarried">%s</span>' % txt_str
 
             if txt_str is not None:
