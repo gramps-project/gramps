@@ -142,7 +142,7 @@ class EniroSVMapService(MapService):
         # Now check if country is defined
         if not (country_given or coord_ok):
             WarningDialog(_("Eniro map not available"), 
-                          _("Latitude and longitud,\n" \
+                          _("Latitude and longitude,\n" \
                             "or street and city needed") )
             return
         if coord_ok:
