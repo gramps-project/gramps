@@ -1360,7 +1360,7 @@ class GeoView(HtmlView):
                     latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     descr = place.get_title()
                     if comment:
-                        descr1= _("%(comment) : death place.") % {
+                        descr1= _("%(comment)s : death place.") % {
                                             'comment': comment} 
                     else:
                         descr1=_("death place.")

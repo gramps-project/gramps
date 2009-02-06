@@ -222,7 +222,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label445">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt; - &lt;/b&gt; </property>
+		      <property name="label" translatable="no">&lt;b&gt; - &lt;/b&gt; </property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -415,7 +415,7 @@ Unknown</property>
 		  <child>
 		    <widget class="GtkLabel" id="label446">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes"> :</property>
+		      <property name="label" translatable="no"> :</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -500,7 +500,7 @@ Unknown</property>
 		  <child>
 		    <widget class="GtkLabel" id="label447">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes"> :</property>
+		      <property name="label" translatable="no"> :</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
