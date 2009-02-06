@@ -1329,7 +1329,7 @@ class GeoView(HtmlView):
                     latitude = place.get_latitude()
                     latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
                     if comment:
-                        descr1= _("%(comment) : birth place.") % {
+                        descr1= _("%(comment)s : birth place.") % {
                                             'comment': comment}
                     else:
                         descr1=_("birth place.")
