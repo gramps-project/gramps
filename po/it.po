@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 22:56+0100\n"
-"PO-Revision-Date: 2009-02-05 19:48+0100\n"
+"PO-Revision-Date: 2009-02-06 01:59+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -4400,23 +4400,23 @@ msgstr "Trovato un oggetto multimediale non esistente nella galleria"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 msgid "Create and add a new LDS ordinance"
-msgstr "Crea e aggiunge una nuova ordinazione LDS"
+msgstr "Crea e aggiunge una nuova ordinanza LDS"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 msgid "Remove the existing LDS ordinance"
-msgstr "Rimuove l'ordinazione LDS"
+msgstr "Rimuove l'ordinanza LDS"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
 msgid "Edit the selected LDS ordinance"
-msgstr "Modifica l'ordinazione LDS selezionata"
+msgstr "Modifica l'ordinanza LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Sposta in alto l'ordinazione LDS selezionata"
+msgstr "Sposta in alto l'ordinanza LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
 msgid "Move the selected LDS ordinance downwards"
-msgstr "Sposta in basso l'ordinazione LDS selezionata"
+msgstr "Sposta in basso l'ordinanza LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:68
 msgid "_LDS"
@@ -4970,7 +4970,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../src/Editors/_EditLdsOrd.py:300 ../src/Editors/_EditLdsOrd.py:416
 msgid "LDS Ordinance"
-msgstr "Ordinazione LDS"
+msgstr "Ordinanza LDS"
 
 #: ../src/Editors/_EditLocation.py:59
 msgid "Location Editor"
@@ -5704,6 +5704,11 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
+"Il file aperto riporta %s come percorso dei file multimediali, ma questo va "
+"in conflitto con il percorso dei file multimediali dell'albero genealogico "
+"in cui è stato importato. Il percorso originale è stato conservato. Copiare "
+"il file nella directory corretta o modificare il percorso dei file "
+"multimediali nelle preferenze."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:769
 msgid "GRAMPS XML import"
@@ -5726,6 +5731,10 @@ msgid ""
 "you are running an older version %s. The file will not be imported. Please "
 "upgrade to the latest version of GRAMPS and try again."
 msgstr ""
+"Il file .gramps in fase di importazione è stato realizzato con la versione %"
+"s di GRAMPS, mentre quella in esecuzione è la più vecchia %s. Il file non "
+"sarà pertanto importato. Aggiornare all'ultima versione di GRAMPS e "
+"riprovare."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:514
 msgid "Sorting"
@@ -5833,24 +5842,33 @@ msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
+"Se sono presenti delle informazioni personali tra i dettagli dell'errore, "
+"conviene rimuoverle."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 msgid "Error Details"
 msgstr "Dettagli errore"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:184
+#, fuzzy
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
+"Queste sono le informazioni dettagliate sull'errore di Gramps; non c'è da "
+"preoccuparsi se qualcosa risulta oscura. Nelle pagine seguenti "
+"dell'assistente sarà possibile aggiungere ulteriori dettagli sull'errore."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:202
+#, fuzzy
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
+"Controllare le informazioni riportate e correggere le eventuali informazioni "
+"errate o rimuovere quello che non si vuole includere nella segnalazione."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:249
 msgid "System Information"
@@ -5861,6 +5879,8 @@ msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
+"Queste sono le informazioni sul sistema corrente che potranno aiutare gli "
+"sviluppatori a risolvere il problema."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:270
 msgid ""
@@ -6523,9 +6543,8 @@ msgid "Source text"
 msgstr "Indicazione fonte"
 
 #: ../src/plugins/CalculateEstimatedDates.py:77
-#, fuzzy
 msgid "Calculated Date Estimates"
-msgstr "Date stimate"
+msgstr "Calcolo stima date"
 
 #: ../src/plugins/CalculateEstimatedDates.py:78
 msgid "Source to remove and/or add"
@@ -6815,12 +6834,10 @@ msgid "Title text and background color"
 msgstr "Testo titolo e colore di sfondo"
 
 #: ../src/plugins/Calendar.py:612
-#, fuzzy
 msgid "Calendar day numbers"
 msgstr "Numeri dei giorni del calendario"
 
 #: ../src/plugins/Calendar.py:615
-#, fuzzy
 msgid "Daily text display"
 msgstr "Visualizzazione testo giornaliero"
 
@@ -6865,9 +6882,8 @@ msgid "Title text style"
 msgstr "Stile testo titolo"
 
 #: ../src/plugins/Calendar.py:654
-#, fuzzy
 msgid "Data text display"
-msgstr "Visualizzazione testo dati"
+msgstr "Visualizzazione dati"
 
 #: ../src/plugins/Calendar.py:656
 msgid "Day text style"
@@ -7337,14 +7353,18 @@ msgstr ""
 "Verifica l'integrità del database risolvendone possibilmente i problemi"
 
 #: ../src/plugins/CmdRef.py:236
+#, fuzzy
 msgid "Generate Commandline Plugin Reference"
-msgstr ""
+msgstr "Genera guida di riferimento ai plugin a riga di comando"
 
 #: ../src/plugins/CmdRef.py:240
+#, fuzzy
 msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
 msgstr ""
+"Genera un file XML DocBook contenente la guida di riferimento dei parametri "
+"per i resoconti e gli strumenti."
 
 #: ../src/plugins/CountAncestors.py:61
 #, python-format
@@ -7422,10 +7442,13 @@ msgid "Start date test?"
 msgstr "Avviare il test delle date?"
 
 #: ../src/plugins/DateParserDisplayTest.py:62
+#, fuzzy
 msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
 msgstr ""
+"Questo test creerà molte persone ed eventi nel database corrente. Si "
+"desidera davvero eseguire questo test?"
 
 #: ../src/plugins/DateParserDisplayTest.py:62
 msgid "Run test"
@@ -7445,16 +7468,23 @@ msgid "Date Test Plugin"
 msgstr "Plugin test data"
 
 #: ../src/plugins/DateParserDisplayTest.py:235
+#, fuzzy
 msgid "Check Localized Date Displayer and Parser"
-msgstr ""
+msgstr "Verifica visualizzatore e parser di date localizzate"
 
 #: ../src/plugins/DateParserDisplayTest.py:239
+#, fuzzy
 msgid ""
 "This test tool will create many people showing all different date variants "
 "as birth. The death date is created by parsing the result of the date "
 "displayer for the birth date. This way you can ensure that dates printed can "
 "be parsed back in correctly."
 msgstr ""
+"Questo strumento di test crea molte persone mostrando tutte le diverse "
+"varianti di date come date di nascita. La data di decesso viene quindi "
+"creata a partire da quanto restituito dal visualizzatore di date che ha "
+"operato sulla data di nascita. In questo modo è facile assicurarsi che le "
+"date stampate possano essere a loro volta interpretate correttamente."
 
 #: ../src/plugins/DefaultGramplets.py:72
 msgid "Double-click a day for details"
@@ -7971,9 +8001,9 @@ msgid "The style used for the level %d display."
 msgstr "Lo stile usato per la visualizzazione del livello %d."
 
 #: ../src/plugins/DescendReport.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "Lo stile usato per la visualizzazione del livello coniugi %d."
+msgstr "Lo stile usato per la visualizzazione dei coniugi al livello %d."
 
 #: ../src/plugins/DescendReport.py:254
 msgid "Descendant Report"
@@ -8129,7 +8159,6 @@ msgstr "Usa frasi complete"
 
 #: ../src/plugins/DetAncestralReport.py:741
 #: ../src/plugins/DetDescendantReport.py:684
-#, fuzzy
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Indica se usare frasi complete oppure un linguaggio sintetico."
 
@@ -8791,8 +8820,9 @@ msgid "roundabout"
 msgstr "circolare"
 
 #: ../src/plugins/FanChart.py:370
+#, fuzzy
 msgid "Print radial texts upright or roundabout"
-msgstr ""
+msgstr "Stampa i testi radiali orientandoli verso l'alto o in modo circolare"
 
 #: ../src/plugins/FanChart.py:394
 msgid "The style used for the title."
@@ -9776,22 +9806,18 @@ msgid "Unknown gender"
 msgstr "Sesso sconosciuto"
 
 #: ../src/plugins/lineage.py:239
-#, fuzzy
 msgid "Father lineage"
 msgstr "Discendenza paterna"
 
 #: ../src/plugins/lineage.py:241
-#, fuzzy
 msgid "Display father lineage"
 msgstr "Mostra discendenza paterna"
 
 #: ../src/plugins/lineage.py:250
-#, fuzzy
 msgid "Mother lineage"
 msgstr "Discendenza materna"
 
 #: ../src/plugins/lineage.py:252
-#, fuzzy
 msgid "Display mother lineage"
 msgstr "Mostra discendenza materna"
 
@@ -16341,7 +16367,6 @@ msgid "Daughter of %(mother)s."
 msgstr "Figlia di %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1305
-#, fuzzy
 msgid "unmarried"
 msgstr "stato libero"
 
@@ -17199,7 +17224,7 @@ msgstr "Occupazione"
 
 #: ../src/gen/lib/eventtype.py:124
 msgid "Ordination"
-msgstr "Ordinazione"
+msgstr "Ordinanza"
 
 #: ../src/gen/lib/eventtype.py:125
 msgid "Probate"
@@ -17291,7 +17316,7 @@ msgstr "<Nessuno stato>"
 
 #: ../src/gen/lib/ldsord.py:100
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 #: ../src/gen/lib/ldsord.py:101
 msgid "Canceled"
@@ -17544,7 +17569,6 @@ msgstr "Distingui maiuscole:"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:497
-#, fuzzy
 msgid "Regular-Expression matching:"
 msgstr "Espressione regolare corrispondente:"
 
@@ -17910,9 +17934,8 @@ msgid "People with children"
 msgstr "Persone con figli"
 
 #: ../src/Filters/Rules/Person/_HaveChildren.py:44
-#, fuzzy
 msgid "Matches people who have children"
-msgstr "Persone con figli"
+msgstr "Estrae le persone con figli"
 
 #: ../src/Filters/Rules/Person/_HavePhotos.py:43
 msgid "People with images"
@@ -18462,7 +18485,8 @@ msgstr "Famiglie con figlio/a avente <nome>"
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
 #, fuzzy
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Estrae le famiglie dove un figlio ha un nome (parziale) specificato"
+msgstr ""
+"Estrae le famiglie dove un figlio ha un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
@@ -18475,7 +18499,8 @@ msgstr "Famiglie con un qualsiasi figlio corrispondente a <nome>"
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 #, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Estrae le famiglie dove un figlio ha un nome (parziale) specificato"
+msgstr ""
+"Estrae le famiglie dove un figlio ha un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
@@ -18506,12 +18531,10 @@ msgstr ""
 "regolare specificata"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
-#, fuzzy
 msgid "Families with child matching the <regex_name>"
 msgstr "Famiglie con figli corrispondenti a <espressione_regolare_nome>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-#, fuzzy
 msgid ""
 "Matches families where child has a name matching a specified regular "
 "expression"
@@ -19375,7 +19398,7 @@ msgstr "<b>Stato</b>"
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:2
 #, fuzzy
 msgid "<b>Warning messages</b>"
-msgstr "<b>Avvisi</b>"
+msgstr "<b>Messaggio di avviso</b>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
@@ -19417,10 +19440,10 @@ msgid ""
 "import, and override the character set by selecting a different encoding "
 "below."
 msgstr ""
-"Il file GEDCOM afferma di utilizzare la condifica ANSEL. Talvolta questo è "
-"un errore. Se i dati importanti contengono caratteri strani, annullare "
+"Il file GEDCOM afferma di utilizzare la codifica ANSEL. Talvolta questo è un "
+"errore. Se i dati importanti contengono caratteri strani, annullare "
 "l'importazione e riprovare, forzando la scelta della codifica dei caratteri "
-"selezionandone una dalla lista che segue."
+"tramite selezione della codifica dalla lista che segue."
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:12
 msgid "Version:"
@@ -19606,7 +19629,6 @@ msgstr ""
 "riflette anche sull'evento, per tutti i partecipanti ad esso."
 
 #: ../src/glade/gramps.glade.h:18
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
@@ -19617,7 +19639,6 @@ msgstr ""
 "al deposito."
 
 #: ../src/glade/gramps.glade.h:19
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
@@ -19659,7 +19680,6 @@ msgid "<b>Reference information</b>"
 msgstr "<b>Informazioni riferimento</b>"
 
 #: ../src/glade/gramps.glade.h:27
-#, fuzzy
 msgid "<b>Referenced Region</b>"
 msgstr "<b>Area considerata</b>"
 
@@ -19906,9 +19926,8 @@ msgid "Open person editor of this child"
 msgstr "Apre la scheda del figlio nell'editor"
 
 #: ../src/glade/gramps.glade.h:93
-#, fuzzy
 msgid "Ordinance:"
-msgstr "Ordinazione:"
+msgstr "Ordinanza:"
 
 #: ../src/glade/gramps.glade.h:94
 msgid "P_atronymic:"
@@ -19944,7 +19963,6 @@ msgid "Remove object and all references to it from the database"
 msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
 
 #: ../src/glade/gramps.glade.h:103
-#, fuzzy
 msgid "Revision comment - GRAMPS"
 msgstr "Commento revisione - GRAMPS"
 
@@ -20289,7 +20307,6 @@ msgid "Place 2"
 msgstr "Luogo 2"
 
 #: ../src/glade/mergedata.glade.h:13
-#, fuzzy
 msgid ""
 "Select the person that will provide the primary data for the merged person."
 msgstr ""
@@ -20347,7 +20364,6 @@ msgid "Add another rule to the filter"
 msgstr "Aggiunge un'altra regola al filtro"
 
 #: ../src/glade/rule.glade.h:10
-#, fuzzy
 msgid ""
 "All rules must apply\n"
 "At least one rule must apply\n"
