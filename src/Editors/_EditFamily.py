@@ -442,9 +442,6 @@ class EditFamily(EditPrimary):
     def _local_init(self):
         self.build_interface()
 
-        self.mname  = None
-        self.fname  = None
-
         self._add_db_signal('family-update', self.check_for_family_change)
         self._add_db_signal('family-delete', self.check_for_close)
 
@@ -484,6 +481,15 @@ class EditFamily(EditPrimary):
     def event_updated(self, obj):
         self.load_data()
 
+    def show_buttons(self):
+        """
+        Used to reshow hidden/showing buttons.
+        """
+        fhandle = self.obj.get_father_handle()
+        self.update_father(fhandle)
+        mhandle = self.obj.get_mother_handle()
+        self.update_mother(mhandle)
+
     def reload_people(self):
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
@@ -509,6 +515,12 @@ class EditFamily(EditPrimary):
 
         self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
 
+        # HACK: how to prevent hidden items from showing
+        #       when you use show_all?
+        # Consider using show() rather than show_all()?
+        # FIXME: remove if we can use show()
+        self.window.show_all = self.window.show
+
         # restore window size
         width = Config.get(Config.FAMILY_WIDTH)
         height = Config.get(Config.FAMILY_HEIGHT)
@@ -524,19 +536,45 @@ class EditFamily(EditPrimary):
         self.mbirth_label = self.top.get_widget('label567')
         self.mdeath_label = self.top.get_widget('label568')
 
-        self.mbutton = self.top.get_widget('mbutton')
-        self.mbutton2 = self.top.get_widget('mbutton2')
-        self.fbutton = self.top.get_widget('fbutton')
-        self.fbutton2 = self.top.get_widget('fbutton2')
-
-        self.tooltips.set_tip(self.mbutton2,
-                              _("Add a new person as the mother"))
-        self.tooltips.set_tip(self.fbutton2,
-                              _("Add a new person as the father"))
-
-        self.mbox    = self.top.get_widget('mbox')
-        self.fbox    = self.top.get_widget('fbox')
+        self.mname    = self.top.get_widget('mname')
+        self.fname    = self.top.get_widget('fname')
         
+        self.mbutton_index = self.top.get_widget('mbutton_index')
+        self.mbutton_add = self.top.get_widget('mbutton_add')
+        self.mbutton_del = self.top.get_widget('mbutton_del')
+        self.mbutton_edit = self.top.get_widget('mbutton_edit')
+
+        self.tooltips.set_tip(self.mbutton_index, 
+                              _("Select a person as the mother"))
+        self.tooltips.set_tip(self.mbutton_add, 
+                              _("Add a new person as the mother"))
+        self.tooltips.set_tip(self.mbutton_del, 
+                              _("Remove the person as the mother"))
+
+        self.mbutton_edit.connect('button-press-event', self.edit_mother)
+        self.mbutton_edit.connect('key-press-event', self.edit_mother)
+        self.mbutton_index.connect('clicked', self.sel_mother_clicked)
+        self.mbutton_del.connect('clicked', self.del_mother_clicked)
+        self.mbutton_add.connect('clicked', self.add_mother_clicked)
+
+        self.fbutton_index = self.top.get_widget('fbutton_index')
+        self.fbutton_add = self.top.get_widget('fbutton_add')
+        self.fbutton_del = self.top.get_widget('fbutton_del')
+        self.fbutton_edit = self.top.get_widget('fbutton_edit')
+
+        self.tooltips.set_tip(self.fbutton_index, 
+                              _("Select a person as the father"))
+        self.tooltips.set_tip(self.fbutton_add, 
+                              _("Add a new person as the father"))
+        self.tooltips.set_tip(self.fbutton_del, 
+                              _("Remove the person as the father"))
+
+        self.fbutton_edit.connect('button-press-event', self.edit_father)
+        self.fbutton_edit.connect('key-press-event', self.edit_father)
+        self.fbutton_index.connect('clicked', self.sel_father_clicked)
+        self.fbutton_del.connect('clicked', self.del_father_clicked)
+        self.fbutton_add.connect('clicked', self.add_father_clicked)
+
         #allow for a context menu
         self.set_contexteventbox(self.top.get_widget("eventboxtop"))
 
@@ -588,11 +626,6 @@ class EditFamily(EditPrimary):
         
         self.phandles = [handle for handle in self.phandles if handle]
 
-        self.mbutton.connect('clicked', self.mother_clicked)
-        self.mbutton2.connect('clicked', self.add_mother_clicked)
-        self.fbutton.connect('clicked', self.father_clicked)
-        self.fbutton2.connect('clicked', self.add_father_clicked)
-
     def _create_tabbed_pages(self):
 
         notebook = gtk.Notebook()
@@ -637,18 +670,16 @@ class EditFamily(EditPrimary):
         self.top.get_widget('vbox').pack_start(notebook, True)
 
     def update_father(self, handle):
-        self.load_parent(handle, self.fbox, self.fbirth, self.fbirth_label,
-                         self.fdeath, self.fdeath_label, self.fbutton,
-                         self.fbutton2,
-                         _("Select a person as the father"),
-                         _("Remove the person as the father"))
+        self.load_parent(handle, self.fname, self.fbirth, self.fbirth_label,
+                         self.fdeath, self.fdeath_label, 
+                         self.fbutton_index, self.fbutton_add,
+                         self.fbutton_del, self.fbutton_edit)
 
     def update_mother(self, handle):
-        self.load_parent(handle, self.mbox, self.mbirth, self.mbirth_label,
-                         self.mdeath, self.mdeath_label, self.mbutton,
-                         self.mbutton2,
-                         _("Select a person as the mother"),
-                         _("Remove the person as the mother"))
+        self.load_parent(handle, self.mname, self.mbirth, self.mbirth_label,
+                         self.mdeath, self.mdeath_label, 
+                         self.mbutton_index, self.mbutton_add,
+                         self.mbutton_del, self.mbutton_edit)
 
     def add_mother_clicked(self, obj):
         from Editors import EditPerson
@@ -700,30 +731,30 @@ class EditFamily(EditPrimary):
         self.obj.set_father_handle(person.handle) 
         self.update_father(person.handle)
 
-    def mother_clicked(self, obj):
+    def del_mother_clicked(self, obj):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        handle = self.obj.get_mother_handle()
+        self.obj.set_mother_handle(None)
+        self.update_mother(None)
 
-        if handle:
-            self.obj.set_mother_handle(None)
-            self.update_mother(None)
-        else:
-            data_filter = FastFemaleFilter(self.dbstate.db)
-            sel = SelectPerson(self.dbstate, self.uistate, self.track,
-                               _("Select Mother"),
-                               filter=data_filter,
-                               skip=[x.ref for x in self.obj.get_child_ref_list()])
-            person = sel.run()
+    def sel_mother_clicked(self, obj):
+        for i in self.hidden:
+            i.set_sensitive(True)
 
-            if person:
-                self.check_for_existing_family(self.obj.get_father_handle(),
-                                               person.handle,
-                                               self.obj.handle)
+        data_filter = FastFemaleFilter(self.dbstate.db)
+        sel = SelectPerson(self.dbstate, self.uistate, self.track,
+                           _("Select Mother"),
+                           filter=data_filter,
+                           skip=[x.ref for x in self.obj.get_child_ref_list()])
+        person = sel.run()
 
-                self.obj.set_mother_handle(person.handle) 
-                self.update_mother(person.handle)
+        if person:
+            self.check_for_existing_family(self.obj.get_father_handle(),
+                                           person.handle,
+                                           self.obj.handle)
+            self.obj.set_mother_handle(person.handle) 
+            self.update_mother(person.handle)
 
     def on_change_father(self, selector_window, obj):
         if  obj.__class__ == gen.lib.Person:
@@ -745,30 +776,29 @@ class EditFamily(EditPrimary):
             
         selector_window.close()
 
-    def father_clicked(self, obj):
+    def del_father_clicked(self, obj):
         for i in self.hidden:
             i.set_sensitive(True)
 
-        handle = self.obj.get_father_handle()
-        if handle:
-            self.obj.set_father_handle(None)
-            self.update_father(None)
-        else:
-            data_filter = FastMaleFilter(self.dbstate.db)
-            sel = SelectPerson(self.dbstate, self.uistate, self.track,
-                               _("Select Father"),
-                               filter=data_filter,
-                               skip=[x.ref for x in self.obj.get_child_ref_list()])
-            person = sel.run()
+        self.obj.set_father_handle(None)
+        self.update_father(None)
 
-            if person:
+    def sel_father_clicked(self, obj):
+        for i in self.hidden:
+            i.set_sensitive(True)
 
-                self.check_for_existing_family(person.handle,
-                                               self.obj.get_mother_handle(),
-                                               self.obj.handle)
-            
-                self.obj.set_father_handle(person.handle) 
-                self.update_father(person.handle)
+        data_filter = FastMaleFilter(self.dbstate.db)
+        sel = SelectPerson(self.dbstate, self.uistate, self.track,
+                           _("Select Father"),
+                           filter=data_filter,
+                           skip=[x.ref for x in self.obj.get_child_ref_list()])
+        person = sel.run()
+        if person:
+            self.check_for_existing_family(person.handle,
+                                           self.obj.get_mother_handle(),
+                                           self.obj.handle)
+            self.obj.set_father_handle(person.handle) 
+            self.update_father(person.handle)
 
     def check_for_existing_family(self, father_handle, mother_handle,
                                   family_handle):
@@ -790,6 +820,14 @@ class EditFamily(EditPrimary):
                               'you cancel the editing of this window, and '
                               'select the existing family'))
 
+    def edit_father(self, obj, event):
+        handle = self.obj.get_father_handle()
+        return self.edit_person(obj, event, handle)
+
+    def edit_mother(self, obj, event):
+        handle = self.obj.get_mother_handle()
+        return self.edit_person(obj, event, handle)
+
     def edit_person(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
             from _EditPerson import EditPerson
@@ -800,21 +838,13 @@ class EditFamily(EditPrimary):
             except Errors.WindowActiveError:
                 pass
 
-    def load_parent(self, handle, box, birth_obj, birth_label, death_obj,
-                    death_label, btn_obj, btn2_obj, add_msg, del_msg):
-
+    def load_parent(self, handle, name_obj, birth_obj, birth_label, death_obj,
+                    death_label, btn_index, btn_add, btn_del, btn_edit):
+        # is a parent used here:
         is_used = handle is not None
 
-        for i in box.get_children():
-            box.remove(i)
-
-        try:
-            btn_obj.remove(btn_obj.get_children()[0])
-        except IndexError:
-            pass
-        
+        # now we display the area:
         if is_used:
-            btn2_obj.hide()
             db = self.db
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (name_displayer.display(person),
@@ -827,38 +857,33 @@ class EditFamily(EditPrimary):
             if death and death.get_type() == gen.lib.EventType.BURIAL:
                 death_label.set_label(_("Burial:"))
 
-            del_image = gtk.Image()
-            del_image.show()
-            del_image.set_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_BUTTON)
-            self.tooltips.set_tip(btn_obj, del_msg)
-            btn_obj.add(del_image)
-
-            edit_btn = IconButton(self.edit_person, person.handle)
-            self.tooltips.set_tip(edit_btn, _('Edit %s') % name)
-
-            box.pack_start(LinkBox(
-                BasicLabel(name, ellipsize=pango.ELLIPSIZE_END),
-                edit_btn)
-                )
+            self.tooltips.set_tip(btn_edit, _('Edit %s') % name)
+            btn_index.hide()
+            btn_add.hide()
+            btn_del.show()
+            btn_edit.show()
         else:
-            btn2_obj.show()
             name = ""
             birth = None
             death = None
 
-            add_image = gtk.Image()
-            add_image.show()
-            add_image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
-            self.tooltips.set_tip(btn_obj, add_msg)
-            btn_obj.add(add_image)
+            btn_index.show()
+            btn_add.show()
+            btn_del.hide()
+            btn_edit.hide()
 
+        if name_obj:
+            name_obj.set_text(name)
         if birth:
             birth_str = DateHandler.displayer.display(birth.get_date_object())
-            birth_obj.set_text(birth_str)
-
+        else:
+            birth_str = ""
+        birth_obj.set_text(birth_str)
         if death:
             death_str = DateHandler.displayer.display(death.get_date_object())
-            death_obj.set_text(death_str)
+        else:
+            death_str = ""
+        death_obj.set_text(death_str)
 
     def fix_parent_handles(self, orig_handle, new_handle, trans):
         if orig_handle != new_handle:
