@@ -283,12 +283,8 @@ class Msgid:
 		if not self.is_tips_xml and self.tips_xml_pat.search( line ):
 			self.is_tips_xml = 1
 
-msgs = []
-msgnr = 0			# This is the message number of the next message to read. The first real message is 1.
-def create_new_Msgid( lineno ):
-	global msgnr
-	msg = Msgid( msgnr, lineno )
-	msgnr += 1
+def create_new_Msgid( msgs, lineno ):
+	msg = Msgid( len(msgs), lineno )
 	msgs.append( msg )
 	return msg
 
@@ -317,6 +313,7 @@ def read_msgs( fname ):
 	state = NONE
 	msg = None
 
+	msgs = []
 	for ix, line in enumerate( lines ):	# Use line numbers for messages
 		lineno = ix + 1
 
@@ -346,12 +343,12 @@ def read_msgs( fname ):
 			# expect msgid or comment or old stuff
 			if next_state == CMNT:
 				state = CMNT
-				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg = create_new_Msgid( msgs, lineno ) # Start with an empty new item
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg = create_new_Msgid( msgs, lineno ) # Start with an empty new item
 				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGIDP:
@@ -360,7 +357,7 @@ def read_msgs( fname ):
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg = create_new_Msgid( msgs, lineno ) # Start with an empty new item
 				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
@@ -385,7 +382,7 @@ def read_msgs( fname ):
 			elif next_state == MSGID:
 				state = MSGID
 				if not msg:
-					msg = create_new_Msgid( lineno ) # Start with an empty new item
+					msg = create_new_Msgid( msgs, lineno ) # Start with an empty new item
 				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGIDP:
@@ -394,7 +391,7 @@ def read_msgs( fname ):
 			elif next_state == MSGSTR:
 				print 'WARNING: Wild msgstr at %(fname)s:%(lineno)d' % vars()
 				state = MSGSTR
-				msg = create_new_Msgid( lineno ) # Start with an empty new item
+				msg = create_new_Msgid( msgs, lineno ) # Start with an empty new item
 				msg.add_new_msgstr( line, lineno )
 
 			elif next_state == STR:
@@ -467,12 +464,12 @@ def read_msgs( fname ):
 			if next_state == CMNT:
 				# A comment probably starts a new item
 				state = CMNT
-				msg = create_new_Msgid( lineno )
+				msg = create_new_Msgid( msgs, lineno )
 				msg.add_cmnt( line )
 
 			elif next_state == MSGID:
 				state = MSGID
-				msg = create_new_Msgid( lineno )
+				msg = create_new_Msgid( msgs, lineno )
 				msg.add_msgid( line, lineno )
 
 			elif next_state == MSGIDP:
