@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 from math import radians
+from xml.sax.saxutils import escape
 
 #------------------------------------------------------------------------
 #
@@ -1083,16 +1084,16 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element.add_child(GtkDocPagebreak())
 
     def start_bold(self):
-        self.write_text('<b>')
+        self.__write_text('<b>', markup=True)
     
     def end_bold(self):
-        self.write_text('</b>')
+        self.__write_text('</b>', markup=True)
     
     def start_superscript(self):
-        self.write_text('<small><sup>')
+        self.__write_text('<small><sup>', markup=True)
     
     def end_superscript(self):
-        self.write_text('</sup></small>')
+        self.__write_text('</sup></small>', markup=True)
     
     def start_paragraph(self, style_name, leader=None):
         style_sheet = self.get_style_sheet()
@@ -1142,6 +1143,10 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element = self._active_element.get_parent()
     
     def write_note(self, text, format, style_name):
+        """
+        Method to write the note objects text on a
+        Document
+        """
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
@@ -1155,12 +1160,30 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self, text, mark=None):
-        text = text.replace('&','&amp;')
-        # FIXME this is ugly, do we really need it?
-        text = text.replace('<super>', '<small><sup>')
-        text = text.replace('</super>', '</sup></small>')
+    def __write_text(self, text, mark=None, markup=False):
+        """
+        @param text: text to write.
+        @param mark:  IndexMark to use for indexing (if supported)
+        @param markup: True if text already contains markup info. 
+                       Then text will no longer be escaped
+        Private method: reports should not add markup in text to override
+            the style
+        """
+        if not markup:            
+            # We need to escape the text here for later pango.Layout.set_markup
+            # calls. This way we save the markup created by the report
+            # The markup in the note editor is not in the text so is not 
+            # considered. It must be added by pango too
+            text = escape(text)
         self._active_element.add_text(text)
+
+    def write_text(self, text, mark=None):
+        """Write a normal piece of text according to the
+           present style
+        @param text: text to write.
+        @param mark:  IndexMark to use for indexing (if supported)
+        """
+        self. __write_text(text, mark)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm)
