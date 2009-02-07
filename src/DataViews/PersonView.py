@@ -160,7 +160,7 @@ class PersonView(PageView.PersonNavView):
                  _("Remove the Selected Person"), self.remove), 
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor...'), None, 
                  None, self._column_editor),  
-                ('CmpMerge', None, _('_Compare and Merge...'), None, None, 
+                ('CmpMerge', None, _('Compare and _Merge...'), None, None, 
                  self.cmp_merge), 
                 ('FastMerge', None, _('_Fast Merge...'), None, None, 
                  self.fast_merge), 
