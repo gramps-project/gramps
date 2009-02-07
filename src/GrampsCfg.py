@@ -462,12 +462,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.format_list.set_cursor(path, 
                                     focus_column=self.name_column, 
                                     start_editing=True)
+        self.edit_button.set_sensitive(False)
+        self.remove_button.set_sensitive(False)
+        self.insert_button.set_sensitive(False)
         self.__current_path = path
         self.__current_text = f
 
     def __edit_name(self, obj):
         store, node = self.format_list.get_selection().get_selected()
         path = self.fmt_model.get_path(node)
+        self.edit_button.set_sensitive(False)
+        self.remove_button.set_sensitive(False)
+        self.insert_button.set_sensitive(False)
         self.format_list.set_cursor(path, 
                                     focus_column=self.name_column, 
                                     start_editing=True)
@@ -530,6 +536,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                 self.edit_button.emit('clicked')
                 return
             # else, change the name
+            self.edit_button.set_sensitive(True)
+            self.remove_button.set_sensitive(True)
+            self.insert_button.set_sensitive(True)
             exmpl = _nd.format_str(self.examplename, pattern)
             self.fmt_model.set(self.iter, COL_NAME, translation, 
                                COL_FMT, pattern, 
@@ -589,8 +598,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.selected_fmt = ()
         self.iter = None
 
-        insert_button = gtk.Button(stock=gtk.STOCK_ADD)
-        insert_button.connect('clicked', self.__new_name)
+        self.insert_button = gtk.Button(stock=gtk.STOCK_ADD)
+        self.insert_button.connect('clicked', self.__new_name)
                               #self.cb_insert_fmt_str)
 
         self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
@@ -602,7 +611,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.remove_button.connect('clicked', self.cb_del_fmt_str)
         self.remove_button.set_sensitive(False)
         
-        table.attach(insert_button, 0, 1, 1, 2, yoptions=0)
+        table.attach(self.insert_button, 0, 1, 1, 2, yoptions=0)
         table.attach(self.remove_button, 1, 2, 1, 2, yoptions=0)
         table.attach(self.edit_button,   2, 3, 1, 2, yoptions=0)
         self.format_list = format_tree
