@@ -877,7 +877,7 @@ div#pedigree {
     padding:0;
     background:none;
 }
-#tree #treeContainer div.boxbg span.unlinked {
+#treeContainer div.boxbg span.unlinked {
     position:absolute;
     margin:0;
     padding:0;
@@ -1095,6 +1095,12 @@ body#WebCal {
     float:right;
     color:#FFF;
     margin:-24px 10px 0 0;
+}
+#CreatorInfo a {
+    color:#FFF;
+}
+#CreatorInfo a:hover {
+    color:#FFF;
 }
 .calendar thead tr th.weekend, 
 .calendar thead tr th.weekday {

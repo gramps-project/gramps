@@ -31,7 +31,6 @@ Refactoring. This is an ongoing job until this plugin is in a better shape.
 TODO list:
  - progress bar, rethink its usage
  - in year navigation, use month in link, or 'fullyear'
- - use standard Gramps method to display surname, see _get_regular_surname
  - daylight saving not just for USA and Europe
  - move the close_file() from one_day() to caller
 """
@@ -79,6 +78,7 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
+from libholiday import easter, dst
 
 #------------------------------------------------------------------------
 #
@@ -169,38 +169,6 @@ _COPY_OPTIONS = [
         _('No copyright notice'),
         ]
 
-# Compute the first day to display for this month.
-# It can also be a day in the previous month.
-def get_first_day(year, month):
-    current_date = datetime.date(year, month, 1) # first day of the month
-
-    # monthinfo is filled using standard Python library 
-    # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
-    # of the 7-day-list is determined by calendar.firstweekday.
-    monthinfo = calendar.monthcalendar(year, month)
-
-    current_ord = current_date.toordinal() - monthinfo[0].count(0)
-    return current_date, current_ord, monthinfo
-
-# get last month's last week for previous days in the month
-def get_previous_day(year, month, day_col):
-    if month == 1:
-        prevmonth = calendar.monthcalendar(year - 1, 12)
-    else:
-        prevmonth = calendar.monthcalendar(year, month-1)
-    num_weeks = len(prevmonth)
-    lastweek_prevmonth = prevmonth[num_weeks - 1]
-    return lastweek_prevmonth[day_col]
-
-# get next month's first week for next days in the month
-def get_next_day(year, month, day_col):  
-    if month == 12:
-        nextmonth = calendar.monthcalendar(year + 1, 1)
-    else:
-        nextmonth = calendar.monthcalendar(year, month + 1)
-    firstweek_nextmonth = nextmonth[0]
-    return firstweek_nextmonth[day_col]
-
 #------------------------------------------------------------------------
 #
 # WebCalReport
@@ -272,7 +240,6 @@ class WebCalReport(Report):
         self.today = datetime.date(today[0], today[1], today[2])
 
         self.warn_dir = True            # Only give warning once.
-        self.imgs = []
 
         # self.calendar is a dict; key is the month number
         # Each entry in the dict is also a dict; key is the day number.
@@ -356,10 +323,10 @@ class WebCalReport(Report):
 
     def copy_calendar_files(self):
         """
-        Copies all the necessary files
+        Copies all the necessary stylesheets and images for these calendars
         """
-        # Copy the normal stylesheet
-        if self.css != "":
+        # Copy the screen stylesheet
+        if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
             self.copy_file(fname, self.css, "styles")
 
@@ -367,27 +334,40 @@ class WebCalReport(Report):
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
         self.copy_file(fname, "Web_Print-Default.css", "styles")
 
+        # set imgs to empty
+        imgs = []
+
+        if self.css == "Web_Mainz.css":
+            # Copy Mainz Style Images
+            imgs += ["Web_Mainz_Bkgd.png",
+                     "Web_Mainz_Header.png",
+                     "Web_Mainz_Mid.png",
+                     "Web_Mainz_MidLight.png",
+                     ]
+
         # Copy GRAMPS favicon
-        fname = os.path.join(const.IMAGE_DIR, "favicon.ico")
-        self.copy_file(fname, "favicon.ico", "images")
+        imgs += ['favicon.ico']
 
         # copy copyright image
         if 0 < self.copy < len(_CC):
-            fname = os.path.join(const.IMAGE_DIR, 'somerights20.gif')
-            self.copy_file(fname, 'somerights20.gif', 'images')
+            imgs += ['somerights20.gif']
 
-        for f in self.imgs:
-            from_path = os.path.join(const.IMAGE_DIR, f)
-            self.copy_file(from_path, f, "images")
+        for fname in imgs:
+            from_path = os.path.join(const.IMAGE_DIR, fname)
+            self.copy_file(from_path, fname, "images")
 
-    def display_month_navs(self, of, nr_up, year, currentsection, use_home=False):
+    def display_month_navs(self, of, nr_up, year, currentsection, use_home):
         """
         Will create and display the navigation menu bar
 
         use_home will produce a link to wherever you specify as a home link
 
-        cal is one of these:
-        od = one_day(), wc = normal_cal(), yg = year_glance(), by = blank_year()
+        of = calendar filename being created
+        nr_up = number of directories up to reach root directory
+        year = year being created
+        currentsection = month name being created for proper CSS styling
+        use_home = if this is creating a link to home 
+            -- a link to root directory of website
         """
 
         navs = []
@@ -427,7 +407,7 @@ class WebCalReport(Report):
                 url = url_fname
                 if not url.startswith('http:'):
                     url = '/'.join(subdirs + [url_fname])
-                    if not _has_webpage_extension(url):
+                    if not url.endswith(self.ext):
                         url += self.ext
 
                 cs = cs and ' id="CurrentSection"' or ''
@@ -439,6 +419,10 @@ class WebCalReport(Report):
     def display_year_navs(self, of, nr_up, currentsection):
         """
         This will create the year navigation menu bar
+
+        of = current calendar filename being created
+        nr_up = number of directories up to reach root directory
+        currentsection = proper styling of this navigation bar
         """
 
         of.write('<div id="navigation">\n')
@@ -483,15 +467,23 @@ class WebCalReport(Report):
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
 
-    def calendar_common(self, of, nr_up, year, currsec1, title, use_home=False):
+    def calendar_common(self, of, nr_up, year, currentsection, title, use_home=False):
         """
         Will create the common information for each calendar being created
+
+        of = current filename being created, can be either web_cal(), or year_glance()
+        nr_up = number of directories up to reach root directory/ self.html_dir
+        year = year being created
+        currentsection = current section for proper styling of display_month_navs()
+        title = title for this calendar
+        use_home = for display_month_navs() to display a link to home 
+            -- home directory of website
         """
 
         # Header Title
         of.write('<div id="header">\n')
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % title)
-        if self.author != '':
+        if self.author:
             of.write('\t<p id="CreatorInfo">')
             if self.email != '':  
                 msg = _('Created for <a href="mailto:%(email)s?subject=WebCal">%(author)s</a>\n') % {
@@ -515,7 +507,7 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        self.display_month_navs(of, nr_up, year, currsec1, use_home)
+        self.display_month_navs(of, nr_up, year, currentsection, use_home)
 
         of.write('<div class="content">\n')
 
@@ -555,7 +547,7 @@ class WebCalReport(Report):
         # seems appropriate for most countries.
         month_name = full_month_name.capitalize()
         th_txt = month_name
-        if cal == 'wc': # normal_cal()
+        if cal == 'wc': # web_cal()
             if not self.multiyear:
                 th_txt = '%s %d' % (month_name, year)
         of.write('<!-- %s -->\n\n' % month_name)
@@ -578,7 +570,7 @@ class WebCalReport(Report):
         # begin table body
         of.write('\t<tbody>\n')
 
-        current_date, current_ord, monthinfo = get_first_day(year, month)
+        current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
 
         nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
@@ -759,7 +751,7 @@ class WebCalReport(Report):
 
         fname = os.path.join(self.html_dir, subdir, fname)
 
-        if not _has_webpage_extension(fname):
+        if not fname.endswith(self.ext):
             fname += self.ext
 
         destdir = os.path.dirname(fname)
@@ -910,14 +902,6 @@ class WebCalReport(Report):
         # TODO. Verify that we collect correct info based on start_year
         self.collect_data(self.start_year)
 
-        if self.css == "Web_Mainz.css":
-            # Copy Mainz Style Images
-            self.imgs += ["Web_Mainz_Bkgd.png",
-                     "Web_Mainz_Header.png",
-                     "Web_Mainz_Mid.png",
-                     "Web_Mainz_MidLight.png",
-                     ]
-
         # Copy all files for the calendars being created
         self.copy_calendar_files()
 
@@ -948,7 +932,7 @@ class WebCalReport(Report):
                         self.start_month = self.today.month
 
                 # create "WebCal" calendar pages
-                self.normal_cal(cal_year)
+                self.web_cal(cal_year)
 
                 # create "Year At A Glance" and "One Day" calendar pages
                 if self.fullyear:
@@ -975,7 +959,7 @@ class WebCalReport(Report):
                     self.start_month = self.today.month
 
             # create "WebCal" calendar pages
-            self.normal_cal(cal_year)
+            self.web_cal(cal_year)
 
             # create "Year At A Glance"
             if self.fullyear:
@@ -984,7 +968,7 @@ class WebCalReport(Report):
         # Close the progress meter
         self.progress.close()
 
-    def normal_cal(self, year):
+    def web_cal(self, year):
         """
         This method provides information and header/ footer to the calendar month
 
@@ -1039,12 +1023,6 @@ class WebCalReport(Report):
         """
         This method runs through the data, and collects the relevant dates
         and text.
-
-        TODO The use of living variable is too loosely and too liberable to be 
-        properly used.  It only checks to see i an individual was dead as of 
-        January, 1, ????--see line 1147
-
-        if person is dead, then do nothing more!!!
         """
         people = self.database.get_person_handles(sort_handles=False)
         self.progress.set_pass(_('Applying Filter...'), len(people))
@@ -1077,8 +1055,8 @@ class WebCalReport(Report):
                     prob_alive_date = gen.lib.Date(this_year, month, day)
 
                     # add some things to handle maiden name:
-                    father_lastname = None # husband, actually
-                    sex = person.get_gender()
+                    father_surname = None # husband, actually
+                    sex = person.gender
                     if sex == gen.lib.Person.FEMALE:
 
                         # get husband's last name:
@@ -1095,9 +1073,9 @@ class WebCalReport(Report):
                                     if father_handle:
                                         father = self.database.get_person_from_handle(father_handle)
                                         if father != None:
-                                            father_name = father.get_primary_name() 
-                                            father_lastname = _get_regular_surname(sex, father_name)
-                    short_name = _get_short_name(person, father_lastname)
+                                            father_name = father.primary_name
+                                            father_surname = _get_regular_surname(sex, father_name)
+                    short_name = _get_short_name(person, father_surname)
                     alive = probably_alive(person, self.database, prob_alive_date)
                     text = _('%(short_name)s') % {'short_name' : short_name}
                     if (self.alive and alive) or not self.alive:
@@ -1109,7 +1087,7 @@ class WebCalReport(Report):
                     fam = self.database.get_family_from_handle(fhandle)
                     father_handle = fam.get_father_handle()
                     mother_handle = fam.get_mother_handle()
-                    if father_handle == person.get_handle():
+                    if father_handle == person.handle:
                         spouse_handle = mother_handle
                     else:
                         continue # with next person if this was the marriage event
@@ -1119,7 +1097,7 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
 
-                        are_married = get_marrital_status(fam, self.database)
+                        are_married = get_marrital_status(self.database, fam)
                         if are_married is not None:
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
@@ -1132,7 +1110,7 @@ class WebCalReport(Report):
 
                                 # determine if anniversary date is a valid date???
                                 complete_date = False
-                                if event_obj.get_valid():
+                                if event_obj.is_valid():
                                     complete_date = True
                                 if complete_date:
 
@@ -1386,18 +1364,16 @@ class WebCalOptions(MenuReportOptions):
         else:
             self.__end_year.set_available(False)
 
-
 def _get_regular_surname(sex, name):
     """
-    Return a name string built from the components of the Name instance.
+    Returns a name string built from the components of the Name instance.
     """
-    surname = name.get_surname()
+
+    surname = name.surname
     prefix = name.get_surname_prefix()
     if prefix:
         surname = prefix + " " + surname
-    if sex == gen.lib.Person.FEMALE:
-        pass
-    else: 
+    if sex is not gen.lib.Person.FEMALE:
         suffix = name.get_suffix()
         if suffix:
             surname = surname + ", " + suffix
@@ -1436,31 +1412,6 @@ def _get_short_name(person, maiden_name=None):
             first_name, rest = first_name.split(" ", 1) # just one split max
     return ("%s %s" % (first_name, family_name)).strip()
 
-def _get_marrital_status(family, db):
-    """
-    Returns the marital status of two people, a couple
-
-    are_married will either be the marriage event or None if not married anymore
-    """
-
-    are_married = None
-    for event_ref in family.get_event_ref_list():
-        event = db.get_event_from_handle(event_ref.ref)
-        if event.type in [gen.lib.EventType.MARRIAGE, 
-                          gen.lib.EventType.MARR_ALT]:
-            are_married = event
-        elif event.type in [gen.lib.EventType.DIVORCE, 
-                            gen.lib.EventType.ANNULMENT, 
-                            gen.lib.EventType.DIV_FILING]:
-            are_married = None
-    return are_married
-
-def _has_webpage_extension(fname):
-    for ext in ('.html', '.htm' '.shtml', '.cgi', '.php', '.php3'):
-        if fname.endswith(ext):
-            return True
-    return False
-
 # Simple utility list to convert Gramps day-of-week numbering to calendar.firstweekday numbering
 _dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY, calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY, calendar.SATURDAY ]
 
@@ -1470,7 +1421,7 @@ def _gramps2iso(dow):
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
 
-# define names for long and short month in GrampsLocale
+# define names for full and abbreviated month names in GrampsLocale
 _full_month_name = GrampsLocale.long_months
 _abbr_month_name = GrampsLocale.short_months
 
@@ -1484,7 +1435,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     """
     Will fill day_list and return it to its caller: calendar_build()
 
-    holiday_list, or bday_anniv_list -- will always have something in it...
+    holiday_list -- list of holidays for event_date
+    bday_anniv_list -- list of birthdays and anniversaries for event_date
 
     event_date -- date for this day_list 
 
@@ -1525,8 +1477,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 if event == 'Birthday':
 
                     if nyears == 0:
-                        txt_str = _('%(person)s, <em>birth</em>') % {
-                                    'person' : text}
+                        txt_str = _('%(person)s, <em>birth</em>') % {'person' : text}
                     else: 
                         txt_str = _('%(person)s, <em>%(age)s</em> old') % {
                                     'person' : text, 'age' : age_str}
@@ -1552,7 +1503,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     return day_list
 
-def get_marrital_status(family, db):
+def get_marrital_status(db, family):
     """
     Returns the marital status of two people, a couple
 
@@ -1571,12 +1522,43 @@ def get_marrital_status(family, db):
             are_married = None
     return are_married
 
-def gen_key(event):
-    return ((event.get_year(), event.get_month(), event.get_day()))
+# Compute the first day to display for this month.
+# It can also be a day in the previous month.
+def get_first_day_of_month(year, month):
+    current_date = datetime.date(year, month, 1) # first day of the month
+
+    # monthinfo is filled using standard Python library 
+    # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
+    # of the 7-day-list is determined by calendar.firstweekday.
+    monthinfo = calendar.monthcalendar(year, month)
+
+    current_ord = current_date.toordinal() - monthinfo[0].count(0)
+    return current_date, current_ord, monthinfo
+
+# get last month's last week for previous days in the month
+def get_previous_day(year, month, day_col):
+    if month == 1:
+        prevmonth = calendar.monthcalendar(year - 1, 12)
+    else:
+        prevmonth = calendar.monthcalendar(year, month-1)
+    num_weeks = len(prevmonth)
+    lastweek_prevmonth = prevmonth[num_weeks - 1]
+    previous_month_day= lastweek_prevmonth[day_col]
+    return previous_month_day
+
+# get next month's first week for next days in the month
+def get_next_day(year, month, day_col):  
+    if month == 12:
+        nextmonth = calendar.monthcalendar(year + 1, 1)
+    else:
+        nextmonth = calendar.monthcalendar(year, month + 1)
+    firstweek_nextmonth = nextmonth[0]
+    next_month_day = firstweek_nextmonth[day_col]
+    return next_month_day
 
 #-------------------------------------------------------------------------
 #
-#
+#    Register Plugin
 #
 #-------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
