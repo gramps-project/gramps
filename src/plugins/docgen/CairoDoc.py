@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 from math import radians
+from xml.sax.saxutils import escape
 
 #------------------------------------------------------------------------
 #
@@ -1083,16 +1084,16 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element.add_child(GtkDocPagebreak())
 
     def start_bold(self):
-        self.write_text('<b>')
+        self.write_text('<b>', True)
     
     def end_bold(self):
-        self.write_text('</b>')
+        self.write_text('</b>', True)
     
     def start_superscript(self):
-        self.write_text('<small><sup>')
+        self.write_text('<small><sup>', True)
     
     def end_superscript(self):
-        self.write_text('</sup></small>')
+        self.write_text('</sup></small>', True)
     
     def start_paragraph(self, style_name, leader=None):
         style_sheet = self.get_style_sheet()
@@ -1142,6 +1143,14 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._active_element = self._active_element.get_parent()
     
     def write_note(self, text, format, style_name):
+        """
+        Method to write the note objects text on a
+        Document
+        """
+        # We need to escape the text here for later pango.Layout.set_markup
+        # calls. This way we save the markup created by the report
+        # The markup in the note editor is not in the text so is not 
+        # considered. It must be added by pango too
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
@@ -1155,11 +1164,18 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.write_text(line)
                 self.end_paragraph()
 
-    def write_text(self, text, mark=None):
-        text = text.replace('&','&amp;')
-        # FIXME this is ugly, do we really need it?
-        text = text.replace('<super>', '<small><sup>')
-        text = text.replace('</super>', '</sup></small>')
+    def write_text(self, text, markup=False):
+        """Write a normal piece of text according to the
+           present style
+           If markup=False, no markup is present, the
+                text is escaped in writted
+           If markup=True, some markup is present, so
+                caller had to escape the text already
+        """
+        if not markup:
+            #no pango markup, escape the text as it
+            #should not have happened yet
+            text = escape(text)
         self._active_element.add_text(text)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
