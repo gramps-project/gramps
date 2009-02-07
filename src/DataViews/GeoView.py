@@ -1486,6 +1486,7 @@ class GeoView(HtmlView):
                                                    descr2, self.center, eventyear)
                         self.center = False
                     else:
+                        descr = place.get_title()
                         self.append_to_places_without_coordinates(place.gramps_id,descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
