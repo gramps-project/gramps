@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,15 +66,14 @@ from ObjectEntries import PlaceEntry
 #-------------------------------------------------------------------------
 class EditEventRef(EditReference):
 
-    WIDTH_KEY = Config.EVENT_REF_WIDTH
-    HEIGHT_KEY = Config.EVENT_REF_HEIGHT
-
     def __init__(self, state, uistate, track, event, event_ref, update):
         EditReference.__init__(self, state, uistate, track, event, event_ref,
                                update)
         self._init_event()
 
     def _local_init(self):
+        self.width_key = Config.EVENT_REF_WIDTH
+        self.height_key = Config.EVENT_REF_HEIGHT
 
         self.top = glade.XML(const.GLADE_FILE, "event_eref_edit","gramps")
         self.set_window(self.top.get_widget('event_eref_edit'),

@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2008-2009  Stephane Charette <stephanecharette@gmail.com>
+#               2008-2009  Stephane Charette <stephanecharette@gmail.com>
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,9 +62,6 @@ from AddMedia import AddMediaObject
 #-------------------------------------------------------------------------
 class EditMediaRef(EditReference):
 
-    WIDTH_KEY = Config.MEDIA_REF_WIDTH
-    HEIGHT_KEY = Config.MEDIA_REF_HEIGHT
-
     def __init__(self, state, uistate, track, media, media_ref, update):
         EditReference.__init__(self, state, uistate, track, media,
                                media_ref, update)
@@ -73,7 +71,8 @@ class EditMediaRef(EditReference):
                            self._update_addmedia)
 
     def _local_init(self):
-
+        self.width_key = Config.MEDIA_REF_WIDTH
+        self.height_key = Config.MEDIA_REF_HEIGHT
         self.top = glade.XML(const.GLADE_FILE,
                                  "change_description","gramps")
 

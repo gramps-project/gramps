@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -163,13 +164,12 @@ class EditNote(EditPrimary):
         and overridden here.
         
         """
+        self.width_key = Config.NOTE_WIDTH
+        self.height_key = Config.NOTE_HEIGHT
         self.top = glade.XML(GLADE_FILE, "edit_note", "gramps")
         win = self.top.get_widget("edit_note")
         self.set_window(win, None, self.get_menu_title())
 
-        width = Config.get(Config.NOTE_WIDTH)
-        height = Config.get(Config.NOTE_HEIGHT)
-        self.window.set_default_size(width, height)
 
         vboxnote =  self.top.get_widget('vbox131')
         notebook = self.top.get_widget('note_notebook')
@@ -360,12 +360,6 @@ class EditNote(EditPrimary):
         if self.callback:
             self.callback(self.obj.get_handle())
         self.close()
-
-    def _cleanup_on_exit(self):
-        (width, height) = self.window.get_size()
-        Config.set(Config.NOTE_WIDTH, width)
-        Config.set(Config.NOTE_HEIGHT, height)
-        Config.sync()
 
 class DeleteNoteQuery:
     def __init__(self, dbstate, uistate, note, the_lists):

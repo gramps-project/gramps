@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
 
         self._local_init()
-
+        self._set_size()
         self._create_tabbed_pages()
         self._setup_fields()
         self._connect_signals()
@@ -153,6 +154,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         for key in self.signal_keys:
             self.db.disconnect(key)
         self._cleanup_on_exit()
+        self._save_size()
         ManagedWindow.ManagedWindow.close(self)
 
     def close(self, *obj):

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -127,6 +128,8 @@ class EditPerson(EditPrimary):
         This is called by the base class of EditPrimary, and overridden here.
         
         """
+        self.width_key = Config.PERSON_WIDTH
+        self.height_key = Config.PERSON_HEIGHT
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
                                     self.obj.get_gender () ==
@@ -138,9 +141,6 @@ class EditPerson(EditPrimary):
 
         self.set_window(self.top.get_widget("edit_person"), None, 
                         self.get_menu_title())
-        width = Config.get(Config.PERSON_WIDTH)
-        height = Config.get(Config.PERSON_HEIGHT)
-        self.window.set_default_size(width, height)
         
         self.obj_photo = self.top.get_widget("personPix")
         self.eventbox = self.top.get_widget("eventbox1")
@@ -849,9 +849,6 @@ class EditPerson(EditPrimary):
         return child_ref_list
 
     def _cleanup_on_exit(self):
-        (width, height) = self.window.get_size()
-        Config.set(Config.PERSON_WIDTH, width)
-        Config.set(Config.PERSON_HEIGHT, height)
         Config.set(Config.PREFIX_SUFFIX, self.prefix_suffix.active_key)
         Config.set(Config.PATRO_TITLE, self.patro_title.active_key)
         Config.sync()

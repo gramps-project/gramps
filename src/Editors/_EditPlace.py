@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -113,13 +114,12 @@ class EditPlace(EditPrimary):
         return gen.lib.Place()
 
     def _local_init(self):
+        self.width_key = Config.PLACE_WIDTH
+        self.height_key = Config.PLACE_HEIGHT
         self.top = glade.XML(const.GLADE_FILE, "place_editor","gramps")
 
         self.set_window(self.top.get_widget("place_editor"), None,
                         self.get_menu_title())
-        width = Config.get(Config.PLACE_WIDTH)
-        height = Config.get(Config.PLACE_HEIGHT)
-        self.window.resize(width, height)
         tblmloc =  self.top.get_widget('table19')
         notebook = self.top.get_widget('notebook3')
         #recreate start page as GrampsTab
@@ -257,10 +257,6 @@ class EditPlace(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_list.close()
-        (width, height) = self.window.get_size()
-        Config.set(Config.PLACE_WIDTH, width)
-        Config.set(Config.PLACE_HEIGHT, height)
-        Config.sync()
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

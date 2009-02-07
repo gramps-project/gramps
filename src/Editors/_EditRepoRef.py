@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,15 +56,14 @@ from _EditReference import RefTab, EditReference
 #-------------------------------------------------------------------------
 class EditRepoRef(EditReference):
 
-    WIDTH_KEY = Config.REPO_REF_WIDTH
-    HEIGHT_KEY = Config.REPO_REF_HEIGHT
-
     def __init__(self, state, uistate, track, source, source_ref, update):
 
         EditReference.__init__(self, state, uistate, track, source,
                                source_ref, update)
 
     def _local_init(self):
+        self.width_key = Config.REPO_REF_WIDTH
+        self.height_key = Config.REPO_REF_HEIGHT
         
         self.top = glade.XML(const.GLADE_FILE, "repository_ref_edit","gramps")
         

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,14 +47,13 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class EditLocation(EditSecondary):
 
-    WIDTH_KEY = Config.LOCATION_WIDTH
-    HEIGHT_KEY = Config.LOCATION_HEIGHT
-
     def __init__(self,dbstate,uistate,track,location,callback):
         EditSecondary.__init__(self, dbstate, uistate, track,
                                location, callback)
 
     def _local_init(self):
+        self.width_key = Config.LOCATION_WIDTH
+        self.height_key = Config.LOCATION_HEIGHT
         self.top = glade.XML(const.GLADE_FILE, "loc_edit","gramps")
         self.set_window(self.top.get_widget("loc_edit"), None,
                         _('Location Editor'))

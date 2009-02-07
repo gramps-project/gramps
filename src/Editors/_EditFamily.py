@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -510,6 +511,8 @@ class EditFamily(EditPrimary):
         return (_('Edit Family'), self.get_menu_title())
 
     def build_interface(self):
+        self.width_key = Config.FAMILY_WIDTH
+        self.height_key = Config.FAMILY_HEIGHT
 
         self.top = glade.XML(const.GLADE_FILE, "family_editor", "gramps")
 
@@ -521,10 +524,6 @@ class EditFamily(EditPrimary):
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
 
-        # restore window size
-        width = Config.get(Config.FAMILY_WIDTH)
-        height = Config.get(Config.FAMILY_HEIGHT)
-        self.window.set_default_size(width, height)
 
         self.fbirth  = self.top.get_widget('fbirth')
         self.fdeath  = self.top.get_widget('fdeath')
@@ -1027,12 +1026,6 @@ class EditFamily(EditPrimary):
             self.db.transaction_commit(trans, _("Edit Family"))
 
         self._do_close()
-
-    def _cleanup_on_exit(self):
-        (width, height) = self.window.get_size()
-        Config.set(Config.FAMILY_WIDTH, width)
-        Config.set(Config.FAMILY_HEIGHT, height)
-        Config.sync()
 
     def no_name(self):
         """

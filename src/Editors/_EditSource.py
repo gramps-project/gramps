@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -78,15 +79,13 @@ class EditSource(EditPrimary):
         return title
 
     def _local_init(self):
-
+        self.width_key = Config.SOURCE_WIDTH
+        self.height_key = Config.SOURCE_HEIGHT
         assert(self.obj)
         self.glade = glade.XML(const.GLADE_FILE, "source_editor","gramps")
 
         self.set_window(self.glade.get_widget("source_editor"), None, 
                         self.get_menu_title())
-        width = Config.get(Config.SOURCE_WIDTH)
-        height = Config.get(Config.SOURCE_HEIGHT)
-        self.window.resize(width, height)
 
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_widget('ok'),self.save)
@@ -193,10 +192,6 @@ class EditSource(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_tab.close()
-        (width, height) = self.window.get_size()
-        Config.set(Config.SOURCE_WIDTH, width)
-        Config.set(Config.SOURCE_HEIGHT, height)
-        Config.sync()
 
 class DelSrcQuery:
     def __init__(self, dbstate, uistate, source, the_lists):

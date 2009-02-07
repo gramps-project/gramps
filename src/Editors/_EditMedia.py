@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,14 +89,13 @@ class EditMedia(EditPrimary):
 
     def _local_init(self):
         assert(self.obj)
+        self.width_key = Config.MEDIA_WIDTH
+        self.height_key = Config.MEDIA_HEIGHT
         self.glade = glade.XML(const.GLADE_FILE,
                                    "change_global","gramps")
 
         self.set_window(self.glade.get_widget('change_global'), 
                         None, self.get_menu_title())
-        width = Config.get(Config.MEDIA_WIDTH)
-        height = Config.get(Config.MEDIA_HEIGHT)
-        self.window.resize(width, height)
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))
@@ -277,10 +277,6 @@ class EditMedia(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_list.close()
-        (width, height) = self.window.get_size()
-        Config.set(Config.MEDIA_WIDTH, width)
-        Config.set(Config.MEDIA_HEIGHT, height)
-        Config.sync()
 
     def data_has_changed(self):
         """

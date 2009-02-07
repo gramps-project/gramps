@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +48,7 @@ from gtk import glade
 #-------------------------------------------------------------------------
 import const
 import Errors
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -292,7 +294,6 @@ class ManagedWindow:
     menu, keeping track of child windows, closing them on close/delete
     event, and presenting itself when selected or attempted to create again.
     """
-
     def __init__(self, uistate, track, obj):
         """
         Create child windows and add itself to menu, if not there already.
@@ -331,6 +332,8 @@ class ManagedWindow:
         menu_label, submenu_label = self.build_menu_names(obj)
         self._gladeobj = None
         self.isWindow = None
+        self.width_key = None
+        self.height_key = None
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
@@ -478,6 +481,24 @@ class ManagedWindow:
                    "ManagedWindow: self.window does not exist!"
             self.window.present()
 
+    def _set_size(self):
+        """
+        Set the dimensions of the window
+        """
+        if self.width_key is not None:
+            width = Config.get(self.width_key)
+            height = Config.get(self.height_key)
+            self.window.resize(width, height)
+
+    def _save_size(self):
+        """
+        Save the dimensions of the window to the config file
+        """
+        if self.width_key is not None:
+            (width, height) = self.window.get_size()
+            Config.set(self.width_key, width)
+            Config.set(self.height_key, height)
+            Config.sync()
 #-------------------------------------------------------------------------
 #
 # Helper functions

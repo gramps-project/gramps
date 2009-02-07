@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,9 +64,6 @@ class EditAttribute(EditSecondary):
     Displays a dialog that allows the user to edit an attribute.
     """
 
-    WIDTH_KEY = Config.ATTRIBUTE_WIDTH
-    HEIGHT_KEY = Config.ATTRIBUTE_HEIGHT
-
     def __init__(self, state, uistate, track, attrib, title, data_list, callback):
         """
         Displays the dialog box.
@@ -79,6 +77,8 @@ class EditAttribute(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
+        self.width_key = Config.ATTRIBUTE_WIDTH
+        self.height_key = Config.ATTRIBUTE_HEIGHT
         self.top = glade.XML(const.GLADE_FILE, "attr_edit","gramps")
         self.set_window(self.top.get_widget("attr_edit"),
                         self.top.get_widget('title'),

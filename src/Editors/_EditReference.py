@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -86,9 +87,6 @@ class RefTab(GrampsTab):
 #-------------------------------------------------------------------------
 class EditReference(ManagedWindow.ManagedWindow):
 
-    WIDTH_KEY = None
-    HEIGHT_KEY = None
-
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
         self.dbstate = state
@@ -109,12 +107,6 @@ class EditReference(ManagedWindow.ManagedWindow):
         self._connect_signals()
         self.show()
         self._post_init()
-
-    def _set_size(self):
-        if self.WIDTH_KEY:
-            width = Config.get(self.WIDTH_KEY)
-            height = Config.get(self.HEIGHT_KEY)
-            self.window.resize(width, height)
 
     def _local_init(self):
         """
@@ -212,10 +204,3 @@ class EditReference(ManagedWindow.ManagedWindow):
             self.db.disconnect(key)
         self._save_size()
         ManagedWindow.ManagedWindow.close(self)
-
-    def _save_size(self):
-        if self.HEIGHT_KEY:
-            (width, height) = self.window.get_size()
-            Config.set(self.WIDTH_KEY, width)
-            Config.set(self.HEIGHT_KEY, height)
-            Config.sync()

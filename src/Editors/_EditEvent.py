@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -95,6 +96,9 @@ class EditEvent(EditPrimary):
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
+        self.width_key = Config.EVENT_WIDTH
+        self.height_key = Config.EVENT_HEIGHT
+
         self.top = glade.XML(const.GLADE_FILE, "event_edit","gramps")
         self.set_window(self.top.get_widget("event_edit"), None, 
                         self.get_menu_title())
@@ -102,10 +106,6 @@ class EditEvent(EditPrimary):
         self.place = self.top.get_widget('place')
         self.share_btn = self.top.get_widget('select_place')
         self.add_del_btn = self.top.get_widget('add_del_place')
-
-        width = Config.get(Config.EVENT_WIDTH)
-        height = Config.get(Config.EVENT_HEIGHT)
-        self.window.resize(width, height)
 
     def _connect_signals(self):
         self.top.get_widget('button111').connect('clicked', self.close)
@@ -186,10 +186,6 @@ class EditEvent(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_tab.close()
-        (width, height) = self.window.get_size()
-        Config.set(Config.EVENT_WIDTH, width)
-        Config.set(Config.EVENT_HEIGHT, height)
-        Config.sync()
 
     def build_menu_names(self, event):
         return (_('Edit Event'), self.get_menu_title())

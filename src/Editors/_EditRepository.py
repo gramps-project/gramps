@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,14 +73,12 @@ class EditRepository(EditPrimary):
         return title
 
     def _local_init(self):
+        self.width_key = Config.REPO_WIDTH
+        self.height_key = Config.REPO_HEIGHT
         self.glade = glade.XML(const.GLADE_FILE, "repository_editor","gramps")
 
         self.set_window(self.glade.get_widget("repository_editor"), None, 
                         self.get_menu_title())
-
-        width = Config.get(Config.REPO_WIDTH)
-        height = Config.get(Config.REPO_HEIGHT)
-        self.window.resize(width, height)
 
     def build_menu_names(self, source):
         return (_('Edit Repository'), self.get_menu_title())        
@@ -176,10 +175,6 @@ class EditRepository(EditPrimary):
 
     def _cleanup_on_exit(self):
         self.backref_tab.close()
-        (width, height) = self.window.get_size()
-        Config.set(Config.REPO_WIDTH, width)
-        Config.set(Config.REPO_HEIGHT, height)
-        Config.sync()
 
 class DelRepositoryQuery:
     def __init__(self, dbstate, uistate, repository, sources):

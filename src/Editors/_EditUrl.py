@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,15 +52,14 @@ from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 #-------------------------------------------------------------------------
 class EditUrl(EditSecondary):
 
-    WIDTH_KEY = Config.URL_WIDTH
-    HEIGHT_KEY = Config.URL_HEIGHT
-
     def __init__(self, dbstate, uistate, track, name, url, callback):
 
         EditSecondary.__init__(self, dbstate, uistate, track,
                                url, callback)
 
     def _local_init(self):
+        self.width_key = Config.URL_WIDTH
+        self.height_key = Config.URL_HEIGHT
         self.top = glade.XML(const.GLADE_FILE, "url_edit", "gramps")
         self.jump = self.top.get_widget('jump')
 
