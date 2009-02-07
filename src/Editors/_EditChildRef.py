@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,6 +50,7 @@ import const
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 import Errors
+import Config
 
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredDataType, PrivacyButton
@@ -86,6 +88,8 @@ class EditChildRef(EditSecondary):
                                childref, callback)
 
     def _local_init(self):
+        self.width_key = Config.CHILD_REF_WIDTH
+        self.height_key = Config.CHILD_REF_HEIGHT
         self.top = glade.XML(const.GLADE_FILE, "cref_edit","gramps")
         self.set_window(self.top.get_widget("cref_edit"),
                         self.top.get_widget("title"),

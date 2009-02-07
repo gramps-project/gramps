@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006-2007  Donald N. Allingham
-# Copyright (C) 2008       Gary Burton 
+# Copyright (C) 2008-2009  Gary Burton 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,6 +88,8 @@ EVENT_HEIGHT         = ('interface', 'event-height', 1)
 EVENT_WIDTH          = ('interface', 'event-width', 1)
 EVENT_REF_HEIGHT     = ('interface', 'event-ref-height', 1)
 EVENT_REF_WIDTH      = ('interface', 'event-ref-width', 1)
+CHILD_REF_HEIGHT     = ('interface', 'child-ref-height', 1)
+CHILD_REF_WIDTH      = ('interface', 'child-ref-width', 1)
 PLACE_HEIGHT         = ('interface', 'place-height', 1)
 PLACE_WIDTH          = ('interface', 'place-width', 1)
 REPO_HEIGHT          = ('interface', 'repo-height', 1)
@@ -220,6 +222,8 @@ default_value = {
     EVENT_WIDTH          : 600, 
     EVENT_REF_HEIGHT     : 450, 
     EVENT_REF_WIDTH      : 600, 
+    CHILD_REF_HEIGHT     : 450, 
+    CHILD_REF_WIDTH      : 600, 
     PLACE_HEIGHT         : 450, 
     PLACE_WIDTH          : 650, 
     REPO_HEIGHT          : 450, 
