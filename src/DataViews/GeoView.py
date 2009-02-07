@@ -745,18 +745,23 @@ class GeoView(HtmlView):
         self.open("file://"+self.htmlfile)
 
     def select_OpenStreetMap_map(self,handle=None):
+        self.usedmap = "openstreetmap"        
         self.change_map("openstreetmap")
 
     def select_openlayers_map(self,handle=None):
+        self.usedmap = "openlayers"        
         self.change_map("openlayers")
 
     def select_google_map(self,handle=None):
+        self.usedmap = "google"        
         self.change_map("google")
 
     def select_yahoo_map(self,handle=None):
+        self.usedmap = "yahoo"        
         self.change_map("yahoo")
 
     def select_microsoft_map(self,handle=None):
+        self.usedmap = "microsoft"        
         self.change_map("microsoft")
 
     def set_mozembed_proxy(self):
