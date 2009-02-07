@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 22:56+0100\n"
-"PO-Revision-Date: 2009-02-06 17:08+0100\n"
+"PO-Revision-Date: 2009-02-07 01:45+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -7354,7 +7354,6 @@ msgid "Generate Commandline Plugin Reference"
 msgstr "Genera guida di riferimento ai plugin a riga di comando"
 
 #: ../src/plugins/CmdRef.py:240
-#, fuzzy
 msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
@@ -7463,22 +7462,20 @@ msgid "Date Test Plugin"
 msgstr "Plugin test data"
 
 #: ../src/plugins/DateParserDisplayTest.py:235
-#, fuzzy
 msgid "Check Localized Date Displayer and Parser"
-msgstr "Verifica visualizzatore e parser di date localizzate"
+msgstr "Controlla visualizzatore e analizzatore di date localizzate"
 
 #: ../src/plugins/DateParserDisplayTest.py:239
-#, fuzzy
 msgid ""
 "This test tool will create many people showing all different date variants "
 "as birth. The death date is created by parsing the result of the date "
 "displayer for the birth date. This way you can ensure that dates printed can "
 "be parsed back in correctly."
 msgstr ""
-"Questo strumento di test crea molte persone mostrando tutte le diverse "
-"varianti di date come date di nascita. La data di decesso viene quindi "
-"creata a partire da quanto restituito dal visualizzatore di date che ha "
-"operato sulla data di nascita. In questo modo è facile assicurarsi che le "
+"Questo strumento di prova crea molte persone associando a ciascuna una "
+"diversa variante di data come data di nascita. La data di decesso viene "
+"quindi creata a partire da quanto restituito dal visualizzatore di date che "
+"ha operato sulla data di nascita. In questo modo è facile assicurarsi che le "
 "date stampate possano essere a loro volta interpretate correttamente."
 
 #: ../src/plugins/DefaultGramplets.py:72
@@ -8812,7 +8809,6 @@ msgid "roundabout"
 msgstr "circolare"
 
 #: ../src/plugins/FanChart.py:370
-#, fuzzy
 msgid "Print radial texts upright or roundabout"
 msgstr "Stampa i testi radiali orientandoli verso l'alto o in modo circolare"
 
@@ -9848,6 +9844,7 @@ msgid "Selecting operation"
 msgstr "Selezionare un'operazione"
 
 #: ../src/plugins/MediaManager.py:104
+#, fuzzy
 msgid ""
 "This tool allows batch operations on media objects stored in GRAMPS. An "
 "important distinction must be made between a GRAMPS media object and its "
@@ -9866,6 +9863,25 @@ msgid ""
 "outside of GRAMPS. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
+"Questo strumento permette di effettuare operazioni sequenziali (batch) sugli "
+"oggetti multimediali memorizzati in GRAMPS. Bisogna fare una distinzione "
+"importante tra un oggetto multimediale di GRAMPS ed il relativo file.\n"
+"\n"
+"Un oggetto multimediale di GRAMPS è una raccolta di dati su un file "
+"multimediale il suo nome e percorso, la descrizione, l'identificativo, le "
+"note, i riferimenti alle fonti, ecc. Questi dati <b>non comprendono il file "
+"stesso</b>.\n"
+"\n"
+"I file contenenti immagini, suoni, video, ecc, esistono separatamente sul "
+"disco dell'utente. Questi file non sono gestiti da GRAMPS e non sono inclusi "
+"nei database di GRAMPS. Ogni database di GRAMPS memorizza solo i percorsi ed "
+"i nomi dei file.\n"
+"\n"
+"Questo strumento consente solo di modificare le informazioni presenti nel "
+"database di GRAMPS. Se si desidera spostare o rinominare i file, bisogna "
+"farlo a parte, fuori da GRAMPS. Poi si possono correggere i percorsi usando "
+"questo strumento in modo tale che gli oggetti multimediali contengano le "
+"posizioni corrette dei rispettivi file."
 
 #: ../src/plugins/MediaManager.py:246
 msgid "Affected path"
@@ -9987,7 +10003,7 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:589
 msgid "Manages batch operations on media files"
-msgstr "Gestisce operazioni batch (in blocco) sugli oggetti multimediali"
+msgstr "Gestisce operazioni batch (in sequenza) sugli oggetti multimediali"
 
 #: ../src/plugins/NarrativeWeb.py:108
 msgid "Basic - Ash"
@@ -10752,7 +10768,7 @@ msgstr "Estrai informazioni dai nomi"
 
 #: ../src/plugins/PatchNames.py:359
 msgid "Extract Information from Names"
-msgstr "Estrae informazioni dai nomi"
+msgstr "Estrai informazioni dai nomi"
 
 #: ../src/plugins/PatchNames.py:363
 msgid ""
@@ -10789,8 +10805,9 @@ msgid "Error extracting into %s"
 msgstr "Errore durante l'estrazione verso %s"
 
 #: ../src/plugins/ReadPkg.py:113
+#, fuzzy
 msgid "Base path for relative media set"
-msgstr ""
+msgstr "Impostato percorso base per percorsi relativi di oggetti multimediali"
 
 #: ../src/plugins/ReadPkg.py:114
 #, python-format
@@ -11593,9 +11610,8 @@ msgid "Dead mother"
 msgstr "Madre deceduta"
 
 #: ../src/plugins/Verify.py:1482
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Differenza di età notevole tra tutti i figli"
+msgstr "Ampio periodo di tempo tra il primo e l'ultimo figlio"
 
 #: ../src/plugins/Verify.py:1504
 msgid "Large age differences between children"
@@ -17815,7 +17831,7 @@ msgstr "Persone con <nome>"
 #: ../src/Filters/Rules/Person/_HasNameOf.py:54
 #: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
-msgstr "Estrae le persone con un nome (parziale) specificato"
+msgstr "Estrae le persone con un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
 msgid "People having notes containing <substring>"
@@ -17979,7 +17995,6 @@ msgid "Children of <filter> match"
 msgstr "Figli di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsChildOfFilterMatch.py:49
-#, fuzzy
 msgid "Matches children of anybody matched by a filter"
 msgstr "Estrae le persone figlie di qualcuno corrispondente ad un filtro"
 
@@ -18016,7 +18031,6 @@ msgid "Descendants of <filter> match"
 msgstr "Discendenti di persone corrispondenti a <filtro>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:50
-#, fuzzy
 msgid "Matches people that are descendants of anybody matched by a filter"
 msgstr ""
 "Estrae le persone che discendono da qualcuno corrispondente ad un filtro"
@@ -18208,7 +18222,6 @@ msgid "Matches people with missing date or place in an event"
 msgstr "Estrae le persone con data o luogo mancante in un evento"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
-#, fuzzy
 msgid "On date:"
 msgstr "In data:"
 
@@ -18217,10 +18230,8 @@ msgid "People probably alive"
 msgstr "Persone probabilmente in vita"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:47
-#, fuzzy
 msgid "Matches people without indications of death that are not too old"
-msgstr ""
-"Estrae le persone senza dati relativi al decesso e con un'età ragionevole"
+msgstr "Estrae le persone non troppo anziane e senza dati relativi al decesso"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
 msgid "People with <Id> matching regular expression"
@@ -18264,17 +18275,16 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between bookmarked persons"
-msgstr "Percorso relazioni fra due persone inserite nei segnalibri"
+msgstr "Percorso relazioni fra persone inserite nei segnalibri"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Estrae gli ascendenti di due persone inserite nei segnalibri fino agli "
-"ascendenticomune e produce il/i percorso/i delle relazioni fra le due "
-"persone inserite nei segnalibri."
+"Estrae gli ascendenti delle persone inserite nei segnalibri fino agli "
+"ascendenti comuni, e produce il/i percorso/i delle relazioni fra "
+"questepersone."
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -18442,7 +18452,8 @@ msgstr "Famiglie con madre avente <nome>"
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Estrae le famiglie dove la madre ha un nome (parziale) specificato"
+msgstr ""
+"Estrae le famiglie dove la madre ha un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
@@ -18466,14 +18477,14 @@ msgstr "Famiglie con padre avente <nome>"
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Estrae le famiglie dove il padre ha un nome (parziale) specificato"
+msgstr ""
+"Estrae le famiglie dove il padre ha un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
 msgid "Families with child with the <name>"
 msgstr "Famiglie con figlio/a avente <nome>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-#, fuzzy
 msgid "Matches families where child has a specified (partial) name"
 msgstr ""
 "Estrae le famiglie dove un figlio ha un nome specificato (parziale o meno)"
@@ -18487,10 +18498,10 @@ msgid "Families with any child matching the <name>"
 msgstr "Famiglie con un qualsiasi figlio corrispondente a <nome>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
-#, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
 msgstr ""
-"Estrae le famiglie dove un figlio ha un nome specificato (parziale o meno)"
+"Estrae le famiglie dove qualsiasi figlio ha un nome specificato (parziale o "
+"meno)"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
@@ -19310,7 +19321,7 @@ msgstr "Includi persona originale"
 
 #: ../src/FilterEditor/_EditRule.py:496
 msgid "Use exact case of letters"
-msgstr ""
+msgstr "Distingui maiuscole"
 
 #: ../src/FilterEditor/_EditRule.py:498
 msgid "Use regular expression"
@@ -19362,33 +19373,28 @@ msgid "Shows the next page"
 msgstr "Mostra pagina successiva"
 
 #: ../src/docgen/gtkprintpreview.glade.h:8
-#, fuzzy
 msgid "Zooms the page in"
 msgstr "Ingrandisci pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:9
-#, fuzzy
 msgid "Zooms the page out"
 msgstr "Riduci pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:10
-#, fuzzy
 msgid "Zooms to fit the page width"
-msgstr "Ingrandisci su larghezza pagina"
+msgstr "Adatta a larghezza pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:11
-#, fuzzy
 msgid "Zooms to fit the whole page"
-msgstr "Ingrandisci a pagina intera"
+msgstr "Adatta a pagina intera"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:1
 msgid "<b>Status</b>"
 msgstr "<b>Stato</b>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:2
-#, fuzzy
 msgid "<b>Warning messages</b>"
-msgstr "<b>Messaggio di avviso</b>"
+msgstr "<b>Avvisi</b>"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:3
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
@@ -19423,7 +19429,6 @@ msgid "People:"
 msgstr "Persone:"
 
 #: ../src/GrampsDbUtils/gedcomimport.glade.h:11
-#, fuzzy
 msgid ""
 "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
@@ -19431,7 +19436,7 @@ msgid ""
 "below."
 msgstr ""
 "Il file GEDCOM afferma di utilizzare la codifica ANSEL. Talvolta questo è un "
-"errore. Se i dati importanti contengono caratteri strani, annullare "
+"errore. Se i dati importati contengono caratteri strani, annullare "
 "l'importazione e riprovare, forzando la scelta della codifica dei caratteri "
 "tramite selezione della codifica dalla lista che segue."
 
@@ -19588,7 +19593,7 @@ msgstr "<b>Descrizione</b>"
 
 #: ../src/glade/gramps.glade.h:10
 msgid "<b>Family relationships</b>"
-msgstr "<b>Relazioni famiglie</b>"
+msgstr "<b>Relazioni famiglia</b>"
 
 #: ../src/glade/gramps.glade.h:11
 msgid "<b>Father</b>"
@@ -19654,7 +19659,7 @@ msgstr "<b>Opzioni paragrafo</b>"
 
 #: ../src/glade/gramps.glade.h:23
 msgid "<b>Parent relationships</b>"
-msgstr ""
+msgstr "<b>Relazioni genitore</b>"
 
 #: ../src/glade/gramps.glade.h:24
 msgid "<b>Preview</b>"
@@ -19665,9 +19670,8 @@ msgid "<b>Q_uality</b>"
 msgstr "<b>Q_ualità</b>"
 
 #: ../src/glade/gramps.glade.h:26
-#, fuzzy
 msgid "<b>Reference information</b>"
-msgstr "<b>Informazioni riferimento</b>"
+msgstr "<b>Informazioni sul riferimento</b>"
 
 #: ../src/glade/gramps.glade.h:27
 msgid "<b>Referenced Region</b>"
@@ -19865,13 +19869,12 @@ msgstr ""
 "una diagonale dell'area da usare."
 
 #: ../src/glade/gramps.glade.h:79
-#, fuzzy
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
-"Marcando questa casella tutti i file multimediali mancanti saranno trattati "
+"Marcando questa casella tutti i file multimediali mancanti saranno gestiti "
 "automaticamente in base all'opzione selezionata. Non saranno mostrate altre "
 "finestre di dialogo per gli ulteriori file mancanti."
 
@@ -19936,7 +19939,6 @@ msgid "R_ight:"
 msgstr "D_estra:"
 
 #: ../src/glade/gramps.glade.h:99
-#, fuzzy
 msgid "Re_pair"
 msgstr "Ri_para"
 
@@ -20028,9 +20030,8 @@ msgid "Y_ear"
 msgstr "A_nno"
 
 #: ../src/glade/gramps.glade.h:128
-#, fuzzy
 msgid "_Archive"
-msgstr "_Archivio"
+msgstr "_Archivia"
 
 #: ../src/glade/gramps.glade.h:129
 msgid "_Association:"
