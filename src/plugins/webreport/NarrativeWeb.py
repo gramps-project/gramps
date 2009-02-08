@@ -2077,7 +2077,25 @@ class IndividualPage(BasePage):
             type_ = str( name.get_type() )
             of.write('\t\t\t<tr>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % pname)
+            of.write('\t\t\t\t<td class="ColumnValue">%s' % pname)
+
+            # display any notes associated with this name
+            notelist = name.get_note_list()
+            if len(notelist) > 0:
+                of.write('\n')
+                of.write('\t\t\t\t\t<ul>\n')
+                for notehandle in notelist:
+                    note = self.report.database.get_note_from_handle(notehandle)
+                    if note:
+                        note_text = note.get()
+                        if note_text:
+                            txt = u" ".join(note_text.split("\n"))
+                            of.write('\t\t\t\t\t\t<li>%s</li>\n' % txt)
+                of.write('\t\t\t\t\t</ul>\n')
+                of.write('\t\t\t\t')
+
+            # finished with this name
+            of.write('</td>\n')
             of.write('\t\t\t</tr>\n')
 
         # display call names
