@@ -128,9 +128,9 @@ class IndivCompleteReport(Report):
         
         for notehandle in event.get_note_list():
             note = self.database.get_note_from_handle(notehandle)
-            text = note.get()
+            text = note.get_styledtext()
             format = note.get_format()
-            self.doc.write_note(text,format, 'IDS-Normal')
+            self.doc.write_styled_note(text, format, 'IDS-Normal')
         
         self.doc.end_cell()
         self.doc.end_row()
@@ -163,11 +163,12 @@ class IndivCompleteReport(Report):
 
         for notehandle in notelist:
             note = self.database.get_note_from_handle(notehandle)
-            text = note.get()
+            text = note.get_styledtext()
             format = note.get_format()
             self.doc.start_row()
             self.doc.start_cell('IDS-NormalCell', 2)
-            self.doc.write_note(text,format, 'IDS-Normal')
+            self.doc.write_styled_note(text, format, 'IDS-Normal')
+            
             self.doc.end_cell()
             self.doc.end_row()
 

@@ -1065,6 +1065,32 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     page style.
         
     """
+    STYLETAG_TO_PROPERTY = {
+        BaseDoc.TextDoc.FONTCOLOR : 'foreground',
+        BaseDoc.TextDoc.HIGHLIGHT : 'background',
+        BaseDoc.TextDoc.FONTFACE  : 'face',
+        BaseDoc.TextDoc.FONTSIZE  : 'size',
+    }
+
+    # overwrite base class attributes
+    BaseDoc.TextDoc.SUPPORTED_MARKUP = [
+            BaseDoc.TextDoc.BOLD,
+            BaseDoc.TextDoc.ITALIC,
+            BaseDoc.TextDoc.UNDERLINE,
+            BaseDoc.TextDoc.FONTFACE,
+            BaseDoc.TextDoc.FONTSIZE,
+            BaseDoc.TextDoc.FONTCOLOR,
+            BaseDoc.TextDoc.HIGHLIGHT,
+            BaseDoc.TextDoc.SUPERSCRIPT ]
+
+    BaseDoc.TextDoc.STYLETAG_MARKUP = {
+        BaseDoc.TextDoc.BOLD        : ("<b>", "</b>"),
+        BaseDoc.TextDoc.ITALIC      : ("<i>", "</i>"),
+        BaseDoc.TextDoc.UNDERLINE   : ("<u>", "</u>"),
+        BaseDoc.TextDoc.SUPERSCRIPT : ("<sup>", "</sup>"),
+    }
+    
+    BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: escape
     
     # BaseDoc implementation
     
@@ -1142,6 +1168,20 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
     
+    def _create_xmltag(self, type, value):
+        """
+        overwrites the method in BaseDoc.TextDoc.
+        creates the pango xml tags needed for non bool style types
+        """
+        if type not in self.SUPPORTED_MARKUP:
+            return None
+        if type == BaseDoc.TextDoc.FONTSIZE:
+            #size is in thousandths of a point in pango
+            value = str(1000 * value)
+        
+        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[type], value), 
+                '</span>')
+    
     def write_note(self, text, format, style_name):
         """
         Method to write the note objects text on a
@@ -1152,16 +1192,54 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         # The markup in the note editor is not in the text so is not 
         # considered. It must be added by pango too
         if format == 1:
-            for line in text.split('\n'):
+            #preformatted, retain whitespace. Cairo retains \n automatically,
+            #so use \n\n for paragraph detection
+            #this is bad code, a user can type spaces between paragraph!
+            for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 self.write_text(line)
                 self.end_paragraph()
         elif format == 0:
+            #this is bad code, a user can type spaces between paragraph!
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
                 line = ' '.join(line.split())
                 self.write_text(line)
+                self.end_paragraph()
+
+    def write_styled_note(self, styledtext, format, style_name):
+        """
+        Convenience function to write a styledtext to the cairo doc. 
+        styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
+        
+        @note: text=normal text, p_text=text with pango markup, s_tags=styled
+                text tags, p
+        """
+        text = str(styledtext)
+
+        s_tags = styledtext.get_tags()
+        markuptext = self._add_markup_from_styled(text, s_tags)
+
+        if format == 1:
+            #preformatted, retain whitespace. Cairo retains \n automatically,
+            #so use \n\n for paragraph detection
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            for line in markuptext.split('\n\n'):
+                self.start_paragraph(style_name)
+                self.__write_text(line, markup=True)
+                self.end_paragraph()
+        elif format == 0:
+            #flowed
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            for line in markuptext.split('\n\n'):
+                self.start_paragraph(style_name)
+                #flowed, make normal whitespace go away
+                line = line.replace('\n',' ')
+                line = ' '.join(line.split())
+                self.__write_text(line, markup=True)
                 self.end_paragraph()
 
     def __write_text(self, text, mark=None, markup=False):
@@ -1170,8 +1248,6 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         @param mark:  IndexMark to use for indexing (if supported)
         @param markup: True if text already contains markup info. 
                        Then text will no longer be escaped
-        Private method: reports should not add markup in text to override
-            the style
         """
         if not markup:            
             # We need to escape the text here for later pango.Layout.set_markup
@@ -1187,7 +1263,19 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         @param text: text to write.
         @param mark:  IndexMark to use for indexing (if supported)
         """
-        self. __write_text(text, mark)
+        self.__write_text(text, mark)
+    
+    def write_markup(self, text, s_tags):
+        """
+        Writes the text in the current paragraph.  Should only be used after a
+        start_paragraph and before an end_paragraph. 
+        
+        @param text: text to write. The text is assumed to be _not_ escaped
+        @param s_tags:  assumed to be list of styledtexttags to apply to the
+                        text
+        """
+        markuptext = self._add_markup_from_styled(text, s_tags)
+        self.__write_text(text, markup=True)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm)
