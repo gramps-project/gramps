@@ -1041,7 +1041,7 @@ class PlaceListPage(BasePage):
             if not n:
                 continue
 
-            letter = normalize('NFC', n)[0].upper()
+            letter = normalize('NFKD', n)[0].upper()
 
             if letter != last_letter:
                 last_letter = letter
@@ -1481,7 +1481,7 @@ class SurnameListPage(BasePage):
 
             # Get a capital normalized version of the first letter of
             # the surname
-            letter = normalize('NFC', surname)[0].upper()
+            letter = normalize('NFKD', surname)[0].upper()
 
             if letter is not last_letter:
                 last_letter = letter
@@ -2068,16 +2068,40 @@ class IndividualPage(BasePage):
         for name in [primary_name] + self.person.get_alternate_names():
             pname = _nd.display_name(name)
             pname += self.get_citation_links( name.get_source_references() )
-            of.write('\t\t\t<tr>\n')
-            type_ = str( name.get_type() )
 
-            # if name is equal to birth name, do not re-print it???
-            if type_ == "Birth Name":
-                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Name Type'))
-                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % type_)
-            else:
-                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
-                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % pname)
+            # if we have just a firstname, then the name is preceeded by ", "
+            # which doesn't exactly look very nice printed on the web page
+            if pname[:2] == ', ':
+                pname = pname[2:]
+
+            type_ = str( name.get_type() )
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % pname)
+            of.write('\t\t\t</tr>\n')
+
+        # display call names
+        first_name = primary_name.get_first_name()
+        for name in [primary_name] + self.person.get_alternate_names():
+            call_name = name.get_call_name()
+            if call_name and call_name != first_name:
+                call_name += self.get_citation_links( name.get_source_references() )
+                of.write('\t\t\t<tr>\n')
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n'
+                    % _('Name'))
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n'
+                    % call_name)
+                of.write('\t\t\t</tr>\n')
+
+        # display the nickname attribute
+        nick_name = self.person.get_nick_name()
+        if nick_name and nick_name != first_name:
+            nick_name += self.get_citation_links( self.person.get_source_references() )
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n'
+                % _('Name'))
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n'
+                % nick_name)
             of.write('\t\t\t</tr>\n')
 
         # GRAMPS ID
@@ -2085,23 +2109,6 @@ class IndividualPage(BasePage):
             of.write('\t\t\t<tr>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('GRAMPS ID'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % self.person.gramps_id)
-            of.write('\t\t\t</tr>\n')
-
-        # Nick Name, if there is one???
-        nick_name = False
-        nick = self.person.get_nick_name()
-        call_name = primary_name.get_call_name()
-        first_name = primary_name.get_first_name()
-
-        # if (nick and call_name) != first_name???
-        if (nick is not first_name and call_name is not first_name):
-            nick_name = True
-
-        if nick_name:    
-            if call_name:
-                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' 
-                    % _('Nick Name'))
-                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % call_name)
             of.write('\t\t\t</tr>\n')
 
         # Gender
