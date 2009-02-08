@@ -42,49 +42,11 @@ from gen.plug import PluginManager, Plugin
 # Support functions
 #
 #------------------------------------------------------------------------
-def easter(year):
-    """
-    Computes the year/month/day of easter. Based on work by
-    J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
-    to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
-    Ash Wednesday is 46 days before Easter Sunday.
-    """
-    c = year / 100
-    n = year - 19 * (year / 19)
-    k = (c - 17) / 25
-    i = c - c / 4 - (c - k) / 3 + 19 * n + 15
-    i = i - 30 * (i / 30)
-    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1))
-                           * ((21 - n) / 11))
-    j = year + year / 4 + i + 2 - c + c / 4
-    j = j - 7 * (j / 7)
-    l = i - j
-    month = 3 + (l + 40) / 44
-    day = l + 28 - 31 * (month / 4)
-    return "%d/%d/%d" % (year, month, day)
-
 def g2iso(dow):
     """ Converst GRAMPS day of week to ISO day of week """
     # GRAMPS: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
-
-def dst(year, area="us"):
-    """
-    Return Daylight Saving Time start/stop in a given area ("us", "eu").
-    US calculation valid 1976-2099; EU 1996-2099
-    """
-    if area == "us":
-        if year > 2006:
-            start = "%d/%d/%d" % (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
-            stop = "%d/%d/%d" % (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
-        else:
-            start = "%d/%d/%d" % (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
-            stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
-    elif area == "eu":
-        start = "%d/%d/%d" % (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
-        stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
-    return (start, stop)
 
 #------------------------------------------------------------------------
 #
