@@ -1151,8 +1151,6 @@ class MediaPage(BasePage):
         *************************************
         """
 
-        # TODO, FIXME:  Please code review this next block!
-
         # get all of the backlinks to this media object; meaning all of
         # the people, events, places, etc..., that use this image
         _region_items = set()
@@ -1175,33 +1173,29 @@ class MediaPage(BasePage):
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
 
-            # if we found a db object to work with...
-            if _obj:
+            # keep looking if we don't have an object
+            if _obj is None:
+                continue
 
-                # get a list of all media refs for this object
-                medialist = _obj.get_media_list()
+            # get a list of all media refs for this object
+            medialist = _obj.get_media_list()
 
-                # go media refs looking for one that points to this image
-                for mediaref in medialist:
-                    rh = mediaref.get_referenced_handles()
-                    (classname, h) = rh[0]
+            # go media refs looking for one that points to this image
+            for mediaref in medialist:
 
-                    # if the handles indicate this is a match...
-                    if h == handle:
+                # is this mediaref for this image?  do we have a rect?
+                if mediaref.ref == handle and mediaref.rect is not None:
 
-                        # get the rectangle (if any) defined in this media ref
-                        rectangle = mediaref.get_rectangle()
-                        if rectangle:
-                            (x1, y1, x2, y2) = rectangle
-                            # GRAMPS gives us absolute coordinates,
-                            # but we need relative width + height
-                            w = x2 - x1
-                            h = y2 - y1
+                    (x1, y1, x2, y2) = mediaref.rect
+                    # GRAMPS gives us absolute coordinates,
+                    # but we need relative width + height
+                    w = x2 - x1
+                    h = y2 - y1
 
-                            # remember all this information, cause we'll need
-                            # need it later when we output the <li>...</li> tags
-                            item = (_name, x1, y1, w, h, _linkurl)
-                            _region_items.add(item)
+                    # remember all this information, cause we'll need
+                    # need it later when we output the <li>...</li> tags
+                    item = (_name, x1, y1, w, h, _linkurl)
+                    _region_items.add(item)
         """
         *************************************
         end of code that looks for and prepares the media object regions
