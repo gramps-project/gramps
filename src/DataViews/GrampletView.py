@@ -240,14 +240,14 @@ class Gramplet(object):
         self.on_load()
         self.build_options()
         self.dbstate.connect('database-changed', self._db_changed)
-        self.dbstate.connect('active-changed', self.active_changed)
+        self.dbstate.connect('active-changed', self._active_changed)
         self.gui.textview.connect('button-press-event', 
                                   self.gui.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
                                   self.gui.on_motion)
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
-            self.active_changed(self.dbstate.active.handle)
+            self._active_changed(self.dbstate.active.handle)
 
     def init(self): # once, constructor
         pass
@@ -279,6 +279,11 @@ class Gramplet(object):
 
     def active_changed(self, handle):
         pass
+
+    def _active_changed(self, handle):
+        self.uistate.push_message(self.gui.dbstate,
+                _("Gramplet %s is running") % self.gui.title)
+        self.active_changed(handle)
 
     def db_changed(self):
         if debug: print "%s is connecting" % self.gui.title
@@ -426,6 +431,8 @@ class Gramplet(object):
 
     def _db_changed(self, db):
         if debug: print "%s is _connecting" % self.gui.title
+        self.uistate.push_message(self.dbstate,
+                _("Gramplet %s is running") % self.gui.title)
         self.dbstate.db = db
         self.gui.dbstate.db = db
         self.db_changed()
