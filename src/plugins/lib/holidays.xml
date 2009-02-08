@@ -49,168 +49,45 @@
     <date name="Ramadan begins" value="2007/9/13" type="religious" />
     <date name="Ramadan begins" value="2008/9/2" type="religious" />
   </country>
-  <country name="United States">
-    <date name="New Year's Day" value="*/1/1" type="national" />
-    <date name="New Year's Eve" value="*/12/31" type="national" />
-    <date name="Independence Day" value="*/7/4" type="national" />
-    <date name="Veterans Day" value="*/11/11" type="national" />
-    <date name="Christmas" value="*/12/25" type="national" />
-    <date name="Labor Day" value="*/1/mon/sep" if="y &lt;= 2008" type="national" />
-    <date name="Labor Day" value="2009/1/tue/sep" type="national" />
-    <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
-    <date name="Groundhog Day" value="*/2/2" type="secular" />
-    <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
-    <date name="Valentine's Day" value="*/2/14" type="secular" />
-    <date name="Presidents' Day" value="*/3/mon/feb" type="secular" />
-    <date name="Washington's Birthday" value="*/2/22" type="secular" />
-    <date name="St. Patrick's Day" value="*/3/17" type="secular" />
-    <date name="April Fool's Day" value="*/4/1" type="secular" />
-    <date name="Earth Day" value="*/4/22" type="secular" />
-    <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
-    <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
-    <date name="Mothers' Day" value="*/2/sun/may" type="secular" />
-    <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
-    <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
-    <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
-    <date name="Columbus Day" value="*/2/mon/oct" type="secular" />
-    <date name="United Nations Day" value="*/10/24" type="secular" />
-    <date name="Halloween" value="*/10/31" type="secular" />
-    <date name="ML Kings's Birthday" value="*/3/mon/jan" type="secular" />
-    <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
-    <date name="Memorial Day" value="*/-1/mon/may" type="secular" />
-    <date name="Flag Day" value="*/6/14" type="secular" />
-    <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
-    <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
-    <date name="Income Taxes due" value="*/4/15" type="national" 
-     if="date.weekday().__cmp__(4)-1" />
-    <date name="Income Taxes due" value="*/4/16" type="national" 
-     if="date.weekday() == 0" />
-    <date name="Income Taxes due" value="*/4/17" type="national" 
-     if="date.weekday() == 0" />
-    <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
-    <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
-    <date name="Passover" value="2005/4/24" type="religious" />
-    <date name="Passover" value="2006/4/13" type="religious" />
-    <date name="Passover" value="2007/4/03" type="religious" />
-    <date name="Passover" value="2008/4/20" type="religious" />
-    <date name="Passover" value="2009/4/09" type="religious" />
-    <date name="Passover" value="2010/3/30" type="religious" />
-    <date name="Passover" value="2011/4/19" type="religious" />
-    <date name="Yom Kippur" value="2005/10/13" type="religious" />
-    <date name="Yom Kippur" value="2006/10/02" type="religious" />
-    <date name="Yom Kippur" value="2007/9/27" type="religious" />
-    <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/09/28" type="religious" />
-    <date name="Yom Kippur" value="2010/09/18" type="religious" />
-    <date name="Hanukkah begins" value="2004/12/07" type="religious" />
-    <date name="Hanukkah begins" value="2005/12/25" type="religious" />
-    <date name="Hanukkah begins" value="2006/12/15" type="religious" />
-    <date name="Hanukkah begins" value="2007/12/04" type="religious" />
-    <date name="Hanukkah begins" value="2008/12/21" type="religious" />
-    <date name="Hanukkah begins" value="2009/12/11" type="religious" />
-    <date name="Hanukkah begins" value="2010/12/01" type="religious" />
-    <date name="Ramadan begins" value="2006/09/24" type="religious" />
-    <date name="Ramadan begins" value="2007/09/13" type="religious" />
-    <date name="Ramadan begins" value="2008/09/2" type="religious" />
-    <date name="Ramadan begins" value="2009/08/22" type="religious" />
-    <date name="Kwanzaa begins" value="*/12/26" type="religious" />
-    <date name="Cinco de Mayo" value="*/5/5" type="secular" />
+  <country name="Česká republika">
+    <date name="Nový rok" value="*/1/1" type="national" />
+    <date name="Velikonoční pondělí" type="religious" value="> easter(y)" offset="+1" />
+    <date name="Svátek práce" value="*/5/1" type="national" />
+    <date name="Den osvobození od fašismu" value="*/5/8" type="national" />
+    <date name="Den slovanských věrozvěstů Cyrila a Metoděje" value="*/7/5" type="national" />
+    <date name="Den upálení mistra Jana Husa" value="*/7/6" type="national" />
+    <date name="Den české státnosti" value="*/9/28" type="national" />
+    <date name="Den vzniku samostatného československého státu" value="*/10/28" type="national" />
+    <date name="Den boje za svobodu a demokracii" value="*/11/17" type="national" />
+    <date name="Štědrý den" value="*/12/24" type="religious" />
+    <date name="1. svátek vánoční" value="*/12/25" type="national" />
+    <date name="2. svátek vánoční" value="*/12/26" type="national" />
+  </country>
+  <country name="Chile">
+    <date name="Año nuevo" value="*/1/1" type="national" />
+    <date name="Viernes Santo" value="2007/4/6" type="religious" />
+    <date name="Viernes Santo" value="2008/3/21" type="religious" />
+    <date name="Viernes Santo" value="2009/4/10" type="religious" />
+    <date name="Viernes Santo" value="2010/4/2" type="religious" />
+    <date name="Viernes Santo" value="2011/4/22" type="religious" />
+    <date name="Viernes Santo" value="2012/4/6" type="religious" />
+    <date name="Viernes Santo" value="2013/3/29" type="religious" />
+    <date name="Viernes Santo" value="2014/4/18" type="religious" />
+    <date name="Viernes Santo" value="2015/4/3" type="religious" />
+    <date name="Día del Trabajador" value="*/5/1" type="national" />
+    <date name="Día de las Glorias Navales" value="*/5/21" type="national" />
+    <date name="San Pedro y San Pablo" value="*/6/29" type="religious" />
+    <date name="Día de la Virgen del Carmen" value="*/7/16" type="religious" />
+    <date name="Asunción de la Virgen" value="*/8/15" type="religious" />
+    <date name="Fiestas Patrias" value="*/9/18" type="national" />
+    <date name="Glorias del Ejército" value="*/9/19" type="national" />
+    <date name="Día de la Raza" value="*/10/12" type="national" />
+    <date name="Todos los Santos" value="*/11/1" type="religious" />
+    <date name="Inmaculada Concepción" value="*/12/8" type="religious" />
+    <date name="Navidad" value="*/12/25" type="national" /> 
   </country>
   <country name="China">
     <date name="Chinese New Year" value="2006/1/29" type="national" />
-  </country>
-  <country name="Finland">
-    <date name="Chinese New Year" value="2006/1/29" type="national" />
-    <date name="Card Night" value="*/-1/thu/*" type="personal" />
-  </country>
-  <country name="France">
-    <date name="Jour de l'an" value="*/1/1" type="national" />
-    <date name="Fête du travail" value="*/5/1" type="national" />
-    <date name="Victoire 1945" value="*/5/8" type="national" />
-    <date name="Fête nationale" value="*/7/14" type="national" />
-    <date name="Armistice 1918" value="*/11/11" type="national" />
-    <date name="Pâques" value="2007/4/8" type="religious" />
-    <date name="Pâques" value="2008/3/23" type="religious" />
-    <date name="Pâques" value="2009/4/12" type="religious" />
-    <date name="Lundi de pâques" value="2007/4/9" type="religious" />
-    <date name="Lundi de pâques" value="2008/3/24" type="religious" />
-    <date name="Lundi de pâques" value="2009/4/13" type="religious" />
-    <date name="Ascension" value="2007/5/17" type="religious" />
-    <date name="Ascension" value="2008/5/1" type="religious" />
-    <date name="Ascension" value="2009/5/21" type="religious" />
-    <date name="Pentecôte" value="2007/5/27" type="religious" />
-    <date name="Pentecôte" value="2008/5/11" type="religious" />
-    <date name="Pentecôte" value="2009/5/31" type="religious" />
-    <date name="Lundi de pentecôte" value="2007/5/28" type="religious" />
-    <date name="Lundi de pentecôte" value="2008/5/12" type="religious" />
-    <date name="Lundi de pentecôte" value="2009/6/01" type="religious" />
-    <date name="Assomption" value="*/8/15" type="religious" />
-    <date name="Toussaint" value="*/11/1" type="religious" />
-    <date name="Noël" value="*/12/25" type="religious" />
-    <date name="Saint Etienne" value="*/12/26" type="religious" />
-    <date name="Yom Kippur" value="2005/10/13" type="religious" />
-    <date name="Yom Kippur" value="2006/10/02" type="religious" />
-    <date name="Yom Kippur" value="2007/9/27" type="religious" />
-    <date name="Yom Kippur" value="2008/10/09" type="religious" />
-    <date name="Yom Kippur" value="2009/9/28" type="religious" />
-    <date name="Yom Kippur" value="2010/9/18" type="religious" />
-    <date name="début Hanukkah" value="2004/12/07" type="religious" />
-    <date name="début Hanukkah" value="2005/12/25" type="religious" />
-    <date name="début Hanukkah" value="2006/12/15" type="religious" />
-    <date name="début Hanukkah" value="2007/12/04" type="religious" />
-    <date name="début Hanukkah" value="2008/12/21" type="religious" />
-    <date name="début Hanukkah" value="2009/12/12" type="religious" />
-    <date name="début Hanukkah" value="2010/12/01" type="religious" />
-    <date name="début Ramadan" value="2006/9/24" type="religious" />
-    <date name="début Ramadan" value="2007/9/13" type="religious" />
-    <date name="début Ramadan" value="2008/9/2" type="religious" />
-    <date name="début Kwanzaa" value="*/12/26" type="religious" />
-  </country>
-  <country name="Sverige - röda dagar">
-    <date name="Nyårsdagen" value="*/1/1" type="national" />
-    <date name="Trettondagen" value="*/1/5" type="national" />
-    <date name="Långfredagen" value="2007/4/6" type="national" />
-    <date name="Påskdagen" value="2007/4/8" type="national" />
-    <date name="Annandag Påsk" value="2007/4/9" type="national" />
-    <date name="Långfredagen" value="2008/3/21" type="national" />
-    <date name="Påskdagen" value="2008/3/23" type="national" />
-    <date name="Annandag Påsk" value="2008/3/24" type="national" />
-    <date name="Långfredagen" value="2009/4/10" type="national" />
-    <date name="Påskdagen" value="2009/4/12" type="national" />
-    <date name="Annandag Påsk" value="2009/4/13" type="national" />
-    <date name="Långfredagen" value="2010/4/2" type="national" />
-    <date name="Påskdagen" value="2010/4/4" type="national" />
-    <date name="Annandag Påsk" value="2010/4/5" type="national" />
-    <date name="Långfredagen" value="2011/4/21" type="national" />
-    <date name="Påskdagen" value="2011/4/24" type="national" />
-    <date name="Annandag Påsk" value="2011/4/25" type="national" />
-    <date name="Långfredagen" value="2012/4/6" type="national" />
-    <date name="Påskdagen" value="2012/4/8" type="national" />
-    <date name="Annandag Påsk" value="2012/4/9" type="national" />
-    <date name="Långfredagen" value="2013/3/29" type="national" />
-    <date name="Påskdagen" value="2013/3/31" type="national" />
-    <date name="Annandag Påsk" value="2013/4/1" type="national" />
-    <date name="Långfredagen" value="2014/4/18" type="national" />
-    <date name="Påskdagen" value="2014/4/20" type="national" />
-    <date name="Annandag Påsk" value="2014/4/21" type="national" />
-    <date name="Långfredagen" value="2015/4/3" type="national" />
-    <date name="Påskdagen" value="2015/4/5" type="national" />
-    <date name="Annandag Påsk" value="2015/4/6" type="national" />
-    <date name="Första Maj" value="*/5/1" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2009/5/21" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2010/5/13" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2011/6/2" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2012/5/17" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2013/5/9" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2014/5/29" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2015/5/14" type="national" />
-    <date name="Nationaldag" value="*/6/6" type="national" />
-    <date name="Midsommardagen" value="*/3/sat/jun" type="national" />
-    <date name="Allahelgonadagen" value="*/1/sat/nov" type="national" />
-    <date name="Juldagen" value="*/12/25" type="national" />
-    <date name="Annandag Jul" value="*/12/26" type="national" />
   </country>
   <country name="Deutschland">
     <date name="Neujahr" type="national" value="*/1/1" />
@@ -347,41 +224,245 @@
     <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
     <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
   </country>
-  <country name="Česká republika">
-    <date name="Nový rok" value="*/1/1" type="national" />
-    <date name="Velikonoční pondělí" type="religious" value="> easter(y)" offset="+1" />
-    <date name="Svátek práce" value="*/5/1" type="national" />
-    <date name="Den osvobození od fašismu" value="*/5/8" type="national" />
-    <date name="Den slovanských věrozvěstů Cyrila a Metoděje" value="*/7/5" type="national" />
-    <date name="Den upálení mistra Jana Husa" value="*/7/6" type="national" />
-    <date name="Den české státnosti" value="*/9/28" type="national" />
-    <date name="Den vzniku samostatného československého státu" value="*/10/28" type="national" />
-    <date name="Den boje za svobodu a demokracii" value="*/11/17" type="national" />
-    <date name="Štědrý den" value="*/12/24" type="religious" />
-    <date name="1. svátek vánoční" value="*/12/25" type="national" />
-    <date name="2. svátek vánoční" value="*/12/26" type="national" />
+  <country name="Finland">
+    <date name="Chinese New Year" value="2006/1/29" type="national" />
+    <date name="Card Night" value="*/-1/thu/*" type="personal" />
   </country>
-  <country name="Chile">
-    <date name="Año nuevo" value="*/1/1" type="national" />
-    <date name="Viernes Santo" value="2007/4/6" type="religious" />
-    <date name="Viernes Santo" value="2008/3/21" type="religious" />
-    <date name="Viernes Santo" value="2009/4/10" type="religious" />
-    <date name="Viernes Santo" value="2010/4/2" type="religious" />
-    <date name="Viernes Santo" value="2011/4/22" type="religious" />
-    <date name="Viernes Santo" value="2012/4/6" type="religious" />
-    <date name="Viernes Santo" value="2013/3/29" type="religious" />
-    <date name="Viernes Santo" value="2014/4/18" type="religious" />
-    <date name="Viernes Santo" value="2015/4/3" type="religious" />
-    <date name="Día del Trabajador" value="*/5/1" type="national" />
-    <date name="Día de las Glorias Navales" value="*/5/21" type="national" />
-    <date name="San Pedro y San Pablo" value="*/6/29" type="religious" />
-    <date name="Día de la Virgen del Carmen" value="*/7/16" type="religious" />
-    <date name="Asunción de la Virgen" value="*/8/15" type="religious" />
-    <date name="Fiestas Patrias" value="*/9/18" type="national" />
-    <date name="Glorias del Ejército" value="*/9/19" type="national" />
-    <date name="Día de la Raza" value="*/10/12" type="national" />
-    <date name="Todos los Santos" value="*/11/1" type="religious" />
-    <date name="Inmaculada Concepción" value="*/12/8" type="religious" />
-    <date name="Navidad" value="*/12/25" type="national" /> 
+  <country name="France">
+    <date name="Jour de l'an" value="*/1/1" type="national" />
+    <date name="Fête du travail" value="*/5/1" type="national" />
+    <date name="Victoire 1945" value="*/5/8" type="national" />
+    <date name="Fête nationale" value="*/7/14" type="national" />
+    <date name="Armistice 1918" value="*/11/11" type="national" />
+    <date name="Pâques" value="2007/4/8" type="religious" />
+    <date name="Pâques" value="2008/3/23" type="religious" />
+    <date name="Pâques" value="2009/4/12" type="religious" />
+    <date name="Lundi de pâques" value="2007/4/9" type="religious" />
+    <date name="Lundi de pâques" value="2008/3/24" type="religious" />
+    <date name="Lundi de pâques" value="2009/4/13" type="religious" />
+    <date name="Ascension" value="2007/5/17" type="religious" />
+    <date name="Ascension" value="2008/5/1" type="religious" />
+    <date name="Ascension" value="2009/5/21" type="religious" />
+    <date name="Pentecôte" value="2007/5/27" type="religious" />
+    <date name="Pentecôte" value="2008/5/11" type="religious" />
+    <date name="Pentecôte" value="2009/5/31" type="religious" />
+    <date name="Lundi de pentecôte" value="2007/5/28" type="religious" />
+    <date name="Lundi de pentecôte" value="2008/5/12" type="religious" />
+    <date name="Lundi de pentecôte" value="2009/6/01" type="religious" />
+    <date name="Assomption" value="*/8/15" type="religious" />
+    <date name="Toussaint" value="*/11/1" type="religious" />
+    <date name="Noël" value="*/12/25" type="religious" />
+    <date name="Saint Etienne" value="*/12/26" type="religious" />
+    <date name="Yom Kippur" value="2005/10/13" type="religious" />
+    <date name="Yom Kippur" value="2006/10/02" type="religious" />
+    <date name="Yom Kippur" value="2007/9/27" type="religious" />
+    <date name="Yom Kippur" value="2008/10/09" type="religious" />
+    <date name="Yom Kippur" value="2009/9/28" type="religious" />
+    <date name="Yom Kippur" value="2010/9/18" type="religious" />
+    <date name="début Hanukkah" value="2004/12/07" type="religious" />
+    <date name="début Hanukkah" value="2005/12/25" type="religious" />
+    <date name="début Hanukkah" value="2006/12/15" type="religious" />
+    <date name="début Hanukkah" value="2007/12/04" type="religious" />
+    <date name="début Hanukkah" value="2008/12/21" type="religious" />
+    <date name="début Hanukkah" value="2009/12/12" type="religious" />
+    <date name="début Hanukkah" value="2010/12/01" type="religious" />
+    <date name="début Ramadan" value="2006/9/24" type="religious" />
+    <date name="début Ramadan" value="2007/9/13" type="religious" />
+    <date name="début Ramadan" value="2008/9/2" type="religious" />
+    <date name="début Kwanzaa" value="*/12/26" type="religious" />
+  </country>
+  <country name="Sverige - röda dagar">
+    <date name="Nyårsdagen" value="*/1/1" type="national" />
+    <date name="Trettondagen" value="*/1/5" type="national" />
+    <date name="Långfredagen" value="2007/4/6" type="national" />
+    <date name="Påskdagen" value="2007/4/8" type="national" />
+    <date name="Annandag Påsk" value="2007/4/9" type="national" />
+    <date name="Långfredagen" value="2008/3/21" type="national" />
+    <date name="Påskdagen" value="2008/3/23" type="national" />
+    <date name="Annandag Påsk" value="2008/3/24" type="national" />
+    <date name="Långfredagen" value="2009/4/10" type="national" />
+    <date name="Påskdagen" value="2009/4/12" type="national" />
+    <date name="Annandag Påsk" value="2009/4/13" type="national" />
+    <date name="Långfredagen" value="2010/4/2" type="national" />
+    <date name="Påskdagen" value="2010/4/4" type="national" />
+    <date name="Annandag Påsk" value="2010/4/5" type="national" />
+    <date name="Långfredagen" value="2011/4/21" type="national" />
+    <date name="Påskdagen" value="2011/4/24" type="national" />
+    <date name="Annandag Påsk" value="2011/4/25" type="national" />
+    <date name="Långfredagen" value="2012/4/6" type="national" />
+    <date name="Påskdagen" value="2012/4/8" type="national" />
+    <date name="Annandag Påsk" value="2012/4/9" type="national" />
+    <date name="Långfredagen" value="2013/3/29" type="national" />
+    <date name="Påskdagen" value="2013/3/31" type="national" />
+    <date name="Annandag Påsk" value="2013/4/1" type="national" />
+    <date name="Långfredagen" value="2014/4/18" type="national" />
+    <date name="Påskdagen" value="2014/4/20" type="national" />
+    <date name="Annandag Påsk" value="2014/4/21" type="national" />
+    <date name="Långfredagen" value="2015/4/3" type="national" />
+    <date name="Påskdagen" value="2015/4/5" type="national" />
+    <date name="Annandag Påsk" value="2015/4/6" type="national" />
+    <date name="Första Maj" value="*/5/1" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2009/5/21" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2010/5/13" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2011/6/2" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2012/5/17" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2013/5/9" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2014/5/29" type="national" />
+    <date name="Kristi Himmelfärdsdag" value="2015/5/14" type="national" />
+    <date name="Nationaldag" value="*/6/6" type="national" />
+    <date name="Midsommardagen" value="*/3/sat/jun" type="national" />
+    <date name="Allahelgonadagen" value="*/1/sat/nov" type="national" />
+    <date name="Juldagen" value="*/12/25" type="national" />
+    <date name="Annandag Jul" value="*/12/26" type="national" />
+  </country>
+  <country name="United States">
+    <date name="New Year's Day" value="*/1/1" type="national" />
+    <date name="New Year's Eve" value="*/12/31" type="national" />
+    <date name="Independence Day" value="*/7/4" type="national" />
+    <date name="Veterans Day" value="*/11/11" type="national" />
+    <date name="Christmas" value="*/12/25" type="national" />
+    <date name="Labor Day" value="*/1/mon/sep" if="y &lt;= 2008" type="national" />
+    <date name="Labor Day" value="2009/1/tue/sep" type="national" />
+    <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
+    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
+    <date name="Groundhog Day" value="*/2/2" type="secular" />
+    <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
+    <date name="Valentine's Day" value="*/2/14" type="secular" />
+    <date name="Presidents' Day" value="*/3/mon/feb" type="secular" />
+    <date name="Washington's Birthday" value="*/2/22" type="secular" />
+    <date name="St. Patrick's Day" value="*/3/17" type="secular" />
+    <date name="April Fool's Day" value="*/4/1" type="secular" />
+    <date name="Earth Day" value="*/4/22" type="secular" />
+    <date name="Assistants' Day" value="*/-1/sat/apr" offset="-3" type="secular" />
+    <date name="Arbor Day" value="*/-1/fri/apr" type="secular" />
+    <date name="Mothers' Day" value="*/2/sun/may" type="secular" />
+    <date name="Fathers' Day" value="*/3/sun/jun" type="secular" />
+    <date name="Parents' Day" value="*/4/sun/jul" type="secular" />
+    <date name="Grandparents' Day" value="*/1/mon/sep" offset="6" type="secular" />
+    <date name="Columbus Day" value="*/2/mon/oct" type="secular" />
+    <date name="United Nations Day" value="*/10/24" type="secular" />
+    <date name="Halloween" value="*/10/31" type="secular" />
+    <date name="ML Kings's Birthday" value="*/3/mon/jan" type="secular" />
+    <date name="Armed Forces Day" value="*/3/sat/may" type="secular" />
+    <date name="Memorial Day" value="*/-1/mon/may" type="secular" />
+    <date name="Flag Day" value="*/6/14" type="secular" />
+    <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
+    <date name="Daylight Saving begins" value="1999/4/4" type="informational" />
+    <date name="Daylight Saving begins" value="2000/4/2" type="informational" />
+    <date name="Daylight Saving begins" value="2001/4/1" type="informational" />
+    <date name="Daylight Saving begins" value="2002/4/7" type="informational" />
+    <date name="Daylight Saving begins" value="2003/4/6" type="informational" />
+    <date name="Daylight Saving begins" value="2004/4/4" type="informational" />
+    <date name="Daylight Saving begins" value="2005/4/3" type="informational" />
+    <date name="Daylight Saving begins" value="2006/4/2" type="informational" />
+    <date name="Daylight Saving begins" value="2007/3/11" type="informational" />
+    <date name="Daylight Saving begins" value="2008/3/9" type="informational" />
+    <date name="Daylight Saving begins" value="2009/3/8" type="informational" />
+    <date name="Daylight Saving begins" value="2010/3/14" type="informational" />
+    <date name="Daylight Saving begins" value="2011/3/13" type="informational" />
+    <date name="Daylight Saving begins" value="2012/3/11" type="informational" />
+    <date name="Daylight Saving begins" value="2013/3/10" type="informational" />
+    <date name="Daylight Saving begins" value="2014/3/9" type="informational" />
+    <date name="Daylight Saving begins" value="2015/3/8" type="informational" />
+    <date name="Daylight Saving begins" value="2016/3/13" type="informational" />
+    <date name="Daylight Saving begins" value="2017/3/12" type="informational" />
+    <date name="Daylight Saving begins" value="2018/3/11" type="informational" />
+    <date name="Daylight Saving begins" value="2019/3/10" type="informational" />
+    <date name="Income Taxes due" value="*/4/15" type="national" 
+     if="date.weekday().__cmp__(4)-1" />
+    <date name="Income Taxes due" value="*/4/16" type="national" 
+     if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="*/4/17" type="national" 
+     if="date.weekday() == 0" />
+    <date name="Daylight Saving ends" value="1999/10/31" type="informational" />
+    <date name="Daylight Saving ends" value="2000/10/29" type="informational" />
+    <date name="Daylight Saving ends" value="2001/10/28" type="informational" />
+    <date name="Daylight Saving ends" value="2002/10/27" type="informational" />
+    <date name="Daylight Saving ends" value="2003/10/26" type="informational" />
+    <date name="Daylight Saving ends" value="2004/10/31" type="informational" />
+    <date name="Daylight Saving ends" value="2005/10/30" type="informational" />
+    <date name="Daylight Saving ends" value="2006/10/29" type="informational" />
+    <date name="Daylight Saving ends" value="2007/11/4" type="informational" />
+    <date name="Daylight Saving ends" value="2008/11/2" type="informational" />
+    <date name="Daylight Saving ends" value="2009/11/1" type="informational" />
+    <date name="Daylight Saving ends" value="2010/11/7" type="informational" />
+    <date name="Daylight Saving ends" value="2011/11/6" type="informational" />
+    <date name="Daylight Saving ends" value="2012/11/4" type="informational" />
+    <date name="Daylight Saving ends" value="2013/11/3" type="informational" />
+    <date name="Daylight Saving ends" value="2014/11/2" type="informational" />
+    <date name="Daylight Saving ends" value="2015/11/1" type="informational" />
+    <date name="Daylight Saving ends" value="2016/11/6" type="informational" />
+    <date name="Daylight Saving ends" value="2017/11/5" type="informational" />
+    <date name="Daylight Saving ends" value="2018/11/4" type="informational" />
+    <date name="Daylight Saving ends" value="2019/11/3" type="informational" />
+    <date name="Easter" value="1999/4/4" type="religious" />
+    <date name="Easter" value="2000/4/25" type="religious" />
+    <date name="Easter" value="2001/4/15" type="religious" />
+    <date name="Easter" value="2002/3/31" type="religious" />
+    <date name="Easter" value="2003/4/20" type="religious" />
+    <date name="Easter" value="2004/4/11" type="religious" />
+    <date name="Easter" value="2005/3/27" type="religious" />
+    <date name="Easter" value="2006/4/16" type="religious" />
+    <date name="Easter" value="2007/4/8" type="religious" />
+    <date name="Easter" value="2008/3/23" type="religious" />
+    <date name="Easter" value="2009/4/12" type="religious" />
+    <date name="Easter" value="2010/4/4" type="religious" />
+    <date name="Easter" value="2011/4/24" type="religious" />
+    <date name="Easter" value="2012/4/8" type="religious" />
+    <date name="Easter" value="2013/3/31" type="religious" />
+    <date name="Easter" value="2014/4/20" type="religious" />
+    <date name="Easter" value="2015/4/5" type="religious" />
+    <date name="Easter" value="2016/3/27" type="religious" />
+    <date name="Easter" value="2017/4/16" type="religious" />
+    <date name="Easter" value="2018/4/1" type="religious" />
+    <date name="Easter" value="2019/4/21" type="religious" />
+    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
+    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
+    <date name="Ash Wednesday" value="2000/3/8" type="religious" />
+    <date name="Ash Wednesday" value="2001/2/28" type="religious" />
+    <date name="Ash Wednesday" value="2002/2/13" type="religious" />
+    <date name="Ash Wednesday" value="2003/3/5" type="religious" />
+    <date name="Ash Wednesday" value="2004/2/25" type="religious" />
+    <date name="Ash Wednesday" value="2005/2/9" type="religious" />
+    <date name="Ash Wednesday" value="2006/3/1" type="religious" />
+    <date name="Ash Wednesday" value="2007/2/21" type="religious" />
+    <date name="Ash Wednesday" value="2008/2/6" type="religious" />
+    <date name="Ash Wednesday" value="2009/2/25" type="religious" />
+    <date name="Ash Wednesday" value="2010/2/17" type="religious" />
+    <date name="Ash Wednesday" value="2011/3/9" type="religious" />
+    <date name="Ash Wednesday" value="2012/2/22" type="religious" />
+    <date name="Ash Wednesday" value="2013/2/13" type="religious" />
+    <date name="Ash Wednesday" value="2014/3/5" type="religious" />
+    <date name="Ash Wednesday" value="2015/2/18" type="religious" />
+    <date name="Ash Wednesday" value="2016/2/10" type="religious" />
+    <date name="Ash Wednesday" value="2017/3/1" type="religious" />
+    <date name="Ash Wednesday" value="2018/2/14" type="religious" />
+    <date name="Ash Wednesday" value="2019/3/6" type="religious" />
+    <date name="Passover" value="2005/4/24" type="religious" />
+    <date name="Passover" value="2006/4/13" type="religious" />
+    <date name="Passover" value="2007/4/03" type="religious" />
+    <date name="Passover" value="2008/4/20" type="religious" />
+    <date name="Passover" value="2009/4/09" type="religious" />
+    <date name="Passover" value="2010/3/30" type="religious" />
+    <date name="Passover" value="2011/4/19" type="religious" />
+    <date name="Yom Kippur" value="2005/10/13" type="religious" />
+    <date name="Yom Kippur" value="2006/10/02" type="religious" />
+    <date name="Yom Kippur" value="2007/9/27" type="religious" />
+    <date name="Yom Kippur" value="2008/10/09" type="religious" />
+    <date name="Yom Kippur" value="2009/09/28" type="religious" />
+    <date name="Yom Kippur" value="2010/09/18" type="religious" />
+    <date name="Hanukkah begins" value="2004/12/07" type="religious" />
+    <date name="Hanukkah begins" value="2005/12/25" type="religious" />
+    <date name="Hanukkah begins" value="2006/12/15" type="religious" />
+    <date name="Hanukkah begins" value="2007/12/04" type="religious" />
+    <date name="Hanukkah begins" value="2008/12/21" type="religious" />
+    <date name="Hanukkah begins" value="2009/12/11" type="religious" />
+    <date name="Hanukkah begins" value="2010/12/01" type="religious" />
+    <date name="Ramadan begins" value="2006/09/24" type="religious" />
+    <date name="Ramadan begins" value="2007/09/13" type="religious" />
+    <date name="Ramadan begins" value="2008/09/2" type="religious" />
+    <date name="Ramadan begins" value="2009/08/22" type="religious" />
+    <date name="Kwanzaa begins" value="*/12/26" type="religious" />
+    <date name="Cinco de Mayo" value="*/5/5" type="secular" />
   </country>
 </calendar>
