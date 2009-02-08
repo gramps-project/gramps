@@ -419,7 +419,6 @@ class ManagedWindow:
         self.get_widget(button_name).connect('clicked', function)
 
     def show(self):
-        print 'show'
         if self.isWindow :
             self.set_transient_for(self.parent_window)
             self.opened = True
