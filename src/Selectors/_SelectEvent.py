@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from DisplayModels import EventModel
 from _BaseSelector import BaseSelector
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -41,6 +43,13 @@ from _BaseSelector import BaseSelector
 #
 #-------------------------------------------------------------------------
 class SelectEvent(BaseSelector):
+
+    def _local_init(self):
+        """
+        Perform local initialisation for this class
+        """
+        self.width_key = Config.EVENT_SEL_WIDTH
+        self.height_key = Config.EVENT_SEL_HEIGHT
 
     def get_window_title(self):
         return _("Select Event")

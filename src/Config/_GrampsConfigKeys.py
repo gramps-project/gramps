@@ -106,6 +106,22 @@ SOURCE_HEIGHT        = ('interface', 'source-height', 1)
 SOURCE_WIDTH         = ('interface', 'source-width', 1)
 SOURCE_REF_HEIGHT    = ('interface', 'source-ref-height', 1)
 SOURCE_REF_WIDTH     = ('interface', 'source-ref-width', 1)
+SOURCE_SEL_WIDTH     = ('interface', 'source-sel-width', 1)
+SOURCE_SEL_HEIGHT    = ('interface', 'source-sel-height', 1)
+EVENT_SEL_WIDTH      = ('interface', 'event-sel-width', 1)
+EVENT_SEL_HEIGHT     = ('interface', 'event-sel-height', 1)
+FAMILY_SEL_WIDTH     = ('interface', 'family-sel-width', 1)
+FAMILY_SEL_HEIGHT    = ('interface', 'family-sel-height', 1)
+NOTE_SEL_WIDTH       = ('interface', 'note-sel-width', 1)
+NOTE_SEL_HEIGHT      = ('interface', 'note-sel-height', 1)
+REPO_SEL_WIDTH       = ('interface', 'repo-sel-width', 1)
+REPO_SEL_HEIGHT      = ('interface', 'repo-sel-height', 1)
+PLACE_SEL_WIDTH      = ('interface', 'place-sel-width', 1)
+PLACE_SEL_HEIGHT     = ('interface', 'place-sel-height', 1)
+PERSON_SEL_WIDTH     = ('interface', 'person-sel-width', 1)
+PERSON_SEL_HEIGHT    = ('interface', 'person-sel-height', 1)
+MEDIA_SEL_WIDTH      = ('interface', 'media-sel-width', 1)
+MEDIA_SEL_HEIGHT     = ('interface', 'media-sel-height', 1)
 FILTER               = ('interface', 'filter', 0)
 PEDVIEW_TREESIZE     = ('interface', 'pedview-tree-size', 1)
 PEDVIEW_LAYOUT       = ('interface', 'pedview-layout', 1)
@@ -240,6 +256,22 @@ default_value = {
     SOURCE_WIDTH         : 600, 
     SOURCE_REF_HEIGHT    : 450, 
     SOURCE_REF_WIDTH     : 600, 
+    SOURCE_SEL_WIDTH     : 600,
+    SOURCE_SEL_HEIGHT    : 450,
+    EVENT_SEL_WIDTH      : 600,
+    EVENT_SEL_HEIGHT     : 450,
+    FAMILY_SEL_WIDTH     : 600,
+    FAMILY_SEL_HEIGHT    : 450,
+    NOTE_SEL_WIDTH       : 600,
+    NOTE_SEL_HEIGHT      : 450,
+    REPO_SEL_WIDTH       : 600,
+    REPO_SEL_HEIGHT      : 450,
+    PLACE_SEL_WIDTH      : 600,
+    PLACE_SEL_HEIGHT     : 450,
+    PERSON_SEL_WIDTH     : 600,
+    PERSON_SEL_HEIGHT    : 450,
+    MEDIA_SEL_WIDTH      : 600,
+    MEDIA_SEL_HEIGHT     : 450,
     FILTER               : False, 
     PEDVIEW_TREESIZE     : 0,
     PEDVIEW_LAYOUT       : 0,

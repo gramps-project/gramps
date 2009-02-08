@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,6 +49,7 @@ from Utils import media_path_full
 import ThumbNails
 from DisplayModels import MediaModel
 from _BaseSelector import BaseSelector
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -76,6 +78,11 @@ class SelectObject(BaseSelector):
             ]
 
     def _local_init(self):
+        """
+        Perform local initialisation for this class
+        """
+        self.width_key = Config.MEDIA_SEL_WIDTH
+        self.height_key = Config.MEDIA_SEL_HEIGHT
         self.preview = gtk.Image()
         self.preview.set_size_request(int(const.THUMBSCALE),
                                     int(const.THUMBSCALE))
