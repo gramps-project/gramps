@@ -1041,7 +1041,7 @@ class PlaceListPage(BasePage):
             if not n:
                 continue
 
-            letter = normalize('NFKD', n)[0].upper()
+            letter = normalize('NFKC', n)[0].upper()
 
             if letter != last_letter:
                 last_letter = letter
@@ -1481,7 +1481,7 @@ class SurnameListPage(BasePage):
 
             # Get a capital normalized version of the first letter of
             # the surname
-            letter = normalize('NFKD', surname)[0].upper()
+            letter = normalize('NFKC', surname)[0].upper()
 
             if letter is not last_letter:
                 last_letter = letter
