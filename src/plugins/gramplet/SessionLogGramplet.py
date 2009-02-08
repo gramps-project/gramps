@@ -41,7 +41,7 @@ class LogGramplet(Gramplet):
         self.append_text("\n")
 
     def db_changed(self):
-        self.append_text("Opened data base -----------\n")
+        self.append_text(_("Opened data base -----------\n"))
         self.dbstate.db.connect('person-add', 
                                 lambda handles: self.log(_('Person'), _('Added'), handles))
         self.dbstate.db.connect('person-delete', 
