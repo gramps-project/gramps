@@ -4,12 +4,9 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Raphael Ackermann
-#
-# Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
-# 
-# Formatted notes addition:
-#               2003  Alex Roitman
+#               2003       Alex Roitman
+#               2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -130,11 +127,68 @@ class TexFont:
     
 #------------------------------------------------------------------------
 #
-# LaTeXDon
+# LaTeXDoc
 #
 #------------------------------------------------------------------------
+
+def latexescape(text):
+    """
+    change text in text that latex shows correctly
+    special characters: \&     \$     \%     \#     \_    \{     \}
+    """
+    text = text.replace('&','\\&')
+    text = text.replace('$','\\$')
+    text = text.replace('%','\\%')
+    text = text.replace('#','\\#')
+    text = text.replace('_','\\_')
+    text = text.replace('{','\\{')
+    text = text.replace('}','\\}')
+    return text
+
+def latexescapeverbatim(text):
+    """
+    change text in text that latex shows correctly respecting whitespace
+    special characters: \&     \$     \%     \#     \_    \{     \}
+    Now also make sure space and newline is respected
+    """
+    text = text.replace('&', '\\&')
+    text = text.replace('$', '\\$')
+    text = text.replace('%', '\\%')
+    text = text.replace('#', '\\#')
+    text = text.replace('_', '\\_')
+    text = text.replace('{', '\\{')
+    text = text.replace('}', '\\}')
+    text = text.replace(' ', '\\ ')
+    text = text.replace('\n', '\\newline\n')
+    #spaces at begin are normally ignored, make sure they are not.
+    #due to above a space at begin is now \newline\n\ 
+    text = text.replace('\\newline\n\\ ', '\\newline\n\\hspace*{0.1cm}\\ ')
+    return text
+
 class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
+
+    # overwrite base class attributes
+    BaseDoc.TextDoc.SUPPORTED_MARKUP = [
+            BaseDoc.TextDoc.BOLD,
+            BaseDoc.TextDoc.ITALIC,
+            BaseDoc.TextDoc.UNDERLINE,
+            BaseDoc.TextDoc.FONTSIZE,
+            BaseDoc.TextDoc.FONTFACE,
+            BaseDoc.TextDoc.SUPERSCRIPT ]
+
+    BaseDoc.TextDoc.STYLETAG_MARKUP = {
+        BaseDoc.TextDoc.BOLD        : ("\\textbf{", "}"),
+        BaseDoc.TextDoc.ITALIC      : ("\\textit{", "}"),
+        BaseDoc.TextDoc.UNDERLINE   : ("\\underline{", "}"),
+        BaseDoc.TextDoc.SUPERSCRIPT : ("\\textsuperscript{", "}"),
+    }
+    
+    BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescape
+
+    def page_break(self):
+        "Forces a page break, creating a new page"
+        self.f.write('\\newpage ')
     
     def open(self,filename):
         """Opens the specified file, making sure that it has the
@@ -425,7 +479,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             if self.skipfirst == 1:
                 self.f.write('\\cline{2-%d}\n' % self.numcols)
             else:
-                self.f.write('\\hline\n')
+                self.f.write('\\hline \\\\ \n')
         else:
             self.f.write('\n')
         
@@ -492,7 +546,89 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('\\includegraphics[%s]{%s}\\hfill\n' % (mysize,picf))
         else:
             self.f.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
+
+    def write_text(self,text,mark=None):
+        """Write the text to the file"""
+        if text == '\n':
+            text = '\\newline\n'
+        text = latexescape(text)
+        #hard coded replace of the underline used for missing names/data
+        text = text.replace('\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_','\\underline{\hspace{3cm}}')
+        self.f.write(text)
+
+    def write_styled_note(self, styledtext, format, style_name):
+        """
+        Convenience function to write a styledtext to the latex doc. 
+        styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
         
+        @note: text=normal text, p_text=text with pango markup, s_tags=styled
+                text tags, p
+        """
+        text = str(styledtext)
+
+        s_tags = styledtext.get_tags()
+        if format == 1:
+            #preformatted, use different escape function
+            BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescapeverbatim
+        
+        markuptext = self._add_markup_from_styled(text, s_tags)
+        
+        #there is a problem if we write out a note in a table. No newline is
+        # possible, the note runs over the margin into infinity.
+        # A good solution for this ???
+        # A quick solution: create a minipage for the note and add that always
+        #   hoping that the user will have left sufficient room for the page
+        self.f.write("\\begin{minipage}{{0.8\\linewidth}}\n")
+        self.start_paragraph(style_name)
+        self.f.write(markuptext)
+        self.end_paragraph()
+        #end the minipage, add trick to have a white line at bottom of note,
+        # we assume here a note should be distinct from its surrounding.
+        self.f.write("\n\\vspace*{0.5cm} \n\end{minipage}\n")
+        if format == 1:
+            #preformatted finished, go back to normal escape function
+            BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescape
+
+    def _create_xmltag(self, type, value):
+        """
+        overwrites the method in BaseDoc.TextDoc.
+        creates the latex tags needed for non bool style types we support:
+            BaseDoc.TextDoc.FONTSIZE : use different \large denomination based
+                                        on size
+                                     : very basic, in mono in the font face 
+                                        then we use {\ttfamily }
+        """
+        if type not in self.SUPPORTED_MARKUP:
+            return None
+        elif type == BaseDoc.TextDoc.FONTSIZE:
+            #translate size in point to something LaTeX can work with
+            if value >= 22:
+                return ("{\\Huge ", "}")
+            elif value >= 20:
+                return ("{\\huge ", "}")
+            elif value >= 18:
+                return ("{\\LARGE ", "}")
+            elif value >= 16:
+                return ("{\\Large ", "}")
+            elif value >= 14:
+                return ("{\\large ", "}")
+            elif value < 8:
+                return ("{\\scriptsize ", "}")
+            elif value < 10:
+                return ("{\\footnotesize ", "}")
+            elif value < 12:
+                return ("{\\small ", "}")
+            else:
+                return ("", "")
+        elif type == BaseDoc.TextDoc.FONTFACE:
+            if 'MONO' in value.upper():
+                return ("{\\ttfamily ", "}")
+            elif 'ROMAN' in value.upper():
+                return ("{\\rmfamily ", "}")
+        return None
+
     def write_note(self,text,format,style_name):
         """Write the note's text to the file, respecting the format"""
         self.start_paragraph(style_name)
@@ -502,17 +638,6 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         if format == 1:
             self.f.write('\\end{verbatim}')
         self.end_paragraph()
-
-    def write_text(self,text,mark=None):
-        """Write the text to the file"""
-        if text == '\n':
-            text = '\\newline\n'
-        text = text.replace('#','\#')
-        text = text.replace('&','\&')
-        text = text.replace('<super>','\\textsuperscript{')
-        text = text.replace('</super>','}')
-        text = text.replace('_____________','\\underline{\hspace{3cm}}')
-        self.f.write(text)
 
 
 #------------------------------------------------------------------------
