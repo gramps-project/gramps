@@ -579,7 +579,8 @@ class DetDescendantReport(Report):
             self.doc.end_paragraph()
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
-                self.doc.write_note(note.get(), note.get_format(),"DDR-Entry")
+                self.doc.write_styled_note(note.get_styledtext(), 
+                                           note.get_format(),"DDR-Entry")
 
         first = True
         if self.inc_names:
