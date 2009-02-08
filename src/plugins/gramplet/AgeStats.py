@@ -251,7 +251,7 @@ class AgeStatsGramplet(Gramplet):
                 self.link(self.format("X" * int(bin/max_bin * (graph_width-4)), graph_width-4),
                           'PersonList', 
                           selected,
-                          tooltip=_("Double-click to see %d people" % len(selected)))
+                          tooltip=_("Double-click to see %d people") % len(selected))
                 procent = float(len(selected))/(float(sum(hash.values())))*100
                 if procent > 10.0:
                     self.append_text("%2.2f" % procent)
