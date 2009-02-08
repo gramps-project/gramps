@@ -23,8 +23,49 @@
     <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
-    <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
+    <date name="Easter" value="1999/4/4" type="religious" />
+    <date name="Easter" value="2000/4/25" type="religious" />
+    <date name="Easter" value="2001/4/15" type="religious" />
+    <date name="Easter" value="2002/3/31" type="religious" />
+    <date name="Easter" value="2003/4/20" type="religious" />
+    <date name="Easter" value="2004/4/11" type="religious" />
+    <date name="Easter" value="2005/3/27" type="religious" />
+    <date name="Easter" value="2006/4/16" type="religious" />
+    <date name="Easter" value="2007/4/8" type="religious" />
+    <date name="Easter" value="2008/3/23" type="religious" />
+    <date name="Easter" value="2009/4/12" type="religious" />
+    <date name="Easter" value="2010/4/4" type="religious" />
+    <date name="Easter" value="2011/4/24" type="religious" />
+    <date name="Easter" value="2012/4/8" type="religious" />
+    <date name="Easter" value="2013/3/31" type="religious" />
+    <date name="Easter" value="2014/4/20" type="religious" />
+    <date name="Easter" value="2015/4/5" type="religious" />
+    <date name="Easter" value="2016/3/27" type="religious" />
+    <date name="Easter" value="2017/4/16" type="religious" />
+    <date name="Easter" value="2018/4/1" type="religious" />
+    <date name="Easter" value="2019/4/21" type="religious" />
+    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
+    <date name="Ash Wednesday" value="1999/2/17" type="religious" />
+    <date name="Ash Wednesday" value="2000/3/8" type="religious" />
+    <date name="Ash Wednesday" value="2001/2/28" type="religious" />
+    <date name="Ash Wednesday" value="2002/2/13" type="religious" />
+    <date name="Ash Wednesday" value="2003/3/5" type="religious" />
+    <date name="Ash Wednesday" value="2004/2/25" type="religious" />
+    <date name="Ash Wednesday" value="2005/2/9" type="religious" />
+    <date name="Ash Wednesday" value="2006/3/1" type="religious" />
+    <date name="Ash Wednesday" value="2007/2/21" type="religious" />
+    <date name="Ash Wednesday" value="2008/2/6" type="religious" />
+    <date name="Ash Wednesday" value="2009/2/25" type="religious" />
+    <date name="Ash Wednesday" value="2010/2/17" type="religious" />
+    <date name="Ash Wednesday" value="2011/3/9" type="religious" />
+    <date name="Ash Wednesday" value="2012/2/22" type="religious" />
+    <date name="Ash Wednesday" value="2013/2/13" type="religious" />
+    <date name="Ash Wednesday" value="2014/3/5" type="religious" />
+    <date name="Ash Wednesday" value="2015/2/18" type="religious" />
+    <date name="Ash Wednesday" value="2016/2/10" type="religious" />
+    <date name="Ash Wednesday" value="2017/3/1" type="religious" />
+    <date name="Ash Wednesday" value="2018/2/14" type="religious" />
+    <date name="Ash Wednesday" value="2019/3/6" type="religious" />
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />
@@ -51,7 +92,27 @@
   </country>
   <country name="Česká republika">
     <date name="Nový rok" value="*/1/1" type="national" />
-    <date name="Velikonoční pondělí" type="religious" value="> easter(y)" offset="+1" />
+    <date name="Easter" value="1999/4/5" type="religious" />
+    <date name="Easter" value="2000/4/26" type="religious" />
+    <date name="Easter" value="2001/4/16" type="religious" />
+    <date name="Easter" value="2002/4/1" type="religious" />
+    <date name="Easter" value="2003/4/21" type="religious" />
+    <date name="Easter" value="2004/4/12" type="religious" />
+    <date name="Easter" value="2005/3/28" type="religious" />
+    <date name="Easter" value="2006/4/17" type="religious" />
+    <date name="Easter" value="2007/4/9" type="religious" />
+    <date name="Easter" value="2008/3/24" type="religious" />
+    <date name="Easter" value="2009/4/13" type="religious" />
+    <date name="Easter" value="2010/4/5" type="religious" />
+    <date name="Easter" value="2011/4/25" type="religious" />
+    <date name="Easter" value="2012/4/9" type="religious" />
+    <date name="Easter" value="2013/4/1" type="religious" />
+    <date name="Easter" value="2014/4/21" type="religious" />
+    <date name="Easter" value="2015/4/6" type="religious" />
+    <date name="Easter" value="2016/3/28" type="religious" />
+    <date name="Easter" value="2017/4/17" type="religious" />
+    <date name="Easter" value="2018/4/2" type="religious" />
+    <date name="Easter" value="2019/4/22" type="religious" />
     <date name="Svátek práce" value="*/5/1" type="national" />
     <date name="Den osvobození od fašismu" value="*/5/8" type="national" />
     <date name="Den slovanských věrozvěstů Cyrila a Metoděje" value="*/7/5" type="national" />
