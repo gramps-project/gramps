@@ -15798,6 +15798,8 @@ Very High</property>
 		  <child>
 		    <widget class="GtkCheckButton" id="format">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. 
+When not checked, notes are automatically cleaned in the reports, which will improve the report layout.</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">_Preformatted</property>
 		      <property name="use_underline">True</property>

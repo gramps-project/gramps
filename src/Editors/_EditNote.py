@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
+#               2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -195,7 +196,6 @@ class EditNote(EditPrimary):
             self.top.get_widget('format'),
             self.obj.set_format,
             self.obj.get_format,
-            on_toggle = self.flow_changed,
             readonly = self.db.readonly)
         
         self.gid = MonitoredEntry(
@@ -237,10 +237,10 @@ class EditNote(EditPrimary):
         
         self._setup_notebook_tabs(notebook)
 
-# THIS IS THE MARKUP VERSION - enable for markup
     def build_interface(self):
         self.texteditor = self.top.get_widget('texteditor')
         self.texteditor.set_editable(not self.dbstate.db.readonly)
+        self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
 
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
@@ -251,47 +251,11 @@ class EditNote(EditPrimary):
         # setup initial values for textview and textbuffer
         if self.obj:
             self.empty = False
-            self.flow_changed(self.obj.get_format())
             self.texteditor.set_text(self.obj.get_styledtext())
             _LOG.debug("Initial Note: %s" % str(self.texteditor.get_text()))
         else:
             self.empty = True
 
-# NON-MARKUP VERSION - Disable for markup
-    #def build_interface(self):
-        #textbuffer = gtk.TextBuffer()
-
-        #self.text = self.top.get_widget('text')
-        #self.text.set_editable(not self.dbstate.db.readonly)
-        #self.text.set_buffer(textbuffer)
-        
-        ## setup spell checking interface
-        #spellcheck = Spell(self.text)
-        #liststore = gtk.ListStore(gobject.TYPE_STRING)
-        #cell = gtk.CellRendererText()
-        #lang_selector = self.top.get_widget('spell')
-        #lang_selector.set_model(liststore)
-        #lang_selector.pack_start(cell, True)
-        #lang_selector.add_attribute(cell, 'text', 0)
-        #act_lang = spellcheck.get_active_language()
-        #idx = 0
-        #for lang in spellcheck.get_all_languages():
-            #lang_selector.append_text(lang)
-            #if lang == act_lang:
-                #act_idx = idx
-            #idx = idx + 1
-        #lang_selector.set_active(act_idx)
-        #lang_selector.connect('changed', self.on_spell_change, spellcheck)
-        ##lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
-                
-        ## setup initial values for textview and textbuffer
-        #if self.obj:
-            #self.empty = False
-            #self.flow_changed(self.obj.get_format())
-            #textbuffer.set_text(self.obj.get())
-        #else:
-            #self.empty = True
-            
     def build_menu_names(self, person):
         """
         Provide the information needed by the base class to define the
@@ -308,16 +272,6 @@ class EditNote(EditPrimary):
             text = self.texteditor.get_text()
             self.obj.set_styledtext(text)
             _LOG.debug(str(text))
-
-    def flow_changed(self, active):
-        if active:
-            # Set the text style to monospace
-            self.texteditor.set_wrap_mode(gtk.WRAP_NONE)
-            self.texteditor.modify_font(pango.FontDescription("monospace"))
-        else:
-            # Set the text style to normal
-            self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
-            self.texteditor.modify_font(pango.FontDescription("normal"))
 
     def save(self, *obj):
         """Save the data."""
