@@ -346,25 +346,25 @@ class BasePage:
         # Link to css behaviours
         fname = os.path.join("styles", "behaviour.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="screen">\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="screen">\n' % url)
 
         # Link to screen stylesheet
         fname = os.path.join("styles", self.report.css)
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="screen" />\n' % url)
 
         # Link to printer stylesheet
         fname = os.path.join("styles", "Web_Print-Default.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="print" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="print" />\n' % url)
 
         # Link to GRAMPS favicon
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('\t<link href="%s" rel="Shortcut Icon"\n'
-            '\t\ttype="image/icon">\n' % url)
+        of.write('\t<link href="%s" rel="Shortcut Icon" '
+            'type="image/icon">\n' % url)
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
@@ -1047,17 +1047,14 @@ class PlaceListPage(BasePage):
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
                 of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
-                of.write('\t\t\t<td class="ColumnName">')
-                self.place_link(of, place.handle, n, place.gramps_id)
-                of.write('</td>\n')
-                of.write('\t\t</tr>\n')
             else:
                 of.write('\t\t<tr>\n')
                 of.write('\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
-                of.write('\t\t\t<td class="ColumnName">')
-                self.place_link(of, place.handle, n, place.gramps_id)
-                of.write('</td>\n')
-                of.write('\t\t</tr>\n')
+
+            of.write('\t\t\t<td class="ColumnName">')
+            self.place_link(of, place.handle, n, place.gramps_id)
+            of.write('</td>\n')
+            of.write('\t\t</tr>\n')
 
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
@@ -2196,12 +2193,13 @@ class IndividualPage(BasePage):
         # Place
         place_handle = event.get_place_handle()
         if place_handle:
-            # TODO. Figure out what this is for.
-            #if place_handle in self.place_list:
-            #    if lnk not in self.place_list[place_handle]:
-            #        self.place_list[place_handle].append(lnk)
-            #else:
-            #    self.place_list[place_handle] = [lnk]
+
+            lnk = (self.report.cur_fname, self.page_title, self.gid)
+            if place_handle in self.place_list:
+                if lnk not in self.place_list[place_handle]:
+                    self.place_list[place_handle].append(lnk)
+            else:
+                self.place_list[place_handle] = [lnk]
 
             place = self.place_link_str(place_handle,
                                         ReportUtils.place_name(self.report.database, place_handle),
