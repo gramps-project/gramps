@@ -100,6 +100,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         
         
         self._local_init()
+        self._set_size()
 
         self.show()
         #show or hide search bar?

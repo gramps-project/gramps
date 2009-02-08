@@ -202,5 +202,4 @@ class EditReference(ManagedWindow.ManagedWindow):
     def close(self,*obj):
         for key in self.signal_keys:
             self.db.disconnect(key)
-        self._save_size()
         ManagedWindow.ManagedWindow.close(self)

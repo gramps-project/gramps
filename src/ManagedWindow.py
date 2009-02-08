@@ -419,6 +419,7 @@ class ManagedWindow:
         self.get_widget(button_name).connect('clicked', function)
 
     def show(self):
+        print 'show'
         if self.isWindow :
             self.set_transient_for(self.parent_window)
             self.opened = True
@@ -466,6 +467,7 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
+        self._save_size()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
         self.parent_window.present()

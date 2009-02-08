@@ -154,7 +154,6 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         for key in self.signal_keys:
             self.db.disconnect(key)
         self._cleanup_on_exit()
-        self._save_size()
         ManagedWindow.ManagedWindow.close(self)
 
     def close(self, *obj):
