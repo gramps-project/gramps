@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1141,8 +1142,12 @@ def check_in(dbase, filename, callback, cursor_func = None):
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
-    xmlwrite = GrampsDbUtils.XmlWriter(dbase, callback, False, 0)
-    xmlwrite.write(filename)
+        
+    plugin_manager = PluginManager.get_instance()
+    for plugin in plugin_manager.get_export_plugins():
+        if plugin.get_extension() == "gramps":
+            export_function = plugin.get_export_function()
+            export_function(dbase, filename, None, callback)
 
     if cursor_func:
         cursor_func(_("Saving archive..."))
