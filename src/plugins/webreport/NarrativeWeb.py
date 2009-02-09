@@ -1344,7 +1344,9 @@ class MediaPage(BasePage):
                                               thmb_path, 320):
                     try:
                         path = self.report.build_path('preview', photo.handle)
-                        self.report.copy_file(thmb_path, os.path.join(path, photo.handle) + '.png')
+                        npath = os.path.join(path, photo.handle) + '.png'
+                        self.report.copy_file(thmb_path, npath)
+                        path = npath
                         os.unlink(thmb_path)
                     except IOError:
                         path = os.path.join('images', 'document.png')
