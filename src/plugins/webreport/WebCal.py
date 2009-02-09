@@ -78,7 +78,6 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
-from libholiday import easter, dst
 
 #------------------------------------------------------------------------
 #
