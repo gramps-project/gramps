@@ -382,10 +382,34 @@
     <date name="Independence Day" value="*/7/4" type="national" />
     <date name="Veterans Day" value="*/11/11" type="national" />
     <date name="Christmas" value="*/12/25" type="national" />
-    <date name="Labor Day" value="*/1/mon/sep" if="y &lt;= 2008" type="national" />
-    <date name="Labor Day" value="2009/1/tue/sep" type="national" />
+    <date name="Labor Day" value="1999/9/6" type="national" />
+    <date name="Labor Day" value="2000/9/4" type="national" />
+    <date name="Labor Day" value="2001/9/3" type="national" />
+    <date name="Labor Day" value="2002/9/2" type="national" />
+    <date name="Labor Day" value="2003/9/1" type="national" />
+    <date name="Labor Day" value="2004/9/6" type="national" />
+    <date name="Labor Day" value="2005/9/5" type="national" />
+    <date name="Labor Day" value="2006/9/4" type="national" />
+    <date name="Labor Day" value="2007/9/3" type="national" />
+    <date name="Labor Day" value="2008/9/1" type="national" />
+    <date name="Labor Day" value="2009/9/1" type="national" />
+    <date name="Labor Day" value="2010/9/6" type="national" />
+    <date name="Labor Day" value="2011/9/5" type="national" />
+    <date name="Labor Day" value="2012/9/3" type="national" />
+    <date name="Labor Day" value="2013/9/2" type="national" />
+    <date name="Labor Day" value="2014/9/1" type="national" />
+    <date name="Labor Day" value="2015/9/7" type="national" />
+    <date name="Labor Day" value="2016/9/5" type="national" />
+    <date name="Labor Day" value="2017/9/4" type="national" />
+    <date name="Labor Day" value="2018/9/3" type="national" />
+    <date name="Labor Day" value="2019/9/2" type="national" />
     <date name="Thanksgiving" value="*/4/thu/nov" type="national" />
-    <date name="Inauguration Day" value="*/1/20" if="(y - 1980) % 4 == 1" type="national" />
+    <date name="Inauguration Day" value="1997/1/20" type="national" />
+    <date name="Inauguration Day" value="2001/1/20" type="national" />
+    <date name="Inauguration Day" value="2005/1/20" type="national" />
+    <date name="Inauguration Day" value="2009/1/20" type="national" />
+    <date name="Inauguration Day" value="2013/1/20" type="national" />
+    <date name="Inauguration Day" value="2017/1/20" type="national" />
     <date name="Groundhog Day" value="*/2/2" type="secular" />
     <date name="Lincoln's Birthday" value="*/2/12" type="secular" />
     <date name="Valentine's Day" value="*/2/14" type="secular" />
@@ -429,12 +453,27 @@
     <date name="Daylight Saving begins" value="2017/3/12" type="informational" />
     <date name="Daylight Saving begins" value="2018/3/11" type="informational" />
     <date name="Daylight Saving begins" value="2019/3/10" type="informational" />
-    <date name="Income Taxes due" value="*/4/15" type="national" 
-     if="date.weekday().__cmp__(4)-1" />
-    <date name="Income Taxes due" value="*/4/16" type="national" 
-     if="date.weekday() == 0" />
-    <date name="Income Taxes due" value="*/4/17" type="national" 
-     if="date.weekday() == 0" />
+    <date name="Income Taxes due" value="1999/4/15" type="national" />
+    <date name="Income Taxes due" value="2000/4/17" type="national" />
+    <date name="Income Taxes due" value="2001/4/16" type="national" />
+    <date name="Income Taxes due" value="2002/4/15" type="national" />
+    <date name="Income Taxes due" value="2003/4/15" type="national" />
+    <date name="Income Taxes due" value="2004/4/15" type="national" />
+    <date name="Income Taxes due" value="2005/4/15" type="national" />
+    <date name="Income Taxes due" value="2006/4/17" type="national" />
+    <date name="Income Taxes due" value="2007/4/16" type="national" />
+    <date name="Income Taxes due" value="2008/4/15" type="national" />
+    <date name="Income Taxes due" value="2009/4/15" type="national" />
+    <date name="Income Taxes due" value="2010/4/15" type="national" />
+    <date name="Income Taxes due" value="2011/4/15" type="national" />
+    <date name="Income Taxes due" value="2012/4/16" type="national" />
+    <date name="Income Taxes due" value="2013/4/15" type="national" />
+    <date name="Income Taxes due" value="2014/4/15" type="national" />
+    <date name="Income Taxes due" value="2015/4/15" type="national" />
+    <date name="Income Taxes due" value="2016/4/15" type="national" />
+    <date name="Income Taxes due" value="2017/4/17" type="national" />
+    <date name="Income Taxes due" value="2018/4/16" type="national" />
+    <date name="Income Taxes due" value="2019/4/15" type="national" />
     <date name="Daylight Saving ends" value="1999/10/31" type="informational" />
     <date name="Daylight Saving ends" value="2000/10/29" type="informational" />
     <date name="Daylight Saving ends" value="2001/10/28" type="informational" />

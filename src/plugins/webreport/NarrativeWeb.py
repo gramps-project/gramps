@@ -102,6 +102,8 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
+_PERSON = 0
+_PLACE = 1
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -274,6 +276,45 @@ class BasePage:
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
+
+    def alphabet_navigation(self, of, db, handle_list, key):
+        """
+        Will create the alphabetical navigation bar...
+        """
+
+        first_letter_dict = get_first_letter_dict(db, handle_list, key)
+        sorted_set = {}
+
+        for ltr in first_letter_dict:
+            try: sorted_set[ltr] += 1
+            except KeyError: sorted_set[ltr] = 1
+
+        sorted_first_letter = sorted_set.keys()
+        sorted_first_letter.sort(locale.strcoll)
+
+        num_ltrs = len(sorted_first_letter)
+        if num_ltrs <= 25:
+            of.write('\t<div id="navigation">\n')
+            of.write('\t\t<ul>\n')
+            for ltr in  sorted_first_letter:
+                of.write('\t\t\t<li><a href="#%s">%s</a> </li>' % (ltr, ltr))
+            of.write('\t\t</ul>\n')
+            of.write('\t</div>\n')
+        else:
+            nrows = (num_ltrs / 25)
+            index = 0
+            for rows in range(0, nrows):
+                of.write('\t<div id="navigation">\n')
+                of.write('\t\t<ul>\n')
+                cols = 0
+                while (cols <= 24 and index <= num_ltrs):
+                    of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
+                        % (sorted_first_letter[index], sorted_first_letter[index]))
+                    cols += 1
+                    index += 1
+                of.write('\t\t<ul>\n')
+                of.write('\t</div>\n')
+        return of
 
     def write_footer(self, of):
 
@@ -733,6 +774,9 @@ class IndividualListPage(BasePage):
         of = self.report.create_file("individuals")
         self.write_header(of, _('Individuals'))
 
+        # begin alphabetic navigation
+        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+
         of.write('<div id="Individuals" class="content">\n')
 
         msg = _("This page contains an index of all the individuals in the "
@@ -778,8 +822,8 @@ class IndividualListPage(BasePage):
                 if first:
                     of.write('\t\t<tr class="BeginSurname">\n')
                     if surname:
-                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>\n' 
-                            % (name_to_md5(surname), surname))
+                        of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a></td>\n' 
+                            % (surname[0], surname))
                     else:
                         of.write('\t\t\t<td class="ColumnSurname">&nbsp;\n')
                 else:
@@ -1012,6 +1056,9 @@ class PlaceListPage(BasePage):
         of = self.report.create_file("places")
         self.write_header(of, _('Places'))
 
+        # begin alphabetic navigation
+        self.alphabet_navigation(of, db, place_handles, _PLACE) 
+
         of.write('<div id="Places" class="content">\n')
 
         msg = _("This page contains an index of all the places in the "
@@ -1036,23 +1083,24 @@ class PlaceListPage(BasePage):
 
         for handle in handle_list:
             place = db.get_place_from_handle(handle)
-            n = ReportUtils.place_name(db, handle)
+            place_title = ReportUtils.place_name(db, handle)
 
-            if not n:
+            if not place_title:
                 continue
 
-            letter = normalize('NFKC', n)[0].upper()
+            letter = normalize('NFKC', place_title)[0].upper()
 
             if letter != last_letter:
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
-                of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
+                of.write('\t\t\t<td class="ColumnLetter"><a name="%s">%s</a></td>\n' 
+                    % (last_letter, last_letter))
             else:
                 of.write('\t\t<tr>\n')
                 of.write('\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
 
             of.write('\t\t\t<td class="ColumnName">')
-            self.place_link(of, place.handle, n, place.gramps_id)
+            self.place_link(of, place.handle, place_title, place.gramps_id)
             of.write('</td>\n')
             of.write('\t\t</tr>\n')
 
@@ -1430,11 +1478,14 @@ class SurnameListPage(BasePage):
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
             self.write_header(of, _('Surnames'))
-            of.write('<div id="Surnames" class="content">\n')
         else:
             of = self.report.create_file("surnames_count")
             self.write_header(of, _('Surnames by person count'))
-            of.write('<div id="Surnames" class="content">\n')
+
+        # begin alphabetic navigation
+        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+
+        of.write('<div id="Surnames" class="content">\n')
 
         of.write('\t<p id="description">%s</p>\n' % _(
             'This page contains an index of all the '
@@ -1486,7 +1537,8 @@ class SurnameListPage(BasePage):
             if letter is not last_letter:
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
-                of.write('\t\t\t<td class="ColumnLetter">%s</td?\n' % last_letter)
+                of.write('\t\t\t<td class="ColumnLetter"><a name="%s">%s</a></td>\n' 
+                    % (last_letter, last_letter))
                 of.write('\t\t\t<td class="ColumnSurname">')
                 self.surname_link(of, name_to_md5(surname), surname)
                 of.write('</td>\n')
@@ -3543,18 +3595,38 @@ def _get_prefix_suffix_name(sex, name):
             first = first + ", " + suffix
     return first
 
-def get_people(db):
-    for handle in db.get_handles():
-        yield db.get_person_from_handle(handle)
+def get_person_keyname(db, handle):
+    """ .... """ 
+    person = db.get_person_from_handle(handle)
+    return person.get_primary_name().surname
 
-def get_place(db, handle):
+def get_place_keyname(db, handle):
     """ ... """
-    place = db.get_place_from_handle(handle)
-    return place  
 
-# *****************************************
-#                 Register Plugin
-# *****************************************
+    return ReportUtils.place_name(db, handle)  
+
+def get_first_letter_dict(db, handle_list, key):
+    """ key is _PLACE or _PERSON ...."""
+ 
+    namedict = []
+
+    for handle in handle_list:
+        if key == _PERSON:
+            keyname = get_person_keyname(db, handle)
+        else:
+            keyname = get_place_keyname(db, handle) 
+
+        if keyname:
+            firstletter = normalize('NFC', keyname)[0].upper()
+
+            namedict.append(firstletter)
+    return namedict
+
+# ------------------------------------------
+#
+#            Register Plugin
+#
+# -------------------------------------------
 pmgr = PluginManager.get_instance()
 pmgr.register_report(
     name = 'navwebpage',
