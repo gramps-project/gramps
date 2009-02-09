@@ -310,10 +310,6 @@ class _Holidays:
                 else:
                     # must be a dayname
                     offset = rule["offset"]
-            if len(rule["value"]) > 0 and rule["value"][0] == '>':
-                # eval exp -> year/num[/day[/month]]
-                y, m, d = date.year, date.month, date.day
-                rule["value"] = eval(rule["value"][1:])
                 
             if self.debug: 
                 print "rule['value']:", rule["value"]
@@ -337,6 +333,7 @@ class _Holidays:
                     print "num =", num
                     
                 d = dates_of_dayname[int(num)]
+                
             elif rule["value"].count("/") == 2: # year/month/day
                 y, m, d = rule["value"].split("/")
                 if y == "*":
