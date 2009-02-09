@@ -282,12 +282,13 @@ class BasePage:
         Will create the alphabetical navigation bar...
         """
 
-        first_letter_dict = get_first_letter_dict(db, handle_list, key)
         sorted_set = {}
 
-        for ltr in first_letter_dict:
-            try: sorted_set[ltr] += 1
-            except KeyError: sorted_set[ltr] = 1
+        for ltr in get_first_letters(db, handle_list, key):
+            try:
+                sorted_set[ltr] += 1
+            except KeyError:
+                sorted_set[ltr] = 1
 
         sorted_first_letter = sorted_set.keys()
         sorted_first_letter.sort(locale.strcoll)
@@ -3605,10 +3606,10 @@ def get_place_keyname(db, handle):
 
     return ReportUtils.place_name(db, handle)  
 
-def get_first_letter_dict(db, handle_list, key):
+def get_first_letters(db, handle_list, key):
     """ key is _PLACE or _PERSON ...."""
  
-    namedict = []
+    first_letters = []
 
     for handle in handle_list:
         if key == _PERSON:
@@ -3617,10 +3618,10 @@ def get_first_letter_dict(db, handle_list, key):
             keyname = get_place_keyname(db, handle) 
 
         if keyname:
-            firstletter = normalize('NFC', keyname)[0].upper()
+            c = normalize('NFC', keyname)[0].upper()
+            first_letters.append(c)
 
-            namedict.append(firstletter)
-    return namedict
+    return first_letters
 
 # ------------------------------------------
 #
