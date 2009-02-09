@@ -372,7 +372,7 @@ class ErrorReportAssistant:
 #		side_label = gtk.Label(_("This is the completed bug report. The next page "\
 #                                 "of the assistant will help you to send the report "\
 #                                 "to the bug report mailing list."))
-		
+
         side_label = gtk.Label(_("This is the completed bug report. The next page "\
                                  "of the assistant will help you to file a bug "\
                                  " on the Gramps bug tracking system website."))
@@ -484,10 +484,10 @@ class ErrorReportAssistant:
         outer_frame.get_label_widget().set_use_markup(True)
 
         outer_frame.add(inner_align)
-		
+
 #		side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #                                 "page to transfer the bug report to your email client."))
-		
+
         side_label = gtk.Label(_("This is the final step. Use the buttons on this "
                                  "page to start a web browser and file a bug "
                                  "report on the Gramps bug tracking system."))

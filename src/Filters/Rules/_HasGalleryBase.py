@@ -48,7 +48,7 @@ class HasGalleryBase(Rule):
     def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[1] == _('lesser than'):
-           self.count_type = 0
+            self.count_type = 0
         elif self.list[1] == _('greater than'):
             self.count_type = 2
         else:

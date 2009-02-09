@@ -1063,9 +1063,9 @@ class GeoView(HtmlView):
         if maxlong < 0.1 :
             zoomlong = 13
         if zoomlat < zoomlong:
-           self.zoom = zoomlat
+            self.zoom = zoomlat
         else:
-           self.zoom = zoomlong
+            self.zoom = zoomlong
         self.zoom -= 1
         if self.zoom < 2:
             self.zoom = 2
@@ -1100,8 +1100,8 @@ class GeoView(HtmlView):
                     longt = self.minlon+self.centerlon
                 # for all maps, 0.0 for longitude and latitude means no location.
                 if latit == 0.0 and longt == 0.0:
-                   latit = 0.00000001
-                   longt = 0.00000001
+                    latit = 0.00000001
+                    longt = 0.00000001
 
         LOG.debug( "self.maxlon = %f\n" % self.maxlon)
         LOG.debug("self.minlon = %f\n" % self.minlon)

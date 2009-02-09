@@ -41,9 +41,9 @@ class FastModel(gtk.GenericTreeModel):
     def __init__(self,db):
         gtk.GenericTreeModel.__init__(self)
 
-	self._db = db
-	self._table = self._get_table(db)
-	self._cursor = self._get_cursor(db)
+        self._db = db
+        self._table = self._get_table(db)
+        self._cursor = self._get_cursor(db)
         self._object_class = self._get_object_class(db)
         self._length = self._get_length(db)
         

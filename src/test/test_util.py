@@ -183,7 +183,7 @@ class TestLogger():
         """get current content of logfile as list of lines"""
         txt = []
         if self.lfname and os.path.isfile(self.lfname):
-           txt = open(self.lfname).readlines() 
+            txt = open(self.lfname).readlines() 
         return txt
 
 #===eof===

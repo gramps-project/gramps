@@ -2063,8 +2063,8 @@ def _testsibling(rc):
                            (gen.lib.Person.FEMALE, 'female'), 
                            (gen.lib.Person.UNKNOWN, 'unknown')]:
         for inlaw in [False, True]:
-         for sibt, str in vals:
-            print FMT % rc.get_sibling_relationship_string(
+            for sibt, str in vals:
+                print FMT % rc.get_sibling_relationship_string(
                                 sibt, gen.lib.Person.MALE, gendr, 
                                 in_law_a = inlaw) + ' |info:', str, strgen
 

@@ -291,7 +291,7 @@ class Calendar(Report):
                             'person' : short_name,
                             'relation' : ""}
                     else:
-                         text = (ngettext('%(person)s, %(age)d%(relation)s',
+                        text = (ngettext('%(person)s, %(age)d%(relation)s',
                                           '%(person)s, %(age)d%(relation)s', nyears)
                                  % {'person'   : short_name,
                                     'age'      : nyears,  

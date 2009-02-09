@@ -113,8 +113,8 @@ class RecentFiles:
 
 
     def rename_filename(self,filename, new_filename):
-         # First we need to walk the existing items to see 
-         # if our item is already there
+        # First we need to walk the existing items to see 
+        # if our item is already there
         found = False
         for index in range(len(self.gramps_recent_files)):
             if self.gramps_recent_files[index].get_name() == filename:

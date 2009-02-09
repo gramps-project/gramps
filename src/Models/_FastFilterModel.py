@@ -41,7 +41,7 @@ class FastFilterModel(gtk.GenericTreeModel):
     def __init__(self,db,data_filter):
         gtk.GenericTreeModel.__init__(self)
 
-	self._db = db
+        self._db = db
         self._data_filter = data_filter
         self._fetch_func = self._get_fetch_func(db)
 

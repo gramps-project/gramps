@@ -169,7 +169,7 @@ class FanChartWidget(gtk.Widget):
                                   line_style=gdk.SOLID,
                                   join_style=gdk.JOIN_ROUND)
 
-	self.window.set_user_data(self)
+        self.window.set_user_data(self)
         self.style.attach(self.window)
         self.style.set_background(self.window, gtk.STATE_NORMAL)
         self.window.move_resize(*self.allocation)
@@ -178,9 +178,9 @@ class FanChartWidget(gtk.Widget):
         """
         Overridden method to handle size request events.
         """
-	width, height = self.layout.get_size()
-	requisition.width = (width // pango.SCALE + self.BORDER_WIDTH*4)* 1.45
-	requisition.height = (3 * height // pango.SCALE + self.BORDER_WIDTH*4) * 1.2
+        width, height = self.layout.get_size()
+        requisition.width = (width // pango.SCALE + self.BORDER_WIDTH*4)* 1.45
+        requisition.height = (3 * height // pango.SCALE + self.BORDER_WIDTH*4) * 1.2
 
     def do_size_allocate(self, allocation):
         """

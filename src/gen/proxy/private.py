@@ -568,7 +568,7 @@ def copy_lds_ords(db, original_obj,clean_obj):
     """         
     for lds_ord in original_obj.get_lds_ord_list():
         if not lds_ord.get_privacy():
-           clean_obj.add_lds_ord( lds_ord )
+            clean_obj.add_lds_ord( lds_ord )
            
 def copy_addresses(db, original_obj,clean_obj):
     """

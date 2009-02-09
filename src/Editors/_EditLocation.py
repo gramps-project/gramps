@@ -114,7 +114,7 @@ class EditLocation(EditSecondary):
         
     def save(self,*obj):
         if self.callback:
-          self.callback(self.obj)
+            self.callback(self.obj)
         self.close()
 
 

@@ -78,7 +78,7 @@ except AttributeError:
         NoteView,
         ]
     if geopresent:
-       DATA_VIEWS.append(GeoView)
+        DATA_VIEWS.append(GeoView)
 
 def get_views():
     """

@@ -913,7 +913,7 @@ class WebCalReport(Report):
 
             for cal_year in range(self.start_year, (self.end_year + 1)):
 
-                 # generate progress pass for year ????
+                # generate progress pass for year ????
                 self.progress.set_pass(_('Creating year %d calendars') % cal_year, '')
 
                 # initialize the holidays dict to fill:
