@@ -60,6 +60,7 @@ _max_days  = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 _leap_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 def gregorian_valid(date_tuple):
+    """ Checks if date_tuple is a valid date in Gregorian Calendar  """
     day = date_tuple[0]
     month = date_tuple[1]
     valid = True
@@ -76,6 +77,7 @@ def gregorian_valid(date_tuple):
     return valid
 
 def julian_valid(date_tuple):
+    """ Checks if date_tuple is a valid date in Julian Calendar """
     day = date_tuple[0]
     month = date_tuple[1]
     valid = True
@@ -93,20 +95,22 @@ def julian_valid(date_tuple):
     return valid
 
 def swedish_valid(date_tuple):
+    """ Checks if date_tuple is a valid date in Swedish Calendar """
     valid = gregorian_valid(date_tuple)
     # not sure how <= and >= works with tuples???
     date_tuple = (date_tuple[2], date_tuple[1], date_tuple[0])
-    if date_tuple <= (1700,2,28):
+    if date_tuple <= (1700, 2, 28):
         valid = False 
-    if date_tuple == (1700,2,29):  # leapday 1700 was skipped
+    if date_tuple == (1700, 2, 29):  # leapday 1700 was skipped
         valid = False 
-    if date_tuple == (1712,2,30):  # extra day was inserted 1712
+    if date_tuple == (1712, 2, 30):  # extra day was inserted 1712
         valid = True 
-    if date_tuple >= (1712,3,1):   # back to julian
+    if date_tuple >= (1712, 3, 1):   # back to julian
         valid = False
     return valid
 
 def french_valid(date_tuple):
+    """ Checks if date_tuple is a valid date in French Calendar """
     valid = True
     # year 1 starts on 22.9.1792
     if date_tuple[2] < 1:

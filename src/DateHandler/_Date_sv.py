@@ -95,6 +95,7 @@ class DateParserSv(DateParser):
         }
     
     def init_strings(self):
+        """ Define, in Swedish, span and range regular expressions"""
         DateParser.init_strings(self)
         self._span     = re.compile(u"(från)?\s*(?P<start>.+)\s*(till|--|–)\s*(?P<stop>.+)", 
                                     re.IGNORECASE)
