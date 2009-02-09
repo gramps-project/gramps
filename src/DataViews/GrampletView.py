@@ -26,7 +26,7 @@ GrampletView interface.
 
 #-------------------------------------------------------------------------
 #
-# gtk modules
+# Python modules
 #
 #-------------------------------------------------------------------------
 import gtk
@@ -40,6 +40,11 @@ import types
 import os
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import Errors
 import const
 import PageView
@@ -68,6 +73,9 @@ NL = "\n"
 debug = False
 
 def register_gramplet(data_dict):
+    """
+    Function to register a gramplet. Called from plugin directory.
+    """
     global AVAILABLE_GRAMPLETS
     base_opts = {"name":"Unnamed Gramplet",
                  "tname": _("Unnamed Gramplet"),
@@ -78,6 +86,10 @@ def register_gramplet(data_dict):
     AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
 
 def register(**data):
+    """
+    Wrapper around register_gramplet to demonstrate a common
+    interface for all plugins.
+    """
     if "type" in data:
         if data["type"].lower() == "gramplet":
             register_gramplet(data)
@@ -87,6 +99,9 @@ def register(**data):
         print ("Plugin did not define type.")
 
 def parse_tag_attr(text):
+    """
+    Function used to parse markup.
+    """
     text = text.strip()
     parts = text.split(" ", 1)
     attrs = {}
@@ -102,6 +117,10 @@ def parse_tag_attr(text):
     return [parts[0].upper(), attrs]
 
 def get_gramplet_opts(name, opts):
+    """
+    Lookup the options for a given gramplet name and update
+    the options with provided dictionary, opts.
+    """
     if name in AVAILABLE_GRAMPLETS:
         data = AVAILABLE_GRAMPLETS[name]
         my_data = data.copy()
@@ -112,6 +131,9 @@ def get_gramplet_opts(name, opts):
         return {}
 
 def get_gramplet_options_by_name(name):
+    """
+    Get options by gramplet name.
+    """
     if debug: print "name:", name
     if name in AVAILABLE_GRAMPLETS:
         return AVAILABLE_GRAMPLETS[name].copy()
@@ -120,6 +142,9 @@ def get_gramplet_options_by_name(name):
         return None
 
 def get_gramplet_options_by_tname(name):
+    """
+    get options by translated name.
+    """
     if debug: print "name:", name
     for key in AVAILABLE_GRAMPLETS:
         if AVAILABLE_GRAMPLETS[key]["tname"] == name:
@@ -128,6 +153,9 @@ def get_gramplet_options_by_tname(name):
     return None
 
 def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
+    """
+    Make a GUI gramplet given its name.
+    """
     if name in AVAILABLE_GRAMPLETS:
         gui = GuiGramplet(viewpage, dbstate, uistate, **opts)
         if opts.get("content", None):
@@ -152,6 +180,9 @@ def logical_true(value):
     return value in ["True", True, 1, "1"]
 
 class LinkTag(gtk.TextTag):
+    """
+    Class for keeping track of link data.
+    """
     lid = 0
     def __init__(self, buffer):
         LinkTag.lid += 1
@@ -162,7 +193,13 @@ class LinkTag(gtk.TextTag):
         tag_table.add(self)
 
 class GrampletWindow(ManagedWindow.ManagedWindow):
+    """
+    Class for showing a detached gramplet.
+    """
     def __init__(self, gramplet):
+        """
+        Constructs the window, and loads the GUI gramplet.
+        """
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
         ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.__class__)
@@ -188,6 +225,9 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.gramplet.gvoptions.hide()
 
     def handle_response(self, object, response):
+        """
+        Callback for tacking care of button clicks.
+        """
         if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
             self.close()
         elif response == gtk.RESPONSE_HELP:
@@ -196,9 +236,15 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                self.gramplet.tname.replace(" ", "_"))
         
     def build_menu_names(self, obj):
+        """
+        Part of the GRAMPS window interface.
+        """
         return (self.title, 'Gramplet')
 
     def get_title(self):
+        """
+        Returns the window title.
+        """
         return self.title
 
     def close(self, *args):
@@ -224,7 +270,13 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
 #------------------------------------------------------------------------
 
 class Gramplet(object):
+    """
+    Base class for non-graphical gramplet code.
+    """
     def __init__(self, gui):
+        """
+        Internal constructor for non-graphical gramplets.
+        """
         self._idle_id = 0
         self._pause = False
         self._generator = None
@@ -250,14 +302,23 @@ class Gramplet(object):
             self._active_changed(self.dbstate.active.handle)
 
     def init(self): # once, constructor
+        """
+        External constructor for developers to put their initialization
+        code. Designed to be overridden.
+        """
         pass
 
     def build_options(self):
+        """
+        External constructor for developers to put code for building
+        options.
+        """
         pass
 
     def main(self): # return false finishes
         """
-        Generator which will be run in the background.
+        The main place for the gramplet's code. This is a generator.
+        Generator which will be run in the background, through update().
         """
         if debug: print "%s dummy" % self.gui.title
         yield False
@@ -278,44 +339,89 @@ class Gramplet(object):
         return
 
     def active_changed(self, handle):
+        """
+        Developers should put their code that occurs when the active
+        person is changed.
+        """
         pass
 
     def _active_changed(self, handle):
+        """
+        Private code that updates the GUI when active_person is changed.
+        """
         self.uistate.push_message(self.gui.dbstate,
                 _("Gramplet %s is running") % self.gui.title)
         self.active_changed(handle)
 
     def db_changed(self):
+        """
+        Method executed when the database is changed. 
+        """
         if debug: print "%s is connecting" % self.gui.title
         pass
 
     def link(self, text, link_type, data, size=None, tooltip=None):
+        """
+        Creates a clickable link in the textview area.
+        """
         self.gui.link(text, link_type, data, size, tooltip)
 
     # Shortcuts to the gui functionality:
 
     def set_tooltip(self, tip):
+        """
+        Sets the tooltip for this gramplet.
+        """
         self.gui.tooltip = tip
 
     def get_text(self):
+        """
+        Returns the current text of the textview.
+        """
         return self.gui.get_text()
         
     def insert_text(self, text):
+        """
+        Insert the given text in the textview at the cursor.
+        """
         self.gui.insert_text(text)
 
     def render_text(self, text):
+        """
+        Render the given text, given that set_use_markup is on.
+        """
         self.gui.render_text(text)
 
     def clear_text(self):
+        """
+        Clear all of the text from the textview.
+        """
         self.gui.clear_text()
         
     def set_text(self, text, scroll_to='start'):
+        """
+        Clear and set the text to the given text. Additionally, move the
+        cursor to the position given. Positions are: 
+           'start': start of textview
+           'end': end of textview
+           'begin': begin of line, before setting the text.
+        """
         self.gui.set_text(text, scroll_to)
 
     def append_text(self, text, scroll_to="end"):
+        """
+        Append the text to the textview. Additionally, move the
+        cursor to the position given. Positions are: 
+           'start': start of textview
+           'end': end of textview
+           'begin': begin of line, before setting the text.
+        """
         self.gui.append_text(text, scroll_to)
 
     def set_use_markup(self, value):
+        """
+        Allows the use of render_text to show markup.
+        """
         self.gui.set_use_markup(value)
 
     def set_wrap(self, value):
@@ -345,12 +451,19 @@ class Gramplet(object):
     # Other functions of the gramplet:
 
     def load_data_to_text(self, pos=0):
+        """
+        Load information from the data portion of the saved
+        Gramplet to the textview.
+        """
         if len(self.gui.data) >= pos + 1:
             text = self.gui.data[pos]
             text = text.replace("\\n", chr(10))
             self.set_text(text, 'end')
 
     def save_text_to_data(self):
+        """
+        Save the textview to the data portion of a saved gramplet.
+        """
         text = self.get_text()
         text = text.replace(chr(10), "\\n")
         self.gui.data.append(text)
@@ -430,6 +543,10 @@ class Gramplet(object):
             self._idle_id = 0
 
     def _db_changed(self, db):
+        """
+        Internal method for handling items that should happen when the
+        database changes. This will push a message to the GUI status bar.
+        """
         if debug: print "%s is _connecting" % self.gui.title
         self.uistate.push_message(self.dbstate,
                 _("Gramplet %s is running") % self.gui.title)
@@ -439,12 +556,21 @@ class Gramplet(object):
         self.update()
 
     def get_option_widget(self, label):
+        """
+        Retrieve an option's widget by its label text.
+        """
         return self.option_dict[label][0]
 
     def get_option(self, label):
+        """
+        Retireve an option by its label text.
+        """
         return self.option_dict[label][1]
 
     def add_option(self, option):
+        """
+        Add an option to the GUI gramplet.
+        """
         from PluginUtils import make_gui_option
         #tooltips, dbstate, uistate, track
         widget, label = make_gui_option(option, None, self.dbstate, 
@@ -453,6 +579,9 @@ class Gramplet(object):
         self.option_order.append(option.get_label())
 
     def save_update_options(self, obj):
+        """
+        Save a gramplet's options to file.
+        """
         self.save_options()
         self.update()
 
@@ -467,6 +596,9 @@ class GuiGramplet:
     LOCAL_DRAG_TYPE   = 'GRAMPLET'
     LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
     def __init__(self, viewpage, dbstate, uistate, title, **kwargs):
+        """
+        Internal constructor for GUI portion of a gramplet.
+        """
         self.viewpage = viewpage
         self.dbstate = dbstate
         self.uistate = uistate
@@ -478,6 +610,8 @@ class GuiGramplet:
         ########## Set defaults
         self.name = kwargs.get("name", "Unnamed Gramplet")
         self.tname = kwargs.get("tname", "Unnamed Gramplet")
+        self.version = kwargs.get("version", "0.0.0")
+        self.gramps = kwargs.get("gramps", "0.0.0")
         self.expand = logical_true(kwargs.get("expand", False))
         self.height = int(kwargs.get("height", 200))
         self.column = int(kwargs.get("column", -1))
@@ -522,6 +656,9 @@ class GuiGramplet:
                              gtk.gdk.ACTION_COPY)
 
     def close(self, *obj):
+        """
+        Remove (delete) the gramplet from view. 
+        """
         if self.state == "windowed":
             return
         self.state = "closed"
@@ -529,6 +666,9 @@ class GuiGramplet:
         self.mainframe.get_parent().remove(self.mainframe)
 
     def detach(self):
+        """
+        Detach the gramplet from the GrampletView, and open in own window.
+        """
         # hide buttons:
         self.set_state("windowed") 
         self.viewpage.detached_gramplets.append(self)
@@ -536,6 +676,9 @@ class GuiGramplet:
         self.detached_window = GrampletWindow(self)
 
     def set_state(self, state):
+        """
+        Set the state of a gramplet.
+        """
         self.state = state
         if state == "minimized":
             self.scrolledwindow.hide()
@@ -560,6 +703,9 @@ class GuiGramplet:
                 self.pui.update()
 
     def change_state(self, obj):
+        """
+        Change the state of a gramplet.
+        """
         if self.state == "windowed":
             pass # don't change if windowed
         else:
@@ -569,6 +715,9 @@ class GuiGramplet:
                 self.set_state("maximized")
                 
     def set_properties(self, obj):
+        """
+        Set the properties of a gramplet.
+        """
         if self.state == "windowed":
             pass
         else:
@@ -1109,6 +1258,8 @@ class GrampletView(PageView.PersonNavView):
                         elif key == "title": continue
                         elif key == "column": continue
                         elif key == "row": continue
+                        elif key == "version": continue # code, don't save
+                        elif key == "gramps": continue # code, don't save
                         elif key == "data":
                             if not isinstance(base_opts["data"], (list, tuple)):
                                 fp.write(("data[0]=%s" + NL) % base_opts["data"])

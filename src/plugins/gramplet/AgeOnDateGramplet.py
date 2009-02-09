@@ -18,6 +18,11 @@
 
 # $Id$
 
+"""
+AgeOnDateGramplet computes the age for everyone thought to be alive 
+on a particular date.
+"""
+
 #------------------------------------------------------------------------
 #
 # Python modules
@@ -40,7 +45,15 @@ from QuickReports import run_quick_report_by_name
 #
 #------------------------------------------------------------------------
 class AgeOnDateGramplet(Gramplet):
+    """
+    Gramplet that computes ages on a particular date for everyone
+    thought to be alive.
+    """
     def init(self):
+        """
+        Constructs the GUI, consisting of a message, an entry, and 
+        a Run button.
+        """
         import gtk
         # GUI setup:
         self.set_tooltip(_("Enter a date, click Run"))
@@ -72,6 +85,11 @@ class AgeOnDateGramplet(Gramplet):
         vbox.show_all()
 
     def run(self, obj):
+        """
+        Method that is run when you click the Run button.
+        The date is retrieved from the entry box, parsed as a date,
+        and then handed to the quick report.
+        """
         text = self.entry.get_text()
         date = DateHandler.parser.parse(text)
         run_quick_report_by_name(self.gui.dbstate, 
@@ -87,6 +105,8 @@ class AgeOnDateGramplet(Gramplet):
 register(type="gramplet", 
          name="Age on Date Gramplet", 
          tname=_("Age on Date Gramplet"), 
+         version="2.0.0",
+         gramps="3.1.0",
          height=200,
          content = AgeOnDateGramplet,
          title=_("Age on Date"),
