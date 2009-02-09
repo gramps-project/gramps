@@ -74,7 +74,7 @@ def run(database, document, date):
             stab.row(person, birth_str)
             stab.row_sort_val(1, diff_span)
             matches += 1
-    sdoc.paragraph("\n%d matches.\n" % matches)
+    sdoc.paragraph(_("\n%d matches.\n") % matches)
     stab.write(sdoc)
     sdoc.paragraph("")
 

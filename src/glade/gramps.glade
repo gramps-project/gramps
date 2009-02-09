@@ -9122,8 +9122,7 @@
 		  <child>
 		    <widget class="GtkComboBox" id="display_as">
 		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">
-</property>
+		      <property name="items" translatable="yes"></property>
 		      <property name="add_tearoffs">False</property>
 		      <property name="focus_on_click">True</property>
 		    </widget>
@@ -13081,8 +13080,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkComboBox" id="temple">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes">
-</property>
+		  <property name="items" translatable="yes"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		</widget>
@@ -13210,8 +13208,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkComboBox" id="status">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes">
-</property>
+		  <property name="items" translatable="yes"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		</widget>
@@ -13351,8 +13348,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkComboBox" id="type">
 		  <property name="visible">True</property>
-		  <property name="items" translatable="yes">
-</property>
+		  <property name="items" translatable="yes"></property>
 		  <property name="add_tearoffs">False</property>
 		  <property name="focus_on_click">True</property>
 		</widget>
