@@ -266,7 +266,7 @@ class AllRelReport():
             sdoc.header1(_("Detailed path from %(person)s to common ancestor"
                           ) % {'person':pers})
             sdoc.paragraph("")
-            sdoc.header2(_FMT_DET1 % (_('   '), _('Name Common ancestor')))
+            sdoc.header2(_FMT_DET1 % ('   ', _('Name Common ancestor')))
             sdoc.header2(_FMT_DET2 % (' ', _('Parent'), _('Birth'), _('Family')))
             sdoc.paragraph("")
         for relation in relations:
