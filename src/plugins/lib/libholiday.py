@@ -267,7 +267,6 @@ class _Holidays:
                                 "name" : "", 
                                 "offset": "", 
                                 "type": "", 
-                                "if": "", 
                                 } # defaults
                         for attr in date.get_attributes():
                             data[attr] = date.get_attribute(attr)
@@ -377,9 +376,6 @@ class _Holidays:
                 print "ndate:", ndate, "date:", date
                 
             if ndate == date:
-                if rule["if"] != "":
-                    if not eval(rule["if"]):
-                        continue
                 retval.append(rule["name"])
         return retval
 
