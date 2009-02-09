@@ -1135,20 +1135,21 @@ class RelationshipView(PageView.PersonNavView):
         return (handle in self.collapsed_items.get(person_handle, []))
 
     def expand_collapse_press(self, obj, event, pair):
-        """ Calback function for ExpandCollapseArrow, user param is pair,
-            which is a tuple (person, handle) with handle the section of which 
-            the collapse state must change, so a parent, siblings id, 
-            family id, family children id, etc
+        """ Calback function for ExpandCollapseArrow, user param is
+            pair, which is a tuple (object, handle) which handles the
+            section of which the collapse state must change, so a
+            parent, siblings id, family id, family children id, etc.
+            NOTE: object must be a thing that has a handle field.
         """
         if button_activated(event, _LEFT_BUTTON):
-            person, handle = pair
-            if person.handle in self.collapsed_items:
-                if handle in self.collapsed_items[person.handle]:
-                    self.collapsed_items[person.handle].remove(handle)
+            object, handle = pair
+            if object.handle in self.collapsed_items:
+                if handle in self.collapsed_items[object.handle]:
+                    self.collapsed_items[object.handle].remove(handle)
                 else:
-                    self.collapsed_items[person.handle].append(handle)
+                    self.collapsed_items[object.handle].append(handle)
             else:
-                self.collapsed_items[person.handle] = [handle]
+                self.collapsed_items[object.handle] = [handle]
             self.redraw()
 
     def _button_press(self, obj, event, handle):
@@ -1289,14 +1290,14 @@ class RelationshipView(PageView.PersonNavView):
                     self.write_relationship(box, family)
 
             hbox = gtk.HBox()
-            if self.check_collapsed(person.handle, "CHILDREN"):
+            if self.check_collapsed(family.handle, "CHILDREN"):
                 arrow = widgets.ExpandCollapseArrow(True,
                                                     self.expand_collapse_press,
-                                                    (person, "CHILDREN"))
+                                                    (family, "CHILDREN"))
             else:
                 arrow = widgets.ExpandCollapseArrow(False,
                                                     self.expand_collapse_press,
-                                                    (person, "CHILDREN"))
+                                                    (family, "CHILDREN"))
             hbox.pack_start(arrow, False)
             label_cell = self.build_label_cell(_('Children'))
             hbox.pack_start(label_cell, True)
@@ -1305,7 +1306,7 @@ class RelationshipView(PageView.PersonNavView):
                 self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                 yoptions=gtk.FILL)
 
-            if self.check_collapsed(person.handle, "CHILDREN"):
+            if self.check_collapsed(family.handle, "CHILDREN"):
                 hbox = gtk.HBox()
                 child_list = family.get_child_ref_list()
                 if child_list:
