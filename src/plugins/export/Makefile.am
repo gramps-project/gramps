@@ -13,7 +13,8 @@ pkgdata_PYTHON = \
 	ExportGeneWeb.py \
 	ExportPkg.py \
 	ExportVCalendar.py \
-	ExportVCard.py
+	ExportVCard.py \
+	ExportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/export
 pkgpythondir = @pkgpythondir@/plugins/export

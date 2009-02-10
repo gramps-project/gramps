@@ -9,9 +9,11 @@ pkgdata_PYTHON = \
 	ImportCsv.py \
 	ImportGedcom.py \
 	ImportGeneWeb.py \
+	ImportGpkg.py \
 	ImportGrdb.py \
 	ImportProGen.py \
-	ImportVCard.py
+	ImportVCard.py \
+	ImportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
 pkgpythondir = @pkgpythondir@/plugins/import
