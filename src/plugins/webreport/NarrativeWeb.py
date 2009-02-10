@@ -129,6 +129,7 @@ _CSS_FILES = [
     [_("Mainz"),                'Web_Mainz.css'],
     [_("Nebraska"),             'Web_Nebraska.css'],
     [_("Visually Impaired"),    'Web_Visually.css'],
+
     [_("No style sheet"),  ''],
     ]
 
@@ -2972,8 +2973,9 @@ class NavWebReport(Report):
         self.copy_file(fname, "behaviour.css", "styles")
 
         # copy screen stylesheet
-        fname = os.path.join(const.DATA_DIR, self.css)
-        self.copy_file(fname, self.css, "styles")
+        if self.css:
+            fname = os.path.join(const.DATA_DIR, self.css)
+            self.copy_file(fname, self.css, "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
@@ -3337,10 +3339,8 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, "ext", ext)
 
         cright = EnumeratedListOption(_('Copyright'), 0 )
-        index = 0
-        for copt in _COPY_OPTIONS:
+        for index, copt in enumerate(_COPY_OPTIONS):
             cright.add_item(index, copt)
-            index += 1
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
