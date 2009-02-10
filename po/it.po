@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 22:56+0100\n"
-"PO-Revision-Date: 2009-02-07 01:45+0100\n"
+"PO-Revision-Date: 2009-02-10 16:38+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -145,6 +145,7 @@ msgid "Email:"
 msgstr "Email:"
 
 #: ../src/Bookmarks.py:65
+#, fuzzy
 msgid "manual|Bookmarks"
 msgstr "Segnalibri"
 
@@ -293,8 +294,9 @@ msgid "Calculated"
 msgstr "Calcolata"
 
 #: ../src/DateEdit.py:100
+#, fuzzy
 msgid "manual|Editing_Dates"
-msgstr "Modifica date"
+msgstr "Modifica_date"
 
 #: ../src/DateEdit.py:149
 msgid "Bad Date"
@@ -2064,8 +2066,9 @@ msgid "Reorder Relationships: %s"
 msgstr "Riordina relazioni: %s"
 
 #: ../src/ScratchPad.py:68
+#, fuzzy
 msgid "manual|Using_the_Clipboard"
-msgstr "Uso degli appunti"
+msgstr "Uso_degli_appunti"
 
 #: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
@@ -3141,6 +3144,7 @@ msgid "Private Record"
 msgstr "Informazione privata"
 
 #: ../src/Merge/_MergePerson.py:45
+#, fuzzy
 msgid "manual|Merge_People"
 msgstr "Fusione_persone"
 
@@ -3229,8 +3233,9 @@ msgid "Merge People"
 msgstr "Fusione persone"
 
 #: ../src/Merge/_MergePlace.py:52
+#, fuzzy
 msgid "manual|Merge_Places"
-msgstr "Fusione luoghi"
+msgstr "Fusione_luoghi"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3238,8 +3243,9 @@ msgid "Merge Places"
 msgstr "Fusione luoghi"
 
 #: ../src/Merge/_MergeSource.py:42
+#, fuzzy
 msgid "manual|Merge_Sources"
-msgstr "Fusione fonti"
+msgstr "Fusione_fonti"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
@@ -5804,6 +5810,17 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
+"Questo è l'assistente per la segnalazione di bug, che aiuta nella "
+"preparazione di segnalazioni di bug quanto più dettagliate possibile da "
+"inviare agli sviluppatori di Gramps.\n"
+"\n"
+"L'assistente chiederà di rispondere ad alcune domande e raccoglierà alcune "
+"informazioni sull'errore che si è verificato e sull'ambiente operativo. Alla "
+"fine della procedura richiederà di inviare la segnalazione di bug sul "
+"sistema web di gestione dei bug di Gramps; in particolare l'assistente "
+"provvederà a copiare negli appunti la segnalazione di bug, in modo da "
+"poterla incollare facilmente nell'apposito modulo sul sistema web di "
+"gestione dei bug e rivedere quindi quali informazioni includere o meno."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 msgid "Report a bug: Step 1 of 5"
@@ -5847,25 +5864,23 @@ msgid "Error Details"
 msgstr "Dettagli errore"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:184
-#, fuzzy
 msgid ""
 "This is the detailed Gramps error information, don't worry if you do not "
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
 "Queste sono le informazioni dettagliate sull'errore di Gramps; non c'è da "
-"preoccuparsi se qualcosa risulta oscura. Nelle pagine seguenti "
+"preoccuparsi se alcuni particolari risultano oscuri. Nelle pagine seguenti "
 "dell'assistente sarà possibile aggiungere ulteriori dettagli sull'errore."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:202
-#, fuzzy
 msgid ""
 "Please check the information below and correct anything that you know to be "
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"Controllare le informazioni riportate e correggere le eventuali informazioni "
-"errate o rimuovere quello che non si vuole includere nella segnalazione."
+"Controllare le informazioni riportate ed eventualmente correggere quelle "
+"errate e rimuovere quello che non si vuole includere nella segnalazione."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:249
 msgid "System Information"
@@ -5884,6 +5899,8 @@ msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
 msgstr ""
+"Fornire informazioni quanto più dettagliate possibile sulle operazioni "
+"eseguite quando si è verificato l'errore. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:311
 msgid "Further Information"
@@ -5894,6 +5911,8 @@ msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
 msgstr ""
+"È possibile descrivere qui le operazioni eseguite quando si è verificato "
+"l'errore."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:333
 msgid ""
@@ -5901,6 +5920,10 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
+"Verificare la correttezza delle informazioni, senza preoccuparsi troppo "
+"della comprensione dei dettagli delle informazioni dell'errore. L'importante "
+"è assicurarsi che non contengano dati che non debbano essere inviati agli "
+"sviluppatori."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:367
 msgid "Bug Report Summary"
@@ -5912,12 +5935,17 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug  on the Gramps bug tracking system website."
 msgstr ""
+"Questo è il resoconto completo del problema. La prossima pagina "
+"dell'assistente aiuta ad inviare la segnalazione del problema al sistema web "
+"di gestione dei bug di Gramps."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:401
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
+"Usare i due pulsanti di seguito per copiare la segnalazione del bug negli "
+"appunti e quindi per aprire il browser web per inviare la segnalazione a "
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:413
@@ -5925,6 +5953,8 @@ msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
+"Usare questo pulsante per avviare un browser web e inviare la segnalazione "
+"del problema al sistema web di gestione dei bug di Gramps."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
 #. "to copy the bug report onto the clipboard. Then start your "
@@ -5936,6 +5966,10 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
+"Usare questo pulsante per copiare la segnalazione del problema negli "
+"appunti; accedere quindi al sistema web di gestione dei bug tramite il "
+"pulsante posto più in basso, incollare il resoconto e fare clic su invia "
+"resoconto"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 msgid "Send Bug Report"
@@ -5953,6 +5987,7 @@ msgstr ""
 "di gestione dei bug di Gramps."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
+#, fuzzy
 msgid "manual|General"
 msgstr "Generale"
 
@@ -5971,6 +6006,10 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
+"I dati sono al sicuro ma è consigliabile riavviare immediatamente GRAMPS. Se "
+"si desidera segnalare il problema agli sviluppatore di GRAMPS, selezionare "
+"Segnala e l'assistente per la segnalazione degli errori aiuterà a segnalare "
+"il bug."
 
 #: ../src/GrampsLogger/_ErrorView.py:87 ../src/GrampsLogger/_ErrorView.py:100
 msgid "Error Detail"
@@ -7349,9 +7388,8 @@ msgstr ""
 "Verifica l'integrità del database risolvendone possibilmente i problemi"
 
 #: ../src/plugins/CmdRef.py:236
-#, fuzzy
 msgid "Generate Commandline Plugin Reference"
-msgstr "Genera guida di riferimento ai plugin a riga di comando"
+msgstr "Genera guida di riferimento a riga di comando ai plugin"
 
 #: ../src/plugins/CmdRef.py:240
 msgid ""
@@ -8366,6 +8404,7 @@ msgid "Provides a window that can evaluate python code"
 msgstr "Fornisce una finestra per la valutazione di codice Python"
 
 #: ../src/plugins/EventCmp.py:67
+#, fuzzy
 msgid "manual|Compare_Individual_Events..."
 msgstr "Confronta_eventi_individuali..."
 
@@ -8950,6 +8989,7 @@ msgid "Medium"
 msgstr "Media"
 
 #: ../src/plugins/FindDupes.py:68
+#, fuzzy
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Trova_possibili_persone_duplicate..."
 
@@ -9844,7 +9884,6 @@ msgid "Selecting operation"
 msgstr "Selezionare un'operazione"
 
 #: ../src/plugins/MediaManager.py:104
-#, fuzzy
 msgid ""
 "This tool allows batch operations on media objects stored in GRAMPS. An "
 "important distinction must be made between a GRAMPS media object and its "
@@ -9868,7 +9907,7 @@ msgstr ""
 "importante tra un oggetto multimediale di GRAMPS ed il relativo file.\n"
 "\n"
 "Un oggetto multimediale di GRAMPS è una raccolta di dati su un file "
-"multimediale il suo nome e percorso, la descrizione, l'identificativo, le "
+"multimediale; il nome ed il percorso, la descrizione, l'identificativo, le "
 "note, i riferimenti alle fonti, ecc. Questi dati <b>non comprendono il file "
 "stesso</b>.\n"
 "\n"
@@ -9879,7 +9918,7 @@ msgstr ""
 "\n"
 "Questo strumento consente solo di modificare le informazioni presenti nel "
 "database di GRAMPS. Se si desidera spostare o rinominare i file, bisogna "
-"farlo a parte, fuori da GRAMPS. Poi si possono correggere i percorsi usando "
+"farlo a parte, fuori da GRAMPS; poi si possono correggere i percorsi usando "
 "questo strumento in modo tale che gli oggetti multimediali contengano le "
 "posizioni corrette dei rispettivi file."
 
@@ -10634,6 +10673,7 @@ msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Produce delle pagine web (HTML) per persone o un insieme di persone"
 
 #: ../src/plugins/NotRelated.py:59
+#, fuzzy
 msgid "manual|Not_Related..."
 msgstr "Non_in_relazione..."
 
@@ -10805,7 +10845,6 @@ msgid "Error extracting into %s"
 msgstr "Errore durante l'estrazione verso %s"
 
 #: ../src/plugins/ReadPkg.py:113
-#, fuzzy
 msgid "Base path for relative media set"
 msgstr "Impostato percorso base per percorsi relativi di oggetti multimediali"
 
@@ -10817,6 +10856,12 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
+"Il percorso base per gli oggetti multimediali di questo albero genealogico è "
+"stato impostato ad %s. Considerare l'uso di un percorso più semplice. Questa "
+"impostazione è modificabile dalle Preferenze in fase di spostamento degli "
+"oggetti multimediali in una nuova posizione, usando quindi il gestore degli "
+"oggetti multimediali, opzione «Sostituisci sottostringa nel percorso» per "
+"impostare i percorsi corretti per gli oggetti multimediali."
 
 #: ../src/plugins/ReadPkg.py:123
 msgid "Cannot set base media path"
@@ -10833,6 +10878,15 @@ msgid ""
 "option 'Replace substring in the path' to set correct paths in your media "
 "objects."
 msgstr ""
+"L'albero genealogico oggetto dell'importazione ha già un percorso base per "
+"gli oggetti multimediali: %(orig_path)s. Tuttavia, gli oggetti multimediali "
+"importati sono relativi al percorso %(path)s. Si può cambiare il percorso "
+"degli oggetti multimediali dalle Preferenze, oppure convertire i file "
+"importati al percorso base preesistente per gli oggetti multimediali. Si può "
+"fare questo spostando gli oggetti multimediali in una nuova posizione, "
+"usando quindi il gestore degli oggetti multimediali, opzione «Sostituisci "
+"sottostringa nel percorso», per impostare i percorsi corretti per gli "
+"oggetti multimediali."
 
 #: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
@@ -11975,16 +12029,15 @@ msgid "_Export to CD (portable XML)"
 msgstr "_Esporta su CD (XML portabile)"
 
 #: ../src/plugins/WriteCD.py:302
-#, fuzzy
 msgid ""
 "Exporting to CD copies all your data and media object files to the CD "
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
 msgstr ""
-"L'esportazione su CD copia tutti i dati ed i file degli oggetti multimediali "
-"verso il masterizzatore di CD. È possibile poi masterizzare il CD con questi "
-"dati e la copia ottenuta sarà completamente portabile su differenti macchine "
-"e architetture binarie."
+"L'esportazione su CD invia tutti i dati ed i file degli oggetti multimediali "
+"al programma di masterizzazione di CD. È possibile poi masterizzare il CD "
+"con questi dati e la copia ottenuta sarà completamente portabile su "
+"differenti macchine e architetture."
 
 #. -------------------------------------------------------------------------
 #.
@@ -19858,15 +19911,14 @@ msgid "G_roup as:"
 msgstr "Ra_ggruppa come:"
 
 #: ../src/glade/gramps.glade.h:78
-#, fuzzy
 msgid ""
 "If media is an image, select a region of the image that is referenced. Point "
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
 "the rectangular region you want to use."
 msgstr ""
 "Se l'oggetto multimediale è un'immagine, selezionarne l'area considerata. Il "
-"punto (0,0) è l'angolo superiore sinistro. Bisogna indicare due angoli su "
-"una diagonale dell'area da usare."
+"punto (0,0) è l'angolo superiore sinistro. Bisogna indicare due angoli sulla "
+"diagonale dell'area da usare."
 
 #: ../src/glade/gramps.glade.h:79
 msgid ""
@@ -20815,6 +20867,7 @@ msgid "GeneWeb source file"
 msgstr "File sorgente GeneWeb"
 
 #: ../src/data/tips.xml.in.h:1
+#, fuzzy
 msgid ""
 "<b>Adding Children</b>: To add children in GRAMPS make either of the parents "
 "the Active Person then switch to the Family View. If the child is already in "
@@ -20823,6 +20876,13 @@ msgid ""
 "button down to the right of the Children list. After the child's information "
 "is entered they will automatically be listed as a child of the Active Person."
 msgstr ""
+"'<b>Aggiunta di figli</b>: per aggiungere dei figli in GRAMPS si deve "
+"impostare uno dei genitori come persona attiva e passare alla vista "
+"Famiglie. Se il figlio è già nel database, premere il terzo pulsante in "
+"basso a destra nella lista dei figli. Se la persona non è nel database, "
+"premere il secondo pulsante a destra nella lista dei figli. Dopo "
+"l'inserimento delle informazioni sul figlio, questo sarà automaticamente "
+"elencato tra i figli della persona attiva."
 
 #: ../src/data/tips.xml.in.h:2
 msgid ""
@@ -20832,6 +20892,12 @@ msgid ""
 "To create a bookmark for a person, make them the Active Person, right click "
 "on their name and click on 'add bookmark'."
 msgstr ""
+"<b>Aggiunta di persone nei segnalibri</b>: il menu Segnalibri nella parte "
+"alta della finestra è un'ottima scelta per memorizzare i nomi delle persone "
+"consultate più frequentemente. Se si fa clic su un segnalibro relativo ad "
+"unapersona, questa diventerà la persona attiva. Per aggiungere una persona "
+"nei segnalibri basta renderla attiva, fare clic sul nome e quindi su "
+"«Aggiungi segnalibro»."
 
 #: ../src/data/tips.xml.in.h:3
 msgid ""
@@ -20840,6 +20906,11 @@ msgid ""
 "family is related (by blood, not marriage) to you. Precise relationships as "
 "well as the common ancestors are reported."
 msgstr ""
+"<b>Calcolo delle relazioni</b>: questo strumento, disponibile da "
+"<b>Strumenti &gt; Utilità &gt; Calcolatrice relazioni</b>, consente di "
+"verificare le relazioni (secondo il sangue, non per matrimonio) tra membri "
+"della famiglia. Sono riportate le relazioni precise, così come gli "
+"ascendenti comuni."
 
 #: ../src/data/tips.xml.in.h:4
 msgid ""
@@ -20849,6 +20920,12 @@ msgid ""
 "example, Married Name, Birth Name, etc. Selecting a preferred name is just a "
 "matter of right-clicking on the name and choosing the only item in the menu."
 msgstr ""
+"<b>Modifica del nome preferito</b>: con GRAMPS è semplice gestire persone "
+"con diversi nomi. Basta rendere attiva la persona, fare doppio clic sui suoi "
+"dati e selezionare la scheda Nomi. Possono essere aggiunti vari tipi di "
+"nomi. Ad esempio, il nome da sposato/a, il nome alla nascita, ecc. La "
+"selezione del nome preferito si riduce ad un clic col pulsante destro sul "
+"nome e alla selezione dell'unico elemento del menu."
 
 #: ../src/data/tips.xml.in.h:5
 msgid ""
@@ -20859,6 +20936,13 @@ msgid ""
 "subscribing to the gramps developers mailing list, gramps-devel and "
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
+"<b>Contribuire a GRAMPS</b>: volete contribuire a GRAMPS ma non sapete "
+"programmare? Nessun problema. Un grosso progetto come GRAMPS richiede "
+"persone con differenti competenze. I contributi possono essere diversi, "
+"dalla scrittura della documentazione, alla verifica delle versioni di "
+"sviluppo, all'aiutare con la gestione del sito. Si parte iscrivendosi alla "
+"lista degli sviluppatori (gramps-devel) e presentandosi; le informazioni per "
+"l'iscrizione possono essere reperite su lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:6
 msgid ""
@@ -20867,6 +20951,9 @@ msgid ""
 "Places, Media and Repositories. Each helps you to achieve one or more "
 "specific tasks."
 msgstr ""
+"<b>Viste differenti</b>: ci sono nove viste diverse per navigare tra le "
+"famiglie: Persone, Relazioni, Famiglie, Ascendenza, Eventi, Fonti, Luoghi, "
+"Multimedia e Depositi. Ognuna aiuta a svolgere uno o più compiti ben precisi."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -20874,6 +20961,9 @@ msgid ""
 "possible duplicate</b> people allows you to locate (and merge) entries of "
 "the same person entered more than once in the database."
 msgstr ""
+"<b>Voci duplicate</b>: <b>Strumenti &gt; Elaborazione database &gt; Trova "
+"possibili persone duplicate</b> consente di trovare (e fondere) voci della "
+"stessa persona inserite più volte nel database."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -20913,6 +21003,9 @@ msgid ""
 "It includes details on keybindings and includes some useful tips that will "
 "help you in your genealogy work. Check it out."
 msgstr ""
+"<b>Il manuale di GRAMPS</b>: il manuale di GRAMPS è abbastanza dettagliato e "
+"ben scritto. Include dettagli sulle associazioni dei tasti e alcuni consigli "
+"utili che possono aiutare nella ricerca genealogica. Merita una visita."
 
 #: ../src/data/tips.xml.in.h:12
 msgid ""
@@ -20920,6 +21013,10 @@ msgid ""
 "Reports are particularly useful if you want to send the results of your "
 "family tree to members of the family via email."
 msgstr ""
+"<b>I resoconti di GRAMPS</b>: GRAMPS mette a disposizione differenti tipi di "
+"resoconti. I resoconti testuali sono particolarmente utili per inviare il "
+"risultato delle proprie ricerche genealogiche ai membri della famiglia "
+"tramite posta elettronica."
 
 #: ../src/data/tips.xml.in.h:13
 msgid ""
@@ -21182,6 +21279,8 @@ msgid ""
 "GRAMPS is freely distributable under the General Public License, see http://"
 "www.gnu.org/licenses/licenses.html#GPL"
 msgstr ""
+"GRAMPS è distribuibile liberamente sotto licenza General Public License, "
+"consultare www.gnu.org/licenses/licenses.html#GPL"
 
 #: ../src/data/tips.xml.in.h:46
 msgid ""
@@ -21217,12 +21316,16 @@ msgid ""
 "GRAMPS offers full Unicode support. Characters for all languages are "
 "properly displayed."
 msgstr ""
+"GRAMPS offre pieno supporto ad Unicode. I caratteri di ogni linguaggio sono "
+"visualizzati correttamente."
 
 #: ../src/data/tips.xml.in.h:51
 msgid ""
 "GRAMPS works even when using KDE, as long as the required GTK libraries are "
 "installed."
 msgstr ""
+"GRAMPS funziona anche nell'ambiente KDE, a condizione che le librerie GTK "
+"richieste siano installate."
 
 #: ../src/data/tips.xml.in.h:52
 msgid ""
@@ -21270,6 +21373,7 @@ msgstr ""
 #: ../src/data/tips.xml.in.h:58
 msgid "Relationship calculators in GRAMPS are available in ten languages."
 msgstr ""
+"La calcolatrice delle relazioni di GRAMPS è disponibile in dieci lingue."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
@@ -21377,9 +21481,12 @@ msgid ""
 "database, family lines or selected individuals to a collection of web pages "
 "ready for upload to the World Wide Web."
 msgstr ""
+"L'albero genealogico può essere facilmente esportato come sito web. Si "
+"puòselezionare l'intero database, linee familiari o singoli individui per "
+"ottenere una raccolta di pagine web pronte per essere usate sul World Wide "
+"Web."
 
 #: ../src/data/tips.xml.in.h:74
-#, fuzzy
 msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
