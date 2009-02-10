@@ -430,9 +430,6 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             else:
                 self.text = self.text + i
 
-        self.text = self.text.replace('<super>','{{\*\updnprop5801}\up10 ')
-        self.text = self.text.replace('</super>','}')
-
 #------------------------------------------------------------------------
 #
 # Register the document generator with the GRAMPS plugin system

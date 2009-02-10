@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -464,8 +465,6 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');
         text = text.replace('\n','<br>')
-        text = text.replace('&lt;super&gt;','<sup>')
-        text = text.replace('&lt;/super&gt;','</sup>')
         if text != "":
             self.empty = 0
         self.f.write(text)

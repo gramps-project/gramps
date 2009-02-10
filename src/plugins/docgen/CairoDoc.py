@@ -1073,8 +1073,8 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         BaseDoc.TextDoc.FONTSIZE  : 'size',
     }
 
-    # overwrite base class attributes
-    BaseDoc.TextDoc.SUPPORTED_MARKUP = [
+    # overwrite base class attributes, they become static var of CairoDoc
+    SUPPORTED_MARKUP = [
             BaseDoc.TextDoc.BOLD,
             BaseDoc.TextDoc.ITALIC,
             BaseDoc.TextDoc.UNDERLINE,
@@ -1084,14 +1084,14 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             BaseDoc.TextDoc.HIGHLIGHT,
             BaseDoc.TextDoc.SUPERSCRIPT ]
 
-    BaseDoc.TextDoc.STYLETAG_MARKUP = {
+    STYLETAG_MARKUP = {
         BaseDoc.TextDoc.BOLD        : ("<b>", "</b>"),
         BaseDoc.TextDoc.ITALIC      : ("<i>", "</i>"),
         BaseDoc.TextDoc.UNDERLINE   : ("<u>", "</u>"),
         BaseDoc.TextDoc.SUPERSCRIPT : ("<sup>", "</sup>"),
     }
     
-    BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: escape
+    ESCAPE_FUNC = lambda x: escape
     
     # BaseDoc implementation
     

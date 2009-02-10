@@ -168,8 +168,8 @@ def latexescapeverbatim(text):
 class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
 
-    # overwrite base class attributes
-    BaseDoc.TextDoc.SUPPORTED_MARKUP = [
+    # overwrite base class attributes, they become static var of LaTeXDoc
+    SUPPORTED_MARKUP = [
             BaseDoc.TextDoc.BOLD,
             BaseDoc.TextDoc.ITALIC,
             BaseDoc.TextDoc.UNDERLINE,
@@ -177,14 +177,14 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             BaseDoc.TextDoc.FONTFACE,
             BaseDoc.TextDoc.SUPERSCRIPT ]
 
-    BaseDoc.TextDoc.STYLETAG_MARKUP = {
+    STYLETAG_MARKUP = {
         BaseDoc.TextDoc.BOLD        : ("\\textbf{", "}"),
         BaseDoc.TextDoc.ITALIC      : ("\\textit{", "}"),
         BaseDoc.TextDoc.UNDERLINE   : ("\\underline{", "}"),
         BaseDoc.TextDoc.SUPERSCRIPT : ("\\textsuperscript{", "}"),
     }
     
-    BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescape
+    ESCAPE_FUNC = lambda x: latexescape
 
     def page_break(self):
         "Forces a page break, creating a new page"
@@ -553,7 +553,8 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             text = '\\newline\n'
         text = latexescape(text)
         #hard coded replace of the underline used for missing names/data
-        text = text.replace('\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_','\\underline{\hspace{3cm}}')
+        text = text.replace('\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_',
+                            '\\underline{\hspace{3cm}}')
         self.f.write(text)
 
     def write_styled_note(self, styledtext, format, style_name):

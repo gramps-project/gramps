@@ -67,9 +67,7 @@ _esc_map = {
     '\x1a'           : '', 
     '\x0c'           : '', 
     '\n'             : '<text:line-break/>', 
-    '\t'             : '<text:tab />', 
-    '&lt;super&gt;'  : '<text:span text:style-name="GSuper">', 
-    '&lt;/super&gt;' : '</text:span>', 
+    '\t'             : '<text:tab />',
     }
 
 #-------------------------------------------------------------------------

@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -362,8 +363,6 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     # Writes text. 
     #--------------------------------------------------------------------
     def write_text(self,text,mark=None):
-        text = text.replace('<super>','[')
-        text = text.replace('</super>',']')
         self.text = self.text + text
 
 #------------------------------------------------------------------------

@@ -5,6 +5,7 @@
 # Copyright (C) 2000-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
+# Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -209,9 +210,9 @@ class DetAncestorReport(Report):
         self.doc.start_bold()
         self.doc.write_text(name,mark)
         if name[-1:] == '.':
-            self.doc.write_text("%s " % self.endnotes(person))
+            self.doc.write_text_citation("%s " % self.endnotes(person))
         else:
-            self.doc.write_text("%s. " % self.endnotes(person))
+            self.doc.write_text_citation("%s. " % self.endnotes(person))
         self.doc.end_bold()
 
         if self.dupperson:
@@ -243,18 +244,18 @@ class DetAncestorReport(Report):
                 birth = self.database.get_event_from_handle(birth_ref.ref)
                 text = text.rstrip(". ")
                 text = text + self.endnotes(birth) + ". "
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             first = 0
 
         text = ReportUtils.baptised_str(self.database, person, first, self.verbose,
                                         self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             
         text = ReportUtils.christened_str(self.database, person, first, self.verbose,
                                         self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
 
         span = self.calc_age(person)
         text = ReportUtils.died_str(self.database, person, first, self.verbose,
@@ -265,13 +266,13 @@ class DetAncestorReport(Report):
                 death = self.database.get_event_from_handle(death_ref.ref)
                 text = text.rstrip(". ")
                 text = text + self.endnotes(death) + ". "
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             first = 0
 
         text = ReportUtils.buried_str(self.database, person, first, self.verbose,
                                         self.endnotes, self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
 
         first = ReportUtils.common_name(person,self.usecall)
 
@@ -306,7 +307,7 @@ class DetAncestorReport(Report):
                     first = False
                 self.doc.start_paragraph('DAR-MoreDetails')
                 atype = str( alt_name.get_type() )
-                self.doc.write_text(
+                self.doc.write_text_citation(
                     _('%(name_kind)s: %(name)s%(endnotes)s') % {
                     'name_kind' : atype,
                     'name' : alt_name.get_regular_name(),
@@ -346,7 +347,7 @@ class DetAncestorReport(Report):
                 if date:
                     self.doc.write_text( '%s, ' % date )
                 self.doc.write_text( text )
-                self.doc.write_text( self.endnotes(addr) )
+                self.doc.write_text_citation( self.endnotes(addr) )
                 self.doc.end_paragraph()
                 
         if self.inc_attrs:
@@ -364,7 +365,7 @@ class DetAncestorReport(Report):
                     'type'     : attr.get_type(),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
-                self.doc.write_text( text )
+                self.doc.write_text_citation( text )
                 self.doc.end_paragraph()
 
         return 0        # Not duplicate person
@@ -403,7 +404,7 @@ class DetAncestorReport(Report):
                  'event_name' : _(evtName),
                  'event_text' : text }
         
-        self.doc.write_text(text)
+        self.doc.write_text_citation(text)
         
         if self.inc_attrs:
             text = ""
@@ -417,7 +418,7 @@ class DetAncestorReport(Report):
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
             text = " " + text
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
         
         self.doc.end_paragraph()
 
@@ -428,9 +429,8 @@ class DetAncestorReport(Report):
             notelist.extend(event_ref.get_note_list())
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
-                self.doc.start_paragraph('DAR-MoreDetails')
-                self.doc.write_text(note.get())
-                self.doc.end_paragraph()
+                self.doc.write_styled_note(note.get_styledtext(), 
+                                           note.get_format(),"DAR-MoreDetails")
                 
     def write_parents(self, person, firstName):
         family_handle = person.get_main_parents_family_handle()
@@ -482,7 +482,7 @@ class DetAncestorReport(Report):
                                             is_first)
 
             if text:
-                self.doc.write_text(text,spouse_mark)
+                self.doc.write_text_citation(text,spouse_mark)
                 is_first = False
 
     def write_children(self, family):
@@ -614,9 +614,9 @@ class DetAncestorReport(Report):
         
                 self.doc.write_text(name, mark)
                 if name[-1:] == '.':
-                    self.doc.write_text("%s " % self.endnotes(ind))
+                    self.doc.write_text_citation("%s " % self.endnotes(ind))
                 else:
-                    self.doc.write_text("%s. " % self.endnotes(ind))
+                    self.doc.write_text_citation("%s. " % self.endnotes(ind))
 
                 first_name = ReportUtils.common_name(ind, self.usecall)
                 print_name = first_name
@@ -631,7 +631,7 @@ class DetAncestorReport(Report):
                             self.verbose, self.endnotes, self.EMPTY_DATE, 
                             self.EMPTY_PLACE)
                 if text:
-                    self.doc.write_text(text)
+                    self.doc.write_text_citation(text)
                     print_name = 0
 
                 span = self.calc_age(ind)
@@ -647,7 +647,7 @@ class DetAncestorReport(Report):
                         self.EMPTY_PLACE)
                 
                 if text:
-                    self.doc.write_text(text)
+                    self.doc.write_text_citation(text)
                     print_name = 0
 
                 if print_name == 0:

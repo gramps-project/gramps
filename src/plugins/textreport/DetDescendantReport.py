@@ -6,6 +6,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2007      Robert Cawley  <rjc@cawley.id.au>
 # Copyright (C) 2008-2009 James Friedmann <jfriedmannj@gmail.com>
+# Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -245,9 +246,9 @@ class DetDescendantReport(Report):
         self.doc.start_bold()
         self.doc.write_text(name, mark)
         if name[-1:] == '.':
-            self.doc.write_text("%s " % self.endnotes(person))
+            self.doc.write_text_citation("%s " % self.endnotes(person))
         else:
-            self.doc.write_text("%s. " % self.endnotes(person))
+            self.doc.write_text_citation("%s. " % self.endnotes(person))
         self.doc.end_bold()
         
         if self.dubperson:
@@ -325,7 +326,7 @@ class DetDescendantReport(Report):
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
             text = " " + text
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
 
         self.doc.end_paragraph()
 
@@ -336,9 +337,8 @@ class DetDescendantReport(Report):
             notelist.extend(event_ref.get_note_list())
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
-                self.doc.start_paragraph('DDR-MoreDetails')
-                self.doc.write_text(note.get())
-                self.doc.end_paragraph()
+                self.doc.write_styled_note(note.get_styledtext(), 
+                                           note.get_format(),"DDR-MoreDetails")
 
     def write_parents(self, person, firstName):
         family_handle = person.get_main_parents_family_handle()
@@ -390,7 +390,7 @@ class DetDescendantReport(Report):
                                             is_first)
             
             if text:
-                self.doc.write_text(text, spouse_mark)
+                self.doc.write_text_citation(text, spouse_mark)
                 is_first = False
                 
     def __write_mate(self, person, family):
@@ -414,7 +414,7 @@ class DetDescendantReport(Report):
                 self.doc.write_text(_("Relationship with: %s") % name, mark)
             if name[-1:] != '.':
                 self.doc.write_text(".")
-            self.doc.write_text(self.endnotes(mate))
+            self.doc.write_text_citation(self.endnotes(mate))
             self.doc.end_paragraph()
 
             self.write_person_info(mate)
@@ -532,20 +532,20 @@ class DetDescendantReport(Report):
                 birth = self.database.get_event_from_handle(birth_ref.ref)
                 text = text.rstrip(". ")
                 text = text + self.endnotes(birth) + ". "
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             first = 0
 
         text = ReportUtils.baptised_str(self.database, person, first, 
                                         self.verbose, self.endnotes, 
                                         self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             
         text = ReportUtils.christened_str(self.database, person, first, 
                                           self.verbose, self.endnotes, 
                                           self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
     
         span = self.calc_age(person)
         text = ReportUtils.died_str(self.database, person, first, self.verbose,
@@ -556,14 +556,14 @@ class DetDescendantReport(Report):
                 death = self.database.get_event_from_handle(death_ref.ref)
                 text = text.rstrip(". ")
                 text = text + self.endnotes(death) + ". "
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
             first = 0
 
         text = ReportUtils.buried_str(self.database, person, first, 
                                       self.verbose, self.endnotes, 
                                       self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
-            self.doc.write_text(text)
+            self.doc.write_text_citation(text)
 
         first = ReportUtils.common_name(person, self.usecall)
 
@@ -594,7 +594,7 @@ class DetDescendantReport(Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
                 atype = str( alt_name.get_type() )
                 aname = alt_name.get_regular_name()
-                self.doc.write_text(_('%(name_kind)s: %(name)s%(endnotes)s') % {
+                self.doc.write_text_citation(_('%(name_kind)s: %(name)s%(endnotes)s') % {
                     'name_kind' : atype,
                     'name' : aname,
                     'endnotes' : self.endnotes(alt_name),
@@ -628,7 +628,7 @@ class DetDescendantReport(Report):
                 if date:
                     self.doc.write_text( '%s, ' % date )
                 self.doc.write_text( text )
-                self.doc.write_text( self.endnotes(addr) )
+                self.doc.write_text_citation( self.endnotes(addr) )
                 self.doc.end_paragraph()
                 
         if self.inc_attrs:
@@ -646,7 +646,7 @@ class DetDescendantReport(Report):
                     'type'     : attr.get_type(),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
-                self.doc.write_text( text )
+                self.doc.write_text_citation( text )
                 self.doc.end_paragraph()
 
     def calc_age(self,ind):

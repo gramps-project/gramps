@@ -1402,6 +1402,7 @@ class BaseDoc:
         "Closes the document"
         raise NotImplementedError
 
+
 #------------------------------------------------------------------------
 #
 # TextDoc
@@ -1552,6 +1553,36 @@ class TextDoc:
         """
         text = str(styledtext)
         self.write_note(text, format, style_name)
+    
+    def write_text_citation(self, text, mark=None):
+        """Method to write text with GRAMPS <super> citation marks"""
+        if not text:
+            return
+        parts = text.split("<super>")
+        markset = False
+        for piece in parts:
+            if not piece:
+                # a text '<super>text ...' splits as '', 'text..'
+                continue
+            piecesplit = piece.split("</super>")
+            if len(piecesplit) == 2:
+                self.start_superscript()
+                self.write_text(piecesplit[0])
+                self.end_superscript()
+                if not piecesplit[1]:
+                    #text ended with ' ... </super>'
+                    continue
+                if not markset:
+                    self.write_text(piecesplit[1], mark)
+                    markset = True
+                else:
+                    self.write_text(piecesplit[1])
+            else:
+                if not markset:
+                    self.write_text(piece, mark)
+                    markset = True
+                else:
+                    self.write_text(piece)
 
     def add_media_object(self, name, align, w_cm, h_cm):
         """
