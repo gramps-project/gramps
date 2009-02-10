@@ -196,7 +196,6 @@ class WebCalReport(Report):
         self.country = menu.get_option_by_name('country').get_value()
         self.start_dow = menu.get_option_by_name('start_dow').get_value()
 
-        self.partyear = menu.get_option_by_name('partyear').get_value()
         self.multiyear = menu.get_option_by_name('multiyear').get_value()
 
         self.start_year = menu.get_option_by_name('start_year').get_value()
@@ -231,9 +230,6 @@ class WebCalReport(Report):
         if self.author:
             self.author = self.author.replace(',,,', '')
         self.email = researcher.email
-
-        self.start_month = 1         # set to January, and it can change
-        self.end_month = 12          # set to December, this value never changes
 
         today = time.localtime()        # set to today's date
         self.today = datetime.date(today[0], today[1], today[2])
@@ -375,7 +371,7 @@ class WebCalReport(Report):
         if use_home:
             navs.append((self.home_link,  _('Home'),  True))
 
-        for month in range(self.start_month, self.end_month + 1):
+        for month in range(1, 13):
             navs.append((month, month, True))
 
         # Add a link for year_glance() if requested
@@ -386,7 +382,7 @@ class WebCalReport(Report):
 
         for url_fname, nav_text, cond in navs:
             url = ''
-            cs = False
+            currentsection = False
             if cond:
              
                 subdirs = ['..'] * nr_up
@@ -394,14 +390,14 @@ class WebCalReport(Report):
 
                 # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 if type(url_fname) == int:
-                    url_fname = _get_full_month_name(url_fname)
+                    url_fname = get_full_month_name(url_fname)
 
                 if type(nav_text) == int:
-                    nav_text = _get_short_month_name(nav_text)
+                    nav_text = get_short_month_name(nav_text)
 
                 # Figure out if we need <li id="CurrentSection"> or just plain <li>
                 if url_fname == currentsection:
-                    cs = True
+                    currentsection = True
 
                 url = url_fname
                 if not url.startswith('http:'):
@@ -409,8 +405,12 @@ class WebCalReport(Report):
                     if not url.endswith(self.ext):
                         url += self.ext
 
-                cs = cs and ' id="CurrentSection"' or ''
-                of.write('\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url, nav_text))
+                if currentsection:
+                    section = ' id="CurrentSection"'
+                else:
+                    section = ''
+                of.write('\t\t<li%s><a href="%s">%s</a></li>\n' 
+                    % (section, url, nav_text))
 
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
@@ -428,21 +428,17 @@ class WebCalReport(Report):
         of.write('\t<ul>\n')
         cols = 0  
         cal_year = self.start_year
-        while ((0 <= cols < 25) and 
-              (self.start_year <= cal_year <= self.end_year)):
+        while (cols <= 25 and cal_year <= self.end_year):
             url = ''
-            cs = False
+            currentsection = False
 
             # begin subdir level
             subdirs = ['..'] * nr_up
             subdirs.append(str(cal_year))
 
-            # each year will link to January, unless self.partyear is True,
-            # then it will link to current month.
+            # each year will link to current month.
             # this will always need an extension added
-            full_month_name = _get_full_month_name(1)
-            if self.partyear and cal_year == self.today.year:
-                full_month_name = _get_full_month_name(self.today.month)
+            full_month_name = get_full_month_name(self.today.month)
 
             # Note. We use '/' here because it is a URL, not a OS dependent 
             # pathname.
@@ -450,12 +446,16 @@ class WebCalReport(Report):
 
             # determine if we need to highlight???
             if str(cal_year) == currentsection:
-                cs = True
+                currentsection = True
 
             # if True, highlight currentsection
-            cs = cs and ' id="CurrentSection"' or ''
+            if currentsection: 
+                section = ' id="CurrentSection"'
+            else:
+                section = '' 
 
-            of.write('\t\t<li%s><a href="%s">%s</a></li>\n'  % (cs, url, str(cal_year)))
+            of.write('\t\t<li%s><a href="%s">%s</a></li>\n' 
+                % (section, url, str(cal_year)))
 
             # increase year
             cal_year += 1
@@ -483,26 +483,19 @@ class WebCalReport(Report):
         of.write('<div id="header">\n')
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % title)
         if self.author:
-            of.write('\t<p id="CreatorInfo">')
             if self.email != '':  
-                msg = _('Created for <a href="mailto:%(email)s?subject=WebCal">%(author)s</a>\n') % {
+                msg = _('Created for <a href="mailto:%(email)s?'
+                    'subject=WebCal">%(author)s</a>\n') % {
                     'email'  : self.email,
                     'author' : self.author}
             else:
-                msg = _('Created for %(author)s\n') % {'author' : self.author}
-            of.write('%s</p>\n' % msg)
-        of.write('</div>\n')  # end header
+                msg = _('Created for %(author)s\n') % {
+                        'author' : self.author}
+            of.write('\t<p id="CreatorInfo">%s</p></div>\n' % msg)
 
         if self.multiyear:
             # create Year Navigation menu
             self.display_year_navs(of, nr_up, str(year))
-
-        # adjust the months being created if self.partyear is True
-        # and year is eequal to current year, then start_month is current month
-        self.start_month = 1
-        if year == self.today.year:
-            if self.partyear:
-                self.start_month = self.today.month
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
@@ -518,8 +511,8 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        full_month_name = _get_full_month_name(month)
-        abbr_month_name = _get_short_month_name(month)
+        full_month_name = get_full_month_name(month)
+        abbr_month_name = get_short_month_name(month)
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
         start_dow = self.start_dow
@@ -792,7 +785,7 @@ class WebCalReport(Report):
             fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
 
             # define names for long month
-            full_month_name = _get_full_month_name(month)
+            full_month_name = get_full_month_name(month)
 
             # Name the file, and create it (see code in calendar_build)
             fpath = os.path.join(str(year), full_month_name) 
@@ -861,10 +854,9 @@ class WebCalReport(Report):
         year_glance_fname.write('</div>\n')
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendars'), \
-            self.end_month - self.start_month)
+        self.progress.set_pass(_('Creating Year At A Glance calendars'), 12)
 
-        for month in range(self.start_month, self.end_month + 1):
+        for month in range(1, 13):
 
             # build the calendar
             self.calendar_build(year_glance_fname, "yg", year, month)
@@ -889,9 +881,6 @@ class WebCalReport(Report):
     def write_report(self):
         """
         The short method that runs through each month and creates a page. 
-
-        if self.partyear, use will enter the start month, ending month, start year, and ending year
-        else, year is equal to the current year, set by self.today 
         """
 
         # open progress meter bar
@@ -923,13 +912,6 @@ class WebCalReport(Report):
                 if self.country != 0:
                     self.__get_holidays(cal_year)
 
-                # adjust the months being created if self.partyear is True,
-                # and if the year is the current year, then start month is current month  
-                self.start_month = 1
-                if cal_year == self.today.year:
-                    if self.partyear:
-                        self.start_month = self.today.month
-
                 # create "WebCal" calendar pages
                 self.web_cal(cal_year)
 
@@ -948,14 +930,7 @@ class WebCalReport(Report):
                 self.__get_holidays(cal_year)
 
             # generate progress pass for single year 
-            #self.progress.set_pass(_('Creating calendars'), self.end_month - self.start_month)
-
-            # adjust the months being created if self.partyear is True,
-            # and if the year is the current year, then start month is current month  
-            self.start_month = 1
-            if cal_year == self.today.year:
-                if self.partyear:
-                    self.start_month = self.today.month
+            #self.progress.set_pass(_('Creating calendars'), 12)
 
             # create "WebCal" calendar pages
             self.web_cal(cal_year)
@@ -983,12 +958,12 @@ class WebCalReport(Report):
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
         # generate progress pass for "WebCal"
-        self.progress.set_pass(_('Formatting months ...'), self.end_month - self.start_month)
+        self.progress.set_pass(_('Formatting months ...'), 12)
 
-        for month in range(self.start_month, self.end_month + 1):
+        for month in range(1, 13):
 
             # Name the file, and create it
-            cal_fname = _get_full_month_name(month)
+            cal_fname = get_full_month_name(month)
             webcal_fname = self.create_file(cal_fname, str(year))
 
             # Add Header
@@ -1210,11 +1185,6 @@ class WebCalOptions(MenuReportOptions):
         today = time.localtime()
         today = datetime.date(today[0], today[1], today[2]) 
 
-        partyear = BooleanOption(_('Create Partial Year calendar'), False)
-        partyear.set_help(_('Create a partial year calendar. The start month will be'
-                              ' equal to the current month to the end of the year.'))
-        menu.add_option(category_name, 'partyear', partyear)
-
         self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
         self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
         menu.add_option(category_name, 'multiyear', self.__multiyear)
@@ -1424,10 +1394,12 @@ def _gramps2iso(dow):
 _full_month_name = GrampsLocale.long_months
 _abbr_month_name = GrampsLocale.short_months
 
-def _get_full_month_name(month):
+def get_full_month_name(month):
+    """ returns full or long month name """
     return _full_month_name[month]
 
-def _get_short_month_name(month):
+def get_short_month_name(month):
+    """ return short or abbreviated month name """
     return _abbr_month_name[month]   
 
 def get_day_list(event_date, holiday_list, bday_anniv_list):
@@ -1435,13 +1407,15 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     Will fill day_list and return it to its caller: calendar_build()
 
     holiday_list -- list of holidays for event_date
-    bday_anniv_list -- list of birthdays and anniversaries for event_date
+    bday_anniv_list -- list of birthdays and anniversaries 
+        for event_date
 
     event_date -- date for this day_list 
 
-    'day_list' - a combination of both dictionaries to be able to create one day
-         nyears, date, text, event --- are necessary for figuring the age or years married
-         for each day being created...
+    'day_list' - a combination of both dictionaries to be able 
+        to create one day nyears, date, text, event --- are 
+        necessary for figuring the age or years married for 
+        each day being created...
     """
 
     # initialize day_list
@@ -1476,7 +1450,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 if event == 'Birthday':
 
                     if nyears == 0:
-                        txt_str = _('%(person)s, <em>birth</em>') % {'person' : text}
+                        txt_str = _('%(person)s, <em>birth</em>') % {
+                                    'person' : text}
                     else: 
                         txt_str = _('%(person)s, <em>%(age)s</em> old') % {
                                     'person' : text, 'age' : age_str}
@@ -1488,8 +1463,10 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                         txt_str = _('%(couple)s, <em>wedding</em>') % {
                                     'couple' : text}
                     else: 
-                        txt_str = (ngettext('%(couple)s, <em>%(years)d</em> year anniversary',
-                                            '%(couple)s, <em>%(years)d</em> year anniversary', nyears)
+                        txt_str = (ngettext('%(couple)s, <em>%(years)d'
+                                            '</em> year anniversary',
+                                            '%(couple)s, <em>%(years)d'
+                                            '</em> year anniversary', nyears)
                                    % {'couple' : text, 'years'  : nyears})
                     txt_str = '<span class="yearsmarried">%s</span>' % txt_str
 
@@ -1521,9 +1498,12 @@ def get_marrital_status(db, family):
             are_married = None
     return are_married
 
-# Compute the first day to display for this month.
-# It can also be a day in the previous month.
 def get_first_day_of_month(year, month):
+    """"
+    Compute the first day to display for this month.
+    It can also be a day in the previous month.
+    """
+
     current_date = datetime.date(year, month, 1) # first day of the month
 
     # monthinfo is filled using standard Python library 
@@ -1534,8 +1514,11 @@ def get_first_day_of_month(year, month):
     current_ord = current_date.toordinal() - monthinfo[0].count(0)
     return current_date, current_ord, monthinfo
 
-# get last month's last week for previous days in the month
 def get_previous_day(year, month, day_col):
+    """
+    get last month's last week for previous days in the month
+    """
+
     if month == 1:
         prevmonth = calendar.monthcalendar(year - 1, 12)
     else:
@@ -1545,8 +1528,11 @@ def get_previous_day(year, month, day_col):
     previous_month_day= lastweek_prevmonth[day_col]
     return previous_month_day
 
-# get next month's first week for next days in the month
 def get_next_day(year, month, day_col):  
+    """
+    get next month's first week for next days in the month
+    """
+
     if month == 12:
         nextmonth = calendar.monthcalendar(year + 1, 1)
     else:
