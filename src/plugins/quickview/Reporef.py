@@ -4,7 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006-2007  Alex Roitman
-# Copyright (C) 2007-2008  Jerome Rapinat
+# Copyright (C) 2007-2009  Jerome Rapinat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,10 +35,11 @@ from Simple import SimpleDoc
 from gettext import gettext as _
 from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_REPOSITORY
-import gen.lib
-
 
 def run(database, document, repo):
+    """
+    Display back-references (sources) for this repository.
+    """
 
     sdoc = SimpleDoc(document)
 
@@ -78,14 +79,16 @@ def run(database, document, repo):
 #
 # ------------------------------------------------------------------------
 
-pmgr = PluginManager.get_instance()
+PMGR = PluginManager.get_instance()
 
-pmgr.register_quick_report(
+PMGR.register_quick_report(
     name='RepoRef',
     category=CATEGORY_QR_REPOSITORY,
     run_func=run,
     translated_name=_('RepoRef'),
-    status=_('Beta'),
+    status=_('Stable'),
     description=_('Display RepoRef for sources related to active repository'
                   ),
+    author_name="Jerome Rapinat",
+    author_email="romjerome@yahoo.fr"
     )
