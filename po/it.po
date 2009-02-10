@@ -69,7 +69,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural_Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/ArgHandler.py:404 ../src/DbLoader.py:167 ../src/DbLoader.py:188
 #: ../src/DbLoader.py:276
@@ -7230,7 +7230,7 @@ msgstr "Era presente un riferimento ad una persona ora mancante\n"
 #: ../src/plugins/Check.py:1367
 #, python-format
 msgid "%d persons were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti a persone ora mancanti\n"
+msgstr "Erano presenti riferimenti a %d persone ora mancanti\n"
 
 #: ../src/plugins/Check.py:1370
 msgid "1 repository was referenced but not found\n"
@@ -7239,7 +7239,7 @@ msgstr "Era presente un riferimento ad un deposito mancante\n"
 #: ../src/plugins/Check.py:1372
 #, python-format
 msgid "%d repositories were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti a depositi mancanti\n"
+msgstr "Erano presenti riferimenti a %d depositi mancanti\n"
 
 #: ../src/plugins/Check.py:1375
 msgid "1 media object was referenced, but not found\n"
@@ -7250,7 +7250,7 @@ msgstr ""
 #: ../src/plugins/Check.py:1377 ../src/plugins/Check.py:1422
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti ad oggetti multimediali mancanti\n"
+msgstr "Erano presenti riferimenti a %d oggetti multimediali mancanti\n"
 
 #: ../src/plugins/Check.py:1380
 msgid "Reference to 1 missing media object was kept\n"
@@ -7259,7 +7259,7 @@ msgstr "È stato tenuto il riferimento ad un oggetto multimediale mancante\n"
 #: ../src/plugins/Check.py:1382
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Sono stati tenuti %d riferimenti ad oggetti multimediali\n"
+msgstr "Sono stati tenuti i riferimenti a %d oggetti multimediali\n"
 
 #: ../src/plugins/Check.py:1385
 msgid "1 missing media object was replaced\n"
@@ -7313,7 +7313,7 @@ msgstr "Era presente un riferimento a un luogo mancante\n"
 #: ../src/plugins/Check.py:1412
 #, python-format
 msgid "%d places were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti a luoghi mancanti\n"
+msgstr "Erano presenti riferimenti a %d luoghi mancanti\n"
 
 #: ../src/plugins/Check.py:1415
 msgid "1 source was referenced but not found\n"
@@ -7322,7 +7322,7 @@ msgstr "Era presente un riferimento ad una fonte mancante\n"
 #: ../src/plugins/Check.py:1417
 #, python-format
 msgid "%d sources were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti a fonti mancanti\n"
+msgstr "Erano presenti riferimenti a %d fonti mancanti\n"
 
 #: ../src/plugins/Check.py:1420
 msgid "1 media object was referenced but not found\n"
@@ -7335,7 +7335,7 @@ msgstr "Era presente un riferimento ad una nota mancante\n"
 #: ../src/plugins/Check.py:1428
 #, python-format
 msgid "%d note objects were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti a note mancanti\n"
+msgstr "Erano presenti riferimenti a %d note mancanti\n"
 
 #: ../src/plugins/Check.py:1432
 msgid "1 invalid name format reference was removed\n"
@@ -7344,7 +7344,7 @@ msgstr "È stato rimosso un riferimento non valido ad un formato di nome\n"
 #: ../src/plugins/Check.py:1434
 #, python-format
 msgid "%d invalid name format references were removed\n"
-msgstr "Sono stati rimossi %d riferimenti non validi a formati di nome\n"
+msgstr "Sono stati rimossi riferimenti non validi a %d formati di nome\n"
 
 #: ../src/plugins/Check.py:1438
 #, python-format
@@ -14304,7 +14304,7 @@ msgstr ""
 #, python-format
 msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Fu seppellito il %(burial_date)s in quel di %(burial_place)s%(endnotes)s."
+"Seppellito/a il %(burial_date)s in quel di %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:562
 #, python-format
@@ -14390,7 +14390,7 @@ msgstr ""
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Fu seppellito nel %(month_year)s in quel di %(burial_place)s%(endnotes)s."
+"Seppellito/a nel %(month_year)s in quel di %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:594
 #, python-format
@@ -14476,7 +14476,7 @@ msgstr ""
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"Fu seppellito %(modified_date)s in quel di %(burial_place)s%(endnotes)s."
+"Seppellito/a %(modified_date)s in quel di %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:626
 #, python-format
@@ -14511,7 +14511,7 @@ msgstr "Fu seppellito/a %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
 msgid "Buried %(modified_date)s%(endnotes)s."
-msgstr "Fu seppellito/a %(modified_date)s%(endnotes)s."
+msgstr "Seppellito/a %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
@@ -14583,7 +14583,7 @@ msgstr "Fu seppellito/a%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "Fu seppellito/a%(endnotes)s."
+msgstr "Seppellito/a%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:680
 #, python-format
