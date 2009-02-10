@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
 pkgdata_PYTHON = \
+	libgrampsxml.py\
 	libholiday.py\
 	libmapservice.py
 

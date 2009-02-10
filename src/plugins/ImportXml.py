@@ -46,9 +46,9 @@ from BasicUtils import name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
 from BasicUtils import UpdateCallback
-import ExportXml
 import const
 from gen.plug import PluginManager, ImportPlugin
+import libgrampsxml
 
 #-------------------------------------------------------------------------
 #
@@ -2460,7 +2460,7 @@ def version_is_valid(filename, cli):
     """
     parser = VersionParser(filename)
     
-    if parser.get_xmlns_version() > ExportXml.XML_VERSION:
+    if parser.get_xmlns_version() > libgrampsxml.GRAMPS_XML_VERSION:
         msg = _("The .gramps file you are importing was made by version %s of "
                 "GRAMPS, while you are running an older version %s. "
                 "The file will not be imported. Please upgrade to the latest "

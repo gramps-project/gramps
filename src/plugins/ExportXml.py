@@ -63,6 +63,7 @@ from QuestionDialog import ErrorDialog
 import ExportOptions
 import gen.proxy
 from gen.plug import PluginManager, ExportPlugin
+import libgrampsxml
 
 #-------------------------------------------------------------------------
 #
@@ -75,8 +76,6 @@ try:
     _gzip_ok = 1
 except:
     _gzip_ok = 0
-
-XML_VERSION = "1.3.0"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
@@ -204,9 +203,10 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.g.write('<!DOCTYPE database '
                      'PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"\n'
                      '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
-                     % (XML_VERSION, XML_VERSION))
+                     % (libgrampsxml.GRAMPS_XML_VERSION, 
+                        libgrampsxml.GRAMPS_XML_VERSION))
         self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
-                     % XML_VERSION)
+                     % libgrampsxml.GRAMPS_XML_VERSION)
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d\"' %
                      (date[0],date[1],date[2]) )
