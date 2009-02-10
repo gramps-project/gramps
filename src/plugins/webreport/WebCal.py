@@ -5,7 +5,6 @@
 # Copyright (C) 2007-2009 Brian G. Matherly
 # Copyright (C) 2008-2009 Rob G. Healey <robhealey1@gmail.com>
 # Copyright (C) 2008      Jason Simanek
-# Copyright (C) 2008      Kees Bakker
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -78,7 +77,6 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
-from libholiday import g2iso as _gramps2iso
 
 #------------------------------------------------------------------------
 #
@@ -1541,7 +1539,7 @@ def get_marrital_status(db, family):
     return are_married
 
 def get_first_day_of_month(year, month):
-    """"
+    """
     Compute the first day to display for this month.
     It can also be a day in the previous month.
     """
