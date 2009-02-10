@@ -22,9 +22,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
 	BookReport.py\
-	ExportXml.py\
-	ImportGpkg.py\
-	ImportXml.py\
 	Records.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
