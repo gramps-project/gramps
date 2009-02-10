@@ -78,6 +78,7 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
+from libholiday import g2iso as _gramps2iso
 
 #------------------------------------------------------------------------
 #
@@ -242,7 +243,7 @@ class WebCalReport(Report):
         # These things are: birthdays and anniversaries
         self.calendar = {}
 
-        calendar.setfirstweekday(_dow_gramps2iso[self.start_dow])
+        calendar.setfirstweekday(dow_gramps2iso[self.start_dow])
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
@@ -303,9 +304,17 @@ class WebCalReport(Report):
             for day in range(1, 32):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
-                    self.add_holiday_item(holiday_name, year, month, day)
+                    self.add_holiday_item(holiday_name, month, day)
 
-    def add_holiday_item(self, text, year, month, day):
+    def add_holiday_item(self, text, month, day):
+        """
+        add holiday to its dictionary 
+
+        text -- holiday title
+        month -- month of holiday
+        day -- day of holiday
+        """
+
         if day == 0:
             # This may happen for certain "about" dates.
             day = 1     # Use first day of the month
@@ -518,8 +527,8 @@ class WebCalReport(Report):
         start_dow = self.start_dow
         col2day = [(x-1)%7+1 for x in range(start_dow, start_dow + 7)]
 
-        # Translate a Gramps day number into a HTMLclass
         def get_class_for_daycol(col):
+            """ Translate a Gramps day number into a HTMLclass """
             day = col2day[col]
             if day == 1:
                 return "weekend sunday"
@@ -528,6 +537,7 @@ class WebCalReport(Report):
             return "weekday"
 
         def get_name_for_daycol(col):
+            """ Translate a Gramps day number into a HTMLclass """
             day = col2day[col]
             return day_names[day]
 
@@ -610,34 +620,41 @@ class WebCalReport(Report):
                                     # "One Day" calendar page filename
                                     two_digit_month = '%02d' % month
                                     two_digit_day = '%02d' % day
-                                    fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
+                                    fname_date = str(year) + str(two_digit_month) \
+                                        + str(two_digit_day)
 
-                                    # create web link to corresponding "One Day" page...
+                                    # create web link to corresponding 
+                                    # "One Day" page...
                                     # The HREF is relative to the year path.
                                     fname_date = '/'.join([full_month_name, fname_date])
                                     fname_date += self.ext
                                     of.write('\t\t\t\t<a href="%s" title="%s%d">\n'
                                              % (fname_date, abbr_month_name, day))
-                                    of.write('\t\t\t\t\t<div class="date">%d</div></a>\n' % day)
+                                    of.write('\t\t\t\t\t<div class="date">'
+                                        '%d</div></a>\n' % day)
                                     one_day_cal = "OneDay"
 
                                 # WebCal
                                 else:
                                     one_day_cal = "WebCal"
-                                    of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
+                                    of.write('\t\t\t\t<div class="date">'
+                                        '%d</div>\n' % day)
 
-                                # both WebCal and Year_Glance needs day_list displayed
+                                # both WebCal and Year_Glance needs 
+                                # day_list displayed
                                 self.one_day(of, event_date, one_day_cal, day_list)
 
                         # no holiday/ bday/ anniversary this day
                         else: 
                             of.write('class="%s">\n' % dayclass)
-                            of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
+                            of.write('\t\t\t\t<div class="date">'
+                                '%d</div>\n' % day)
 
                     # no holiday/ bday/ anniversary this month 
                     else: 
                         of.write('class="%s">\n' % dayclass)
-                        of.write('\t\t\t\t<div class="date">%d</div>\n' % day)
+                        of.write('\t\t\t\t<div class="date">'
+                            '%d</div>\n' % day)
 
                     # close the day/ column
                     of.write('\t\t\t</td>\n')
@@ -755,9 +772,10 @@ class WebCalReport(Report):
         return of
 
     def close_file(self, of):
+        """ will close whatever filename is passed to it """
         of.close()
 
-    def one_day(self, of, event_date, one_day_cal, day_list):
+    def one_day(self, one_day_fname, event_date, one_day_cal, day_list):
         """
         This method creates the One Day page for "Year At A Glance"
 
@@ -784,7 +802,7 @@ class WebCalReport(Report):
             two_digit_day = '%02d' % day
             fname_date = str(year) + str(two_digit_month) + str(two_digit_day)
 
-            # define names for long month
+            # define name for long month
             full_month_name = get_full_month_name(month)
 
             # Name the file, and create it (see code in calendar_build)
@@ -807,19 +825,21 @@ class WebCalReport(Report):
             self.calendar_common(one_day_fname, nr_up, year, full_month_name, title)
 
             one_day_fname.write('\t<h3 id="OneDay">%s</h3>\n' % pg_date)
-            of = one_day_fname # because of two different fnames needing 
+            #of = one_day_fname # because of two different fnames needing 
                                # to access this variable
 
         # for both "WebCal" and "One Day"
-        of.write('\t\t\t\t\t<ul>\n')
+        one_day_fname.write('\t\t\t\t\t<ul>\n')
         for nyears, date, text, event in day_list:
-            of.write('\t\t\t\t\t\t<li>%s</li>\n' % text)
-        of.write('\t\t\t\t\t</ul>\n')
+            one_day_fname.write('\t\t\t\t\t\t<li>%s</li>\n' % text)
+        one_day_fname.write('\t\t\t\t\t</ul>\n')
 
-        # if calendar is one_day(), write footer, and close the file
+        # if calendar is one_day(), write_footer() and close_file()
         if one_day_cal == "OneDay":
-            self.write_footer(of, nr_up)
-            self.close_file(of)
+            self.write_footer(one_day_fname, nr_up)
+            self.close_file(one_day_fname)
+
+        return one_day_fname
 
     def year_glance(self, year):
         """
@@ -846,7 +866,6 @@ class WebCalReport(Report):
         # page description 
         year_glance_fname.write('<div class="content">\n')
         year_glance_fname.write('<p id="description">\n')
-        # TODO. The "red square" is only valid for some style sheets.
         year_glance_fname.write(_('This calendar is meant to give you access '
          'to all your data at a glance compressed into one page. Clicking '
          'on a date will take you to a page that shows all the events for '
@@ -1162,16 +1181,20 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1])
+        encoding = EnumeratedListOption(_('Character set encoding'), \
+            _CHARACTER_SETS[0][1])
         for eopt in _CHARACTER_SETS:
             encoding.add_item(eopt[1], eopt[0])
-        encoding.set_help( _("The encoding to be used for the web files"))
+        encoding.set_help( _('The encoding to be used for '
+                             'the web files'))
         menu.add_option(category_name, "encoding", encoding)
 
-        css = EnumeratedListOption(_('StyleSheet'), _CSS_FILES[0][1])
+        css = EnumeratedListOption(_('StyleSheet'), \
+            _CSS_FILES[0][1])
         for style in _CSS_FILES:
             css.add_item(style[1], style[0])
-        css.set_help( _("The Style Sheet to be used for the web page"))
+        css.set_help( _('The Style Sheet to be used '
+            'for the web page'))
         menu.add_option(category_name, "css", css)
 
     def __add_content_options(self, menu):
@@ -1185,24 +1208,33 @@ class WebCalOptions(MenuReportOptions):
         today = time.localtime()
         today = datetime.date(today[0], today[1], today[2]) 
 
-        self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
-        self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
+        self.__multiyear = BooleanOption(_('Create multiple year '
+                                           'calendars'), False)
+        self.__multiyear.set_help(_('Whether to create Multiple year '
+                                    'calendars or not.'))
         menu.add_option(category_name, 'multiyear', self.__multiyear)
         self.__multiyear.connect('value-changed', self.__multiyear_changed) 
 
-        self.__start_year = NumberOption(_('Start Year for the Calendar(s)'), today.year, 1900, 3000)
-        self.__start_year.set_help(_('Enter the starting year for the calendars between 1900 - 3000'))
+        self.__start_year = NumberOption(_('Start Year for the '
+                                           'Calendar(s)'), today.year, 1900, 3000)
+        self.__start_year.set_help(_('Enter the starting year for the calendars '
+                                     'between 1900 - 3000'))
         menu.add_option(category_name, 'start_year', self.__start_year)
 
-        self.__end_year = NumberOption(_('End Year for the Calendar(s)'), today.year, 1900, 3000)
-        self.__end_year.set_help(_('Enter the ending year for the calendars between 1900 - 3000.'
-                                   '  if multiple years is selected, then only twenty years at any given time'))
+        self.__end_year = NumberOption(_('End Year for the '
+                                         'Calendar(s)'), today.year, 1900, 3000)
+        self.__end_year.set_help(_('Enter the ending year for the calendars '
+                                   'between 1900 - 3000.  if multiple years '
+                                   'is selected, then only twenty years at any '
+                                   'given time'))
         menu.add_option(category_name, 'end_year', self.__end_year)
 
         self.__multiyear_changed()
 
-        fullyear = BooleanOption(_('Create "Year At A Glance" Calendar(s)'), False)
-        fullyear.set_help(_('Whether to create A one-page mini calendar with dates highlighted'))
+        fullyear = BooleanOption(_('Create "Year At A Glance" '
+                                   'Calendar(s)'), False)
+        fullyear.set_help(_('Whether to create A one-page mini calendar '
+                            'with dates highlighted'))
         menu.add_option(category_name, 'fullyear', fullyear)
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
@@ -1214,8 +1246,10 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, "country", country)
 
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
-        maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
-        maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
+        maiden_name.add_item('spouse_first', _("Wives use husband's surname "
+                             "(from first family listed)"))
+        maiden_name.add_item('spouse_last', _("Wives use husband's surname "
+                             "(from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
@@ -1349,27 +1383,31 @@ def _get_regular_surname(sex, name):
     return surname
 
 def _get_short_name(person, maiden_name=None):
-    """ Return person's name, unless maiden_name given, unless married_name listed. """
+    """ Return person's name, unless maiden_name given, 
+    unless married_name listed. """
     # Get all of a person's names:
     primary_name = person.get_primary_name()
     sex = person.get_gender()
 
     married_name = None
     names = [primary_name] + person.get_alternate_names()
-    for n in names:
-        if int(n.get_type()) == gen.lib.NameType.MARRIED:
-            married_name = n
+    for name in names:
+        if int(name.get_type()) == gen.lib.NameType.MARRIED:
+            married_name = name
 
     # Now, decide which to use:
     if maiden_name is not None:
         if married_name is not None:
-            first_name, family_name = married_name.get_first_name(), _get_regular_surname(sex, married_name)
+            first_name, family_name = married_name.get_first_name(), \
+                _get_regular_surname(sex, married_name)
             call_name = married_name.get_call_name()
         else:
-            first_name, family_name = primary_name.get_first_name(), maiden_name
+            first_name, family_name = primary_name.get_first_name(), \
+                maiden_name
             call_name = primary_name.get_call_name()
     else:
-        first_name, family_name = primary_name.get_first_name(), _get_regular_surname(sex, primary_name)
+        first_name, family_name = primary_name.get_first_name(), \
+            _get_regular_surname(sex, primary_name)
         call_name = primary_name.get_call_name()
 
     # If they have a nickname use it
@@ -1378,29 +1416,33 @@ def _get_short_name(person, maiden_name=None):
     else: # else just get the first name:
         first_name = first_name.strip()
         if " " in first_name:
-            first_name, rest = first_name.split(" ", 1) # just one split max
+            # just one split max 
+            first_name, rest = first_name.split(" ", 1)
     return ("%s %s" % (first_name, family_name)).strip()
 
-# Simple utility list to convert Gramps day-of-week numbering to calendar.firstweekday numbering
-_dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY, calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY, calendar.SATURDAY ]
-
-def _gramps2iso(dow):
-    """ Convert GRAMPS day of week to ISO day of week """
-    # GRAMPS: SUN = 1
-    # ISO: MON = 1
-    return (dow + 5) % 7 + 1
+# Simple utility list to convert Gramps day-of-week numbering 
+# to calendar.firstweekday numbering
+dow_gramps2iso = [ -1,
+                   calendar.SUNDAY,
+                   calendar.MONDAY,
+                   calendar.TUESDAY,
+                   calendar.WEDNESDAY,
+                   calendar.THURSDAY,
+                   calendar.FRIDAY,
+                   calendar.SATURDAY,
+                 ]
 
 # define names for full and abbreviated month names in GrampsLocale
-_full_month_name = GrampsLocale.long_months
-_abbr_month_name = GrampsLocale.short_months
+full_month_name = GrampsLocale.long_months
+abbr_month_name = GrampsLocale.short_months
 
 def get_full_month_name(month):
     """ returns full or long month name """
-    return _full_month_name[month]
+    return full_month_name[month]
 
 def get_short_month_name(month):
     """ return short or abbreviated month name """
-    return _abbr_month_name[month]   
+    return abbr_month_name[month]   
 
 def get_day_list(event_date, holiday_list, bday_anniv_list):
     """
@@ -1427,9 +1469,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         # will force holidays to be first in the list
         nyears = 0
 
-        for p in holiday_list:
-            for line in p.splitlines():
-                day_list.append((nyears, event_date, line, _('Holiday')))
+        for event_name in holiday_list:
+            for line in event_name.splitlines():
+                day_list.append((nyears, event_date, line, 'Holiday'))
 
     # birthday/ anniversary on this day
     if bday_anniv_list > []:
@@ -1525,7 +1567,7 @@ def get_previous_day(year, month, day_col):
         prevmonth = calendar.monthcalendar(year, month-1)
     num_weeks = len(prevmonth)
     lastweek_prevmonth = prevmonth[num_weeks - 1]
-    previous_month_day= lastweek_prevmonth[day_col]
+    previous_month_day = lastweek_prevmonth[day_col]
     return previous_month_day
 
 def get_next_day(year, month, day_col):  
