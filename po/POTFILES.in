@@ -230,9 +230,9 @@ src/Selectors/__init__.py
 
 # plugins directory
 src/plugins/BookReport.py
-src/plugins/ExportXml.py
-src/plugins/ImportGpkg.py
-src/plugins/ImportXml.py
+src/plugins/export/ExportXml.py
+src/plugins/import/ImportGpkg.py
+src/plugins/import/ImportXml.py
 src/plugins/Records.py
 
 # plugins/docgen directory
