@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-10 16:51+0100\n"
-"PO-Revision-Date: 2009-02-11 00:43+0100\n"
+"PO-Revision-Date: 2009-02-11 19:41+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -946,6 +946,22 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
+"Le seguenti parole chiave saranno sostituite con il nome:\n"
+"<tt>  \n"
+"  <b>Nome</b>        - nome\n"
+"  <b>Cognome</b>     - cognome\n"
+"  <b>Titolo</b>      - titolo (Dott., Sig.)\n"
+"  <b>Prefisso</b>    - prefisso (von, de, di)\n"
+"  <b>Suffisso</b>    - suffisso (Jr., Sr.)\n"
+"  <b>Pseudonimo</b>  - nome (soprannome)\n"
+"  <b>Comune</b>      - nome, o la prima parte del nome propriamente detto\n"
+"  <b>Patronimico</b> - patronimico (nome del padre)\n"
+"  <b>Iniziali</b>    - iniziali della persona\n"
+"</tt>\n"
+"Usare le stesse parole chiave in MAIUSCOLO per rendere maiuscole le parole. "
+"Le parentesi\n"
+"e le virgole attorno a campi vuoti saranno rimosse. Altro testo apparirà "
+"così come specificato."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -4774,7 +4790,7 @@ msgstr "Associazione"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
 msgid "_Associations"
-msgstr "_Associazione"
+msgstr "_Associazioni"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:86
 msgid "Godfather"
@@ -6356,7 +6372,6 @@ msgid "GRAMPS package"
 msgstr "Pacchetto GRAMPS"
 
 #: ../src/plugins/import/ImportGpkg.py:147
-#, fuzzy
 msgid "Import data from GRAMPS packages"
 msgstr "Importa dati da pacchetti GRAMPS"
 
@@ -8116,7 +8131,7 @@ msgstr "Doppio clic per vedere %d persone"
 
 #: ../src/plugins/gramplet/AgeStats.py:269
 msgid "Age Stats Gramplet"
-msgstr "Gramplet statistiche età"
+msgstr "Gramplet Statistiche età"
 
 #: ../src/plugins/gramplet/AgeStats.py:273
 msgid "Age Stats"
@@ -8130,7 +8145,7 @@ msgstr "Persona attiva: <b>%s</b>"
 #: ../src/plugins/gramplet/AttributesGramplet.py:54
 #, fuzzy
 msgid "Attributes Gramplet"
-msgstr "Gramplet attributi"
+msgstr "Gramplet Attributi"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:58
 #: ../src/plugins/webreport/NarrativeWeb.py:1423
@@ -8285,26 +8300,25 @@ msgstr ""
 #: ../src/plugins/gramplet/DataEntryGramplet.py:693
 #, python-format
 msgid "Gramplet Data Entry: %s"
-msgstr ""
+msgstr "Gramplet Inserimento dati: %s"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:742
-#, fuzzy
 msgid "Data Entry Gramplet"
-msgstr "Gramplet Calendario"
+msgstr "Gramplet Inserimento dati"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:746
 msgid "Data Entry"
-msgstr ""
+msgstr "Inserimento dati"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:47
 #: ../src/plugins/gramplet/PedigreeGramplet.py:49
 msgid "Move mouse over links for options"
-msgstr ""
+msgstr "Spostare il mouse sui collegamenti per le opzioni"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
 #, fuzzy
 msgid "No Active Person selected."
-msgstr "Nessuna persona selezionata"
+msgstr "Nessuna persona attiva."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:107
 #: ../src/plugins/textreport/DescendReport.py:118
@@ -8343,14 +8357,12 @@ msgid "Right-click to edit"
 msgstr "Fare clic col pulsante destro per modificare"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
-#, fuzzy
 msgid "   sp. "
-msgstr "   "
+msgstr "   con. "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
-#, fuzzy
 msgid "Descendant Gramplet"
-msgstr "Albero discendenza"
+msgstr "Gramplet Discendenza"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
 msgid "Descendants"
@@ -8362,34 +8374,33 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
+"Fare clic per espandere/contrarre le persone\n"
+"Fare clic con il pulsante destro per le opzioni\n"
+"Fare clic e trascinare nell'area libera per ruotare"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
-#, fuzzy
 msgid "Fan Chart Gramplet"
-msgstr "Gramplet Calendario"
+msgstr "Gramplet Grafico a ventaglio"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
 msgid "FAQ Gramplet"
-msgstr "Gramplet domande frequenti"
+msgstr "Gramplet Domande frequenti"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "FAQ"
 msgstr "Domande frequenti"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
-#, fuzzy
 msgid "Double-click given name for details"
 msgstr "Doppio clic sul nome per i dettagli"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
-#, fuzzy
 msgid "Total unique given names"
-msgstr "Cognomi univoci totali"
+msgstr "Totale nomi univoci"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
-#, fuzzy
 msgid "Total given names showing"
-msgstr "Cognomi univoci totali"
+msgstr "Totale nomi mostrati"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:132
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:147
@@ -8398,14 +8409,12 @@ msgid "Total people"
 msgstr "Persone totali"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#, fuzzy
 msgid "Given Name Cloud Gramplet"
-msgstr "Gramplet Nuvola dei cognomi"
+msgstr "Gramplet Nuvola dei nomi"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
-#, fuzzy
 msgid "Given Name Cloud"
-msgstr "Nome"
+msgstr "Nuvola dei nomi"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:56
 #, fuzzy
@@ -8652,7 +8661,7 @@ msgstr "Selezionato/a"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:95
 msgid "Session Log Gramplet"
-msgstr "Gramplet registro sessione"
+msgstr "Gramplet Registro sessione"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:99
 msgid "Session Log"
@@ -8762,7 +8771,7 @@ msgstr "Doppio clic sul cognome per i dettagli"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:144
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:100
 msgid "Total unique surnames"
-msgstr "Cognomi univoci totali"
+msgstr "Totale cognomi univoci"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:146
 #, fuzzy
@@ -8920,25 +8929,21 @@ msgstr "%(name1)s e %(name2)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:310
 msgid "marriage event missing"
-msgstr ""
+msgstr "evento matrimonio mancante"
 
 #: ../src/plugins/gramplet/WhatsNext.py:312
-#, fuzzy
 msgid "relation type unknown"
-msgstr "Sesso sconosciuto"
+msgstr "tipo relazione sconosciuto"
 
 #: ../src/plugins/gramplet/WhatsNext.py:327
-#, fuzzy
 msgid "date unknown"
 msgstr "data sconosciuta"
 
 #: ../src/plugins/gramplet/WhatsNext.py:329
-#, fuzzy
 msgid "date incomplete"
 msgstr "data non completa"
 
 #: ../src/plugins/gramplet/WhatsNext.py:333
-#, fuzzy
 msgid "place unknown"
 msgstr "luogo sconosciuto"
 
@@ -8969,12 +8974,14 @@ msgid ": %s\n"
 msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
+#, fuzzy
 msgid "What's Next Gramplet"
-msgstr ""
+msgstr "Gramplet Che c'è da fare?"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
+#, fuzzy
 msgid "What's Next?"
-msgstr ""
+msgstr "Che c'è da fare?"
 
 #. ------------------------------------------------------------------------
 #.
@@ -9026,7 +9033,6 @@ msgstr ""
 "determinazione delle \"linee familiari\"."
 
 #: ../src/plugins/graph/GVFamilyLines.py:118
-#, fuzzy
 msgid "Follow children to determine \"family lines\""
 msgstr "Segui i figli per determinare le \"linee familiari\""
 
@@ -9586,7 +9592,7 @@ msgstr "Foglio di calcolo CSV"
 
 #: ../src/plugins/import/ImportCsv.py:848
 msgid "Import data from CSV files"
-msgstr "Importa dati da un file CSV"
+msgstr "Importa dati da file CSV"
 
 #: ../src/plugins/import/ImportGedcom.py:116
 msgid "Invalid GEDCOM file"
@@ -9655,7 +9661,7 @@ msgstr ""
 
 #: ../src/plugins/import/ImportProGen.py:159
 msgid "Not a Pro-Gen file"
-msgstr ""
+msgstr "Non è un file Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:371
 #, python-format
@@ -9668,7 +9674,6 @@ msgid "Cannot find DEF file: %(deffname)s"
 msgstr ""
 
 #: ../src/plugins/import/ImportProGen.py:488
-#, fuzzy
 msgid "Import from Pro-Gen"
 msgstr "Importa da Pro-Gen"
 
@@ -9713,7 +9718,6 @@ msgid "Pro-Gen"
 msgstr "Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:1278
-#, fuzzy
 msgid "Import data from Pro-Gen files"
 msgstr "Importa dati da file Pro-Gen"
 
@@ -9727,7 +9731,7 @@ msgstr "vCard"
 
 #: ../src/plugins/import/ImportVCard.py:225
 msgid "Import data from vCard files"
-msgstr "Importa dati da un file vCard"
+msgstr "Importa dati da file vCard"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
@@ -20497,9 +20501,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Estrae le persone con un nome specificato (parziale o meno)"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
-#, fuzzy
 msgid "People having <count> notes"
-msgstr "Persone con note"
+msgstr "Persone con <numero> note"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:47
 #, fuzzy
@@ -22639,7 +22642,7 @@ msgstr "Nascita:"
 #: ../src/glade/gramps.glade.h:43
 #, fuzzy
 msgid "C_ity/County:"
-msgstr "_Città:"
+msgstr "C_ittà/Provincia:"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
@@ -22660,7 +22663,6 @@ msgid "Cen_ter"
 msgstr "_Centrato"
 
 #: ../src/glade/gramps.glade.h:49
-#, fuzzy
 msgid "Ch_urch parish:"
 msgstr "P_arrocchia:"
 
@@ -22685,9 +22687,8 @@ msgid "Co_unty:"
 msgstr "Pr_ovincia:"
 
 #: ../src/glade/gramps.glade.h:55
-#, fuzzy
 msgid "Con_fidence:"
-msgstr "_Confidenza:"
+msgstr "Con_fidenza:"
 
 #: ../src/glade/gramps.glade.h:56
 msgid "Convert to a relative path"
@@ -22738,9 +22739,8 @@ msgid "Drag to move; click to detach"
 msgstr "Trascinare per spostare; fare clic per sganciare"
 
 #: ../src/glade/gramps.glade.h:69
-#, fuzzy
 msgid "Dua_l dated"
-msgstr "Data del decesso"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:70
 msgid "Example:"
@@ -22897,9 +22897,8 @@ msgid "Revision comment - GRAMPS"
 msgstr "Commento revisione - GRAMPS"
 
 #: ../src/glade/gramps.glade.h:113
-#, fuzzy
 msgid "Righ_t"
-msgstr "Destr_a"
+msgstr "Des_tra"
 
 #: ../src/glade/gramps.glade.h:114
 msgid "S_treet:"
@@ -23462,7 +23461,6 @@ msgid "<b>Output Window</b>"
 msgstr "<b>Finestra di output</b>"
 
 #: ../src/plugins/tool/eventcmp.glade.h:1
-#, fuzzy
 msgid "Custom filter _editor"
 msgstr "_Editor filtri personalizzati"
 
@@ -23557,9 +23555,8 @@ msgid "<b>Match Threshold</b>"
 msgstr "<b>Soglia di corrispondenza</b>"
 
 #: ../src/plugins/tool/merge.glade.h:3
-#, fuzzy
 msgid "Co_mpare"
-msgstr "_Confronta"
+msgstr "Co_nfronta"
 
 #: ../src/plugins/tool/merge.glade.h:4
 msgid "Please be patient. This may take a while."
@@ -23622,9 +23619,8 @@ msgid "Search for media"
 msgstr "Cerca oggetti multimediali"
 
 #: ../src/plugins/tool/unused.glade.h:5
-#, fuzzy
 msgid "Search for notes"
-msgstr "Cerca eventi"
+msgstr "Cerca note"
 
 #: ../src/plugins/tool/unused.glade.h:6
 msgid "Search for places"
@@ -23663,8 +23659,9 @@ msgid "I_ndividuals"
 msgstr "I_ndividui"
 
 #: ../src/plugins/export/ExportCsv.glade.h:6
+#, fuzzy
 msgid "Translate _Headers"
-msgstr ""
+msgstr "Traduci _intestazioni"
 
 #: ../src/plugins/export/ExportCsv.glade.h:7
 msgid "_Marriages"
@@ -23675,7 +23672,6 @@ msgid "Exclude _notes"
 msgstr "Escludi _note"
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:4
-#, fuzzy
 msgid "Exclude _sources"
 msgstr "Escludi _fonti"
 
@@ -23732,7 +23728,6 @@ msgid "Maximum number of _spouses for a person"
 msgstr "Numero massimo di _coniugi per persona"
 
 #: ../src/plugins/tool/verify.glade.h:15
-#, fuzzy
 msgid "Maximum number of chil_dren"
 msgstr "Numero massimo di fi_gli"
 
@@ -23763,8 +23758,9 @@ msgid "_Estimate missing dates"
 msgstr "Stima dat_e mancanti"
 
 #: ../src/plugins/tool/verify.glade.h:23
+#, fuzzy
 msgid "_Identify invalid dates"
-msgstr ""
+msgstr "_Identifica date non valide"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
@@ -24140,12 +24136,17 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:38
+#, fuzzy
 msgid ""
 "GRAMPS allows you to import from, and export to, GEDCOM format. There is "
 "extensive support for the industry standard GEDCOM version 5.5, so you can "
 "exchange GRAMPS information to and from users of most other genealogy "
 "programs."
 msgstr ""
+"GRAMPS consente di importare da, ed esportare verso, file in formato GEDCOM. "
+"Lo \"standard industriale\" GEDCOM 5.5 è ben supportato, rendendo possibile "
+"lo scambio di informazioni da e verso GRAMPS con gli utenti della maggior "
+"parte degli altri programmi genealogici."
 
 #: ../src/data/tips.xml.in.h:39
 msgid ""
