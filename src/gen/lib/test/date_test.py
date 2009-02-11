@@ -41,7 +41,7 @@ except locale.Error:
     pass
 except ValueError:
     pass
-
+print loc
 from test import test_util
 test_util.path_append_parent() 
 
@@ -159,7 +159,7 @@ date_tests[testset] = dates
 # test for all other different calendars
 testset = "Non-gregorian"
 dates = []
-for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FRENCH, Date.CAL_PERSIAN):
+for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_SWEDISH):
     for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
         for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
             d = Date()
@@ -171,7 +171,7 @@ for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FR
             dates.append( d)
 quality = Date.QUAL_NONE
 modifier = Date.MOD_NONE
-for calendar in (Date.CAL_JULIAN, Date.CAL_ISLAMIC, Date.CAL_PERSIAN):
+for calendar in (Date.CAL_JULIAN, Date.CAL_ISLAMIC, Date.CAL_PERSIAN, Date.CAL_SWEDISH):
     for month in range(1,13):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
@@ -184,7 +184,7 @@ for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
 date_tests[testset] = dates
 
 # now run the tests using all available date formats
-cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", "CAL_PERSIAN", "CAL_ISLAMIC"]
+cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", "CAL_PERSIAN", "CAL_ISLAMIC", "CAL_SWEDISH"]
 mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", "MOD_SPAN", "MOD_TEXTONLY"]
 qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
 formats = DateHandler.get_date_formats()
@@ -309,6 +309,10 @@ def suite():
              ("after Aug 3, 1982", 
               "before 14 Thermidor 190 (French Republican)", False), 
              ("ab cd", "54 ab cd 2000", True, False),
+             ("1700-02-29 (Juliansk)", "1700-03-01 (Svensk)", True),  
+             ("1706-12-31 (Juliansk)", "1707-01-01 (Svensk)", True),  
+             ("1712-02-28 (Juliansk)", "1712-02-29 (Svensk)", True),  
+             ("1712-02-29 (Juliansk)", "1712-02-30 (Svensk)", True),  
              ]
     suite = unittest.TestSuite()            
     count = 1
