@@ -4508,7 +4508,7 @@ msgstr "Associazione"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
 msgid "_Associations"
-msgstr "_Associazione"
+msgstr "_Associazioni"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:86
 msgid "Godfather"
@@ -14583,7 +14583,7 @@ msgstr "Fu seppellito/a%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:669
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "Seppellito/a%(endnotes)s."
+msgstr "Fu seppellito/a%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:680
 #, python-format
