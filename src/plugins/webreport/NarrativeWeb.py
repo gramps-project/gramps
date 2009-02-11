@@ -1657,6 +1657,7 @@ class SourcesPage(BasePage):
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
+
         index = 1
         for key in keys:
             (source, handle) = source_dict[key]
@@ -2290,10 +2291,13 @@ class IndividualPage(BasePage):
         txt = place or '&nbsp;'
         of.write('\t\t\t\t\t<td class="ColumnValue Place">%s</td>\n' % txt)
 
+        # Get the links in super script to the Source References section in the same page
+        sref_links = self.get_citation_links(event.get_source_references())
         # Description
         txt = event.get_description()
         txt = txt or '&nbsp;'
-        of.write('\t\t\t\t\t<td class="ColumnValue Description">%s</td>\n' % txt)
+        of.write('\t\t\t\t\t<td class="ColumnValue Description">%(txt)s%(sref_links)s</td>\n'
+                 % locals())
 
         # Attributes
         # TODO. See format_event
@@ -2337,7 +2341,7 @@ class IndividualPage(BasePage):
 
         for addr in alist:
             location = ReportUtils.get_address_str(addr)
-            location += self.get_citation_links( addr.get_source_references() )
+            location += self.get_citation_links(addr.get_source_references())
             date = _dd.display(addr.get_date_object())
 
             of.write('\t\t\t<tr>\n')
