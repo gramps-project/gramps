@@ -195,8 +195,9 @@ class MyLesserEqualGreater(gtk.ComboBox):
         cell = gtk.CellRendererText()
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
-        self.clist = [_('lesser than'), _('equal to'), _('greater than')]
-        for name in self.clist:
+        self.clist = ['lesser than', 'equal to', 'greater than']
+        self.clist_trans = [_('lesser than'), _('equal to'), _('greater than')]
+        for name in self.clist_trans:
             store.append(row=[name])
         self.set_active(default)
         self.show()
@@ -204,14 +205,14 @@ class MyLesserEqualGreater(gtk.ComboBox):
     def get_text(self):
         active = self.get_active()
         if active < 0:
-            return _('equal to')
+            return 'equal to'
         return self.clist[active]
 
     def set_text(self, val):
         if val in self.clist:
             self.set_active(self.clist.index(val))
         else:
-            self.set_active(self.clist.index(_('equal to')))
+            self.set_active(self.clist.index('equal to'))
 
 #-------------------------------------------------------------------------
 #
