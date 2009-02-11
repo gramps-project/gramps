@@ -41,7 +41,7 @@ except locale.Error:
     pass
 except ValueError:
     pass
-print loc
+
 from test import test_util
 test_util.path_append_parent() 
 
@@ -309,10 +309,10 @@ def suite():
              ("after Aug 3, 1982", 
               "before 14 Thermidor 190 (French Republican)", False), 
              ("ab cd", "54 ab cd 2000", True, False),
-             ("1700-02-29 (Juliansk)", "1700-03-01 (Svensk)", True),  
-             ("1706-12-31 (Juliansk)", "1707-01-01 (Svensk)", True),  
-             ("1712-02-28 (Juliansk)", "1712-02-29 (Svensk)", True),  
-             ("1712-02-29 (Juliansk)", "1712-02-30 (Svensk)", True),  
+             ("1700-02-29 (Julian)", "1700-03-01 (Swedish)", True),  
+             ("1706-12-31 (Julian)", "1707-01-01 (Swedish)", True),  
+             ("1712-02-28 (Julian)", "1712-02-29 (Swedish)", True),  
+             ("1712-02-29 (Julian)", "1712-02-30 (Swedish)", True),  
              ]
     suite = unittest.TestSuite()            
     count = 1
