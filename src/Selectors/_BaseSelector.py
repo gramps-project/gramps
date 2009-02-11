@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,6 +38,7 @@ from gtk import glade
 import const
 import ManagedWindow
 from Filters import SearchBar
+from DisplayModels import PeopleModel
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +62,13 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             set of handles to skip in the view, and search_bar to show the 
             SearchBar at the top or not. 
         """
-        self.title = self.get_window_title()
+        self.filter = filter
+
+        # Set window title, some selectors may set self.title in their __init__
+        try:
+            assert self.title
+        except AttributeError:
+            self.title = self.get_window_title()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
@@ -70,6 +78,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.db = dbstate.db
         self.glade = glade.XML(const.GLADE_FILE,"select_person","gramps")
         window = self.glade.get_widget('select_person')
+        self.showall =  self.glade.get_widget('showall')
         title_label = self.glade.get_widget('title')
         vbox = self.glade.get_widget('select_person_vbox')
         self.tree =  self.glade.get_widget('plist')
@@ -98,7 +107,6 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.build_tree()
         self.selection = self.tree.get_selection()
         
-        
         self._local_init()
         self._set_size()
 
@@ -106,8 +114,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         #show or hide search bar?
         self.set_show_search_bar(show_search_bar)
         #Hide showall always (used in person selector only)
-        showbox = self.glade.get_widget('showall')
-        showbox.hide()
+        if self.filter is not None:
+            self.showall.show()
+        else:
+            self.showall.hide()
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
@@ -160,7 +170,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
     def _on_row_activated(self, treeview, path, view_col):
         self.window.response(gtk.RESPONSE_OK)
-        
+
     def _local_init(self):
         # define selector-specific init routine
         pass
@@ -243,11 +253,16 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.add_columns(self.tree)
             
         #reset the model with correct sorting
-        self.model = self.get_model_class()(self.db, self.sort_col,
-                                            self.sortorder,
-                                            sort_map=self.column_order(),
-                                            skip=self.skip_list,
-                                            search=filter_info)
+        if self.get_model_class() is PeopleModel:
+            self.model = PeopleModel(self.db,
+                                     (PeopleModel.FAST, self.filter),
+                                     skip=self.skip_list)
+        else:
+            self.model = self.get_model_class()(self.db, self.sort_col,
+                                                self.sortorder,
+                                                sort_map=self.column_order(),
+                                                skip=self.skip_list,
+                                                search=filter_info)
         
         self.tree.set_model(self.model)
 
@@ -259,7 +274,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.columns[self.sort_col].set_sort_order(self.sortorder)
 
         # set the search column to be the sorted column
-        search_col = self.column_order()[self.sort_col][1]
+        if self.get_model_class() is PeopleModel:
+            search_col = 0
+        else:
+            search_col = self.column_order()[self.sort_col][1]
         self.tree.set_search_column(search_col)
         
         self.setupcols = False
@@ -285,3 +303,14 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
             
         return True
+
+    def show_toggle(self, obj):
+        if obj.get_active():
+            filter = None
+        else:
+            filter = self.filter
+
+        self.model = PeopleModel(self.db, (PeopleModel.FAST, filter),
+                     skip=self.skip_list)
+        self.tree.set_model(self.model)
+        self.tree.grab_focus()

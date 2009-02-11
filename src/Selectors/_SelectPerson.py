@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2006  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,167 +27,105 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
 import gtk
-from gtk import glade
-import pango
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 from DisplayModels import PeopleModel
-import ManagedWindow
-
-column_names = [
-    _('Name'),
-    _('ID') ,
-    _('Gender'),
-    _('Birth Date'),
-    _('Birth Place'),
-    _('Death Date'),
-    _('Death Place'),
-    _('Spouse'),
-    _('Last Change'),
-    ]
+from _BaseSelector import BaseSelector
+import Config
 
 #-------------------------------------------------------------------------
 #
-# SelectPerson
+# SelectEvent
 #
 #-------------------------------------------------------------------------
-class SelectPerson(ManagedWindow.ManagedWindow):
+class SelectPerson(BaseSelector):
 
-    def __init__(self, dbstate, uistate, track=[], title='',
-                 filter=None, skip=[]):
-        if title:
+    def __init__(self, dbstate, uistate, track=[], title = None, filter = None,
+                 skip=set(), show_search_bar = False):
+
+        # SelectPerson may have a title passed to it which should be used
+        # instead of the default defined for get_window_title()
+        if title is not None:
             self.title = title
-        else:
-            self.title = _("Select Person")
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        BaseSelector.__init__(self, dbstate, uistate, track, filter,
+                              skip, show_search_bar)
 
-        self.renderer = gtk.CellRendererText()
-        self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
-        self.dbstate = dbstate
-        self.glade = glade.XML(const.GLADE_FILE,"select_person","gramps")
-        self.plist =  self.glade.get_widget('plist')
-        self.showall =  self.glade.get_widget('showall')
-        self.notebook =  self.glade.get_widget('notebook')
-        self.plist.connect('row-activated', self._on_row_activated)
-        self.plist.connect('key-press-event', self._key_press)
-        self.selection = self.plist.get_selection()
-        self.selection.set_mode(gtk.SELECTION_SINGLE)
-
-        window = self.glade.get_widget('select_person')
-        title_label = self.glade.get_widget('title')
-        self.set_window(window,title_label,self.title)
-
-        self.filter = filter
-        if self.filter:
-            self.showall.show()
-
-        self.skip = skip
-
-        self.model = PeopleModel(self.dbstate.db,
-                                 (PeopleModel.FAST, filter),
-                                 skip=skip)
-
-        self.add_columns(self.plist)
-        self.plist.set_model(self.model)
+    def _local_init(self):
+        """
+        Perform local initialisation for this class
+        """
+        self.width_key = Config.PERSON_SEL_WIDTH
+        self.height_key = Config.PERSON_SEL_HEIGHT
+        self.tree.connect('key-press-event', self._key_press)
         self.showall.connect('toggled',self.show_toggle)
-        self.show()
 
-    def show_toggle(self, obj):
-        if obj.get_active():
-            filt = None
-        else:
-            filt = self.filter
-
-        self.model = PeopleModel(self.dbstate.db,
-                     (PeopleModel.FAST, filt),
-                     skip=self.skip)
-        self.plist.set_model(self.model)
-
-    def build_menu_names(self, obj):
-        return (self.title, None)
-
-    def add_columns(self, tree):
-
-        try:
-            column = gtk.TreeViewColumn(
-                _('Name'),
-                self.renderer,
-                text=0,
-                foreground=self.model.marker_color_column)
-            
-        except AttributeError:
-            column = gtk.TreeViewColumn(_('Name'), self.renderer, text=0)
-            
-        column.set_resizable(True)
-        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_fixed_width(225)
-        tree.append_column(column)
-
-        for pair in self.dbstate.db.get_person_column_order():
-            if not pair[0]:
-                continue
-            name = column_names[pair[1]]
-            try:
-                column = gtk.TreeViewColumn(
-                    name, self.renderer, markup=pair[1],
-                    foreground=self.model.marker_color_column)
-            except AttributeError:
-                column = gtk.TreeViewColumn(
-                    name, self.renderer, markup=pair[1])
-                
-            column.set_resizable(True)
-            column.set_fixed_width(pair[2])
-            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-            tree.append_column(column)
+    def get_window_title(self):
+        return _("Select Person")
         
-    def select_function(self,store,path,iter,id_list):
-        id_list.append(self.model.get_value(iter,PeopleModel.COLUMN_INT_ID))
+    def get_model_class(self):
+        return PeopleModel
 
-    def get_selected_ids(self):
-        mlist = []
-        self.plist.get_selection().selected_foreach(self.select_function,mlist)
-        return mlist
+    def get_column_titles(self):
+        return [
+            (_('Name'),         250, BaseSelector.TEXT),
+            (_('ID'),            75, BaseSelector.TEXT),
+            (_('Gender'),        75, BaseSelector.TEXT),
+            (_('Birth Date'),   150, BaseSelector.TEXT),
+            (_('Birth Place'),  150, BaseSelector.TEXT),
+            (_('Death Date'),   150, BaseSelector.TEXT),
+            (_('Death Place'),  150, BaseSelector.TEXT),
+            (_('Spouse'),       150, BaseSelector.TEXT),
+            (_('Last Change'),  150, BaseSelector.TEXT)
+            ]
 
-    def run(self):
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
-            idlist = self.get_selected_ids()
-            self.close()
-            if idlist and idlist[0]:
-                return_value = self.dbstate.db.get_person_from_handle(idlist[0])
-            else:
-                return_value = None
-            return return_value
-        elif val != gtk.RESPONSE_DELETE_EVENT:
-            self.close()
-            return None
+    def get_from_handle_func(self):
+        return self.db.get_person_from_handle
+        
+    def get_handle_column(self):
+        return PeopleModel.COLUMN_INT_ID
+        
+    def column_order(self):
+        """
+        returns a tuple indicating the column order of the model
+        """
+        return self.db.get_person_column_order()
+    
+    def column_view_names(self):
+        """
+        Get correct column view names on which model is based
+        """
+        column_names = [
+            _('Name'), 
+            _('ID') , 
+            _('Gender'), 
+            _('Birth Date'), 
+            _('Birth Place'), 
+            _('Death Date'), 
+            _('Death Place'), 
+            _('Spouse'), 
+            _('Last Change'), 
+            ]
+        return column_names
+
+    def _on_row_activated(self, treeview, path, view_col):
+        store, paths = self.selection.get_selected_rows()
+        if paths and len(paths[0]) == 2 :
+            self.window.response(gtk.RESPONSE_OK)
 
     def _key_press(self, obj, event):
         if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths and len(paths[0]) == 1 :
-                    if self.plist.row_expanded(paths[0]):
-                        self.plist.collapse_row(paths[0])
+                    if self.tree.row_expanded(paths[0]):
+                        self.tree.collapse_row(paths[0])
                     else:
-                        self.plist.expand_row(paths[0], 0)
+                        self.tree.expand_row(paths[0], 0)
                     return True
         return False
-
-    def _on_row_activated(self, treeview, path, view_col):
-        store, paths = self.selection.get_selected_rows()
-        if paths and len(paths[0]) == 2 :
-            self.window.response(gtk.RESPONSE_OK)
