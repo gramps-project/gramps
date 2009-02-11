@@ -1652,10 +1652,18 @@ class TextDoc:
             return None
         return ('', '')
     
-    def _add_markup_from_styled(self, text, s_tags):
+    def _add_markup_from_styled(self, text, s_tags, split=''):
         """
         Input is plain text, output is text with markup added according to the
         s_tags which are assumed to be styledtexttags.
+        When split is given the text will be split over the value given, and 
+        tags applied in such a way that it the text can be safely splitted in
+        pieces along split
+        
+        @param text   : str, a piece of text
+        @param s_tags : styledtexttags that must be applied to the text
+        @param split  : str, optional. A string along which the output can 
+                    be safely split without breaking the styling.
         As adding markup means original text must be escaped, ESCAPE_FUNC is 
             used
         This can be used to convert the text of a styledtext to the format 
@@ -1690,9 +1698,29 @@ class TextDoc:
         keylist = [x for x in keylist if x<=len(text)]
         opentags = []
         otext = u""  #the output, text with markup
+        lensplit = len(split)
         for pos in keylist:
             #write text up to tag
             if pos > start:
+                if split:
+                    #make sure text can split
+                    splitpos = text[start:pos].find(split)
+                    while splitpos <> -1:
+                        otext += self.ESCAPE_FUNC()(text[start:splitpos])
+                        #close open tags
+                        opentags.reverse()
+                        for opentag in opentags:
+                            otext += opentag[1]
+                        opentags.reverse()
+                        #add split text
+                        otext += self.ESCAPE_FUNC()(split)
+                        #open the tags again
+                        for opentag in opentags:
+                            otext += opentag[0]
+                        #obtain new values
+                        start = start + splitpos + lensplit
+                        splitpos = text[start:pos].find(split)
+                    
                 otext += self.ESCAPE_FUNC()(text[start:pos])
             #write out tags
             for tag in tagspos[pos]:
@@ -1711,6 +1739,7 @@ class TextDoc:
                 for opentag in opentags:
                     otext += opentag[0]
             start = pos
+        #add remainder of text, no markup present there
         otext += self.ESCAPE_FUNC()(text[start:end])
         
         #opentags should be empty. If not, user gave tags on positions that 

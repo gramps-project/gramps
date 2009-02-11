@@ -446,8 +446,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_height = height - t_margin - 2 * v_padding
         line_per_height = text_height / line_height
         
-        # if nothing fits
-        if line_per_height < 1:
+        # if nothing fits return now with result if not a cell (undivisable)
+        if line_per_height < 1 and not self._parent._type == 'CELL':
             return (None, self), 0
         
         # calculate where to cut the paragraph
@@ -456,7 +456,10 @@ class GtkDocParagraph(GtkDocBaseElement):
         line_count = layout.get_line_count()
         
         # if all paragraph fits we don't need to cut
-        if line_count <= line_per_height:
+        # if paragraph part of a cell, we do not divide, table must be split,
+        # as rows and cells do not divide ...
+        #   ==> note: this means the user must not make one page paragraphs!
+        if line_count <= line_per_height or self._parent._type == 'CELL':
             paragraph_height = (layout_height + t_margin + (2 * v_padding))
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
@@ -475,7 +478,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         self._style.set_bottom_margin(0)
         
         # FIXME do we need to return the proper height???
-        #paragraph_height = line_height * line_count + t_margin + 2 * v_padding
+        # paragraph_height = line_height * line_count + t_margin + 2 * v_padding
         paragraph_height = 0
         return (self, new_paragraph), paragraph_height
     
@@ -683,7 +686,7 @@ class GtkDocTableCell(GtkDocBaseElement):
         # calculate real available width
         width -= 2 * h_padding
 
-        # calculate height of each children
+        # calculate height of each child
         cell_height = 0
         for child in self._children:
             (e1, e2), child_height = child.divide(layout, width, height,
@@ -1222,7 +1225,8 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         text = str(styledtext)
 
         s_tags = styledtext.get_tags()
-        markuptext = self._add_markup_from_styled(text, s_tags)
+        #FIXME: following split should be regex to match \n\s*\n instead?
+        markuptext = self._add_markup_from_styled(text, s_tags, split='\n\n')
 
         if format == 1:
             #preformatted, retain whitespace. Cairo retains \n automatically,
