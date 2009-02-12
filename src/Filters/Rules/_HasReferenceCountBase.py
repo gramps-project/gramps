@@ -48,9 +48,9 @@ class HasReferenceCountBase(Rule):
 
     def prepare(self, db):
         # things we want to do just once, not for every handle
-        if  self.list[0] == _('lesser than'):
+        if  self.list[0] == 'lesser than':
             self.count_type = 0
-        elif self.list[0] == _('greater than'):
+        elif self.list[0] == 'greater than':
             self.count_type = 2
         else:
             self.count_type = 1 # "equal to"
