@@ -589,7 +589,7 @@ class ScratchPadName(ScratchPadGrampsTypeWrapper):
             _("Family"),escape(self._obj.get_surname()),
             _("Patronymic"),escape(self._obj.get_patronymic()),
             _("Prefix"),escape(self._obj.get_surname_prefix()),
-            _("Title"),escape(self._obj.get_title()),
+            _("Person|Title"),escape(self._obj.get_title()),
             _("Suffix"),escape(self._obj.get_suffix()),
             _("Type"),escape(self._obj.get_type().__str__()),
             )

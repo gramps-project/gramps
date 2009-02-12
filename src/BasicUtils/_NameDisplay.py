@@ -29,7 +29,7 @@ Class handling language-specific displaying of names.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import re
 
 #-------------------------------------------------------------------------
@@ -276,7 +276,7 @@ class NameDisplay:
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
         # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
-        d = {"t": ("raw_data[_TITLE]",     "title",      _("title")),
+        d = {"t": ("raw_data[_TITLE]",     "title",      _("Person|title")),
              "f": ("raw_data[_FIRSTNAME]", "given",      _("given")),
              "p": ("raw_data[_PREFIX]",    "prefix",     _("prefix")),
              "l": ("raw_data[_SURNAME]",   "surname",    _("surname")),
@@ -315,7 +315,7 @@ class NameDisplay:
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
         # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
-        d = {"t": ("title",      "title",      _("title")),
+        d = {"t": ("title",      "title",      _("Person|title")),
              "f": ("first",      "given",      _("given")),
              "p": ("prefix",     "prefix",     _("prefix")),
              "l": ("surname",    "surname",    _("surname")),

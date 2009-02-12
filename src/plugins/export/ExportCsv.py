@@ -29,7 +29,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import csv
 import cStringIO
 import codecs
@@ -336,7 +336,7 @@ class CSVWriter:
             if self.translate_headers:
                 self.write_csv(_("Person"), _("Surname"), _("Given"), 
                                _("Call"), _("Suffix"), _("Prefix"), 
-                               _("Title"), _("Gender"), _("Birth date"), 
+                               _("Person|Title"), _("Gender"), _("Birth date"), 
                                _("Birth place"), _("Birth source"),
                                _("Death date"), _("Death place"), 
                                _("Death source"), _("Note"))

@@ -266,7 +266,7 @@ class EditPerson(EditPrimary):
         self.patro_title = widgets.MonitoredComboSelectedEntry(
                 self.top.get_widget("patrocmb"), 
                 self.top.get_widget("patroentry"),
-                [_('Patronymic'), _('Title')],
+                [_('Patronymic'), _('Person|Title')],
                 [self.pname.set_patronymic, self.pname.set_title], 
                 [self.pname.get_patronymic, self.pname.get_title],
                 default = Config.get(Config.PATRO_TITLE),

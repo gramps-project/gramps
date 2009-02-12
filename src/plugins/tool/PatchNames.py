@@ -263,7 +263,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             handle = self.model.append()
             self.model.set_value(handle, 0, 1)
             self.model.set_value(handle, 1, gid)
-            self.model.set_value(handle, 2, _('Title'))
+            self.model.set_value(handle, 2, _('Person|Title'))
             self.model.set_value(handle, 3, title)
             self.model.set_value(handle, 4, p.get_primary_name().get_name())
             self.title_hash[pid] = handle

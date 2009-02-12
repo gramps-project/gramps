@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 import time
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from gettext import ngettext
 import csv
 import codecs
@@ -158,7 +158,7 @@ def cleanup_column_name(column):
                     "Call name", _("Call name"),
                     "Call", _("Call")]:
         return "callname"
-    elif retval in ["Title", _("Title")]:
+    elif retval in ["Title", _("Person|Title")]:
         return "title"
     elif retval in ["Prefix", _("Prefix")]:
         return "prefix"
@@ -230,7 +230,7 @@ def cleanup_column_name(column):
                     "call name", 
                     "call", _("call")]:
         return "callname"
-    elif retval in ["title", _("title")]:
+    elif retval in ["title", _("Person|title")]:
         return "title"
     elif retval in ["prefix", _("prefix")]:
         return "prefix"

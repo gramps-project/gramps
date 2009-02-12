@@ -31,7 +31,7 @@ import locale
 import random
 import time
 
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -1164,7 +1164,7 @@ def profile(func, *args):
 #-------------------------------------------------------------------------
 
 # keyword, code, translated standard, translated upper
-KEYWORDS = [("title",     "t", _("Title"),     _("TITLE")),
+KEYWORDS = [("title",     "t", _("Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),
             ("prefix",    "p", _("Prefix"),    _("PREFIX")),
             ("surname",   "l", _("Surname"),   _("SURNAME")),
