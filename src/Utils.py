@@ -1164,7 +1164,7 @@ def profile(func, *args):
 #-------------------------------------------------------------------------
 
 # keyword, code, translated standard, translated upper
-KEYWORDS = [("title",     "t", _("Title"),     _("Person|TITLE")),
+KEYWORDS = [("title",     "t", _("Person|Title"),     _("Person|TITLE")),
             ("given",     "f", _("Given"),     _("GIVEN")),
             ("prefix",    "p", _("Prefix"),    _("PREFIX")),
             ("surname",   "l", _("Surname"),   _("SURNAME")),
