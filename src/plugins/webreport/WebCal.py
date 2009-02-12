@@ -431,47 +431,50 @@ class WebCalReport(Report):
         currentsection = proper styling of this navigation bar
         """
 
-        of.write('<div id="navigation">\n')
-        of.write('\t<ul>\n')
-        cols = 0  
+        # creating more than one year
+        if not self.multiyear:
+            return
+
+        num_years = (self.end_year - self.start_year)
         cal_year = self.start_year
-        while (cols <= 25 and cal_year <= self.end_year):
-            url = ''
-            currentsection = False
 
-            # begin subdir level
-            subdirs = ['..'] * nr_up
-            subdirs.append(str(cal_year))
+        nrows = (num_years / 16)
+        for rows in range(0, (nrows + 1)):
+            of.write('<div id="navigation">\n')
+            of.write('\t<ul>\n')
+            cols = 0
+            while (cols <= 15 and cal_year <= self.end_year):
+                url = ''
 
-            # each year will link to current month.
-            # this will always need an extension added
-            full_month_name = get_full_month_name(self.today.month)
+                # begin subdir level
+                subdirs = ['..'] * nr_up
+                subdirs.append(str(cal_year))
 
-            # Note. We use '/' here because it is a URL, not a OS dependent 
-            # pathname.
-            url = '/'.join(subdirs + [full_month_name]) + self.ext
+                # each year will link to current month.
+                # this will always need an extension added
+                full_month_name = get_full_month_name(self.today.month)
 
-            # determine if we need to highlight???
-            if str(cal_year) == currentsection:
-                currentsection = True
+                # Note. We use '/' here because it is a URL, not a OS dependent 
+                # pathname.
+                url = '/'.join(subdirs + [full_month_name]) + self.ext
 
-            # if True, highlight currentsection
-            if currentsection: 
-                section = ' id="CurrentSection"'
-            else:
-                section = '' 
+                # determine if we need to highlight???
+                highlight = ''
+                if str(cal_year) == currentsection:
+                    highlight = ' id="CurrentSection"'
 
-            of.write('\t\t<li%s><a href="%s">%s</a></li>\n' 
-                % (section, url, str(cal_year)))
+                of.write('\t\t<li%s><a href="%s">%d</a></li>\n' 
+                    % (highlight, url, cal_year))
 
-            # increase year
-            cal_year += 1
+                # increase columns
+                cols += 1
 
-            # increase column
-            cols += 1
+                # increase calendar year
+                cal_year += 1
 
-        of.write('\t</ul>\n')
-        of.write('</div>\n\n')
+            # close row and div section in for each row
+            of.write('\t</ul>\n')
+            of.write('</div>\n')
 
     def calendar_common(self, of, nr_up, year, currentsection, title, use_home=False):
         """
@@ -910,17 +913,11 @@ class WebCalReport(Report):
         # Copy all files for the calendars being created
         self.copy_calendar_files()
 
-        # create calendars with multiple years up to twenty-five years
-        # navigation bar length will only support twenty-five years at any given time
         if self.multiyear:
-            # Clip to max 25 years
-            if ((self.end_year - self.start_year + 1) > 25):
-                self.end_year = self.start_year + 25 - 1
-
             for cal_year in range(self.start_year, (self.end_year + 1)):
 
                 # generate progress pass for year ????
-                self.progress.set_pass(_('Creating year %d calendars') % cal_year, '')
+                self.progress.set_pass(_('Creating year %d calendars') % cal_year, 1)
 
                 # initialize the holidays dict to fill:
                 self.holidays = {}
@@ -945,9 +942,6 @@ class WebCalReport(Report):
             # get the information, first from holidays:
             if self.country != 0:
                 self.__get_holidays(cal_year)
-
-            # generate progress pass for single year 
-            #self.progress.set_pass(_('Creating calendars'), 12)
 
             # create "WebCal" calendar pages
             self.web_cal(cal_year)
@@ -1482,36 +1476,40 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 # number of years married, ex: 10
                 nyears = event_date.get_year() - date.get_year()
 
-                # number of years for birthday, ex: 10 years
-                age_str = event_date - date
-                age_str.format(precision=1)
+                # no negative years
+                # years have to be at least zero
+                if nyears > -1:
 
-                # a birthday
-                if event == 'Birthday':
+                    # number of years for birthday, ex: 10 years
+                    age_str = event_date - date
+                    age_str.format(precision=1)
 
-                    if nyears == 0:
-                        txt_str = _('%(person)s, <em>birth</em>') % {
-                                    'person' : text}
-                    else: 
-                        txt_str = _('%(person)s, <em>%(age)s</em> old') % {
-                                    'person' : text, 'age' : age_str}
+                    # a birthday
+                    if event == 'Birthday':
 
-                # an anniversary
-                elif event == 'Anniversary':
+                        if nyears == 0:
+                            txt_str = _('%(person)s, <em>birth</em>') % {
+                                        'person' : text}
+                        else: 
+                            txt_str = _('%(person)s, <em>%(age)s</em> old') % {
+                                        'person' : text, 'age' : age_str}
 
-                    if nyears == 0:
-                        txt_str = _('%(couple)s, <em>wedding</em>') % {
+                    # an anniversary
+                    elif event == 'Anniversary':
+
+                        if nyears == 0:
+                            txt_str = _('%(couple)s, <em>wedding</em>') % {
                                     'couple' : text}
-                    else: 
-                        txt_str = (ngettext('%(couple)s, <em>%(years)d'
-                                            '</em> year anniversary',
-                                            '%(couple)s, <em>%(years)d'
-                                            '</em> year anniversary', nyears)
-                                   % {'couple' : text, 'years'  : nyears})
-                    txt_str = '<span class="yearsmarried">%s</span>' % txt_str
+                        else: 
+                            txt_str = (ngettext('%(couple)s, <em>%(years)d'
+                                                '</em> year anniversary',
+                                                '%(couple)s, <em>%(years)d'
+                                                '</em> year anniversary', nyears)
+                                       % {'couple' : text, 'years'  : nyears})
+                        txt_str = '<span class="yearsmarried">%s</span>' % txt_str
 
-            if txt_str is not None:
-                day_list.append((nyears, date, txt_str, event))
+                if txt_str is not None:
+                    day_list.append((nyears, date, txt_str, event))
 
     # sort them based on number of years
     # holidays will always be on top of day 
