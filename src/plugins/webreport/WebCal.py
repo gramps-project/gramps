@@ -389,43 +389,34 @@ class WebCalReport(Report):
 
         for url_fname, nav_text, cond in navs:
             url = ''
-            currentsection = False
+            cs = False
             if cond:
              
                 subdirs = ['..'] * nr_up
                 subdirs.append(str(year)) 
 
-                # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 if type(url_fname) == int:
                     url_fname = get_full_month_name(url_fname)
 
                 if type(nav_text) == int:
                     nav_text = get_short_month_name(nav_text)
 
-                # Figure out if we need stylesheet highlighting or not
-                highlight = ''
+                # Figure out if we need <li id="CurrentSection"> or just plain <li>
+                print url_fname, currentsection
                 if url_fname == currentsection:
-                    highlight = ' id="CurrentSection"'
+                    cs = True
 
+                # Note. We use '/' here because it is a URL, not a OS dependent pathname
                 url = url_fname
                 if not url.startswith('http:'):
+                    url = '/'.join(subdirs + [url_fname])
 
-                    # if url already ends with an extension, like home link?
-                    # do not add subdirs
-                    if url.endswith(self.ext):
-                        subdirs = []
-                        url = '/'.join(subdirs + [url_fname])
-                    else:
-                        url = '/'.join(subdirs + [url_fname])
-                    if not url.endswith(self.ext):
-                        url += self.ext
+                if not _has_webpage_extension(url, self.ext):
+                    url += self.ext
 
-                if currentsection:
-                    section = ' id="CurrentSection"'
-                else:
-                    section = ''
+                cs = cs and ' id="CurrentSection"' or ''
                 of.write('\t\t<li%s><a href="%s">%s</a></li>\n' 
-                    % (section, url, nav_text))
+                    % (cs, url, nav_text))
 
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
@@ -501,7 +492,7 @@ class WebCalReport(Report):
         of.write('<div id="header">\n')
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % title)
         if self.author:
-            if self.email != '':  
+            if self.email:  
                 msg = _('Created for <a href="mailto:%(email)s?'
                     'subject=WebCal">%(author)s</a>\n') % {
                     'email'  : self.email,
@@ -769,11 +760,14 @@ class WebCalReport(Report):
         """
         Create a file in the html_dir tree.
         If the directory does not exist, create it.
+
+        fname -- filename to be created
+        subdir -- any subdirs to be added
         """
 
         fname = os.path.join(self.html_dir, subdir, fname)
 
-        if not fname.endswith(self.ext):
+        if not _has_webpage_extension(fname, self.ext):
             fname += self.ext
 
         destdir = os.path.dirname(fname)
@@ -988,7 +982,7 @@ class WebCalReport(Report):
             # Add Header
             self.write_header(of, nr_up, self.title_text, True)
 
-            of.write('<body id="Web Calendar">\n')
+            of.write('<body id="webcal">\n')
 
             self.calendar_common(of, nr_up, year, cal_fname, self.title_text, True)
 
@@ -1586,6 +1580,17 @@ def get_next_day(year, month, day_col):
     firstweek_nextmonth = nextmonth[0]
     next_month_day = firstweek_nextmonth[day_col]
     return next_month_day
+
+def _has_webpage_extension(url, ext):
+    """
+    determine if a filename has an extension or not...
+
+    url = filename to be checked
+    """
+
+    if url.endswith(ext):
+        return True
+    return False
 
 #-------------------------------------------------------------------------
 #

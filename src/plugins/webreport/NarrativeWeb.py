@@ -78,7 +78,6 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
-import GrampsLocale
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
                           BooleanOption, EnumeratedListOption, FilterOption, \
@@ -430,15 +429,6 @@ class BasePage:
         Creates the navigation menu
         """
 
-        # Determine if there will be a link to WebCal or not???
-        use_webcal = False
-        webcal_link = self.report.webcal_link
-        if webcal_link.strip() != '':
-            if not webcal_link.endswith(self.ext):
-                webcal_link += self.ext
-            if os.path.isfile(webcal_link): 
-                use_webcal = True
-
         navs = [
             (self.report.index_fname,      _('Home'),            self.report.use_home),
             (self.report.intro_fname,      _('Introduction'),    self.report.use_intro),
@@ -449,7 +439,6 @@ class BasePage:
             ('download',                   _('Download'),         self.report.inc_download),
             ('contact',                    _('Contact'),          self.report.use_contact),
             ('sources',                    _('Sources'),          True),
-            (webcal_link,                  _('Web Calendar'),     use_webcal),
                 ]
 
         of.write('\t<div id="navigation">\n')
@@ -2851,8 +2840,6 @@ class NavWebReport(Report):
 
         self.graph = self.options['graph']
 
-        self.webcal_link = self.options['webcal_link']
-
         if self.use_home:
             self.index_fname = "index"
             self.surname_fname = "surnames"
@@ -3426,13 +3413,6 @@ class NavWebOptions(MenuReportOptions):
         nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
-
-        today = time.localtime()
-        lng_month = GrampsLocale.long_months[today[1]]
-        fpath = '/'.join([const.USER_HOME] + ['WEBCAL'] + [str(today[0])] + [lng_month])
-        webcal_link = StringOption(_('Link to Web Calendar'), fpath)
-        webcal_link.set_help(_('Choose your link to Web Calendars if you want?'))
-        menu.add_option(category_name, 'webcal_link', webcal_link)  
 
     def __add_privacy_options(self, menu):
         """
