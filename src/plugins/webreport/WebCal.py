@@ -368,7 +368,7 @@ class WebCalReport(Report):
         nr_up = number of directories up to reach root directory
         year = year being created
         currentsection = month name being created for proper CSS styling
-        use_home = if this is creating a link to home 
+        use_home = if creating a link to home 
             -- a link to root directory of website
         """
 
@@ -402,13 +402,21 @@ class WebCalReport(Report):
                 if type(nav_text) == int:
                     nav_text = get_short_month_name(nav_text)
 
-                # Figure out if we need <li id="CurrentSection"> or just plain <li>
+                # Figure out if we need stylesheet highlighting or not
+                highlight = ''
                 if url_fname == currentsection:
-                    currentsection = True
+                    highlight = ' id="CurrentSection"'
 
                 url = url_fname
                 if not url.startswith('http:'):
-                    url = '/'.join(subdirs + [url_fname])
+
+                    # if url already ends with an extension, like home link?
+                    # do not add subdirs
+                    if url.endswith(self.ext):
+                        subdirs = []
+                        url = '/'.join(subdirs + [url_fname])
+                    else:
+                        url = '/'.join(subdirs + [url_fname])
                     if not url.endswith(self.ext):
                         url += self.ext
 
