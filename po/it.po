@@ -10019,7 +10019,7 @@ msgid ""
 msgstr ""
 "Questo strumento permette la conversione dei percorsi relativi di file "
 "multimediali in percorsi assoluti. Svolge il suo compito facendo precedere "
-"al percorso assoluto, il percorso base specificato nelle preferenze o, se "
+"al percorso relativo il percorso base specificato nelle preferenze o, se "
 "non impostato, la directory personale dell'utente."
 
 #: ../src/plugins/MediaManager.py:524
@@ -12473,7 +12473,7 @@ msgstr "Dimensioni minimali"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Fill the given area"
-msgstr "Rimepi l'area data"
+msgstr "Riempi l'area data"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:84
 msgid "Use optimal number of pages"
@@ -20672,7 +20672,7 @@ msgstr "Escludi _fonti"
 
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Reference i_mages from path:  "
-msgstr "Immag_ini di riferimento dal percorso:  "
+msgstr "Percorso di riferimento i_mmagini:  "
 
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "Use _Living as first name"
