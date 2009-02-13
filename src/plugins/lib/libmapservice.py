@@ -73,9 +73,10 @@ class MapService():
         
     def _all_places(self):
         """Obtain a list generator of all place objects
-            Usage: for place, descr in mapservice.all_places()
+            Usage as an iterator:
+                for place, descr in mapservice.all_places()
         """
-        for handle, descr in self.database.get_handles():
+        for handle, descr in self.items:
             yield self.database.get_place_from_handle(handle), descr
     
     def _lat_lon(self, place, format="D.D8"):
