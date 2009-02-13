@@ -51,16 +51,16 @@ class HasAddress(Rule):
     
     def prepare(self, db):
         # things we want to do just once, not for every handle
-        if  self.list[1] == _('lesser than'):
+        if  self.list[1] == 'lesser than':
             self.count_type = 0
-        elif self.list[1] == _('greater than'):
+        elif self.list[1] == 'greater than':
             self.count_type = 2
         else:
             self.count_type = 1 # "equal to"
 
         self.userSelectedCount = int(self.list[0])
         
-    def apply(self, db, obj):
+    def apply(self, db, person):
         count = len( person.get_address_list())
         if self.count_type == 0:     # "lesser than"
             return count < self.userSelectedCount
