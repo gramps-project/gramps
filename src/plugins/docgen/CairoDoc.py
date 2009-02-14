@@ -439,6 +439,9 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
         
         # calculate the height of one line
+        # FIXME, we should do set_markup(self._text) and get height of entire
+        #        block somehow, as with markup we allow for setting height
+        #        of pieces of text ... only needed for styled notes though...
         layout.set_text('Test')
         layout_width, layout_height = layout.get_pixel_size()
         line_height = layout_height + self.spacing
@@ -446,8 +449,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         text_height = height - t_margin - 2 * v_padding
         line_per_height = text_height / line_height
         
-        # if nothing fits return now with result if not a cell (undivisable)
-        if line_per_height < 1 and not self._parent._type == 'CELL':
+        # if nothing fits return now with result
+        if line_per_height < 1:
             return (None, self), 0
         
         # calculate where to cut the paragraph
@@ -456,14 +459,16 @@ class GtkDocParagraph(GtkDocBaseElement):
         line_count = layout.get_line_count()
         
         # if all paragraph fits we don't need to cut
-        # if paragraph part of a cell, we do not divide, table must be split,
-        # as rows and cells do not divide ...
-        #   ==> note: this means the user must not make one page paragraphs!
-        if line_count <= line_per_height or self._parent._type == 'CELL':
+        if line_count <= line_per_height:
             paragraph_height = (layout_height + t_margin + (2 * v_padding))
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
             return (self, None), paragraph_height
+        
+        # if paragraph part of a cell, we do not divide if only small part,
+        # of paragraph can be shown, instead move to next page
+        if  line_per_height < line_count < 4 and self._parent._type == 'CELL':
+            return (None, self), 0
         
         # get index of first character which doesn't fit on available height
         layout_line = layout.get_line(int(line_per_height))
@@ -477,9 +482,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         self._text = self._text.encode('utf-8')[:index]
         self._style.set_bottom_margin(0)
         
-        # FIXME do we need to return the proper height???
-        # paragraph_height = line_height * line_count + t_margin + 2 * v_padding
-        paragraph_height = 0
+        paragraph_height = line_height * line_count + t_margin + 2 * v_padding
+        #paragraph_height = 0
         return (self, new_paragraph), paragraph_height
     
     def draw(self, cr, layout, width, dpi_x, dpi_y):
@@ -578,7 +582,8 @@ class GtkDocTable(GtkDocBaseElement):
             row = self._children[row_index]
             (r1, r2), row_height = row.divide(layout, table_width, height,
                                               dpi_x, dpi_y)
-            if table_height + row_height >= height:
+            if r2 is not None: 
+                #break the table in two parts
                 break
             table_height += row_height
             row_index += 1
@@ -587,9 +592,11 @@ class GtkDocTable(GtkDocBaseElement):
         new_table = None
         if row_index < len(self._children):
             new_table = GtkDocTable(self._style)
-            for row in self._children[row_index:]:
+            #add the split row
+            new_table.add_child(r2)
+            for row in self._children[row_index+1:]:
                 new_table.add_child(row)
-            del self._children[row_index:]
+            del self._children[row_index+1:]
             
         return (self, new_table), table_height
     
@@ -624,7 +631,9 @@ class GtkDocTableRow(GtkDocBaseElement):
     def divide(self, layout, width, height, dpi_x, dpi_y):
         # the highest cell gives the height of the row
         cell_heights = []
+        dividedrow = False
         cell_width_iter = self._style.__iter__()
+        new_row = GtkDocTableRow(self._style)
         for cell in self._children:
             cell_width = 0
             for i in range(cell.get_span()):
@@ -633,13 +642,27 @@ class GtkDocTableRow(GtkDocBaseElement):
             (c1, c2), cell_height = cell.divide(layout, cell_width, height,
                                                 dpi_x, dpi_y)
             cell_heights.append(cell_height)
+            if c2 is None:
+                emptycell = GtkDocTableCell(c1._style, c1.get_span())
+                new_row.add_child(emptycell)
+            else:
+                dividedrow = True
+                new_row.add_child(c2)
         
         # save height [inch] of the row to be able to draw exact cell border
         row_height = max(cell_heights)
         self.height = row_height / dpi_y
         
-        # a row can't be divided, return the height
-        return (self, None), row_height
+        # return the new row if dividing was needed
+        if dividedrow:
+            if row_height == 0:
+                for cell in self._children:
+                    cell._style.set_top_border(False)
+                    cell._style.set_left_border(False)
+                    cell._style.set_right_border(False)
+            return (self, new_row), row_height
+        else:
+            return (self, None), row_height
     
     def draw(self, cr, layout, width, dpi_x, dpi_y):
         cr.save()
@@ -685,19 +708,42 @@ class GtkDocTableCell(GtkDocBaseElement):
 
         # calculate real available width
         width -= 2 * h_padding
+        available_height = height
 
         # calculate height of each child
         cell_height = 0
-        for child in self._children:
-            (e1, e2), child_height = child.divide(layout, width, height,
-                                                 dpi_x, dpi_y)
-            cell_height += child_height
+        new_cell = None
+        e2 = None
         
+        childnr = 0
+        for child in self._children:
+            if new_cell is None:
+                (e1, e2), child_height = child.divide(layout, width, 
+                                                available_height, dpi_x, dpi_y)
+                cell_height += child_height
+                available_height -= child_height
+                if e2 is not None:
+                    #divide the cell
+                    new_style = BaseDoc.TableCellStyle(self._style)
+                    if e1 is not None:
+                        new_style.set_top_border(False)
+                    new_cell = GtkDocTableCell(new_style, self._span)
+                    new_cell.add_child(e2)
+                    # then update this cell
+                    self._style.set_bottom_border(False)
+                if e1 is not None:
+                    childnr += 1
+            else:
+                #cell has been divided
+                new_cell.add_child(child)
+        
+        self._children = self._children[:childnr]
         # calculate real height
-        cell_height += 2 * v_padding
+        if cell_height <> 0:
+            cell_height += 2 * v_padding
         
         # a cell can't be divided, return the heigth
-        return (self, None), cell_height
+        return (self, new_cell), cell_height
     
     def draw(self, cr, layout, width, cell_height, dpi_x, dpi_y):
         """Draw a cell.
