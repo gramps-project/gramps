@@ -161,12 +161,13 @@ class PlaceView(PageView.ListView):
 
         if not self.mapservicedata:
             return
+
+        self.mapslistlabel = []
         if not self.mapservice in self.mapservicedata: 
             #stored val no longer exists, use the first key instead
             self.set_mapservice(self.mapservicedata.keys()[0])
 
         #store all gtk labels to be able to update label on selection change
-        self.mapslistlabel = []
         for widget in widgets :
             if isinstance(widget, gtk.MenuToolButton):
                 widget.set_menu(mmenu)
