@@ -203,7 +203,7 @@ class CalendarReport(Report):
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
 
-            if self.birthdays and birth_date is not None:
+            if (self.birthdays and birth_date is not None and birth_date.is_valid()):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -290,24 +290,26 @@ class CalendarReport(Report):
                                     month = event_obj.get_month()
                                     day = event_obj.get_day()
                                     nyears = self.year - year
-                                    if nyears == 0:
-                                        text = _("%(spouse)s and\n %(person)s, wedding") % {
-                                            'spouse' : spouse_name, 
-                                            'person' : short_name}
-                                    else:
-                                        text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d",
-                                                         "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
-                                                % {'spouse' : spouse_name, 
-                                                   'person' : short_name, 
-                                                   'nyears' : nyears})
+
+                                    if event_obj.is_valid():
+                                        if nyears == 0:
+                                            text = _("%(spouse)s and\n %(person)s, wedding") % {
+                                                     'spouse' : spouse_name, 
+                                                     'person' : short_name}
+                                        else:
+                                            text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d",
+                                                             "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
+                                                    % {'spouse' : spouse_name, 
+                                                       'person' : short_name, 
+                                                       'nyears' : nyears})
  
-                                        prob_alive_date = gen.lib.Date(self.year, month, day)
-                                        alive1 = probably_alive(person, self.database, \
-                                            prob_alive_date)
-                                        alive2 = probably_alive(spouse, self.database, \
-                                            prob_alive_date)
-                                        if (self.alive and alive1 and alive2) or not self.alive:
-                                            self.add_day_item(text, month, day)
+                                            prob_alive_date = gen.lib.Date(self.year, month, day)
+                                            alive1 = probably_alive(person, self.database, \
+                                                prob_alive_date)
+                                            alive2 = probably_alive(spouse, self.database, \
+                                                prob_alive_date)
+                                            if (self.alive and alive1 and alive2) or not self.alive:
+                                                self.add_day_item(text, month, day)
 
 #------------------------------------------------------------------------
 #

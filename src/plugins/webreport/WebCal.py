@@ -402,7 +402,6 @@ class WebCalReport(Report):
                     nav_text = get_short_month_name(nav_text)
 
                 # Figure out if we need <li id="CurrentSection"> or just plain <li>
-                print url_fname, currentsection
                 if url_fname == currentsection:
                     cs = True
 
@@ -1027,46 +1026,40 @@ class WebCalReport(Report):
                 birth_date = birth_event.get_date_object()
 
             # determine birthday information???
-            if self.birthday and birth_date is not None:
+            if (self.birthday and birth_date is not None and birth_date.is_valid()):
 
-                # determine if birthdadate is a valid date???
-                complete_date = False
-                if birth_date.is_valid():
-                    complete_date = True
-                if complete_date:
+                year = birth_date.get_year()
+                month = birth_date.get_month()
+                day = birth_date.get_day()
 
-                    year = birth_date.get_year()
-                    month = birth_date.get_month()
-                    day = birth_date.get_day()
+                prob_alive_date = gen.lib.Date(this_year, month, day)
 
-                    prob_alive_date = gen.lib.Date(this_year, month, day)
+                # add some things to handle maiden name:
+                father_surname = None # husband, actually
+                sex = person.gender
+                if sex == gen.lib.Person.FEMALE:
 
-                    # add some things to handle maiden name:
-                    father_surname = None # husband, actually
-                    sex = person.gender
-                    if sex == gen.lib.Person.FEMALE:
-
-                        # get husband's last name:
-                        if self.maiden_name in ['spouse_first', 'spouse_last']: 
-                            if len(family_list) > 0:
-                                if self.maiden_name == 'spouse_first':
-                                    fhandle = family_list[0]
-                                else:
-                                    fhandle = family_list[-1]
-                                fam = self.database.get_family_from_handle(fhandle)
-                                father_handle = fam.get_father_handle()
-                                mother_handle = fam.get_mother_handle()
-                                if mother_handle == person_handle:
-                                    if father_handle:
-                                        father = self.database.get_person_from_handle(father_handle)
-                                        if father != None:
-                                            father_name = father.primary_name
-                                            father_surname = _get_regular_surname(sex, father_name)
-                    short_name = _get_short_name(person, father_surname)
-                    alive = probably_alive(person, self.database, prob_alive_date)
+                    # get husband's last name:
+                    if self.maiden_name in ['spouse_first', 'spouse_last']: 
+                        if len(family_list) > 0:
+                            if self.maiden_name == 'spouse_first':
+                                fhandle = family_list[0]
+                            else:
+                                fhandle = family_list[-1]
+                            fam = self.database.get_family_from_handle(fhandle)
+                            father_handle = fam.get_father_handle()
+                            mother_handle = fam.get_mother_handle()
+                            if mother_handle == person_handle:
+                                if father_handle:
+                                    father = self.database.get_person_from_handle(father_handle)
+                                    if father != None:
+                                        father_name = father.primary_name
+                                        father_surname = _get_regular_surname(sex, father_name)
+                short_name = _get_short_name(person, father_surname)
+                alive = probably_alive(person, self.database, prob_alive_date)
+                if (self.alive and alive) or not self.alive:
                     text = _('%(short_name)s') % {'short_name' : short_name}
-                    if (self.alive and alive) or not self.alive:
-                        self.add_day_item(text, year, month, day, 'Birthday')
+                    self.add_day_item(text, year, month, day, 'Birthday')
 
             # add anniversary if requested
             if self.anniv:
@@ -1095,12 +1088,7 @@ class WebCalReport(Report):
 
                                 prob_alive_date = gen.lib.Date(this_year, month, day)
 
-                                # determine if anniversary date is a valid date???
-                                complete_date = False
                                 if event_obj.is_valid():
-                                    complete_date = True
-                                if complete_date:
-
                                     text = _('%(spouse)s and %(person)s') % {
                                              'spouse' : spouse_name,
                                              'person' : short_name}
@@ -1523,7 +1511,8 @@ def get_marrital_status(db, family):
     """
     Returns the marital status of two people, a couple
 
-    are_married will either be the marriage event or None if not married anymore
+    are_married will either be the marriage event 
+    or None if not married anymore
     """
 
     are_married = None
@@ -1544,7 +1533,8 @@ def get_first_day_of_month(year, month):
     It can also be a day in the previous month.
     """
 
-    current_date = datetime.date(year, month, 1) # first day of the month
+    # first day of the month
+    current_date = datetime.date(year, month, 1)
 
     # monthinfo is filled using standard Python library 
     # calendar.monthcalendar. It fills a list of 7-day-lists. The first day 
@@ -1586,6 +1576,7 @@ def _has_webpage_extension(url, ext):
     determine if a filename has an extension or not...
 
     url = filename to be checked
+    ext -- extension to process if there is one or not
     """
 
     if url.endswith(ext):
