@@ -268,7 +268,11 @@ class DescendTree(Report):
     def write_report(self):
 
         (maxy,maxx) = self.genchart.dimensions()
-        maxx = (maxx-1)*2
+        if maxx <> 1:
+            maxx = (maxx-1)*2
+        else:
+            #no descendants
+            maxx = 1
         maxh = int((self.uh-0.75)/(self.box_height*1.25))
 
         if self.force_fit:

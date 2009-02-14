@@ -1444,6 +1444,9 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self._available_height = page_height
         
         # try to fit the next element to current page, divide it if needed
+        if not self._elements_to_paginate:
+            #this is a self._doc where nothing has been added. Empty page.
+            return True
         elem = self._elements_to_paginate.pop(0)
         (e1, e2), e1_h = elem.divide(layout,
                                      page_width,
