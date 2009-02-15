@@ -362,8 +362,6 @@ class WebCalReport(Report):
         """
         Will create and display the navigation menu bar
 
-        use_home will produce a link to wherever you specify as a home link
-
         of = calendar filename being created
         nr_up = number of directories up to reach root directory
         year = year being created
@@ -374,48 +372,40 @@ class WebCalReport(Report):
 
         navs = []
 
-        # check to see if we are using a home link???
-        if use_home:
-            navs.append((self.home_link,  _('Home'),  True))
+        # An optional link to a home page
+        navs.append((self.home_link,  _('Home'),  use_home))
 
         for month in range(1, 13):
             navs.append((month, month, True))
 
         # Add a link for year_glance() if requested
-        navs.append(('fullyear', _('Year Glance'),    self.fullyear))
+        navs.append(('fullyear', _('Year Glance'), self.fullyear))
 
         of.write('<div id="subnavigation">\n')
         of.write('\t<ul>\n')
 
-        for url_fname, nav_text, cond in navs:
-            url = ''
-            cs = False
-            if cond:
-             
-                subdirs = ['..'] * nr_up
-                subdirs.append(str(year)) 
+        navs = [(u, n) for u, n, c in navs if c]
+        for url_fname, nav_text in navs:
+            subdirs = ['..'] * nr_up
+            subdirs.append(str(year)) 
 
-                if type(url_fname) == int:
-                    url_fname = get_full_month_name(url_fname)
+            if type(url_fname) == int:
+                url_fname = get_full_month_name(url_fname)
 
-                if type(nav_text) == int:
-                    nav_text = get_short_month_name(nav_text)
+            if type(nav_text) == int:
+                nav_text = get_short_month_name(nav_text)
 
-                # Figure out if we need <li id="CurrentSection"> or just plain <li>
-                if url_fname == currentsection:
-                    cs = True
+            # Note. We use '/' here because it is a URL, not a OS dependent pathname
+            url = url_fname
+            if not (url.startswith('http:') or url.startswith('/')):
+                url = '/'.join(subdirs + [url_fname])
 
-                # Note. We use '/' here because it is a URL, not a OS dependent pathname
-                url = url_fname
-                if not url.startswith('http:'):
-                    url = '/'.join(subdirs + [url_fname])
+            if not _has_webpage_extension(url, self.ext):
+                url += self.ext
 
-                if not _has_webpage_extension(url, self.ext):
-                    url += self.ext
-
-                cs = cs and ' id="CurrentSection"' or ''
-                of.write('\t\t<li%s><a href="%s">%s</a></li>\n' 
-                    % (cs, url, nav_text))
+            # Figure out if we need <li id="CurrentSection"> or just plain <li>
+            cs = url_fname == currentsection and ' id="CurrentSection"' or ''
+            of.write('\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url, nav_text))
 
         of.write('\t</ul>\n')
         of.write('</div>\n\n')
@@ -864,7 +854,7 @@ class WebCalReport(Report):
 
         of.write('<body id="fullyearlinked">\n')
 
-        self.calendar_common(of, nr_up, year, 'fullyear', title)
+        self.calendar_common(of, nr_up, year, 'fullyear', title, use_home=True)
 
         # page description 
         of.write('<div class="content">\n')
@@ -1571,6 +1561,7 @@ def get_next_day(year, month, day_col):
     next_month_day = firstweek_nextmonth[day_col]
     return next_month_day
 
+# TODO. Eliminate this function, or make it do something useful.
 def _has_webpage_extension(url, ext):
     """
     determine if a filename has an extension or not...
