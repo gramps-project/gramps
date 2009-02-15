@@ -24,6 +24,7 @@
 #
 #------------------------------------------------------------------------
 import cgi
+import locale
 
 #------------------------------------------------------------------------
 #
@@ -247,13 +248,13 @@ class PedigreeGramplet(Gramplet):
             if g == 0:
                 self.link(_("Generation 1"), 'PersonList', handles, 
                           tooltip=_("Double-click to see people in generation"))
-                percent = '%.2f%s' % ( 100, percent_sign)
+                percent = locale.format( '%.2f', 100) + percent_sign
                 self.append_text(_(" has 1 of 1 individual (%(percent)s complete)\n") %  {'percent': percent})
             else:
                 all.extend(handles)
                 self.link(_("Generation %d") % g, 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation %d") % g)
-                percent = '%.2f%s' % ( float(count)/2**(g-1) * 100, percent_sign)
+                percent = locale.format('%.2f', float(count)/2**(g-1) * 100) + percent_sign
                 self.append_text(ngettext(
                     " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
                     " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",

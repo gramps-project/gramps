@@ -32,6 +32,7 @@
 #------------------------------------------------------------------------
 from gettext import gettext as _
 from gettext import ngettext
+import locale
 import math
 
 #------------------------------------------------------------------------
@@ -95,7 +96,7 @@ class NumberOfAncestorsReport(Report):
                 gen += 1
                 theoretical = math.pow(2, ( gen - 1 ) )
                 total_theoretical += theoretical
-                percent =  '(%3.2f%%)' % ((sum(thisgen.values()) / theoretical ) * 100)
+                percent = '(%s%%)' % locale.format('%3.2f', ((sum(thisgen.values()) / theoretical ) * 100))
                 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
