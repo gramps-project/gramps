@@ -305,9 +305,8 @@ def suite():
              ("before 2007", "2000", True), 
              # offsets
              # different calendar, same date
-             ("Aug 3, 1982", "14 Thermidor 190 (French Republican)", True),  
-             ("after Aug 3, 1982", 
-              "before 14 Thermidor 190 (French Republican)", False), 
+             ("1800-8-3", "15 Thermidor 8 (French Republican)", True),  
+             ("after 1800-8-3", "before 15 Thermidor 8 (French Republican)", False), 
              ("ab cd", "54 ab cd 2000", True, False),
              ("1700-02-29 (Julian)", "1700-03-01 (Swedish)", True),  
              ("1706-12-31 (Julian)", "1707-01-01 (Swedish)", True),  
