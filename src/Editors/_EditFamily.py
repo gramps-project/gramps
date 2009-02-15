@@ -610,7 +610,7 @@ class EditFamily(EditPrimary):
             self.obj.set_relationship,
             self.obj.get_relationship,
             self.db.readonly,
-            self.db.get_marker_types(),
+            self.db.get_family_relation_types(),
             )
 
     def load_data(self):
