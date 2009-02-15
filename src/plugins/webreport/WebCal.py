@@ -971,7 +971,7 @@ class WebCalReport(Report):
             # Add Header
             self.write_header(of, nr_up, self.title_text, True)
 
-            of.write('<body id="webcal">\n')
+            of.write('<body id="WebCal">\n')
 
             self.calendar_common(of, nr_up, year, cal_fname, self.title_text, True)
 
