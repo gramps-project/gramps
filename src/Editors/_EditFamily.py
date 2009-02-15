@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+#               2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -572,7 +573,7 @@ class EditFamily(EditPrimary):
             self.obj.set_relationship,
             self.obj.get_relationship,
             self.db.readonly,
-            self.db.get_marker_types(),
+            self.db.get_family_relation_types(),
             )
 
     def load_data(self):
