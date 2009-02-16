@@ -10,6 +10,7 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-22 11:16+0100\n"
+"PO-Revision-Date: 2009-02-16 08:43+0100\n"
 "PO-Revision-Date: 2009-02-14 11:58+0100\n"
 "Last-Translator: Sigmund Lorentsen <sigmund.lorentsen@tele2.no>\n"
 "Language-Team: Norwegian Nynorsk <kde-i18n-doc@lists.kde.org>\n"
@@ -8458,7 +8459,7 @@ msgstr "Finn mogelege duplikate personar..."
 
 #: ../src/plugins/FindDupes.py:133 ../src/plugins/FindDupes.py:696
 msgid "Find Possible Duplicate People"
-msgstr "Finn mogeleg duplikate personar"
+msgstr "Finn mogelege duplikate personar"
 
 #: ../src/plugins/FindDupes.py:145 ../src/plugins/Verify.py:296
 msgid "Tool settings"
@@ -14486,7 +14487,7 @@ msgstr "Denne personen hadde eit forhold med %(spouse)s i %(partial_date)s%(endn
 #: ../src/ReportBase/_ReportUtils.py:1114
 #, python-format
 msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Denne personen hadde eit forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1115
 #, python-format
@@ -14511,22 +14512,22 @@ msgstr "Han hadde eit forhold til %(spouse)s %(modified_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1123
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde eit forhold til %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1124
 #, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde eit forhold til %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1125
 #, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde eit forhold til %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1128
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Forhold til %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1129
 #, python-format
@@ -14566,22 +14567,22 @@ msgstr "Han hadde og eit forhold med %(spouse)s den %(full_date)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1143
 #, python-format
 msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Han hadde og eit forhold med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1146
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde og eit forhold til %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1147
 #, python-format
 msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde og eit forhold til %(spouse)s den %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1148
 #, python-format
 msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde og eit forhold til %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1151
 #, python-format
@@ -14616,12 +14617,12 @@ msgstr "Ho hadde eit forhold med %(spouse)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1161
 #, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Forhold med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1165
 #, python-format
 msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Forhold med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1166
 #, python-format
@@ -14636,37 +14637,37 @@ msgstr "Ho hadde og eit forhold til %(spouse)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:1168
 #, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "Også forhold til %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1172
 #, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Denne personen hadde eit forhold med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1173
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Han hadde eit forhold med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1174
 #, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Ho hadde eit forhold med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1175
 #, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Forhold med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1179
 #, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Denne personen hadde og eit forhold til %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1180
 #, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "Han hadde og eit forhold til %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1181
 #, python-format
@@ -14721,7 +14722,7 @@ msgstr "%(male_name)s er son til %(father)s og %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1210
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(male_name)s var son til %(father)s and %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1212
 #, python-format
@@ -14741,12 +14742,12 @@ msgstr "Ho var dotter til %(father)s and %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1220
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(female_name)s er dotter til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1221
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "%(female_name)s var dotter til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1223
 #, python-format
@@ -14806,7 +14807,7 @@ msgstr "Son til %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:1252
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr "Ho var dotter til %(father)s."
+msgstr "Ho er dotter til %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1253
 #, python-format
@@ -14846,7 +14847,7 @@ msgstr "%(male_name)s er barnet til %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1271
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s var barnet til %(mother)s."
+msgstr "%(male_name)s var son til %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1273
 #, python-format
@@ -14856,17 +14857,17 @@ msgstr "Barnet til %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1277
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr ""
+msgstr "Han er son til %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1278
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr ""
+msgstr "Han var son til %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1281
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr ""
+msgstr "%(male_name)s er son til of %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1282
 #, python-format
@@ -14896,7 +14897,7 @@ msgstr "%(female_name)s er dotter til %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1293
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr ""
+msgstr "%(female_name)s var dotter til %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1295
 #, python-format
@@ -14909,7 +14910,7 @@ msgstr "Ugift"
 
 #: ../src/ReportBase/_ReportUtils.py:1306
 msgid "civil union"
-msgstr ""
+msgstr "Partnarskap"
 
 #: ../src/ReportBase/_ReportUtils.py:1308 ../src/glade/mergedata.glade.h:8
 msgid "Other"
@@ -14931,47 +14932,47 @@ msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(b
 #: ../src/ReportBase/_ReportUtils.py:1841
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(birth_endnotes)s, og døydde %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1846
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(birth_endnotes)s, og døydde i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1850
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1855
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s%(birth_endnotes)s, og døydde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1859
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s%(birth_endnotes)s, og døydde %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1864
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s%(birth_endnotes)s, og døydde i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1868
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd %(birth_date)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1874
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd i %(birth_place)s%(birth_endnotes)s, og døydde %(death_date)s in %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1878
 #, python-format
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(male_name)s%(endnotes)s vart fødd i %(birth_place)s%(birth_endnotes)s, og døydde %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1883
 #, python-format
@@ -15011,12 +15012,12 @@ msgstr "%(female_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%
 #: ../src/ReportBase/_ReportUtils.py:1912
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(female_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(birth_endnotes)s, og døydde %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1917
 #, python-format
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(female_name)s%(endnotes)s vart fødd %(birth_date)s i %(birth_place)s%(birth_endnotes)s, og døydde i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1921
 #, python-format
@@ -15066,12 +15067,12 @@ msgstr "%(female_name)s%(endnotes)s vart fødd i %(birth_place)s%(birth_endnotes
 #: ../src/ReportBase/_ReportUtils.py:1963
 #, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(female_name)s%(endnotes)s døydde %(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1966
 #, python-format
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
+msgstr "%(female_name)s%(endnotes)s døydde %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1970
 #, python-format
@@ -15096,7 +15097,7 @@ msgstr "Fødd: %(birth_date)s %(birth_place)s, Døydde: %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:2697
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
-msgstr ""
+msgstr "Føddd: %(birth_date)s %(birth_place)s, Døydde: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2700
 #, python-format
@@ -15136,7 +15137,7 @@ msgstr "Fødd: %(birth_place)s, Døydde: %(death_date)s."
 #: ../src/ReportBase/_ReportUtils.py:2724
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr ""
+msgstr "Fødd: %(birth_place)s, Døydde: %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2727
 #, python-format
@@ -15146,7 +15147,7 @@ msgstr "Fødd: %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:2731
 #, python-format
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr ""
+msgstr "Døydde: %(death_date)s %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2733
 #, python-format
@@ -15160,23 +15161,23 @@ msgstr "Døydde: %(death_place)s."
 
 #: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
-msgstr ""
+msgstr "Dokumentstilar"
 
 #: ../src/ReportBase/_StyleEditor.py:138
 msgid "Error saving stylesheet"
-msgstr ""
+msgstr "Feil ved lagring av stilark"
 
 #: ../src/ReportBase/_StyleEditor.py:205
 msgid "Style editor"
-msgstr ""
+msgstr "Stilhandsamar"
 
 #: ../src/ReportBase/_StyleEditor.py:207
 msgid "Paragraph"
-msgstr ""
+msgstr "Avsnitt"
 
 #: ../src/ReportBase/_StyleEditor.py:241
 msgid "No description available"
-msgstr ""
+msgstr "Ingen omtale tilgjengeleg"
 
 #. -----------------------------------------------------------------------
 #.
@@ -15185,59 +15186,59 @@ msgstr ""
 #. -----------------------------------------------------------------------
 #: ../src/ReportBase/_TemplateParser.py:88
 msgid "Default Template"
-msgstr ""
+msgstr "Standardmal"
 
 #: ../src/ReportBase/_TemplateParser.py:89
 msgid "User Defined Template"
-msgstr ""
+msgstr "Sjølvvald mal"
 
 #: ../src/gen/proxy/dbbase.py:94 ../src/gen/db/base.py:325
 msgid "Processing Person records"
-msgstr ""
+msgstr "Handsamar personpostar"
 
 #: ../src/gen/proxy/dbbase.py:100 ../src/gen/db/base.py:331
 msgid "Processing Family records"
-msgstr ""
+msgstr "Handsamar familiepostar"
 
 #: ../src/gen/proxy/dbbase.py:106 ../src/gen/db/base.py:337
 msgid "Processing Event records"
-msgstr ""
+msgstr "Handsamar hendingspostar"
 
 #: ../src/gen/proxy/dbbase.py:112 ../src/gen/db/base.py:343
 msgid "Processing Place records"
-msgstr ""
+msgstr "Handsamar stadpostar"
 
 #: ../src/gen/proxy/dbbase.py:118 ../src/gen/db/base.py:349
 msgid "Processing Source records"
-msgstr ""
+msgstr "Handsamar kjeldepostar"
 
 #: ../src/gen/proxy/dbbase.py:124 ../src/gen/db/base.py:355
 msgid "Processing Media records"
-msgstr ""
+msgstr "Handsamar mediapostar"
 
 #: ../src/gen/proxy/dbbase.py:130 ../src/gen/db/base.py:361
 msgid "Processing Repository records"
-msgstr ""
+msgstr "Handsamar bibliotekspostar"
 
 #: ../src/gen/proxy/dbbase.py:136 ../src/gen/db/base.py:367
 msgid "Processing Note records"
-msgstr ""
+msgstr "Handsamar notatpostar"
 
 #: ../src/gen/db/base.py:1679 ../src/gen/db/base.py:1752
 #: ../src/gen/db/base.py:1793
 #, python-format
 msgid "_Undo %s"
-msgstr ""
+msgstr "_Angra %s"
 
 #: ../src/gen/db/base.py:1759 ../src/gen/db/base.py:1801
 #, python-format
 msgid "_Redo %s"
-msgstr ""
+msgstr "_Gjer om %s"
 
 #: ../src/gen/db/dbdir.py:1790
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "Låst av %s"
 
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
@@ -15249,7 +15250,7 @@ msgstr "Heimeside"
 
 #: ../src/gen/lib/urltype.py:58
 msgid "Web Search"
-msgstr ""
+msgstr "Internettsøk"
 
 #: ../src/gen/lib/urltype.py:59
 msgid "FTP"
@@ -15257,84 +15258,84 @@ msgstr "FTP"
 
 #: ../src/gen/lib/notetype.py:79
 msgid "Research"
-msgstr ""
+msgstr "Granskning"
 
 #: ../src/gen/lib/notetype.py:80
 msgid "Transcript"
-msgstr ""
+msgstr "Avskrift"
 
 #: ../src/gen/lib/notetype.py:82
 msgid "Citation"
-msgstr ""
+msgstr "Kjeldereferanse"
 
 #: ../src/gen/lib/notetype.py:87
 msgid "Person Note"
-msgstr ""
+msgstr "Personnotat"
 
 #: ../src/gen/lib/notetype.py:88
 msgid "Name Note"
-msgstr ""
+msgstr "Namnenotat"
 
 #: ../src/gen/lib/notetype.py:89
 msgid "Attribute Note"
-msgstr ""
+msgstr "Eigenskapnotat"
 
 #: ../src/gen/lib/notetype.py:90
 msgid "Address Note"
-msgstr ""
+msgstr "Adressenotat"
 
 #: ../src/gen/lib/notetype.py:91
 msgid "Association Note"
-msgstr ""
+msgstr "Foreiningsnotat"
 
 #: ../src/gen/lib/notetype.py:92
 msgid "LDS Note"
-msgstr ""
+msgstr "SDH-notat"
 
 #: ../src/gen/lib/notetype.py:93
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:118
 msgid "Family Note"
-msgstr ""
+msgstr "Familienotat"
 
 #: ../src/gen/lib/notetype.py:94
 msgid "Event Note"
-msgstr ""
+msgstr "Hendingsnotat"
 
 #: ../src/gen/lib/notetype.py:95
 msgid "Event Reference Note"
-msgstr ""
+msgstr "Notat for hendingsreferanse"
 
 #: ../src/gen/lib/notetype.py:96
 msgid "Source Note"
-msgstr ""
+msgstr "Kjeldenotat"
 
 #: ../src/gen/lib/notetype.py:97
 msgid "Source Reference Note"
-msgstr ""
+msgstr "Notat for kjeldetilvising"
 
 #: ../src/gen/lib/notetype.py:98
 msgid "Place Note"
-msgstr ""
+msgstr "Stadnotat"
 
 #: ../src/gen/lib/notetype.py:99
 msgid "Repository Note"
-msgstr ""
+msgstr "Biblioteksnotat"
 
 #: ../src/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
-msgstr ""
+msgstr "Notat for bibliotekstilvising"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
-msgstr ""
+msgstr "Medianotat"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Media Reference Note"
-msgstr ""
+msgstr "Notat for mediareferanse"
 
 #: ../src/gen/lib/notetype.py:104
 msgid "Child Reference Note"
-msgstr ""
+msgstr "Notat for barnereferanse"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
@@ -15342,7 +15343,7 @@ msgstr "Bibliotek"
 
 #: ../src/gen/lib/repotype.py:62
 msgid "Cemetery"
-msgstr ""
+msgstr "Gravplass"
 
 #: ../src/gen/lib/repotype.py:63
 msgid "Church"
@@ -15358,19 +15359,19 @@ msgstr "Nettside"
 
 #: ../src/gen/lib/repotype.py:67
 msgid "Bookstore"
-msgstr ""
+msgstr "Bokhandel"
 
 #: ../src/gen/lib/repotype.py:68
 msgid "Collection"
-msgstr ""
+msgstr "Samling"
 
 #: ../src/gen/lib/repotype.py:69
 msgid "Safe"
-msgstr ""
+msgstr "Safe"
 
 #: ../src/gen/lib/attrtype.py:64
 msgid "Caste"
-msgstr ""
+msgstr "Kaste"
 
 #: ../src/gen/lib/attrtype.py:66
 msgid "Identification Number"
@@ -15378,31 +15379,31 @@ msgstr "Identifikasjonsnummer"
 
 #: ../src/gen/lib/attrtype.py:67
 msgid "National Origin"
-msgstr ""
+msgstr "Opphavsland"
 
 #: ../src/gen/lib/attrtype.py:68
 msgid "Number of Children"
-msgstr ""
+msgstr "Tal på barn"
 
 #: ../src/gen/lib/attrtype.py:69
 msgid "Social Security Number"
-msgstr ""
+msgstr "Social Security Number"
 
 #: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
-msgstr ""
+msgstr "Kontor"
 
 #: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
-msgstr ""
+msgstr "Far sin alder"
 
 #: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
-msgstr ""
+msgstr "Mor sin alder"
 
 #: ../src/gen/lib/attrtype.py:76 ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
-msgstr ""
+msgstr "Vitne"
 
 #: ../src/gen/lib/childreftype.py:60 ../src/gen/lib/eventtype.py:97
 msgid "Adopted"
@@ -15414,15 +15415,15 @@ msgstr "Stebarn"
 
 #: ../src/gen/lib/childreftype.py:62
 msgid "Sponsored"
-msgstr ""
+msgstr "Fadder"
 
 #: ../src/gen/lib/childreftype.py:63
 msgid "Foster"
-msgstr ""
+msgstr "Pleie"
 
 #: ../src/gen/lib/srcmediatype.py:64
 msgid "Audio"
-msgstr ""
+msgstr "Lyd"
 
 #: ../src/gen/lib/srcmediatype.py:65 ../src/plugins/book.glade.h:3
 msgid "Book"
@@ -15438,75 +15439,75 @@ msgstr "Elektronisk"
 
 #: ../src/gen/lib/srcmediatype.py:68
 msgid "Fiche"
-msgstr ""
+msgstr "Mikrokort"
 
 #: ../src/gen/lib/srcmediatype.py:69
 msgid "Film"
-msgstr ""
+msgstr "Film"
 
 #: ../src/gen/lib/srcmediatype.py:70
 msgid "Magazine"
-msgstr ""
+msgstr "Magasin"
 
 #: ../src/gen/lib/srcmediatype.py:71
 msgid "Manuscript"
-msgstr ""
+msgstr "Manuskript"
 
 #: ../src/gen/lib/srcmediatype.py:72
 msgid "Map"
-msgstr ""
+msgstr "Kart"
 
 #: ../src/gen/lib/srcmediatype.py:73
 msgid "Newspaper"
-msgstr ""
+msgstr "Avis"
 
 #: ../src/gen/lib/srcmediatype.py:74
 msgid "Photo"
-msgstr ""
+msgstr "Fotografi"
 
 #: ../src/gen/lib/srcmediatype.py:75
 msgid "Tombstone"
-msgstr ""
+msgstr "Gravstein"
 
 #: ../src/gen/lib/srcmediatype.py:76
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../src/gen/lib/eventroletype.py:59
 msgid "Primary"
-msgstr ""
+msgstr "Primær"
 
 #: ../src/gen/lib/eventroletype.py:60
 msgid "Clergy"
-msgstr ""
+msgstr "Prest"
 
 #: ../src/gen/lib/eventroletype.py:61
 msgid "Celebrant"
-msgstr ""
+msgstr "Forsongar"
 
 #: ../src/gen/lib/eventroletype.py:62
 msgid "Aide"
-msgstr ""
+msgstr "Assistent"
 
 #: ../src/gen/lib/eventroletype.py:63
 msgid "Bride"
-msgstr ""
+msgstr "Brur"
 
 #: ../src/gen/lib/eventroletype.py:64
 msgid "Groom"
-msgstr ""
+msgstr "Brudgom"
 
 #: ../src/gen/lib/date.py:139
 msgid "Gregorian"
-msgstr ""
+msgstr "Gregoriansk"
 
 #: ../src/gen/lib/date.py:140
 msgid "Julian"
-msgstr ""
+msgstr "Juliansk"
 
 #: ../src/gen/lib/date.py:142
 msgid "French Republican"
-msgstr ""
+msgstr "Fransk-republikansk"
 
 #: ../src/gen/lib/date.py:144
 msgid "Islamic"
@@ -15514,11 +15515,11 @@ msgstr "Islamsk"
 
 #: ../src/gen/lib/date.py:1016
 msgid "estimated"
-msgstr ""
+msgstr "Anslått"
 
 #: ../src/gen/lib/date.py:1016
 msgid "calculated"
-msgstr ""
+msgstr "Berekna"
 
 #: ../src/gen/lib/date.py:1030
 msgid "before"
@@ -15534,75 +15535,75 @@ msgstr "omkring"
 
 #: ../src/gen/lib/date.py:1031
 msgid "range"
-msgstr ""
+msgstr "Område"
 
 #: ../src/gen/lib/date.py:1031
 msgid "span"
-msgstr ""
+msgstr "periode"
 
 #: ../src/gen/lib/date.py:1031
 msgid "textonly"
-msgstr ""
+msgstr "Berre tekst"
 
 #: ../src/gen/lib/nametype.py:55
 msgid "Also Known As"
-msgstr ""
+msgstr "Og kjent som"
 
 #: ../src/gen/lib/nametype.py:56
 msgid "Birth Name"
-msgstr ""
+msgstr "Fødselsnamn"
 
 #: ../src/gen/lib/nametype.py:57
 msgid "Married Name"
-msgstr ""
+msgstr "Namn som gift"
 
 #: ../src/gen/lib/eventtype.py:100
 msgid "Adult Christening"
-msgstr ""
+msgstr "Vaksendåp"
 
 #: ../src/gen/lib/eventtype.py:101 ../src/gen/lib/ldsord.py:91
 msgid "Baptism"
-msgstr ""
+msgstr "Dåp"
 
 #: ../src/gen/lib/eventtype.py:102
 msgid "Bar Mitzvah"
-msgstr ""
+msgstr "Bar Mitzvah"
 
 #: ../src/gen/lib/eventtype.py:103
 msgid "Bas Mitzvah"
-msgstr ""
+msgstr "Bas Mitzvah"
 
 #: ../src/gen/lib/eventtype.py:104
 msgid "Blessing"
-msgstr ""
+msgstr "Velsigning"
 
 #: ../src/gen/lib/eventtype.py:105
 msgid "Burial"
-msgstr ""
+msgstr "Gravferd"
 
 #: ../src/gen/lib/eventtype.py:106
 msgid "Cause Of Death"
-msgstr ""
+msgstr "Dødsårsak"
 
 #: ../src/gen/lib/eventtype.py:107
 msgid "Census"
-msgstr ""
+msgstr "Folketelling"
 
 #: ../src/gen/lib/eventtype.py:108
 msgid "Christening"
-msgstr ""
+msgstr "Dåp"
 
 #: ../src/gen/lib/eventtype.py:109 ../src/gen/lib/ldsord.py:93
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmasjon"
 
 #: ../src/gen/lib/eventtype.py:110
 msgid "Cremation"
-msgstr ""
+msgstr "Kremering"
 
 #: ../src/gen/lib/eventtype.py:111
 msgid "Degree"
-msgstr ""
+msgstr "Eksamen/grad"
 
 #: ../src/gen/lib/eventtype.py:112
 msgid "Education"
@@ -15614,244 +15615,244 @@ msgstr "Vald"
 
 #: ../src/gen/lib/eventtype.py:114
 msgid "Emigration"
-msgstr ""
+msgstr "Emigrasjon"
 
 #: ../src/gen/lib/eventtype.py:115
 msgid "First Communion"
-msgstr ""
+msgstr "Første altergang"
 
 #: ../src/gen/lib/eventtype.py:116
 msgid "Immigration"
-msgstr ""
+msgstr "Immigrasjon"
 
 #: ../src/gen/lib/eventtype.py:117
 msgid "Graduation"
-msgstr ""
+msgstr "Eksamen"
 
 #: ../src/gen/lib/eventtype.py:118
 msgid "Medical Information"
-msgstr ""
+msgstr "Medisinsk informasjon"
 
 #: ../src/gen/lib/eventtype.py:119
 msgid "Military Service"
-msgstr ""
+msgstr "Militærteneste"
 
 #: ../src/gen/lib/eventtype.py:120
 msgid "Naturalization"
-msgstr ""
+msgstr "Naturalisasjon"
 
 #: ../src/gen/lib/eventtype.py:121
 msgid "Nobility Title"
-msgstr ""
+msgstr "Adelstittel"
 
 #: ../src/gen/lib/eventtype.py:122
 msgid "Number of Marriages"
-msgstr ""
+msgstr "Tal på ekteskap"
 
 #: ../src/gen/lib/eventtype.py:123
 msgid "Occupation"
-msgstr ""
+msgstr "Yrke"
 
 #: ../src/gen/lib/eventtype.py:124
 msgid "Ordination"
-msgstr ""
+msgstr "Prestevigsel"
 
 #: ../src/gen/lib/eventtype.py:125
 msgid "Probate"
-msgstr ""
+msgstr "Skifte"
 
 #: ../src/gen/lib/eventtype.py:126
 msgid "Property"
-msgstr ""
+msgstr "Eigedom"
 
 #: ../src/gen/lib/eventtype.py:127
 msgid "Religion"
-msgstr ""
+msgstr "Religion"
 
 #: ../src/gen/lib/eventtype.py:128
 msgid "Residence"
-msgstr ""
+msgstr "Bustad"
 
 #: ../src/gen/lib/eventtype.py:129
 msgid "Retirement"
-msgstr ""
+msgstr "Pensjonering"
 
 #: ../src/gen/lib/eventtype.py:130
 msgid "Will"
-msgstr ""
+msgstr "Testamente"
 
 #: ../src/gen/lib/eventtype.py:132
 msgid "Marriage Settlement"
-msgstr ""
+msgstr "Ektepakt"
 
 #: ../src/gen/lib/eventtype.py:133
 msgid "Marriage License"
-msgstr ""
+msgstr "Ekteskapslisens"
 
 #: ../src/gen/lib/eventtype.py:134
 msgid "Marriage Contract"
-msgstr ""
+msgstr "Ekteskapskontrakt"
 
 #: ../src/gen/lib/eventtype.py:135
 msgid "Marriage Banns"
-msgstr ""
+msgstr "Ekteskapslysing"
 
 #: ../src/gen/lib/eventtype.py:136
 msgid "Engagement"
-msgstr ""
+msgstr "Forloving"
 
 #: ../src/gen/lib/eventtype.py:137
 msgid "Divorce"
-msgstr ""
+msgstr "Skilsmisse"
 
 #: ../src/gen/lib/eventtype.py:138
 msgid "Divorce Filing"
-msgstr ""
+msgstr "Skilsmissebegjæring"
 
 #: ../src/gen/lib/eventtype.py:139
 msgid "Annulment"
-msgstr ""
+msgstr "Annullert"
 
 #: ../src/gen/lib/eventtype.py:140
 msgid "Alternate Marriage"
-msgstr ""
+msgstr "Alternativt ekteskap"
 
 #: ../src/gen/lib/familyreltype.py:53
 msgid "Civil Union"
-msgstr ""
+msgstr "Partnerskap"
 
 #: ../src/gen/lib/familyreltype.py:54
 msgid "Unmarried"
-msgstr ""
+msgstr "Ugift"
 
 #: ../src/gen/lib/familyreltype.py:55
 msgid "Married"
-msgstr ""
+msgstr "Gift"
 
 #: ../src/gen/lib/ldsord.py:92
 msgid "Endowment"
-msgstr ""
+msgstr "Donasjon"
 
 #: ../src/gen/lib/ldsord.py:94
 msgid "Sealed to Parents"
-msgstr ""
+msgstr "Bunden til foreldre"
 
 #: ../src/gen/lib/ldsord.py:95
 msgid "Sealed to Spouse"
-msgstr ""
+msgstr "Bunden til ektefelle"
 
 #: ../src/gen/lib/ldsord.py:99
 msgid "<No Status>"
-msgstr ""
+msgstr "<Ingen Status>"
 
 #: ../src/gen/lib/ldsord.py:100
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 #: ../src/gen/lib/ldsord.py:101
 msgid "Canceled"
-msgstr ""
+msgstr "Avbrote"
 
 #: ../src/gen/lib/ldsord.py:103
 msgid "Cleared"
-msgstr ""
+msgstr "Rydda"
 
 #: ../src/gen/lib/ldsord.py:104
 msgid "Completed"
-msgstr ""
+msgstr "Komplett"
 
 #: ../src/gen/lib/ldsord.py:105
 msgid "DNS"
-msgstr ""
+msgstr "DNS"
 
 #: ../src/gen/lib/ldsord.py:106
 msgid "Infant"
-msgstr ""
+msgstr "Spedbarn"
 
 #: ../src/gen/lib/ldsord.py:107
 msgid "Pre-1970"
-msgstr ""
+msgstr "Før 1970"
 
 #: ../src/gen/lib/ldsord.py:108
 msgid "Qualified"
-msgstr ""
+msgstr "Kvalifisert"
 
 #: ../src/gen/lib/ldsord.py:109
 msgid "DNS/CAN"
-msgstr ""
+msgstr "DNS/CAN"
 
 #: ../src/gen/lib/ldsord.py:110
 msgid "Stillborn"
-msgstr ""
+msgstr "Dødfødd"
 
 #: ../src/gen/lib/ldsord.py:111
 msgid "Submitted"
-msgstr ""
+msgstr "Avgjeven"
 
 #: ../src/gen/lib/ldsord.py:112
 msgid "Uncleared"
-msgstr ""
+msgstr "Uavklart"
 
 #: ../src/gen/utils/dbutils.py:98
 msgid "Remove Family"
-msgstr ""
+msgstr "Fjern familie"
 
 #: ../src/gen/utils/dbutils.py:117
 msgid "Remove father from family"
-msgstr ""
+msgstr "Fjern far frå familien"
 
 #: ../src/gen/utils/dbutils.py:119
 msgid "Remove mother from family"
-msgstr ""
+msgstr "Fjern mor frå familien"
 
 #: ../src/gen/utils/dbutils.py:166
 msgid "Remove child from family"
-msgstr ""
+msgstr "Fjern barn frå familien"
 
 #: ../src/gen/utils/dbutils.py:199
 msgid "Add child to family"
-msgstr ""
+msgstr "Legg til eit barn i familien"
 
 #: ../src/gen/utils/progressmon.py:64
 msgid "Progress Information"
-msgstr ""
+msgstr "Framdriftsinformasjon"
 
 #: ../src/Filters/_SearchBar.py:92
 #, python-format
 msgid "%s contains"
-msgstr ""
+msgstr "%s inneheld"
 
 #: ../src/Filters/_SearchBar.py:95
 #, python-format
 msgid "%s does not contain"
-msgstr ""
+msgstr "%s inneheld ikkje"
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
-msgstr ""
+msgstr "Alle objekt"
 
 #: ../src/Filters/Rules/_Everything.py:47
 msgid "Matches every object in the database"
-msgstr ""
+msgstr "Samsvarar med alle objekt i databasen"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
 msgid "Attribute:"
-msgstr ""
+msgstr "Eigenskap:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
 msgid "Value:"
-msgstr ""
+msgstr "Verdi:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:49
 msgid "Objects with the <attribute>"
-msgstr ""
+msgstr "Objekt med <attribute>"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:50
 msgid "Matches objects with the given attribute of a particular value"
-msgstr ""
+msgstr "Samsvarar med objekt som har ein eigenskap av ein bestemt verdi"
 
 #: ../src/Filters/Rules/_HasEventBase.py:48
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
@@ -15891,11 +15892,11 @@ msgstr "Omtale:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:52
 msgid "Events matching parameters"
-msgstr ""
+msgstr "Hendingar som svarar til parameter"
 
 #: ../src/Filters/Rules/_HasEventBase.py:53
 msgid "Matches events with particular parameters"
-msgstr ""
+msgstr "Samsvarar med hendingar med bestemte parameter"
 
 #: ../src/Filters/Rules/_HasEventBase.py:54
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:46
@@ -15905,7 +15906,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsWitness.py:47
 #: ../src/Filters/Rules/Person/_PersonWithIncompleteEvent.py:45
 msgid "Event filters"
-msgstr ""
+msgstr "Filter for hendingar"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:45
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
@@ -15920,94 +15921,94 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
 #: ../src/FilterEditor/_EditRule.py:476
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:46
 msgid "Object with <Id>"
-msgstr ""
+msgstr "Objekt med <Id>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
 msgid "Matches objects with a specified GRAMPS ID"
-msgstr ""
+msgstr "Samsvarar med objekt som har ein bestemt GRAMPS-id"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:48
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
 msgid "Regular expression:"
-msgstr ""
+msgstr "Regulært uttrykk:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
 msgid "Objects having notes containing <regular expression>"
-msgstr ""
+msgstr "Objekt som har notat som inneheld <regular expression>"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Samsvarar med objekt som har notat som inneheld tekst som stemmer med eit regulært uttrykk"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
 msgid "Objects having notes containing <substring>"
-msgstr ""
+msgstr "Objekt som har notat som inneheld <substring>"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr ""
+msgstr "Samsvarar med objekt som har notat som inneheld tekst som stemmer med ein delstreng"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
 #: ../src/FilterEditor/_EditRule.py:472
 msgid "Reference count must be:"
-msgstr ""
+msgstr "Talet på referansar må vera:"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
 #: ../src/FilterEditor/_EditRule.py:470
 msgid "Reference count:"
-msgstr ""
+msgstr "Tal på referansar:"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:44
 msgid "Objects with a reference count of <count>"
-msgstr ""
+msgstr "Objekt som er referert til <count> antal gonger"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:45
 msgid "Matches objects with a certain reference count"
-msgstr ""
+msgstr "Samsvarar med objekt som er referert til eit bestemt antal gonger"
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "lesser than"
-msgstr ""
+msgstr "mindre enn"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:53
 #: ../src/FilterEditor/_EditRule.py:194
 msgid "greater than"
-msgstr ""
+msgstr "større enn"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
 #: ../src/FilterEditor/_EditRule.py:495
 msgid "Case sensitive:"
-msgstr ""
+msgstr "Skil mellom store og små bokstavar"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:497
 msgid "Regular-Expression matching:"
-msgstr ""
+msgstr "Regulært uttrykk:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
-msgstr ""
+msgstr "Objekt med postar som inneheld <substring>"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
 msgid "Matches objects whose records contain text matching a substring"
-msgstr ""
+msgstr "Samsvarar med objekt som har postar som inneheld tekst som stemmer med ein delstreng"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
 msgid "Objects marked private"
-msgstr ""
+msgstr "Objekt som er merka som private"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
 msgid "Matches objects that are indicated as private"
-msgstr ""
+msgstr "Samsvarar med objekt som er merka som private"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
@@ -16019,15 +16020,15 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
 #: ../src/FilterEditor/_EditRule.py:481
 msgid "Filter name:"
-msgstr ""
+msgstr "Filternamn:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
 msgid "Objects matching the <filter>"
-msgstr ""
+msgstr "Objekt som stemmer med <filter>"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:54
 msgid "Matches objects matched by the specified filter name"
-msgstr ""
+msgstr "Samsvarar med objekt som svarar til filternamn"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
 msgid "Objects with <Id>"
@@ -16039,77 +16040,77 @@ msgstr "Samsvarar med objekt som har GRAMPS-id som stemmer med eit regulært utt
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
-msgstr ""
+msgstr "Ymse filter"
 
 #: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:19
 msgid "No description"
-msgstr ""
+msgstr "Ingen omtale"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:85
 msgid "Marker type:"
-msgstr ""
+msgstr "Markeringstype:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
 msgid "Has marker of"
-msgstr ""
+msgstr "Har markering som"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a particular type"
-msgstr ""
+msgstr "Samsvarar med markeringar av ein bestemt type"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
-msgstr ""
+msgstr "Slektslause personar"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
 msgid "Matches people that have no family relationships to any other person in the database"
-msgstr ""
+msgstr "Samsvarar med personar som ikkje har nokon slektsrelasjonar til andre personar i databasen"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
 msgid "Everyone"
-msgstr ""
+msgstr "Alle"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:47
 msgid "Matches everyone in the database"
-msgstr ""
+msgstr "Samsvarar med alle i databasen"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:43
 msgid "Families with incomplete events"
-msgstr ""
+msgstr "Familiar med ufullstendige hendingar"
 
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:44
 msgid "Matches people with missing date or place in an event of the family"
-msgstr ""
+msgstr "Svarar til personar som manglar dato eller stad for ei familiehending"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:82
 msgid "Personal attribute:"
-msgstr ""
+msgstr "Personleg eigenskap:"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:46
 msgid "People with the personal <attribute>"
-msgstr ""
+msgstr "Personar som har den personlege eigenskapen <attribute>"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:47
 msgid "Matches people with the personal attribute of a particular value"
-msgstr ""
+msgstr "Personar som har ein personleg eigenskap av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:48
 msgid "People with the <birth data>"
-msgstr ""
+msgstr "Personar med <fødselsdata>"
 
 #: ../src/Filters/Rules/Person/_HasBirth.py:49
 msgid "Matches people with birth data of a particular value"
-msgstr ""
+msgstr "Personar med fødselsdata av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:49
 msgid "People with a common ancestor with <filter> match"
-msgstr ""
+msgstr "Personar som har felles ane med <filter> treff"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
 msgid "Matches people that have a common ancestor with anybody matched by a filter"
-msgstr ""
+msgstr "Personar som har felles ane med nokon som samsvarar med eit filter"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:52
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:48
@@ -16120,31 +16121,31 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:48
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:48
 msgid "Ancestral filters"
-msgstr ""
+msgstr "Anefilter"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
 msgid "People with a common ancestor with <person>"
-msgstr ""
+msgstr "Personar som har felles ane med <person>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr ""
+msgstr "Samsvarar med personar som har felles ane med ein bestemt person"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:46
 msgid "People with complete records"
-msgstr ""
+msgstr "Personar med fullstendige opplysningar"
 
 #: ../src/Filters/Rules/Person/_HasCompleteRecord.py:48
 msgid "Matches all people whose records are complete"
-msgstr ""
+msgstr "Svarar til alle personar som har fullstendige opplysningar"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:48
 msgid "People with the <death data>"
-msgstr ""
+msgstr "Personar med <dødsdata>"
 
 #: ../src/Filters/Rules/Person/_HasDeath.py:49
 msgid "Matches people with death data of a particular value"
-msgstr ""
+msgstr "Samsvarar med alle personar som har dødsdata av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
 #: ../src/FilterEditor/_EditRule.py:79
@@ -16153,65 +16154,65 @@ msgstr "Personleg hending:"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
 msgid "People with the personal <event>"
-msgstr ""
+msgstr "Personar som har personleg <hending>"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 msgid "Matches people with a personal event of a particular value"
-msgstr ""
+msgstr "Samsvarar med personar som har ei personleg hending av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:83
 msgid "Family attribute:"
-msgstr ""
+msgstr "Familie-eigenskap:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:46
 msgid "People with the family <attribute>"
-msgstr ""
+msgstr "Personar med famile<eigenskapen>"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:47
 msgid "Matches people with the family attribute of a particular value"
-msgstr ""
+msgstr "Samsvarar med personar som har ein familieeigenskap av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
 #: ../src/FilterEditor/_EditRule.py:80
 msgid "Family event:"
-msgstr ""
+msgstr "Familiehending:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:52
 msgid "People with the family <event>"
-msgstr ""
+msgstr "Personer med familiehendinga <event>"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:53
 msgid "Matches people with a family event of a particular value"
-msgstr ""
+msgstr "Samsvarar med personar som har ei familiehending av ein bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
 msgid "People with <Id>"
-msgstr ""
+msgstr "Personar med <Id)"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches people with a specified GRAMPS ID"
-msgstr ""
+msgstr "Samsvarar med personar med ein bestemt GRAMPS-id"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
-msgstr ""
+msgstr "Fornamn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Family name:"
-msgstr ""
+msgstr "Etternamn:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Suffix:"
-msgstr ""
+msgstr "Etterstaving:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
-msgstr ""
+msgstr "Tittel"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "Prefix:"
@@ -17261,15 +17262,15 @@ msgstr "Mediaobjekt som har notat som inneheld <regular expression>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Samsvarar med mediaobjekt som har notat som inneheld tekst som svarar til eit regulært uttrykk"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr ""
+msgstr "Mediaobjekt som er referert til <count> antal gonger"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr ""
+msgstr "Samsvarar med mediaobjekt som er regerert til eit bestemt antal gonger"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -17281,27 +17282,27 @@ msgstr "Samsvarar med mediaobjekt som svarar til eit spesifisert filternamn"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr ""
+msgstr "Mediaobjekt som er merka private"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr ""
+msgstr "Samsvarar med mediaobjekt som er merka som private"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr ""
+msgstr "Mediaobjekt med <Id> som svarar til eit regulært uttrykk"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Samsvarar med mediaobjekt som har GRAMPS-id som samsvarar med eit regulært uttrykk"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr ""
+msgstr "Alle bibliotek"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
-msgstr ""
+msgstr "Samsvarar med alle bibliotek i databasen"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -17321,19 +17322,19 @@ msgstr "Samsvarar med bibliotek som har notat som inneheld tekst som stemmer med
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr ""
+msgstr "Bibliotek som har notat som inneheld <regular expression>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "Samsvarar med bibliotek som har notat som inneheld tekst som stemmer med eit regulært uttrykk"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr ""
+msgstr "Bibliotek som er blitt vist til <count> gonger"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr ""
+msgstr "Samsvarar med bibliotek med bestemt antal referansar"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -17341,19 +17342,19 @@ msgstr "Internettadresse:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "Bibliotek som samsvarar med parameter"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr ""
+msgstr "Samsvarar med bibliotek med bestemte parameter"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr ""
+msgstr "Bibliotek som samsvarar med <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr ""
+msgstr "Samsvarar med bibliotek som svarar til eit bestemt filternamn"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -17422,19 +17423,19 @@ msgstr "Notat-type:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr ""
+msgstr "Notat som samsvarar med parameter"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
-msgstr ""
+msgstr "Samsvarar med notat med spesielle parameter"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:43
 msgid "Notes with a reference count of <count>"
-msgstr ""
+msgstr "Notat som er referert til <count> antal gonger"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:44
 msgid "Matches notes with a certain reference count"
-msgstr ""
+msgstr "Samsvarar med notat som er referert til eit bestemt antal gonger"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
@@ -17446,11 +17447,11 @@ msgstr "Samsvarar med notat som stemmer med eit bestemt filternamn"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
 msgid "Notes with <Id> matching regular expression"
-msgstr ""
+msgstr "Notat med <Id> som svarar til eit regulært uttrykk"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Samsvarar med notat som har GRAMPS-id som svarar til eit regulært uttrykk"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
@@ -18980,7 +18981,7 @@ msgstr "Høgste aldersskilnad mellom ektefolk"
 
 #: ../src/plugins/verify.glade.h:14
 msgid "Maximum number of _spouses for a person"
-msgstr ""
+msgstr "Høg_ste tal på ektefeller for ein person"
 
 #: ../src/plugins/verify.glade.h:15
 msgid "Maximum number of c_hildren"
@@ -18988,7 +18989,7 @@ msgstr "Høgste tal på b_arn"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
-msgstr ""
+msgstr "Høgste tal på samanhengjande år som enke før nytt ekteskap"
 
 #: ../src/plugins/verify.glade.h:17
 msgid "Maximum number of years _between children"
@@ -18996,27 +18997,27 @@ msgstr "Høgste tal på år _mellom barn"
 
 #: ../src/plugins/verify.glade.h:18
 msgid "Mi_nimum age to bear a child"
-msgstr ""
+msgstr "_Lågaste alder for å føde eit barn"
 
 #: ../src/plugins/verify.glade.h:19
 msgid "Mi_nimum age to father a child"
-msgstr ""
+msgstr "_Lågaste alder for å bli far"
 
 #: ../src/plugins/verify.glade.h:20
 msgid "Mi_nimum age to marry"
-msgstr ""
+msgstr "_Lågaste alder ved giftarmål"
 
 #: ../src/plugins/verify.glade.h:21
 msgid "_Estimate missing dates"
-msgstr ""
+msgstr "_Anslå manglande datoar"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
-msgstr ""
+msgstr "GRAMPS Slektsgranskarsystem"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Handsama slektsgranskarinformasjon, utføra slektsgransking og analyse"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -19036,43 +19037,43 @@ msgstr "<b>Å leggja til barn</b>:  For å leggja til barn i GRAMPS kan du velja
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
-msgstr ""
+msgstr "<b>Bokmerking av personar</b>:  Bokmerkemenyen på toppen av vindauga er ein fin stad å lagra personar du ofte brukar.  Klikkar du på ein person, vil denne verta aktiv.  Dersom du vil laga eit bokmerke for ein person, veljer du han/ho som aktiv person og høgreklikkar på namnet.  Vel deretter 'Legg til bokmerke'."
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
-msgstr ""
+msgstr "<b>Berekning av relasjonar</b>:  Dette verktøyet, under <b>Verktøy &gt; Reidskap &gt; Kalkulator for relasjonsberekning</b>, let deg finna ut om nokon andre er i slekt med deg (blodslekt, ikkje inngift).  Du får vita nøyaktig slektskap og kven som er felles stamfar."
 
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
-msgstr ""
+msgstr "<b>Endring av føretrekt namn</b>:  Det er lett å handtera personar med fleire namn i GRAMPS.  Set personen som aktiv person, dobbelklikk på namnet og vel namnefana.  Ymse namnetypar kan leggjast til, til dømes Namn som gift, fødselsnamn m.m.  For å velja eit føretrekt namn, høgreklikkar du på namnet og veljer 'Set som standardnamn'."
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
-msgstr ""
+msgstr "<b>Bidra til GRAMPS</b>:  Ønskjer du å bidra til GRAMPS utan å kunna programmera?  Det er ikkje noko problem.  Eit stort prosjekt som GRAMPS treng folk med mange eigenskapar.  Bidrag kan variera frå å skriva dokumentasjon til å testa utviklarversjonar eller til å hjelpa til med nettsidene.  Start med å melda deg på e-postlista for utviklarar, gramps-devel, og introduser deg sjølv.  Meir informasjon om påmelding kan du finna på 'list.sf.net'."
 
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Different Views</b>: There are nine different views for navigating your family: People, Relationships, Family List, Pedigree, Events, Sources, Places, Media and Repositories. Each helps you to achieve one or more specific tasks."
-msgstr ""
+msgstr "<b>Ymse visningar</b>:  Det er elleve ulike visningar for å navigera i slektsdataene dine:  Smågramps, personar, slektskap, familiar, stamtavle, hendingar, kjelder, stader, media, bibliotek og notat.  Kvar einskild av desse hjelper deg å utføra ei eller fleire spesielle oppgåver."
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to locate (and merge) entries of the same person entered more than once in the database."
-msgstr ""
+msgstr "<b>Doble oppføringar</b>:  <b>Verktøy &gt; Databasehandsaming &gt; Finn mogelege duplikate personar</b> let deg finna (og fletta saman) personar som er lagt inn i databasen fleire gonger."
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr ""
+msgstr "<b>Endring av relasjonar til eit barn</b>:  Ikkje alle barn er relatert til foreldre sine ved fødsel. Du kan endra relasjonane til eit barn for kvar av foreldrene ved å velja barnet som aktiv person.  I slektskapsvisninga kan du så velja det tredje ikonet til høgre for &quot;Foreldrefeltet&quot;, slik at familiehandsamaren vert opna.  No kan du høgreklikka på det valde barnet og velje &quot;Endra relasjon&quot;. Her kan du endra relasjon mellom barnet og foreldra.  Relasjonen kan til dømes vera Fødd, Adoptert, Stebarn, Fadderbarn, Fosterbarn eller Ukjent."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
-msgstr ""
+msgstr "<b>Filtrering av personar</b>:  I personvisninga kan du 'filtrera' personar etter ymse kriteria.  Gå til filter (til høgre for personikonet) og vel eit av dei førehandsoppsette filtera.  Til dømes kan du finna alle adopterte personar i slektstreet.  Likeeins kan til dømes og finna personar som manglar fødselsdato.  Trykk på bruk for å få fram resultatet.  Dersom filtermenyen ikkje er synleg, kan han skruast på ved å velja <b>Vis &gt; Filter</b>."
 
 #: ../src/data/tips.xml.in.h:10
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
-msgstr ""
+msgstr "<b>GRAMPS e-postliste</b>:  Ønskjer du svar på spørsmåla dine om GRAMPS?  Sjekk ut e-postlista 'gramps-user'.  Det er mange personar på lista, så det er sannsynleg at du raskt vil få svar.  Dersom du har spørsmål om utviklinga av GRAMPS, kan du prøva 'gramps-devel'.  Informasjon om begge listene finn du på 'lists.sf.net'."
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Manual</b>: The GRAMPS manual is quite elaborate and well written. It includes details on keybindings and includes some useful tips that will help you in your genealogy work. Check it out."
-msgstr ""
+msgstr "<b>GRAMPS Manual</b>:  Gramps-manualen er ganske utfyllande og bra skriven.  Han inneheld til dømes detaljar om hurtigtastar og gjev dessutan nyttige tips som kan hjelpa deg i arbeidet ditt.  Sjekk han ut."
 
 #: ../src/data/tips.xml.in.h:12
 msgid "<b>GRAMPS Reports</b>: GRAMPS offers a wide variety of reports. The Text Reports are particularly useful if you want to send the results of your family tree to members of the family via email."
