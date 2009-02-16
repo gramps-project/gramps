@@ -7,7 +7,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins/mapservices
 
 pkgdata_PYTHON = \
 	googlemap.py\
-	openstreetmap.py
+	openstreetmap.py\
+    eniroswedenmap.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/mapservices
 pkgpythondir = @pkgpythondir@/plugins/mapservices
