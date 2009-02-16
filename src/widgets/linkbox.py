@@ -47,7 +47,7 @@ class LinkBox(gtk.HBox):
     def __init__(self, link, button):
         gtk.HBox.__init__(self)
         self.set_spacing(6)
-        self.pack_start(link, True)
+        self.pack_start(link, False)
         if button:
             self.pack_start(button, False)
         self.show()
