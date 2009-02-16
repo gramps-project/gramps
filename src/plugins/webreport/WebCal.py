@@ -400,7 +400,7 @@ class WebCalReport(Report):
             if not (url.startswith('http:') or url.startswith('/')):
                 url = '/'.join(subdirs + [url_fname])
 
-            if not _has_webpage_extension(url, self.ext):
+            if not _has_webpage_extension(url):
                 url += self.ext
 
             # Figure out if we need <li id="CurrentSection"> or just plain <li>
@@ -756,7 +756,7 @@ class WebCalReport(Report):
 
         fname = os.path.join(self.html_dir, subdir, fname)
 
-        if not _has_webpage_extension(fname, self.ext):
+        if not _has_webpage_extension(fname):
             fname += self.ext
 
         destdir = os.path.dirname(fname)
@@ -1562,16 +1562,16 @@ def get_next_day(year, month, day_col):
     return next_month_day
 
 # TODO. Eliminate this function, or make it do something useful.
-def _has_webpage_extension(url, ext):
+def _has_webpage_extension(url):
     """
     determine if a filename has an extension or not...
 
     url = filename to be checked
-    ext -- extension to process if there is one or not
     """
 
-    if url.endswith(ext):
-        return True
+    for ext in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
+        if url.endswith(ext):
+            return True
     return False
 
 #-------------------------------------------------------------------------
