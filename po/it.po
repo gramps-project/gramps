@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-13 01:04+0100\n"
-"PO-Revision-Date: 2009-02-13 01:02+0100\n"
+"PO-Revision-Date: 2009-02-16 01:29+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -1419,19 +1419,16 @@ msgstr ""
 "La modifica del formato della data avrà effetto dal prossimo avvio di GRAMPS."
 
 #: ../src/GrampsCfg.py:856
-#, fuzzy
 msgid "Date about range"
-msgstr "Intervallo di date per \"circa\""
+msgstr "Intervallo di anni per date \"circa\""
 
 #: ../src/GrampsCfg.py:859
-#, fuzzy
 msgid "Date after range"
-msgstr "Intervallo di date per \"dopo di\""
+msgstr "Intervallo di anni per date \"dopo di\""
 
 #: ../src/GrampsCfg.py:862
-#, fuzzy
 msgid "Date before range"
-msgstr "Intervallo di date per \"prima di\""
+msgstr "Intervallo di anni per date \"prima di\""
 
 #: ../src/GrampsCfg.py:865
 msgid "Maximum age probably alive"
@@ -2354,7 +2351,6 @@ msgstr "Prefisso"
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:266
-#, fuzzy
 msgid "Person|Title"
 msgstr "Titolo"
 
@@ -2927,9 +2923,8 @@ msgid "File does not exist"
 msgstr "Il file non esiste"
 
 #: ../src/Utils.py:1167
-#, fuzzy
 msgid "Person|TITLE"
-msgstr "Persona"
+msgstr "TITOLO"
 
 #: ../src/Utils.py:1168
 msgid "GIVEN"
@@ -3264,9 +3259,8 @@ msgstr "Patronimico, nome"
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279 ../src/BasicUtils/_NameDisplay.py:318
 #: ../src/plugins/import/ImportCsv.py:233
-#, fuzzy
 msgid "Person|title"
-msgstr "Titolo"
+msgstr "titolo"
 
 #: ../src/BasicUtils/_NameDisplay.py:280 ../src/BasicUtils/_NameDisplay.py:319
 #: ../src/plugins/import/ImportCsv.py:227
@@ -3547,15 +3541,14 @@ msgid "Start page for the Html View"
 msgstr "Pagina iniziale per la vista Html"
 
 #: ../src/DataViews/GeoView.py:572
-#, fuzzy
 msgid ""
 "Type an webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
-"Digitare in alto l'indirizzo di una pagina web, e premere invio per caricare "
-"una pagina web in questa pagina\n"
+"Digitare in alto l'indirizzo di un sito web e premere invio per caricarlo in "
+"questa pagina\n"
 "<br>\n"
 "Ad esempio: <b>http://gramps-project.org</p>"
 
@@ -3564,7 +3557,6 @@ msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
 #: ../src/DataViews/GeoView.py:734
-#, fuzzy
 msgid "Select OpenStreetMap Maps"
 msgstr "Seleziona mappe di OpenStreetMap"
 
@@ -3573,37 +3565,30 @@ msgid "_Google Maps"
 msgstr "_Google Maps"
 
 #: ../src/DataViews/GeoView.py:739
-#, fuzzy
 msgid "Select Google Maps."
 msgstr "Seleziona mappe di Google."
 
 #: ../src/DataViews/GeoView.py:742
-#, fuzzy
 msgid "_OpenLayers Maps"
 msgstr "Mappe _OpenLayers"
 
 #: ../src/DataViews/GeoView.py:744
-#, fuzzy
 msgid "Select OpenLayers Maps."
 msgstr "Seleziona mappe OpenLayers."
 
 #: ../src/DataViews/GeoView.py:747
-#, fuzzy
 msgid "_Yahoo! Maps"
 msgstr "_Yahoo! Mappe"
 
 #: ../src/DataViews/GeoView.py:749
-#, fuzzy
 msgid "Select Yahoo Maps."
 msgstr "Seleziona mappe di Yahoo."
 
 #: ../src/DataViews/GeoView.py:752
-#, fuzzy
 msgid "_Microsoft Maps"
 msgstr "_Microsoft Maps"
 
 #: ../src/DataViews/GeoView.py:754
-#, fuzzy
 msgid "Select Microsoft Maps"
 msgstr "Seleziona mappe di Microsoft"
 
@@ -3613,7 +3598,7 @@ msgstr "_Tutti i luoghi"
 
 #: ../src/DataViews/GeoView.py:757
 msgid "Attempt to view all places in the family tree."
-msgstr ""
+msgstr "Cerca di visualizzare tutti i luoghi presenti nell'albero genealogico."
 
 #: ../src/DataViews/GeoView.py:758
 msgid "_Person"
@@ -3621,7 +3606,7 @@ msgstr "_Persona"
 
 #: ../src/DataViews/GeoView.py:760
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
+msgstr "Cerca di visualizzare i luoghi dove la persona selezionata ha vissuto."
 
 #: ../src/DataViews/GeoView.py:761
 msgid "_Family"
@@ -3630,15 +3615,16 @@ msgstr "_Famiglia"
 #: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view places of the selected people's family."
 msgstr ""
+"Cerca di visualizzare i luoghi relativi alla famiglia della persona "
+"selezionata."
 
 #: ../src/DataViews/GeoView.py:764
-#, fuzzy
 msgid "_Event"
 msgstr "_Eventi"
 
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view places connected to all events."
-msgstr ""
+msgstr "Cerca di visualizzare i luoghi collegati ad un qualsiasi evento."
 
 #: ../src/DataViews/GeoView.py:862
 msgid "List of places without coordinates"
@@ -3649,13 +3635,18 @@ msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
 msgstr ""
+"Segue la lista di tutti i luoghi presenti nell'albero genealogico dei quali "
+"non sono presenti le coordinate.<br>Questo vuol dire nessuna longitudine o "
+"nessuna latitudine.<p>"
 
 #: ../src/DataViews/GeoView.py:913
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
 msgstr ""
+"Ci sono %d marcatori da visualizzare. Sono suddivisi in %d pagine di %d "
+"marcatori ciascuna : "
 
 #: ../src/DataViews/GeoView.py:1411
 msgid "No location."
@@ -3663,11 +3654,11 @@ msgstr "Nessuna posizione."
 
 #: ../src/DataViews/GeoView.py:1414
 msgid "You have no places in your family tree  with coordinates."
-msgstr ""
+msgstr "Non ci sono luoghi nell'albero genealogico forniti di coordinate."
 
 #: ../src/DataViews/GeoView.py:1417
 msgid "You are looking at the default map."
-msgstr ""
+msgstr "Quella visualizzata è la mappa predefinita."
 
 #: ../src/DataViews/GeoView.py:1442
 #, python-format
@@ -3695,11 +3686,11 @@ msgstr "Id : %s"
 #: ../src/DataViews/GeoView.py:1533 ../src/DataViews/GeoView.py:1610
 #: ../src/DataViews/GeoView.py:1660 ../src/DataViews/GeoView.py:1731
 msgid "Cannot center the map. No location with coordinates."
-msgstr ""
+msgstr "Impossibile centrare la mappa. Non ci sono luoghi con coordinate."
 
 #: ../src/DataViews/GeoView.py:1537
 msgid "All places in the family tree with coordinates."
-msgstr ""
+msgstr "Tutti i luoghi dell'albero genealogico forniti di coordinate."
 
 #: ../src/DataViews/GeoView.py:1562
 #, python-format
@@ -3708,7 +3699,7 @@ msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1613
 msgid "All events in the family tree with coordinates."
-msgstr ""
+msgstr "Tutti gli eventi dell'albero genealogico forniti di coordinate."
 
 #: ../src/DataViews/GeoView.py:1641
 #, python-format
@@ -3726,19 +3717,22 @@ msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : figlio : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1662
+#, fuzzy
 msgid "The active person's family members have no places with coordinates."
 msgstr ""
+"I membri della famiglia della persona attiva non hanno luoghi con coordinate."
 
 #: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1736
-#, fuzzy
 msgid "No active person set."
 msgstr "Nessuna persona attiva impostata."
 
 #: ../src/DataViews/GeoView.py:1670
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
+"I luoghi dei membri della famiglia di %(name)s presenti nell'albero "
+"genealogico con coordinate."
 
 #: ../src/DataViews/GeoView.py:1714
 #, python-format
@@ -3746,13 +3740,14 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1734
+#, fuzzy
 msgid "The active person has no places with coordinates."
-msgstr ""
+msgstr "La persona attiva non ha luoghi con coordinate."
 
 #: ../src/DataViews/GeoView.py:1739
 #, python-format
 msgid "All event places for %s."
-msgstr ""
+msgstr "Tutti i luoghi degli eventi per %s."
 
 #: ../src/DataViews/GeoView.py:1746
 msgid "Not yet implemented ..."
@@ -4182,6 +4177,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ..."
 msgstr ""
+"Cerca di visualizzare i luoghi selezionati con un servizio di mappe "
+"(OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
@@ -4189,13 +4186,15 @@ msgstr "Seleziona un servizio di mappe"
 
 #: ../src/DataViews/PlaceView.py:138
 msgid "_Look up with Map Service"
-msgstr ""
+msgstr "_Ricerca con il servizio di mappe"
 
 #: ../src/DataViews/PlaceView.py:140
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ..."
 msgstr ""
+"Cerca di visualizzare questo luogo con un servizio di mappe (OpenstreetMap, "
+"Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
@@ -4206,10 +4205,13 @@ msgid "No place selected."
 msgstr "Nessuna luogo selezionato."
 
 #: ../src/DataViews/PlaceView.py:229
+#, fuzzy
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
 msgstr ""
+"È necessario selezionare un luogo per poterlo visualizzare sulla mappa. "
+"Alcuni servizi di mappe potrebbero supportare selezioni multiple."
 
 #: ../src/DataViews/PlaceView.py:249
 msgid "Select Place Columns"
@@ -4309,9 +4311,8 @@ msgid "Edit %s"
 msgstr "Modifica %s"
 
 #: ../src/DataViews/RelationView.py:590
-#, fuzzy
 msgid "Alive"
-msgstr "Vivo"
+msgstr "In vita"
 
 #: ../src/DataViews/RelationView.py:648 ../src/DataViews/RelationView.py:675
 #, python-format
@@ -5926,7 +5927,7 @@ msgid ""
 "error in the following pages of the assistant."
 msgstr ""
 "Queste sono le informazioni dettagliate sull'errore di Gramps; non c'è da "
-"preoccuparsi se alcuni particolari risultano oscuri. Nelle pagine seguenti "
+"preoccuparsi se alcuni particolari risultano oscuri. Nei passi seguenti "
 "dell'assistente sarà possibile aggiungere ulteriori dettagli sull'errore."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:202
@@ -6063,9 +6064,9 @@ msgid ""
 "bug report."
 msgstr ""
 "I dati sono al sicuro ma è consigliabile riavviare immediatamente GRAMPS. Se "
-"si desidera segnalare il problema agli sviluppatore di GRAMPS, selezionare "
-"Segnala e l'assistente per la segnalazione degli errori aiuterà a segnalare "
-"il bug."
+"si desidera segnalare il problema agli sviluppatore di GRAMPS, fare clic su "
+"Resoconto e l'assistente per la segnalazione degli errori aiuterà a "
+"segnalare il bug."
 
 #: ../src/GrampsLogger/_ErrorView.py:87 ../src/GrampsLogger/_ErrorView.py:100
 msgid "Error Detail"
@@ -6724,22 +6725,21 @@ msgid "The center person for the filter"
 msgstr "La persona centrale per il filtro"
 
 #: ../src/plugins/Records.py:460
-#, fuzzy
 msgid "Use call name"
 msgstr "Usare lo pseudonimo"
 
 #: ../src/plugins/Records.py:462
-#, fuzzy
 msgid "Don't use call name"
 msgstr "Non usare lo pseudonimo"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
-msgstr ""
+msgstr "Sostituisce il nome con lo pseudonimo"
 
 #: ../src/plugins/Records.py:464
+#, fuzzy
 msgid "Underline call name in first name / add call name to first name"
-msgstr ""
+msgstr "Sottolinea pseudonimo nel nome / aggiunge lo pseudonimo al nome"
 
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
@@ -6775,38 +6775,42 @@ msgid "The style used for the report title"
 msgstr "Lo stile usato per il titolo del resoconto"
 
 #: ../src/plugins/Records.py:536
-#, fuzzy
 msgid "Youngest living person"
-msgstr "La persona più giovane in vita"
+msgstr "Persona più giovane in vita"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Oldest living person"
-msgstr "La persona più anziana in vita"
+msgstr "Persona più anziana in vita"
 
 #: ../src/plugins/Records.py:538
+#, fuzzy
 msgid "Person died at youngest age"
-msgstr ""
+msgstr "Persona deceduta in più giovane età"
 
 #: ../src/plugins/Records.py:539
+#, fuzzy
 msgid "Person died at oldest age"
-msgstr ""
+msgstr "Persona vissuta più a lungo"
 
 #: ../src/plugins/Records.py:540
+#, fuzzy
 msgid "Person married at youngest age"
-msgstr ""
+msgstr "Persona sposatasi in più giovane età"
 
 #: ../src/plugins/Records.py:541
+#, fuzzy
 msgid "Person married at oldest age"
-msgstr ""
+msgstr "Persona sposatasi più tardi"
 
 #: ../src/plugins/Records.py:542
+#, fuzzy
 msgid "Person divorced at youngest age"
-msgstr ""
+msgstr "Persona che ha divorziato in più giovane età"
 
 #: ../src/plugins/Records.py:543
+#, fuzzy
 msgid "Person divorced at oldest age"
-msgstr ""
+msgstr "Persona che ha divorziato più tardi"
 
 #: ../src/plugins/Records.py:544
 msgid "Youngest father"
@@ -6825,27 +6829,24 @@ msgid "Oldest mother"
 msgstr "Madre più anziana"
 
 #: ../src/plugins/Records.py:548
-#, fuzzy
 msgid "Couple with most children"
 msgstr "Coppia con il maggior numero di figli"
 
 #: ../src/plugins/Records.py:549
-#, fuzzy
 msgid "Living couple married most recently"
 msgstr "Coppia in vita sposata da meno tempo"
 
 #: ../src/plugins/Records.py:550
-#, fuzzy
 msgid "Living couple married most long ago"
 msgstr "Coppia in vita sposata da più tempo"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
-msgstr ""
+msgstr "Matrimonio (terminato) più breve"
 
 #: ../src/plugins/Records.py:552
 msgid "Longest past marriage"
-msgstr ""
+msgstr "Matrimonio (terminato) più lungo"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
@@ -7323,7 +7324,6 @@ msgid "Descendant Chart for %s"
 msgstr "Grafico discendenza per %s"
 
 #: ../src/plugins/drawreport/DescendTree.py:479
-#, fuzzy
 msgid "Show Sp_ouses"
 msgstr "Mostra c_oniugi"
 
@@ -8078,13 +8078,11 @@ msgstr "Età massima"
 
 #: ../src/plugins/gramplet/AgeStats.py:39
 #: ../src/plugins/gramplet/AgeStats.py:48
-#, fuzzy
 msgid "Max age of Mother at birth"
 msgstr "Età massima della madre alla nascita"
 
 #: ../src/plugins/gramplet/AgeStats.py:41
 #: ../src/plugins/gramplet/AgeStats.py:49
-#, fuzzy
 msgid "Max age of Father at birth"
 msgstr "Età massima del padre alla nascita"
 
@@ -8268,7 +8266,6 @@ msgstr "Impossibile aggiungere la nuova persona come genitore."
 #. both genders unknown
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
-#, fuzzy
 msgid "Please set the new person's gender."
 msgstr "Impostare il sesso della nuova persona."
 
@@ -8292,16 +8289,15 @@ msgstr "Impossibile aggiungere la nuova persona come figlio."
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
 #, fuzzy
 msgid "Please set gender on Active or new person."
-msgstr "Impostare il sesso per la persona attiva o quella nuova"
+msgstr "Impostare il sesso per la persona attiva o per quella nuova."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:592
 #: ../src/plugins/gramplet/DataEntryGramplet.py:625
 #, fuzzy
 msgid "Same genders on Active and new person."
-msgstr "Stesso sesso per la persona attiva e quella nuova."
+msgstr "Stesso sesso per la persona attiva e per quella nuova."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:671
-#, fuzzy
 msgid "Please set gender on Active person."
 msgstr "Impostare il sesso per la persona attiva."
 
@@ -8456,9 +8452,8 @@ msgstr "Gramplet Note"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:57
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
-#, fuzzy
 msgid "Max generations"
-msgstr "Generazioni mass."
+msgstr "Num. massimo generazioni"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:211
 #, python-format
@@ -19465,7 +19460,6 @@ msgstr "Sposo"
 #: ../src/gen/lib/date.py:358 ../src/gen/lib/date.py:363
 #: ../src/gen/lib/date.py:374 ../src/gen/lib/date.py:385
 #: ../src/gen/lib/date.py:418
-#, fuzzy
 msgid "more than"
 msgstr "più di"
 
@@ -19483,7 +19477,6 @@ msgstr "più di"
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
 #: ../src/gen/lib/date.py:304 ../src/gen/lib/date.py:326
 #: ../src/gen/lib/date.py:336 ../src/gen/lib/date.py:423
-#, fuzzy
 msgid "less than"
 msgstr "meno di"
 
@@ -19517,7 +19510,6 @@ msgstr "tra"
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:368
-#, fuzzy
 msgid "more than about"
 msgstr "più di circa"
 
@@ -19525,7 +19517,6 @@ msgstr "più di circa"
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
-#, fuzzy
 msgid "less than about"
 msgstr "meno di circa"
 
@@ -22316,14 +22307,14 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:16
-#, fuzzy
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, "
 "such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
-"Un prefisso facoltativo per il nome della famiglia, come «de» o «van», non "
-"usato per l'ordinamento alfabetico"
+"Prefisso: un prefisso facoltativo per il nome della famiglia, come «de» o "
+"«van», non usato per l'ordinamento alfabetico\n"
+"Suffisso: un prefisso facoltativo per il nome, come «Jr.» o «III»"
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "The person's given name"
@@ -22550,7 +22541,6 @@ msgid "Call n_umber:"
 msgstr "Segna_tura:"
 
 #: ../src/glade/gramps.glade.h:48
-#, fuzzy
 msgid "Cen_ter"
 msgstr "_Centrato"
 
@@ -22691,7 +22681,6 @@ msgid "Invoke date editor"
 msgstr "Richiama l'editor di date"
 
 #: ../src/glade/gramps.glade.h:84
-#, fuzzy
 msgid "J_ustify"
 msgstr "_Giustificato"
 
