@@ -12,9 +12,9 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-13 01:04+0100\n"
-"PO-Revision-Date: 2009-02-16 12:27+0100\n"
+"PO-Revision-Date: 2009-02-16 20:58+0100\n"
 "Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +30,7 @@ msgstr "Slektstreet \"%s\" finnes ikke."
 
 #: ../src/ArgHandler.py:231
 msgid "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead"
-msgstr ""
+msgstr "Hvis fila er gedcom, gramps-xml eller grdb, bruk opsjonen -i for å importere til et slektstre istedet"
 
 #: ../src/ArgHandler.py:473
 msgid "Database is locked, cannot open it!"
@@ -833,6 +833,20 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
+"De følgende nøkkelordene vil bli erstatted med navnet:\n"
+"<tt>  \n"
+"  <b>Fornavn</b>       - fornavn (første navn)\n"
+"  <b>Etternavn</b>     - etternavn (siste navn)\n"
+"  <b>Tittel</b>        - tittel (Dr., Fru)\n"
+"  <b>Forstavelse</b>   - forstavelse (von, de, de la)\n"
+"  <b>Etterstavelse</b> - etterstavelse (Jr., Sr.)\n"
+"  <b>Kallenavn</b>     - kallenavn eller klengenavn\n"
+"  <b>Vanlig</b>        - kallenavn eller første del av fornavn\n"
+"  <b>Patronymikon</b>  - patronymikon (fars fornavn)\n"
+"  <b>Initialer</b>     - personene forbokstaver i fornavn(ene)\n"
+"</tt>\n"
+"Bruk det samme nøkkelordet med STORE BOKSTAVER for å tvinge det til å bli med store bokstaver. Parenteser og komma\n"
+"vil bli fjernet rundt tomme felt. Annen tekst vil vises som den er."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1097,17 +1111,19 @@ msgstr "Tilpasset"
 
 #: ../src/GrampsCfg.py:306
 msgid "You need a broadband internet connection to use Internet mapping applications from within GRAMPS"
-msgstr ""
+msgstr "Du trenger bredbånd Internettilknytning for å bruke applikasjonen Internettkart i GRAMPS"
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr ""
+msgstr "Legg til GeoView i GRAMPS for å vise Internettkart basert på dine data."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
 "Choose one of the following map providers:"
 msgstr ""
+"GeoView bruker OpenStreetMap og et tilleggskart.\n"
+"Velg en av følgende kartleverandører:"
 
 #: ../src/GrampsCfg.py:321
 msgid "Google Maps"
@@ -1115,7 +1131,7 @@ msgstr "Google Kart"
 
 #: ../src/GrampsCfg.py:325
 msgid "OpenLayers"
-msgstr ""
+msgstr "OpenLayers"
 
 #: ../src/GrampsCfg.py:329
 msgid "Yahoo! Maps"
@@ -1123,11 +1139,11 @@ msgstr "Yahoo! Kart"
 
 #: ../src/GrampsCfg.py:333
 msgid "Microsoft Maps"
-msgstr ""
+msgstr "Microsoft Kart"
 
 #: ../src/GrampsCfg.py:337
 msgid "You need to restart GRAMPS for above settings to take effect"
-msgstr ""
+msgstr "Du må avslutte GRAMPS og starte det på nytt for å aktivere de nye innstillingene"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:377
@@ -1307,7 +1323,7 @@ msgstr "Gjennomsnittlig antall år mellom generasjoner"
 
 #: ../src/GrampsCfg.py:877
 msgid "Markup for invalid date format"
-msgstr ""
+msgstr "Markering for ugyldig datoformat"
 
 #: ../src/GrampsCfg.py:889
 msgid "Add default source on import"
@@ -1335,7 +1351,7 @@ msgstr "Husk siste visning"
 
 #: ../src/GrampsCfg.py:907
 msgid "Max generations for relationships"
-msgstr ""
+msgstr "Maksimalt antall generasjoner for slektsforhold"
 
 #: ../src/GrampsCfg.py:911
 msgid "Base path for relative media paths"
@@ -1576,7 +1592,7 @@ msgstr "Lenke"
 
 #: ../src/gramps_main.py:201
 msgid "Danger: This is unstable code!"
-msgstr ""
+msgstr "Advarsel: Dette er ustabil kode!"
 
 #: ../src/gramps_main.py:202
 msgid ""
@@ -1635,7 +1651,7 @@ msgstr "Fjern valgte element?"
 
 #: ../src/PageView.py:293
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
-msgstr ""
+msgstr "Mer enn ett element som skal slettes er valgt. Spør ved sletting av hvert enkelt?"
 
 #: ../src/PageView.py:295 ../src/plugins/quickview/all_relations.py:306
 #: ../src/PluginUtils/_GuiOptions.py:912
@@ -3328,23 +3344,21 @@ msgid "Go to the previous page in the history"
 msgstr "Gå til forrige side i historikken"
 
 #: ../src/DataViews/GeoView.py:533
-#, fuzzy
 msgid "Go to the next page in the history"
-msgstr "Gå til neste person i historikken"
+msgstr "Gå til neste side i historikken"
 
 #. add the Refresh action to handle the Refresh button
 #: ../src/DataViews/GeoView.py:538
-#, fuzzy
 msgid "_Refresh"
-msgstr "_Referanser"
+msgstr "_Oppdatere"
 
 #: ../src/DataViews/GeoView.py:541
 msgid "Stop and reload the page."
-msgstr ""
+msgstr "Stans og last siden om igjen."
 
 #: ../src/DataViews/GeoView.py:571
 msgid "Start page for the Html View"
-msgstr ""
+msgstr "Startside for HTML-visning"
 
 #: ../src/DataViews/GeoView.py:572
 msgid ""
@@ -3352,15 +3366,17 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
+"Skriv inn en adresse til en Internettside øverst og trykk på kjøreknappen for å laste inn en nettside på denne siden\n"
+"<br>\n"
+"For eksempel: <b>http://www.gramps-project.org</p>"
 
 #: ../src/DataViews/GeoView.py:732
-#, fuzzy
 msgid "_OpenStreetMap"
-msgstr "Gate"
+msgstr "_OpenStreetMap"
 
 #: ../src/DataViews/GeoView.py:734
 msgid "Select OpenStreetMap Maps"
-msgstr ""
+msgstr "Velg OpenStreetMap Kart"
 
 #: ../src/DataViews/GeoView.py:737
 msgid "_Google Maps"
@@ -3372,20 +3388,19 @@ msgstr "Velg Google Kart."
 
 #: ../src/DataViews/GeoView.py:742
 msgid "_OpenLayers Maps"
-msgstr ""
+msgstr "_OpenLayers Kart"
 
 #: ../src/DataViews/GeoView.py:744
 msgid "Select OpenLayers Maps."
-msgstr ""
+msgstr "Velg OpenLayers Kart."
 
 #: ../src/DataViews/GeoView.py:747
-#, fuzzy
 msgid "_Yahoo! Maps"
-msgstr "_Google Kart"
+msgstr "_Yahoo! Kart"
 
 #: ../src/DataViews/GeoView.py:749
 msgid "Select Yahoo Maps."
-msgstr ""
+msgstr "Velg Yahoo! Kart."
 
 #: ../src/DataViews/GeoView.py:752
 msgid "_Microsoft Maps"
@@ -3401,60 +3416,56 @@ msgstr "_Alle steder"
 
 #: ../src/DataViews/GeoView.py:757
 msgid "Attempt to view all places in the family tree."
-msgstr ""
+msgstr "Forsøke å vise alle stedene i slektstreet."
 
 #: ../src/DataViews/GeoView.py:758
-#, fuzzy
 msgid "_Person"
-msgstr "_Person:"
+msgstr "_Person"
 
 #: ../src/DataViews/GeoView.py:760
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
+msgstr "Forsøke å vise alle stedene hvor de valgte personene lever."
 
 #: ../src/DataViews/GeoView.py:761
-#, fuzzy
 msgid "_Family"
-msgstr "_Slektsnavn:"
+msgstr "_Familie"
 
 #: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view places of the selected people's family."
-msgstr ""
+msgstr "Forsøke å vise steder til de valgte personers familier."
 
 #: ../src/DataViews/GeoView.py:764
-#, fuzzy
 msgid "_Event"
-msgstr "Hen_delser"
+msgstr "Hen_delse"
 
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view places connected to all events."
-msgstr ""
+msgstr "Forsøke å vise steder som er tilknyttet alle hendelsene."
 
 #: ../src/DataViews/GeoView.py:862
 msgid "List of places without coordinates"
-msgstr ""
+msgstr "Liste over steder uten koordinater"
 
 #: ../src/DataViews/GeoView.py:863
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
-msgstr ""
+msgstr "Her er en liste over alle steder i slektstreet som er uten koordinater.<br> Dette betyr ingen lenge- eller breddegrader.<p>"
 
 #: ../src/DataViews/GeoView.py:913
 #, python-format
 msgid "There are %d markers to display. They are split up over %d pages of %d markers : "
-msgstr ""
+msgstr "Det er %d markører som skal vises. De er fordelt på %d sider med %d markører : "
 
 #: ../src/DataViews/GeoView.py:1411
-#, fuzzy
 msgid "No location."
-msgstr "Kommentarplassering"
+msgstr "Ingen plassering."
 
 #: ../src/DataViews/GeoView.py:1414
 msgid "You have no places in your family tree  with coordinates."
-msgstr ""
+msgstr "Du har ingen steder med koordinater i slektstreet ditt."
 
 #: ../src/DataViews/GeoView.py:1417
 msgid "You are looking at the default map."
-msgstr ""
+msgstr "Du ser på standardkartet."
 
 #: ../src/DataViews/GeoView.py:1442
 #, python-format
@@ -3482,11 +3493,11 @@ msgstr "Id : %s"
 #: ../src/DataViews/GeoView.py:1533 ../src/DataViews/GeoView.py:1610
 #: ../src/DataViews/GeoView.py:1660 ../src/DataViews/GeoView.py:1731
 msgid "Cannot center the map. No location with coordinates."
-msgstr ""
+msgstr "Kan ikke sentrere kartet. Ingen steder med koordinater."
 
 #: ../src/DataViews/GeoView.py:1537
 msgid "All places in the family tree with coordinates."
-msgstr ""
+msgstr "Alle steder i slektstreet med koordinater."
 
 #: ../src/DataViews/GeoView.py:1562
 #, python-format
@@ -3495,7 +3506,7 @@ msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1613
 msgid "All events in the family tree with coordinates."
-msgstr ""
+msgstr "Alle hendelser i slektstreet med koordinater."
 
 #: ../src/DataViews/GeoView.py:1641
 #, python-format
@@ -3514,17 +3525,16 @@ msgstr "Id : Barn : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1662
 msgid "The active person's family members have no places with coordinates."
-msgstr ""
+msgstr "Den aktive personens familiemedlemmer har ingen steder med koordinater."
 
 #: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1736
-#, fuzzy
 msgid "No active person set."
-msgstr "Ingen aktiv person valgt"
+msgstr "Ingen aktiv person valgt."
 
 #: ../src/DataViews/GeoView.py:1670
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr ""
+msgstr "Alle %(name)s persons familiesteder i slektstreet med koordinater."
 
 #: ../src/DataViews/GeoView.py:1714
 #, python-format
@@ -3533,16 +3543,16 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1734
 msgid "The active person has no places with coordinates."
-msgstr ""
+msgstr "Den aktive personen har ingen steder med koordinater."
 
 #: ../src/DataViews/GeoView.py:1739
 #, python-format
 msgid "All event places for %s."
-msgstr ""
+msgstr "Alle hendelser for %s."
 
 #: ../src/DataViews/GeoView.py:1746
 msgid "Not yet implemented ..."
-msgstr ""
+msgstr "Ikke implementert enda ..."
 
 #: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:301
 msgid "Add a new media object"
@@ -3591,7 +3601,7 @@ msgstr "Smågramps"
 #: ../src/DataViews/GrampletView.py:353 ../src/DataViews/GrampletView.py:552
 #, python-format
 msgid "Gramplet %s is running"
-msgstr ""
+msgstr "Smågramps %s kjører"
 
 #: ../src/DataViews/GrampletView.py:1091
 msgid "Right click to add gramplets"
@@ -3740,10 +3750,10 @@ msgid "Automatic"
 msgstr "Automatisk"
 
 #: ../src/DataViews/PedigreeView.py:1397
-#, fuzzy, python-format
+#, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
-msgstr[0] "%d generasjoner"
+msgstr[0] "%d generasjon"
 msgstr[1] "%d generasjoner"
 
 #: ../src/DataViews/PedigreeView.py:1410 ../src/DataViews/PedigreeView.py:1430
@@ -3845,7 +3855,6 @@ msgid "Remove the Selected Person"
 msgstr "Fjern den valgte personen"
 
 #: ../src/DataViews/PersonView.py:163
-#, fuzzy
 msgid "Compare and _Merge..."
 msgstr "_Sammenligne og flett sammen..."
 
@@ -3953,18 +3962,16 @@ msgid "_Merge..."
 msgstr "Flett sa_mmen..."
 
 #: ../src/DataViews/PlaceView.py:132
-#, fuzzy
 msgid "Loading..."
-msgstr "Laster inn programtillegg..."
+msgstr "Laster..."
 
 #: ../src/DataViews/PlaceView.py:133
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ..."
 msgstr ""
 
 #: ../src/DataViews/PlaceView.py:136
-#, fuzzy
 msgid "Select a Map Service"
-msgstr "Velg kilde"
+msgstr "Velg en karttjeneste"
 
 #: ../src/DataViews/PlaceView.py:138
 msgid "_Look up with Map Service"
@@ -3979,9 +3986,8 @@ msgid "Place Filter Editor"
 msgstr "Filter for stedsbehandler"
 
 #: ../src/DataViews/PlaceView.py:228
-#, fuzzy
 msgid "No place selected."
-msgstr "Ingen regel ble valgt"
+msgstr "Ingen stedsnavn valgt."
 
 #: ../src/DataViews/PlaceView.py:229
 msgid "You need to select a place to be able to view it on a map. Some Map Services might support multiple selections."
@@ -4079,9 +4085,8 @@ msgid "Edit %s"
 msgstr "Rediger %s"
 
 #: ../src/DataViews/RelationView.py:590
-#, fuzzy
 msgid "Alive"
-msgstr "Arkiv"
+msgstr "Levende"
 
 #: ../src/DataViews/RelationView.py:648 ../src/DataViews/RelationView.py:675
 #, python-format
@@ -4113,7 +4118,7 @@ msgid "Remove person as parent in this family"
 msgstr "Fjern personen som foreldre i denne familien"
 
 #: ../src/DataViews/RelationView.py:794 ../src/DataViews/RelationView.py:850
-#, fuzzy, python-format
+#, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d søsken)"
@@ -4187,7 +4192,7 @@ msgid "Please run the Check and Repair Database tool"
 msgstr "Kjør verktøyet Kontroller og reparer database"
 
 #: ../src/DataViews/RelationView.py:1271 ../src/DataViews/RelationView.py:1317
-#, fuzzy, python-format
+#, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d barn)"
@@ -5931,9 +5936,8 @@ msgid "GRAMPS package"
 msgstr "GRAMPS-pakke"
 
 #: ../src/plugins/import/ImportGpkg.py:147
-#, fuzzy
 msgid "Import data from GRAMPS packages"
-msgstr "GRAMPS-pakker"
+msgstr "Importere data fra GRAMPS-pakker"
 
 #. -------------------------------------------------------------------------
 #.
@@ -6055,7 +6059,6 @@ msgstr ""
 "Objekter flettet sammen-overskrevet ved import:\n"
 
 #: ../src/plugins/import/ImportXml.py:284
-#, fuzzy
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -6131,9 +6134,8 @@ msgid "%s and %s"
 msgstr "%s og %s"
 
 #: ../src/plugins/Records.py:326 ../src/plugins/gramplet/WhatsNext.py:60
-#, fuzzy
 msgid "Double-click name for details"
-msgstr "Dobbeltklikk på etternavn for å se detaljer"
+msgstr "Dobbeltklikk på navn for å se detaljer"
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:327
@@ -6146,9 +6148,8 @@ msgstr "Dobbeltklikk på etternavn for å se detaljer"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:54
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:39
 #: ../src/plugins/gramplet/WhatsNext.py:61
-#, fuzzy
 msgid "No Family Tree loaded."
-msgstr "Ingen Slektstre eller aktiv person er lastet."
+msgstr "Ingen Slektstre er lastet."
 
 #: ../src/plugins/Records.py:342
 #: ../src/plugins/gramplet/GivenNameGramplet.py:54
@@ -6159,9 +6160,8 @@ msgid "Processing..."
 msgstr "Prosesserer..."
 
 #: ../src/plugins/Records.py:394 ../src/plugins/Records.py:568
-#, fuzzy
 msgid "Records"
-msgstr "Rapporter"
+msgstr "Poster"
 
 #: ../src/plugins/Records.py:412
 #, python-format
@@ -6242,14 +6242,12 @@ msgid "The center person for the filter"
 msgstr "Senterpersonen for filteret"
 
 #: ../src/plugins/Records.py:460
-#, fuzzy
 msgid "Use call name"
-msgstr "kallenavn"
+msgstr "Bruk kallenavn"
 
 #: ../src/plugins/Records.py:462
-#, fuzzy
 msgid "Don't use call name"
-msgstr "kallenavn"
+msgstr "Ikke bruk kallenavn"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
@@ -6260,14 +6258,12 @@ msgid "Underline call name in first name / add call name to first name"
 msgstr ""
 
 #: ../src/plugins/Records.py:470
-#, fuzzy
 msgid "Person Records"
-msgstr "Personfiltre"
+msgstr "Personposter"
 
 #: ../src/plugins/Records.py:472
-#, fuzzy
 msgid "Family Records"
-msgstr "Familiefarger"
+msgstr "Familieposter"
 
 #: ../src/plugins/Records.py:509 ../src/plugins/drawreport/AncestorTree.py:499
 #: ../src/plugins/drawreport/DescendTree.py:491
@@ -6287,24 +6283,20 @@ msgid "The basic style used for the text display."
 msgstr "Den grunnleggende stilen for tekstvisning."
 
 #: ../src/plugins/Records.py:518
-#, fuzzy
 msgid "The style used for headings."
-msgstr "Basisstilen for undertitler."
+msgstr "Stilen som brukes på titler."
 
 #: ../src/plugins/Records.py:527
-#, fuzzy
 msgid "The style used for the report title"
-msgstr "Stil som blir brukt på tittelen."
+msgstr "Stil som brukes på rapporttittelen"
 
 #: ../src/plugins/Records.py:536
-#, fuzzy
 msgid "Youngest living person"
-msgstr "Ikke-eksisterende person"
+msgstr "Yngste levende person"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Oldest living person"
-msgstr "Ikke-eksisterende person"
+msgstr "Eldste levende person"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
@@ -6331,29 +6323,24 @@ msgid "Person divorced at oldest age"
 msgstr ""
 
 #: ../src/plugins/Records.py:544
-#, fuzzy
 msgid "Youngest father"
-msgstr "Ung far"
+msgstr "Yngste far"
 
 #: ../src/plugins/Records.py:545
-#, fuzzy
 msgid "Youngest mother"
-msgstr "Ung mor"
+msgstr "Yngste mor"
 
 #: ../src/plugins/Records.py:546
-#, fuzzy
 msgid "Oldest father"
-msgstr "Gammel far"
+msgstr "Eldste far"
 
 #: ../src/plugins/Records.py:547
-#, fuzzy
 msgid "Oldest mother"
-msgstr "Gammel mor"
+msgstr "Eldste mor"
 
 #: ../src/plugins/Records.py:548
-#, fuzzy
 msgid "Couple with most children"
-msgstr "Personer med barn"
+msgstr "Par med flest barn"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
@@ -6364,29 +6351,24 @@ msgid "Living couple married most long ago"
 msgstr ""
 
 #: ../src/plugins/Records.py:551
-#, fuzzy
 msgid "Shortest past marriage"
-msgstr "Alder ved ekteskapsinngåelse"
+msgstr "Korteste ekteskap"
 
 #: ../src/plugins/Records.py:552
-#, fuzzy
 msgid "Longest past marriage"
-msgstr "Alder ved ekteskapsinngåelse"
+msgstr "Lengste ekteskap"
 
 #: ../src/plugins/Records.py:564
-#, fuzzy
 msgid "Records Gramplet"
-msgstr "Smågramps for nyheter"
+msgstr ""
 
 #: ../src/plugins/Records.py:576
-#, fuzzy
 msgid "Records Report"
-msgstr "Informasjon er privat"
+msgstr ""
 
 #: ../src/plugins/Records.py:581
-#, fuzzy
 msgid "Shows some interesting records about people and families"
-msgstr "Velge å ta med datoer for personer og familier."
+msgstr "Viser noen interessante poster om personer og familier"
 
 #: ../src/plugins/docgen/AsciiDoc.py:375
 msgid "Plain Text"
@@ -6401,9 +6383,8 @@ msgstr "Ren tekst"
 #: ../src/plugins/docgen/ODFDoc.py:1147 ../src/plugins/docgen/PSDrawDoc.py:349
 #: ../src/plugins/docgen/RTFDoc.py:440 ../src/plugins/docgen/SvgDrawDoc.py:267
 #: ../src/ReportBase/_DocReportDialog.py:113
-#, fuzzy
 msgid "Open with default viewer"
-msgstr "Vis i standard visningsprogram"
+msgstr "Åpne i standard visningsprogram"
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
@@ -6447,7 +6428,6 @@ msgid "Open in %(program_name)s"
 msgstr "Åpne i %(program_name)s"
 
 #: ../src/plugins/docgen/LaTeXDoc.py:662
-#, fuzzy
 msgid "LaTeX"
 msgstr "LaTeX"
 
@@ -6587,9 +6567,8 @@ msgstr ""
 #: ../src/plugins/drawreport/Calendar.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:196
 #: ../src/plugins/webreport/WebCal.py:1018
-#, fuzzy
 msgid "Reading database..."
-msgstr "Leser data..."
+msgstr "Leser database..."
 
 #: ../src/plugins/drawreport/Calendar.py:290
 #: ../src/plugins/textreport/BirthdayReport.py:246
@@ -6852,14 +6831,12 @@ msgid "Descendant Chart for %s"
 msgstr "Etterkommertre for %s"
 
 #: ../src/plugins/drawreport/DescendTree.py:479
-#, fuzzy
 msgid "Show Sp_ouses"
-msgstr "Ektefeller"
+msgstr "Vis e_ktefeller"
 
 #: ../src/plugins/drawreport/DescendTree.py:480
-#, fuzzy
 msgid "Whether to show spouses in the tree."
-msgstr "Om treet skal komprimeres."
+msgstr "Om ektefeller skal vises i treet."
 
 #: ../src/plugins/drawreport/DescendTree.py:534
 msgid "Descendant Tree"
@@ -7228,9 +7205,8 @@ msgid "Timeline Graph for %s"
 msgstr "Tidslinjegraf for %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:101
-#, fuzzy
 msgid "Timeline"
-msgstr "Tidslinjetavle"
+msgstr "Tidslinje"
 
 #: ../src/plugins/drawreport/TimeLine.py:108
 #: ../src/ReportBase/_ReportDialog.py:638
@@ -7243,14 +7219,12 @@ msgid "The range of dates chosen was not valid"
 msgstr "Datoområdet som ble valgt var ikke gyldig"
 
 #: ../src/plugins/drawreport/TimeLine.py:134
-#, fuzzy
 msgid "Sorting dates..."
-msgstr "Sorterer data..."
+msgstr "Sorterer datoer..."
 
 #: ../src/plugins/drawreport/TimeLine.py:136
-#, fuzzy
 msgid "Calculating timeline..."
-msgstr "Beregner estimerte datoer..."
+msgstr "Beregner tidslinje..."
 
 #: ../src/plugins/drawreport/TimeLine.py:215
 #, python-format
@@ -7393,52 +7367,44 @@ msgid "Web Family Tree format."
 msgstr "&quot;Web Family Tree&quot;-format."
 
 #: ../src/plugins/export/ExportGedcom.py:370
-#, fuzzy
 msgid "Filtering private data"
-msgstr "Filtrere data..."
+msgstr "Filtrere private data"
 
 #: ../src/plugins/export/ExportGedcom.py:377
 msgid "Filtering living persons"
 msgstr "Filtrerer levende personer"
 
 #: ../src/plugins/export/ExportGedcom.py:387
-#, fuzzy
 msgid "Applying selected person filter"
-msgstr "Rediger den valgte personen"
+msgstr "Bruker valgt personfilter"
 
 #: ../src/plugins/export/ExportGedcom.py:395
-#, fuzzy
 msgid "Applying selected note filter"
-msgstr "Klone det valgte filteret"
+msgstr "Bruker valgt notatfilter"
 
 #: ../src/plugins/export/ExportGedcom.py:404
 msgid "Filtering unlinked records"
 msgstr "Filtrerer ulenkede poster"
 
 #: ../src/plugins/export/ExportGedcom.py:574
-#, fuzzy
 msgid "Writing individuals"
-msgstr "Lager individuelle sider"
+msgstr "Skriver personer"
 
 #: ../src/plugins/export/ExportGedcom.py:916
-#, fuzzy
 msgid "Writing families"
-msgstr "Skriver slektslinjer"
+msgstr "Skriver familier"
 
 #: ../src/plugins/export/ExportGedcom.py:1076
-#, fuzzy
 msgid "Writing sources"
-msgstr "Lager side over kilder"
+msgstr "Skriver kilder"
 
 #: ../src/plugins/export/ExportGedcom.py:1110
-#, fuzzy
 msgid "Writing notes"
-msgstr "Skrive"
+msgstr "Skriver notater"
 
 #: ../src/plugins/export/ExportGedcom.py:1147
-#, fuzzy
 msgid "Writing repositories"
-msgstr "Oppbevaringssteder"
+msgstr "Skriver oppbevaringssteder"
 
 #: ../src/plugins/export/ExportGedcom.py:1529
 msgid "Export failed"
@@ -7580,7 +7546,6 @@ msgstr "Alder ved dato"
 
 #: ../src/plugins/gramplet/AgeStats.py:37
 #: ../src/plugins/gramplet/AgeStats.py:47
-#, fuzzy
 msgid "Max age"
 msgstr "Høyeste alder"
 
@@ -7596,9 +7561,8 @@ msgstr "Høyeste alder for å bli far"
 
 #: ../src/plugins/gramplet/AgeStats.py:43
 #: ../src/plugins/gramplet/AgeStats.py:50
-#, fuzzy
 msgid "Chart width"
-msgstr "Diagrammer 1"
+msgstr "Diagrambredde"
 
 #: ../src/plugins/gramplet/AgeStats.py:155
 msgid "Lifespan Age Distribution"
@@ -7623,29 +7587,24 @@ msgid "Statistics"
 msgstr "Statistikker"
 
 #: ../src/plugins/gramplet/AgeStats.py:215
-#, fuzzy
 msgid "Total"
-msgstr "Verktøy"
+msgstr "Total"
 
 #: ../src/plugins/gramplet/AgeStats.py:216
-#, fuzzy
 msgid "Minimum"
-msgstr "Medium"
+msgstr "Minimum"
 
 #: ../src/plugins/gramplet/AgeStats.py:217
-#, fuzzy
 msgid "Average"
-msgstr "område"
+msgstr "Gjennomsnitt"
 
 #: ../src/plugins/gramplet/AgeStats.py:218
-#, fuzzy
 msgid "Median"
-msgstr "Media"
+msgstr "Median"
 
 #: ../src/plugins/gramplet/AgeStats.py:219
-#, fuzzy
 msgid "Maximum"
-msgstr "Høyeste alder"
+msgstr "Maksimum"
 
 #: ../src/plugins/gramplet/AgeStats.py:254
 #, python-format
@@ -7653,24 +7612,21 @@ msgid "Double-click to see %d people"
 msgstr "Dobbeltklikk for å se %d personer"
 
 #: ../src/plugins/gramplet/AgeStats.py:269
-#, fuzzy
 msgid "Age Stats Gramplet"
-msgstr "Vindu for alder ved vist dato"
+msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:273
-#, fuzzy
 msgid "Age Stats"
-msgstr "Status"
+msgstr "Alderstatistikk"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Active person: <b>%s</b>"
-msgstr "Aktiv person: %s"
+msgstr "Aktiv person: <b>%s</b>"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:54
-#, fuzzy
 msgid "Attributes Gramplet"
-msgstr "Smågramps for statistikker"
+msgstr "Smågramps for egenskaper"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:58
 #: ../src/plugins/webreport/NarrativeWeb.py:1413
@@ -7698,56 +7654,46 @@ msgstr "Familie:"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:55
 #: ../src/plugins/gramplet/DataEntryGramplet.py:82
-#, fuzzy
 msgid "Surname, Given"
-msgstr "Etternavn Fornavn, Patronymikon"
+msgstr "Etternavn Fornavn"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:66
 #: ../src/plugins/gramplet/NoteGramplet.py:105
-#, fuzzy
 msgid "Save"
-msgstr "Sikkerhetsskap"
+msgstr "Lagre"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:69
 #: ../src/plugins/gramplet/NoteGramplet.py:108
-#, fuzzy
 msgid "Abandon"
-msgstr "og"
+msgstr ""
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:74
-#, fuzzy
 msgid "New person"
 msgstr "Ny person"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:75
-#, fuzzy
 msgid "Add relation"
-msgstr "Endre relasjon"
+msgstr "Legg til relasjon"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:76
-#, fuzzy
 msgid "No relation to active person"
-msgstr "Ingen aktiv person valgt"
+msgstr "Ingen relasjoner for aktiv person"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:77
-#, fuzzy
 msgid "Add as a Parent"
-msgstr "Legg til foreldre"
+msgstr "Legg til som forelder"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:78
-#, fuzzy
 msgid "Add as a Spouse"
-msgstr "Legg til ektefelle"
+msgstr "Legg til som ektefelle"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:79
-#, fuzzy
 msgid "Add as a Sibling"
-msgstr "Halvsøsken"
+msgstr "Legg til som søsken"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:80
-#, fuzzy
 msgid "Add as a Child"
-msgstr "Legg til et eksisterende barn"
+msgstr "Legg til som barn"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:96
 msgid "Copy Active Data"
@@ -7756,9 +7702,8 @@ msgstr ""
 #: ../src/plugins/gramplet/DataEntryGramplet.py:142
 #: ../src/plugins/gramplet/DataEntryGramplet.py:156
 #: ../src/plugins/gramplet/DataEntryGramplet.py:263
-#, fuzzy
 msgid "in"
-msgstr "i."
+msgstr "i"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:384
 #, python-format
@@ -7770,51 +7715,44 @@ msgid "Please provide a name."
 msgstr ""
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
-#, fuzzy
 msgid "Can't add new person."
-msgstr "Kan ikke lagre personen"
+msgstr "Kan ikke legge til person."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
-#, fuzzy
 msgid "Please set an active person."
-msgstr "Fjern den valgte personen"
+msgstr "Velg en aktiv person."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
-#, fuzzy
 msgid "Can't add new person as a parent."
-msgstr "Legg til en ny familie med person som foreldre"
+msgstr "Kan ikke legge til ny person som forelder."
 
 #. unknown
 #. both genders unknown
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
-#, fuzzy
 msgid "Please set the new person's gender."
-msgstr "Stil som brukes på personens navn."
+msgstr "Angi kjønn for den nye personen."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
 #: ../src/plugins/gramplet/DataEntryGramplet.py:556
 #: ../src/plugins/gramplet/DataEntryGramplet.py:593
 #: ../src/plugins/gramplet/DataEntryGramplet.py:626
-#, fuzzy
 msgid "Can't add new person as a spouse."
-msgstr "Legg til ny person som mor"
+msgstr "Kan ikke legge til ny person som ektefelle."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
-#, fuzzy
 msgid "Can't add new person as a sibling."
-msgstr "Viser en persons søsken."
+msgstr "Kan ikke legge til ny person som søsken."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
 #: ../src/plugins/gramplet/DataEntryGramplet.py:672
-#, fuzzy
 msgid "Can't add new person as a child."
-msgstr "Opprett nytt barn og legg barnet til familien"
+msgstr "Kan ikke legge til ny person som barn."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
 msgid "Please set gender on Active or new person."
@@ -7835,9 +7773,8 @@ msgid "Gramplet Data Entry: %s"
 msgstr ""
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:742
-#, fuzzy
 msgid "Data Entry Gramplet"
-msgstr "Smågramps for kalender"
+msgstr ""
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:746
 msgid "Data Entry"
@@ -7849,9 +7786,8 @@ msgid "Move mouse over links for options"
 msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
-#, fuzzy
 msgid "No Active Person selected."
-msgstr "Ingen person er valgt"
+msgstr "Ingen aktiv person er valgt."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:107
 #: ../src/plugins/textreport/DescendReport.py:118
@@ -7890,14 +7826,12 @@ msgid "Right-click to edit"
 msgstr "Høyreklikk for å redigere"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
-#, fuzzy
 msgid "   sp. "
-msgstr "   "
+msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
-#, fuzzy
 msgid "Descendant Gramplet"
-msgstr "Etterkommertavle"
+msgstr "Smågramps for etterkommere"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
 msgid "Descendants"
@@ -7911,33 +7845,28 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
-#, fuzzy
 msgid "Fan Chart Gramplet"
-msgstr "Smågramps for kalender"
+msgstr "Smågramps for viftetavle"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:44
-#, fuzzy
 msgid "FAQ Gramplet"
-msgstr "Smågramps"
+msgstr "Smågramps for OSS"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "FAQ"
 msgstr "OSS"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
-#, fuzzy
 msgid "Double-click given name for details"
-msgstr "Dobbeltklikk på etternavn for å se detaljer"
+msgstr "Dobbeltklikk på fornavn for å se detaljer"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
-#, fuzzy
 msgid "Total unique given names"
-msgstr "Totalt antall unike etternavn"
+msgstr "Totalt antall unike fornavn"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
-#, fuzzy
 msgid "Total given names showing"
-msgstr "Totalt antall unike etternavn"
+msgstr "Totalt antall fornavn som vises"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:132
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:147
@@ -7946,17 +7875,14 @@ msgid "Total people"
 msgstr "Totalt antall personer"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#, fuzzy
 msgid "Given Name Cloud Gramplet"
-msgstr "Vindu for etternavnstatistikk"
+msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
-#, fuzzy
 msgid "Given Name Cloud"
-msgstr "Fornavn"
+msgstr ""
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:56
-#, fuzzy
 msgid "Read headline news from the GRAMPS wiki"
 msgstr "Les nyheter fra wikien til GRAMPS"
 
@@ -7970,7 +7896,6 @@ msgid "Reading"
 msgstr "Leser"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:193
-#, fuzzy
 msgid "Headline News Gramplet"
 msgstr "Smågramps for nyheter"
 
@@ -7984,9 +7909,8 @@ msgid "Person Note"
 msgstr "Personnotat"
 
 #: ../src/plugins/gramplet/NoteGramplet.py:268
-#, fuzzy
 msgid "Note Gramplet"
-msgstr "Smågramps for nyheter"
+msgstr "Smågramps for notater"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:57
 #: ../src/plugins/gramplet/PedigreeGramplet.py:61
@@ -8063,10 +7987,10 @@ msgid "Double-click to see all generations"
 msgstr "Dobbeltklikk for å se alle generasjoner"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:264
-#, fuzzy, python-format
+#, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
-msgstr[0] " har %d personer\n"
+msgstr[0] " har %d person\n"
 msgstr[1] " har %d personer\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:280
@@ -8094,21 +8018,18 @@ msgstr "Pythonskall"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:91
 #: ../src/plugins/gramplet/QuickViewGramplet.py:109
 #: ../src/plugins/gramplet/QuickViewGramplet.py:113
-#, fuzzy
 msgid "View Type"
-msgstr "Filtype"
+msgstr "Velg type"
 
 #: ../src/plugins/gramplet/QuickViewGramplet.py:53
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
-#, fuzzy
 msgid "Quick Views"
-msgstr "Snarrapport"
+msgstr ""
 
 #: ../src/plugins/gramplet/QuickViewGramplet.py:123
-#, fuzzy
 msgid "Quick View Gramplet"
-msgstr "Snarrapport"
+msgstr ""
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:42
 msgid "Click name to make person active\n"
@@ -8154,9 +8075,8 @@ msgid "Relatives Gramplet"
 msgstr "Slektningervindu"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:146
-#, fuzzy
 msgid "Relatives"
-msgstr "Relatert"
+msgstr "Slektninger"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:37
 msgid ""
@@ -8186,9 +8106,8 @@ msgid "Deleted"
 msgstr "Slettet"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
-#, fuzzy
 msgid "Edited"
-msgstr "Rediger"
+msgstr "Redigert"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:59
 msgid "Selected"
@@ -8309,9 +8228,8 @@ msgid "Total unique surnames"
 msgstr "Totalt antall unike etternavn"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:146
-#, fuzzy
 msgid "Total surnames showing"
-msgstr "Totalt antall unike etternavn"
+msgstr "Totalt antall etternavn som vises"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:156
 msgid "Surname Cloud Gramplet"
@@ -8385,31 +8303,26 @@ msgid "Welcome to GRAMPS!"
 msgstr "Velkommen til GRAMPS!"
 
 #: ../src/plugins/gramplet/WhatsNext.py:79
-#, fuzzy
 msgid "No Home Person set."
 msgstr "Startperson er ikke valgt."
 
 #: ../src/plugins/gramplet/WhatsNext.py:245
-#, fuzzy
 msgid "first name unknown"
-msgstr "Kjønn ukjent"
+msgstr "ukjent fornavn"
 
 #: ../src/plugins/gramplet/WhatsNext.py:248
-#, fuzzy
 msgid "surname unknown"
-msgstr "Kjønn ukjent"
+msgstr "ukjent etternavn"
 
 #: ../src/plugins/gramplet/WhatsNext.py:252
 #: ../src/plugins/gramplet/WhatsNext.py:283
 #: ../src/plugins/gramplet/WhatsNext.py:290
-#, fuzzy
 msgid "(person with unknown name)"
-msgstr "personer med ukjent kjønn"
+msgstr "(person med ukjent navn)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:265
-#, fuzzy
 msgid "birth event missing"
-msgstr "Fødsel mangler"
+msgstr "fødselshendelse mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:269
 #: ../src/plugins/gramplet/WhatsNext.py:316
@@ -8425,9 +8338,8 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
-#, fuzzy
 msgid "(unknown person)"
-msgstr "ukjent far"
+msgstr "(ukjent person)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:294
 #, python-format
@@ -8435,29 +8347,24 @@ msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s og %(name2)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:310
-#, fuzzy
 msgid "marriage event missing"
-msgstr "Hendelser mangler"
+msgstr "bryllupshendelse mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:312
-#, fuzzy
 msgid "relation type unknown"
-msgstr "Kjønn ukjent"
+msgstr "ukjent relasjonstype"
 
 #: ../src/plugins/gramplet/WhatsNext.py:327
-#, fuzzy
 msgid "date unknown"
-msgstr "Kjønn ukjent"
+msgstr "ukjent dato"
 
 #: ../src/plugins/gramplet/WhatsNext.py:329
-#, fuzzy
 msgid "date incomplete"
-msgstr "Fullført"
+msgstr "ikke fullstendig dato"
 
 #: ../src/plugins/gramplet/WhatsNext.py:333
-#, fuzzy
 msgid "place unknown"
-msgstr "ukjent"
+msgstr "ukjent sted"
 
 #: ../src/plugins/gramplet/WhatsNext.py:336
 #, python-format
@@ -8465,34 +8372,29 @@ msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:344
-#, fuzzy
 msgid "spouse missing"
-msgstr "Sted mangler"
+msgstr "ektefelle mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:348
-#, fuzzy
 msgid "father missing"
-msgstr "Dato(er) mangler"
+msgstr "far mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:352
-#, fuzzy
 msgid "mother missing"
-msgstr "Fødsel mangler"
+msgstr "mor mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:356
-#, fuzzy
 msgid "parents missing"
-msgstr "Hendelser mangler"
+msgstr "foreldre mangler"
 
 #: ../src/plugins/gramplet/WhatsNext.py:363
-#, fuzzy, python-format
+#, python-format
 msgid ": %s\n"
-msgstr "Notat: %s"
+msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
-#, fuzzy
 msgid "What's Next Gramplet"
-msgstr "Smågramps for statistikker"
+msgstr ""
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
@@ -8510,12 +8412,10 @@ msgid "B&W outline"
 msgstr "Svart/hvit-disposisjon"
 
 #: ../src/plugins/graph/GVFamilyLines.py:65
-#, fuzzy
 msgid "Coloured outline"
 msgstr "Farget disposisjon"
 
 #: ../src/plugins/graph/GVFamilyLines.py:66
-#, fuzzy
 msgid "Colour fill"
 msgstr "Fargefyll"
 
@@ -8542,9 +8442,8 @@ msgid "Parents and their ancestors will be considered when determining \"family 
 msgstr "Foreldre og deres aner vil bli brukt for å beregne \"slektslinjer\"."
 
 #: ../src/plugins/graph/GVFamilyLines.py:118
-#, fuzzy
 msgid "Follow children to determine \"family lines\""
-msgstr "Følg barn for å beregne slektslinjer"
+msgstr "Følg barn for å beregne \"slektslinjer\""
 
 #: ../src/plugins/graph/GVFamilyLines.py:120
 msgid "Children will be considered when determining \"family lines\"."
@@ -8658,17 +8557,15 @@ msgid "Graph coloring"
 msgstr "Graffarger"
 
 #: ../src/plugins/graph/GVFamilyLines.py:210
-#, fuzzy
 msgid "Males will be shown with blue, females with red, unless otherwise set above for filled. If the sex of an individual is unknown it will be shown with gray."
-msgstr "Menn vil bli vist med blå farge, kvinner med rød farge.  Hvis kjønnet er ukjent vil individet bli vist med grå farge."
+msgstr "Menn vil bli vist med blå farge, kvinner med rød farge om ikke annet er valgt. Hvis kjønnet er ukjent vil personen bli vist med grå farge."
 
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
 #: ../src/plugins/graph/GVRelGraph.py:527
-#, fuzzy
 msgid "Use rounded corners"
-msgstr "Bruk soundex-koder"
+msgstr "Bruk avrundede hjørner"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
@@ -8768,7 +8665,6 @@ msgid "Color fill"
 msgstr "Fargefyll"
 
 #: ../src/plugins/graph/GVHourGlass.py:257
-#, fuzzy
 msgid "The Center person for the graph"
 msgstr "Senterpersonen for grafen"
 
@@ -9043,11 +8939,11 @@ msgstr "Leser data..."
 #: ../src/plugins/import/ImportCsv.py:695
 #: ../src/plugins/import/ImportGeneWeb.py:181
 #: ../src/plugins/import/ImportVCard.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
-msgstr[0] "Importeringen er fullført: %d sekunder"
-msgstr[1] "Importeringen er fullført: %d sekunder"
+msgstr[0] "Importen er fullført: %d sekund"
+msgstr[1] "Importen er fullført: %d sekunder"
 
 #: ../src/plugins/import/ImportCsv.py:696
 msgid "CSV import"
@@ -9088,9 +8984,8 @@ msgid "GeneWeb"
 msgstr "GeneWeb"
 
 #: ../src/plugins/import/ImportGeneWeb.py:927
-#, fuzzy
 msgid "Import data from GeneWeb files"
-msgstr "GenWeb-filer"
+msgstr "Importere data fra GenWeb-filer"
 
 #: ../src/plugins/import/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1124
 msgid "Rebuild reference map"
@@ -9117,9 +9012,8 @@ msgid "GRAMPS 2.x database"
 msgstr "GRAMPS 2.x-database"
 
 #: ../src/plugins/import/ImportGrdb.py:2687
-#, fuzzy
 msgid "Import data from GRAMPS 2.x database files"
-msgstr "GRAMPS 2.x-databaser"
+msgstr "Importere data fra GRAMPS 2.x-databasefiler"
 
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
@@ -9144,9 +9038,8 @@ msgid "Import from Pro-Gen"
 msgstr "Importere fra Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:507
-#, fuzzy
 msgid "Pro-Gen import"
-msgstr "GeneWeb-import"
+msgstr "Pro-Gen import"
 
 #: ../src/plugins/import/ImportProGen.py:693
 #, python-format
@@ -9155,15 +9048,13 @@ msgstr ""
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:772
-#, fuzzy
 msgid "Importing individuals"
-msgstr "Lager individuelle sider"
+msgstr "Importerer personer"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1047
-#, fuzzy
 msgid "Importing families"
-msgstr "Import feilet"
+msgstr "Importerer familier"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1232
@@ -9181,14 +9072,12 @@ msgid "cannot find mother for I%s (mother=%d)"
 msgstr ""
 
 #: ../src/plugins/import/ImportProGen.py:1280
-#, fuzzy
 msgid "Pro-Gen"
-msgstr "Person"
+msgstr "Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:1281
-#, fuzzy
 msgid "Import data from Pro-Gen files"
-msgstr "Kan ikke importere fra fila"
+msgstr "Importere data fra Pro-Genfiler"
 
 #: ../src/plugins/import/ImportVCard.py:147
 msgid "vCard import"
@@ -9217,19 +9106,16 @@ msgid "Sweden"
 msgstr "Sverige"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:49
-#, fuzzy
 msgid "Denmark"
-msgstr "Merknad"
+msgstr "Danmark"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:75
-#, fuzzy
 msgid " parish"
-msgstr "spansk"
+msgstr " prestegjeld"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:79
-#, fuzzy
 msgid " state"
-msgstr "Stat"
+msgstr " stat"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
@@ -9244,9 +9130,8 @@ msgstr ""
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
 #: ../src/plugins/mapservices/eniroswedenmap.py:172
-#, fuzzy
 msgid "Eniro map not available"
-msgstr "utilgjengelig"
+msgstr "Kart fra Eniro er utilgjengelig"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
@@ -9284,9 +9169,8 @@ msgid "Open on maps.google.com"
 msgstr ""
 
 #: ../src/plugins/mapservices/openstreetmap.py:83
-#, fuzzy
 msgid "OpenStreetMap"
-msgstr "Gate"
+msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/openstreetmap.py:85
 msgid "Open on openstreetmap.org"
@@ -9303,11 +9187,13 @@ msgid "People probably alive and their ages on %s"
 msgstr "Personer som sannsynligvis lever og deres alder den %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:77
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "%d matches.\n"
-msgstr "%d måneder"
+msgstr ""
+"\n"
+"%d treff.\n"
 
 #: ../src/plugins/quickview/AgeOnDate.py:105
 msgid "Display people and ages on a particular date"
