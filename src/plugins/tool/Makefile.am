@@ -10,7 +10,6 @@ pkgdata_PYTHON = \
 	ChangeNames.py \
 	ChangeTypes.py \
 	Check.py \
-	CmdRef.py \
 	Desbrowser.py \
 	Eval.py \
 	EventCmp.py \
