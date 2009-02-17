@@ -363,7 +363,6 @@ src/plugins/tool/CalculateEstimatedDates.py
 src/plugins/tool/ChangeNames.py
 src/plugins/tool/ChangeTypes.py
 src/plugins/tool/Check.py
-src/plugins/tool/CmdRef.py
 src/plugins/tool/Desbrowser.py
 src/plugins/tool/Eval.py
 src/plugins/tool/EventCmp.py
