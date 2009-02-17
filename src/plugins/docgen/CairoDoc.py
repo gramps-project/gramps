@@ -582,11 +582,12 @@ class GtkDocTable(GtkDocBaseElement):
             row = self._children[row_index]
             (r1, r2), row_height = row.divide(layout, table_width, height,
                                               dpi_x, dpi_y)
-            if r2 is not None: 
+            if r2 is not None:
                 #break the table in two parts
                 break
             table_height += row_height
             row_index += 1
+            height -= row_height
             
         # divide the table if any row did not fit
         new_table = None
