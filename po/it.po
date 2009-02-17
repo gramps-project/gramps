@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-13 01:04+0100\n"
-"PO-Revision-Date: 2009-02-16 01:29+0100\n"
+"PO-Revision-Date: 2009-02-17 01:16+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -3640,7 +3640,7 @@ msgstr ""
 "nessuna latitudine.<p>"
 
 #: ../src/DataViews/GeoView.py:913
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
@@ -3717,7 +3717,6 @@ msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : figlio : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1662
-#, fuzzy
 msgid "The active person's family members have no places with coordinates."
 msgstr ""
 "I membri della famiglia della persona attiva non hanno luoghi con coordinate."
@@ -3727,12 +3726,12 @@ msgid "No active person set."
 msgstr "Nessuna persona attiva impostata."
 
 #: ../src/DataViews/GeoView.py:1670
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
-"I luoghi dei membri della famiglia di %(name)s presenti nell'albero "
-"genealogico con coordinate."
+"I luoghi, presenti nell'albero genealogico con coordinate, relativi ai "
+"membri della famiglia di %(name)s."
 
 #: ../src/DataViews/GeoView.py:1714
 #, python-format
@@ -3740,7 +3739,6 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1734
-#, fuzzy
 msgid "The active person has no places with coordinates."
 msgstr "La persona attiva non ha luoghi con coordinate."
 
@@ -3920,7 +3918,7 @@ msgstr "Trovata persona definita come ascendente di se stessa."
 #: ../src/plugins/webreport/NarrativeWeb.py:1594
 #: ../src/plugins/webreport/WebCal.py:379
 msgid "Home"
-msgstr "Casa"
+msgstr "Home"
 
 #: ../src/DataViews/PedigreeView.py:1338
 msgid "Show images"
@@ -4205,7 +4203,6 @@ msgid "No place selected."
 msgstr "Nessuna luogo selezionato."
 
 #: ../src/DataViews/PlaceView.py:229
-#, fuzzy
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
@@ -6737,7 +6734,6 @@ msgid "Replace first name with call name"
 msgstr "Sostituisce il nome con lo pseudonimo"
 
 #: ../src/plugins/Records.py:464
-#, fuzzy
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Sottolinea pseudonimo nel nome / aggiunge lo pseudonimo al nome"
 
@@ -6783,32 +6779,26 @@ msgid "Oldest living person"
 msgstr "Persona più anziana in vita"
 
 #: ../src/plugins/Records.py:538
-#, fuzzy
 msgid "Person died at youngest age"
 msgstr "Persona deceduta in più giovane età"
 
 #: ../src/plugins/Records.py:539
-#, fuzzy
 msgid "Person died at oldest age"
 msgstr "Persona vissuta più a lungo"
 
 #: ../src/plugins/Records.py:540
-#, fuzzy
 msgid "Person married at youngest age"
 msgstr "Persona sposatasi in più giovane età"
 
 #: ../src/plugins/Records.py:541
-#, fuzzy
 msgid "Person married at oldest age"
 msgstr "Persona sposatasi più tardi"
 
 #: ../src/plugins/Records.py:542
-#, fuzzy
 msgid "Person divorced at youngest age"
 msgstr "Persona che ha divorziato in più giovane età"
 
 #: ../src/plugins/Records.py:543
-#, fuzzy
 msgid "Person divorced at oldest age"
 msgstr "Persona che ha divorziato più tardi"
 
@@ -7704,9 +7694,8 @@ msgid "Timeline Graph for %s"
 msgstr "Grafico temporale per %s"
 
 #: ../src/plugins/drawreport/TimeLine.py:101
-#, fuzzy
 msgid "Timeline"
-msgstr "Linea del tempo"
+msgstr "Linea temporale"
 
 #: ../src/plugins/drawreport/TimeLine.py:108
 #: ../src/ReportBase/_ReportDialog.py:638
@@ -7723,9 +7712,8 @@ msgid "Sorting dates..."
 msgstr "Ordinamento date..."
 
 #: ../src/plugins/drawreport/TimeLine.py:136
-#, fuzzy
 msgid "Calculating timeline..."
-msgstr "Calcolo delle linee del tempo in corso..."
+msgstr "Calcolo linee temporali in corso..."
 
 #: ../src/plugins/drawreport/TimeLine.py:215
 #, python-format
@@ -8094,23 +8082,20 @@ msgstr "Ampiezza grafico"
 
 #: ../src/plugins/gramplet/AgeStats.py:155
 msgid "Lifespan Age Distribution"
-msgstr ""
+msgstr "Distribuzione durata della vita"
 
 #: ../src/plugins/gramplet/AgeStats.py:156
-#, fuzzy
 msgid "Father - Child Age Diff Distribution"
-msgstr "Padre - Distribuzione differenza età figli"
+msgstr "Padre - Distribuzione differenza età con i figli"
 
 #: ../src/plugins/gramplet/AgeStats.py:156
 #: ../src/plugins/gramplet/AgeStats.py:157
-#, fuzzy
 msgid "Diff"
-msgstr "Differenza"
+msgstr "Diff"
 
 #: ../src/plugins/gramplet/AgeStats.py:157
-#, fuzzy
 msgid "Mother - Child Age Diff Distribution"
-msgstr "Madre - Distribuzione differenza età figli"
+msgstr "Madre - Distribuzione differenza età con i figli"
 
 #: ../src/plugins/gramplet/AgeStats.py:214
 #: ../src/plugins/gramplet/StatsGramplet.py:196
@@ -8228,7 +8213,7 @@ msgstr "Aggiungi come figlio"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:96
 msgid "Copy Active Data"
-msgstr ""
+msgstr "Copia dati pers.attiva"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:142
 #: ../src/plugins/gramplet/DataEntryGramplet.py:156
@@ -8253,7 +8238,6 @@ msgstr "Impossibile aggiungere la nuova persona."
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
-#, fuzzy
 msgid "Please set an active person."
 msgstr "Impostare una persona come attiva."
 
@@ -8287,13 +8271,11 @@ msgid "Can't add new person as a child."
 msgstr "Impossibile aggiungere la nuova persona come figlio."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
-#, fuzzy
 msgid "Please set gender on Active or new person."
 msgstr "Impostare il sesso per la persona attiva o per quella nuova."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:592
 #: ../src/plugins/gramplet/DataEntryGramplet.py:625
-#, fuzzy
 msgid "Same genders on Active and new person."
 msgstr "Stesso sesso per la persona attiva e per quella nuova."
 
@@ -8320,7 +8302,6 @@ msgid "Move mouse over links for options"
 msgstr "Spostare il mouse sui collegamenti per le opzioni"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
-#, fuzzy
 msgid "No Active Person selected."
 msgstr "Nessuna persona attiva."
 
@@ -8884,9 +8865,8 @@ msgid "No Home Person set."
 msgstr "Persona principale non impostata."
 
 #: ../src/plugins/gramplet/WhatsNext.py:245
-#, fuzzy
 msgid "first name unknown"
-msgstr "(primo) nome sconosciuto"
+msgstr "nome sconosciuto"
 
 #: ../src/plugins/gramplet/WhatsNext.py:248
 msgid "surname unknown"
@@ -9168,7 +9148,7 @@ msgstr "Usare bordi arrotondati"
 #: ../src/plugins/graph/GVHourGlass.py:285
 #: ../src/plugins/graph/GVRelGraph.py:529
 msgid "Use rounded corners to differentiate between women and men."
-msgstr "Usa bordi arrotondati per differenziare donne e uomini."
+msgstr "Usare bordi arrotondati per differenziare donne e uomini."
 
 #: ../src/plugins/graph/GVFamilyLines.py:221
 msgid "Use subgraphs"
@@ -9353,7 +9333,7 @@ msgstr ""
 
 #: ../src/plugins/graph/GVRelGraph.py:458
 msgid "Use place when no date"
-msgstr "Usa luogo se data assente"
+msgstr "Usare luogo se data assente"
 
 #: ../src/plugins/graph/GVRelGraph.py:459
 msgid ""
@@ -10257,11 +10237,12 @@ msgstr "Mostra riferimenti per %s"
 
 #: ../src/plugins/quickview/Reporef.py:88
 msgid "RepoRef"
-msgstr ""
+msgstr "Riferimenti depositi"
 
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
 msgstr ""
+"Mostra riferimenti ai depositi per le fonti correlate al deposito attivo"
 
 #: ../src/plugins/quickview/SameSurnames.py:38
 msgid "People with incomplete surnames"
@@ -10346,9 +10327,8 @@ msgid "Matches people with same lastname"
 msgstr "Estrae le persone che possiedono lo stesso cognome"
 
 #: ../src/plugins/quickview/SameSurnames.py:63
-#, fuzzy
 msgid "People matching the <given>"
-msgstr "Persone con nome completo corrispondente a <nome>"
+msgstr "Persone corrispondenti a <nome>"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "Matches people with same given name"
@@ -10670,7 +10650,7 @@ msgstr "Indice"
 #: ../src/plugins/textreport/DetAncestralReport.py:722
 #: ../src/plugins/textreport/DetDescendantReport.py:720
 msgid "Use callname for common name"
-msgstr "Usa pseudonimo come nome comune"
+msgstr "Usare pseudonimo come nome comune"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:723
 #: ../src/plugins/textreport/DetDescendantReport.py:721
@@ -10680,7 +10660,7 @@ msgstr "Indica se usare lo pseudonimo come primo nome."
 #: ../src/plugins/textreport/DetAncestralReport.py:727
 #: ../src/plugins/textreport/DetDescendantReport.py:724
 msgid "Use full dates instead of only the year"
-msgstr "Usa la data completa e non solo l'anno"
+msgstr "Usare la data completa e non solo l'anno"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:728
 #: ../src/plugins/textreport/DetDescendantReport.py:726
@@ -10720,7 +10700,7 @@ msgstr "Indica se omettere gli ascendenti duplicati."
 #: ../src/plugins/textreport/DetAncestralReport.py:743
 #: ../src/plugins/textreport/DetDescendantReport.py:741
 msgid "Use Complete Sentences"
-msgstr "Usa frasi complete"
+msgstr "Usare frasi complete"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:745
 #: ../src/plugins/textreport/DetDescendantReport.py:743
@@ -10892,11 +10872,13 @@ msgstr "Relazione con: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:711
 msgid "Use Record-style (Modified Register) numbering"
-msgstr ""
+msgstr "Usare numerazione a registro (Modified Register)"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:714
 msgid "Whether to use Record-style numbering instead of Henry-style."
 msgstr ""
+"Indica se usare la numerazione a registro invece del modello di numerazione "
+"Henry."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:782
 #: ../src/plugins/textreport/KinshipReport.py:350
@@ -12499,7 +12481,6 @@ msgid "Convert paths from absolute to r_elative"
 msgstr "Converti i percorsi da assoluti a r_elativi"
 
 #: ../src/plugins/tool/MediaManager.py:535
-#, fuzzy
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
@@ -13134,9 +13115,9 @@ msgstr ""
 "Generato da <a href=\"http://gramps-project.org\">GRAMPS</a> il %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:419
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"%s\">%s</a>"
-msgstr "<br />for <a href=\"%s\">%s</a>"
+msgstr "Generato per <a href=\"%s\">%s</a>"
 
 #. Note. In old NarrativeWeb.py the content_divid depended on filename.
 #: ../src/plugins/webreport/NarrativeWeb.py:434
@@ -13694,7 +13675,6 @@ msgstr "Produce delle pagine web (HTML) per persone o un insieme di persone"
 
 #. Add a link for year_glance() if requested
 #: ../src/plugins/webreport/WebCal.py:385
-#, fuzzy
 msgid "Year Glance"
 msgstr "Riassunto anno"
 
@@ -13722,7 +13702,6 @@ msgid "%(year)d, At A Glance"
 msgstr "%(year)d, colpo d'occhio"
 
 #: ../src/plugins/webreport/WebCal.py:873
-#, fuzzy
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -13730,11 +13709,10 @@ msgid ""
 msgstr ""
 "Questo calendario è pensato per consentire l'accesso rapido a tutti i dati "
 "da una sola pagina. Facendo clic su una data si accede ad una pagina che "
-"mostra tutti gli eventi per quella data, se ce n'è qualcuno.</p>\n"
+"mostra tutti gli eventi eventualmente presenti in quella data.\n"
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:880
-#, fuzzy
 msgid "Creating Year At A Glance calendars"
 msgstr "Generazione calendari di tipo «colpo d'occhio sull'anno»"
 
@@ -13813,14 +13791,14 @@ msgid ""
 "years is selected, then only twenty years at any given time"
 msgstr ""
 "Inserire l'anno finale per il calendario, nell'intervallo 1900 - 3000.  Se "
-"sono selezionati più anni, verranno considerati solo venti anni alla volta"
+"l'intervallo comprende più anni, ne verranno considerati solo venti alla "
+"volta"
 
 #: ../src/plugins/webreport/WebCal.py:1228
 msgid "Create \"Year At A Glance\" Calendar(s)"
 msgstr "Generazione calendari di tipo «colpo d'occhio sull'anno»"
 
 #: ../src/plugins/webreport/WebCal.py:1230
-#, fuzzy
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr ""
 "Indica se creare un mini-calendario su una sola pagina con le date "
@@ -14378,7 +14356,7 @@ msgstr "Riempi l'area data"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Use optimal number of pages"
-msgstr "Usa numero ottimale di pagine"
+msgstr "Usare numero ottimale di pagine"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:85
 msgid "Top"
@@ -19855,7 +19833,7 @@ msgstr ""
 "Sarà usato un sottoinsieme degli argomenti."
 
 #: ../src/Filters/_FilterParser.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "WARNING: To few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
@@ -19865,7 +19843,7 @@ msgstr ""
 "aggiornato."
 
 #: ../src/Filters/_FilterParser.py:127
-#, fuzzy, python-format
+#, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
 msgstr ""
 "ERRORE: impossibile caricare correttamente il filtro «%s». Modificare il "
@@ -19898,6 +19876,9 @@ msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in range, if a second date/time is given"
 msgstr ""
+"Estrae gli oggetti le cui informazioni sono state modificate dopo una "
+"specifica data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
+"un'altra data/ora"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -20156,6 +20137,9 @@ msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Estrae le persone le cui informazioni sono state modificate dopo una "
+"specifica data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
+"un'altra data/ora"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -20477,7 +20461,6 @@ msgid "Family filters"
 msgstr "Filtri famiglia"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-#, fuzzy
 msgid "People with <count> source"
 msgstr "Persone con <totale> fonti"
 
@@ -20888,15 +20871,17 @@ msgid "Matches every family in the database"
 msgstr "Estrae tutte le famiglie nel database"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#, fuzzy
 msgid "Families changed before <date time>"
-msgstr "Famiglie corrispondenti al <filtro>"
+msgstr "Famiglie modificate prima di <data ora>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
 "Matches family records changed before a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given"
 msgstr ""
+"Estrae le famiglie le cui informazioni sono state modificate prima di una "
+"specifica data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
+"un'altra data/ora"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -20980,7 +20965,6 @@ msgid "Matches families with an event of a particular value"
 msgstr "Estrae le famiglie con un evento avente uno specifico valore"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
-#, fuzzy
 msgid "Families with <count> media"
 msgstr "Famiglie con <totale> oggetti multimediali"
 
@@ -21041,22 +21025,18 @@ msgstr ""
 "un'espressione regolare"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Families with a reference count of <count>"
 msgstr "Famiglie con un numero di riferimenti pari a <totale>"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches families objects with a certain reference count"
 msgstr "Estrae le famiglie con un certo numero di riferimenti"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Families with the relationship type"
 msgstr "Famiglie con un tipo di relazione"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Estrae le famiglie con un particolare tipo di relazione"
 
@@ -21182,13 +21162,16 @@ msgstr "Estrae tutti gli eventi nel database"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
 msgid "Events changed before <date time>"
-msgstr ""
+msgstr "Eventi modificati prima di <data ora>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
 "Matches event records changed before a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given"
 msgstr ""
+"Estrae gli eventi le cui informazioni sono state modificate prima di una "
+"specifica data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
+"un'altra data/ora"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
@@ -21200,29 +21183,25 @@ msgstr "Estrae gli eventi che sono indicati come privati"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:86
-#, fuzzy
 msgid "Event attribute:"
-msgstr "Attributo personale:"
+msgstr "Attributo evento:"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:46
-#, fuzzy
 msgid "Events with the attribute <attribute>"
-msgstr "Oggetti con <attributo>"
+msgstr "Eventi con attributo <attributo>"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Estrae gli oggetti con uno specifico valore per un certo attributo"
+msgstr ""
+"Estrae gli eventi con uno specifico valore per un certo attributo evento"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
-#, fuzzy
 msgid "Events with <data>"
-msgstr "Evento con <Id>"
+msgstr "Evento con <dati>"
 
 #: ../src/Filters/Rules/Event/_HasData.py:50
-#, fuzzy
 msgid "Matches events with data of a particular value"
-msgstr "Estrae gli eventi con uno specifico marcatore"
+msgstr "Estrae gli eventi con specifici dati"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
 msgid "Events with <count> media"
@@ -21356,6 +21335,9 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Estrae i luoghi le cui informazioni sono state modificate dopo una specifica "
+"data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata un'altra "
+"data/ora"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
@@ -21526,7 +21508,6 @@ msgid "Matches every source in the database"
 msgstr "Estrae tutte le fonti nel database"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:23
-#, fuzzy
 msgid "Sources changed after <date time>"
 msgstr "Fonti modificate dopo <data ora>"
 
@@ -21535,6 +21516,9 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Estrae le fonti le cui informazioni sono state modificate dopo una specifica "
+"data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata un'altra "
+"data/ora"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
@@ -21645,7 +21629,6 @@ msgid "Matches every media object in the database"
 msgstr "Estrae tutti gli oggetti multimediali nel database"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#, fuzzy
 msgid "Media objects changed before <date time>"
 msgstr "Oggetti multimediali modificati prima di <data ora>"
 
@@ -21654,10 +21637,12 @@ msgid ""
 "Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given"
 msgstr ""
+"Estrae gli oggetti multimediali le cui informazioni sono state modificate "
+"prima di una specifica data:ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se "
+"è indicata un'altra data:ora"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
-#, fuzzy
 msgid "Media attribute:"
 msgstr "Attributo multimediale:"
 
@@ -21761,7 +21746,6 @@ msgid "Matches every repository in the database"
 msgstr "Estrae tutte i depositi nel database"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#, fuzzy
 msgid "Repositories changed after <date time>"
 msgstr "Depositi modificati dopo <data ora>"
 
@@ -21770,6 +21754,9 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given"
 msgstr ""
+"Estrae i depositi le cui informazioni sono state modificate dopo una "
+"specifica data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata "
+"un'altra data/ora"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -21854,15 +21841,17 @@ msgid "Matches every note in the database"
 msgstr "Estrae tutte le note nel database"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-#, fuzzy
 msgid "Notes changed before <date time>"
-msgstr "Note modificate dopo <data ora>"
+msgstr "Note modificate prima di <data ora>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
 "Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Estrae le note le cui informazioni sono state modificate dopo una specifica "
+"data/ora (aaaa-mm-gg oo:mm:ss), o in un intervallo se è indicata un'altra "
+"data/ora"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
@@ -21955,7 +21944,7 @@ msgstr "Estrae le note che sono indicate come private"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:70
 msgid "Use regular expressions"
-msgstr "Usa espressioni regolari"
+msgstr "Usare espressioni regolari"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:119
@@ -22099,7 +22088,7 @@ msgstr "Distingui maiuscole"
 
 #: ../src/FilterEditor/_EditRule.py:507
 msgid "Use regular expression"
-msgstr "Usa espressione regolare"
+msgstr "Usare espressione regolare"
 
 #: ../src/FilterEditor/_EditRule.py:509
 msgid "Also family events where person is wife/husband"
@@ -22185,7 +22174,7 @@ msgstr "Colore di sfondo"
 
 #: ../src/widgets/styledtexteditor.py:356
 msgid "Clear Markup"
-msgstr ""
+msgstr "Pulisci testo ricco"
 
 #: ../src/widgets/styledtexteditor.py:475
 msgid "Select font color"
@@ -22296,8 +22285,9 @@ msgid "Indicates if the record is private"
 msgstr "Indica se l'informazione è privata"
 
 #: ../src/glade/edit_person.glade.h:13
+#, fuzzy
 msgid "Part of the Given name that is the normally used name. "
-msgstr ""
+msgstr "Parte del nome normalmente usata come appellativo. "
 
 #: ../src/glade/edit_person.glade.h:14
 msgid ""
@@ -22305,6 +22295,8 @@ msgid ""
 "grandfather, .... \n"
 "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
+"Patronimico: parte del nome basata sul nome del proprio padre, nonno, .... \n"
+"Titolo: un titolo usato per rivolgersi alla persona, come «Dott.» o «Rev.»"
 
 #: ../src/glade/edit_person.glade.h:16
 msgid ""
@@ -22343,7 +22335,7 @@ msgstr "_Tipo:"
 #: ../src/glade/edit_person.glade.h:24
 msgid ""
 "part of a person's name indicating the family to which the person belongs"
-msgstr ""
+msgstr "parte del nome della persona che indica la famiglia di appartenenza"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "<b><i>Gramplet</i></b>"
@@ -22536,9 +22528,8 @@ msgid "Calenda_r:"
 msgstr "Calenda_rio:"
 
 #: ../src/glade/gramps.glade.h:47
-#, fuzzy
 msgid "Call n_umber:"
-msgstr "Segna_tura:"
+msgstr "Segnat_ura:"
 
 #: ../src/glade/gramps.glade.h:48
 msgid "Cen_ter"
@@ -22845,12 +22836,18 @@ msgstr ""
 "Molto alta"
 
 #: ../src/glade/gramps.glade.h:135
+#, fuzzy
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use "
 "this to add formatting layout with spaces, eg a table. \n"
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
+"Se attivo, gli spazi bianchi nelle note saranno riportati intatti nei "
+"resoconti. Si può usare per impostare l'aspetto tramite spazi, ad esempio "
+"nel caso di una tabella.\n"
+"Se non marcata, le note saranno automaticamente ripulite nei resoconti, "
+"migliorando l'aspetto del resoconti stessi."
 
 #: ../src/glade/gramps.glade.h:138
 msgid "Y_ear"
@@ -23446,7 +23443,7 @@ msgstr "Pazienza. Potrebbe richiedere un po' di tempo."
 
 #: ../src/plugins/tool/merge.glade.h:5
 msgid "Use soundex codes"
-msgstr "Usa codici soundex"
+msgstr "Usare codici soundex"
 
 #: ../src/plugins/tool/ownereditor.glade.h:3
 msgid "Copy from DB to Preferences"
@@ -23562,7 +23559,7 @@ msgstr "Percorso di riferimento per le i_mmagini:  "
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:7
 msgid "Use _Living as first name"
-msgstr "Usa «Li_ving» (in vita) come nome"
+msgstr "Usare «Li_ving» (in vita) come nome"
 
 #: ../src/plugins/tool/verify.glade.h:2
 msgid "<b>Families</b>"
@@ -24016,7 +24013,6 @@ msgid ""
 msgstr ""
 
 #: ../src/data/tips.xml.in.h:38
-#, fuzzy
 msgid ""
 "GRAMPS allows you to import from, and export to, GEDCOM format. There is "
 "extensive support for the industry standard GEDCOM version 5.5, so you can "
