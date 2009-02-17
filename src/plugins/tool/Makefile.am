@@ -10,7 +10,6 @@ pkgdata_PYTHON = \
 	ChangeNames.py \
 	ChangeTypes.py \
 	Check.py \
-	CmdRef.py \
 	Desbrowser.py \
 	Eval.py \
 	EventCmp.py \
@@ -30,6 +29,7 @@ pkgdata_PYTHON = \
 	SortEvents.py \
 	SoundGen.py \
 	Verify.py
+#	CmdRef.py \
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \
 #	TestcaseGenerator.py
