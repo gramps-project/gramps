@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 18:27+0100\n"
-"PO-Revision-Date: 2009-02-16 22:35+0100\n"
+"POT-Creation-Date: 2009-02-17 18:35+0100\n"
+"PO-Revision-Date: 2009-02-17 19:30+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3485,6 +3485,9 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
+"Schreib eine Weseitenadresse oben und drücke die ausführen Schaltfläche um die Webseite in diese Seite zu laden\n"
+"<br>\n"
+"Zum Beispiel: <b>http://gramps-project.org</p>"
 
 #: ../src/DataViews/GeoView.py:732
 msgid "_OpenStreetMap"
@@ -6159,9 +6162,8 @@ msgstr "GRAMPS-Buch"
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:292
 #: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1497
-#: ../src/plugins/tool/CmdRef.py:242 ../src/plugins/tool/Desbrowser.py:170
-#: ../src/plugins/tool/Eval.py:132 ../src/plugins/tool/EventCmp.py:468
-#: ../src/plugins/tool/EventNames.py:164
+#: ../src/plugins/tool/Desbrowser.py:170 ../src/plugins/tool/Eval.py:132
+#: ../src/plugins/tool/EventCmp.py:468 ../src/plugins/tool/EventNames.py:164
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:702
 #: ../src/plugins/tool/Leak.py:135 ../src/plugins/tool/NotRelated.py:438
 #: ../src/plugins/tool/PatchNames.py:375 ../src/plugins/tool/Rebuild.py:121
@@ -6750,7 +6752,7 @@ msgstr "Längste letzte Hochzeit"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
-msgstr "Datensätze Gramplet"
+msgstr "Rekorde Gramplet"
 
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
@@ -8263,6 +8265,9 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
+"Klicken zum ausklappen/einklappen der Person\n"
+"Rechtsklick für Optionen\n"
+"Klicken und ziehen auf einer Freifläche zum drehen."
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
 msgid "Fan Chart Gramplet"
@@ -8520,7 +8525,7 @@ msgstr "Aufzeichnungen für diese Sitzung"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:44
 msgid "Opened data base -----------\n"
-msgstr ""
+msgstr "Geöffnete Datenbank -----------\n"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
@@ -9501,7 +9506,7 @@ msgid ""
 "between different database versions."
 msgstr ""
 "Die Version der Datenbank wird nicht von dieser GRAMPS Version unterstützt.\n"
-"Bitte update die entsprechende Version oder verwende XML um die Daten "
+"Bitte aktualisiere die entsprechende Version oder verwende XML um die Daten "
 "zwischen verschiedenen Datenbankversionen zu portieren."
 
 #: ../src/plugins/import/ImportGrdb.py:2467
@@ -11915,18 +11920,6 @@ msgstr "Datenbank prüfen und reparieren"
 #: ../src/plugins/tool/Check.py:1500
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Überprüft die Datenbank und repariert die Probleme soweit möglich."
-
-#: ../src/plugins/tool/CmdRef.py:241
-msgid "Generate Commandline Plugin Reference"
-msgstr "Erstellt Kommandozeile PlugIn Referenz"
-
-#: ../src/plugins/tool/CmdRef.py:245
-msgid ""
-"Produces a DocBook XML file that contains a parameter reference of Reports "
-"and Tools."
-msgstr ""
-"Erstellt eine DocBook XML Datei die eine Parameter Referenz von Berichten "
-"und Werkzeugen enthält."
 
 #: ../src/plugins/tool/Desbrowser.py:58
 msgid "manual|Interactive_Descendant_Browser..."
@@ -18780,7 +18773,7 @@ msgstr "_Wiederherstellen %s"
 
 #: ../src/gen/db/dbdir.py:560
 msgid "Need to upgrade database!"
-msgstr "Datenbank muss aufgerüstet werden!"
+msgstr "Datenbank muss aktualisiert werden!"
 
 #: ../src/gen/db/dbdir.py:561
 msgid ""
@@ -18788,14 +18781,14 @@ msgid ""
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
 "You might want to make a backup copy first."
 msgstr ""
-"Diese Datenbank kann nicht geöffnet werden, ohne sie aufzurüsten (Update).\n"
-"Wenn du aufrüstest, dann kannst du die vorigen Versionen von GRAMPS nicht "
+"Diese Datenbank kann nicht geöffnet werden, ohne sie zu aktualisieren.\n"
+"Wenn du aktualisierst, dann kannst du die vorigen Versionen von GRAMPS nicht "
 "mehr benutzen.\n"
 "Du solltest vorher eine Sicherung erstellen.."
 
 #: ../src/gen/db/dbdir.py:567
 msgid "Upgrade now"
-msgstr "Jetzt aufrüsten"
+msgstr "Jetzt aktualisieren"
 
 #: ../src/gen/db/dbdir.py:2098
 #, python-format
@@ -21914,7 +21907,7 @@ msgstr "Zeigt an, wenn die Aufzeichnung privat ist"
 
 #: ../src/glade/edit_person.glade.h:13
 msgid "Part of the Given name that is the normally used name. "
-msgstr ""
+msgstr "Teil des Vornamen der normalerweise verwendet wird. "
 
 #: ../src/glade/edit_person.glade.h:14
 msgid ""
@@ -21956,7 +21949,7 @@ msgstr "_Typ:"
 
 #: ../src/glade/edit_person.glade.h:24
 msgid "part of a person's name indicating the family to which the person belongs"
-msgstr ""
+msgstr "Teil des Namens einer Person, die die Familie zeigt zu der die Person gehört"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "<b><i>Gramplet</i></b>"
@@ -22233,9 +22226,8 @@ msgid "Drag to move; click to detach"
 msgstr "Ziehen zum verschieben, klicken zum lösen"
 
 #: ../src/glade/gramps.glade.h:69
-#, fuzzy
 msgid "Dua_l dated"
-msgstr "Sterbedatum"
+msgstr "Dua_l datiert"
 
 #: ../src/glade/gramps.glade.h:70
 msgid "Example:"
@@ -22347,7 +22339,7 @@ msgstr "_Aufheben"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Old Style/New Style"
-msgstr ""
+msgstr "Alter Stil/Neuer Stil"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Open person editor of this child"
@@ -22463,6 +22455,8 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
+"Wenn aktiviert bleiben die Leerzeichen in deiner Notiz in Berichten erhalten. Verwende dies zum Formatieren mit Leerzeichen z.B. Tabellen\n"
+"Wenn nicht aktiviert werden Notizen in Berichten automatisch bereinigt, was das Berichtlayout verbessert."
 
 #: ../src/glade/gramps.glade.h:138
 msgid "Y_ear"
