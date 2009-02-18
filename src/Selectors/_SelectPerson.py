@@ -76,10 +76,10 @@ class SelectPerson(BaseSelector):
             (_('Name'),         250, BaseSelector.TEXT),
             (_('ID'),            75, BaseSelector.TEXT),
             (_('Gender'),        75, BaseSelector.TEXT),
-            (_('Birth Date'),   150, BaseSelector.TEXT),
-            (_('Birth Place'),  150, BaseSelector.TEXT),
-            (_('Death Date'),   150, BaseSelector.TEXT),
-            (_('Death Place'),  150, BaseSelector.TEXT),
+            (_('Birth Date'),   150, BaseSelector.MARKUP),
+            (_('Birth Place'),  150, BaseSelector.MARKUP),
+            (_('Death Date'),   150, BaseSelector.MARKUP),
+            (_('Death Place'),  150, BaseSelector.MARKUP),
             (_('Spouse'),       150, BaseSelector.TEXT),
             (_('Last Change'),  150, BaseSelector.TEXT)
             ]
