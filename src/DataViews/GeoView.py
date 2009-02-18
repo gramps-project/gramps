@@ -627,6 +627,12 @@ class GeoView(HtmlView):
         self.minlon = float(0.0)
         self.key_active_changed = None
  
+    def top_widget(self):
+        """
+        The top widget to use, for GeoView, none
+        """
+        return gtk.Label()
+
     def on_delete(self):
         """
         We need to suppress temporary files here.
