@@ -357,7 +357,3 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 pmgr = PluginManager.get_instance()
 pmgr.register_relcalc(RelationshipCalculator,
     ["hu", "HU", "hu_HU", "hu_HU.utf8", "hu_HU.UTF8"])
-
-# Local variables:
-# buffer-file-coding-system: utf-8
-# End:

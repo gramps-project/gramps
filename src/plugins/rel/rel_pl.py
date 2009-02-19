@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -908,6 +908,3 @@ if __name__ == "__main__":
     from Relationship import test
     rc = RelationshipCalculator()
     test(rc, True)
-
-# Local variables:
-# buffer-file-coding-system: utf-8

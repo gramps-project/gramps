@@ -527,7 +527,3 @@ if __name__ == "__main__":
     from Relationship import test
     rc = RelationshipCalculator()
     test(rc, True)
-
-# Local variables:
-# buffer-file-coding-system: utf-8
-# End:
