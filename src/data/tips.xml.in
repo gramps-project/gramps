@@ -129,8 +129,7 @@ will appear.
 (for example birth or death), GRAMPS allows you to enter a wide
 range of date formats based on a guess or an estimate. For instance,
 &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS.
-See section 3.7.2.2 of the GRAMPS manual for a complete description of
-date entry options.
+See wiki manual of GRAMPS for a complete description of date entry options.
 </_tip>
 
 <_tip number="21">
@@ -245,10 +244,11 @@ people.
 </_tip>
 
 <_tip number="35">
-<b>Different Views</b>: There are nine different views for navigating your
+<b>Different Views</b>: There are twelve different views for navigating your
 family:
-People, Relationships, Family List, Pedigree, Events, Sources, Places, Media 
-and Repositories. Each helps you to achieve one or more specific tasks.
+Gramplets, People, Relationships, Family List, Pedigree, Events, Sources, Places, 
+Media, Repositories, Notes and HTML Maps. Each helps you to achieve one or more 
+specific tasks.
 </_tip>
 
 <_tip number="36">
@@ -393,7 +393,7 @@ other file types to your GRAMPS family tree.
 GRAMPS allows you to generate a number of reports (both text and graphical)
 based on your genealogical information. There is great flexibility in
 selecting what people are included in the reports as well as the output
-format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text).
+format (html, pdf, Open Document Text, RTF, LaTeX and plain text).
 Experiment with the reports under the <b>Reports</b> menu to get an idea
 of how powerful GRAMPS is.
 </_tip>
@@ -451,7 +451,7 @@ email gramps-devel@lists.sf.net
 </_tip>
 
 <_tip number="65">
-Relationship calculators in GRAMPS are available in ten languages.
+Relationship calculators in GRAMPS are available in more than fifteen languages.
 </_tip>
 
 <_tip number="66">
@@ -501,7 +501,7 @@ installed.
 </_tip>
 
 <_tip number="74">
-To run GRAMPS, you need to have GNOME installed. But you do not need to be
+To run GRAMPS, you need to have GTK installed. But you do not need to be
 running the GNOME desktop.
 </_tip>
 
