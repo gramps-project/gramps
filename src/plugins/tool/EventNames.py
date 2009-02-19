@@ -29,6 +29,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from gettext import ngettext
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +49,7 @@ import Utils
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from BasicUtils import name_displayer
+from QuestionDialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
@@ -78,6 +80,8 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         """
         trans = self.db.transaction_begin("", batch=True)
         self.db.disable_signals()
+        self.change = False
+        counter = 0
         
         for handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(handle)
@@ -89,6 +93,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                         person_event_name(event, person)
                         self.db.commit_event(event, trans)
                         self.change = True
+                        counter += 1
 
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
@@ -99,10 +104,20 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                     if event.get_description() == "":
                         family_event_name(event, family, self.db)
                         self.db.commit_event(event, trans)
+                        self.change = True
+                        counter += 1
 
         self.db.transaction_commit(trans, _("Event name changes"))
         self.db.enable_signals()
         self.db.request_rebuild()
+
+        if self.change == True:
+            OkDialog(_('Modifications made'), 
+                    ngettext("%s event description has been added", 
+                    "%s event descriptions have been added", counter) % counter)
+        else:
+            OkDialog(_('No modifications made'), 
+                    _("No event description has been added."))
 
 #-------------------------------------------------------------------------
 #
