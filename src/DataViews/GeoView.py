@@ -955,7 +955,7 @@ class GeoView(HtmlView):
             self.mapview.write("  <input type='radio' ")
             self.mapview.write("name='years' value='All' checked\n")
             self.mapview.write("   onchange=\"selectmarkers")
-            self.mapview.write("(\'All\')\"/>All\n")
+            self.mapview.write("(\'All\')\"/>%s\n" % _("All"))
             for year in range(self.minyear, self.maxyear+self.yearint,
                               self.yearint):
                 self.mapview.write("  <input type='radio' ")
