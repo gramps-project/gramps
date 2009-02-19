@@ -95,26 +95,32 @@ try:
         unicode(locale.nl_langinfo(locale.ABMON_12),codeset),
         )
 
+    # Gramps day number: Sunday => 1, Monday => 2, etc
+    # "Return name of the n-th day of the week. Warning:
+    #  This follows the US convention of DAY_1 being Sunday,
+    #  not the international convention (ISO 8601) that Monday
+    #  is the first day of the week."
+    # see http://docs.python.org/library/locale.html
     long_days = (
         "",
-        unicode(locale.nl_langinfo(locale.DAY_1),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_2),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_3),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_4),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_5),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_6),codeset),
-        unicode(locale.nl_langinfo(locale.DAY_7),codeset),
+        unicode(locale.nl_langinfo(locale.DAY_1),codeset), # Sunday
+        unicode(locale.nl_langinfo(locale.DAY_2),codeset), # Monday
+        unicode(locale.nl_langinfo(locale.DAY_3),codeset), # Tuesday
+        unicode(locale.nl_langinfo(locale.DAY_4),codeset), # Wednesday
+        unicode(locale.nl_langinfo(locale.DAY_5),codeset), # Thursday
+        unicode(locale.nl_langinfo(locale.DAY_6),codeset), # Friday
+        unicode(locale.nl_langinfo(locale.DAY_7),codeset), # Saturday
         )
-        
+
     short_days = (
         "",
-        unicode(locale.nl_langinfo(locale.ABDAY_1),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_2),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_3),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_4),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_5),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_6),codeset),
-        unicode(locale.nl_langinfo(locale.ABDAY_7),codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_1),codeset), # Sunday
+        unicode(locale.nl_langinfo(locale.ABDAY_2),codeset), # Monday
+        unicode(locale.nl_langinfo(locale.ABDAY_3),codeset), # Tuesday
+        unicode(locale.nl_langinfo(locale.ABDAY_4),codeset), # Wednesday
+        unicode(locale.nl_langinfo(locale.ABDAY_5),codeset), # Thursday
+        unicode(locale.nl_langinfo(locale.ABDAY_6),codeset), # Friday
+        unicode(locale.nl_langinfo(locale.ABDAY_7),codeset), # Saturday
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
@@ -182,31 +188,39 @@ except:
         unicode(time.strftime('%b',(0,11,1,1,1,1,1,1,1)),codeset),
         unicode(time.strftime('%b',(0,12,1,1,1,1,1,1,1)),codeset),
        )
-       
+
+    # Gramps day number: Sunday => 1, Monday => 2, etc
+    # strftime takes a (from the doc of standard Python library "time")
+    #  "tuple or struct_time representing a time as returned by gmtime()
+    #   or localtime()"
+    # see http://docs.python.org/library/time.html
+    # The seventh tuple entry returned by gmtime() is the day-of-the-week
+    # number. tm_wday => range [0,6], Monday is 0
+    # Note. Only the seventh tuple entry matters. The others are
+    # just a dummy.
     long_days = (
         "",
-        unicode(time.strftime('%A',(0,1,1,1,1,1,1,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,2,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,3,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,4,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,5,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,6,1,1)),codeset),
-        unicode(time.strftime('%A',(0,1,1,1,1,1,7,1,1)),codeset),
+        unicode(time.strftime('%A',(0,1,1,1,1,1,6,1,1)),codeset), # Sunday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,0,1,1)),codeset), # Monday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,1,1,1)),codeset), # Tuesday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,2,1,1)),codeset), # Wednesday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,3,1,1)),codeset), # Thursday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,4,1,1)),codeset), # Friday
+        unicode(time.strftime('%A',(0,1,1,1,1,1,5,1,1)),codeset), # Saturday
         )
-        
+
     short_days = (
         "",
-        unicode(time.strftime('%a',(0,1,1,1,1,1,1,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,2,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,3,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,4,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,5,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,6,1,1)),codeset),
-        unicode(time.strftime('%a',(0,1,1,1,1,1,7,1,1)),codeset),
+        unicode(time.strftime('%a',(0,1,1,1,1,1,6,1,1)),codeset), # Sunday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,0,1,1)),codeset), # Monday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,1,1,1)),codeset), # Tuesday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,2,1,1)),codeset), # Wednesday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,3,1,1)),codeset), # Thursday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,4,1,1)),codeset), # Friday
+        unicode(time.strftime('%a',(0,1,1,1,1,1,5,1,1)),codeset), # Saturday
         )
 
     if time.strftime('%x',(2005,1,2,1,1,1,1,1,1)) == '2/1/2005':
         tformat = '%d/%m/%y'
     else:
         tformat = '%m/%d/%y'
-
