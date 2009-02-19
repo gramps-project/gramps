@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <calendar>
+  <country name="">
+  </country>  
   <country name="United States">
     <date name="New Year's Eve" value="*/12/31" type="national" />
     <date name="New Year's Day" value="*/1/1" type="national" />

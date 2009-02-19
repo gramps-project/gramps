@@ -426,8 +426,7 @@ class WebCalReport(Report):
         num_years = (self.end_year - self.start_year)
         cal_year = self.start_year
 
-        nrows = (num_years / 16)
-        for rows in range(0, (nrows + 1)):
+        for rows in range((num_years // 16) + 1):
             of.write('<div id="navigation">\n')
             of.write('\t<ul>\n')
             cols = 0
@@ -1447,49 +1446,47 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
 
     # birthday/ anniversary on this day
     if bday_anniv_list > []:
-        for text, event, date in bday_anniv_list:
+        birth_anniversary = [(t, e, d) for t, e, d in bday_anniv_list if d.is_valid()]
+        for text, event, date in birth_anniversary:
 
-            # '...' signifies an incomplete date for an event. See add_day_item()
             txt_str = None
-            if date != '...':
 
-                # number of years married, ex: 10
-                nyears = event_date.get_year() - date.get_year()
+            # number of years married, ex: 10
+            nyears = event_date.get_year() - date.get_year()
 
-                # no negative years
-                # years have to be at least zero
-                if nyears > -1:
+            # no negative years; have to be at least zero
+            if nyears > -1:
 
-                    # number of years for birthday, ex: 10 years
-                    age_str = event_date - date
-                    age_str.format(precision=1)
+                # number of years for birthday, ex: 10 years
+                age_str = event_date - date
+                age_str.format(precision=1)
 
-                    # a birthday
-                    if event == 'Birthday':
+                # a birthday
+                if event == 'Birthday':
 
-                        if nyears == 0:
-                            txt_str = _('%(person)s, <em>birth</em>') % {
-                                        'person' : text}
-                        else: 
-                            txt_str = _('%(person)s, <em>%(age)s</em> old') % {
-                                        'person' : text, 'age' : age_str}
+                    if nyears == 0:
+                        txt_str = _('%(person)s, <em>birth</em>') % {
+                                    'person' : text}
+                    else: 
+                        txt_str = _('%(person)s, <em>%(age)s</em> old') % {
+                                    'person' : text, 'age' : age_str}
 
-                    # an anniversary
-                    elif event == 'Anniversary':
+                # an anniversary
+                elif event == 'Anniversary':
 
-                        if nyears == 0:
-                            txt_str = _('%(couple)s, <em>wedding</em>') % {
+                    if nyears == 0:
+                        txt_str = _('%(couple)s, <em>wedding</em>') % {
                                     'couple' : text}
-                        else: 
-                            txt_str = (ngettext('%(couple)s, <em>%(years)d'
-                                                '</em> year anniversary',
-                                                '%(couple)s, <em>%(years)d'
-                                                '</em> year anniversary', nyears)
-                                       % {'couple' : text, 'years'  : nyears})
-                        txt_str = '<span class="yearsmarried">%s</span>' % txt_str
+                    else: 
+                        txt_str = (ngettext('%(couple)s, <em>%(years)d'
+                                            '</em> year anniversary',
+                                            '%(couple)s, <em>%(years)d'
+                                            '</em> year anniversary', nyears)
+                                   % {'couple' : text, 'years'  : nyears})
+                    txt_str = '<span class="yearsmarried">%s</span>' % txt_str
 
-                if txt_str is not None:
-                    day_list.append((nyears, date, txt_str, event))
+            if txt_str is not None:
+                day_list.append((nyears, date, txt_str, event))
 
     # sort them based on number of years
     # holidays will always be on top of day 
