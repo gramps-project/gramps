@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-17 18:35+0100\n"
-"PO-Revision-Date: 2009-02-17 19:30+0100\n"
+"POT-Creation-Date: 2009-02-19 18:16+0100\n"
+"PO-Revision-Date: 2009-02-19 19:06+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2785,7 +2785,7 @@ msgid "Very High"
 msgstr "Sehr hoch"
 
 #: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/tool/FindDupes.py:67
+#: ../src/plugins/tool/FindDupes.py:68
 msgid "High"
 msgstr "Hoch"
 
@@ -2795,7 +2795,7 @@ msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/tool/FindDupes.py:65
+#: ../src/plugins/tool/FindDupes.py:66
 msgid "Low"
 msgstr "Niedrig"
 
@@ -3485,87 +3485,88 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
-"Schreib eine Weseitenadresse oben und drücke die ausführen Schaltfläche um die Webseite in diese Seite zu laden\n"
+"Schreib eine Weseitenadresse oben und drücke die ausführen Schaltfläche um "
+"die Webseite in diese Seite zu laden\n"
 "<br>\n"
 "Zum Beispiel: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:732
+#: ../src/DataViews/GeoView.py:738
 msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:734
+#: ../src/DataViews/GeoView.py:740
 msgid "Select OpenStreetMap Maps"
 msgstr "OpenStreetMap wählen."
 
-#: ../src/DataViews/GeoView.py:737
+#: ../src/DataViews/GeoView.py:743
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/GeoView.py:739
+#: ../src/DataViews/GeoView.py:745
 msgid "Select Google Maps."
 msgstr "Google Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:742
+#: ../src/DataViews/GeoView.py:748
 msgid "_OpenLayers Maps"
 msgstr "_OpenLayers Maps"
 
-#: ../src/DataViews/GeoView.py:744
+#: ../src/DataViews/GeoView.py:750
 msgid "Select OpenLayers Maps."
 msgstr "OpenLayers Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:747
+#: ../src/DataViews/GeoView.py:753
 msgid "_Yahoo! Maps"
 msgstr "_Yahoo! Maps"
 
-#: ../src/DataViews/GeoView.py:749
+#: ../src/DataViews/GeoView.py:755
 msgid "Select Yahoo Maps."
 msgstr "Yahoo! Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:752
+#: ../src/DataViews/GeoView.py:758
 msgid "_Microsoft Maps"
 msgstr "_Microsoft Maps"
 
-#: ../src/DataViews/GeoView.py:754
+#: ../src/DataViews/GeoView.py:760
 msgid "Select Microsoft Maps"
 msgstr "Microsoft Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:755
+#: ../src/DataViews/GeoView.py:761
 msgid "_All Places"
 msgstr "_Alle Orte"
 
-#: ../src/DataViews/GeoView.py:757
+#: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view all places in the family tree."
 msgstr "Versuche alle Orte im Stammbaum zu zeigen."
 
-#: ../src/DataViews/GeoView.py:758
+#: ../src/DataViews/GeoView.py:764
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/DataViews/GeoView.py:760
+#: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
 
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:767
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/DataViews/GeoView.py:763
+#: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
 msgstr "Versuche Orte der Personen der gewählten Familien zu zeigen."
 
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:770
 msgid "_Event"
 msgstr "_Ereignis"
 
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
 msgstr "Versuche die Orte die mit allen Ereignissen verbunden sind zu zeigen."
 
-#: ../src/DataViews/GeoView.py:862
+#: ../src/DataViews/GeoView.py:868
 msgid "List of places without coordinates"
 msgstr "Liste der Orte ohne Koordinaten"
 
-#: ../src/DataViews/GeoView.py:863
+#: ../src/DataViews/GeoView.py:869
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -3573,7 +3574,7 @@ msgstr ""
 "Hier ist die Liste aller Orte im Stammbaum für die wir keine Koordinaten "
 "haben.<br> Dies bedeutet keine Längen oder Breitengrade.<p>"
 
-#: ../src/DataViews/GeoView.py:913
+#: ../src/DataViews/GeoView.py:919
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
@@ -3582,102 +3583,102 @@ msgstr ""
 "Es gibt %d Marker zum anzeigen. Diese sind verteilt über %d Seiten mit %d "
 "Markern : "
 
-#: ../src/DataViews/GeoView.py:1411
+#: ../src/DataViews/GeoView.py:1417
 msgid "No location."
 msgstr "Kein Ort"
 
-#: ../src/DataViews/GeoView.py:1414
+#: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du hast keine Orte mit Koordinaten in deinem Stammbaum."
 
-#: ../src/DataViews/GeoView.py:1417
+#: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
 msgstr "Du schaust auf die Standartkarte."
 
-#: ../src/DataViews/GeoView.py:1442
+#: ../src/DataViews/GeoView.py:1448
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : Geburtsort."
 
-#: ../src/DataViews/GeoView.py:1445
+#: ../src/DataViews/GeoView.py:1451
 msgid "birth place."
 msgstr "Geburtsort."
 
-#: ../src/DataViews/GeoView.py:1477
+#: ../src/DataViews/GeoView.py:1483
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : Sterbeort."
 
-#: ../src/DataViews/GeoView.py:1480
+#: ../src/DataViews/GeoView.py:1486
 msgid "death place."
 msgstr "Sterbeort."
 
-#: ../src/DataViews/GeoView.py:1516
+#: ../src/DataViews/GeoView.py:1522
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/DataViews/GeoView.py:1533 ../src/DataViews/GeoView.py:1610
-#: ../src/DataViews/GeoView.py:1660 ../src/DataViews/GeoView.py:1731
+#: ../src/DataViews/GeoView.py:1539 ../src/DataViews/GeoView.py:1616
+#: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1737
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Kann Karte nicht zentrieren. Keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1537
+#: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
 msgstr "Alle Orte im Stammbaum mit Koordinaten"
 
-#: ../src/DataViews/GeoView.py:1562
+#: ../src/DataViews/GeoView.py:1568
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1613
+#: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
 msgstr "Alle Ereignisse im Stammbaum mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1641
+#: ../src/DataViews/GeoView.py:1647
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : Vater : %s"
 
-#: ../src/DataViews/GeoView.py:1646
+#: ../src/DataViews/GeoView.py:1652
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : Mutter : %s"
 
-#: ../src/DataViews/GeoView.py:1655
+#: ../src/DataViews/GeoView.py:1661
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : Kind : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1662
+#: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
 msgstr "Die Familienmitglieder der aktiven Person haben keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1736
+#: ../src/DataViews/GeoView.py:1672 ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
 msgstr "Keine aktive Person"
 
-#: ../src/DataViews/GeoView.py:1670
+#: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaummit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1714
+#: ../src/DataViews/GeoView.py:1720
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1734
+#: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
 msgstr "Die aktive Person hat keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1739
+#: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
 msgstr "Alle Ereignis Orte für %s."
 
-#: ../src/DataViews/GeoView.py:1746
+#: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
 msgstr "Noch nicht implementiert ..."
 
@@ -6163,8 +6164,8 @@ msgstr "GRAMPS-Buch"
 #: ../src/plugins/tool/ChangeNames.py:292
 #: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1497
 #: ../src/plugins/tool/Desbrowser.py:170 ../src/plugins/tool/Eval.py:132
-#: ../src/plugins/tool/EventCmp.py:468 ../src/plugins/tool/EventNames.py:164
-#: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:702
+#: ../src/plugins/tool/EventCmp.py:468 ../src/plugins/tool/EventNames.py:179
+#: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:703
 #: ../src/plugins/tool/Leak.py:135 ../src/plugins/tool/NotRelated.py:438
 #: ../src/plugins/tool/PatchNames.py:375 ../src/plugins/tool/Rebuild.py:121
 #: ../src/plugins/tool/RebuildRefMap.py:123 ../src/plugins/tool/RelCalc.py:271
@@ -6315,12 +6316,12 @@ msgstr "Daten aus GRAMPS-Paketen importieren"
 #. Support functions
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/import/ImportXml.py:75 ../src/plugins/tool/EventNames.py:113
+#: ../src/plugins/import/ImportXml.py:75 ../src/plugins/tool/EventNames.py:128
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s von %(family)s"
 
-#: ../src/plugins/import/ImportXml.py:76 ../src/plugins/tool/EventNames.py:114
+#: ../src/plugins/import/ImportXml.py:76 ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s von %(person)s"
@@ -8249,7 +8250,7 @@ msgstr "Zum bearbeiten rechts-klicken"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
 msgid "   sp. "
-msgstr ""
+msgstr "   ..+ "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
 msgid "Descendant Gramplet"
@@ -11536,6 +11537,7 @@ msgid "Searching family names"
 msgstr "Familiennamen suchen"
 
 #: ../src/plugins/tool/ChangeNames.py:147
+#: ../src/plugins/tool/EventNames.py:119
 #: ../src/plugins/tool/ExtractCity.py:512
 #: ../src/plugins/tool/PatchNames.py:188
 msgid "No modifications made"
@@ -12020,15 +12022,30 @@ msgstr ""
 "entwickeln und auf die Datenbank anzuwenden, um ähnliche Ereignisse zu "
 "finden."
 
-#: ../src/plugins/tool/EventNames.py:103
+#: ../src/plugins/tool/EventNames.py:110
 msgid "Event name changes"
 msgstr "Ereignisnameänderungen"
 
-#: ../src/plugins/tool/EventNames.py:163
+#: ../src/plugins/tool/EventNames.py:115
+msgid "Modifications made"
+msgstr "Änderungen vorgenommen"
+
+#: ../src/plugins/tool/EventNames.py:116
+#, python-format
+msgid "%s event description has been added"
+msgid_plural "%s event descriptions have been added"
+msgstr[0] "%s Ereignisbeschreibung wurde hinzugefügt"
+msgstr[1] "%s Ereignisbeschreibungen wurden hinzugefügt"
+
+#: ../src/plugins/tool/EventNames.py:120
+msgid "No event description has been added."
+msgstr "Es wurde keine Ereignisbeschreibung hinzugefügt"
+
+#: ../src/plugins/tool/EventNames.py:178
 msgid "Extract Event Descriptions from Event Data"
 msgstr "Ereignisbeschreibung aus Ereignisdaten Extrahieren"
 
-#: ../src/plugins/tool/EventNames.py:167
+#: ../src/plugins/tool/EventNames.py:182
 msgid "Extracts event descriptions from the event data"
 msgstr "Extrahiert Ereignisbeschreibung aus Ereignisdaten"
 
@@ -12082,71 +12099,71 @@ msgstr "Extrahiere Ortsdaten aus Ortstitel"
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Versuche, Stadt und Bundesland/Provinz von einem Ortstitel zu extrahieren"
 
-#: ../src/plugins/tool/FindDupes.py:66
+#: ../src/plugins/tool/FindDupes.py:67
 msgid "Medium"
 msgstr "Mittel"
 
-#: ../src/plugins/tool/FindDupes.py:71
+#: ../src/plugins/tool/FindDupes.py:72
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Finde_Mögliche_Doppelte_Personen..."
 
-#: ../src/plugins/tool/FindDupes.py:136 ../src/plugins/tool/FindDupes.py:701
+#: ../src/plugins/tool/FindDupes.py:137 ../src/plugins/tool/FindDupes.py:702
 msgid "Find Possible Duplicate People"
 msgstr "Finde Mögliche Doppelte Personen"
 
-#: ../src/plugins/tool/FindDupes.py:148 ../src/plugins/tool/Verify.py:301
+#: ../src/plugins/tool/FindDupes.py:149 ../src/plugins/tool/Verify.py:301
 msgid "Tool settings"
 msgstr "Werkzeugeinstellungen"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 msgid "Find Duplicates tool"
 msgstr "Werkzeug zum finden von Dubletten"
 
-#: ../src/plugins/tool/FindDupes.py:182
+#: ../src/plugins/tool/FindDupes.py:183
 msgid "No matches found"
 msgstr "Keine Treffer gefunden"
 
-#: ../src/plugins/tool/FindDupes.py:183
+#: ../src/plugins/tool/FindDupes.py:184
 msgid "No potential duplicate people were found"
 msgstr "Es wurden keine potentiell doppelten Personen gefunden"
 
-#: ../src/plugins/tool/FindDupes.py:192
+#: ../src/plugins/tool/FindDupes.py:193
 msgid "Find Duplicates"
 msgstr "Finde Duplikate"
 
-#: ../src/plugins/tool/FindDupes.py:193
+#: ../src/plugins/tool/FindDupes.py:194
 msgid "Looking for duplicate people"
 msgstr "Suche nach doppelt vorkommenden Personen"
 
-#: ../src/plugins/tool/FindDupes.py:202
+#: ../src/plugins/tool/FindDupes.py:203
 msgid "Pass 1: Building preliminary lists"
 msgstr "Durchgang 1: Erstelle Vorbereitungslisten"
 
-#: ../src/plugins/tool/FindDupes.py:220
+#: ../src/plugins/tool/FindDupes.py:221
 msgid "Pass 2: Calculating potential matches"
 msgstr "Durchgang 2: Berechnet mögliche Treffer"
 
-#: ../src/plugins/tool/FindDupes.py:567
+#: ../src/plugins/tool/FindDupes.py:568
 msgid "Potential Merges"
 msgstr "Mögliche Zusammenführungen"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "Rating"
 msgstr "Bewertung"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "First Person"
 msgstr "Erste Person"
 
-#: ../src/plugins/tool/FindDupes.py:578
+#: ../src/plugins/tool/FindDupes.py:579
 msgid "Second Person"
 msgstr "Zweite Person"
 
-#: ../src/plugins/tool/FindDupes.py:586
+#: ../src/plugins/tool/FindDupes.py:587
 msgid "Merge candidates"
 msgstr "Kandidaten zum Zusammenfügen"
 
-#: ../src/plugins/tool/FindDupes.py:705
+#: ../src/plugins/tool/FindDupes.py:706
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
@@ -21915,6 +21932,8 @@ msgid ""
 "grandfather, .... \n"
 "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
+"Vatername: Teil des persönlichen Namen der auf dem Namen des Vaters, Großvater, .... basiert\n"
+"Titel: Ein Titel der sich auf die Person bezieht wie 'Dr.' oder 'Prof.'"
 
 #: ../src/glade/edit_person.glade.h:16
 msgid ""
@@ -21922,6 +21941,9 @@ msgid ""
 "such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
+"Präfix: Eine optionale Voranstellung vor den Familiennamen die nicht für die "
+"Sortierung verwendet wird, wie \"von\", \"de\" oder \"van\"\n"
+"Suffix: Eine optionale Endung zu dem Namen, wie  \"Jun.\" oder \"III.\""
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "The person's given name"
@@ -22455,8 +22477,10 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
-"Wenn aktiviert bleiben die Leerzeichen in deiner Notiz in Berichten erhalten. Verwende dies zum Formatieren mit Leerzeichen z.B. Tabellen\n"
-"Wenn nicht aktiviert werden Notizen in Berichten automatisch bereinigt, was das Berichtlayout verbessert."
+"Wenn aktiviert bleiben die Leerzeichen in deiner Notiz in Berichten "
+"erhalten. Verwende dies zum Formatieren mit Leerzeichen z.B. Tabellen\n"
+"Wenn nicht aktiviert werden Notizen in Berichten automatisch bereinigt, was "
+"das Berichtlayout verbessert."
 
 #: ../src/glade/gramps.glade.h:138
 msgid "Y_ear"
@@ -23343,15 +23367,14 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:6
 msgid ""
-"<b>Different Views</b>: There are nine different views for navigating your "
-"family: People, Relationships, Family List, Pedigree, Events, Sources, "
-"Places, Media and Repositories. Each helps you to achieve one or more "
-"specific tasks."
+"<b>Different Views</b>: There are twelve different views for navigating your "
+"family: Gramplets, People, Relationships, Family List, Pedigree, Events, "
+"Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to "
+"achieve one or more specific tasks."
 msgstr ""
-"<b>Verschiedene Ansichten</b>. Es gibt neun verschiedene Ansichten um durch "
-"deine Familie zu navigieren: Personen, Beziehungen, Familienliste, "
-"Ahnentafel, Ereignisse, Quellen, Orte, Multimedia und Aufbewahrungsorte. "
-"Jede hilft dir eine oder mehrere bestimmte Aufgaben durchzuführen."
+"<b>Verschiedene Ansichten</b>. Es gibt zwölf verschiedene Ansichten um durch "
+"deine Familie zu navigieren: Gramplets, Personen, Beziehungen, Familienliste, "
+"Ahnentafel, Ereignisse, Quellen, Orte, Medien, Aufbewahrungsorte Notizen und HTML Karten Jede hilft dir eine oder mehrere bestimmte Aufgaben durchzuführen."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -23613,15 +23636,14 @@ msgid ""
 "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred "
 "(for example birth or death), GRAMPS allows you to enter a wide range of "
 "date formats based on a guess or an estimate. For instance, &quot;about "
-"1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 "
-"of the GRAMPS manual for a complete description of date entry options."
+"1908&quot; is a valid entry for a birth date in GRAMPS. See wiki manual of "
+"GRAMPS for a complete description of date entry options."
 msgstr ""
 "<b>Bist du dir bei einem Datum unsicher?</b> Wenn du dir bei einem "
 "vorkommenden Datum unsicher bist (zum Beispiel beim Sterbedatum), erlaubt "
 "dir GRAMPS einen weiten Umfang an Daten, die auf einer Vermutung oder "
 "Einschätzung beruhen. Im Fall von &quot;etwa 1908&quot; ist dies ein "
-"erlaubter Eintrag für ein Geburtsdatum in GRAMPS. Schaue in den Abschnitt "
-"3.7.2.2 des GRAMPS Benutzerhandbuches, wo du eine genaue Beschreibung der "
+"erlaubter Eintrag für ein Geburtsdatum in GRAMPS. Schaue in das Wikihandbuch von GRAMPS, wo du eine genaue Beschreibung der "
 "Optionen zu Datumseingabe findest."
 
 #: ../src/data/tips.xml.in.h:27
@@ -23739,15 +23761,14 @@ msgid ""
 "GRAMPS allows you to generate a number of reports (both text and graphical) "
 "based on your genealogical information. There is great flexibility in "
 "selecting what people are included in the reports as well as the output "
-"format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). "
+"format (html, pdf, Open Document Text, RTF, LaTeX and plain text). "
 "Experiment with the reports under the <b>Reports</b> menu to get an idea of "
 "how powerful GRAMPS is."
 msgstr ""
 "GRAMPS erlaubt dir eine Menge an Berichten (sowohl Text als auch grafisch) "
 "zu erstellen, die deine genealogische Informationen enthalten. Eine große "
 "Flexibilität gibt es sowohl bei der Auswahl der Personen für den Bericht als "
-"auch für das Ausgabeformat (HTML, PDF, OpenOffice, RTF, AbiWord, KWord, "
-"LaTeX und normaler Text). Probiere die Berichte im Menü unter <b>Berichte</"
+"auch für das Ausgabeformat (HTML, PDF, Open Document, RTF, LaTeX und normaler Text). Probiere die Berichte im Menü unter <b>Berichte</"
 "b> um einen Einblick zu bekommen, wie mächtig GRAMPS ist."
 
 #: ../src/data/tips.xml.in.h:38
@@ -23965,8 +23986,10 @@ msgstr ""
 "Geburtsname, Name nach Heirat oder Alias."
 
 #: ../src/data/tips.xml.in.h:58
-msgid "Relationship calculators in GRAMPS are available in ten languages."
-msgstr "Für GRAMPS sind Verwandtschaftrechner in zehn Sprachen verfügbar."
+msgid ""
+"Relationship calculators in GRAMPS are available in more than fifteen "
+"languages."
+msgstr "Für GRAMPS sind Verwandtschaftrechner in mehr als fünfzehn Sprachen verfügbar."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
@@ -24075,10 +24098,10 @@ msgstr ""
 
 #: ../src/data/tips.xml.in.h:70
 msgid ""
-"To run GRAMPS, you need to have GNOME installed. But you do not need to be "
+"To run GRAMPS, you need to have GTK installed. But you do not need to be "
 "running the GNOME desktop."
 msgstr ""
-"Um GRAMPS zu benutzen, benötigst du GNOME. Aber du musst nicht den GNOME "
+"Um GRAMPS zu benutzen, benötigst du GTK. Aber du musst nicht den GNOME "
 "Desktop verwenden."
 
 #: ../src/data/tips.xml.in.h:71
