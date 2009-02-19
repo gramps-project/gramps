@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 15:16+0100\n"
-"PO-Revision-Date: 2009-02-16 15:21+0100\n"
+"POT-Creation-Date: 2009-02-19 15:58+0100\n"
+"PO-Revision-Date: 2009-02-19 15:59+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -489,7 +489,7 @@ msgstr "Impossible de renommer l'arbre familial."
 
 #: ../src/DbManager.py:687
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Cet arbre familial existe, choisissez un nom unique."
+msgstr "Cet arbre familial existe, choisissez un nom présent."
 
 #: ../src/DbManager.py:700
 msgid "Could not rename family tree"
@@ -586,8 +586,8 @@ msgstr "Jamais"
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #: ../src/plugins/graph/GVFamilyLines.py:152
 #: ../src/plugins/graph/GVRelGraph.py:511
-#: ../src/plugins/quickview/all_relations.py:280
-#: ../src/plugins/quickview/all_relations.py:297
+#: ../src/plugins/quickview/all_relations.py:277
+#: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
 #: ../src/plugins/tool/Check.py:1312
 #: ../src/plugins/webreport/NarrativeWeb.py:661
@@ -1108,22 +1108,22 @@ msgstr "Adresse électronique"
 #: ../src/plugins/gramplet/SessionLogGramplet.py:59
 #: ../src/plugins/gramplet/SessionLogGramplet.py:67
 #: ../src/plugins/import/ImportCsv.py:197
-#: ../src/plugins/quickview/AgeOnDate.py:56
-#: ../src/plugins/quickview/AttributeMatch.py:35
-#: ../src/plugins/quickview/FilterByName.py:62
-#: ../src/plugins/quickview/FilterByName.py:70
-#: ../src/plugins/quickview/FilterByName.py:79
-#: ../src/plugins/quickview/FilterByName.py:88
-#: ../src/plugins/quickview/FilterByName.py:97
-#: ../src/plugins/quickview/FilterByName.py:107
-#: ../src/plugins/quickview/FilterByName.py:122
-#: ../src/plugins/quickview/FilterByName.py:162
-#: ../src/plugins/quickview/FilterByName.py:173
-#: ../src/plugins/quickview/FilterByName.py:215
-#: ../src/plugins/quickview/References.py:37
-#: ../src/plugins/quickview/References.py:90
-#: ../src/plugins/quickview/SameSurnames.py:110
-#: ../src/plugins/quickview/SameSurnames.py:149
+#: ../src/plugins/quickview/AgeOnDate.py:53
+#: ../src/plugins/quickview/AttributeMatch.py:31
+#: ../src/plugins/quickview/FilterByName.py:58
+#: ../src/plugins/quickview/FilterByName.py:66
+#: ../src/plugins/quickview/FilterByName.py:75
+#: ../src/plugins/quickview/FilterByName.py:84
+#: ../src/plugins/quickview/FilterByName.py:93
+#: ../src/plugins/quickview/FilterByName.py:103
+#: ../src/plugins/quickview/FilterByName.py:118
+#: ../src/plugins/quickview/FilterByName.py:158
+#: ../src/plugins/quickview/FilterByName.py:169
+#: ../src/plugins/quickview/FilterByName.py:211
+#: ../src/plugins/quickview/References.py:34
+#: ../src/plugins/quickview/References.py:87
+#: ../src/plugins/quickview/SameSurnames.py:107
+#: ../src/plugins/quickview/SameSurnames.py:146
 #: ../src/plugins/tool/EventCmp.py:249
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Person"
@@ -1147,11 +1147,11 @@ msgstr "Individu"
 #: ../src/plugins/gramplet/SessionLogGramplet.py:56
 #: ../src/plugins/gramplet/SessionLogGramplet.py:70
 #: ../src/plugins/import/ImportCsv.py:204
-#: ../src/plugins/quickview/all_events.py:80
-#: ../src/plugins/quickview/all_relations.py:273
-#: ../src/plugins/quickview/FilterByName.py:134
-#: ../src/plugins/quickview/References.py:37
-#: ../src/plugins/quickview/References.py:91
+#: ../src/plugins/quickview/all_events.py:77
+#: ../src/plugins/quickview/all_relations.py:270
+#: ../src/plugins/quickview/FilterByName.py:130
+#: ../src/plugins/quickview/References.py:34
+#: ../src/plugins/quickview/References.py:88
 #: ../src/gen/lib/eventroletype.py:66
 #: ../src/FilterEditor/_EditRule.py:278
 msgid "Family"
@@ -1167,11 +1167,11 @@ msgstr "Famille"
 #: ../src/DisplayTabs/_LdsEmbedList.py:63
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:219
-#: ../src/plugins/quickview/OnThisDay.py:80
-#: ../src/plugins/quickview/OnThisDay.py:81
-#: ../src/plugins/quickview/OnThisDay.py:82
-#: ../src/plugins/quickview/References.py:38
-#: ../src/plugins/quickview/References.py:94
+#: ../src/plugins/quickview/OnThisDay.py:77
+#: ../src/plugins/quickview/OnThisDay.py:78
+#: ../src/plugins/quickview/OnThisDay.py:79
+#: ../src/plugins/quickview/References.py:35
+#: ../src/plugins/quickview/References.py:91
 #: ../src/plugins/textreport/MarkerReport.py:301
 #: ../src/plugins/tool/SortEvents.py:60
 #: ../src/plugins/webreport/NarrativeWeb.py:2228
@@ -1187,8 +1187,8 @@ msgstr "Lieu"
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:169
 #: ../src/plugins/import/ImportCsv.py:202
-#: ../src/plugins/quickview/References.py:37
-#: ../src/plugins/quickview/References.py:93
+#: ../src/plugins/quickview/References.py:34
+#: ../src/plugins/quickview/References.py:90
 #: ../src/FilterEditor/_EditRule.py:281
 msgid "Source"
 msgstr "Source"
@@ -1202,8 +1202,8 @@ msgid "Media Object"
 msgstr "Objet media"
 
 #: ../src/GrampsCfg.py:233
-#: ../src/plugins/quickview/References.py:37
-#: ../src/plugins/quickview/References.py:92
+#: ../src/plugins/quickview/References.py:34
+#: ../src/plugins/quickview/References.py:89
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/FilterEditor/_EditRule.py:279
 msgid "Event"
@@ -1348,7 +1348,7 @@ msgstr "Détails format personn_alisé"
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
-#: ../src/plugins/quickview/FilterByName.py:152
+#: ../src/plugins/quickview/FilterByName.py:148
 #: ../src/plugins/webreport/NarrativeWeb.py:786
 #: ../src/plugins/webreport/NarrativeWeb.py:920
 #: ../src/plugins/webreport/NarrativeWeb.py:1500
@@ -1450,8 +1450,8 @@ msgstr "Exemple"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:743
-#: ../src/plugins/drawreport/Calendar.py:399
-#: ../src/plugins/textreport/BirthdayReport.py:354
+#: ../src/plugins/drawreport/Calendar.py:397
+#: ../src/plugins/textreport/BirthdayReport.py:351
 msgid "Name format"
 msgstr "Format du nom"
 
@@ -1656,9 +1656,9 @@ msgstr "Ajouter un signet"
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
 #: ../src/plugins/import/ImportCsv.py:217
-#: ../src/plugins/quickview/OnThisDay.py:80
-#: ../src/plugins/quickview/OnThisDay.py:81
-#: ../src/plugins/quickview/OnThisDay.py:82
+#: ../src/plugins/quickview/OnThisDay.py:77
+#: ../src/plugins/quickview/OnThisDay.py:78
+#: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/textreport/MarkerReport.py:295
 #: ../src/plugins/textreport/PlaceReport.py:150
 #: ../src/plugins/tool/SortEvents.py:56
@@ -1715,7 +1715,7 @@ msgstr "Public"
 #: ../src/gramps_main.py:113
 #: ../src/Simple/_SimpleTable.py:228
 #: ../src/DataViews/MediaView.py:105
-#: ../src/plugins/quickview/FilterByName.py:203
+#: ../src/plugins/quickview/FilterByName.py:199
 msgid "Media"
 msgstr "Media"
 
@@ -1737,7 +1737,7 @@ msgstr "Notes"
 #: ../src/DataViews/RelationView.py:784
 #: ../src/DataViews/RelationView.py:818
 #: ../src/plugins/gramplet/FanChartGramplet.py:815
-#: ../src/plugins/quickview/all_relations.py:308
+#: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:113
 #: ../src/plugins/webreport/NarrativeWeb.py:799
 #: ../src/plugins/webreport/NarrativeWeb.py:946
@@ -1931,13 +1931,13 @@ msgid "More than one item has been selected for deletion. Ask before deleting ea
 msgstr "Plusieurs entrées ont été sélectionnées pour la suppression. Doit on poser la question à chaque fois ?"
 
 #: ../src/PageView.py:295
-#: ../src/plugins/quickview/all_relations.py:309
+#: ../src/plugins/quickview/all_relations.py:306
 #: ../src/PluginUtils/_GuiOptions.py:912
 msgid "Yes"
 msgstr "Oui"
 
 #: ../src/PageView.py:296
-#: ../src/plugins/quickview/all_relations.py:313
+#: ../src/plugins/quickview/all_relations.py:310
 #: ../src/PluginUtils/_GuiOptions.py:911
 msgid "No"
 msgstr "Non"
@@ -2299,7 +2299,7 @@ msgstr "le partenaire"
 #: ../src/DataViews/RelationView.py:819
 #: ../src/Selectors/_SelectFamily.py:63
 #: ../src/plugins/import/ImportCsv.py:211
-#: ../src/plugins/quickview/all_relations.py:303
+#: ../src/plugins/quickview/all_relations.py:300
 #: ../src/plugins/textreport/FamilyGroup.py:185
 #: ../src/plugins/textreport/FamilyGroup.py:196
 #: ../src/plugins/textreport/IndivComplete.py:216
@@ -2319,7 +2319,7 @@ msgstr "Père"
 #: ../src/DataViews/RelationView.py:820
 #: ../src/Selectors/_SelectFamily.py:64
 #: ../src/plugins/import/ImportCsv.py:207
-#: ../src/plugins/quickview/all_relations.py:300
+#: ../src/plugins/quickview/all_relations.py:297
 #: ../src/plugins/textreport/FamilyGroup.py:202
 #: ../src/plugins/textreport/FamilyGroup.py:213
 #: ../src/plugins/textreport/IndivComplete.py:225
@@ -2417,12 +2417,12 @@ msgstr "Événement familial"
 #: ../src/Selectors/_SelectObject.py:77
 #: ../src/plugins/BookReport.py:726
 #: ../src/plugins/BookReport.py:730
-#: ../src/plugins/quickview/FilterByName.py:107
-#: ../src/plugins/quickview/OnThisDay.py:80
-#: ../src/plugins/quickview/OnThisDay.py:81
-#: ../src/plugins/quickview/OnThisDay.py:82
-#: ../src/plugins/quickview/References.py:71
-#: ../src/plugins/quickview/siblings.py:49
+#: ../src/plugins/quickview/FilterByName.py:103
+#: ../src/plugins/quickview/OnThisDay.py:77
+#: ../src/plugins/quickview/OnThisDay.py:78
+#: ../src/plugins/quickview/OnThisDay.py:79
+#: ../src/plugins/quickview/References.py:68
+#: ../src/plugins/quickview/siblings.py:46
 #: ../src/plugins/textreport/MarkerReport.py:381
 #: ../src/plugins/tool/PatchNames.py:228
 #: ../src/plugins/tool/SortEvents.py:57
@@ -2594,7 +2594,7 @@ msgstr "Lien d'individu"
 #: ../src/DataViews/RelationView.py:559
 #: ../src/plugins/gramplet/DataEntryGramplet.py:57
 #: ../src/plugins/gramplet/DataEntryGramplet.py:84
-#: ../src/plugins/quickview/all_relations.py:273
+#: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/textreport/FamilyGroup.py:436
 #: ../src/plugins/textreport/FamilyGroup.py:438
@@ -3099,7 +3099,7 @@ msgstr "Très haut"
 
 #: ../src/Utils.py:91
 #: ../src/Editors/_EditSourceRef.py:137
-#: ../src/plugins/tool/FindDupes.py:67
+#: ../src/plugins/tool/FindDupes.py:68
 msgid "High"
 msgstr "Haut"
 
@@ -3111,7 +3111,7 @@ msgstr "Normal"
 
 #: ../src/Utils.py:93
 #: ../src/Editors/_EditSourceRef.py:135
-#: ../src/plugins/tool/FindDupes.py:65
+#: ../src/plugins/tool/FindDupes.py:66
 msgid "Low"
 msgstr "Bas"
 
@@ -3495,7 +3495,7 @@ msgstr "Père inconnu"
 
 #: ../src/Simple/_SimpleTable.py:210
 #: ../src/DataViews/RelationView.py:914
-#: ../src/plugins/quickview/all_relations.py:285
+#: ../src/plugins/quickview/all_relations.py:282
 #: ../src/gen/lib/date.py:320
 #: ../src/gen/lib/date.py:413
 #: ../src/gen/lib/date.py:442
@@ -3644,7 +3644,7 @@ msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces indi
 #: ../src/plugins/gramplet/DataEntryGramplet.py:56
 #: ../src/plugins/gramplet/DataEntryGramplet.py:83
 #: ../src/plugins/import/ImportCsv.py:167
-#: ../src/plugins/quickview/siblings.py:49
+#: ../src/plugins/quickview/siblings.py:46
 #: ../src/plugins/textreport/IndivComplete.py:437
 #: ../src/plugins/tool/RelCalc.py:58
 #: ../src/plugins/webreport/NarrativeWeb.py:2180
@@ -3858,232 +3858,232 @@ msgstr ""
 "Par exemple: <b>http://gramps-project.org</p>"
 
 # trunk
-#: ../src/DataViews/GeoView.py:732
+#: ../src/DataViews/GeoView.py:738
 msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
 # trunk
-#: ../src/DataViews/GeoView.py:734
+#: ../src/DataViews/GeoView.py:740
 msgid "Select OpenStreetMap Maps"
 msgstr "Sélection des cartes OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:737
+#: ../src/DataViews/GeoView.py:743
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
 # trunk
-#: ../src/DataViews/GeoView.py:739
+#: ../src/DataViews/GeoView.py:745
 msgid "Select Google Maps."
 msgstr "Sélection des cartes Google."
 
 # trunk
-#: ../src/DataViews/GeoView.py:742
+#: ../src/DataViews/GeoView.py:748
 msgid "_OpenLayers Maps"
 msgstr "Cartes _OpenLayers"
 
 # trunk
-#: ../src/DataViews/GeoView.py:744
+#: ../src/DataViews/GeoView.py:750
 msgid "Select OpenLayers Maps."
 msgstr "Sélection des cartes OpenLayers."
 
 # trunk
-#: ../src/DataViews/GeoView.py:747
+#: ../src/DataViews/GeoView.py:753
 msgid "_Yahoo! Maps"
 msgstr "Cartes _Yahoo!"
 
 # trunk
-#: ../src/DataViews/GeoView.py:749
+#: ../src/DataViews/GeoView.py:755
 msgid "Select Yahoo Maps."
 msgstr "Sélection des cartes Yahoo."
 
 # trunk
-#: ../src/DataViews/GeoView.py:752
+#: ../src/DataViews/GeoView.py:758
 msgid "_Microsoft Maps"
 msgstr "Cartes _Microsoft"
 
 # trunk
-#: ../src/DataViews/GeoView.py:754
+#: ../src/DataViews/GeoView.py:760
 msgid "Select Microsoft Maps"
 msgstr "Sélection des cartes Microsoft."
 
 # trunk
-#: ../src/DataViews/GeoView.py:755
+#: ../src/DataViews/GeoView.py:761
 msgid "_All Places"
 msgstr "_Les Lieux"
 
 # trunk
-#: ../src/DataViews/GeoView.py:757
+#: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view all places in the family tree."
 msgstr "Tentative pour afficher les lieux de l'arbre familial."
 
 # trunk
-#: ../src/DataViews/GeoView.py:758
+#: ../src/DataViews/GeoView.py:764
 msgid "_Person"
 msgstr "_Individu"
 
 # trunk
-#: ../src/DataViews/GeoView.py:760
+#: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Tentative pour afficher les lieux correspondants aux individus vivants."
 
 # trunk
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:767
 msgid "_Family"
 msgstr "_Famille"
 
 # trunk
-#: ../src/DataViews/GeoView.py:763
+#: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
 msgstr "Tentative pour afficher les lieux familiaux de l'individu sélectionné."
 
 # trunk
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:770
 msgid "_Event"
 msgstr "Évén_ement"
 
 # trunk
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
 msgstr "Tentative pour afficher les lieux liés aux événements."
 
 # trunk
-#: ../src/DataViews/GeoView.py:862
+#: ../src/DataViews/GeoView.py:868
 msgid "List of places without coordinates"
 msgstr "Liste des lieux sans coordonnées"
 
 # trunk
-#: ../src/DataViews/GeoView.py:863
+#: ../src/DataViews/GeoView.py:869
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
 
 # trunk
-#: ../src/DataViews/GeoView.py:913
+#: ../src/DataViews/GeoView.py:919
 #, python-format
 msgid "There are %d markers to display. They are split up over %d pages of %d markers : "
 msgstr "Il y a %d marqueurs, l'affichage sera divisé en %d pages de %d marqueurs : "
 
 # trunk
-#: ../src/DataViews/GeoView.py:1411
+#: ../src/DataViews/GeoView.py:1417
 msgid "No location."
 msgstr "Aucun emplacement."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1414
+#: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Vous n'avez pas de lieux avec coordonnées dans votre base de données."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1417
+#: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
 msgstr "Vous regardez la carte par défaut."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1442
+#: ../src/DataViews/GeoView.py:1448
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : lieu de naissance."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1445
+#: ../src/DataViews/GeoView.py:1451
 msgid "birth place."
 msgstr "lieu de naissance."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1477
+#: ../src/DataViews/GeoView.py:1483
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : lieu du décès."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1480
+#: ../src/DataViews/GeoView.py:1486
 msgid "death place."
 msgstr "lieu du décès."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1516
+#: ../src/DataViews/GeoView.py:1522
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1533
-#: ../src/DataViews/GeoView.py:1610
-#: ../src/DataViews/GeoView.py:1660
-#: ../src/DataViews/GeoView.py:1731
+#: ../src/DataViews/GeoView.py:1539
+#: ../src/DataViews/GeoView.py:1616
+#: ../src/DataViews/GeoView.py:1666
+#: ../src/DataViews/GeoView.py:1737
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1537
+#: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
 msgstr "Les lieux de la base de données avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1562
+#: ../src/DataViews/GeoView.py:1568
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1613
+#: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
 msgstr "Les événements de cette base de données avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1641
+#: ../src/DataViews/GeoView.py:1647
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : Père : %s"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1646
+#: ../src/DataViews/GeoView.py:1652
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : Mère : %s"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1655
+#: ../src/DataViews/GeoView.py:1661
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : Enfant : %(id)s %(index)d"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1662
+#: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
 msgstr "Les membres de la famille de l'individu actif n'ont pas de lieux avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1666
-#: ../src/DataViews/GeoView.py:1736
+#: ../src/DataViews/GeoView.py:1672
+#: ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
 msgstr "Aucun individu actif défini."
 
 # trunk
 # à tester, contexte
-#: ../src/DataViews/GeoView.py:1670
+#: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Les lieux de la famille de %(name)s avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1714
+#: ../src/DataViews/GeoView.py:1720
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 # trunk
-#: ../src/DataViews/GeoView.py:1734
+#: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
 msgstr "L'individu actif n'a pas de lieux avec coordonnées."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1739
+#: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
 msgstr "Tous les événements pour %s."
 
 # trunk
-#: ../src/DataViews/GeoView.py:1746
+#: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
 msgstr "Pas encore implémenté ..."
 
@@ -4320,7 +4320,7 @@ msgstr "Menu Individus"
 #: ../src/DataViews/PedigreeView.py:1492
 #: ../src/DataViews/RelationView.py:834
 #: ../src/plugins/gramplet/FanChartGramplet.py:735
-#: ../src/plugins/quickview/siblings.py:80
+#: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2421
 msgid "Siblings"
 msgstr "Frères et sœurs"
@@ -4350,17 +4350,17 @@ msgstr "Menu Famille"
 #: ../src/Selectors/_SelectPerson.py:79
 #: ../src/Selectors/_SelectPerson.py:107
 #: ../src/plugins/drawreport/TimeLine.py:58
-#: ../src/plugins/quickview/FilterByName.py:62
-#: ../src/plugins/quickview/FilterByName.py:70
-#: ../src/plugins/quickview/FilterByName.py:79
-#: ../src/plugins/quickview/FilterByName.py:88
-#: ../src/plugins/quickview/FilterByName.py:97
-#: ../src/plugins/quickview/FilterByName.py:122
-#: ../src/plugins/quickview/FilterByName.py:215
+#: ../src/plugins/quickview/FilterByName.py:58
+#: ../src/plugins/quickview/FilterByName.py:66
+#: ../src/plugins/quickview/FilterByName.py:75
+#: ../src/plugins/quickview/FilterByName.py:84
+#: ../src/plugins/quickview/FilterByName.py:93
+#: ../src/plugins/quickview/FilterByName.py:118
+#: ../src/plugins/quickview/FilterByName.py:211
 #: ../src/plugins/quickview/lineage.py:62
-#: ../src/plugins/quickview/SameSurnames.py:110
-#: ../src/plugins/quickview/SameSurnames.py:149
-#: ../src/plugins/quickview/siblings.py:49
+#: ../src/plugins/quickview/SameSurnames.py:107
+#: ../src/plugins/quickview/SameSurnames.py:146
+#: ../src/plugins/quickview/siblings.py:46
 #: ../src/plugins/tool/RelCalc.py:59
 msgid "Birth Date"
 msgstr "Date de naissance"
@@ -4615,7 +4615,7 @@ msgid "Edit the active person"
 msgstr "Éditer l'individu actif"
 
 #: ../src/DataViews/RelationView.py:333
-#: ../src/plugins/quickview/all_relations.py:289
+#: ../src/plugins/quickview/all_relations.py:286
 #: ../src/plugins/webreport/NarrativeWeb.py:796
 #: ../src/plugins/webreport/NarrativeWeb.py:944
 #: ../src/plugins/webreport/NarrativeWeb.py:2600
@@ -4945,8 +4945,8 @@ msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une
 #: ../src/plugins/docgen/RTFDoc.py:86
 #: ../src/plugins/docgen/SvgDrawDoc.py:75
 #: ../src/plugins/docgen/SvgDrawDoc.py:77
-#: ../src/plugins/export/ExportCd.py:160
-#: ../src/plugins/export/ExportCd.py:173
+#: ../src/plugins/export/ExportCd.py:159
+#: ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportCsv.py:308
 #: ../src/plugins/export/ExportGedcom.py:1526
@@ -6528,7 +6528,7 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/BookReport.py:1250
 #: ../src/plugins/Records.py:577
 #: ../src/plugins/drawreport/AncestorTree.py:543
-#: ../src/plugins/drawreport/Calendar.py:541
+#: ../src/plugins/drawreport/Calendar.py:539
 #: ../src/plugins/drawreport/DescendTree.py:539
 #: ../src/plugins/drawreport/FanChart.py:445
 #: ../src/plugins/drawreport/StatisticsChart.py:903
@@ -6537,25 +6537,25 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
 #: ../src/plugins/mapservices/eniroswedenmap.py:189
-#: ../src/plugins/mapservices/googlemap.py:81
-#: ../src/plugins/mapservices/openstreetmap.py:85
-#: ../src/plugins/quickview/AgeOnDate.py:107
-#: ../src/plugins/quickview/all_events.py:150
-#: ../src/plugins/quickview/all_events.py:161
-#: ../src/plugins/quickview/all_relations.py:358
-#: ../src/plugins/quickview/AttributeMatch.py:55
-#: ../src/plugins/quickview/FilterByName.py:242
+#: ../src/plugins/mapservices/googlemap.py:80
+#: ../src/plugins/mapservices/openstreetmap.py:84
+#: ../src/plugins/quickview/AgeOnDate.py:104
+#: ../src/plugins/quickview/all_events.py:147
+#: ../src/plugins/quickview/all_events.py:158
+#: ../src/plugins/quickview/all_relations.py:355
+#: ../src/plugins/quickview/AttributeMatch.py:51
+#: ../src/plugins/quickview/FilterByName.py:238
 #: ../src/plugins/quickview/lineage.py:242
 #: ../src/plugins/quickview/lineage.py:253
-#: ../src/plugins/quickview/OnThisDay.py:149
-#: ../src/plugins/quickview/References.py:105
-#: ../src/plugins/quickview/Reporef.py:92
-#: ../src/plugins/quickview/SameSurnames.py:181
-#: ../src/plugins/quickview/SameSurnames.py:192
-#: ../src/plugins/quickview/SameSurnames.py:203
-#: ../src/plugins/quickview/siblings.py:81
+#: ../src/plugins/quickview/OnThisDay.py:146
+#: ../src/plugins/quickview/References.py:102
+#: ../src/plugins/quickview/Reporef.py:89
+#: ../src/plugins/quickview/SameSurnames.py:178
+#: ../src/plugins/quickview/SameSurnames.py:189
+#: ../src/plugins/quickview/SameSurnames.py:200
+#: ../src/plugins/quickview/siblings.py:78
 #: ../src/plugins/textreport/AncestorReport.py:348
-#: ../src/plugins/textreport/BirthdayReport.py:501
+#: ../src/plugins/textreport/BirthdayReport.py:498
 #: ../src/plugins/textreport/DescendReport.py:258
 #: ../src/plugins/textreport/DetAncestralReport.py:896
 #: ../src/plugins/textreport/DetDescendantReport.py:899
@@ -6571,13 +6571,12 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/tool/ChangeNames.py:292
 #: ../src/plugins/tool/ChangeTypes.py:208
 #: ../src/plugins/tool/Check.py:1497
-#: ../src/plugins/tool/CmdRef.py:242
 #: ../src/plugins/tool/Desbrowser.py:170
 #: ../src/plugins/tool/Eval.py:132
 #: ../src/plugins/tool/EventCmp.py:468
-#: ../src/plugins/tool/EventNames.py:164
+#: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649
-#: ../src/plugins/tool/FindDupes.py:702
+#: ../src/plugins/tool/FindDupes.py:703
 #: ../src/plugins/tool/Leak.py:135
 #: ../src/plugins/tool/NotRelated.py:438
 #: ../src/plugins/tool/PatchNames.py:375
@@ -6625,7 +6624,7 @@ msgstr "La base de données ne peut pas être enregistrée car vous ne possédez
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/export/ExportXml.py:1221
-#: ../src/plugins/export/ExportCd.py:303
+#: ../src/plugins/export/ExportCd.py:302
 msgid "Exporting to CD copies all your data and media object files to the CD Creator. You may later burn the CD with this data, and that copy will be completely portable across different machines and binary architectures."
 msgstr "L'exportation vers un CD copie toutes vos données et media vers le créateur de CD de Nautilus. Vous pourrez graver le CD plus tard, cette copie étant totalement compatible entre différents ordinateurs et différentes architectures."
 
@@ -6694,13 +6693,13 @@ msgstr "Importer les données depuis des paquets GRAMPS"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/import/ImportXml.py:75
-#: ../src/plugins/tool/EventNames.py:113
+#: ../src/plugins/tool/EventNames.py:128
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s de %(family)s"
 
 #: ../src/plugins/import/ImportXml.py:76
-#: ../src/plugins/tool/EventNames.py:114
+#: ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s de %(person)s"
@@ -6893,9 +6892,9 @@ msgstr "Double cliquez sur le nom pour les détails"
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:327
-#: ../src/plugins/gramplet/AttributesGramplet.py:30
+#: ../src/plugins/gramplet/AttributesGramplet.py:27
 #: ../src/plugins/gramplet/DescendGramplet.py:46
-#: ../src/plugins/gramplet/GivenNameGramplet.py:42
+#: ../src/plugins/gramplet/GivenNameGramplet.py:39
 #: ../src/plugins/gramplet/PedigreeGramplet.py:49
 #: ../src/plugins/gramplet/RelativeGramplet.py:41
 #: ../src/plugins/gramplet/StatsGramplet.py:46
@@ -6906,7 +6905,7 @@ msgid "No Family Tree loaded."
 msgstr "Aucun Arbre Familial chargé."
 
 #: ../src/plugins/Records.py:342
-#: ../src/plugins/gramplet/GivenNameGramplet.py:57
+#: ../src/plugins/gramplet/GivenNameGramplet.py:54
 #: ../src/plugins/gramplet/StatsGramplet.py:59
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:71
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:56
@@ -6929,13 +6928,13 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #. #########################
 #. ###############################
 #: ../src/plugins/Records.py:445
-#: ../src/plugins/drawreport/Calendar.py:377
+#: ../src/plugins/drawreport/Calendar.py:375
 #: ../src/plugins/drawreport/FanChart.py:340
 #: ../src/plugins/drawreport/StatisticsChart.py:678
 #: ../src/plugins/drawreport/TimeLine.py:310
 #: ../src/plugins/graph/GVRelGraph.py:429
 #: ../src/plugins/textreport/AncestorReport.py:247
-#: ../src/plugins/textreport/BirthdayReport.py:332
+#: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
 #: ../src/plugins/textreport/DetAncestralReport.py:705
 #: ../src/plugins/textreport/DetDescendantReport.py:695
@@ -6955,12 +6954,12 @@ msgstr "Options du rapport"
 
 #. ###############################
 #: ../src/plugins/Records.py:447
-#: ../src/plugins/drawreport/Calendar.py:384
+#: ../src/plugins/drawreport/Calendar.py:382
 #: ../src/plugins/drawreport/StatisticsChart.py:680
 #: ../src/plugins/drawreport/TimeLine.py:312
 #: ../src/plugins/graph/GVRelGraph.py:432
-#: ../src/plugins/quickview/FilterByName.py:241
-#: ../src/plugins/textreport/BirthdayReport.py:339
+#: ../src/plugins/quickview/FilterByName.py:237
+#: ../src/plugins/textreport/BirthdayReport.py:336
 #: ../src/plugins/textreport/IndivComplete.py:516
 #: ../src/plugins/tool/CalculateEstimatedDates.py:65
 #: ../src/plugins/tool/SortEvents.py:169
@@ -7259,12 +7258,12 @@ msgid "Tree Options"
 msgstr "Options de l'arbre"
 
 #: ../src/plugins/drawreport/AncestorTree.py:465
-#: ../src/plugins/drawreport/Calendar.py:389
+#: ../src/plugins/drawreport/Calendar.py:387
 #: ../src/plugins/drawreport/DescendTree.py:462
 #: ../src/plugins/drawreport/FanChart.py:342
 #: ../src/plugins/graph/GVHourGlass.py:256
 #: ../src/plugins/textreport/AncestorReport.py:249
-#: ../src/plugins/textreport/BirthdayReport.py:344
+#: ../src/plugins/textreport/BirthdayReport.py:341
 #: ../src/plugins/textreport/DescendReport.py:197
 #: ../src/plugins/textreport/DetAncestralReport.py:707
 #: ../src/plugins/textreport/DetDescendantReport.py:697
@@ -7347,21 +7346,21 @@ msgstr "Produit un arbre graphique des ascendants"
 
 # trunk
 #. initialize the dict to fill:
-#: ../src/plugins/drawreport/Calendar.py:143
+#: ../src/plugins/drawreport/Calendar.py:141
 msgid "Calendar Report"
 msgstr "Calendrier"
 
 # Substantif (GNOME fr)
 # trunk
 #. generate the report:
-#: ../src/plugins/drawreport/Calendar.py:153
-#: ../src/plugins/textreport/BirthdayReport.py:157
+#: ../src/plugins/drawreport/Calendar.py:151
+#: ../src/plugins/textreport/BirthdayReport.py:154
 msgid "Formatting months..."
 msgstr "Formatage des mois..."
 
 # trunk
-#: ../src/plugins/drawreport/Calendar.py:246
-#: ../src/plugins/textreport/BirthdayReport.py:194
+#: ../src/plugins/drawreport/Calendar.py:244
+#: ../src/plugins/textreport/BirthdayReport.py:191
 #: ../src/plugins/webreport/NarrativeWeb.py:2952
 #: ../src/plugins/webreport/WebCal.py:1004
 msgid "Applying Filter..."
@@ -7369,23 +7368,23 @@ msgstr "Appliquer le filtre..."
 
 # Substantif (GNOME fr)
 # trunk
-#: ../src/plugins/drawreport/Calendar.py:251
-#: ../src/plugins/textreport/BirthdayReport.py:199
+#: ../src/plugins/drawreport/Calendar.py:249
+#: ../src/plugins/textreport/BirthdayReport.py:196
 #: ../src/plugins/webreport/WebCal.py:1007
 msgid "Reading database..."
 msgstr "Lecture seule de la base de données..."
 
 # trunk
-#: ../src/plugins/drawreport/Calendar.py:292
-#: ../src/plugins/textreport/BirthdayReport.py:249
+#: ../src/plugins/drawreport/Calendar.py:290
+#: ../src/plugins/textreport/BirthdayReport.py:246
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, naissance%(relation)s"
 
 # à tester
 # trunk
-#: ../src/plugins/drawreport/Calendar.py:296
-#: ../src/plugins/textreport/BirthdayReport.py:253
+#: ../src/plugins/drawreport/Calendar.py:294
+#: ../src/plugins/textreport/BirthdayReport.py:250
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
@@ -7393,8 +7392,8 @@ msgstr[0] "%(person)s, %(age)d an %(relation)s"
 msgstr[1] "%(person)s, %(age)d ans %(relation)s"
 
 # trunk
-#: ../src/plugins/drawreport/Calendar.py:344
-#: ../src/plugins/textreport/BirthdayReport.py:299
+#: ../src/plugins/drawreport/Calendar.py:342
+#: ../src/plugins/textreport/BirthdayReport.py:296
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -7403,8 +7402,8 @@ msgstr ""
 "Mariage de %(spouse)s\n"
 "et %(person)s"
 
-#: ../src/plugins/drawreport/Calendar.py:349
-#: ../src/plugins/textreport/BirthdayReport.py:303
+#: ../src/plugins/drawreport/Calendar.py:347
+#: ../src/plugins/textreport/BirthdayReport.py:300
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -7419,23 +7418,23 @@ msgstr[1] ""
 "%(spouse)s et\n"
 " %(person)s, %(nyears)d ans"
 
+#: ../src/plugins/drawreport/Calendar.py:377
 #: ../src/plugins/drawreport/Calendar.py:379
-#: ../src/plugins/drawreport/Calendar.py:381
-#: ../src/plugins/textreport/BirthdayReport.py:334
-#: ../src/plugins/textreport/BirthdayReport.py:336
+#: ../src/plugins/textreport/BirthdayReport.py:331
+#: ../src/plugins/textreport/BirthdayReport.py:333
 msgid "Year of calendar"
 msgstr "Année du calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:386
-#: ../src/plugins/textreport/BirthdayReport.py:341
+#: ../src/plugins/drawreport/Calendar.py:384
+#: ../src/plugins/textreport/BirthdayReport.py:338
 #: ../src/plugins/webreport/WebCal.py:1133
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Sélectionne un filtre pour restreindre les individus qui apparaîtront dans le calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:390
+#: ../src/plugins/drawreport/Calendar.py:388
 #: ../src/plugins/drawreport/FanChart.py:343
 #: ../src/plugins/textreport/AncestorReport.py:250
-#: ../src/plugins/textreport/BirthdayReport.py:345
+#: ../src/plugins/textreport/BirthdayReport.py:342
 #: ../src/plugins/textreport/DescendReport.py:198
 #: ../src/plugins/textreport/DetAncestralReport.py:708
 #: ../src/plugins/textreport/DetDescendantReport.py:698
@@ -7445,188 +7444,188 @@ msgstr "Sélectionne un filtre pour restreindre les individus qui apparaîtront 
 msgid "The center person for the report"
 msgstr "L'individu central pour ce rapport"
 
-#: ../src/plugins/drawreport/Calendar.py:402
-#: ../src/plugins/textreport/BirthdayReport.py:357
+#: ../src/plugins/drawreport/Calendar.py:400
+#: ../src/plugins/textreport/BirthdayReport.py:354
 msgid "Select the format to display names"
 msgstr "Sélection du format d'affichage pour le nom"
 
-#: ../src/plugins/drawreport/Calendar.py:405
-#: ../src/plugins/textreport/BirthdayReport.py:360
+#: ../src/plugins/drawreport/Calendar.py:403
+#: ../src/plugins/textreport/BirthdayReport.py:357
 #: ../src/plugins/webreport/WebCal.py:1212
 msgid "Country for holidays"
 msgstr "Pays pour les jours fériés"
 
-#: ../src/plugins/drawreport/Calendar.py:411
-#: ../src/plugins/textreport/BirthdayReport.py:366
+#: ../src/plugins/drawreport/Calendar.py:409
+#: ../src/plugins/textreport/BirthdayReport.py:363
 msgid "Select the country to see associated holidays"
 msgstr "Sélectionne le pays pour définir les jours fériés"
 
 #. Default selection ????
-#: ../src/plugins/drawreport/Calendar.py:414
-#: ../src/plugins/textreport/BirthdayReport.py:369
+#: ../src/plugins/drawreport/Calendar.py:412
+#: ../src/plugins/textreport/BirthdayReport.py:366
 #: ../src/plugins/webreport/WebCal.py:1230
 msgid "First day of week"
 msgstr "Premier jour de la semaine"
 
-#: ../src/plugins/drawreport/Calendar.py:418
-#: ../src/plugins/textreport/BirthdayReport.py:373
+#: ../src/plugins/drawreport/Calendar.py:416
+#: ../src/plugins/textreport/BirthdayReport.py:370
 #: ../src/plugins/webreport/WebCal.py:1233
 msgid "Select the first day of the week for the calendar"
 msgstr "Sélectionne le premier jour de la semaine pour le calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:421
-#: ../src/plugins/textreport/BirthdayReport.py:376
+#: ../src/plugins/drawreport/Calendar.py:419
+#: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/webreport/WebCal.py:1220
 msgid "Birthday surname"
 msgstr "Nom de naissance"
 
-#: ../src/plugins/drawreport/Calendar.py:422
-#: ../src/plugins/textreport/BirthdayReport.py:377
+#: ../src/plugins/drawreport/Calendar.py:420
+#: ../src/plugins/textreport/BirthdayReport.py:374
 #: ../src/plugins/webreport/WebCal.py:1221
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "L'épouse utilise le nom de son mari (à partir de la première famille listée)"
 
-#: ../src/plugins/drawreport/Calendar.py:423
-#: ../src/plugins/textreport/BirthdayReport.py:378
+#: ../src/plugins/drawreport/Calendar.py:421
+#: ../src/plugins/textreport/BirthdayReport.py:375
 #: ../src/plugins/webreport/WebCal.py:1223
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "L'épouse utilise le nom de son mari (à partir de la dernière famille listée)"
 
-#: ../src/plugins/drawreport/Calendar.py:424
-#: ../src/plugins/textreport/BirthdayReport.py:379
+#: ../src/plugins/drawreport/Calendar.py:422
+#: ../src/plugins/textreport/BirthdayReport.py:376
 #: ../src/plugins/webreport/WebCal.py:1225
 msgid "Wives use their own surname"
 msgstr "L'épouse garde son nom de jeune fille"
 
-#: ../src/plugins/drawreport/Calendar.py:425
-#: ../src/plugins/textreport/BirthdayReport.py:380
+#: ../src/plugins/drawreport/Calendar.py:423
+#: ../src/plugins/textreport/BirthdayReport.py:377
 #: ../src/plugins/webreport/WebCal.py:1226
 msgid "Select married women's displayed surname"
 msgstr "Sélectionne le nom de famille pour les femmes mariées"
 
-#: ../src/plugins/drawreport/Calendar.py:428
-#: ../src/plugins/textreport/BirthdayReport.py:383
+#: ../src/plugins/drawreport/Calendar.py:426
+#: ../src/plugins/textreport/BirthdayReport.py:380
 #: ../src/plugins/webreport/WebCal.py:1241
 msgid "Include only living people"
 msgstr "inclure SEULEMENT les individus vivants"
 
-#: ../src/plugins/drawreport/Calendar.py:429
-#: ../src/plugins/textreport/BirthdayReport.py:384
+#: ../src/plugins/drawreport/Calendar.py:427
+#: ../src/plugins/textreport/BirthdayReport.py:381
 #: ../src/plugins/webreport/WebCal.py:1242
 msgid "Include only living people in the calendar"
 msgstr "N'inclure que les individus vivants dans le calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:432
-#: ../src/plugins/textreport/BirthdayReport.py:387
+#: ../src/plugins/drawreport/Calendar.py:430
+#: ../src/plugins/textreport/BirthdayReport.py:384
 #: ../src/plugins/webreport/WebCal.py:1245
 msgid "Include birthdays"
 msgstr "Inclure les dates de naissance"
 
-#: ../src/plugins/drawreport/Calendar.py:433
-#: ../src/plugins/textreport/BirthdayReport.py:388
+#: ../src/plugins/drawreport/Calendar.py:431
+#: ../src/plugins/textreport/BirthdayReport.py:385
 #: ../src/plugins/webreport/WebCal.py:1246
 msgid "Include birthdays in the calendar"
 msgstr "Inclure les dates de naissance dans le calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:436
-#: ../src/plugins/textreport/BirthdayReport.py:391
+#: ../src/plugins/drawreport/Calendar.py:434
+#: ../src/plugins/textreport/BirthdayReport.py:388
 #: ../src/plugins/webreport/WebCal.py:1249
 msgid "Include anniversaries"
 msgstr "Inclure les anniversaires de mariage"
 
-#: ../src/plugins/drawreport/Calendar.py:437
-#: ../src/plugins/textreport/BirthdayReport.py:392
+#: ../src/plugins/drawreport/Calendar.py:435
+#: ../src/plugins/textreport/BirthdayReport.py:389
 #: ../src/plugins/webreport/WebCal.py:1250
 msgid "Include anniversaries in the calendar"
 msgstr "Inclure les anniversaires de mariage dans le calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:440
-#: ../src/plugins/textreport/BirthdayReport.py:400
+#: ../src/plugins/drawreport/Calendar.py:438
+#: ../src/plugins/textreport/BirthdayReport.py:397
 msgid "Text Options"
 msgstr "Options du texte"
 
-#: ../src/plugins/drawreport/Calendar.py:442
-#: ../src/plugins/textreport/BirthdayReport.py:407
+#: ../src/plugins/drawreport/Calendar.py:440
+#: ../src/plugins/textreport/BirthdayReport.py:404
 msgid "Text Area 1"
 msgstr "Sous-titre 1"
 
-#: ../src/plugins/drawreport/Calendar.py:442
-#: ../src/plugins/textreport/BirthdayReport.py:407
+#: ../src/plugins/drawreport/Calendar.py:440
+#: ../src/plugins/textreport/BirthdayReport.py:404
 msgid "My Calendar"
 msgstr "Mon calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:443
-#: ../src/plugins/textreport/BirthdayReport.py:408
+#: ../src/plugins/drawreport/Calendar.py:441
+#: ../src/plugins/textreport/BirthdayReport.py:405
 msgid "First line of text at bottom of calendar"
 msgstr "Première ligne du texte en bas du calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:446
-#: ../src/plugins/textreport/BirthdayReport.py:411
+#: ../src/plugins/drawreport/Calendar.py:444
+#: ../src/plugins/textreport/BirthdayReport.py:408
 msgid "Text Area 2"
 msgstr "Sous-titre 2"
 
-#: ../src/plugins/drawreport/Calendar.py:446
-#: ../src/plugins/textreport/BirthdayReport.py:411
+#: ../src/plugins/drawreport/Calendar.py:444
+#: ../src/plugins/textreport/BirthdayReport.py:408
 msgid "Produced with GRAMPS"
 msgstr "Généré par GRAMPS"
 
-#: ../src/plugins/drawreport/Calendar.py:447
-#: ../src/plugins/textreport/BirthdayReport.py:412
+#: ../src/plugins/drawreport/Calendar.py:445
+#: ../src/plugins/textreport/BirthdayReport.py:409
 msgid "Second line of text at bottom of calendar"
 msgstr "Seconde ligne du texte en bas du calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:450
-#: ../src/plugins/textreport/BirthdayReport.py:415
+#: ../src/plugins/drawreport/Calendar.py:448
+#: ../src/plugins/textreport/BirthdayReport.py:412
 msgid "Text Area 3"
 msgstr "Sous-titre 3"
 
-#: ../src/plugins/drawreport/Calendar.py:451
-#: ../src/plugins/textreport/BirthdayReport.py:416
+#: ../src/plugins/drawreport/Calendar.py:449
+#: ../src/plugins/textreport/BirthdayReport.py:413
 msgid "Third line of text at bottom of calendar"
 msgstr "Troisième ligne du texte en bas du calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:505
+#: ../src/plugins/drawreport/Calendar.py:503
 msgid "Title text and background color"
 msgstr "Texte du titre et couleur d'arrière-plan"
 
-#: ../src/plugins/drawreport/Calendar.py:509
+#: ../src/plugins/drawreport/Calendar.py:507
 msgid "Calendar day numbers"
 msgstr "Numéros de jour du calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:512
+#: ../src/plugins/drawreport/Calendar.py:510
 msgid "Daily text display"
 msgstr "Affichage du texte du jour"
 
-#: ../src/plugins/drawreport/Calendar.py:514
+#: ../src/plugins/drawreport/Calendar.py:512
 msgid "Days of the week text"
 msgstr "Texte du jour de la semaine"
 
-#: ../src/plugins/drawreport/Calendar.py:518
-#: ../src/plugins/textreport/BirthdayReport.py:480
+#: ../src/plugins/drawreport/Calendar.py:516
+#: ../src/plugins/textreport/BirthdayReport.py:477
 msgid "Text at bottom, line 1"
 msgstr "Texte en bas, ligne 1"
 
-#: ../src/plugins/drawreport/Calendar.py:520
-#: ../src/plugins/textreport/BirthdayReport.py:482
+#: ../src/plugins/drawreport/Calendar.py:518
+#: ../src/plugins/textreport/BirthdayReport.py:479
 msgid "Text at bottom, line 2"
 msgstr "Texte en bas, ligne 2"
 
-#: ../src/plugins/drawreport/Calendar.py:522
-#: ../src/plugins/textreport/BirthdayReport.py:484
+#: ../src/plugins/drawreport/Calendar.py:520
+#: ../src/plugins/textreport/BirthdayReport.py:481
 msgid "Text at bottom, line 3"
 msgstr "Texte en bas, ligne 3"
 
-#: ../src/plugins/drawreport/Calendar.py:524
+#: ../src/plugins/drawreport/Calendar.py:522
 msgid "Borders"
 msgstr "Les bords"
 
-#: ../src/plugins/drawreport/Calendar.py:540
+#: ../src/plugins/drawreport/Calendar.py:538
 #: ../src/plugins/drawreport/TimeLine.py:333
 #: ../src/plugins/gramplet/CalendarGramplet.py:66
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: ../src/plugins/drawreport/Calendar.py:544
+#: ../src/plugins/drawreport/Calendar.py:542
 msgid "Produces a graphical calendar"
 msgstr "Produit un calendrier graphique"
 
@@ -7824,8 +7823,8 @@ msgid "Age at death"
 msgstr "Âge au décès"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:121
-#: ../src/plugins/gramplet/AgeStats.py:160
-#: ../src/plugins/quickview/AgeOnDate.py:56
+#: ../src/plugins/gramplet/AgeStats.py:157
+#: ../src/plugins/quickview/AgeOnDate.py:53
 #: ../src/gen/lib/attrtype.py:73
 msgid "Age"
 msgstr "Âge"
@@ -8087,42 +8086,42 @@ msgstr "Graphique temporel"
 msgid "Produces a timeline chart."
 msgstr "Produit un graphique temporel."
 
-#: ../src/plugins/export/ExportCd.py:56
+#: ../src/plugins/export/ExportCd.py:55
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
 msgstr "WriteCD est un greffon GNOME et vous n'utilisez pas GNOME"
 
-#: ../src/plugins/export/ExportCd.py:62
+#: ../src/plugins/export/ExportCd.py:61
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
 msgstr "Ne peut pas être chargé car les liens python pour GNOME ne sont pas installés"
 
-#: ../src/plugins/export/ExportCd.py:82
+#: ../src/plugins/export/ExportCd.py:81
 msgid "Export to CD"
 msgstr "Exporter sur un CD"
 
-#: ../src/plugins/export/ExportCd.py:119
-#: ../src/plugins/export/ExportCd.py:154
-#: ../src/plugins/export/ExportCd.py:159
-#: ../src/plugins/export/ExportCd.py:172
+#: ../src/plugins/export/ExportCd.py:118
+#: ../src/plugins/export/ExportCd.py:153
+#: ../src/plugins/export/ExportCd.py:158
+#: ../src/plugins/export/ExportCd.py:171
 msgid "CD export preparation failed"
 msgstr "Échec de la préparation de l'exportation sur CD"
 
-#: ../src/plugins/export/ExportCd.py:237
+#: ../src/plugins/export/ExportCd.py:236
 #: ../src/plugins/export/ExportPkg.py:174
 #: ../src/plugins/tool/Check.py:536
 msgid "Select file"
 msgstr "Sélectionner un fichier"
 
-#: ../src/plugins/export/ExportCd.py:259
+#: ../src/plugins/export/ExportCd.py:258
 #: ../src/plugins/tool/Check.py:555
 msgid "Media object could not be found"
 msgstr "Le media est introuvable"
 
-#: ../src/plugins/export/ExportCd.py:260
+#: ../src/plugins/export/ExportCd.py:259
 #, python-format
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr "%(file_name)s est référencé dans la base mais n'existe plus, le fichier a du être supprimé ou déplacé. Vous pouvez soit supprimer la référence, conserver cette référence à un fichier manquant ou sélectionner un autre fichier."
 
-#: ../src/plugins/export/ExportCd.py:309
+#: ../src/plugins/export/ExportCd.py:308
 msgid "_Export to CD (portable XML)"
 msgstr "_Exporter sur un CD (XML portable)"
 
@@ -8388,113 +8387,113 @@ msgid "Age on Date Gramplet"
 msgstr "Gramplet Âge"
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:112
-#: ../src/plugins/quickview/AgeOnDate.py:106
+#: ../src/plugins/quickview/AgeOnDate.py:103
 msgid "Age on Date"
 msgstr "Âge à la date"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:42
-#: ../src/plugins/gramplet/AgeStats.py:52
+#: ../src/plugins/gramplet/AgeStats.py:39
+#: ../src/plugins/gramplet/AgeStats.py:49
 msgid "Max age"
 msgstr "Âge maximum"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:44
-#: ../src/plugins/gramplet/AgeStats.py:53
+#: ../src/plugins/gramplet/AgeStats.py:41
+#: ../src/plugins/gramplet/AgeStats.py:50
 msgid "Max age of Mother at birth"
 msgstr "Âge maximum pour être mère"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:46
-#: ../src/plugins/gramplet/AgeStats.py:54
+#: ../src/plugins/gramplet/AgeStats.py:43
+#: ../src/plugins/gramplet/AgeStats.py:51
 msgid "Max age of Father at birth"
 msgstr "Âge maximum pour être père"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:48
-#: ../src/plugins/gramplet/AgeStats.py:55
+#: ../src/plugins/gramplet/AgeStats.py:45
+#: ../src/plugins/gramplet/AgeStats.py:52
 msgid "Chart width"
 msgstr "Largeur du graphique"
 
 # # durée de vie ?
-#: ../src/plugins/gramplet/AgeStats.py:160
+#: ../src/plugins/gramplet/AgeStats.py:157
 msgid "Lifespan Age Distribution"
 msgstr "Statistiques sur l'espérance de vie"
 
 # traduction à améliorer à l'usage !
-#: ../src/plugins/gramplet/AgeStats.py:161
+#: ../src/plugins/gramplet/AgeStats.py:158
 msgid "Father - Child Age Diff Distribution"
 msgstr "Père à l'âge de ..."
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:161
-#: ../src/plugins/gramplet/AgeStats.py:162
+#: ../src/plugins/gramplet/AgeStats.py:158
+#: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Diff"
 msgstr "Différence"
 
 # traduction à améliorer à l'usage !
-#: ../src/plugins/gramplet/AgeStats.py:162
+#: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Mother - Child Age Diff Distribution"
 msgstr "Mère à l'âge de ..."
 
-#: ../src/plugins/gramplet/AgeStats.py:219
+#: ../src/plugins/gramplet/AgeStats.py:216
 #: ../src/plugins/gramplet/StatsGramplet.py:196
 msgid "Statistics"
 msgstr "Statistiques"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:220
+#: ../src/plugins/gramplet/AgeStats.py:217
 msgid "Total"
 msgstr "Total"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:221
+#: ../src/plugins/gramplet/AgeStats.py:218
 msgid "Minimum"
 msgstr "Minimum"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:222
+#: ../src/plugins/gramplet/AgeStats.py:219
 msgid "Average"
 msgstr "Moyenne"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:223
+#: ../src/plugins/gramplet/AgeStats.py:220
 msgid "Median"
 msgstr "Médian"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:224
+#: ../src/plugins/gramplet/AgeStats.py:221
 msgid "Maximum"
 msgstr "Maximum"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:259
+#: ../src/plugins/gramplet/AgeStats.py:256
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Cliquez deux fois pour afficher %d individus"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:271
+#: ../src/plugins/gramplet/AgeStats.py:268
 msgid "Age Stats Gramplet"
 msgstr "Gramplet Âge statistiques"
 
 # trunk
-#: ../src/plugins/gramplet/AgeStats.py:275
+#: ../src/plugins/gramplet/AgeStats.py:272
 msgid "Age Stats"
 msgstr "Âge statistiques"
 
 # trunk
-#: ../src/plugins/gramplet/AttributesGramplet.py:47
+#: ../src/plugins/gramplet/AttributesGramplet.py:44
 #, python-format
 msgid "Active person: <b>%s</b>"
 msgstr "Individu actif : <b>%s</b>"
 
 # trunk
-#: ../src/plugins/gramplet/AttributesGramplet.py:57
+#: ../src/plugins/gramplet/AttributesGramplet.py:54
 msgid "Attributes Gramplet"
 msgstr "Gramplet Attributs"
 
-#: ../src/plugins/gramplet/AttributesGramplet.py:61
+#: ../src/plugins/gramplet/AttributesGramplet.py:58
 #: ../src/plugins/webreport/NarrativeWeb.py:1413
 #: ../src/plugins/webreport/NarrativeWeb.py:1899
 msgid "Attributes"
@@ -8762,33 +8761,33 @@ msgid "FAQ"
 msgstr "Foire aux questions"
 
 # trunk
-#: ../src/plugins/gramplet/GivenNameGramplet.py:40
+#: ../src/plugins/gramplet/GivenNameGramplet.py:37
 msgid "Double-click given name for details"
 msgstr "Double cliquez sur le nom de famille pour les détails"
 
 # trunk
-#: ../src/plugins/gramplet/GivenNameGramplet.py:132
+#: ../src/plugins/gramplet/GivenNameGramplet.py:129
 msgid "Total unique given names"
-msgstr "Total des prénoms uniques"
+msgstr "Total des prénoms présents"
 
 # trunk
-#: ../src/plugins/gramplet/GivenNameGramplet.py:134
+#: ../src/plugins/gramplet/GivenNameGramplet.py:131
 msgid "Total given names showing"
-msgstr "Total des prénoms uniques"
+msgstr "Total des prénoms affichés"
 
-#: ../src/plugins/gramplet/GivenNameGramplet.py:135
+#: ../src/plugins/gramplet/GivenNameGramplet.py:132
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:147
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:102
 msgid "Total people"
 msgstr "Total des individus"
 
 # trunk
-#: ../src/plugins/gramplet/GivenNameGramplet.py:139
+#: ../src/plugins/gramplet/GivenNameGramplet.py:136
 msgid "Given Name Cloud Gramplet"
 msgstr "Gramplet Nuage de prénoms"
 
 # trunk
-#: ../src/plugins/gramplet/GivenNameGramplet.py:143
+#: ../src/plugins/gramplet/GivenNameGramplet.py:140
 msgid "Given Name Cloud"
 msgstr "Nuage de prénoms"
 
@@ -9112,7 +9111,7 @@ msgstr "Nombre de familles"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:157
 msgid "Unique surnames"
-msgstr "Noms uniques"
+msgstr "Noms présents"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:161
 #: ../src/plugins/textreport/Summary.py:204
@@ -9129,7 +9128,7 @@ msgstr "Nombre total de media référencés"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:171
 msgid "Number of unique media objects"
-msgstr "Nombre de media isolés"
+msgstr "Nombre de media présents"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:176
 msgid "Total size of media objects"
@@ -9156,11 +9155,11 @@ msgstr "Double cliquer sur le nom de famille pour les détails"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:144
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:100
 msgid "Total unique surnames"
-msgstr "Total des noms uniques"
+msgstr "Total des noms présents"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:146
 msgid "Total surnames showing"
-msgstr "Total des noms uniques"
+msgstr "Total des noms affichés"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:156
 msgid "Surname Cloud Gramplet"
@@ -10082,12 +10081,12 @@ msgid "Import data from vCard files"
 msgstr "Importer les données depuis des fichiers vCard"
 
 # trunk
-#: ../src/plugins/lib/libholiday.py:389
+#: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
 msgstr "Fournit l'information sur les jours fériés selon les pays."
 
 # trunk
-#: ../src/plugins/lib/libmapservice.py:113
+#: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
 msgstr "Fournit une base fonctionnelle pour les services cartographiques."
 
@@ -10167,37 +10166,37 @@ msgid "Opens on kartor.eniro.se"
 msgstr "Ouvrir avec kartor.eniro.se"
 
 # trunk
-#: ../src/plugins/mapservices/googlemap.py:80
+#: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
 msgstr "GoogleMaps"
 
 # trunk
-#: ../src/plugins/mapservices/googlemap.py:82
+#: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
 msgstr "Ouvrir dans maps.google.com"
 
 # trunk
-#: ../src/plugins/mapservices/openstreetmap.py:84
+#: ../src/plugins/mapservices/openstreetmap.py:83
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
 # trunk
-#: ../src/plugins/mapservices/openstreetmap.py:86
+#: ../src/plugins/mapservices/openstreetmap.py:85
 msgid "Open on openstreetmap.org"
 msgstr "Ouvrir dans openstreetmap.org"
 
-#: ../src/plugins/quickview/AgeOnDate.py:51
+#: ../src/plugins/quickview/AgeOnDate.py:48
 #, python-format
 msgid "People probably alive and their ages the %s"
 msgstr "Individus probablement en vie et leurs âges le %s"
 
-#: ../src/plugins/quickview/AgeOnDate.py:54
+#: ../src/plugins/quickview/AgeOnDate.py:51
 #, python-format
 msgid "People probably alive and their ages on %s"
 msgstr "Individus probablement en vie et leurs âges en %s"
 
 # trunk
-#: ../src/plugins/quickview/AgeOnDate.py:80
+#: ../src/plugins/quickview/AgeOnDate.py:77
 #, python-format
 msgid ""
 "\n"
@@ -10206,36 +10205,36 @@ msgstr ""
 "\n"
 "%d correspondances.\n"
 
-#: ../src/plugins/quickview/AgeOnDate.py:108
+#: ../src/plugins/quickview/AgeOnDate.py:105
 msgid "Display people and ages on a particular date"
 msgstr "Affiche l'âge des individus à une date donnée"
 
 #. display the results
-#: ../src/plugins/quickview/all_events.py:58
+#: ../src/plugins/quickview/all_events.py:55
 #, python-format
 msgid "Sorted events of %s"
 msgstr "Événements triés pour %s"
 
-#: ../src/plugins/quickview/all_events.py:61
-#: ../src/plugins/quickview/all_events.py:105
-#: ../src/plugins/quickview/all_events.py:116
+#: ../src/plugins/quickview/all_events.py:58
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Event Type"
 msgstr "Type d'événement"
 
-#: ../src/plugins/quickview/all_events.py:61
-#: ../src/plugins/quickview/all_events.py:106
-#: ../src/plugins/quickview/all_events.py:117
+#: ../src/plugins/quickview/all_events.py:58
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Date"
 msgstr "Date de l'événement"
 
-#: ../src/plugins/quickview/all_events.py:61
-#: ../src/plugins/quickview/all_events.py:106
-#: ../src/plugins/quickview/all_events.py:117
+#: ../src/plugins/quickview/all_events.py:58
+#: ../src/plugins/quickview/all_events.py:103
+#: ../src/plugins/quickview/all_events.py:114
 msgid "Event Place"
 msgstr "Lieu de l'événement"
 
 #. display the results
-#: ../src/plugins/quickview/all_events.py:100
+#: ../src/plugins/quickview/all_events.py:97
 #, python-format
 msgid ""
 "Sorted events of family\n"
@@ -10244,252 +10243,252 @@ msgstr ""
 "Événements familiaux triés\n"
 " %s - %s"
 
-#: ../src/plugins/quickview/all_events.py:105
-#: ../src/plugins/quickview/all_events.py:116
+#: ../src/plugins/quickview/all_events.py:102
+#: ../src/plugins/quickview/all_events.py:113
 msgid "Family Member"
 msgstr "Membre de la famille"
 
-#: ../src/plugins/quickview/all_events.py:115
+#: ../src/plugins/quickview/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Événements individuels des enfants"
 
-#: ../src/plugins/quickview/all_events.py:149
-#: ../src/plugins/quickview/all_events.py:160
+#: ../src/plugins/quickview/all_events.py:146
+#: ../src/plugins/quickview/all_events.py:157
 msgid "All Events"
 msgstr "Tous les événements"
 
-#: ../src/plugins/quickview/all_events.py:151
+#: ../src/plugins/quickview/all_events.py:148
 msgid "Display a person's events, both personal and family."
 msgstr "Affiche les événements individuels, pour l'individu et sa famille."
 
-#: ../src/plugins/quickview/all_events.py:162
+#: ../src/plugins/quickview/all_events.py:159
 msgid "Display the family and family members events."
 msgstr "Affiche les événements de la famille et de ses membres."
 
-#: ../src/plugins/quickview/all_relations.py:74
+#: ../src/plugins/quickview/all_relations.py:71
 msgid "Home person not set."
 msgstr "Individu actif non défini."
 
-#: ../src/plugins/quickview/all_relations.py:83
+#: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:187
 #, python-format
 msgid "%s and %s are the same person."
 msgstr "%s et %s est le même individu."
 
 # nota: article is translated in the relationship plugin rel_fr.py
-#: ../src/plugins/quickview/all_relations.py:92
+#: ../src/plugins/quickview/all_relations.py:89
 #: ../src/plugins/tool/RelCalc.py:195
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s est %(relationship)s de %(active_person)s."
 
-#: ../src/plugins/quickview/all_relations.py:106
+#: ../src/plugins/quickview/all_relations.py:103
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
 msgstr "%(person)s et %(active_person)s ne sont pas en relation."
 
-#: ../src/plugins/quickview/all_relations.py:155
+#: ../src/plugins/quickview/all_relations.py:152
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
 msgstr "%(person)s et %(active_person)s sont en relation par alliance :"
 
-#: ../src/plugins/quickview/all_relations.py:209
+#: ../src/plugins/quickview/all_relations.py:206
 #, python-format
 msgid "Relationships of %s to %s"
 msgstr "Relations de %s à %s"
 
-#: ../src/plugins/quickview/all_relations.py:269
+#: ../src/plugins/quickview/all_relations.py:266
 #, python-format
 msgid "Detailed path from %(person)s to common ancestor"
 msgstr "Chemin détaillé de %(person)s vers l'ascendant commun"
 
-#: ../src/plugins/quickview/all_relations.py:272
+#: ../src/plugins/quickview/all_relations.py:269
 msgid "Name Common ancestor"
 msgstr "Nom de l'ascendant commun"
 
-#: ../src/plugins/quickview/all_relations.py:273
+#: ../src/plugins/quickview/all_relations.py:270
 msgid "Parent"
 msgstr "Parent"
 
-#: ../src/plugins/quickview/all_relations.py:316
+#: ../src/plugins/quickview/all_relations.py:313
 msgid "Partial"
 msgstr "Partiel"
 
-#: ../src/plugins/quickview/all_relations.py:335
+#: ../src/plugins/quickview/all_relations.py:332
 msgid "Remarks with inlaw family"
 msgstr "Remarques pour la famille par alliance"
 
-#: ../src/plugins/quickview/all_relations.py:337
+#: ../src/plugins/quickview/all_relations.py:334
 msgid "Remarks"
 msgstr "Remarques"
 
-#: ../src/plugins/quickview/all_relations.py:339
+#: ../src/plugins/quickview/all_relations.py:336
 msgid "The following problems were encountered:"
 msgstr "Les problèmes suivants ont été rencontrés :"
 
-#: ../src/plugins/quickview/all_relations.py:357
+#: ../src/plugins/quickview/all_relations.py:354
 msgid "Relation to Home Person"
 msgstr "Relation avec la souche"
 
-#: ../src/plugins/quickview/all_relations.py:359
+#: ../src/plugins/quickview/all_relations.py:356
 msgid "Display all relationships between person and home person."
 msgstr "Affiche toutes les relations entre l'individu et la souche."
 
 # trunk
-#: ../src/plugins/quickview/AttributeMatch.py:33
+#: ../src/plugins/quickview/AttributeMatch.py:29
 #, python-format
 msgid "People who have the '%s' Attribute"
 msgstr "Individus avec un l'attribut '%s'"
 
 # trunk
-#: ../src/plugins/quickview/AttributeMatch.py:46
+#: ../src/plugins/quickview/AttributeMatch.py:42
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
 msgstr "Il y a %d individus avec cet attribut.\n"
 
 # trunk
 # à vérifier
-#: ../src/plugins/quickview/AttributeMatch.py:54
+#: ../src/plugins/quickview/AttributeMatch.py:50
 msgid "Attribute Match"
 msgstr "Correspondance d'attribut"
 
 # trunk
-#: ../src/plugins/quickview/AttributeMatch.py:56
+#: ../src/plugins/quickview/AttributeMatch.py:52
 msgid "Display people with same attribute."
 msgstr "Affiche les individus avec le même attribut."
 
 #. force translation
-#: ../src/plugins/quickview/FilterByName.py:42
+#: ../src/plugins/quickview/FilterByName.py:38
 msgid "all people"
 msgstr "tous les individus"
 
-#: ../src/plugins/quickview/FilterByName.py:42
+#: ../src/plugins/quickview/FilterByName.py:38
 msgid "males"
 msgstr "hommes"
 
-#: ../src/plugins/quickview/FilterByName.py:42
+#: ../src/plugins/quickview/FilterByName.py:38
 msgid "females"
 msgstr "femmes"
 
-#: ../src/plugins/quickview/FilterByName.py:42
+#: ../src/plugins/quickview/FilterByName.py:38
 msgid "people with unknown gender"
 msgstr "les individus sans genre"
 
-#: ../src/plugins/quickview/FilterByName.py:43
+#: ../src/plugins/quickview/FilterByName.py:39
 msgid "people with incomplete names"
 msgstr "les individus avec des noms incomplets"
 
-#: ../src/plugins/quickview/FilterByName.py:43
+#: ../src/plugins/quickview/FilterByName.py:39
 msgid "people with missing birth dates"
 msgstr "les individus sans date de naissance"
 
-#: ../src/plugins/quickview/FilterByName.py:44
+#: ../src/plugins/quickview/FilterByName.py:40
 msgid "disconnected people"
 msgstr "les individus déconnectés"
 
-#: ../src/plugins/quickview/FilterByName.py:44
+#: ../src/plugins/quickview/FilterByName.py:40
 msgid "all families"
 msgstr "toutes les familles"
 
-#: ../src/plugins/quickview/FilterByName.py:44
+#: ../src/plugins/quickview/FilterByName.py:40
 msgid "unique surnames"
-msgstr "les noms uniques"
+msgstr "les noms présents"
 
-#: ../src/plugins/quickview/FilterByName.py:45
+#: ../src/plugins/quickview/FilterByName.py:41
 msgid "people with media"
 msgstr "les individus avec des images"
 
-#: ../src/plugins/quickview/FilterByName.py:45
+#: ../src/plugins/quickview/FilterByName.py:41
 msgid "media references"
 msgstr "les références de media"
 
-#: ../src/plugins/quickview/FilterByName.py:45
+#: ../src/plugins/quickview/FilterByName.py:41
 msgid "unique media"
-msgstr "le media unique"
+msgstr "le media présent"
 
-#: ../src/plugins/quickview/FilterByName.py:46
+#: ../src/plugins/quickview/FilterByName.py:42
 msgid "missing media"
 msgstr "le media manquant"
 
-#: ../src/plugins/quickview/FilterByName.py:46
+#: ../src/plugins/quickview/FilterByName.py:42
 msgid "media by size"
 msgstr "la taille du media"
 
-#: ../src/plugins/quickview/FilterByName.py:46
+#: ../src/plugins/quickview/FilterByName.py:42
 msgid "list of people"
 msgstr "le nombre d'individus"
 
 # Substantif (GNOME fr)
 #. display the title
-#: ../src/plugins/quickview/FilterByName.py:58
+#: ../src/plugins/quickview/FilterByName.py:54
 #, python-format
 msgid "Filtering on %s"
 msgstr "Filtrage sur %s"
 
-#: ../src/plugins/quickview/FilterByName.py:62
-#: ../src/plugins/quickview/FilterByName.py:70
-#: ../src/plugins/quickview/FilterByName.py:79
-#: ../src/plugins/quickview/FilterByName.py:88
-#: ../src/plugins/quickview/FilterByName.py:97
-#: ../src/plugins/quickview/FilterByName.py:122
-#: ../src/plugins/quickview/FilterByName.py:215
-#: ../src/plugins/quickview/SameSurnames.py:110
-#: ../src/plugins/quickview/SameSurnames.py:149
+#: ../src/plugins/quickview/FilterByName.py:58
+#: ../src/plugins/quickview/FilterByName.py:66
+#: ../src/plugins/quickview/FilterByName.py:75
+#: ../src/plugins/quickview/FilterByName.py:84
+#: ../src/plugins/quickview/FilterByName.py:93
+#: ../src/plugins/quickview/FilterByName.py:118
+#: ../src/plugins/quickview/FilterByName.py:211
+#: ../src/plugins/quickview/SameSurnames.py:107
+#: ../src/plugins/quickview/SameSurnames.py:146
 msgid "Name type"
 msgstr "Type de nom"
 
-#: ../src/plugins/quickview/FilterByName.py:116
+#: ../src/plugins/quickview/FilterByName.py:112
 msgid "birth event but no date"
 msgstr "événement naissance mais pas de date"
 
-#: ../src/plugins/quickview/FilterByName.py:119
+#: ../src/plugins/quickview/FilterByName.py:115
 msgid "missing birth event"
 msgstr "événement naissance manquant"
 
-#: ../src/plugins/quickview/FilterByName.py:152
+#: ../src/plugins/quickview/FilterByName.py:148
 #: ../src/PluginUtils/_GuiOptions.py:83
 msgid "Count"
 msgstr "Nombre"
 
 # à voir dans le contexte
-#: ../src/plugins/quickview/FilterByName.py:162
+#: ../src/plugins/quickview/FilterByName.py:158
 msgid "Media count"
 msgstr "Calcul des media"
 
-#: ../src/plugins/quickview/FilterByName.py:173
-#: ../src/plugins/quickview/OnThisDay.py:80
-#: ../src/plugins/quickview/OnThisDay.py:81
-#: ../src/plugins/quickview/OnThisDay.py:82
-#: ../src/plugins/quickview/References.py:71
+#: ../src/plugins/quickview/FilterByName.py:169
+#: ../src/plugins/quickview/OnThisDay.py:77
+#: ../src/plugins/quickview/OnThisDay.py:78
+#: ../src/plugins/quickview/OnThisDay.py:79
+#: ../src/plugins/quickview/References.py:68
 msgid "Reference"
 msgstr "Référence"
 
-#: ../src/plugins/quickview/FilterByName.py:181
+#: ../src/plugins/quickview/FilterByName.py:177
 #: ../src/plugins/export/ExportGeneWeb.glade.h:10
 msgid "media"
 msgstr "media"
 
-#: ../src/plugins/quickview/FilterByName.py:184
+#: ../src/plugins/quickview/FilterByName.py:180
 msgid "Unique Media"
-msgstr "Mediaunique"
+msgstr "Media présent"
 
-#: ../src/plugins/quickview/FilterByName.py:192
+#: ../src/plugins/quickview/FilterByName.py:188
 msgid "Missing Media"
 msgstr "Mediamanquant"
 
-#: ../src/plugins/quickview/FilterByName.py:203
+#: ../src/plugins/quickview/FilterByName.py:199
 msgid "Size in bytes"
 msgstr "Taille en bytes"
 
 # ngettext
-#: ../src/plugins/quickview/FilterByName.py:224
+#: ../src/plugins/quickview/FilterByName.py:220
 #, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
 msgstr[0] "Le filtre a trouvé %d enregistrement."
 msgstr[1] "Le filtre a trouvé %d enregistrements."
 
-#: ../src/plugins/quickview/FilterByName.py:243
+#: ../src/plugins/quickview/FilterByName.py:239
 msgid "Display filtered data"
 msgstr "Affichage des données filtrées"
 
@@ -10567,89 +10566,89 @@ msgid "Display mother lineage"
 msgstr "Affiche la lignée maternelle"
 
 #. display the title
-#: ../src/plugins/quickview/OnThisDay.py:77
+#: ../src/plugins/quickview/OnThisDay.py:74
 #, python-format
 msgid "Events of %(date)s"
 msgstr "Événements : %(date)s"
 
-#: ../src/plugins/quickview/OnThisDay.py:113
+#: ../src/plugins/quickview/OnThisDay.py:110
 msgid "Events on this exact date"
 msgstr "Événements à cette date exacte"
 
-#: ../src/plugins/quickview/OnThisDay.py:116
+#: ../src/plugins/quickview/OnThisDay.py:113
 msgid "No events on this exact date"
 msgstr "Aucun événement pour cette date exacte"
 
-#: ../src/plugins/quickview/OnThisDay.py:121
+#: ../src/plugins/quickview/OnThisDay.py:118
 msgid "Other events on this month/day in history"
 msgstr "Autres événements pour ce mois/jour dans l'histoire"
 
-#: ../src/plugins/quickview/OnThisDay.py:124
+#: ../src/plugins/quickview/OnThisDay.py:121
 msgid "No other events on this month/day in history"
 msgstr "Aucun autre événement pour ce mois/jour dans l'histoire"
 
-#: ../src/plugins/quickview/OnThisDay.py:129
+#: ../src/plugins/quickview/OnThisDay.py:126
 #, python-format
 msgid "Other events in %(year)d"
 msgstr "Autres événements en %(year)d"
 
-#: ../src/plugins/quickview/OnThisDay.py:133
+#: ../src/plugins/quickview/OnThisDay.py:130
 #, python-format
 msgid "No other events in %(year)d"
 msgstr "Aucun autre événement en %(year)d"
 
-#: ../src/plugins/quickview/OnThisDay.py:148
+#: ../src/plugins/quickview/OnThisDay.py:145
 msgid "On This Day"
 msgstr "Ce jour"
 
-#: ../src/plugins/quickview/OnThisDay.py:150
+#: ../src/plugins/quickview/OnThisDay.py:147
 msgid "Display events on a particular day"
 msgstr "Affiche les événements d'un jour précis"
 
 #. display the title
-#: ../src/plugins/quickview/References.py:69
+#: ../src/plugins/quickview/References.py:66
 #, python-format
 msgid "References for this %s"
 msgstr "Références pour %s"
 
-#: ../src/plugins/quickview/References.py:80
+#: ../src/plugins/quickview/References.py:77
 #, python-format
 msgid "No references for this %s"
 msgstr "Aucune référence pour %s"
 
-#: ../src/plugins/quickview/References.py:104
+#: ../src/plugins/quickview/References.py:101
 #, python-format
 msgid "%s References"
 msgstr "Références (%s)"
 
-#: ../src/plugins/quickview/References.py:106
+#: ../src/plugins/quickview/References.py:103
 #, python-format
 msgid "Display references for a %s"
 msgstr "Affiche les références pour %s"
 
 # trunk
-#: ../src/plugins/quickview/Reporef.py:91
+#: ../src/plugins/quickview/Reporef.py:88
 msgid "RepoRef"
 msgstr "Références du dépôt"
 
 # trunk
-#: ../src/plugins/quickview/Reporef.py:93
+#: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
 msgstr "Affiche les références des sources liées au dépôt actif"
 
-#: ../src/plugins/quickview/SameSurnames.py:41
+#: ../src/plugins/quickview/SameSurnames.py:38
 msgid "People with incomplete surnames"
 msgstr "Individus avec des noms incomplets"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/plugins/quickview/SameSurnames.py:42
+#: ../src/plugins/quickview/SameSurnames.py:39
 msgid "Matches people with lastname missing"
 msgstr "Correspond aux individus sans prénom"
 
-#: ../src/plugins/quickview/SameSurnames.py:43
-#: ../src/plugins/quickview/SameSurnames.py:55
-#: ../src/plugins/quickview/SameSurnames.py:68
-#: ../src/plugins/quickview/SameSurnames.py:85
+#: ../src/plugins/quickview/SameSurnames.py:40
+#: ../src/plugins/quickview/SameSurnames.py:52
+#: ../src/plugins/quickview/SameSurnames.py:65
+#: ../src/plugins/quickview/SameSurnames.py:82
 #: ../src/Filters/Rules/_ChangedSinceBase.py:32
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasAttributeBase.py:52
@@ -10701,8 +10700,8 @@ msgstr "Correspond aux individus sans prénom"
 msgid "General filters"
 msgstr "Filtres généraux"
 
-#: ../src/plugins/quickview/SameSurnames.py:52
-#: ../src/plugins/quickview/SameSurnames.py:65
+#: ../src/plugins/quickview/SameSurnames.py:49
+#: ../src/plugins/quickview/SameSurnames.py:62
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
@@ -10712,48 +10711,48 @@ msgid "Substring:"
 msgstr "Sous-chaîne :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/plugins/quickview/SameSurnames.py:53
+#: ../src/plugins/quickview/SameSurnames.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
 msgid "People matching the <name>"
 msgstr "Individus avec le même <nom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/plugins/quickview/SameSurnames.py:54
+#: ../src/plugins/quickview/SameSurnames.py:51
 msgid "Matches people with same lastname"
 msgstr "Correspond aux individus avec le même prénom"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:66
+#: ../src/plugins/quickview/SameSurnames.py:63
 msgid "People matching the <given>"
 msgstr "Individus correspondants au <prénom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:67
+#: ../src/plugins/quickview/SameSurnames.py:64
 msgid "Matches people with same given name"
 msgstr "Correspond aux individus avec le même prénom"
 
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:83
+#: ../src/plugins/quickview/SameSurnames.py:80
 msgid "People with incomplete given names"
 msgstr "Individus avec des prénoms incomplets"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:84
+#: ../src/plugins/quickview/SameSurnames.py:81
 msgid "Matches people with firstname missing"
 msgstr "Correspond aux individus sans prénom"
 
 #. display the title
-#: ../src/plugins/quickview/SameSurnames.py:108
+#: ../src/plugins/quickview/SameSurnames.py:105
 #, python-format
 msgid "People with the surname '%s'"
 msgstr "Individus ayant le même nom que '%s'"
 
 # ngettext
-#: ../src/plugins/quickview/SameSurnames.py:125
-#: ../src/plugins/quickview/SameSurnames.py:164
+#: ../src/plugins/quickview/SameSurnames.py:122
+#: ../src/plugins/quickview/SameSurnames.py:161
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
@@ -10762,46 +10761,46 @@ msgstr[1] "Il y a %d individus portant ce nom, ou ce nom alternatif.\n"
 
 # trunk
 #. display the title
-#: ../src/plugins/quickview/SameSurnames.py:147
+#: ../src/plugins/quickview/SameSurnames.py:144
 #, python-format
 msgid "People with the given name '%s'"
 msgstr "Individus ayant le prénom '%s'"
 
-#: ../src/plugins/quickview/SameSurnames.py:180
+#: ../src/plugins/quickview/SameSurnames.py:177
 msgid "Same Surnames"
 msgstr "Même nom de famille"
 
-#: ../src/plugins/quickview/SameSurnames.py:182
+#: ../src/plugins/quickview/SameSurnames.py:179
 msgid "Display people with the same surname as a person."
 msgstr "Affiche les individus porteurs du même nom de famille."
 
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:191
-#: ../src/plugins/quickview/SameSurnames.py:202
+#: ../src/plugins/quickview/SameSurnames.py:188
+#: ../src/plugins/quickview/SameSurnames.py:199
 msgid "Same Given Names"
 msgstr "Même prénom"
 
 # trunk
-#: ../src/plugins/quickview/SameSurnames.py:193
-#: ../src/plugins/quickview/SameSurnames.py:204
+#: ../src/plugins/quickview/SameSurnames.py:190
+#: ../src/plugins/quickview/SameSurnames.py:201
 msgid "Display people with the same given name as a person."
 msgstr "Affiche les individus porteurs du même prénom."
 
 #. display the title
-#: ../src/plugins/quickview/siblings.py:47
+#: ../src/plugins/quickview/siblings.py:44
 #, python-format
 msgid "Siblings of %s"
 msgstr "Frères et sœurs de %s"
 
-#: ../src/plugins/quickview/siblings.py:49
+#: ../src/plugins/quickview/siblings.py:46
 msgid "Sibling"
 msgstr "Frère ou sœur"
 
-#: ../src/plugins/quickview/siblings.py:62
+#: ../src/plugins/quickview/siblings.py:59
 msgid "self"
 msgstr "L'individu actif"
 
-#: ../src/plugins/quickview/siblings.py:82
+#: ../src/plugins/quickview/siblings.py:79
 msgid "Display a person's siblings."
 msgstr "Affiche les frères et sœurs de l'individu."
 
@@ -10847,51 +10846,51 @@ msgid "Produces a textual ancestral report"
 msgstr "Produit une liste généalogique de n générations"
 
 #. initialize the dict to fill:
-#: ../src/plugins/textreport/BirthdayReport.py:129
-#: ../src/plugins/textreport/BirthdayReport.py:403
-#: ../src/plugins/textreport/BirthdayReport.py:500
+#: ../src/plugins/textreport/BirthdayReport.py:126
+#: ../src/plugins/textreport/BirthdayReport.py:400
+#: ../src/plugins/textreport/BirthdayReport.py:497
 msgid "Birthday and Anniversary Report"
 msgstr "Jours de naissance et anniversaires"
 
-#: ../src/plugins/textreport/BirthdayReport.py:155
+#: ../src/plugins/textreport/BirthdayReport.py:152
 #, python-format
 msgid "Relationships shown are to %s"
 msgstr "Relations affichées pour %s"
 
-#: ../src/plugins/textreport/BirthdayReport.py:395
+#: ../src/plugins/textreport/BirthdayReport.py:392
 msgid "Include relationships to center person"
 msgstr "Relation avec la souche"
 
 # A revoir
-#: ../src/plugins/textreport/BirthdayReport.py:397
+#: ../src/plugins/textreport/BirthdayReport.py:394
 msgid "Include relationships to center person (slower)"
 msgstr "Relation avec la souche (plus long)"
 
-#: ../src/plugins/textreport/BirthdayReport.py:402
+#: ../src/plugins/textreport/BirthdayReport.py:399
 msgid "Title text"
 msgstr "Titre"
 
-#: ../src/plugins/textreport/BirthdayReport.py:404
+#: ../src/plugins/textreport/BirthdayReport.py:401
 msgid "Title of calendar"
 msgstr "Titre du calendrier"
 
-#: ../src/plugins/textreport/BirthdayReport.py:470
+#: ../src/plugins/textreport/BirthdayReport.py:467
 msgid "Title text style"
 msgstr "Style du texte du titre"
 
-#: ../src/plugins/textreport/BirthdayReport.py:473
+#: ../src/plugins/textreport/BirthdayReport.py:470
 msgid "Data text display"
 msgstr "Affichage du texte"
 
-#: ../src/plugins/textreport/BirthdayReport.py:475
+#: ../src/plugins/textreport/BirthdayReport.py:472
 msgid "Day text style"
 msgstr "Style du texte du jour"
 
-#: ../src/plugins/textreport/BirthdayReport.py:478
+#: ../src/plugins/textreport/BirthdayReport.py:475
 msgid "Month text style"
 msgstr "Style du texte pour les mois"
 
-#: ../src/plugins/textreport/BirthdayReport.py:504
+#: ../src/plugins/textreport/BirthdayReport.py:501
 msgid "Produces a report of birthdays and anniversaries"
 msgstr "Produit un rapport sur les jours de naissance et anniversaires"
 
@@ -11891,7 +11890,7 @@ msgstr "Individus déconnectés : %d"
 #: ../src/plugins/textreport/Summary.py:174
 #, python-format
 msgid "Unique surnames: %d"
-msgstr "Noms uniques : %d"
+msgstr "Noms présents : %d"
 
 #: ../src/plugins/textreport/Summary.py:178
 #, python-format
@@ -11906,7 +11905,7 @@ msgstr "Nombre de familles : %d"
 #: ../src/plugins/textreport/Summary.py:217
 #, python-format
 msgid "Number of unique media objects: %d"
-msgstr "Nombre de media isolés : %d"
+msgstr "Nombre de media présents : %d"
 
 #: ../src/plugins/textreport/Summary.py:222
 #, python-format
@@ -12077,6 +12076,7 @@ msgid "Searching family names"
 msgstr "Recherche de noms de famille"
 
 #: ../src/plugins/tool/ChangeNames.py:147
+#: ../src/plugins/tool/EventNames.py:119
 #: ../src/plugins/tool/ExtractCity.py:512
 #: ../src/plugins/tool/PatchNames.py:188
 msgid "No modifications made"
@@ -12504,14 +12504,6 @@ msgstr "Vérifier et réparer la base de données"
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
-#: ../src/plugins/tool/CmdRef.py:241
-msgid "Generate Commandline Plugin Reference"
-msgstr "Générer la référence des lignes de commande"
-
-#: ../src/plugins/tool/CmdRef.py:245
-msgid "Produces a DocBook XML file that contains a parameter reference of Reports and Tools."
-msgstr "Génère un fichier DocBook XML qui contient la référence des rapports et des outils."
-
 # manuel wiki
 # trunk
 #: ../src/plugins/tool/Desbrowser.py:58
@@ -12615,15 +12607,33 @@ msgstr "Comparaison d'événements individuels"
 msgid "Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events"
 msgstr "Aide à l'analyse des données autorisant le développement de filtres personnalisés pour rechercher des événements similaires"
 
-#: ../src/plugins/tool/EventNames.py:103
+#: ../src/plugins/tool/EventNames.py:110
 msgid "Event name changes"
 msgstr "Changements du nom d'événement"
 
-#: ../src/plugins/tool/EventNames.py:163
+# trunk
+#: ../src/plugins/tool/EventNames.py:115
+msgid "Modifications made"
+msgstr "Modifications réalisées"
+
+# trunk
+#: ../src/plugins/tool/EventNames.py:116
+#, python-format
+msgid "%s event description has been added"
+msgid_plural "%s event descriptions have been added"
+msgstr[0] "%s description de l'événement a été ajoutée"
+msgstr[1] "%s descriptions de l'événement ont été ajoutées"
+
+# trunk
+#: ../src/plugins/tool/EventNames.py:120
+msgid "No event description has been added."
+msgstr "Aucune description de l'événement a été ajoutée."
+
+#: ../src/plugins/tool/EventNames.py:178
 msgid "Extract Event Descriptions from Event Data"
 msgstr "Extraire les descriptions de l'événement depuis ses données"
 
-#: ../src/plugins/tool/EventNames.py:167
+#: ../src/plugins/tool/EventNames.py:182
 msgid "Extracts event descriptions from the event data"
 msgstr "Extrait les descriptions de l'événement depuis ses données"
 
@@ -12674,78 +12684,78 @@ msgstr "Extraire les données du lieu depuis son titre"
 msgid "Attempts to extract city and state/province from a place title"
 msgstr "Tentative d'extraction de la ville et de la région depuis le titre du lieu"
 
-#: ../src/plugins/tool/FindDupes.py:66
+#: ../src/plugins/tool/FindDupes.py:67
 msgid "Medium"
 msgstr "Moyen"
 
 # wiki manual
 # trunk
-#: ../src/plugins/tool/FindDupes.py:71
+#: ../src/plugins/tool/FindDupes.py:72
 msgid "manual|Find_Possible_Duplicate_People..."
 msgstr "Trouver_des_boublons_potentiels..."
 
-#: ../src/plugins/tool/FindDupes.py:136
-#: ../src/plugins/tool/FindDupes.py:701
+#: ../src/plugins/tool/FindDupes.py:137
+#: ../src/plugins/tool/FindDupes.py:702
 msgid "Find Possible Duplicate People"
 msgstr "Recherche des doublons"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 #: ../src/plugins/tool/Verify.py:301
 msgid "Tool settings"
 msgstr "Propriétés de l'outil"
 
-#: ../src/plugins/tool/FindDupes.py:148
+#: ../src/plugins/tool/FindDupes.py:149
 msgid "Find Duplicates tool"
 msgstr "Recherche des doublons"
 
-#: ../src/plugins/tool/FindDupes.py:182
+#: ../src/plugins/tool/FindDupes.py:183
 msgid "No matches found"
 msgstr "Aucune correspondance trouvée"
 
-#: ../src/plugins/tool/FindDupes.py:183
+#: ../src/plugins/tool/FindDupes.py:184
 msgid "No potential duplicate people were found"
 msgstr "Aucun doublon potentiel n'a été trouvé"
 
-#: ../src/plugins/tool/FindDupes.py:192
+#: ../src/plugins/tool/FindDupes.py:193
 msgid "Find Duplicates"
 msgstr "Recherche des doublons"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:193
+#: ../src/plugins/tool/FindDupes.py:194
 msgid "Looking for duplicate people"
 msgstr "Recherche de doublons"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:202
+#: ../src/plugins/tool/FindDupes.py:203
 msgid "Pass 1: Building preliminary lists"
 msgstr "Étape 1 : Construction d'une liste préliminaire"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/FindDupes.py:220
+#: ../src/plugins/tool/FindDupes.py:221
 msgid "Pass 2: Calculating potential matches"
 msgstr "Étape 2 : Calcul des correspondances possibles"
 
-#: ../src/plugins/tool/FindDupes.py:567
+#: ../src/plugins/tool/FindDupes.py:568
 msgid "Potential Merges"
 msgstr "Fusions potentielles"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "Rating"
 msgstr "Évaluation"
 
-#: ../src/plugins/tool/FindDupes.py:577
+#: ../src/plugins/tool/FindDupes.py:578
 msgid "First Person"
 msgstr "Premier individu"
 
-#: ../src/plugins/tool/FindDupes.py:578
+#: ../src/plugins/tool/FindDupes.py:579
 msgid "Second Person"
 msgstr "Second individu"
 
-#: ../src/plugins/tool/FindDupes.py:586
+#: ../src/plugins/tool/FindDupes.py:587
 msgid "Merge candidates"
 msgstr "Candidats à la fusion"
 
-#: ../src/plugins/tool/FindDupes.py:705
+#: ../src/plugins/tool/FindDupes.py:706
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
@@ -23493,9 +23503,10 @@ msgstr "<b>Changement de nom</b> : il est facile de gérer des individus avec p
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr "<b>Aider GRAMPS</b> : vous voulez aider GRAMPS mais vous ne pouvez pas programmer ? Ce n'est pas un problème. Pour un aussi grand projet que GRAMPS les besoins sont divers. Documentation ou tests des versions en développement font parti de l'aide recherchée. Commencez par vous inscrire à la liste des développeurs de GRAMPS, gramps-devel. Les modalités d'inscription sont disponibles sur lists.sf.net."
 
+# trunk
 #: ../src/data/tips.xml.in.h:6
-msgid "<b>Different Views</b>: There are nine different views for navigating your family: People, Relationships, Family List, Pedigree, Events, Sources, Places, Media and Repositories. Each helps you to achieve one or more specific tasks."
-msgstr "<b>Différentes vues</b> : il y a dix vues différentes pour naviguer dans votre famille : individus, relations, familles, arbre généalogique, événements, sources, lieux, media, dépôts et notes. Chacune vous aide à archiver chaque tâche spécifique."
+msgid "<b>Different Views</b>: There are twelve different views for navigating your family: Gramplets, People, Relationships, Family List, Pedigree, Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to achieve one or more specific tasks."
+msgstr "<b>Différentes vues</b> : il y a douze vues différentes pour naviguer dans votre famille : Gramplets, Individus, Relations, Familles, Arbre généalogique, Événements, Sources, Lieux, Media, Dépôts, Notes et Cartes HTML. Chacune vous aide à archiver chaque tâche spécifique."
 
 # trunk
 #: ../src/data/tips.xml.in.h:7
@@ -23583,9 +23594,10 @@ msgstr "<b>Parlez à vos grand parents avant qu'il soit trop tard</b>  : vos plu
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
 msgstr "<b>La vue familiale</b> : la vue familiale est utilisée pour afficher une famille classique --- les parents, conjoints et enfants d'un individu."
 
+# trunk
 #: ../src/data/tips.xml.in.h:26
-msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section 3.7.2.2 Édition des dates - Les entrées acceptables du manuel de GRAMPS pour une description complète des options de date."
+msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See wiki manual of GRAMPS for a complete description of date entry options."
+msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr(e) d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section Édition des dates du manuel wiki de GRAMPS pour une description complète des options de date."
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
@@ -23627,9 +23639,10 @@ msgstr "N'oubliez pas de lire le manuel d'utilisation de GRAMPS <b> Aide &gt; Ma
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr "Les filtres permettent de limiter l'affichage dans la vue des individus. En plus des filtres prédéfinis, d'autres filtres (personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre imagination. Ces filtres sont éditables via <b>Édition &gt; Éditeur de filtre sur l'individu</b>."
 
+# trunk
 #: ../src/data/tips.xml.in.h:37
-msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
-msgstr "GRAMPS permet de générer un grand nombre de rapports (rapports texte et graphique) basés sur vos informations généalogiques. Vous avez une grande flexibilité dans la sélection de ce qui sera inclus dans les rapports tout comme le format de sortie (HTML, PDF, OpenOffice.org, RTF, AbiWord, KWord, LaTeX et texte brut). Essayez les rapports listés dans le menu <b>Rapports</b> pour avoir une idée de la puissance de GRAMPS."
+msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, Open Document Text, RTF, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
+msgstr "GRAMPS permet de générer un grand nombre de rapports (rapports texte et graphique) basés sur vos informations généalogiques. Vous avez une grande flexibilité dans la sélection de ce qui sera inclus dans les rapports tout comme le format de sortie (HTML, PDF, Open Document Text, RTF, LaTeX et texte brut). Essayez les rapports listés dans le menu <b>Rapports</b> pour avoir une idée de la puissance de GRAMPS."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "GRAMPS allows you to import from, and export to, GEDCOM format. There is extensive support for the industry standard GEDCOM version 5.5, so you can exchange GRAMPS information to and from users of most other genealogy programs."
@@ -23716,9 +23729,10 @@ msgstr "Rendre vos données portables --- votre arbre familial et vos media peuv
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
 msgstr "Plusieurs noms peuvent être spécifié pour les individus. Par exemple le nom de naissance, le nom marital ou le nom d'emprunt."
 
+# trunk
 #: ../src/data/tips.xml.in.h:58
-msgid "Relationship calculators in GRAMPS are available in ten languages."
-msgstr "Le calculateur de relation de GRAMPS est disponible dans dix langues."
+msgid "Relationship calculators in GRAMPS are available in more than fifteen languages."
+msgstr "Le calculateur de relation de GRAMPS est disponible dans plus de 15 langues."
 
 #: ../src/data/tips.xml.in.h:59
 msgid "The 'merge' function allows you to combine separately listed people into one. This is very useful for combining two databases with overlapping people, or combining erroneously entered differing names for one individual."
@@ -23764,9 +23778,10 @@ msgstr "Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses foncti
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
 msgstr "Pour fusionner deux individus, sélectionnez-les puis choisissez <b>Édition &gt; Fusion Rapide</b> dans les menus. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl)."
 
+# trunk
 #: ../src/data/tips.xml.in.h:70
-msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
-msgstr "Pour utiliser GRAMPS, vous avez besoin d'installer GNOME. Mais vous n'avez pas besoin d'être sous le bureau GNOME."
+msgid "To run GRAMPS, you need to have GTK installed. But you do not need to be running the GNOME desktop."
+msgstr "Pour utiliser GRAMPS, vous avez besoin d'installer GTK. Mais vous n'avez pas besoin d'être sous le bureau GNOME."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
