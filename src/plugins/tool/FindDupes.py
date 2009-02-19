@@ -47,6 +47,7 @@ import gen.lib
 import Utils
 import soundex
 from BasicUtils import name_displayer
+from QuestionDialog import OkDialog
 import ListModel
 import Errors
 from Merge import PersonCompare
@@ -178,7 +179,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.options.handler.save_options()
 
         if len(self.map) == 0:
-            ErrorDialog(
+            OkDialog(
                 _("No matches found"),
                 _("No potential duplicate people were found"))
         else:
