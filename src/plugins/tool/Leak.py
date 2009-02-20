@@ -40,6 +40,8 @@ from bsddb.db import DBError
 #
 #------------------------------------------------------------------------
 from gtk import glade
+import gtk
+import pango
 import gc
 
 #------------------------------------------------------------------------
@@ -50,6 +52,7 @@ import gc
 from PluginUtils import Tool
 from gen.plug import PluginManager
 import ManagedWindow
+from QuestionDialog import InfoDialog
 
 #-------------------------------------------------------------------------
 #
@@ -66,12 +69,35 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         glade_file = os.path.dirname(__file__) + os.sep + "leak.glade"
         self.glade = glade.XML(glade_file,"top","gramps")
 
-        window = self.glade.get_widget("top")
-        self.eval = self.glade.get_widget("eval")
-        self.ebuf = self.eval.get_buffer()
+        self.window = self.glade.get_widget("top")
+        self.scroll = self.glade.get_widget("scrolledwindow1")
+        #add a listview to the scrollable
+        self.list = gtk.TreeView()
+        self.list.set_headers_visible(True)
+        self.list.connect('button-press-event', self._button_press)
+        self.scroll.add(self.list)
+        #make a model
+        self.modeldata = []
+        self.model = gtk.ListStore(int, str)
+        self.list.set_model(self.model)
+        
+        #set the colums
+        self.renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
+        column.set_resizable(True)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        self.list.append_column(column)
+        column = gtk.TreeViewColumn(_('Uncollected object'), self.renderer,
+                                    text=1)
+        column.set_resizable(True)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        self.list.append_column(column)
+        self.selection = self.list.get_selection()
+        
         gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
 
-        self.set_window(window,self.glade.get_widget('title'),self.title)
+        self.set_window(self.window, self.glade.get_widget('title'),
+                        self.title)
 
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
@@ -83,23 +109,49 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
     def build_menu_names(self, obj):
         return (self.title,None)
 
+    def _button_press(self, obj, event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.referenced_in()
+            return True
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.refers_to()
+            return True
+
+    def referenced_in(self):
+        model, iter = self.selection.get_selected()
+        if iter is not None:
+            count = model.get_value(iter, 0)
+            referrers = gc.get_referrers(self.modeldata[count])
+            text = ""
+            for referrer in referrers:
+                text += str(referrer) + '\n'
+            InfoDialog(_('Referrers of %d') % count, text, 
+                        parent=self.window)
+
+    def refers_to(self):
+        model, iter = self.selection.get_selected()
+        if iter is not None:
+            count = model.get_value(iter, 0)
+            referents = gc.get_referents(self.modeldata[count])
+            text = ""
+            for referent in referents:
+                text += str(referent) + '\n'
+            InfoDialog(_('%d refers to') % count, text, 
+                        parent=self.window)
+
     def display(self):
         gc.collect()
-        mylist = []
+        self.model.clear()
+        count = 0
         if len(gc.garbage):
             for each in gc.garbage:
                 try:
-                    mylist.append(str(each))
+                    self.modeldata.append(each)
+                    self.model.append((count, str(each)))
                 except DBError:
-                    mylist.append('db.DB instance at %s' % id(each))
-            self.ebuf.set_text(_("%d uncollected objects:\n\n" % len(mylist)))
-            count = 1
-            for line in mylist:
-                self.ebuf.insert_at_cursor("   %d) %s\n" % (count, line))
+                    self.modeldata.append(each)
+                    self.model.append((count, 'db.DB instance at %s' % id(each)))
                 count += 1
-        else:
-            self.ebuf.set_text(_("No uncollected objects\n")
-                               + str(gc.get_debug()))
 
     def apply_clicked(self, obj):
         self.display()
