@@ -37,6 +37,7 @@ _LOG = logging.getLogger(".objectentries")
 #
 #-------------------------------------------------------------------------
 import gtk
+from pango import ELLIPSIZE_END
 
 #-------------------------------------------------------------------------
 #
@@ -129,6 +130,7 @@ class ObjEntry:
             self.label.set_use_markup(True)
         else:
             self.label.set_text(name)
+        self.label.set_ellipsize(ELLIPSIZE_END)
 
     def _init_dnd(self):
         """inheriting objects must set this
