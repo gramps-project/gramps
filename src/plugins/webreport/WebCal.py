@@ -1435,60 +1435,60 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     # initialize day_list
     day_list = []
 
+    ##################################################################
     # holiday on this day
-    if holiday_list > []:
+    # The 0 will force holidays to be first in the list
+    for event_name in holiday_list:
+        for line in event_name.splitlines():
+            day_list.append((0, event_date, line, 'Holiday'))
+    ##################################################################
 
-        # will force holidays to be first in the list
-        nyears = 0
-
-        for event_name in holiday_list:
-            for line in event_name.splitlines():
-                day_list.append((nyears, event_date, line, 'Holiday'))
-
+    ##################################################################
     # birthday/ anniversary on this day
-    if bday_anniv_list > []:
-        birth_anniversary = [(t, e, d) for t, e, d in bday_anniv_list if d.is_valid()]
-        for text, event, date in birth_anniversary:
+    # '...' signifies an incomplete date for an event. See add_day_item()
+    bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
+                       if d != '...']
 
-            txt_str = None
+    # number of years have to be at least zero
+    bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
+                       if (event_date.get_year() - d.get_year()) >= 0]
+    for text, event, date in bday_anniv_list:
 
-            # number of years married, ex: 10
-            nyears = event_date.get_year() - date.get_year()
+        # number of years married, ex: 10
+        nyears = event_date.get_year() - date.get_year()
 
-            # no negative years
-            # years have to be at least zero
-            if nyears > -1:
+        txt_str = None
 
-                # number of years for birthday, ex: 10 years
-                age_str = event_date - date
-                age_str.format(precision=1)
+        # number of years for birthday, ex: 10 years
+        age_str = event_date - date
+        age_str.format(precision=1)
 
-                # a birthday
-                if event == 'Birthday':
+        # a birthday
+        if event == 'Birthday':
 
-                    if nyears == 0:
-                        txt_str = _('%(person)s, <em>birth</em>') % {
-                                    'person' : text}
-                    else: 
-                        txt_str = _('%(person)s, <em>%(age)s</em> old') % {
-                                    'person' : text, 'age' : age_str}
+            if nyears == 0:
+                txt_str = _('%(person)s, <em>birth</em>') % {
+                            'person' : text}
+            else: 
+                txt_str = _('%(person)s, <em>%(age)s</em> old') % {
+                            'person' : text, 'age' : age_str}
 
-                # an anniversary
-                elif event == 'Anniversary':
+        # an anniversary
+        elif event == 'Anniversary':
 
-                    if nyears == 0:
-                        txt_str = _('%(couple)s, <em>wedding</em>') % {
-                                    'couple' : text}
-                    else: 
-                        txt_str = (ngettext('%(couple)s, <em>%(years)d'
-                                            '</em> year anniversary',
-                                            '%(couple)s, <em>%(years)d'
-                                            '</em> year anniversary', nyears)
-                                   % {'couple' : text, 'years'  : nyears})
-                    txt_str = '<span class="yearsmarried">%s</span>' % txt_str
+            if nyears == 0:
+                txt_str = _('%(couple)s, <em>wedding</em>') % {
+                            'couple' : text}
+            else: 
+                txt_str = (ngettext('%(couple)s, <em>%(years)d'
+                                    '</em> year anniversary',
+                                    '%(couple)s, <em>%(years)d'
+                                    '</em> year anniversary', nyears)
+                           % {'couple' : text, 'years'  : nyears})
+            txt_str = '<span class="yearsmarried">%s</span>' % txt_str
 
-            if txt_str is not None:
-                day_list.append((nyears, date, txt_str, event))
+        if txt_str is not None:
+            day_list.append((nyears, date, txt_str, event))
 
     # sort them based on number of years
     # holidays will always be on top of day 
