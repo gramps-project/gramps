@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 15:58+0100\n"
-"PO-Revision-Date: 2009-02-19 18:00+0100\n"
+"POT-Creation-Date: 2009-02-20 08:35+0100\n"
+"PO-Revision-Date: 2009-02-20 08:36+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3597,6 +3597,10 @@ msgid ""
 "markers : "
 msgstr "Det finns %d markörer att visa. De är uppdelade på %d sidor om %d markörer : "
 
+#: ../src/DataViews/GeoView.py:958
+msgid "All"
+msgstr "Alla"
+
 #: ../src/DataViews/GeoView.py:1417
 msgid "No location."
 msgstr "Ingen plats."
@@ -6123,7 +6127,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/graph/GVFamilyLines.py:1062
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
-#: ../src/plugins/mapservices/eniroswedenmap.py:189
+#: ../src/plugins/mapservices/eniroswedenmap.py:190
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
 #: ../src/plugins/quickview/AgeOnDate.py:104
@@ -6151,7 +6155,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/textreport/IndivComplete.py:646
 #: ../src/plugins/textreport/KinshipReport.py:409
 #: ../src/plugins/textreport/MarkerReport.py:528
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:209
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:211
 #: ../src/plugins/textreport/PlaceReport.py:403
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
@@ -6167,7 +6171,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
 #: ../src/plugins/tool/SoundGen.py:155 ../src/plugins/tool/Verify.py:1584
 #: ../src/plugins/webreport/NarrativeWeb.py:3625
-#: ../src/plugins/webreport/WebCal.py:1590
+#: ../src/plugins/webreport/WebCal.py:1588
 msgid "Stable"
 msgstr "Stabil"
 
@@ -6569,7 +6573,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/IndivComplete.py:513
 #: ../src/plugins/textreport/KinshipReport.py:336
 #: ../src/plugins/textreport/MarkerReport.py:436
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:166
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
 #: ../src/plugins/textreport/PlaceReport.py:250
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3292
@@ -6660,7 +6664,7 @@ msgstr "Familjeposter"
 #: ../src/plugins/textreport/IndivComplete.py:599
 #: ../src/plugins/textreport/KinshipReport.py:391
 #: ../src/plugins/textreport/MarkerReport.py:486
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:191
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 msgid "The basic style used for the text display."
 msgstr "Grundläggande stil som används för textvisning."
@@ -6854,7 +6858,7 @@ msgstr "Trädalternativ"
 #: ../src/plugins/textreport/DetDescendantReport.py:697
 #: ../src/plugins/textreport/EndOfLineReport.py:238
 #: ../src/plugins/textreport/KinshipReport.py:338
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:170
 msgid "Center Person"
 msgstr "Huvudperson"
 
@@ -7015,7 +7019,7 @@ msgstr "Välj ett filter, som begränsar vilka personer, som tas med på kalende
 #: ../src/plugins/textreport/DetDescendantReport.py:698
 #: ../src/plugins/textreport/EndOfLineReport.py:239
 #: ../src/plugins/textreport/KinshipReport.py:339
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:169
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:171
 msgid "The center person for the report"
 msgstr "Huvudpersonen för rapporten"
 
@@ -7574,7 +7578,7 @@ msgstr "Stil som används för objekt och värden."
 #: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/KinshipReport.py:374
 #: ../src/plugins/textreport/MarkerReport.py:466
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:184
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:186
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:266
 msgid "The style used for the title of the page."
@@ -9594,40 +9598,40 @@ msgid "Provides base functionality for map services."
 msgstr "Tillhandahåller grunfunktioner för karttjänster."
 
 #. Make upper case of translaed country so string search works later
-#: ../src/plugins/mapservices/eniroswedenmap.py:43
+#: ../src/plugins/mapservices/eniroswedenmap.py:44
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "Sweden"
 msgstr "Sverige"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:49
+#: ../src/plugins/mapservices/eniroswedenmap.py:50
 msgid "Denmark"
 msgstr "Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:75
+#: ../src/plugins/mapservices/eniroswedenmap.py:76
 msgid " parish"
 msgstr " församling"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:79
+#: ../src/plugins/mapservices/eniroswedenmap.py:80
 msgid " state"
 msgstr " län"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:137
+#: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitud ej inom %s till %s\n"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:138
+#: ../src/plugins/mapservices/eniroswedenmap.py:139
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitud ej inom %s till %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:140
-#: ../src/plugins/mapservices/eniroswedenmap.py:144
-#: ../src/plugins/mapservices/eniroswedenmap.py:172
+#: ../src/plugins/mapservices/eniroswedenmap.py:141
+#: ../src/plugins/mapservices/eniroswedenmap.py:145
+#: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Eniro map not available"
 msgstr "Eniros karta ej tillgänglig"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:145
+#: ../src/plugins/mapservices/eniroswedenmap.py:146
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
@@ -9635,24 +9639,24 @@ msgstr ""
 "Latitud och longitud,\n"
 "eller gata och stad behövs"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:173
+#: ../src/plugins/mapservices/eniroswedenmap.py:174
 msgid "Coordinates needed in Denmark"
 msgstr "Koordinater behövs i Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:177
+#: ../src/plugins/mapservices/eniroswedenmap.py:178
 #, python-format
 msgid "Eniro map not available for %s"
 msgstr "Eniros karta ej tillgänglig för %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:178
+#: ../src/plugins/mapservices/eniroswedenmap.py:179
 msgid "Only for Sweden and Denmark"
 msgstr "Endast för Sverige och Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:188
+#: ../src/plugins/mapservices/eniroswedenmap.py:189
 msgid "EniroMaps"
 msgstr "Eniros karta"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:190
+#: ../src/plugins/mapservices/eniroswedenmap.py:191
 msgid "Opens on kartor.eniro.se"
 msgstr "Öppnar på kartor.eniro.se"
 
@@ -11116,17 +11120,15 @@ msgstr[1] "Generation %(generation)d utgörs av %(count)d individer. %(percent)s
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:141
 #, python-format
 msgid ""
-"Total ancestors in generations %(second_generation)d to         %"
-"(last_generation)d is %(count)d. %(percent)s"
-msgstr ""
-"Totalt antal förfäder i generation %(second_generation)d till         %"
-"(last_generation)d är %(count)d. %(percent)s"
+"Total ancestors in generations %(second_generation)d to %(last_generation)d "
+"is %(count)d. %(percent)s"
+msgstr "Totalt antal förfäder i generationerna %(second_generation)d till %(last_generation)d är %(count)d. %(percent)s"
 
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:208
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
 msgid "Number of Ancestors Report"
 msgstr "Rapport över antal anor"
 
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:212
 msgid "Counts number of ancestors of selected person"
 msgstr "Beräknar antalet anor för vald person"
 
@@ -13793,33 +13795,33 @@ msgstr "Detta skrivs för december"
 msgid "The note for the month of December"
 msgstr "Anteckningen för december månad."
 
-#: ../src/plugins/webreport/WebCal.py:1471
+#: ../src/plugins/webreport/WebCal.py:1470
 #, python-format
 msgid "%(person)s, <em>birth</em>"
 msgstr "%(person)s, <em>födelse</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1474
+#: ../src/plugins/webreport/WebCal.py:1473
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
 msgstr "%(person)s, <em>%(age)s</em> gammal"
 
-#: ../src/plugins/webreport/WebCal.py:1481
+#: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>bröllop</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1484
+#: ../src/plugins/webreport/WebCal.py:1483
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
 msgstr[0] "%(couple)s, <em>%(years)d</em>-års jubileum"
 msgstr[1] "%(couple)s, <em>%(years)d</em>-års jubileum"
 
-#: ../src/plugins/webreport/WebCal.py:1589
+#: ../src/plugins/webreport/WebCal.py:1587
 msgid "Web Calendar"
 msgstr "Webbkalender"
 
-#: ../src/plugins/webreport/WebCal.py:1593
+#: ../src/plugins/webreport/WebCal.py:1591
 msgid "Produces web (HTML) calendars."
 msgstr "Skapar webb-(HTML)-kalendrar."
 
@@ -23171,7 +23173,9 @@ msgid ""
 "achieve one or more specific tasks."
 msgstr ""
 "<b>Olika vyer</b>: Det finns tolv olika vyer för att navigera i din familj: "
-"\"Gramplet\".person, släktskap, antavla, familjevis, källor, platser, media, arkivplatser, anteckningar samt HTML-kartor. Var och en hjälper dig att utföra en eller flera särskilda uppgifter."
+"\"Gramplet\".person, släktskap, antavla, familjevis, källor, platser, media, "
+"arkivplatser, anteckningar samt HTML-kartor. Var och en hjälper dig att "
+"utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -23434,8 +23438,8 @@ msgstr ""
 "inträffade (till exempel födelse eller död), så kan du i GRAMPS lägga in ett "
 "brett urval av datumformat baserade på en gissning eller en uppskattning. "
 "Exempelvis är &quot;omkring 1908&quot; ett giltigt format för ett "
-"födelsedatum i GRAMPS. Se wiki-manualen för en komplett "
-"beskrivning av alternativen för inskrivning av datum."
+"födelsedatum i GRAMPS. Se wiki-manualen för en komplett beskrivning av "
+"alternativen för inskrivning av datum."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -23554,9 +23558,9 @@ msgstr ""
 "I GRAMPS kan du skapa ett antal rapporter (både text och grafiska) baserat "
 "på din genealogiska information. Det är stor flexibilitet både vad gäller "
 "att välja vilka personer, som tas med i rapporterna, såväl som i "
-"utmatningsformaten (HTML, pdf, Open Document Text, RTF, LaTeX och "
-"vanlig text). Experimentera med rapporterna under <b>Rapport</b>menyn för "
-"att få en uppfattning om hur kraftfullt GRAMPS är."
+"utmatningsformaten (HTML, pdf, Open Document Text, RTF, LaTeX och vanlig "
+"text). Experimentera med rapporterna under <b>Rapport</b>menyn för att få en "
+"uppfattning om hur kraftfullt GRAMPS är."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
