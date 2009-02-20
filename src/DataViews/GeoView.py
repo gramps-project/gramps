@@ -815,35 +815,35 @@ class GeoView(HtmlView):
         self.createmapstraction(displaytype)
         self.open("file://"+self.htmlfile)
 
-    def select_openstreetmap_map(self):
+    def select_openstreetmap_map(self,handle):
         """
         Specifies openstreetmap is the default map
         """
         self.usedmap = "openstreetmap"        
         self.change_map("openstreetmap")
 
-    def select_openlayers_map(self):
+    def select_openlayers_map(self,handle):
         """
         Specifies openstreetmap is the default map
         """
         self.usedmap = "openlayers"        
         self.change_map("openlayers")
 
-    def select_google_map(self):
+    def select_google_map(self,handle):
         """
         Specifies google is the default map
         """
         self.usedmap = "google"        
         self.change_map("google")
 
-    def select_yahoo_map(self):
+    def select_yahoo_map(self,handle):
         """
         Specifies yahoo map is the default map
         """
         self.usedmap = "yahoo"        
         self.change_map("yahoo")
 
-    def select_microsoft_map(self):
+    def select_microsoft_map(self,handle):
         """
         Specifies microsoft is the default map
         """
