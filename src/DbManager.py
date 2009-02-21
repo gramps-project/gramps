@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009       Brian G. Matherly
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -568,10 +569,14 @@ class DbManager(CLIDbManager):
                     continue
                 if node:
                     self.top.destroy()
+                    del self.selection
+                    del self.name_renderer
                     return (store.get_value(node, PATH_COL),
                             store.get_value(node, NAME_COL))
             else:
                 self.top.destroy()
+                del self.selection
+                del self.name_renderer
                 return None
 
     def __ask_to_break_lock(self, store, node):
