@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 18:16+0100\n"
-"PO-Revision-Date: 2009-02-19 19:06+0100\n"
+"POT-Creation-Date: 2009-02-21 01:46+0100\n"
+"PO-Revision-Date: 2009-02-21 01:59+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3583,6 +3583,10 @@ msgstr ""
 "Es gibt %d Marker zum anzeigen. Diese sind verteilt über %d Seiten mit %d "
 "Markern : "
 
+#: ../src/DataViews/GeoView.py:958
+msgid "All"
+msgstr "Alles"
+
 #: ../src/DataViews/GeoView.py:1417
 msgid "No location."
 msgstr "Kein Ort"
@@ -3682,7 +3686,7 @@ msgstr "Alle Ereignis Orte für %s."
 msgid "Not yet implemented ..."
 msgstr "Noch nicht implementiert ..."
 
-#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:301
+#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
 msgstr "Neues Medienobjekt hinzufügen"
 
@@ -3768,7 +3772,7 @@ msgstr "Vorschau"
 msgid "Marker"
 msgstr "Marker"
 
-#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:352
+#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
 msgstr "Neue Notiz hinzufügen"
 
@@ -4080,7 +4084,7 @@ msgstr "Längengrad"
 msgid "Street"
 msgstr "Straße"
 
-#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:250
+#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:252
 msgid "Add a new place"
 msgstr "Neuen Ort hinzufügen"
 
@@ -4888,64 +4892,64 @@ msgstr ""
 "GRAMPS kann das Bild nicht anzeigen. Dies kann durch eine fehlerhafte Datei "
 "verursacht werden."
 
-#: ../src/Editors/ObjectEntries.py:245
+#: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Um einen Ort auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:249
 msgid "No place given, click button to select one"
 msgstr "Kein Ort angegeben, auf Schaltfläche klicken um einen zu wählen"
 
-#: ../src/Editors/ObjectEntries.py:248
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Edit place"
 msgstr "Ort bearbeiten"
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:251
 msgid "Select an existing place"
 msgstr "Einen existierenden Ort auswählen"
 
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:253
 msgid "Remove place"
 msgstr "Ort löschen"
 
-#: ../src/Editors/ObjectEntries.py:296
+#: ../src/Editors/ObjectEntries.py:298
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:777
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 
-#: ../src/Editors/ObjectEntries.py:299
+#: ../src/Editors/ObjectEntries.py:301
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:302 ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
-#: ../src/Editors/ObjectEntries.py:302
+#: ../src/Editors/ObjectEntries.py:304
 msgid "Remove media object"
 msgstr "Medienobjekt entfernen"
 
-#: ../src/Editors/ObjectEntries.py:347
+#: ../src/Editors/ObjectEntries.py:349
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Um eine Notiz zu wählen, benutze Drag-und-Drop oder die Schaltflächen"
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:700
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr "Kein Notiz angegeben, auf Schaltfläche klicken um einen zu wählen"
 
-#: ../src/Editors/ObjectEntries.py:350 ../src/Editors/_EditNote.py:264
+#: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310 ../src/plugins/gramplet/NoteGramplet.py:257
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:670
+#: ../src/Editors/ObjectEntries.py:353 ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr "Einen existierende Notiz auswählen"
 
-#: ../src/Editors/ObjectEntries.py:353
+#: ../src/Editors/ObjectEntries.py:355
 msgid "Remove note"
 msgstr "Notiz entfernen"
 
@@ -6157,7 +6161,7 @@ msgstr "GRAMPS-Buch"
 #: ../src/plugins/textreport/IndivComplete.py:646
 #: ../src/plugins/textreport/KinshipReport.py:409
 #: ../src/plugins/textreport/MarkerReport.py:528
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:209
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:211
 #: ../src/plugins/textreport/PlaceReport.py:403
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
@@ -6173,7 +6177,7 @@ msgstr "GRAMPS-Buch"
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
 #: ../src/plugins/tool/SoundGen.py:155 ../src/plugins/tool/Verify.py:1584
 #: ../src/plugins/webreport/NarrativeWeb.py:3625
-#: ../src/plugins/webreport/WebCal.py:1590
+#: ../src/plugins/webreport/WebCal.py:1588
 msgid "Stable"
 msgstr "Stabil"
 
@@ -6579,7 +6583,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/IndivComplete.py:513
 #: ../src/plugins/textreport/KinshipReport.py:336
 #: ../src/plugins/textreport/MarkerReport.py:436
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:166
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
 #: ../src/plugins/textreport/PlaceReport.py:250
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3292
@@ -6670,7 +6674,7 @@ msgstr "Familie Datensätze"
 #: ../src/plugins/textreport/IndivComplete.py:599
 #: ../src/plugins/textreport/KinshipReport.py:391
 #: ../src/plugins/textreport/MarkerReport.py:486
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:191
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 msgid "The basic style used for the text display."
 msgstr "Der Basisstil, der für die Textanzeige verwendet wird."
@@ -6864,7 +6868,7 @@ msgstr "Baumoptionen"
 #: ../src/plugins/textreport/DetDescendantReport.py:697
 #: ../src/plugins/textreport/EndOfLineReport.py:238
 #: ../src/plugins/textreport/KinshipReport.py:338
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:170
 msgid "Center Person"
 msgstr "Hauptperson"
 
@@ -7025,7 +7029,7 @@ msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 #: ../src/plugins/textreport/DetDescendantReport.py:698
 #: ../src/plugins/textreport/EndOfLineReport.py:239
 #: ../src/plugins/textreport/KinshipReport.py:339
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:169
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:171
 msgid "The center person for the report"
 msgstr "Die Hauptperson Person für den Bericht"
 
@@ -7584,7 +7588,7 @@ msgstr "Der Stil, der für Artikel und Werte verwendet wird."
 #: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/KinshipReport.py:374
 #: ../src/plugins/textreport/MarkerReport.py:466
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:184
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:186
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:266
 msgid "The style used for the title of the page."
@@ -11130,17 +11134,17 @@ msgstr[1] "Generation %(generation)d enthält %(count)d Personen. %(percent)s"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:141
 #, python-format
 msgid ""
-"Total ancestors in generations %(second_generation)d to         %"
-"(last_generation)d is %(count)d. %(percent)s"
+"Total ancestors in generations %(second_generation)d to %(last_generation)d "
+"is %(count)d. %(percent)s"
 msgstr ""
-"Vorfahren gesammt in Generationen %(second_generation)d to         %"
-"(last_generation)d is %(count)d. %(percent)s"
+"Vorfahren gesamt in Generationen %(second_generation)d bis %(last_generation)d "
+"ist %(count)d. %(percent)s"
 
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:208
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
 msgid "Number of Ancestors Report"
 msgstr "Anzahl der Vorfahren Bericht"
 
-#: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
+#: ../src/plugins/textreport/NumberOfAncestorsReport.py:212
 msgid "Counts number of ancestors of selected person"
 msgstr "Zählt die Anzahl der Vorfahren der gewählten Person"
 
@@ -13827,33 +13831,33 @@ msgstr "Dies wird im Dezember gedruckt"
 msgid "The note for the month of December"
 msgstr "Die Notiz für den Monat Dezember"
 
-#: ../src/plugins/webreport/WebCal.py:1471
+#: ../src/plugins/webreport/WebCal.py:1470
 #, python-format
 msgid "%(person)s, <em>birth</em>"
 msgstr "%(person)s, <em>Geburt</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1474
+#: ../src/plugins/webreport/WebCal.py:1473
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
 msgstr "%(person)s, <em>%(age)s</em> alt"
 
-#: ../src/plugins/webreport/WebCal.py:1481
+#: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>Hochzeit</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1484
+#: ../src/plugins/webreport/WebCal.py:1483
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
 msgstr[0] "%(couple)s, <em>%(years)d</em> Jahrestag"
 msgstr[1] "%(couple)s, <em>Hochzeit</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1589
+#: ../src/plugins/webreport/WebCal.py:1587
 msgid "Web Calendar"
 msgstr "Webkalender"
 
-#: ../src/plugins/webreport/WebCal.py:1593
+#: ../src/plugins/webreport/WebCal.py:1591
 msgid "Produces web (HTML) calendars."
 msgstr "Erstellt Web (HTML) Kalender."
 
@@ -21932,7 +21936,8 @@ msgid ""
 "grandfather, .... \n"
 "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
-"Vatername: Teil des persönlichen Namen der auf dem Namen des Vaters, Großvater, .... basiert\n"
+"Vatername: Teil des persönlichen Namen der auf dem Namen des Vaters, "
+"Großvater, .... basiert\n"
 "Titel: Ein Titel der sich auf die Person bezieht wie 'Dr.' oder 'Prof.'"
 
 #: ../src/glade/edit_person.glade.h:16
@@ -23373,8 +23378,10 @@ msgid ""
 "achieve one or more specific tasks."
 msgstr ""
 "<b>Verschiedene Ansichten</b>. Es gibt zwölf verschiedene Ansichten um durch "
-"deine Familie zu navigieren: Gramplets, Personen, Beziehungen, Familienliste, "
-"Ahnentafel, Ereignisse, Quellen, Orte, Medien, Aufbewahrungsorte Notizen und HTML Karten Jede hilft dir eine oder mehrere bestimmte Aufgaben durchzuführen."
+"deine Familie zu navigieren: Gramplets, Personen, Beziehungen, "
+"Familienliste, Ahnentafel, Ereignisse, Quellen, Orte, Medien, "
+"Aufbewahrungsorte Notizen und HTML Karten Jede hilft dir eine oder mehrere "
+"bestimmte Aufgaben durchzuführen."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -23643,8 +23650,9 @@ msgstr ""
 "vorkommenden Datum unsicher bist (zum Beispiel beim Sterbedatum), erlaubt "
 "dir GRAMPS einen weiten Umfang an Daten, die auf einer Vermutung oder "
 "Einschätzung beruhen. Im Fall von &quot;etwa 1908&quot; ist dies ein "
-"erlaubter Eintrag für ein Geburtsdatum in GRAMPS. Schaue in das Wikihandbuch von GRAMPS, wo du eine genaue Beschreibung der "
-"Optionen zu Datumseingabe findest."
+"erlaubter Eintrag für ein Geburtsdatum in GRAMPS. Schaue in das Wikihandbuch "
+"von GRAMPS, wo du eine genaue Beschreibung der Optionen zu Datumseingabe "
+"findest."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -23768,8 +23776,9 @@ msgstr ""
 "GRAMPS erlaubt dir eine Menge an Berichten (sowohl Text als auch grafisch) "
 "zu erstellen, die deine genealogische Informationen enthalten. Eine große "
 "Flexibilität gibt es sowohl bei der Auswahl der Personen für den Bericht als "
-"auch für das Ausgabeformat (HTML, PDF, Open Document, RTF, LaTeX und normaler Text). Probiere die Berichte im Menü unter <b>Berichte</"
-"b> um einen Einblick zu bekommen, wie mächtig GRAMPS ist."
+"auch für das Ausgabeformat (HTML, PDF, Open Document, RTF, LaTeX und "
+"normaler Text). Probiere die Berichte im Menü unter <b>Berichte</b> um einen "
+"Einblick zu bekommen, wie mächtig GRAMPS ist."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -23989,7 +23998,9 @@ msgstr ""
 msgid ""
 "Relationship calculators in GRAMPS are available in more than fifteen "
 "languages."
-msgstr "Für GRAMPS sind Verwandtschaftrechner in mehr als fünfzehn Sprachen verfügbar."
+msgstr ""
+"Für GRAMPS sind Verwandtschaftrechner in mehr als fünfzehn Sprachen "
+"verfügbar."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
