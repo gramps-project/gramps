@@ -474,12 +474,6 @@ class DateParser:
         value = subparser(text)
         if value != Date.EMPTY:
             return value
-        # if 8 digits are entered and month and day in range
-        # assume yyyymmdd and convert to yyyy-mm-dd
-        if len(text) == 8 and text.isdigit() \
-            and (int(text[4:6]) in range(1,13)) \
-            and (int(text[6:8]) in range(1,32)):
-            text = text[0:4] + "-" + text[4:6] + "-" + text[6:8]
         match = self._iso.match(text)
         if match:
             groups = match.groups()
