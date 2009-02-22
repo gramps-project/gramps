@@ -101,8 +101,16 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
+# variables for alphabet_navigation
 _PERSON = 0
 _PLACE = 1
+
+# graphics for Maiz stylesheet
+_WEBBKGD = 'Web_Mainz_Bkgd.png'
+_WEBHEADER = 'Web_Mainz_Header.png'
+_WEBMID = 'Web_Mainz_Mid.png'
+_WEBMIDLIGHT = 'Web_Mainz_MidLight.png'
+
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -2432,6 +2440,8 @@ class IndividualPage(BasePage):
 
                 # Also try to identify half-siblings
                 half_siblings = set()
+                sort_half_sibs = []
+                birthorder = self.report.options['birthorder']
 
                 # if we have a known father...
                 showallsiblings = self.report.options['showhalfsiblings']
@@ -2450,6 +2460,18 @@ class IndividualPage(BasePage):
                                     # we have a new step/half sibling
                                     half_siblings.add(half_child_handle)
 
+                                    # if sort siblings or not?
+                                    if birthorder:
+                                        half_sib = db.get_person_from_handle(half_child_handle)
+                                        birth_ref = half_sib.get_birth_ref()
+                                        birth_date = None
+                                        if birth_ref:
+                                            birth_event = db.get_event_from_handle(birth_ref.ref)
+                                            birth_date = birth_event.get_date_object()
+
+                                        if birth_date != None and birth_date.is_valid():
+                                            sort_half_sibs.append((birth_date, half_child_handle)) 
+
                 # do the same thing with the mother (see "father" just above):
                 if mother_handle and showallsiblings:
                     mother = db.get_person_from_handle(mother_handle)
@@ -2462,20 +2484,39 @@ class IndividualPage(BasePage):
                                     # we have a new half sibling
                                     half_siblings.add(half_child_handle)
 
+                                    # sort siblings or not?
+                                    if birthorder:
+                                        half_sib = db.get_person_from_handle(half_child_handle)
+                                        birth_ref = half_sib.get_birth_ref()
+                                        birth_date = None
+                                        if birth_ref:
+                                            birth_event = db.get_event_from_handle(birth_ref.ref)
+                                            birth_date = birth_event.get_date_object()
+
+                                        if birth_date != None and birth_date.is_valid():
+                                            sort_half_sibs.append((birth_date, half_child_handle)) 
+
                 # now that we have all of the half-siblings, print them out
-                if len(half_siblings) > 0:
+                if len(half_siblings) > 0 or len(sort_half_sibs) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Half Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
-                    for child_handle in half_siblings:
-                        self.display_child_link(of, child_handle)
+                    if birthorder:
+                        sort_half_sibs.sort()
+
+                        for date, handle in sort_half_sibs:
+                            self.display_child_link(of, handle)
+                    else:
+                        for child_handle in half_siblings:
+                            self.display_child_link(of, child_handle)
                     of.write('\t\t\t\t\t</ol>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
 
                 # get step-siblings
                 step_siblings = set()
+                step_kids = []
                 if showallsiblings:
 
                     # to find the step-siblings, we need to identify
@@ -2541,14 +2582,31 @@ class IndividualPage(BasePage):
                                     # we have a new step sibling
                                     step_siblings.add(step_child_handle)
 
+                                    # sort siblings or not?
+                                    if birthorder:
+                                        step_sib = db.get_person_from_handle(step_child_handle)
+                                        birth_ref = step_sib.get_birth_ref()
+                                        birth_date = None
+                                        if birth_ref:
+                                            birth_event = db.get_event_from_handle(birth_ref.ref)
+                                            birth_date = birth_event.get_date_object()
+
+                                        if birth_date != None and birth_date.is_valid():
+                                            step_kids.append((birth_date, step_child_handle)) 
+
                 # now that we have all of the step-siblings, print them out
-                if len(step_siblings) > 0:
+                if len(step_siblings) > 0 or len(step_kids) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Step Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
-                    for child_handle in step_siblings:
-                        self.display_child_link(of, child_handle)
+
+                    if birthorder:
+                        for date, handle in step_kids:
+                            self.display_child_link(of, handle)
+                    else:
+                        for child_handle in step_siblings:
+                            self.display_child_link(of, child_handle)
                     of.write('\t\t\t\t\t</ol>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
@@ -2838,7 +2896,11 @@ class NavWebReport(Report):
         self.use_contact = self.options['contactnote'] or \
                            self.options['contactimg']
 
+        # either include the gender graphics or not?
         self.graph = self.options['graph']
+
+        # wether to sort all siblings by birthorder or not? 
+        self.birthorder = self.options['birthorder']
 
         if self.use_home:
             self.index_fname = "index"
@@ -2976,11 +3038,7 @@ class NavWebReport(Report):
 
         # Copy Mainz Style Images
         if self.css == "Web_Mainz.css":
-            imgs += ["Web_Mainz_Bkgd.png",
-                     "Web_Mainz_Header.png",
-                     "Web_Mainz_Mid.png",
-                     "Web_Mainz_MidLight.png",
-                     "document.png"]
+            imgs += [_WEBBKGD, _WEBHEADER, _WEBMID, _WEBMIDLIGHT]
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested???
@@ -3486,6 +3544,11 @@ class NavWebOptions(MenuReportOptions):
                                     "step-siblings with the parents and "
                                     "siblings"))
         menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
+
+        birthorder = BooleanOption(_('Show all siblings in birth order'), False)
+        birthorder.set_help(_('Show all siblings including half/ Step in '
+                              'birth order or not?'))
+        menu.add_option(category_name, 'birthorder', birthorder)
 
     def __archive_changed(self):
         """

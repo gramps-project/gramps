@@ -83,6 +83,12 @@ import libholiday
 # constants
 #
 #------------------------------------------------------------------------
+# Mainz stylesheet graphics
+# will only be used if Mainz is slected as the stylesheet
+_WEBBKGD = "Web_Mainz_Bkgd.png"
+_WEBHEADER = "Web_Mainz_Header.png"
+_WEBMID = "Web_Mainz_Mid.png"
+_WEBMIDLIGHT = "Web_Mainz_MidLight.png"
 
 # This information defines the list of styles in the Web calendar
 # options dialog as well as the location of the corresponding SCREEN
@@ -341,17 +347,13 @@ class WebCalReport(Report):
 
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
-            imgs += ["Web_Mainz_Bkgd.png",
-                     "Web_Mainz_Header.png",
-                     "Web_Mainz_Mid.png",
-                     "Web_Mainz_MidLight.png",
-                     ]
+            imgs += [_WEBBKGD, _WEBHEADER, _WEBMID, _WEBMIDLIGHT]
 
         # Copy GRAMPS favicon
         imgs += ['favicon.ico']
 
         # copy copyright image
-        if 0 < self.copy < len(_CC):
+        if 0 < self.copy <= len(_CC):
             imgs += ['somerights20.gif']
 
         for fname in imgs:
@@ -1067,7 +1069,7 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
 
-                        are_married = get_marrital_status(self.database, fam)
+                        are_married = get_marital_status(self.database, fam)
                         if are_married is not None:
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
@@ -1466,12 +1468,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         # a birthday
         if event == 'Birthday':
 
-            if nyears == 0:
-                txt_str = _('%(person)s, <em>birth</em>') % {
-                            'person' : text}
-            else: 
-                txt_str = _('%(person)s, <em>%(age)s</em> old') % {
-                            'person' : text, 'age' : age_str}
+            txt_str = _(text + ', <em>'
+            + ('birth' if nyears == 0 else '%s old' % str(age_str))
+            + '</em>')
 
         # an anniversary
         elif event == 'Anniversary':
@@ -1496,7 +1495,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     return day_list
 
-def get_marrital_status(db, family):
+def get_marital_status(db, family):
     """
     Returns the marital status of two people, a couple
 
