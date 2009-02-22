@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 22:56+0100\n"
-"PO-Revision-Date: 2009-02-10 16:38+0100\n"
+"PO-Revision-Date: 2009-02-23 00:40+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -11412,7 +11412,7 @@ msgstr "Marcare per invertire il criterio di ordinamento."
 
 #: ../src/plugins/StatisticsChart.py:709
 msgid "People Born After"
-msgstr "Persone nate prima del"
+msgstr "Persone nate dopo il"
 
 #: ../src/plugins/StatisticsChart.py:711
 msgid "Birth year from which to include people"
@@ -11420,7 +11420,7 @@ msgstr "Anno di nascita a partire dal quale includere le persone"
 
 #: ../src/plugins/StatisticsChart.py:714
 msgid "People Born Before"
-msgstr "Persone nate dopo il"
+msgstr "Persone nate prima del"
 
 #: ../src/plugins/StatisticsChart.py:716
 msgid "Birth year until which to include people"
