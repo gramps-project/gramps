@@ -79,7 +79,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
             _("Much of GRAMPS' artwork is either from\n"
               "the Tango Project or derived from the Tango\n"
               "Project. This artwork is released under the\n"
-              "Create Commons Attribution-ShareAlike 2.5\n"
+              "Creative Commons Attribution-ShareAlike 2.5\n"
               "license.")
           ])
         
