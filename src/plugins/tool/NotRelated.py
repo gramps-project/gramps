@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007 Stephane Charette
+# Copyright (C) 2007-2009 Stephane Charette
 # Copyright (C) 2008 Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -46,6 +46,7 @@ import gobject
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from ReportBase import ReportUtils
+from PluginUtils import Tool
 from Editors import EditPerson, EditFamily
 import ManagedWindow
 import Utils
@@ -65,10 +66,14 @@ WIKI_HELP_SEC = _('manual|Not_Related...')
 # 
 #
 #------------------------------------------------------------------------
-class NotRelated(Tool.Tool, ManagedWindow.ManagedWindow) :
+class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        Tool.Tool.__init__(self, dbstate, options_class, name)
+        Tool.ActivePersonTool.__init__(self, dbstate, options_class, name)
+
+        if self.fail:   # bug #2709 -- fail if we have no active person
+            return
+
         person = dbstate.get_active_person()
         self.name = person.get_primary_name().get_regular_name()
         self.title = _('Not related to "%s"') % self.name
@@ -212,7 +217,7 @@ class NotRelated(Tool.Tool, ManagedWindow.ManagedWindow) :
                     EditPerson(self.dbstate, self.uistate, [], person)
                 except Errors.WindowActiveError:
                     pass
-#   
+
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
