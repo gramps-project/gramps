@@ -5,6 +5,7 @@
 # Copyright (C) 2002       Gary Shao
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1200,7 +1201,7 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
-            if 'description' in attrs:
+            if attrs.has_key('description'):
                 self.p.set_description(attrs['description'])
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
             self.p.set_right_margin(Utils.gfloat(attrs['rmargin']))
