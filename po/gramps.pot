@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-22 03:08-0800\n"
+"POT-Creation-Date: 2009-02-22 11:23-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -744,7 +744,7 @@ msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
 "Project. This artwork is released under the\n"
-"Create Commons Attribution-ShareAlike 2.5\n"
+"Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
 
@@ -18629,14 +18629,14 @@ msgstr ""
 #: ../src/Filters/_FilterParser.py:111
 #, python-format
 msgid ""
-"WARNING: To many arguments in filter '%s'!\n"
+"WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
 
 #: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
-"WARNING: To few arguments in filter '%s'!\n"
+"WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 
