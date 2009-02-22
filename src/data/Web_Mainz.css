@@ -16,6 +16,8 @@ Go to <http://gramps-project.org/> to learn more!
 License
 ----------------------------------------------------------------------------
 Copyright 2008 Jason M. Simanek
+Copyright 2009 Stephane Charette
+
 This file is part of the GRAMPS program.
 
 GRAMPS is free software: you can redistribute it and/or modify it under the
@@ -501,10 +503,10 @@ table.individuallist tbody tr td.ColumnName a {
     position:relative;
     overflow:hidden;
     text-align:center;
+    border:solid 1px #7D5925;
 }
 #GalleryDisplay img {
     margin:0 auto;
-    border:solid 1px #7D5925;
 }
 #GalleryDetail div#summaryarea{
     margin:0;

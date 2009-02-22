@@ -16,6 +16,7 @@ Go to http://gramps-project.org to learn more!
 
 --------------------------------------------------------------------------------------------------
 Copyright 2008 Rob G. Healey
+Copyright 2009 Stephane Charette
 
 This file is part of the GRAMPS program.
 
@@ -528,10 +529,10 @@ table.individuallist tbody tr td.ColumnName a:hover {
     position:relative;
     overflow:hidden;
     text-align:center;
+    border:solid 1px #453619;
 }
 #GalleryDisplay img {
     margin:0 auto;
-    border:solid 1px #453619;
 }
 #GalleryDetail div#summaryarea{
     margin:0;
