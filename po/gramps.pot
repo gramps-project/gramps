@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-20 11:52+0100\n"
+"POT-Creation-Date: 2009-02-22 03:08-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,52 +337,52 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:88
+#: ../src/DbManager.py:89
 msgid "Family Tree"
 msgstr ""
 
-#: ../src/DbManager.py:102
+#: ../src/DbManager.py:103
 msgid "_Extract"
 msgstr ""
 
-#: ../src/DbManager.py:102 ../src/glade/gramps.glade.h:139
+#: ../src/DbManager.py:103 ../src/glade/gramps.glade.h:139
 msgid "_Archive"
 msgstr ""
 
-#: ../src/DbManager.py:233
+#: ../src/DbManager.py:234
 #, python-format
 msgid "Starting Import, %s"
 msgstr ""
 
-#: ../src/DbManager.py:239
+#: ../src/DbManager.py:240
 msgid "Import finished..."
 msgstr ""
 
 #. Create a new database
-#: ../src/DbManager.py:293 ../src/plugins/import/ImportCsv.py:383
+#: ../src/DbManager.py:294 ../src/plugins/import/ImportCsv.py:383
 msgid "Importing data..."
 msgstr ""
 
-#: ../src/DbManager.py:491
+#: ../src/DbManager.py:492
 msgid "Family tree name"
 msgstr ""
 
-#: ../src/DbManager.py:501 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:502 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr ""
 
-#: ../src/DbManager.py:507
+#: ../src/DbManager.py:508
 msgid "Last modified"
 msgstr ""
 
-#: ../src/DbManager.py:586
+#: ../src/DbManager.py:591
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr ""
 
-#: ../src/DbManager.py:587
+#: ../src/DbManager.py:592
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -390,15 +390,15 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 
-#: ../src/DbManager.py:593
+#: ../src/DbManager.py:598
 msgid "Break lock"
 msgstr ""
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:675
 msgid "Rename failed"
 msgstr ""
 
-#: ../src/DbManager.py:671
+#: ../src/DbManager.py:676
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -406,62 +406,62 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:691
 msgid "Could not rename the Family Tree."
 msgstr ""
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
 msgstr ""
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:705
 msgid "Could not rename family tree"
 msgstr ""
 
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:739
 msgid "Extracting archive..."
 msgstr ""
 
-#: ../src/DbManager.py:739
+#: ../src/DbManager.py:744
 msgid "Importing archive..."
 msgstr ""
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:760
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr ""
 
-#: ../src/DbManager.py:756
+#: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 
-#: ../src/DbManager.py:757
+#: ../src/DbManager.py:762
 msgid "Remove family tree"
 msgstr ""
 
-#: ../src/DbManager.py:763
+#: ../src/DbManager.py:768
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr ""
 
-#: ../src/DbManager.py:767
+#: ../src/DbManager.py:772
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 
-#: ../src/DbManager.py:769
+#: ../src/DbManager.py:774
 msgid "Remove version"
 msgstr ""
 
-#: ../src/DbManager.py:798
+#: ../src/DbManager.py:803
 msgid "Could not delete family tree"
 msgstr ""
 
-#: ../src/DbManager.py:823
+#: ../src/DbManager.py:828
 msgid "Deletion failed"
 msgstr ""
 
-#: ../src/DbManager.py:824
+#: ../src/DbManager.py:829
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -469,23 +469,23 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:867
+#: ../src/DbManager.py:872
 msgid "Rebuilding database from backup files"
 msgstr ""
 
-#: ../src/DbManager.py:902
+#: ../src/DbManager.py:907
 msgid "Could not create family tree"
 msgstr ""
 
-#: ../src/DbManager.py:989
+#: ../src/DbManager.py:994
 msgid "Could not make database directory: "
 msgstr ""
 
-#: ../src/DbManager.py:1003
+#: ../src/DbManager.py:1008
 msgid "Never"
 msgstr ""
 
-#: ../src/DbManager.py:1077 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1082 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
 #: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -517,11 +517,11 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: ../src/DbManager.py:1096
+#: ../src/DbManager.py:1101
 msgid "Retrieve failed"
 msgstr ""
 
-#: ../src/DbManager.py:1097
+#: ../src/DbManager.py:1102
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -529,11 +529,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1138 ../src/DbManager.py:1166
+#: ../src/DbManager.py:1143 ../src/DbManager.py:1171
 msgid "Archiving failed"
 msgstr ""
 
-#: ../src/DbManager.py:1139
+#: ../src/DbManager.py:1144
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -541,15 +541,15 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1149
 msgid "Creating data to be archived..."
 msgstr ""
 
-#: ../src/DbManager.py:1153
+#: ../src/DbManager.py:1158
 msgid "Saving archive..."
 msgstr ""
 
-#: ../src/DbManager.py:1167
+#: ../src/DbManager.py:1172
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -3519,7 +3519,7 @@ msgstr ""
 msgid "Not yet implemented ..."
 msgstr ""
 
-#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:301
+#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
 msgstr ""
 
@@ -3605,7 +3605,7 @@ msgstr ""
 msgid "Marker"
 msgstr ""
 
-#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:352
+#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
 msgstr ""
 
@@ -3914,7 +3914,7 @@ msgstr ""
 msgid "Street"
 msgstr ""
 
-#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:250
+#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:252
 msgid "Add a new place"
 msgstr ""
 
@@ -4692,64 +4692,64 @@ msgid ""
 "corrupt file."
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:245
+#: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:249
 msgid "No place given, click button to select one"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:248
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Edit place"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:251
 msgid "Select an existing place"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:253
 msgid "Remove place"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:296
+#: ../src/Editors/ObjectEntries.py:298
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:777
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:299
+#: ../src/Editors/ObjectEntries.py:301
 msgid "Edit media object"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:302 ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:302
+#: ../src/Editors/ObjectEntries.py:304
 msgid "Remove media object"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:347
+#: ../src/Editors/ObjectEntries.py:349
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:700
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:350 ../src/Editors/_EditNote.py:264
+#: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310 ../src/plugins/gramplet/NoteGramplet.py:257
 msgid "Edit Note"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:670
+#: ../src/Editors/ObjectEntries.py:353 ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr ""
 
-#: ../src/Editors/ObjectEntries.py:353
+#: ../src/Editors/ObjectEntries.py:355
 msgid "Remove note"
 msgstr ""
 
