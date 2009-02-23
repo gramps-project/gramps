@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-20 08:35+0100\n"
-"PO-Revision-Date: 2009-02-20 08:36+0100\n"
+"POT-Creation-Date: 2009-02-22 11:23-0800\n"
+"PO-Revision-Date: 2009-02-23 08:47+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -379,52 +379,52 @@ msgstr "Välj fil_typ:"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:88
+#: ../src/DbManager.py:89
 msgid "Family Tree"
 msgstr "Släktträd"
 
-#: ../src/DbManager.py:102
+#: ../src/DbManager.py:103
 msgid "_Extract"
 msgstr "_Extrahera"
 
-#: ../src/DbManager.py:102 ../src/glade/gramps.glade.h:139
+#: ../src/DbManager.py:103 ../src/glade/gramps.glade.h:139
 msgid "_Archive"
 msgstr "_Arkivera"
 
-#: ../src/DbManager.py:233
+#: ../src/DbManager.py:234
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Påbörjar importera %s"
 
-#: ../src/DbManager.py:239
+#: ../src/DbManager.py:240
 msgid "Import finished..."
 msgstr "Import avslutat..."
 
 #. Create a new database
-#: ../src/DbManager.py:293 ../src/plugins/import/ImportCsv.py:383
+#: ../src/DbManager.py:294 ../src/plugins/import/ImportCsv.py:383
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/DbManager.py:491
+#: ../src/DbManager.py:492
 msgid "Family tree name"
 msgstr "Släktträdsnamn"
 
-#: ../src/DbManager.py:501 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:502 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:507
+#: ../src/DbManager.py:508
 msgid "Last modified"
 msgstr "Senast ändrat"
 
-#: ../src/DbManager.py:586
+#: ../src/DbManager.py:591
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Bryta låset på '%s'-databasen?"
 
-#: ../src/DbManager.py:587
+#: ../src/DbManager.py:592
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -436,15 +436,15 @@ msgstr ""
 "redigera databasen kan du utan risk bryta låset. Men om någon annan "
 "redigerar databasen och du bryter låset kan databasen förstöras."
 
-#: ../src/DbManager.py:593
+#: ../src/DbManager.py:598
 msgid "Break lock"
 msgstr "Bryt låsning"
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:675
 msgid "Rename failed"
 msgstr "Omdöpning misslyckades"
 
-#: ../src/DbManager.py:671
+#: ../src/DbManager.py:676
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -455,61 +455,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:691
 msgid "Could not rename the Family Tree."
 msgstr "Kunde inte döpa om släktträdet."
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Släktträdet finns reda, välj ett unikt namn."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:705
 msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:739
 msgid "Extracting archive..."
 msgstr "Extraherar arkiv..."
 
-#: ../src/DbManager.py:739
+#: ../src/DbManager.py:744
 msgid "Importing archive..."
 msgstr "Importerar arkiv..."
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:760
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Tag bort 'släktträdet %s'?"
 
-#: ../src/DbManager.py:756
+#: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Genom att ta bort detta släktträd, förstörs data oåterkalleligen."
 
-#: ../src/DbManager.py:757
+#: ../src/DbManager.py:762
 msgid "Remove family tree"
 msgstr "Ta bort släktträd"
 
-#: ../src/DbManager.py:763
+#: ../src/DbManager.py:768
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
-#: ../src/DbManager.py:767
+#: ../src/DbManager.py:772
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
-#: ../src/DbManager.py:769
+#: ../src/DbManager.py:774
 msgid "Remove version"
 msgstr "Tag bort version"
 
-#: ../src/DbManager.py:798
+#: ../src/DbManager.py:803
 msgid "Could not delete family tree"
 msgstr "Kunde inte radera släktträd"
 
-#: ../src/DbManager.py:823
+#: ../src/DbManager.py:828
 msgid "Deletion failed"
 msgstr "Borttagandet misslyckades"
 
-#: ../src/DbManager.py:824
+#: ../src/DbManager.py:829
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -520,23 +520,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:867
+#: ../src/DbManager.py:872
 msgid "Rebuilding database from backup files"
 msgstr "Bygger om databasen från säkerhetskopia"
 
-#: ../src/DbManager.py:902
+#: ../src/DbManager.py:907
 msgid "Could not create family tree"
 msgstr "Kunde inte skapa släktträd"
 
-#: ../src/DbManager.py:989
+#: ../src/DbManager.py:994
 msgid "Could not make database directory: "
 msgstr "Kunde inte skapa databasmappen: "
 
-#: ../src/DbManager.py:1003
+#: ../src/DbManager.py:1008
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/DbManager.py:1077 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1082 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
 #: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -568,11 +568,11 @@ msgstr "Aldrig"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../src/DbManager.py:1096
+#: ../src/DbManager.py:1101
 msgid "Retrieve failed"
 msgstr "Återläsning misslyckades"
 
-#: ../src/DbManager.py:1097
+#: ../src/DbManager.py:1102
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -583,11 +583,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1138 ../src/DbManager.py:1166
+#: ../src/DbManager.py:1143 ../src/DbManager.py:1171
 msgid "Archiving failed"
 msgstr "Misslyckades att arkivera"
 
-#: ../src/DbManager.py:1139
+#: ../src/DbManager.py:1144
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -598,15 +598,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1149
 msgid "Creating data to be archived..."
 msgstr "Skapar data för arkivering..."
 
-#: ../src/DbManager.py:1153
+#: ../src/DbManager.py:1158
 msgid "Saving archive..."
 msgstr "Sparar arkiv..."
 
-#: ../src/DbManager.py:1167
+#: ../src/DbManager.py:1172
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -839,7 +839,7 @@ msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
 "Project. This artwork is released under the\n"
-"Create Commons Attribution-ShareAlike 2.5\n"
+"Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
 "Mycket av GRAMPS' artistiska arbete kommer\n"
@@ -3700,7 +3700,7 @@ msgstr "Samtliga platser med händelser knutna till %s."
 msgid "Not yet implemented ..."
 msgstr "Inte infört ännu ..."
 
-#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:301
+#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
 msgstr "Lägg till nytt mediaobjekt"
 
@@ -3786,7 +3786,7 @@ msgstr "Förhandsgranskning"
 msgid "Marker"
 msgstr "Markör"
 
-#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:352
+#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
 msgstr "Lägg till ny anteckning"
 
@@ -4098,7 +4098,7 @@ msgstr "Longitud"
 msgid "Street"
 msgstr "Gatuadress"
 
-#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:250
+#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:252
 msgid "Add a new place"
 msgstr "Lägg till en ny plats"
 
@@ -4902,64 +4902,64 @@ msgid ""
 "corrupt file."
 msgstr "GRAMPS kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
 
-#: ../src/Editors/ObjectEntries.py:245
+#: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja en plats"
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:249
 msgid "No place given, click button to select one"
 msgstr "Ingen plats angiven, klicka på knappen för att välja en"
 
-#: ../src/Editors/ObjectEntries.py:248
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Edit place"
 msgstr "Redigera plats"
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:251
 msgid "Select an existing place"
 msgstr "Välj en existerande plats"
 
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:253
 msgid "Remove place"
 msgstr "Ta bort plats"
 
-#: ../src/Editors/ObjectEntries.py:296
+#: ../src/Editors/ObjectEntries.py:298
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja ett mediaobjekt"
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:777
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr "Ingen bild angiven, klicka på knappen för att välja en"
 
-#: ../src/Editors/ObjectEntries.py:299
+#: ../src/Editors/ObjectEntries.py:301
 msgid "Edit media object"
 msgstr "Redigera mediaobjekt"
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:302 ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr "Välj ett befintligt mediaobjekt"
 
-#: ../src/Editors/ObjectEntries.py:302
+#: ../src/Editors/ObjectEntries.py:304
 msgid "Remove media object"
 msgstr "Ta bort mediaobjekt"
 
-#: ../src/Editors/ObjectEntries.py:347
+#: ../src/Editors/ObjectEntries.py:349
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja en anteckning"
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:700
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr "Ingen anteckning angiven, klicka på knappen för att välja en"
 
-#: ../src/Editors/ObjectEntries.py:350 ../src/Editors/_EditNote.py:264
+#: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310 ../src/plugins/gramplet/NoteGramplet.py:257
 msgid "Edit Note"
 msgstr "Redigera anteckning"
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:670
+#: ../src/Editors/ObjectEntries.py:353 ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr "Välj en befintlig anteckning"
 
-#: ../src/Editors/ObjectEntries.py:353
+#: ../src/Editors/ObjectEntries.py:355
 msgid "Remove note"
 msgstr "Tag bort anteckning"
 
@@ -6127,7 +6127,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/graph/GVFamilyLines.py:1062
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
-#: ../src/plugins/mapservices/eniroswedenmap.py:190
+#: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
 #: ../src/plugins/quickview/AgeOnDate.py:104
@@ -9598,40 +9598,40 @@ msgid "Provides base functionality for map services."
 msgstr "Tillhandahåller grunfunktioner för karttjänster."
 
 #. Make upper case of translaed country so string search works later
-#: ../src/plugins/mapservices/eniroswedenmap.py:44
+#: ../src/plugins/mapservices/eniroswedenmap.py:43
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "Sweden"
 msgstr "Sverige"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:50
+#: ../src/plugins/mapservices/eniroswedenmap.py:49
 msgid "Denmark"
 msgstr "Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:76
+#: ../src/plugins/mapservices/eniroswedenmap.py:75
 msgid " parish"
 msgstr " församling"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:80
+#: ../src/plugins/mapservices/eniroswedenmap.py:79
 msgid " state"
 msgstr " län"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:138
+#: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitud ej inom %s till %s\n"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:139
+#: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitud ej inom %s till %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:141
-#: ../src/plugins/mapservices/eniroswedenmap.py:145
-#: ../src/plugins/mapservices/eniroswedenmap.py:173
+#: ../src/plugins/mapservices/eniroswedenmap.py:140
+#: ../src/plugins/mapservices/eniroswedenmap.py:144
+#: ../src/plugins/mapservices/eniroswedenmap.py:172
 msgid "Eniro map not available"
 msgstr "Eniros karta ej tillgänglig"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:146
+#: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
@@ -9639,24 +9639,24 @@ msgstr ""
 "Latitud och longitud,\n"
 "eller gata och stad behövs"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:174
+#: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Coordinates needed in Denmark"
 msgstr "Koordinater behövs i Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:178
+#: ../src/plugins/mapservices/eniroswedenmap.py:177
 #, python-format
 msgid "Eniro map not available for %s"
 msgstr "Eniros karta ej tillgänglig för %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:179
+#: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
 msgstr "Endast för Sverige och Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:189
+#: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
 msgstr "Eniros karta"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:191
+#: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
 msgstr "Öppnar på kartor.eniro.se"
 
@@ -11122,7 +11122,9 @@ msgstr[1] "Generation %(generation)d utgörs av %(count)d individer. %(percent)s
 msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
-msgstr "Totalt antal förfäder i generationerna %(second_generation)d till %(last_generation)d är %(count)d. %(percent)s"
+msgstr ""
+"Totalt antal förfäder i generationerna %(second_generation)d till %"
+"(last_generation)d är %(count)d. %(percent)s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
 msgid "Number of Ancestors Report"
@@ -13161,7 +13163,7 @@ msgstr "<br />%(type)s: %(value)s"
 #: ../src/plugins/webreport/NarrativeWeb.py:2875
 #, python-format
 msgid "Neither %s nor %s are directories"
-msgstr "Varken %s eller %s är en katalog"
+msgstr "Varken %s eller %s är katalog"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2882
 #: ../src/plugins/webreport/NarrativeWeb.py:2886
@@ -19320,7 +19322,7 @@ msgstr "Ej godkänd"
 #: ../src/Filters/_FilterParser.py:111
 #, python-format
 msgid ""
-"WARNING: To many arguments in filter '%s'!\n"
+"WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
 "VARNING: För många argument i filter '%s'!\n"
@@ -19329,7 +19331,7 @@ msgstr ""
 #: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
-"WARNING: To few arguments in filter '%s'!\n"
+"WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 "VARNING: För få argument i filter '%s'!\n"
