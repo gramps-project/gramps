@@ -249,19 +249,22 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
 
     def close(self, *args):
         """
-        Closes the detached GrampletWindow.
+        Dock the detached GrampletWindow back in the column from where it came.
         """
         self.gramplet.gvoptions.hide()
         self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
         self.gramplet.state = "maximized"
         parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
         self.gramplet.mainframe.reparent(parent)
+        # FIXME: Put the gramplet in the same column/row where it came from, if you can.
+        # This will put it at the bottom of column:
         expand,fill,padding,pack =  parent.query_child_packing(self.gramplet.mainframe)
         parent.set_child_packing(self.gramplet.mainframe,
                                  self.gramplet.expand,
                                  fill,
                                  padding,
                                  pack)
+        # end FIXME
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()
@@ -659,7 +662,7 @@ class GuiGramplet:
         """
         Remove (delete) the gramplet from view. 
         """
-        if self.state == "windowed":
+        if self.state == "detached":
             return
         self.state = "closed"
         self.viewpage.closed_gramplets.append(self)
@@ -670,7 +673,7 @@ class GuiGramplet:
         Detach the gramplet from the GrampletView, and open in own window.
         """
         # hide buttons:
-        self.set_state("windowed") 
+        self.set_state("detached") 
         self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
@@ -679,6 +682,7 @@ class GuiGramplet:
         """
         Set the state of a gramplet.
         """
+        oldstate = self.state
         self.state = state
         if state == "minimized":
             self.scrolledwindow.hide()
@@ -699,15 +703,15 @@ class GuiGramplet:
                                      fill,
                                      padding,
                                      pack)
-            if state == "maximized" and self.pui:
+            if oldstate is "minimized" and self.pui:
                 self.pui.update()
 
     def change_state(self, obj):
         """
         Change the state of a gramplet.
         """
-        if self.state == "windowed":
-            pass # don't change if windowed
+        if self.state == "detached":
+            pass # don't change if detached
         else:
             if self.state == "maximized":
                 self.set_state("minimized")
@@ -718,12 +722,11 @@ class GuiGramplet:
         """
         Set the properties of a gramplet.
         """
-        if self.state == "windowed":
+        if self.state == "detached":
             pass
         else:
             self.detach()
         return
-        # FIXME: add control for expand AND detach
         self.expand = not self.expand
         if self.state == "maximized":
             column = self.mainframe.get_parent() # column
@@ -1156,7 +1159,7 @@ class GrampletView(PageView.PersonNavView):
         """
         gramplets = [g for g in self.gramplet_map.values() if g is not None]
         for gramplet in gramplets:
-            if (gramplet.state == "windowed" or gramplet.state == "closed"):
+            if (gramplet.state == "detached" or gramplet.state == "closed"):
                 continue
             column = gramplet.mainframe.get_parent()
             if column:
@@ -1180,16 +1183,19 @@ class GrampletView(PageView.PersonNavView):
                 # else, spread them out:
                 pos = cnt % self.column_count
             gramplet.column = pos
-            if recolumn and (gramplet.state == "windowed" or gramplet.state == "closed"):
+            if recolumn and (gramplet.state == "detached" or gramplet.state == "closed"):
                 continue
-            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            if gramplet.state == "minimized":
+                self.columns[pos].pack_start(gramplet.mainframe, expand=False)
+            else:
+                self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             # Can't minimize here, because GRAMPS calls show_all later:
             #if gramplet.state == "minimized": # starts max, change to min it
             #    gramplet.set_state("minimized") # minimize it
             # set minimized is called in page subclass hack (above)
-            if gramplet.state == "windowed":
+            if gramplet.state == "detached":
                 gramplet.detach() 
             elif gramplet.state == "closed":
                 gramplet.close() 
