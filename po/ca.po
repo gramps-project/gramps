@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-20 11:52+0100\n"
-"PO-Revision-Date: 2009-02-22 01:11+0100\n"
+"POT-Creation-Date: 2009-02-22 11:23-0800\n"
+"PO-Revision-Date: 2009-02-24 00:35+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -172,7 +172,7 @@ msgstr "Id"
 
 #: ../src/ColumnOrder.py:86 ../src/GrampsCfg.py:178
 msgid "Display"
-msgstr ""
+msgstr "Visualització"
 
 #: ../src/ColumnOrder.py:90
 msgid "Column Name"
@@ -356,52 +356,52 @@ msgstr "Seleccionar _tipus de fitxer:"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:88
+#: ../src/DbManager.py:89
 msgid "Family Tree"
 msgstr "Arbre genealògic"
 
-#: ../src/DbManager.py:102
+#: ../src/DbManager.py:103
 msgid "_Extract"
 msgstr "_Extreure"
 
-#: ../src/DbManager.py:102 ../src/glade/gramps.glade.h:139
+#: ../src/DbManager.py:103 ../src/glade/gramps.glade.h:139
 msgid "_Archive"
 msgstr "_Arxiu"
 
-#: ../src/DbManager.py:233
+#: ../src/DbManager.py:234
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Començant la Importació, %s"
 
-#: ../src/DbManager.py:239
+#: ../src/DbManager.py:240
 msgid "Import finished..."
 msgstr "Importació finalitzada..."
 
 #. Create a new database
-#: ../src/DbManager.py:293 ../src/plugins/import/ImportCsv.py:383
+#: ../src/DbManager.py:294 ../src/plugins/import/ImportCsv.py:383
 msgid "Importing data..."
 msgstr "Important dades..."
 
-#: ../src/DbManager.py:491
+#: ../src/DbManager.py:492
 msgid "Family tree name"
 msgstr "Nom d'arbre genealògic"
 
-#: ../src/DbManager.py:501 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:502 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr "Estat"
 
-#: ../src/DbManager.py:507
+#: ../src/DbManager.py:508
 msgid "Last modified"
 msgstr "Última modificació"
 
-#: ../src/DbManager.py:586
+#: ../src/DbManager.py:591
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Forçar el desbloqueig de la base de dades '%s'?"
 
-#: ../src/DbManager.py:587
+#: ../src/DbManager.py:592
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -414,15 +414,15 @@ msgstr ""
 "algú altre l'està editant i en força el desbloqueig, pot corrompre la base "
 "de dades."
 
-#: ../src/DbManager.py:593
+#: ../src/DbManager.py:598
 msgid "Break lock"
 msgstr "Forçar el desbloqueig"
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:675
 msgid "Rename failed"
 msgstr "El canvi de nom ha fallat"
 
-#: ../src/DbManager.py:671
+#: ../src/DbManager.py:676
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -433,61 +433,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:691
 msgid "Could not rename the Family Tree."
 msgstr "No s'ha pogut canviar el nom de l'Arbre Genealògic."
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
 msgstr "L'Arbre Genealògic ja existeix, triï un nom únic."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:705
 msgid "Could not rename family tree"
 msgstr "No s'ha pogut canviar el nom de l'arbre genealògic"
 
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:739
 msgid "Extracting archive..."
 msgstr "Extraient arxiu..."
 
-#: ../src/DbManager.py:739
+#: ../src/DbManager.py:744
 msgid "Importing archive..."
 msgstr "Important arxiu..."
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:760
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Esborrar l'arbre genealògic '%s'?"
 
-#: ../src/DbManager.py:756
+#: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Esborrar aquest arbre genealògic eliminarà les dades de forma permanent."
 
-#: ../src/DbManager.py:757
+#: ../src/DbManager.py:762
 msgid "Remove family tree"
 msgstr "Esborrar arbre genealògic"
 
-#: ../src/DbManager.py:763
+#: ../src/DbManager.py:768
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Esborrar la versió '%(revision)s' de '%(database)s'"
 
-#: ../src/DbManager.py:767
+#: ../src/DbManager.py:772
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Esborrar aquesta versió evitarà que la pugui extreure en el futur."
 
-#: ../src/DbManager.py:769
+#: ../src/DbManager.py:774
 msgid "Remove version"
 msgstr "Esborrar versió"
 
-#: ../src/DbManager.py:798
+#: ../src/DbManager.py:803
 msgid "Could not delete family tree"
 msgstr "No s'ha pogut esborrar l'arbre genealògic"
 
-#: ../src/DbManager.py:823
+#: ../src/DbManager.py:828
 msgid "Deletion failed"
 msgstr "L'acció d'esborrar ha fallat"
 
-#: ../src/DbManager.py:824
+#: ../src/DbManager.py:829
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -498,23 +498,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:867
+#: ../src/DbManager.py:872
 msgid "Rebuilding database from backup files"
 msgstr "Reconstruint la base de dades a partir de fitxers de còpia de seguretat"
 
-#: ../src/DbManager.py:902
+#: ../src/DbManager.py:907
 msgid "Could not create family tree"
 msgstr "No s'ha pogut crear l'arbre genealògic"
 
-#: ../src/DbManager.py:989
+#: ../src/DbManager.py:994
 msgid "Could not make database directory: "
 msgstr "No s'ha pogut crear el directori de base de dades: "
 
-#: ../src/DbManager.py:1003
+#: ../src/DbManager.py:1008
 msgid "Never"
 msgstr "Mai"
 
-#: ../src/DbManager.py:1077 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1082 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
 #: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -546,11 +546,11 @@ msgstr "Mai"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../src/DbManager.py:1096
+#: ../src/DbManager.py:1101
 msgid "Retrieve failed"
 msgstr "La recuperació ha fallat"
 
-#: ../src/DbManager.py:1097
+#: ../src/DbManager.py:1102
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -561,11 +561,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1138 ../src/DbManager.py:1166
+#: ../src/DbManager.py:1143 ../src/DbManager.py:1171
 msgid "Archiving failed"
 msgstr "Arxivar ha fallat"
 
-#: ../src/DbManager.py:1139
+#: ../src/DbManager.py:1144
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -576,15 +576,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1149
 msgid "Creating data to be archived..."
 msgstr "Creant dades a arxivar..."
 
-#: ../src/DbManager.py:1153
+#: ../src/DbManager.py:1158
 msgid "Saving archive..."
 msgstr "Desant arxiu..."
 
-#: ../src/DbManager.py:1167
+#: ../src/DbManager.py:1172
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -818,7 +818,7 @@ msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
 "Project. This artwork is released under the\n"
-"Create Commons Attribution-ShareAlike 2.5\n"
+"Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
 "Moltes de les imatges utilitzades dins de GRAMPS\n"
@@ -829,7 +829,7 @@ msgstr ""
 
 #: ../src/GrampsAboutDialog.py:94
 msgid "GRAMPS Homepage"
-msgstr ""
+msgstr "Pàgina principal de GRAMPS"
 
 #: ../src/GrampsCfg.py:75
 msgid "Father's surname"
@@ -859,7 +859,7 @@ msgstr "Estil islandès"
 
 #: ../src/GrampsCfg.py:128 ../src/GrampsCfg.py:131
 msgid "Display Name Editor"
-msgstr ""
+msgstr "Editor de Visualització de Noms"
 
 #: ../src/GrampsCfg.py:133
 msgid ""
@@ -878,6 +878,20 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
+"Les següents paraules claus es canviaran pel nom:\n"
+"<tt>  \n"
+"  <b>Nom</b>      - nom (de pila)\n"
+"  <b>Cognom</b>   - cognom\n"
+"  <b>Títol</b>    - títol (Dr., Sra.)\n"
+"  <b>Prefix</b>   - prefix (de, de la, von)\n"
+"  <b>Sufix</b>    - sufix (Jr., Sr.)\n"
+"  <b>Malnom</b>   - malnom, o nom conegut\n"
+"  <b>Comú</b>     - malnom, o si no, primera part del Nom de pila\n"
+"  <b>Inicials</b> - les primeres lletres dels noms de pila\n"
+"</tt>\n"
+"Amb la mateixa paraula, però en MAJÚSCULES, es forçarà que surti en majúscula.\n"
+"Els parèntesis i les comes es treuran si els camps estan buits. La resta del text\n"
+"apareixerà literalment."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1146,17 +1160,21 @@ msgstr "Personalitzat"
 msgid ""
 "You need a broadband internet connection to use Internet mapping "
 "applications from within GRAMPS"
-msgstr "Cal una connexió a Internet de banda ampla per fer servir aplicacions de mapes d'Internet dins de GRAMPS"
+msgstr ""
+"Cal una connexió a Internet de banda ampla per fer servir aplicacions de "
+"mapes d'Internet dins de GRAMPS"
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr ""
+msgstr "Afegir GeoView a GRAMPS per mostrar mapes d'Internet basats en les seves dades."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
 "Choose one of the following map providers:"
 msgstr ""
+"GeoView fa servir OpenStreetMap i un altre proveïdor de mapes.\n"
+"Triï un dels següents proveïdors de mapes:"
 
 #: ../src/GrampsCfg.py:321
 msgid "Google Maps"
@@ -1164,7 +1182,7 @@ msgstr "Google Maps"
 
 #: ../src/GrampsCfg.py:325
 msgid "OpenLayers"
-msgstr ""
+msgstr "OpenLayers"
 
 #: ../src/GrampsCfg.py:329
 msgid "Yahoo! Maps"
@@ -1172,11 +1190,11 @@ msgstr "Yahoo! Maps"
 
 #: ../src/GrampsCfg.py:333
 msgid "Microsoft Maps"
-msgstr ""
+msgstr "Microsoft Maps"
 
 #: ../src/GrampsCfg.py:337
 msgid "You need to restart GRAMPS for above settings to take effect"
-msgstr ""
+msgstr "Call tornar a arrencar GRAMPS perquè aquesta configuració tingui efecte"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:377
@@ -1210,7 +1228,7 @@ msgstr "Cognom"
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
-msgstr "de Pila"
+msgstr "Nom"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
@@ -1230,7 +1248,7 @@ msgstr "Comú"
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
-msgstr "Col·loquial"
+msgstr "Malnom"
 
 #: ../src/GrampsCfg.py:421 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:430
 #: ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432 ../src/GrampsCfg.py:433
@@ -1292,9 +1310,7 @@ msgstr "Barra d'estat"
 
 #: ../src/GrampsCfg.py:804
 msgid "Show text in sidebar buttons (requires restart)"
-msgstr ""
-"Mostra text als botons de la barra lateral (requereix tornar a "
-"engegar)"
+msgstr "Mostra text als botons de la barra lateral (requereix tornar a engegar)"
 
 #: ../src/GrampsCfg.py:815
 msgid "Missing surname"
@@ -1333,19 +1349,16 @@ msgstr ""
 "s'engegui GRAMPS."
 
 #: ../src/GrampsCfg.py:856
-#, fuzzy
 msgid "Date about range"
-msgstr "Casament tardà"
+msgstr "Data al voltant d'un rang"
 
 #: ../src/GrampsCfg.py:859
-#, fuzzy
 msgid "Date after range"
-msgstr "Casament tardà"
+msgstr "Data després d'un rang"
 
 #: ../src/GrampsCfg.py:862
-#, fuzzy
 msgid "Date before range"
-msgstr "Mort abans de naixement"
+msgstr "Data abans d'un rang"
 
 #: ../src/GrampsCfg.py:865
 msgid "Maximum age probably alive"
@@ -1364,9 +1377,8 @@ msgid "Average years between generations"
 msgstr "Anys mitjans entre generacions"
 
 #: ../src/GrampsCfg.py:877
-#, fuzzy
 msgid "Markup for invalid date format"
-msgstr "Buscant referències amb format de nom no vàlid"
+msgstr "Marcador per format de data no vàlid"
 
 #: ../src/GrampsCfg.py:889
 msgid "Add default source on import"
@@ -1393,9 +1405,8 @@ msgid "Remember last view displayed"
 msgstr "Recordar l'última vista mostrada"
 
 #: ../src/GrampsCfg.py:907
-#, fuzzy
 msgid "Max generations for relationships"
-msgstr "Nombre de generacions per la determinació de parentesc"
+msgstr "Màxim de generacions per parentesc"
 
 #: ../src/GrampsCfg.py:911
 msgid "Base path for relative media paths"
@@ -2281,7 +2292,6 @@ msgstr "Prefix"
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:266
-#, fuzzy
 msgid "Person|Title"
 msgstr "Títol"
 
@@ -2859,7 +2869,7 @@ msgstr "TÍTOL"
 
 #: ../src/Utils.py:1168
 msgid "GIVEN"
-msgstr "DE PILA"
+msgstr "NOM"
 
 #: ../src/Utils.py:1169
 msgid "PREFIX"
@@ -2875,7 +2885,7 @@ msgstr "PATRONÍMIC"
 
 #: ../src/Utils.py:1173
 msgid "CALL"
-msgstr "COL·LOQUIAL"
+msgstr "MALNOM"
 
 #: ../src/Utils.py:1174
 msgid "COMMON"
@@ -3039,7 +3049,7 @@ msgstr "_Finestres"
 
 #: ../src/ViewManager.py:452
 msgid "Clip_board"
-msgstr "P_ortapapers"
+msgstr "Po_rtapapers"
 
 #: ../src/ViewManager.py:453
 msgid "Open the Clipboard dialog"
@@ -3175,15 +3185,15 @@ msgstr "Format predeterminat (definit per les preferències de GRAMPS)"
 
 #: ../src/BasicUtils/_NameDisplay.py:104
 msgid "Surname, Given Patronymic"
-msgstr "Cognom, Nom Patronímic"
+msgstr "Cognom, Nom (de Pila) Patronímic"
 
 #: ../src/BasicUtils/_NameDisplay.py:105
 msgid "Given Surname"
-msgstr "Nom Cognom"
+msgstr "Nom (de Pila) Cognom"
 
 #: ../src/BasicUtils/_NameDisplay.py:106
 msgid "Patronymic, Given"
-msgstr "Patronímic, Nom"
+msgstr "Patronímic, Nom (de Pila)"
 
 #. we need the names of each of the variables or methods that are
 #. called to fill in each format flag.
@@ -3475,6 +3485,9 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
+"Escrigui una adreça web al capdamunt, i cliqui el botó d'executar per carregar una pàgina web en aquesta pàgina\n"
+"<br>\n"
+"Per exemple: <b>http://gramps-project.org</p>"
 
 #: ../src/DataViews/GeoView.py:738
 msgid "_OpenStreetMap"
@@ -3530,7 +3543,7 @@ msgstr "_Persona"
 
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
+msgstr "Intentar de veure tots els llocs on han viscut les persones seleccionades."
 
 #: ../src/DataViews/GeoView.py:767
 msgid "_Family"
@@ -3668,7 +3681,7 @@ msgstr ""
 msgid "Not yet implemented ..."
 msgstr ""
 
-#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:301
+#: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
 msgstr "Afegir un nou objecte audiovisual"
 
@@ -3754,7 +3767,7 @@ msgstr "Vista prèvia"
 msgid "Marker"
 msgstr ""
 
-#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:352
+#: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
 msgstr "Afegir nota nova"
 
@@ -3971,7 +3984,7 @@ msgstr "Esborrar Persona Seleccionada"
 
 #: ../src/DataViews/PersonView.py:163
 msgid "Compare and _Merge..."
-msgstr "_Comparar i Combinar..."
+msgstr "C_omparar i Combinar..."
 
 #: ../src/DataViews/PersonView.py:165
 msgid "_Fast Merge..."
@@ -4066,7 +4079,7 @@ msgstr "Longitud"
 msgid "Street"
 msgstr "Carrer"
 
-#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:250
+#: ../src/DataViews/PlaceView.py:89 ../src/Editors/ObjectEntries.py:252
 msgid "Add a new place"
 msgstr "Afegir un nou lloc"
 
@@ -4868,68 +4881,68 @@ msgstr ""
 "GRAMPS no pot mostrar el fitxer d'imatge. Pot ser degut a un fitxer "
 "corromput."
 
-#: ../src/Editors/ObjectEntries.py:245
+#: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr ""
 "Per seleccionar un lloc, faci-ho arrossegant i deixant, o fent servir els "
 "botons"
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:249
 msgid "No place given, click button to select one"
 msgstr "No s'ha donat el lloc, cliqui el botó per seleccionar-ne un"
 
-#: ../src/Editors/ObjectEntries.py:248
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Edit place"
 msgstr "Editar lloc"
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:251
 msgid "Select an existing place"
 msgstr "Seleccionar un lloc existent"
 
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:253
 msgid "Remove place"
 msgstr "Esborrar lloc"
 
-#: ../src/Editors/ObjectEntries.py:296
+#: ../src/Editors/ObjectEntries.py:298
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 "Per seleccionar un objecte audiovisual, faci arrossegar i deixar, o faci "
 "servir els botons"
 
-#: ../src/Editors/ObjectEntries.py:298 ../src/PluginUtils/_GuiOptions.py:777
+#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr "No s'ha donat cap imatge, cliqui el botó per seleccionar-ne una"
 
-#: ../src/Editors/ObjectEntries.py:299
+#: ../src/Editors/ObjectEntries.py:301
 msgid "Edit media object"
 msgstr "Editar objecte audiovisual"
 
-#: ../src/Editors/ObjectEntries.py:300 ../src/PluginUtils/_GuiOptions.py:752
+#: ../src/Editors/ObjectEntries.py:302 ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr "Seleccionar un objecte audiovisual ja existent"
 
-#: ../src/Editors/ObjectEntries.py:302
+#: ../src/Editors/ObjectEntries.py:304
 msgid "Remove media object"
 msgstr "Esborrar objecte audiovisual"
 
-#: ../src/Editors/ObjectEntries.py:347
+#: ../src/Editors/ObjectEntries.py:349
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Per seleccionar una nota, faci arrossegar i deixar, o faci servir els botons"
 
-#: ../src/Editors/ObjectEntries.py:349 ../src/PluginUtils/_GuiOptions.py:700
+#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr "No s'ha donat cap nota, cliqui el botó per seleccionar-ne una"
 
-#: ../src/Editors/ObjectEntries.py:350 ../src/Editors/_EditNote.py:264
+#: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310 ../src/plugins/gramplet/NoteGramplet.py:257
 msgid "Edit Note"
 msgstr "Edició de Nota"
 
-#: ../src/Editors/ObjectEntries.py:351 ../src/PluginUtils/_GuiOptions.py:670
+#: ../src/Editors/ObjectEntries.py:353 ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr "Seleccionar nota existent"
 
-#: ../src/Editors/ObjectEntries.py:353
+#: ../src/Editors/ObjectEntries.py:355
 msgid "Remove note"
 msgstr "Esborrar nota"
 
@@ -5559,7 +5572,7 @@ msgstr "Desar Canvis?"
 
 #: ../src/Editors/_EditPrimary.py:165
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Si tancar sense desar, els canvis que ha fet es perdran"
+msgstr "Si tanca sense desar, els canvis que ha fet es perdran"
 
 #: ../src/Editors/_EditRepoRef.py:72
 msgid "Repository Reference Editor"
@@ -6600,22 +6613,20 @@ msgid "The center person for the filter"
 msgstr "La persona central del filtre"
 
 #: ../src/plugins/Records.py:460
-#, fuzzy
 msgid "Use call name"
-msgstr "nom comú"
+msgstr "Utilitzar el malnom"
 
 #: ../src/plugins/Records.py:462
-#, fuzzy
 msgid "Don't use call name"
-msgstr "nom comú"
+msgstr "No utilitzar el malnom"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
-msgstr ""
+msgstr "Substituir el malnom pel nom"
 
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
-msgstr ""
+msgstr "Subratllar malnom dins del nom / afegir malnom al nom"
 
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
@@ -6660,27 +6671,27 @@ msgstr "Persona viva més gran"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
-msgstr ""
+msgstr "Persona morta a menys edat"
 
 #: ../src/plugins/Records.py:539
 msgid "Person died at oldest age"
-msgstr ""
+msgstr "Persona morta a més edat"
 
 #: ../src/plugins/Records.py:540
 msgid "Person married at youngest age"
-msgstr ""
+msgstr "Persona casada a menys edat"
 
 #: ../src/plugins/Records.py:541
 msgid "Person married at oldest age"
-msgstr ""
+msgstr "Persona casada a més edat"
 
 #: ../src/plugins/Records.py:542
 msgid "Person divorced at youngest age"
-msgstr ""
+msgstr "Persona divorciada a menys edat"
 
 #: ../src/plugins/Records.py:543
 msgid "Person divorced at oldest age"
-msgstr ""
+msgstr "Persona divorciada a més edat"
 
 #: ../src/plugins/Records.py:544
 msgid "Youngest father"
@@ -6704,21 +6715,19 @@ msgstr "Parella amb més fills"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr ""
+msgstr "Parella viva casada fa menys temps"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr ""
+msgstr "Parella viva casada fa més temps"
 
 #: ../src/plugins/Records.py:551
-#, fuzzy
 msgid "Shortest past marriage"
-msgstr "Edat en casar-se"
+msgstr "Menys temps després del casament"
 
 #: ../src/plugins/Records.py:552
-#, fuzzy
 msgid "Longest past marriage"
-msgstr "Edat en casar-se"
+msgstr "Més temps després del casament"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
@@ -6791,7 +6800,7 @@ msgstr "Obrir a %(program_name)s"
 
 #: ../src/plugins/docgen/LaTeXDoc.py:662
 msgid "LaTeX"
-msgstr ""
+msgstr "LaTeX"
 
 #: ../src/plugins/docgen/ODFDoc.py:1150 ../src/plugins/docgen/ODFDoc.py:1152
 #: ../src/plugins/docgen/ODFDoc.py:1154
@@ -6924,7 +6933,7 @@ msgstr "Donant format als mesos..."
 #: ../src/plugins/webreport/NarrativeWeb.py:2952
 #: ../src/plugins/webreport/WebCal.py:1004
 msgid "Applying Filter..."
-msgstr ""
+msgstr "Aplicant Filtre..."
 
 #: ../src/plugins/drawreport/Calendar.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:196
@@ -6943,8 +6952,8 @@ msgstr "%(person)s, naixement%(relation)s"
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(person)s, %(age)d%(relation)s"
+msgstr[1] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:342
 #: ../src/plugins/textreport/BirthdayReport.py:296
@@ -7148,7 +7157,7 @@ msgstr "Text de títol i color de fons"
 
 #: ../src/plugins/drawreport/Calendar.py:507
 msgid "Calendar day numbers"
-msgstr ""
+msgstr "Números del dia al calendari"
 
 #: ../src/plugins/drawreport/Calendar.py:510
 msgid "Daily text display"
@@ -7189,7 +7198,7 @@ msgstr "Crea un calendari gràfic"
 
 #: ../src/plugins/drawreport/DescendTree.py:54
 msgid "short for married|m."
-msgstr ""
+msgstr "c."
 
 #: ../src/plugins/drawreport/DescendTree.py:151
 #, python-format
@@ -7386,7 +7395,7 @@ msgstr "Tipus d'esdeveniment"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:137
 msgid "(Preferred) title missing"
-msgstr ""
+msgstr "Falta el títol (Preferit)"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:146
 msgid "(Preferred) forename missing"
@@ -8098,18 +8107,17 @@ msgstr "Copiar Dades Actives"
 #: ../src/plugins/gramplet/DataEntryGramplet.py:142
 #: ../src/plugins/gramplet/DataEntryGramplet.py:156
 #: ../src/plugins/gramplet/DataEntryGramplet.py:263
-#, fuzzy
 msgid "in"
-msgstr "polz."
+msgstr "a"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:384
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet Data Edit: %s"
-msgstr "Id Gramps: %s "
+msgstr "Edició de Dades en Gramplet: %s"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
 msgid "Please provide a name."
-msgstr ""
+msgstr "Si us plau introdueixi un nom."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
 msgid "Can't add new person."
@@ -8175,12 +8183,12 @@ msgstr "Gramplet d'Introducció de Dades"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:746
 msgid "Data Entry"
-msgstr ""
+msgstr "Introducció de Dades"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:47
 #: ../src/plugins/gramplet/PedigreeGramplet.py:50
 msgid "Move mouse over links for options"
-msgstr ""
+msgstr "Moure el ratolí per damunt dels enllaços per les opcions"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
 msgid "No Active Person selected."
@@ -8214,17 +8222,17 @@ msgstr "d. %(death_date)s"
 #: ../src/plugins/gramplet/DescendGramplet.py:154
 #: ../src/plugins/gramplet/PedigreeGramplet.py:154
 msgid "Click to make active\n"
-msgstr ""
+msgstr "Cliqui per fer actiu\n"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:137
 #: ../src/plugins/gramplet/DescendGramplet.py:155
 #: ../src/plugins/gramplet/PedigreeGramplet.py:155
 msgid "Right-click to edit"
-msgstr ""
+msgstr "Clic dret per a editar"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
 msgid "   sp. "
-msgstr "   còn. "
+msgstr "   esp. "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
 msgid "Descendant Gramplet"
@@ -8240,6 +8248,9 @@ msgid ""
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
+"Clicar per expandir/contreure persona\n"
+"Clic dret per a opcions\n"
+"Clicar i arrossegar en àrea oberta per girar"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
 msgid "Fan Chart Gramplet"
@@ -8339,7 +8350,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:243
 msgid "percent sign or text string|%"
-msgstr ""
+msgstr "%"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:249
 msgid "Generation 1"
@@ -8347,7 +8358,7 @@ msgstr "La generació 1"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:250
 msgid "Double-click to see people in generation"
-msgstr ""
+msgstr "Doble clic per veure les persones de la generació"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:252
 #, python-format
@@ -8404,7 +8415,7 @@ msgstr "Gramplet de Pedigrí"
 
 #: ../src/plugins/gramplet/PythonGramplet.py:47
 msgid "Enter Python expressions"
-msgstr "Introdueixi expressións Python"
+msgstr "Introdueixi expressions de Python"
 
 #: ../src/plugins/gramplet/PythonGramplet.py:53
 msgid "class name|Date"
@@ -10813,7 +10824,7 @@ msgstr "D"
 #: ../src/plugins/textreport/FamilyGroup.py:421
 #, python-format
 msgid "%dU"
-msgstr ""
+msgstr "%dNA"
 
 #: ../src/plugins/textreport/FamilyGroup.py:515
 #, python-format
@@ -10951,7 +10962,7 @@ msgstr "%(date)s a %(place)s. "
 
 #: ../src/plugins/textreport/IndivComplete.py:188
 msgid "Alternate Parents"
-msgstr ""
+msgstr "Pares Alternatius"
 
 #: ../src/plugins/textreport/IndivComplete.py:300
 msgid "Marriages/Children"
@@ -11065,7 +11076,7 @@ msgstr "Crea un informe de text del parentesc d'una persona donada"
 #: ../src/plugins/textreport/MarkerReport.py:80
 #, python-format
 msgid "Marker Report for %s Items"
-msgstr ""
+msgstr "Informe de Marcador per %s Elements"
 
 #: ../src/plugins/textreport/MarkerReport.py:112
 #: ../src/plugins/textreport/MarkerReport.py:199
@@ -11076,19 +11087,19 @@ msgstr "Id"
 
 #: ../src/plugins/textreport/MarkerReport.py:449
 msgid "The marker to use for the report"
-msgstr ""
+msgstr "El marcador a utilitzar per a l'informe"
 
 #: ../src/plugins/textreport/MarkerReport.py:497
 msgid "The basic style used for table headings."
-msgstr ""
+msgstr "L'estil bàsic utilitzat per capçaleres de taula."
 
 #: ../src/plugins/textreport/MarkerReport.py:527
 msgid "Marker Report"
-msgstr ""
+msgstr "Informe de Marcador"
 
 #: ../src/plugins/textreport/MarkerReport.py:529
 msgid "Produces a list of people with a specified marker"
-msgstr ""
+msgstr "Genera una llista de persones que tinguin un marcador concret"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:85
 #, python-format
@@ -11109,7 +11120,9 @@ msgstr[1] "La generació %(generation)d té %(count)d individus. %(percent)s"
 msgid ""
 "Total ancestors in generations %(second_generation)d to %(last_generation)d "
 "is %(count)d. %(percent)s"
-msgstr "El total d'avantpassats en les generacions %(second_generation)d a %(last_generation)d és %(count)d. %(percent)s"
+msgstr ""
+"El total d'avantpassats en les generacions %(second_generation)d a %"
+"(last_generation)d és %(count)d. %(percent)s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
 msgid "Number of Ancestors Report"
@@ -11252,7 +11265,7 @@ msgstr "Peu de pàgina"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer string for the page."
-msgstr ""
+msgstr "Cadena de peu de pàgina per la pàgina."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:135
 msgid "Image"
@@ -11260,7 +11273,7 @@ msgstr "Imatge"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Gramps ID of the media object to use as an image."
-msgstr ""
+msgstr "Id GRAMPS de l'objecte audiovisual que s'ha d'utilitzar com a imatge."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:139
 msgid "Image Size"
@@ -11271,6 +11284,8 @@ msgid ""
 "Size of the image in cm. A value of 0 indicates that the image should be fit "
 "to the page."
 msgstr ""
+"Mida de la imatge en cm. Un valor de 0 indica que la imatge s'ha d'adaptar a "
+"la mida de la pàgina."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:163
 msgid "The style used for the subtitle."
@@ -11364,15 +11379,15 @@ msgstr "Seleccionar filtre per restringir persones"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:77
 #: ../src/gen/lib/notetype.py:81
 msgid "Source text"
-msgstr ""
+msgstr "Text de font"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:78
 msgid "Calculated Date Estimates"
-msgstr ""
+msgstr "Estimacions de Data Calculades"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:79
 msgid "Source to remove and/or add"
-msgstr ""
+msgstr "Font a treure i/o afegir"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:82
 msgid "Remove previously added dates"
@@ -11538,7 +11553,7 @@ msgstr "Canvi de majúscules/minúscules"
 #: ../src/plugins/tool/ExtractCity.py:558
 #: ../src/plugins/tool/PatchNames.py:244
 msgid "Building display"
-msgstr ""
+msgstr "Construint visualització"
 
 #: ../src/plugins/tool/ChangeNames.py:291
 msgid "Fix Capitalization of Family Names"
@@ -11932,9 +11947,8 @@ msgid "Provides a window that can evaluate python code"
 msgstr "Proporciona una finestra que pot avaluar codi python"
 
 #: ../src/plugins/tool/EventCmp.py:69
-#, fuzzy
 msgid "manual|Compare_Individual_Events..."
-msgstr "Comparar Esdeveniments Individuals"
+msgstr ""
 
 #: ../src/plugins/tool/EventCmp.py:140
 msgid "Event comparison filter selection"
@@ -12039,47 +12053,49 @@ msgstr "França"
 
 #: ../src/plugins/tool/ExtractCity.py:385
 msgid "Place title"
-msgstr ""
+msgstr "Títol de lloc"
 
 #: ../src/plugins/tool/ExtractCity.py:415
 #: ../src/plugins/tool/ExtractCity.py:619
 msgid "Extract Place data"
-msgstr ""
+msgstr "Extreure dades de Lloc"
 
 #: ../src/plugins/tool/ExtractCity.py:432
 msgid "Checking Place Titles"
-msgstr ""
+msgstr "Comprovant Títols de Lloc"
 
 #: ../src/plugins/tool/ExtractCity.py:433
 msgid "Looking for place fields"
-msgstr ""
+msgstr "Buscant camps de lloc"
 
 #: ../src/plugins/tool/ExtractCity.py:513
 msgid "No place information could be extracted."
-msgstr ""
+msgstr "No s'ha pogut extreure informació de lloc."
 
 #: ../src/plugins/tool/ExtractCity.py:533
 msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish GRAMPS to convert."
 msgstr ""
+"A sota hi ha una llista de Llocs amb les dades que possiblement es poden "
+"extreure a partir del títol de lloc. Seleccioni els llocs que vol que GRAMPS "
+"converteixi."
 
 #: ../src/plugins/tool/ExtractCity.py:648
 msgid "Extract Place Data from a Place Title"
-msgstr ""
+msgstr "Extreure Dades de Lloc a partir del seu Títol"
 
 #: ../src/plugins/tool/ExtractCity.py:652
 msgid "Attempts to extract city and state/province from a place title"
-msgstr ""
+msgstr "Intenta d'extreure la ciutat i estat/província a partir d'un títol de lloc"
 
 #: ../src/plugins/tool/FindDupes.py:67
 msgid "Medium"
 msgstr "Mitjà"
 
 #: ../src/plugins/tool/FindDupes.py:72
-#, fuzzy
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Trobar Persones Possiblement Duplicades"
+msgstr ""
 
 #: ../src/plugins/tool/FindDupes.py:137 ../src/plugins/tool/FindDupes.py:702
 msgid "Find Possible Duplicate People"
@@ -12314,9 +12330,9 @@ msgid ""
 msgstr ""
 "Aquesta eina permet de convertir camins de medis absoluts en relatius. El "
 "camí relatiu es fa respecte el camí base donat a les Preferències, o si no "
-"està donat, el directori base de l'usuari. Un camí relatiu permet de donar la "
-"posició del fitxer respecte un camí base que pot canviar segons les pròpies "
-"necessitats."
+"està donat, el directori base de l'usuari. Un camí relatiu permet de donar "
+"la posició del fitxer respecte un camí base que pot canviar segons les "
+"pròpies necessitats."
 
 #: ../src/plugins/tool/MediaManager.py:600
 msgid "Manages batch operations on media files"
@@ -13157,9 +13173,8 @@ msgid "The archive file must be a file, not a directory"
 msgstr "El fitxer d'arxiu ha de ser un fitxer, no un directori"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2918
-#, fuzzy
 msgid "Narrated Web Site Report"
-msgstr "Lloc Web Explicat"
+msgstr "Informe de Web Explicat"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3009
 msgid "Creating individual pages"
@@ -13474,7 +13489,9 @@ msgstr "Incloure mitjos germans o germanastres a les pàgines individuals"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3485
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Si s'han d'incloure els mitjos germans o els germanastres amb els pares i germans"
+msgstr ""
+"Si s'han d'incloure els mitjos germans o els germanastres amb els pares i "
+"germans"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3624
 msgid "Narrated Web Site"
@@ -13772,24 +13789,24 @@ msgstr "La nota per al mes de desembre"
 #: ../src/plugins/webreport/WebCal.py:1470
 #, python-format
 msgid "%(person)s, <em>birth</em>"
-msgstr ""
+msgstr "%(person)s, <em>naixement</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1473
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
-msgstr ""
+msgstr "%(person)s, <em>%(age)s</em> anys"
 
 #: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>casament</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1483
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(couple)s, <em>%(years)d</em> aniversari"
+msgstr[1] "%(couple)s, <em>%(years)d</em> aniversari"
 
 #: ../src/plugins/webreport/WebCal.py:1587
 msgid "Web Calendar"
@@ -14376,7 +14393,7 @@ msgstr "cm"
 
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "inch|in."
-msgstr ""
+msgstr "pz."
 
 #: ../src/ReportBase/_ReportDialog.py:111
 msgid "Configuration"
@@ -16539,8 +16556,8 @@ msgid ""
 "%(female_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s va ser batejada el %(christening_date)s a %(christening_place)s%"
-"(endnotes)s."
+"%(female_name)s va ser batejada el %(christening_date)s a %"
+"(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
 #, python-format
@@ -16554,7 +16571,9 @@ msgstr "Va ser batejada el %(christening_date)s a %(christening_place)s%(endnote
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s va ser batejat el %(christening_date)s a %(christening_place)s%(endnotes)s."
+msgstr ""
+"%(unknown_gender_name)s va ser batejat el %(christening_date)s a %"
+"(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
 #, python-format
@@ -16562,8 +16581,8 @@ msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"Aquesta persona va ser batejada el %(christening_date)s a %(christening_place)s%"
-"(endnotes)s."
+"Aquesta persona va ser batejada el %(christening_date)s a %"
+"(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:829
 #, python-format
@@ -16611,8 +16630,8 @@ msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(male_name)s va ser batejat el %(month_year)s a %(christening_place)s%(endnotes)"
-"s."
+"%(male_name)s va ser batejat el %(month_year)s a %(christening_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
 #, python-format
@@ -16639,8 +16658,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s va ser batejat el %(month_year)s a %(christening_place)s%"
-"(endnotes)s."
+"%(unknown_gender_name)s va ser batejat el %(month_year)s a %"
+"(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:859
 #, python-format
@@ -16697,8 +16716,8 @@ msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(male_name)s va ser batejat %(modified_date)s a %(christening_place)s%(endnotes)"
-"s."
+"%(male_name)s va ser batejat %(modified_date)s a %(christening_place)s%"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
@@ -16725,8 +16744,8 @@ msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s va ser batejada %(modified_date)s a %(christening_place)s"
-"%(endnotes)s."
+"%(unknown_gender_name)s va ser batejada %(modified_date)s a %"
+"(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:891
 #, python-format
@@ -18741,10 +18760,13 @@ msgid ""
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
 "You might want to make a backup copy first."
 msgstr ""
+"No pot obrir aquesta base de dades sense actualitzar-la.\n"
+"Si l'actualitza, no podrà fer servir versions anteriors de GRAMPS.\n"
+"És convenient fer primer una còpia de seguretat."
 
 #: ../src/gen/db/dbdir.py:567
 msgid "Upgrade now"
-msgstr ""
+msgstr "Actualitzar ara"
 
 #: ../src/gen/db/dbdir.py:2098
 #, python-format
@@ -19091,15 +19113,14 @@ msgstr "entre"
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:368
 msgid "more than about"
-msgstr ""
+msgstr "aproximadament més de"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
-#, fuzzy
 msgid "less than about"
-msgstr "menor que"
+msgstr "aproximadament menys de"
 
 #: ../src/gen/lib/date.py:487
 #, python-format
@@ -19425,7 +19446,7 @@ msgstr ""
 #: ../src/Filters/_FilterParser.py:111
 #, python-format
 msgid ""
-"WARNING: To many arguments in filter '%s'!\n"
+"WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
 "AVÍS: Massa arguments al filtre '%s'!\n"
@@ -19434,7 +19455,7 @@ msgstr ""
 #: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
-"WARNING: To few arguments in filter '%s'!\n"
+"WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 "AVÍS: Massa pocs arguments al filtre '%s'!\n"
@@ -19471,7 +19492,10 @@ msgstr "Objectes canviats després de <data hora>"
 msgid ""
 "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in range, if a second date/time is given"
-msgstr "Concorda amb registres d'objecte canviats després d'una data/hora especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data/hora"
+msgstr ""
+"Concorda amb registres d'objecte canviats després d'una data/hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data/"
+"hora"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
@@ -19482,7 +19506,9 @@ msgstr "Format de data-hora equivocat"
 msgid ""
 "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time "
 "part is optional, are accepted. %s does not satisfy."
-msgstr "Només s'accepten dates-hores en el format iso d'aaaa-mm-dd hh:mm:ss, on la part de l'hora és opcional. %s no ho satisfa."
+msgstr ""
+"Només s'accepten dates-hores en el format iso d'aaaa-mm-dd hh:mm:ss, on la "
+"part de l'hora és opcional. %s no ho satisfa."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -19709,11 +19735,11 @@ msgstr "Sense descripció"
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:89
 msgid "Marker type:"
-msgstr ""
+msgstr "Tipus de marcador:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
 msgid "Has marker of"
-msgstr ""
+msgstr "Té marcador de"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
 msgid "Matches markers of a particular type"
@@ -19727,7 +19753,10 @@ msgstr "Persones modificades després de <data hora>"
 msgid ""
 "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
-msgstr "Concorda amb registres de persona modificats després d'una data-hora especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es donat una segona data-hora"
+msgstr ""
+"Concorda amb registres de persona modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
+"hora"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -19922,11 +19951,11 @@ msgstr "Concorda amb persones que tinguin un cert nombre d'esdeveniments mormons
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
-msgstr ""
+msgstr "Persones amb <marcador>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 msgid "Matches people with a marker of a particular value"
-msgstr ""
+msgstr "Concorda amb persones amb un marcador d'un valor concret"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:46
 msgid "Given name:"
@@ -20312,7 +20341,9 @@ msgstr "Persones amb esdeveniments que concorden amb el <filtre d'esdeveniments>
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Concorda amb persones que tenen esdeveniments que concorden amb un cert filtre d'esdeveniments"
+msgstr ""
+"Concorda amb persones que tenen esdeveniments que concorden amb un cert "
+"filtre d'esdeveniments"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
@@ -20449,14 +20480,17 @@ msgid "Matches every family in the database"
 msgstr "Concorda amb totes les famílies de la base de dades"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-msgid "Families changed before <date time>"
-msgstr "Famílies canviades abans de <data hora>"
+msgid "Families changed after <date time>"
+msgstr "Famílies modificades després de <data hora>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
-"Matches family records changed before a specified date-time (yyyy-mm-dd hh:"
-"mm:ss) or in the range, if a second date-time is given"
-msgstr "Concorda amb registres familiars modificats abans d'una data-hora especificada (aaaa-mm-dd hh:mm:ss) o dins d'un rang, si es dona una segona data-hora"
+"Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:"
+"ss) or in the range, if a second date-time is given"
+msgstr ""
+"Concorda amb registres familiars modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o dins d'un rang, si es dóna una segona "
+"data-hora"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
@@ -20561,11 +20595,11 @@ msgstr "Concorda amb famílies amb un cert nombre d'esdeveniments mormons"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
-msgstr ""
+msgstr "Famílies amb <marcador>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
 msgid "Matches Families with a marker of a particular value"
-msgstr ""
+msgstr "Concorda amb famílies amb un marcador d'un valor concret"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:46
 msgid "Families having <count> notes"
@@ -20581,7 +20615,9 @@ msgstr "Famílies amb notes que contenen <subcadena>"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Concorda amb famílies les notes de les quals continguin un text que contingui una subcadena"
+msgstr ""
+"Concorda amb famílies les notes de les quals continguin un text que "
+"contingui una subcadena"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
 msgid "Families having notes containing <regular expression>"
@@ -20589,7 +20625,9 @@ msgstr "Famílies amb notes que contenen <expressió regular>"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Concorda amb famílies les notes de les quals continguin un text que concordi amb una expressió regular"
+msgstr ""
+"Concorda amb famílies les notes de les quals continguin un text que concordi "
+"amb una expressió regular"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
@@ -20648,92 +20686,101 @@ msgstr "Filtres de mare"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
 msgid "Families with mother with the <name>"
-msgstr ""
+msgstr "Famílies amb mare amb el <nom>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr ""
+msgstr "Concorda amb famílies on la mare té un nom (parcial) especificat"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
 msgid "Families with father matching the <name>"
-msgstr ""
+msgstr "Famílies amb pare que concordi amb el <nom>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
 msgid "Families with any child matching the <name>"
-msgstr ""
+msgstr "Famílies amb qualsevol fill que concordi amb el <nom>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
 msgid "Matches families where any child has a specified (partial) name"
-msgstr ""
+msgstr "Concorda amb famílies on qualsevol fill té un nom (parcial) especificat"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
 msgid "Families with mother matching the <name>"
-msgstr ""
+msgstr "Famílies amb mare que concordi amb el <nom>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
 msgid "Families with father matching the <regex_name>"
-msgstr ""
+msgstr "Famílies amb pare que concordi amb el <nom_expressió_regular>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
 msgid ""
 "Matches families whose father has a name matching a specified regular "
 "expression"
 msgstr ""
+"Concorda amb famílies on el nom del pare concorda amb un nom (parcial) "
+"especificat"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
 msgid "Families with mother matching the <regex_name>"
-msgstr ""
+msgstr "Famílies amb mare que concordi amb el <nom_expressió_regular>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
 msgid ""
 "Matches families whose mother has a name matching a specified regular "
 "expression"
 msgstr ""
+"Concorda amb famílies on la mare tingui un nom que compleixi una expressió "
+"regular concreta"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
 msgid "Families with child matching the <regex_name>"
-msgstr ""
+msgstr "Famílies amb fills que compleixin <expressió regular>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
 "Matches families where child has a name matching a specified regular "
 "expression"
 msgstr ""
+"Concorda amb famílies on algun nen tingui un nom que compleixi una expressió "
+"regular concreta"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
 msgid "Families with <Id> matching regular expression"
-msgstr ""
+msgstr "Famílies amb <Id> que compleixi una expressió regular"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Concorda amb famílies l'Id GRAMPS de les quals compleixi l'expressió regular"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 msgid "Every event"
-msgstr ""
+msgstr "Tots els esdeveniments"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:46
 msgid "Matches every event in the database"
-msgstr ""
+msgstr "Concorda amb tots els esdeveniments de la base de dades"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
-msgid "Events changed before <date time>"
-msgstr ""
+msgid "Events changed after <date time>"
+msgstr "Esdeveniments modificats després de <data hora>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
-"Matches event records changed before a specified date/time (yyyy-mm-dd hh:mm:"
+"Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given"
 msgstr ""
+"Concorda amb registres d'esdeveniment modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o dins d'un rang, si es dóna una segona "
+"data-hora"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
 msgid "Events marked private"
-msgstr ""
+msgstr "Esdeveniments marcats com a privats"
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:44
 msgid "Matches events that are indicated as private"
-msgstr ""
+msgstr "Concorda amb esdeveniments que s'indiqui que són privats"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:86
@@ -20764,23 +20811,25 @@ msgstr "Esdeveniments amb <nombre> medis audiovisuals"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Concorda amb els esdeveniments que tinguin un cert nombre d'elements a la galeria"
+msgstr ""
+"Concorda amb els esdeveniments que tinguin un cert nombre d'elements a la "
+"galeria"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
-msgstr ""
+msgstr "Esdeveniment amb <Id>"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:46
 msgid "Matches an event with a specified GRAMPS ID"
-msgstr ""
+msgstr "Concorda amb un esdeviment que tingui un Id GRAMPS especificat"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:45
 msgid "Events with <marker>"
-msgstr ""
+msgstr "Esdeveniments amb <marcador>"
 
 #: ../src/Filters/Rules/Event/_HasMarkerOf.py:46
 msgid "Matches Events with a marker of a particular value"
-msgstr ""
+msgstr "Concorda amb esdeveniments que tinguin un marcador amb un valor en particular"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:46
 msgid "Events having <count> notes"
@@ -20792,27 +20841,31 @@ msgstr "Concorda amb esdeveniments que tinguin un cert nombre de notes"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
-msgstr ""
+msgstr "Esdeveniments amb notes que continguin <subcadena>"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches events whose notes contain text matching a substring"
 msgstr ""
+"Concorda amb esdeveniments les notes dels quals continguin un text que "
+"concordi amb una subcadena"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
 msgid "Events having notes containing <regular expression>"
-msgstr ""
+msgstr "Esdeveniments amb notes que continguin <expressió regular>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
 msgstr ""
+"Concorda amb esdeveniments les notes dels quals continguin un text que "
+"concordi amb una expressió regular"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
-msgstr ""
+msgstr "Esdeveniments amb un nombre <nombre> de referències"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:44
 msgid "Matches events with a certain reference count"
-msgstr ""
+msgstr "Concorda amb esdeveniments que tinguin un cert nombre de referències"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -20824,51 +20877,57 @@ msgstr "Concorda amb esdeveniments d'un tipus en particular "
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
-msgstr ""
+msgstr "Esdeveniments que concordin amb el <filtre>"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:46
 msgid "Matches events matched by the specified filter name"
-msgstr ""
+msgstr "Concorda amb esdeveniments que compleixin el nom de filtre especificat"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 #: ../src/FilterEditor/_EditRule.py:494
 msgid "Person filter name:"
-msgstr ""
+msgstr "Nom de filtre de persona:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 #: ../src/FilterEditor/_EditRule.py:508
 msgid "Include Family events:"
-msgstr ""
+msgstr "Incloure esdeveniments familiars:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
-msgstr ""
+msgstr "Esdeveniments de persones que concordin amb el <filtre de persona>"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:53
 msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
+"Concorda amb esdeveniments de persones que concordin amb el nom de filtre de "
+"persona especificat"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
 #: ../src/FilterEditor/_EditRule.py:498
 msgid "Source filter name:"
-msgstr ""
+msgstr "Nom de filtre de font:"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:48
 msgid "Events with source matching the <source filter>"
-msgstr ""
+msgstr "Esdeveniments amb font que concordi amb el <filtre de font>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 msgid "Matches events with sources that match the specified source filter name"
 msgstr ""
+"Concorda amb esdeveniments que tinguin fonts que concorden amb el nom de "
+"filtre de font especificat"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
 msgid "Events with <Id> matching regular expression"
-msgstr ""
+msgstr "Esdeveniments amb <Id> que concordi amb expressió regular"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
 msgstr ""
+"Concorda amb esdeveniments l'ID GRAMPS dels quals concorda amb l'expressió "
+"regular"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -20883,6 +20942,9 @@ msgid ""
 "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Concorda amb registres de lloc modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
+"hora"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
@@ -20894,24 +20956,24 @@ msgstr "Concorda amb llocs que tinguin un cert nombre d'elements a la galeria"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
-msgstr ""
+msgstr "Lloc amb <Id>"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:46
 msgid "Matches a place with a specified GRAMPS ID"
-msgstr ""
+msgstr "Concorda amb un lloc que tingui un Id GRAMPS específic"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:46
 msgid "Places with no latitude or longitude given"
-msgstr ""
+msgstr "Llocs sense latitud ni longitud"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
 msgid "Matches places with latitude or longitude empty"
-msgstr ""
+msgstr "Concorda amb llocs que tinguin buides la latitud o la longitud"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
 msgid "Position filters"
-msgstr ""
+msgstr "Filtres de posició"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 msgid "Places having <count> notes"
@@ -20923,19 +20985,23 @@ msgstr "Concorda amb llocs que tinguin un cert nombre de notes"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
-msgstr ""
+msgstr "Llocs amb notes que continguin <subcadena>"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches places whose notes contain text matching a substring"
 msgstr ""
+"Concorda amb llocs les notes dels quals tinguin text que contingui una "
+"subcadena"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
 msgid "Places having notes containing <regular expression>"
-msgstr ""
+msgstr "Llocs amb notes que compleixin <expressió regular>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
+"Concorda amb llocs les notes dels quals continguin text que compleixi una "
+"expressió regular"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 msgid "Street:"
@@ -21057,6 +21123,9 @@ msgid ""
 "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Concorda amb registres de font modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
+"hora"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
@@ -21068,11 +21137,11 @@ msgstr "Concorda amb les fonts que tinguin un cert nombre d'elements a la galeri
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
-msgstr ""
+msgstr "Font amb <Id>"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:46
 msgid "Matches a source with a specified GRAMPS ID"
-msgstr ""
+msgstr "Concorda amb una font que tingui un Id GRAMPS especificat"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
@@ -21084,11 +21153,13 @@ msgstr "Concorda amb fonts que tinguin un cert nombre de notes"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
-msgstr ""
+msgstr "Fonts que tinguin notes que contenen <expressió regular>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
 msgstr ""
+"Concorda amb fonts les notes de les quals continguin text que compleixi una "
+"expressió regular"
 
 #: ../src/Filters/Rules/Source/_HasNoteMatchingSubstringOf.py:43
 msgid "Sources having notes containing <substring>"
@@ -21126,11 +21197,11 @@ msgstr "Publicació:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
 msgid "Sources matching parameters"
-msgstr ""
+msgstr "Fonts que compleixin paràmetres"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:50
 msgid "Matches sources with particular parameters"
-msgstr ""
+msgstr "Concorda amb fonts amb paràmetres concrets"
 
 #: ../src/Filters/Rules/Source/_MatchesFilter.py:45
 msgid "Sources matching the <filter>"
@@ -21158,21 +21229,24 @@ msgstr "Concorda amb fonts l'Id GRAMPS de les quals concorda amb l'expressió re
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr ""
+msgstr "Tots els objectes audiovisuals"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr ""
+msgstr "Concorda amb totes les objectes audiovisuals de la base de dades"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-msgid "Media objects changed before <date time>"
-msgstr "Objectes audiovisuals canviats abans de <data hora>"
+msgid "Media objects changed after <date time>"
+msgstr "Objectes audiovisuals modificats després de <data hora>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid ""
-"Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:"
+"Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given"
 msgstr ""
+"Concorda amb objectes audiovisuals modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
+"hora"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
@@ -21186,16 +21260,16 @@ msgstr "Objectes audiovisuals amb atribut <atribut>"
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:47
 msgid "Matches media objects with the attribute of a particular value"
 msgstr ""
-"Concorda amb els objectes audiovisuals que tenen l'atribut donat amb un valor en "
-"particular"
+"Concorda amb els objectes audiovisuals que tenen l'atribut donat amb un "
+"valor en particular"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr ""
+msgstr "Objecte audiovisual amb <Id>"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr ""
+msgstr "Concorda amb un objecte audiovisual que tingui un Id GRAMPS especificat"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -21205,71 +21279,79 @@ msgstr "Tipus:"
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/gramps.glade.h:105
 msgid "Path:"
-msgstr ""
+msgstr "Camí:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr ""
+msgstr "Objectes audiovisuals que concordin amb paràmetres"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr ""
+msgstr "Concorda amb objectes audiovisuals amb paràmetres concrets"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr ""
+msgstr "Objectes audiovisuals amb notes que continguin <subcadena>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
+"Concorda amb objectes audiovisuals les notes dels quals tinguin un text que "
+"contingui una subcadena"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr ""
+msgstr "Objectes audiovisuals amb notes que continguin <expressió regular>"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
+"Concorda amb objectes audiovisuals les notes dels quals continguin text que "
+"compleixi una expressió regular"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr ""
+msgstr "Objectes audiovisuals amb un nombre de referències de <nombre>"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr ""
+msgstr "Concorda amb objectes audiovisuals amb un cert nombre de referències"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr ""
+msgstr "Objectes audiovisuals que compleixin el <filtre>"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
 msgstr ""
+"Concorda amb objectes audiovisuals que compleixin el nom de filtres "
+"especificat"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr ""
+msgstr "Objectes audiovisuals marcats com a privats"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr ""
+msgstr "Concorda amb objectes audiovisuals que s'indiquin com a privats"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr ""
+msgstr "Objectes audiovisuals amb <Id> que compleixi una expressió regular"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr ""
+"Concorda amb objectes audiovisuals l'Id GRAMPS dels quals compleixi "
+"l'expressió regular"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr "Cada repositori"
+msgstr "Tots els repositoris"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
-msgstr ""
+msgstr "Concorda amb tots els repositoris de la base de dades"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 msgid "Repositories changed after <date time>"
@@ -21280,22 +21362,27 @@ msgid ""
 "Matches repository records changed after a specified date/time (yyyy-mm-dd "
 "hh:mm:ss) or in the range, if a second date/time is given"
 msgstr ""
+"Concorda amb registres de repositori modificats després d'una data-hora "
+"especificades (aaaa-mm-dd hh:mm:ss) o dins d'un rang, si es dóna una segona "
+"data-hora"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
-msgstr ""
+msgstr "Repositori amb <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr ""
+msgstr "Concorda amb un repositori que tingui un Id GRAMPS especificat"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr ""
+msgstr "Repositoris amb notes que continguin <subcadena>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr ""
+"Concorda amb repositoris les notes dels quals tinguin text que contingui una "
+"subcadena"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
@@ -21304,14 +21391,16 @@ msgstr "Repositoris amb notes que contenen <expressió regular>"
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
+"Concorda amb repositoris les notes dels quals continguin text que compleixi "
+"una expressió regular"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr ""
+msgstr "Repositoris amb un nombre de referències de <nombre>"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr ""
+msgstr "Concorda amb repositoris que tinguin un cert nombre de referències"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -21319,27 +21408,27 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "Repositoris que concordin amb paràmetres"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr ""
+msgstr "Concorda amb repositoris que tinguin paràmetres concrets"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr ""
+msgstr "Repositoris que compleixin el <filtre>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr ""
+msgstr "Concorda amb repositoris que concordin amb el nom de filtre especificat"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr ""
+msgstr "Repositoris amb <Id> que compleix una expressió regular"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Concorda amb repositoris l'Id GRAMPS del qual compleix l'expressió regular"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -21358,14 +21447,17 @@ msgid "Matches every note in the database"
 msgstr "Concorda amb totes les notes de la base de dades"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-msgid "Notes changed before <date time>"
-msgstr ""
+msgid "Notes changed after <date time>"
+msgstr "Notes modificades després de <data hora>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
-"Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:"
+"Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
+"Concorda amb registres de nota modificats després d'una data-hora "
+"especificada (aaaa-mm-dd hh:mm:ss) o en un rang, si es dóna una segona data-"
+"hora"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
@@ -21377,11 +21469,11 @@ msgstr "Concorda amb una nota que tingui un Id GRAMPS concret"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:45
 msgid "Notes with <marker>"
-msgstr ""
+msgstr "Notes amb <marcador>"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:46
 msgid "Matches Notes with a marker of a particular value"
-msgstr ""
+msgstr "Concorda amb Notes on el marcador té un valor en particular"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
@@ -21428,19 +21520,19 @@ msgstr "Concorda amb notes que tinguin un cert nombre de referències"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr ""
+msgstr "Notes que concorden amb el <filtre>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
-msgstr ""
+msgstr "Concorda amb notes que concorden amb el nom de filtre especificat"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
 msgid "Notes with <Id> matching regular expression"
-msgstr ""
+msgstr "Notes amb <Id> que compleix una expressió regular"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Concorda amb notes l'Id GRAMPS de les quals compleix l'expressió regular"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
@@ -21660,15 +21752,15 @@ msgstr "Les icones d'edició es poden habilitar al diàleg de Preferències"
 #. spell checker submenu
 #: ../src/widgets/styledtexteditor.py:291
 msgid "Spell"
-msgstr ""
+msgstr "Ortografia"
 
 #: ../src/widgets/styledtexteditor.py:302
 msgid "_Send Mail To..."
-msgstr ""
+msgstr "En_viar Correu A..."
 
 #: ../src/widgets/styledtexteditor.py:303
 msgid "Copy _E-mail Address"
-msgstr ""
+msgstr "Copiar Adreça _E-mail"
 
 #: ../src/widgets/styledtexteditor.py:305
 msgid "_Open Link"
@@ -21808,7 +21900,7 @@ msgstr "Indica si el registre és privat"
 
 #: ../src/glade/edit_person.glade.h:13
 msgid "Part of the Given name that is the normally used name. "
-msgstr ""
+msgstr "Part del Nom de pila que és el nom habitual. "
 
 #: ../src/glade/edit_person.glade.h:14
 msgid ""
@@ -21816,6 +21908,8 @@ msgid ""
 "grandfather, .... \n"
 "Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
+"Patronímic: component d'un nom personal basat en el nom del pare, avi, ... \n"
+"Títol: Un títol utilitzat per referir-se a la persona, com ara 'Dr.' o 'Mn.'"
 
 #: ../src/glade/edit_person.glade.h:16
 msgid ""
@@ -21823,8 +21917,8 @@ msgid ""
 "such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
-"Prefix: Un prefix opcional per al nom de família que no es fa servir a l'ordenació, "
-"com ara \"de\" o \"van\"\n"
+"Prefix: Un prefix opcional per al nom de família que no es fa servir a "
+"l'ordenació, com ara \"de\" o \"van\"\n"
 "Sufix: Un sufix opcional per al nom, com ara \"Jr.\" o \"III\""
 
 #: ../src/glade/edit_person.glade.h:18
@@ -21853,7 +21947,7 @@ msgstr "_Tipus:"
 
 #: ../src/glade/edit_person.glade.h:24
 msgid "part of a person's name indicating the family to which the person belongs"
-msgstr ""
+msgstr "part del nom d'una persona que indica la família a la qual pertany la persona"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "<b><i>Gramplet</i></b>"
@@ -22019,7 +22113,7 @@ msgstr "A_breviatura:"
 
 #: ../src/glade/gramps.glade.h:38
 msgid "Abo_ve:"
-msgstr ""
+msgstr "A _dalt:"
 
 #: ../src/glade/gramps.glade.h:40
 msgid "Add_ress:"
@@ -22027,7 +22121,7 @@ msgstr "Ad_reça:"
 
 #: ../src/glade/gramps.glade.h:41
 msgid "Belo_w:"
-msgstr ""
+msgstr "A _sota:"
 
 #: ../src/glade/gramps.glade.h:42
 msgid "Birth:"
@@ -22067,7 +22161,7 @@ msgstr "Clicar per expandir/col·lapsar"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
-msgstr "Tancat _sense desar"
+msgstr "_Tancar sense desar"
 
 #: ../src/glade/gramps.glade.h:53
 msgid "Close window without changes"
@@ -22191,7 +22285,7 @@ msgstr "Cridar l'editor de dates"
 
 #: ../src/glade/gramps.glade.h:84
 msgid "J_ustify"
-msgstr ""
+msgstr "J_ustificar"
 
 #: ../src/glade/gramps.glade.h:85
 msgid ""
@@ -22200,6 +22294,10 @@ msgid ""
 "March 25\n"
 "September 1\n"
 msgstr ""
+"1 de gener\n"
+"1 de març\n"
+"25 de març\n"
+"1 de setembre\n"
 
 #: ../src/glade/gramps.glade.h:90
 msgid "Keep reference to the missing file"
@@ -22207,7 +22305,7 @@ msgstr "Mantenir referència al fitxer que falta"
 
 #: ../src/glade/gramps.glade.h:91
 msgid "LDS _Temple:"
-msgstr ""
+msgstr "_Temple mormó:"
 
 #: ../src/glade/gramps.glade.h:92
 msgid "L_atitude:"
@@ -22231,15 +22329,15 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:98
 msgid "Ne_w year begins:  "
-msgstr ""
+msgstr "An_y nou comença:  "
 
 #: ../src/glade/gramps.glade.h:99
 msgid "O_verride"
-msgstr ""
+msgstr "Forçar"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Old Style/New Style"
-msgstr ""
+msgstr "Estil Antic/Estil Nou"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Open person editor of this child"
@@ -22279,7 +22377,7 @@ msgstr "Treure objectes i totes les referències a ell de la base de dades"
 
 #: ../src/glade/gramps.glade.h:112
 msgid "Revision comment - GRAMPS"
-msgstr ""
+msgstr "Comentari de revisió - GRAMPS"
 
 #: ../src/glade/gramps.glade.h:113
 msgid "Righ_t"
@@ -22299,7 +22397,7 @@ msgstr "Mostrar tothom"
 
 #: ../src/glade/gramps.glade.h:117
 msgid "Style n_ame:"
-msgstr ""
+msgstr "N_om d'estil:"
 
 #: ../src/glade/gramps.glade.h:118
 msgid "Suffi_x:"
@@ -22342,6 +22440,11 @@ msgid ""
 "High\n"
 "Very High"
 msgstr ""
+"Molt Baix\n"
+"Baix\n"
+"Normal\n"
+"Alt\n"
+"Molt Alt"
 
 #: ../src/glade/gramps.glade.h:135
 msgid ""
@@ -22350,6 +22453,10 @@ msgid ""
 "When not checked, notes are automatically cleaned in the reports, which will "
 "improve the report layout."
 msgstr ""
+"Quan estigui actiu, les espais en blanc de la seva nota es respectaran als "
+"informes. Utilitzi-ho per afegir espaiat amb espais, com ara una taula. \n"
+"Quan no es marqui, les notes es netegen automàticament als informes, cosa "
+"que millorarà la distribució de l'informe."
 
 #: ../src/glade/gramps.glade.h:138
 msgid "Y_ear"
@@ -22373,7 +22480,7 @@ msgstr "_Negreta"
 
 #: ../src/glade/gramps.glade.h:144
 msgid "_Bottom"
-msgstr ""
+msgstr "_Sota"
 
 #: ../src/glade/gramps.glade.h:145
 msgid "_Close Window"
@@ -22393,7 +22500,7 @@ msgstr "_Descripció:"
 
 #: ../src/glade/gramps.glade.h:149
 msgid "_Display as:"
-msgstr ""
+msgstr "_Mostrar com a:"
 
 #: ../src/glade/gramps.glade.h:150
 msgid "_Display on startup"
@@ -22401,23 +22508,23 @@ msgstr "_Mostrar en començar"
 
 #: ../src/glade/gramps.glade.h:151
 msgid "_Event type:"
-msgstr ""
+msgstr "Tipus d'_esdeveniment:"
 
 #: ../src/glade/gramps.glade.h:153
 msgid "_Given:"
-msgstr ""
+msgstr "Nom de _pila:"
 
 #: ../src/glade/gramps.glade.h:155
 msgid "_Italic"
-msgstr ""
+msgstr "_Cursiva"
 
 #: ../src/glade/gramps.glade.h:156
 msgid "_Keep Reference"
-msgstr ""
+msgstr "_Guardar Referència"
 
 #: ../src/glade/gramps.glade.h:157
 msgid "_Left"
-msgstr ""
+msgstr "_Esquerra"
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Load Family Tree"
@@ -22429,7 +22536,7 @@ msgstr "_Longitud:"
 
 #: ../src/glade/gramps.glade.h:161
 msgid "_Media Type:"
-msgstr ""
+msgstr "_Tipus d'Audiovisual:"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Month"
@@ -22445,7 +22552,7 @@ msgstr "_Farciment:"
 
 #: ../src/glade/gramps.glade.h:165
 msgid "_Path:"
-msgstr ""
+msgstr "_Camí:"
 
 #: ../src/glade/gramps.glade.h:166
 msgid "_Person:"
@@ -22465,19 +22572,19 @@ msgstr "_Prefix:"
 
 #: ../src/glade/gramps.glade.h:170
 msgid "_Preformatted"
-msgstr ""
+msgstr "_Preformatejat"
 
 #: ../src/glade/gramps.glade.h:171
 msgid "_Publication Information:"
-msgstr ""
+msgstr "Informació de _Publicació:"
 
 #: ../src/glade/gramps.glade.h:172
 msgid "_Publication information:"
-msgstr ""
+msgstr "Informació de _publicació:"
 
 #: ../src/glade/gramps.glade.h:173
 msgid "_Remove Object"
-msgstr ""
+msgstr "_Treure Objecte"
 
 #: ../src/glade/gramps.glade.h:174
 msgid "_Rename"
@@ -22485,7 +22592,7 @@ msgstr "_Renomenar"
 
 #: ../src/glade/gramps.glade.h:175
 msgid "_Right"
-msgstr ""
+msgstr "_Dreta"
 
 #: ../src/glade/gramps.glade.h:176
 msgid "_Role:"
@@ -22525,7 +22632,7 @@ msgstr "_Títol:"
 
 #: ../src/glade/gramps.glade.h:185
 msgid "_Top"
-msgstr ""
+msgstr "_Capdamunt"
 
 #: ../src/glade/gramps.glade.h:187
 msgid "_Underline"
@@ -22737,10 +22844,13 @@ msgid ""
 "ToDo\n"
 "NotRelated"
 msgstr ""
+"\n"
+"Per Fer\n"
+"NoRelacionats"
 
 #: ../src/plugins/tool/NotRelated.glade.h:4
 msgid "_Marker"
-msgstr ""
+msgstr "_Marcador"
 
 #: ../src/plugins/book.glade.h:1 ../src/plugins/export/ExportGeneWeb.glade.h:1
 msgid "*"
@@ -22954,6 +23064,11 @@ msgid ""
 "current database. If you accept the changes, GRAMPS will modify the entries\n"
 "that have been selected."
 msgstr ""
+"A sota hi ha una llista dels malnoms, títols i prefixos de nom familiar que "
+"GRAMPS pot extreure de la \n"
+"base de dades actuals. Si accepta els canvis, GRAMPS modificarà les "
+"entrades\n"
+"que s'han seleccionat."
 
 #: ../src/plugins/tool/patchnames.glade.h:4
 msgid "_Accept and close"
@@ -23029,7 +23144,7 @@ msgstr "I_ndividus"
 
 #: ../src/plugins/export/ExportCsv.glade.h:6
 msgid "Translate _Headers"
-msgstr ""
+msgstr "Traduir _Capçaleres"
 
 #: ../src/plugins/export/ExportCsv.glade.h:7
 msgid "_Marriages"
@@ -23225,8 +23340,9 @@ msgid ""
 "achieve one or more specific tasks."
 msgstr ""
 "<b>Vistes Diferents</b>: Hi ha dotze vistes diferents per navegar per la "
-"família: Gramplets, Persones, Relacions, Llista de Famílies, Pedigrí, Esdeveniments, "
-"Fonts, Llocs, Audiovisuals, Repositoris, Notes i Mapes HTML. Cadascuna permet d'aconseguir una o més tasques específiques."
+"família: Gramplets, Persones, Relacions, Llista de Famílies, Pedigrí, "
+"Esdeveniments, Fonts, Llocs, Audiovisuals, Repositoris, Notes i Mapes HTML. "
+"Cadascuna permet d'aconseguir una o més tasques específiques."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -23489,7 +23605,13 @@ msgid ""
 "date formats based on a guess or an estimate. For instance, &quot;about "
 "1908&quot; is a valid entry for a birth date in GRAMPS. See wiki manual of "
 "GRAMPS for a complete description of date entry options."
-msgstr "<b>No està segur d'una data?</b> Si no està segur de la data en què va ocórrer un esdeveniment (per exemple un naixement o defunció), GRAMPS li permet d'introduir una colla de formats de data basats en una suposició o estimació. Per exemple, &quot;al voltant de 1908&quot; és una entrada vàlida per una data de naixement a GRAMPS. Veure el manual a la wiki de GRAMPS per una descripció completa de les opcions d'introducció de dates."
+msgstr ""
+"<b>No està segur d'una data?</b> Si no està segur de la data en què va "
+"ocórrer un esdeveniment (per exemple un naixement o defunció), GRAMPS li "
+"permet d'introduir una colla de formats de data basats en una suposició o "
+"estimació. Per exemple, &quot;al voltant de 1908&quot; és una entrada vàlida "
+"per una data de naixement a GRAMPS. Veure el manual a la wiki de GRAMPS per "
+"una descripció completa de les opcions d'introducció de dates."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -23610,9 +23732,9 @@ msgstr ""
 "GRAMPS li permet de generar una colla d'informes (tant de text com gràfics) "
 "basats en la seva informació genealògica. Hi ha una gran flexibilitat per "
 "seleccionar quines persones surten als informes així com el format de "
-"sortida (html, pdf, Open Document Text, RTF, LaTeX i text pla). "
-"Experimenti amb els informes del menú <b>Informes</b> per fer-se una idea de "
-"la potència de GRAMPS."
+"sortida (html, pdf, Open Document Text, RTF, LaTeX i text pla). Experimenti "
+"amb els informes del menú <b>Informes</b> per fer-se una idea de la potència "
+"de GRAMPS."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -23833,9 +23955,7 @@ msgstr ""
 msgid ""
 "Relationship calculators in GRAMPS are available in more than fifteen "
 "languages."
-msgstr ""
-"Existeixen calculadores de parentesc en GRAMPS per més de quinze "
-"llengües."
+msgstr "Existeixen calculadores de parentesc en GRAMPS per més de quinze llengües."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
