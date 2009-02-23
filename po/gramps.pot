@@ -19600,12 +19600,12 @@ msgid "Matches every family in the database"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-msgid "Families changed before <date time>"
+msgid "Families changed after <date time>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
-"Matches family records changed before a specified date-time (yyyy-mm-dd hh:"
+"Matches family records changed after a specified date-time (yyyy-mm-dd hh:"
 "mm:ss) or in the range, if a second date-time is given"
 msgstr ""
 
@@ -19869,12 +19869,12 @@ msgid "Matches every event in the database"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
-msgid "Events changed before <date time>"
+msgid "Events changed after <date time>"
 msgstr ""
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
-"Matches event records changed before a specified date/time (yyyy-mm-dd hh:mm:"
+"Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date/time is given"
 msgstr ""
 
@@ -20307,12 +20307,12 @@ msgid "Matches every media object in the database"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-msgid "Media objects changed before <date time>"
+msgid "Media objects changed after <date time>"
 msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid ""
-"Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:"
+"Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given"
 msgstr ""
 
@@ -20500,12 +20500,12 @@ msgid "Matches every note in the database"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-msgid "Notes changed before <date time>"
+msgid "Notes changed after <date time>"
 msgstr ""
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
-"Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:"
+"Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date-time is given"
 msgstr ""
 

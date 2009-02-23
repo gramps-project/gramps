@@ -1,16 +1,27 @@
 # French translation for gramps
 # Copyright (C) 2001-2009 Free Software Foundation, Inc.
+#
+# Quelques variables pour la cohérence:
+#  ancestor : ascendant
+#  descendant : descendant
+#  person, individual, people : individu(s)
+#  remove (context) : enlever une référence ou supprimer de la base
+#  home : souche
+#  active person : individu actif
+#  media : media (pas de 's' ou accent)
+#
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
 # Frederic Chateaux, 2007-2008.
 # Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2009.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-20 11:52+0100\n"
-"PO-Revision-Date: 2009-02-20 11:54+0100\n"
+"POT-Creation-Date: 2009-02-22 11:23-0800\n"
+"PO-Revision-Date: 2009-02-23 18:48+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +29,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-# trunk
 #: ../src/ArgHandler.py:230
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr "L'arbre familial \"%s\" n'existe pas."
 
-# trunk
 #: ../src/ArgHandler.py:231
 msgid "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead"
 msgstr "Si il s'agit du format gedcom, gramps-xml ou grdb, utilisez plutôt l'option -i pour importer dans un arbre familial."
@@ -301,7 +310,6 @@ msgstr "Mauvaise date"
 msgid "Date selection"
 msgstr "Sélectionner la date"
 
-# A compléter
 #: ../src/DbLoader.py:83
 #: ../src/PluginUtils/_Tool.py:108
 msgid "Undo history warning"
@@ -337,7 +345,6 @@ msgstr "Importer une base GRAMPS"
 msgid "Could not open file: %s"
 msgstr "Impossible d'ouvrir le fichier : %s"
 
-# trunk
 #: ../src/DbLoader.py:155
 #, python-format
 msgid ""
@@ -349,13 +356,11 @@ msgstr ""
 "\n"
 "Les types valides sont : base de données GRAMPS, XML GRAMPS, paquet GRAMPS, GEDCOM et autres."
 
-# trunk
 #: ../src/DbLoader.py:179
 #: ../src/DbLoader.py:185
 msgid "Cannot open file"
 msgstr "Impossible d'ouvrir ce fichier"
 
-# trunk
 #: ../src/DbLoader.py:180
 msgid "The selected file is a directory, not a file.\n"
 msgstr "La sélection est un répertoire et non un fichier.\n"
@@ -364,7 +369,6 @@ msgstr "La sélection est un répertoire et non un fichier.\n"
 msgid "You do not have read access to the selected file."
 msgstr "Vous n'avez pas accès en lecture au fichier sélectionné."
 
-# trunk
 #: ../src/DbLoader.py:195
 msgid "Cannot create file"
 msgstr "Impossible de créer le fichier"
@@ -409,70 +413,69 @@ msgstr "Chois_ir un type de fichier :"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:88
+#: ../src/DbManager.py:89
 msgid "Family Tree"
 msgstr "Arbre familial"
 
-# trunk
-#: ../src/DbManager.py:102
+#: ../src/DbManager.py:103
 msgid "_Extract"
 msgstr "_Extraire"
 
-#: ../src/DbManager.py:102
+#: ../src/DbManager.py:103
 #: ../src/glade/gramps.glade.h:139
 msgid "_Archive"
 msgstr "_Archive"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:233
+#: ../src/DbManager.py:234
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Début de l'importation, %s"
 
-#: ../src/DbManager.py:239
+#: ../src/DbManager.py:240
 msgid "Import finished..."
 msgstr "Importation finie..."
 
 # Substantif (GNOME fr)
 #. Create a new database
-#: ../src/DbManager.py:293
+#: ../src/DbManager.py:294
 #: ../src/plugins/import/ImportCsv.py:383
 msgid "Importing data..."
 msgstr "Importation des données..."
 
-#: ../src/DbManager.py:491
+#: ../src/DbManager.py:492
 msgid "Family tree name"
 msgstr "Nom de l'arbre familial"
 
-#: ../src/DbManager.py:501
+#: ../src/DbManager.py:502
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr "Statut"
 
-#: ../src/DbManager.py:507
+#: ../src/DbManager.py:508
 msgid "Last modified"
 msgstr "Dernière modification"
 
-#: ../src/DbManager.py:586
+#: ../src/DbManager.py:591
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Enlever le verrou sur la base de données '%s' ?"
 
-#: ../src/DbManager.py:587
+#: ../src/DbManager.py:592
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "GRAMPS pense que cette base de données est en cours d'édition. Vous ne pouvez pas l'éditer tant qu'elle est verrouillée. Si personne n'édite la base de données vous pouvez enlever le verrou en toute sécurité. Toutefois, si quelqu'un d'autre édite cette base de données et que vous cassez le verrou, vous pouvez la corrompre."
 
-#: ../src/DbManager.py:593
+#: ../src/DbManager.py:598
 msgid "Break lock"
 msgstr "Enlever le verrou"
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:675
 msgid "Rename failed"
 msgstr "Impossible de renommer"
 
-#: ../src/DbManager.py:671
+#: ../src/DbManager.py:676
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -483,71 +486,71 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:691
 msgid "Could not rename the Family Tree."
 msgstr "Impossible de renommer l'arbre familial."
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Cet arbre familial existe, choisissez un nom présent."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:705
 msgid "Could not rename family tree"
 msgstr "Impossible de renommer l'arbre familial"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:734
+#: ../src/DbManager.py:739
 msgid "Extracting archive..."
 msgstr "Extraction de l'archive..."
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:739
+#: ../src/DbManager.py:744
 msgid "Importing archive..."
 msgstr "Importation de l'archive..."
 
 # objet sélectionné
 # Supprimer car efface
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:760
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Supprimer l'arbre familial '%s' ?"
 
 # Substantif (GNOME fr)
 # Supprimer car efface
-#: ../src/DbManager.py:756
+#: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "La suppression de cet arbre familial effacera définitivement les données."
 
 # objet sélectionné
 # Supprimer car efface
-#: ../src/DbManager.py:757
+#: ../src/DbManager.py:762
 msgid "Remove family tree"
 msgstr "Supprimer l'arbre familial"
 
-#: ../src/DbManager.py:763
+#: ../src/DbManager.py:768
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Retrait de la version '%(revision)s' de '%(database)s'"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:767
+#: ../src/DbManager.py:772
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Le retrait de cette version vous empêchera toute extraction future."
 
-#: ../src/DbManager.py:769
+#: ../src/DbManager.py:774
 msgid "Remove version"
 msgstr "Retirer la version"
 
 # objet sélectionné
-#: ../src/DbManager.py:798
+#: ../src/DbManager.py:803
 msgid "Could not delete family tree"
 msgstr "Impossible de supprimer l'arbre familial"
 
-#: ../src/DbManager.py:823
+#: ../src/DbManager.py:828
 msgid "Deletion failed"
 msgstr "Impossible de supprimer"
 
-#: ../src/DbManager.py:824
+#: ../src/DbManager.py:829
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -559,23 +562,23 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:867
+#: ../src/DbManager.py:872
 msgid "Rebuilding database from backup files"
 msgstr "Reconstruire une base de données depuis les fichiers de sauvegarde"
 
-#: ../src/DbManager.py:902
+#: ../src/DbManager.py:907
 msgid "Could not create family tree"
 msgstr "Impossible de créer l'arbre familial"
 
-#: ../src/DbManager.py:989
+#: ../src/DbManager.py:994
 msgid "Could not make database directory: "
 msgstr "Impossible de créer le répertoire de la base de données : "
 
-#: ../src/DbManager.py:1003
+#: ../src/DbManager.py:1008
 msgid "Never"
 msgstr "Jamais"
 
-#: ../src/DbManager.py:1077
+#: ../src/DbManager.py:1082
 #: ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:402
 #: ../src/DataViews/RelationView.py:932
@@ -623,11 +626,11 @@ msgstr "Jamais"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/DbManager.py:1096
+#: ../src/DbManager.py:1101
 msgid "Retrieve failed"
 msgstr "Impossible de récupérer"
 
-#: ../src/DbManager.py:1097
+#: ../src/DbManager.py:1102
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -639,12 +642,12 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1138
-#: ../src/DbManager.py:1166
+#: ../src/DbManager.py:1143
+#: ../src/DbManager.py:1171
 msgid "Archiving failed"
 msgstr "Impossible d'archiver"
 
-#: ../src/DbManager.py:1139
+#: ../src/DbManager.py:1144
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -656,16 +659,16 @@ msgstr ""
 "%s"
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1149
 msgid "Creating data to be archived..."
 msgstr "Création des données à archiver..."
 
 # Substantif (GNOME fr)
-#: ../src/DbManager.py:1153
+#: ../src/DbManager.py:1158
 msgid "Saving archive..."
 msgstr "Enregistrement de l'archive..."
 
-#: ../src/DbManager.py:1167
+#: ../src/DbManager.py:1172
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -790,12 +793,10 @@ msgstr ""
 "\n"
 "Si vous changez d'avis au cours de ce processus, cliquez sur le bouton &quot; Annuler &quot;. Votre base de données actuelle restera toujours intacte."
 
-# trunk
 #: ../src/ExportOptions.py:73
 msgid "_Person Filter"
 msgstr "F_iltre sur l'individu"
 
-# trunk
 #: ../src/ExportOptions.py:79
 msgid "_Note Filter"
 msgstr "Filtre sur la _note"
@@ -811,7 +812,6 @@ msgstr "_Ne pas inclure les enregistrements privés"
 msgid "_Restrict data on living people"
 msgstr "_Limiter les informations sur les individus vivants"
 
-# trunk
 #: ../src/ExportOptions.py:88
 msgid "_Do not include unlinked records"
 msgstr "_Ne pas inclure les enregistrements non-liés"
@@ -890,7 +890,7 @@ msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
 "Project. This artwork is released under the\n"
-"Create Commons Attribution-ShareAlike 2.5\n"
+"Creative Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
 "La plupart des graphismes GRAMPS\n"
@@ -938,7 +938,6 @@ msgstr "Style islandais"
 msgid "Display Name Editor"
 msgstr "Affichage de l'éditeur de nom"
 
-# trunk
 #: ../src/GrampsCfg.py:133
 msgid ""
 "The following keywords will be replaced with the name:\n"
@@ -1012,7 +1011,6 @@ msgstr "Texte"
 msgid "ID Formats"
 msgstr "Formats ID"
 
-# trunk
 #: ../src/GrampsCfg.py:184
 msgid "Dates"
 msgstr "Dates"
@@ -1030,7 +1028,6 @@ msgstr "Chercheur"
 msgid "Marker Colors"
 msgstr "Couleurs du marqueur"
 
-# trunk
 #: ../src/GrampsCfg.py:193
 msgid "Internet Maps"
 msgstr "Cartes Internet"
@@ -1284,17 +1281,14 @@ msgstr "À faire"
 msgid "Custom"
 msgstr "Personnalisé"
 
-# trunk
 #: ../src/GrampsCfg.py:306
 msgid "You need a broadband internet connection to use Internet mapping applications from within GRAMPS"
 msgstr "Vous devez avoir une connexion internet pour utiliser les applications cartographiques dans GRAMPS."
 
-# trunk
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
 msgstr "Ajouter GeoView à GRAMPS pour afficher les cartes internet basées sur vos données."
 
-# trunk
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
@@ -1303,27 +1297,22 @@ msgstr ""
 "GeoView utilise OpenStreetMap et d'autres fournisseurs d'accès.\n"
 "Choisissez l'un des fournisseurs suivants :"
 
-# trunk
 #: ../src/GrampsCfg.py:321
 msgid "Google Maps"
 msgstr "Google Maps"
 
-# trunk
 #: ../src/GrampsCfg.py:325
 msgid "OpenLayers"
 msgstr "OpenLayers"
 
-# trunk
 #: ../src/GrampsCfg.py:329
 msgid "Yahoo! Maps"
 msgstr "Yahoo! Maps"
 
-# trunk
 #: ../src/GrampsCfg.py:333
 msgid "Microsoft Maps"
 msgstr "Microsoft Maps"
 
-# trunk
 #: ../src/GrampsCfg.py:337
 msgid "You need to restart GRAMPS for above settings to take effect"
 msgstr "Vous devez relancer GRAMPS pour que les modifications suivantes soient prises en compte."
@@ -1518,7 +1507,6 @@ msgstr "Le changement n'est pas immediat"
 msgid "Changing the data format will not take effect until the next time GRAMPS is started."
 msgstr "Le changement du format des données ne prendra effet qu'après le redémarrage de GRAMPS."
 
-# trunk
 #: ../src/GrampsCfg.py:856
 msgid "Date about range"
 msgstr "Années pour l'estimation d'une date"
@@ -1528,12 +1516,10 @@ msgstr "Années pour l'estimation d'une date"
 msgid "Date after range"
 msgstr "Années après une date"
 
-# trunk
 #: ../src/GrampsCfg.py:862
 msgid "Date before range"
 msgstr "Années avant une date"
 
-# trunk
 #: ../src/GrampsCfg.py:865
 msgid "Maximum age probably alive"
 msgstr "Estimation de l'âge maximum"
@@ -1553,7 +1539,6 @@ msgstr "Années minimum entre les générations"
 msgid "Average years between generations"
 msgstr "Âge moyen entre les générations"
 
-# trunk
 #: ../src/GrampsCfg.py:877
 msgid "Markup for invalid date format"
 msgstr "Balise pour le format de date invalide"
@@ -1582,10 +1567,9 @@ msgstr "Afficher les boutons d'édition dans la vue Relations"
 msgid "Remember last view displayed"
 msgstr "Se souvenir de la dernière vue affichée"
 
-# trunk
 #: ../src/GrampsCfg.py:907
 msgid "Max generations for relationships"
-msgstr "Le nombre de générations dans les relations"
+msgstr "Le nombre de générations pour les relations"
 
 #: ../src/GrampsCfg.py:911
 msgid "Base path for relative media paths"
@@ -1702,7 +1686,6 @@ msgstr "Couleur d'arrière-plan de la police"
 msgid "Gramplets"
 msgstr "Gramplets"
 
-# trunk
 #: ../src/gramps_main.py:111
 #: ../src/DataViews/GeoView.py:594
 msgid "GeoView"
@@ -1856,7 +1839,6 @@ msgstr "URL"
 msgid "Danger: This is unstable code!"
 msgstr "Danger : ce code est instable !"
 
-# trunk
 #: ../src/gramps_main.py:202
 msgid ""
 "This GRAMPS 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
@@ -1879,7 +1861,7 @@ msgstr ""
 "4) Corrompre vos données.\n"
 "5) Sauver vos données dans un format incompatible avec la version stable.\n"
 "\n"
-"<b>SAUVEGARDER</b> vos bases de données existantes avant de les ouvrir avec cette version, soyez certain d'exporter vos données au format XML."
+"<b>SAUVEGARDEZ</b> vos bases de données existantes avant de les ouvrir avec cette version, soyez certain d'exporter vos données au format XML."
 
 #: ../src/gramps_main.py:240
 #: ../src/gramps_main.py:242
@@ -1920,12 +1902,10 @@ msgstr ""
 "GRAMPS va maintenant s'arrêter."
 
 # enlever la référence
-# trunk
 #: ../src/PageView.py:292
 msgid "Remove selected items?"
 msgstr "Enlever l'article sélectionné ?"
 
-# trunk
 #: ../src/PageView.py:293
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
 msgstr "Plusieurs entrées ont été sélectionnées pour la suppression. Doit on poser la question à chaque fois ?"
@@ -1942,13 +1922,11 @@ msgstr "Oui"
 msgid "No"
 msgstr "Non"
 
-# trunk
 #: ../src/PageView.py:306
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
 msgstr "Cet article est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/PageView.py:310
 msgid "Deleting item will remove it from the database."
 msgstr "La suppression de l'article l'enlèvera de la base de données."
@@ -1960,7 +1938,6 @@ msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
 # objet sélectionné
-# trunk
 #: ../src/PageView.py:318
 msgid "_Delete Item"
 msgstr "_Supprimer l'article"
@@ -2359,7 +2336,6 @@ msgid "Reorder Relationships: %s"
 msgstr "Réorganiser les relations : %s"
 
 # wiki
-# trunk
 #: ../src/ScratchPad.py:69
 msgid "manual|Using_the_Clipboard"
 msgstr "Utilisation du presse-papiers"
@@ -3136,7 +3112,6 @@ msgstr "Relation homosexuelle"
 msgid "Unknown relationship between a man and woman"
 msgstr "Relation non identifiée entre un homme et une femme"
 
-# trunk
 #: ../src/Utils.py:106
 msgid "An unspecified relationship between a man and woman"
 msgstr "Relation non spécifiée entre un homme et une femme"
@@ -3168,7 +3143,6 @@ msgid "Please do not force closing this important dialog."
 msgstr "Veuillez ne pas fermer cette fenêtre."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/Utils.py:1127
 #: ../src/Utils.py:1135
 msgid "Error Opening File"
@@ -3480,7 +3454,6 @@ msgstr "Les statistiques d'importation"
 msgid "Could not load a recent Family Tree."
 msgstr "Impossible de charger l'arbre familial récent."
 
-# trunk
 #: ../src/ViewManager.py:1079
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Cet arbre familial n'existe pas, puisqu'il a été supprimé."
@@ -3815,54 +3788,45 @@ msgstr "Éditeur de _colonne..."
 msgid "Family Filter Editor"
 msgstr "Éditeur de filtre sur la famille"
 
-# trunk
 #: ../src/DataViews/GeoView.py:350
 msgid "HtmlView"
 msgstr "Vue HTML"
 
-# trunk
 #: ../src/DataViews/GeoView.py:525
 msgid "Go to the previous page in the history"
-msgstr "Aller à la page précédente dans l'historique"
+msgstr "Aller à la page précédente de l'historique"
 
-# trunk
 #: ../src/DataViews/GeoView.py:533
 msgid "Go to the next page in the history"
-msgstr "Aller à la page suivante dans l'historique"
+msgstr "Aller à la page suivante de l'historique"
 
-# trunk
 #. add the Refresh action to handle the Refresh button
 #: ../src/DataViews/GeoView.py:538
 msgid "_Refresh"
-msgstr "_Rafraichir"
+msgstr "_Actualiser"
 
-# trunk
 #: ../src/DataViews/GeoView.py:541
 msgid "Stop and reload the page."
 msgstr "Arrêt et réouverture de la page."
 
-# trunk
 #: ../src/DataViews/GeoView.py:571
 msgid "Start page for the Html View"
 msgstr "Première page pour la vue HTML"
 
-# trunk
 #: ../src/DataViews/GeoView.py:572
 msgid ""
 "Type an webpage address at the top, and hit the execute button to load a webpage in this page\n"
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
-"Saisissez une adresse internet en haut, et appuyez sur le bouton excécuter pour charge la page internet\n"
+"Saisissez une adresse internet en haut, et appuyez sur le bouton Excécuter pour charger la page internet\n"
 "<br>\n"
 "Par exemple: <b>http://gramps-project.org</p>"
 
-# trunk
 #: ../src/DataViews/GeoView.py:738
 msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
-# trunk
 #: ../src/DataViews/GeoView.py:740
 msgid "Select OpenStreetMap Maps"
 msgstr "Sélection des cartes OpenStreetMap"
@@ -3871,146 +3835,119 @@ msgstr "Sélection des cartes OpenStreetMap"
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-# trunk
 #: ../src/DataViews/GeoView.py:745
 msgid "Select Google Maps."
 msgstr "Sélection des cartes Google."
 
-# trunk
 #: ../src/DataViews/GeoView.py:748
 msgid "_OpenLayers Maps"
 msgstr "Cartes _OpenLayers"
 
-# trunk
 #: ../src/DataViews/GeoView.py:750
 msgid "Select OpenLayers Maps."
 msgstr "Sélection des cartes OpenLayers."
 
-# trunk
 #: ../src/DataViews/GeoView.py:753
 msgid "_Yahoo! Maps"
 msgstr "Cartes _Yahoo!"
 
-# trunk
 #: ../src/DataViews/GeoView.py:755
 msgid "Select Yahoo Maps."
 msgstr "Sélection des cartes Yahoo."
 
-# trunk
 #: ../src/DataViews/GeoView.py:758
 msgid "_Microsoft Maps"
 msgstr "Cartes _Microsoft"
 
-# trunk
 #: ../src/DataViews/GeoView.py:760
 msgid "Select Microsoft Maps"
-msgstr "Sélection des cartes Microsoft."
+msgstr "Sélection des cartes Microsoft"
 
-# trunk
 #: ../src/DataViews/GeoView.py:761
 msgid "_All Places"
 msgstr "_Les Lieux"
 
-# trunk
 #: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view all places in the family tree."
 msgstr "Tentative pour afficher les lieux de l'arbre familial."
 
-# trunk
 #: ../src/DataViews/GeoView.py:764
 msgid "_Person"
 msgstr "_Individu"
 
-# trunk
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
-msgstr "Tentative pour afficher les lieux correspondants aux individus vivants."
+msgstr "Tentative pour afficher les lieux correspondants aux individus sélectionnés."
 
-# trunk
 #: ../src/DataViews/GeoView.py:767
 msgid "_Family"
 msgstr "_Famille"
 
-# trunk
 #: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
 msgstr "Tentative pour afficher les lieux familiaux de l'individu sélectionné."
 
-# trunk
 #: ../src/DataViews/GeoView.py:770
 msgid "_Event"
 msgstr "Évén_ement"
 
-# trunk
 #: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
 msgstr "Tentative pour afficher les lieux liés aux événements."
 
-# trunk
 #: ../src/DataViews/GeoView.py:868
 msgid "List of places without coordinates"
 msgstr "Liste des lieux sans coordonnées"
 
-# trunk
 #: ../src/DataViews/GeoView.py:869
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Voici une liste des lieux de la base de données sans coordonnées.<br> C'est à dire sans longitude ou latitude.<p>"
 
-# trunk
 #: ../src/DataViews/GeoView.py:919
 #, python-format
 msgid "There are %d markers to display. They are split up over %d pages of %d markers : "
 msgstr "Il y a %d marqueurs, l'affichage sera divisé en %d pages de %d marqueurs : "
 
-# trunk
+# dans le sens la totalité des dates
 #: ../src/DataViews/GeoView.py:958
 msgid "All"
-msgstr "Tout"
+msgstr "L'ensemble"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1417
 msgid "No location."
 msgstr "Aucun emplacement."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Vous n'avez pas de lieux avec coordonnées dans votre base de données."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
 msgstr "Vous regardez la carte par défaut."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1448
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : lieu de naissance."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1451
 msgid "birth place."
 msgstr "lieu de naissance."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1483
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : lieu du décès."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1486
 msgid "death place."
 msgstr "lieu du décès."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1522
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1539
 #: ../src/DataViews/GeoView.py:1616
 #: ../src/DataViews/GeoView.py:1666
@@ -4018,82 +3955,68 @@ msgstr "Id : %s"
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Impossible de centrer la carte. Aucun emplacement avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
 msgstr "Les lieux de la base de données avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1568
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
 msgstr "Les événements de cette base de données avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1647
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : Père : %s"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1652
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : Mère : %s"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1661
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : Enfant : %(id)s %(index)d"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
 msgstr "Les membres de la famille de l'individu actif n'ont pas de lieux avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1672
 #: ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
 msgstr "Aucun individu actif défini."
 
-# trunk
-# à tester, contexte
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Les lieux de la famille de %(name)s avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1720
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-# trunk
 #: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
 msgstr "L'individu actif n'a pas de lieux avec coordonnées."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
 msgstr "Tous les événements pour %s."
 
-# trunk
 #: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
 msgstr "Pas encore implémenté ..."
 
 #: ../src/DataViews/MediaView.py:88
-#: ../src/Editors/ObjectEntries.py:301
+#: ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
 msgstr "Ajouter un nouveau media"
 
@@ -4141,7 +4064,6 @@ msgstr "Glisser le bouton propriétés pour déplacer et cliquer dessus pour l'u
 msgid "Gramplet"
 msgstr "Gramplet"
 
-# trunk
 #: ../src/DataViews/GrampletView.py:353
 #: ../src/DataViews/GrampletView.py:552
 #, python-format
@@ -4188,7 +4110,7 @@ msgid "Marker"
 msgstr "Marqueur"
 
 #: ../src/DataViews/NoteView.py:73
-#: ../src/Editors/ObjectEntries.py:352
+#: ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
 msgstr "Ajouter une nouvelle note"
 
@@ -4210,7 +4132,6 @@ msgstr "Éditeur de filtre sur la note"
 msgid "Select Note Columns"
 msgstr "Sélectionner les colonnes note"
 
-# trunk
 #. ------------------------------------------------------------------------
 #.
 #. Constants
@@ -4222,29 +4143,24 @@ msgstr "Sélectionner les colonnes note"
 msgid "short for born|b."
 msgstr "n."
 
-# trunk
 #: ../src/DataViews/PedigreeView.py:74
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:55
 msgid "short for died|d."
 msgstr "d."
 
-# trunk
 #: ../src/DataViews/PedigreeView.py:75
 msgid "short for baptized|bap."
 msgstr "bap."
 
-# trunk
 #: ../src/DataViews/PedigreeView.py:76
 msgid "short for chistianized|chr."
 msgstr "bap."
 
-# trunk
 #: ../src/DataViews/PedigreeView.py:77
 msgid "short for buried|bur."
 msgstr "inh."
 
-# trunk
 #: ../src/DataViews/PedigreeView.py:78
 msgid "short for cremated|crem."
 msgstr "crem."
@@ -4430,7 +4346,6 @@ msgstr "Ajouter un nouvel individu"
 msgid "Remove the Selected Person"
 msgstr "Supprimer l'individu sélectionné"
 
-# trunk
 #: ../src/DataViews/PersonView.py:163
 msgid "Compare and _Merge..."
 msgstr "_Comparer et fusionner..."
@@ -4534,7 +4449,7 @@ msgid "Street"
 msgstr "Rue"
 
 #: ../src/DataViews/PlaceView.py:89
-#: ../src/Editors/ObjectEntries.py:250
+#: ../src/Editors/ObjectEntries.py:252
 msgid "Add a new place"
 msgstr "Ajouter un nouveau lieu"
 
@@ -4552,27 +4467,22 @@ msgid "_Merge..."
 msgstr "_Fusion..."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/DataViews/PlaceView.py:132
 msgid "Loading..."
-msgstr "Chargement..."
+msgstr "En charge..."
 
-# trunk
 #: ../src/DataViews/PlaceView.py:133
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ..."
 msgstr "Tentative pour localiser les emplacements sélectionnés avec le service cartographique (OpenstreetMap, Google Maps, ..."
 
-# trunk
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
 msgstr "Sélectionner le service cartographique"
 
-# trunk
 #: ../src/DataViews/PlaceView.py:138
 msgid "_Look up with Map Service"
 msgstr "_Rechercher avec le service cartographique"
 
-# trunk
 #: ../src/DataViews/PlaceView.py:140
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ..."
 msgstr "Tentative pour localiser cet emplacement avec le service cartographique (OpenstreetMap, Google Maps, ..."
@@ -4581,12 +4491,10 @@ msgstr "Tentative pour localiser cet emplacement avec le service cartographique 
 msgid "Place Filter Editor"
 msgstr "Éditeur de filtre sur le lieu"
 
-# trunk
 #: ../src/DataViews/PlaceView.py:229
 msgid "No place selected."
 msgstr "Aucun lieu sélectionné."
 
-# trunk
 #: ../src/DataViews/PlaceView.py:230
 msgid "You need to select a place to be able to view it on a map. Some Map Services might support multiple selections."
 msgstr "Vous devez sélectionner un lieu pour le voir sur une carte. Quelques services cartographiques semblent supporter les sélections multiples."
@@ -4690,7 +4598,6 @@ msgstr "Afficher les frères et sœurs"
 msgid "Edit %s"
 msgstr "Éditer %s"
 
-# trunk
 #: ../src/DataViews/RelationView.py:590
 msgid "Alive"
 msgstr "En vie"
@@ -4746,7 +4653,6 @@ msgstr "(1 frère)"
 msgid " (1 sister)"
 msgstr "(1 sœur)"
 
-# trunk
 #: ../src/DataViews/RelationView.py:803
 #: ../src/DataViews/RelationView.py:859
 msgid " (1 sibling)"
@@ -4755,7 +4661,7 @@ msgstr "(1 frère ou sœur)"
 #: ../src/DataViews/RelationView.py:805
 #: ../src/DataViews/RelationView.py:861
 msgid " (only child)"
-msgstr "(seulement l'enfant)"
+msgstr "(enfant unique)"
 
 #: ../src/DataViews/RelationView.py:877
 #: ../src/DataViews/RelationView.py:1335
@@ -4772,13 +4678,11 @@ msgstr "Ajouter un enfant existant à la famille"
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "n. %(birthdate)s, d. %(deathdate)s"
 
-# trunk
 #: ../src/DataViews/RelationView.py:1126
 #, python-format
 msgid "short for born|b. %s"
 msgstr "b. %s"
 
-# trunk
 #: ../src/DataViews/RelationView.py:1128
 #, python-format
 msgid "short for dead|d. %s"
@@ -5380,73 +5284,73 @@ msgstr "Impossible d'afficher %s"
 msgid "GRAMPS is not able to display the image file. This may be caused by a corrupt file."
 msgstr "GRAMPS ne peut pas afficher cette image. Le fichier est peut-être corrompu."
 
-#: ../src/Editors/ObjectEntries.py:245
+#: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner un lieu, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/Editors/ObjectEntries.py:247
+#: ../src/Editors/ObjectEntries.py:249
 msgid "No place given, click button to select one"
 msgstr "Aucune place choisie, cliquez sur le bouton pour en sélectionner une"
 
-#: ../src/Editors/ObjectEntries.py:248
+#: ../src/Editors/ObjectEntries.py:250
 msgid "Edit place"
 msgstr "Éditer le lieu"
 
-#: ../src/Editors/ObjectEntries.py:249
+#: ../src/Editors/ObjectEntries.py:251
 msgid "Select an existing place"
 msgstr "Sélectionner un lieu existant"
 
 # enlever une référence à un lieu
-#: ../src/Editors/ObjectEntries.py:251
+#: ../src/Editors/ObjectEntries.py:253
 msgid "Remove place"
 msgstr "Enlever le lieu"
 
-#: ../src/Editors/ObjectEntries.py:296
+#: ../src/Editors/ObjectEntries.py:298
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner un objet media, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/Editors/ObjectEntries.py:298
+#: ../src/Editors/ObjectEntries.py:300
 #: ../src/PluginUtils/_GuiOptions.py:777
 msgid "No image given, click button to select one"
 msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
-#: ../src/Editors/ObjectEntries.py:299
+#: ../src/Editors/ObjectEntries.py:301
 msgid "Edit media object"
 msgstr "Éditer l'objet media"
 
-#: ../src/Editors/ObjectEntries.py:300
+#: ../src/Editors/ObjectEntries.py:302
 #: ../src/PluginUtils/_GuiOptions.py:752
 msgid "Select an existing media object"
 msgstr "Sélectionner un objet media existant"
 
 # enlever la référence au media
-#: ../src/Editors/ObjectEntries.py:302
+#: ../src/Editors/ObjectEntries.py:304
 msgid "Remove media object"
 msgstr "Enlever un objet media"
 
-#: ../src/Editors/ObjectEntries.py:347
+#: ../src/Editors/ObjectEntries.py:349
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner une note, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/Editors/ObjectEntries.py:349
+#: ../src/Editors/ObjectEntries.py:351
 #: ../src/PluginUtils/_GuiOptions.py:700
 msgid "No note given, click button to select one"
 msgstr "Aucune note choisie, cliquez sur le bouton pour en sélectionner une"
 
-#: ../src/Editors/ObjectEntries.py:350
+#: ../src/Editors/ObjectEntries.py:352
 #: ../src/Editors/_EditNote.py:264
 #: ../src/Editors/_EditNote.py:310
 #: ../src/plugins/gramplet/NoteGramplet.py:257
 msgid "Edit Note"
 msgstr "Éditer la note"
 
-#: ../src/Editors/ObjectEntries.py:351
+#: ../src/Editors/ObjectEntries.py:353
 #: ../src/PluginUtils/_GuiOptions.py:670
 msgid "Select an existing note"
 msgstr "Sélectionner une note existante"
 
 # enlever une référence aux parents
-#: ../src/Editors/ObjectEntries.py:353
+#: ../src/Editors/ObjectEntries.py:355
 msgid "Remove note"
 msgstr "Enlever la note"
 
@@ -5594,7 +5498,6 @@ msgstr "Paternel"
 msgid "Maternal"
 msgstr "Maternel"
 
-# trunk
 # voir lien clavier/interface
 #: ../src/Editors/_EditFamily.py:119
 #: ../src/plugins/export/ExportCsv.glade.h:2
@@ -5642,29 +5545,29 @@ msgstr "Éditer la famille"
 
 #: ../src/Editors/_EditFamily.py:547
 msgid "Select a person as the mother"
-msgstr "Sélectionner un individu comme mère"
+msgstr "Sélectionner un individu en tant que mère"
 
 #: ../src/Editors/_EditFamily.py:549
 msgid "Add a new person as the mother"
-msgstr "Ajouter un nouvel individu comme mère"
+msgstr "Ajouter un nouvel individu en tant que mère"
 
 # enlever la référence à la mère
 #: ../src/Editors/_EditFamily.py:551
 msgid "Remove the person as the mother"
-msgstr "Enlever cet individu comme mère"
+msgstr "Enlever l'individu en tant que mère"
 
 #: ../src/Editors/_EditFamily.py:565
 msgid "Select a person as the father"
-msgstr "Sélectionner un individu comme père"
+msgstr "Sélectionner un individu en tant que père"
 
 #: ../src/Editors/_EditFamily.py:567
 msgid "Add a new person as the father"
-msgstr "Ajouter un nouvel individu comme père"
+msgstr "Ajouter un nouvel individu en tant que père"
 
 # enlever la référence au père
 #: ../src/Editors/_EditFamily.py:569
 msgid "Remove the person as the father"
-msgstr "Enlever l'individu comme père"
+msgstr "Enlever l'individu en tant que père"
 
 #: ../src/Editors/_EditFamily.py:746
 msgid "Select Mother"
@@ -5810,7 +5713,6 @@ msgstr "Enlever un objet media"
 msgid "Media Reference Editor"
 msgstr "Éditeur de référence de media"
 
-# trunk
 #: ../src/Editors/_EditMediaRef.py:83
 #: ../src/Editors/_EditMediaRef.py:84
 #: ../src/glade/gramps.glade.h:137
@@ -5906,13 +5808,11 @@ msgstr "Ajouter une note"
 msgid "Delete Note (%s)"
 msgstr "Supprimer la note (%s)"
 
-# trunk
 #: ../src/Editors/_EditPerson.py:113
 #, python-format
 msgid "Person: %(name)s"
 msgstr "Individu : %(name)s"
 
-# trunk
 #: ../src/Editors/_EditPerson.py:117
 #, python-format
 msgid "New Person: %(name)s"
@@ -6687,7 +6587,6 @@ msgstr "L'arbre familial que vous venez d'importer a déjà un chemin media : %(
 msgid "GRAMPS package"
 msgstr "Paquet GRAMPS"
 
-# trunk
 #: ../src/plugins/import/ImportGpkg.py:147
 msgid "Import data from GRAMPS packages"
 msgstr "Importer les données depuis des paquets GRAMPS"
@@ -6882,14 +6781,12 @@ msgstr "Base de données GRAMPS XML"
 msgid "The GRAMPS XML database is a text version of a family tree. It is read-write compatible with the present GRAMPS database format."
 msgstr "La base de données GRAMPS XML est une version textuelle de l'arbre familial. Il est compatible en lecture et écriture avec le format de base de données GRAMPS actuel."
 
-# trunk
 #: ../src/plugins/Records.py:217
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
 #, python-format
 msgid "%s and %s"
 msgstr "%s et %s"
 
-# trunk
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/gramplet/WhatsNext.py:60
 msgid "Double-click name for details"
@@ -6917,13 +6814,11 @@ msgstr "Aucun Arbre Familial chargé."
 msgid "Processing..."
 msgstr "Traitement..."
 
-# trunk
 #: ../src/plugins/Records.py:394
 #: ../src/plugins/Records.py:568
 msgid "Records"
 msgstr "Enregistrements"
 
-# trunk
 #: ../src/plugins/Records.py:412
 #, python-format
 msgid "%(number)s. %(name)s (%(value)s)"
@@ -7004,32 +6899,26 @@ msgstr "Filtre sur l'individu"
 msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
 
-# trunk
 #: ../src/plugins/Records.py:460
 msgid "Use call name"
-msgstr "Utiliser nom usuel"
+msgstr "Utiliser le nom usuel"
 
-# trunk
 #: ../src/plugins/Records.py:462
 msgid "Don't use call name"
 msgstr "Ne pas utiliser le nom usuel"
 
-# trunk
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
 msgstr "Remplacer le prénom par le nom usuel"
 
-# trunk
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Souligner ou ajouter le nom usuel dans le prénom"
 
-# trunk
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
 msgstr "Enregistrement sur l'individu"
 
-# trunk
 #: ../src/plugins/Records.py:472
 msgid "Family Records"
 msgstr "Enregistrement sur la famille"
@@ -7052,112 +6941,90 @@ msgstr "Enregistrement sur la famille"
 msgid "The basic style used for the text display."
 msgstr "Le style de base pour afficher du texte."
 
-# trunk
 #: ../src/plugins/Records.py:518
 msgid "The style used for headings."
 msgstr "Le style utilisé pour les en-têtes."
 
-# trunk
 #: ../src/plugins/Records.py:527
 msgid "The style used for the report title"
 msgstr "Le style utilisé pour le titre du rapport"
 
-# trunk
 #: ../src/plugins/Records.py:536
 msgid "Youngest living person"
 msgstr "Le plus jeune individu vivant"
 
-# trunk
 #: ../src/plugins/Records.py:537
 msgid "Oldest living person"
 msgstr "Individu vivant le plus âgé"
 
-# trunk
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
 msgstr "Individu décédé jeune"
 
-# trunk
 #: ../src/plugins/Records.py:539
 msgid "Person died at oldest age"
 msgstr "Individu décédé à un âge avancé"
 
-# trunk
 #: ../src/plugins/Records.py:540
 msgid "Person married at youngest age"
 msgstr "Individu marié jeune"
 
-# trunk
 #: ../src/plugins/Records.py:541
 msgid "Person married at oldest age"
 msgstr "Individu marié à un âge avancé"
 
-# trunk
 #: ../src/plugins/Records.py:542
 msgid "Person divorced at youngest age"
 msgstr "Individu divorcé jeune"
 
-# trunk
 #: ../src/plugins/Records.py:543
 msgid "Person divorced at oldest age"
 msgstr "Individu divorcé à un âge avancé"
 
-# trunk
 #: ../src/plugins/Records.py:544
 msgid "Youngest father"
 msgstr "Le plus jeune père"
 
-# trunk
 #: ../src/plugins/Records.py:545
 msgid "Youngest mother"
 msgstr "La plus jeune mère"
 
-# trunk
 #: ../src/plugins/Records.py:546
 msgid "Oldest father"
 msgstr "Le père le plus âgé"
 
-# trunk
 #: ../src/plugins/Records.py:547
 msgid "Oldest mother"
 msgstr "La mère la plus âgée"
 
-# trunk
 #: ../src/plugins/Records.py:548
 msgid "Couple with most children"
 msgstr "Couple avec le plus d'enfants"
 
-# trunk
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
 msgstr "Couple marié il y a peu de temps"
 
-# trunk
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
 msgstr "Couple marié il y a longtemps"
 
-# trunk
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
 msgstr "Le mariage le plus court"
 
-# trunk
 #: ../src/plugins/Records.py:552
 msgid "Longest past marriage"
 msgstr "Le mariage le plus long"
 
-# trunk
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
 msgstr "Gramplet Enregistrements"
 
-# trunk
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
 msgstr "Rapport d'enregistrements"
 
-# trunk
 #: ../src/plugins/Records.py:581
 msgid "Shows some interesting records about people and families"
 msgstr "Affiche des enregistrements intéressants sur les individus et familles"
@@ -7166,7 +7033,6 @@ msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 msgid "Plain Text"
 msgstr "Texte brut"
 
-# trunk
 #. --------------------------------------------------------------------------
 #.
 #. Register plugins
@@ -7349,45 +7215,39 @@ msgstr "Arbre des ascendants"
 msgid "Produces a graphical ancestral tree"
 msgstr "Produit un arbre graphique des ascendants"
 
-# trunk
 #. initialize the dict to fill:
 #: ../src/plugins/drawreport/Calendar.py:141
 msgid "Calendar Report"
 msgstr "Calendrier"
 
 # Substantif (GNOME fr)
-# trunk
 #. generate the report:
 #: ../src/plugins/drawreport/Calendar.py:151
 #: ../src/plugins/textreport/BirthdayReport.py:154
 msgid "Formatting months..."
 msgstr "Formatage des mois..."
 
-# trunk
+# Substantif (GNOME fr)
 #: ../src/plugins/drawreport/Calendar.py:244
 #: ../src/plugins/textreport/BirthdayReport.py:191
 #: ../src/plugins/webreport/NarrativeWeb.py:2952
 #: ../src/plugins/webreport/WebCal.py:1004
 msgid "Applying Filter..."
-msgstr "Appliquer le filtre..."
+msgstr "Application du filtre..."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/drawreport/Calendar.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:196
 #: ../src/plugins/webreport/WebCal.py:1007
 msgid "Reading database..."
-msgstr "Lecture seule de la base de données..."
+msgstr "Lecture de la base de données..."
 
-# trunk
 #: ../src/plugins/drawreport/Calendar.py:290
 #: ../src/plugins/textreport/BirthdayReport.py:246
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, naissance%(relation)s"
 
-# à tester
-# trunk
 #: ../src/plugins/drawreport/Calendar.py:294
 #: ../src/plugins/textreport/BirthdayReport.py:250
 #, python-format
@@ -7396,7 +7256,6 @@ msgid_plural "%(person)s, %(age)d%(relation)s"
 msgstr[0] "%(person)s, %(age)d an %(relation)s"
 msgstr[1] "%(person)s, %(age)d ans %(relation)s"
 
-# trunk
 #: ../src/plugins/drawreport/Calendar.py:342
 #: ../src/plugins/textreport/BirthdayReport.py:296
 #, python-format
@@ -7634,7 +7493,6 @@ msgstr "Calendrier"
 msgid "Produces a graphical calendar"
 msgstr "Produit un calendrier graphique"
 
-# trunk
 #: ../src/plugins/drawreport/DescendTree.py:54
 msgid "short for married|m."
 msgstr "m."
@@ -7645,15 +7503,13 @@ msgstr "m."
 msgid "Descendant Chart for %s"
 msgstr "Arbre des descendants de %s"
 
-# trunk
 #: ../src/plugins/drawreport/DescendTree.py:483
 msgid "Show Sp_ouses"
 msgstr "Afficher les c_onjoints"
 
-# trunk
 #: ../src/plugins/drawreport/DescendTree.py:484
 msgid "Whether to show spouses in the tree."
-msgstr "Afficher les conjoints dans l'arbre."
+msgstr "Afficher ou non les conjoints dans l'arbre."
 
 #: ../src/plugins/drawreport/DescendTree.py:538
 msgid "Descendant Tree"
@@ -7725,7 +7581,6 @@ msgstr "droit"
 msgid "roundabout"
 msgstr "courbé"
 
-# trunk
 #: ../src/plugins/drawreport/FanChart.py:369
 msgid "Print radial texts upright or roundabout"
 msgstr "Imprimer les textes radiaux droits ou courbés"
@@ -8201,59 +8056,51 @@ msgid "Web Family Tree format."
 msgstr "Format Web Family Tree."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:370
 msgid "Filtering private data"
 msgstr "Filtrage des données privées"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:377
 msgid "Filtering living persons"
 msgstr "Filtrage des personnes vivantes"
 
-# trunk
+# Substantif (GNOME fr)
 #: ../src/plugins/export/ExportGedcom.py:387
 msgid "Applying selected person filter"
 msgstr "Application du filtre sur l'individu"
 
-# trunk
+# Substantif (GNOME fr)
 #: ../src/plugins/export/ExportGedcom.py:395
 msgid "Applying selected note filter"
 msgstr "Application du filtre sur la note"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:404
 msgid "Filtering unlinked records"
 msgstr "Filtrage d'enregistrements non-liés"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:574
 msgid "Writing individuals"
 msgstr "Écriture des individus"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:916
 msgid "Writing families"
 msgstr "Écriture des familles"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:1076
 msgid "Writing sources"
 msgstr "Écriture des sources"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:1110
 msgid "Writing notes"
 msgstr "Écriture des notes"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/export/ExportGedcom.py:1147
 msgid "Writing repositories"
 msgstr "Écriture des dépôts"
@@ -8396,25 +8243,21 @@ msgstr "Gramplet Âge"
 msgid "Age on Date"
 msgstr "Âge à la date"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:39
 #: ../src/plugins/gramplet/AgeStats.py:49
 msgid "Max age"
 msgstr "Âge maximum"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:41
 #: ../src/plugins/gramplet/AgeStats.py:50
 msgid "Max age of Mother at birth"
 msgstr "Âge maximum pour être mère"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:43
 #: ../src/plugins/gramplet/AgeStats.py:51
 msgid "Max age of Father at birth"
 msgstr "Âge maximum pour être père"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:45
 #: ../src/plugins/gramplet/AgeStats.py:52
 msgid "Chart width"
@@ -8430,7 +8273,6 @@ msgstr "Statistiques sur l'espérance de vie"
 msgid "Father - Child Age Diff Distribution"
 msgstr "Père à l'âge de ..."
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:158
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Diff"
@@ -8446,54 +8288,44 @@ msgstr "Mère à l'âge de ..."
 msgid "Statistics"
 msgstr "Statistiques"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:217
 msgid "Total"
 msgstr "Total"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:218
 msgid "Minimum"
 msgstr "Minimum"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:219
 msgid "Average"
 msgstr "Moyenne"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:220
 msgid "Median"
 msgstr "Médian"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:221
 msgid "Maximum"
 msgstr "Maximum"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:256
 #, python-format
 msgid "Double-click to see %d people"
 msgstr "Cliquez deux fois pour afficher %d individus"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:268
 msgid "Age Stats Gramplet"
 msgstr "Gramplet Âge statistiques"
 
-# trunk
 #: ../src/plugins/gramplet/AgeStats.py:272
 msgid "Age Stats"
 msgstr "Âge statistiques"
 
-# trunk
 #: ../src/plugins/gramplet/AttributesGramplet.py:44
 #, python-format
 msgid "Active person: <b>%s</b>"
 msgstr "Individu actif : <b>%s</b>"
 
-# trunk
 #: ../src/plugins/gramplet/AttributesGramplet.py:54
 msgid "Attributes Gramplet"
 msgstr "Gramplet Attributs"
@@ -8512,7 +8344,6 @@ msgstr "Double cliquer sur le jour pour les détails"
 msgid "Calendar Gramplet"
 msgstr "Gramplet Calendrier"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:52
 #: ../src/plugins/gramplet/NoteGramplet.py:59
 msgid "Active person"
@@ -8523,56 +8354,45 @@ msgstr "Individu actif"
 msgid "Family:"
 msgstr "Famille :"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:55
 #: ../src/plugins/gramplet/DataEntryGramplet.py:82
 msgid "Surname, Given"
 msgstr "Nom de famille, Prénom"
 
-# à voir
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:66
 #: ../src/plugins/gramplet/NoteGramplet.py:105
 msgid "Save"
 msgstr "Enregistrer"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:69
 #: ../src/plugins/gramplet/NoteGramplet.py:108
 msgid "Abandon"
 msgstr "Abandonner"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:74
 msgid "New person"
 msgstr "Nouvel individu"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:75
 msgid "Add relation"
 msgstr "Ajouter la relation"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:76
 msgid "No relation to active person"
 msgstr "Aucune relation avec l'individu actif"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:77
 msgid "Add as a Parent"
 msgstr "Ajouter comme parent"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:78
 msgid "Add as a Spouse"
 msgstr "Ajouter comme conjoint"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:79
 msgid "Add as a Sibling"
 msgstr "Ajouter comme frère ou sœur"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:80
 msgid "Add as a Child"
 msgstr "Ajouter comme enfant"
@@ -8582,15 +8402,12 @@ msgstr "Ajouter comme enfant"
 msgid "Copy Active Data"
 msgstr "Copier ces données"
 
-# ? à voir
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:142
 #: ../src/plugins/gramplet/DataEntryGramplet.py:156
 #: ../src/plugins/gramplet/DataEntryGramplet.py:263
 msgid "in"
 msgstr "dans"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:384
 #, python-format
 msgid "Gramplet Data Edit: %s"
@@ -8601,12 +8418,10 @@ msgstr "Gramplet formulaire : %s"
 msgid "Please provide a name."
 msgstr "Saisissez un nom."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
 msgid "Can't add new person."
 msgstr "Impossible d'ajouter un nouvel individu."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
@@ -8614,13 +8429,11 @@ msgstr "Impossible d'ajouter un nouvel individu."
 msgid "Please set an active person."
 msgstr "Définir l'individu actif."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
 msgid "Can't add new person as a parent."
 msgstr "Impossible d'ajouter un nouvel individu comme parent."
 
-# trunk
 #. unknown
 #. both genders unknown
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
@@ -8628,7 +8441,6 @@ msgstr "Impossible d'ajouter un nouvel individu comme parent."
 msgid "Please set the new person's gender."
 msgstr "Définir le genre du nouvel individu."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
 #: ../src/plugins/gramplet/DataEntryGramplet.py:556
@@ -8637,29 +8449,24 @@ msgstr "Définir le genre du nouvel individu."
 msgid "Can't add new person as a spouse."
 msgstr "Impossible d'ajouter un nouvel individu comme conjoint."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
 msgid "Can't add new person as a sibling."
 msgstr "Impossible d'ajouter un nouvel individu comme frère ou sœur."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
 #: ../src/plugins/gramplet/DataEntryGramplet.py:672
 msgid "Can't add new person as a child."
 msgstr "Impossible d'ajouter un nouvel individu comme enfant."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
 msgid "Please set gender on Active or new person."
 msgstr "Saisissez le genre du nouvel individu ou de la personne active."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:592
 #: ../src/plugins/gramplet/DataEntryGramplet.py:625
 msgid "Same genders on Active and new person."
 msgstr "Même genre entre la personne active et le nouvel individu."
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:671
 msgid "Please set gender on Active person."
 msgstr "Saisissez le genre de l'individu actif."
@@ -8670,12 +8477,10 @@ msgstr "Saisissez le genre de l'individu actif."
 msgid "Gramplet Data Entry: %s"
 msgstr "Gramplet formulaire : %s"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:742
 msgid "Data Entry Gramplet"
 msgstr "Gramplet Formulaire"
 
-# trunk
 #: ../src/plugins/gramplet/DataEntryGramplet.py:746
 msgid "Data Entry"
 msgstr "Formulaire"
@@ -8685,7 +8490,6 @@ msgstr "Formulaire"
 msgid "Move mouse over links for options"
 msgstr "Passez la souris au-dessus des liens pour les options"
 
-# trunk
 #: ../src/plugins/gramplet/DescendGramplet.py:60
 msgid "No Active Person selected."
 msgstr "Aucun individu actif sélectionné."
@@ -8726,22 +8530,18 @@ msgstr "Cliquez pour rendre actif\n"
 msgid "Right-click to edit"
 msgstr "Un clic droit pour éditer"
 
-# trunk
 #: ../src/plugins/gramplet/DescendGramplet.py:151
 msgid "   sp. "
 msgstr "   conj. "
 
-# trunk
 #: ../src/plugins/gramplet/DescendGramplet.py:166
 msgid "Descendant Gramplet"
 msgstr "Gramplet Descendant"
 
-# trunk
 #: ../src/plugins/gramplet/DescendGramplet.py:170
 msgid "Descendants"
 msgstr "Descendants"
 
-# trunk
 #: ../src/plugins/gramplet/FanChartGramplet.py:534
 msgid ""
 "Click to expand/contract person\n"
@@ -8750,9 +8550,8 @@ msgid ""
 msgstr ""
 "Cliquez pour déployer/contracter l'individu\n"
 "Un clic droit pour les options\n"
-"Cliquez et glissez dans l'espace pour la rotation"
+"Cliquez et glissez dans l'espace libre pour la rotation"
 
-# trunk
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
 msgid "Fan Chart Gramplet"
 msgstr "Gramplet Roue des ascendants"
@@ -8765,17 +8564,14 @@ msgstr "Gramplet FAQ"
 msgid "FAQ"
 msgstr "Foire aux questions"
 
-# trunk
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
 msgid "Double-click given name for details"
-msgstr "Double cliquez sur le nom de famille pour les détails"
+msgstr "Double cliquez sur le prénom pour les détails"
 
-# trunk
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
 msgid "Total unique given names"
 msgstr "Total des prénoms présents"
 
-# trunk
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
 msgid "Total given names showing"
 msgstr "Total des prénoms affichés"
@@ -8786,17 +8582,14 @@ msgstr "Total des prénoms affichés"
 msgid "Total people"
 msgstr "Total des individus"
 
-# trunk
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
 msgid "Given Name Cloud Gramplet"
 msgstr "Gramplet Nuage de prénoms"
 
-# trunk
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
 msgid "Given Name Cloud"
 msgstr "Nuage de prénoms"
 
-# trunk
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:56
 msgid "Read headline news from the GRAMPS wiki"
 msgstr "Lire les nouvelles depuis le wiki de GRAMPS"
@@ -8810,12 +8603,10 @@ msgstr "Erreur"
 msgid "Reading"
 msgstr "Lecture"
 
-# trunk
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:193
 msgid "Headline News Gramplet"
 msgstr "Gramplet Résumé"
 
-# trunk
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:197
 msgid "Headline News"
 msgstr "Nouvelles"
@@ -8826,12 +8617,10 @@ msgstr "Nouvelles"
 msgid "Person Note"
 msgstr "Note de l'individu"
 
-# trunk
 #: ../src/plugins/gramplet/NoteGramplet.py:268
 msgid "Note Gramplet"
 msgstr "Gramplet Note"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:58
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
 msgid "Max generations"
@@ -8861,7 +8650,6 @@ msgstr ""
 "\n"
 "Analyse par génération :\n"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:243
 msgid "percent sign or text string|%"
 msgstr "%"
@@ -8874,7 +8662,6 @@ msgstr "Génération 1"
 msgid "Double-click to see people in generation"
 msgstr "Cliquez deux fois pour afficher les individus de la génération"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:252
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
@@ -8889,7 +8676,6 @@ msgstr " contient 1 individu sur 1 (complet à %(percent)s)\n"
 msgid "Generation %d"
 msgstr "Génération %d"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:256
 #, python-format
 msgid "Double-click to see people in generation %d"
@@ -8910,7 +8696,6 @@ msgstr "Toutes les générations"
 msgid "Double-click to see all generations"
 msgstr "Cliquez deux fois pour afficher toutes les générations"
 
-# trunk
 #: ../src/plugins/gramplet/PedigreeGramplet.py:265
 #, python-format
 msgid " have %d individual\n"
@@ -8939,8 +8724,6 @@ msgstr "Gramplet Python"
 msgid "Python Shell"
 msgstr "Shell python"
 
-# trunk
-# à voir dans le programme
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:51
 #: ../src/plugins/gramplet/QuickViewGramplet.py:91
@@ -8949,14 +8732,12 @@ msgstr "Shell python"
 msgid "View Type"
 msgstr "Type"
 
-# trunk
 #: ../src/plugins/gramplet/QuickViewGramplet.py:53
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
 msgid "Quick Views"
 msgstr "Vues express"
 
-# trunk
 #: ../src/plugins/gramplet/QuickViewGramplet.py:123
 msgid "Quick View Gramplet"
 msgstr "Gramplet Vue express"
@@ -9004,8 +8785,6 @@ msgstr "   %d.b Père: "
 msgid "Relatives Gramplet"
 msgstr "Gramplet Parenté"
 
-# trunk
-# à vérifier
 #: ../src/plugins/gramplet/RelativeGramplet.py:146
 msgid "Relatives"
 msgstr "Parentés"
@@ -9023,7 +8802,6 @@ msgstr ""
 msgid "Log for this Session"
 msgstr "Log pour cette session"
 
-# trunk
 #: ../src/plugins/gramplet/SessionLogGramplet.py:44
 msgid "Opened data base -----------\n"
 msgstr "Base de données ouverte ---\n"
@@ -9032,21 +8810,20 @@ msgstr "Base de données ouverte ---\n"
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
 #: ../src/plugins/gramplet/SessionLogGramplet.py:56
 msgid "Added"
-msgstr "Ajouté"
+msgstr "Ajouté(e)"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:48
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 msgid "Deleted"
-msgstr "Supprimé"
+msgstr "Supprimé(e)"
 
-# trunk
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
 msgid "Edited"
-msgstr "Édité"
+msgstr "Édité(e)"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:59
 msgid "Selected"
-msgstr "Sélectionné"
+msgstr "Sélectionné(e)"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:95
 msgid "Session Log Gramplet"
@@ -9199,7 +8976,6 @@ msgstr "Gramplet Noms de famille"
 msgid "Top Surnames"
 msgstr "Principaux noms de famille"
 
-# trunk
 #: ../src/plugins/gramplet/WelcomeGramplet.py:36
 msgid ""
 "Welcome to GRAMPS!\n"
@@ -9224,7 +9000,7 @@ msgstr ""
 "\n"
 "Pour démarrer\n"
 "\n"
-"La première étape est de créer un nouvel arbre familial (une base de données). Sélectionnez \"Arbres familiaux\" depuis le menu, choisissez \"Gestion des arbres familaux\", appuyez sur \"Nouveau\" et donnez un nom à votre base de données. Pour plus de détails, lire le manuel d'utilisateur, ou la version en ligne sur http://gramps-project.org.\n"
+"La première étape consiste à créer un nouvel arbre familial (une base de données). Sélectionnez \"Arbres familiaux\" depuis le menu, choisissez \"Gestion des arbres familaux\", appuyez sur \"Nouveau\" et donnez un nom à votre base de données. Pour plus de détails, lire le manuel d'utilisateur, ou la version en ligne sur http://gramps-project.org.\n"
 "\n"
 "Vous êtes en train de lire depuis la page \"Gramplets\", dans laquelle vous pouvez ajouter vos propres gramplets.\n"
 "\n"
@@ -9238,122 +9014,100 @@ msgstr "Gramplet Bienvenu"
 msgid "Welcome to GRAMPS!"
 msgstr "Bienvenu dans GRAMPS !"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:79
 msgid "No Home Person set."
 msgstr "Individu par défaut (souche) non défini."
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:245
 msgid "first name unknown"
 msgstr "prénom inconnu"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:248
 msgid "surname unknown"
 msgstr "nom de famille inconnu"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:252
 #: ../src/plugins/gramplet/WhatsNext.py:283
 #: ../src/plugins/gramplet/WhatsNext.py:290
 msgid "(person with unknown name)"
 msgstr "(individu avec un nom inconnu)"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:265
 msgid "birth event missing"
 msgstr "Naissance manquante"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:269
 #: ../src/plugins/gramplet/WhatsNext.py:316
 #, python-format
 msgid ": %(list)s\n"
 msgstr ": %(list)s\n"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:270
 #: ../src/plugins/gramplet/WhatsNext.py:317
 #: ../src/plugins/gramplet/WhatsNext.py:338
 msgid ", "
 msgstr ", "
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
 msgid "(unknown person)"
 msgstr "(individu inconnu)"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:294
 #, python-format
 msgid "%(name1)s and %(name2)s"
 msgstr "%(name1)s et %(name2)s"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:310
 msgid "marriage event missing"
 msgstr "mariage manquant"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:312
 msgid "relation type unknown"
 msgstr "type de relation inconnu"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:327
 msgid "date unknown"
 msgstr "date inconnue"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:329
 msgid "date incomplete"
 msgstr "date incomplète"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:333
 msgid "place unknown"
 msgstr "lieu inconnu"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:336
 #, python-format
 msgid "%(type)s: %(list)s"
 msgstr "%(type)s: %(list)s"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:344
 msgid "spouse missing"
 msgstr "conjoint manquant"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:348
 msgid "father missing"
 msgstr "père manquant"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:352
 msgid "mother missing"
 msgstr "mère manquante"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:356
 msgid "parents missing"
 msgstr "parents manquants"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:363
 #, python-format
 msgid ": %s\n"
 msgstr ": %s\n"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:424
 msgid "What's Next Gramplet"
 msgstr "Gramplet Et maintenant ?"
 
-# trunk
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
 msgstr "Et maintenant ?"
@@ -9369,12 +9123,10 @@ msgstr "Et maintenant ?"
 msgid "B&W outline"
 msgstr "Bordures noir et blanc (intérieur vide)"
 
-# trunk
 #: ../src/plugins/graph/GVFamilyLines.py:65
 msgid "Coloured outline"
 msgstr "Bordure colorée"
 
-# trunk
 #: ../src/plugins/graph/GVFamilyLines.py:66
 msgid "Colour fill"
 msgstr "Couleur du remplissage"
@@ -9920,7 +9672,6 @@ msgstr "Importation de CSV"
 msgid "CSV Spreadheet"
 msgstr "Tableur CSV"
 
-# trunk
 #: ../src/plugins/import/ImportCsv.py:848
 msgid "Import data from CSV files"
 msgstr "Importer les données depuis des fichiers CSV"
@@ -9953,7 +9704,6 @@ msgstr "Importation GeneWeb"
 msgid "GeneWeb"
 msgstr "GeneWeb"
 
-# trunk
 #: ../src/plugins/import/ImportGeneWeb.py:927
 msgid "Import data from GeneWeb files"
 msgstr "Importer les données depuis des fichiers GeneWeb"
@@ -9984,89 +9734,73 @@ msgstr "Importer une base de données"
 msgid "GRAMPS 2.x database"
 msgstr "Base de données GRAMPS 2.x"
 
-# trunk
 #: ../src/plugins/import/ImportGrdb.py:2687
 msgid "Import data from GRAMPS 2.x database files"
 msgstr "Importer les données depuis des bases de données GRAMPS 2.x"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:77
 msgid "Pro-Gen data error"
 msgstr "Erreur de donnée Pro-Gen"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:159
 msgid "Not a Pro-Gen file"
 msgstr "Pas un fichier Pro-Gen valide"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:374
 #, python-format
 msgid "Field '%(fldname)s' not found"
 msgstr "L'emplacement '%(fldname)s' non trouvé"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:449
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
 msgstr "Impossible de trouver le fichier DEF : %(deffname)s"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:491
 msgid "Import from Pro-Gen"
 msgstr "Importer depuis Pro-Gen"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:507
 msgid "Pro-Gen import"
 msgstr "Importation Pro-Gen"
 
-# trunk
-# à tester, vérifier
 #: ../src/plugins/import/ImportProGen.py:693
 #, python-format
 msgid "date did not match: '%s' (%s)"
 msgstr "date n'a pas correspondu : '%s' (%s)"
 
 # Substantif (GNOME fr)
-# trunk
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:772
 msgid "Importing individuals"
 msgstr "Importation des individus"
 
 # Substantif (GNOME fr)
-# trunk
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1047
 msgid "Importing families"
 msgstr "Importation des familes"
 
 # Substantif (GNOME fr)
-# trunk
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1232
 msgid "Adding children"
 msgstr "Ajout des enfants"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1243
 #, python-format
 msgid "cannot find father for I%s (father=%d)"
 msgstr "impossible de trouver le père de I%s (père=%d)"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1245
 #, python-format
 msgid "cannot find mother for I%s (mother=%d)"
 msgstr "impossible de trouver la mère de I%s (mère=%d)"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1280
 msgid "Pro-Gen"
 msgstr "Pro-Gen"
 
-# trunk
 #: ../src/plugins/import/ImportProGen.py:1281
 msgid "Import data from Pro-Gen files"
 msgstr "Importation des données depuis des fichiers Pro-Gen"
@@ -10075,22 +9809,18 @@ msgstr "Importation des données depuis des fichiers Pro-Gen"
 msgid "vCard import"
 msgstr "Importation de vCard"
 
-# trunk
 #: ../src/plugins/import/ImportVCard.py:224
 msgid "vCard"
 msgstr "vCard"
 
-# trunk
 #: ../src/plugins/import/ImportVCard.py:225
 msgid "Import data from vCard files"
 msgstr "Importer les données depuis des fichiers vCard"
 
-# trunk
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
 msgstr "Fournit l'information sur les jours fériés selon les pays."
 
-# trunk
 #: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
 msgstr "Fournit une base fonctionnelle pour les services cartographiques."
@@ -10101,41 +9831,34 @@ msgstr "Fournit une base fonctionnelle pour les services cartographiques."
 msgid "Sweden"
 msgstr "Suède"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:49
 msgid "Denmark"
 msgstr "Danemark"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:75
 msgid " parish"
 msgstr " paroisse"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:79
 msgid " state"
 msgstr " région"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitude non comprise entre %s et %s\n"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitude non comprise entre %s et %s"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
 #: ../src/plugins/mapservices/eniroswedenmap.py:172
 msgid "Eniro map not available"
-msgstr "La carte Eniro est non-disponible"
+msgstr "La carte Eniro n'est pas disponible"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
 "Latitude and longitude,\n"
@@ -10144,48 +9867,39 @@ msgstr ""
 "Latitude et longitude,\n"
 "ou ville et pays sont nécessaires"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Coordinates needed in Denmark"
 msgstr "Coordonnées nécessaires au Danemark"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:177
 #, python-format
 msgid "Eniro map not available for %s"
-msgstr "Carte Eniro non disponible pour %s"
+msgstr "La carte Eniro n'est pas disponible pour %s"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
 msgstr "Seulement pour la Suède et le Danemark"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
 msgstr "EniroMaps"
 
-# trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
 msgstr "Ouvrir avec kartor.eniro.se"
 
-# trunk
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
 msgstr "GoogleMaps"
 
-# trunk
 #: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
 msgstr "Ouvrir dans maps.google.com"
 
-# trunk
 #: ../src/plugins/mapservices/openstreetmap.py:83
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
-# trunk
 #: ../src/plugins/mapservices/openstreetmap.py:85
 msgid "Open on openstreetmap.org"
 msgstr "Ouvrir dans openstreetmap.org"
@@ -10200,7 +9914,6 @@ msgstr "Individus probablement en vie et leurs âges le %s"
 msgid "People probably alive and their ages on %s"
 msgstr "Individus probablement en vie et leurs âges en %s"
 
-# trunk
 #: ../src/plugins/quickview/AgeOnDate.py:77
 #, python-format
 msgid ""
@@ -10339,25 +10052,20 @@ msgstr "Relation avec la souche"
 msgid "Display all relationships between person and home person."
 msgstr "Affiche toutes les relations entre l'individu et la souche."
 
-# trunk
 #: ../src/plugins/quickview/AttributeMatch.py:29
 #, python-format
 msgid "People who have the '%s' Attribute"
 msgstr "Individus avec un l'attribut '%s'"
 
-# trunk
 #: ../src/plugins/quickview/AttributeMatch.py:42
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
 msgstr "Il y a %d individus avec cet attribut.\n"
 
-# trunk
-# à vérifier
 #: ../src/plugins/quickview/AttributeMatch.py:50
 msgid "Attribute Match"
 msgstr "Correspondance d'attribut"
 
-# trunk
 #: ../src/plugins/quickview/AttributeMatch.py:52
 msgid "Display people with same attribute."
 msgstr "Affiche les individus avec le même attribut."
@@ -10631,12 +10339,10 @@ msgstr "Références (%s)"
 msgid "Display references for a %s"
 msgstr "Affiche les références pour %s"
 
-# trunk
 #: ../src/plugins/quickview/Reporef.py:88
 msgid "RepoRef"
 msgstr "Références du dépôt"
 
-# trunk
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
 msgstr "Affiche les références des sources liées au dépôt actif"
@@ -10727,24 +10433,20 @@ msgid "Matches people with same lastname"
 msgstr "Correspond aux individus avec le même prénom"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:63
 msgid "People matching the <given>"
 msgstr "Individus correspondants au <prénom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:64
 msgid "Matches people with same given name"
 msgstr "Correspond aux individus avec le même prénom"
 
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:80
 msgid "People with incomplete given names"
 msgstr "Individus avec des prénoms incomplets"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:81
 msgid "Matches people with firstname missing"
 msgstr "Correspond aux individus sans prénom"
@@ -10764,7 +10466,6 @@ msgid_plural "There are %d people with a matching name, or alternate name.\n"
 msgstr[0] "Il y a %d individu portant ce nom, ou ce nom alternatif.\n"
 msgstr[1] "Il y a %d individus portant ce nom, ou ce nom alternatif.\n"
 
-# trunk
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
 #, python-format
@@ -10779,13 +10480,11 @@ msgstr "Même nom de famille"
 msgid "Display people with the same surname as a person."
 msgstr "Affiche les individus porteurs du même nom de famille."
 
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:188
 #: ../src/plugins/quickview/SameSurnames.py:199
 msgid "Same Given Names"
 msgstr "Même prénom"
 
-# trunk
 #: ../src/plugins/quickview/SameSurnames.py:190
 #: ../src/plugins/quickview/SameSurnames.py:201
 msgid "Display people with the same given name as a person."
@@ -11022,28 +10721,24 @@ msgstr "Adresse : "
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s : %(value)s%(endnotes)s"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:386
 #: ../src/plugins/textreport/DetDescendantReport.py:294
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:389
 #: ../src/plugins/textreport/DetDescendantReport.py:297
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:391
 #: ../src/plugins/textreport/DetDescendantReport.py:299
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:403
 #: ../src/plugins/textreport/DetDescendantReport.py:311
 #, python-format
@@ -11280,24 +10975,20 @@ msgstr "Produit une liste détaillée des ascendants"
 msgid "Descendant Report for %(person_name)s"
 msgstr "Liste détaillée des descendants de %(person_name)s"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:412
 #, python-format
 msgid "Spouse: %s"
 msgstr "Conjoint : %s"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:414
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Relation avec : %s"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:711
 msgid "Use Record-style (Modified Register) numbering"
 msgstr "Utiliser le style Enregistrement pour la numérotation"
 
-# trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:714
 msgid "Whether to use Record-style numbering instead of Henry-style."
 msgstr "Utiliser ou non le style Enregistrement à la place du style Henry."
@@ -11651,7 +11342,6 @@ msgstr "Génère une liste d'individus avec un marqueur particulier"
 msgid "Number of Ancestors for %s"
 msgstr "Nombre d'ascendants pour %s"
 
-# trunk
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:104
 #, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
@@ -11659,7 +11349,6 @@ msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
 msgstr[0] "La génération %(generation)d contient %(count)d individu. %(percent)s"
 msgstr[1] "La génération %(generation)d contient %(count)d individus. %(percent)s"
 
-# trunk
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:141
@@ -11717,7 +11406,6 @@ msgstr "Région : %s"
 msgid "Country: %s "
 msgstr "Pays : %s "
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:146
 msgid "Events that happened at this place"
 msgstr "Événements pour ce lieu"
@@ -11742,43 +11430,34 @@ msgstr "Sélection de lieux avec un filtre"
 msgid "Select places individually"
 msgstr "Sélection d'un lieu"
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:265
 msgid "List of places to report on"
 msgstr "Liste des lieux à utiliser"
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:295
 msgid "The style used for the title of the report."
 msgstr "Le style utilisé pour le titre du rapport."
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:309
 msgid "The style used for place title."
 msgstr "Le style utilisé pour le titre du lieu."
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:321
 msgid "The style used for place details."
 msgstr "Le style utilisé pour les détails du lieu."
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:333
 msgid "The style used for a column title."
 msgstr "Le style utilisé pour la colonne titre."
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:347
 msgid "The style used for each section."
 msgstr "Le style utilisé pour chaque section."
 
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:370
 msgid "The style used for event and person details."
 msgstr "Le style utilisé pour les détails de l'événement et de l'individu."
 
-# à revoir
-# trunk
 #: ../src/plugins/textreport/PlaceReport.py:404
 msgid "Produces a textual place report"
 msgstr "Produit un rapport textuel des lieux"
@@ -12136,7 +11815,6 @@ msgstr "Analyse des événements"
 msgid "Change types"
 msgstr "Changer les types"
 
-# trunk
 #: ../src/plugins/tool/ChangeTypes.py:143
 msgid "No event record was modified."
 msgstr "Aucun événement a été modifié."
@@ -12510,7 +12188,6 @@ msgid "Checks the database for integrity problems, fixing the problems that it c
 msgstr "Vérifie l'intégrité de la base de données, corrigeant les problèmes éventuels"
 
 # manuel wiki
-# trunk
 #: ../src/plugins/tool/Desbrowser.py:58
 msgid "manual|Interactive_Descendant_Browser..."
 msgstr "Navigation_parmi_les_descendants"
@@ -12545,7 +12222,6 @@ msgid "Provides a window that can evaluate python code"
 msgstr "Affiche un terminal d'évaluation du code Python"
 
 # wiki manual
-# trunk
 #: ../src/plugins/tool/EventCmp.py:69
 msgid "manual|Compare_Individual_Events..."
 msgstr "Comparaison_des_événements_individuels..."
@@ -12616,12 +12292,10 @@ msgstr "Aide à l'analyse des données autorisant le développement de filtres p
 msgid "Event name changes"
 msgstr "Changements du nom d'événement"
 
-# trunk
 #: ../src/plugins/tool/EventNames.py:115
 msgid "Modifications made"
 msgstr "Modifications réalisées"
 
-# trunk
 #: ../src/plugins/tool/EventNames.py:116
 #, python-format
 msgid "%s event description has been added"
@@ -12629,7 +12303,6 @@ msgid_plural "%s event descriptions have been added"
 msgstr[0] "%s description de l'événement a été ajoutée"
 msgstr[1] "%s descriptions de l'événement ont été ajoutées"
 
-# trunk
 #: ../src/plugins/tool/EventNames.py:120
 msgid "No event description has been added."
 msgstr "Aucune description de l'événement a été ajoutée."
@@ -12694,10 +12367,9 @@ msgid "Medium"
 msgstr "Moyen"
 
 # wiki manual
-# trunk
 #: ../src/plugins/tool/FindDupes.py:72
 msgid "manual|Find_Possible_Duplicate_People..."
-msgstr "Trouver_des_boublons_potentiels..."
+msgstr "Trouver_des_boublons_potentiels"
 
 #: ../src/plugins/tool/FindDupes.py:137
 #: ../src/plugins/tool/FindDupes.py:702
@@ -12768,7 +12440,6 @@ msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 msgid "Uncollected Objects Tool"
 msgstr "Outil de débogage des objets"
 
-# trunk
 #: ../src/plugins/tool/Leak.py:95
 #, python-format
 msgid ""
@@ -12908,7 +12579,6 @@ msgstr "Cet outil permet de convertir les chemins media relatifs en chemins abso
 msgid "Convert paths from absolute to r_elative"
 msgstr "Convertir les chemins absolus en chemins r_elatifs"
 
-# trunk
 #: ../src/plugins/tool/MediaManager.py:535
 msgid "This tool allows converting absolute media paths to a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
 msgstr "Cet outil permet de convertir les chemins media absolus en chemins relatifs. Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
@@ -12926,7 +12596,6 @@ msgstr "Non lié"
 msgid "Not related to \"%s\""
 msgstr "Non lié à \"%s\""
 
-# trunk
 #: ../src/plugins/tool/NotRelated.py:157
 #, python-format
 msgid "Everyone in the database is related to %s"
@@ -12975,7 +12644,6 @@ msgid "Find people who are not in any way related to the selected person"
 msgstr "Trouver les individus qui ne sont en aucun cas liés à l'individu sélectionné"
 
 # wiki manual
-# trunk
 #: ../src/plugins/tool/OwnerEditor.py:61
 msgid "manual|Edit_Database_Owner_Information..."
 msgstr "Éditer_l'information_sur_le_propriétaire_de_la_base"
@@ -13002,7 +12670,6 @@ msgid "Allow editing database owner information."
 msgstr "Permet d'éditer l'information sur le propriétaire de la base."
 
 # wiki manual
-# trunk
 #: ../src/plugins/tool/PatchNames.py:63
 msgid "manual|Extract_Information_from_Names"
 msgstr "Extraire_les_descriptions_de_l'événement_depuis_ses_données"
@@ -13021,7 +12688,6 @@ msgstr "Extraction de données depuis le champ prénom"
 msgid "Analyzing names"
 msgstr "Analyse des noms"
 
-# trunk
 #: ../src/plugins/tool/PatchNames.py:189
 msgid "No titles, nicknames or prefixes were found"
 msgstr "Aucun titre, surnom ou préfixe détecté"
@@ -13228,62 +12894,51 @@ msgstr "Recherche et assignation d'un ID non utilisé"
 msgid "Reorders the gramps IDs according to Gramps' default rules."
 msgstr "Réorganise les identifiants GRAMPS en fonction des règles par défaut."
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:78
 #: ../src/plugins/tool/SortEvents.py:232
 msgid "Sort Events"
 msgstr "Tri des événements"
 
-# trunk
 # à vérifier
 #: ../src/plugins/tool/SortEvents.py:104
 msgid "Sort event changes"
 msgstr "Les changements après le tri des événements"
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/tool/SortEvents.py:114
 msgid "Sorting personal events..."
 msgstr "Tri des événements individuels..."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/plugins/tool/SortEvents.py:136
 msgid "Sorting family events..."
 msgstr "Tri des événements familiaux..."
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:167
 msgid "Tool Options"
 msgstr "Options de l'outil"
 
 # objet sélectionné
-# trunk
 #: ../src/plugins/tool/SortEvents.py:170
 msgid "Select the people to sort"
 msgstr "Sélectionne les individus à trier"
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:189
 msgid "Sort descending"
 msgstr "Tri décroissant"
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:190
 msgid "Set the sort order"
 msgstr "Définir l'ordre du tri"
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:193
 msgid "Include family events"
 msgstr "Inclure les événements familiaux"
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:194
 msgid "Sort family events of the person"
 msgstr "Trier les événements familiaux de l'individu"
 
-# trunk
 #: ../src/plugins/tool/SortEvents.py:236
 msgid "Sorts events"
 msgstr "Tri les événements"
@@ -13472,38 +13127,32 @@ msgstr "Vérifier les données"
 msgid "Verifies the data against user-defined tests"
 msgstr "Vérifie les données selon les définitions de l'utilisateur"
 
-# trunk
 #. First is used as default selection.
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/plugins/webreport/WebCal.py:92
 msgid "Basic-Ash"
 msgstr "Basique - Frêne"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 #: ../src/plugins/webreport/WebCal.py:93
 msgid "Basic-Cypress"
 msgstr "Basique - Cyprès"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/plugins/webreport/WebCal.py:94
 msgid "Basic-Lilac"
 msgstr "Basique - Lilas"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/plugins/webreport/WebCal.py:95
 msgid "Basic-Peach"
 msgstr "Basique - Pêcher"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/plugins/webreport/WebCal.py:96
 msgid "Basic-Spruce"
 msgstr "Basique - Épicéa"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/plugins/webreport/WebCal.py:97
 msgid "Mainz"
@@ -13514,7 +13163,6 @@ msgstr "Mayence"
 msgid "Nebraska"
 msgstr "Nebraska"
 
-# trunk
 # ??? à vérifier
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/WebCal.py:99
@@ -13579,7 +13227,6 @@ msgstr "Pas de note de licence"
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Généré par <a href=\"http://gramps-project.org\">GRAMPS</a>, le %(date)s"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:419
 #, python-format
 msgid "Created for <a href=\"%s\">%s</a>"
@@ -13721,7 +13368,6 @@ msgstr "Ascendants"
 msgid "Age at Death"
 msgstr "Âge au décès"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2228
 msgid "event|Type"
 msgstr "Type d'événement"
@@ -13730,18 +13376,15 @@ msgstr "Type d'événement"
 msgid "Half Siblings"
 msgstr "Demi-frères et demi-sœurs"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2547
 msgid "Step Siblings"
 msgstr "Demi-frères et demi-sœurs"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2720
 #, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
 msgstr "%(date)s <span class=\"preposition\">à</span> %(place)s"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2722
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
@@ -13774,7 +13417,6 @@ msgid "The archive file must be a file, not a directory"
 msgstr "L'archive doit être un fichier, pas un répertoire"
 
 # Site internet descriptif ou narratif ?
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2918
 msgid "Narrated Web Site Report"
 msgstr "Saga sur internet"
@@ -13844,7 +13486,6 @@ msgstr "Mon arbre généalogique"
 msgid "The title of the web site"
 msgstr "Le titre du site internet"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3315
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans le site web"
@@ -14081,12 +13722,10 @@ msgstr "Inclure une colonne pour les parents dans les pages index"
 msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3482
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Inclure les demi-fères et demi-sœurs dans les pages de l'individu"
 
-# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3485
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents et ses frères ou sœurs"
@@ -14100,49 +13739,37 @@ msgstr "Saga sur internet"
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Génère des pages internet (XHTML) pour tous les individus ou une partie des individus"
 
-# ????
-# trunk à revoir
 #. Add a link for year_glance() if requested
 #: ../src/plugins/webreport/WebCal.py:382
 msgid "Year Glance"
 msgstr "Année résumée"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:485
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 msgstr "Créé pour <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:490
 #, python-format
 msgid "Created for %(author)s\n"
 msgstr "Créé pour %(author)s\n"
 
-# ???
-# trunk
 #. page title
 #: ../src/plugins/webreport/WebCal.py:814
 msgid "One Day Within A Year"
 msgstr "Un jour dans une année"
 
-# ???
-# trunk
 #. page title
 #: ../src/plugins/webreport/WebCal.py:850
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "%(year)d, au coup d'oeil"
 
-# trunk
-# à vérifier
 #: ../src/plugins/webreport/WebCal.py:862
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any!\n"
-msgstr "Ce calendrier est prévu pour accéder à toutes vos données sur une page. En cliquant sur une date vous ouvrirez une page illustrant les événements pour ce jour, si ils existent !\n"
+msgstr "Ce calendrier est prévu pour accéder à toutes vos données sur une page. En cliquant sur une date vous ouvrirez une page illustrant les événements pour ce jour, si il y en a plusieurs !\n"
 
 # Substantif (GNOME fr)
-# ???? trunk
-# à revoir
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:869
 msgid "Creating Year At A Glance calendars"
@@ -14154,8 +13781,6 @@ msgid "Web Calendar Report"
 msgstr "Calendrier internet"
 
 # Substantif (GNOME fr)
-# ???? trunk
-# à revoir
 #. generate progress pass for year ????
 #: ../src/plugins/webreport/WebCal.py:911
 #, python-format
@@ -14163,20 +13788,17 @@ msgid "Creating year %d calendars"
 msgstr "Création d'un calendrier pour l'année %d"
 
 # Substantif (GNOME fr)
-# trunk
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:963
 msgid "Formatting months ..."
 msgstr "Formatage des mois..."
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1051
 #, python-format
 msgid "%(short_name)s"
 msgstr "%(short_name)s"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1082
 #, python-format
 msgid "%(spouse)s and %(person)s"
@@ -14202,47 +13824,36 @@ msgstr "La feuille de style utilisée pour la page internet"
 msgid "Content Options"
 msgstr "Options du contenu"
 
-# trunk
-# à vérifier
 #: ../src/plugins/webreport/WebCal.py:1183
 msgid "Create multiple year calendars"
 msgstr "Créer des calendriers sur plusieurs années"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1185
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Créer ou non plusieurs calendriers annuels."
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1190
 msgid "Start Year for the Calendar(s)"
 msgstr "Année de départ pour les calendrier(s)"
 
-# trunk
-# à vérifier
 #: ../src/plugins/webreport/WebCal.py:1192
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Entrez le début de l'année pour les calendriers entre 1900 et 3000"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1196
 msgid "End Year for the Calendar(s)"
 msgstr "Dernière année pour les calendrier(s)"
 
-# trunk
-# à vérifier
 #: ../src/plugins/webreport/WebCal.py:1198
 msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple years is selected, then only twenty years at any given time"
 msgstr "Entrez la fin de l'année pour les calendriers entre 1900 et 3000. Si plusieurs années sont sélectionnées, alors seulement 20 années seront utilisées"
 
 # Substantif (GNOME fr)
-# trunk
 # année visuelle, compact ??
 #: ../src/plugins/webreport/WebCal.py:1206
 msgid "Create \"Year At A Glance\" Calendar(s)"
 msgstr "Créer un calendrier \"annuel\" résumé sur une page"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1208
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Créer ou non une page avec un calendrier miniature dont les dates sont mises en relief"
@@ -14259,7 +13870,6 @@ msgstr "URL de départ"
 msgid "The link to be included to direct the user to the main page of the web site"
 msgstr "Le lien à inclure pour rediriger l'utilisateur vers la page principale du site web"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1257
 msgid "Jan - Jun Notes"
 msgstr "Notes Jan - Juin"
@@ -14333,7 +13943,6 @@ msgstr "La note pour le mois de mai"
 msgid "Jun Note"
 msgstr "Note jui"
 
-# ?
 #: ../src/plugins/webreport/WebCal.py:1279
 msgid "This prints in June"
 msgstr "Ceci s'imprime en juin"
@@ -14342,7 +13951,6 @@ msgstr "Ceci s'imprime en juin"
 msgid "The note for the month of June"
 msgstr "La note pour le mois de juin"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1283
 msgid "Jul - Dec Notes"
 msgstr "Notes juil - Déc"
@@ -14425,29 +14033,22 @@ msgstr "Ceci s'imprime en décembre"
 msgid "The note for the month of December"
 msgstr "La note pour le mois de décembre"
 
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1470
 #, python-format
 msgid "%(person)s, <em>birth</em>"
 msgstr "%(person)s, <em>naissance</em>"
 
-# à tester
-# trunk
 # ans est appelé par la chaîne age_str
 #: ../src/plugins/webreport/WebCal.py:1473
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
 msgstr "%(person)s, <em>%(age)s</em>"
 
-# à tester
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr "%(couple)s, <em>wedding</em>"
+msgstr "%(couple)s, <em>mariage</em>"
 
-# à tester
-# trunk
 #: ../src/plugins/webreport/WebCal.py:1483
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
@@ -14990,7 +14591,6 @@ msgstr "La taille de la note, en points."
 msgid "Open with application"
 msgstr "Ouvrir avec l'application"
 
-# trunk
 #: ../src/ReportBase/_GraphvizReportDialog.py:1120
 msgid "Open with default application"
 msgstr "Ouvrir avec l'application par défaut"
@@ -15009,7 +14609,6 @@ msgstr "Paysage"
 msgid "cm"
 msgstr "cm"
 
-# trunk
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "inch|in."
 msgstr "in."
@@ -16950,332 +16549,276 @@ msgstr "Baptisé(e)%(endnotes)s."
 msgid "%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# christening ?
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:819
 #, python-format
 msgid "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Il a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:822
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:823
 #, python-format
 msgid "She was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Elle a été baptisée le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:826
 #, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:827
 #, python-format
 msgid "This person was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Cet individu a été baptisé le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:829
 #, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Baptisé(e) le %(christening_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:834
 #, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:835
 #, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
 msgstr "Il a été baptisé le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:838
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:839
 #, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
 msgstr "Elle a été baptisée le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:842
 #, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:843
 #, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
 msgstr "Cet individu a été baptisé le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:845
 #, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
 msgstr "Baptisé(e) le %(christening_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:850
 #, python-format
 msgid "%(male_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:851
 #, python-format
 msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Il a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:854
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:855
 #, python-format
 msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Elle a été baptisée en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:858
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:859
 #, python-format
 msgid "This person was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Cet individu a été baptisé en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:861
 #, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Baptisé(e) en %(month_year)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:866
 #, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:867
 #, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
 msgstr "Il a été baptisé en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:870
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:871
 #, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
 msgstr "Elle a été baptisée en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:874
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:875
 #, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
 msgstr "Cet individu a été baptisé en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:877
 #, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
 msgstr "Baptisé(e) en %(month_year)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:882
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
 msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Il a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:886
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:887
 #, python-format
 msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Elle a été baptisée %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:890
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:891
 #, python-format
 msgid "This person was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Cet individu a été baptisé %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:893
 #, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Baptisé(e) %(modified_date)s à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:898
 #, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:899
 #, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
 msgstr "Il a été baptisé %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:902
 #, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:903
 #, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
 msgstr "Elle a été baptisée %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:906
 #, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:907
 #, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
 msgstr "Cet individu a été baptisé %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:909
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
 msgstr "Baptisé(e) %(modified_date)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:914
 #, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr "%(male_name)s a été baptisé à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:915
 #, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
 msgstr "Il a été baptisé à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:918
 #, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr "%(female_name)s a été baptisée à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:919
 #, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
 msgstr "Elle a été baptisée à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:922
 #, python-format
 msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:923
 #, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
 msgstr "Cet individu a été baptisé à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:925
 #, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
 msgstr "Baptisé(e) à %(christening_place)s%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:930
 #, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
 msgstr "%(male_name)s a été baptisé%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:931
 #, python-format
 msgid "He was christened%(endnotes)s."
 msgstr "Il a été baptisé%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:934
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
 msgstr "%(female_name)s a été baptisée%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:935
 #, python-format
 msgid "She was christened%(endnotes)s."
 msgstr "Elle a été baptisée%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:938
 #, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
 msgstr "%(unknown_gender_name)s a été baptisé%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:939
 #, python-format
 msgid "This person was christened%(endnotes)s."
 msgstr "Cet individu a été baptisé%(endnotes)s."
 
-# trunk
 #: ../src/ReportBase/_ReportUtils.py:941
 #, python-format
 msgid "Christened%(endnotes)s."
@@ -18762,7 +18305,6 @@ msgstr "Erreur d'enregistrement de la feuille de style"
 msgid "Style editor"
 msgstr "Éditeur de style"
 
-# trunk
 #: ../src/ReportBase/_StyleEditor.py:207
 #: ../src/glade/gramps.glade.h:196
 msgid "point size|pt"
@@ -19134,7 +18676,7 @@ msgstr "Fiancée"
 msgid "Groom"
 msgstr "Fiancé"
 
-# trunk
+# ex : 10 ans
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v)
@@ -19174,7 +18716,7 @@ msgstr "Fiancé"
 msgid "more than"
 msgstr "plus de"
 
-# trunk
+# ex : 10 ans
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v, v + Span.AFTER)
@@ -19194,7 +18736,7 @@ msgstr "plus de"
 msgid "less than"
 msgstr "moins de"
 
-# trunk
+# ex : 10 ans
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -19207,7 +18749,7 @@ msgstr "moins de"
 msgid "age|about"
 msgstr "environ"
 
-# trunk
+# ex : 10 ans et 11 ans
 #. v1 = self.date1.sortval - stop.sortval  # min
 #. v2 = self.date1.sortval - start.sortval # max
 #. self.sort = (v1, v2 - v1)
@@ -19226,8 +18768,7 @@ msgstr "environ"
 msgid "between"
 msgstr "entre"
 
-# à tester
-# trunk
+# ex : 10 ans
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
@@ -19235,7 +18776,7 @@ msgstr "entre"
 msgid "more than about"
 msgstr "plus d'environ"
 
-# trunk
+# ex : 10 ans
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -19243,8 +18784,7 @@ msgstr "plus d'environ"
 msgid "less than about"
 msgstr "moins d'environ"
 
-# ngettext
-# trunk
+# âge
 #: ../src/gen/lib/date.py:487
 #, python-format
 msgid "%d year"
@@ -19252,8 +18792,6 @@ msgid_plural "%d years"
 msgstr[0] "%d an"
 msgstr[1] "%d ans"
 
-# ngettext
-# trunk
 #: ../src/gen/lib/date.py:494
 #, python-format
 msgid "%d month"
@@ -19261,8 +18799,6 @@ msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-# ngettext
-# trunk
 #: ../src/gen/lib/date.py:501
 #, python-format
 msgid "%d day"
@@ -19270,7 +18806,6 @@ msgid_plural "%d days"
 msgstr[0] "%d jour"
 msgstr[1] "%d jours"
 
-# trunk
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
 msgstr "0 jour"
@@ -19578,29 +19113,24 @@ msgstr "Soumis(e)"
 msgid "Uncleared"
 msgstr "Incorrect"
 
-# trunk
-# à vérifier dans contexte
 #: ../src/Filters/_FilterParser.py:111
 #, python-format
 msgid ""
-"WARNING: To many arguments in filter '%s'!\n"
+"WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
 "ATTENTION: trop d'arguments dans le filtre '%s' !\n"
-"Essayez de charger avec moins d'arguments."
+"Essayez de charger avec d'autres arguments."
 
-# trunk
-# à vérifier
 #: ../src/Filters/_FilterParser.py:119
 #, python-format
 msgid ""
-"WARNING: To few arguments in filter '%s'!\n"
+"WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
 "ATTENTION: trop peu d'arguments dans le filtre '%s' !\n"
 "Tentative de chargement malgré tout en espérant une mise à jour."
 
-# trunk
 #: ../src/Filters/_FilterParser.py:127
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
@@ -19616,36 +19146,30 @@ msgstr "%s contient"
 msgid "%s does not contain"
 msgstr "%s ne contient pas"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
 msgid "Changed after:"
 msgstr "Modifié après :"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
 msgid "but before:"
 msgstr "mais avant :"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
 msgid "Objects changed after <date time>"
 msgstr "Objets modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given"
 msgstr "Correspond aux enregistrements modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
 msgstr "Format invalide pour la date"
 
-# trunk
 #: ../src/Filters/Rules/_ChangedSinceBase.py:59
 #, python-format
 msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-msgstr "Seuleument les dates au format iso aaaa-mm-jj hh:mm:ss, avec la période en option, sont acceptées. %s n'est pas suffisant."
+msgstr "Seulement les dates au format iso aaaa-mm-jj hh:mm:ss, avec la période en option, sont acceptées. %s n'est pas suffisant."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -19888,12 +19412,10 @@ msgstr "A la marque de"
 msgid "Matches markers of a particular type"
 msgstr "Correspond aux marqueurs avec un type particulier"
 
-# trunk
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
 msgid "Persons changed after <date time>"
 msgstr "Individus modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
 msgstr "Correspond aux individus modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -19925,39 +19447,32 @@ msgstr "Familles avec des événements incomplets"
 msgid "Matches people with missing date or place in an event of the family"
 msgstr "Correspond aux individus ayant une date ou lieu manquant dans un événement de famille"
 
-# à revoir
-# trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:476
 msgid "Number of instances:"
-msgstr "Nombre de valeurs :"
+msgstr "Nombre de cas :"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:481
 msgid "Number must be:"
 msgstr "Le nombre doit être :"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
 msgid "People with <count> address"
 msgstr "Individus avec un <nombre> d'adresse"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
 msgid "Matches people with certain number of personal address"
 msgstr "Correspond aux individus ayant un nombre d'adresse"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
 msgid "People with <count> association"
 msgstr "Individus avec un <nombre> d'association"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
 msgid "Matches people with certain number of association"
 msgstr "Correspond aux individus ayant un nombre d'association"
@@ -20076,37 +19591,31 @@ msgstr "Individus avec l'<événement> familial"
 msgid "Matches people with a family event of a particular value"
 msgstr "Correspond aux individus ayant le même événement familial"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
 msgid "People with <count> media"
 msgstr "Individus avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
 msgid "Matches people with a certain number of items in the gallery"
 msgstr "Correspond aux individus ayant un nombre d'articles dans la galerie"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
 msgid "Person with <Id>"
 msgstr "Individus avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
 msgid "Matches person with a specified GRAMPS ID"
 msgstr "Correspond aux individus ayant l'identifiant GRAMPS spécifié"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
 msgid "People with <count> LDS events"
 msgstr "Individus avec un <nombre> d'événements mormons"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasLDS.py:47
 msgid "Matches people with a certain number of LDS events"
 msgstr "Correspond aux individus ayant un nombre d'événements mormons"
@@ -20136,7 +19645,6 @@ msgstr "Suffixe :"
 msgid "person|Title:"
 msgstr "Titre (Dr. ou Me.) :"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "Prefix:"
 msgstr "Préfixe :"
@@ -20145,7 +19653,6 @@ msgstr "Préfixe :"
 msgid "Patronymic:"
 msgstr "Patronyme :"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
 msgstr "Nom usuel :"
@@ -20160,13 +19667,11 @@ msgstr "Individus avec le <nom>"
 msgid "Matches people with a specified (partial) name"
 msgstr "Correspond aux individus ayant un nom (partiel) spécifié"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasNote.py:46
 msgid "People having <count> notes"
 msgstr "Individus avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasNote.py:47
 msgid "Matches people having a certain number of notes"
 msgstr "Correspond aux individus ayant un nombre de notes"
@@ -20225,13 +19730,11 @@ msgstr "Correspond aux individus ayant une relation particulière"
 msgid "Family filters"
 msgstr "Filtres familiaux"
 
-# trunk
 #: ../src/Filters/Rules/Person/_HasSource.py:46
 msgid "People with <count> source"
 msgstr "Individus avec un <nombre> de source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Person/_HasSource.py:47
 msgid "Matches people with a certain number of items in the source"
 msgstr "Correspond aux individus ayant un nombre d'articles dans la source"
@@ -20640,14 +20143,12 @@ msgstr "Chaque famille"
 msgid "Matches every family in the database"
 msgstr "Correspond à chaque famille de la base"
 
-# trunk
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-msgid "Families changed before <date time>"
-msgstr "Familles modifiées avant la <date>"
+msgid "Families changed after <date time>"
+msgstr "Familles modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
-msgid "Matches family records changed before a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
+msgid "Matches family records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
 msgstr "Correspond aux familles modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
@@ -20734,13 +20235,11 @@ msgstr "Familles avec l'<événement>"
 msgid "Matches families with an event of a particular value"
 msgstr "Correspond aux familles ayant un événement de même valeur"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
 msgid "Families with <count> media"
 msgstr "Familles avec un <nombre> d'objet media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
 msgid "Matches families with a certain number of items in the gallery"
 msgstr "Correspond aux familles ayant un nombre d'article dans la galerie"
@@ -20754,12 +20253,10 @@ msgstr "Familles avec l'<Id>"
 msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Correspond aux familles avec l'identifiant GRAMPS spécifié"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
 msgid "Families with <count> LDS events"
 msgstr "Familles avec un <nombre> d'événements mormons"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasLDS.py:47
 msgid "Matches families with a certain number of LDS events"
 msgstr "Correspond aux familles ayant un nombre d'événements mormons"
@@ -20773,13 +20270,11 @@ msgstr "Familles avec le <marqueur>"
 msgid "Matches Families with a marker of a particular value"
 msgstr "Correspond aux familles ayant un marqueur d'une valeur particulière"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasNote.py:46
 msgid "Families having <count> notes"
 msgstr "Familles avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Family/_HasNote.py:47
 msgid "Matches families having a certain number notes"
 msgstr "Correspond aux familles ayant un nombre de notes"
@@ -20802,35 +20297,29 @@ msgstr "Familles dont les notes contiennent une <expression rationnelle>"
 msgid "Matches families whose notes contain text matching a regular expression"
 msgstr "Correspond aux familles dont les notes contiennent du texte avec l'expression rationnelle"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
 msgstr "Familles avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
 msgid "Matches families objects with a certain reference count"
 msgstr "Correspond aux familles ayant un nombre de référence"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
 msgid "Families with the relationship type"
 msgstr "Familles avec un type de relation"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
 msgid "Matches families with the relationship type of a particular value"
 msgstr "Correspond aux familles ayant un type de relation de même valeur"
 
-# trunk
 #: ../src/Filters/Rules/Family/_HasSource.py:46
 msgid "Families with <count> source"
 msgstr "Familles avec un <nombre> de source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Family/_HasSource.py:47
 msgid "Matches families with a certain number of items in the source"
 msgstr "Correspond aux familles avec un nombre d'article dans la source"
@@ -20949,14 +20438,12 @@ msgstr "Chaque événement"
 msgid "Matches every event in the database"
 msgstr "Correspond à chaque événement de la base"
 
-# trunk
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
-msgid "Events changed before <date time>"
-msgstr "Événements modifiés avant la <date>"
+msgid "Events changed after <date time>"
+msgstr "Événements modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
-msgid "Matches event records changed before a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given"
+msgid "Matches event records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given"
 msgstr "Correspond aux événements modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
 #: ../src/Filters/Rules/Event/_EventPrivate.py:43
@@ -20990,13 +20477,11 @@ msgstr "Événement avec la <donnée>"
 msgid "Matches events with data of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
 
-# trunk
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
 msgid "Events with <count> media"
 msgstr "Événements avec un <nombre> d'objet media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
 msgid "Matches events with a certain number of items in the gallery"
 msgstr "Correspond aux événements ayant un nombre d'article dans la galerie"
@@ -21019,13 +20504,11 @@ msgstr "Événements avec le <marqueur>"
 msgid "Matches Events with a marker of a particular value"
 msgstr "Correspond aux événements ayant un marqueur d'une valeur particulière"
 
-# trunk
 #: ../src/Filters/Rules/Event/_HasNote.py:46
 msgid "Events having <count> notes"
 msgstr "Événements avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Event/_HasNote.py:47
 msgid "Matches events having a certain number of notes"
 msgstr "Correspond aux événements avec un nombre de notes"
@@ -21057,13 +20540,11 @@ msgstr "Événements avec un <nombre> de références"
 msgid "Matches events with a certain reference count"
 msgstr "Correspond aux événements ayant un nombre de références"
 
-# trunk
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
 msgstr "Événement avec un type particulier"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Event/_HasType.py:48
 msgid "Matches events with the particular type "
 msgstr "Correspond à l'événement avec un type précis "
@@ -21133,18 +20614,15 @@ msgstr "Chaque lieu"
 msgid "Matches every place in the database"
 msgstr "Correspond à tous les lieux de la base"
 
-# trunk
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
 msgstr "Correspond aux lieux modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
-# trunk
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
 msgid "Places with <count> media"
 msgstr "Lieux avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
 msgid "Matches places with a certain number of items in the gallery"
 msgstr "Correspond aux lieux ayant un nombre d'article dans la galerie"
@@ -21172,13 +20650,11 @@ msgstr "Correspond aux lieux sans latitude ou longitude"
 msgid "Position filters"
 msgstr "Filtres sur la position"
 
-# trunk
 #: ../src/Filters/Rules/Place/_HasNote.py:46
 msgid "Places having <count> notes"
 msgstr "Lieux avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Place/_HasNote.py:47
 msgid "Matches places having a certain number of notes"
 msgstr "Correspond aux lieux ayant un nombre de notes"
@@ -21232,13 +20708,11 @@ msgstr "Lieux correspondants aux paramètres"
 msgid "Matches places with particular parameters"
 msgstr "Correspond aux lieux ayant des paramètres précis"
 
-# trunk
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
 msgid "Places with a reference count of <count>"
 msgstr "Lieux avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
 msgid "Matches places with a certain reference count"
 msgstr "Correspond aux lieux ayant un nombre de références"
@@ -21315,23 +20789,19 @@ msgstr "Chaque source"
 msgid "Matches every source in the database"
 msgstr "Correspond à toutes les sources de la base"
 
-# trunk
 #: ../src/Filters/Rules/Source/_ChangedSince.py:23
 msgid "Sources changed after <date time>"
 msgstr "Sources modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid "Matches source records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
 msgstr "Correspond aux sources modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
-# trunk
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
 msgstr "Sources avec un <nombre> de media"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
 msgid "Matches sources with a certain number of items in the gallery"
 msgstr "Correspond aux sources ayant un nombre d'article dans la galerie"
@@ -21345,13 +20815,11 @@ msgstr "Source avec l'<Id>"
 msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Correspond à une source avec l'identifiant GRAMPS spécifié"
 
-# trunk
 #: ../src/Filters/Rules/Source/_HasNote.py:46
 msgid "Sources having <count> notes"
 msgstr "Sources avec un <nombre> de notes"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Source/_HasNote.py:47
 msgid "Matches sources having a certain number of notes"
 msgstr "Correspond aux notes ayant un nombre de références"
@@ -21374,13 +20842,11 @@ msgstr "Sources dont les notes contiennent la <sous-chaîne>"
 msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Correspond aux sources dont les notes contiennent une sous-chaîne"
 
-# trunk
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
 msgid "Sources with a reference count of <count>"
 msgstr "Sources avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
 msgid "Matches sources with a certain reference count"
 msgstr "Correspond aux sources ayant un nombre de références"
@@ -21450,14 +20916,12 @@ msgstr "Chaque objet media"
 msgid "Matches every media object in the database"
 msgstr "Correspond à tous les objets media de la base"
 
-# trunk
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-msgid "Media objects changed before <date time>"
-msgstr "Objets media modifiés avant la <date>"
+msgid "Media objects changed after <date time>"
+msgstr "Objets media modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
-msgid "Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given"
+msgid "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given"
 msgstr "Correspond aux media modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
@@ -21567,12 +21031,10 @@ msgstr "Chaque dépôt"
 msgid "Matches every repository in the database"
 msgstr "Correspond à tous les dépôts de la base"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 msgid "Repositories changed after <date time>"
 msgstr "Dépôts modifiés après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given"
 msgstr "Correspond aux dépôts modifiés après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
@@ -21595,7 +21057,6 @@ msgstr "Dépôts dont les notes contiennent la <sous-chaîne>"
 msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Correspond aux dépôts dont les notes contiennent une sous-chaîne"
 
-# trunk
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
 msgstr "Dépôts dont les notes contiennent une <expression rationnelle>"
@@ -21666,14 +21127,12 @@ msgstr "Chaque note"
 msgid "Matches every note in the database"
 msgstr "Correspond à toutes les notes de la base"
 
-# trunk
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-msgid "Notes changed before <date time>"
-msgstr "Notes modifiées avant la <date>"
+msgid "Notes changed after <date time>"
+msgstr "Notes modifiées après la <date>"
 
-# trunk
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
-msgid "Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
+msgid "Matches note records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
 msgstr "Correspond aux notes modifiées après une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
@@ -21708,7 +21167,6 @@ msgid "Notes containing <regular expression>"
 msgstr "Notes qui contiennent une <expression rationnelle>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-# trunk
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
 msgstr "Correspond aux notes contenant du texte avec l'expression rationnelle"
@@ -22129,12 +21587,10 @@ msgstr "_Prénom :"
 msgid "Indicates if the record is private"
 msgstr "Désigne si l'enregistrement est privé"
 
-# trunk
 #: ../src/glade/edit_person.glade.h:13
 msgid "Part of the Given name that is the normally used name. "
 msgstr "Partie du prénom utilisée pour un usage normal. "
 
-# trunk
 #: ../src/glade/edit_person.glade.h:14
 msgid ""
 "Patronimic: component of a personal name based on the name of one's father, grandfather, .... \n"
@@ -22143,7 +21599,6 @@ msgstr ""
 "Patronyme : composant du nom personnel, base de la lignée patronymique (père, grand-père, ...)\n"
 "Titre: un titre utilisé par un individu, tel que 'Dr.' ou 'Rev.'"
 
-# trunk
 #: ../src/glade/edit_person.glade.h:16
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\"\n"
@@ -22181,7 +21636,6 @@ msgstr "_Marqueur :"
 msgid "_Type:"
 msgstr "_Type :"
 
-# trunk
 #: ../src/glade/edit_person.glade.h:24
 msgid "part of a person's name indicating the family to which the person belongs"
 msgstr "partie du nom indiquant la famille dont l'individu appartient"
@@ -22351,7 +21805,6 @@ msgstr "En dess_ous :"
 msgid "Birth:"
 msgstr "Naissance :"
 
-# trunk
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity/County:"
 msgstr "_Ville / département :"
@@ -22364,17 +21817,14 @@ msgstr "V_ille :"
 msgid "Calenda_r:"
 msgstr "_Calendrier :"
 
-# trunk
 #: ../src/glade/gramps.glade.h:47
 msgid "Call n_umber:"
 msgstr "_Numéro d'appel :"
 
-# trunk
 #: ../src/glade/gramps.glade.h:48
 msgid "Cen_ter"
 msgstr "_Centré"
 
-# trunk
 #: ../src/glade/gramps.glade.h:49
 msgid "Ch_urch parish:"
 msgstr "_Paroisse :"
@@ -22399,7 +21849,6 @@ msgstr "Fermer la fenêtre sans modification"
 msgid "Co_unty:"
 msgstr "_Département :"
 
-# trunk
 #: ../src/glade/gramps.glade.h:55
 msgid "Con_fidence:"
 msgstr "Niveau de _confiance :"
@@ -22452,7 +21901,6 @@ msgstr "Ne plus afficher ce dialogue"
 msgid "Drag to move; click to detach"
 msgstr "Glisser pour déplacer; cliquer pour détacher"
 
-# trunk
 #: ../src/glade/gramps.glade.h:69
 msgid "Dua_l dated"
 msgstr "Date _double"
@@ -22493,21 +21941,18 @@ msgstr "G_rouper comme :"
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr "Si le media est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
 
-# trunk
 #: ../src/glade/gramps.glade.h:81
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files."
-msgstr "Si vous valider cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers media manquants."
+msgstr "Si vous validez cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers media manquants."
 
 #: ../src/glade/gramps.glade.h:83
 msgid "Invoke date editor"
 msgstr "Ouvrir l'éditeur de date"
 
-# trunk
 #: ../src/glade/gramps.glade.h:84
 msgid "J_ustify"
 msgstr "_Justifié"
 
-# trunk
 #: ../src/glade/gramps.glade.h:85
 msgid ""
 "January 1\n"
@@ -22548,7 +21993,6 @@ msgstr "Mo_is"
 msgid "Name Child:"
 msgstr "Nom de l'enfant :"
 
-# trunk
 #: ../src/glade/gramps.glade.h:98
 msgid "Ne_w year begins:  "
 msgstr "_Début de la nouvelle année :  "
@@ -22557,7 +22001,6 @@ msgstr "_Début de la nouvelle année :  "
 msgid "O_verride"
 msgstr "Imp_oser"
 
-# trunk
 #: ../src/glade/gramps.glade.h:100
 msgid "Old Style/New Style"
 msgstr "Ancien style / Nouveau style"
@@ -22603,7 +22046,6 @@ msgstr "Supprimer l'objet et toutes ses références de la base"
 msgid "Revision comment - GRAMPS"
 msgstr "Commentaire de révision - GRAMPS"
 
-# trunk
 #: ../src/glade/gramps.glade.h:113
 msgid "Righ_t"
 msgstr "à droi_te"
@@ -22671,7 +22113,6 @@ msgstr ""
 "Élevé\n"
 "Très élevé"
 
-# trunk
 #: ../src/glade/gramps.glade.h:135
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use this to add formatting layout with spaces, eg a table. \n"
@@ -23172,7 +22613,6 @@ msgid "<b>Output Window</b>"
 msgstr "<b>Fenêtre de sortie</b>"
 
 # éviter le raccourci sur la majuscule accentuée
-# trunk
 #: ../src/plugins/tool/eventcmp.glade.h:1
 msgid "Custom filter _editor"
 msgstr "Éditeur de filtre _personnalisé"
@@ -23256,7 +22696,6 @@ msgstr "<b>Objets non collectés</b>"
 msgid "<b>Match Threshold</b>"
 msgstr "<b>Seuil de correspondance</b>"
 
-# trunk
 #: ../src/plugins/tool/merge.glade.h:3
 msgid "Co_mpare"
 msgstr "_Comparer"
@@ -23363,7 +22802,6 @@ msgstr "Filtr_e :"
 msgid "I_ndividuals"
 msgstr "I_ndividus"
 
-# trunk
 #: ../src/plugins/export/ExportCsv.glade.h:6
 msgid "Translate _Headers"
 msgstr "Traduire les _en-têtes"
@@ -23376,7 +22814,6 @@ msgstr "_Mariages"
 msgid "Exclude _notes"
 msgstr "Exclure les _notes"
 
-# trunk
 #: ../src/plugins/export/ExportGeneWeb.glade.h:4
 msgid "Exclude _sources"
 msgstr "Exclure les sour_ces"
@@ -23433,7 +22870,6 @@ msgstr "_Différence d'âge maximale entre conjoint"
 msgid "Maximum number of _spouses for a person"
 msgstr "Nombre maximal de conjoints pour une per_sonne"
 
-# trunk
 #: ../src/plugins/tool/verify.glade.h:15
 msgid "Maximum number of chil_dren"
 msgstr "No_mbre maximal d'enfants"
@@ -23508,18 +22944,15 @@ msgstr "<b>Changement de nom</b> : il est facile de gérer des individus avec p
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr "<b>Aider GRAMPS</b> : vous voulez aider GRAMPS mais vous ne pouvez pas programmer ? Ce n'est pas un problème. Pour un aussi grand projet que GRAMPS les besoins sont divers. Documentation ou tests des versions en développement font parti de l'aide recherchée. Commencez par vous inscrire à la liste des développeurs de GRAMPS, gramps-devel. Les modalités d'inscription sont disponibles sur lists.sf.net."
 
-# trunk
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Different Views</b>: There are twelve different views for navigating your family: Gramplets, People, Relationships, Family List, Pedigree, Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to achieve one or more specific tasks."
-msgstr "<b>Différentes vues</b> : il y a douze vues différentes pour naviguer dans votre famille : Gramplets, Individus, Relations, Familles, Arbre généalogique, Événements, Sources, Lieux, Media, Dépôts, Notes et Cartes HTML. Chacune vous aide à archiver chaque tâche spécifique."
+msgstr "<b>Différentes vues</b> : il y a douze vues différentes pour naviguer dans votre famille : Gramplets, Individus, Relations, Familles, Arbre généalogique, Événements, Sources, Lieux, Media, Dépôts, Notes et Cartes HTML. Elles vous aident à accomplir une tâche spécifique."
 
-# trunk
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to locate (and merge) entries of the same person entered more than once in the database."
 msgstr "<b>Entrées doubles</b> : <b>Outils &gt; Modification de la base de données &gt; Recherche de doublons</b>  vous permet de trouver et éventuellement de fusionner les entrées d'un même individu."
 
 # Substantif (GNOME fr)
-# trunk
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
 msgstr "<b>Édition du lien relationnel avec un enfant</b> : tous les enfants ne sont pas listés comme enfant naturel. Vous pouvez éditer la relation entre un enfant et chacun de ses parents en le rendant actif. Dans la vue &quot;:Relations&quot;, cliquez sur l'icône &quot;Éditer les parents&quot; à droite de la section &quot; Parents : &quot;. Cela ouvrira l'éditeur de famille. Maintenant sélectionnez l'enfant, un clic-droit, et choisissez &quot; Éditer les relations &quot;. Ici vous pouvez définir les relations entre un enfant, son père et sa mère. Les relations peuvent être naissance, adoption, enfant du conjoint, inconnu, etc.."
@@ -23599,7 +23032,6 @@ msgstr "<b>Parlez à vos grand parents avant qu'il soit trop tard</b>  : vos plu
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
 msgstr "<b>La vue familiale</b> : la vue familiale est utilisée pour afficher une famille classique --- les parents, conjoints et enfants d'un individu."
 
-# trunk
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See wiki manual of GRAMPS for a complete description of date entry options."
 msgstr "<b>Pas sûr(e) d'une date ?</b> : si vous n'êtes pas sûr(e) d'une date ou d'un événement (naissance ou décès), GRAMPS vous permet d'entrer une multitude de dates basées sur une estimation ou un choix. Par exemple, &quot;vers 1908&quot; est une entrée valide pour une date de naissance dans GRAMPS. Voir la section Édition des dates du manuel wiki de GRAMPS pour une description complète des options de date."
@@ -23644,7 +23076,6 @@ msgstr "N'oubliez pas de lire le manuel d'utilisation de GRAMPS <b> Aide &gt; Ma
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
 msgstr "Les filtres permettent de limiter l'affichage dans la vue des individus. En plus des filtres prédéfinis, d'autres filtres (personnalisés) peuvent être créés ce qui ne limite ces filtres qu'à votre imagination. Ces filtres sont éditables via <b>Édition &gt; Éditeur de filtre sur l'individu</b>."
 
-# trunk
 #: ../src/data/tips.xml.in.h:37
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, Open Document Text, RTF, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
 msgstr "GRAMPS permet de générer un grand nombre de rapports (rapports texte et graphique) basés sur vos informations généalogiques. Vous avez une grande flexibilité dans la sélection de ce qui sera inclus dans les rapports tout comme le format de sortie (HTML, PDF, Open Document Text, RTF, LaTeX et texte brut). Essayez les rapports listés dans le menu <b>Rapports</b> pour avoir une idée de la puissance de GRAMPS."
@@ -23657,7 +23088,6 @@ msgstr "GRAMPS vous permet d'importer et d'exporter des fichiers GEDCOM. Il y a 
 msgid "GRAMPS can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files."
 msgstr "GRAMPS peut exporter des données au format Web Family Tree (WFT). Ce format permet à l'arbre généalogique de s'afficher dans un seul fichier plutôt qu'en plusieurs fichiers HTML."
 
-# trunk
 #: ../src/data/tips.xml.in.h:40
 msgid "GRAMPS comes with a rich set of tools. These allow you to undertake operations such as checking database for errors and consistency, as well as research and analysis tools such as event comparison, finding duplicate people, interactive descendant browser, and others. All tools can be accessed through the <b>Tools</b> menu."
 msgstr "GRAMPS possède des outils puissants. Ils permettent d'exécuter des opérations comme la recherche d'erreurs et d'inconstance de la base de données, aussi bien que la recherche et l'analyse via la comparaison d'événements, de trouver des doublons d'individus, d'utiliser un navigateur de descendants, etc. Ces outils sont accessibles par le menu <b>Outils</b>."
@@ -23666,7 +23096,6 @@ msgstr "GRAMPS possède des outils puissants. Ils permettent d'exécuter des op�
 msgid "GRAMPS has been designed so that new translations can easily be added with little development effort. If you are interested in participating please email gramps-devel@lists.sf.net"
 msgstr "GRAMPS est prévu pour que toutes nouvelles localisations puissent facilement être ajoutées avec un minimum d'effort. Si vous êtes intéressé pour participer à sa localisation, envoyez un message à la liste gramps-devel@lists.sf.net"
 
-# trunk
 #: ../src/data/tips.xml.in.h:42
 msgid "GRAMPS has been translated to more than 20 languages. If GRAMPS supports your language and it is not being displayed, set the default language on your machine and restart GRAMPS."
 msgstr "GRAMPS a été traduit dans plus de 20 langues. Si GRAMPS existe dans votre langue et qu'elle ne s'affiche pas, activez la langue par défaut de votre système et redémarrez GRAMPS."
@@ -23703,7 +23132,6 @@ msgstr "GRAMPS maintient ses efforts pour garder la compatibilité avec GEDCOM, 
 msgid "GRAMPS offers full Unicode support. Characters for all languages are properly displayed."
 msgstr "GRAMPS offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
 
-# trunk
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS works even when using KDE, as long as the required GTK libraries are installed."
 msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires sont installées."
@@ -23713,7 +23141,6 @@ msgstr "GRAMPS fonctionne sous KDE, tant que les librairies GTK nécessaires son
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
 msgstr "La généalogie n'est pas seulement des dates et des noms. C'est aussi des individus. Soyez descriptif. Ajouter le <b>pourquoi</b> de chaque action, pour que vos descendants comprennent les événements. Les anecdotes sont un bon moyen de perpétuer l'histoire familiale."
 
-# trunk
 #: ../src/data/tips.xml.in.h:53
 msgid "Go from what you know to what you do not. Always record everything that is known before making conjectures. Often the facts at hand suggest plenty of direction for more research. Don't waste time looking through thousands of records hoping for a trail when you have other unexplored leads."
 msgstr "Allez de ce que vous savez vers ce que vous ne savez pas. Enregistrez toujours tout ce qui est connu avant de faire des hypothèses. Connaître les faits avérés permet souvent de déterminer des directions de recherche. Ne perdez pas de temps à consulter des milliers de documents dans l'espoir de trouver une piste alors que celles qui vous avez ne sont pas encore explorées."
@@ -23734,7 +23161,6 @@ msgstr "Rendre vos données portables --- votre arbre familial et vos media peuv
 msgid "Multiple names can be specified for individuals. Examples are birth name, marriage name or aliases."
 msgstr "Plusieurs noms peuvent être spécifié pour les individus. Par exemple le nom de naissance, le nom marital ou le nom d'emprunt."
 
-# trunk
 #: ../src/data/tips.xml.in.h:58
 msgid "Relationship calculators in GRAMPS are available in more than fifteen languages."
 msgstr "Le calculateur de relation de GRAMPS est disponible dans plus de 15 langues."
@@ -23783,7 +23209,6 @@ msgstr "Fatigué(e) de lâcher le clavier pour la souris ? De nombreuses foncti
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
 msgstr "Pour fusionner deux individus, sélectionnez-les puis choisissez <b>Édition &gt; Fusion Rapide</b> dans les menus. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl)."
 
-# trunk
 #: ../src/data/tips.xml.in.h:70
 msgid "To run GRAMPS, you need to have GTK installed. But you do not need to be running the GNOME desktop."
 msgstr "Pour utiliser GRAMPS, vous avez besoin d'installer GTK. Mais vous n'avez pas besoin d'être sous le bureau GNOME."
@@ -23803,4 +23228,11 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
+#~ msgid "Events changed before <date time>"
+#~ msgstr "Événements modifiés avant la <date>"
+#~ msgid "Notes changed before <date time>"
+#~ msgstr "Notes modifiées avant la <date>"
+#~ msgid "Matches note records changed since a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
+#~ msgstr "Correspond aux notes modifiées avant une date spécifiée (aaaa-mm-jj hh:mm:ss) ou sur une période, si une seconde date est définie."
 
