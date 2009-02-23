@@ -1470,12 +1470,10 @@ class SurnameListPage(BasePage):
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
             self.write_header(of, _('Surnames'))
+            self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
         else:
             of = self.report.create_file("surnames_count")
             self.write_header(of, _('Surnames by person count'))
-
-        # begin alphabetic navigation
-        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
 
         of.write('<div id="Surnames" class="content">\n')
 
