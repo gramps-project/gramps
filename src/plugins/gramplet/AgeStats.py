@@ -192,9 +192,9 @@ class AgeStatsGramplet(Gramplet):
             text = (text + (fill * width))[:width]
         elif align == "right":
             text = ((fill * width) + text)[-width:]
-        if borders[0] != None:
+        if borders[0] is not None:
             text = borders[0] + text
-        if borders[1] != None:
+        if borders[1] is not None:
             text = text + borders[1]
         return text
     

@@ -297,7 +297,7 @@ class FanChartWidget(gtk.Widget):
             cr.set_line_width(3)
         cr.stroke()
         cr.set_line_width(1)
-        if self.last_x == None or self.last_y == None: 
+        if self.last_x is None or self.last_y is None: 
             self.draw_text(cr, name, radius - self.pixels_per_generation/2, 
                            start, stop)
 
@@ -452,13 +452,13 @@ class FanChartWidget(gtk.Widget):
 
     def on_mouse_up(self, widget, event):
         # Done with mouse movement
-        if self.last_x == None or self.last_y == None: return True
+        if self.last_x is None or self.last_y is None: return True
         self.queue_draw()
         self.last_x, self.last_y = None, None
         return True
 
     def on_mouse_move(self, widget, event):
-        if self.last_x == None or self.last_y == None: return False
+        if self.last_x is None or self.last_y is None: return False
         x, y, w, h = self.allocation
         cx = w/2
         cy = h/2
@@ -502,7 +502,7 @@ class FanChartWidget(gtk.Widget):
                         selected = p
                         break
         # Handle the click:
-        if selected == None: # clicked in open area, or center
+        if selected is None: # clicked in open area, or center
             if radius < self.center:
                 # right mouse
                 if event.button == 3 and self.context_popup_callback: 
@@ -556,7 +556,7 @@ class FanChartGramplet(Gramplet):
         if person:
             m = self.get_parent(person, "female")
             f = self.get_parent(person, "male")
-            return m != None or f != None
+            return not m is f is None
         return False
             
     def have_children(self, person):

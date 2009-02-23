@@ -75,7 +75,7 @@ class WhatNextGramplet(Gramplet):
     def main(self):
 
         default_person = self.dbstate.db.get_default_person()
-        if default_person == None:
+        if default_person is None:
             self.set_text(_("No Home Person set."))
             return
 

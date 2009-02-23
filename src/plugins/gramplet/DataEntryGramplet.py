@@ -193,7 +193,7 @@ class DataEntryGramplet(Gramplet):
             label.set_text("%s: " % text)
             label.set_width_chars(self.de_column_width)
             label.set_alignment(1.0, 0.5) 
-            if choices == None:
+            if choices is None:
                 self.de_widgets[pos] = gtk.Entry()
                 if mark_dirty:
                     self.de_widgets[pos].connect("changed", self.mark_dirty)
@@ -294,7 +294,7 @@ class DataEntryGramplet(Gramplet):
 
     def get_or_create_event(self, object, type, date, place):
         """ Add or find a type event on object """
-        if date == place == None: return (-1, None)
+        if date is place is None: return (-1, None)
         # first, see if it exists
         ref_list = object.get_event_ref_list()
         # look for a match, and possible correction
@@ -321,7 +321,7 @@ class DataEntryGramplet(Gramplet):
         return (1, event)
 
     def make_event(self, type, date, place):
-        if date == place == None: return None
+        if date is place is None: return None
         event = gen.lib.Event()
         event.set_type(gen.lib.EventType(type))
         if date:
@@ -408,7 +408,7 @@ class DataEntryGramplet(Gramplet):
             pass
         elif self.de_widgets["NPRelation"].get_active() == self.AS_PARENT:
             # "Add as a Parent"
-            if current_person == None:
+            if current_person is None:
                 ErrorDialog(_("Please set an active person."), _("Can't add new person as a parent."))
                 return
             elif gender == gen.lib.Person.UNKNOWN: # unknown
@@ -416,7 +416,7 @@ class DataEntryGramplet(Gramplet):
                 return
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SPOUSE:
             # "Add as a Spouse"
-            if current_person == None:
+            if current_person is None:
                 ErrorDialog(_("Please set an active person."), _("Can't add new person as a spouse."))
                 return
             elif (gender == gen.lib.Person.UNKNOWN and 
@@ -425,12 +425,12 @@ class DataEntryGramplet(Gramplet):
                 return
         elif self.de_widgets["NPRelation"].get_active() == self.AS_SIBLING:
             # "Add as a Sibling"
-            if current_person == None:
+            if current_person is None:
                 ErrorDialog(_("Please set an active person."), _("Can't add new person as a sibling."))
                 return
         elif self.de_widgets["NPRelation"].get_active() == self.AS_CHILD:
             # "Add as a Child"
-            if current_person == None:
+            if current_person is None:
                 ErrorDialog(_("Please set an active person."), _("Can't add new person as a child."))
                 return
         # Start the transaction: ------------------------------------------------------------
@@ -470,14 +470,14 @@ class DataEntryGramplet(Gramplet):
                     fam_husband_handle = family.get_father_handle()
                     fam_wife_handle = family.get_mother_handle()
                     # can we add person as wife?
-                    if fam_wife_handle == None and person.get_gender() == gen.lib.Person.FEMALE:
+                    if fam_wife_handle is None and person.get_gender() == gen.lib.Person.FEMALE:
                         # add the person
                         family.set_mother_handle(person.get_handle())
                         family.set_relationship(gen.lib.FamilyRelType.MARRIED)
                         person.add_family_handle(family.get_handle())
                         added = True
                         break
-                    elif fam_husband_handle == None and person.get_gender() == gen.lib.Person.MALE:
+                    elif fam_husband_handle is None and person.get_gender() == gen.lib.Person.MALE:
                         # add the person
                         family.set_father_handle(person.get_handle())
                         family.set_relationship(gen.lib.FamilyRelType.MARRIED)
@@ -513,7 +513,7 @@ class DataEntryGramplet(Gramplet):
                     fam_wife_handle = family.get_mother_handle()
                     if current_person.get_handle() == fam_husband_handle:
                         # can we add person as wife?
-                        if fam_wife_handle == None:
+                        if fam_wife_handle is None:
                             if person.get_gender() == gen.lib.Person.FEMALE:
                                 # add the person
                                 family.set_mother_handle(person.get_handle())
@@ -531,7 +531,7 @@ class DataEntryGramplet(Gramplet):
                                 break
                     elif current_person.get_handle() == fam_wife_handle:
                         # can we add person as husband?
-                        if fam_husband_handle == None:
+                        if fam_husband_handle is None:
                             if person.get_gender() == gen.lib.Person.MALE:
                                 # add the person
                                 family.set_father_handle(person.get_handle())

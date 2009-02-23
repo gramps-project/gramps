@@ -85,7 +85,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         
         tran = self._db.transaction_begin()
         source = RelLib.Source()
-        if repos != None:
+        if repos is not None:
             repo_ref = RelLib.RepoRef()
             repo_ref.set_reference_handle(repos.get_handle())
             source.add_repo_reference(repo_ref)

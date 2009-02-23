@@ -1417,7 +1417,7 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
     label = True
     pmgr = gen.plug.PluginManager.get_instance()
     external_options = pmgr.get_external_opt_dict()
-    if tooltips == None:
+    if tooltips is None:
         tooltips = gtk.Tooltips()
     elif type(tooltips) == type(""):
         msg = tooltips

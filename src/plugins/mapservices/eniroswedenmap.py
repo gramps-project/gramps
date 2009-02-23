@@ -125,7 +125,7 @@ class EniroSVMapService(MapService):
         # 54 33' 0" < lat < 66 9' 0", 54.55 and 69.05
         # 8 3' 0" < long < 24 9' 0", 8.05 and 24.15 
         latitude, longitude = self._lat_lon(place)
-        if latitude == None or longitude == None:
+        if latitude is None or longitude is None:
             coord_ok = False
         else:
             latitude = float(latitude) 

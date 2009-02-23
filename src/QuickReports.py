@@ -118,7 +118,7 @@ def get_quick_report_list(qv_category=None):
     names = []
     pmgr = PluginManager.get_instance()
     for item in pmgr.get_quick_report_list():
-        if qv_category == item[2] or qv_category == None:
+        if qv_category == item[2] or qv_category is None:
             names.append(item[1:]) # (see below for item struct)
     return names
 

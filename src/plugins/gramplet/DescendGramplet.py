@@ -56,7 +56,7 @@ class DescendantGramplet(Gramplet):
         self.update()
 
     def main(self):
-        if self.dbstate.get_active_person() == None:
+        if self.dbstate.get_active_person() is None:
             self.set_text(_("No Active Person selected."))
             return
         self.set_text("")

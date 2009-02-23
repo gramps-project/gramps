@@ -225,7 +225,7 @@ class EditMediaRef(EditReference):
         @param value: the first corner x coordinate of the subsection in int
         """
         
-        if self.rectangle == None:
+        if self.rectangle is None:
             self.rectangle = (0,0,100,100)
         self.rectangle = (value,
                           self.rectangle[1],
@@ -242,7 +242,7 @@ class EditMediaRef(EditReference):
         @param value: the first corner y coordinate of the subsection in int
         """
         
-        if self.rectangle == None:
+        if self.rectangle is None:
             self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           value,
@@ -259,7 +259,7 @@ class EditMediaRef(EditReference):
         @param value: the second corner x coordinate of the subsection in int
         """
         
-        if self.rectangle == None:
+        if self.rectangle is None:
             self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           self.rectangle[1],
@@ -276,7 +276,7 @@ class EditMediaRef(EditReference):
         @param value: the second corner y coordinate of the subsection in int
         """
         
-        if self.rectangle == None:
+        if self.rectangle is None:
             self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           self.rectangle[1],
@@ -293,7 +293,7 @@ class EditMediaRef(EditReference):
                   there is no selection
         """
         
-        if self.rectangle != None:
+        if self.rectangle is not None:
             return self.rectangle[0]
         else:
             return 0
@@ -307,7 +307,7 @@ class EditMediaRef(EditReference):
                   there is no selection
         """
          
-        if self.rectangle != None:
+        if self.rectangle is not None:
             return self.rectangle[1]
         else:
             return 0
@@ -321,7 +321,7 @@ class EditMediaRef(EditReference):
                   there is no selection
         """
         
-        if self.rectangle != None:
+        if self.rectangle is not None:
             return self.rectangle[2]
         else:
             return 100
@@ -335,7 +335,7 @@ class EditMediaRef(EditReference):
                   there is no selection
         """
         
-        if self.rectangle != None:
+        if self.rectangle is not None:
             return self.rectangle[3]
         else:
             return 100
@@ -346,7 +346,7 @@ class EditMediaRef(EditReference):
         """
         
         path = self.source.get_path()
-        if path == None:
+        if path is None:
             self.subpixmap.hide()
         else:
             try:

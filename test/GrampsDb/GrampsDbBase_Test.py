@@ -115,7 +115,7 @@ class ReferenceMapTest (GrampsDbBaseTest):
         self._db.remove_person(person.get_handle(),tran)
         self._db.transaction_commit(tran, "Del Person")
 
-        assert self._db.get_person_from_handle(person.get_handle()) == None
+        assert self._db.get_person_from_handle(person.get_handle()) is None
         
         references = [ ref for ref in self._db.find_backlink_handles(source.get_handle()) ]
 
