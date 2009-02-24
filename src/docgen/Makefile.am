@@ -9,6 +9,7 @@ docgen_PYTHON = \
 	CSVTab.py \
 	ODSDoc.py \
 	ODSTab.py \
+        OpenSpreadSheet.py \
 	SpreadSheetDoc.py \
 	TabbedDoc.py \
 	TextBufDoc.py

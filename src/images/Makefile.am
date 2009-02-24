@@ -63,6 +63,7 @@ dist_pkgdata_DATA = \
 	gramps-export.png\
 	gramps-import.png\
 	gramps-url.png\
+        ped24.ico\
 	stock_new-html.png\
 	gramps-undo-history.png\
 	stock_link.png\
