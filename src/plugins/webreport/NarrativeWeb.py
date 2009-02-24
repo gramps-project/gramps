@@ -2374,23 +2374,6 @@ class IndividualPage(BasePage):
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
-    def get_sorted_half_step_siblings(self, db, child_handle):
-        """
-        will return the sort information for half and step siblings if birthorder
-        """
-
-        sort_other_child = []
-        temp_sibling = db.get_person_from_handle(child_handle)
-        birth_ref = temp_sibling.get_birth_ref()
-        birth_date = None
-        if birth_ref:
-            birth_event = db.get_event_from_handle(birth_ref.ref)
-            birth_date = birth_event.get_date_object()
-
-            if birth_date is not None and birth_date.is_valid():
-                ssort_other_child.append((birth_date, child_handle))
-        return sort_other_child
-
     def display_ind_parents(self, of):
         parent_list = self.person.get_parent_family_handle_list()
 
@@ -2454,8 +2437,6 @@ class IndividualPage(BasePage):
 
                 # Also try to identify half-siblings
                 half_siblings = set()
-                self.sort_half_sibs = []
-                birthorder = self.report.options['birthorder']
 
                 # if we have a known father...
                 showallsiblings = self.report.options['showhalfsiblings']
@@ -2474,11 +2455,6 @@ class IndividualPage(BasePage):
                                     # we have a new step/half sibling
                                     half_siblings.add(half_child_handle)
 
-                                    # if sort siblings?
-                                    if birthorder:
-                                        sort_half_sibs = \
-                                            self.get_sort_half_step_sibs(db, half_child_handle)
-
                 # do the same thing with the mother (see "father" just above):
                 if mother_handle and showallsiblings:
                     mother = db.get_person_from_handle(mother_handle)
@@ -2491,31 +2467,20 @@ class IndividualPage(BasePage):
                                     # we have a new half sibling
                                     half_siblings.add(half_child_handle)
 
-                                    # sort siblings or not?
-                                    if birthorder:
-                                        sort_half_sibs = \
-                                            self.get_sort_half_step_sibs(db, half_child_handle)
-
                 # now that we have all of the half-siblings, print them out
-                if len(half_siblings) or len(sort_half_sibs):
+                if len(half_siblings) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Half Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
-                    if birthorder:
-                        sort_half_sibs.sort()
-                        for date, handle in sort_half_sibs:
-                            self.display_child_link(of, handle)
-                    else:
-                        for child_handle in half_siblings:
-                            self.display_child_link(of, child_handle)
+                    for child_handle in half_siblings:
+                        self.display_child_link(of, child_handle)
                     of.write('\t\t\t\t\t</ol>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
 
                 # get step-siblings
                 step_siblings = set()
-                sort_step_sibs = []
                 if showallsiblings:
 
                     # to find the step-siblings, we need to identify
@@ -2581,25 +2546,15 @@ class IndividualPage(BasePage):
                                     # we have a new step sibling
                                     step_siblings.add(step_child_handle)
 
-                                    # if sort siblings?
-                                    if birthorder:
-                                        sort_step_sibs = \
-                                            self.get_sort_half_step_sibs(db, step_child_handle)
-
                 # now that we have all of the step-siblings, print them out
-                if len(step_siblings) or len(sort_step_sibs):
+                if len(step_siblings) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Step Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
 
-                    if birthorder:
-                        sort_step_sibs.sort()
-                        for date, handle in sort_step_sibs:
-                            self.display_child_link(of, handle)
-                    else:
-                        for child_handle in step_siblings:
-                            self.display_child_link(of, child_handle)
+                    for child_handle in step_siblings:
+                        self.display_child_link(of, child_handle)
                     of.write('\t\t\t\t\t</ol>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
@@ -2891,9 +2846,6 @@ class NavWebReport(Report):
 
         # either include the gender graphics or not?
         self.graph = self.options['graph']
-
-        # wether to sort all siblings by birthorder or not? 
-        self.birthorder = self.options['birthorder']
 
         if self.use_home:
             self.index_fname = "index"
@@ -3537,11 +3489,6 @@ class NavWebOptions(MenuReportOptions):
                                     "step-siblings with the parents and "
                                     "siblings"))
         menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
-
-        birthorder = BooleanOption(_('Show all siblings in birth order'), False)
-        birthorder.set_help(_('Show all siblings including half/ Step in '
-                              'birth order or not?'))
-        menu.add_option(category_name, 'birthorder', birthorder)
 
     def __archive_changed(self):
         """

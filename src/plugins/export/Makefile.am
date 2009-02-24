@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	ExportGedcom.py \
 	ExportGeneWeb.py \
 	ExportPkg.py \
+        ExportSql.py\
 	ExportVCalendar.py \
 	ExportVCard.py \
 	ExportXml.py
