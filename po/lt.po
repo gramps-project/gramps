@@ -21188,6 +21188,7 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:16
+#, fuzzy
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
