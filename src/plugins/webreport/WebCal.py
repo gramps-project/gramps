@@ -27,11 +27,6 @@
 Web Calendar generator.
 
 Refactoring. This is an ongoing job until this plugin is in a better shape.
-TODO list:
- - progress bar, rethink its usage
- - in year navigation, use month in link, or 'fullyear'
- - daylight saving not just for USA and Europe
- - move the close_file() from one_day() to caller
 """
 
 #------------------------------------------------------------------------
@@ -39,12 +34,8 @@ TODO list:
 # python modules
 #
 #------------------------------------------------------------------------
-import os
-import time
-import datetime
-import calendar
-import codecs
-import shutil
+import os, codecs, shutil
+import time, datetime, calendar
 from gettext import gettext as _
 from gettext import ngettext
 
@@ -91,7 +82,7 @@ _WEBMID = "Web_Mainz_Mid.png"
 _WEBMIDLIGHT = "Web_Mainz_MidLight.png"
 
 # This information defines the list of styles in the Web calendar
-# options dialog as well as the location of the corresponding SCREEN
+# options dialog as well as the location of the corresponding
 # stylesheets.
 _CSS_FILES = [
     # First is used as default selection.
@@ -185,48 +176,49 @@ class WebCalReport(Report):
     def __init__(self, database, options):
         Report.__init__(self, database, options)
         menu = options.menu
+        mgobn = menu.get_option_by_name
 
         self.database = database
         self.options = options
 
-        self.html_dir = menu.get_option_by_name('target').get_value()
-        self.title_text  = menu.get_option_by_name('title').get_value()
-        filter_option =  menu.get_option_by_name('filter')
+        self.html_dir = mgobn('target').get_value()
+        self.title_text  = mgobn('title').get_value()
+        filter_option =  mgobn('filter')
         self.filter = filter_option.get_filter()
-        self.ext = menu.get_option_by_name('ext').get_value()
-        self.copy = menu.get_option_by_name('cright').get_value()
-        self.encoding = menu.get_option_by_name('encoding').get_value()
-        self.css = menu.get_option_by_name('css').get_value()
+        self.ext = mgobn('ext').get_value()
+        self.copy = mgobn('cright').get_value()
+        self.encoding = mgobn('encoding').get_value()
+        self.css = mgobn('css').get_value()
 
-        self.country = menu.get_option_by_name('country').get_value()
-        self.start_dow = menu.get_option_by_name('start_dow').get_value()
+        self.country = mgobn('country').get_value()
+        self.start_dow = mgobn('start_dow').get_value()
 
-        self.multiyear = menu.get_option_by_name('multiyear').get_value()
+        self.multiyear = mgobn('multiyear').get_value()
 
-        self.start_year = menu.get_option_by_name('start_year').get_value()
-        self.end_year = menu.get_option_by_name('end_year').get_value()
+        self.start_year = mgobn('start_year').get_value()
+        self.end_year = mgobn('end_year').get_value()
 
-        self.fullyear = menu.get_option_by_name('fullyear').get_value()
+        self.fullyear = mgobn('fullyear').get_value()
 
-        self.maiden_name = menu.get_option_by_name('maiden_name').get_value()
+        self.maiden_name = mgobn('maiden_name').get_value()
 
-        self.alive = menu.get_option_by_name('alive').get_value()
-        self.birthday = menu.get_option_by_name('birthdays').get_value()
-        self.anniv = menu.get_option_by_name('anniversaries').get_value()
-        self.home_link = menu.get_option_by_name('home_link').get_value().strip()
+        self.alive = mgobn('alive').get_value()
+        self.birthday = mgobn('birthdays').get_value()
+        self.anniv = mgobn('anniversaries').get_value()
+        self.home_link = mgobn('home_link').get_value().strip()
 
-        self.month_notes  = [menu.get_option_by_name('note_jan').get_value(),
-                             menu.get_option_by_name('note_feb').get_value(),
-                             menu.get_option_by_name('note_mar').get_value(),
-                             menu.get_option_by_name('note_apr').get_value(),
-                             menu.get_option_by_name('note_may').get_value(),
-                             menu.get_option_by_name('note_jun').get_value(),
-                             menu.get_option_by_name('note_jul').get_value(),
-                             menu.get_option_by_name('note_aug').get_value(),
-                             menu.get_option_by_name('note_sep').get_value(),
-                             menu.get_option_by_name('note_oct').get_value(),
-                             menu.get_option_by_name('note_nov').get_value(),
-                             menu.get_option_by_name('note_dec').get_value()]
+        self.month_notes  = [mgobn('note_jan').get_value(),
+                             mgobn('note_feb').get_value(),
+                             mgobn('note_mar').get_value(),
+                             mgobn('note_apr').get_value(),
+                             mgobn('note_may').get_value(),
+                             mgobn('note_jun').get_value(),
+                             mgobn('note_jul').get_value(),
+                             mgobn('note_aug').get_value(),
+                             mgobn('note_sep').get_value(),
+                             mgobn('note_oct').get_value(),
+                             mgobn('note_nov').get_value(),
+                             mgobn('note_dec').get_value()]
 
         # identify researcher name and e-mail address
         # as Narrated WebSite already does
@@ -1044,7 +1036,7 @@ class WebCalReport(Report):
                             if mother_handle == person_handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
-                                    if father != None:
+                                    if father is not None:
                                         father_name = father.primary_name
                                         father_surname = _get_regular_surname(sex, father_name)
                 short_name = _get_short_name(person, father_surname)
@@ -1069,26 +1061,24 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
 
-                        are_married = get_marital_status(self.database, fam)
+                        are_married = get_marriage_event(self.database, fam)
                         if are_married is not None:
-                            for event_ref in fam.get_event_ref_list():
-                                event = self.database.get_event_from_handle(event_ref.ref)
-                                event_obj = event.get_date_object()
-                                year = event_obj.get_year()
-                                month = event_obj.get_month()
-                                day = event_obj.get_day()
+                            event_obj = are_married.get_date_object()
+                            year = event_obj.get_year()
+                            month = event_obj.get_month()
+                            day = event_obj.get_day()
 
-                                prob_alive_date = gen.lib.Date(this_year, month, day)
+                            prob_alive_date = gen.lib.Date(this_year, month, day)
 
-                                if event_obj.is_valid():
-                                    text = _('%(spouse)s and %(person)s') % {
-                                             'spouse' : spouse_name,
-                                             'person' : short_name}
+                            if event_obj.is_valid():
+                                text = _('%(spouse)s and %(person)s') % {
+                                         'spouse' : spouse_name,
+                                         'person' : short_name}
 
-                                    alive1 = probably_alive(person, self.database, prob_alive_date)
-                                    alive2 = probably_alive(spouse, self.database, prob_alive_date)
-                                    if ((self.alive and alive1 and alive2) or not self.alive):
-                                        self.add_day_item(text, year, month, day, 'Anniversary')
+                                alive1 = probably_alive(person, self.database, prob_alive_date)
+                                alive2 = probably_alive(spouse, self.database, prob_alive_date)
+                                if ((self.alive and alive1 and alive2) or not self.alive):
+                                    self.add_day_item(text, year, month, day, 'Anniversary')
 
 #------------------------------------------------------------------------
 #
@@ -1469,7 +1459,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         if event == 'Birthday':
 
             txt_str = _(text + ', <em>'
-            + ('birth' if nyears == 0 else '%s old' % str(age_str))
+            + ('%s old' % str(age_str) if nyears else 'birth')
             + '</em>')
 
         # an anniversary
@@ -1495,25 +1485,21 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     return day_list
 
-def get_marital_status(db, family):
+def get_marriage_event(db, family):
     """
-    Returns the marital status of two people, a couple
-
-    are_married will either be the marriage event 
-    or None if not married anymore
+    are_married will either be the marriage event or None
     """
 
-    are_married = None
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event.type in [gen.lib.EventType.MARRIAGE, 
                           gen.lib.EventType.MARR_ALT]:
-            are_married = event
+            return event
         elif event.type in [gen.lib.EventType.DIVORCE, 
                             gen.lib.EventType.ANNULMENT, 
                             gen.lib.EventType.DIV_FILING]:
-            are_married = None
-    return are_married
+            return None
+    return None
 
 def get_first_day_of_month(year, month):
     """

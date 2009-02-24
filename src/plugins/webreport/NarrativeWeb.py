@@ -2374,6 +2374,23 @@ class IndividualPage(BasePage):
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
+    def get_sorted_half_step_siblings(self, db, child_handle):
+        """
+        will return the sort information for half and step siblings if birthorder
+        """
+
+        sort_other_child = []
+        temp_sibling = db.get_person_from_handle(child_handle)
+        birth_ref = temp_sibling.get_birth_ref()
+        birth_date = None
+        if birth_ref:
+            birth_event = db.get_event_from_handle(birth_ref.ref)
+            birth_date = birth_event.get_date_object()
+
+            if birth_date is not None and birth_date.is_valid():
+                ssort_other_child.append((birth_date, child_handle))
+        return sort_other_child
+
     def display_ind_parents(self, of):
         parent_list = self.person.get_parent_family_handle_list()
 
@@ -2437,7 +2454,7 @@ class IndividualPage(BasePage):
 
                 # Also try to identify half-siblings
                 half_siblings = set()
-                sort_half_sibs = []
+                self.sort_half_sibs = []
                 birthorder = self.report.options['birthorder']
 
                 # if we have a known father...
@@ -2457,17 +2474,10 @@ class IndividualPage(BasePage):
                                     # we have a new step/half sibling
                                     half_siblings.add(half_child_handle)
 
-                                    # if sort siblings or not?
+                                    # if sort siblings?
                                     if birthorder:
-                                        half_sib = db.get_person_from_handle(half_child_handle)
-                                        birth_ref = half_sib.get_birth_ref()
-                                        birth_date = None
-                                        if birth_ref:
-                                            birth_event = db.get_event_from_handle(birth_ref.ref)
-                                            birth_date = birth_event.get_date_object()
-
-                                        if birth_date != None and birth_date.is_valid():
-                                            sort_half_sibs.append((birth_date, half_child_handle)) 
+                                        sort_half_sibs = \
+                                            self.get_sort_half_step_sibs(db, half_child_handle)
 
                 # do the same thing with the mother (see "father" just above):
                 if mother_handle and showallsiblings:
@@ -2483,25 +2493,17 @@ class IndividualPage(BasePage):
 
                                     # sort siblings or not?
                                     if birthorder:
-                                        half_sib = db.get_person_from_handle(half_child_handle)
-                                        birth_ref = half_sib.get_birth_ref()
-                                        birth_date = None
-                                        if birth_ref:
-                                            birth_event = db.get_event_from_handle(birth_ref.ref)
-                                            birth_date = birth_event.get_date_object()
-
-                                        if birth_date != None and birth_date.is_valid():
-                                            sort_half_sibs.append((birth_date, half_child_handle)) 
+                                        sort_half_sibs = \
+                                            self.get_sort_half_step_sibs(db, half_child_handle)
 
                 # now that we have all of the half-siblings, print them out
-                if len(half_siblings) > 0 or len(sort_half_sibs) > 0:
+                if len(half_siblings) or len(sort_half_sibs):
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Half Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
                     if birthorder:
                         sort_half_sibs.sort()
-
                         for date, handle in sort_half_sibs:
                             self.display_child_link(of, handle)
                     else:
@@ -2513,7 +2515,7 @@ class IndividualPage(BasePage):
 
                 # get step-siblings
                 step_siblings = set()
-                step_kids = []
+                sort_step_sibs = []
                 if showallsiblings:
 
                     # to find the step-siblings, we need to identify
@@ -2579,27 +2581,21 @@ class IndividualPage(BasePage):
                                     # we have a new step sibling
                                     step_siblings.add(step_child_handle)
 
-                                    # sort siblings or not?
+                                    # if sort siblings?
                                     if birthorder:
-                                        step_sib = db.get_person_from_handle(step_child_handle)
-                                        birth_ref = step_sib.get_birth_ref()
-                                        birth_date = None
-                                        if birth_ref:
-                                            birth_event = db.get_event_from_handle(birth_ref.ref)
-                                            birth_date = birth_event.get_date_object()
-
-                                        if birth_date != None and birth_date.is_valid():
-                                            step_kids.append((birth_date, step_child_handle)) 
+                                        sort_step_sibs = \
+                                            self.get_sort_half_step_sibs(db, step_child_handle)
 
                 # now that we have all of the step-siblings, print them out
-                if len(step_siblings) > 0 or len(step_kids) > 0:
+                if len(step_siblings) or len(sort_step_sibs):
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Step Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
 
                     if birthorder:
-                        for date, handle in step_kids:
+                        sort_step_sibs.sort()
+                        for date, handle in sort_step_sibs:
                             self.display_child_link(of, handle)
                     else:
                         for child_handle in step_siblings:
