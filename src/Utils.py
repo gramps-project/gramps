@@ -1128,7 +1128,6 @@ def open_file_with_default_application( file_path ):
         return
         
     if os.sys.platform == 'win32':
-        norm_path = norm_path.encode(os.sys.getfilesystemencoding())
         try:
             os.startfile(norm_path)
         except WindowsError, msg:

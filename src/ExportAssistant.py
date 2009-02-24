@@ -439,8 +439,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             #Allow for exotic error: file is still not correct
             self.check_fileselect(self.chooser, show=False)
             if self.get_page_complete(self.chooser) :
-                filename = unicode(self.chooser.get_filename(),
-                           sys.getfilesystemencoding())
+                filename = Utils.get_unicode_path(self.chooser.get_filename())
                 name = os.path.split(filename)[1]
                 folder = os.path.split(filename)[0]
                 confirm_text = _(
@@ -563,8 +562,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         Depending on the success status, set the text for the final page.
         
         """
-        filename = unicode(self.chooser.get_filename(),
-                           sys.getfilesystemencoding())
+        filename = Utils.get_unicode_path(self.chooser.get_filename())
         Config.set(Config.RECENT_EXPORT_DIR, os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         Config.set(Config.RECENT_EXPORT_TYPE, ix)

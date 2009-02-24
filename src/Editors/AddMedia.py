@@ -160,11 +160,11 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         filename = Utils.get_unicode_path(self.file_text.get_filename())
         full_file = filename
 
-        pname = Utils.media_path(self.dbase)
+        pname = unicode(Utils.media_path(self.dbase))
         if self.relpath.get_active():
             filename = Utils.relative_path(filename, pname)
 
-        if os.path.exists(pname) == 0:
+        if not os.path.exists(pname):
             msgstr = _("Cannot import %s")
             msgstr2 = _("The filename supplied could not be found.")
             ErrorDialog(msgstr % filename, msgstr2)
