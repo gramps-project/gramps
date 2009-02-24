@@ -59,6 +59,7 @@ dist_pkgdata_DATA = \
 	good.png\
 	gramps.png\
 	logo.png\
+        ped24.ico\
 	splash.jpg\
 	gramps-export.png\
 	gramps-import.png\
