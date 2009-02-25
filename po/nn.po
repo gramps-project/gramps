@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 11:23-0800\n"
-"PO-Revision-Date: 2009-02-23 09:14+0100\n"
+"PO-Revision-Date: 2009-02-25 18:47+0100\n"
 "Last-Translator: Sigmund Lorentsen <sigmund.lorentsen@tele2.no>\n"
 "Language-Team: Norwegian Nynorsk <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -844,7 +844,7 @@ msgstr ""
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
-msgstr "Namnehandsamar"
+msgstr " Namnehandsamar"
 
 #: ../src/GrampsCfg.py:158 ../src/GrampsCfg.py:166 ../src/GrampsCfg.py:169
 #: ../src/GrampsCfg.py:1088
@@ -1171,7 +1171,7 @@ msgstr "Etternamn"
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
-msgstr "Fornamn"
+msgstr "Førenamn"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
@@ -2017,7 +2017,7 @@ msgstr "Mor"
 #: ../src/plugins/textreport/FamilyGroup.py:478
 #: ../src/plugins/tool/RelCalc.py:63
 msgid "Spouse"
-msgstr "Ektefelle"
+msgstr "Partnar"
 
 #: ../src/Reorder.py:32 ../src/DataViews/FamilyList.py:65
 #: ../src/plugins/textreport/MarkerReport.py:217
@@ -2186,7 +2186,7 @@ msgstr "Kallenamn"
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:278 ../src/plugins/tool/PatchNames.py:290
 msgid "Prefix"
-msgstr "Forstavelse"
+msgstr "Førestaving"
 
 #. -------------------------------------------------------------------------
 #.
@@ -14079,7 +14079,7 @@ msgstr "Ho døydde %(death_date)s i %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:180
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
-msgstr "Ho døydde %(death_date)s i %(death_place)s i ein alder av %(age)d years."
+msgstr "Ho døydde %(death_date)s i %(death_place)s i ein alder av %(age)d år."
 
 #: ../src/ReportBase/_ReportUtils.py:181
 #, python-format
@@ -16889,7 +16889,7 @@ msgstr "Han er son til %(father)s and %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1344
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr "Han var son til %(father)s and %(mother)s."
+msgstr "Han var son til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1347
 #, python-format
@@ -16899,22 +16899,22 @@ msgstr "%(male_name)s er son til %(father)s og %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1348
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s var son til %(father)s and %(mother)s."
+msgstr "%(male_name)s var son til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1350
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr "Son til %(father)s and %(mother)s."
+msgstr "Son til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1354
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "Ho er dotter til %(father)s and %(mother)s."
+msgstr "Ho er dotter til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1355
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "Ho var dotter til %(father)s and %(mother)s."
+msgstr "Ho var dotter til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1358
 #, python-format
@@ -16929,7 +16929,7 @@ msgstr "%(female_name)s var dotter til %(father)s og %(mother)s."
 #: ../src/ReportBase/_ReportUtils.py:1361
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "Dotter til %(father)s and %(mother)s."
+msgstr "Dotter til %(father)s og %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1368
 #, python-format
@@ -16994,7 +16994,7 @@ msgstr "Ho var dottera til %(father)s."
 #: ../src/ReportBase/_ReportUtils.py:1394
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s er dottera til %(father)s."
+msgstr "%(female_name)s er dotter til %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1395
 #, python-format
@@ -20365,7 +20365,7 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:11
 msgid "Gi_ven:"
-msgstr "_Fornamn:"
+msgstr "_Førenamn:"
 
 #: ../src/glade/edit_person.glade.h:12 ../src/glade/gramps.glade.h:82
 msgid "Indicates if the record is private"
@@ -20397,7 +20397,7 @@ msgstr "Personen sitt fornamn"
 
 #: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:152
 msgid "_Family:"
-msgstr "_Familie:"
+msgstr "_Familienamn:"
 
 #: ../src/glade/edit_person.glade.h:20
 msgid "_Gender:"
