@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -154,38 +154,53 @@ class EditEvent(EditPrimary):
         window.
         """
         notebook = gtk.Notebook()
-        
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
-        
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), notetype=gen.lib.NoteType.EVENT))
-        
-        self.gallery_tab = self._add_tab(
-            notebook,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_media_list()))
 
-        self.attr_ref_list = self._add_tab(
-            notebook,
-            AttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_attribute_list()))
+        self.source_list = SourceEmbedList(self.dbstate,
+                                           self.uistate,
+                                           self.track,
+                                           self.obj)
+        self._add_tab(notebook, self.source_list)
+        
+        self.note_list = NoteTab(self.dbstate,
+                                 self.uistate,
+                                 self.track,
+                                 self.obj.get_note_list(),
+                                 notetype=gen.lib.NoteType.EVENT)
+        self._add_tab(notebook, self.note_list)
+        
 
-        self.backref_tab = self._add_tab(
-            notebook,
-            EventBackRefList(self.dbstate, self.uistate, self.track,
-                             self.dbstate.db.find_backlink_handles(self.obj.handle)))
+        self.gallery_list = GalleryTab(self.dbstate,
+                                       self.uistate,
+                                       self.track,
+                                       self.obj.get_media_list())
+        self._add_tab(notebook, self.gallery_list)
 
-        self._setup_notebook_tabs( notebook)
+        self.attr_list = AttrEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track,
+                                       self.obj.get_attribute_list())
+        self._add_tab(notebook, self.attr_list)
+
+        handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)
+        self.backref_list = EventBackRefList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                                             handle_list)
+        self._add_tab(notebook, self.backref_list)
+
+        self._setup_notebook_tabs(notebook)
         
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook, True)
 
+        self.track_ref_for_deletion("source_list")
+        self.track_ref_for_deletion("note_list")
+        self.track_ref_for_deletion("gallery_list")
+        self.track_ref_for_deletion("attr_list")
+        self.track_ref_for_deletion("backref_list")
+
     def _cleanup_on_exit(self):
-        self.backref_tab.close()
+        self.backref_list.close()
 
     def build_menu_names(self, event):
         return (_('Edit Event'), self.get_menu_title())

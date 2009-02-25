@@ -73,6 +73,7 @@ class EmbeddedList(ButtonTab):
         # handle the selection
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self._selection_changed)
+        self.track_ref_for_deletion("selection")
 
         # build the columns
         self.columns = []
@@ -341,6 +342,7 @@ class EmbeddedList(ButtonTab):
         self.tree.set_rules_hint(True)
         self.tree.connect('button_press_event', self.double_click)
         self.tree.connect('key_press_event', self.key_pressed)
+        self.track_ref_for_deletion("tree")
 
         # create the scrolled window, and attach the treeview
         scroll = gtk.ScrolledWindow()
@@ -428,6 +430,7 @@ class EmbeddedList(ButtonTab):
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
             self.tree.append_column(column)
+        self.track_ref_for_deletion("columns")
 
     def rebuild(self):
         """
@@ -450,4 +453,3 @@ class EmbeddedList(ButtonTab):
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
-

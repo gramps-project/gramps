@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -334,6 +334,7 @@ class ManagedWindow:
         self.isWindow = None
         self.width_key = None
         self.height_key = None
+        self.__refs_for_deletion = []
             
         if uistate.gwm.get_item_from_id(window_key):
             uistate.gwm.get_item_from_id(window_key).present()
@@ -466,6 +467,7 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
+        self.clean_up()
         self._save_size()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
@@ -500,6 +502,26 @@ class ManagedWindow:
             Config.set(self.width_key, width)
             Config.set(self.height_key, height)
             Config.sync()
+
+    def track_ref_for_deletion(self, ref):
+        """
+        Record references of instance variables that need to be removed
+        from scope so that the class can be garbage collected
+        """
+        if ref not in self.__refs_for_deletion:
+            self.__refs_for_deletion.append(ref)
+
+    def clean_up(self):
+        """
+        Remove any instance variables from scope which point to non-glade
+        GTK objects so that the class can be garbage collected.
+        Run the clean_up method on the object first before removing it.
+        """
+        while len(self.__refs_for_deletion): 
+            attr = self.__refs_for_deletion.pop()
+            obj = getattr(self, attr)
+            obj.clean_up()
+            delattr(self, attr)
 #-------------------------------------------------------------------------
 #
 # Helper functions

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,6 +71,7 @@ class GrampsTab(gtk.VBox):
         self.uistate = uistate
         self.track = track
         self.changed = False
+        self.__refs_for_deletion = []
         
         self._add_db_signal = None
         
@@ -77,7 +79,9 @@ class GrampsTab(gtk.VBox):
         # for the label
         
         self.tab_name = name
+        self.track_ref_for_deletion("tab_name")
         self.label_container = self.build_label_widget()
+        self.track_ref_for_deletion("label_container")
 
         # build the interface
         self.share_btn = None
@@ -116,7 +120,9 @@ class GrampsTab(gtk.VBox):
             name = icon
         
         self.tab_image = func(name, gtk.ICON_SIZE_MENU)
+        self.track_ref_for_deletion("tab_image")
         self.label = gtk.Label(self.tab_name)
+        self.track_ref_for_deletion("label")
         hbox.pack_start(self.tab_image)
         hbox.set_spacing(6)
         hbox.add(self.label)
@@ -213,6 +219,7 @@ class GrampsTab(gtk.VBox):
 
     def set_parent_notebook(self, book):
         self.parent_notebook = book
+        self.track_ref_for_deletion("parent_notebook")
 
     def next_page(self):
         if self.parent_notebook:
@@ -222,3 +229,19 @@ class GrampsTab(gtk.VBox):
         if self.parent_notebook:
             self.parent_notebook.prev_page()
 
+    def track_ref_for_deletion(self, ref):
+        """
+        Record references of instance variables that need to be removed
+        from scope so that the class can be garbage collected
+        """
+        if ref not in self.__refs_for_deletion:
+            self.__refs_for_deletion.append(ref)
+
+    def clean_up(self):
+        """
+        Remove any instance variables from scope which point to non-glade
+        GTK objects so that the class can be garbage collected.
+        """
+        while len(self.__refs_for_deletion): 
+            attr = self.__refs_for_deletion.pop()
+            delattr(self, attr)

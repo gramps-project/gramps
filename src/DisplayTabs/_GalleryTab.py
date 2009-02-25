@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,8 +73,8 @@ class GalleryTab(ButtonTab):
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
         self.iconlist = gtk.IconView()
-        
         ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True)
+        self.track_ref_for_deletion("iconlist")
         self.media_list = media_list
         self.update = update
 
@@ -146,6 +147,7 @@ class GalleryTab(ButtonTab):
     def _build_icon_model(self):
         self.iconmodel = gtk.ListStore(gtk.gdk.Pixbuf, gobject.TYPE_STRING, 
                                       object)
+        self.track_ref_for_deletion("iconmodel")
 
     def _connect_icon_model(self):
         self.iconlist.set_model(self.iconmodel)

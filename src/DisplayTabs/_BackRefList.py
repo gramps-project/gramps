@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -64,6 +65,7 @@ class BackRefList(EmbeddedList):
                               _('_References'), refmodel)
         self._callback = callback
         self.model.connect('row-inserted', self.update_label)
+        self.track_ref_for_deletion("model")
 
     def update_label(self, *obj):
         if self.model.count > 0:
@@ -98,6 +100,11 @@ class BackRefList(EmbeddedList):
         
         self.add_btn = None
         self.del_btn = None
+
+        self.track_ref_for_deletion("edit_btn")
+        self.track_ref_for_deletion("tooltips")
+        self.track_ref_for_deletion("add_btn")
+        self.track_ref_for_deletion("del_btn")
 
     def _selection_changed(self, obj=None):
         if self.dirty_selection:
