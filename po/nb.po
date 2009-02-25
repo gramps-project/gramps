@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 11:23-0800\n"
-"PO-Revision-Date: 2009-02-25 19:20+0100\n"
+"PO-Revision-Date: 2009-02-25 21:54+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12311,7 +12311,6 @@ msgid "Convert paths from absolute to r_elative"
 msgstr "Konverter fra absolutt til relativ sti"
 
 #: ../src/plugins/tool/MediaManager.py:535
-#, fuzzy
 msgid ""
 "This tool allows converting absolute media paths to a relative path. The "
 "relative path is relative viz-a-viz the base path as given in the "
@@ -12379,9 +12378,8 @@ msgid "Find people who are not in any way related to the selected person"
 msgstr "Finn personer som ikke på noen måte er i slekt med den valgte personen"
 
 #: ../src/plugins/tool/OwnerEditor.py:61
-#, fuzzy
 msgid "manual|Edit_Database_Owner_Information..."
-msgstr "Redigere informasjon om databaseeier"
+msgstr "Redigere informasjon om databaseeier..."
 
 #: ../src/plugins/tool/OwnerEditor.py:108
 msgid "Database Owner Editor"
@@ -12405,7 +12403,6 @@ msgid "Allow editing database owner information."
 msgstr "Tillat å redigere informasjon om databaseeier."
 
 #: ../src/plugins/tool/PatchNames.py:63
-#, fuzzy
 msgid "manual|Extract_Information_from_Names"
 msgstr "Hent ut informasjon fra navn"
 
@@ -12422,9 +12419,8 @@ msgid "Analyzing names"
 msgstr "Analyserer navn"
 
 #: ../src/plugins/tool/PatchNames.py:189
-#, fuzzy
 msgid "No titles, nicknames or prefixes were found"
-msgstr "Ingen titler eller kallenavn ble funnet"
+msgstr "Ingen titler, kallenavn eller forstavelser ble funnet"
 
 #: ../src/plugins/tool/PatchNames.py:254 ../src/gen/lib/attrtype.py:70
 msgid "Nickname"
@@ -12611,54 +12607,44 @@ msgid "Reorders the gramps IDs according to Gramps' default rules."
 msgstr "Sorter gramps IDene etter GRAMPS' standardregler."
 
 #: ../src/plugins/tool/SortEvents.py:78 ../src/plugins/tool/SortEvents.py:232
-#, fuzzy
 msgid "Sort Events"
-msgstr "Foreldrehendelser"
+msgstr "Sortere hendelser"
 
 #: ../src/plugins/tool/SortEvents.py:104
-#, fuzzy
 msgid "Sort event changes"
-msgstr "Avbryt endringer"
+msgstr "Sortere hendelsesendringer"
 
 #: ../src/plugins/tool/SortEvents.py:114
-#, fuzzy
 msgid "Sorting personal events..."
-msgstr "Sorterer data..."
+msgstr "Sorterer personlige hendelser..."
 
 #: ../src/plugins/tool/SortEvents.py:136
-#, fuzzy
 msgid "Sorting family events..."
-msgstr "Skriver slektslinjer"
+msgstr "Sorterer familiehendelser..."
 
 #: ../src/plugins/tool/SortEvents.py:167
-#, fuzzy
 msgid "Tool Options"
-msgstr "Treopsjoner"
+msgstr "Verktøyopsjoner"
 
 #: ../src/plugins/tool/SortEvents.py:170
-#, fuzzy
 msgid "Select the people to sort"
-msgstr "Slett den valgte kilden"
+msgstr "Velg personene som skal sorteres"
 
 #: ../src/plugins/tool/SortEvents.py:189
-#, fuzzy
 msgid "Sort descending"
-msgstr "Sorterer"
+msgstr "Sorter minkende"
 
 #: ../src/plugins/tool/SortEvents.py:190
-#, fuzzy
 msgid "Set the sort order"
-msgstr "Kryss av for å reversere sorteringsrekkefølgen."
+msgstr "Velg sorteringsrekkefølge"
 
 #: ../src/plugins/tool/SortEvents.py:193
-#, fuzzy
 msgid "Include family events"
-msgstr "Ta med familiehendelser:"
+msgstr "Ta med familiehendelser"
 
 #: ../src/plugins/tool/SortEvents.py:194
-#, fuzzy
 msgid "Sort family events of the person"
-msgstr "Etterkommende familiemedlem av <person>"
+msgstr "Sortere familiehendelsene for personen"
 
 #: ../src/plugins/tool/SortEvents.py:236
 msgid "Sorts events"
@@ -12830,14 +12816,12 @@ msgid "Disconnected individual"
 msgstr "Slektsløse personer"
 
 #: ../src/plugins/tool/Verify.py:1547
-#, fuzzy
 msgid "Invalid birth date"
-msgstr "fødselsdato"
+msgstr "Ugyldig fødselsdato"
 
 #: ../src/plugins/tool/Verify.py:1569
-#, fuzzy
 msgid "Invalid death date"
-msgstr "dødsdato"
+msgstr "Ugyldig dødsdato"
 
 #: ../src/plugins/tool/Verify.py:1583
 msgid "Verify the Data"
@@ -12850,33 +12834,28 @@ msgstr "Verifiserer dataene mot brukerdefinerte tester"
 #. First is used as default selection.
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/plugins/webreport/WebCal.py:92
-#, fuzzy
 msgid "Basic-Ash"
-msgstr "Basic - Ash"
+msgstr "Basic-Ash"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 #: ../src/plugins/webreport/WebCal.py:93
-#, fuzzy
 msgid "Basic-Cypress"
-msgstr "Basic - Cypress"
+msgstr "Basic-Cypress"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/plugins/webreport/WebCal.py:94
-#, fuzzy
 msgid "Basic-Lilac"
-msgstr "Basic - Lilac"
+msgstr "Basic-Lilac"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/plugins/webreport/WebCal.py:95
-#, fuzzy
 msgid "Basic-Peach"
-msgstr "Basic - Peach"
+msgstr "Basic-Peach"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/plugins/webreport/WebCal.py:96
-#, fuzzy
 msgid "Basic-Spruce"
-msgstr "Basic - Spruce"
+msgstr "Basic-Spruce"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/plugins/webreport/WebCal.py:97
@@ -12952,9 +12931,9 @@ msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s
 msgstr "Generert av <a href=\"http://gramps-project.org\">GRAMPS</a> %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:419
-#, fuzzy, python-format
+#, python-format
 msgid "Created for <a href=\"%s\">%s</a>"
-msgstr "<br />for <a href=\"%s\">%s</a>"
+msgstr "Laget for <a href=\"%s\">%s</a>"
 
 #. Note. In old NarrativeWeb.py the content_divid depended on filename.
 #: ../src/plugins/webreport/NarrativeWeb.py:434
@@ -13127,12 +13106,10 @@ msgid "Ancestors"
 msgstr "Aner"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2203
-#, fuzzy
 msgid "Age at Death"
 msgstr "Alder ved død"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2228
-#, fuzzy
 msgid "event|Type"
 msgstr "Hendelsestype"
 
@@ -13141,9 +13118,8 @@ msgid "Half Siblings"
 msgstr "Halvsøsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2547
-#, fuzzy
 msgid "Step Siblings"
-msgstr "Vis søsken"
+msgstr "Stesøsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2720
 #, python-format
@@ -13182,7 +13158,6 @@ msgid "The archive file must be a file, not a directory"
 msgstr "Arkivfilen må være en fil, ikke en katalog"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2918
-#, fuzzy
 msgid "Narrated Web Site Report"
 msgstr "Fortellende nettsider"
 
@@ -13254,7 +13229,6 @@ msgid "The title of the web site"
 msgstr "Tittel på nettstedet"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3315
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Velg filter for å begrense antall personer som skal vises på nettsidene"
 
@@ -13290,12 +13264,10 @@ msgstr "Tegnsettet som skal brukes på nettsidene"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3344
 #: ../src/plugins/webreport/WebCal.py:1164
-#, fuzzy
 msgid "StyleSheet"
-msgstr "Stilark"
+msgstr "Stilsett"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3347
-#, fuzzy
 msgid "The stylesheet to be used for the web page"
 msgstr "Stilsettet som skal brukes på nettsidene"
 
@@ -13496,14 +13468,12 @@ msgid "Whether to include a parents column"
 msgstr "Ta med en kolonne over foreldre"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3482
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
-msgstr "Ta med halvsøsken på indekssidene"
+msgstr "Ta med halv- og/eller stesøsken på de individuelle sidene"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3485
-#, fuzzy
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr "Om halvsøsken skal tas med hos foreldre og søsken"
+msgstr "Om halv- og/eller stesøsken skal tas med sammen med foreldrene og søsken"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3624
 msgid "Narrated Web Site"
@@ -13515,9 +13485,8 @@ msgstr "Lager nettsider (HTML) for personer, eller for en gruppe med personer"
 
 #. Add a link for year_glance() if requested
 #: ../src/plugins/webreport/WebCal.py:382
-#, fuzzy
 msgid "Year Glance"
-msgstr "Dødssted"
+msgstr "Årsoversikt"
 
 #: ../src/plugins/webreport/WebCal.py:485
 #, python-format
@@ -13549,15 +13518,13 @@ msgstr "Denne kalenderen er ment for å gi en rask oversikt over alle dine data 
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:869
-#, fuzzy
 msgid "Creating Year At A Glance calendars"
-msgstr "Lager side over steder"
+msgstr "Lager årsoversiktkalender"
 
 #. open progress meter bar
 #: ../src/plugins/webreport/WebCal.py:899
-#, fuzzy
 msgid "Web Calendar Report"
-msgstr "Kalenderrapport"
+msgstr "Internettkalenderrapport"
 
 #. generate progress pass for year ????
 #: ../src/plugins/webreport/WebCal.py:911
@@ -13568,9 +13535,8 @@ msgstr "Lager kalender for året %d"
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:963
-#, fuzzy
 msgid "Formatting months ..."
-msgstr "Formatere måneder..."
+msgstr "Formaterer måneder ..."
 
 #: ../src/plugins/webreport/WebCal.py:1051
 #, python-format
@@ -13595,37 +13561,32 @@ msgid "The title of the calendar"
 msgstr "Tittel på kalenderen"
 
 #: ../src/plugins/webreport/WebCal.py:1168
-#, fuzzy
 msgid "The Style Sheet to be used for the web page"
-msgstr "Stilsettet som skal brukes på nettsidene"
+msgstr "Stilsettet som skal brukes på nettsiden"
 
 #: ../src/plugins/webreport/WebCal.py:1176
 msgid "Content Options"
 msgstr "Innholdsinnstillinger"
 
 #: ../src/plugins/webreport/WebCal.py:1183
-#, fuzzy
 msgid "Create multiple year calendars"
-msgstr "Tittel på kalenderen"
+msgstr "Lag flerårig kalender"
 
 #: ../src/plugins/webreport/WebCal.py:1185
-#, fuzzy
 msgid "Whether to create Multiple year calendars or not."
-msgstr "Ta med alternative navn for foreldrene."
+msgstr "Om flerårig kalender skal lages eller ikke."
 
 #: ../src/plugins/webreport/WebCal.py:1190
-#, fuzzy
 msgid "Start Year for the Calendar(s)"
-msgstr "Tittel på kalenderen"
+msgstr "Startår for kalenderen(e)"
 
 #: ../src/plugins/webreport/WebCal.py:1192
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Skriv inn startår for kalenderen mellom 1900 og 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1196
-#, fuzzy
 msgid "End Year for the Calendar(s)"
-msgstr "Kalenderår"
+msgstr "Sluttår for kalenderen(e)"
 
 #: ../src/plugins/webreport/WebCal.py:1198
 msgid ""
@@ -13638,9 +13599,8 @@ msgid "Create \"Year At A Glance\" Calendar(s)"
 msgstr "Lag Oversiktkalender(e)"
 
 #: ../src/plugins/webreport/WebCal.py:1208
-#, fuzzy
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr "Lagre nettsted i en arkivfil"
+msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1216
 msgid "Holidays will be included for the selected country"
@@ -13655,9 +13615,8 @@ msgid "The link to be included to direct the user to the main page of the web si
 msgstr "Lenken som skal tas med for å sende brukeren til hovedsiden for nettstedet"
 
 #: ../src/plugins/webreport/WebCal.py:1257
-#, fuzzy
 msgid "Jan - Jun Notes"
-msgstr "jan-notat"
+msgstr "Notater for jan - jun"
 
 #: ../src/plugins/webreport/WebCal.py:1259
 msgid "Jan Note"
@@ -13732,9 +13691,8 @@ msgid "The note for the month of June"
 msgstr "Notatet for juni måned"
 
 #: ../src/plugins/webreport/WebCal.py:1283
-#, fuzzy
 msgid "Jul - Dec Notes"
-msgstr "jul-notat"
+msgstr "Notater for jul - des"
 
 #: ../src/plugins/webreport/WebCal.py:1285
 msgid "Jul Note"
@@ -13943,9 +13901,8 @@ msgstr "Beskjed"
 #. Only show the "Reload" button when in debug mode
 #. (without -O on the command line)
 #: ../src/PluginUtils/_PluginWindows.py:99
-#, fuzzy
 msgid "Reload"
-msgstr "Relatert"
+msgstr "Last på nytt"
 
 #: ../src/PluginUtils/_PluginWindows.py:115
 msgid "Unavailable"
@@ -14124,12 +14081,10 @@ msgid "Default"
 msgstr "Standard"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:64
-#, fuzzy
 msgid "PostScript / Helvetica"
 msgstr "PostScript / Helvetica"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:65
-#, fuzzy
 msgid "TrueType / FreeSans"
 msgstr "Truetype / FreeSans"
 
@@ -14234,9 +14189,8 @@ msgid "PNG image"
 msgstr "PNG-bilde"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:837
-#, fuzzy
 msgid "Graphviz File"
-msgstr "Graphviz Dot-fil"
+msgstr "Graphviz-fil"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:928
@@ -14334,15 +14288,13 @@ msgid "DPI"
 msgstr "PPT"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1008
-#, fuzzy
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
 "use 72 DPI."
 msgstr ""
 "Punkt per tomme.  Når du lager bilder slik som .gif eller .png for "
-"Internett, prøv tall som 100 eller 300 PPT (DPI).  For postscript- eller pdf-"
-"filer, bruk 72 PPT."
+"Internett, prøv tall som 100 eller 300 PPT (DPI).  Bruk 72PPT når du lager PostScript- eller PDF-filer."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1014
 msgid "Node spacing"
@@ -14402,9 +14354,8 @@ msgid "Open with application"
 msgstr "Åpne med program"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1120
-#, fuzzy
 msgid "Open with default application"
-msgstr "Åpne med program"
+msgstr "Åpne med standardprogram"
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -16663,19 +16614,19 @@ msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
 msgstr "%(male_name)s ble døpt %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "Han ble begravet %(month_year)s%(endnotes)s."
+msgstr "Han ble døpt i %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s ble døpt i %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "Hun ble begravet %(month_year)s%(endnotes)s."
+msgstr "Hun ble døpt i %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:874
 #, python-format
@@ -16742,39 +16693,39 @@ msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Døpt %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Han ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Han ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Hun ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Hun ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Denne personen ble begravet %(modified_date)s%(endnotes)s."
+msgstr "Denne personen ble døpt i %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "Begravet %(modified_date)s%(endnotes)s."
+msgstr "Døpt %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:914
 #, python-format
@@ -16812,39 +16763,39 @@ msgid "Christened in %(christening_place)s%(endnotes)s."
 msgstr "Døpt i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s ble begravet%(endnotes)s."
+msgstr "%(male_name)s ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "Han ble begravet %(endnotes)s."
+msgstr "Han ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr "%(female_name)s ble begravet%(endnotes)s."
+msgstr "%(female_name)s ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:935
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened%(endnotes)s."
-msgstr "Hun ble begravet %(endnotes)s."
+msgstr "Hun ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%(unknown_gender_name)s ble begravet %(endnotes)s."
+msgstr "%(unknown_gender_name)s ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr "Denne personen ble begravet %(endnotes)s."
+msgstr "Denne personen ble døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:941
-#, fuzzy, python-format
+#, python-format
 msgid "Christened%(endnotes)s."
-msgstr "Begravet%(endnotes)s."
+msgstr "Døpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:952
 #, python-format
@@ -18693,9 +18644,8 @@ msgid "_Redo %s"
 msgstr "_Gjør om %s"
 
 #: ../src/gen/db/dbdir.py:560
-#, fuzzy
 msgid "Need to upgrade database!"
-msgstr "Skrivebeskyttet database"
+msgstr "Databasen må oppgraderes!"
 
 #: ../src/gen/db/dbdir.py:561
 msgid ""
@@ -19005,7 +18955,6 @@ msgstr "Brudgom"
 #: ../src/gen/lib/date.py:358 ../src/gen/lib/date.py:363
 #: ../src/gen/lib/date.py:374 ../src/gen/lib/date.py:385
 #: ../src/gen/lib/date.py:418
-#, fuzzy
 msgid "more than"
 msgstr "større enn"
 
@@ -19023,7 +18972,6 @@ msgstr "større enn"
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
 #: ../src/gen/lib/date.py:304 ../src/gen/lib/date.py:326
 #: ../src/gen/lib/date.py:336 ../src/gen/lib/date.py:423
-#, fuzzy
 msgid "less than"
 msgstr "mindre enn"
 
@@ -19033,7 +18981,6 @@ msgstr "mindre enn"
 #: ../src/gen/lib/date.py:309 ../src/gen/lib/date.py:341
 #: ../src/gen/lib/date.py:380 ../src/gen/lib/date.py:395
 #: ../src/gen/lib/date.py:401 ../src/gen/lib/date.py:428
-#, fuzzy
 msgid "age|about"
 msgstr "omkring"
 
@@ -19051,9 +18998,8 @@ msgstr "omkring"
 #. self.minmax = (v1, v2)
 #: ../src/gen/lib/date.py:319 ../src/gen/lib/date.py:412
 #: ../src/gen/lib/date.py:441
-#, fuzzy
 msgid "between"
-msgstr "Sverige"
+msgstr "mellom"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
@@ -19066,22 +19012,21 @@ msgstr "mer enn omkring"
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
-#, fuzzy
 msgid "less than about"
-msgstr "mindre enn"
+msgstr "mindre enn omkring"
 
 #: ../src/gen/lib/date.py:487
-#, fuzzy, python-format
+#, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d år"
 msgstr[1] "%d år"
 
 #: ../src/gen/lib/date.py:494
-#, fuzzy, python-format
+#, python-format
 msgid "%d month"
 msgid_plural "%d months"
-msgstr[0] "%d måneder"
+msgstr[0] "%d måned"
 msgstr[1] "%d måneder"
 
 #: ../src/gen/lib/date.py:501
@@ -19425,19 +19370,16 @@ msgid "%s does not contain"
 msgstr "%s inneholder ikke"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "Changed after:"
-msgstr "Endre typer"
+msgstr "Endret etter:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "but before:"
-msgstr "før"
+msgstr "men før:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Objekter med <attribute>"
+msgstr "Objekter endret etter <dato tid>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid ""
@@ -19728,9 +19670,8 @@ msgstr "Samsvarer med personer som mangler dato eller sted i en familiehendelse"
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:476
-#, fuzzy
 msgid "Number of instances:"
-msgstr "Antall Aner"
+msgstr "Antall instanser:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
@@ -19739,24 +19680,20 @@ msgid "Number must be:"
 msgstr "Tall må være:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-#, fuzzy
 msgid "People with <count> address"
-msgstr "Personer med fullstendige opplysninger"
+msgstr "Personer med <antall> adresser"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-#, fuzzy
 msgid "Matches people with certain number of personal address"
-msgstr "Samsvarer med personer som har markering av en bestemt verdi"
+msgstr "Samsvarer med personer med et bestemt antall personlige adresser"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-#, fuzzy
 msgid "People with <count> association"
-msgstr "Fjern eksisterende relasjon"
+msgstr "Personer med <antall> tilknytninger"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-#, fuzzy
 msgid "Matches people with certain number of association"
-msgstr "Samsvarer med personer med samme etternavn"
+msgstr "Samsvarer med personer med et bestemt antall tilknytninger"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
@@ -19866,36 +19803,30 @@ msgid "Matches people with a family event of a particular value"
 msgstr "Samsvarer med en person som har en familie-hendelse av en bestemt verdi"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
-#, fuzzy
 msgid "People with <count> media"
-msgstr "personer med bilder"
+msgstr "personer med <antall> media"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
-#, fuzzy
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Samsvarer med personer som har bilder i galleriet"
+msgstr "Samsvarer med personer som har et bestemt antall bilder i galleriet"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
-#, fuzzy
 msgid "Person with <Id>"
-msgstr "Personer med <Id>"
+msgstr "Person med <Id>"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:47
-#, fuzzy
 msgid "Matches person with a specified GRAMPS ID"
-msgstr " Samsvarer med personen med en spesifikk GRAMPS ID"
+msgstr " Samsvarer med personen med en bestemt GRAMPS ID"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
-#, fuzzy
 msgid "People with <count> LDS events"
-msgstr "Personer med ufullstendige hendelser"
+msgstr "Personer med <antall> LDS-hendelser"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:47
-#, fuzzy
 msgid "Matches people with a certain number of LDS events"
-msgstr "Samsvarer med notater som er referert til et visst antall ganger"
+msgstr "Samsvarer med personer med et bestemt antall LDS-hendelser"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -19943,14 +19874,12 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Samsvarer med personen med et bestemt (del) navn"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
-#, fuzzy
 msgid "People having <count> notes"
-msgstr "Personer med notater"
+msgstr "Personer med <antall> notater"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:47
-#, fuzzy
 msgid "Matches people having a certain number of notes"
-msgstr "Samsvarer med personer som har nottater"
+msgstr "Samsvarer med personer som har et bestemt antall notater"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
@@ -20008,14 +19937,12 @@ msgid "Family filters"
 msgstr "Familiefiltre"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-#, fuzzy
 msgid "People with <count> source"
-msgstr "Personer med <kilde>"
+msgstr "Personer med <antall> kilder"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-#, fuzzy
 msgid "Matches people with a certain number of items in the source"
-msgstr "Samsvarer med notater som er referert til et visst antall ganger"
+msgstr "Samsvarer med personer med et bestemt antall element i kilden"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:488
@@ -20422,9 +20349,8 @@ msgid "Matches every family in the database"
 msgstr "Samsvarer med alle familier i databasen"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#, fuzzy
 msgid "Families changed after <date time>"
-msgstr "Familier som samsvarer med <filter>"
+msgstr "Familier som endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid ""
@@ -20510,14 +20436,12 @@ msgid "Matches families with an event of a particular value"
 msgstr "Samsvarer med familier som har en hendelse av en bestemt type"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
-#, fuzzy
 msgid "Families with <count> media"
-msgstr "Familier med <marker>"
+msgstr "Familier med <antall> media"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
-#, fuzzy
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Samsvarer med personer som har bilder i galleriet"
+msgstr "Samsvarer med familier som har et bestemt antall bilder i galleriet"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -20528,14 +20452,12 @@ msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Samsvarer med en familie som har en spesifikk GRAMPS ID"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
-#, fuzzy
 msgid "Families with <count> LDS events"
-msgstr "Familier med ufullstendige hendelser"
+msgstr "Familier med <antall> LDS-hendelser"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:47
-#, fuzzy
 msgid "Matches families with a certain number of LDS events"
-msgstr "Samsvarer med familieobjekter som er referert til et visst antall ganger"
+msgstr "Samsvarer med familier med et bestemt antall LDS-hendelser"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
@@ -20546,14 +20468,12 @@ msgid "Matches Families with a marker of a particular value"
 msgstr "Samsvarer med familier som har en markering av en bestemt type"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:46
-#, fuzzy
 msgid "Families having <count> notes"
-msgstr "Familier med ufullstendige hendelser"
+msgstr "Familier som har <antall> notater"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:47
-#, fuzzy
 msgid "Matches families having a certain number notes"
-msgstr "Samsvarer med familieobjekter som er referert til et visst antall ganger"
+msgstr "Samsvarer med familier som har et bestemt antall notater"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
@@ -20576,12 +20496,10 @@ msgstr ""
 "delstreng"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Families with a reference count of <count>"
-msgstr "Familieobjekter som er referert til <count> antall ganger"
+msgstr "Familier som er referert til <antall> ganger"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches families objects with a certain reference count"
 msgstr "Samsvarer med familieobjekter som er referert til et visst antall ganger"
 
