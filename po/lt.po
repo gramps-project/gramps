@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 16:07+0200\n"
-"PO-Revision-Date: 2009-02-23 23:39+0300\n"
+"PO-Revision-Date: 2009-02-25 23:28+0300\n"
 "Last-Translator: Arturas Sleinius <asleiniu@users.sourceforge.net>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-Country: LITHUANIA\n"
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0: n%10>=2 && (n%100<10 or n%100>=20) ? 1 : 2)\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 or n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../src/ArgHandler.py:230
 #, python-format
@@ -1229,17 +1229,19 @@ msgstr "Pasirinktas"
 
 #: ../src/GrampsCfg.py:306
 msgid "You need a broadband internet connection to use Internet mapping applications from within GRAMPS"
-msgstr ""
+msgstr "Norint su GRAMPS naudoti internetinius žemėlapius reikia plačiajuosčio interneto ryšio"
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr ""
+msgstr "Pridėkite GeoVaizdą į GRAMPS ir matykite internetinius žemėlapius pagal Jūsų duomenis."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
 "Choose one of the following map providers:"
 msgstr ""
+"GeoVaizdas naudoja OpenStreetMap ir vieną kitą žemėlapių tiekėją.\n"
+"Pasirinkite vieną iš šių tiekėjų:"
 
 #: ../src/GrampsCfg.py:321
 msgid "Google Maps"
@@ -1247,7 +1249,7 @@ msgstr "Google Žemėlapiai"
 
 #: ../src/GrampsCfg.py:325
 msgid "OpenLayers"
-msgstr ""
+msgstr "OpenLayers"
 
 #: ../src/GrampsCfg.py:329
 msgid "Yahoo! Maps"
@@ -1255,11 +1257,11 @@ msgstr "Yahoo! Žemėlapiai"
 
 #: ../src/GrampsCfg.py:333
 msgid "Microsoft Maps"
-msgstr ""
+msgstr "Microsoft Žemėlapiai"
 
 #: ../src/GrampsCfg.py:337
 msgid "You need to restart GRAMPS for above settings to take effect"
-msgstr ""
+msgstr "Kad pakeitimai įsigaliotų reikia iš naujo startuoti GRAMPS"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:377
@@ -1632,9 +1634,8 @@ msgstr "Grampletai"
 
 #: ../src/gramps_main.py:111
 #: ../src/DataViews/GeoView.py:594
-#, fuzzy
 msgid "GeoView"
-msgstr "Rodyti"
+msgstr "GeoVaizdas"
 
 #: ../src/gramps_main.py:112
 msgid "Public"
@@ -3715,9 +3716,8 @@ msgid "Family Filter Editor"
 msgstr "Šeimos filtrų redaktorius"
 
 #: ../src/DataViews/GeoView.py:350
-#, fuzzy
 msgid "HtmlView"
-msgstr "Rodyti"
+msgstr "HTMLVaizdas"
 
 #: ../src/DataViews/GeoView.py:525
 msgid "Go to the previous page in the history"
@@ -3734,7 +3734,7 @@ msgstr "_Atnaujinti"
 
 #: ../src/DataViews/GeoView.py:541
 msgid "Stop and reload the page."
-msgstr ""
+msgstr "Sustoti ir atnaujinti puslapį."
 
 #: ../src/DataViews/GeoView.py:571
 #, fuzzy
@@ -3747,90 +3747,85 @@ msgid ""
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
+"Puslapiui užkrauti siame puslapyje surinkite internetinį adresą viršuje ir vykdymo mygtuką\n"
+"<br>\n"
+"Pavyzdžiui: <b>http://gramps-project.org</p>"
 
 #: ../src/DataViews/GeoView.py:738
-#, fuzzy
 msgid "_OpenStreetMap"
-msgstr "Gatvė"
+msgstr "_OpenStreetŽemėlapis"
 
 #: ../src/DataViews/GeoView.py:740
 msgid "Select OpenStreetMap Maps"
-msgstr ""
+msgstr "Pasirinkite OpenStreetMap Žemėlapius"
 
 #: ../src/DataViews/GeoView.py:743
 msgid "_Google Maps"
 msgstr "_Google Žemėlapis"
 
 #: ../src/DataViews/GeoView.py:745
-#, fuzzy
 msgid "Select Google Maps."
-msgstr "_Google Žemėlapis"
+msgstr "Pasirinkite  Google Žemėlapį."
 
 #: ../src/DataViews/GeoView.py:748
 msgid "_OpenLayers Maps"
-msgstr ""
+msgstr "_OpenLayers Žemėlapiai"
 
 #: ../src/DataViews/GeoView.py:750
 msgid "Select OpenLayers Maps."
-msgstr ""
+msgstr "Pasirinkite OpenLayers Žemėlapius."
 
 #: ../src/DataViews/GeoView.py:753
-#, fuzzy
 msgid "_Yahoo! Maps"
-msgstr "_Google Žemėlapis"
+msgstr "_Yahoo! Žemėlapis"
 
 #: ../src/DataViews/GeoView.py:755
 msgid "Select Yahoo Maps."
-msgstr ""
+msgstr "Pasirinkite Yahoo Žemėlapius."
 
 #: ../src/DataViews/GeoView.py:758
 msgid "_Microsoft Maps"
-msgstr ""
+msgstr "_Microsofto Žemėlapiai"
 
 #: ../src/DataViews/GeoView.py:760
 msgid "Select Microsoft Maps"
-msgstr ""
+msgstr "Pasirinkite Microsofto Žemėlapius"
 
 #: ../src/DataViews/GeoView.py:761
-#, fuzzy
 msgid "_All Places"
-msgstr "Vietovės"
+msgstr "_Visos Vietovės"
 
 #: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view all places in the family tree."
-msgstr ""
+msgstr "Bandome  šeimos medyje rodyti visas vietoves."
 
 #: ../src/DataViews/GeoView.py:764
-#, fuzzy
 msgid "_Person"
-msgstr "_Asmuo:"
+msgstr "_Asmuo"
 
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
-msgstr ""
+msgstr "Bandome rodyti visas vietoves, kur pažymėtas asmuo gyveno."
 
 #: ../src/DataViews/GeoView.py:767
-#, fuzzy
 msgid "_Family"
-msgstr "_Pavardė:"
+msgstr "_Šeima"
 
 #: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:770
-#, fuzzy
 msgid "_Event"
-msgstr "_Įvykiai"
+msgstr "_Įvykis"
 
 #: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:868
-#, fuzzy
 msgid "List of places without coordinates"
-msgstr "Vietovių sąrašas raportui"
+msgstr "Vietovių sąrašas be koordinačių"
 
 #: ../src/DataViews/GeoView.py:869
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
@@ -3846,72 +3841,69 @@ msgid "All"
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:1417
-#, fuzzy
 msgid "No location."
-msgstr "Pastabos vieta"
+msgstr "Nėra vietos."
 
 #: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
-msgstr ""
+msgstr "Šeimos medyje nėra vietovių su koordinatėmis."
 
 #: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
-msgstr ""
+msgstr "Jūs žiūrite į žemėlapį, kuris rodomas pagal nutylėjimą."
 
 #: ../src/DataViews/GeoView.py:1448
-#, fuzzy, python-format
+#, python-format
 msgid "%(comment)s : birth place."
-msgstr "Gimimo vieta:  %(birth_place)s."
+msgstr "%(comment)s : gimimo vieta."
 
 #: ../src/DataViews/GeoView.py:1451
-#, fuzzy
 msgid "birth place."
-msgstr "gimimo vieta"
+msgstr "gimimo vieta."
 
 #: ../src/DataViews/GeoView.py:1483
-#, fuzzy, python-format
+#, python-format
 msgid "%(comment)s : death place."
-msgstr "%(male_name)s palaidotas %(death_place)s."
+msgstr "%(comment)s :mirties vieta."
 
 #: ../src/DataViews/GeoView.py:1486
-#, fuzzy
 msgid "death place."
-msgstr "mirties vieta"
+msgstr "mirties vieta."
 
 #: ../src/DataViews/GeoView.py:1522
-#, fuzzy, python-format
+#, python-format
 msgid "Id : %s"
-msgstr "m.  %s"
+msgstr "Id.  %s"
 
 #: ../src/DataViews/GeoView.py:1539
 #: ../src/DataViews/GeoView.py:1616
 #: ../src/DataViews/GeoView.py:1666
 #: ../src/DataViews/GeoView.py:1737
 msgid "Cannot center the map. No location with coordinates."
-msgstr ""
+msgstr "Negalima centruoti žemėlapio. Nėra vietovės su koordinatėmis."
 
 #: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
-msgstr ""
+msgstr "Visos vietovės šeimos medyje su koordinatėmis."
 
 #: ../src/DataViews/GeoView.py:1568
-#, fuzzy, python-format
+#, python-format
 msgid "Id : %(id)s (%(year)s)"
-msgstr "  %(id)s - %(text)s\n"
+msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
-msgstr ""
+msgstr "Visi įvykiai šeimos medyje su koordinatėmis."
 
 #: ../src/DataViews/GeoView.py:1647
-#, fuzzy, python-format
+#, python-format
 msgid "Id : Father : %s"
-msgstr "   %d.b Tėvas: "
+msgstr "Id : Tėvas : %s"
 
 #: ../src/DataViews/GeoView.py:1652
-#, fuzzy, python-format
+#, python-format
 msgid "Id : Mother : %s"
-msgstr "   %d.a Motina: "
+msgstr "Id : Motina : %s"
 
 #: ../src/DataViews/GeoView.py:1661
 #, python-format
@@ -3924,9 +3916,8 @@ msgstr ""
 
 #: ../src/DataViews/GeoView.py:1672
 #: ../src/DataViews/GeoView.py:1742
-#, fuzzy
 msgid "No active person set."
-msgstr "Nėra aktyvaus asmens"
+msgstr "Nenustatytas aktyvus asmuo."
 
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
@@ -3934,9 +3925,9 @@ msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr ""
 
 #: ../src/DataViews/GeoView.py:1720
-#, fuzzy, python-format
+#, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
@@ -3945,11 +3936,11 @@ msgstr ""
 #: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
-msgstr ""
+msgstr "%s visų įvykių vietovės."
 
 #: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
-msgstr ""
+msgstr "Dar neigyvendinta..."
 
 #: ../src/DataViews/MediaView.py:88
 #: ../src/Editors/ObjectEntries.py:303
@@ -4003,7 +3994,7 @@ msgstr "Grampletas"
 #: ../src/DataViews/GrampletView.py:552
 #, python-format
 msgid "Gramplet %s is running"
-msgstr ""
+msgstr "%s Grampletas aktyvus"
 
 #: ../src/DataViews/GrampletView.py:1091
 msgid "Right click to add gramplets"
@@ -4075,17 +4066,17 @@ msgstr "Pažymėkite Pastabų stulpelius"
 #: ../src/plugins/drawreport/AncestorTree.py:52
 #: ../src/plugins/drawreport/DescendTree.py:53
 msgid "short for born|b."
-msgstr ""
+msgstr "g."
 
 #: ../src/DataViews/PedigreeView.py:74
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:55
 msgid "short for died|d."
-msgstr ""
+msgstr "m."
 
 #: ../src/DataViews/PedigreeView.py:75
 msgid "short for baptized|bap."
-msgstr ""
+msgstr "krikš."
 
 #: ../src/DataViews/PedigreeView.py:76
 msgid "short for chistianized|chr."
@@ -4093,11 +4084,11 @@ msgstr ""
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "short for buried|bur."
-msgstr ""
+msgstr "laid."
 
 #: ../src/DataViews/PedigreeView.py:78
 msgid "short for cremated|crem."
-msgstr ""
+msgstr "krem."
 
 #: ../src/DataViews/PedigreeView.py:981
 msgid "Jump to child..."
@@ -4158,11 +4149,12 @@ msgid "Automatic"
 msgstr "Automatinis"
 
 #: ../src/DataViews/PedigreeView.py:1397
-#, fuzzy, python-format
+#, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
-msgstr[0] "%d kartos"
+msgstr[0] "%d karta"
 msgstr[1] "%d kartos"
+msgstr[2] "%d kartų"
 
 #: ../src/DataViews/PedigreeView.py:1410
 #: ../src/DataViews/PedigreeView.py:1430
@@ -4278,7 +4270,6 @@ msgid "Remove the Selected Person"
 msgstr "Ištrinti Pažymėtą Asmenį"
 
 #: ../src/DataViews/PersonView.py:163
-#, fuzzy
 msgid "Compare and _Merge..."
 msgstr "Palyginti ir _Sujungti..."
 
@@ -4398,29 +4389,27 @@ msgstr "Kraunu..."
 
 #: ../src/DataViews/PlaceView.py:133
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ..."
-msgstr ""
+msgstr "Bandymas pamatyti pažymėtas vietas su Žemėlapių Paslauga (OpenStreetŽemėlapis, Google Žemėlapis, ..."
 
 #: ../src/DataViews/PlaceView.py:136
-#, fuzzy
 msgid "Select a Map Service"
-msgstr "Pasirinkite šaltinį"
+msgstr "Pasirinkite Žemelapių Tarnybą"
 
 #: ../src/DataViews/PlaceView.py:138
 msgid "_Look up with Map Service"
-msgstr ""
+msgstr "_Paieška su  Žemėlapių Paslauga"
 
 #: ../src/DataViews/PlaceView.py:140
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ..."
-msgstr ""
+msgstr "Bandymas pamatyti šią vietą su Žemėlapių Paslauga (OpenStreetŽemėlapis, Google Žemėlapis, ..."
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
 msgstr "Vietovių filtrų redaktorius"
 
 #: ../src/DataViews/PlaceView.py:229
-#, fuzzy
 msgid "No place selected."
-msgstr "Taisyklė nepasirinkta"
+msgstr "Vietovė nepasirinkta."
 
 #: ../src/DataViews/PlaceView.py:230
 msgid "You need to select a place to be able to view it on a map. Some Map Services might support multiple selections."
@@ -4526,9 +4515,8 @@ msgid "Edit %s"
 msgstr "Taisyti %s"
 
 #: ../src/DataViews/RelationView.py:590
-#, fuzzy
 msgid "Alive"
-msgstr "Archyvas"
+msgstr "Gyvas"
 
 #: ../src/DataViews/RelationView.py:648
 #: ../src/DataViews/RelationView.py:675
@@ -4562,11 +4550,12 @@ msgstr "Ištrinti asmenį kaip šios šeimos tėvą ar motiną"
 
 #: ../src/DataViews/RelationView.py:794
 #: ../src/DataViews/RelationView.py:850
-#, fuzzy, python-format
+#, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
-msgstr[0] "(%d brolių ir seserų)"
-msgstr[1] "(%d brolių ir seserų)"
+msgstr[0] "(%d brolį ar seserį)"
+msgstr[1] "(%d broliai ir seserys)"
+msgstr[2] "(%d brolių ir seserų)"
 
 #: ../src/DataViews/RelationView.py:799
 #: ../src/DataViews/RelationView.py:855
@@ -4643,11 +4632,12 @@ msgstr "Prašom paleisti \"Tikrinti ir Taisyti duomenų bazę\" įrankį"
 
 #: ../src/DataViews/RelationView.py:1271
 #: ../src/DataViews/RelationView.py:1317
-#, fuzzy, python-format
+#, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
-msgstr[0] "(%d vaikai)"
+msgstr[0] "(%d vaikas)"
 msgstr[1] "(%d vaikai)"
+msgstr[2] "(%d vaikų)"
 
 #: ../src/DataViews/RelationView.py:1273
 #: ../src/DataViews/RelationView.py:1319
@@ -5402,9 +5392,8 @@ msgstr "Iš motinos pusės"
 
 #: ../src/Editors/_EditFamily.py:119
 #: ../src/plugins/export/ExportCsv.glade.h:2
-#, fuzzy
 msgid "Chil_dren"
-msgstr "Vaikai"
+msgstr "Vai_kai"
 
 #: ../src/Editors/_EditFamily.py:124
 msgid "Edit child"
@@ -5706,14 +5695,14 @@ msgid "Delete Note (%s)"
 msgstr "Ištrinti Pastabą (%s)"
 
 #: ../src/Editors/_EditPerson.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "Person: %(name)s"
-msgstr "Asmens Filtro pavadinimas:"
+msgstr "Asmuo: %(name)s"
 
 #: ../src/Editors/_EditPerson.py:117
-#, fuzzy, python-format
+#, python-format
 msgid "New Person: %(name)s"
-msgstr "Naujas asmuo"
+msgstr "Naujas asmuo: %(name)s"
 
 #: ../src/Editors/_EditPerson.py:119
 msgid "New Person"
@@ -6672,15 +6661,14 @@ msgstr "GRAMPS XML duomenų bazės formatas yra šeimos medžio tekstinė versij
 
 #: ../src/plugins/Records.py:217
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
-#, fuzzy, python-format
+#, python-format
 msgid "%s and %s"
-msgstr "%s ir %s (%s)"
+msgstr "%s ir %s"
 
 #: ../src/plugins/Records.py:326
 #: ../src/plugins/gramplet/WhatsNext.py:60
-#, fuzzy
 msgid "Double-click name for details"
-msgstr "Dvigubu pelės paspaudimu ant pavardės sužinokite detales"
+msgstr "Dvigubu pelės paspaudimu ant vardo sužinokite detales"
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:327
@@ -6706,14 +6694,13 @@ msgstr "Apdorojimas..."
 
 #: ../src/plugins/Records.py:394
 #: ../src/plugins/Records.py:568
-#, fuzzy
 msgid "Records"
-msgstr "Ataskaitos"
+msgstr "Įrašai"
 
 #: ../src/plugins/Records.py:412
-#, fuzzy, python-format
+#, python-format
 msgid "%(number)s. %(name)s (%(value)s)"
-msgstr "<br>%(type)s: %(value)s"
+msgstr "%(number)s. %(name)s (%(value)s)"
 
 #. ###############################
 #. #########################
@@ -6791,14 +6778,12 @@ msgid "The center person for the filter"
 msgstr "Centrinis filtro asmuo"
 
 #: ../src/plugins/Records.py:460
-#, fuzzy
 msgid "Use call name"
-msgstr "vardas"
+msgstr "Naudoti vardą, kuriuo vadinamas"
 
 #: ../src/plugins/Records.py:462
-#, fuzzy
 msgid "Don't use call name"
-msgstr "vardas"
+msgstr "Naudoti vardo, kuriuo vadinamas"
 
 #: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
@@ -6809,14 +6794,12 @@ msgid "Underline call name in first name / add call name to first name"
 msgstr ""
 
 #: ../src/plugins/Records.py:470
-#, fuzzy
 msgid "Person Records"
-msgstr "Asmens Filtai"
+msgstr "Asmens Įrašai"
 
 #: ../src/plugins/Records.py:472
-#, fuzzy
 msgid "Family Records"
-msgstr "Šeimos spalvos"
+msgstr "Šeimos Šrašai"
 
 #: ../src/plugins/Records.py:509
 #: ../src/plugins/drawreport/AncestorTree.py:499
@@ -6847,14 +6830,12 @@ msgid "The style used for the report title"
 msgstr "Stilius, naudojamas antraštei."
 
 #: ../src/plugins/Records.py:536
-#, fuzzy
 msgid "Youngest living person"
-msgstr "Neegzistuojantis asmuo"
+msgstr "Jauniausias gyvenantis asmuo"
 
 #: ../src/plugins/Records.py:537
-#, fuzzy
 msgid "Oldest living person"
-msgstr "Filtruojami gyvenantys žmonės"
+msgstr "Vyriausias gyvenantis asmuo"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
@@ -6881,29 +6862,24 @@ msgid "Person divorced at oldest age"
 msgstr "Vyriausias išsiskyręs asmuo"
 
 #: ../src/plugins/Records.py:544
-#, fuzzy
 msgid "Youngest father"
-msgstr "Jaunas tėvas"
+msgstr "Jauniausias tėvas"
 
 #: ../src/plugins/Records.py:545
-#, fuzzy
 msgid "Youngest mother"
-msgstr "Jauna motina"
+msgstr "Jauniausa motina"
 
 #: ../src/plugins/Records.py:546
-#, fuzzy
 msgid "Oldest father"
-msgstr "Senyvas tėvas"
+msgstr "Vyriausias tėvas"
 
 #: ../src/plugins/Records.py:547
-#, fuzzy
 msgid "Oldest mother"
-msgstr "Senyva motina"
+msgstr "Vyriausia motina"
 
 #: ../src/plugins/Records.py:548
-#, fuzzy
 msgid "Couple with most children"
-msgstr "Asmenys su vaikais"
+msgstr "Pora su  daugiausia vaikų"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
@@ -6914,24 +6890,20 @@ msgid "Living couple married most long ago"
 msgstr ""
 
 #: ../src/plugins/Records.py:551
-#, fuzzy
 msgid "Shortest past marriage"
-msgstr "Amžius kai susituokė/ištekėjo"
+msgstr "Trumpiausiai trukusi santuota"
 
 #: ../src/plugins/Records.py:552
-#, fuzzy
 msgid "Longest past marriage"
-msgstr "Amžius kai susituokė/ištekėjo"
+msgstr "Ilgiausiai trukusi santuoka"
 
 #: ../src/plugins/Records.py:564
-#, fuzzy
 msgid "Records Gramplet"
-msgstr "Naujienų grampletas"
+msgstr "Įrašų Grampletas"
 
 #: ../src/plugins/Records.py:576
-#, fuzzy
 msgid "Records Report"
-msgstr "Įrašas neskelbtinas"
+msgstr "Įrašų Ataskaita"
 
 #: ../src/plugins/Records.py:581
 #, fuzzy
@@ -7149,29 +7121,32 @@ msgstr "Skaitoma duomenų bazė..."
 
 #: ../src/plugins/drawreport/Calendar.py:292
 #: ../src/plugins/textreport/BirthdayReport.py:249
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "%(person)s yra  %(active_person)s  %(relationship)s ."
+msgstr "%(person)s, gimimo%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:296
 #: ../src/plugins/textreport/BirthdayReport.py:253
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(person)s, %(age)d%(relation)s"
+msgstr[1] "%(person)s, %(age)d%(relation)s"
+msgstr[2] "%(person)s, %(age)d%(relation)s"
 
 #: ../src/plugins/drawreport/Calendar.py:344
 #: ../src/plugins/textreport/BirthdayReport.py:299
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
-msgstr "%(spouse)s ir  %(person)s"
+msgstr ""
+"%(spouse)s ir \n"
+"  %(person)s vestuvės"
 
 #: ../src/plugins/drawreport/Calendar.py:349
 #: ../src/plugins/textreport/BirthdayReport.py:303
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
@@ -7182,6 +7157,9 @@ msgstr[0] ""
 "%(spouse)s ir\n"
 " %(person)s, %(nyears)d"
 msgstr[1] ""
+"%(spouse)s ir\n"
+" %(person)s, %(nyears)d"
+msgstr[2] ""
 "%(spouse)s ir\n"
 " %(person)s, %(nyears)d"
 
@@ -7406,9 +7384,8 @@ msgid "Descendant Chart for %s"
 msgstr "%s Palikuonių diagrama"
 
 #: ../src/plugins/drawreport/DescendTree.py:483
-#, fuzzy
 msgid "Show Sp_ouses"
-msgstr "Sutuoktiniai"
+msgstr "Rodyti Sut_uoktinius"
 
 #: ../src/plugins/drawreport/DescendTree.py:484
 #, fuzzy
@@ -8129,21 +8106,18 @@ msgstr "Amžius nurodytą datą"
 
 #: ../src/plugins/gramplet/AgeStats.py:42
 #: ../src/plugins/gramplet/AgeStats.py:52
-#, fuzzy
 msgid "Max age"
-msgstr "Vyriausias asmens amžius"
+msgstr "Vyriausias amžius"
 
 #: ../src/plugins/gramplet/AgeStats.py:44
 #: ../src/plugins/gramplet/AgeStats.py:53
-#, fuzzy
 msgid "Max age of Mother at birth"
-msgstr "Vy_riausias tėvo amžius  vaikui"
+msgstr "Vyriausias motinos amžius vaikui gimus"
 
 #: ../src/plugins/gramplet/AgeStats.py:46
 #: ../src/plugins/gramplet/AgeStats.py:54
-#, fuzzy
 msgid "Max age of Father at birth"
-msgstr "Vy_riausias tėvo amžius  vaikui"
+msgstr "Vyriausias tėvo amžius  vaikui gimus"
 
 #: ../src/plugins/gramplet/AgeStats.py:48
 #: ../src/plugins/gramplet/AgeStats.py:55
@@ -8199,24 +8173,22 @@ msgid "Maximum"
 msgstr "Vyriausias asmens amžius"
 
 #: ../src/plugins/gramplet/AgeStats.py:259
-#, fuzzy, python-format
+#, python-format
 msgid "Double-click to see %d people"
-msgstr "Norėdami pamatyti šios kartos asmenis du kartus paspauskite kairį pelės klavišą"
+msgstr "Asmeniui %d pamatyti du kartus paspauskite kairį pelės klavišą"
 
 #: ../src/plugins/gramplet/AgeStats.py:271
-#, fuzzy
 msgid "Age Stats Gramplet"
-msgstr "Amžiaus nurodytą datą Grampletas"
+msgstr "Amžiaus statistikos Grampletas"
 
 #: ../src/plugins/gramplet/AgeStats.py:275
-#, fuzzy
 msgid "Age Stats"
-msgstr "Būsena"
+msgstr "Amžiaus statistika"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Active person: <b>%s</b>"
-msgstr "Aktyvus asmuo: %s"
+msgstr "Aktyvus asmuo: <b>%s</b>"
 
 #: ../src/plugins/gramplet/AttributesGramplet.py:57
 #, fuzzy
@@ -8239,9 +8211,8 @@ msgstr "Kalendoriaus grampletas"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:52
 #: ../src/plugins/gramplet/NoteGramplet.py:59
-#, fuzzy
 msgid "Active person"
-msgstr "Aktyvus asmuo: %s"
+msgstr "Aktyvus asmuo"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:53
 #: ../src/glade/gramps.glade.h:72
@@ -8250,15 +8221,13 @@ msgstr "Šeima:"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:55
 #: ../src/plugins/gramplet/DataEntryGramplet.py:82
-#, fuzzy
 msgid "Surname, Given"
-msgstr "Pavardė, Vardas Tėvavardis"
+msgstr "Pavardė, Duotas Vardas"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:66
 #: ../src/plugins/gramplet/NoteGramplet.py:105
-#, fuzzy
 msgid "Save"
-msgstr "Seifas"
+msgstr "Užsaugoti"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:69
 #: ../src/plugins/gramplet/NoteGramplet.py:108
@@ -8267,39 +8236,32 @@ msgid "Abandon"
 msgstr "ir"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:74
-#, fuzzy
 msgid "New person"
 msgstr "Naujas asmuo"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:75
-#, fuzzy
 msgid "Add relation"
 msgstr "Pridėti naują ryšį"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:76
-#, fuzzy
 msgid "No relation to active person"
-msgstr "Nėra aktyvaus asmens"
+msgstr "Nėra giminystės ryšio su aktyviu asmenimi"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:77
-#, fuzzy
 msgid "Add as a Parent"
-msgstr "Pridėti tėvus"
+msgstr "Pridėti kaip Tėvus"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:78
-#, fuzzy
 msgid "Add as a Spouse"
-msgstr "Pridėti sutuoktinį"
+msgstr "Pridėti kaip Sutuoktinį"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:79
-#, fuzzy
 msgid "Add as a Sibling"
-msgstr "Įbroliai ir įseserės"
+msgstr "Pridėti kaip Brolį ar Seserį"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:80
-#, fuzzy
 msgid "Add as a Child"
-msgstr "Pridėti egzistuojantį vaiką"
+msgstr "Pridėti kaip Vaiką"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:96
 msgid "Copy Active Data"
@@ -8312,60 +8274,53 @@ msgid "in"
 msgstr "col"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:384
-#, fuzzy, python-format
+#, python-format
 msgid "Gramplet Data Edit: %s"
-msgstr "GRAMPS ID: %s "
+msgstr "Gramplet Duomenų Koregavimas: %s"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
 msgid "Please provide a name."
-msgstr "Prašom pateikti vardą"
+msgstr "Prašom pateikti vardą."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:404
-#, fuzzy
 msgid "Can't add new person."
-msgstr "Negaliu išsaugoti asmens"
+msgstr "Negaliu pridėti asmens."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
-#, fuzzy
 msgid "Please set an active person."
-msgstr "Padaryti pažymėtą vaiką aktyviu asmeniu"
+msgstr "Prašom nustatyti aktyvų asmenį."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:412
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
-#, fuzzy
 msgid "Can't add new person as a parent."
-msgstr "Pridėti naują šeimą su asmeniu tėvu"
+msgstr "Negaliu pridėti naujo asmens kaip tėvo."
 
 #. unknown
 #. both genders unknown
 #: ../src/plugins/gramplet/DataEntryGramplet.py:415
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
-#, fuzzy
 msgid "Please set the new person's gender."
-msgstr "Stilius, naudojamas asmens  vardui."
+msgstr "Prašom nustatyti naujo asmens lytį."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:420
 #: ../src/plugins/gramplet/DataEntryGramplet.py:424
 #: ../src/plugins/gramplet/DataEntryGramplet.py:556
 #: ../src/plugins/gramplet/DataEntryGramplet.py:593
 #: ../src/plugins/gramplet/DataEntryGramplet.py:626
-#, fuzzy
 msgid "Can't add new person as a spouse."
-msgstr "Pridėti naują asmenį kaip motiną"
+msgstr "Negaliu pridėti naujo asmens kaip sutuoktinio."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
-#, fuzzy
 msgid "Can't add new person as a sibling."
-msgstr "Rodyti asmenis brolius ir seseris."
+msgstr "Negaliu pridėti naujo asmens kaip  brolio ar sesers."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:434
 #: ../src/plugins/gramplet/DataEntryGramplet.py:672
-#, fuzzy
 msgid "Can't add new person as a child."
-msgstr "Sukurti naują asmenį  ir pridėti į šeimą vaiką"
+msgstr "Negaliu pridėti naujo asmenis kaip vaiko."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
 msgid "Please set gender on Active or new person."
@@ -8377,9 +8332,8 @@ msgid "Same genders on Active and new person."
 msgstr "ta pati lytis tiek aktyvaus asmens, tiek  naujo asmens."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:671
-#, fuzzy
 msgid "Please set gender on Active person."
-msgstr "Padaryti pažymėtą sutuoktinį aktyviu asmeniu"
+msgstr "Prašau nustatyti Aktyvaus asmens lytį."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:693
 #, python-format
@@ -8401,9 +8355,8 @@ msgid "Move mouse over links for options"
 msgstr "Pasirinkimams peržiūrėkite pele per nuorodas"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
-#, fuzzy
 msgid "No Active Person selected."
-msgstr "Nepasirinktas asmuo"
+msgstr "Nepasirinktas Aktyvus asmuo."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:107
 #: ../src/plugins/textreport/DescendReport.py:118
@@ -8447,14 +8400,12 @@ msgid "   sp. "
 msgstr "Nurodykite bendrą protėvį "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
-#, fuzzy
 msgid "Descendant Gramplet"
-msgstr "Palikuonių Medis"
+msgstr "Palikuonių Grampletas"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
-#, fuzzy
 msgid "Descendants"
-msgstr "%s palikuonys"
+msgstr "Palikuonys"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:534
 msgid ""
@@ -8477,14 +8428,12 @@ msgid "FAQ"
 msgstr "DUK"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:40
-#, fuzzy
 msgid "Double-click given name for details"
-msgstr "Dvigubu pelės paspaudimu ant pavardės sužinokite detales"
+msgstr "Dvigubu pelės paspaudimu ant vardo sužinokite detales"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:132
-#, fuzzy
 msgid "Total unique given names"
-msgstr "Iš viso skirtingų pavardžių"
+msgstr "Iš viso skirtingų vardų"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:134
 #, fuzzy
@@ -8508,9 +8457,8 @@ msgid "Given Name Cloud"
 msgstr "Duotas vardas"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:56
-#, fuzzy
 msgid "Read headline news from the GRAMPS wiki"
-msgstr "Skaitykite naujienas iš GRAMPS wiki"
+msgstr "Skaitykite naujienų antraštes iš GRAMPS wiki"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:127
 #: ../src/plugins/gramplet/PythonGramplet.py:63
@@ -8522,9 +8470,8 @@ msgid "Reading"
 msgstr "Skaitome"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:193
-#, fuzzy
 msgid "Headline News Gramplet"
-msgstr "Naujienų grampletas"
+msgstr "Naujienų  Antraščių Grampletas"
 
 #: ../src/plugins/gramplet/HeadlineNewsGramplet.py:197
 msgid "Headline News"
@@ -8537,15 +8484,13 @@ msgid "Person Note"
 msgstr "Asmens pastaba"
 
 #: ../src/plugins/gramplet/NoteGramplet.py:268
-#, fuzzy
 msgid "Note Gramplet"
-msgstr "Naujienų grampletas"
+msgstr "Pastabų Grampletas"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:58
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
-#, fuzzy
 msgid "Max generations"
-msgstr "%d kartos"
+msgstr "Daugiausia kartų"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:212
 #, python-format
@@ -8583,9 +8528,9 @@ msgid "Double-click to see people in generation"
 msgstr "Norėdami pamatyti šios kartos asmenis du kartus paspauskite kairį pelės klavišą"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:252
-#, fuzzy, python-format
+#, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
-msgstr "turi 1 iš 1 asmens (baigta 100%)\n"
+msgstr "turi 1 iš 1 asmens  ( baigta (%(percent)s)\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:255
 #: ../src/plugins/textreport/AncestorReport.py:186
@@ -8597,16 +8542,17 @@ msgid "Generation %d"
 msgstr "%d Karta"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:256
-#, fuzzy, python-format
+#, python-format
 msgid "Double-click to see people in generation %d"
-msgstr "Norėdami pamatyti šios kartos asmenis du kartus paspauskite kairį pelės klavišą"
+msgstr "Norėdami pamatyti %d  kartos asmenis du kartus paspauskite kairį pelės klavišą"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:259
-#, fuzzy, python-format
+#, python-format
 msgid " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
 msgid_plural " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
-msgstr[0] "turi %d iš %d asmenų. (baigta %.2f%% )\n"
-msgstr[1] "turi %d iš %d asmenų. (baigta %.2f%% )\n"
+msgstr[0] "turi %(count_person)d iš %(max_count_person)d asmenį. (baigta %(percent)s )\n"
+msgstr[1] "turi %(count_person)d iš %(max_count_person)d asmenis. (baigta %(percent)s )\n"
+msgstr[2] "turi %(count_person)d iš %(max_count_person)d asmenų. (baigta %(percent)s )\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:262
 msgid "All generations"
@@ -8617,11 +8563,12 @@ msgid "Double-click to see all generations"
 msgstr "Norėdami pamatyti visas kartas du kartus paspauskite kairį pelės klavišą"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:265
-#, fuzzy, python-format
+#, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
-msgstr[0] "turi %d asmenų\n"
-msgstr[1] "turi %d asmenų\n"
+msgstr[0] "turi %d asmenį\n"
+msgstr[1] "turi %d asmenis\n"
+msgstr[2] "turi %d asmenų\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:281
 msgid "Pedigree Gramplet"
@@ -8655,14 +8602,12 @@ msgstr "Bylos tipas"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:53
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
-#, fuzzy
 msgid "Quick Views"
-msgstr "Greita peržiūra"
+msgstr "Greita Peržiūra"
 
 #: ../src/plugins/gramplet/QuickViewGramplet.py:123
-#, fuzzy
 msgid "Quick View Gramplet"
-msgstr "Užklausų grampletas"
+msgstr "Greitos Peržiūros Grampletas"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:42
 msgid "Click name to make person active\n"
@@ -8708,9 +8653,8 @@ msgid "Relatives Gramplet"
 msgstr "Giminaičių grampletas"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:146
-#, fuzzy
 msgid "Relatives"
-msgstr "Susijęs"
+msgstr "Giminaičiai"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:37
 msgid ""
@@ -8863,9 +8807,8 @@ msgid "Total unique surnames"
 msgstr "Iš viso skirtingų pavardžių"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:146
-#, fuzzy
 msgid "Total surnames showing"
-msgstr "Iš viso skirtingų pavardžių"
+msgstr "Iš viso rodoma skirtingų pavardžių"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:156
 msgid "Surname Cloud Gramplet"
@@ -8939,31 +8882,26 @@ msgid "Welcome to GRAMPS!"
 msgstr "Sveiki atvykę į GRAMPS!"
 
 #: ../src/plugins/gramplet/WhatsNext.py:79
-#, fuzzy
 msgid "No Home Person set."
 msgstr "Aktyvus asmuo nenustatytas."
 
 #: ../src/plugins/gramplet/WhatsNext.py:245
-#, fuzzy
 msgid "first name unknown"
-msgstr "Nežinoma lytis"
+msgstr "vardas nežinomas"
 
 #: ../src/plugins/gramplet/WhatsNext.py:248
-#, fuzzy
 msgid "surname unknown"
-msgstr "%s: nežinomas"
+msgstr "pavardė nežinoma"
 
 #: ../src/plugins/gramplet/WhatsNext.py:252
 #: ../src/plugins/gramplet/WhatsNext.py:283
 #: ../src/plugins/gramplet/WhatsNext.py:290
-#, fuzzy
 msgid "(person with unknown name)"
-msgstr "Asmenys su nežinoma lytimi"
+msgstr "(asmuo su nežinomu vardu)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:265
-#, fuzzy
 msgid "birth event missing"
-msgstr "Trūkstama gimimo datos"
+msgstr "trūksta gimimo datos"
 
 #: ../src/plugins/gramplet/WhatsNext.py:269
 #: ../src/plugins/gramplet/WhatsNext.py:316
@@ -8979,74 +8917,63 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
-#, fuzzy
 msgid "(unknown person)"
-msgstr "(nežinomas)"
+msgstr "(nežinomas asmuo)"
 
 #: ../src/plugins/gramplet/WhatsNext.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(name1)s and %(name2)s"
-msgstr "%(father)s ir %(mother)s"
+msgstr "%(name1)s ir %(name2)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:310
-#, fuzzy
 msgid "marriage event missing"
-msgstr "Trūksta įvykių"
+msgstr "trūksta santuokos įvykio"
 
 #: ../src/plugins/gramplet/WhatsNext.py:312
-#, fuzzy
 msgid "relation type unknown"
-msgstr "Nežinoma lytis"
+msgstr "nežinomas ryšio tipas"
 
 #: ../src/plugins/gramplet/WhatsNext.py:327
-#, fuzzy
 msgid "date unknown"
-msgstr "Nežinoma lytis"
+msgstr "nežinoma data"
 
 #: ../src/plugins/gramplet/WhatsNext.py:329
-#, fuzzy
 msgid "date incomplete"
-msgstr "Konfigūravimas baigtas"
+msgstr "nepilna data"
 
 #: ../src/plugins/gramplet/WhatsNext.py:333
-#, fuzzy
 msgid "place unknown"
-msgstr "nežinomas"
+msgstr "nežinoma vietovė"
 
 #: ../src/plugins/gramplet/WhatsNext.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "%(type)s: %(list)s"
-msgstr "%(type)s: %(value)s"
+msgstr "%(type)s: %(list)s"
 
 #: ../src/plugins/gramplet/WhatsNext.py:344
-#, fuzzy
 msgid "spouse missing"
-msgstr "Trūksta priežasties"
+msgstr "trūksta sutuoktinio"
 
 #: ../src/plugins/gramplet/WhatsNext.py:348
-#, fuzzy
 msgid "father missing"
-msgstr "Trūksta datos(ų)"
+msgstr "trūksta tėvo"
 
 #: ../src/plugins/gramplet/WhatsNext.py:352
-#, fuzzy
 msgid "mother missing"
-msgstr "Trūkstama gimimo datos"
+msgstr "trūksta motinos"
 
 #: ../src/plugins/gramplet/WhatsNext.py:356
-#, fuzzy
 msgid "parents missing"
-msgstr "Trūksta įvykių"
+msgstr "trūksta tėvų"
 
 #: ../src/plugins/gramplet/WhatsNext.py:363
-#, fuzzy, python-format
+#, python-format
 msgid ": %s\n"
-msgstr "%s: %s"
+msgstr ": %s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:424
-#, fuzzy
 msgid "What's Next Gramplet"
-msgstr "Statistikos grampletas"
+msgstr " Grampletas Kas Toliau"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
@@ -9593,11 +9520,12 @@ msgstr "Skaitomi duomenys..."
 #: ../src/plugins/import/ImportCsv.py:695
 #: ../src/plugins/import/ImportGeneWeb.py:181
 #: ../src/plugins/import/ImportVCard.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
-msgstr[0] "Importavimas baigtas per %d sekundes"
+msgstr[0] "Importavimas baigtas per %d sekundę"
 msgstr[1] "Importavimas baigtas per %d sekundes"
+msgstr[2] "Importavimas baigtas per %d sekundžių"
 
 #: ../src/plugins/import/ImportCsv.py:696
 msgid "CSV import"
@@ -9764,19 +9692,16 @@ msgid "Sweden"
 msgstr "Švedija"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:49
-#, fuzzy
 msgid "Denmark"
-msgstr "Pastaba"
+msgstr "Danija"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:75
-#, fuzzy
 msgid " parish"
-msgstr "Ispanų"
+msgstr "parapija"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:79
-#, fuzzy
 msgid " state"
-msgstr "Valstija"
+msgstr "valstija"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
@@ -9791,9 +9716,8 @@ msgstr "Ilguma ne tarp  %s ir %s"
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
 #: ../src/plugins/mapservices/eniroswedenmap.py:172
-#, fuzzy
 msgid "Eniro map not available"
-msgstr "NA"
+msgstr "Nėra Eniro žemėlapio"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
@@ -9808,26 +9732,25 @@ msgid "Coordinates needed in Denmark"
 msgstr ""
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:177
-#, fuzzy, python-format
+#, python-format
 msgid "Eniro map not available for %s"
-msgstr "%s kalbai tikrinimas negalimas"
+msgstr " %s neturi Eniro žemėlapio"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
-msgstr ""
+msgstr "Tik Švedijai ir Danijai"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
-msgstr ""
+msgstr "EniroŽemėlapiai"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
 msgstr "Atidaryti  kartor.eniro.se"
 
 #: ../src/plugins/mapservices/googlemap.py:80
-#, fuzzy
 msgid "GoogleMaps"
-msgstr "_Google Žemėlapis"
+msgstr "GoogleŽemėlapis"
 
 #: ../src/plugins/mapservices/googlemap.py:82
 msgid "Open on maps.google.com"
@@ -9854,11 +9777,13 @@ msgid "People probably alive and their ages on %s"
 msgstr "Tikriausiai gyvi asmenys ir jų amžius  %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:80
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "%d matches.\n"
-msgstr "%d mėnesiai"
+msgstr ""
+"\n"
+"%d atitikimų.\n"
 
 #: ../src/plugins/quickview/AgeOnDate.py:108
 msgid "Display people and ages on a particular date"
@@ -9989,14 +9914,14 @@ msgid "Display all relationships between person and home person."
 msgstr "Pavaizduoti visus ryšius tarp šio asmens ir  'namų' asmens."
 
 #: ../src/plugins/quickview/AttributeMatch.py:33
-#, fuzzy, python-format
+#, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Asmenys su asmeniniu <attribute>"
+msgstr "Asmenys su '%s' požymiu"
 
 #: ../src/plugins/quickview/AttributeMatch.py:46
-#, fuzzy, python-format
+#, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "Yra %d asmenys su nurodytu vardu arba alternatyviuoju vardu.\n"
+msgstr "Yra %d asmenys su nurodytu požymio vardu.\n"
 
 #: ../src/plugins/quickview/AttributeMatch.py:54
 #, fuzzy
@@ -10130,11 +10055,12 @@ msgid "Size in bytes"
 msgstr "Dydis baitais"
 
 #: ../src/plugins/quickview/FilterByName.py:224
-#, fuzzy, python-format
+#, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "Filtras atitiko %d įrašus."
+msgstr[0] "Filtras atitiko %d įrašą."
 msgstr[1] "Filtras atitiko %d įrašus."
+msgstr[2] "Filtras atitiko %d įrašų."
 
 #: ../src/plugins/quickview/FilterByName.py:243
 msgid "Display filtered data"
@@ -10393,17 +10319,18 @@ msgstr "Asmenys su pavarde  '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:125
 #: ../src/plugins/quickview/SameSurnames.py:164
-#, fuzzy, python-format
+#, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Yra %d asmenys su nurodytu vardu arba alternatyviuoju vardu.\n"
+msgstr[0] "Yra %d asmuo su nurodytu vardu arba alternatyviuoju vardu.\n"
 msgstr[1] "Yra %d asmenys su nurodytu vardu arba alternatyviuoju vardu.\n"
+msgstr[2] "Yra %d asmenų su nurodytu vardu arba alternatyviuoju vardu.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:147
-#, fuzzy, python-format
+#, python-format
 msgid "People with the given name '%s'"
-msgstr "Asmenys su pavarde  '%s'"
+msgstr "Asmenys su vardu  '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:180
 msgid "Same Surnames"
@@ -10652,27 +10579,27 @@ msgstr "%(type)s: %(value)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:386
 #: ../src/plugins/textreport/DetDescendantReport.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s, %(place)s"
-msgstr " %(date)s %(place)s"
+msgstr " %(date)s, %(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:389
 #: ../src/plugins/textreport/DetDescendantReport.py:297
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s"
-msgstr "%(endnotes)s."
+msgstr "%(date)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:391
 #: ../src/plugins/textreport/DetDescendantReport.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "%(place)s"
 msgstr " %(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:403
 #: ../src/plugins/textreport/DetDescendantReport.py:311
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: %(event_text)s"
-msgstr "%(event_name)s: %(date)s"
+msgstr "%(event_name)s: %(event_text)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:511
 #: ../src/plugins/textreport/DetDescendantReport.py:445
@@ -10904,14 +10831,14 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "%(person_name)s palikuonių ataskaita"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:412
-#, fuzzy, python-format
+#, python-format
 msgid "Spouse: %s"
-msgstr "Sutuoktiniai"
+msgstr "Sutuoktinis: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:414
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with: %s"
-msgstr "Ryšių tipas: %s"
+msgstr "Ryšis su: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:711
 msgid "Use Record-style (Modified Register) numbering"
@@ -11269,18 +11196,19 @@ msgid "Number of Ancestors for %s"
 msgstr "%s protėvių Skaičius"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
-msgstr[0] "Karta %d turi %d asmenų. (%3.2f%%)"
-msgstr[1] "Karta %d turi %d asmenų. (%3.2f%%)"
+msgstr[0] "Karta %(generation)d turi %(count)d asmenį. %(percent)s"
+msgstr[1] "Karta %(generation)d turi %(count)d asmenis. %(percent)s"
+msgstr[2] "Karta %(generation)d turi %(count)d asmenų. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:141
-#, fuzzy, python-format
+#, python-format
 msgid "Total ancestors in generations %(second_generation)d to %(last_generation)d is %(count)d. %(percent)s"
-msgstr "Kartose nuo 2  iki %d  bendras palikuonių skaičius yra %d (%3.2f%%)"
+msgstr "Kartose nuo%(second_generation)d   iki  %(last_generation)d  bendras palikuonių skaičius yra %(count)d. %(percent)s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
 msgid "Number of Ancestors Report"
@@ -11737,11 +11665,12 @@ msgid "No event record was modified."
 msgstr "Nebuvo pataisytas nė vienas įrašas."
 
 #: ../src/plugins/tool/ChangeTypes.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "%d event record was modified."
 msgid_plural "%d event records were modified."
-msgstr[0] "Buvo pataisytas 1 įrašas."
-msgstr[1] "Buvo pataisytas 1 įrašas."
+msgstr[0] "Buvo pataisytas %d įrašas."
+msgstr[1] "Buvo pataisyti %d įrašai."
+msgstr[2] "Buvo pataisyta %d įrašų."
 
 #: ../src/plugins/tool/ChangeTypes.py:207
 msgid "Rename Event Types"
@@ -11867,11 +11796,12 @@ msgid "The database has passed internal checks"
 msgstr "Vidinis duomenų bazės patikrinimas baigtas"
 
 #: ../src/plugins/tool/Check.py:1300
-#, fuzzy, python-format
+#, python-format
 msgid "%d broken child/family link was fixed\n"
 msgid_plural "%d broken child-family links were found\n"
-msgstr[0] "Rasta 1 sugadinta nuoroda į vaiką/šeimą\n"
-msgstr[1] "Rasta 1 sugadinta nuoroda į vaiką/šeimą\n"
+msgstr[0] "Rasta %d sugadinta nuoroda į vaiką/šeimą\n"
+msgstr[1] "Rastos %d sugadintos nuorodos į vaiką/šeimą\n"
+msgstr[2] "Rasta %d sugadintų nuorodų vaiką/šeimą\n"
 
 #: ../src/plugins/tool/Check.py:1307
 msgid "Non existing child"
@@ -11883,11 +11813,12 @@ msgid "%s was removed from the family of %s\n"
 msgstr "%s buvo ištrintas iš %s šeimos\n"
 
 #: ../src/plugins/tool/Check.py:1317
-#, fuzzy, python-format
+#, python-format
 msgid "%d broken spouse/family link was fixed\n"
 msgid_plural "%d broken spouse/family links were found\n"
-msgstr[0] "Rasta 1 sugadinta nuoroda į sutuoktinį/šeimą\n"
-msgstr[1] "Rasta 1 sugadinta nuoroda į sutuoktinį/šeimą\n"
+msgstr[0] "Rasta %d sugadinta nuoroda į sutuoktinį/šeimą\n"
+msgstr[1] "Rastos %d sugadintos nuorodos į sutuoktinį/šeimą\n"
+msgstr[2] "Rasta %d sugadintų nuorodų į sutuoktinį/šeimą\n"
 
 #: ../src/plugins/tool/Check.py:1324
 #: ../src/plugins/tool/Check.py:1341
@@ -11901,16 +11832,17 @@ msgid "%s was restored to the family of %s\n"
 msgstr "%s buvo atstatytas į %s šeimą\n"
 
 #: ../src/plugins/tool/Check.py:1334
-#, fuzzy, python-format
+#, python-format
 msgid "%d duplicate spouse/family link was found\n"
 msgid_plural "%d duplicate spouse/family links were found\n"
-msgstr[0] "Rasta 1 sudvejinta sutuoktinio/šeimos nuoroda\n"
-msgstr[1] "Rasta 1 sudvejinta sutuoktinio/šeimos nuoroda\n"
+msgstr[0] "Rasta %d sudvejinta sutuoktinio/šeimos nuoroda\n"
+msgstr[1] "Rastos %d sudvejintos sutuoktinio/šeimos nuorodos\n"
+msgstr[2] "Rasta %d sudvejintų sutuoktinio/šeimos nuorodų\n"
 
 #: ../src/plugins/tool/Check.py:1351
-#, fuzzy, python-format
+#, python-format
 msgid "%d family with no parents or children found, removed.\n"
-msgstr "Rasta 1 šeima be vaikų ar tėvų. Ištrinta.\n"
+msgstr "Rasta %d šeima be vaikų ar tėvų. Ištrinta.\n"
 
 #: ../src/plugins/tool/Check.py:1354
 #, python-format
@@ -11918,88 +11850,100 @@ msgid "%d families with no parents or children, removed.\n"
 msgstr "Rastos %d šeimos be tėvų ar vaikų. Ištrintos.\n"
 
 #: ../src/plugins/tool/Check.py:1357
-#, fuzzy, python-format
+#, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
-msgstr[0] "Sutaisyta %d sugadintų šeimos ryšių\n"
-msgstr[1] "Sutaisyta %d sugadintų šeimos ryšių\n"
+msgstr[0] "Sutaisyta %d sugadintas šeimos ryšys\n"
+msgstr[1] "Sutaisyta %d sugadinti šeimos ryšiai\n"
+msgstr[2] "Sutaisyta %d sugadintų šeimos ryšių\n"
 
 #: ../src/plugins/tool/Check.py:1361
-#, fuzzy, python-format
+#, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] "1asmuo buvo nurodytas, bet nerastas\n"
-msgstr[1] "1asmuo buvo nurodytas, bet nerastas\n"
+msgstr[0] "%d asmuo buvo nurodytas, bet nerastas\n"
+msgstr[1] "%d asmenys buvo nurodyti, bet nerasti\n"
+msgstr[2] "%d asmenų buvo nurodyta, bet nerasta\n"
 
 #: ../src/plugins/tool/Check.py:1365
-#, fuzzy, python-format
+#, python-format
 msgid "%d repository was referenced but not found\n"
 msgid_plural "%d repositories were referenced, but not found\n"
-msgstr[0] "1šaltinis buvo nurodytas, bet nerastas\n"
-msgstr[1] "1šaltinis buvo nurodytas, bet nerastas\n"
+msgstr[0] "%d šaltinis buvo nurodytas, bet nerastas\n"
+msgstr[1] "%d  šaltiniai buvo nurodyti, bet nerasti\n"
+msgstr[2] "%d  šaltinių buvo nurodyta, bet nerasta\n"
 
 #: ../src/plugins/tool/Check.py:1369
-#, fuzzy, python-format
+#, python-format
 msgid "%d media object was referenced, but not found\n"
 msgid_plural "%d media objects were referenced, but not found\n"
-msgstr[0] "Buvo nuoroda į  1 audio/video objektą, bet jis nerastas\n"
-msgstr[1] "Buvo nuoroda į  1 audio/video objektą, bet jis nerastas\n"
+msgstr[0] "Buvo nuoroda į  %d audio/video objektą, bet jis nerastas\n"
+msgstr[1] "Buvo nuoroda į  %d audio/video objektus, bet jie nerasti\n"
+msgstr[2] "Buvo nuoroda į  %d audio/video objektų, bet jie nerasti\n"
 
 #: ../src/plugins/tool/Check.py:1373
-#, fuzzy, python-format
+#, python-format
 msgid "Reference to %d missing media object was kept\n"
 msgid_plural "References to %d media objects were kept\n"
-msgstr[0] "Buvo išsaugota 1 nuoroda į trūkstamą  audio/video objektą \n"
-msgstr[1] "Buvo išsaugota 1 nuoroda į trūkstamą  audio/video objektą \n"
+msgstr[0] "Buvo išsaugota %d  nuoroda į trūkstamą  audio/video objektą\n"
+msgstr[1] "Buvo išsaugota %d  nuorodos į trūkstamus  audio/video objektus\n"
+msgstr[2] "Buvo išsaugota %d  nuorodų į trūkstamus  audio/video objektus\n"
 
 #: ../src/plugins/tool/Check.py:1377
-#, fuzzy, python-format
+#, python-format
 msgid "%d missing media object was replaced\n"
 msgid_plural "%d missing media objects were replaced\n"
-msgstr[0] "Buvo pakeistas 1 trūkstamas  audio/video objektas \n"
-msgstr[1] "Buvo pakeistas 1 trūkstamas  audio/video objektas \n"
+msgstr[0] "Buvo pakeistas %d trūkstamas  audio/video objektas \n"
+msgstr[1] "Buvo pakeisti %d trūkstami  audio/video objektai\n"
+msgstr[2] "Buvo pakeista %d trūkstamų  audio/video objektų \n"
 
 #: ../src/plugins/tool/Check.py:1381
-#, fuzzy, python-format
+#, python-format
 msgid "%d missing media object was removed\n"
 msgid_plural "%d missing media objects were removed\n"
-msgstr[0] "Buvo ištrintas1 trūkstamas  audio/video objektas \n"
-msgstr[1] "Buvo ištrintas1 trūkstamas  audio/video objektas \n"
+msgstr[0] "Buvo ištrintas %d trūkstamas  audio/video objektas\n"
+msgstr[1] "Buvo ištrinti %d trūkstami  audio/video objektai\n"
+msgstr[2] "Buvo ištrinta %d trūkstamų audio/video objektų\n"
 
 #: ../src/plugins/tool/Check.py:1385
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid event reference was removed\n"
 msgid_plural "%d invalid event references were removed\n"
-msgstr[0] "Buvo ištrintas 1 blogas įvykis \n"
-msgstr[1] "Buvo ištrintas 1 blogas įvykis \n"
+msgstr[0] "Buvo ištrintas %d blogas įvykis\n"
+msgstr[1] "Buvo ištrinti %d blogi įvykai\n"
+msgstr[2] "Buvo ištrinta %d blogų įvykių\n"
 
 #: ../src/plugins/tool/Check.py:1389
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid birth event name was fixed\n"
 msgid_plural "%d invalid birth event names were fixed\n"
-msgstr[0] "Buvo pataisytas 1 blogas gimimo įrašas\n"
-msgstr[1] "Buvo pataisytas 1 blogas gimimo įrašas\n"
+msgstr[0] "Buvo pataisytas %d blogas gimimo įrašas\n"
+msgstr[1] "Buvo pataisyti %d blogi gimimo įrašai\n"
+msgstr[2] "Buvo pataisyta %d blogų gimimo įrašų\n"
 
 #: ../src/plugins/tool/Check.py:1393
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid death event name was fixed\n"
 msgid_plural "%d invalid death event names were fixed\n"
-msgstr[0] "Buvo ištaisytas 1 blogas mirties įrašas \n"
-msgstr[1] "Buvo ištaisytas 1 blogas mirties įrašas \n"
+msgstr[0] "Buvo ištaisytas %d blogas mirties įrašas\n"
+msgstr[1] "Buvo ištaisyti %d blogi mirties įrašai\n"
+msgstr[2] "Buvo ištaisyta %d blogų mirties įrašų\n"
 
 #: ../src/plugins/tool/Check.py:1397
-#, fuzzy, python-format
+#, python-format
 msgid "%d place was referenced but not found\n"
 msgid_plural "%d places were referenced, but not found\n"
-msgstr[0] "1 vietovė buvo nurodyta, bet nerasta\n"
-msgstr[1] "1 vietovė buvo nurodyta, bet nerasta\n"
+msgstr[0] "%d vietovė buvo nurodyta, bet nerasta\n"
+msgstr[1] "%d vietovės buvo nurodytos, bet nerastos\n"
+msgstr[2] "%d vietovių buvo nurodyta, bet nerasta\n"
 
 #: ../src/plugins/tool/Check.py:1401
-#, fuzzy, python-format
+#, python-format
 msgid "%d source was referenced but not found\n"
 msgid_plural "%d sources were referenced, but not found\n"
-msgstr[0] "1 šaltinis buvo nurodytas, bet nerastas\n"
-msgstr[1] "1 šaltinis buvo nurodytas, bet nerastas\n"
+msgstr[0] "%d  šaltinis buvo nurodytas, bet nerastas\n"
+msgstr[1] "%d  šaltiniai buvo nurodyti, bet nerasti\n"
+msgstr[2] "%d  šaltinių buvo nurodyta, bet nerasta\n"
 
 #: ../src/plugins/tool/Check.py:1405
 #, python-format
@@ -12323,9 +12267,9 @@ msgid "Referrers of %d"
 msgstr ""
 
 #: ../src/plugins/tool/Leak.py:139
-#, fuzzy, python-format
+#, python-format
 msgid "%d refers to"
-msgstr "%d kartos"
+msgstr "%d susieja su"
 
 #: ../src/plugins/tool/Leak.py:186
 msgid "Show Uncollected Objects"
@@ -12743,54 +12687,44 @@ msgstr "Perrūšiuoti GRAMPS ID pagal GRAMPS numatytąsias taisykles."
 
 #: ../src/plugins/tool/SortEvents.py:78
 #: ../src/plugins/tool/SortEvents.py:232
-#, fuzzy
 msgid "Sort Events"
-msgstr "Tėvų Įvykiai"
+msgstr "Rūšiuoti Įvykius"
 
 #: ../src/plugins/tool/SortEvents.py:104
-#, fuzzy
 msgid "Sort event changes"
-msgstr "Atšaukti pakeitimus"
+msgstr "Rūšiuoti įvykių pakeitimus"
 
 #: ../src/plugins/tool/SortEvents.py:114
-#, fuzzy
 msgid "Sorting personal events..."
-msgstr "Rūšiuojamos datos..."
+msgstr "Rūšiuojami asmeniniai  įvykiai..."
 
 #: ../src/plugins/tool/SortEvents.py:136
-#, fuzzy
 msgid "Sorting family events..."
-msgstr "Rūšiuojamos datos..."
+msgstr "Rūšiuojami šeimos įvykiai..."
 
 #: ../src/plugins/tool/SortEvents.py:167
-#, fuzzy
 msgid "Tool Options"
-msgstr "Medžio Nustatymai"
+msgstr "Įrankių Nustatymai"
 
 #: ../src/plugins/tool/SortEvents.py:170
-#, fuzzy
 msgid "Select the people to sort"
-msgstr "Ištrinti pasirinktą šaltinį"
+msgstr "Pasirinkite asmenį rūšiavimui"
 
 #: ../src/plugins/tool/SortEvents.py:189
-#, fuzzy
 msgid "Sort descending"
-msgstr "Rūšiavimas"
+msgstr "Rūšiuoti mažėjančiai"
 
 #: ../src/plugins/tool/SortEvents.py:190
-#, fuzzy
 msgid "Set the sort order"
-msgstr "Norėdami invertuoti reikšmę pažymėkite."
+msgstr "Nustatyti rūšiavimo kryptį"
 
 #: ../src/plugins/tool/SortEvents.py:193
-#, fuzzy
 msgid "Include family events"
-msgstr "Įtraukti  šeimos įvykius:"
+msgstr "Įtraukti  šeimos įvykius"
 
 #: ../src/plugins/tool/SortEvents.py:194
-#, fuzzy
 msgid "Sort family events of the person"
-msgstr "Asmens <person> palikuonių šeimos nariai"
+msgstr "Asmens šeimos įvykių rūšiavimas"
 
 #: ../src/plugins/tool/SortEvents.py:236
 msgid "Sorts events"
@@ -13214,9 +13148,8 @@ msgid "Ancestors"
 msgstr "Protėviai"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2211
-#, fuzzy
 msgid "Age at Death"
-msgstr "Amžius kai mirė"
+msgstr "Amžius kai Mirė"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2236
 msgid "event|Type"
@@ -13267,7 +13200,6 @@ msgid "The archive file must be a file, not a directory"
 msgstr "Archyvo byla turi būti bylos pavadinimas, o ne direktorija"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2980
-#, fuzzy
 msgid "Narrated Web Site Report"
 msgstr "Pasakojamasis Interneto Puslapis"
 
@@ -13332,7 +13264,6 @@ msgid "The title of the web site"
 msgstr "Pagrindinio internetinio puslapio antraštė"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3373
-#, fuzzy
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Norėdami apriboti asmenis internetiniame puslapyje, pasirinkite filtrą"
 
@@ -13568,19 +13499,16 @@ msgid "Whether to include a parents column"
 msgstr "Ar įtraukti tėvų stulpelį"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3540
-#, fuzzy
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Asmens puslapyje įtraukti ir pusbrolius/pusseseres bei įbrolius/įseseres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3543
-#, fuzzy
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr "Ar su tėvais ir broliais/seserimis  įtraukti pusbrolius /pusseseres ir įbrolius/įseseres"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3548
-#, fuzzy
 msgid "Show all siblings in birth order"
-msgstr "Šeimos vaizde rodyti brolius/seseris"
+msgstr "Rodyti brolius/seseris pagal gimimo datą"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3549
 msgid "Show all siblings including half/ Step in birth order or not?"
@@ -13632,9 +13560,8 @@ msgstr "Kuriu Metų Peržiūros kalendorius"
 
 #. open progress meter bar
 #: ../src/plugins/webreport/WebCal.py:901
-#, fuzzy
 msgid "Web Calendar Report"
-msgstr "Kalendoriaus ataskaita"
+msgstr "Internetinio Kalendoriaus ataskaita"
 
 #. generate progress pass for year ????
 #: ../src/plugins/webreport/WebCal.py:913
@@ -13645,7 +13572,6 @@ msgstr "Kuriu   %d metų Kalendorius"
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:965
-#, fuzzy
 msgid "Formatting months ..."
 msgstr "Formatuojami mėnesiai..."
 
@@ -13882,7 +13808,7 @@ msgstr ""
 #: ../src/plugins/webreport/WebCal.py:1479
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>vestuvės</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1482
 #, python-format
@@ -14418,9 +14344,8 @@ msgid "Open with application"
 msgstr "Atidaryti su programa"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1120
-#, fuzzy
 msgid "Open with default application"
-msgstr "Atidaryti su programa"
+msgstr "Atidaryti su numatytąja programa"
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -16366,224 +16291,224 @@ msgid "Baptised%(endnotes)s."
 msgstr "Pakrikštytas %(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:818
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Jis palaidotas %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Jis krikštytas %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:822
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s palaidota %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Ji palaidota %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Ji krikštyta %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:826
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Šis asmuo palaidotas %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Šis asmuo krikštytas %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:829
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Palaidotas %(burial_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Krikštytas %(christening_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas %(burial_date)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr "Jis palaidotas %(burial_date)s%(endnotes)s."
+msgstr "Jis krikštytas %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:838
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(female_name)s palaidota %(burial_date)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:839
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr "Ji palaidota %(burial_date)s%(endnotes)s."
+msgstr "Ji krikštyta %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:842
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas %(burial_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "Šis asmuo palaidotas %(burial_date)s%(endnotes)s."
+msgstr "Šis asmuo krikštytas %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "Palaidotas %(burial_date)s%(endnotes)s."
+msgstr "Krikštytas %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:850
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas %(month_year)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas %(month_year)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Jis palaidotas %(month_year)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Jis krikštytas %(month_year)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:854
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s palaidota %(month_year)s. Palaidojimo vieta  %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta %(month_year)s. Krikšto vieta  %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:855
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Ji palaidota %(month_year)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Ji krikštyta %(month_year)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:858
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas %(month_year)s. Palaidojimo vieta  %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas %(month_year)s. Krikšto vieta  %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:859
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Šis asmuo palaidotas %(month_year)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Šis asmuo krikštytas %(month_year)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "Jis palaidotas %(month_year)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Krikštytas %(month_year)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:866
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas  %(month_year)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "Jis buvo palaidotas  %(month_year)s%(endnotes)s."
+msgstr "Jis buvo krikštytas  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s palaidota  %(month_year)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "Ji palaidota  %(month_year)s%(endnotes)s."
+msgstr "Ji krikštyta  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:874
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas  %(month_year)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:875
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "Šis asmuo palaidotas  %(month_year)s%(endnotes)s."
+msgstr "Šis asmuo krikštytas  %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:877
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "Palaidotas %(month_year)s%(endnotes)s."
+msgstr "Krikštytas %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:882
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Jis palaidotas %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Jis krikštytas %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:886
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s palaidota %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:887
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Ji palaidota %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Ji krikštyta %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:890
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:891
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Šis asmuo palaidotas %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Šis asmuo krikštytas %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:893
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Jis palaidotas %(modified_date)s. Palaidojimo vieta %(burial_place)s%(endnotes)s."
+msgstr "Krikštytas %(modified_date)s. Krikšto vieta %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s palaidotas %(modified_date)s%(endnotes)s."
+msgstr "%(male_name)s krikštytas %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "Jis palaidotas %(modified_date)s%(endnotes)s."
+msgstr "Jis krikštytas %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s palaidota %(modified_date)s%(endnotes)s."
+msgstr "%(female_name)s krikštyta %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "Ji palaidota %(modified_date)s%(endnotes)s."
+msgstr "Ji krikštyta %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s palaidotas %(modified_date)s%(endnotes)s."
+msgstr "%(unknown_gender_name)s krikštytas %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "Šis asmuo buvo palaidotas  %(modified_date)s%(endnotes)s."
+msgstr "Šis asmuo buvo krikštytas  %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "Palaidotas %(modified_date)s%(endnotes)s."
+msgstr "Krikštytas  %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:914
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s palaidojimo vieta  %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s krikšto vieta  %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:915
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr "Jo palaidojimo vieta  %(burial_place)s%(endnotes)s."
+msgstr "Jo krikšto vieta  %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:918
 #, python-format
@@ -18533,15 +18458,14 @@ msgstr "tarp"
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:368
 msgid "more than about"
-msgstr ""
+msgstr "daugiau kaip apie"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
-#, fuzzy
 msgid "less than about"
-msgstr "mažiau kaip"
+msgstr "mažiau kaip apie"
 
 #: ../src/gen/lib/date.py:487
 #, python-format
@@ -18903,19 +18827,16 @@ msgid "%s does not contain"
 msgstr "%s savyje neturi"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "Changed after:"
-msgstr "Pakeisti tipus"
+msgstr "Pasikeitę po:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "but before:"
-msgstr "prieš"
+msgstr "bet prieš:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Objektai su <attributes>"
+msgstr "Objektai, pasikeitę po  <date time>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given"
@@ -19195,7 +19116,7 @@ msgstr "Tai asmenys, kuriems trūksta šeimos įvykio datos arba vietovės"
 #: ../src/FilterEditor/_EditRule.py:476
 #, fuzzy
 msgid "Number of instances:"
-msgstr "Santuokų skaičius"
+msgstr "Skaičius:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
@@ -19204,24 +19125,20 @@ msgid "Number must be:"
 msgstr "Skaičius turi būti:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-#, fuzzy
 msgid "People with <count> address"
-msgstr "Žmonės su užbaigtais įrašais"
+msgstr "Asmenys su <count> adresų"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-#, fuzzy
 msgid "Matches people with certain number of personal address"
-msgstr "Atitinka asmenis, kurių žymeklis yra nurodytos reikšmės"
+msgstr "Atitinka asmenis, su konkrečiu skaičiumi asmeninių adresų"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-#, fuzzy
 msgid "People with <count> association"
-msgstr "Ištrinti esamą ryšį"
+msgstr "Asmenys su <count> ryšių"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-#, fuzzy
 msgid "Matches people with certain number of association"
-msgstr "Tai asmenys, su ta pačia pavarde"
+msgstr "Tai asmenys, su nurodytu skaičiumi ryšių"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
@@ -19329,14 +19246,12 @@ msgid "Matches people with a family event of a particular value"
 msgstr "Tai asmenys, kurių šeimos įvykis yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:43
-#, fuzzy
 msgid "People with <count> media"
-msgstr "Asmenys su nuotraukomis"
+msgstr "Asmenys su <count> nuotraukomis"
 
 #: ../src/Filters/Rules/Person/_HasGallery.py:44
-#, fuzzy
 msgid "Matches people with a certain number of items in the gallery"
-msgstr "Tai asmenys, kurie turi nuotraukų galerijoje"
+msgstr "Tai asmenys, kurie turi  galerijoje konkretų skaičių nuotraukų"
 
 #: ../src/Filters/Rules/Person/_HasIdOf.py:45
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:46
@@ -19349,14 +19264,12 @@ msgid "Matches person with a specified GRAMPS ID"
 msgstr "Tai asmuo su nurodytu GRAMPS ID"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:46
-#, fuzzy
 msgid "People with <count> LDS events"
-msgstr "Asmenys su nepilnais įvykių įrašais"
+msgstr "Asmenys su <count> PDŠ įrašais"
 
 #: ../src/Filters/Rules/Person/_HasLDS.py:47
-#, fuzzy
 msgid "Matches people with a certain number of LDS events"
-msgstr "Tai vietovių objektai su konkrečiu nuorodų skaičiumi"
+msgstr "Tai asmenys su konkrečiu PDŠ įvykių skaičiumi"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
 msgid "People with <marker>"
@@ -19404,14 +19317,12 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Tai asmenys su nurodytu (daliniu) vardu"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:46
-#, fuzzy
 msgid "People having <count> notes"
-msgstr "Asmenys, turintys komentarų"
+msgstr "Asmenys, turintys <count> pastabų"
 
 #: ../src/Filters/Rules/Person/_HasNote.py:47
-#, fuzzy
 msgid "Matches people having a certain number of notes"
-msgstr "Tai asmenys, kurie turi pastabų"
+msgstr "Tai asmenys, kurie turi nurodytą skaičių  pastabų"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 msgid "People having notes containing <substring>"
@@ -19465,14 +19376,12 @@ msgid "Family filters"
 msgstr "Šeimos filtrai"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:46
-#, fuzzy
 msgid "People with <count> source"
-msgstr "Asmenys su <source>"
+msgstr "Asmenys su <count> šaltinių"
 
 #: ../src/Filters/Rules/Person/_HasSource.py:47
-#, fuzzy
 msgid "Matches people with a certain number of items in the source"
-msgstr "Tai vietovių objektai su konkrečiu nuorodų skaičiumi"
+msgstr "Tai asmenys su konkrečiu įrašų  skaičiumi šaltiniuose"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:488
@@ -19836,9 +19745,8 @@ msgid "Matches every family in the database"
 msgstr "Tai kiekviena šeima duomenų bazėje"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:23
-#, fuzzy
 msgid "Families changed before <date time>"
-msgstr "Šeimos, kurioms atitinka <filter>"
+msgstr "Šeimos, pakeistos prieš  <date time>"
 
 #: ../src/Filters/Rules/Family/_ChangedSince.py:24
 msgid "Matches family records changed before a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
@@ -19922,14 +19830,12 @@ msgid "Matches families with an event of a particular value"
 msgstr "Tai šeimos, kurių įvykis yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:43
-#, fuzzy
 msgid "Families with <count> media"
-msgstr "Šeimos su <marker>"
+msgstr "Šeimos su <count> audio/video objektų"
 
 #: ../src/Filters/Rules/Family/_HasGallery.py:44
-#, fuzzy
 msgid "Matches families with a certain number of items in the gallery"
-msgstr "Tai asmenys, kurie turi nuotraukų galerijoje"
+msgstr "Tai šeimų objektai, kurie turi nurodytą skaičių nuotraukų galerijoje"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -19940,14 +19846,12 @@ msgid "Matches a family with a specified GRAMPS ID"
 msgstr "Tai šeima su nurodytu GRAMPS ID"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:46
-#, fuzzy
 msgid "Families with <count> LDS events"
-msgstr "Šeimos su nepilnais įvykių įrašais"
+msgstr "Šeimos su <count> PDŠ įvykių įrašais"
 
 #: ../src/Filters/Rules/Family/_HasLDS.py:47
-#, fuzzy
 msgid "Matches families with a certain number of LDS events"
-msgstr "Atitinka šeimų objektus su nurodytų nuorodų skaičiumi"
+msgstr "Atitinka šeimų objektus su nurodytu PDŠ įvykių skaičiumi"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
 msgid "Families with <marker>"
@@ -19958,14 +19862,12 @@ msgid "Matches Families with a marker of a particular value"
 msgstr "Atitinka šeimas, kurių žymeklis yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:46
-#, fuzzy
 msgid "Families having <count> notes"
-msgstr "Šeimos su nepilnais įvykių įrašais"
+msgstr "Šeimos su <count> pastabų įrašais"
 
 #: ../src/Filters/Rules/Family/_HasNote.py:47
-#, fuzzy
 msgid "Matches families having a certain number notes"
-msgstr "Atitinka šeimų objektus su nurodytų nuorodų skaičiumi"
+msgstr "Atitinka šeimų objektus su nurodytų pastabų skaičiumi"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
 msgid "Families having notes containing <substring>"
@@ -20000,14 +19902,12 @@ msgid "Matches families with the relationship type of a particular value"
 msgstr "Tai šeimos, kurių ryšių tipas yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-#, fuzzy
 msgid "Families with <count> source"
-msgstr "Šeimos su <marker>"
+msgstr "Šeimos su <count> šaltinių"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-#, fuzzy
 msgid "Matches families with a certain number of items in the source"
-msgstr "Atitinka šeimų objektus su nurodytų nuorodų skaičiumi"
+msgstr "Atitinka šeimų objektus su nurodytu įrašų skaičiumi šaltiniuosė"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -20143,14 +20043,12 @@ msgid "Matches events with data of a particular value"
 msgstr "Atitinka įvykius, kurių duomenys yra nurodytos reikšmės"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
-#, fuzzy
 msgid "Events with <count> media"
-msgstr "Įvykiai su <data>"
+msgstr "Įvykiai su <count > audio/video objektų"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
-#, fuzzy
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Tai asmenys, kurie turi nuotraukų galerijoje"
+msgstr "Tai įvykiai, kurie turi konkretų skaičių įrašų galerijoje"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -20173,9 +20071,8 @@ msgid "Events having <count> notes"
 msgstr "Įvykiai turintys <count> pastabų"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:47
-#, fuzzy
 msgid "Matches events having a certain number of notes"
-msgstr "Tai įvykiai su konkrečiu nuorodų skaičiumi"
+msgstr "Tai įvykiai su konkrečiu pastabų skaičiumi"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -20270,14 +20167,12 @@ msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:
 msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
-#, fuzzy
 msgid "Places with <count> media"
-msgstr "Asmenys su nuotraukomis"
+msgstr "Vietovės su <count> audio/video objektų"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
-#, fuzzy
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Tai asmenys, kurie turi nuotraukų galerijoje"
+msgstr "Atitinka vietoves su konkrečiu įrašų skaičiumi"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
@@ -20435,12 +20330,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
 msgid "Sources with <count> media"
-msgstr "Šaltiniai su <count> audio/video "
+msgstr "Šaltiniai su <count> audio/video"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
-#, fuzzy
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Atitinka šaltinius su konkrečiu nuorodų skaičiumi"
+msgstr "Atitinka šaltinius su konkrečiu įrašų skaičiumi"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -20451,14 +20345,12 @@ msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Tai šaltinis  su nurodytu GRAMPS ID"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
-#, fuzzy
 msgid "Sources having <count> notes"
-msgstr "Asmenys, turintys komentarų"
+msgstr "Šaltiniai, turintys <count> pastabų"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:47
-#, fuzzy
 msgid "Matches sources having a certain number of notes"
-msgstr "Atitinka šaltinius su konkrečiu nuorodų skaičiumi"
+msgstr "Atitinka šaltinius su konkrečiu pastabų skaičiumi"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
@@ -20542,9 +20434,8 @@ msgid "Matches every media object in the database"
 msgstr "Visi duomenų bazės audio/video objektai"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#, fuzzy
 msgid "Media objects changed before <date time>"
-msgstr "Audio/video objektai, kurie atitinka <filter>"
+msgstr "Audio/video objektai, pakeisti prieš <date time>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid "Matches media objects changed before a specified date:time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date:time is given"
@@ -20646,9 +20537,8 @@ msgid "Matches every repository in the database"
 msgstr "Kiekviena duomenų bazėje esanti  saugykla"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#, fuzzy
 msgid "Repositories changed after <date time>"
-msgstr "Saugyklos, kurios atitinka <filter>"
+msgstr "Saugyklos, kurios pakeistos po <date time>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid "Matches repository records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date/time is given"
@@ -20767,7 +20657,6 @@ msgid "Notes containing <regular expression>"
 msgstr "Pastabos, turinčios  <regular expression>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
-#, fuzzy
 msgid "Matches notes who contain text matching a regular expression"
 msgstr "Tai pastabos, kurių pastabose dalis teksto  atitinka išraišką"
 
@@ -21192,7 +21081,9 @@ msgstr ""
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Neprivalomas pavardės priešdėlis, kuris nenaudojamas rūšiuojant, toks kaip \"de\" ar \"van\"\n"
+msgstr ""
+"Priešdėlis: neprivalomas pavardės priešdėlis, kuris nenaudojamas rūšiuojant, toks kaip \"de\" ar \"van\"\n"
+"Priesaga: neprivaloma vardo priesaga, tokia kaip \"Jr.\" ar \"III\""
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "The person's given name"
@@ -21403,16 +21294,14 @@ msgid "Calenda_r:"
 msgstr "Kalendo_rius:"
 
 #: ../src/glade/gramps.glade.h:47
-#, fuzzy
 msgid "Call n_umber:"
-msgstr "_Vardas:"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:48
 msgid "Cen_ter"
 msgstr "_Centruoti"
 
 #: ../src/glade/gramps.glade.h:49
-#, fuzzy
 msgid "Ch_urch parish:"
 msgstr "Bažnyčios _parapija:"
 
@@ -21437,9 +21326,8 @@ msgid "Co_unty:"
 msgstr "Ša_lis:"
 
 #: ../src/glade/gramps.glade.h:55
-#, fuzzy
 msgid "Con_fidence:"
-msgstr "Slaptumas"
+msgstr ""
 
 #: ../src/glade/gramps.glade.h:56
 msgid "Convert to a relative path"
@@ -21490,9 +21378,8 @@ msgid "Drag to move; click to detach"
 msgstr "Perkėlimui tempti (drag);  norėdami atskirti spauskite"
 
 #: ../src/glade/gramps.glade.h:69
-#, fuzzy
 msgid "Dua_l dated"
-msgstr "Mirties Data"
+msgstr "Dviguba data"
 
 #: ../src/glade/gramps.glade.h:70
 msgid "Example:"
@@ -22512,9 +22399,8 @@ msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program
 msgstr "<b> GRAMPS Parama</b>: Norite padėti vystyti GRAMPS, bet nemokate programuoti? Tai ne problema. Didelis projektas, toks kaip GRAMPS reikalauja žmonių su įvairiomis žiniomis. Pagalba gali  būti įvairi: dokumentacijos rašymas, naujų funkcijų testavimas, pagalba kuriant internetinį puslapį. Užsisakykite  gramps kūrėjų elektroninę konferenciją, gramps-devel ir prisistatykite. Prenumeratos informacija galite rasti  adresu lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:6
-#, fuzzy
 msgid "<b>Different Views</b>: There are twelve different views for navigating your family: Gramplets, People, Relationships, Family List, Pedigree, Events, Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to achieve one or more specific tasks."
-msgstr "<b>Skirtingi Vaizdai</b>: Yra devyni galimi  šeimos peržiūros būdai: Asmenys, Ryšiai, Šeimos, Kilmė, Įvykiai, Šaltiniai, Vietovės, Vaizdas/garsas ir Saugyklos. Kiekvienas skirtas atlikti vienai ar kelioms konkrečioms užduotims."
+msgstr "<b>Skirtingi Vaizdai</b>: Yra dvylika galimų  šeimos peržiūros būdų:  Grampletai, Asmenys, Ryšiai, Šeimos, Kilmė, Įvykiai, Šaltiniai, Vietovės, Vaizdas/garsas, Saugyklos, Pastabos ir HTML Žemėlapiai. Kiekvienas skirtas atlikti vienai ar kelioms konkrečioms užduotims."
 
 #: ../src/data/tips.xml.in.h:7
 msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to locate (and merge) entries of the same person entered more than once in the database."
