@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 11:23-0800\n"
-"PO-Revision-Date: 2009-02-24 00:35+0100\n"
+"PO-Revision-Date: 2009-02-26 00:04+0100\n"
 "Last-Translator: Joan Creus <joan.creus at gmail dot com>\n"
 "Language-Team: Català <ca@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3551,7 +3551,7 @@ msgstr "_Família"
 
 #: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
-msgstr ""
+msgstr "Intentar de veure els llocs de la família de la persona seleccionada."
 
 #: ../src/DataViews/GeoView.py:770
 msgid "_Event"
@@ -3559,7 +3559,7 @@ msgstr "_Esdeveniment"
 
 #: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
-msgstr ""
+msgstr "Intentar de veure els llocs connectats amb tots els esdeveniments."
 
 #: ../src/DataViews/GeoView.py:868
 msgid "List of places without coordinates"
@@ -3569,14 +3569,14 @@ msgstr "Llista de llocs sense coordenades"
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
-msgstr ""
+msgstr "Aquí hi ha la llista de tots els llocs de l'arbre genealògic per als quals no tenim coordenades.<br> Això vol que no hi ha ni longitud ni latitud.<p>"
 
 #: ../src/DataViews/GeoView.py:919
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
-msgstr ""
+msgstr "Hi ha %d marcadors per visualitzar. Estan repartits per %d pàgines de %d marcadors : "
 
 #: ../src/DataViews/GeoView.py:958
 msgid "All"
@@ -3588,11 +3588,11 @@ msgstr "Cap ubicació."
 
 #: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
-msgstr ""
+msgstr "No hi ha cap lloc a l'arbre genealògic amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
-msgstr ""
+msgstr "Aquest és el mapa predeterminat."
 
 #: ../src/DataViews/GeoView.py:1448
 #, python-format
@@ -3620,11 +3620,11 @@ msgstr "Id : %s"
 #: ../src/DataViews/GeoView.py:1539 ../src/DataViews/GeoView.py:1616
 #: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1737
 msgid "Cannot center the map. No location with coordinates."
-msgstr ""
+msgstr "No es pot centrar el mapa. No hi ha posició amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
-msgstr ""
+msgstr "Tots els llocs de l'arbre genealògic amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1568
 #, python-format
@@ -3633,7 +3633,7 @@ msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
-msgstr ""
+msgstr "Tots els esdeveniments de l'arbre genealògic amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1647
 #, python-format
@@ -3652,7 +3652,7 @@ msgstr "Id : Fill : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
-msgstr ""
+msgstr "Els membres de la família de la persona activa no tenen cap lloc amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1672 ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
@@ -3661,7 +3661,7 @@ msgstr "No s'ha fixat la persona activa."
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr ""
+msgstr "Tots els llocs de la família de la persona %(name)s de l'arbre genealògic amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1720
 #, python-format
@@ -3670,16 +3670,16 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
-msgstr ""
+msgstr "La persona activa no té llocs amb coordenades."
 
 #: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
-msgstr ""
+msgstr "Tots els llocs d'esdeveniment per %s."
 
 #: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
-msgstr ""
+msgstr "No implementat, encara ..."
 
 #: ../src/DataViews/MediaView.py:88 ../src/Editors/ObjectEntries.py:303
 msgid "Add a new media object"
@@ -3719,7 +3719,7 @@ msgstr "Gramplet sense nom"
 
 #: ../src/DataViews/GrampletView.py:166
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
+msgstr "Arrossegar el Botó de Propietats per moure i clicar per configuració"
 
 #: ../src/DataViews/GrampletView.py:203
 msgid "Gramplet"
@@ -3728,7 +3728,7 @@ msgstr "Gramplet"
 #: ../src/DataViews/GrampletView.py:353 ../src/DataViews/GrampletView.py:552
 #, python-format
 msgid "Gramplet %s is running"
-msgstr ""
+msgstr "El Gramplet %s s'està executant"
 
 #: ../src/DataViews/GrampletView.py:1091
 msgid "Right click to add gramplets"
@@ -3765,7 +3765,7 @@ msgstr "Vista prèvia"
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
-msgstr ""
+msgstr "Marcador"
 
 #: ../src/DataViews/NoteView.py:73 ../src/Editors/ObjectEntries.py:354
 msgid "Add a new note"
@@ -3796,29 +3796,29 @@ msgstr "Seleccionar Columnes de Nota"
 #: ../src/plugins/drawreport/AncestorTree.py:52
 #: ../src/plugins/drawreport/DescendTree.py:53
 msgid "short for born|b."
-msgstr ""
+msgstr "n."
 
 #: ../src/DataViews/PedigreeView.py:74
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:55
 msgid "short for died|d."
-msgstr ""
+msgstr "d."
 
 #: ../src/DataViews/PedigreeView.py:75
 msgid "short for baptized|bap."
-msgstr ""
+msgstr "bat."
 
 #: ../src/DataViews/PedigreeView.py:76
 msgid "short for chistianized|chr."
-msgstr ""
+msgstr "bat."
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "short for buried|bur."
-msgstr ""
+msgstr "ent."
 
 #: ../src/DataViews/PedigreeView.py:78
 msgid "short for cremated|crem."
-msgstr ""
+msgstr "crem."
 
 #: ../src/DataViews/PedigreeView.py:981
 msgid "Jump to child..."
@@ -4103,7 +4103,7 @@ msgstr "Carregant..."
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ..."
-msgstr ""
+msgstr "Intentar de veure les ubicacions seleccionades amb un servei de mapes (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
@@ -4111,13 +4111,13 @@ msgstr "Seleccionar un Servei de Mapes"
 
 #: ../src/DataViews/PlaceView.py:138
 msgid "_Look up with Map Service"
-msgstr ""
+msgstr "_Buscar amb Servei de Mapes"
 
 #: ../src/DataViews/PlaceView.py:140
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ..."
-msgstr ""
+msgstr "Intentar de veure aquesta ubicació amb un Servei de Mapes (Openstreet Map, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
@@ -4131,7 +4131,7 @@ msgstr "No s'ha seleccionat cap lloc."
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
-msgstr ""
+msgstr "Cal seleccionar un lloc per poder-lo veure en un mapa. Alguns Serveis de Mapes pot ser que permetin seleccions múltiples."
 
 #: ../src/DataViews/PlaceView.py:250
 msgid "Select Place Columns"
@@ -4302,12 +4302,12 @@ msgstr "n. %(birthdate)s, d. %(deathdate)s"
 #: ../src/DataViews/RelationView.py:1126
 #, python-format
 msgid "short for born|b. %s"
-msgstr ""
+msgstr "n. %s"
 
 #: ../src/DataViews/RelationView.py:1128
 #, python-format
 msgid "short for dead|d. %s"
-msgstr ""
+msgstr "d. %s"
 
 #: ../src/DataViews/RelationView.py:1190
 #, python-format
@@ -5312,7 +5312,7 @@ msgstr "Editor de Referències a Medis Audiovisuals"
 #: ../src/Editors/_EditMediaRef.py:83 ../src/Editors/_EditMediaRef.py:84
 #: ../src/glade/gramps.glade.h:137
 msgid "Y coordinate|Y"
-msgstr ""
+msgstr "Y"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
@@ -6055,28 +6055,28 @@ msgstr "Llibre Nou"
 
 #: ../src/plugins/BookReport.py:717
 msgid "_Available items"
-msgstr ""
+msgstr "_Elements disponibles"
 
 #: ../src/plugins/BookReport.py:721
 msgid "Current _book"
-msgstr ""
+msgstr "_Llibre actual"
 
 #: ../src/plugins/BookReport.py:729
 #: ../src/plugins/drawreport/StatisticsChart.py:67
 msgid "Item name"
-msgstr ""
+msgstr "Nom d'element"
 
 #: ../src/plugins/BookReport.py:732
 msgid "Subject"
-msgstr ""
+msgstr "Tema"
 
 #: ../src/plugins/BookReport.py:744
 msgid "Book selection list"
-msgstr ""
+msgstr "Llista de selecció de llibres"
 
 #: ../src/plugins/BookReport.py:783
 msgid "Different database"
-msgstr ""
+msgstr "Base de dades diferent"
 
 #: ../src/plugins/BookReport.py:784
 #, python-format
@@ -6088,18 +6088,23 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
+"Aquest llibre es va crear amb referències a la base de dades %s.\n"
+"\n"
+" Això invalida les referències a la persona central guardades al llibre.\n"
+"\n"
+"Per tant, la persona central de cada element es fixa a la persona activa de la base de dades oberta actualment."
 
 #: ../src/plugins/BookReport.py:922
 msgid "Setup"
-msgstr ""
+msgstr "Configuració"
 
 #: ../src/plugins/BookReport.py:932
 msgid "Book Menu"
-msgstr ""
+msgstr "Menú de Llibre"
 
 #: ../src/plugins/BookReport.py:955
 msgid "Available Items Menu"
-msgstr ""
+msgstr "Menú d'Elements Disponibles"
 
 #: ../src/plugins/BookReport.py:1110
 msgid "GRAMPS Book"
@@ -6244,11 +6249,11 @@ msgstr ""
 #: ../src/plugins/import/ImportGpkg.py:91
 #, python-format
 msgid "Error extracting into %s"
-msgstr ""
+msgstr "Error extraient cap a %s"
 
 #: ../src/plugins/import/ImportGpkg.py:107
 msgid "Base path for relative media set"
-msgstr ""
+msgstr "Camí base per al conjunt de medis audiovisuals"
 
 #: ../src/plugins/import/ImportGpkg.py:108
 #, python-format
@@ -6257,11 +6262,11 @@ msgid ""
 "a simpler path. You can change this in the Preferences, while moving your "
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
-msgstr ""
+msgstr "El camí base per als medis d'aquest arbre genealògic s'ha fixat a %s. Consideri de triar-ne un de més senzill. Ho pot canviar a les Preferències, movent al mateix temps els fitxers a la nova ubicació, i fent servir l'eina Gestor de Medis, amb l'opció 'Substituir subcadenes dins el camí' per fixar camins correctes als medis audiovisuals."
 
 #: ../src/plugins/import/ImportGpkg.py:117
 msgid "Cannot set base media path"
-msgstr ""
+msgstr "No es pot fixar el camí base de medis audiovisuals"
 
 #: ../src/plugins/import/ImportGpkg.py:118
 #, python-format
@@ -6273,7 +6278,7 @@ msgid ""
 "your media files to the new position, and using the media manager tool, "
 "option 'Replace substring in the path' to set correct paths in your media "
 "objects."
-msgstr ""
+msgstr "L'arbre genealògic on ha fet la importació ja té un camí base per als medis audiovisuals: %(orig_path)s. Els audiovisuals que s'han importat, però, són relatius al camí %(path)s. Pot modificar el camí base a les Preferències, o pot convertir els fitxers importats al camí base de medis existent. Ho pot fer movent els fitxers a la nova ubicació, i fent servir l'eina Gestor de Medis, amb l'opció 'Substituir subcadenes dins el camí' per fixar camins correctes als medis audiovisuals."
 
 #: ../src/plugins/import/ImportGpkg.py:146 ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
@@ -6282,7 +6287,7 @@ msgstr "Paquet GRAMPS"
 
 #: ../src/plugins/import/ImportGpkg.py:147
 msgid "Import data from GRAMPS packages"
-msgstr ""
+msgstr "Importar dades des de paquets GRAMPS"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7161,7 +7166,7 @@ msgstr "Números del dia al calendari"
 
 #: ../src/plugins/drawreport/Calendar.py:510
 msgid "Daily text display"
-msgstr ""
+msgstr "Visualització de text diària"
 
 #: ../src/plugins/drawreport/Calendar.py:512
 msgid "Days of the week text"
@@ -7325,7 +7330,7 @@ msgstr "Títol"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:91
 msgid "Forename"
-msgstr ""
+msgstr "Nom de pila"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:95
 msgid "Birth year"
@@ -7395,15 +7400,15 @@ msgstr "Tipus d'esdeveniment"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:137
 msgid "(Preferred) title missing"
-msgstr "Falta el títol (Preferit)"
+msgstr "Falta el títol (preferit)"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:146
 msgid "(Preferred) forename missing"
-msgstr ""
+msgstr "Falta el nom de pila (preferit)"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:155
 msgid "(Preferred) surname missing"
-msgstr ""
+msgstr "Falta el cognom (preferit)"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:165
 msgid "Gender unknown"
@@ -7608,7 +7613,7 @@ msgstr "Calculant línia temporal..."
 #: ../src/plugins/drawreport/TimeLine.py:215
 #, python-format
 msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-msgstr ""
+msgstr "Calendari %(calendar_type)s, ordenat per %(sortby)s"
 
 #: ../src/plugins/drawreport/TimeLine.py:325
 #: ../src/plugins/tool/SortEvents.py:181
@@ -7622,7 +7627,7 @@ msgstr "Mètode d'ordenació a utilitzar"
 
 #: ../src/plugins/drawreport/TimeLine.py:334
 msgid "The calendar which determines the year span"
-msgstr ""
+msgstr "El calendari que determina l'extensió d'anys"
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "The style used for the person's name."
@@ -7971,20 +7976,20 @@ msgstr "Amplada del gràfic"
 
 #: ../src/plugins/gramplet/AgeStats.py:157
 msgid "Lifespan Age Distribution"
-msgstr ""
+msgstr "Distribució de l'esperança de vida"
 
 #: ../src/plugins/gramplet/AgeStats.py:158
 msgid "Father - Child Age Diff Distribution"
-msgstr ""
+msgstr "Distribució de la diferència d'edat Pare-Fills"
 
 #: ../src/plugins/gramplet/AgeStats.py:158
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Diff"
-msgstr ""
+msgstr "Dif"
 
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Mother - Child Age Diff Distribution"
-msgstr ""
+msgstr "Distribució de la diferència d'edat Mare-Fills"
 
 #: ../src/plugins/gramplet/AgeStats.py:216
 #: ../src/plugins/gramplet/StatsGramplet.py:196
@@ -8161,21 +8166,21 @@ msgstr "No es pot afegir persona nova com a fill."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:555
 msgid "Please set gender on Active or new person."
-msgstr ""
+msgstr "Si us plau, fixi el gènere de la persona Activa o nova."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:592
 #: ../src/plugins/gramplet/DataEntryGramplet.py:625
 msgid "Same genders on Active and new person."
-msgstr ""
+msgstr "Gèneres iguals a la persona nova i activa."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:671
 msgid "Please set gender on Active person."
-msgstr ""
+msgstr "Si us plau fixi el gènere de la persona Activa."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:693
 #, python-format
 msgid "Gramplet Data Entry: %s"
-msgstr ""
+msgstr "Introducció de Dades amb Gramplet: %s"
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:742
 msgid "Data Entry Gramplet"
@@ -8419,7 +8424,7 @@ msgstr "Introdueixi expressions de Python"
 
 #: ../src/plugins/gramplet/PythonGramplet.py:53
 msgid "class name|Date"
-msgstr ""
+msgstr "Date"
 
 #: ../src/plugins/gramplet/PythonGramplet.py:152
 msgid "Python Gramplet"
@@ -8463,12 +8468,12 @@ msgstr "Persona activa: %s"
 #: ../src/plugins/gramplet/RelativeGramplet.py:86
 #, python-format
 msgid "%d. Partner: "
-msgstr ""
+msgstr "%d. Parella: "
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:90
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr ""
+msgstr "%d. Parella: Desconeguda"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:105
 msgid "Parents:"
@@ -8508,7 +8513,7 @@ msgstr "Registre d'aquesta sessió"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:44
 msgid "Opened data base -----------\n"
-msgstr ""
+msgstr "Base de dades oberta ----------\n"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
@@ -8539,7 +8544,7 @@ msgstr "Registre de Sessió"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:47
 msgid "Double-click item to see matches"
-msgstr ""
+msgstr "Faci doble clic a l'element per veure les concordàncies"
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:123
@@ -8859,7 +8864,7 @@ msgstr "Contorn en blanc i negre"
 
 #: ../src/plugins/graph/GVFamilyLines.py:65
 msgid "Coloured outline"
-msgstr ""
+msgstr "Contorn en colors"
 
 #: ../src/plugins/graph/GVFamilyLines.py:66
 msgid "Colour fill"
@@ -9019,20 +9024,20 @@ msgid ""
 "Males will be shown with blue, females with red, unless otherwise set above "
 "for filled. If the sex of an individual is unknown it will be shown with "
 "gray."
-msgstr ""
+msgstr "Les homes es mostraran en blau, les dones en vermell, a no ser que es canviï a l'opció corresponent. Si el sexe d'un individu és desconegut, es mostrarà en gris."
 
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
 #: ../src/plugins/graph/GVRelGraph.py:527
 msgid "Use rounded corners"
-msgstr ""
+msgstr "Utilitzar cantonades arrodonides"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
 #: ../src/plugins/graph/GVRelGraph.py:529
 msgid "Use rounded corners to differentiate between women and men."
-msgstr ""
+msgstr "Utilitzar cantonades arrodonides per distingir entre dones i homes."
 
 #: ../src/plugins/graph/GVFamilyLines.py:221
 msgid "Use subgraphs"
@@ -9520,17 +9525,17 @@ msgstr "Error de dades Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:159
 msgid "Not a Pro-Gen file"
-msgstr ""
+msgstr "No és un fitxer Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:374
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr ""
+msgstr "Camp '%(fldname)s' no trobat"
 
 #: ../src/plugins/import/ImportProGen.py:449
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
-msgstr ""
+msgstr "No es pot trobar fitxer DEF: %(deffname)s"
 
 #: ../src/plugins/import/ImportProGen.py:491
 msgid "Import from Pro-Gen"
@@ -9543,7 +9548,7 @@ msgstr "Importació Pro-Gen"
 #: ../src/plugins/import/ImportProGen.py:693
 #, python-format
 msgid "date did not match: '%s' (%s)"
-msgstr ""
+msgstr "la data no concorda: '%s' (%s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:772
@@ -9563,12 +9568,12 @@ msgstr "Afegint fills"
 #: ../src/plugins/import/ImportProGen.py:1243
 #, python-format
 msgid "cannot find father for I%s (father=%d)"
-msgstr ""
+msgstr "no es pot trobar el pare de I%s (pare=%d)"
 
 #: ../src/plugins/import/ImportProGen.py:1245
 #, python-format
 msgid "cannot find mother for I%s (mother=%d)"
-msgstr ""
+msgstr "no es pot trobar la mare de I%s (pare=%d)"
 
 #: ../src/plugins/import/ImportProGen.py:1280
 msgid "Pro-Gen"
@@ -9592,11 +9597,11 @@ msgstr "Importar dades des de fitxers vCard"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
-msgstr ""
+msgstr "Proporciona informació de festes per diferents països."
 
 #: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
-msgstr ""
+msgstr "Proporciona les funcions bàsiques per serveis de mapes."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:43
@@ -9619,12 +9624,12 @@ msgstr " estat"
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
-msgstr ""
+msgstr "La latitud no és entre %s i %s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Longitude not within %s to %s"
-msgstr ""
+msgstr "La longitud no és entre %s i %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
@@ -9637,27 +9642,29 @@ msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
 msgstr ""
+"Calen la latitud i longitud,\n"
+"o bé carrer i ciutat"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Coordinates needed in Denmark"
-msgstr ""
+msgstr "Calen les coordenades a Dinamarca"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:177
 #, python-format
 msgid "Eniro map not available for %s"
-msgstr ""
+msgstr "Mapa Eniro no disponible per %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
-msgstr ""
+msgstr "Només per Suècia i Dinamarca"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
-msgstr ""
+msgstr "EniroMaps"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
-msgstr ""
+msgstr "S'obre a kartor.eniro.se"
 
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
@@ -9665,7 +9672,7 @@ msgstr "GoogleMaps"
 
 #: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
-msgstr ""
+msgstr "Obrir a maps.google.com"
 
 #: ../src/plugins/mapservices/openstreetmap.py:83
 msgid "OpenStreetMap"
@@ -9673,7 +9680,7 @@ msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/openstreetmap.py:85
 msgid "Open on openstreetmap.org"
-msgstr ""
+msgstr "Obrir a openstreetmap.org"
 
 #: ../src/plugins/quickview/AgeOnDate.py:48
 #, python-format
@@ -9792,11 +9799,11 @@ msgstr "Camí detallat des de %(person)s fins a l'avantpassat comú"
 
 #: ../src/plugins/quickview/all_relations.py:269
 msgid "Name Common ancestor"
-msgstr ""
+msgstr "Nom de l'avantpassat comú"
 
 #: ../src/plugins/quickview/all_relations.py:270
 msgid "Parent"
-msgstr ""
+msgstr "Progenitor"
 
 #: ../src/plugins/quickview/all_relations.py:313
 msgid "Partial"
@@ -9989,13 +9996,13 @@ msgstr ""
 
 #: ../src/plugins/quickview/lineage.py:62
 msgid "Name Father"
-msgstr ""
+msgstr "Nom del Pare"
 
 #: ../src/plugins/quickview/lineage.py:62
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/quickview/lineage.py:181
 msgid "Remark"
-msgstr ""
+msgstr "Comentari"
 
 #: ../src/plugins/quickview/lineage.py:70
 msgid "Direct line male descendants"
@@ -10017,7 +10024,7 @@ msgstr ""
 
 #: ../src/plugins/quickview/lineage.py:93
 msgid "Name Mother"
-msgstr ""
+msgstr "Nom de la Mare"
 
 #: ../src/plugins/quickview/lineage.py:101
 msgid "Direct line female descendants"
@@ -10120,7 +10127,7 @@ msgstr "RepoRef"
 
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
-msgstr ""
+msgstr "Mostrar RepoRef per fonts relacionades amb el repositori actiu"
 
 #: ../src/plugins/quickview/SameSurnames.py:38
 msgid "People with incomplete surnames"
@@ -10350,7 +10357,7 @@ msgstr "Estil de text del títol"
 
 #: ../src/plugins/textreport/BirthdayReport.py:470
 msgid "Data text display"
-msgstr ""
+msgstr "Visualització del text"
 
 #: ../src/plugins/textreport/BirthdayReport.py:472
 msgid "Day text style"
@@ -10748,11 +10755,11 @@ msgstr "Relació amb: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:711
 msgid "Use Record-style (Modified Register) numbering"
-msgstr ""
+msgstr "Utilitzar l'estil de numeració de Registre Modificat"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:714
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr ""
+msgstr "Si s'ha d'utilitzar estil de numeració de Registre en comptes d'Henry."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:782
 #: ../src/plugins/textreport/KinshipReport.py:350
@@ -12139,7 +12146,7 @@ msgstr "Combinacions Potencials"
 
 #: ../src/plugins/tool/FindDupes.py:578
 msgid "Rating"
-msgstr ""
+msgstr "Avaluació"
 
 #: ../src/plugins/tool/FindDupes.py:578
 msgid "First Person"
@@ -12163,7 +12170,7 @@ msgstr ""
 
 #: ../src/plugins/tool/Leak.py:61
 msgid "Uncollected Objects Tool"
-msgstr ""
+msgstr "Eina d'Objectes no Recollits"
 
 #: ../src/plugins/tool/Leak.py:95
 #, python-format
@@ -12180,11 +12187,11 @@ msgstr "Cap objecte no recollit\n"
 
 #: ../src/plugins/tool/Leak.py:134
 msgid "Show Uncollected Objects"
-msgstr ""
+msgstr "Mostrar Objectes No Recollits"
 
 #: ../src/plugins/tool/Leak.py:138
 msgid "Provide a window listing all uncollected objects"
-msgstr ""
+msgstr "Proporciona una finestra que llista tots els objectes no recollits"
 
 #: ../src/plugins/tool/MediaManager.py:65
 msgid "manual|Media_Manager..."
@@ -12201,7 +12208,7 @@ msgstr "Gestor GRAMPS de Medis Audiovisuals"
 
 #: ../src/plugins/tool/MediaManager.py:92
 msgid "Selecting operation"
-msgstr ""
+msgstr "Selecció de l'operació"
 
 #: ../src/plugins/tool/MediaManager.py:114
 msgid ""
@@ -12222,10 +12229,17 @@ msgid ""
 "outside of GRAMPS. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
+"Aquesta eina permet operacions massives sobre objectes audiovisuals emmagatzemats a GRAMPS. Cal fer una distinció important entre un objecte audiovisual de GRAMPS i el seu fitxer.\n"
+"\n"
+"L'objecte audiovisual GRAMPS és una agrupació de dades sobre el fitxer audiovisual: el seu nom i/o camí, la seva descripció, el seu Id, notes, referències al a font, etc. Aquestes dades <b>no inclouen el propi fitxer</b>.\n"
+"\n"
+"Els fitxers que contenen imatges, so, video, etc, existeixen per separat al disc dur. Aquests fitxers no els gestiona GRAMPS i no estan inclosos dins de la base de dades GRAMPS. La base de dades GRAMPS només emmagatzema el camí i els noms de fitxer.\n"
+"\n"
+"Aquesta eina només permet de modificar els registres dins de la base de dades GRAMPS. Si vol moure o canviar el nom dels fitxers, ha de fer-ho pel seu compte, fora de GRAMPS. Després pot modificar els camins amb aquesta eina perquè els objectes de medis tinguin les ubicacions correctes de cada fitxer."
 
 #: ../src/plugins/tool/MediaManager.py:256
 msgid "Affected path"
-msgstr ""
+msgstr "Camí afectat"
 
 #: ../src/plugins/tool/MediaManager.py:265
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
@@ -12270,14 +12284,14 @@ msgstr ""
 
 #: ../src/plugins/tool/MediaManager.py:413
 msgid "Replace _substrings in the path"
-msgstr ""
+msgstr "_Substituir subcadenes dins el camí"
 
 #: ../src/plugins/tool/MediaManager.py:414
 msgid ""
 "This tool allows replacing specified substring in the path of media objects "
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
-msgstr ""
+msgstr "Aquesta eina permet de substituir subcadenes especificades en el camí d'objectes audiovisuals per una altra subcadena. Això pot ser útil per moure els fitxer de medis audiovisuals d'un directori cap a un altre"
 
 #: ../src/plugins/tool/MediaManager.py:420
 msgid "Replace substring settings"
@@ -12315,7 +12329,7 @@ msgid ""
 "This tool allows converting relative media paths to the absolute ones. It "
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
-msgstr ""
+msgstr "Aquesta eina permet de convertir camins relatius de medis audiovisuals en absoluts. Ho fa prefixant-hi el camí base donat a les Preferències, o, si no hi està omplert, hi prefixa el directori de l'usuari."
 
 #: ../src/plugins/tool/MediaManager.py:534
 msgid "Convert paths from absolute to r_elative"
@@ -12558,7 +12572,7 @@ msgstr "Objectes no utilitzats"
 #. Add ignore column
 #: ../src/plugins/tool/RemoveUnused.py:186 ../src/plugins/tool/Verify.py:529
 msgid "Mark"
-msgstr ""
+msgstr "Marcar"
 
 #: ../src/plugins/tool/RemoveUnused.py:316
 msgid "Remove unused objects"
@@ -12849,27 +12863,27 @@ msgstr "Verifica les dades amb proves definides per l'usuari"
 #: ../src/plugins/webreport/NarrativeWeb.py:123
 #: ../src/plugins/webreport/WebCal.py:92
 msgid "Basic-Ash"
-msgstr ""
+msgstr "Bàsic-Freixe"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:124
 #: ../src/plugins/webreport/WebCal.py:93
 msgid "Basic-Cypress"
-msgstr ""
+msgstr "Bàsic-Xiprer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:125
 #: ../src/plugins/webreport/WebCal.py:94
 msgid "Basic-Lilac"
-msgstr ""
+msgstr "Bàsic-Lilàs"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:126
 #: ../src/plugins/webreport/WebCal.py:95
 msgid "Basic-Peach"
-msgstr ""
+msgstr "Bàsic-Presseguer"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:127
 #: ../src/plugins/webreport/WebCal.py:96
 msgid "Basic-Spruce"
-msgstr ""
+msgstr "Bàsic-Picea"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:128
 #: ../src/plugins/webreport/WebCal.py:97
@@ -12884,7 +12898,7 @@ msgstr "Nebraska"
 #: ../src/plugins/webreport/NarrativeWeb.py:130
 #: ../src/plugins/webreport/WebCal.py:99
 msgid "Visually Impaired"
-msgstr ""
+msgstr "Amb Problemes de Visió"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:132
 #: ../src/plugins/webreport/WebCal.py:100
@@ -13139,12 +13153,12 @@ msgstr "Germanastres"
 #: ../src/plugins/webreport/NarrativeWeb.py:2720
 #, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-msgstr ""
+msgstr "%(date)s <span class=\"preposition\">a</span> %(place)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2722
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
-msgstr ""
+msgstr "<span class=\"preposition\">a</span> %(place)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2739
 #, python-format
@@ -13519,25 +13533,25 @@ msgstr "Creat per a %(author)s\n"
 #. page title
 #: ../src/plugins/webreport/WebCal.py:814
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "Un Dia en un Any"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:850
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr ""
+msgstr "%(year)d, en un Cop d'Ull"
 
 #: ../src/plugins/webreport/WebCal.py:862
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
 "shows all the events for that date, if there are any!\n"
-msgstr ""
+msgstr "Aquest calendari està pensat per donar-li accés a totes les seves dades d'un cop d'ull comprimit en una sola pàgina. Clicant en una data, anirà a una pàgina que en mostra tots els esdeveniments, si n'hi ha!\n"
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:869
 msgid "Creating Year At A Glance calendars"
-msgstr ""
+msgstr "Creant calendaris d'Any en un Cop d'Ull"
 
 #. open progress meter bar
 #: ../src/plugins/webreport/WebCal.py:899
@@ -13559,7 +13573,7 @@ msgstr "Donant format als mesos ..."
 #: ../src/plugins/webreport/WebCal.py:1051
 #, python-format
 msgid "%(short_name)s"
-msgstr ""
+msgstr "%(short_name)s"
 
 #: ../src/plugins/webreport/WebCal.py:1082
 #, python-format
@@ -13600,7 +13614,7 @@ msgstr "Any d'inici per al(s) calendari(s)"
 
 #: ../src/plugins/webreport/WebCal.py:1192
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr ""
+msgstr "Introdueixi l'any d'inici per als calendaris entre 1900 i 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1196
 msgid "End Year for the Calendar(s)"
@@ -13610,15 +13624,15 @@ msgstr "Any final per al(s) calendari(s)"
 msgid ""
 "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
 "years is selected, then only twenty years at any given time"
-msgstr ""
+msgstr "Introdueixi l'any de fi per als calendaris entre 1900 i 3000. Si se seleccionen múltiples anys, només fins a vint anys"
 
 #: ../src/plugins/webreport/WebCal.py:1206
 msgid "Create \"Year At A Glance\" Calendar(s)"
-msgstr ""
+msgstr "Crear Calendari(s) \"Any en un Cop d'Ull\""
 
 #: ../src/plugins/webreport/WebCal.py:1208
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr ""
+msgstr "Si s'ha de crear o no un mini-calendari d'una pàgina amb les dates ressaltades"
 
 #: ../src/plugins/webreport/WebCal.py:1216
 msgid "Holidays will be included for the selected country"
@@ -19433,7 +19447,7 @@ msgstr ""
 
 #: ../src/gen/lib/ldsord.py:110
 msgid "Stillborn"
-msgstr ""
+msgstr "Nascut mort"
 
 #: ../src/gen/lib/ldsord.py:111
 msgid "Submitted"
@@ -21580,7 +21594,7 @@ msgstr "<b>Filtre</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:77
 msgid "Reset"
-msgstr ""
+msgstr "Valors per defecte"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
 msgid "Publication"
@@ -21788,7 +21802,7 @@ msgstr "Color de fons"
 
 #: ../src/widgets/styledtexteditor.py:356
 msgid "Clear Markup"
-msgstr ""
+msgstr "Treure el ressaltat"
 
 #: ../src/widgets/styledtexteditor.py:475
 msgid "Select font color"
@@ -22325,7 +22339,7 @@ msgstr "_Mes"
 
 #: ../src/glade/gramps.glade.h:96
 msgid "Name Child:"
-msgstr ""
+msgstr "Nom del Fill:"
 
 #: ../src/glade/gramps.glade.h:98
 msgid "Ne_w year begins:  "
@@ -23160,11 +23174,11 @@ msgstr "Excloure _fonts"
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:6
 msgid "Reference i_mages from path:  "
-msgstr ""
+msgstr "Referenciar i_matges del camí:  "
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:7
 msgid "Use _Living as first name"
-msgstr ""
+msgstr "Utilitzar nom comú com a nom"
 
 #: ../src/plugins/tool/verify.glade.h:2
 msgid "<b>Families</b>"
