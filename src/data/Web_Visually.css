@@ -506,7 +506,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     border:solid 1px #453619;
 }
 #GalleryNav a:hover {
-    background-color:#D8F3D6;
+    background-color:#C1B398;
 }
 #GalleryNav a#Previous {
     padding:.5em .7em .3em .7em;
@@ -878,25 +878,6 @@ div#pedigree {
     padding:0;
     background:none;
 }
-#treeContainer div.boxbg span.unlinked {
-    position:absolute;
-    margin:0;
-    padding:0;
-    height:40px;
-    width:174px;
-    border:1px solid #000;
-    text-align:center;
-}
-#treeContainer div.male span.unlinked {
-    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
-}
-#treeContainer div.female span.unlinked {
-    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
-}
-#treeContainer div.unknown span.unlinked {
-    background-color:#000;
-    color:#FFF;
-}
 #treeContainer div.boxbg a {
     position:relative;
     z-index:10;
@@ -957,6 +938,15 @@ div#pedigree {
 #treeContainer div.boxbg a:hover span.thumbnail {
     display:block;
 }
+#treeContainer div.boxbg span.unlinked {
+    position:absolute;
+    margin:0;
+    padding:0;
+    height:40px;
+    width:174px;
+    border:1px solid #000;
+    text-align:center;
+}
 #TreeContainer div.male, 
 #treeContainer div.male a {
     background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
@@ -969,6 +959,16 @@ div#pedigree {
 #treeContainer div.unknown a {
     background-color:#000;
     color:#FAFAFA;
+}
+#treeContainer div.male span.unlinked {
+    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
+}
+#treeContainer div.female span.unlinked {
+    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
+}
+#treeContainer div.unknown span.unlinked {
+    background-color:#000;
+    color:#FFF;
 }
 .shadow {
     display:none;
