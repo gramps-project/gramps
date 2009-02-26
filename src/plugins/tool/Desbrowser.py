@@ -43,6 +43,7 @@ from gtk import glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+import const
 from BasicUtils import name_displayer
 from PluginUtils import Tool
 from gen.plug import PluginManager
@@ -54,7 +55,7 @@ from TransUtils import sgettext as _
 # Constants
 #
 #------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
 

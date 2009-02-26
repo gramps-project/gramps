@@ -43,6 +43,7 @@ from gtk import glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 import Config
 import GrampsCfg
 import GrampsDisplay
@@ -57,7 +58,7 @@ from TransUtils import sgettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Edit_Database_Owner_Information...')
 
 #-------------------------------------------------------------------------

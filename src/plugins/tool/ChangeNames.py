@@ -44,6 +44,7 @@ from gtk import glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 import Utils
 import GrampsDisplay
 import ManagedWindow
@@ -65,7 +66,7 @@ prefix_list = [
     "um", "una", "uno",
     ]
 
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 
 #-------------------------------------------------------------------------
