@@ -477,8 +477,113 @@
     <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
   </country>
   <country name="Finland">
-    <date name="Chinese New Year" value="2006/1/29" type="national" />
-    <date name="Card Night" value="*/-1/thu/*" type="personal" />
+    <date name="Loppiainen" value="*/1/6" type="religious" />
+    <date name="Pyhäinpäivä" value="*/10/1" type="religious" />
+    <date name="Joulupäivä" value="*/12/25" type="religious" />
+    <date name="Tapaninpäivä" value="*/12/26" type="religious" />
+    <date name="Viattomien lasten päivä" value="*/12/28" type="religious" />
+    <date name="Pitkäperjantai" value="2000/4/21" type="religious" />
+    <date name="Pitkäperjantai" value="2001/4/13" type="religious" />
+    <date name="Pitkäperjantai" value="2002/3/29" type="religious" />
+    <date name="Pitkäperjantai" value="2003/4/18" type="religious" />
+    <date name="Pitkäperjantai" value="2004/4/9" type="religious" />
+    <date name="Pitkäperjantai" value="2005/3/25" type="religious" />
+    <date name="Pitkäperjantai" value="2006/4/14" type="religious" />
+    <date name="Pitkäperjantai" value="2007/4/6" type="religious" />
+    <date name="Pitkäperjantai" value="2008/3/21" type="religious" />
+    <date name="Pitkäperjantai" value="2009/4/10" type="religious" />
+    <date name="Pitkäperjantai" value="2010/4/2" type="religious" />
+    <date name="Pitkäperjantai" value="2011/4/22" type="religious" />
+    <date name="Pitkäperjantai" value="2012/4/6" type="religious" />
+    <date name="Pitkäperjantai" value="2013/3/29" type="religious" />
+    <date name="Pitkäperjantai" value="2014/4/18" type="religious" />
+    <date name="Pitkäperjantai" value="2015/4/3" type="religious" />
+    <date name="Pääsiäispäivä" value="2000/4/23" type="religious" />
+    <date name="Pääsiäispäivä" value="2001/4/15" type="religious" />
+    <date name="Pääsiäispäivä" value="2002/3/31" type="religious" />
+    <date name="Pääsiäispäivä" value="2003/4/20" type="religious" />
+    <date name="Pääsiäispäivä" value="2004/4/11" type="religious" />
+    <date name="Pääsiäispäivä" value="2005/3/27" type="religious" />
+    <date name="Pääsiäispäivä" value="2006/4/16" type="religious" />
+    <date name="Pääsiäispäivä" value="2007/4/8" type="religious" />
+    <date name="Pääsiäispäivä" value="2008/3/23" type="religious" />
+    <date name="Pääsiäispäivä" value="2009/4/12" type="religious" />
+    <date name="Pääsiäispäivä" value="2010/4/4" type="religious" />
+    <date name="Pääsiäispäivä" value="2011/4/24" type="religious" />
+    <date name="Pääsiäispäivä" value="2012/4/8" type="religious" />
+    <date name="Pääsiäispäivä" value="2013/3/31" type="religious" />
+    <date name="Pääsiäispäivä" value="2014/4/20" type="religious" />
+    <date name="Pääsiäispäivä" value="2015/4/5" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2000/4/24" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2001/4/15" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2002/4/1" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2003/4/21" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2004/4/12" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2005/3/28" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2006/4/17" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2007/4/9" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2008/3/24" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2009/4/13" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2010/4/5" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2011/4/25" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2012/4/9" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2013/4/1" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2014/4/21" type="religious" />
+    <date name="2. Pääsiäispäivä" value="2015/4/6" type="religious" />
+    <date name="Helatorstai" value="2000/6/1" type="religious" />
+    <date name="Helatorstai" value="2001/5/24" type="religious" />
+    <date name="Helatorstai" value="2002/5/9" type="religious" />
+    <date name="Helatorstai" value="2003/5/29" type="religious" />
+    <date name="Helatorstai" value="2004/5/20" type="religious" />
+    <date name="Helatorstai" value="2005/5/5" type="religious" />
+    <date name="Helatorstai" value="2006/5/25" type="religious" />
+    <date name="Helatorstai" value="2007/5/17" type="religious" />
+    <date name="Helatorstai" value="2008/5/1" type="religious" />
+    <date name="Helatorstai" value="2009/5/21" type="religious" />
+    <date name="Helatorstai" value="2010/5/13" type="religious" />
+    <date name="Helatorstai" value="2011/6/2" type="religious" />
+    <date name="Helatorstai" value="2012/5/17" type="religious" />
+    <date name="Helatorstai" value="2013/5/9" type="religious" />
+    <date name="Helatorstai" value="2014/5/29" type="religious" />
+    <date name="Helatorstai" value="2015/5/14" type="religious" />
+    <date name="Helluntaipäivä" value="2000/6/11" type="religious" />
+    <date name="Helluntaipäivä" value="2001/6/3" type="religious" />
+    <date name="Helluntaipäivä" value="2002/5/19" type="religious" />
+    <date name="Helluntaipäivä" value="2003/6/8" type="religious" />
+    <date name="Helluntaipäivä" value="2004/5/30" type="religious" />
+    <date name="Helluntaipäivä" value="2005/5/15" type="religious" />
+    <date name="Helluntaipäivä" value="2006/6/4" type="religious" />
+    <date name="Helluntaipäivä" value="2007/5/27" type="religious" />
+    <date name="Helluntaipäivä" value="2008/5/11" type="religious" />
+    <date name="Helluntaipäivä" value="2009/5/31" type="religious" />
+    <date name="Helluntaipäivä" value="2010/5/23" type="religious" />
+    <date name="Helluntaipäivä" value="2011/6/12" type="religious" />
+    <date name="Helluntaipäivä" value="2012/5/27" type="religious" />
+    <date name="Helluntaipäivä" value="2013/5/19" type="religious" />
+    <date name="Helluntaipäivä" value="2014/6/8" type="religious" />
+    <date name="Helluntaipäivä" value="2015/5/24" type="religious" />
+    <date name="Uudenvuodenpäivä" value="*/1/1" type="national" />
+    <date name="Vainojen uhrien muistopäivä" value="*/1/27" type="national" />
+    <date name="J. L. Runebergin päivä" value="*/2/5" type="national" />
+    <date name="Ystävänpäivä" value="*/2/14" type="national" />
+    <date name="Kalevalan päivä" value="*/2/28" type="national" />
+    <date name="Minna Canthin päivä" value="*/3/19" type="national" />
+    <date name="Mikael Agricolan päivä" value="*/4/9" type="national" />
+    <date name="Veteraanipäivä" value="*/4/27" type="national" />
+    <date name="Vappu" value="*/5/1" type="national" />
+    <date name="Eurooppa-päivä" value="*/9/5" type="national" />
+    <date name="J. V. Snelmannin päivä" value="*/5/12" type="national" />
+    <date name="Puolustusvoimain lippujuhlan päivä" value="*/6/4" type="national" />
+    <date name="Eino Leinon päivä" value="*/7/6" type="national" />
+    <date name="Aleksis Kiven päivä" value="*/10/10" type="national" />
+    <date name="YK:n päivä" value="*/10/24" type="national" />
+    <date name="Ruotsalaisuuden päivä" value="*/11/6" type="national" />
+    <date name="Lasten oikeuksien päivä" value="*/11/20" type="national" />
+    <date name="Itsenäisyyspäivä" value="*/12/6" type="national" />
+    <date name="Äitienpäivä" value="*/2/sun/may" type="national" />
+    <date name="Juhannuspäivä" value="*/3/sat/jun" type="national" />
+    <date name="Isänpäivä" value="*/2/sun/nov" type="national" />
+    <date name="Kaatuneiden muistopäivä" value="*/3/sun/may" type="national" />
   </country>
   <country name="France">
     <date name="Jour de l'an" value="*/1/1" type="national" />
