@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-23 19:56+0100\n"
-"PO-Revision-Date: 2009-02-23 20:02+0100\n"
+"PO-Revision-Date: 2009-02-26 21:18+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6636,11 +6636,11 @@ msgstr "Rufnamen im Vornamen unterstreichen / Rufnamen zu Vornamen hinzufügen"
 
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
-msgstr "Person Datensätze"
+msgstr "Person Rekorde"
 
 #: ../src/plugins/Records.py:472
 msgid "Family Records"
-msgstr "Familie Datensätze"
+msgstr "Familie Rekorde"
 
 #: ../src/plugins/Records.py:509 ../src/plugins/drawreport/AncestorTree.py:499
 #: ../src/plugins/drawreport/DescendTree.py:495
@@ -6741,7 +6741,7 @@ msgstr "Rekorde Gramplet"
 
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
-msgstr "Datensätzebericht"
+msgstr "Rekordebericht"
 
 #: ../src/plugins/Records.py:581
 msgid "Shows some interesting records about people and families"
