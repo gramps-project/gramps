@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -414,6 +414,8 @@ class EditFamily(EditPrimary):
                              family, dbstate.db.get_family_from_handle,
                              dbstate.db.get_family_from_gramps_id)
 
+        self.track_ref_for_deletion("tooltips")
+
         # look for the scenerio of a child and no parents on a new
         # family
         
@@ -466,10 +468,10 @@ class EditFamily(EditPrimary):
 
             self.obj = self.dbstate.db.get_family_from_handle(self.obj.get_handle())
             self.reload_people()
-            self.event_embed.rebuild()
-            self.source_embed.rebuild()
-            self.attr_embed.data = self.obj.get_attribute_list()
-            self.attr_embed.rebuild()
+            self.event_list.rebuild()
+            self.source_list.rebuild()
+            self.attr_list.data = self.obj.get_attribute_list()
+            self.attr_list.rebuild()
             self.lds_embed.data = self.obj.get_lds_ord_list()
             self.lds_embed.rebuild()
 
@@ -497,7 +499,7 @@ class EditFamily(EditPrimary):
 
         mhandle = self.obj.get_mother_handle()
         self.update_mother(mhandle)
-        self.child_list.rebuild()
+        self.child_tab.rebuild()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -523,7 +525,6 @@ class EditFamily(EditPrimary):
         # Consider using show() rather than show_all()?
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
-
 
         self.fbirth  = self.top.get_widget('fbirth')
         self.fdeath  = self.top.get_widget('fdeath')
@@ -629,38 +630,57 @@ class EditFamily(EditPrimary):
 
         notebook = gtk.Notebook()
 
-        self.child_list = self._add_tab(
-            notebook,
-            ChildEmbedList(self.dbstate,self.uistate, self.track, self.obj))
+        self.child_list = ChildEmbedList(self.dbstate,
+                                         self.uistate,
+                                         self.track,
+                                         self.obj)
+        self.child_tab = self._add_tab(notebook, self.child_list)
+        self.track_ref_for_deletion("child_list")
+        self.track_ref_for_deletion("child_tab")
         
-        self.event_embed = EventEmbedList(self.dbstate, self.uistate, 
-                                          self.track,self.obj)
-        self.event_list = self._add_tab(notebook, self.event_embed)
+        self.event_list = EventEmbedList(self.dbstate,
+                                         self.uistate, 
+                                         self.track,
+                                         self.obj)
+        self._add_tab(notebook, self.event_list)
+        self.track_ref_for_deletion("event_list")
             
-        self.source_embed = SourceEmbedList(self.dbstate, self.uistate, 
-                                            self.track, self.obj)
-        self.src_list = self._add_tab(notebook, self.source_embed)
-            
-        self.attr_embed = FamilyAttrEmbedList(self.dbstate, self.uistate, 
+        self.source_list = SourceEmbedList(self.dbstate,
+                                           self.uistate, 
+                                           self.track,
+                                           self.obj)
+        self._add_tab(notebook, self.source_list)
+        self.track_ref_for_deletion("source_list")
+
+        self.attr_list = FamilyAttrEmbedList(self.dbstate,
+                                              self.uistate, 
                                               self.track,
                                               self.obj.get_attribute_list())
-        self.attr_list = self._add_tab(notebook, self.attr_embed)
+        self._add_tab(notebook, self.attr_list)
+        self.track_ref_for_deletion("attr_list")
             
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.FAMILY))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_note_list(),
+                                self.get_menu_title(),
+                                notetype=gen.lib.NoteType.FAMILY)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
             
-        self.gallery_tab = self._add_tab(
-            notebook,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_media_list()))
+        self.gallery_tab = GalleryTab(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_media_list())
+        self._add_tab(notebook, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
 
-        self.lds_embed = FamilyLdsEmbedList(self.dbstate, self.uistate, 
+        self.lds_embed = FamilyLdsEmbedList(self.dbstate,
+                                            self.uistate, 
                                             self.track,
                                             self.obj.get_lds_ord_list())
-        self.lds_list = self._add_tab(notebook, self.lds_embed)
+        self._add_tab(notebook, self.lds_embed)
+        self.track_ref_for_deletion("lds_embed")
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()

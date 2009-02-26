@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -313,65 +313,91 @@ class EditPerson(EditPrimary):
         notebook = gtk.Notebook()
         notebook.set_scrollable(True)
 
-        self.event_list = self._add_tab(
-            notebook, 
-            PersonEventEmbedList(self.dbstate, self.uistate, 
-                                 self.track, self.obj))
+        self.event_list = PersonEventEmbedList(self.dbstate,
+                                               self.uistate, 
+                                               self.track,
+                                               self.obj)
+        self._add_tab(notebook, self.event_list) 
+        self.track_ref_for_deletion("event_list")
         
-        self.name_list = self._add_tab(
-            notebook, 
-            NameEmbedList(self.dbstate, self.uistate, self.track, 
-                          self.obj.get_alternate_names(), self.obj,
-                          self.name_callback))
+        self.name_list = NameEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track, 
+                                       self.obj.get_alternate_names(),
+                                       self.obj,
+                                       self.name_callback)
+        self._add_tab(notebook, self.name_list)
+        self.track_ref_for_deletion("name_list")
         
-        self.srcref_list = self._add_tab(
-            notebook, 
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate,
+                                           self.uistate,
+                                           self.track,
+                                           self.obj)
+        self._add_tab(notebook, self.srcref_list) 
+        self.track_ref_for_deletion("srcref_list")
         
-        self.attr_list = self._add_tab(
-            notebook, 
-            AttrEmbedList(self.dbstate, self.uistate, self.track, 
-                          self.obj.get_attribute_list()))
+        self.attr_list = AttrEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track, 
+                                       self.obj.get_attribute_list())
+        self._add_tab(notebook, self.attr_list) 
+        self.track_ref_for_deletion("attr_list")
         
-        self.addr_list = self._add_tab(
-            notebook, 
-            AddrEmbedList(self.dbstate, self.uistate, self.track, 
-                          self.obj.get_address_list()))
+        self.addr_list = AddrEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track, 
+                                       self.obj.get_address_list())
+        self._add_tab(notebook, self.addr_list) 
+        self.track_ref_for_deletion("addr_list")
         
-        self.note_tab = self._add_tab(
-            notebook, 
-            NoteTab(self.dbstate, self.uistate, self.track, 
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.PERSON))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track, 
+                                self.obj.get_note_list(),
+                                self.get_menu_title(),
+                                notetype=gen.lib.NoteType.PERSON)
+        self._add_tab(notebook, self.note_tab) 
+        self.track_ref_for_deletion("note_tab")
         
-        self.gallery_tab = self._add_tab(
-            notebook, 
-            GalleryTab(self.dbstate, self.uistate, self.track, 
-                       self.obj.get_media_list(),
-                       self.load_person_image))
+        self.gallery_tab = GalleryTab(self.dbstate,
+                                      self.uistate,
+                                      self.track, 
+                                      self.obj.get_media_list(),
+                                      self.load_person_image)
+        self._add_tab(notebook, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
         
-        self.web_list = self._add_tab(
-            notebook, 
-            WebEmbedList(self.dbstate, self.uistate, self.track, 
-                         self.obj.get_url_list()))
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track, 
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
 
         self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate, 
                                                   self.track, 
                                                   self.obj.get_person_ref_list())
-        self.pref_list = self._add_tab(notebook, self.person_ref_list)
-        self.lds_list = self._add_tab(
-            notebook, 
-            LdsEmbedList(self.dbstate, self.uistate, self.track, 
-                         self.obj.get_lds_ord_list()))
+        self._add_tab(notebook, self.person_ref_list)
+        self.track_ref_for_deletion("person_ref_list")
 
-        self.backref_tab = self._add_tab(
-            notebook,
-            PersonBackRefList(self.dbstate, self.uistate, self.track,
-                              self.db.find_backlink_handles(self.obj.handle)))
+        self.lds_list = LdsEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track, 
+                                     self.obj.get_lds_ord_list())
+        self._add_tab(notebook, self.lds_list)
+        self.track_ref_for_deletion("lds_list")
 
-        self._setup_notebook_tabs( notebook)
+        self.backref_tab = PersonBackRefList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                              self.db.find_backlink_handles(self.obj.handle))
+        self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
+
+        self._setup_notebook_tabs(notebook)
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook, True)
+
 
     def _changed_title(self, obj):
         """
@@ -509,6 +535,8 @@ class EditPerson(EditPrimary):
         """
         self.all_action    = gtk.ActionGroup("/PersonAll")
         self.home_action   = gtk.ActionGroup("/PersonHome")
+        self.track_ref_for_deletion("all_action")
+        self.track_ref_for_deletion("home_action")
         
         self.all_action.add_actions([
                 ('ActivePerson', gtk.STOCK_APPLY, _("Make Active Person"), 

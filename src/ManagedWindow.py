@@ -467,8 +467,8 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
-        self.clean_up()
         self._save_size()
+        self.clean_up()
         self.uistate.gwm.close_track(self.track)
         self.opened = False
         self.parent_window.present()
@@ -515,12 +515,14 @@ class ManagedWindow:
         """
         Remove any instance variables from scope which point to non-glade
         GTK objects so that the class can be garbage collected.
-        Run the clean_up method on the object first before removing it.
+        If the object is a Gramps widget then it should have a clean_up method
+        which can be called that removes any other GTK object it contains.
         """
         while len(self.__refs_for_deletion): 
             attr = self.__refs_for_deletion.pop()
             obj = getattr(self, attr)
-            obj.clean_up()
+            if hasattr(obj, 'clean_up'):
+                obj.clean_up()
             delattr(self, attr)
 #-------------------------------------------------------------------------
 #
