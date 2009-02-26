@@ -43,6 +43,7 @@ from gtk import glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
 import gen.lib
 import Utils
 import soundex
@@ -68,7 +69,7 @@ _val2label = {
     2.0  : _("High"),
     }
 
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
 #-------------------------------------------------------------------------
 #

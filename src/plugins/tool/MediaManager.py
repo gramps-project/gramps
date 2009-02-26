@@ -46,6 +46,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+import const
 import GrampsDisplay
 import Assistant
 import Errors
@@ -61,7 +62,7 @@ from TransUtils import sgettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Media_Manager...')
 
 #-------------------------------------------------------------------------
