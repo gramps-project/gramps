@@ -74,6 +74,10 @@ import libholiday
 # constants
 #
 #------------------------------------------------------------------------
+# Calendar stylesheet names
+_CALENDARSCREEN = 'calendar-screen.css'
+_CALENDARPRINT = 'calendar-print.css'
+
 # Mainz stylesheet graphics
 # will only be used if Mainz is slected as the stylesheet
 _WEBBKGD = "Web_Mainz_Bkgd.png"
@@ -205,23 +209,13 @@ class WebCalReport(Report):
         self.alive = mgobn('alive').get_value()
         self.birthday = mgobn('birthdays').get_value()
         self.anniv = mgobn('anniversaries').get_value()
-        self.home_link = mgobn('home_link').get_value().strip()
+        self.home_link = mgobn('home_link').get_value()
 
-        self.month_notes  = [mgobn('note_jan').get_value(),
-                             mgobn('note_feb').get_value(),
-                             mgobn('note_mar').get_value(),
-                             mgobn('note_apr').get_value(),
-                             mgobn('note_may').get_value(),
-                             mgobn('note_jun').get_value(),
-                             mgobn('note_jul').get_value(),
-                             mgobn('note_aug').get_value(),
-                             mgobn('note_sep').get_value(),
-                             mgobn('note_oct').get_value(),
-                             mgobn('note_nov').get_value(),
-                             mgobn('note_dec').get_value()]
+        self.month_notes = [mgobn('note_' + month).get_value() \
+            for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']]
 
         # identify researcher name and e-mail address
-        # as Narrated WebSite already does
+        # as NarrativeWeb already does
         researcher = get_researcher()
         self.author = researcher.name
         if self.author:
@@ -328,11 +322,11 @@ class WebCalReport(Report):
         # Copy the screen stylesheet
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
-            self.copy_file(fname, self.css, "styles")
+            self.copy_file(fname, _CALENDARSCREEN, "styles")
 
         # copy print stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-        self.copy_file(fname, "Web_Print-Default.css", "styles")
+        self.copy_file(fname, _CALENDARPRINT, "styles")
 
         # set imgs to empty
         imgs = []
@@ -682,21 +676,19 @@ class WebCalReport(Report):
             (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
         of.write('\t<meta name="author" content="%s" />\n\n' % self.author)
 
-        subdirs = ['..'] * nr_up
-
         # link to screen stylesheet
-        fname = '/'.join(subdirs + ['styles'] + [self.css])
+        fname = '../'*nr_up + 'styles/' + _CALENDARSCREEN
         of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
-        of.write('\t\ttype="text/css" media="screen">\n')
+        of.write('\t\ttype="text/css" media="screen" />\n')
 
         # link to print stylesheet
         if add_print:
-            fname = '/'.join(subdirs + ['styles'] + ["Web_Print-Default.css"])
+            fname = '../'*nr_up + 'styles/' + _CALENDARPRINT
             of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
-            of.write('\t\ttype="text/css" media="print">\n')
+            of.write('\t\ttype="text/css" media="print" />\n')
 
         # link to GRAMPS favicon
-        fname = '/'.join(subdirs + ['images'] + ['favicon.ico'])
+        fname = '../'*nr_up + 'images/' + 'favicon.ico'
         of.write('\t<link rel="shortcut icon" href="%s" \n' % fname)
         of.write('\t\ttype="image/icon" />\n')
 
@@ -948,8 +940,7 @@ class WebCalReport(Report):
         # do some error correcting if needed
         if self.multiyear:
             if self.end_year < self.start_year:
-                # Huh? Why start_year+1?
-                self.end_year = self.start_year + 1
+                self.end_year = self.start_year
 
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
@@ -1350,8 +1341,8 @@ def _get_short_name(person, maiden_name=None):
     """ Return person's name, unless maiden_name given, 
     unless married_name listed. """
     # Get all of a person's names:
-    primary_name = person.get_primary_name()
-    sex = person.get_gender()
+    primary_name = person.primary_name
+    sex = person.gender
 
     married_name = None
     names = [primary_name] + person.get_alternate_names()
@@ -1362,20 +1353,17 @@ def _get_short_name(person, maiden_name=None):
     # Now, decide which to use:
     if maiden_name is not None:
         if married_name is not None:
-            first_name, family_name = married_name.get_first_name(), \
-                _get_regular_surname(sex, married_name)
+            first_name, family_name = married_name.get_first_name(), _get_regular_surname(sex, married_name)
             call_name = married_name.get_call_name()
         else:
-            first_name, family_name = primary_name.get_first_name(), \
-                maiden_name
+            first_name, family_name = primary_name.get_first_name(), maiden_name
             call_name = primary_name.get_call_name()
     else:
-        first_name, family_name = primary_name.get_first_name(), \
-            _get_regular_surname(sex, primary_name)
+        first_name, family_name = primary_name.get_first_name(), _get_regular_surname(sex, primary_name)
         call_name = primary_name.get_call_name()
 
     # If they have a nickname use it
-    if call_name is not None and call_name.strip() != "":
+    if call_name is not None and call_name.strip() is not "":
         first_name = call_name.strip()
     else: # else just get the first name:
         first_name = first_name.strip()

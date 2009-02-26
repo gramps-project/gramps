@@ -101,6 +101,10 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
+# Names for stylesheets
+_NARRATIVESCREEN = 'narrative-screen.css'
+_NARRATIVEPRINT = 'narrative-print.css'
+
 # variables for alphabet_navigation
 _PERSON = 0
 _PLACE = 1
@@ -394,33 +398,34 @@ class BasePage:
             (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
         of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
-        # Link to css behaviours
+        # Link to media reference regions behaviour stylesheet
         fname = os.path.join("styles", "behaviour.css")
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" '
-            'type="text/css" media="screen">\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="screen" />\n' % url)
 
         # Link to screen stylesheet
-        fname = os.path.join("styles", self.report.css)
+        fname = os.path.join("styles", _NARRATIVESCREEN)
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" '
-            'type="text/css" media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="screen" />\n' % url)
 
         # Link to printer stylesheet
-        fname = os.path.join("styles", "Web_Print-Default.css")
+        fname = os.path.join("styles", _NARRATIVEPRINT)
         url = self.report.build_url_fname(fname, None, self.up)
-        of.write('\t<link href="%s" rel="stylesheet" '
-            'type="text/css" media="print" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" \n'
+            '\t\ttype="text/css" media="print" />\n' % url)
 
         # Link to GRAMPS favicon
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('\t<link href="%s" rel="Shortcut Icon" '
-            'type="image/icon">\n' % url)
+        of.write('\t<link href="%s" rel="Shortcut Icon" \n'
+            '\t\ttype="image/icon" />\n' % url)
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
-        of.write('<div id="header">\n')
 
+        # begin header section
+        of.write('<div id="header">\n')
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
         header = self.report.options['headernote']
         if header:
@@ -2973,11 +2978,11 @@ class NavWebReport(Report):
         # copy screen stylesheet
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
-            self.copy_file(fname, self.css, "styles")
+            self.copy_file(fname, _NARRATIVESCREEN, "styles")
 
         # copy printer stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-        self.copy_file(fname, "Web_Print-Default.css", "styles")
+        self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
         imgs = []
 
@@ -3630,4 +3635,4 @@ pmgr.register_report(
     author_email = "don@gramps-project.org",
     description = _("Produces web (HTML) pages for individuals, or a set of "
                     "individuals"),
-    )
+  )
