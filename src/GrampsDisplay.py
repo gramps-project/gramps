@@ -33,6 +33,7 @@ MANUALS = {
     'sq' : '/sq',
     'mk' : '/mk',
     'de' : '/de',
+    'fi' : '/fi',
 }
 
 #first, determine language code, so nl_BE --> wiki /nl
