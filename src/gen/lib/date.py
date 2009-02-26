@@ -650,13 +650,13 @@ class Date:
                       "Swedish"]
 
 
-    ui_calendar_names = [_("Gregorian"), 
-                         _("Julian"), 
-                         _("Hebrew"), 
-                         _("French Republican"), 
-                         _("Persian"), 
-                         _("Islamic"),
-                         _("Swedish")]
+    ui_calendar_names = [_("calendar|Gregorian"), 
+                         _("calendar|Julian"), 
+                         _("calendar|Hebrew"), 
+                         _("calendar|French Republican"), 
+                         _("calendar|Persian"), 
+                         _("calendar|Islamic"),
+                         _("calendar|Swedish")]
 
     def __init__(self, *source, **kwargs):
         """
