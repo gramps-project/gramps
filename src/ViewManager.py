@@ -175,9 +175,9 @@ UIDEFAULT = '''<ui>
 </ui>
 '''
 
-WIKI_HELP_PAGE_FAQ = 'Gramps_3.0_Wiki_Manual_-_FAQ'
-WIKI_HELP_PAGE_KEY = 'Gramps_3.0_Wiki_Manual_-_Keybindings'
-WIKI_HELP_PAGE_MAN = 'Gramps_3.0_Wiki_Manual'
+WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
 #-------------------------------------------------------------------------
 #
 # ViewManager

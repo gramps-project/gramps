@@ -98,7 +98,7 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_ISLAMIC    : DateHandler.displayer.islamic,
     Date.CAL_SWEDISH    : DateHandler.displayer.swedish }
 
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')
 #-------------------------------------------------------------------------
 #

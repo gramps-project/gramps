@@ -65,7 +65,7 @@ from DdTargets import DdTargets
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Navigation'
+WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 
 #-------------------------------------------------------------------------
