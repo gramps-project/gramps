@@ -54,6 +54,7 @@ import GrampsDisplay
 from BasicUtils import name_displayer
 import ListModel
 import Utils
+import const
 from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -61,7 +62,7 @@ from TransUtils import sgettext as _
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Navigation'
+WIKI_HELP_PAGE = '%s_-_Navigation' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Bookmarks')
 
 #-------------------------------------------------------------------------
