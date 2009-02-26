@@ -179,40 +179,40 @@ class WebCalReport(Report):
     """
     def __init__(self, database, options):
         Report.__init__(self, database, options)
-        menu = options.menu
-        mgobn = menu.get_option_by_name
+        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
 
         self.database = database
         self.options = options
 
-        self.html_dir = mgobn('target').get_value()
-        self.title_text  = mgobn('title').get_value()
-        filter_option =  mgobn('filter')
+        self.html_dir = mgobn('target')
+        self.title_text  = mgobn('title')
+        filter_option =  options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
-        self.ext = mgobn('ext').get_value()
-        self.copy = mgobn('cright').get_value()
-        self.encoding = mgobn('encoding').get_value()
-        self.css = mgobn('css').get_value()
+        self.ext = mgobn('ext')
+        self.copy = mgobn('cright')
+        self.encoding = mgobn('encoding')
+        self.css = mgobn('css')
 
-        self.country = mgobn('country').get_value()
-        self.start_dow = mgobn('start_dow').get_value()
+        self.country = mgobn('country')
+        self.start_dow = mgobn('start_dow')
 
-        self.multiyear = mgobn('multiyear').get_value()
+        self.multiyear = mgobn('multiyear')
 
-        self.start_year = mgobn('start_year').get_value()
-        self.end_year = mgobn('end_year').get_value()
+        self.start_year = mgobn('start_year')
+        self.end_year = mgobn('end_year')
 
-        self.fullyear = mgobn('fullyear').get_value()
+        self.fullyear = mgobn('fullyear')
 
-        self.maiden_name = mgobn('maiden_name').get_value()
+        self.maiden_name = mgobn('maiden_name')
 
-        self.alive = mgobn('alive').get_value()
-        self.birthday = mgobn('birthdays').get_value()
-        self.anniv = mgobn('anniversaries').get_value()
-        self.home_link = mgobn('home_link').get_value()
+        self.alive = mgobn('alive')
+        self.birthday = mgobn('birthdays')
+        self.anniv = mgobn('anniversaries')
+        self.home_link = mgobn('home_link')
 
-        self.month_notes = [mgobn('note_' + month).get_value() \
-            for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']]
+        self.month_notes = [mgobn('note_' + month) \
+            for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 
+                'aug', 'sep', 'oct', 'nov', 'dec']]
 
         # identify researcher name and e-mail address
         # as NarrativeWeb already does
@@ -1327,7 +1327,7 @@ def _get_regular_surname(sex, name):
     Returns a name string built from the components of the Name instance.
     """
 
-    surname = name.surname
+    surname = name.get_surname()
     prefix = name.get_surname_prefix()
     if prefix:
         surname = prefix + " " + surname
@@ -1344,6 +1344,7 @@ def _get_short_name(person, maiden_name=None):
     primary_name = person.primary_name
     sex = person.gender
 
+    call_name = None
     married_name = None
     names = [primary_name] + person.get_alternate_names()
     for name in names:
@@ -1351,8 +1352,8 @@ def _get_short_name(person, maiden_name=None):
             married_name = name
 
     # Now, decide which to use:
-    if maiden_name is not None:
-        if married_name is not None:
+    if maiden_name:
+        if married_name:
             first_name, family_name = married_name.get_first_name(), _get_regular_surname(sex, married_name)
             call_name = married_name.get_call_name()
         else:
@@ -1362,14 +1363,15 @@ def _get_short_name(person, maiden_name=None):
         first_name, family_name = primary_name.get_first_name(), _get_regular_surname(sex, primary_name)
         call_name = primary_name.get_call_name()
 
-    # If they have a nickname use it
-    if call_name is not None and call_name.strip() is not "":
+    # If they have a nickname, use it?
+    if call_name:
         first_name = call_name.strip()
     else: # else just get the first name:
         first_name = first_name.strip()
         if " " in first_name:
             # just one split max 
             first_name, rest = first_name.split(" ", 1)
+    print first_name, family_name
     return ("%s %s" % (first_name, family_name)).strip()
 
 # Simple utility list to convert Gramps day-of-week numbering 
