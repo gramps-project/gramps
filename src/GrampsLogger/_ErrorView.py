@@ -10,6 +10,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import const
 from TransUtils import sgettext as _
 from _ErrorReportAssistant import ErrorReportAssistant
 import GrampsDisplay
@@ -19,7 +20,7 @@ import GrampsDisplay
 # Constants
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_FAQ'
+WIKI_HELP_PAGE = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|General')
 
 class ErrorView(object):

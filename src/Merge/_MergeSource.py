@@ -35,13 +35,6 @@ from gtk import glade
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS constants
-#
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
-WIKI_HELP_SEC = _('manual|Merge_Sources')
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -49,6 +42,14 @@ from TransUtils import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % const.URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Merge_Sources')
 
 #-------------------------------------------------------------------------
 #

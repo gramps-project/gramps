@@ -22,27 +22,12 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-
-
-#-------------------------------------------------------------------------
-#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk
 from gtk import glade
 import pango
-
-#-------------------------------------------------------------------------
-#
-# GRAMPS constants
-#
-#-------------------------------------------------------------------------
-WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
-WIKI_HELP_SEC = _('manual|Merge_People')
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +44,14 @@ from QuestionDialog import ErrorDialog
 import GrampsDisplay
 import ManagedWindow
 import gen.utils
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % const.URL_MANUAL_PAGE
+WIKI_HELP_SEC = _('manual|Merge_People')
 
 sex = ( _("female"), _("male"), _("unknown"))
 
