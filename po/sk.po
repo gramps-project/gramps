@@ -22,7 +22,8 @@ msgstr "Vstupný súbor rodinný strom \"%s\" neexistuje."
 
 #: ../src/ArgHandler.py:231
 msgid ""
-"If ginstead"
+"If gedcom, gramps-xml or grdb, use the -i option to import into a family "
+"tree instead"
 msgstr ""
 "Pre gedcom, gramps xml alebo grdb použite pre import do rodinného stromu "
 "voľbu -i"
