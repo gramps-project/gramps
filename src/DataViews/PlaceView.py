@@ -171,7 +171,8 @@ class PlaceView(PageView.ListView):
         for widget in widgets :
             if isinstance(widget, gtk.MenuToolButton):
                 widget.set_menu(mmenu)
-                widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
+                if gtk.pygtk_version >= (2, 12, 0):
+                    widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
                 hbox=gtk.HBox()
                 img = gtk.Image()
                 img.set_from_stock(gtk.STOCK_JUMP_TO, 
