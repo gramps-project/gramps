@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -121,33 +121,45 @@ class EditSource(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    gen.lib.NoteType.SOURCE))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_note_list(),
+                                self.get_menu_title(),
+                                gen.lib.NoteType.SOURCE)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
-        self.gallery_tab = self._add_tab(
-            notebook,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_media_list()))
+        self.gallery_tab = GalleryTab(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_media_list())
+        self._add_tab(notebook, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
                                           
-        self.data_tab = self._add_tab(
-            notebook,
-            DataEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj))
+        self.data_tab = DataEmbedList(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj)
+        self._add_tab(notebook, self.data_tab)
+        self.track_ref_for_deletion("data_tab")
                                        
-        self.repo_tab = self._add_tab(
-            notebook,
-            RepoEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_reporef_list()))
+        self.repo_tab = RepoEmbedList(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_reporef_list())
+        self._add_tab(notebook, self.repo_tab)
+        self.track_ref_for_deletion("repo_tab")
         
-        self.backref_tab = self._add_tab(
-            notebook,
-            SourceBackRefList(self.dbstate, self.uistate, self.track,
-                              self.db.find_backlink_handles(self.obj.handle)))
+        self.backref_list = SourceBackRefList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                              self.db.find_backlink_handles(self.obj.handle))
+        self.backref_tab = self._add_tab(notebook, self.backref_list)
+        self.track_ref_for_deletion("backref_tab")
+        self.track_ref_for_deletion("backref_list")
         
-        self._setup_notebook_tabs( notebook)
+        self._setup_notebook_tabs(notebook)
         notebook.show_all()
         self.glade.get_widget('vbox').pack_start(notebook, True)
 

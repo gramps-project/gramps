@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -126,6 +126,8 @@ class EditPlace(EditPrimary):
         notebook.remove_page(0)
         self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
                               _('_Location'), tblmloc)
+        self.track_ref_for_deletion("mloc")
+
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -223,40 +225,55 @@ class EditPlace(EditPrimary):
 
         self._add_tab(notebook, self.mloc)
 
-        self.loc_list = self._add_tab(
-            notebook,
-            LocationEmbedList(self.dbstate,self.uistate, self.track,
-                              self.obj.alt_loc))
+        self.loc_list = LocationEmbedList(self.dbstate,
+                                          self.uistate,
+                                          self.track,
+                                          self.obj.alt_loc)
+        self._add_tab(notebook, self.loc_list)
+        self.track_ref_for_deletion("loc_list")
         
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.srcref_list = SourceEmbedList(self.dbstate,
+                                           self.uistate,
+                                           self.track,
+                                           self.obj)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.PLACE))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_note_list(),
+                                self.get_menu_title(),
+                                notetype=gen.lib.NoteType.PLACE)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
-        self.gallery_tab = self._add_tab(
-            notebook,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.obj.get_media_list()))
-        
-        self.web_list = self._add_tab(
-            notebook,
-            WebEmbedList(self.dbstate,self.uistate,self.track,
-                         self.obj.get_url_list()))
-        
-        self.backref_list = self._add_tab(
-            notebook,
-            PlaceBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.obj.handle)))
+        self.gallery_tab = GalleryTab(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_media_list())
+        self._add_tab(notebook, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
+       
+        self.web_list = WebEmbedList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     self.obj.get_url_list())
+        self._add_tab(notebook, self.web_list)
+        self.track_ref_for_deletion("web_list")
+
+        self.backref_list = PlaceBackRefList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                             self.db.find_backlink_handles(self.obj.handle))
+        self.backref_tab = self._add_tab(notebook, self.backref_list)
+        self.track_ref_for_deletion("backref_list")
+        self.track_ref_for_deletion("backref_tab")
 
         self._setup_notebook_tabs(notebook)
 
     def _cleanup_on_exit(self):
-        self.backref_list.close()
+        self.backref_tab.close()
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
