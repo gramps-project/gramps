@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 11:23-0800\n"
-"PO-Revision-Date: 2009-02-25 21:54+0100\n"
+"PO-Revision-Date: 2009-02-27 18:36+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1671,6 +1671,16 @@ msgid ""
 "<b>BACKUP</b> your existing databases before opening them with this version, "
 "and make sure to export your data to XML every now and then."
 msgstr ""
+"Denne GRAMPS 3.x-trunk er en utviklingsutgave. Denne versjonen er ikke ment å være til vanlig bruk. Bruk den på eget ansvar.\n"
+"\n"
+"Denne versjonen kan:\n"
+"1) Fungere annerledes enn du hadde forventet.\n"
+"2) Kanskje ikke kjøre i det hele tatt.\n"
+"3) Kræsje ofte.\n"
+"4) Ødelegge dine data.\n"
+"5) Lagre data i et format som ikke er kompatibelt med den offisielle versjonen.\n"
+"\n"
+"<b>SIKKERHETSKOPIERE</b> dine eksisterende databaser før du åpner dem med denne versjonen, og pass på å eksportere dine data til XML iblant."
 
 #: ../src/gramps_main.py:240 ../src/gramps_main.py:242
 #: ../src/gramps_main.py:252
@@ -13600,7 +13610,7 @@ msgstr "Lag Oversiktkalender(e)"
 
 #: ../src/plugins/webreport/WebCal.py:1208
 msgid "Whether to create A one-page mini calendar with dates highlighted"
-msgstr ""
+msgstr "Om det skal lages en minikalender på en side med markerte datoer"
 
 #: ../src/plugins/webreport/WebCal.py:1216
 msgid "Holidays will be included for the selected country"
@@ -18575,7 +18585,6 @@ msgid "Style editor"
 msgstr "Stilbehandler"
 
 #: ../src/ReportBase/_StyleEditor.py:207 ../src/glade/gramps.glade.h:196
-#, fuzzy
 msgid "point size|pt"
 msgstr "Skriftstørrelse"
 
@@ -20504,24 +20513,20 @@ msgid "Matches families objects with a certain reference count"
 msgstr "Samsvarer med familieobjekter som er referert til et visst antall ganger"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Families with the relationship type"
-msgstr "Familie med relasjonstypen"
+msgstr "Familier med relasjonstypen"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches families with the relationship type of a particular value"
-msgstr "Samsvarer med familie som har relasjonstype med en bestemt verdi"
+msgstr "Samsvarer med familier som har relasjonstype med en bestemt verdi"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:46
-#, fuzzy
 msgid "Families with <count> source"
-msgstr "Familier med <marker>"
+msgstr "Familier med <antall> kilder"
 
 #: ../src/Filters/Rules/Family/_HasSource.py:47
-#, fuzzy
 msgid "Matches families with a certain number of items in the source"
-msgstr "Samsvarer med familieobjekter som er referert til et visst antall ganger"
+msgstr "Samsvarer med familier med et bestemt antall element i kilden"
 
 #: ../src/Filters/Rules/Family/_IsBookmarked.py:45
 msgid "Bookmarked families"
@@ -20632,9 +20637,8 @@ msgid "Matches every event in the database"
 msgstr "Samsvarer med alle hendelsene i databasen"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:23
-#, fuzzy
 msgid "Events changed after <date time>"
-msgstr "Objekter med <attribute>"
+msgstr "Hendelser som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Event/_ChangedSince.py:24
 msgid ""
@@ -20652,39 +20656,32 @@ msgstr "Samsvarer med hendelser som er merket private"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:86
-#, fuzzy
 msgid "Event attribute:"
-msgstr "Personlig egenskap:"
+msgstr "Hendelsesegenskap:"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:46
-#, fuzzy
 msgid "Events with the attribute <attribute>"
-msgstr "Objekter med <attribute>"
+msgstr "Hendelser med egenskapen <egenskap>"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
+msgstr "Samsvarer med hendelser med en gitt hendelsesegenskap av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasData.py:49
-#, fuzzy
 msgid "Events with <data>"
-msgstr "Hendelser med <Id>"
+msgstr "Hendelser med <data>"
 
 #: ../src/Filters/Rules/Event/_HasData.py:50
-#, fuzzy
 msgid "Matches events with data of a particular value"
-msgstr "Samsvarer med hendelser med en markering av en bestemt verdi"
+msgstr "Samsvarer med hendelser med data av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:43
-#, fuzzy
 msgid "Events with <count> media"
-msgstr "Hendelser med <marker>"
+msgstr "Hendelser med <antall> media"
 
 #: ../src/Filters/Rules/Event/_HasGallery.py:44
-#, fuzzy
 msgid "Matches events with a certain number of items in the gallery"
-msgstr "Samsvarer med personer som har bilder i galleriet"
+msgstr "Samsvarer med hendelser som har et bestemt antall element i galleriet"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -20703,14 +20700,12 @@ msgid "Matches Events with a marker of a particular value"
 msgstr "Samsvarer med hendelser med en markering av en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:46
-#, fuzzy
 msgid "Events having <count> notes"
-msgstr "Personer med notater"
+msgstr "Hendelser som har <antall> notater"
 
 #: ../src/Filters/Rules/Event/_HasNote.py:47
-#, fuzzy
 msgid "Matches events having a certain number of notes"
-msgstr "Samsvarer med hendelser som er referert til et visst antall ganger"
+msgstr "Samsvarer med hendelser som har et bestemt antall notater"
 
 #: ../src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py:43
 msgid "Events having notes containing <substring>"
@@ -20741,14 +20736,12 @@ msgid "Matches events with a certain reference count"
 msgstr "Samsvarer med hendelser som er referert til et visst antall ganger"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
-#, fuzzy
 msgid "Events with the particular type"
 msgstr "Hendelser av en bestemt type"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
-#, fuzzy
 msgid "Matches events with the particular type "
-msgstr "Samsvarer med hendelsen av en bestemt type "
+msgstr "Samsvarer med hendelser med den spesielle typen "
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
@@ -20815,14 +20808,12 @@ msgid ""
 msgstr "Samsvarer med steder som er endret etter en angitt dato (yyyy-mm-dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:43
-#, fuzzy
 msgid "Places with <count> media"
-msgstr "Sted med <Id>"
+msgstr "Steder med <antall> media"
 
 #: ../src/Filters/Rules/Place/_HasGallery.py:44
-#, fuzzy
 msgid "Matches places with a certain number of items in the gallery"
-msgstr "Samsvarer med personer som har bilder i galleriet"
+msgstr "Samsvarer med steder som har et bestemt antall element i galleriet"
 
 #: ../src/Filters/Rules/Place/_HasIdOf.py:45
 msgid "Place with <Id>"
@@ -20846,14 +20837,12 @@ msgid "Position filters"
 msgstr "Posisjonsfiltre"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:46
-#, fuzzy
 msgid "Places having <count> notes"
-msgstr "Personer med notater"
+msgstr "Steder som har <antall> notater"
 
 #: ../src/Filters/Rules/Place/_HasNote.py:47
-#, fuzzy
 msgid "Matches places having a certain number of notes"
-msgstr "Samsvarer med stedsobjekter som er referert til et visst antall ganger"
+msgstr "Samsvarer med steder som har et bestemt antall notater"
 
 #: ../src/Filters/Rules/Place/_HasNoteMatchingSubstringOf.py:43
 msgid "Places having notes containing <substring>"
@@ -20876,7 +20865,6 @@ msgstr ""
 "delstreng"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "Street:"
 msgstr "Gate:"
 
@@ -20906,14 +20894,12 @@ msgid "Matches places with particular parameters"
 msgstr "Samsvarer med steder med bestemte parametre"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Places with a reference count of <count>"
-msgstr "Stedsobjekter som er referert til <count> antall ganger"
+msgstr "Steder som er referert til <antall> ganger"
 
 #: ../src/Filters/Rules/Place/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches places with a certain reference count"
-msgstr "Samsvarer med stedsobjekter som er referert til et visst antall ganger"
+msgstr "Samsvarer med steder som er referert til et bestemt antall ganger"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
@@ -20991,9 +20977,8 @@ msgid "Matches every source in the database"
 msgstr "Samsvarer med alle kildene i databasen"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:23
-#, fuzzy
 msgid "Sources changed after <date time>"
-msgstr "Kilder samsvarer med <filter>"
+msgstr "Kilder som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Source/_ChangedSince.py:24
 msgid ""
@@ -21002,14 +20987,12 @@ msgid ""
 msgstr "Samsvarer med kilder som er endret etter en angitt dato (yyyy-mm-dd hh:mm:ss) eller innenfor et tidsrom om to datoer er angitt"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:43
-#, fuzzy
 msgid "Sources with <count> media"
-msgstr "Kilder med <Id>"
+msgstr "Kilder med <antall> media"
 
 #: ../src/Filters/Rules/Source/_HasGallery.py:44
-#, fuzzy
 msgid "Matches sources with a certain number of items in the gallery"
-msgstr "Samsvarer med personer som har bilder i galleriet"
+msgstr "Samsvarer med kilder som har et bestemt antall element i galleriet"
 
 #: ../src/Filters/Rules/Source/_HasIdOf.py:45
 msgid "Source with <Id>"
@@ -21020,14 +21003,12 @@ msgid "Matches a source with a specified GRAMPS ID"
 msgstr "Samsvarer med en kilde med en spesifikk GRAMPS ID"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:46
-#, fuzzy
 msgid "Sources having <count> notes"
-msgstr "Personer med notater"
+msgstr "Kilder som har <antall> notater"
 
 #: ../src/Filters/Rules/Source/_HasNote.py:47
-#, fuzzy
 msgid "Matches sources having a certain number of notes"
-msgstr "Samsvarer med kildeobjekter som er refert til et visst antall ganger"
+msgstr "Samsvarer med kilder som er referert til et visst antall ganger"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
 msgid "Sources having notes containing <regular expression>"
@@ -21050,14 +21031,12 @@ msgstr ""
 "delstreng"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Sources with a reference count of <count>"
-msgstr "Notater som er referert til <count> antall ganger"
+msgstr "Kilder som er referert til <antall> antall ganger"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches sources with a certain reference count"
-msgstr "Samsvarer med notater som er referert til et visst antall ganger"
+msgstr "Samsvarer med kilder som er referert til et bestemt antall ganger"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -21116,9 +21095,8 @@ msgid "Matches every media object in the database"
 msgstr "Samsvarer med alle mediaobjektene i databasen"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:23
-#, fuzzy
 msgid "Media objects changed after <date time>"
-msgstr "Mediaobjekt samsvarer med <filter>"
+msgstr "Mediaobjekt som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/MediaObject/_ChangedSince.py:24
 msgid ""
@@ -21128,19 +21106,16 @@ msgstr "Samsvarer med mediaobjekter som er endret etter en angitt dato (yyyy-mm-
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
-#, fuzzy
 msgid "Media attribute:"
-msgstr "Personlig egenskap:"
+msgstr "Mediaegenskap:"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
-#, fuzzy
 msgid "Media objects with the attribute <attribute>"
-msgstr "Objekter med <attribute>"
+msgstr "Mediaobjekt med egenskapen <egenskap>"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
+msgstr "Samsvarer med mediaobjekter som har en egenskap av en bestemt verdi"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
@@ -21229,9 +21204,8 @@ msgid "Matches every repository in the database"
 msgstr "Samsvarer med alle oppbevaringsstedene i databasen"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
-#, fuzzy
 msgid "Repositories changed after <date time>"
-msgstr "Oppbevaringssteder samsvarer med <filter>"
+msgstr "Oppbevaringssteder som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid ""
@@ -21322,9 +21296,8 @@ msgid "Matches every note in the database"
 msgstr "Samsvarer med alle notatene i databasen"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
-#, fuzzy
 msgid "Notes changed after <date time>"
-msgstr "Kilder samsvarer med <filter>"
+msgstr "Notater som er endret etter <dato tid>"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
@@ -21636,9 +21609,8 @@ msgid "Copy _E-mail Address"
 msgstr "Kopiere _e-postadresse"
 
 #: ../src/widgets/styledtexteditor.py:305
-#, fuzzy
 msgid "_Open Link"
-msgstr "Hendelseskobling"
+msgstr "_Åpne lenke"
 
 #: ../src/widgets/styledtexteditor.py:306
 msgid "Copy _Link Address"
@@ -21786,14 +21758,13 @@ msgstr ""
 "Tittel: en tittel brukes for referere til personen, f.eks. 'Dr.' eller 'Rev.'"
 
 #: ../src/glade/edit_person.glade.h:16
-#, fuzzy
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, "
 "such as \"de\" or \"van\"\n"
 "Suffix: An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
-"Valgfri forstavelse for familienavn som ikke er med i sortering, som for "
-"eksempel \"de\", \"van\" eller \"von\""
+"Forstavelse: En valgfri forstavelse for familienavn som ikke er med i sortering, som for eksempel \"de\", \"van\" eller \"von\"\n"
+"Etterstavelse: En valgfri etterstavelse til navnet, som for eksempel \"Jr.\" eller \"III\""
 
 #: ../src/glade/edit_person.glade.h:18
 msgid "The person's given name"
@@ -22000,9 +21971,8 @@ msgid "Birth:"
 msgstr "Fødsel:"
 
 #: ../src/glade/gramps.glade.h:43
-#, fuzzy
 msgid "C_ity/County:"
-msgstr "_By/fylke:"
+msgstr "_By/Fylke:"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
@@ -22013,17 +21983,14 @@ msgid "Calenda_r:"
 msgstr "Kalende_r:"
 
 #: ../src/glade/gramps.glade.h:47
-#, fuzzy
 msgid "Call n_umber:"
-msgstr "Telefonnummer:"
+msgstr "Telefo_nnummer:"
 
 #: ../src/glade/gramps.glade.h:48
-#, fuzzy
 msgid "Cen_ter"
 msgstr "_Midtstilt"
 
 #: ../src/glade/gramps.glade.h:49
-#, fuzzy
 msgid "Ch_urch parish:"
 msgstr "_Kirkesogn:"
 
@@ -22048,7 +22015,6 @@ msgid "Co_unty:"
 msgstr "Fylke:"
 
 #: ../src/glade/gramps.glade.h:55
-#, fuzzy
 msgid "Con_fidence:"
 msgstr "_Troverdighet:"
 
@@ -22101,9 +22067,8 @@ msgid "Drag to move; click to detach"
 msgstr "Dra for å flytte, klikk for å koble fra"
 
 #: ../src/glade/gramps.glade.h:69
-#, fuzzy
 msgid "Dua_l dated"
-msgstr "Dødsdato"
+msgstr "Dobbel dato"
 
 #: ../src/glade/gramps.glade.h:70
 msgid "Example:"
@@ -22162,9 +22127,8 @@ msgid "Invoke date editor"
 msgstr "Starte datobehandler"
 
 #: ../src/glade/gramps.glade.h:84
-#, fuzzy
 msgid "J_ustify"
-msgstr "_Justert"
+msgstr "_Justere"
 
 #: ../src/glade/gramps.glade.h:85
 msgid ""
@@ -22259,7 +22223,6 @@ msgid "Revision comment - GRAMPS"
 msgstr "Revisjonskommentar - GRAMPS"
 
 #: ../src/glade/gramps.glade.h:113
-#, fuzzy
 msgid "Righ_t"
 msgstr "_Høyre"
 
@@ -22820,9 +22783,8 @@ msgid "<b>Output Window</b>"
 msgstr "<b>Utdatavindu</b>"
 
 #: ../src/plugins/tool/eventcmp.glade.h:1
-#, fuzzy
 msgid "Custom filter _editor"
-msgstr "Selvvalgt filterbehandler"
+msgstr "Egendefinert filter_behandler"
 
 #: ../src/plugins/tool/eventcmp.glade.h:2
 msgid ""
@@ -22914,9 +22876,8 @@ msgid "<b>Match Threshold</b>"
 msgstr "<b>Sammenfallende grenseverdier</b>"
 
 #: ../src/plugins/tool/merge.glade.h:3
-#, fuzzy
 msgid "Co_mpare"
-msgstr "Sammenlikne"
+msgstr "S_ammenlikne"
 
 #: ../src/plugins/tool/merge.glade.h:4
 msgid "Please be patient. This may take a while."
@@ -22980,9 +22941,8 @@ msgid "Search for media"
 msgstr "Søk etter media"
 
 #: ../src/plugins/tool/unused.glade.h:5
-#, fuzzy
 msgid "Search for notes"
-msgstr "Søk etter hendelser"
+msgstr "Søk etter notater"
 
 #: ../src/plugins/tool/unused.glade.h:6
 msgid "Search for places"
@@ -23033,9 +22993,8 @@ msgid "Exclude _notes"
 msgstr "Utelukk _kommentarer"
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:4
-#, fuzzy
 msgid "Exclude _sources"
-msgstr "Utelukk kilder"
+msgstr "Ikke ta med _kilder"
 
 #: ../src/plugins/export/ExportGeneWeb.glade.h:6
 msgid "Reference i_mages from path:  "
@@ -23090,7 +23049,6 @@ msgid "Maximum number of _spouses for a person"
 msgstr "Høye_ste antall ektefeller for en person"
 
 #: ../src/plugins/tool/verify.glade.h:15
-#, fuzzy
 msgid "Maximum number of chil_dren"
 msgstr "_Høyest antall barn"
 
@@ -23212,16 +23170,14 @@ msgstr ""
 "på lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:6
-#, fuzzy
 msgid ""
 "<b>Different Views</b>: There are twelve different views for navigating your "
 "family: Gramplets, People, Relationships, Family List, Pedigree, Events, "
 "Sources, Places, Media, Repositories, Notes and HTML Maps. Each helps you to "
 "achieve one or more specific tasks."
 msgstr ""
-"<b>Forskjellige visninger</b>: Det er seks forskjellige visninger for å "
-"navigere i dine slektsdata: Personer, familie, stamtavle, kilder, steder og "
-"media. Alle disse hjelper deg å utføre en eller flere av dine oppgaver."
+"<b>Forskjellige visninger</b>: Det er tolv ulike visninger for å "
+"navigere i dine slektsdata: Smågramps, Personer, Slektskap, Familieliste, Stamtavle, Hendelser, Kilder, Steder, Media, Oppbevaringssteder, Notater og HTML-kart. Alle disse hjelper deg å utføre en eller flere av dine oppgaver."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
@@ -23470,21 +23426,13 @@ msgstr ""
 "(foreldrene, ektefelle og barn) til en person."
 
 #: ../src/data/tips.xml.in.h:26
-#, fuzzy
 msgid ""
 "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred "
 "(for example birth or death), GRAMPS allows you to enter a wide range of "
 "date formats based on a guess or an estimate. For instance, &quot;about "
 "1908&quot; is a valid entry for a birth date in GRAMPS. See wiki manual of "
 "GRAMPS for a complete description of date entry options."
-msgstr ""
-"<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse "
-"skjedde (for eksempel fødsel eller dødsfall), så gir GRAMPS muligheten til å "
-"skrive inn en rekke forskjellige datoformater basert på gjetning eller "
-"estimater. For eksempel &quot;Omkring 1908&quot; er en gyldig fødselsdato i "
-"GRAMPS. Andre datomuligheter er: &quot;før&quot;, &quot;etter&quot;, &quot;"
-"omkring&quot;, &quot;område&quot;, &quot;periode&quot;. Se seksjon 3.7.2.2. "
-"i GRAMPS-manualen for en komplett beskrivelse av datoalternativene."
+msgstr "<b>Usikker på en dato?</b> Hvis du er usikker på datoen for når en hendelse skjedde (for eksempel fødsel eller dødsfall), så gir GRAMPS muligheten til å skrive inn en rekke forskjellige datoformater basert på gjetning eller estimater. For eksempel &quot;Omkring 1908&quot; er en gyldig fødselsdato i GRAMPS. I GRAMPS-manualen finner du en komplett liste over alternative datoformat."
 
 #: ../src/data/tips.xml.in.h:27
 msgid ""
@@ -23593,7 +23541,6 @@ msgstr ""
 "<b>Redigere&gt;Lage personfilter</b>."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid ""
 "GRAMPS allows you to generate a number of reports (both text and graphical) "
 "based on your genealogical information. There is great flexibility in "
@@ -23601,13 +23548,7 @@ msgid ""
 "format (html, pdf, Open Document Text, RTF, LaTeX and plain text). "
 "Experiment with the reports under the <b>Reports</b> menu to get an idea of "
 "how powerful GRAMPS is."
-msgstr ""
-"GRAMPS har muligheten for å lage flere rapporter (både tekstbaserte og "
-"grafiske) basert på ditt slektsforskningsmateriale. Det er mange muligheter "
-"for hvilke personer som blir inkludert i rapportene, så vel som mange "
-"lagringsformater (html, pdf, OpenOffice, RTF, AbiWord, Kword, LaTeX og ren "
-"tekst). Prøv deg fram med rapportene under <b>Rapporter</b>-menyen for å få "
-"en ide om hvor kraftig GRAMPS er."
+msgstr "GRAMPS lar deg lage mange rapporter (både tekstrapporter og grafiske rapporter) basert på slektsgranskermaterialet ditt. Det er mange valg for hvilke personer som skal være med i rapportene i tillegg til mange utskriftsformat (html, pdf, Open Document Text, RTF, LaTeX og ren tekst). Prøv deg frem med rapporter under menyen for<b>Rapporter</b> for å få en ide om hvor kraftfull GRAMPS er."
 
 #: ../src/data/tips.xml.in.h:38
 msgid ""
@@ -23816,11 +23757,10 @@ msgstr ""
 "ekteskapsnavn og aliaser."
 
 #: ../src/data/tips.xml.in.h:58
-#, fuzzy
 msgid ""
 "Relationship calculators in GRAMPS are available in more than fifteen "
 "languages."
-msgstr "Slektskapskalkulator i GRAMPS er tilgjengelig på 10 språk."
+msgstr "Slektskapskalkulator i GRAMPS er tilgjengelig på mer enn 15 språk."
 
 #: ../src/data/tips.xml.in.h:59
 msgid ""
@@ -23924,13 +23864,10 @@ msgstr ""
 "trykker på personen), før du trykker på <b>Rediger &gt; Hurtig fletting</b>."
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid ""
 "To run GRAMPS, you need to have GTK installed. But you do not need to be "
 "running the GNOME desktop."
-msgstr ""
-"For å kjøre GRAMPS må du ha GNOME installert. Men du trenger ikke å benytte "
-"GNOME-skrivebordsmiljøet."
+msgstr "For å kjøre GRAMPS må du ha installert GTK. Men du trenger ikke å kjøre skrivebordsmiljøet GNOME."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
