@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -20,8 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:rel_sk.py 9912 2008-01-22 09:17:46Z acraphae $
-# Slovak terms added by Lubo Vasko
+
 
 #-------------------------------------------------------------------------
 #
@@ -31,198 +30,548 @@
 
 import gen.lib
 import Relationship
-import types
 from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
-#Slovak-specific definitions of relationships 
+#GRAMPS 3.x - Slovak-specific terms by Lubo Vasko 
 #
 #-------------------------------------------------------------------------
 
-_level_name = [ "", "prvého", "druhého", "tretieho", "štvrtého", "piateho", "šiesteho",
+# hĺbka použitá pre označenie / zistenie vzťahov od genenácie : 
+# ku generácii,    
+
+
+_level_name = [ "prvého", "druhého", "tretieho", "štvrtého", "piateho", "šiesteho",
                 "siedmeho", "ôsmeho", "deviateho", "desiateho", "jedenásteho", "dvanásteho",
                 "trinásteho", "štrnásteho", "pätnásteho", "šestnásteho",
                 "sedemnásteho", "osemnásteho", "devätnásteho", "dvadsiateho", "dvadsiatehoprvého", "dvadsiatehodruhého",
                 "dvadsiatehotretieho", "dvadsiatehoštvrtého","dvadsiatehopiateho","dvadsiatehošiesteho","dvadsiatehosiedmeho",
                 "dvadsiatehoôsmeho","dvadsiatehodeviateho","tridsiateho" ]
 
-_parents_level = [ "", "rodičia", "starí rodičia", "prarodičia",
-                   "vzdialení príbuzní", ]
 
-_father_level = [ "", "otec", "starý otec", "prastarý otec", "prapredok", ]
+# vzdialení príbuzní 
 
-_mother_level = [ "", "matka", "stará matka", "prastará matka", "prapredok", ]
+_removed_level = [ "prvého", "druhého", "tretieho", "štvrtého", "piateho", "šiesteho",
+                "siedmeho", "ôsmeho", "deviateho", "desiateho", "jedenásteho", "dvanásteho",
+                "trinásteho", "štrnásteho", "pätnásteho", "šestnásteho",
+                "sedemnásteho", "osemnásteho", "devätnásteho", "dvadsiateho", "dvadsiatehoprvého", "dvadsiatehodruhého",
+                "dvadsiatehotretieho", "dvadsiatehoštvrtého","dvadsiatehopiateho","dvadsiatehošiesteho","dvadsiatehosiedmeho",
+                "dvadsiatehoôsmeho","dvadsiatehodeviateho","tridsiateho" ]
+                
 
-_son_level = [ "", "syn", "vnuk", "pravnuk", ]
+# small lists, use generation level if > [5]
 
-_daughter_level = [ "", "dcéra", "vnučka", "pravnučka", ]
+_father_level = [ "", "otec%s", "starý otec%s", "prastarý otec%s", "prapredok%s", ]
 
-_sister_level = [ "", "sestra", "teta", "prateta", "praprateta", ]
+_mother_level = [ "", "matka%s", "stará matka%s", 
+                  "prastará matka%s", "prapredok%s", ]
 
-_brother_level = [ "", "brat", "strýko", "prastrýko", "praprastrýko", ]
+_son_level = [ "", "syn%s", "vnuk%s", "pravnuk%s", ]
 
-_nephew_level = [ "", "synovec", "prasynovec", "praprasynovec", ]
+_daughter_level = [ "", "dcéra%s", "vnučka%s", 
+                    "pravnučka%s", ]
 
-_niece_level = [ "", "neter", "praneter", "prapraneter", ]
+_sister_level = [ "", "sestra%s", "teta%s", "prateta%s", "praprateta%s", ]
+
+_brother_level = [ "", "brat%s", "strýko%s", "prastrýko%s", "praprastrýko%s", ]
+
+_nephew_level =[ "", "synovec%s", "prasynovec%s", "praprasynovec%s", ]
+
+_niece_level =[ "", "neter%s", "praneter%s", "prapraneter%s", ]
+
+# kinship report
+
+_parents_level = [ "", "rodičia", "starí rodičia", 
+                    "prastarí rodičia", "predkovia", ]
+
+_children_level = [ "", "deti", "vnúčatá", 
+                    "pravnúčatá", 
+                    "pra-pravnúčatá", ]
+
+_siblings_level = [ "", "bratia a sestry", 
+                    "strýkovia a tety", 
+                    "prastrýkovia a pratety", 
+                    "pra-prastrýkovia a pra-pratety", 
+                    ]
+
+_nephews_nieces_level = [ "", "synovci a netere", 
+                          "prasynovci a pranetere", 
+                          "pra-prasynovci a pra-pranetere",
+                        ]
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
+
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+   
+    INLAW = ' (m. zväzok)'
+
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_male_cousin(self,level):
-        if level>len(_level_name)-1:
-            return "vzdialený príbuzný"
-        else:
-            return "bratranec %s stupňa" % (_level_name[level])
 
-    def get_female_cousin(self,level):
-        if level>len(_level_name)-1:
-            return "vzdialená príbuzná"
-        else:
-            return "sesternica %s stupňa" % (_level_name[level])
+# od aktívnej osoby vzhľadom k spoločnému predkovi Ga=[level] 
+# pre vyhodnotenie vzťahov
 
-    def get_parents(self,level):
-        if level>len(_parents_level)-1:
-            return "vzdialení príbuzní"
+    def get_cousin(self, level, removed, dir = '', inlaw=''):
+        if removed == 0 and level < len(_level_name):
+            return "bratranec %s %sstupňa" % (_removed_level[level-1],
+                                        inlaw)
+        elif (level) < (removed):
+            rel_str = self.get_uncle(level-1, inlaw)
+        else:
+            # limitation gen = 29
+            return "vzdialený bratranec, spojený s %s generáciou" % (
+                        _level_name[removed])
+
+    def get_cousine(self, level, removed, dir = '', inlaw=''):
+        if removed == 0 and level < len(_level_name):
+            return "sesternica %s %sstupňa" % (_level_name[level-1],
+                                        inlaw)
+        elif (level) < (removed):
+            rel_str = self.get_aunt(level-1, inlaw)
+        else:
+            return "vzdialená sesternica, spojená s %s generáciou" % (
+                        _level_name[removed])
+
+    def get_parents(self, level):
+        if level > len(_parents_level)-1:
+            return "vzdialení predkovia z %s generácie" % (
+                        _level_name[level])
         else:
             return _parents_level[level]
 
-    def get_father(self,level):
-        if level>len(_father_level)-1:
-            return "vzdialený príbuzný"
+    def get_father(self, level, inlaw=''):
+        if level > len(_father_level)-1:
+            return "vzdialený predok z %s generácie" % (
+                        _level_name[level])
         else:
-            return _father_level[level]
+            return _father_level[level] % inlaw
 
-    def get_son(self,level):
-        if level>len(_son_level)-1:
-            return "vzdialený potomok"
+    def get_mother(self, level, inlaw=''):
+        if level > len(_mother_level)-1:
+            return "vzdialený príbuzný, predok z %s generácie" % (
+                        _level_name[level])
         else:
-            return _son_level[level]
+            return _mother_level[level] % inlaw
 
-    def get_mother(self,level):
-        if level>len(_mother_level)-1:
-            return "vzdialený predok"
+    def get_parent_unknown(self, level, inlaw=''):
+        if level > len(_level_name)-1:
+            return "vzdialený príbuzný, predok z %s generácie" % (
+                        _level_name[level])
         else:
-            return _mother_level[level]
+            return "vzdialený príbuzný%s" % (inlaw)
 
-    def get_daughter(self,level):
-        if level>len(_daughter_level)-1:
-            return "vzdialený potomok"
+    def get_son(self, level, inlaw=''):
+        if level > len(_son_level)-1:
+            return "vzdialený potomok z %s generácie" % (
+                        _level_name[level+1])
         else:
-            return _daughter_level[level]
+            return _son_level[level] % (inlaw)
 
-    def get_aunt(self,level):
-        if level>len(_sister_level)-1:
-            return "vzdialený predok"
+    def get_daughter(self, level, inlaw=''):
+        if level > len(_daughter_level)-1:
+            return "vzdialený potomok z %s generácie" % (
+                        _level_name[level+1])
         else:
-            return _sister_level[level]
+            return _daughter_level[level] % (inlaw)
 
-    def get_uncle(self,level):
-        if level>len(_brother_level)-1:
-            return "vzdialený predok"
+    def get_child_unknown(self, level, inlaw=''):
+        if level > len(_level_name)-1:
+            return "vzdialený potomok z %s generácie" % (
+                        _level_name[level+1])
         else:
-            return _brother_level[level]
+            return "vzdialený potomok%s" % (inlaw)
 
-    def get_nephew(self,level):
-        if level>len(_nephew_level)-1:
-            return "vzdialený potomok"
+    def get_sibling_unknown(self, level, inlaw=''):
+        return "vzdialený príbuzný%s" % (inlaw)
+
+    def get_uncle(self, level, inlaw=''):
+        if level > len(_brother_level)-1:
+            return "vzdialený strýko z %s generácie" % (
+                        _level_name[level])
         else:
-            return _nephew_level[level]
+            return _brother_level[level] % (inlaw)
 
-    def get_niece(self,level):
-        if level>len(_niece_level)-1:
-            return "vzdialený potomok"
+    def get_aunt(self, level, inlaw=''):
+        if level > len(_sister_level)-1:
+            return "vzdialená teta z %s generácie" % (
+                        _level_name[level])
         else:
-            return _niece_level[level]
+            return _sister_level[level] % (inlaw)
 
-    def get_relationship(self,db, orig_person, other_person):
+    def get_nephew(self, level, inlaw=''):
+        if level > len(_nephew_level)-1:
+            return "vzdialený synovec z %s generácie" % (
+                        _level_name[level])
+        else:
+            return _nephew_level[level] % (inlaw)
+
+    def get_niece(self, level, inlaw=''):
+        if level > len(_niece_level)-1:
+            return "vzdialená neter z %s generácie" % (
+                        _level_name[level])
+        else:
+            return _niece_level[level] % (inlaw)
+
+
+
+# kinship report
+
+    def get_plural_relationship_string(self, Ga, Gb):
         """
-        Return a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
+        see Relationship.py
+        """
+        rel_str = "vzdialení príbuzní"
+        gen = " z %s-ej generácie"
+        bygen = " na %-u generáciu"
+        cmt = " (bratia alebo sestry predka" + gen % (
+                       Ga) + ")"
+        if Ga == 0:
+            # These are descendants
+            if Gb < len(_children_level):
+                rel_str = _children_level[Gb]
+            else:
+                rel_str = "potomkovia" + gen % (
+                               Gb+1)
+        elif Gb == 0:
+            # These are parents/grand parents
+            if Ga < len(_parents_level):
+                rel_str = _parents_level[Ga]
+            else:
+                rel_str = "predkovia" + gen % (
+                               Ga+1) 
+        elif Gb == 1:
+            # These are siblings/aunts/uncles
+            if Ga < len(_siblings_level):
+                rel_str = _siblings_level[Ga]
+            else:
+                rel_str = "deti predka" + gen % (
+                               Ga+1) + cmt 
+        elif Ga == 1:
+            # These are nieces/nephews
+            if Gb < len(_nephews_nieces_level):
+                rel_str = _nephews_nieces_level[Gb-1]
+            else:
+                rel_str = "synovci a netere" + gen % (
+                               Gb)
+        elif Ga > 1 and Ga == Gb:
+            # These are cousins in the same generation
+            # use custom level for latin words
+            if Ga == 2:
+                rel_str = "vlastní bratranci a sesternice" 
+            elif Ga <= len(_level_name):
+                # %ss for plural
+                rel_str = " %ss bratranci a sesternice" % _level_name[Ga-2]
+            # security    
+            else:
+                rel_str = "bratranci a sesternice"
+        elif Ga > 1 and Ga > Gb:
+            # These are cousins in different generations with the second person 
+            # being in a higher generation from the common ancestor than the 
+            # first person.
+            # use custom level for latin words and specific relation
+            if Ga == 3 and Gb == 2:
+                desc = " (vlastní bratranci niektorého z rodičov)"
+                rel_str = "strýkovia a tety z ďalšieho kolena" + desc
+            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " z %s do %s stupňa (kan.)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " a do %s stupňa (civ.)" % ( _removed_level[Ga+Gb+1] )
+                rel_str = "strýkovia a tety" + can + civ
+            elif Ga < len(_level_name):
+                rel_str = "prastrýkovia a pratety" + bygen % (
+                               Ga+1)
+            else:
+                return rel_str
+        elif Gb > 1 and Gb > Ga:
+            # These are cousins in different generations with the second person 
+            # being in a lower generation from the common ancestor than the 
+            # first person.
+            # use custom level for latin words and specific relation
+            if Ga == 2 and Gb == 3:
+                info = " (potomok bratranca-sesternice)"
+                rel_str = "synovci a netere z ďalšieho kolena" + info
+            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " z %s do %s stupňa (kan.)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " a do %s stupňa (civ.)" % ( _removed_level[Ga+Gb+1] )
+                rel_str = "synovci a netere" + can + civ
+            elif Ga < len(_level_name):
+                rel_str =  "synovci a netere" + bygen % (
+                                Gb)
+            else:
+                return rel_str
+        return rel_str
+
+
+# quick report (missing on RelCalc tool - Status Bar)
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
+        """
+        see Relationship.py
+        """
+        if only_birth:
+            step = ''
+        else:
+            step = self.STEP
+
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''      
         
-        Special cases: relation strings "", "undefined" and "spouse".
-        """
-
-        if orig_person is None:
-            return ("undefined",[])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = \
-                     self.get_relationship_distance(db, orig_person, other_person)
-
-        if isinstance(common, basestring):
-            return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("",[])
-
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
-
-        if firstRel == 0:
-            if secondRel == 0:
-                return ('',common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel),common)
-            else:
-                return (self.get_mother(secondRel),common)
-        elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(firstRel),common)
-            else:
-                return (self.get_daughter(firstRel),common)
-        elif firstRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(secondRel),common)
-            else:
-                return (self.get_aunt(secondRel),common)
-        elif secondRel == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(firstRel-1),common)
-            else:
-                return (self.get_niece(firstRel-1),common)
-        elif firstRel == secondRel == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('vlastný bratranec',common)
-            else:
-                return ('vlastná sesternica',common)
-        elif firstRel == 3 and secondRel == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('bratranec druhého stupňa',common)
-            else:
-                return ('sesternica druhého stupňa',common)
-        elif firstRel == 2 and secondRel == 3:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('bratranec druhého stupňa',common)
-            else:
-                return ('sesternica druhého stupňa',common)
-        else:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                if firstRel+secondRel>len(_level_name)-1:
-                    return (self.get_male_cousin(firstRel+secondRel),common)
+        
+        rel_str = "vzdialený príbuznýs%s" % (inlaw)
+        bygen = " z %s generácie"
+        if Ga == 0:
+            # b is descendant of a
+            if Gb == 0 :
+                rel_str = 'tá istá osoba'
+            elif gender_b == gen.lib.Person.MALE and Gb < len(_son_level):
+                # spouse of daughter
+                if inlaw and Gb == 1 and not step:
+                    rel_str = "zať"
                 else:
-                    return ('vzdialený bratranec',common)
-            else:
-                if firstRel+secondRel>len(_level_name)-1:
-                    return (self.get_female_cousin(firstRel+secondRel),common)
+                    rel_str = self.get_son(Gb)
+            elif gender_b == gen.lib.Person.FEMALE and Gb < len(_daughter_level):
+                # spouse of son
+                if inlaw and Gb == 1 and not step:
+                    rel_str = "nevesta"
                 else:
-                    return ('vzdialená sesternica',common)
+                    rel_str = self.get_daughter(Gb)
+            # don't display inlaw
+            elif Gb < len(_level_name) and gender_b == gen.lib.Person.MALE:
+                rel_str = "vzdialený potomok (%d generácia)" % (
+                               Gb+1)
+            elif Gb < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
+                rel_str = "vzdialený potomok(žena) (%d generácia)" % (
+                               Gb+1)
+            else:
+                return self.get_child_unknown(Gb)
+        elif Gb == 0:
+            # b is parents/grand parent of a
+            if gender_b == gen.lib.Person.MALE and Ga < len(_father_level):
+                # other spouse of father (new parent)
+                if Ga == 1 and inlaw and self.STEP_SIB:
+                    rel_str = "svokor"
+                # father of spouse (family of spouse)
+                elif Ga == 1 and inlaw:
+                    rel_str = "otec partnera"
+                else:
+                    rel_str = self.get_father(Ga, inlaw)
+            elif gender_b == gen.lib.Person.FEMALE and Ga < len(_mother_level):
+                # other spouse of mother (new parent)
+                if Ga == 1 and inlaw and self.STEP_SIB:
+                    rel_str = "svokra"
+                # mother of spouse (family of spouse)
+                elif Ga == 1 and inlaw:
+                    rel_str = "matka partnera"
+                else:
+                    rel_str = self.get_mother(Ga, inlaw)
+            elif Ga < len(_level_name) and gender_b == gen.lib.Person.MALE:
+                rel_str = "vzdialený predok%s (%d generácia)" % (
+                               inlaw, Ga+1)
+            elif Ga < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
+                rel_str = "vzdialený predok(žena)%s (%d generácia)" % (
+                               inlaw, Ga+1)
+            else:
+                return self.get_parent_unknown(Ga, inlaw)
+        elif Gb == 1:
+            # b is sibling/aunt/uncle of a
+            if gender_b == gen.lib.Person.MALE and Ga < len(_brother_level):
+                rel_str = self.get_uncle(Ga, inlaw)
+            elif gender_b == gen.lib.Person.FEMALE and Ga < len(_sister_level):
+                rel_str = self.get_aunt(Ga, inlaw)
+            else:
+                # don't display inlaw
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "vzdialený strýko" + bygen % (
+                                   Ga+1)
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "vzdialená teta" + bygen % (
+                                   Ga+1)
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+        elif Ga == 1:
+            # b is niece/nephew of a
+            if gender_b == gen.lib.Person.MALE and Gb < len(_nephew_level):
+                rel_str = self.get_nephew(Gb-1, inlaw)
+            elif gender_b == gen.lib.Person.FEMALE and Gb < len(_niece_level):
+                rel_str = self.get_niece(Gb-1, inlaw)
+            else:
+                if gender_b == gen.lib.Person.MALE: 
+                    rel_str = "vzdialený synovec%s (%d generácia)" %  (
+                                   inlaw, Gb)
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "vzdialená neter%s (%d generácia)" %  (
+                                   inlaw, Gb)
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+        elif Ga == Gb:
+            # a and b cousins in the same generation
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = self.get_cousin(Ga-1, 0, dir = '', 
+                                     inlaw=inlaw)
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = self.get_cousine(Ga-1, 0, dir = '', 
+                                     inlaw=inlaw)
+            elif gender_b == gen.lib.Person.UNKNOWN:
+                rel_str = self.get_sibling_unknown(Ga-1, inlaw)
+            else:
+                return rel_str
+        elif Ga > 1 and Ga > Gb:
+            # These are cousins in different generations with the second person 
+            # being in a higher generation from the common ancestor than the 
+            # first person.
+            if Ga == 3 and Gb == 2:
+                if gender_b == gen.lib.Person.MALE:
+                    desc = " (bratranec niektorého z rodičov)"
+                    rel_str = "strýko z druhého kolena" + desc
+                elif gender_b == gen.lib.Person.FEMALE: 
+                    desc = " (sesternica niektorého z rodičov)"
+                    rel_str = "teta z druhého kolena" + desc
+                elif gender_b == gen.lib.Person.UNKNOWN: 
+                    return self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " z %s do %s stupňa (kan.)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " a do %s stupňa (civ.)" % ( _removed_level[Ga+Gb+1] )
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "strýko" + can + civ
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "teta" + can + civ
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+            else:
+                if gender_b == gen.lib.Person.MALE:   
+                    rel_str = self.get_uncle(Ga, inlaw)
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = self.get_aunt(Ga, inlaw)
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str 
+        elif Gb > 1 and Gb > Ga:
+            # These are cousins in different generations with the second person 
+            # being in a lower generation from the common ancestor than the 
+            # first person.
+            if Ga == 2 and Gb == 3:
+                info = " (potomok bratranca/sesternice)"
+                if gender_b == gen.lib.Person.MALE:   
+                    rel_str = "synovec z druhého kolena" + info
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "neter z druhého kolena" + info
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str  
+            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " z %s do %s stupňa (kan.)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " a do %s stupňa (civ.)" % ( _removed_level[Ga+Gb+1] )
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "synovec" + can + civ
+                if gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "neter" + can + civ
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+            elif Ga > len(_level_name):
+                return rel_str
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = self.get_nephew(Ga, inlaw)
+                elif gender_b ==gen.lib.Person.FEMALE:
+                    rel_str = self.get_niece(Ga, inlaw)
+                elif gender_b == gen.lib.Person.UNKNOWN:
+                    rel_str = self.get_sibling_unknown(Ga, inlaw)
+                else:
+                    return rel_str
+        return rel_str
+
+# RelCalc tool - Status Bar
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''
+        
+        if sib_type == self.NORM_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'brat (vlastný)'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'sestra (vlastná)'
+                else:
+                    rel_str = 'vlastný brat alebo sestra'
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "švagor"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "švagriná"
+                else:
+                    rel_str = "švagor alebo švagriná"
+        elif sib_type == self.UNKNOWN_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'brat'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'sestra'
+                else:
+                    rel_str = 'brat alebo sestra'
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "švagor"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "švagriná"
+                else:
+                    rel_str = "švagor alebo švagriná"
+        # oznacenie vyberu spolocny otec, rev.
+        elif sib_type == self.HALF_SIB_MOTHER:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "nevlastný brat -spoloč.otec"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "nevlastná sestra -spoloč.otec"
+            else:
+                rel_str = "nevlastný brat alebo sestra -spoloč.otec"
+        # oznacenie vyberu spolocna matka, rev.
+        elif sib_type == self.HALF_SIB_FATHER:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "nevlastný brat -spoloč.matka"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "nevlastná sestra -spoloč.matka"
+            else:
+                rel_str = "nevlastný brat alebo sestra -spoloč.matka"
+        elif sib_type == self.STEP_SIB:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = "nevlastný brat"
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = "nevlastná sestra"
+            else:
+                rel_str = "nevlastný brat alebo sestra"
+        return rel_str
+
 
 #-------------------------------------------------------------------------
 #
@@ -230,5 +579,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #
 #-------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-pmgr.register_relcalc(RelationshipCalculator,
+pmgr.register_relcalc(RelationshipCalculator, 
     ["sk", "SK", "sk_SK", "slovensky", "slovak", "Slovak", "sk_SK.UTF8", "sk_SK.UTF-8", "sk_SK.utf-8", "sk_SK.utf8"])
+
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src 
+    # python src/plugins/rel_sk.py 
+    # (Above not needed here)
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
