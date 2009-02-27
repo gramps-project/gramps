@@ -124,6 +124,9 @@ try:
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
+    # GRAMPS treats dates with '-' as ISO format, so replace separator on 
+    # locale dates that use '-' to prevent confict
+    tformat = tformat.replace('-', '/') 
 
 except:
     import time
@@ -220,7 +223,28 @@ except:
         unicode(time.strftime('%a',(0,1,1,1,1,1,5,1,1)),codeset), # Saturday
         )
 
-    if time.strftime('%x',(2005,1,2,1,1,1,1,1,1)) == '2/1/2005':
-        tformat = '%d/%m/%y'
-    else:
-        tformat = '%m/%d/%y'
+    # depending on the locale, the value returned for 20th Feb 2009 could be 
+    # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009', 
+    # '20-2-2009', '20-02-2009', '2009/02/20', '2009.02.20', '2009-02-20', 
+    # '09-02-20' hence to reduce the possible values to test, make sure month 
+    # is double digit also day should be double digit, prefebably greater than
+    # 12 for human readablity
+
+    timestr = time.strftime('%x',(2005,10,25,1,1,1,1,1,1)) 
+    
+    # GRAMPS treats dates with '-' as ISO format, so replace separator on 
+    # locale dates that use '-' to prevent confict
+    timestr = timestr.replace('-', '/') 
+    time2fmt_map = {
+        '25/10/2005' : '%d/%m/%Y',
+        '10/25/2005' : '%m/%d/%Y',
+        '2005/10/25' : '%Y/%m/%d',
+        '25.10.2005' : '%d.%m.%Y',
+        '10.25.2005' : '%m.%d.%Y',
+        '2005.10.25' : '%Y.%m.%d',
+        }
+    
+    try:
+        tformat = time2fmt_map[timestr]
+    except KeyError, e:
+        tformat = '%d/%m/%Y'  #default value
