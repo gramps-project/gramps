@@ -229,20 +229,21 @@ class DateParserDisplayTest(Tool.Tool):
 #
 #-------------------------------------------------------------------------
 
-pmgr = PluginManager.get_instance()
-pmgr.register_tool(
-    name = 'test_for_date_parser_and_displayer',
-    category = Tool.TOOL_DEBUG,
-    tool_class = DateParserDisplayTest,
-    options_class = Tool.ToolOptions,
-    modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
-    translated_name = _("Check Localized Date Displayer and Parser"),
-    status = _("Beta"),
-    author_name = "Martin Hawlisch",
-    author_email = "martin@hawlisch.de",
-    description = _("This test tool will create many people showing all"
-                    " different date variants as birth. The death date is"
-                    " created by parsing the result of the date displayer for"
-                    " the birth date. This way you can ensure that dates"
-                    " printed can be parsed back in correctly.")
-    )
+if __debug__:
+    pmgr = PluginManager.get_instance()
+    pmgr.register_tool(
+        name = 'test_for_date_parser_and_displayer',
+        category = Tool.TOOL_DEBUG,
+        tool_class = DateParserDisplayTest,
+        options_class = Tool.ToolOptions,
+        modes = PluginManager.TOOL_MODE_GUI | PluginManager.TOOL_MODE_CLI,
+        translated_name = _("Check Localized Date Displayer and Parser"),
+        status = _("Beta"),
+        author_name = "Martin Hawlisch",
+        author_email = "martin@hawlisch.de",
+        description = _("This test tool will create many people showing all"
+                        " different date variants as birth. The death date is"
+                        " created by parsing the result of the date displayer for"
+                        " the birth date. This way you can ensure that dates"
+                        " printed can be parsed back in correctly.")
+        )
