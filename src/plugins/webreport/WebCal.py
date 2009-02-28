@@ -426,12 +426,19 @@ class WebCalReport(Report):
         num_years = (self.end_year - self.start_year)
         cal_year = self.start_year
 
-        nrows = (num_years / 16)
-        for rows in range(0, (nrows + 1)):
+        # stylesheets other than "Web_Visually.css" will hold 22 years in a row
+        # otherwise, 18 years in a row 
+        _stylesheet = 'Web_Visually.css'  
+        years_in_row = 22 if self.css is not _stylesheet else 18
+
+        # simple mathematics was not working, so I did it for python
+        nrows = get_num_of_rows(num_years, years_in_row)
+
+        for rows in range(0, nrows):
             of.write('<div id="navigation">\n')
             of.write('\t<ul>\n')
-            cols = 0
-            while (cols <= 15 and cal_year <= self.end_year):
+            cols = 1
+            while (cols <= years_in_row and cal_year <= self.end_year):
                 url = ''
 
                 # begin subdir level
@@ -1571,6 +1578,30 @@ def _has_webpage_extension(url):
         if url.endswith(ext):
             return True
     return False
+
+def get_num_of_rows(num_years, years_in_row):
+    """
+    This will return the number of weeks to be display in
+    display_year_navs()
+    """
+    if num_years > years_in_row:
+        rows = 1
+        num_years -= years_in_row
+    elif 1 <= num_years <= years_in_row:
+        return 1
+    if num_years > years_in_row:
+        rows += 1
+        num_years -= years_in_row
+    elif 1 <= num_years <= years_in_row:
+        rows += 1
+        return rows
+    if num_years > years_in_row:
+        rows += 1
+        num_years -= years_in_row
+    elif 1 <= num_years <= years_in_row:
+        rows += 1
+        return rows
+    return rows
 
 #-------------------------------------------------------------------------
 #
