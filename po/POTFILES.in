@@ -279,6 +279,7 @@ src/plugins/gramplet/NoteGramplet.py
 src/plugins/gramplet/PedigreeGramplet.py
 src/plugins/gramplet/PythonGramplet.py
 src/plugins/gramplet/QuickViewGramplet.py
+src/plugins/gramplet/RecordsGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
 src/plugins/gramplet/SessionLogGramplet.py
 src/plugins/gramplet/StatsGramplet.py
