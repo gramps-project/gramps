@@ -1371,20 +1371,13 @@ def _get_short_name(person, maiden_name=None):
         if " " in first_name:
             # just one split max 
             first_name, rest = first_name.split(" ", 1)
-    print first_name, family_name
     return ("%s %s" % (first_name, family_name)).strip()
 
 # Simple utility list to convert Gramps day-of-week numbering 
 # to calendar.firstweekday numbering
-dow_gramps2iso = [ -1,
-                   calendar.SUNDAY,
-                   calendar.MONDAY,
-                   calendar.TUESDAY,
-                   calendar.WEDNESDAY,
-                   calendar.THURSDAY,
-                   calendar.FRIDAY,
-                   calendar.SATURDAY,
-                 ]
+dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY,
+                   calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY,
+                   calendar.SATURDAY]
 
 # define names for full and abbreviated month names in GrampsLocale
 full_month_name = GrampsLocale.long_months
