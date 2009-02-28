@@ -12,9 +12,7 @@ pkgdata_PYTHON = \
 	CalendarGramplet.py \
 	DescendGramplet.py \
 	FanChartGramplet.py \
-	FaqGramplet.py \
 	GivenNameGramplet.py \
-	HeadlineNewsGramplet.py \
 	PedigreeGramplet.py \
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
