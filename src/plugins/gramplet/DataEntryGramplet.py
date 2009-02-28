@@ -746,5 +746,7 @@ register(type="gramplet",
          title=_("Data Entry"),
          detached_width = 510,
          detached_height = 480,
+         gramps="3.1.0",
+         version="1.0.0",
          )
 

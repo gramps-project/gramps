@@ -272,5 +272,7 @@ register(type="gramplet",
          title=_("Note"),
          detached_width = 500,
          detached_height = 400,
+         gramps="3.1.0",
+         version="1.0.0",
          )
 

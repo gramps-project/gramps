@@ -153,5 +153,7 @@ register(type="gramplet",
          height=250,
          content = PythonGramplet,
          title=_("Python Shell"),
+         gramps="3.1.0",
+         version="1.0.0",
          )
 
