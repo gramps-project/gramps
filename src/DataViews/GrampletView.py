@@ -80,10 +80,19 @@ def register_gramplet(data_dict):
     base_opts = {"name":"Unnamed Gramplet",
                  "tname": _("Unnamed Gramplet"),
                  "state":"maximized",
+                 "version":"0.0.0",
+                 "gramps":"0.0.0",
                  "column": -1, "row": -1,
                  "data": []}
     base_opts.update(data_dict)
-    AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
+    if base_opts["name"] not in AVAILABLE_GRAMPLETS:
+        AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
+    else: # go with highest version (or current one in case of tie)
+        # GRAMPS loads system plugins first
+        loaded_version = [int(i) for i in AVAILABLE_GRAMPLETS[base_opts["name"]]["version"].split(".")]
+        current_version = [int(i) for i in base_opts["version"].split(".")]
+        if current_version >= loaded_version:
+            AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
 
 def register(**data):
     """
