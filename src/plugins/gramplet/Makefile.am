@@ -10,15 +10,12 @@ pkgdata_PYTHON = \
 	AgeStats.py \
 	AttributesGramplet.py \
 	CalendarGramplet.py \
-	DataEntryGramplet.py \
 	DescendGramplet.py \
 	FanChartGramplet.py \
 	FaqGramplet.py \
 	GivenNameGramplet.py \
 	HeadlineNewsGramplet.py \
-	NoteGramplet.py \
 	PedigreeGramplet.py \
-	PythonGramplet.py \
 	QuickViewGramplet.py \
 	RelativeGramplet.py \
 	SessionLogGramplet.py \
