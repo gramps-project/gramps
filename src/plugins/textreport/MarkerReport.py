@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2009      Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -410,7 +411,7 @@ class MarkerReport(Report):
             
             self.doc.start_cell('MR-TableCell', 2)
             self.doc.start_paragraph('MR-Normal')
-            self.doc.write_text(note.get(True))
+            self.doc.write_text(note.get())
             self.doc.end_paragraph()
             self.doc.end_cell()
             
