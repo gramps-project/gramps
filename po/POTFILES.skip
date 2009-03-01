@@ -15,5 +15,6 @@ src/plugins/tool/PHPGedViewConnector.py
 src/plugins/tool/TestcaseGenerator.py
 src/plugins/tool/phpgedview.glade
 src/ReportBase/_DocReportDialog.py
-
-
+src/plugins/gramplet/FaqGramplet.py
+src/plugins/gramplet/HeadlineNewsGramplet.py
+src/plugins/quickview/Query.py
