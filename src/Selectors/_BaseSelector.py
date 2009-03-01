@@ -65,9 +65,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.filter = filter
 
         # Set window title, some selectors may set self.title in their __init__
-        try:
-            assert self.title
-        except AttributeError:
+        if not hasattr(self, 'title'):
             self.title = self.get_window_title()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
