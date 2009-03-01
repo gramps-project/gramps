@@ -818,7 +818,8 @@ div#sourcerefs ol li ol {
     padding:0;
     background:none;
 }
-#treeContainer div.boxbg a {
+#treeContainer div.boxbg a,
+#treeContainer div.boxbg span.unlinked {
     position:relative;
     z-index:10;
     display:block;
@@ -847,7 +848,11 @@ div#sourcerefs ol li ol {
 #treeContainer div.boxbg a:hover, #treeContainer div.AncCol3 a:hover, #treeContainer div.AncCol4 a:hover {
     margin-top:-44px;
 }
-#treeContainer div.boxbg a.noThumb, #treeContainer div.AncCol3 a, #treeContainer div.AncCol4 a {
+#treeContainer div.boxbg a.noThumb, 
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a,
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
     margin-top:10px;
 }
 #treeContainer div.boxbg a.noThumb:hover {
@@ -878,14 +883,19 @@ div#sourcerefs ol li ol {
 #treeContainer div.boxbg a:hover span.thumbnail {
     display:block;
 }
-#treeContainer div.male a, #treeContainer div.female a {
+#treeContainer div.male a, 
+#treeContainer div.male span.unlinked, 
+#treeContainer div.female a ,
+#treeContainer div.female span.unlinked {
     background-position:top right;
     background-repeat:no-repeat;
 }
-#treeContainer div.male a {
+#treeContainer div.male a,
+#treeContainer div.male span.unlinked {
     background-image:url(../images/GenderSymbols_Male.png);
 }
-#treeContainer div.female a {
+#treeContainer div.female a, 
+#treeContainer div.female span.unlinked {
     background-image:url(../images/GenderSymbols_Female.png);
 }
 .shadow {
