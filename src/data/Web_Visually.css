@@ -947,22 +947,13 @@ div#pedigree {
 #treeContainer div.boxbg a:hover span.thumbnail {
     display:block;
 }
-#treeContainer div.male a, 
-#treeContainer div.male span.unlinked, 
-#treeContainer div.female a ,
-#treeContainer div.female span.unlinked {
-    background-position:top right;
-    background-repeat:no-repeat;
-}
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
-    background:url(../images/Web_Gender_Male.png);
-    background-color:#BCEAF6;
+    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
 }
 #treeContainer div.female a, 
 #treeContainer div.female span.unlinked {
-    background:url(../images/Web_Gender_Female.png);
-    background-color:#FFC0CB;
+    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
 }
 #treeContainer div.unknown a,
 #treeContainer div.unknown span.unlinked {
