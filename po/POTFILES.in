@@ -269,15 +269,10 @@ src/plugins/gramplet/AgeOnDateGramplet.py
 src/plugins/gramplet/AgeStats.py
 src/plugins/gramplet/AttributesGramplet.py
 src/plugins/gramplet/CalendarGramplet.py
-src/plugins/gramplet/DataEntryGramplet.py
 src/plugins/gramplet/DescendGramplet.py
 src/plugins/gramplet/FanChartGramplet.py
-src/plugins/gramplet/FaqGramplet.py
 src/plugins/gramplet/GivenNameGramplet.py
-src/plugins/gramplet/HeadlineNewsGramplet.py
-src/plugins/gramplet/NoteGramplet.py
 src/plugins/gramplet/PedigreeGramplet.py
-src/plugins/gramplet/PythonGramplet.py
 src/plugins/gramplet/QuickViewGramplet.py
 src/plugins/gramplet/RelativeGramplet.py
 src/plugins/gramplet/SessionLogGramplet.py
@@ -304,6 +299,7 @@ src/plugins/import/ImportVCard.py
 # plugins/lib directory 
 src/plugins/lib/libholiday.py
 src/plugins/lib/libmapservice.py
+src/plugins/lib/libgrampsxml.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
