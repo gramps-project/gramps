@@ -268,6 +268,10 @@
                 <value>calculated</value>
             </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
+	    <optional><attribute name="dualdated">
+                <choice><value>0</value><value>1</value></choice>
+	    </attribute></optional>
+	    <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="datespan">
             <attribute name="start"><text/></attribute>
@@ -277,6 +281,10 @@
                 <value>calculated</value>
             </choice></attribute></optional>
             <optional><attribute name="cformat"><text/></attribute></optional>
+	    <optional><attribute name="dualdated">
+                <choice><value>0</value><value>1</value></choice>
+	    </attribute></optional>
+	    <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="dateval">
             <attribute name="val"><text/></attribute>
@@ -290,6 +298,10 @@
                 <value>estimated</value>
                 <value>calculated</value>
             </choice></attribute></optional>
+	    <optional><attribute name="dualdated">
+                <choice><value>0</value><value>1</value></choice>
+	    </attribute></optional>
+	    <optional><attribute name="newyear"><text/></attribute></optional>
         </element>
         <element name="datestr">
             <attribute name="val"><text/></attribute>
