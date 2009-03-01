@@ -158,7 +158,7 @@ else:
 PROGRAM_NAME   = "GRAMPS"
 VERSION        = "@VERSIONSTRING@"
 COPYRIGHT_MSG  = u"\u00A9 2001-2006 Donald N. Allingham\n" \
-                 u"\u00A9 2007-2008 The GRAMPS Developers"
+                 u"\u00A9 2007-2009 The GRAMPS Developers"
 COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
