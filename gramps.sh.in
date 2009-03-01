@@ -25,4 +25,4 @@ PACKAGE=@PACKAGE@
 
 export GRAMPSDIR=@datadir@/@PACKAGE@
 
-exec @PYTHON@ $GRAMPSDIR/gramps.py "$@"
+exec @PYTHON@ -O $GRAMPSDIR/gramps.py "$@"
