@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-26 17:49+0100\n"
-"PO-Revision-Date: 2009-02-24 08:26+0100\n"
+"POT-Creation-Date: 2009-03-01 21:51+0100\n"
+"PO-Revision-Date: 2009-03-01 21:52+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Organisera bokmärken"
 #: ../src/Selectors/_SelectPerson.py:76 ../src/Selectors/_SelectPerson.py:104
 #: ../src/plugins/BookReport.py:725 ../src/plugins/drawreport/TimeLine.py:59
 #: ../src/plugins/textreport/IndivComplete.py:426
-#: ../src/plugins/textreport/MarkerReport.py:118
+#: ../src/plugins/textreport/MarkerReport.py:119
 #: ../src/plugins/tool/NotRelated.py:116 ../src/plugins/tool/PatchNames.py:235
 #: ../src/plugins/tool/RelCalc.py:56 ../src/plugins/tool/RelCalc.py:116
 #: ../src/plugins/tool/RemoveUnused.py:203 ../src/plugins/tool/Verify.py:554
@@ -494,8 +494,7 @@ msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
 #: ../src/DbManager.py:772
-msgid ""
-"Removing this version will prevent you from extracting it in the future."
+msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
 #: ../src/DbManager.py:774
@@ -937,7 +936,7 @@ msgstr "Databas"
 
 #: ../src/GrampsCfg.py:180 ../src/ScratchPad.py:618 ../src/ScratchPad.py:626
 #: ../src/plugins/textreport/CustomBookText.py:115
-#: ../src/plugins/textreport/MarkerReport.py:387
+#: ../src/plugins/textreport/MarkerReport.py:388
 #: ../src/plugins/webreport/NarrativeWeb.py:671
 #: ../src/ReportBase/_Constants.py:58
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
@@ -1058,7 +1057,6 @@ msgstr "Person"
 #: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:467
 #: ../src/DataViews/RelationView.py:1263 ../src/DataViews/RelationView.py:1285
 #: ../src/Editors/_EditFamily.py:505 ../src/plugins/export/ExportCsv.py:459
-#: ../src/plugins/gramplet/NoteGramplet.py:83
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
 #: ../src/plugins/gramplet/SessionLogGramplet.py:56
@@ -1085,7 +1083,7 @@ msgstr "Familj"
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/References.py:35
 #: ../src/plugins/quickview/References.py:91
-#: ../src/plugins/textreport/MarkerReport.py:301
+#: ../src/plugins/textreport/MarkerReport.py:302
 #: ../src/plugins/tool/SortEvents.py:60
 #: ../src/plugins/webreport/NarrativeWeb.py:2225
 #: ../src/PluginUtils/_GuiOptions.py:955
@@ -1128,7 +1126,6 @@ msgstr "Arkivplats"
 #: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/export/ExportCsv.py:342
 #: ../src/plugins/export/ExportCsv.py:416
-#: ../src/plugins/gramplet/NoteGramplet.py:272
 #: ../src/plugins/import/ImportCsv.py:171
 #: ../src/plugins/textreport/FamilyGroup.py:303
 #: ../src/ReportBase/_GraphvizReportDialog.py:1031
@@ -1216,8 +1213,7 @@ msgstr "Microsoft Maps"
 
 #: ../src/GrampsCfg.py:337
 msgid "You need to restart GRAMPS for above settings to take effect"
-msgstr ""
-"Du måste starta om GRAMPS för att inställningarna ovan skall verkställas"
+msgstr "Du måste starta om GRAMPS för att inställningarna ovan skall verkställas"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:377
@@ -1495,7 +1491,7 @@ msgstr "Lägg till bokmärke"
 #: ../src/plugins/quickview/OnThisDay.py:77
 #: ../src/plugins/quickview/OnThisDay.py:78
 #: ../src/plugins/quickview/OnThisDay.py:79
-#: ../src/plugins/textreport/MarkerReport.py:295
+#: ../src/plugins/textreport/MarkerReport.py:296
 #: ../src/plugins/textreport/PlaceReport.py:150
 #: ../src/plugins/tool/SortEvents.py:56
 #: ../src/plugins/webreport/NarrativeWeb.py:663
@@ -1514,7 +1510,7 @@ msgstr "Redigera datum"
 #: ../src/gramps_main.py:105 ../src/Merge/_MergePerson.py:143
 #: ../src/DataViews/EventView.py:101
 #: ../src/plugins/gramplet/QuickViewGramplet.py:69
-#: ../src/plugins/textreport/MarkerReport.py:278
+#: ../src/plugins/textreport/MarkerReport.py:279
 #: ../src/plugins/webreport/NarrativeWeb.py:2219
 msgid "Events"
 msgstr "Händelser"
@@ -1531,7 +1527,7 @@ msgstr "Typsnittsfärg"
 msgid "Font Background Color"
 msgstr "Typsnittsbakgrundsfärg"
 
-#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:1082
+#: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:1091
 msgid "Gramplets"
 msgstr "Mini-Gramps"
 
@@ -1551,7 +1547,7 @@ msgstr "Media"
 
 #: ../src/gramps_main.py:114 ../src/DataViews/NoteView.py:93
 #: ../src/plugins/textreport/IndivComplete.py:159
-#: ../src/plugins/textreport/MarkerReport.py:364
+#: ../src/plugins/textreport/MarkerReport.py:365
 #: ../src/plugins/webreport/NarrativeWeb.py:2225
 msgid "Notes"
 msgstr "Anteckningar"
@@ -1777,28 +1773,28 @@ msgid "%(title)s..."
 msgstr "%(title)s..."
 
 #: ../src/PageView.py:451 ../src/DataViews/GeoView.py:532
-#: ../src/DataViews/GrampletView.py:1373
+#: ../src/DataViews/GrampletView.py:1382
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1374
+#: ../src/PageView.py:452 ../src/DataViews/GrampletView.py:1383
 msgid "Go to the next person in the history"
 msgstr "Gå till nästa person i historiken"
 
 #: ../src/PageView.py:459 ../src/DataViews/GeoView.py:524
-#: ../src/DataViews/GrampletView.py:1381
+#: ../src/DataViews/GrampletView.py:1390
 msgid "_Back"
 msgstr "_Bakåt"
 
-#: ../src/PageView.py:460 ../src/DataViews/GrampletView.py:1382
+#: ../src/PageView.py:460 ../src/DataViews/GrampletView.py:1391
 msgid "Go to the previous person in the history"
 msgstr "Gå till föregående person i historiken"
 
-#: ../src/PageView.py:464 ../src/DataViews/GrampletView.py:1385
+#: ../src/PageView.py:464 ../src/DataViews/GrampletView.py:1394
 msgid "_Home"
 msgstr "_Hem"
 
-#: ../src/PageView.py:466 ../src/DataViews/GrampletView.py:1387
+#: ../src/PageView.py:466 ../src/DataViews/GrampletView.py:1396
 msgid "Go to the default person"
 msgstr "Gå till standardpersonen"
 
@@ -1806,7 +1802,7 @@ msgstr "Gå till standardpersonen"
 msgid "Person Filter Editor"
 msgstr "Redigera personfilter"
 
-#: ../src/PageView.py:472 ../src/DataViews/GrampletView.py:1390
+#: ../src/PageView.py:472 ../src/DataViews/GrampletView.py:1399
 msgid "Set _Home Person"
 msgstr "Välj _hemperson"
 
@@ -2067,7 +2063,7 @@ msgstr "ex-partner"
 #: ../src/plugins/textreport/IndivComplete.py:216
 #: ../src/plugins/textreport/IndivComplete.py:218
 #: ../src/plugins/textreport/IndivComplete.py:474
-#: ../src/plugins/textreport/MarkerReport.py:205
+#: ../src/plugins/textreport/MarkerReport.py:206
 #: ../src/plugins/webreport/NarrativeWeb.py:2407
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
@@ -2084,7 +2080,7 @@ msgstr "Far"
 #: ../src/plugins/textreport/IndivComplete.py:225
 #: ../src/plugins/textreport/IndivComplete.py:227
 #: ../src/plugins/textreport/IndivComplete.py:479
-#: ../src/plugins/textreport/MarkerReport.py:211
+#: ../src/plugins/textreport/MarkerReport.py:212
 #: ../src/plugins/webreport/NarrativeWeb.py:2412
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
@@ -2099,7 +2095,7 @@ msgid "Spouse"
 msgstr "Maka/make"
 
 #: ../src/Reorder.py:32 ../src/DataViews/FamilyList.py:65
-#: ../src/plugins/textreport/MarkerReport.py:217
+#: ../src/plugins/textreport/MarkerReport.py:218
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Relation"
@@ -2159,7 +2155,7 @@ msgstr "Familjehändelse"
 #: ../src/plugins/quickview/OnThisDay.py:79
 #: ../src/plugins/quickview/References.py:68
 #: ../src/plugins/quickview/siblings.py:46
-#: ../src/plugins/textreport/MarkerReport.py:381
+#: ../src/plugins/textreport/MarkerReport.py:382
 #: ../src/plugins/tool/PatchNames.py:229 ../src/plugins/tool/SortEvents.py:57
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
@@ -2175,7 +2171,7 @@ msgstr "Orsak"
 #: ../src/ScratchPad.py:369 ../src/ScratchPad.py:403
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:62
-#: ../src/plugins/textreport/MarkerReport.py:307
+#: ../src/plugins/textreport/MarkerReport.py:308
 #: ../src/plugins/textreport/PlaceReport.py:150
 #: ../src/plugins/tool/SortEvents.py:59
 #: ../src/plugins/webreport/NarrativeWeb.py:2225 ../src/gen/lib/attrtype.py:65
@@ -2294,13 +2290,11 @@ msgstr "Personlänk"
 
 #: ../src/ScratchPad.py:743 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:559
-#: ../src/plugins/gramplet/DataEntryGramplet.py:57
-#: ../src/plugins/gramplet/DataEntryGramplet.py:84
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/textreport/FamilyGroup.py:436
 #: ../src/plugins/textreport/FamilyGroup.py:438
-#: ../src/plugins/textreport/MarkerReport.py:124
+#: ../src/plugins/textreport/MarkerReport.py:125
 #: ../src/plugins/webreport/NarrativeWeb.py:789
 #: ../src/plugins/webreport/NarrativeWeb.py:939
 #: ../src/gen/lib/childreftype.py:59 ../src/gen/lib/eventtype.py:98
@@ -2718,8 +2712,6 @@ msgstr "Barn"
 
 #: ../src/Utils.py:81 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:237
-#: ../src/plugins/gramplet/DataEntryGramplet.py:56
-#: ../src/plugins/gramplet/DataEntryGramplet.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:1837
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
@@ -2727,8 +2719,6 @@ msgstr "man"
 
 #: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:236
-#: ../src/plugins/gramplet/DataEntryGramplet.py:56
-#: ../src/plugins/gramplet/DataEntryGramplet.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:1838
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
@@ -2745,8 +2735,6 @@ msgstr "kvinna"
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:238
 #: ../src/Mime/_GnomeMime.py:67 ../src/Mime/_GnomeMime.py:74
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
-#: ../src/plugins/gramplet/DataEntryGramplet.py:56
-#: ../src/plugins/gramplet/DataEntryGramplet.py:83
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
 #: ../src/plugins/gramplet/SessionLogGramplet.py:73
 #: ../src/plugins/textreport/DetAncestralReport.py:500
@@ -2798,8 +2786,7 @@ msgstr "Ett registrerat eller samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:100
 msgid "No legal or common-law relationship between man and woman"
-msgstr ""
-"Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
+msgstr "Inget äktenskap eller registrerat samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:102
 msgid "An established relationship between members of the same sex"
@@ -2901,7 +2888,7 @@ msgstr "Slutligt godkännande av radering"
 msgid "Are you sure you want to clear the Undo history?"
 msgstr "Är du säker på att du vill rensa redigeringshistoriken?"
 
-#: ../src/UndoHistory.py:178 ../src/plugins/gramplet/DataEntryGramplet.py:99
+#: ../src/UndoHistory.py:178
 msgid "Clear"
 msgstr "Rensa"
 
@@ -3288,8 +3275,6 @@ msgstr ""
 #: ../src/Selectors/_SelectPerson.py:106
 #: ../src/plugins/drawreport/StatisticsChart.py:93
 #: ../src/plugins/export/ExportCsv.py:339
-#: ../src/plugins/gramplet/DataEntryGramplet.py:56
-#: ../src/plugins/gramplet/DataEntryGramplet.py:83
 #: ../src/plugins/import/ImportCsv.py:167
 #: ../src/plugins/quickview/siblings.py:46
 #: ../src/plugins/textreport/IndivComplete.py:437
@@ -3301,11 +3286,9 @@ msgstr "Kön"
 
 #: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:570
 #: ../src/DataViews/RelationView.py:595
-#: ../src/plugins/gramplet/DataEntryGramplet.py:58
-#: ../src/plugins/gramplet/DataEntryGramplet.py:85
 #: ../src/plugins/textreport/FamilyGroup.py:442
 #: ../src/plugins/textreport/FamilyGroup.py:444
-#: ../src/plugins/textreport/MarkerReport.py:130
+#: ../src/plugins/textreport/MarkerReport.py:131
 #: ../src/plugins/webreport/NarrativeWeb.py:792
 #: ../src/plugins/webreport/NarrativeWeb.py:941 ../src/gen/lib/eventtype.py:99
 msgid "Death"
@@ -3422,7 +3405,7 @@ msgstr "Radera den valda familjen"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/graph/GVFamilyLines.py:157
 #: ../src/plugins/graph/GVRelGraph.py:516
-#: ../src/plugins/textreport/MarkerReport.py:188
+#: ../src/plugins/textreport/MarkerReport.py:189
 #: ../src/plugins/webreport/NarrativeWeb.py:2562
 msgid "Families"
 msgstr "Familjer"
@@ -3565,8 +3548,7 @@ msgstr ""
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
-msgstr ""
-"Det finns %d markörer att visa. De är uppdelade på %d sidor om %d markörer : "
+msgstr "Det finns %d markörer att visa. De är uppdelade på %d sidor om %d markörer : "
 
 #: ../src/DataViews/GeoView.py:958
 msgid "All"
@@ -3642,8 +3624,7 @@ msgstr "Id : Barn : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
-msgstr ""
-"Den aktiva personens familjemedlemmar har inga platser med koordinater."
+msgstr "Den aktiva personens familjemedlemmar har inga platser med koordinater."
 
 #: ../src/DataViews/GeoView.py:1672 ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
@@ -3651,10 +3632,8 @@ msgstr "Ingen aktiv person bestämd."
 
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
-msgid ""
-"All %(name)s people's family places in the family tree with coordinates."
-msgstr ""
-"Samtliga %(name)s personers familjers platser i släktträd med koordinater."
+msgid "All %(name)s people's family places in the family tree with coordinates."
+msgstr "Samtliga %(name)s personers familjers platser i släktträd med koordinater."
 
 #: ../src/DataViews/GeoView.py:1720
 #, python-format
@@ -3706,44 +3685,44 @@ msgstr "Välj kolumner för mediaobjekt"
 msgid "Double click image to view in an external viewer"
 msgstr "Dubbelklicka på bilden för att visa den i ett visningsprogram"
 
-#: ../src/DataViews/GrampletView.py:81 ../src/DataViews/GrampletView.py:1226
+#: ../src/DataViews/GrampletView.py:81 ../src/DataViews/GrampletView.py:1235
 msgid "Unnamed Gramplet"
 msgstr "Tillbehörsfönster utan namn"
 
-#: ../src/DataViews/GrampletView.py:166
+#: ../src/DataViews/GrampletView.py:175
 msgid "Drag Properties Button to move and click it for setup"
 msgstr "Drag egenskapsknappen för att flytta och klicka den för inställning"
 
-#: ../src/DataViews/GrampletView.py:203
+#: ../src/DataViews/GrampletView.py:212
 msgid "Gramplet"
 msgstr "Mini-Gramps"
 
-#: ../src/DataViews/GrampletView.py:356 ../src/DataViews/GrampletView.py:555
+#: ../src/DataViews/GrampletView.py:365 ../src/DataViews/GrampletView.py:564
 #, python-format
 msgid "Gramplet %s is running"
 msgstr "Gramplet %s körs"
 
-#: ../src/DataViews/GrampletView.py:1094
+#: ../src/DataViews/GrampletView.py:1103
 msgid "Right click to add gramplets"
 msgstr "Högerklicka för att få fler tillbehörsfönster"
 
-#: ../src/DataViews/GrampletView.py:1357
+#: ../src/DataViews/GrampletView.py:1366
 msgid "_Add a gramplet"
 msgstr "_Lägg till tillbehörsfönster"
 
-#: ../src/DataViews/GrampletView.py:1358
+#: ../src/DataViews/GrampletView.py:1367
 msgid "_Undelete gramplet"
 msgstr "_Återta ett tillbehörsfönster"
 
-#: ../src/DataViews/GrampletView.py:1359
+#: ../src/DataViews/GrampletView.py:1368
 msgid "Set Columns to _1"
 msgstr "Antal kolumner = _1"
 
-#: ../src/DataViews/GrampletView.py:1362
+#: ../src/DataViews/GrampletView.py:1371
 msgid "Set Columns to _2"
 msgstr "Antal kolumner = _2"
 
-#: ../src/DataViews/GrampletView.py:1365
+#: ../src/DataViews/GrampletView.py:1374
 msgid "Set Columns to _3"
 msgstr "Antal kolumner = _3"
 
@@ -3753,7 +3732,7 @@ msgid "Preview"
 msgstr "Förhandsgranskning"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:70
-#: ../src/plugins/textreport/MarkerReport.py:438
+#: ../src/plugins/textreport/MarkerReport.py:439
 #: ../src/plugins/tool/NotRelated.py:119
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
@@ -3951,7 +3930,7 @@ msgid "Last Change"
 msgstr "Senaste ändring"
 
 #: ../src/DataViews/PersonView.py:87
-#: ../src/plugins/textreport/MarkerReport.py:101
+#: ../src/plugins/textreport/MarkerReport.py:102
 msgid "People"
 msgstr "Personer"
 
@@ -4120,11 +4099,11 @@ msgstr ""
 msgid "Place Filter Editor"
 msgstr "Redigera platsfilter"
 
-#: ../src/DataViews/PlaceView.py:229
+#: ../src/DataViews/PlaceView.py:230
 msgid "No place selected."
 msgstr "Ingen plats vald."
 
-#: ../src/DataViews/PlaceView.py:230
+#: ../src/DataViews/PlaceView.py:231
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
@@ -4132,15 +4111,15 @@ msgstr ""
 "Du måste välja en plats för att kunna se den på kartan. Några karttjänster "
 "kan möjligen stödja visning av flera platser."
 
-#: ../src/DataViews/PlaceView.py:250
+#: ../src/DataViews/PlaceView.py:251
 msgid "Select Place Columns"
 msgstr "Välj kolumner för platser"
 
-#: ../src/DataViews/PlaceView.py:351
+#: ../src/DataViews/PlaceView.py:352
 msgid "Cannot merge places."
 msgstr "Kan inte slå samman platser."
 
-#: ../src/DataViews/PlaceView.py:352
+#: ../src/DataViews/PlaceView.py:353
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -4185,7 +4164,6 @@ msgid "Add Partner..."
 msgstr "Lägg till partner..."
 
 #: ../src/DataViews/RelationView.py:337 ../src/DisplayTabs/_ButtonTab.py:67
-#: ../src/plugins/gramplet/DataEntryGramplet.py:93
 #: ../src/plugins/tool/CalculateEstimatedDates.py:87
 msgid "Add"
 msgstr "Lägg till"
@@ -4874,8 +4852,7 @@ msgstr "Kan inte visa %s"
 msgid ""
 "GRAMPS is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr ""
-"GRAMPS kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
+msgstr "GRAMPS kan inte visa bildfilen. Detta kan ha orsakats av en trasig fil."
 
 #: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -4926,7 +4903,7 @@ msgid "No note given, click button to select one"
 msgstr "Ingen anteckning angiven, klicka på knappen för att välja en"
 
 #: ../src/Editors/ObjectEntries.py:352 ../src/Editors/_EditNote.py:264
-#: ../src/Editors/_EditNote.py:310 ../src/plugins/gramplet/NoteGramplet.py:257
+#: ../src/Editors/_EditNote.py:310
 msgid "Edit Note"
 msgstr "Redigera anteckning"
 
@@ -4989,8 +4966,7 @@ msgstr "Kan inte spara händelse"
 
 #: ../src/Editors/_EditEvent.py:200
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr ""
-"Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
+msgstr "Inga uppgifter finns för denna händelse. Ange sådana eller avbryt redigering."
 
 #: ../src/Editors/_EditEvent.py:209
 msgid "Cannot save event. ID already exists."
@@ -5272,8 +5248,7 @@ msgid "Cannot save media object"
 msgstr "Kan inte spara mediaobjekt"
 
 #: ../src/Editors/_EditMedia.py:238
-msgid ""
-"No data exists for this media object. Please enter data or cancel the edit."
+msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för detta mediaobjekt. Ange sådana eller avbryt "
 "redigeringen."
@@ -5392,7 +5367,7 @@ msgstr ""
 msgid "Cannot save note. ID already exists."
 msgstr "Kan ej spara anteckning. ID finns redan."
 
-#: ../src/Editors/_EditNote.py:305 ../src/plugins/gramplet/NoteGramplet.py:252
+#: ../src/Editors/_EditNote.py:305
 msgid "Add Note"
 msgstr "Lägg till anteckning"
 
@@ -5599,8 +5574,7 @@ msgid "Cannot save repository"
 msgstr "Kan inte spara arkivplats"
 
 #: ../src/Editors/_EditRepository.py:144
-msgid ""
-"No data exists for this repository. Please enter data or cancel the edit."
+msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
 "Inga uppgifter finns för den här arkivplatsen. Ange sådana eller avbryt "
 "redigeringen."
@@ -5819,8 +5793,7 @@ msgstr ""
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
-msgstr ""
-"Om du ser att det finns någon personlig information i felet, så ta bort den."
+msgstr "Om du ser att det finns någon personlig information i felet, så ta bort den."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 msgid "Error Details"
@@ -6133,7 +6106,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/textreport/FamilyGroup.py:775
 #: ../src/plugins/textreport/IndivComplete.py:646
 #: ../src/plugins/textreport/KinshipReport.py:409
-#: ../src/plugins/textreport/MarkerReport.py:528
+#: ../src/plugins/textreport/MarkerReport.py:529
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:211
 #: ../src/plugins/textreport/PlaceReport.py:403
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
@@ -6150,7 +6123,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
 #: ../src/plugins/tool/SoundGen.py:156 ../src/plugins/tool/Verify.py:1584
 #: ../src/plugins/webreport/NarrativeWeb.py:3622
-#: ../src/plugins/webreport/WebCal.py:1588
+#: ../src/plugins/webreport/WebCal.py:1619
 msgid "Stable"
 msgstr "Stabil"
 
@@ -6226,8 +6199,7 @@ msgstr "Mediamappen %s är inte skrivbar"
 #. it, have him remove it!
 #: ../src/plugins/import/ImportGpkg.py:82
 #, python-format
-msgid ""
-"Media directory %s exists. Delete it first, then restart the import process"
+msgid "Media directory %s exists. Delete it first, then restart the import process"
 msgstr "Mediamappen %s finns. Radera den först och starta sedan om importen."
 
 #: ../src/plugins/import/ImportGpkg.py:91
@@ -6308,8 +6280,7 @@ msgstr "Fel vid läsning av %s"
 
 #: ../src/plugins/import/ImportXml.py:133
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr ""
-"Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-databas."
+msgstr "Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-databas."
 
 #: ../src/plugins/import/ImportXml.py:237
 #, python-format
@@ -6553,12 +6524,12 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/FamilyGroup.py:586
 #: ../src/plugins/textreport/IndivComplete.py:513
 #: ../src/plugins/textreport/KinshipReport.py:336
-#: ../src/plugins/textreport/MarkerReport.py:436
+#: ../src/plugins/textreport/MarkerReport.py:437
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
 #: ../src/plugins/textreport/PlaceReport.py:250
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3289
-#: ../src/plugins/webreport/WebCal.py:1119
+#: ../src/plugins/webreport/WebCal.py:1126
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Rapportalternativ"
@@ -6574,7 +6545,7 @@ msgstr "Rapportalternativ"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:65
 #: ../src/plugins/tool/SortEvents.py:169
 #: ../src/plugins/webreport/NarrativeWeb.py:3310
-#: ../src/plugins/webreport/WebCal.py:1131
+#: ../src/plugins/webreport/WebCal.py:1138
 #: ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr "Filter"
@@ -6593,7 +6564,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:3316
-#: ../src/plugins/webreport/WebCal.py:1137
+#: ../src/plugins/webreport/WebCal.py:1144
 msgid "Filter Person"
 msgstr "Filtrera person"
 
@@ -6605,7 +6576,7 @@ msgstr "Filtrera person"
 #: ../src/plugins/tool/CalculateEstimatedDates.py:71
 #: ../src/plugins/tool/SortEvents.py:175
 #: ../src/plugins/webreport/NarrativeWeb.py:3317
-#: ../src/plugins/webreport/WebCal.py:1138
+#: ../src/plugins/webreport/WebCal.py:1145
 msgid "The center person for the filter"
 msgstr "Huvudpersonen för filtret"
 
@@ -6623,8 +6594,7 @@ msgstr "Byt ut förnamn mot tilltalsnamn"
 
 #: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
-msgstr ""
-"Stryk under tilltalsnamn bland förnamn / lägg till tilltalsnamn till förnamn"
+msgstr "Stryk under tilltalsnamn bland förnamn / lägg till tilltalsnamn till förnamn"
 
 #: ../src/plugins/Records.py:470
 msgid "Person Records"
@@ -6645,7 +6615,7 @@ msgstr "Familjeposter"
 #: ../src/plugins/textreport/FamilyGroup.py:679
 #: ../src/plugins/textreport/IndivComplete.py:599
 #: ../src/plugins/textreport/KinshipReport.py:391
-#: ../src/plugins/textreport/MarkerReport.py:486
+#: ../src/plugins/textreport/MarkerReport.py:487
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 msgid "The basic style used for the text display."
@@ -6929,13 +6899,13 @@ msgstr "Formaterar månader..."
 #: ../src/plugins/drawreport/Calendar.py:244
 #: ../src/plugins/textreport/BirthdayReport.py:191
 #: ../src/plugins/webreport/NarrativeWeb.py:2949
-#: ../src/plugins/webreport/WebCal.py:1004
+#: ../src/plugins/webreport/WebCal.py:1011
 msgid "Applying Filter..."
 msgstr "Tillämpar filter..."
 
 #: ../src/plugins/drawreport/Calendar.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:196
-#: ../src/plugins/webreport/WebCal.py:1007
+#: ../src/plugins/webreport/WebCal.py:1014
 msgid "Reading database..."
 msgstr "Läser databas..."
 
@@ -6988,7 +6958,7 @@ msgstr "Kalenderår"
 
 #: ../src/plugins/drawreport/Calendar.py:384
 #: ../src/plugins/textreport/BirthdayReport.py:338
-#: ../src/plugins/webreport/WebCal.py:1133
+#: ../src/plugins/webreport/WebCal.py:1140
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Välj ett filter, som begränsar vilka personer, som tas med på kalender"
 
@@ -7012,7 +6982,7 @@ msgstr "Välj format vid namnvisning"
 
 #: ../src/plugins/drawreport/Calendar.py:403
 #: ../src/plugins/textreport/BirthdayReport.py:357
-#: ../src/plugins/webreport/WebCal.py:1212
+#: ../src/plugins/webreport/WebCal.py:1219
 msgid "Country for holidays"
 msgstr "Land för helgdagar"
 
@@ -7024,79 +6994,79 @@ msgstr "Välj landet för att få med dess helgdagar"
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:412
 #: ../src/plugins/textreport/BirthdayReport.py:366
-#: ../src/plugins/webreport/WebCal.py:1230
+#: ../src/plugins/webreport/WebCal.py:1237
 msgid "First day of week"
 msgstr "Veckans första dag"
 
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/textreport/BirthdayReport.py:370
-#: ../src/plugins/webreport/WebCal.py:1233
+#: ../src/plugins/webreport/WebCal.py:1240
 msgid "Select the first day of the week for the calendar"
 msgstr "Välj veckans första dag för kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:419
 #: ../src/plugins/textreport/BirthdayReport.py:373
-#: ../src/plugins/webreport/WebCal.py:1220
+#: ../src/plugins/webreport/WebCal.py:1227
 msgid "Birthday surname"
 msgstr "Namn vid födseln"
 
 #: ../src/plugins/drawreport/Calendar.py:420
 #: ../src/plugins/textreport/BirthdayReport.py:374
-#: ../src/plugins/webreport/WebCal.py:1221
+#: ../src/plugins/webreport/WebCal.py:1228
 msgid "Wives use husband's surname (from first family listed)"
 msgstr "Hustrur använder sina makars efternamn (från första uppräknade familj)"
 
 #: ../src/plugins/drawreport/Calendar.py:421
 #: ../src/plugins/textreport/BirthdayReport.py:375
-#: ../src/plugins/webreport/WebCal.py:1223
+#: ../src/plugins/webreport/WebCal.py:1230
 msgid "Wives use husband's surname (from last family listed)"
 msgstr "Hustrur använder sina makars efternamn (från sista uppräknade familj)"
 
 #: ../src/plugins/drawreport/Calendar.py:422
 #: ../src/plugins/textreport/BirthdayReport.py:376
-#: ../src/plugins/webreport/WebCal.py:1225
+#: ../src/plugins/webreport/WebCal.py:1232
 msgid "Wives use their own surname"
 msgstr "Hustrur använder sina egna efternamn"
 
 #: ../src/plugins/drawreport/Calendar.py:423
 #: ../src/plugins/textreport/BirthdayReport.py:377
-#: ../src/plugins/webreport/WebCal.py:1226
+#: ../src/plugins/webreport/WebCal.py:1233
 msgid "Select married women's displayed surname"
 msgstr "Välj gifta kvinnors visade efternamn"
 
 #: ../src/plugins/drawreport/Calendar.py:426
 #: ../src/plugins/textreport/BirthdayReport.py:380
-#: ../src/plugins/webreport/WebCal.py:1241
+#: ../src/plugins/webreport/WebCal.py:1248
 msgid "Include only living people"
 msgstr "Ta bara med nu levande personer"
 
 #: ../src/plugins/drawreport/Calendar.py:427
 #: ../src/plugins/textreport/BirthdayReport.py:381
-#: ../src/plugins/webreport/WebCal.py:1242
+#: ../src/plugins/webreport/WebCal.py:1249
 msgid "Include only living people in the calendar"
 msgstr "Ta bara med nu levande personer i kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:430
 #: ../src/plugins/textreport/BirthdayReport.py:384
-#: ../src/plugins/webreport/WebCal.py:1245
+#: ../src/plugins/webreport/WebCal.py:1252
 msgid "Include birthdays"
 msgstr "Ta med födelsedagar"
 
 #: ../src/plugins/drawreport/Calendar.py:431
 #: ../src/plugins/textreport/BirthdayReport.py:385
-#: ../src/plugins/webreport/WebCal.py:1246
+#: ../src/plugins/webreport/WebCal.py:1253
 msgid "Include birthdays in the calendar"
 msgstr "Ta med födelsedagar i kalendern"
 
 #: ../src/plugins/drawreport/Calendar.py:434
 #: ../src/plugins/textreport/BirthdayReport.py:388
-#: ../src/plugins/webreport/WebCal.py:1249
+#: ../src/plugins/webreport/WebCal.py:1256
 msgid "Include anniversaries"
 msgstr "Ta med årsdagar"
 
 #: ../src/plugins/drawreport/Calendar.py:435
 #: ../src/plugins/textreport/BirthdayReport.py:389
-#: ../src/plugins/webreport/WebCal.py:1250
+#: ../src/plugins/webreport/WebCal.py:1257
 msgid "Include anniversaries in the calendar"
 msgstr "Ta med årsdagar i kalendern"
 
@@ -7528,8 +7498,7 @@ msgid "Max. items for a pie"
 msgstr "Max antal objekt för en cirkel"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:732
-msgid ""
-"With fewer items pie chart and legend will be used instead of a bar chart."
+msgid "With fewer items pie chart and legend will be used instead of a bar chart."
 msgstr ""
 "Med färre poster kommer cirkeldiagram med teckenförklaring att användas i "
 "stället för stapeldiagram."
@@ -7560,7 +7529,7 @@ msgstr "Stil som används för objekt och värden."
 #: ../src/plugins/textreport/FamilyGroup.py:670
 #: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/KinshipReport.py:374
-#: ../src/plugins/textreport/MarkerReport.py:466
+#: ../src/plugins/textreport/MarkerReport.py:467
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:186
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:266
@@ -7844,8 +7813,7 @@ msgstr "_GeneWeb"
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
-msgstr ""
-"GRAMPS-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
+msgstr "GRAMPS-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
 
 #: ../src/plugins/export/ExportPkg.py:237
 msgid "GRAMPS package export options"
@@ -8037,144 +8005,6 @@ msgstr "Dubbelklicka på en dag för detaljer"
 msgid "Calendar Gramplet"
 msgstr "Kalenderfönster"
 
-#: ../src/plugins/gramplet/DataEntryGramplet.py:52
-#: ../src/plugins/gramplet/NoteGramplet.py:59
-msgid "Active person"
-msgstr "Aktiv person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:53
-#: ../src/glade/gramps.glade.h:72
-msgid "Family:"
-msgstr "Familj:"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:55
-#: ../src/plugins/gramplet/DataEntryGramplet.py:82
-msgid "Surname, Given"
-msgstr "Efternamn, förnamn"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:66
-#: ../src/plugins/gramplet/NoteGramplet.py:105
-msgid "Save"
-msgstr "Spara"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:69
-#: ../src/plugins/gramplet/NoteGramplet.py:108
-msgid "Abandon"
-msgstr "Överge"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:74
-msgid "New person"
-msgstr "Ny person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:75
-msgid "Add relation"
-msgstr "Lägg till släktskap"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:76
-msgid "No relation to active person"
-msgstr "Inget släktskap till aktiv person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:77
-msgid "Add as a Parent"
-msgstr "Lägg till som en förälder"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:78
-msgid "Add as a Spouse"
-msgstr "Lägg till som en maka/make"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:79
-msgid "Add as a Sibling"
-msgstr "Lägg till som ett syskon"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:80
-msgid "Add as a Child"
-msgstr "Lägg till som ett barn"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:96
-msgid "Copy Active Data"
-msgstr "Kopiera aktiva uppgifter"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:142
-#: ../src/plugins/gramplet/DataEntryGramplet.py:156
-#: ../src/plugins/gramplet/DataEntryGramplet.py:263
-msgid "in"
-msgstr "i"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:384
-#, python-format
-msgid "Gramplet Data Edit: %s"
-msgstr "Fönster för dataredigering: %s"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:404
-msgid "Please provide a name."
-msgstr "Lämna ett namn"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:404
-msgid "Can't add new person."
-msgstr "Kan inte lägga till ny person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:412
-#: ../src/plugins/gramplet/DataEntryGramplet.py:420
-#: ../src/plugins/gramplet/DataEntryGramplet.py:429
-#: ../src/plugins/gramplet/DataEntryGramplet.py:434
-msgid "Please set an active person."
-msgstr "Bestäm en aktiv person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:412
-#: ../src/plugins/gramplet/DataEntryGramplet.py:415
-msgid "Can't add new person as a parent."
-msgstr "Kan inte lägga till en person som en förälder"
-
-#. unknown
-#. both genders unknown
-#: ../src/plugins/gramplet/DataEntryGramplet.py:415
-#: ../src/plugins/gramplet/DataEntryGramplet.py:424
-msgid "Please set the new person's gender."
-msgstr "Bestäm den nya personens kön"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:420
-#: ../src/plugins/gramplet/DataEntryGramplet.py:424
-#: ../src/plugins/gramplet/DataEntryGramplet.py:556
-#: ../src/plugins/gramplet/DataEntryGramplet.py:593
-#: ../src/plugins/gramplet/DataEntryGramplet.py:626
-msgid "Can't add new person as a spouse."
-msgstr "Kan ej lägga till en ny person som en maka/make"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:429
-msgid "Can't add new person as a sibling."
-msgstr "Kan inte lägga till en ny person som ett syskon"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:434
-#: ../src/plugins/gramplet/DataEntryGramplet.py:672
-msgid "Can't add new person as a child."
-msgstr "Kan inte lägga till en ny person som ett barn"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:555
-msgid "Please set gender on Active or new person."
-msgstr "Bestäm kön för aktiv person eller ny person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:592
-#: ../src/plugins/gramplet/DataEntryGramplet.py:625
-msgid "Same genders on Active and new person."
-msgstr "Samma kön på aktiv och ny person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:671
-msgid "Please set gender on Active person."
-msgstr "Bestäm kön för aktiv person"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:693
-#, python-format
-msgid "Gramplet Data Entry: %s"
-msgstr "Datainmatning: %s"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:742
-msgid "Data Entry Gramplet"
-msgstr "Fönster för datainmatning"
-
-#: ../src/plugins/gramplet/DataEntryGramplet.py:746
-msgid "Data Entry"
-msgstr "Datainmatning"
-
 #: ../src/plugins/gramplet/DescendGramplet.py:47
 #: ../src/plugins/gramplet/PedigreeGramplet.py:50
 msgid "Move mouse over links for options"
@@ -8246,14 +8076,6 @@ msgstr ""
 msgid "Fan Chart Gramplet"
 msgstr "Cirkelantavla"
 
-#: ../src/plugins/gramplet/FaqGramplet.py:44
-msgid "FAQ Gramplet"
-msgstr "FAQ Mini-Gramps"
-
-#: ../src/plugins/gramplet/FaqGramplet.py:47
-msgid "FAQ"
-msgstr "FAQ"
-
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
 msgid "Double-click given name for details"
 msgstr "Dubbelklicka på förnamn för detaljer"
@@ -8279,36 +8101,6 @@ msgstr "Förnamnsstatistik"
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
 msgid "Given Name Cloud"
 msgstr "Förnamn"
-
-#: ../src/plugins/gramplet/HeadlineNewsGramplet.py:56
-msgid "Read headline news from the GRAMPS wiki"
-msgstr "Läs nyheter från GRAMPS wiki"
-
-#: ../src/plugins/gramplet/HeadlineNewsGramplet.py:127
-#: ../src/plugins/gramplet/PythonGramplet.py:63
-msgid "Error"
-msgstr "Fel"
-
-#: ../src/plugins/gramplet/HeadlineNewsGramplet.py:140
-msgid "Reading"
-msgstr "Läser"
-
-#: ../src/plugins/gramplet/HeadlineNewsGramplet.py:193
-msgid "Headline News Gramplet"
-msgstr "Nyheter"
-
-#: ../src/plugins/gramplet/HeadlineNewsGramplet.py:197
-msgid "Headline News"
-msgstr "Nyhetsrubriker"
-
-#: ../src/plugins/gramplet/NoteGramplet.py:167
-#: ../src/plugins/gramplet/NoteGramplet.py:248 ../src/gen/lib/notetype.py:87
-msgid "Person Note"
-msgstr "Personanteckning"
-
-#: ../src/plugins/gramplet/NoteGramplet.py:268
-msgid "Note Gramplet"
-msgstr "Anteckningar"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:58
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
@@ -8402,22 +8194,6 @@ msgstr[1] " består av %d individer\n"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:281
 msgid "Pedigree Gramplet"
 msgstr "Fönster med antavla"
-
-#: ../src/plugins/gramplet/PythonGramplet.py:47
-msgid "Enter Python expressions"
-msgstr "Skriv in ett Python-uttryck"
-
-#: ../src/plugins/gramplet/PythonGramplet.py:53
-msgid "class name|Date"
-msgstr "Datum"
-
-#: ../src/plugins/gramplet/PythonGramplet.py:152
-msgid "Python Gramplet"
-msgstr "Pythonfönster"
-
-#: ../src/plugins/gramplet/PythonGramplet.py:155
-msgid "Python Shell"
-msgstr "Pythonskal"
 
 #. Add types:
 #: ../src/plugins/gramplet/QuickViewGramplet.py:51
@@ -8881,8 +8657,7 @@ msgstr "Följ föräldrar för att bestämma släktlinjer"
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr ""
-"Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
+msgstr "Föräldrar och deras förfäder tas med vid bestämning av \"släktlinjer\"."
 
 #: ../src/plugins/graph/GVFamilyLines.py:118
 msgid "Follow children to determine \"family lines\""
@@ -9083,10 +8858,8 @@ msgid "Include private records"
 msgstr "Ta med privata poster"
 
 #: ../src/plugins/graph/GVFamilyLines.py:253
-msgid ""
-"Whether to include names, dates, and families that are marked as private."
-msgstr ""
-"Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
+msgid "Whether to include names, dates, and families that are marked as private."
+msgstr "Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
 
 #: ../src/plugins/graph/GVFamilyLines.py:404
 msgid "Generating Family Lines"
@@ -9262,8 +9035,7 @@ msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
 #: ../src/plugins/graph/GVRelGraph.py:535
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr ""
-"Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
+msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
 #: ../src/plugins/graph/GVRelGraph.py:539
 msgid "Show family nodes"
@@ -9271,8 +9043,7 @@ msgstr "Visa familjenoder"
 
 #: ../src/plugins/graph/GVRelGraph.py:540
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr ""
-"Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
+msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
 #: ../src/plugins/graph/GVRelGraph.py:595
 msgid "Relationship Graph"
@@ -9585,6 +9356,10 @@ msgstr "Tillhandahåller information om helgdagar för olika länder."
 #: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
 msgstr "Tillhandahåller grunfunktioner för karttjänster."
+
+#: ../src/plugins/lib/libgrampsxml.py:50
+msgid "Provides common functionality for Gramps XML import/export."
+msgstr "Tillhandahåller gemensamma funktioner för Gramps XML import/export."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:44
@@ -10220,10 +9995,8 @@ msgstr "Personer med efternamnet %s"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
-"Det finns %d människa med ett passande namn eller alternativt namn.\n"
-msgstr[1] ""
-"Det finns %d människor med ett passande namn eller alternativt namn.\n"
+msgstr[0] "Det finns %d människa med ett passande namn eller alternativt namn.\n"
+msgstr[1] "Det finns %d människor med ett passande namn eller alternativt namn.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
@@ -10743,8 +10516,7 @@ msgstr "Använd 'Record-style' (modifierat register) numrering"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:714
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr ""
-"Huruvida använda 'Record-style' numrering is stället för Henry-numrering."
+msgstr "Huruvida använda 'Record-style' numrering is stället för Henry-numrering."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:782
 #: ../src/plugins/textreport/KinshipReport.py:350
@@ -10780,7 +10552,7 @@ msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:264
-#: ../src/plugins/textreport/MarkerReport.py:476
+#: ../src/plugins/textreport/MarkerReport.py:477
 msgid "The style used for the section headers."
 msgstr "Stil som används för sektionsrubriken."
 
@@ -11067,31 +10839,31 @@ msgstr "Lista med släktingar"
 msgid "Produces a textual report of kinship for a given person"
 msgstr "Skapar en lista med släktingar till en given person."
 
-#: ../src/plugins/textreport/MarkerReport.py:80
+#: ../src/plugins/textreport/MarkerReport.py:81
 #, python-format
 msgid "Marker Report for %s Items"
 msgstr "Markeringsrapport: %s poster"
 
-#: ../src/plugins/textreport/MarkerReport.py:112
-#: ../src/plugins/textreport/MarkerReport.py:199
-#: ../src/plugins/textreport/MarkerReport.py:289
-#: ../src/plugins/textreport/MarkerReport.py:375
+#: ../src/plugins/textreport/MarkerReport.py:113
+#: ../src/plugins/textreport/MarkerReport.py:200
+#: ../src/plugins/textreport/MarkerReport.py:290
+#: ../src/plugins/textreport/MarkerReport.py:376
 msgid "Id"
 msgstr "Id"
 
-#: ../src/plugins/textreport/MarkerReport.py:449
+#: ../src/plugins/textreport/MarkerReport.py:450
 msgid "The marker to use for the report"
 msgstr "Den markering, som skall användas för rapporten"
 
-#: ../src/plugins/textreport/MarkerReport.py:497
+#: ../src/plugins/textreport/MarkerReport.py:498
 msgid "The basic style used for table headings."
 msgstr "Grundläggande stil som används för tabellrubriker."
 
-#: ../src/plugins/textreport/MarkerReport.py:527
+#: ../src/plugins/textreport/MarkerReport.py:528
 msgid "Marker Report"
 msgstr "Markeringsrapport"
 
-#: ../src/plugins/textreport/MarkerReport.py:529
+#: ../src/plugins/textreport/MarkerReport.py:530
 msgid "Produces a list of people with a specified marker"
 msgstr "Skapar en lista över personer med en särskild markering"
 
@@ -11105,8 +10877,7 @@ msgstr "Antal anor för %s"
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
 msgstr[0] "Generation %(generation)d utgörs av %(count)d individ. %(percent)s"
-msgstr[1] ""
-"Generation %(generation)d utgörs av %(count)d individer. %(percent)s"
+msgstr[1] "Generation %(generation)d utgörs av %(count)d individer. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -11555,8 +11326,7 @@ msgid "Fix Capitalization of Family Names"
 msgstr "Normera stor bokstav för efternamn"
 
 #: ../src/plugins/tool/ChangeNames.py:296
-msgid ""
-"Searches the entire database and attempts to fix capitalization of the names."
+msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr "Söker i hela databasen och försöker rätta stor bokstav för efternamn."
 
 #: ../src/plugins/tool/ChangeTypes.py:70
@@ -11902,8 +11672,7 @@ msgid "Check and Repair Database"
 msgstr "Kontrollera och reparera"
 
 #: ../src/plugins/tool/Check.py:1499
-msgid ""
-"Checks the database for integrity problems, fixing the problems that it can"
+msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt."
 
 #: ../src/plugins/tool/Desbrowser.py:59
@@ -12523,8 +12292,7 @@ msgstr "Ingen aktiv person har valts"
 
 #: ../src/plugins/tool/RelCalc.py:147 ../src/PluginUtils/_Tool.py:137
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
-"Du måste välja en aktiv person för att det här verktyget skall fungera."
+msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
 
 #: ../src/plugins/tool/RelCalc.py:163
 msgid "Relationship Calculator tool"
@@ -12948,10 +12716,9 @@ msgid "No copyright notice"
 msgstr "Ingen copyrightanteckning"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:335
-#: ../src/plugins/webreport/WebCal.py:726
+#: ../src/plugins/webreport/WebCal.py:733
 #, python-format
-msgid ""
-"Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
+msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Skapad av <a href=\"http://gramps-project.org\">GRAMPS</a> %(date)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:345
@@ -13228,12 +12995,12 @@ msgid "Whether to store the web pages in an archive file"
 msgstr "Huruvida lagra webbsidor i en arkivfil"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3298
-#: ../src/plugins/webreport/WebCal.py:1121
+#: ../src/plugins/webreport/WebCal.py:1128
 msgid "Destination"
 msgstr "Mål"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3300
-#: ../src/plugins/webreport/WebCal.py:1123
+#: ../src/plugins/webreport/WebCal.py:1130
 msgid "The destination directory for the web files"
 msgstr "Målmappen för webbfiler"
 
@@ -13251,41 +13018,40 @@ msgstr "Webbplatsens titel"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3312
 msgid "Select filter to restrict people that appear on web site"
-msgstr ""
-"Välj ett filter, som begränsar vilka personer, som visas på en hemsida."
+msgstr "Välj ett filter, som begränsar vilka personer, som visas på en hemsida."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3323
-#: ../src/plugins/webreport/WebCal.py:1144
+#: ../src/plugins/webreport/WebCal.py:1151
 msgid "File extension"
 msgstr "Filändelse"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3326
-#: ../src/plugins/webreport/WebCal.py:1147
+#: ../src/plugins/webreport/WebCal.py:1154
 msgid "The extension to be used for the web files"
 msgstr "Filändelse, som skall används för webbfiler"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3329
-#: ../src/plugins/webreport/WebCal.py:1150
+#: ../src/plugins/webreport/WebCal.py:1157
 msgid "Copyright"
 msgstr "Copyright"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3332
-#: ../src/plugins/webreport/WebCal.py:1153
+#: ../src/plugins/webreport/WebCal.py:1160
 msgid "The copyright to be used for the web files"
 msgstr "Den copyright, som skall användas för webbfiler"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3335
-#: ../src/plugins/webreport/WebCal.py:1156
+#: ../src/plugins/webreport/WebCal.py:1163
 msgid "Character set encoding"
 msgstr "Teckentabell"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3338
-#: ../src/plugins/webreport/WebCal.py:1160
+#: ../src/plugins/webreport/WebCal.py:1167
 msgid "The encoding to be used for the web files"
 msgstr "Den kodning, som skall användas för webbfiler"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3341
-#: ../src/plugins/webreport/WebCal.py:1164
+#: ../src/plugins/webreport/WebCal.py:1171
 msgid "StyleSheet"
 msgstr "Stilmall"
 
@@ -13494,10 +13260,8 @@ msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Ta med halv- och/eller styvsyskon på de individuella sidorna"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3482
-msgid ""
-"Whether to include half and/ or step-siblings with the parents and siblings"
-msgstr ""
-"Huruvida ta med en halv- och/eller styvsyskon med föräldrarna och syskonen"
+msgid "Whether to include half and/ or step-siblings with the parents and siblings"
+msgstr "Huruvida ta med en halv- och/eller styvsyskon med föräldrarna och syskonen"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3621
 msgid "Narrated Web Site"
@@ -13512,29 +13276,28 @@ msgstr "Skapar webbsidor (HTML) för personer eller en grupp av personer."
 msgid "Year Glance"
 msgstr "Årsöversikt"
 
-#: ../src/plugins/webreport/WebCal.py:485
+#: ../src/plugins/webreport/WebCal.py:492
 #, python-format
-msgid ""
-"Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
+msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 msgstr "Skapad åt <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
 
-#: ../src/plugins/webreport/WebCal.py:490
+#: ../src/plugins/webreport/WebCal.py:497
 #, python-format
 msgid "Created for %(author)s\n"
 msgstr "Skapad åt %(author)s\n"
 
 #. page title
-#: ../src/plugins/webreport/WebCal.py:814
+#: ../src/plugins/webreport/WebCal.py:821
 msgid "One Day Within A Year"
 msgstr "En dag inom ett år"
 
 #. page title
-#: ../src/plugins/webreport/WebCal.py:850
+#: ../src/plugins/webreport/WebCal.py:857
 #, python-format
 msgid "%(year)d, At A Glance"
 msgstr "Översikt av %(year)d"
 
-#: ../src/plugins/webreport/WebCal.py:862
+#: ../src/plugins/webreport/WebCal.py:869
 msgid ""
 "This calendar is meant to give you access to all your data at a glance "
 "compressed into one page. Clicking on a date will take you to a page that "
@@ -13545,78 +13308,78 @@ msgstr ""
 "sida, som visar alla händelser på detta datum, om det finns några!\n"
 
 #. generate progress pass for "Year At A Glance"
-#: ../src/plugins/webreport/WebCal.py:869
+#: ../src/plugins/webreport/WebCal.py:876
 msgid "Creating Year At A Glance calendars"
 msgstr "Skapar en årsöversiktskalender"
 
 #. open progress meter bar
-#: ../src/plugins/webreport/WebCal.py:899
+#: ../src/plugins/webreport/WebCal.py:906
 msgid "Web Calendar Report"
 msgstr "Rapport i form av kalender"
 
 #. generate progress pass for year ????
-#: ../src/plugins/webreport/WebCal.py:911
+#: ../src/plugins/webreport/WebCal.py:918
 #, python-format
 msgid "Creating year %d calendars"
 msgstr "Skapar år %d-kalender"
 
 #. Number of directory levels up to get to self.html_dir / root
 #. generate progress pass for "WebCal"
-#: ../src/plugins/webreport/WebCal.py:963
+#: ../src/plugins/webreport/WebCal.py:970
 msgid "Formatting months ..."
 msgstr "Formaterar månader..."
 
-#: ../src/plugins/webreport/WebCal.py:1051
+#: ../src/plugins/webreport/WebCal.py:1058
 #, python-format
 msgid "%(short_name)s"
 msgstr "%(short_name)s"
 
-#: ../src/plugins/webreport/WebCal.py:1082
+#: ../src/plugins/webreport/WebCal.py:1089
 #, python-format
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s och %(person)s"
 
-#: ../src/plugins/webreport/WebCal.py:1127
+#: ../src/plugins/webreport/WebCal.py:1134
 msgid "Calendar Title"
 msgstr "Kalendertitel"
 
-#: ../src/plugins/webreport/WebCal.py:1127
+#: ../src/plugins/webreport/WebCal.py:1134
 msgid "My Family Calendar"
 msgstr "Min släktkalender"
 
-#: ../src/plugins/webreport/WebCal.py:1128
+#: ../src/plugins/webreport/WebCal.py:1135
 msgid "The title of the calendar"
 msgstr "Titel på kalender"
 
-#: ../src/plugins/webreport/WebCal.py:1168
+#: ../src/plugins/webreport/WebCal.py:1175
 msgid "The Style Sheet to be used for the web page"
 msgstr "Den stilmall, som skall användas för webbsidan"
 
-#: ../src/plugins/webreport/WebCal.py:1176
+#: ../src/plugins/webreport/WebCal.py:1183
 msgid "Content Options"
 msgstr "Innehållsalternativ"
 
-#: ../src/plugins/webreport/WebCal.py:1183
+#: ../src/plugins/webreport/WebCal.py:1190
 msgid "Create multiple year calendars"
 msgstr "Skapa kalendrar för flera år"
 
-#: ../src/plugins/webreport/WebCal.py:1185
+#: ../src/plugins/webreport/WebCal.py:1192
 msgid "Whether to create Multiple year calendars or not."
 msgstr "Huruvida skapa en flerårskalender eller inte."
 
-#: ../src/plugins/webreport/WebCal.py:1190
+#: ../src/plugins/webreport/WebCal.py:1197
 msgid "Start Year for the Calendar(s)"
 msgstr "Begynnelseår för kalendrar"
 
-#: ../src/plugins/webreport/WebCal.py:1192
+#: ../src/plugins/webreport/WebCal.py:1199
 msgid "Enter the starting year for the calendars between 1900 - 3000"
 msgstr "Skriv in begynnelseår för kalendrar mellan 1900 - 3000"
 
-#: ../src/plugins/webreport/WebCal.py:1196
+#: ../src/plugins/webreport/WebCal.py:1203
 msgid "End Year for the Calendar(s)"
 msgstr "Slutår för kalendrar"
 
-#: ../src/plugins/webreport/WebCal.py:1198
+#: ../src/plugins/webreport/WebCal.py:1205
 msgid ""
 "Enter the ending year for the calendars between 1900 - 3000.  if multiple "
 "years is selected, then only twenty years at any given time"
@@ -13624,208 +13387,207 @@ msgstr ""
 "Skriv in slutår för kalendrar mellan 1900 - 3000. Om flera år väljs så tas "
 "bara 20 år med vid varje tillfälle"
 
-#: ../src/plugins/webreport/WebCal.py:1206
+#: ../src/plugins/webreport/WebCal.py:1213
 msgid "Create \"Year At A Glance\" Calendar(s)"
 msgstr "Skapa översiktskalendrar"
 
-#: ../src/plugins/webreport/WebCal.py:1208
+#: ../src/plugins/webreport/WebCal.py:1215
 msgid "Whether to create A one-page mini calendar with dates highlighted"
 msgstr "Huruvida skapa en ensides minikalender med datum markerade"
 
-#: ../src/plugins/webreport/WebCal.py:1216
+#: ../src/plugins/webreport/WebCal.py:1223
 msgid "Holidays will be included for the selected country"
 msgstr "Helgdagar kommer att tas med för det valda landet"
 
-#: ../src/plugins/webreport/WebCal.py:1236
+#: ../src/plugins/webreport/WebCal.py:1243
 msgid "Home link"
 msgstr "Hemlänk"
 
-#: ../src/plugins/webreport/WebCal.py:1237
-msgid ""
-"The link to be included to direct the user to the main page of the web site"
+#: ../src/plugins/webreport/WebCal.py:1244
+msgid "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 "Den länk, som skall tas med, för att hänvisa användaren till webbplatsens "
 "huvudsida"
 
-#: ../src/plugins/webreport/WebCal.py:1257
+#: ../src/plugins/webreport/WebCal.py:1264
 msgid "Jan - Jun Notes"
 msgstr "Anteckningar för jan - jun"
 
-#: ../src/plugins/webreport/WebCal.py:1259
+#: ../src/plugins/webreport/WebCal.py:1266
 msgid "Jan Note"
 msgstr "Jan anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1259
+#: ../src/plugins/webreport/WebCal.py:1266
 msgid "This prints in January"
 msgstr "Detta skrivs för januari"
 
-#: ../src/plugins/webreport/WebCal.py:1260
+#: ../src/plugins/webreport/WebCal.py:1267
 msgid "The note for the month of January"
 msgstr "Anteckningen för januari månad."
 
-#: ../src/plugins/webreport/WebCal.py:1263
+#: ../src/plugins/webreport/WebCal.py:1270
 msgid "Feb Note"
 msgstr "Feb anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1263
+#: ../src/plugins/webreport/WebCal.py:1270
 msgid "This prints in February"
 msgstr "Detta skrivs för februari"
 
-#: ../src/plugins/webreport/WebCal.py:1264
+#: ../src/plugins/webreport/WebCal.py:1271
 msgid "The note for the month of February"
 msgstr "Anteckningen för februari månad."
 
-#: ../src/plugins/webreport/WebCal.py:1267
+#: ../src/plugins/webreport/WebCal.py:1274
 msgid "Mar Note"
 msgstr "Mar anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1267
+#: ../src/plugins/webreport/WebCal.py:1274
 msgid "This prints in March"
 msgstr "Detta skrivs för mars"
 
-#: ../src/plugins/webreport/WebCal.py:1268
+#: ../src/plugins/webreport/WebCal.py:1275
 msgid "The note for the month of March"
 msgstr "Anteckningen för mars månad."
 
-#: ../src/plugins/webreport/WebCal.py:1271
+#: ../src/plugins/webreport/WebCal.py:1278
 msgid "Apr Note"
 msgstr "Apr anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1271
+#: ../src/plugins/webreport/WebCal.py:1278
 msgid "This prints in April"
 msgstr "Detta skrivs för april"
 
-#: ../src/plugins/webreport/WebCal.py:1272
+#: ../src/plugins/webreport/WebCal.py:1279
 msgid "The note for the month of April"
 msgstr "Anteckningen för april månad"
 
-#: ../src/plugins/webreport/WebCal.py:1275
+#: ../src/plugins/webreport/WebCal.py:1282
 msgid "May Note"
 msgstr "Maj anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1275
+#: ../src/plugins/webreport/WebCal.py:1282
 msgid "This prints in May"
 msgstr "Detta skrivs för maj"
 
-#: ../src/plugins/webreport/WebCal.py:1276
+#: ../src/plugins/webreport/WebCal.py:1283
 msgid "The note for the month of May"
 msgstr "Anteckningen för maj månad"
 
-#: ../src/plugins/webreport/WebCal.py:1279
+#: ../src/plugins/webreport/WebCal.py:1286
 msgid "Jun Note"
 msgstr "Jun anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1279
+#: ../src/plugins/webreport/WebCal.py:1286
 msgid "This prints in June"
 msgstr "Detta skrivs för juni"
 
-#: ../src/plugins/webreport/WebCal.py:1280
+#: ../src/plugins/webreport/WebCal.py:1287
 msgid "The note for the month of June"
 msgstr "Anteckningen för juni månad"
 
-#: ../src/plugins/webreport/WebCal.py:1283
+#: ../src/plugins/webreport/WebCal.py:1290
 msgid "Jul - Dec Notes"
 msgstr "Anteckningar för jul - dec"
 
-#: ../src/plugins/webreport/WebCal.py:1285
+#: ../src/plugins/webreport/WebCal.py:1292
 msgid "Jul Note"
 msgstr "Jul anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1285
+#: ../src/plugins/webreport/WebCal.py:1292
 msgid "This prints in July"
 msgstr "Detta skrivs för juli"
 
-#: ../src/plugins/webreport/WebCal.py:1286
+#: ../src/plugins/webreport/WebCal.py:1293
 msgid "The note for the month of July"
 msgstr "Anteckningen för juli månad."
 
-#: ../src/plugins/webreport/WebCal.py:1289
+#: ../src/plugins/webreport/WebCal.py:1296
 msgid "Aug Note"
 msgstr "Aug anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1289
+#: ../src/plugins/webreport/WebCal.py:1296
 msgid "This prints in August"
 msgstr "Detta skrivs för augusti"
 
-#: ../src/plugins/webreport/WebCal.py:1290
+#: ../src/plugins/webreport/WebCal.py:1297
 msgid "The note for the month of August"
 msgstr "Anteckningen för augusti månad."
 
-#: ../src/plugins/webreport/WebCal.py:1293
+#: ../src/plugins/webreport/WebCal.py:1300
 msgid "Sep Note"
 msgstr "Sep anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1293
+#: ../src/plugins/webreport/WebCal.py:1300
 msgid "This prints in September"
 msgstr "Detta skrivs för september"
 
-#: ../src/plugins/webreport/WebCal.py:1294
+#: ../src/plugins/webreport/WebCal.py:1301
 msgid "The note for the month of September"
 msgstr "Anteckningen för september månad"
 
-#: ../src/plugins/webreport/WebCal.py:1297
+#: ../src/plugins/webreport/WebCal.py:1304
 msgid "Oct Note"
 msgstr "Okt anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1297
+#: ../src/plugins/webreport/WebCal.py:1304
 msgid "This prints in October"
 msgstr "Detta skrivs för oktober"
 
-#: ../src/plugins/webreport/WebCal.py:1298
+#: ../src/plugins/webreport/WebCal.py:1305
 msgid "The note for the month of October"
 msgstr "Anteckningen för oktober månad"
 
-#: ../src/plugins/webreport/WebCal.py:1301
+#: ../src/plugins/webreport/WebCal.py:1308
 msgid "Nov Note"
 msgstr "Nov anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1301
+#: ../src/plugins/webreport/WebCal.py:1308
 msgid "This prints in November"
 msgstr "Detta skrivs för november"
 
-#: ../src/plugins/webreport/WebCal.py:1302
+#: ../src/plugins/webreport/WebCal.py:1309
 msgid "The note for the month of November"
 msgstr "Anteckningen för november månad."
 
-#: ../src/plugins/webreport/WebCal.py:1305
+#: ../src/plugins/webreport/WebCal.py:1312
 msgid "Dec Note"
 msgstr "Dec anteckningar"
 
-#: ../src/plugins/webreport/WebCal.py:1305
+#: ../src/plugins/webreport/WebCal.py:1312
 msgid "This prints in December"
 msgstr "Detta skrivs för december"
 
-#: ../src/plugins/webreport/WebCal.py:1306
+#: ../src/plugins/webreport/WebCal.py:1313
 msgid "The note for the month of December"
 msgstr "Anteckningen för december månad."
 
-#: ../src/plugins/webreport/WebCal.py:1470
+#: ../src/plugins/webreport/WebCal.py:1477
 #, python-format
 msgid "%(person)s, <em>birth</em>"
 msgstr "%(person)s, <em>födelse</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1473
+#: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
 msgstr "%(person)s, <em>%(age)s</em> gammal"
 
-#: ../src/plugins/webreport/WebCal.py:1480
+#: ../src/plugins/webreport/WebCal.py:1487
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>bröllop</em>"
 
-#: ../src/plugins/webreport/WebCal.py:1483
+#: ../src/plugins/webreport/WebCal.py:1490
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
 msgstr[0] "%(couple)s, <em>%(years)d</em>-års jubileum"
 msgstr[1] "%(couple)s, <em>%(years)d</em>-års jubileum"
 
-#: ../src/plugins/webreport/WebCal.py:1587
+#: ../src/plugins/webreport/WebCal.py:1618
 msgid "Web Calendar"
 msgstr "Webbkalender"
 
-#: ../src/plugins/webreport/WebCal.py:1591
+#: ../src/plugins/webreport/WebCal.py:1622
 msgid "Produces web (HTML) calendars."
 msgstr "Skapar webb-(HTML)-kalendrar."
 
@@ -14265,8 +14027,7 @@ msgstr "Riktning för diagram"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:950
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr ""
-"Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
+msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:954
 msgid "Number of Horizontal Pages"
@@ -14455,8 +14216,7 @@ msgid "File already exists"
 msgstr "Filen finns redan"
 
 #: ../src/ReportBase/_ReportDialog.py:509
-msgid ""
-"You can choose to either overwrite the file, or change the selected filename."
+msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
@@ -14764,20 +14524,17 @@ msgstr "Han dog %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:174
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:175
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:176
 #, python-format
-msgid ""
-"He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:179
@@ -14787,20 +14544,17 @@ msgstr "Hon dog %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:180
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:181
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:182
 #, python-format
-msgid ""
-"She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
+msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:186
@@ -14852,16 +14606,14 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:195
 #, python-format
 msgid ""
 "%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:198
 #, python-format
@@ -14873,24 +14625,21 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:200
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:201
 #, python-format
 msgid ""
 "%(female_name)s died on %(death_date)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:205 ../src/ReportBase/_ReportUtils.py:252
 #, python-format
@@ -14970,8 +14719,7 @@ msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:228
 #, python-format
-msgid ""
-"She died %(death_date)s in %(death_place)s at the age of %(age)d months."
+msgid "She died %(death_date)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:229
@@ -15028,16 +14776,14 @@ msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:242
 #, python-format
 msgid ""
 "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr ""
-"%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:245
 #, python-format
@@ -15049,24 +14795,21 @@ msgstr "%(female_name)s dog %(death_date)s i %(death_place)s."
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:247
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "months."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:248
 #, python-format
 msgid ""
 "%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d "
 "days."
-msgstr ""
-"%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(death_date)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:261
 #, python-format
@@ -15135,20 +14878,17 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:281
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:282
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:283
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:286
@@ -15278,14 +15018,12 @@ msgstr "%(unknown_gender_name)s dog %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:328
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:329
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(death_date)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:330
@@ -15366,20 +15104,17 @@ msgstr "Han dog %(month_year)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:362
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:363
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:364
 #, python-format
-msgid ""
-"He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Han dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:367
@@ -15389,20 +15124,17 @@ msgstr "Hon dog %(month_year)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:368
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:369
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:370
 #, python-format
-msgid ""
-"She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
+msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
 msgstr "Hon dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:374
@@ -15454,16 +15186,14 @@ msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
-msgstr ""
-"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:383
 #, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
-msgstr ""
-"%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(male_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:386
 #, python-format
@@ -15475,24 +15205,21 @@ msgstr "%(female_name)s dog %(month_year)s i %(death_place)s."
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:388
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:389
 #, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
-msgstr ""
-"%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
+msgstr "%(female_name)s dog %(month_year)s i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:393
 #, python-format
@@ -15581,20 +15308,17 @@ msgstr "%(unknown_gender_name)s dog %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:422
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:423
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:424
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog %(month_year)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:427
@@ -15724,20 +15448,17 @@ msgstr "%(unknown_gender_name)s dog i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:470
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d år gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:471
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d månader gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:472
 #, python-format
-msgid ""
-"%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
+msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
 msgstr "%(unknown_gender_name)s dog i %(death_place)s, %(age)d dagar gammal."
 
 #: ../src/ReportBase/_ReportUtils.py:475
@@ -15907,10 +15628,8 @@ msgstr "Dog (vid %(age)d dagars ålder)."
 
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
-msgid ""
-"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
@@ -15922,8 +15641,7 @@ msgstr "Han begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
@@ -15941,8 +15659,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:559
 #, python-format
-msgid ""
-"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
+msgid "This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr "Denna person begravdes %(burial_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
@@ -15987,10 +15704,8 @@ msgstr "Begravd %(burial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
-msgid ""
-"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
@@ -15999,10 +15714,8 @@ msgstr "Han begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
-msgid ""
-"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
@@ -16020,10 +15733,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
-msgid ""
-"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
+msgid "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
+msgstr "Denna person begravdes i %(month_year)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
 #, python-format
@@ -16067,10 +15778,8 @@ msgstr "Begravd i %(month_year)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid ""
-"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(male_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
@@ -16079,10 +15788,8 @@ msgstr "Han begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
-msgid ""
-"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "%(female_name)s begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
@@ -16100,10 +15807,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
-msgid ""
-"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr ""
-"Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
+msgid "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
+msgstr "Denna person begravdes %(modified_date)s i %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
@@ -16232,8 +15937,7 @@ msgstr "Han döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(baptism_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
@@ -16313,8 +16017,7 @@ msgstr "Han döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
@@ -16332,8 +16035,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:725
 #, python-format
-msgid ""
-"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes i %(month_year)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
@@ -16381,8 +16083,7 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
 "s."
-msgstr ""
-"%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(male_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
@@ -16394,8 +16095,7 @@ msgstr "Han döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
@@ -16413,8 +16113,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:757
 #, python-format
-msgid ""
-"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
+msgid "This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr "Denna person döptes %(modified_date)s i %(baptism_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:759
@@ -16573,8 +16272,7 @@ msgstr ""
 msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"Denna person döptes %(christening_date)s i %(christening_place)s%(endnotes)s."
+msgstr "Denna person döptes %(christening_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:829
 #, python-format
@@ -16603,8 +16301,7 @@ msgstr "Hon döptes %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:842
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
+msgid "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s döptes %(christening_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
@@ -16622,13 +16319,11 @@ msgstr "Döpt %(christening_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(male_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr "%(male_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:851
 #, python-format
-msgid ""
-"He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Han döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:854
@@ -16636,13 +16331,11 @@ msgstr "Han döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:855
 #, python-format
-msgid ""
-"She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
+msgid "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
 msgstr "Hon döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:858
@@ -16659,8 +16352,7 @@ msgstr ""
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"Denna person döptes %(month_year)s i %(christening_place)s%(endnotes)s."
+msgstr "Denna person döptes %(month_year)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:861
 #, python-format
@@ -16707,13 +16399,11 @@ msgstr "Döpt %(month_year)s%(endnotes)s."
 msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(male_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr "%(male_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
 #, python-format
-msgid ""
-"He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Han döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:886
@@ -16721,13 +16411,11 @@ msgstr "Han döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"%(female_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr "%(female_name)s döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:887
 #, python-format
-msgid ""
-"She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
+msgid "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
 msgstr "Hon döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:890
@@ -16744,8 +16432,7 @@ msgstr ""
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr ""
-"Denna person döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
+msgstr "Denna person döptes %(modified_date)s i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:893
 #, python-format
@@ -16809,8 +16496,7 @@ msgstr "Hon döptes i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:922
 #, python-format
-msgid ""
-"%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
+msgid "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
 msgstr "%(unknown_gender_name)s döptes i %(christening_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:923
@@ -16860,24 +16546,18 @@ msgstr "Döpt%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:952
 #, python-format
-msgid ""
-"This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:953
 #, python-format
-msgid ""
-"This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:954
 #, python-format
-msgid ""
-"This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgstr "Personen gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:957
 #, python-format
@@ -16892,8 +16572,7 @@ msgstr "Han gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:959
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Han gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:962
 #, python-format
@@ -16908,8 +16587,7 @@ msgstr "Hon gifte sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:964
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Hon gifte sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:967
 #, python-format
@@ -16940,8 +16618,7 @@ msgstr ""
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Personen gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:977
 #, python-format
@@ -16954,10 +16631,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:980
 #, python-format
-msgid ""
-"He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Han gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:981
 #, python-format
@@ -16967,15 +16642,12 @@ msgstr "Han gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:982
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Han gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:985
 #, python-format
-msgid ""
-"She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Hon gifte om sig med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:986
 #, python-format
@@ -16985,8 +16657,7 @@ msgstr "Hon gifte om sig med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:987
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Hon gifte om sig med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:990
 #, python-format
@@ -17290,8 +16961,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1094
 #: ../src/ReportBase/_ReportUtils.py:1117
@@ -17299,8 +16969,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1095
 #: ../src/ReportBase/_ReportUtils.py:1118
@@ -17308,8 +16977,7 @@ msgstr ""
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
+msgstr "Ogift förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1101
 #, python-format
@@ -17424,48 +17092,42 @@ msgstr ""
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1130
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1131
 #, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Han hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1134
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1135
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1136
 #, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hon hade ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1139
 #, python-format
@@ -17565,10 +17227,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1162
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr ""
-"Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
+msgstr "Även ett ogift förhållande med %(spouse)s %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1163
 #, python-format
@@ -17577,10 +17237,8 @@ msgstr "Även ett ogift förhållande med %(spouse)s %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1164
 #, python-format
-msgid ""
-"Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Även ett ogift förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1169
 #, python-format
@@ -17593,14 +17251,12 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1170
 #, python-format
-msgid ""
-"He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Han hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1171
 #, python-format
-msgid ""
-"She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Hon hade ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1172
@@ -17623,16 +17279,14 @@ msgstr ""
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
 "s."
-msgstr ""
-"Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Han hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1178
 #, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr ""
-"Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgstr "Hon hade också ett ogift förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1183
 #, python-format
@@ -17657,8 +17311,7 @@ msgstr "Ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1190
 #, python-format
-msgid ""
-"This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
+msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
 msgstr "Denna person hade ett ogift förhållande med %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1191
@@ -17764,8 +17417,7 @@ msgstr "Förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1222
 #, python-format
-msgid ""
-"Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr "Förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1228
@@ -17851,22 +17503,17 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1243
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
+msgstr "Även ett förhållande med %(spouse)s %(partial_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1244
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
-"Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
+msgstr "Även ett förhållande med %(spouse)s %(full_date)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1245
 #, python-format
-msgid ""
-"Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
+msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
 msgstr ""
 "Även ett förhållande med %(spouse)s %(modified_date)s i %(place)s%(endnotes)"
 "s."
@@ -17882,16 +17529,14 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1252
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s på %(full_date)s%(endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1253
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
 msgstr ""
 "Denna person hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)"
 "s."
@@ -17899,8 +17544,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1256
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Han hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1257
 #, python-format
@@ -17915,8 +17559,7 @@ msgstr "Han hade ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s.
 #: ../src/ReportBase/_ReportUtils.py:1261
 #, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgstr "Hon hade ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1262
 #, python-format
@@ -17972,45 +17615,33 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:1279
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1280
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1281
 #, python-format
-msgid ""
-"He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Han hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1284
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med %(spouse)s i %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1285
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med  %(spouse)s på %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1286
 #, python-format
-msgid ""
-"She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
-"Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
+msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
+msgstr "Hon hade också ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1289
 #, python-format
@@ -18029,10 +17660,8 @@ msgstr "Även ett förhållande med %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1296
 #, python-format
-msgid ""
-"This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
-"Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
+msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgstr "Denna person hade ett förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1297
 #, python-format
@@ -18051,8 +17680,7 @@ msgstr "Förhållande med %(spouse)s i %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1303
 #, python-format
-msgid ""
-"This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
+msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
 msgstr ""
 "Denna person hade också ett förhållande med %(spouse)s i %(place)s%(endnotes)"
 "s."
@@ -18455,8 +18083,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:2025
 #, python-format
-msgid ""
-"%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr "%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2030
@@ -18581,10 +18208,8 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:2096
 #, python-format
-msgid ""
-"%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
-msgstr ""
-"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2101
 #, python-format
@@ -18612,10 +18237,8 @@ msgstr "%(female_name)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2961
 #, python-format
-msgid ""
-"Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr ""
-"född %(birth_date)s i %(birth_place)s, död %(death_date)s i %(death_place)s."
+msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
+msgstr "född %(birth_date)s i %(birth_place)s, död %(death_date)s i %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2964
 #, python-format
@@ -18817,6 +18440,10 @@ msgstr "Utskrift"
 #: ../src/gen/lib/notetype.py:82
 msgid "Citation"
 msgstr "Citat"
+
+#: ../src/gen/lib/notetype.py:87
+msgid "Person Note"
+msgstr "Personanteckning"
 
 #: ../src/gen/lib/notetype.py:88
 msgid "Name Note"
@@ -19859,8 +19486,7 @@ msgid "People with a common ancestor with <filter> match"
 msgstr "Personer med en ana gemensam med <filter>träff"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:50
-msgid ""
-"Matches people that have a common ancestor with anybody matched by a filter"
+msgid "Matches people that have a common ancestor with anybody matched by a filter"
 msgstr ""
 "Matchar personer, som har en ana gemensam\n"
 "med någon som matchas av ett filter "
@@ -20268,8 +19894,7 @@ msgid "Ancestors of the default person not more than <N> generations away"
 msgstr "Anor till förvald person inte mer än N generationer bort"
 
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:51
-msgid ""
-"Matches ancestors of the default person not more than N generations away"
+msgid "Matches ancestors of the default person not more than N generations away"
 msgstr ""
 "Matchar anor till förvald person\n"
 "mindre än N generationer bort"
@@ -20652,8 +20277,7 @@ msgstr "Familjer med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr ""
-"Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar familjer vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:43
 msgid "Families with a reference count of <count>"
@@ -20874,8 +20498,7 @@ msgstr "Händelser med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
-msgstr ""
-"Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
+msgstr "Matchar händelser vars anteckningar innehåller angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Event/_HasReferenceCountOf.py:43
 msgid "Events with a reference count of <count>"
@@ -21303,8 +20926,7 @@ msgid "Media objects having notes containing <regular expression>"
 msgstr "Mediaobjekt med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
-msgid ""
-"Matches media objects whose notes contain text matching a regular expression"
+msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr "Matchar mediaobjekt vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
@@ -21380,8 +21002,7 @@ msgid "Repositories having notes containing <regular expression>"
 msgstr "Arkivplatser med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
-msgid ""
-"Matches repositories whose notes contain text matching a regular expression"
+msgid "Matches repositories whose notes contain text matching a regular expression"
 msgstr "Matchar arkivplatser vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
@@ -21935,8 +21556,7 @@ msgid "_Type:"
 msgstr "_Typ:"
 
 #: ../src/glade/edit_person.glade.h:24
-msgid ""
-"part of a person's name indicating the family to which the person belongs"
+msgid "part of a person's name indicating the family to which the person belongs"
 msgstr "del av en person namn, som visar till vilken familj personen hör"
 
 #: ../src/glade/gramps.glade.h:1
@@ -22221,6 +21841,10 @@ msgstr "Exempel:"
 #: ../src/glade/gramps.glade.h:71
 msgid "Family Trees - GRAMPS"
 msgstr "Släktträd - GRAMPS"
+
+#: ../src/glade/gramps.glade.h:72
+msgid "Family:"
+msgstr "Familj:"
 
 #: ../src/glade/gramps.glade.h:73
 msgid "First li_ne:"
@@ -22686,8 +22310,7 @@ msgid "Place 2"
 msgstr "Plats 2"
 
 #: ../src/glade/mergedata.glade.h:13
-msgid ""
-"Select the person that will provide the primary data for the merged person."
+msgid "Select the person that will provide the primary data for the merged person."
 msgstr ""
 "Välj den person som kommer att tillhandahålla primärdata för den "
 "sammanslagna personen."
@@ -23232,8 +22855,7 @@ msgid "GRAMPS Genealogy System"
 msgstr "GRAMPS Genealogisystem"
 
 #: ../data/gramps.desktop.in.h:2
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
+msgid "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 
 #: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:3
@@ -24077,3 +23699,4 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
+
