@@ -941,11 +941,11 @@ div#pedigree {
 }
 #treeContainer div.male a,
 #treeContainer div.male span.unlinked {
-    background-image:url(../images/GenderSymbols_Male.png);
+    background-image:url(../images/Web_Gender_Male.png);
 }
 #treeContainer div.female a, 
 #treeContainer div.female span.unlinked {
-    background-image:url(../images/GenderSymbols_Female.png);
+    background-image:url(../images/Web_Gender_Female.png);
 }
 .shadow {
     display:none;
