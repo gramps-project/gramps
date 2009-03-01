@@ -538,7 +538,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-right:.4em;
 }
 #streetaddress {
-    width:70%;
+    width:85%;
 }
 #city:after {
     content:",";
