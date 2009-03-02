@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-22 11:23-0800\n"
-"PO-Revision-Date: 2009-02-26 11:24+0100\n"
+"PO-Revision-Date: 2009-03-02 08:11+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -2209,7 +2209,7 @@ msgstr "partner of echtgenote"
 
 #: ../src/Relationship.py:1657
 msgid "gender unknown,unmarried|spouse"
-msgstr "echtgenoot"
+msgstr "echtgeno(o)t(e)"
 
 #: ../src/Relationship.py:1660
 msgid "unmarried|ex-husband"
@@ -2222,7 +2222,7 @@ msgstr "expartner of exechtgenote"
 
 #: ../src/Relationship.py:1664
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "exechtgenoot"
+msgstr "exechtgeno(o)t(e)"
 
 #: ../src/Relationship.py:1667
 msgid "male,civil union|partner"
@@ -7508,7 +7508,7 @@ msgstr "Toon echtgenoten"
 
 #: ../src/plugins/drawreport/DescendTree.py:484
 msgid "Whether to show spouses in the tree."
-msgstr "De echtgenoten al of niet tonen in de stamboom."
+msgstr "De echtgenoten al dan niet tonen in de stamboom."
 
 #: ../src/plugins/drawreport/DescendTree.py:538
 msgid "Descendant Tree"
@@ -7922,7 +7922,7 @@ msgstr "Welke sorteermethode gebruiken"
 
 #: ../src/plugins/drawreport/TimeLine.py:334
 msgid "The calendar which determines the year span"
-msgstr "De Kalender die het jaarbereik bepaald"
+msgstr "De kalender die het jaarbereik bepaald"
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "The style used for the person's name."
@@ -8429,7 +8429,7 @@ msgstr "Bepaal geslacht van de nieuwe persoon."
 #: ../src/plugins/gramplet/DataEntryGramplet.py:593
 #: ../src/plugins/gramplet/DataEntryGramplet.py:626
 msgid "Can't add new person as a spouse."
-msgstr "Kan de nieuwe persoon niet als echtgeno(o)t(e) toeveogen."
+msgstr "Kan de nieuwe persoon niet als echtgeno(o)t(e) toevoegen."
 
 #: ../src/plugins/gramplet/DataEntryGramplet.py:429
 msgid "Can't add new person as a sibling."
@@ -8513,7 +8513,7 @@ msgstr "Rechtsklikken om aan te passen"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
 msgid "   sp. "
-msgstr "sp.   "
+msgstr "  echt.   "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
 msgid "Descendant Gramplet"
@@ -9704,7 +9704,7 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data between different database versions."
 msgstr ""
 "De versie van het gegevensbestand wordt niet ondersteund door deze \n"
-"versie van GRAMPS. Gelieve op te waarderen naar een overeenkomendeversie of gebruik XML om gegevens over te zetten tussen verschillendeversies van gegevensbestanden."
+"versie van GRAMPS. Gelieve op te waarderen naar een overeenkomende versie of gebruik XML om gegevens over te zetten tussen verschillende versies van gegevensbestanden."
 
 #: ../src/plugins/import/ImportGrdb.py:2467
 msgid "The Database version is not supported by this version of GRAMPS."
@@ -9970,7 +9970,7 @@ msgstr "Toont de persoonsgebeurtenissen, zowel de persoonlijke als de familiegeb
 
 #: ../src/plugins/quickview/all_events.py:159
 msgid "Display the family and family members events."
-msgstr "Toont de familie en de gebeurtenissen van de familileden."
+msgstr "Toont de familie en de gebeurtenissen van de familieleden."
 
 #: ../src/plugins/quickview/all_relations.py:71
 msgid "Home person not set."
