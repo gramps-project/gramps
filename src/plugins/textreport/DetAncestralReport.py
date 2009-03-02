@@ -46,6 +46,7 @@ from ReportBase import Bibliography, Endnotes
 import BaseDoc
 import DateHandler
 from BasicUtils import name_displayer as _nd
+import Utils
 
 #------------------------------------------------------------------------
 #
@@ -452,9 +453,9 @@ class DetAncestorReport(Report):
             else:
                 father_name = ""
                 father_mark = ""
-                
+            alive = Utils.probably_alive(person, self.database)
             text = ReportUtils.child_str(person, father_name, mother_name,
-                                         bool(person.get_death_ref()),
+                                         not alive,
                                          firstName,self.verbose)
             if text:
                 self.doc.write_text(text)
