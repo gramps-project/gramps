@@ -4,8 +4,14 @@
  <author uid="rshura" title="author">
   Alex Roitman &lt;<html:a href="mailto:shura@gramps-project.org">shura@gramps-project.org</html:a>&gt;
  </author>
+ <author uid="asleinius" title="contributor">
+  Arturas Sleinius &lt;<html:a href="mailto:asleinius@users.sourceforge.net">asleinius@users.sourceforge.net</html:a>&gt;
+ </author>
  <author uid="bmcage" title="author">
   Benny Malengier &lt;<html:a href="mailto:benny.malengier@gramps-project.org">benny.malengier@gramps-project.org</html:a>&gt;
+ </author>
+ <author uid="borilg" title="contributor">
+  Boril Gourinov &lt;<html:a href="mailto:boril.gourinov@gmail.com">boril.gourinov@gmail.com</html:a>&gt;
  </author>
  <author uid="pez4brian" title="author">
   Brian Matherly &lt;<html:a href="mailto:brian@gramps-project.org">brian@gramps-project.org</html:a>&gt;
@@ -31,14 +37,26 @@
  <author uid="gburto01" title="contributor">
   Gary Burton &lt;<html:a href="mailto:gary.burton@zen.co.uk">gary.burton@zen.co.uk</html:a>&gt;
  </author>
+ <author uid="gbritton" title="contributor">
+  Gerald Britton &lt;<html:a href="mailto:gerald.britton@gmail.com">gerald.britton@gmail.com</html:a>&gt;
+ </author>
  <author uid="jgsack" title="contributor">
   James G Sack &lt;<html:a href="mailto:jgsack@san.rr.com">jgsack@san.rr.com</html:a>&gt;
+ </author>
+ <author uid="has_no_svn_access" title="contributor">
+  Janne Kovesjärvi &lt;<html:a href="mailto:janne.kovesjarvi@gmail.com">janne.kovesjarvi@gmail.com</html:a>&gt;
  </author>
  <author uid="has_no_svn_access" title="contributor">
   Jason Simanek &lt;<html:a href="mailto:jsimanek@gmail.com">jsimanek@gmail.com</html:a>&gt;
  </author>
  <author uid="romjerome" title="contributor">
-  Jerome Rapinat &lt;<html:a href="mailto:romjerome@yahoo.fr">romjerome@yahoo.fr</html:a>&gt;
+  Jérôme Rapinat &lt;<html:a href="mailto:romjerome@yahoo.fr">romjerome@yahoo.fr</html:a>&gt;
+ </author>
+ <author uid="jcreus" title="contributor">
+  Joan Creus &lt;<html:a href="mailto:joan.creus@gmail.com">joan.creus@gmail.com</html:a>&gt;
+ </author>
+ <author uid="josip" title="contributor">
+  Josip Pisoj &lt;<html:a href="mailto:josip@pisoj.com">josip@pisoj.com</html:a>&gt;
  </author>
  <author uid="jsanchez" title="contributor">
   Julio Sánchez &lt;<html:a href="mailto:julio.sanchez@gmail.com">julio.sanchez@gmail.com</html:a>&gt;
@@ -46,13 +64,28 @@
  <author uid="keesb" title="contributor">
   Kees Bakker &lt;<html:a href="mailto:kees.bakker@xs4all.nl">kees.bakker@xs4all.nl</html:a>&gt;
  </author>
+ <author uid="kdorichev" title="contributor">
+  Konstantin Dorichev &lt;<html:a href="mailto:kdorichev@gmail.com">kdorichev@gmail.com</html:a>&gt;
+ </author>
+ <author uid="has_no_svn_access" title="contributor">
+  Lubo Vasko &lt;<html:a href="mailto:pgval@inMail.sk">pgval@inMail.sk</html:a>&gt;
+ </author>
+ <author uid="ltosky" title="contributor">
+  Luigi Toscano &lt;<html:a href="mailto:luigi.toscano@tiscali.it">luigi.toscano@tiscali.it</html:a>&gt;
+ </author>
+ <author uid="has_no_svn_access" title="contributor">
+  Luiz Gonzaga dos Santos Filho &lt;<html:a href="mailto:lfilho@gmail.com">lfilho@gmail.com</html:a>&gt;
+ </author>
+ <author uid="has_no_svn_access" title="contributor">
+  Łukasz Rymarczyk &lt;<html:a href="mailto:yenidai@poczta.onet.pl">yenidai@poczta.onet.pl</html:a>&gt;
+ </author>
  <author uid="leonhaeuser" title="contributor">
   Mirko Leonhäuser &lt;<html:a href="mailto:mirko@leonhaeuser.de">mirko@leonhaeuser.de</html:a>&gt;
  </author>
- <author uid="loshawlos" title="author">
-  Martin Hawlisch &lt;<html:a href="mailto:martin.hawlisch@gmx.de">martin.hawlisch@gmx.de</html:a>&gt;
+ <author uid="has_no_svn_access" title="contributor">
+  Morten Bo Johansen &lt;<html:a href="mailto:mbj@spamcop.net">mbj@spamcop.net</html:a>&gt;
  </author>
- <author uid="LosHawlos" title="author">
+ <author uid="loshawlos" title="author">
   Martin Hawlisch &lt;<html:a href="mailto:martin.hawlisch@gmx.de">martin.hawlisch@gmx.de</html:a>&gt;
  </author>
  <author uid="ldnp" title="contributor">
@@ -64,6 +97,15 @@
  <author uid="hippy" title="author">
   Richard Taylor &lt;<html:a href="mailto:rjt-gramps@thegrindstone.me.uk">rjt-gramps@thegrindstone.me.uk</html:a>&gt;
  </author>
+ <author uid="robhealey1" title="contributor">
+  Rob G. Healey &lt;<html:a href="mailto:robhealey1@gmail.com">robhealey1@gmail.com</html:a>&gt;
+ </author>
+ <author uid="noirauds" title="contributor">
+  Serge Noiraud &lt;<html:a href="mailto:Serge.Noiraud@free.fr">Serge.Noiraud@free.fr</html:a>&gt;
+ </author>
+ <author uid="has_no_svn_access" title="contributor">
+  Sigmund Lorentsen &lt;<html:a href="mailto:sigmund.lorentsen@tele2.no">sigmund.lorentsen@tele2.no</html:a>&gt;
+ </author>
  <author uid="betula" title="contributor">
   Stefan Bjork &lt;<html:a href="mailto:betula@users.sourceforge.net">betula@users.sourceforge.net</html:a>&gt;
  </author>
@@ -73,55 +115,10 @@
  <author uid="twaugh" title="author">
   Tim Waugh &lt;<html:a href="mailto:twaugh@redhat.com">twaugh@redhat.com</html:a>&gt;
  </author>
- <author uid="zfoldvar" title="contributor">
-  Zsolt Foldvari &lt;<html:a href="mailto:zfoldvar@users.sourceforge.net">zfoldvar@users.sourceforge.net</html:a>&gt;
- </author>
- <author uid="gbritton" title="contributor">
-  Gerald Britton &lt;<html:a href="mailto:gerald.britton@gmail.com">gerald.britton@gmail.com</html:a>&gt;
- </author>
- <author uid="robhealey1" title="contributor">
-  Rob G. Healey &lt;<html:a href="mailto:robhealey1@gmail.com">robhealey1@gmail.com</html:a>&gt;
- </author>
  <author uid="matlas" title="contributor">
   Zdeněk Hataš &lt;<html:a href="mailto:zdenek.hatas@gmail.com">zdenek.hatas@gmail.com</html:a>&gt;
  </author>
- <author uid="josip" title="contributor">
-  Josip Pisoj &lt;<html:a href="mailto:josip@pisoj.com">josip@pisoj.com</html:a>&gt;
- </author>
- <author uid="ltosky" title="contributor">
-  Luigi Toscano &lt;<html:a href="mailto:luigi.toscano@tiscali.it">luigi.toscano@tiscali.it</html:a>&gt;
- </author>
- <author uid="asleinius" title="contributor">
-  Arturas Sleinius &lt;<html:a href="mailto:asleinius@users.sourceforge.net">asleinius@users.sourceforge.net</html:a>&gt;
- </author>
- <author uid="jcreus" title="contributor">
-  Joan Creus &lt;<html:a href="mailto:joan.creus@gmail.com">joan.creus@gmail.com</html:a>&gt;
- </author>
- <author uid="noirauds" title="contributor">
-  Serge Noiraud &lt;<html:a href="mailto:Serge.Noiraud@free.fr">Serge.Noiraud@free.fr</html:a>&gt;
- </author>
- <author uid="kdorichev" title="contributor">
-  Konstantin Dorichev &lt;<html:a href="mailto:kdorichev@gmail.com">kdorichev@gmail.com</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Lubo Vasko &lt;<html:a href="mailto:pgval@inMail.sk">pgval@inMail.sk</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Morten Bo Johansen &lt;<html:a href="mailto:mbj@spamcop.net">mbj@spamcop.net</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Luiz Gonzaga dos Santos Filho &lt;<html:a href="mailto:lfilho@gmail.com">lfilho@gmail.com</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Janne Kovesjärvi &lt;<html:a href="mailto:janne.kovesjarvi@gmail.com">janne.kovesjarvi@gmail.com</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Sigmund Lorentsen &lt;<html:a href="mailto:sigmund.lorentsen@tele2.no">sigmund.lorentsen@tele2.no</html:a>&gt;
- </author>
- <author uid="borilg" title="contributor">
-  Boril Gourinov &lt;<html:a href="mailto:boril.gourinov@gmail.com">boril.gourinov@gmail.com</html:a>&gt;
- </author>
- <author uid="has_no_svn_access" title="contributor">
-  Łukasz Rymarczyk &lt;<html:a href="mailto:yenidai@poczta.onet.pl">yenidai@poczta.onet.pl</html:a>&gt;
+ <author uid="zfoldvar" title="contributor">
+  Zsolt Foldvari &lt;<html:a href="mailto:zfoldvar@users.sourceforge.net">zfoldvar@users.sourceforge.net</html:a>&gt;
  </author>
 </authors>
