@@ -968,7 +968,7 @@ msgstr ""
 "  <b>Initiales</b>   - premières lettres du prénom\n"
 "</tt>\n"
 "Utilisez le même mot clé en MAJUSCULE pour forcer les lettres capitales. Parenthèses et virgules\n"
-"seront enlevées des champs vides. Un texte autre apparaîtra literallement."
+"seront enlevées des champs vides. Un texte autre apparaîtra littérallement."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
