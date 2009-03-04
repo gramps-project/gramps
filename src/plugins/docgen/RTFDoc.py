@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -204,6 +205,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('\\tx%d' % twips(p.get_left_margin()))
             self.f.write('{%s ' % self.font_type)
             self.write_text(leader)
+            self.f.write(self.text)
+            self.text = ""
             self.f.write('\\tab}')
             self.opened = 0
     
@@ -254,6 +257,8 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     #--------------------------------------------------------------------
     def end_bold(self):
         self.opened = 0
+        self.f.write(self.text)
+        self.text = ""
         self.f.write('}')
 
     def start_superscript(self):
