@@ -1,4 +1,4 @@
-# translation of sv.po to svenska
+# translation of svnytt.po to svenska
 # translation of svny1.po to
 # translation of sv99.po to
 # translation of svny.po to
@@ -32,10 +32,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: sv\n"
+"Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-01 21:51+0100\n"
-"PO-Revision-Date: 2009-03-01 21:52+0100\n"
+"POT-Creation-Date: 2009-03-04 15:41+0100\n"
+"PO-Revision-Date: 2009-03-04 22:29+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6079,7 +6079,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/graph/GVFamilyLines.py:1062
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
-#: ../src/plugins/mapservices/eniroswedenmap.py:190
+#: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
 #: ../src/plugins/quickview/AgeOnDate.py:104
@@ -6530,7 +6530,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3289
 #: ../src/plugins/webreport/WebCal.py:1126
-#: ../src/ReportBase/_ReportDialog.py:342
+#: ../src/ReportBase/_ReportDialog.py:343
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
@@ -7550,8 +7550,8 @@ msgid "Timeline"
 msgstr "Livslängdslinje"
 
 #: ../src/plugins/drawreport/TimeLine.py:108
-#: ../src/ReportBase/_ReportDialog.py:638
-#: ../src/ReportBase/_ReportDialog.py:643
+#: ../src/ReportBase/_ReportDialog.py:639
+#: ../src/ReportBase/_ReportDialog.py:644
 msgid "Report could not be created"
 msgstr "Rapporten kunde inte skapas"
 
@@ -9362,40 +9362,40 @@ msgid "Provides common functionality for Gramps XML import/export."
 msgstr "Tillhandahåller gemensamma funktioner för Gramps XML import/export."
 
 #. Make upper case of translaed country so string search works later
-#: ../src/plugins/mapservices/eniroswedenmap.py:44
+#: ../src/plugins/mapservices/eniroswedenmap.py:43
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "Sweden"
 msgstr "Sverige"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:50
+#: ../src/plugins/mapservices/eniroswedenmap.py:49
 msgid "Denmark"
 msgstr "Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:76
+#: ../src/plugins/mapservices/eniroswedenmap.py:75
 msgid " parish"
 msgstr " församling"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:80
+#: ../src/plugins/mapservices/eniroswedenmap.py:79
 msgid " state"
 msgstr " län"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:138
+#: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitud ej inom %s till %s\n"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:139
+#: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitud ej inom %s till %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:141
-#: ../src/plugins/mapservices/eniroswedenmap.py:145
-#: ../src/plugins/mapservices/eniroswedenmap.py:173
+#: ../src/plugins/mapservices/eniroswedenmap.py:140
+#: ../src/plugins/mapservices/eniroswedenmap.py:144
+#: ../src/plugins/mapservices/eniroswedenmap.py:172
 msgid "Eniro map not available"
 msgstr "Eniros karta ej tillgänglig"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:146
+#: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
@@ -9403,24 +9403,24 @@ msgstr ""
 "Latitud och longitud,\n"
 "eller gata och stad behövs"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:174
+#: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Coordinates needed in Denmark"
 msgstr "Koordinater behövs i Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:178
+#: ../src/plugins/mapservices/eniroswedenmap.py:177
 #, python-format
 msgid "Eniro map not available for %s"
 msgstr "Eniros karta ej tillgänglig för %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:179
+#: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
 msgstr "Endast för Sverige och Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:189
+#: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
 msgstr "Eniros karta"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:191
+#: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
 msgstr "Öppnar på kartor.eniro.se"
 
@@ -12286,7 +12286,7 @@ msgid "Relationship to %(person_name)s"
 msgstr "Släktskap med %(person_name)s"
 
 #: ../src/plugins/tool/RelCalc.py:146 ../src/PluginUtils/_Tool.py:136
-#: ../src/ReportBase/_ReportDialog.py:596
+#: ../src/ReportBase/_ReportDialog.py:597
 msgid "Active person has not been set"
 msgstr "Ingen aktiv person har valts"
 
@@ -13634,12 +13634,12 @@ msgid "Colour"
 msgstr "Färg"
 
 #: ../src/PluginUtils/_GuiOptions.py:1244
-#: ../src/ReportBase/_ReportDialog.py:446
+#: ../src/ReportBase/_ReportDialog.py:447
 msgid "Save As"
 msgstr "Spara som"
 
 #: ../src/PluginUtils/_GuiOptions.py:1309
-#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
+#: ../src/ReportBase/_ReportDialog.py:304 ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilmallsredigerare"
 
@@ -14175,32 +14175,32 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "tum"
 
-#: ../src/ReportBase/_ReportDialog.py:111
+#: ../src/ReportBase/_ReportDialog.py:112
 msgid "Configuration"
 msgstr "Konfiguration"
 
 #. Styles Frame
-#: ../src/ReportBase/_ReportDialog.py:299
+#: ../src/ReportBase/_ReportDialog.py:300
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stil"
 
 #. need any labels at top:
-#: ../src/ReportBase/_ReportDialog.py:451
+#: ../src/ReportBase/_ReportDialog.py:452
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
 #. Save Frame
-#: ../src/ReportBase/_ReportDialog.py:466
+#: ../src/ReportBase/_ReportDialog.py:467
 msgid "Filename"
 msgstr "Filnamn"
 
-#: ../src/ReportBase/_ReportDialog.py:498
-#: ../src/ReportBase/_ReportDialog.py:523
+#: ../src/ReportBase/_ReportDialog.py:499
+#: ../src/ReportBase/_ReportDialog.py:524
 msgid "Permission problem"
 msgstr "Rättighetsproblem"
 
-#: ../src/ReportBase/_ReportDialog.py:499
+#: ../src/ReportBase/_ReportDialog.py:500
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -14211,25 +14211,25 @@ msgstr ""
 "\n"
 "Välj en annan katalog eller korrigera rättigheterna."
 
-#: ../src/ReportBase/_ReportDialog.py:508
+#: ../src/ReportBase/_ReportDialog.py:509
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: ../src/ReportBase/_ReportDialog.py:509
+#: ../src/ReportBase/_ReportDialog.py:510
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
 
-#: ../src/ReportBase/_ReportDialog.py:511
+#: ../src/ReportBase/_ReportDialog.py:512
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: ../src/ReportBase/_ReportDialog.py:512
+#: ../src/ReportBase/_ReportDialog.py:513
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: ../src/ReportBase/_ReportDialog.py:524
+#: ../src/ReportBase/_ReportDialog.py:525
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -14240,7 +14240,7 @@ msgstr ""
 "\n"
 "Välj en annan sökväg eller korrigera rättigheterna."
 
-#: ../src/ReportBase/_ReportDialog.py:597
+#: ../src/ReportBase/_ReportDialog.py:598
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Du måste välja en aktiv person för att den här rapporten skall fungera "
@@ -23699,4 +23699,37 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
+
+msgid "Active person"
+msgstr "Aktiv person"
+
+msgid "Surname, Given"
+msgstr "Efternamn, Förnamn"
+
+msgid "Save"
+msgstr "Spara"
+
+msgid "Abandon"
+msgstr "Överge"
+
+msgid "New person"
+msgstr "Ny person"
+
+msgid "Add relation"
+msgstr "Lägg till släktskap/relation"
+
+msgid "No relation to active person"
+msgstr "Inget släktskap till aktiv person"
+
+msgid "Add as a Parent"
+msgstr "Lägg till som en föräldrar"
+
+msgid "Add as a Spouse"
+msgstr "Lägg till en maka/make"
+
+msgid "Add as a Sibling"
+msgstr "Lägg till ett syskon"
+
+msgid "Add as a Child"
+msgstr "Lägg till ett barn"
 
