@@ -1,4 +1,4 @@
-#
+ #
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Gerald Britton <gerald.britton@gmail.com>
@@ -23,16 +23,9 @@
 """
 HTML operations.
 
-This module exports one class:
+This module exports one class and two functions.
 
-class Html: HTML generator
 """
-#------------------------------------------------------------------------
-#
-# python modules
-#
-#------------------------------------------------------------------------
-import sys
 
 #------------------------------------------------------------------------
 #
@@ -42,16 +35,17 @@ import sys
 _XHTML1_STRICT = 'PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n' \
           '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"'
 
-class Html(object):
+class Html(list):
     """
     HTML class.
     """
     __slots__ = ['items','indent','inline','end']
 #
     def __init__(self, tag='html', *args, **keywargs):
+        super(Html, self).__init__([])
         attr, indent, close, inline = '', False, True, False
         for keyw, arg in keywargs.iteritems():
-            if keyw in ['indent','close','inline'] and arg in [True,False,None]:
+            if keyw in ['indent', 'close', 'inline'] and arg in [True, False, None]:
                 exec '%s = %s' % (keyw, arg)
             elif keyw == 'attr':
                 attr += ' ' + arg
@@ -60,51 +54,55 @@ class Html(object):
             else:
                 attr += ' %s="%s"' % (keyw, arg)
 #
-        if tag[0] == '<':
-            self.items = (tag,)
-            self.indent = indent
-            self.inline = inline
-            self.end = None
-            return
-#
-        begin = '<%s%s%s>' % (
-            tag,
-            attr,
-            ('' if close or close is None else ' /')
-            )
-#
-        self.items = (begin,) + args
-        self.end = '</%s>' % tag if close else None
         self.indent = indent
         self.inline = inline
+        self.end = close
 #
-    def __add__(self, data):
-        self.items += data if isinstance(data,tuple) else (data,)
-        return self
-#
-    append = extend = __add__
-#
-    def index(self,data):
-        i = 0
-        for item in self.items:
-            if item == data:
-                return i
-            i += 1
+        if tag[0] == '<':
+            self += [tag]
+            self.end = None
         else:
-            import sys
-            raise ValueError, "Html.index: item not found", sys.exc_info()[2]
+            begin = '<%s%s%s>' % (
+                tag,
+                attr,
+                ('' if close or close is None else ' /')
+                )
+            self += [begin] + list(args)
+            super(Html, self).extend(['</%s>' % tag] if close else [])
 #
-    def replace(self,data,newdata):
-        i = self.index(data)
-        self.items = self.items[:i] + (newdata,) + self.items[i+1:]
-#
-    def __sub__(self, data):
-        i = self.index(data)
-        self.items = self.items[:i] + self.items[i+1:]
+    def __add__(self, value):
+        if isinstance(value, Html) or not hasattr(value, '__iter__'):
+            value = [value]
+        index = len(self) - 1 if self.end else 0
+        self[index:index] = value
         return self
+#
+    __iadd__ = append = extend = __add__
+#
+    def replace(self, cur_value, value):
+        self[self.index(cur_value)] = value
+#
+    def __sub__(self, value):
+        del self[self.index(value)]
+        return self
+#
+    __isub__ = remove = __sub__
 #
     def _print(data):
         print data
+#
+    def __str__(self):
+        return '%s'*len(self) % tuple(self[:])
+#
+    def __iter__(self):
+        for item in self[:]:
+            if isinstance(item, self.Html):
+                for sub_item in item:
+                    yield sub_item
+            else:
+                yield item
+#
+    iterkeys = itervalues = iteritems = __iter__
 #
     def write(self, method=_print, tabs=''):
         tabs += '\t' if self.indent else ''
@@ -112,51 +110,34 @@ class Html(object):
             method('%s%s' % (tabs,self))
 #
         else:
-            for item in self.items:
-                if isinstance(item, self.__class__):
+            for item in self[:]:
+                if isinstance(item, Html):
                     item.write(tabs=tabs)
                 else:
                     method('%s%s' % (tabs, item))
-            if self.end is not None:
-                method('%s%s' % (tabs, self.end))
 #
-    def __str__(self):
-        return '%s'*len(self.items) % self.items + \
-            (self.end or '')
+    def addXML(self, version=1.0, encoding="UTF-8", standalone="no"):
+        xml = XML(version=version, encoding=encoding, standalone=standalone)
+        self.insert(0, xml)
 #
-    def __iter__(self):
-        for item in self.items:
-            if isinstance(item, self.__class__):
-                for j in item:
-                    yield j
-            else:
-                yield item
-        if self.end is not None:
-            yield self.end
-#
-    def XML(self,version=1.0, encoding="UTF-8", standalone="no"):
-        return '<?xml %s %s %s?>' % (
-            'version="%s"' % version,
-            'encoding="%s"' % encoding,
-            'standalone="%s"' % standalone
-            )
-#
-    def addXML(self,version=1.0, encoding="UTF-8", standalone="no"):
-        xml = self.XML(version=version, encoding=encoding, standalone=standalone)
-        self.items = (xml,) + self.items
-#
-    def DOCTYPE(self,name='html', external_id=_XHTML1_STRICT, *args):
-        return '<!DOCTYPE %s %s%s>' % (
-            name, 
-            external_id,
-            ' %s'*len(args) % args
-            )
-#
-    def addDOCTYPE(self,name='html', external_id=_XHTML1_STRICT, *args):
-        doctype = self.DOCTYPE(name='html', external_id=_XHTML1_STRICT, *args)
-        if len(self.items) > 0 and self.items[0][:6] == '<?xml ':
-            self.items = self.items[:1] + (doctype,) + self.items[1:]
+    def addDOCTYPE(self, name='html', external_id=_XHTML1_STRICT, *args):
+        doctype = DOCTYPE(name='html', external_id=_XHTML1_STRICT, *args)
+        if len(self) and self[0][:6] == '<?xml ':
+            self.insert(1, doctype)
         else:
-            self.items = (doctype,) + self.items
+            self.insert(0, doctype)
 
+def XML(version=1.0, encoding="UTF-8", standalone="no"):
+    return '<?xml %s %s %s?>' % (
+        'version="%s"' % version,
+        'encoding="%s"' % encoding,
+        'standalone="%s"' % standalone
+        )
+
+def DOCTYPE(name='html', external_id=_XHTML1_STRICT, *args):
+    return '<!DOCTYPE %s %s%s>' % (
+        name, 
+        external_id,
+        ' %s'*len(args) % args
+        )
 
