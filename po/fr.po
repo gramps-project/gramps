@@ -23031,3 +23031,87 @@ msgstr "Ajouter comme frère ou sœur"
 msgid "Add as a Child"
 msgstr "Ajouter comme enfant"
 
+msgid "Copy Active Data"
+msgstr "Copier ces données"
+
+msgid "in"
+msgstr "dans"
+
+msgid "Gramplet Data Edit: %s"
+msgstr "Gramplet formulaire : %s"
+
+msgid "Please provide a name."
+msgstr "Saisissez un nom."
+
+msgid "Can't add new person."
+msgstr "Impossible d'ajouter un nouvel individu."
+
+msgid "Please set an active person."
+msgstr "Définir l'individu actif."
+
+msgid "Can't add new person as a parent."
+msgstr "Impossible d'ajouter un nouvel individu comme parent."
+
+msgid "Please set the new person's gender."
+msgstr "Définir le genre du nouvel individu."
+
+msgid "Can't add new person as a spouse."
+msgstr "Impossible d'ajouter un nouvel individu comme conjoint."
+
+msgid "Can't add new person as a sibling."
+msgstr "Impossible d'ajouter un nouvel individu comme frère ou sœur."
+
+msgid "Can't add new person as a child."
+msgstr "Impossible d'ajouter un nouvel individu comme enfant."
+
+msgid "Please set gender on Active or new person."
+msgstr "Saisissez le genre du nouvel individu ou de la personne active."
+
+msgid "Same genders on Active and new person."
+msgstr "Même genre entre la personne active et le nouvel individu."
+
+msgid "Please set gender on Active person."
+msgstr "Saisissez le genre de l'individu actif."
+
+msgid "Gramplet Data Entry: %s"
+msgstr "Gramplet formulaire : %s"
+
+msgid "Data Entry Gramplet"
+msgstr "Gramplet Formulaire"
+
+msgid "Data Entry"
+msgstr "Formulaire"
+
+msgid "FAQ Gramplet"
+msgstr "Gramplet FAQ"
+
+msgid "FAQ"
+msgstr "Foire aux questions"
+
+msgid "Read headline news from the GRAMPS wiki"
+msgstr "Lire les nouvelles depuis le wiki de GRAMPS"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Reading"
+msgstr "Lecture"
+
+msgid "Headline News Gramplet"
+msgstr "Gramplet Résumé"
+
+msgid "Headline News"
+msgstr "Nouvelles"
+
+msgid "Note Gramplet"
+msgstr "Gramplet Note"
+
+msgid "Enter Python expressions"
+msgstr "Entrer des expressions python"
+
+msgid "Python Gramplet"
+msgstr "Gramplet Python"
+
+msgid "Python Shell"
+msgstr "Shell python"
+

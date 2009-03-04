@@ -22609,3 +22609,88 @@ msgstr ""
 
 msgid "Add as a Child"
 msgstr ""
+
+msgid "Copy Active Data"
+msgstr ""
+
+msgid "in"
+msgstr ""
+
+msgid "Gramplet Data Edit: %s"
+msgstr ""
+
+msgid "Please provide a name."
+msgstr ""
+
+msgid "Can't add new person."
+msgstr ""
+
+msgid "Please set an active person."
+msgstr ""
+
+msgid "Can't add new person as a parent."
+msgstr ""
+
+msgid "Please set the new person's gender."
+msgstr ""
+
+msgid "Can't add new person as a spouse."
+msgstr ""
+
+msgid "Can't add new person as a sibling."
+msgstr ""
+
+msgid "Can't add new person as a child."
+msgstr ""
+
+msgid "Please set gender on Active or new person."
+msgstr ""
+
+msgid "Same genders on Active and new person."
+msgstr ""
+
+msgid "Please set gender on Active person."
+msgstr ""
+
+msgid "Gramplet Data Entry: %s"
+msgstr ""
+
+msgid "Data Entry Gramplet"
+msgstr ""
+
+msgid "Data Entry"
+msgstr ""
+
+msgid "FAQ Gramplet"
+msgstr ""
+
+msgid "FAQ"
+msgstr ""
+
+msgid "Read headline news from the GRAMPS wiki"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Reading"
+msgstr ""
+
+msgid "Headline News Gramplet"
+msgstr ""
+
+msgid "Headline News"
+msgstr ""
+
+msgid "Note Gramplet"
+msgstr ""
+
+msgid "Enter Python expressions"
+msgstr ""
+
+msgid "Python Gramplet"
+msgstr ""
+
+msgid "Python Shell"
+msgstr ""
+
