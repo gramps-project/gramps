@@ -16,12 +16,12 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     http://www.graphviz.org
 
 The following packages are optional
-   gtkspell         Enable spell checking in the notes
+   python gtkspell  Enable spell checking in the notes
+   pyenchant        Enable query of installed spell check dictionaries
    ttf-freefont     More font support in the reports
 
-No longer needed in 3.0:
+No longer needed in 3.x:
    yelp             Gnome help browser. At the moment no help is shipped
-                    with version 3.0.
 
 
 Documentation
@@ -42,3 +42,4 @@ you need to apply to po/Makefile.in.in
 --------------------------------
 Donald Allingham
 dallingham@users.sourceforge.net
+benny.malengier@gramps-project.org
