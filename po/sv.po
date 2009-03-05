@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: svnytt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-04 15:41+0100\n"
-"PO-Revision-Date: 2009-03-04 22:29+0100\n"
+"PO-Revision-Date: 2009-03-05 12:59+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23732,4 +23732,88 @@ msgstr "Lägg till ett syskon"
 
 msgid "Add as a Child"
 msgstr "Lägg till ett barn"
+
+msgid "Copy Active Data"
+msgstr "Kopiera aktiva data"
+
+msgid "in"
+msgstr "i"
+
+msgid "Gramplet Data Edit: %s"
+msgstr "Gramplet dataredigering: %s"
+
+msgid "Please provide a name."
+msgstr "Bestäm ett namn"
+
+msgid "Can't add new person."
+msgstr "Kan inte lägga till ny person"
+
+msgid "Please set an active person."
+msgstr "Bestäm en aktiv person"
+
+msgid "Can't add new person as a parent."
+msgstr "Kan ej lägga till ny person som förälder"
+
+msgid "Please set the new person's gender."
+msgstr "Bestäm den nya personens kön."
+
+msgid "Can't add new person as a spouse."
+msgstr "Kan ej lägga till ny person som make/maka"
+
+msgid "Can't add new person as a sibling."
+msgstr "Kan ej lägg till ny person som ett syskon."
+
+msgid "Can't add new person as a child."
+msgstr "Kan inte lägga till en ny person som ett barn"
+
+msgid "Please set gender on Active or new person."
+msgstr "Bestäm kön för aktiv person eller ny person"
+
+msgid "Same genders on Active and new person."
+msgstr "Samma kön för aktive och ny person."
+
+msgid "Please set gender on Active person."
+msgstr "Bestäm kön för aktiv person"
+
+msgid "Gramplet Data Entry: %s"
+msgstr "Gramplet för datainmatning: %s"
+
+msgid "Data Entry Gramplet"
+msgstr "Dataredigerings-Gramplet"
+
+msgid "Data Entry"
+msgstr "Datainmatning"
+
+msgid "FAQ Gramplet"
+msgstr "FAQ Gramplet"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Read headline news from the GRAMPS wiki"
+msgstr "Läs rubriker från GRAMPS wiki"
+
+msgid "Error"
+msgstr "Fel"
+
+msgid "Reading"
+msgstr "Läser"
+
+msgid "Headline News Gramplet"
+msgstr "Rubrik-Gramplet"
+
+msgid "Headline News"
+msgstr "Rubriker"
+
+msgid "Note Gramplet"
+msgstr "Antecknings-Gramplet"
+
+msgid "Enter Python expressions"
+msgstr "Skriv in Python-uttryck"
+
+msgid "Python Gramplet"
+msgstr "Python Gramplet"
+
+msgid "Python Shell"
+msgstr "Pythonskal"
 
