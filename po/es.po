@@ -10,9 +10,8 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-04 15:41+0100\n"
-"PO-Revision-Date: 2009-03-03 07:09+0100\n"
+"PO-Revision-Date: 2009-03-05 09:38+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7538,7 +7537,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:158
 msgid "Father - Child Age Diff Distribution"
-msgstr ""
+msgstr "Distribución de la diferencia de edad entre padre e hijo/a"
 
 #: ../src/plugins/gramplet/AgeStats.py:158
 #: ../src/plugins/gramplet/AgeStats.py:159
@@ -7547,7 +7546,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Mother - Child Age Diff Distribution"
-msgstr ""
+msgstr "Distribución de la diferencia de edad entre madre e hijo/a"
 
 #: ../src/plugins/gramplet/AgeStats.py:216
 #: ../src/plugins/gramplet/StatsGramplet.py:196
@@ -7617,9 +7616,8 @@ msgid "Move mouse over links for options"
 msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
-#, fuzzy
 msgid "No Active Person selected."
-msgstr "No se seleccionó ninguna persona"
+msgstr "No se seleccionó ninguna persona."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:107
 #: ../src/plugins/textreport/DescendReport.py:118
@@ -7649,28 +7647,25 @@ msgstr " f. %(death_date)s"
 #: ../src/plugins/gramplet/DescendGramplet.py:154
 #: ../src/plugins/gramplet/PedigreeGramplet.py:154
 msgid "Click to make active\n"
-msgstr ""
+msgstr "Haga click para hacerla activa\n"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:137
 #: ../src/plugins/gramplet/DescendGramplet.py:155
 #: ../src/plugins/gramplet/PedigreeGramplet.py:155
 msgid "Right-click to edit"
-msgstr ""
+msgstr "Haga clic con el botón derecho para modificar"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
-#, fuzzy
 msgid "   sp. "
-msgstr "   "
+msgstr "   x "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
-#, fuzzy
 msgid "Descendant Gramplet"
-msgstr "Árbol de descendientes"
+msgstr "Bloque de descendientes"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
-#, fuzzy
 msgid "Descendants"
-msgstr "Descendientes de %s"
+msgstr "Descendientes"
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:534
 msgid ""
@@ -7680,9 +7675,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/FanChartGramplet.py:895
-#, fuzzy
 msgid "Fan Chart Gramplet"
-msgstr "Bloque de calendario"
+msgstr "Bloque de abanico"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:37
 #, fuzzy
@@ -7690,14 +7684,12 @@ msgid "Double-click given name for details"
 msgstr "Haga doble clic en el apellido para más detalles"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
-#, fuzzy
 msgid "Total unique given names"
-msgstr "Total de apellidos distintos"
+msgstr "Total de nombres de pila distintos"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
-#, fuzzy
 msgid "Total given names showing"
-msgstr "Total de apellidos distintos"
+msgstr "Total de nombres de pila mostrados"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:132
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:147
@@ -7706,14 +7698,12 @@ msgid "Total people"
 msgstr "Total de personas"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
-#, fuzzy
 msgid "Given Name Cloud Gramplet"
-msgstr "Bloque de nube de apellidos"
+msgstr "Bloque de nube de nombres de pila"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:140
-#, fuzzy
 msgid "Given Name Cloud"
-msgstr "Nombre"
+msgstr "Nube de nombres de pila"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:58
 #: ../src/plugins/gramplet/PedigreeGramplet.py:62
@@ -7727,14 +7717,14 @@ msgid "(b. %(birthdate)s, d. %(deathdate)s)"
 msgstr "Nació: %(birth_date)s, Falleció: %(death_date)s."
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:217
-#, fuzzy, python-format
+#, python-format
 msgid "(b. %s)"
-msgstr "n. %s"
+msgstr "(n. %s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:219
-#, fuzzy, python-format
+#, python-format
 msgid "(d. %s)"
-msgstr "f. %s"
+msgstr "(f. %s)"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:241
 msgid ""
@@ -7746,7 +7736,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:243
 msgid "percent sign or text string|%"
-msgstr ""
+msgstr "%"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:249
 msgid "Generation 1"
@@ -7886,7 +7876,7 @@ msgstr "Registro de esta sesión"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:44
 msgid "Opened data base -----------\n"
-msgstr ""
+msgstr "Se abrió la base de datos -----------\n"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
@@ -7900,9 +7890,8 @@ msgid "Deleted"
 msgstr "Borrado"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
-#, fuzzy
 msgid "Edited"
-msgstr "Editar"
+msgstr "Editado"
 
 #: ../src/plugins/gramplet/SessionLogGramplet.py:59
 msgid "Selected"
@@ -8023,9 +8012,8 @@ msgid "Total unique surnames"
 msgstr "Total de apellidos distintos"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:146
-#, fuzzy
 msgid "Total surnames showing"
-msgstr "Total de apellidos distintos"
+msgstr "Total de apellidos mostrados"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:156
 msgid "Surname Cloud Gramplet"
@@ -8130,13 +8118,13 @@ msgstr "Nacimiento ausente"
 #: ../src/plugins/gramplet/WhatsNext.py:316
 #, python-format
 msgid ": %(list)s\n"
-msgstr ""
+msgstr ": %(list)s\n"
 
 #: ../src/plugins/gramplet/WhatsNext.py:270
 #: ../src/plugins/gramplet/WhatsNext.py:317
 #: ../src/plugins/gramplet/WhatsNext.py:338
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
@@ -8833,16 +8821,15 @@ msgstr "Base de datos GRAMPS 2.x"
 
 #: ../src/plugins/import/ImportGrdb.py:2687
 msgid "Import data from GRAMPS 2.x database files"
-msgstr ""
+msgstr "Importar datos a partir de archivos de base de datos de GRAMPS 2.x"
 
 #: ../src/plugins/import/ImportProGen.py:77
-#, fuzzy
 msgid "Pro-Gen data error"
-msgstr "Generar errores en la base de datos"
+msgstr "Error en datos de Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:159
 msgid "Not a Pro-Gen file"
-msgstr ""
+msgstr "No es un archivo Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:374
 #, python-format
@@ -8921,15 +8908,15 @@ msgstr "Importar desde %s"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
-msgstr ""
+msgstr "Proporciona información de festividades en distintos países."
 
 #: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
-msgstr ""
+msgstr "Proporciona la funcionalidad básica para los servicios de mapas."
 
 #: ../src/plugins/lib/libgrampsxml.py:50
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr ""
+msgstr "Proporciona la funcionalidad común a todas las importaciones y exportaciones de XML de GRAMPS."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:43
@@ -8938,29 +8925,26 @@ msgid "Sweden"
 msgstr "Suecia"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:49
-#, fuzzy
 msgid "Denmark"
-msgstr "Comentario"
+msgstr "Dinamarca"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:75
-#, fuzzy
 msgid " parish"
-msgstr "Español"
+msgstr " parroquia"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:79
-#, fuzzy
 msgid " state"
-msgstr "Estado/Provincia"
+msgstr " estado/provincia"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
-msgstr ""
+msgstr "La latitud no está comprendida entre %s y %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Longitude not within %s to %s"
-msgstr ""
+msgstr "La longitud no está comprendida entre %s y %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
@@ -8974,10 +8958,12 @@ msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
 msgstr ""
+"Se reguiere latitud y longitud,\n"
+"o calle y localidad"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Coordinates needed in Denmark"
-msgstr ""
+msgstr "En Dinamarca son necesarias las coordenadas"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:177
 #, fuzzy, python-format
@@ -8986,7 +8972,7 @@ msgstr "No está disponible el comprobador ortográfico para el %s"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:178
 msgid "Only for Sweden and Denmark"
-msgstr ""
+msgstr "Sólo para Suecia y Dinamarca"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
 #, fuzzy
@@ -8998,23 +8984,20 @@ msgid "Opens on kartor.eniro.se"
 msgstr ""
 
 #: ../src/plugins/mapservices/googlemap.py:79
-#, fuzzy
 msgid "GoogleMaps"
-msgstr "_Google Maps"
+msgstr "GoogleMaps"
 
 #: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
 msgstr ""
 
 #: ../src/plugins/mapservices/openstreetmap.py:83
-#, fuzzy
 msgid "OpenStreetMap"
-msgstr "Calle"
+msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/openstreetmap.py:85
-#, fuzzy
 msgid "Open on openstreetmap.org"
-msgstr "Abrir con OpenOffice.org"
+msgstr "Abrir con openstreetmap.org"
 
 #: ../src/plugins/quickview/AgeOnDate.py:48
 #, python-format
@@ -22007,21 +21990,17 @@ msgstr "Introduzca un nombre por favor."
 msgid "Can't add new person."
 msgstr "No se pudo agregar la nueva persona."
 
-#, fuzzy
 msgid "Please set an active person."
-msgstr "Modifica la persona activa"
+msgstr "Fije una persona activa, por favor."
 
-#, fuzzy
 msgid "Can't add new person as a parent."
-msgstr "Agregar una nueva familia con la persona como padre o madre"
+msgstr "No se pudo agregar una nueva persona como padre o madre."
 
-#, fuzzy
 msgid "Please set the new person's gender."
-msgstr "Estilo a utilizar para el nombre de la persona."
+msgstr "Fije el sexo de la nueva persona, por favor."
 
-#, fuzzy
 msgid "Can't add new person as a spouse."
-msgstr "Agregar una nueva persona como madre"
+msgstr "No se pudo agregar una nueva persona como cónyuge"
 
 #, fuzzy
 msgid "Can't add new person as a sibling."
@@ -22031,13 +22010,11 @@ msgstr "Mostrar los hermanos de una persona."
 msgid "Can't add new person as a child."
 msgstr "Crear una nueva persona y agregarla como hijo a la familia"
 
-#, fuzzy
 msgid "Please set gender on Active or new person."
-msgstr "Hace que el cónyuge seleccionado sea la nueva persona activa"
+msgstr ""
 
-#, fuzzy
 msgid "Same genders on Active and new person."
-msgstr "Hace que el cónyuge seleccionado sea la nueva persona activa"
+msgstr ""
 
 #, fuzzy
 msgid "Please set gender on Active person."
@@ -22050,13 +22027,11 @@ msgstr ""
 msgid "Data Entry Gramplet"
 msgstr "Bloque de calendario"
 
-#, fuzzy
 msgid "Data Entry"
-msgstr "Bloque de calendario"
+msgstr ""
 
-#, fuzzy
 msgid "FAQ Gramplet"
-msgstr "Bloque"
+msgstr ""
 
 #, fuzzy
 msgid "FAQ"
@@ -22076,9 +22051,8 @@ msgstr "Lectura"
 msgid "Headline News Gramplet"
 msgstr "Bloque de noticias"
 
-#, fuzzy
 msgid "Headline News"
-msgstr "Bloque de noticias"
+msgstr ""
 
 #, fuzzy
 msgid "Note Gramplet"
