@@ -556,6 +556,15 @@ def analyze_msgs( options, fname, msgs, nr_templates = None, nth = 0 ):
 	template_coverage = po_coverage * float(nr_msgs) / float(nr_templates)
 	print "%-20s%5.2f%%" % ( "Template Coverage:", template_coverage )
 
+	not_displayed = nr_untranslated + nr_fuzzy
+	translation = (1.0 - (float(not_displayed) / float(nr_templates))) * 100
+	text = "%-20s%5.2f%%" % ( "Localized at:",     translation)
+
+	if template_coverage == po_coverage:
+		print text
+	else:
+		print text + ' (previous gramps.pot)'
+
 	if not options.only_summary:
 		for c in checks:
 			c.diag()
