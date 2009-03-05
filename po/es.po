@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-04 15:41+0100\n"
-"PO-Revision-Date: 2009-03-05 09:38+0100\n"
+"PO-Revision-Date: 2009-03-05 12:05+0100\n"
 "Last-Translator: Julio Sánchez <jsanchez@users.sourceforge.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -7542,7 +7542,7 @@ msgstr "Distribución de la diferencia de edad entre padre e hijo/a"
 #: ../src/plugins/gramplet/AgeStats.py:158
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Diff"
-msgstr ""
+msgstr "Diferencia"
 
 #: ../src/plugins/gramplet/AgeStats.py:159
 msgid "Mother - Child Age Diff Distribution"
@@ -7613,7 +7613,7 @@ msgstr "Bloque de calendario"
 #: ../src/plugins/gramplet/DescendGramplet.py:47
 #: ../src/plugins/gramplet/PedigreeGramplet.py:50
 msgid "Move mouse over links for options"
-msgstr ""
+msgstr "Mueva el ratón a los enlaces para ver las opciones"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
 msgid "No Active Person selected."
@@ -7767,11 +7767,11 @@ msgid "Double-click to see people in generation %d"
 msgstr "Pulse dos veces para modificar la persona activa"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:259
-#, fuzzy, python-format
+#, python-format
 msgid " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
 msgid_plural " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
-msgstr[0] " tiene %d de %d personas (%.2f%% terminado)\n"
-msgstr[1] " tiene %d de %d personas (%.2f%% terminado)\n"
+msgstr[0] " tiene %(count_person)d de %(max_count_person)d persona (%(percent)s terminado)\n"
+msgstr[1] " tiene %(count_person)d de %(max_count_person)d personas (%(percent)s terminado)\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:262
 msgid "All generations"
@@ -7783,11 +7783,11 @@ msgid "Double-click to see all generations"
 msgstr "Pulse dos veces para modificar la persona activa"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:265
-#, fuzzy, python-format
+#, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
-msgstr[0] " tienen %d personas\n"
-msgstr[1] " tienen %d personas\n"
+msgstr[0] " tiene %d persona\n"
+msgstr[1] " tiene %d personas\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:281
 msgid "Pedigree Gramplet"
@@ -8376,7 +8376,7 @@ msgstr "Usar códigos SoundEx"
 #: ../src/plugins/graph/GVHourGlass.py:285
 #: ../src/plugins/graph/GVRelGraph.py:529
 msgid "Use rounded corners to differentiate between women and men."
-msgstr ""
+msgstr "Usar esquinas redondeadas para diferenciar las mujeres de los hombres."
 
 #: ../src/plugins/graph/GVFamilyLines.py:221
 msgid "Use subgraphs"
@@ -8745,11 +8745,11 @@ msgstr "Leyendo datos..."
 #: ../src/plugins/import/ImportCsv.py:695
 #: ../src/plugins/import/ImportGeneWeb.py:181
 #: ../src/plugins/import/ImportVCard.py:145
-#, fuzzy, python-format
+#, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
-msgstr[0] "Importación Completa: %d segundos"
-msgstr[1] "Importación Completa: %d segundos"
+msgstr[0] "Importación terminada: %d segundo"
+msgstr[1] "Importación terminada: %d segundos"
 
 #: ../src/plugins/import/ImportCsv.py:696
 msgid "CSV import"
@@ -8760,9 +8760,8 @@ msgid "CSV Spreadheet"
 msgstr "Hoja de cálculo CSV"
 
 #: ../src/plugins/import/ImportCsv.py:848
-#, fuzzy
 msgid "Import data from CSV files"
-msgstr "Importar desde %s"
+msgstr "Importar datos de archivos CSV"
 
 #: ../src/plugins/import/ImportGedcom.py:116
 msgid "Invalid GEDCOM file"
@@ -8834,64 +8833,58 @@ msgstr "No es un archivo Pro-Gen"
 #: ../src/plugins/import/ImportProGen.py:374
 #, python-format
 msgid "Field '%(fldname)s' not found"
-msgstr ""
+msgstr "No se encontró el campo '%(fldname)s'"
 
 #: ../src/plugins/import/ImportProGen.py:449
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
-msgstr ""
+msgstr "No se encontró el archivo DEF: %(deffname)s"
 
 #: ../src/plugins/import/ImportProGen.py:491
-#, fuzzy
 msgid "Import from Pro-Gen"
-msgstr "Importar desde %s"
+msgstr "Importar de Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:507
-#, fuzzy
 msgid "Pro-Gen import"
-msgstr "Importación GeneWeb"
+msgstr "Importación de Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:693
 #, python-format
 msgid "date did not match: '%s' (%s)"
-msgstr ""
+msgstr "la fecha no coincidió: '%s' (%s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:772
-#, fuzzy
 msgid "Importing individuals"
-msgstr "Creando las páginas de personas"
+msgstr "Importando personas"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1047
-#, fuzzy
 msgid "Importing families"
-msgstr "Falló la importación de la imagen"
+msgstr "Importando familias"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:1232
-#, fuzzy
 msgid "Adding children"
-msgstr "Listar hijos"
+msgstr "Importando hijos"
 
 #: ../src/plugins/import/ImportProGen.py:1243
 #, python-format
 msgid "cannot find father for I%s (father=%d)"
-msgstr ""
+msgstr "no se pudo encontrar el padre de I%s (padre=%d)"
 
 #: ../src/plugins/import/ImportProGen.py:1245
 #, python-format
 msgid "cannot find mother for I%s (mother=%d)"
-msgstr ""
+msgstr "no se pudo encontrar la madre de I%s (madre=%d)"
 
 #: ../src/plugins/import/ImportProGen.py:1280
-#, fuzzy
 msgid "Pro-Gen"
-msgstr "Persona"
+msgstr "Pro-Gen"
 
 #: ../src/plugins/import/ImportProGen.py:1281
 msgid "Import data from Pro-Gen files"
-msgstr ""
+msgstr "Importar datos de archivos Pro-Gen"
 
 #: ../src/plugins/import/ImportVCard.py:147
 msgid "vCard import"
@@ -8902,9 +8895,8 @@ msgid "vCard"
 msgstr "vCard"
 
 #: ../src/plugins/import/ImportVCard.py:225
-#, fuzzy
 msgid "Import data from vCard files"
-msgstr "Importar desde %s"
+msgstr "Importar datos de archivos vCard"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
@@ -8949,9 +8941,8 @@ msgstr "La longitud no está comprendida entre %s y %s"
 #: ../src/plugins/mapservices/eniroswedenmap.py:140
 #: ../src/plugins/mapservices/eniroswedenmap.py:144
 #: ../src/plugins/mapservices/eniroswedenmap.py:172
-#, fuzzy
 msgid "Eniro map not available"
-msgstr "No disponible"
+msgstr "No está disponible el mapa de Eniro"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:145
 msgid ""
@@ -8975,13 +8966,12 @@ msgid "Only for Sweden and Denmark"
 msgstr "Sólo para Suecia y Dinamarca"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:188
-#, fuzzy
 msgid "EniroMaps"
-msgstr "Mapas"
+msgstr "Mapas Eniro"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens on kartor.eniro.se"
-msgstr ""
+msgstr "Se abre en kartor.eniro.se"
 
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
@@ -8989,7 +8979,7 @@ msgstr "GoogleMaps"
 
 #: ../src/plugins/mapservices/googlemap.py:81
 msgid "Open on maps.google.com"
-msgstr ""
+msgstr "Abrir en maps.google.com"
 
 #: ../src/plugins/mapservices/openstreetmap.py:83
 msgid "OpenStreetMap"
@@ -8997,7 +8987,7 @@ msgstr "OpenStreetMap"
 
 #: ../src/plugins/mapservices/openstreetmap.py:85
 msgid "Open on openstreetmap.org"
-msgstr "Abrir con openstreetmap.org"
+msgstr "Abrir en openstreetmap.org"
 
 #: ../src/plugins/quickview/AgeOnDate.py:48
 #, python-format
@@ -9133,11 +9123,8 @@ msgid "Remarks"
 msgstr "Comentarios"
 
 #: ../src/plugins/quickview/all_relations.py:336
-#, fuzzy
 msgid "The following problems were encountered:"
-msgstr ""
-"\tSe intentaron las siguientes rutas:\n"
-"\t\t"
+msgstr "Se encontraron los siguientes problemas:"
 
 #: ../src/plugins/quickview/all_relations.py:354
 msgid "Relation to Home Person"
@@ -9148,29 +9135,27 @@ msgid "Display all relationships between person and home person."
 msgstr "Mostrar todos los parentescos entre la persona y la persona inicial."
 
 #: ../src/plugins/quickview/AttributeMatch.py:29
-#, fuzzy, python-format
+#, python-format
 msgid "People who have the '%s' Attribute"
-msgstr "Personas con el <atributo> personal"
+msgstr "Personas con el atributo '%s'"
 
 #: ../src/plugins/quickview/AttributeMatch.py:42
-#, fuzzy, python-format
+#, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "Hay %d personas con un nombre o nombre alternativo que coinciden.\n"
+msgstr "Hay %d personas con un nombre de atributo que coinciden.\n"
 
 #: ../src/plugins/quickview/AttributeMatch.py:50
-#, fuzzy
 msgid "Attribute Match"
-msgstr "Nota de atributo"
+msgstr "Coincidencia de atributo"
 
 #: ../src/plugins/quickview/AttributeMatch.py:52
-#, fuzzy
 msgid "Display people with same attribute."
-msgstr "Personas con el atributo Calendario"
+msgstr "Mostrar personas con el mismo atributo."
 
 #. force translation
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "all people"
-msgstr "Total las personas"
+msgstr "todas las personas"
 
 #: ../src/plugins/quickview/FilterByName.py:38
 msgid "males"
@@ -9289,10 +9274,10 @@ msgid "Size in bytes"
 msgstr "Tamaño en bytes"
 
 #: ../src/plugins/quickview/FilterByName.py:220
-#, fuzzy, python-format
+#, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "El filtro seleccionó %d registros."
+msgstr[0] "El filtro seleccionó %d registro."
 msgstr[1] "El filtro seleccionó %d registros."
 
 #: ../src/plugins/quickview/FilterByName.py:239
@@ -9433,9 +9418,8 @@ msgid "Display references for a %s"
 msgstr "Mostrar referencias a %s"
 
 #: ../src/plugins/quickview/Reporef.py:88
-#, fuzzy
 msgid "RepoRef"
-msgstr "Eliminar"
+msgstr "Referencia a repositorio"
 
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
@@ -9524,24 +9508,20 @@ msgid "Matches people with same lastname"
 msgstr "Coincide con las personas con el mismo apellido"
 
 #: ../src/plugins/quickview/SameSurnames.py:63
-#, fuzzy
 msgid "People matching the <given>"
-msgstr "Personas que coinciden con <filtro>"
+msgstr "Personas que coinciden con <nombre de pila>"
 
 #: ../src/plugins/quickview/SameSurnames.py:64
-#, fuzzy
 msgid "Matches people with same given name"
-msgstr "Coincide con las personas con el mismo apellido"
+msgstr "Coincide con las personas con el mismo nombre de pila"
 
 #: ../src/plugins/quickview/SameSurnames.py:80
-#, fuzzy
 msgid "People with incomplete given names"
-msgstr "Personas con nombres incompletos"
+msgstr "Personas con nombres de pila incompletos"
 
 #: ../src/plugins/quickview/SameSurnames.py:81
-#, fuzzy
 msgid "Matches people with firstname missing"
-msgstr "Coincide con las personas sin apellidos"
+msgstr "Coincide con las personas sin nombre de pila"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:105
@@ -9551,17 +9531,17 @@ msgstr "Personas con apellidos '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:122
 #: ../src/plugins/quickview/SameSurnames.py:161
-#, fuzzy, python-format
+#, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Hay %d personas con un nombre o nombre alternativo que coinciden.\n"
-msgstr[1] "Hay %d personas con un nombre o nombre alternativo que coinciden.\n"
+msgstr[0] "Hay %d persona con un nombre o nombre alternativo que coincide.\n"
+msgstr[1] "Hay %d personas con un nombre o nombre alternativo que coincide.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "People with the given name '%s'"
-msgstr "Personas con apellidos '%s'"
+msgstr "Personas con nombre de pila '%s'"
 
 #: ../src/plugins/quickview/SameSurnames.py:177
 msgid "Same Surnames"
@@ -9573,15 +9553,13 @@ msgstr "Agrupar todas las personas con el mismo nombre."
 
 #: ../src/plugins/quickview/SameSurnames.py:188
 #: ../src/plugins/quickview/SameSurnames.py:199
-#, fuzzy
 msgid "Same Given Names"
-msgstr "Nombre"
+msgstr "Mismos nombres de pila"
 
 #: ../src/plugins/quickview/SameSurnames.py:190
 #: ../src/plugins/quickview/SameSurnames.py:201
-#, fuzzy
 msgid "Display people with the same given name as a person."
-msgstr "Agrupar todas las personas con el mismo nombre."
+msgstr "Agrupar todas las personas con el mismo nombre de pila que una persona."
 
 #. display the title
 #: ../src/plugins/quickview/siblings.py:44
@@ -9591,7 +9569,7 @@ msgstr "Hermanos de %s"
 
 #: ../src/plugins/quickview/siblings.py:46
 msgid "Sibling"
-msgstr "Hermano"
+msgstr "Hermano/a"
 
 #: ../src/plugins/quickview/siblings.py:59
 msgid "self"
@@ -9810,27 +9788,27 @@ msgstr "%(type)s: %(value)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:386
 #: ../src/plugins/textreport/DetDescendantReport.py:294
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s, %(place)s"
-msgstr "%(date)s en %(place)s"
+msgstr "%(date)s, %(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:389
 #: ../src/plugins/textreport/DetDescendantReport.py:297
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s"
-msgstr "%(endnotes)s."
+msgstr "%(date)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:391
 #: ../src/plugins/textreport/DetDescendantReport.py:299
-#, fuzzy, python-format
+#, python-format
 msgid "%(place)s"
-msgstr " en %(place)s"
+msgstr "%(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:403
 #: ../src/plugins/textreport/DetDescendantReport.py:311
-#, fuzzy, python-format
+#, python-format
 msgid "%(event_name)s: %(event_text)s"
-msgstr "%(event_name)s: %(date)s"
+msgstr "%(event_name)s: %(event_text)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:511
 #: ../src/plugins/textreport/DetDescendantReport.py:445
@@ -10062,14 +10040,14 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Reporte detallado para %(person_name)s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:412
-#, fuzzy, python-format
+#, python-format
 msgid "Spouse: %s"
-msgstr "Cónyuges"
+msgstr "Cónyuge: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:414
-#, fuzzy, python-format
+#, python-format
 msgid "Relationship with: %s"
-msgstr "Tipo de relación: %s"
+msgstr "Relación con: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:711
 msgid "Use Record-style (Modified Register) numbering"
@@ -10421,28 +10399,27 @@ msgid "Produces a list of people with a specified marker"
 msgstr "Produce una lista de personas con un marcador especificado"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:85
-#, fuzzy, python-format
+#, python-format
 msgid "Number of Ancestors for %s"
-msgstr "Número de ascendientes"
+msgstr "Número de ascendientes de %s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
-msgstr[0] "La generación %d contiene %d personas.\n"
-msgstr[1] "La generación %d contiene %d personas.\n"
+msgstr[0] "La generación %(generation)d contiene %(count)d persona. %(percent)s"
+msgstr[1] "La generación %(generation)d contiene %(count)d personas. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:141
-#, fuzzy, python-format
+#, python-format
 msgid "Total ancestors in generations %(second_generation)d to %(last_generation)d is %(count)d. %(percent)s"
-msgstr "Número total de ascendientes entre la generación %d y la -1 es %d.\n"
+msgstr "Número total de ascendientes entre la generación %(second_generation)d y la %(last_generation)d es %(count)d. %(percent)s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:210
-#, fuzzy
 msgid "Number of Ancestors Report"
-msgstr "Número de ascendientes"
+msgstr "Reporte de número de ascendientes"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:212
 msgid "Counts number of ancestors of selected person"
@@ -10452,113 +10429,99 @@ msgstr "Cuenta el número de ascendientes de la persona seleccionada"
 #. identified as a major category if this is included in a Book report.
 #: ../src/plugins/textreport/PlaceReport.py:93
 #: ../src/plugins/textreport/PlaceReport.py:402
-#, fuzzy
 msgid "Place Report"
-msgstr "Editor de Lugares"
+msgstr "Reporte de lugares"
 
 #: ../src/plugins/textreport/PlaceReport.py:118
 #, python-format
 msgid "Gramps ID: %s "
-msgstr ""
+msgstr "ID Gramps: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "Street: %s "
-msgstr "Calle"
+msgstr "Calle: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:120
 #, python-format
 msgid "Parish: %s "
-msgstr ""
+msgstr "Parroquia: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:121
 #, fuzzy, python-format
 msgid "City: %s "
-msgstr "Ciudad:"
+msgstr "Ciudad: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:122
 #, fuzzy, python-format
 msgid "County: %s "
-msgstr "Condado:"
+msgstr "Condado: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "State: %s"
-msgstr "Estado/Provincia:"
+msgstr "Estado/Provincia: %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:124
-#, fuzzy, python-format
+#, python-format
 msgid "Country: %s "
-msgstr "País:"
+msgstr "País: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:146
 msgid "Events that happened at this place"
-msgstr ""
+msgstr "Eventos que ocurrieron en este lugar"
 
 #: ../src/plugins/textreport/PlaceReport.py:150
-#, fuzzy
 msgid "Type of Event"
-msgstr "Modificar Padres"
+msgstr "Tipo de evento"
 
 #: ../src/plugins/textreport/PlaceReport.py:209
-#, fuzzy
 msgid "People associated with this place"
-msgstr "Personas de <nombre>"
+msgstr "Personas asociadas con este lugar"
 
 #: ../src/plugins/textreport/PlaceReport.py:256
-#, fuzzy
 msgid "Select using filter"
-msgstr "Seleccionar archivo"
+msgstr "Seleccionar mediante filtro"
 
 #: ../src/plugins/textreport/PlaceReport.py:257
-#, fuzzy
 msgid "Select places using a filter"
-msgstr "Escoja un archivo con el que reemplazar al que falta"
+msgstr "Seleccionar lugares mediante un filtro"
 
 #: ../src/plugins/textreport/PlaceReport.py:264
-#, fuzzy
 msgid "Select places individually"
-msgstr "Personas sin parientes"
+msgstr "Seleccionar lugares uno a uno"
 
 #: ../src/plugins/textreport/PlaceReport.py:265
-#, fuzzy
 msgid "List of places to report on"
-msgstr "Limitar fechas a sólo los años"
+msgstr "Lista de lugares sobre los que reportar"
 
 #: ../src/plugins/textreport/PlaceReport.py:295
-#, fuzzy
 msgid "The style used for the title of the report."
-msgstr "Estilo utilizado para el título de la página."
+msgstr "Estilo utilizado para el título del reporte."
 
 #: ../src/plugins/textreport/PlaceReport.py:309
-#, fuzzy
 msgid "The style used for place title."
-msgstr "Estilo utilizado para el título."
+msgstr "Estilo utilizado para el nombre del lugar."
 
 #: ../src/plugins/textreport/PlaceReport.py:321
-#, fuzzy
 msgid "The style used for place details."
-msgstr "Estilo utilizado para el título."
+msgstr "Estilo utilizado para los detalles del lugar."
 
 #: ../src/plugins/textreport/PlaceReport.py:333
-#, fuzzy
 msgid "The style used for a column title."
-msgstr "Estilo utilizado para el título."
+msgstr "Estilo utilizado para el título de una columna."
 
 #: ../src/plugins/textreport/PlaceReport.py:347
-#, fuzzy
 msgid "The style used for each section."
-msgstr "Estilo utilizado para el título."
+msgstr "Estilo utilizado para cada sección."
 
 #: ../src/plugins/textreport/PlaceReport.py:370
-#, fuzzy
 msgid "The style used for event and person details."
-msgstr "Estilo a utilizar para el nombre de la persona."
+msgstr "Estilo a utilizar para los detalles de eventos y personas."
 
 #: ../src/plugins/textreport/PlaceReport.py:404
-#, fuzzy
 msgid "Produces a textual place report"
-msgstr "Entrega un texto con el reporte de los ascendientes"
+msgstr "Entrega un texto con el reporte de lugares"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:120
 msgid "book|Title"
@@ -10569,9 +10532,8 @@ msgid "Title of the Book"
 msgstr "Título del libro"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:121
-#, fuzzy
 msgid "Title string for the book."
-msgstr "Título del Libro"
+msgstr "Título del libro."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:124
 msgid "Subtitle"
@@ -10579,12 +10541,11 @@ msgstr "Subtítulo"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:124
 msgid "Subtitle of the Book"
-msgstr "Subtítulo del Libro"
+msgstr "Subtítulo del libro"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:125
-#, fuzzy
 msgid "Subtitle string for the book."
-msgstr "Subtítulo del Libro"
+msgstr "Subtítulo del libro."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
 #, python-format
@@ -10597,7 +10558,7 @@ msgstr "Pie"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer string for the page."
-msgstr ""
+msgstr "Pie de la página."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:135
 msgid "Image"
@@ -10605,16 +10566,15 @@ msgstr "Imagen"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Gramps ID of the media object to use as an image."
-msgstr ""
+msgstr "ID Gramps del objeto audivisual a usar como imagen."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:139
-#, fuzzy
 msgid "Image Size"
-msgstr "Imagen"
+msgstr "Tamaño de la imagen"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:140
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
-msgstr ""
+msgstr "Tamaño de la imagen en cm.  Un valor de 0 indica que la imagen debe encajarse en la página."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:163
 msgid "The style used for the subtitle."
@@ -10629,75 +10589,73 @@ msgid "Title Page"
 msgstr "Portada"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:190
-#, fuzzy
 msgid "Produces a title page for book reports."
-msgstr "Produce un reporte detallado de ascendientes."
+msgstr "Produce una página de portada para los reportes de tipo libro."
 
 #: ../src/plugins/textreport/Summary.py:75
 #: ../src/plugins/textreport/Summary.py:302
-#, fuzzy
 msgid "Database Summary Report"
-msgstr "Resumen de la base de datos"
+msgstr "Reporte resumen de la base de datos"
 
 #: ../src/plugins/textreport/Summary.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "Number of individuals: %d"
-msgstr "Número de personas"
+msgstr "Número de personas: %d"
 
 #: ../src/plugins/textreport/Summary.py:148
-#, fuzzy, python-format
+#, python-format
 msgid "Males: %d"
-msgstr "Hombres"
+msgstr "Hombres: %d"
 
 #: ../src/plugins/textreport/Summary.py:152
-#, fuzzy, python-format
+#, python-format
 msgid "Females: %d"
-msgstr "Mujeres"
+msgstr "Mujeres: %d"
 
 #: ../src/plugins/textreport/Summary.py:156
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr "Personas de sexo desconocido"
+msgstr "Personas de sexo desconocido: %d"
 
 #: ../src/plugins/textreport/Summary.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with incomplete names: %d"
-msgstr "Personas con nombres incompletos"
+msgstr "Personas con nombres incompletos: %d"
 
 #: ../src/plugins/textreport/Summary.py:165
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals missing birth dates: %d"
-msgstr "Personas sin fecha de nacimiento"
+msgstr "Personas sin fecha de nacimiento: %d"
 
 #: ../src/plugins/textreport/Summary.py:170
-#, fuzzy, python-format
+#, python-format
 msgid "Disconnected individuals: %d"
-msgstr "Personas sin parientes"
+msgstr "Personas sin parientes: %d"
 
 #: ../src/plugins/textreport/Summary.py:174
-#, fuzzy, python-format
+#, python-format
 msgid "Unique surnames: %d"
-msgstr "Apellidos distintos"
+msgstr "Apellidos distintos: %d"
 
 #: ../src/plugins/textreport/Summary.py:178
-#, fuzzy, python-format
+#, python-format
 msgid "Individuals with media objects: %d"
-msgstr "Personas con objetos audiovisuales"
+msgstr "Personas con objetos audiovisuales: %d"
 
 #: ../src/plugins/textreport/Summary.py:192
-#, fuzzy, python-format
+#, python-format
 msgid "Number of families: %d"
-msgstr "Número de familias"
+msgstr "Número de familias: %d"
 
 #: ../src/plugins/textreport/Summary.py:217
-#, fuzzy, python-format
+#, python-format
 msgid "Number of unique media objects: %d"
-msgstr "Número de objetos audiovisuales distintos"
+msgstr "Número de objetos audiovisuales distintos: %d"
 
 #: ../src/plugins/textreport/Summary.py:222
-#, fuzzy, python-format
+#, python-format
 msgid "Total size of media objects: %d bytes"
-msgstr "Tamaño total de los objetos audiovisuales"
+msgstr "Tamaño total de los objetos audiovisuales: %d bytes"
 
 #: ../src/plugins/textreport/Summary.py:304
 msgid "Provides a summary of the current database"
@@ -11607,7 +11565,7 @@ msgstr "Convertir rutas de relativas a _absolutas"
 
 #: ../src/plugins/tool/MediaManager.py:498
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr ""
+msgstr "Esta herramiente permite convertir rutas de objetos relativas a rutas absolutas.  Lo hace anteponiendo la ruta base indicada en Preferencias o, si no se fijó un ruta base, anteponiendo el directorio del usuario."
 
 #: ../src/plugins/tool/MediaManager.py:535
 msgid "Convert paths from absolute to r_elative"
@@ -12394,7 +12352,7 @@ msgstr "Hermanos"
 #: ../src/plugins/webreport/NarrativeWeb.py:2717
 #, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-msgstr ""
+msgstr "%(date)s <span class=\"preposition\">en</span> %(place)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2719
 #, python-format
@@ -12758,27 +12716,27 @@ msgstr "Lugar de Fallecimiento"
 #: ../src/plugins/webreport/WebCal.py:492
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>\n"
-msgstr ""
+msgstr "Creado para <a href=\"mailto:%(email)s?subject=Calendario Web\">%(author)s</a>\n"
 
 #: ../src/plugins/webreport/WebCal.py:497
 #, python-format
 msgid "Created for %(author)s\n"
-msgstr ""
+msgstr "Creado para %(author)s\n"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:821
 msgid "One Day Within A Year"
-msgstr ""
+msgstr "Un día del año"
 
 #. page title
 #: ../src/plugins/webreport/WebCal.py:857
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr ""
+msgstr "%(year)d, de un vistazo"
 
 #: ../src/plugins/webreport/WebCal.py:869
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any!\n"
-msgstr ""
+msgstr "Este calendario está diseñado para darle acceso a todos sus datos de un vistazo en una página.  Al hacer clic en una fecha se le llevará a una página que muestra todos los eventos de esa fecha si los hubiera.\n"
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:876
@@ -12840,29 +12798,27 @@ msgstr "Opciones de contenido"
 
 #: ../src/plugins/webreport/WebCal.py:1190
 msgid "Create multiple year calendars"
-msgstr ""
+msgstr "Crear calendarios para varios años"
 
 #: ../src/plugins/webreport/WebCal.py:1192
 msgid "Whether to create Multiple year calendars or not."
-msgstr ""
+msgstr "Si se crearán o no calendarios para varios años."
 
 #: ../src/plugins/webreport/WebCal.py:1197
-#, fuzzy
 msgid "Start Year for the Calendar(s)"
-msgstr "Año del calendario"
+msgstr "Año de comienzo para los calendarios"
 
 #: ../src/plugins/webreport/WebCal.py:1199
 msgid "Enter the starting year for the calendars between 1900 - 3000"
-msgstr ""
+msgstr "Introducir el año de comienzo para los calendarios entre 1900 y 3000"
 
 #: ../src/plugins/webreport/WebCal.py:1203
-#, fuzzy
 msgid "End Year for the Calendar(s)"
-msgstr "Año del calendario"
+msgstr "Año final para los calendarios"
 
 #: ../src/plugins/webreport/WebCal.py:1205
 msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple years is selected, then only twenty years at any given time"
-msgstr ""
+msgstr "Introducir el año de comienzo para los calendarios entre 1900 y 3000.  si se seleccionan varios años, el máximo es veinte años cada vez"
 
 #: ../src/plugins/webreport/WebCal.py:1213
 msgid "Create \"Year At A Glance\" Calendar(s)"
@@ -12886,7 +12842,7 @@ msgstr "El enlace a incluir para llevar al usuario a la página principal del si
 
 #: ../src/plugins/webreport/WebCal.py:1264
 msgid "Jan - Jun Notes"
-msgstr ""
+msgstr "Notes de enero a junio"
 
 #: ../src/plugins/webreport/WebCal.py:1266
 msgid "Jan Note"
@@ -12962,7 +12918,7 @@ msgstr "Nota del mes de junio"
 
 #: ../src/plugins/webreport/WebCal.py:1290
 msgid "Jul - Dec Notes"
-msgstr ""
+msgstr "Notas de julio a diciembre"
 
 #: ../src/plugins/webreport/WebCal.py:1292
 msgid "Jul Note"
@@ -13039,24 +12995,24 @@ msgstr "Nota del mes de diciembre"
 #: ../src/plugins/webreport/WebCal.py:1477
 #, python-format
 msgid "%(person)s, <em>birth</em>"
-msgstr ""
+msgstr "%(person)s, <em>nacimiento</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
-msgstr ""
+msgstr "%(person)s, cumple <em>%(age)s</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1487
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr ""
+msgstr "%(couple)s, <em>boda</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1490
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(couple)s, aniversario <em>%(years)d</em>"
+msgstr[1] "%(couple)s, aniversario <em>%(years)d</em>"
 
 #: ../src/plugins/webreport/WebCal.py:1618
 msgid "Web Calendar"
@@ -13536,7 +13492,7 @@ msgstr "Resolución"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1008
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
-msgstr ""
+msgstr "Puntos por pulgada.  Al crear imágenes como archivos .gif o .png para la web, pruebe con valores como 100 o 300 DPI.  Al crear archivos PostScript o PDF, utilice 72 DPI."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1014
 msgid "Node spacing"
@@ -13603,7 +13559,7 @@ msgstr "cm"
 
 #: ../src/ReportBase/_PaperMenu.py:227
 msgid "inch|in."
-msgstr ""
+msgstr "pulgadas"
 
 #: ../src/ReportBase/_ReportDialog.py:112
 msgid "Configuration"
@@ -17314,15 +17270,18 @@ msgid ""
 "If you upgrade then you won't be able to use previous versions of GRAMPS.\n"
 "You might want to make a backup copy first."
 msgstr ""
+"No puede abrir esta base de datos sin actualizar su formato.\n"
+"Si lo hace, las versiones anteriores de GRAMPS ya no podrán usarla.\n"
+"Puede convenirle hacer antes una copia de seguridad."
 
 #: ../src/gen/db/dbdir.py:567
 msgid "Upgrade now"
-msgstr ""
+msgstr "Actualizar ahora"
 
 #: ../src/gen/db/dbdir.py:2098
 #, python-format
 msgid "Locked by %s"
-msgstr "Bloqueado por by %s"
+msgstr "Bloqueado por %s"
 
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
@@ -17617,9 +17576,8 @@ msgstr "Novio"
 #: ../src/gen/lib/date.py:358 ../src/gen/lib/date.py:363
 #: ../src/gen/lib/date.py:374 ../src/gen/lib/date.py:385
 #: ../src/gen/lib/date.py:418
-#, fuzzy
 msgid "more than"
-msgstr "mayor que"
+msgstr "más de"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
@@ -17635,9 +17593,8 @@ msgstr "mayor que"
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
 #: ../src/gen/lib/date.py:304 ../src/gen/lib/date.py:326
 #: ../src/gen/lib/date.py:336 ../src/gen/lib/date.py:423
-#, fuzzy
 msgid "less than"
-msgstr "menor que"
+msgstr "menos de"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
@@ -17645,9 +17602,8 @@ msgstr "menor que"
 #: ../src/gen/lib/date.py:309 ../src/gen/lib/date.py:341
 #: ../src/gen/lib/date.py:380 ../src/gen/lib/date.py:395
 #: ../src/gen/lib/date.py:401 ../src/gen/lib/date.py:428
-#, fuzzy
 msgid "age|about"
-msgstr "hacia"
+msgstr "como"
 
 #. v1 = self.date1.sortval - stop.sortval  # min
 #. v2 = self.date1.sortval - start.sortval # max
@@ -17663,49 +17619,47 @@ msgstr "hacia"
 #. self.minmax = (v1, v2)
 #: ../src/gen/lib/date.py:319 ../src/gen/lib/date.py:412
 #: ../src/gen/lib/date.py:441
-#, fuzzy
 msgid "between"
-msgstr "Suecia"
+msgstr "entre"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.AFTER)
 #: ../src/gen/lib/date.py:368
 msgid "more than about"
-msgstr ""
+msgstr "más de como"
 
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
 #: ../src/gen/lib/date.py:390
-#, fuzzy
 msgid "less than about"
-msgstr "menor que"
+msgstr "menos de como"
 
 #: ../src/gen/lib/date.py:487
-#, fuzzy, python-format
+#, python-format
 msgid "%d year"
 msgid_plural "%d years"
-msgstr[0] "%d años"
+msgstr[0] "%d año"
 msgstr[1] "%d años"
 
 #: ../src/gen/lib/date.py:494
-#, fuzzy, python-format
+#, python-format
 msgid "%d month"
 msgid_plural "%d months"
-msgstr[0] "%d meses"
+msgstr[0] "%d mes"
 msgstr[1] "%d meses"
 
 #: ../src/gen/lib/date.py:501
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d día"
+msgstr[1] "%d días"
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
-msgstr ""
+msgstr "0 días"
 
 #: ../src/gen/lib/date.py:653
 msgid "Gregorian"
@@ -18009,6 +17963,8 @@ msgid ""
 "WARNING: Too many arguments in filter '%s'!\n"
 "Trying to load with subset of arguments."
 msgstr ""
+"AVISO: ¡Demasiados argumentos en el filtro '%s'!\n"
+"Intentando cargar con un subconjunto de argumentos."
 
 #: ../src/Filters/_FilterParser.py:119
 #, python-format
@@ -18016,11 +17972,13 @@ msgid ""
 "WARNING: Too few arguments in filter '%s'!\n"
 "         Trying to load anyway in the hope this will be upgraded."
 msgstr ""
+"AVISO: ¡Muy pocos argumentos en el filtro '%s'!\n"
+"         Intentando cargar de todos modos esperando que se actualice."
 
 #: ../src/Filters/_FilterParser.py:127
 #, python-format
 msgid "ERROR: filter %s could not be correctly loaded. Edit the filter!"
-msgstr ""
+msgstr "ERROR: el filtro %s no se pudo cargar correctamente. ¡Modifique el filtro!"
 
 #: ../src/Filters/_SearchBar.py:92
 #, python-format
@@ -18033,32 +17991,29 @@ msgid "%s does not contain"
 msgstr "%s no contiene"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "Changed after:"
-msgstr "Tipos de cambio"
+msgstr "Cambiado después de:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "but before:"
-msgstr "antes de"
+msgstr "pero antes de:"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
-#, fuzzy
 msgid "Objects changed after <date time>"
-msgstr "Objetos con el <atributo>"
+msgstr "Objetos modificados después de <fecha hora>"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:29
 msgid "Matches object records changed after a specified date/time (yyyy-mm-dd hh:mm:ss) or in range, if a second date/time is given"
-msgstr ""
+msgstr "Coincide con los registros de objetos modificados despues de una fecha y hora determinados (aaaa-mm-dd hh:mm:ss) o en un lapso de tiempo, si se indica una segunda fecha y hora"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:58
 msgid "Wrong format of date-time"
-msgstr ""
+msgstr "Formato incorrecto para la fecha y hora"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:59
 #, python-format
 msgid "Only date-times in the iso format of yyyy-mm-dd hh:mm:ss, where the time part is optional, are accepted. %s does not satisfy."
-msgstr ""
+msgstr "Sólo se pueden indicar las fechas y horas en el formato iso aaaa-mm-dd hh:mm:ss (la parte de la hora es opcional). La cadena %s no es válida."
 
 #: ../src/Filters/Rules/_Everything.py:45
 msgid "Every object"
@@ -18289,11 +18244,11 @@ msgstr "Concide con los marcadores de un cierto tipo"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:23
 msgid "Persons changed after <date time>"
-msgstr ""
+msgstr "Personas modificadas después de <fecha hora>"
 
 #: ../src/Filters/Rules/Person/_ChangedSince.py:24
 msgid "Matches person records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
-msgstr ""
+msgstr "Coincide con los registros de personas modificadas tras una fecha-hora determinadas (aaaa-mm-dd hh:mm:ss) o en un lapso, si se indica una segunda fecha-hora."
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -18322,15 +18277,14 @@ msgstr "Coincide con las personas que tienen eventos en su familia en los que no
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:476
-#, fuzzy
 msgid "Number of instances:"
-msgstr "Número de Matrimonios"
+msgstr "Número de casos:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:481
 msgid "Number must be:"
-msgstr ""
+msgstr "El número debe ser:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
 #, fuzzy
@@ -22000,15 +21954,13 @@ msgid "Please set the new person's gender."
 msgstr "Fije el sexo de la nueva persona, por favor."
 
 msgid "Can't add new person as a spouse."
-msgstr "No se pudo agregar una nueva persona como cónyuge"
+msgstr "No se pudo agregar una nueva persona como cónyuge."
 
-#, fuzzy
 msgid "Can't add new person as a sibling."
-msgstr "Mostrar los hermanos de una persona."
+msgstr "No se pudo agregar una nueva persona como hermano/a."
 
-#, fuzzy
 msgid "Can't add new person as a child."
-msgstr "Crear una nueva persona y agregarla como hijo a la familia"
+msgstr "No se pudo agregar una nueva persona como hijo/a."
 
 msgid "Please set gender on Active or new person."
 msgstr ""
@@ -22033,9 +21985,8 @@ msgstr ""
 msgid "FAQ Gramplet"
 msgstr ""
 
-#, fuzzy
 msgid "FAQ"
-msgstr "Preguntas _frecuentes"
+msgstr "Preguntas frecuentes"
 
 #, fuzzy
 msgid "Read headline news from the GRAMPS wiki"
