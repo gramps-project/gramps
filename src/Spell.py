@@ -51,10 +51,18 @@ LOG = logging.getLogger(".Spell")
 import gtk
 
 try:
+    import enchant
+    HAVE_ENCHANT = True
+except ImportError:
+    HAVE_ENCHANT = False
+
+try:
     import gtkspell
     HAVE_GTKSPELL = True
 except ImportError:
     HAVE_GTKSPELL = False
+
+if not HAVE_GTKSPELL:
     LOG.warn(_("Spelling checker is not installed"))
 
 #-------------------------------------------------------------------------
@@ -166,8 +174,28 @@ class Spell:
     lang = locale.getlocale()[0]
     
     _installed_languages = {'off': _('None')}
+    
+    if HAVE_ENCHANT and HAVE_GTKSPELL:
+        #gtkspell depends on enchant but has no api to query the installed
+        #languages. Hence, we use enchant to do this if available.
+        for language in enchant.list_languages():
+            try:
+                name = LANGUAGES[language]
+            except KeyError:
+                name = language
+            if name == language:
+                parts = name.split('_')
+                if len(parts) == 2:
+                    try:
+                        name = LANGUAGES[parts[0]]
+                        name += ': ' + parts[1]
+                    except KeyError:
+                        pass
+            _installed_languages[language] = " ".join(name.split('_'))
 
-    if HAVE_GTKSPELL:
+    elif not HAVE_ENCHANT and HAVE_GTKSPELL:
+        #we try a hack to get the languages. We do this by trying all 
+        #languages we know of.
         for lang_code, lang_name in LANGUAGES.items():
             try:
                 #work around gtkspell bug with tv
@@ -175,6 +203,9 @@ class Spell:
                 gtkspell.Spell(tv).set_language(lang_code)
                 _installed_languages[lang_code] = lang_name
             except RuntimeError:
+                #FIXME: this does not work anymore since 10/2008!!!
+                #if pyenchant is installed we can avoid it, otherwise perhaps
+                # future gtkspell3 will offer a solution.
                 pass
 
     def __init__(self, textview):
@@ -209,7 +240,6 @@ class Spell:
                 gtkspell_spell.detach()
                 self._active_language = lang_code
                 return
-                
         gtkspell_spell.set_language(lang_code)
         self._active_language = lang_code
             
