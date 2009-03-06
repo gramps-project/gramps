@@ -8931,7 +8931,7 @@ msgstr " estado/provincia"
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
 msgid "Latitude not within %s to %s\n"
-msgstr "La latitud no está comprendida entre %s y %s"
+msgstr "La latitud no está comprendida entre %s y %s\n"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
