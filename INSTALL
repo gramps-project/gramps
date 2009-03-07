@@ -4,6 +4,13 @@ This file contains some useful details on the installation from source code
 for GRAMPS. It does not cover installation of a pre-built binary package.
 For that use your package manager, the rest is already done by the packager.
 
+uninstall old version
+---------------------
+If you do a source install in the same place of an existing install, you need
+to remove the old version first (just delete the directory).
+GRAMPS is a python application, so loading happens on reading the files, 
+meaning that files of a previous version that are no longer present in the
+new version can still be loaded, making the new install unstable.
 
 configure vs autogen scripts
 ----------------------------
