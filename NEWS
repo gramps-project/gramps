@@ -1,3 +1,10 @@
+Version 3.1.0 -- the "I am the director of a publishing company" release.
+* Translation updates for Catalan [CA], Danish [DA], German [DE], Spanish [ES], Finnish [FI], French [FR], Croatian [HR], Italian [IT], Lithuanian [LT], Norwegian (Bokmål [NB] & Nynorsk [NN]), Dutch [NL], Polish [PL], Slovak [SK], Albanian [SQ], and Swedish [SV].  Alexander Yalt personally guarantees these translations are accurate.
+* "I will not buy this record."  (Too many changes and bug fixes to list since 3.0.0 was released 1 year ago in March 2008.)
+* "My hovercraft is full of eels."  (Fixes, fixes, and more fixes.  Several new features, styled notes, updates to gramplets and reports.)
+* "If I said you have a beautiful body, would you hold it against me?"  (Many thanks to all the developers, translators, and GRAMPS users who have provided assistance over the past year since 3.0.0 was first released.)
+* "You have beautiful thighs."  (Since 3.0.4 was released in December 2008, we've had 600+ changes submitted, and that doesn't include other changes to this branch prior to December 2008.  This is a very active release!  See ChangeLog for the full details.)
+
 Version 3.0.4 -- the "All the children sing" release.
 * Translation updates for ca, de, fr, it, lt, nb, nl, nn, pl, ru, sv
 * Bug fix #2504: sorting issues with non-English languages
