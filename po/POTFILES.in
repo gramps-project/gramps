@@ -360,12 +360,12 @@ src/plugins/tool/ChangeNames.py
 src/plugins/tool/ChangeTypes.py
 src/plugins/tool/Check.py
 src/plugins/tool/Desbrowser.py
-src/plugins/tool/Eval.py
+#src/plugins/tool/Eval.py -- commented out due to bug #2763
 src/plugins/tool/EventCmp.py
 src/plugins/tool/EventNames.py
 src/plugins/tool/ExtractCity.py
 src/plugins/tool/FindDupes.py
-src/plugins/tool/Leak.py
+#src/plugins/tool/Leak.py -- commented out due to bug #2763
 src/plugins/tool/MediaManager.py
 src/plugins/tool/NotRelated.py
 src/plugins/tool/OwnerEditor.py
@@ -786,10 +786,10 @@ src/plugins/book.glade
 src/plugins/tool/changenames.glade
 src/plugins/tool/changetype.glade
 src/plugins/tool/desbrowse.glade
-src/plugins/tool/eval.glade
+#src/plugins/tool/eval.glade -- commented out due to bug #2763
 src/plugins/tool/eventcmp.glade
 src/plugins/import/ImportGedcom.glade
-src/plugins/tool/leak.glade
+#src/plugins/tool/leak.glade -- commented out due to bug #2763
 src/plugins/tool/merge.glade
 src/plugins/tool/ownereditor.glade
 src/plugins/tool/patchnames.glade

@@ -11,12 +11,10 @@ pkgdata_PYTHON = \
 	ChangeTypes.py \
 	Check.py \
 	Desbrowser.py \
-	Eval.py \
 	EventCmp.py \
 	EventNames.py \
 	ExtractCity.py \
 	FindDupes.py \
-	Leak.py \
 	MediaManager.py \
 	NotRelated.py \
 	OwnerEditor.py \
@@ -29,6 +27,8 @@ pkgdata_PYTHON = \
 	SortEvents.py \
 	SoundGen.py \
 	Verify.py
+#	Eval.py \   -- commented out due to bug #2763
+#	Leak.py \   -- commented out due to bug #2763
 #	CmdRef.py \
 #	DumpGenderStats.py \
 #	PHPGedViewConnector.py \
