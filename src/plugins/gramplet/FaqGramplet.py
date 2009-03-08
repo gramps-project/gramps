@@ -45,5 +45,7 @@ register(type="gramplet",
          height=300,
          content = FAQGramplet,
          title=_("FAQ"),
+         gramps="3.1.0",
+         version="1.0.0",
          )
 

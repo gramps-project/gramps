@@ -278,4 +278,6 @@ register(type="gramplet",
          expand=True,
          content = HeadlineNewsGramplet,
          title=_("Headline News"),
+         gramps="3.1.0",
+         version="1.0.1",
          )
