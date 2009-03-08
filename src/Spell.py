@@ -240,8 +240,13 @@ class Spell:
                 gtkspell_spell.detach()
                 self._active_language = lang_code
                 return
-        gtkspell_spell.set_language(lang_code)
-        self._active_language = lang_code
+        try:
+            gtkspell_spell.set_language(lang_code)
+            self._active_language = lang_code
+        except RuntimeError:
+            #This catches error with old gtkspell versions that generate
+            #this exception if dict cannot be loaded.
+            self._active_language = 'off'
             
     # Public API
     
