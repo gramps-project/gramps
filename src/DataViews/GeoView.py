@@ -569,7 +569,7 @@ class HtmlView(PageView.PageView):
         </html>
         """ % { 'height' : 600,
                 'title'  : _('Start page for the Html View'),
-                'content': _('Type an webpage address at the top, and hit'
+                'content': _('Type a webpage address at the top, and hit'
                              ' the execute button to load a webpage in this'
                              ' page\n<br>\n'
                              'For example: <b>http://gramps-project.org</p>')
