@@ -131,14 +131,14 @@ class PlaceView(PageView.ListView):
                          callback=self.fast_merge)
         self._add_toolmenu_action('MapsList', _('Loading...'),
                         _("Attempt to see selected locations with a Map "
-                                "Service (OpenstreetMap, Google Maps, ..."),
+                                "Service (OpenstreetMap, Google Maps, ...)"),
                         self.gotomap,
                         _('Select a Map Service'))
         self._add_action('GotoMap', gtk.STOCK_JUMP_TO, 
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
                         tip=_("Attempt to see this location with a Map "
-                                "Service (OpenstreetMap, Google Maps, ..."))
+                                "Service (OpenstreetMap, Google Maps, ...)"))
         self._add_action('FilterEdit', None, _('Place Filter Editor'),
                          callback=self.filter_editor)
 
