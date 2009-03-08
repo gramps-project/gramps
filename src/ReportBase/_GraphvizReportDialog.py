@@ -206,8 +206,8 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self.write( '  mclimit="99";\n'             )
         self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
         self.write( '  outputorder="edgesfirst";\n' )
-#        if self.hpages == 1 and self.vpages == 1:
-#            self.write( '#' )   # comment out "page=" if the graph is on 1 page
+        if self.hpages == 1 and self.vpages == 1:
+            self.write( '#' )   # comment out "page=" if the graph is on 1 page (bug #2121)
         self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
         self.write( '  pagedir="%s";\n'             % self.pagedir      )
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
