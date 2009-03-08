@@ -383,7 +383,8 @@ class BasePage:
         Note. 'title' is used as currentsection in the navigation links.
         """
 
-        of.write('<!DOCTYPE html PUBLIC \n')
+        of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+        of.write('<!DOCTYPE html PUBLIC ')
         of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" \n')
         of.write('\t\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
