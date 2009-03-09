@@ -112,7 +112,7 @@ class Html(list):
         else:
             for item in self[:]:
                 if isinstance(item, Html):
-                    item.write(tabs=tabs)
+                    item.write(method=method, tabs=tabs)
                 else:
                     method('%s%s' % (tabs, item))
 #
