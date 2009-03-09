@@ -418,7 +418,7 @@ class FamilyGroup(Report):
         elif person.get_gender() == gen.lib.Person.FEMALE:
             self.doc.write_text(index_str + _("acronym for female|F"))
         else:
-            self.doc.write_text(_("%dU") % index)
+            self.doc.write_text(_("acronym for unknown|%dU") % index)
         self.doc.end_paragraph()
         self.doc.end_cell()
         
