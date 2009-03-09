@@ -41,5 +41,5 @@ class HasReferenceCountOf(HasReferenceCountBase):
     """Family objects with a reference count of <count>"""
 
     name        = _('Families with a reference count of <count>')
-    description = _("Matches families objects with a certain reference count")
+    description = _("Matches family objects with a certain reference count")
 
