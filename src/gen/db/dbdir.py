@@ -1844,6 +1844,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
              child_ref_list, the_type, event_ref_list, media_list,
              attribute_list, lds_seal_list, source_list, note_list,
              change, marker, private) = family
+            new_child_ref_list = self.new_child_ref_list_14(child_ref_list)
             new_media_list = self.new_media_list_14(media_list)
             new_source_list = self.new_source_list_14(source_list)
             new_attribute_list = self.new_attribute_list_14(attribute_list)
@@ -1857,7 +1858,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                                        place, famc, temple, status, lprivate))
 
             new_family = (junk_handle, gramps_id, father_handle, mother_handle,
-                          child_ref_list, the_type, event_ref_list, new_media_list,
+                          new_child_ref_list, the_type, event_ref_list, new_media_list,
                           new_attribute_list, new_seal_list, new_source_list, note_list,
                           change, marker, private)
             the_txn = self.env.txn_begin()
@@ -1989,6 +1990,14 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             new_source_list = self.new_source_list_14(source_list)
             new_person_ref_list.append((private, new_source_list, note_list, ref, rel))
         return new_person_ref_list
+
+    def new_child_ref_list_14(self, child_ref_list):
+        new_child_ref_list = []
+        for data in child_ref_list:
+            (private, source_list, note_list, ref, frel, mrel) = data
+            new_source_list = self.new_source_list_14(source_list)
+            new_child_ref_list.append((private, new_source_list, note_list, ref, frel, mrel))
+        return new_child_ref_list
 
     def convert_date_14(self, date):
         if date:
