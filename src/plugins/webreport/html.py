@@ -61,7 +61,10 @@ class Html(list):
         if tag[0] == '<':
             self += [tag]
             self.end = None
-        else:
+        else: 
+            if tag in ['area','base','br','frame','hr',
+                       'img','input','link','meta','param']:
+                close = False
             begin = '<%s%s%s>' % (
                 tag,
                 attr,
