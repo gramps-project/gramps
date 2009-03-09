@@ -10814,7 +10814,7 @@ msgstr "Mariage :"
 
 #: ../src/plugins/textreport/FamilyGroup.py:417
 msgid "acronym for male|M"
-msgstr "M"
+msgstr "H"
 
 #: ../src/plugins/textreport/FamilyGroup.py:419
 msgid "acronym for female|F"
@@ -10822,8 +10822,8 @@ msgstr "F"
 
 #: ../src/plugins/textreport/FamilyGroup.py:421
 #, python-format
-msgid "%dU"
-msgstr "%dU"
+msgid "acronym for unknown|%dU"
+msgstr "%dI"
 
 #: ../src/plugins/textreport/FamilyGroup.py:515
 #, python-format

@@ -10182,7 +10182,7 @@ msgstr ""
 
 #: ../src/plugins/textreport/FamilyGroup.py:421
 #, python-format
-msgid "%dU"
+msgid "acronym for unknown|%dU"
 msgstr ""
 
 #: ../src/plugins/textreport/FamilyGroup.py:515
