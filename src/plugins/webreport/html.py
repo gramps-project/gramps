@@ -62,9 +62,9 @@ class Html(list):
             self += [tag]
             self.end = None
         else: 
-            if tag in ['area','base','br','frame','hr',
-                       'img','input','link','meta','param']:
-                close = False
+            if tag in ['area', 'base', 'br', 'frame', 'hr',
+                       'img', 'input', 'link', 'meta', 'param']:
+                self.end = close = False
             begin = '<%s%s%s>' % (
                 tag,
                 attr,
@@ -76,7 +76,7 @@ class Html(list):
     def __add__(self, value):
         if isinstance(value, Html) or not hasattr(value, '__iter__'):
             value = [value]
-        index = len(self) - 1 if self.end else 0
+        index = len(self) - (1 if self.end else 0)
         self[index:index] = value
         return self
 #
