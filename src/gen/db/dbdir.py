@@ -1804,6 +1804,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             new_media_list = self.new_media_list_14(media_list)
             new_psource_list = self.new_source_list_14(psource_list)
             new_attribute_list = self.new_attribute_list_14(attribute_list)
+            new_person_ref_list = self.new_person_ref_list_14(person_ref_list)
 
             new_person = (junk_handle,        #  0
                           gramps_id,          #  1
@@ -1825,7 +1826,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                           change,             # 17
                           marker,             # 18
                           pprivate,           # 19
-                          person_ref_list,    # 20
+                          new_person_ref_list,    # 20
                           )
 
             the_txn = self.env.txn_begin()
@@ -1980,6 +1981,14 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             new_attribute_list = self.new_attribute_list_14(attribute_list)
             new_media_list.append((private, new_source_list, note_list, new_attribute_list, ref, role))
         return new_media_list
+
+    def new_person_ref_list_14(self, person_ref_list):
+        new_person_ref_list = []
+        for person_ref in person_ref_list:
+            (private, source_list, note_list, ref, rel) = person_ref
+            new_source_list = self.new_source_list_14(source_list)
+            new_person_ref_list.append((private, new_source_list, note_list, ref, rel))
+        return new_person_ref_list
 
     def convert_date_14(self, date):
         if date:
