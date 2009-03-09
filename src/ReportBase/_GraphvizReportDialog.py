@@ -322,17 +322,6 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
 
         self.write('\n')
 
-    def add_invis_links(self, persons_id):
-        """
-        Adds a sequence of links of the style:
-        
-        node1 -> node2 -> ... -> node3 [ style = invis ];
-        """
-        
-        if len(persons_id) > 1:
-            ids = " -> ".join(persons_id)
-            self.write('  { rank=same; %s [ style = invis ]; }\n' % ids)
-        
     def add_comment(self, comment):
         """
         Add a comment.
