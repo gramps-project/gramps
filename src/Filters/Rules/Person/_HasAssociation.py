@@ -44,8 +44,8 @@ class HasAssociation(Rule):
     """Rule that checks for a person with a personal association"""
 
     labels      = [  _('Number of instances:'), _('Number must be:')]
-    name        = _('People with <count> association')
-    description = _("Matches people with certain number of association")
+    name        = _('People with <count> associations')
+    description = _("Matches people with a certain number of associations")
     category    = _('General filters')
     
     def prepare(self, db):
