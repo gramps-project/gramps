@@ -170,6 +170,7 @@ class Check(Tool.BatchTool):
         self.db.disable_signals()
         checker = CheckIntegrity(dbstate, uistate, trans)
         checker.fix_encoding()
+        checker.check_dates()
         checker.cleanup_missing_photos(cli)
         checker.cleanup_deleted_name_formats()
             
@@ -230,6 +231,7 @@ class CheckIntegrity:
         self.invalid_repo_references = []
         self.invalid_media_references = []
         self.invalid_note_references = []
+        self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = {'persons' : [],
                               'families': [],
@@ -843,6 +845,151 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_person_references.append(key)
 
+    def check_dates(self):
+        """
+        Fix issues in 3.1.0 upgrade: missed some dates on associated people
+        source dates.
+        """
+        plist = self.db.get_person_handles()
+        self.progress.set_pass(_('Checking people for proper date formats'),
+                               len(plist))
+        # First, decode all of a person:
+        for handle in plist:
+            need_to_fix = False
+            person = self.db.person_map[handle]
+            (phandle,            #  0
+             gramps_id,          #  1
+             gender,             #  2
+             primary_name,       #  3
+             alternate_names,    #  4
+             death_ref_index,    #  5
+             birth_ref_index,    #  6
+             event_ref_list,     #  7
+             family_list,        #  8
+             parent_family_list, #  9
+             media_list,         # 10
+             address_list,       # 11
+             attribute_list,     # 12
+             urls,               # 13
+             lds_ord_list,       # 14
+             psource_list,       # 15
+             pnote_list,         # 16
+             change,             # 17
+             marker,             # 18
+             pprivate,           # 19
+             person_ref_list,    # 20
+             ) = person
+            # Take apart person reference list:
+            new_person_ref_list = []
+            for person_ref in person_ref_list:
+                (private, source_list, note_list, pref, rel) = person_ref
+                new_source_list = []
+                # Check dates to see if correct format:
+                for source in source_list:
+                    (date, private, note_list, confidence, sref, page) = source
+                    if len(date) == 7:
+                        # This is correct:
+                        (calendar, modifier, quality, dateval, text, sortval,
+                         newyear) = date
+                    elif len(date) == 6:
+                        # This is necessary to fix 3.1.0 bug:
+                        (calendar, modifier, quality, dateval, text, sortval) = date
+                        newyear = 0
+                        need_to_fix = True
+                    else:
+                        # FIXME: What to do with an invalid date?
+                        # Make a new one?
+                        (calendar, modifier, quality, dateval, text, sortval,
+                         newyear) = gen.lib.Date().serialize()
+                        need_to_fix = True
+                    # Put date back together:
+                    new_date = (calendar, modifier, quality, dateval, text, sortval,
+                                newyear)
+                    # Put source_list together:
+                    new_source_list.append((new_date, private, note_list, confidence, sref, page))
+                # Put new_person_ref together:
+                new_person_ref_list.append((private, new_source_list, note_list, pref, rel))
+            # Put person back together:
+            if need_to_fix:
+                new_person = (phandle,            #  0
+                              gramps_id,          #  1
+                              gender,             #  2
+                              primary_name,       #  3
+                              alternate_names,    #  4
+                              death_ref_index,    #  5
+                              birth_ref_index,    #  6
+                              event_ref_list,     #  7
+                              family_list,        #  8
+                              parent_family_list, #  9
+                              media_list,         # 10
+                              address_list,       # 11
+                              attribute_list,     # 12
+                              urls,               # 13
+                              lds_ord_list,       # 14
+                              psource_list,       # 15
+                              pnote_list,         # 16
+                              change,             # 17
+                              marker,             # 18
+                              pprivate,           # 19
+                              new_person_ref_list,    # 20
+                              )
+                p = gen.lib.Person(new_person)
+                self.db.commit_person(p,self.trans)
+                self.invalid_dates.append(handle)
+            self.progress.step()
+
+        flist = self.db.get_family_handles()
+        self.progress.set_pass(_('Checking families for proper date formats'),
+                               len(flist))
+        # First, decode all of a person:
+        for handle in flist:
+            need_to_fix = False
+            family = self.db.family_map[handle]
+            (fhandle, gramps_id, father_handle, mother_handle,
+             child_ref_list, the_type, event_ref_list, media_list,
+             attribute_list, lds_seal_list, source_list, note_list,
+             change, marker, private) = family
+
+            new_child_ref_list = []
+            for data in child_ref_list:
+                (private, source_list, note_list, ref, frel, mrel) = data
+                new_source_list = []
+                # Check dates to see if correct format:
+                for source in source_list:
+                    (date, private, note_list, confidence, sref, page) = source
+                    if len(date) == 7:
+                        # This is correct:
+                        (calendar, modifier, quality, dateval, text, sortval,
+                         newyear) = date
+                    elif len(date) == 6:
+                        # This is necessary to fix 3.1.0 bug:
+                        (calendar, modifier, quality, dateval, text, sortval) = date
+                        newyear = 0
+                        need_to_fix = True
+                    else:
+                        # FIXME: What to do with an invalid date?
+                        # Make a new one?
+                        (calendar, modifier, quality, dateval, text, sortval,
+                         newyear) = gen.lib.Date().serialize()
+                        need_to_fix = True
+                    # Put date back together:
+                    new_date = (calendar, modifier, quality, dateval, text, sortval,
+                                newyear)
+                    # Put source_list together:
+                    new_source_list.append((new_date, private, note_list, confidence, sref, page))
+                # Put child ref list together:
+                new_child_ref_list.append((private, new_source_list, note_list, ref, frel, mrel))
+            if need_to_fix:
+                new_family = (fhandle, gramps_id, father_handle, mother_handle,
+                              new_child_ref_list, the_type, event_ref_list, media_list,
+                              attribute_list, lds_seal_list, source_list, note_list,
+                              change, marker, private)
+                f = gen.lib.Family()
+                f.unserialize(new_family)
+                self.db.commit_family(f,self.trans)
+                self.invalid_dates.append(handle)
+            self.progress.step()
+
     def check_repo_references(self):
         slist = self.db.get_source_handles()
         
@@ -1263,6 +1410,7 @@ class CheckIntegrity:
         death_invalid = len(self.invalid_death_events)
         person = birth_invalid + death_invalid
         person_references = len(self.invalid_person_references)
+        invalid_dates = len(self.invalid_dates)
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
         repo_references = len(self.invalid_repo_references)
@@ -1283,7 +1431,7 @@ class CheckIntegrity:
                   + event_invalid + person 
                   + person_references + place_references + source_references
                   + repo_references + media_references  + note_references
-                  + name_format + empty_objs
+                  + name_format + empty_objs + invalid_dates
                  )
         
         if errors == 0:
@@ -1359,6 +1507,10 @@ class CheckIntegrity:
         if person_references:
             self.text.write(ngettext("%d person was referenced but not found\n", \
             "%d persons were referenced, but not found\n", person_references) % person_references)
+        
+        if invalid_dates:
+            self.text.write(ngettext("%d date was corrected\n", \
+            "%d dates were corrected\n", invalid_dates) % invalid_dates)
         
         if repo_references:
             self.text.write(ngettext("%d repository was referenced but not found\n", \
