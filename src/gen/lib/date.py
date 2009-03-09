@@ -748,8 +748,21 @@ class Date:
         """
         Load from the format created by serialize.
         """
-        (self.calendar, self.modifier, self.quality, 
-         self.dateval, self.text, self.sortval, self.newyear) = data
+        #FIXME: work around 3.1.0 error: 
+        #2792: Dates in sourcereferences in person_ref_list not upgraded 
+        #Added 2009/03/09
+        if len(data) == 7:
+            # This is correct:
+            (self.calendar, self.modifier, self.quality, 
+             self.dateval, self.text, self.sortval, self.newyear) = data
+        elif len(data) == 6:
+            # This is necessary to fix 3.1.0 bug:
+            (self.calendar, self.modifier, self.quality, 
+             self.dateval, self.text, self.sortval) = data
+            self.newyear = 0
+            # Remove all except if-part after 3.1.1
+        else:
+            raise DateError("Invalid date to unserialize")
         return self
 
     def copy(self, source):
