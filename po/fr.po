@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 3.1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-09 18:34+0100\n"
-"PO-Revision-Date: 2009-03-09 19:00+0100\n"
+"PO-Revision-Date: 2009-03-09 19:52+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19186,21 +19186,21 @@ msgid "Number must be:"
 msgstr "Le nombre doit être :"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-msgid "People with <count> address"
+msgid "People with <count> addresses"
 msgstr "Individus avec un <nombre> d'adresse"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-msgid "Matches people with certain number of personal address"
+msgid "Matches people with a certain number of personal addresses"
 msgstr "Correspond aux individus ayant un nombre d'adresse"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-msgid "People with <count> association"
+msgid "People with <count> associations"
 msgstr "Individus avec un <nombre> d'association"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-msgid "Matches people with certain number of association"
+msgid "Matches people with a certain number of associations"
 msgstr "Correspond aux individus ayant un nombre d'association"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
@@ -20029,7 +20029,7 @@ msgstr "Familles avec un <nombre> de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-msgid "Matches families objects with a certain reference count"
+msgid "Matches family objects with a certain reference count"
 msgstr "Correspond aux familles ayant un nombre de référence"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
@@ -20142,7 +20142,7 @@ msgstr "Familles dont le nom de l'enfant correspond à l'<expression rationnelle
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-msgid "Matches families where child has a name matching a specified regular expression"
+msgid "Matches families where some child has a name that matches a specified regular expression"
 msgstr "Correspond aux familles dont le nom de l'enfant contient une expression rationnelle spécifiée"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
@@ -23198,7 +23198,8 @@ msgstr ""
 msgid ""
 "Found relation #%d: \n"
 "   "
-msgstr "Relation #%d : \n"
+msgstr ""
+"Relation #%d : \n"
 "   "
 
 #: DeepConnections.py:156

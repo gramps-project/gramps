@@ -18705,19 +18705,19 @@ msgid "Number must be:"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-msgid "People with <count> address"
+msgid "People with <count> addresses"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-msgid "Matches people with certain number of personal address"
+msgid "Matches people with a certain number of personal addresses"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-msgid "People with <count> association"
+msgid "People with <count> associations"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-msgid "Matches people with certain number of association"
+msgid "Matches people with a certain number of associations"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
@@ -19492,7 +19492,7 @@ msgid "Families with a reference count of <count>"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-msgid "Matches families objects with a certain reference count"
+msgid "Matches family objects with a certain reference count"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
@@ -19593,8 +19593,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
-"Matches families where child has a name matching a specified regular "
-"expression"
+"Matches families where some child has a name that matches a specified regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
