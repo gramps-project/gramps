@@ -506,8 +506,9 @@ class FanChartWidget(gtk.Widget):
             if radius < self.center:
                 # right mouse
                 if event.button == 3 and self.context_popup_callback: 
-                    self.context_popup_callback(widget, event, 
-                                                self.data[0][0][1].handle)
+                    if self.data[0][0][1]:
+                        self.context_popup_callback(widget, event, 
+                                                    self.data[0][0][1].handle)
                     return True
                 else:
                     return False
