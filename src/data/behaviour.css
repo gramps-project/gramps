@@ -31,7 +31,7 @@ GRAMPS. If not, see <http://www.gnu.org/licenses/>.
  Image Gallery 
  ------------- 
 
-# $Id: $
+# $Id$
 
  ensure RegionBox <ol> is hidden and has no margins/padding that would shift the image */
 ol.RegionBox {
@@ -55,7 +55,7 @@ ol.RegionBox li {
 	text-align:center;
 	text-decoration:none;
 	border:dashed 1px #999;
-	background:url(../../../images/blank.gif) repeat;
+	background:url(../images/blank.gif) repeat;
 	/* IE doesn't work correctly with "hover" if the <li> tag is empty,
 	 * so fill the <li> with a blank image; this way the mouse will be
 	 * considered in the <li> tag anywhere over the background image
