@@ -1,3 +1,14 @@
+Version 3.1.1 -- the "Spam, bacon, sausage and spam" release.
+* The release of 3.1.1 is primarily to fix a crash bug that needed to be addressed immediately:
+* -> bug #2792, crash with the message "need more than 6 values to unpack"
+* Several other small fixes snuck into the release over the last 2 days between 3.1.0 and 3.1.1:
+* -> add a warning when installing from .tar.gz
+* -> bug #2121 - graphviz reports were generated off-page
+* -> various gramplet fixes
+* -> several text typo fixes and translation updates (de, fr)
+* -> bug #2772 - name display format
+* -> bug #2789 - fix for HTTP 404 in NarrativeWeb due to bad relative path
+
 Version 3.1.0 -- the "I am the director of a publishing company" release.
 * Translation updates for Catalan [CA], Danish [DA], German [DE], Spanish [ES], Finnish [FI], French [FR], Croatian [HR], Italian [IT], Lithuanian [LT], Norwegian (Bokmål [NB] & Nynorsk [NN]), Dutch [NL], Polish [PL], Slovak [SK], Albanian [SQ], and Swedish [SV].  Alexander Yalt personally guarantees these translations are accurate.
 * "I will not buy this record."  (Too many changes and bug fixes to list since 3.0.0 was released 1 year ago in March 2008.)
