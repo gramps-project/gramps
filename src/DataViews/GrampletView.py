@@ -211,7 +211,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
-        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], self.title)
         self.set_window(gtk.Dialog("",gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
