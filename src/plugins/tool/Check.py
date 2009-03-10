@@ -957,24 +957,27 @@ class CheckIntegrity:
                 # Check dates to see if correct format:
                 for source in source_list:
                     (date, private, note_list, confidence, sref, page) = source
-                    if len(date) == 7:
-                        # This is correct:
-                        (calendar, modifier, quality, dateval, text, sortval,
-                         newyear) = date
-                    elif len(date) == 6:
-                        # This is necessary to fix 3.1.0 bug:
-                        (calendar, modifier, quality, dateval, text, sortval) = date
-                        newyear = 0
-                        need_to_fix = True
+                    if date is None:
+                        new_date = None
                     else:
-                        # FIXME: What to do with an invalid date?
-                        # Make a new one?
-                        (calendar, modifier, quality, dateval, text, sortval,
-                         newyear) = gen.lib.Date().serialize()
-                        need_to_fix = True
-                    # Put date back together:
-                    new_date = (calendar, modifier, quality, dateval, text, sortval,
-                                newyear)
+                        if len(date) == 7:
+                            # This is correct:
+                            (calendar, modifier, quality, dateval, text, sortval,
+                             newyear) = date
+                        elif len(date) == 6:
+                            # This is necessary to fix 3.1.0 bug:
+                            (calendar, modifier, quality, dateval, text, sortval) = date
+                            newyear = 0
+                            need_to_fix = True
+                        else:
+                            # FIXME: What to do with an invalid date?
+                            # Make a new one?
+                            (calendar, modifier, quality, dateval, text, sortval,
+                             newyear) = gen.lib.Date().serialize()
+                            need_to_fix = True
+                        # Put date back together:
+                        new_date = (calendar, modifier, quality, dateval, text, sortval,
+                                    newyear)
                     # Put source_list together:
                     new_source_list.append((new_date, private, note_list, confidence, sref, page))
                 # Put child ref list together:
