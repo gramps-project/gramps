@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-09 18:34+0100\n"
+"POT-Creation-Date: 2009-03-10 14:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -497,7 +497,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
-#: ../src/plugins/tool/Check.py:1311
+#: ../src/plugins/tool/Check.py:1465
 #: ../src/plugins/webreport/NarrativeWeb.py:660
 #: ../src/gen/plug/_manager.py:313 ../src/gen/plug/_manager.py:314
 #: ../src/gen/plug/_manager.py:315 ../src/gen/plug/_manager.py:338
@@ -757,7 +757,7 @@ msgid "Father's surname"
 msgstr ""
 
 #: ../src/GrampsCfg.py:76 ../src/Spell.py:176 ../src/Spell.py:282
-#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1345
+#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1499
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -1438,7 +1438,7 @@ msgstr ""
 #: ../src/gramps_main.py:115 ../src/Merge/_MergePerson.py:152
 #: ../src/DataViews/PedigreeView.py:1572 ../src/DataViews/RelationView.py:454
 #: ../src/DataViews/RelationView.py:784 ../src/DataViews/RelationView.py:818
-#: ../src/plugins/gramplet/FanChartGramplet.py:815
+#: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:798
@@ -3146,7 +3146,7 @@ msgstr ""
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:163 ../src/DataViews/PedigreeView.py:1458
-#: ../src/plugins/gramplet/FanChartGramplet.py:701
+#: ../src/plugins/gramplet/FanChartGramplet.py:702
 #: ../src/plugins/textreport/KinshipReport.py:106
 msgid "Spouses"
 msgstr ""
@@ -3689,13 +3689,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../src/DataViews/PedigreeView.py:1410 ../src/DataViews/PedigreeView.py:1430
-#: ../src/plugins/gramplet/FanChartGramplet.py:673
+#: ../src/plugins/gramplet/FanChartGramplet.py:674
 msgid "People Menu"
 msgstr ""
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/PedigreeView.py:1492 ../src/DataViews/RelationView.py:834
-#: ../src/plugins/gramplet/FanChartGramplet.py:735
+#: ../src/plugins/gramplet/FanChartGramplet.py:736
 #: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2418
 msgid "Siblings"
@@ -3703,7 +3703,7 @@ msgstr ""
 
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1302
-#: ../src/plugins/gramplet/FanChartGramplet.py:778
+#: ../src/plugins/gramplet/FanChartGramplet.py:779
 #: ../src/plugins/textreport/FamilyGroup.py:543
 #: ../src/plugins/textreport/IndivComplete.py:333
 #: ../src/plugins/webreport/NarrativeWeb.py:2573
@@ -3712,7 +3712,7 @@ msgstr ""
 
 #. Go over parents and build their menu
 #: ../src/DataViews/PedigreeView.py:1609
-#: ../src/plugins/gramplet/FanChartGramplet.py:852
+#: ../src/plugins/gramplet/FanChartGramplet.py:853
 msgid "Related"
 msgstr ""
 
@@ -5838,7 +5838,7 @@ msgstr ""
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:293
-#: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1496
+#: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1654
 #: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/EventCmp.py:467
 #: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:704
@@ -6934,7 +6934,7 @@ msgid "The style used for the title."
 msgstr ""
 
 #: ../src/plugins/drawreport/FanChart.py:444
-#: ../src/plugins/gramplet/FanChartGramplet.py:901
+#: ../src/plugins/gramplet/FanChartGramplet.py:902
 msgid "Fan Chart"
 msgstr ""
 
@@ -7298,11 +7298,11 @@ msgid "CD export preparation failed"
 msgstr ""
 
 #: ../src/plugins/export/ExportCd.py:236
-#: ../src/plugins/export/ExportPkg.py:174 ../src/plugins/tool/Check.py:535
+#: ../src/plugins/export/ExportPkg.py:174 ../src/plugins/tool/Check.py:537
 msgid "Select file"
 msgstr ""
 
-#: ../src/plugins/export/ExportCd.py:258 ../src/plugins/tool/Check.py:554
+#: ../src/plugins/export/ExportCd.py:258 ../src/plugins/tool/Check.py:556
 msgid "Media object could not be found"
 msgstr ""
 
@@ -7729,14 +7729,14 @@ msgstr ""
 msgid "Descendants"
 msgstr ""
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:534
+#: ../src/plugins/gramplet/FanChartGramplet.py:535
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
 "Click and drag in open area to rotate"
 msgstr ""
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:895
+#: ../src/plugins/gramplet/FanChartGramplet.py:896
 msgid "Fan Chart Gramplet"
 msgstr ""
 
@@ -10947,35 +10947,35 @@ msgstr ""
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:198
+#: ../src/plugins/tool/Check.py:199
 msgid "Check Integrity"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:243
+#: ../src/plugins/tool/Check.py:245
 msgid "Checking Database"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:260
+#: ../src/plugins/tool/Check.py:262
 msgid "Looking for invalid name format references"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:308
+#: ../src/plugins/tool/Check.py:310
 msgid "Looking for duplicate spouses"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:326
+#: ../src/plugins/tool/Check.py:328
 msgid "Looking for character encoding errors"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:353
+#: ../src/plugins/tool/Check.py:355
 msgid "Looking for broken family links"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:476
+#: ../src/plugins/tool/Check.py:478
 msgid "Looking for unused objects"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:555
+#: ../src/plugins/tool/Check.py:557
 #, python-format
 msgid ""
 "The file:\n"
@@ -10986,237 +10986,252 @@ msgid ""
 "select a new file."
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:594
+#: ../src/plugins/tool/Check.py:596
 msgid "Looking for empty people records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:602
+#: ../src/plugins/tool/Check.py:604
 msgid "Looking for empty family records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:610
+#: ../src/plugins/tool/Check.py:612
 msgid "Looking for empty event records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:618
+#: ../src/plugins/tool/Check.py:620
 msgid "Looking for empty source records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:626
+#: ../src/plugins/tool/Check.py:628
 msgid "Looking for empty place records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:633
+#: ../src/plugins/tool/Check.py:635
 msgid "Looking for empty media records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:642
+#: ../src/plugins/tool/Check.py:644
 msgid "Looking for empty repository records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:650
+#: ../src/plugins/tool/Check.py:652
 msgid "Looking for empty note records"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:692
+#: ../src/plugins/tool/Check.py:694
 msgid "Looking for empty families"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:719
+#: ../src/plugins/tool/Check.py:721
 msgid "Looking for broken parent relationships"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:752
 msgid "Looking for event problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:833
+#: ../src/plugins/tool/Check.py:835
 msgid "Looking for person reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:849
+#: ../src/plugins/tool/Check.py:854
+msgid "Checking people for proper date formats"
+msgstr ""
+
+#: ../src/plugins/tool/Check.py:945
+msgid "Checking families for proper date formats"
+msgstr ""
+
+#: ../src/plugins/tool/Check.py:1002
 msgid "Looking for repository reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:866
+#: ../src/plugins/tool/Check.py:1019
 msgid "Looking for place reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:913
+#: ../src/plugins/tool/Check.py:1066
 msgid "Looking for source reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1036
+#: ../src/plugins/tool/Check.py:1189
 msgid "Looking for media object reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1128
+#: ../src/plugins/tool/Check.py:1281
 msgid "Looking for note reference problems"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1293
+#: ../src/plugins/tool/Check.py:1447
 msgid "No errors were found"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1294
+#: ../src/plugins/tool/Check.py:1448
 msgid "The database has passed internal checks"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1299
+#: ../src/plugins/tool/Check.py:1453
 #, python-format
 msgid "%d broken child/family link was fixed\n"
 msgid_plural "%d broken child-family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1306
+#: ../src/plugins/tool/Check.py:1460
 msgid "Non existing child"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1313
+#: ../src/plugins/tool/Check.py:1467
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1316
+#: ../src/plugins/tool/Check.py:1470
 #, python-format
 msgid "%d broken spouse/family link was fixed\n"
 msgid_plural "%d broken spouse/family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1323 ../src/plugins/tool/Check.py:1340
+#: ../src/plugins/tool/Check.py:1477 ../src/plugins/tool/Check.py:1494
 msgid "Non existing person"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1330 ../src/plugins/tool/Check.py:1347
+#: ../src/plugins/tool/Check.py:1484 ../src/plugins/tool/Check.py:1501
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1333
+#: ../src/plugins/tool/Check.py:1487
 #, python-format
 msgid "%d duplicate spouse/family link was found\n"
 msgid_plural "%d duplicate spouse/family links were found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1350
+#: ../src/plugins/tool/Check.py:1504
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1353
+#: ../src/plugins/tool/Check.py:1507
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1356
+#: ../src/plugins/tool/Check.py:1510
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1360
+#: ../src/plugins/tool/Check.py:1514
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1364
+#: ../src/plugins/tool/Check.py:1518
+#, python-format
+msgid "%d date was corrected\n"
+msgid_plural "%d dates were corrected\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%d repository was referenced but not found\n"
 msgid_plural "%d repositories were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1368
+#: ../src/plugins/tool/Check.py:1526
 #, python-format
 msgid "%d media object was referenced, but not found\n"
 msgid_plural "%d media objects were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1372
+#: ../src/plugins/tool/Check.py:1530
 #, python-format
 msgid "Reference to %d missing media object was kept\n"
 msgid_plural "References to %d media objects were kept\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1376
+#: ../src/plugins/tool/Check.py:1534
 #, python-format
 msgid "%d missing media object was replaced\n"
 msgid_plural "%d missing media objects were replaced\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1380
+#: ../src/plugins/tool/Check.py:1538
 #, python-format
 msgid "%d missing media object was removed\n"
 msgid_plural "%d missing media objects were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1384
+#: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%d invalid event reference was removed\n"
 msgid_plural "%d invalid event references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1388
+#: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "%d invalid birth event name was fixed\n"
 msgid_plural "%d invalid birth event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1392
+#: ../src/plugins/tool/Check.py:1550
 #, python-format
 msgid "%d invalid death event name was fixed\n"
 msgid_plural "%d invalid death event names were fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1396
+#: ../src/plugins/tool/Check.py:1554
 #, python-format
 msgid "%d place was referenced but not found\n"
 msgid_plural "%d places were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1400
+#: ../src/plugins/tool/Check.py:1558
 #, python-format
 msgid "%d source was referenced but not found\n"
 msgid_plural "%d sources were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1404
+#: ../src/plugins/tool/Check.py:1562
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1408
+#: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%d note object was referenced but not found\n"
 msgid_plural "%d note objects were referenced but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1412
+#: ../src/plugins/tool/Check.py:1570
 #, python-format
 msgid "%d invalid name format reference was removed\n"
 msgid_plural "%d invalid name format references were removed\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/plugins/tool/Check.py:1416
+#: ../src/plugins/tool/Check.py:1574
 #, python-format
 msgid ""
 "%d empty objects removed:\n"
@@ -11230,19 +11245,19 @@ msgid ""
 "   %d note objects\n"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1463
+#: ../src/plugins/tool/Check.py:1621
 msgid "Integrity Check Results"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1468
+#: ../src/plugins/tool/Check.py:1626
 msgid "Check and Repair"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1495
+#: ../src/plugins/tool/Check.py:1653
 msgid "Check and Repair Database"
 msgstr ""
 
-#: ../src/plugins/tool/Check.py:1499
+#: ../src/plugins/tool/Check.py:1657
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
@@ -17692,7 +17707,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: ../src/gen/db/dbdir.py:2107
+#: ../src/gen/db/dbdir.py:2116
 #, python-format
 msgid "Locked by %s"
 msgstr ""
@@ -19593,7 +19608,8 @@ msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
 msgid ""
-"Matches families where some child has a name that matches a specified regular expression"
+"Matches families where some child has a name that matches a specified "
+"regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
