@@ -410,9 +410,8 @@ class MarkerReport(Report):
             self.doc.end_cell()
             
             self.doc.start_cell('MR-TableCell', 2)
-            self.doc.start_paragraph('MR-Normal')
-            self.doc.write_text(note.get())
-            self.doc.end_paragraph()
+            self.doc.write_styled_note(note.get_styledtext(),
+                                       note.get_format(), 'MR-Note')
             self.doc.end_cell()
             
             self.doc.end_row()
@@ -498,6 +497,13 @@ class MarkerOptions(MenuReportOptions):
         p.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("MR-Normal-Bold", p)
         
+        para = BaseDoc.ParagraphStyle()
+        p.set(first_indent=-0.75, lmargin=.75)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('The basic style used for the note display.'))
+        default_style.add_paragraph_style("MR-Note",para)
+ 
         #Table Styles
         cell = BaseDoc.TableCellStyle()
         default_style.add_cell_style('MR-TableCell', cell)

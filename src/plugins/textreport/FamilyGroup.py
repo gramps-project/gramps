@@ -193,7 +193,7 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.end_row()
         elif self.missingInfo:
-            self.dump_parent_line(_("Father"),"")
+            self.dump_parent_line(_("Father"), "")
 
         if mother_name != "":
             self.doc.start_row()
@@ -210,9 +210,9 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.end_row()
         elif self.missingInfo:
-            self.dump_parent_line(_("Mother"),"")
+            self.dump_parent_line(_("Mother"), "")
 
-    def dump_parent_line(self, name,text):
+    def dump_parent_line(self, name, text):
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
         self.doc.start_paragraph('FGR-Normal')
@@ -225,7 +225,20 @@ class FamilyGroup(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
-            
+
+    def dump_parent_noteline(self, name, note):
+        self.doc.start_row()
+        self.doc.start_cell("FGR-TextContents")
+        self.doc.start_paragraph('FGR-Normal')
+        self.doc.write_text(name)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.start_cell("FGR-TextContentsEnd", 2)
+        self.doc.write_styled_note(note.get_styledtext(),
+                                   note.get_format(), 'FGR-Note')
+        self.doc.end_cell()
+        self.doc.end_row()
+    
     def dump_parent(self,title,person_handle):
 
         if not person_handle and not self.missingInfo:
@@ -300,7 +313,7 @@ class FamilyGroup(Report):
         if self.incParNotes:
             for notehandle in person.get_note_list():
                 note = self.database.get_note_from_handle(notehandle)
-                self.dump_parent_line(_("Note"), note.get())
+                self.dump_parent_noteline(_("Note"), note)
                 
         if self.includeAttrs:
             for attr in person.get_attribute_list():
@@ -678,6 +691,18 @@ class FamilyGroupOptions(MenuReportOptions):
         para.set_font(font)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style('FGR-Normal',para)
+
+        para = BaseDoc.ParagraphStyle()
+        font = BaseDoc.FontStyle()
+        font.set_type_face(BaseDoc.FONT_SERIF)
+        font.set_size(10)
+        font.set_bold(0)
+        para.set_font(font)
+        para.set(lmargin=0.0)
+        para.set_top_margin(0.0)
+        para.set_bottom_margin(0.0)
+        para.set_description(_('The basic style used for the note display.'))
+        default_style.add_paragraph_style("FGR-Note",para)
 
         font = BaseDoc.FontStyle()
         font.set_type_face(BaseDoc.FONT_SANS_SERIF)
