@@ -5,7 +5,7 @@ dnl May need to run automake && aclocal first
 
 AC_PREREQ(2.57)
 dnl NOTE: arg to macro below becomes the "VERSION"
-AC_INIT(gramps, 3.1.1, [gramps-bugs@lists.sourceforge.net])
+AC_INIT(gramps, 3.1.2 [gramps-bugs@lists.sourceforge.net])
 AC_CONFIG_SRCDIR(configure.in)
 AM_INIT_AUTOMAKE([1.6.3 foreign])
 
