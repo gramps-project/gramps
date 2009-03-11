@@ -68,7 +68,6 @@ Application options
   -O, --open=FAMILY_TREE                 Open family tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
-  -o, --output=FILENAME                  Write file
   -f, --format=FORMAT                    Specify format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
@@ -102,10 +101,10 @@ class ArgHandler:
     If no filename or -i option is given, a new interactive session (empty
     database) is launched, since no data is given anyway.
     
-    If -O or -i option is given, but no -o or -a options are given, an
+    If -O or -i option is given, but no -e or -a options are given, an
     interactive session is launched with the FILE (specified with -i). 
     
-    If both input (-O or -i) and processing (-o or -a) options are given,
+    If both input (-O or -i) and processing (-e or -a) options are given,
     interactive session will not be launched. 
     """
 
