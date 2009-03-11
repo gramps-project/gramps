@@ -427,8 +427,7 @@ class GVPsDoc(GVDocBase):
         dotfile.close()
         
         # Generate the PS file.
-        os.system( 'dot -Tps2 -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
+        os.system( 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot) )
         # Delete the temporary dot file
         os.remove(tmp_dot)
         
@@ -754,7 +753,7 @@ class GVPdfGsDoc(GVDocBase):
         os.close( handle )
         
         # Generate PostScript using dot
-        command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, tmp_dot )
+        command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         os.system(command)
         
         # Add .5 to remove rounding errors.
