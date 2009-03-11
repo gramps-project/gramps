@@ -19,7 +19,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o|\-\^\-output= 
+.RB [ \-e|\-\^\-export= 
 .IR FIL
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
@@ -63,7 +63,7 @@ Uttryckligen specificera format på \fIFIL\fR givet av föregående
 \fB\-O\fR,
 ..
 \fB\-i\fR eller 
-\fB\-o\fR-alternativ. Om \fB\-f\fR-alternativet inte ges för någon \fIFIL\fR, 
+\fB\-e\fR-alternativ. Om \fB\-f\fR-alternativet inte ges för någon \fIFIL\fR, 
 gissas filformat för den filen utgående från dess filändelse eller dess MIME-typ. 
 .br
 
@@ -113,7 +113,7 @@ och \fB\-i\fR \fIFIL2\fR \fB\-i\fR \fIFIL1\fR kan skapa skilda
 gramps IDs i den resulterande databasen. 
 
 .TP 
-.BI \-o,\-\^\-output= " FIL"
+.BI \-e,\-\^\-export= " FIL"
 Exporterar data till \fIFIL\fR. För \fBiso\fR-format, är \fIFIL\fR i själva verket namnet på den mapp, 
 som gramps databas kommer att skrivas till. 
 För
@@ -124,7 +124,7 @@ För
 och \fBgeneweb\fR, är \fIFIL\fR namnet på resultatfilen. 
 .br
 
-Om mer är en utdatafil anges, måste varje föregås av en \fB\-o\fR-flagga. 
+Om mer är en utdatafil anges, måste varje föregås av en \fB\-e\fR-flagga. 
 Filerna skrivs en efter en i den givna ordningen.
 
 .TP 
@@ -220,21 +220,21 @@ och sedan arbeta med dess data, enligt ytterligare instruktioner på kommandorad
 Med eller utan \fB\-O\fRflagga, kan det ske många importeringar,
 exporteringar och åtgärder beskrivna ytterligare på kommanodraden 
 genom att använda \fB\-i\fR-,
-\fB\-o\fR- samt \fB\-a\fR-flaggor. 
+\fB\-e\fR- samt \fB\-a\fR-flaggor. 
 
 .LP
-Ordningen på \fB\-i\fR-, \fB\-o\fR- eller \fB\-a\fR-alternativen spelar ingen roll. 
+Ordningen på \fB\-i\fR-, \fB\-e\fR- eller \fB\-a\fR-alternativen spelar ingen roll. 
 Den gällande ordningen är alltid: all import (om någon) -> alla åtgärder (om några)
 -> all export (om någon). Men öppning måste alltid ske först!
 
 .LP
 Om inget \fB\-O\fR- eller \fB\-i\fR-alternativ givits, kommer gramps att starta sitt 
-huvudfönster samt påbörja den valiga interaktiva sessionen med en tom databas,
+huvudfönster samt påbörja den vanliga interaktiva sessionen med en tom databas,
 då hur som helst inget data finns att bearbeta.
 
 .LP
-Om inget \fB\-o\fR- eller \fB\-a\fR-alternativ givits, kommer gramps att starta sitt 
-huvudfönster samt påbörja den valiga interaktiva sessionen med den databas, som blev 
+Om inget \fB\-e\fR- eller \fB\-a\fR-alternativ givits, kommer gramps att starta sitt 
+huvudfönster samt påbörja den vanliga interaktiva sessionen med den databas, som blev 
 resultet från all import. Denna databas återfinns i \fBimport_db.grdb\fR
 under \fB~/.gramps/import\fR-mappen.
 
@@ -258,8 +258,8 @@ För att importera fyra databaser (vars format kan avgöras av deras namn) och s
 För att uttryckligen specificera formaten i examplet ovan, lägg till filnamn med passande \fB\-f\fR-alternativ: 
 \fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-f\fR \fIwft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
-För att spara den databas, som är resultat av all import, ange \fB\-o\fR-flagga (använd \fB\-f\fR om filnamnet inte tillåter gramps att gissa dess format):
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+För att spara den databas, som är resultat av all import, ange \fB\-e\fR-flagga (använd \fB\-f\fR om filnamnet inte tillåter gramps att gissa dess format):
+\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 För att importera tre databaser och påbörja en interaklive gramps-session med importresultatet: 
 \fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
