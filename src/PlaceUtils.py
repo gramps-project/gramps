@@ -185,6 +185,21 @@ def __convert_using_classic_repr(stringValue, typedeg):
     l2 = l[1].split(r"'")
     l3 = l2
     mins = 0
+    # See if minutes might be decimal?
+    # Then no seconds is supposed to be given
+    if l2[0].find(r'.') > 0:
+        # Split in integer and decimal parts
+        l4 = l2[0].split(r".")
+        # Set integer minutes
+        l2[0] = l4[0]
+        # Convert the decimal part of minutes to seconds
+        try:
+          lsecs=float('0.' + l4[1]) * 60.0
+          # Set the seconds followed by direction letter N/S/W/E
+          l2[1] = str(lsecs) +  '"' + l2[1]
+        except:
+            return None
+
     if len(l2) > 2:
         return None
     if len(l2) == 2:
@@ -278,7 +293,8 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                     eg +12.01543265 , -124.36473268
         'DEG'     : degree, minutes, seconds notation
                     eg 50°52'21.92''N , 124°52'21.92''E ° has UTF-8 code c2b00a
-                    or N 50º52'21.92" E 124º52'21.92"   º has UTF-8 code c2ba0a
+                    or N50º52'21.92" , E14º52'21.92"   º has UTF-8 code c2ba0a
+                    or N50º52.3456' , E14º52.9876' ; decimal minutes, no seconds
         'DEG-:'   : degree, minutes, seconds notation with :
                     eg -50:52:21.92 , 124:52:21.92
         'ISO-D'   : ISO 6709 degree notation i.e. ±DD.DDDD±DDD.DDDD
