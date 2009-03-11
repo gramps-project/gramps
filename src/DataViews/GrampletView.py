@@ -1572,15 +1572,14 @@ class GrampletView(PageView.PersonNavView):
             ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGramplet')
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
-                if qr_menu is None:
-                    qr_menu = gtk.Menu()
-                    names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
-                             in AVAILABLE_GRAMPLETS.keys()]
-                    names.sort()
-                    for name in names:
-                        Utils.add_menuitem(qr_menu, name, 
-                                           None, self.add_gramplet)
-                    self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
+                qr_menu = gtk.Menu()
+                names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
+                         in AVAILABLE_GRAMPLETS.keys()]
+                names.sort()
+                for name in names:
+                    Utils.add_menuitem(qr_menu, name, 
+                                       None, self.add_gramplet)
+                self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
             rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
