@@ -246,6 +246,7 @@ class Spell:
         except RuntimeError:
             #This catches error with old gtkspell versions that generate
             #this exception if dict cannot be loaded.
+            gtkspell_spell.detach()
             self._active_language = 'off'
             
     # Public API
