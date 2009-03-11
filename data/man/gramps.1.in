@@ -19,7 +19,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o|\-\^\-output= 
+.RB [ \-e|\-\^\-export= 
 .IR FILE
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
@@ -64,7 +64,7 @@ Explicitly specify format of \fIFILE\fR given by preceding
 \fB\-O\fR,
 ..
 \fB\-i\fR, or 
-\fB\-o\fR option. If the \fB\-f\fR option is not given for any \fIFILE\fR, 
+\fB\-e\fR option. If the \fB\-f\fR option is not given for any \fIFILE\fR, 
 the format of that file is guessed according to its extension or MIME-type. 
 .br
 
@@ -112,21 +112,6 @@ flag. The files are imported in the specified order,
 i.e. \fB\-i\fR \fIFILE1\fR \fB\-i\fR \fIFILE2\fR  
 and \fB\-i\fR \fIFILE2\fR \fB\-i\fR \fIFILE1\fR might produce different 
 gramps IDs in the resulting database. 
-
-.TP 
-.BI \-o,\-\^\-output= " FILE"
-Export data into \fIFILE\fR. For \fBiso\fR format, the \fIFILE\fR is actually
-the name of directory the gramps database will be written into. 
-For
-.ig
-\fBgrdb\fR,
-..
-\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
-and \fBgeneweb\fR, the \fIFILE\fR is the name of the resulting file. 
-.br
-
-When more than one output file is given, each has to be preceded 
-by \fB\-o\fR flag. The files are written one by one, in the specified order.
 
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
@@ -228,10 +213,10 @@ further command line parameters.
 .LP
 With or without the \fB\-O\fR flag, there could be multiple imports,
 exports, and actions specified further on the command line by using \fB\-i\fR,
-\fB\-o\fR, and \fB\-a\fR flags.  
+\fB\-e\fR, and \fB\-a\fR flags.  
 
 .LP
-The order of \fB\-i\fR, \fB\-o\fR, or \fB\-a\fR options does not matter. The
+The order of \fB\-i\fR, \fB\-e\fR, or \fB\-a\fR options does not matter. The
 actual order always is: all imports (if any) -> all actions (if any)
 -> all exports (if any). But opening must always be first!
 
@@ -241,7 +226,7 @@ window and start the usual interactive session with the empty database,
 since there is no data to process, anyway.
 
 .LP
-If no \fB\-o\fR or \fB\-a\fR options are given, gramps will launch its main 
+If no \fB\-e\fR or \fB\-a\fR options are given, gramps will launch its main 
 window and start the usual interactive session with the database resulted 
 from all imports. This database resides in the \fBimport_db.grdb\fR
 under \fB~/.gramps/import\fR directory.
@@ -266,8 +251,8 @@ To import four databases (whose formats can be determined from their names) and 
 To explicitly specify the formats in the above example, append filenames with appropriate \fB\-f\fR options: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
-To record the database resulting from all imports, supply \fB\-o\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+To record the database resulting from all imports, supply \fB\-e\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 To import three databases and start interactive gramps session with the result: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
