@@ -163,14 +163,15 @@ COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
 AUTHORS        = [
-    "Donald N. Allingham", 
-    "Alexander Roitman", 
-    "Richard Taylor", 
-    "Martin Hawlisch", 
-    "Brian Matherly", 
-    "Tim Waugh", 
+    "Alexander Roitman",
+    "Benny Malengier", 
+    "Brian Matherly",
     "Donald A. Peterson", 
-    "David Hampton", 
+    "Donald N. Allingham", 
+    "David Hampton",  
+    "Martin Hawlisch", 
+    "Richard Taylor", 
+    "Tim Waugh", 
     ]
     
 AUTHORS_FILE = os.path.join(DATA_DIR, "authors.xml")
@@ -204,7 +205,6 @@ POPT_TABLE = [
     ("open",    'O', str, None, 0, "Open family tree",  "FAMILY_TREE"), 
     ("import",  'i', str, None, 0, "Import file",       "FILENAME"), 
     ("export",  'e', str, None, 0, "Export file",       "FILENAME"),
-    ("output",  'o', str, None, 0, "Write file",        "FILENAME"), 
     ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"), 
     ("action",  'a', str, None, 0, 'Specify action',    "ACTION"), 
     ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"), 
@@ -223,6 +223,7 @@ LONGOPTS = [
     "disable-crash-dialog", 
     "enable-sound",
     "espeaker=",
+    "export=",
     "force-unlock",
     "format=",
     "gdk-debug=", 
@@ -241,7 +242,6 @@ LONGOPTS = [
     "oaf-private",
     "open=",
     "options=",
-    "output=",
     "screen=", 
     "sm-client-id=", 
     "sm-config-prefix=", 
@@ -251,6 +251,6 @@ LONGOPTS = [
     "version", 
 ]
 
-SHORTOPTS = "O:i:e:o:f:a:p:d:lLhu?"
+SHORTOPTS = "O:i:e:f:a:p:d:lLhu?"
 
 
