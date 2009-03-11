@@ -4,16 +4,16 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: GRAMPS 3.1\n"
+"Project-Id-Version: GRAMPS 3.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-04 15:41+0100\n"
-"PO-Revision-Date: 2009-03-06 11:25+0100\n"
+"POT-Creation-Date: 2009-03-09 18:34+0100\n"
+"PO-Revision-Date: 2009-03-10 14:20+0100\n"
 "Last-Translator: Lubo Vasko <pgval at inmail dot sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/ArgHandler.py:230
 #, python-format
@@ -182,8 +182,8 @@ msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Lubo Vasko"
 
-#: ../src/const.py:192 ../src/const.py:193 ../src/gen/lib/date.py:1577
-#: ../src/gen/lib/date.py:1591
+#: ../src/const.py:192 ../src/const.py:193 ../src/gen/lib/date.py:1590
+#: ../src/gen/lib/date.py:1604
 msgid "none"
 msgstr "žiadny"
 
@@ -777,8 +777,8 @@ msgstr "Domovská stránka GRAMPS"
 msgid "Father's surname"
 msgstr "Priezvisko otca"
 
-#: ../src/GrampsCfg.py:76 ../src/Spell.py:168 ../src/Spell.py:247
-#: ../src/Spell.py:249 ../src/plugins/tool/Check.py:1345
+#: ../src/GrampsCfg.py:76 ../src/Spell.py:176 ../src/Spell.py:282
+#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1345
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -1049,7 +1049,7 @@ msgstr "Archív"
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:171
 #: ../src/plugins/textreport/FamilyGroup.py:303
-#: ../src/ReportBase/_GraphvizReportDialog.py:1031
+#: ../src/ReportBase/_GraphvizReportDialog.py:1020
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -2004,7 +2004,7 @@ msgstr "používa sa schránka"
 #: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
 #: ../src/ToolTips.py:142
 msgid "Location"
-msgstr "Umiestnenie"
+msgstr "Miesto"
 
 #: ../src/ScratchPad.py:184 ../src/ScratchPad.py:222 ../src/ToolTips.py:149
 msgid "Telephone"
@@ -2218,343 +2218,343 @@ msgstr "Link na archív"
 msgid "Clipboard"
 msgstr "Schránka"
 
-#: ../src/Spell.py:58
+#: ../src/Spell.py:66
 msgid "Spelling checker is not installed"
 msgstr "Kontrola pravopisu nie je nainštalovaná"
 
-#: ../src/Spell.py:76
+#: ../src/Spell.py:84
 msgid "Afrikaans"
 msgstr "afrikánsky"
 
-#: ../src/Spell.py:77
+#: ../src/Spell.py:85
 msgid "Amharic"
 msgstr "Amhársky"
 
-#: ../src/Spell.py:78
+#: ../src/Spell.py:86
 msgid "Arabic"
 msgstr "arabský"
 
-#: ../src/Spell.py:79
+#: ../src/Spell.py:87
 msgid "Azerbaijani"
 msgstr "azerbajdžánsky"
 
-#: ../src/Spell.py:80
+#: ../src/Spell.py:88
 msgid "Belarusian"
 msgstr "bieloruský"
 
-#: ../src/Spell.py:81
+#: ../src/Spell.py:89
 msgid "Bulgarian"
 msgstr "bulharský"
 
-#: ../src/Spell.py:82
+#: ../src/Spell.py:90
 msgid "Bengali"
 msgstr "bengálsky"
 
-#: ../src/Spell.py:83
+#: ../src/Spell.py:91
 msgid "Breton"
 msgstr "bretónsky"
 
-#: ../src/Spell.py:84
+#: ../src/Spell.py:92
 msgid "Catalan"
 msgstr "katalánsky"
 
-#: ../src/Spell.py:85
+#: ../src/Spell.py:93
 msgid "Czech"
 msgstr "český"
 
-#: ../src/Spell.py:86
+#: ../src/Spell.py:94
 msgid "Kashubian"
 msgstr "kašubský"
 
-#: ../src/Spell.py:87
+#: ../src/Spell.py:95
 msgid "Welsh"
 msgstr "welšský"
 
-#: ../src/Spell.py:88
+#: ../src/Spell.py:96
 msgid "Danish"
 msgstr "dánsky"
 
-#: ../src/Spell.py:89
+#: ../src/Spell.py:97
 msgid "German"
 msgstr "nemecký"
 
-#: ../src/Spell.py:90
+#: ../src/Spell.py:98
 msgid "German - Old Spelling"
 msgstr "staronemecký"
 
-#: ../src/Spell.py:91
+#: ../src/Spell.py:99
 msgid "Greek"
 msgstr "grécky"
 
-#: ../src/Spell.py:92
+#: ../src/Spell.py:100
 msgid "English"
 msgstr "anglický"
 
-#: ../src/Spell.py:93
+#: ../src/Spell.py:101
 msgid "Esperanto"
 msgstr "esperantsky"
 
-#: ../src/Spell.py:94
+#: ../src/Spell.py:102
 msgid "Spanish"
 msgstr "španielsky"
 
-#: ../src/Spell.py:95
+#: ../src/Spell.py:103
 msgid "Estonian"
 msgstr "estónsky"
 
-#: ../src/Spell.py:96 ../src/gen/lib/date.py:657
+#: ../src/Spell.py:104 ../src/gen/lib/date.py:657
 msgid "Persian"
 msgstr "perzský"
 
-#: ../src/Spell.py:97
+#: ../src/Spell.py:105
 msgid "Finnish"
 msgstr "fínsky"
 
-#: ../src/Spell.py:98
+#: ../src/Spell.py:106
 msgid "Faroese"
 msgstr "faerský"
 
-#: ../src/Spell.py:99
+#: ../src/Spell.py:107
 msgid "French"
 msgstr "francúzsky"
 
-#: ../src/Spell.py:100
+#: ../src/Spell.py:108
 msgid "Frisian"
 msgstr "frízsky"
 
-#: ../src/Spell.py:101
+#: ../src/Spell.py:109
 msgid "Irish"
 msgstr "írsky"
 
-#: ../src/Spell.py:102
+#: ../src/Spell.py:110
 msgid "Scottish Gaelic"
 msgstr "škótsko-galský"
 
-#: ../src/Spell.py:103
+#: ../src/Spell.py:111
 msgid "Galician"
 msgstr "gálsky"
 
-#: ../src/Spell.py:104
+#: ../src/Spell.py:112
 msgid "Gujarati"
 msgstr "gujarati"
 
-#: ../src/Spell.py:105
+#: ../src/Spell.py:113
 msgid "Manx Gaelic"
 msgstr "Manx gálsky"
 
-#: ../src/Spell.py:106 ../src/gen/lib/date.py:655
+#: ../src/Spell.py:114 ../src/gen/lib/date.py:655
 msgid "Hebrew"
 msgstr "hebrejský"
 
-#: ../src/Spell.py:107
+#: ../src/Spell.py:115
 msgid "Hindi"
 msgstr "hindi"
 
-#: ../src/Spell.py:108
+#: ../src/Spell.py:116
 msgid "Hiligaynon"
 msgstr "hiligajsky"
 
-#: ../src/Spell.py:109
+#: ../src/Spell.py:117
 msgid "Croatian"
 msgstr "chorvátsky"
 
-#: ../src/Spell.py:110
+#: ../src/Spell.py:118
 msgid "Upper Sorbian"
 msgstr "hornosrbský"
 
-#: ../src/Spell.py:111
+#: ../src/Spell.py:119
 msgid "Hungarian"
 msgstr "maďarský"
 
-#: ../src/Spell.py:112
+#: ../src/Spell.py:120
 msgid "Armenian"
 msgstr "arménsky"
 
-#: ../src/Spell.py:113
+#: ../src/Spell.py:121
 msgid "Interlingua"
 msgstr "Interlingua"
 
-#: ../src/Spell.py:114
+#: ../src/Spell.py:122
 msgid "Indonesian"
 msgstr "indonézsky"
 
-#: ../src/Spell.py:115
+#: ../src/Spell.py:123
 msgid "Icelandic"
 msgstr "Islandský"
 
-#: ../src/Spell.py:116
+#: ../src/Spell.py:124
 msgid "Italian"
 msgstr "taliansky"
 
-#: ../src/Spell.py:117
+#: ../src/Spell.py:125
 msgid "Kurdi"
 msgstr "Kurdský"
 
-#: ../src/Spell.py:118
+#: ../src/Spell.py:126
 msgid "Latin"
 msgstr "latinský"
 
-#: ../src/Spell.py:119
+#: ../src/Spell.py:127
 msgid "Lithuanian"
 msgstr "litovský"
 
-#: ../src/Spell.py:120
+#: ../src/Spell.py:128
 msgid "Latvian"
 msgstr "lotyšský"
 
-#: ../src/Spell.py:121
+#: ../src/Spell.py:129
 msgid "Malagasy"
 msgstr "malgašský"
 
-#: ../src/Spell.py:122
+#: ../src/Spell.py:130
 msgid "Maori"
 msgstr "maorský"
 
-#: ../src/Spell.py:123
+#: ../src/Spell.py:131
 msgid "Macedonian"
 msgstr "macedónsky"
 
-#: ../src/Spell.py:124
+#: ../src/Spell.py:132
 msgid "Mongolian"
 msgstr "mongolský"
 
-#: ../src/Spell.py:125
+#: ../src/Spell.py:133
 msgid "Marathi"
 msgstr "maradský"
 
-#: ../src/Spell.py:126
+#: ../src/Spell.py:134
 msgid "Malay"
 msgstr "malajský"
 
-#: ../src/Spell.py:127
+#: ../src/Spell.py:135
 msgid "Maltese"
 msgstr "maltský"
 
-#: ../src/Spell.py:128
+#: ../src/Spell.py:136
 msgid "Norwegian Bokmal"
 msgstr "nórsky"
 
-#: ../src/Spell.py:129
+#: ../src/Spell.py:137
 msgid "Low Saxon"
 msgstr "dolnosaský"
 
-#: ../src/Spell.py:130
+#: ../src/Spell.py:138
 msgid "Dutch"
 msgstr "holandský"
 
-#: ../src/Spell.py:131
+#: ../src/Spell.py:139
 msgid "Norwegian Nynorsk"
 msgstr "nórsky-nyorsk"
 
-#: ../src/Spell.py:132
+#: ../src/Spell.py:140
 msgid "Chichewa"
 msgstr "čičevský"
 
-#: ../src/Spell.py:133
+#: ../src/Spell.py:141
 msgid "Oriya"
 msgstr "oriansky"
 
-#: ../src/Spell.py:134
+#: ../src/Spell.py:142
 msgid "Punjabi"
 msgstr "pundžábsky"
 
-#: ../src/Spell.py:135
+#: ../src/Spell.py:143
 msgid "Polish"
 msgstr "poľský"
 
-#: ../src/Spell.py:136 ../src/Spell.py:138
+#: ../src/Spell.py:144 ../src/Spell.py:146
 msgid "Portuguese"
 msgstr "portugalský"
 
-#: ../src/Spell.py:137
+#: ../src/Spell.py:145
 msgid "Brazilian Portuguese"
 msgstr "portugalský-brazil"
 
-#: ../src/Spell.py:139
+#: ../src/Spell.py:147
 msgid "Quechua"
 msgstr "čečua"
 
-#: ../src/Spell.py:140
+#: ../src/Spell.py:148
 msgid "Romanian"
 msgstr "rumunský"
 
-#: ../src/Spell.py:141
+#: ../src/Spell.py:149
 msgid "Russian"
 msgstr "ruský"
 
-#: ../src/Spell.py:142
+#: ../src/Spell.py:150
 msgid "Kinyarwanda"
 msgstr "kinjarwandský"
 
-#: ../src/Spell.py:143
+#: ../src/Spell.py:151
 msgid "Sardinian"
 msgstr "sardínsky"
 
-#: ../src/Spell.py:144
+#: ../src/Spell.py:152
 msgid "Slovak"
 msgstr "slovenský"
 
-#: ../src/Spell.py:145
+#: ../src/Spell.py:153
 msgid "Slovenian"
 msgstr "slovinský"
 
-#: ../src/Spell.py:146
+#: ../src/Spell.py:154
 msgid "Serbian"
 msgstr "srbský"
 
-#: ../src/Spell.py:147 ../src/gen/lib/date.py:659
+#: ../src/Spell.py:155 ../src/gen/lib/date.py:659
 msgid "Swedish"
 msgstr "švédsky"
 
-#: ../src/Spell.py:148
+#: ../src/Spell.py:156
 msgid "Swahili"
 msgstr "swahilský"
 
-#: ../src/Spell.py:149
+#: ../src/Spell.py:157
 msgid "Tamil"
 msgstr "tamilský"
 
-#: ../src/Spell.py:150
+#: ../src/Spell.py:158
 msgid "Telugu"
 msgstr "telegujský"
 
-#: ../src/Spell.py:151
+#: ../src/Spell.py:159
 msgid "Tetum"
 msgstr "tetumský"
 
-#: ../src/Spell.py:152
+#: ../src/Spell.py:160
 msgid "Tagalog"
 msgstr "tagalogský"
 
-#: ../src/Spell.py:153
+#: ../src/Spell.py:161
 msgid "Setswana"
 msgstr "setswanský"
 
-#: ../src/Spell.py:154
+#: ../src/Spell.py:162
 msgid "Turkish"
 msgstr "turecký"
 
-#: ../src/Spell.py:155
+#: ../src/Spell.py:163
 msgid "Ukrainian"
 msgstr "ukrajinský"
 
-#: ../src/Spell.py:156
+#: ../src/Spell.py:164
 msgid "Uzbek"
 msgstr "uzbecký"
 
-#: ../src/Spell.py:157
+#: ../src/Spell.py:165
 msgid "Vietnamese"
 msgstr "vietnamský"
 
-#: ../src/Spell.py:158
+#: ../src/Spell.py:166
 msgid "Walloon"
 msgstr "walónsky"
 
-#: ../src/Spell.py:159
+#: ../src/Spell.py:167
 msgid "Yiddish"
 msgstr "jiddiš"
 
-#: ../src/Spell.py:160
+#: ../src/Spell.py:168
 msgid "Zulu"
 msgstr "zulu"
 
@@ -2625,14 +2625,14 @@ msgstr "žena"
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
 #: ../src/plugins/gramplet/SessionLogGramplet.py:73
-#: ../src/plugins/textreport/DetAncestralReport.py:500
-#: ../src/plugins/textreport/DetAncestralReport.py:507
-#: ../src/plugins/textreport/DetAncestralReport.py:550
-#: ../src/plugins/textreport/DetAncestralReport.py:557
-#: ../src/plugins/textreport/DetDescendantReport.py:434
-#: ../src/plugins/textreport/DetDescendantReport.py:441
-#: ../src/plugins/textreport/DetDescendantReport.py:491
-#: ../src/plugins/textreport/DetDescendantReport.py:498
+#: ../src/plugins/textreport/DetAncestralReport.py:501
+#: ../src/plugins/textreport/DetAncestralReport.py:508
+#: ../src/plugins/textreport/DetAncestralReport.py:551
+#: ../src/plugins/textreport/DetAncestralReport.py:558
+#: ../src/plugins/textreport/DetDescendantReport.py:435
+#: ../src/plugins/textreport/DetDescendantReport.py:442
+#: ../src/plugins/textreport/DetDescendantReport.py:492
+#: ../src/plugins/textreport/DetDescendantReport.py:499
 #: ../src/plugins/textreport/IndivComplete.py:319
 #: ../src/plugins/webreport/NarrativeWeb.py:1839
 #: ../src/plugins/webreport/NarrativeWeb.py:2606 ../src/gen/lib/date.py:445
@@ -3317,7 +3317,7 @@ msgstr "Otvoriť stranu pre Html View"
 
 #: ../src/DataViews/GeoView.py:572
 msgid ""
-"Type an webpage address at the top, and hit the execute button to load a webpage in this page\n"
+"Type a webpage address at the top, and hit the execute button to load a webpage in this page\n"
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
@@ -3924,8 +3924,8 @@ msgid "Loading..."
 msgstr "Nahrávam..."
 
 #: ../src/DataViews/PlaceView.py:133
-msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ..."
-msgstr "Pokus prezrieť zvolené lokality s (OpenstreetMap, Google Maps, ..."
+msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ...)"
+msgstr "Pokus prezrieť zvolené lokality s (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
@@ -3936,8 +3936,8 @@ msgid "_Look up with Map Service"
 msgstr "Vyhľadať so zdrojom máp"
 
 #: ../src/DataViews/PlaceView.py:140
-msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ..."
-msgstr "Pokus prezrieť túto lokalitu s (OpenstreetMap, Google Maps, ..."
+msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ...)"
+msgstr "Pokus prezrieť túto lokalitu s (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
@@ -4248,8 +4248,8 @@ msgstr "Na zlúčenie musia byť označené práve dva zdroje. Druhý zdroj ozna
 #: ../src/plugins/docgen/LaTeXDoc.py:205 ../src/plugins/docgen/LaTeXDoc.py:208
 #: ../src/plugins/docgen/ODFDoc.py:544 ../src/plugins/docgen/ODFDoc.py:547
 #: ../src/plugins/docgen/PSDrawDoc.py:103
-#: ../src/plugins/docgen/PSDrawDoc.py:106 ../src/plugins/docgen/RTFDoc.py:83
-#: ../src/plugins/docgen/RTFDoc.py:86 ../src/plugins/docgen/SvgDrawDoc.py:75
+#: ../src/plugins/docgen/PSDrawDoc.py:106 ../src/plugins/docgen/RTFDoc.py:84
+#: ../src/plugins/docgen/RTFDoc.py:87 ../src/plugins/docgen/SvgDrawDoc.py:75
 #: ../src/plugins/docgen/SvgDrawDoc.py:77
 #: ../src/plugins/export/ExportCd.py:159 ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
@@ -5773,8 +5773,8 @@ msgstr "Kniha GRAMPSu"
 #: ../src/plugins/textreport/AncestorReport.py:348
 #: ../src/plugins/textreport/BirthdayReport.py:498
 #: ../src/plugins/textreport/DescendReport.py:258
-#: ../src/plugins/textreport/DetAncestralReport.py:896
-#: ../src/plugins/textreport/DetDescendantReport.py:899
+#: ../src/plugins/textreport/DetAncestralReport.py:897
+#: ../src/plugins/textreport/DetDescendantReport.py:900
 #: ../src/plugins/textreport/EndOfLineReport.py:324
 #: ../src/plugins/textreport/FamilyGroup.py:775
 #: ../src/plugins/textreport/IndivComplete.py:646
@@ -5786,13 +5786,12 @@ msgstr "Kniha GRAMPSu"
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:293
 #: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1496
-#: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/Eval.py:132
-#: ../src/plugins/tool/EventCmp.py:467 ../src/plugins/tool/EventNames.py:179
+#: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/EventCmp.py:467
+#: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:704
-#: ../src/plugins/tool/Leak.py:135 ../src/plugins/tool/NotRelated.py:443
-#: ../src/plugins/tool/PatchNames.py:376 ../src/plugins/tool/Rebuild.py:121
-#: ../src/plugins/tool/RebuildRefMap.py:123 ../src/plugins/tool/RelCalc.py:271
-#: ../src/plugins/tool/RemoveUnused.py:497
+#: ../src/plugins/tool/NotRelated.py:443 ../src/plugins/tool/PatchNames.py:376
+#: ../src/plugins/tool/Rebuild.py:121 ../src/plugins/tool/RebuildRefMap.py:123
+#: ../src/plugins/tool/RelCalc.py:271 ../src/plugins/tool/RemoveUnused.py:497
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
 #: ../src/plugins/tool/SoundGen.py:156 ../src/plugins/tool/Verify.py:1584
 #: ../src/plugins/webreport/NarrativeWeb.py:3622
@@ -6130,8 +6129,8 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
-#: ../src/plugins/textreport/DetAncestralReport.py:705
-#: ../src/plugins/textreport/DetDescendantReport.py:695
+#: ../src/plugins/textreport/DetAncestralReport.py:706
+#: ../src/plugins/textreport/DetDescendantReport.py:696
 #: ../src/plugins/textreport/EndOfLineReport.py:236
 #: ../src/plugins/textreport/FamilyGroup.py:586
 #: ../src/plugins/textreport/IndivComplete.py:513
@@ -6220,8 +6219,8 @@ msgstr "Záznamy rodiny"
 #: ../src/plugins/drawreport/DescendTree.py:495
 #: ../src/plugins/drawreport/FanChart.py:402
 #: ../src/plugins/textreport/AncestorReport.py:330
-#: ../src/plugins/textreport/DetAncestralReport.py:849
-#: ../src/plugins/textreport/DetDescendantReport.py:852
+#: ../src/plugins/textreport/DetAncestralReport.py:850
+#: ../src/plugins/textreport/DetDescendantReport.py:853
 #: ../src/plugins/textreport/EndOfLineReport.py:273
 #: ../src/plugins/textreport/EndOfLineReport.py:291
 #: ../src/plugins/textreport/FamilyGroup.py:679
@@ -6332,7 +6331,7 @@ msgstr "Prostý text"
 #. --------------------------------------------------------------------------
 #: ../src/plugins/docgen/AsciiDoc.py:376 ../src/plugins/docgen/HtmlDoc.py:483
 #: ../src/plugins/docgen/ODFDoc.py:1147 ../src/plugins/docgen/PSDrawDoc.py:349
-#: ../src/plugins/docgen/RTFDoc.py:440 ../src/plugins/docgen/SvgDrawDoc.py:267
+#: ../src/plugins/docgen/RTFDoc.py:445 ../src/plugins/docgen/SvgDrawDoc.py:267
 #: ../src/ReportBase/_DocReportDialog.py:113
 msgid "Open with default viewer"
 msgstr "Prezrieť v predvolenom prehliadači"
@@ -6373,7 +6372,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../src/plugins/docgen/LaTeXDoc.py:655
-#: ../src/ReportBase/_GraphvizReportDialog.py:894
+#: ../src/ReportBase/_GraphvizReportDialog.py:883
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Otvoriť s %(program_name)s"
@@ -6388,11 +6387,11 @@ msgid "Open Document Text"
 msgstr "Text Open Dokument"
 
 #: ../src/plugins/docgen/PSDrawDoc.py:348
-#: ../src/ReportBase/_GraphvizReportDialog.py:801
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../src/plugins/docgen/RTFDoc.py:439
+#: ../src/plugins/docgen/RTFDoc.py:444
 msgid "RTF document"
 msgstr "RTF dokument"
 
@@ -6418,8 +6417,8 @@ msgstr "Nastavenia stromu"
 #: ../src/plugins/textreport/AncestorReport.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:341
 #: ../src/plugins/textreport/DescendReport.py:197
-#: ../src/plugins/textreport/DetAncestralReport.py:707
-#: ../src/plugins/textreport/DetDescendantReport.py:697
+#: ../src/plugins/textreport/DetAncestralReport.py:708
+#: ../src/plugins/textreport/DetDescendantReport.py:698
 #: ../src/plugins/textreport/EndOfLineReport.py:238
 #: ../src/plugins/textreport/KinshipReport.py:338
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:170
@@ -6436,8 +6435,8 @@ msgstr "Ústredná postava zostavy stromu"
 #: ../src/plugins/drawreport/FanChart.py:346
 #: ../src/plugins/textreport/AncestorReport.py:253
 #: ../src/plugins/textreport/DescendReport.py:201
-#: ../src/plugins/textreport/DetAncestralReport.py:711
-#: ../src/plugins/textreport/DetDescendantReport.py:701
+#: ../src/plugins/textreport/DetAncestralReport.py:712
+#: ../src/plugins/textreport/DetDescendantReport.py:702
 msgid "Generations"
 msgstr "Generácie"
 
@@ -6549,13 +6548,9 @@ msgstr ""
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
-"%(spouse)s and\n"
-" %(person)s, %(nyears)d"
 msgstr ""
-"%(spouse)s et\n"
-" %(person)s, %(nyears)d rok"
-"%(spouse)s et\n"
-" %(person)s, %(nyears)d rokov"
+"%(spouse)s a\n"
+" %(person)s, %(nyears)d"
 
 #: ../src/plugins/drawreport/Calendar.py:377
 #: ../src/plugins/drawreport/Calendar.py:379
@@ -6575,8 +6570,8 @@ msgstr "Na vymedzenie počtu osôb v kalendári zvoliť filter"
 #: ../src/plugins/textreport/AncestorReport.py:250
 #: ../src/plugins/textreport/BirthdayReport.py:342
 #: ../src/plugins/textreport/DescendReport.py:198
-#: ../src/plugins/textreport/DetAncestralReport.py:708
-#: ../src/plugins/textreport/DetDescendantReport.py:698
+#: ../src/plugins/textreport/DetAncestralReport.py:709
+#: ../src/plugins/textreport/DetDescendantReport.py:699
 #: ../src/plugins/textreport/EndOfLineReport.py:239
 #: ../src/plugins/textreport/KinshipReport.py:339
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:171
@@ -6801,8 +6796,8 @@ msgstr "Vejárový graf %(generations)d generácií pre: %(person)s"
 #: ../src/plugins/drawreport/FanChart.py:347
 #: ../src/plugins/textreport/AncestorReport.py:254
 #: ../src/plugins/textreport/DescendReport.py:202
-#: ../src/plugins/textreport/DetAncestralReport.py:712
-#: ../src/plugins/textreport/DetDescendantReport.py:702
+#: ../src/plugins/textreport/DetAncestralReport.py:713
+#: ../src/plugins/textreport/DetDescendantReport.py:703
 msgid "The number of generations to include in the report"
 msgstr "Počet generácií ktorý má správa obsahovať"
 
@@ -7079,7 +7074,7 @@ msgstr "Rok narodenia od ktorého začať vladať osoby"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:711
 msgid "People Born Before"
-msgstr "Osoby narodené medzi"
+msgstr "Osoby narodené do"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:713
 msgid "Birth year until which to include people"
@@ -7129,8 +7124,8 @@ msgstr "Štýl použitý pre položky a hodnoty."
 #: ../src/plugins/drawreport/TimeLine.py:389
 #: ../src/plugins/textreport/AncestorReport.py:307
 #: ../src/plugins/textreport/DescendReport.py:218
-#: ../src/plugins/textreport/DetAncestralReport.py:803
-#: ../src/plugins/textreport/DetDescendantReport.py:806
+#: ../src/plugins/textreport/DetAncestralReport.py:804
+#: ../src/plugins/textreport/DetDescendantReport.py:807
 #: ../src/plugins/textreport/EndOfLineReport.py:255
 #: ../src/plugins/textreport/FamilyGroup.py:670
 #: ../src/plugins/textreport/IndivComplete.py:567
@@ -7733,12 +7728,15 @@ msgstr " obsahuje 1 osobu z (%(percent)s kompletné)\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:255
 #: ../src/plugins/textreport/AncestorReport.py:186
-#: ../src/plugins/textreport/DetAncestralReport.py:166
-#: ../src/plugins/textreport/DetDescendantReport.py:218
+#: ../src/plugins/textreport/DetAncestralReport.py:167
+#: ../src/plugins/textreport/DetDescendantReport.py:219
 #: ../src/plugins/textreport/EndOfLineReport.py:161
 #, python-format
 msgid "Generation %d"
 msgstr "Generácia %d"
+#: ../src/plugins/gramplet/PedigreeGramplet.py:262
+msgid "All generations"
+msgstr "Všetky generácie"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:256
 #, python-format
@@ -7748,11 +7746,10 @@ msgstr "Dvojklik ukáže osoby v generácii %d"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:259
 #, python-format
 msgid " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
-msgstr " obsahuje %(count_person)d osobu z %(max_count_person)d (kompl. na %(percent)s)\n"
+msgid_plural " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
+msgstr[0] " obsahuje %(count_person)d osobu z %(max_count_person)d (kompl.na %(percent)s)\n"
+msgstr[1] " obsahuje počet %(count_person)d osôb z %(max_count_person)d (kompl.na %(percent)s)\n"
 
-#: ../src/plugins/gramplet/PedigreeGramplet.py:262
-msgid "All generations"
-msgstr "Všetky generácie"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:263
 msgid "Double-click to see all generations"
@@ -7761,7 +7758,10 @@ msgstr "Dvojklik ukáže všetky generácie"
 #: ../src/plugins/gramplet/PedigreeGramplet.py:265
 #, python-format
 msgid " have %d individual\n"
-msgstr " obsahujú %d osobu\n"
+msgid_plural " have %d individuals\n"
+msgstr[0] " obsahujú %d osobu\n"
+msgstr[1] " obsahujú %d osôb\n"
+
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:281
 msgid "Pedigree Gramplet"
@@ -7806,7 +7806,7 @@ msgstr "%d. Partner: "
 #: ../src/plugins/gramplet/RelativeGramplet.py:90
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d. Partner:  Neznámy"
+msgstr "%d. Partner: Neznámy"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:105
 msgid "Parents:"
@@ -9528,14 +9528,14 @@ msgid "Ahnentafel Report for %s"
 msgstr "Graf predkov typu Ahnentafel pre %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:257
-#: ../src/plugins/textreport/DetAncestralReport.py:715
-#: ../src/plugins/textreport/DetDescendantReport.py:706
+#: ../src/plugins/textreport/DetAncestralReport.py:716
+#: ../src/plugins/textreport/DetDescendantReport.py:707
 msgid "Page break between generations"
 msgstr "Ukončenie stránky medzi generáciami"
 
 #: ../src/plugins/textreport/AncestorReport.py:259
-#: ../src/plugins/textreport/DetAncestralReport.py:717
-#: ../src/plugins/textreport/DetDescendantReport.py:708
+#: ../src/plugins/textreport/DetAncestralReport.py:718
+#: ../src/plugins/textreport/DetDescendantReport.py:709
 msgid "Whether to start a new page after each generation."
 msgstr "Začať každú generáciu na novej strane."
 
@@ -9548,8 +9548,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Uvádza či za menom má byť koniec riadka."
 
 #: ../src/plugins/textreport/AncestorReport.py:320
-#: ../src/plugins/textreport/DetAncestralReport.py:813
-#: ../src/plugins/textreport/DetDescendantReport.py:816
+#: ../src/plugins/textreport/DetAncestralReport.py:814
+#: ../src/plugins/textreport/DetDescendantReport.py:817
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Štýl použitý pre záhlavie generácie."
@@ -9681,339 +9681,339 @@ msgstr "Výstupná zostava potomkov"
 msgid "Produces a list of descendants of the active person"
 msgstr "Generuje zoznam potomkov aktívnej osoby"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:151
+#: ../src/plugins/textreport/DetAncestralReport.py:152
 #, python-format
 msgid "Ancestral Report for %s"
 msgstr "Graf predkov pre: %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:227
-#: ../src/plugins/textreport/DetDescendantReport.py:262
+#: ../src/plugins/textreport/DetAncestralReport.py:228
+#: ../src/plugins/textreport/DetDescendantReport.py:263
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s je tá istá osoba, ako [%(id_str)s]."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:292
-#: ../src/plugins/textreport/DetDescendantReport.py:578
+#: ../src/plugins/textreport/DetAncestralReport.py:293
+#: ../src/plugins/textreport/DetDescendantReport.py:579
 #, python-format
 msgid "Notes for %s"
 msgstr "Poznámky k %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:304
-#: ../src/plugins/textreport/DetAncestralReport.py:327
-#: ../src/plugins/textreport/DetAncestralReport.py:338
-#: ../src/plugins/textreport/DetAncestralReport.py:357
-#: ../src/plugins/textreport/DetDescendantReport.py:590
-#: ../src/plugins/textreport/DetDescendantReport.py:608
-#: ../src/plugins/textreport/DetDescendantReport.py:619
-#: ../src/plugins/textreport/DetDescendantReport.py:638
+#: ../src/plugins/textreport/DetAncestralReport.py:305
+#: ../src/plugins/textreport/DetAncestralReport.py:328
+#: ../src/plugins/textreport/DetAncestralReport.py:339
+#: ../src/plugins/textreport/DetAncestralReport.py:358
+#: ../src/plugins/textreport/DetDescendantReport.py:591
+#: ../src/plugins/textreport/DetDescendantReport.py:609
+#: ../src/plugins/textreport/DetDescendantReport.py:620
+#: ../src/plugins/textreport/DetDescendantReport.py:639
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Viac o %(person_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:311
-#: ../src/plugins/textreport/DetDescendantReport.py:597
+#: ../src/plugins/textreport/DetAncestralReport.py:312
+#: ../src/plugins/textreport/DetDescendantReport.py:598
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:346
-#: ../src/plugins/textreport/DetDescendantReport.py:627
+#: ../src/plugins/textreport/DetAncestralReport.py:347
+#: ../src/plugins/textreport/DetDescendantReport.py:628
 msgid "Address: "
 msgstr "Adresa: "
 
-#: ../src/plugins/textreport/DetAncestralReport.py:364
-#: ../src/plugins/textreport/DetAncestralReport.py:416
-#: ../src/plugins/textreport/DetDescendantReport.py:324
-#: ../src/plugins/textreport/DetDescendantReport.py:645
+#: ../src/plugins/textreport/DetAncestralReport.py:365
+#: ../src/plugins/textreport/DetAncestralReport.py:417
+#: ../src/plugins/textreport/DetDescendantReport.py:325
+#: ../src/plugins/textreport/DetDescendantReport.py:646
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:386
-#: ../src/plugins/textreport/DetDescendantReport.py:294
+#: ../src/plugins/textreport/DetAncestralReport.py:387
+#: ../src/plugins/textreport/DetDescendantReport.py:295
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:389
-#: ../src/plugins/textreport/DetDescendantReport.py:297
+#: ../src/plugins/textreport/DetAncestralReport.py:390
+#: ../src/plugins/textreport/DetDescendantReport.py:298
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:391
-#: ../src/plugins/textreport/DetDescendantReport.py:299
+#: ../src/plugins/textreport/DetAncestralReport.py:392
+#: ../src/plugins/textreport/DetDescendantReport.py:300
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:403
-#: ../src/plugins/textreport/DetDescendantReport.py:311
+#: ../src/plugins/textreport/DetAncestralReport.py:404
+#: ../src/plugins/textreport/DetDescendantReport.py:312
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:511
-#: ../src/plugins/textreport/DetDescendantReport.py:445
+#: ../src/plugins/textreport/DetAncestralReport.py:512
+#: ../src/plugins/textreport/DetDescendantReport.py:446
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Deti matky %(mother_name)s a %(father_name)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:564
-#: ../src/plugins/textreport/DetDescendantReport.py:505
+#: ../src/plugins/textreport/DetAncestralReport.py:565
+#: ../src/plugins/textreport/DetDescendantReport.py:506
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Viac o %(mother_name)s a %(father_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:720
-#: ../src/plugins/textreport/DetDescendantReport.py:718
+#: ../src/plugins/textreport/DetAncestralReport.py:721
+#: ../src/plugins/textreport/DetDescendantReport.py:719
 msgid "Content"
 msgstr "Obsah"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:722
-#: ../src/plugins/textreport/DetDescendantReport.py:720
+#: ../src/plugins/textreport/DetAncestralReport.py:723
+#: ../src/plugins/textreport/DetDescendantReport.py:721
 msgid "Use callname for common name"
 msgstr "Použiť prezývku ako bežné meno"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:723
-#: ../src/plugins/textreport/DetDescendantReport.py:721
+#: ../src/plugins/textreport/DetAncestralReport.py:724
+#: ../src/plugins/textreport/DetDescendantReport.py:722
 msgid "Whether to use the call name as the first name."
 msgstr "Otázka-použíť užívané meno ako prvé meno."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:727
-#: ../src/plugins/textreport/DetDescendantReport.py:724
+#: ../src/plugins/textreport/DetAncestralReport.py:728
+#: ../src/plugins/textreport/DetDescendantReport.py:725
 msgid "Use full dates instead of only the year"
 msgstr "Použiť úplný dátum miesto roku"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:728
-#: ../src/plugins/textreport/DetDescendantReport.py:726
+#: ../src/plugins/textreport/DetAncestralReport.py:729
+#: ../src/plugins/textreport/DetDescendantReport.py:727
 msgid "Whether to use full dates instead of just year."
 msgstr "Otázka-použiť úplný dátum miesto údaja o roku."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:731
-#: ../src/plugins/textreport/DetDescendantReport.py:729
+#: ../src/plugins/textreport/DetAncestralReport.py:732
+#: ../src/plugins/textreport/DetDescendantReport.py:730
 msgid "List children"
 msgstr "Zobraziť zoznam detí"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:732
-#: ../src/plugins/textreport/DetDescendantReport.py:730
+#: ../src/plugins/textreport/DetAncestralReport.py:733
+#: ../src/plugins/textreport/DetDescendantReport.py:731
 msgid "Whether to list children."
 msgstr "Otázka-zobraziť zoznam detí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:735
-#: ../src/plugins/textreport/DetDescendantReport.py:733
+#: ../src/plugins/textreport/DetAncestralReport.py:736
+#: ../src/plugins/textreport/DetDescendantReport.py:734
 msgid "Compute age"
 msgstr "Vypočítať vek"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:736
-#: ../src/plugins/textreport/DetDescendantReport.py:734
+#: ../src/plugins/textreport/DetAncestralReport.py:737
+#: ../src/plugins/textreport/DetDescendantReport.py:735
 msgid "Whether to compute age."
 msgstr "Otázka-vypočítať vek."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:739
-#: ../src/plugins/textreport/DetDescendantReport.py:737
+#: ../src/plugins/textreport/DetAncestralReport.py:740
+#: ../src/plugins/textreport/DetDescendantReport.py:738
 msgid "Omit duplicate ancestors"
 msgstr "Vynechať duplicitných predkov"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:740
-#: ../src/plugins/textreport/DetDescendantReport.py:738
+#: ../src/plugins/textreport/DetAncestralReport.py:741
+#: ../src/plugins/textreport/DetDescendantReport.py:739
 msgid "Whether to omit duplicate ancestors."
 msgstr "Otázka-vynechať duplicitných predkov."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:743
-#: ../src/plugins/textreport/DetDescendantReport.py:741
+#: ../src/plugins/textreport/DetAncestralReport.py:744
+#: ../src/plugins/textreport/DetDescendantReport.py:742
 msgid "Use Complete Sentences"
 msgstr "Používať celé vety"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:745
-#: ../src/plugins/textreport/DetDescendantReport.py:743
+#: ../src/plugins/textreport/DetAncestralReport.py:746
+#: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Otázka-použiť celé vety alebo stručné."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:748
-#: ../src/plugins/textreport/DetDescendantReport.py:746
+#: ../src/plugins/textreport/DetAncestralReport.py:749
+#: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "Add descendant reference in child list"
 msgstr "Pridať odkaz na potomkov v zozname detí"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:750
-#: ../src/plugins/textreport/DetDescendantReport.py:749
+#: ../src/plugins/textreport/DetAncestralReport.py:751
+#: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "Whether to add descendant references in child list."
 msgstr "Otázka-pridať odkaz na potomkov v zozname detí."
 
 #. #########################
-#: ../src/plugins/textreport/DetAncestralReport.py:753
-#: ../src/plugins/textreport/DetDescendantReport.py:752
+#: ../src/plugins/textreport/DetAncestralReport.py:754
+#: ../src/plugins/textreport/DetDescendantReport.py:753
 #: ../src/plugins/textreport/FamilyGroup.py:599
 #: ../src/plugins/webreport/NarrativeWeb.py:3433
 msgid "Include"
 msgstr "Zahrnúť"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:755
-#: ../src/plugins/textreport/DetDescendantReport.py:754
+#: ../src/plugins/textreport/DetAncestralReport.py:756
+#: ../src/plugins/textreport/DetDescendantReport.py:755
 msgid "Include notes"
 msgstr "Zahrnúť poznámky"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:756
-#: ../src/plugins/textreport/DetDescendantReport.py:755
+#: ../src/plugins/textreport/DetAncestralReport.py:757
+#: ../src/plugins/textreport/DetDescendantReport.py:756
 msgid "Whether to include notes."
 msgstr "Otázka-zahrnúť poznámky."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:759
-#: ../src/plugins/textreport/DetDescendantReport.py:758
+#: ../src/plugins/textreport/DetAncestralReport.py:760
+#: ../src/plugins/textreport/DetDescendantReport.py:759
 msgid "Include attributes"
 msgstr "Zahrnúť atribúty"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:760
-#: ../src/plugins/textreport/DetDescendantReport.py:759
+#: ../src/plugins/textreport/DetAncestralReport.py:761
+#: ../src/plugins/textreport/DetDescendantReport.py:760
 #: ../src/plugins/textreport/FamilyGroup.py:621
 msgid "Whether to include attributes."
 msgstr "Otázka-zahrnúť atribúty."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:763
-#: ../src/plugins/textreport/DetDescendantReport.py:762
+#: ../src/plugins/textreport/DetAncestralReport.py:764
+#: ../src/plugins/textreport/DetDescendantReport.py:763
 msgid "Include Photo/Images from Gallery"
 msgstr "Začleniť foto/obrázok z Galérie"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:764
-#: ../src/plugins/textreport/DetDescendantReport.py:763
+#: ../src/plugins/textreport/DetAncestralReport.py:765
+#: ../src/plugins/textreport/DetDescendantReport.py:764
 msgid "Whether to include images."
 msgstr "Otázka-začleniť obrázky."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:767
-#: ../src/plugins/textreport/DetDescendantReport.py:766
+#: ../src/plugins/textreport/DetAncestralReport.py:768
+#: ../src/plugins/textreport/DetDescendantReport.py:767
 msgid "Include alternative names"
 msgstr "Začleniť alternatívne mená"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:768
-#: ../src/plugins/textreport/DetDescendantReport.py:767
+#: ../src/plugins/textreport/DetAncestralReport.py:769
+#: ../src/plugins/textreport/DetDescendantReport.py:768
 msgid "Whether to include other names."
 msgstr "Otázka-zahrnúť ostatné mená."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:771
-#: ../src/plugins/textreport/DetDescendantReport.py:770
+#: ../src/plugins/textreport/DetAncestralReport.py:772
+#: ../src/plugins/textreport/DetDescendantReport.py:771
 msgid "Include events"
 msgstr "Zahrnúť udalosti"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:772
-#: ../src/plugins/textreport/DetDescendantReport.py:771
+#: ../src/plugins/textreport/DetAncestralReport.py:773
+#: ../src/plugins/textreport/DetDescendantReport.py:772
 msgid "Whether to include events."
 msgstr "Otázka-zahrnúť udalosti."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:775
-#: ../src/plugins/textreport/DetDescendantReport.py:774
+#: ../src/plugins/textreport/DetAncestralReport.py:776
+#: ../src/plugins/textreport/DetDescendantReport.py:775
 msgid "Include addresses"
 msgstr "Zahrnúť adresy"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:776
-#: ../src/plugins/textreport/DetDescendantReport.py:775
+#: ../src/plugins/textreport/DetAncestralReport.py:777
+#: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Whether to include addresses."
 msgstr "Otázka-zahrnúť adresy."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:779
-#: ../src/plugins/textreport/DetDescendantReport.py:778
+#: ../src/plugins/textreport/DetAncestralReport.py:780
+#: ../src/plugins/textreport/DetDescendantReport.py:779
 msgid "Include sources"
 msgstr "Zahrnúť zdroje"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:780
-#: ../src/plugins/textreport/DetDescendantReport.py:779
+#: ../src/plugins/textreport/DetAncestralReport.py:781
+#: ../src/plugins/textreport/DetDescendantReport.py:780
 msgid "Whether to include source references."
 msgstr "Otázka-zahrnúť odkazy na zdroj."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:783
-#: ../src/plugins/textreport/DetDescendantReport.py:786
+#: ../src/plugins/textreport/DetAncestralReport.py:784
+#: ../src/plugins/textreport/DetDescendantReport.py:787
 msgid "Missing information"
 msgstr "Chýbajúca informácia"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:785
-#: ../src/plugins/textreport/DetDescendantReport.py:788
+#: ../src/plugins/textreport/DetAncestralReport.py:786
+#: ../src/plugins/textreport/DetDescendantReport.py:789
 msgid "Replace missing places with ______"
 msgstr "Nahradiť prázdne miesta s ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:786
-#: ../src/plugins/textreport/DetDescendantReport.py:789
+#: ../src/plugins/textreport/DetAncestralReport.py:787
+#: ../src/plugins/textreport/DetDescendantReport.py:790
 msgid "Whether to replace missing Places with blanks."
 msgstr "Otázka-nahradiť neuvedené lokality prázdnym znakom."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:789
-#: ../src/plugins/textreport/DetDescendantReport.py:792
+#: ../src/plugins/textreport/DetAncestralReport.py:790
+#: ../src/plugins/textreport/DetDescendantReport.py:793
 msgid "Replace missing dates with ______"
 msgstr "Nahradiť chýbajúce dátumy s ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:790
-#: ../src/plugins/textreport/DetDescendantReport.py:793
+#: ../src/plugins/textreport/DetAncestralReport.py:791
+#: ../src/plugins/textreport/DetDescendantReport.py:794
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Otázka-nahradiť chýbajúce dátumy prázdnym znakom."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:823
-#: ../src/plugins/textreport/DetDescendantReport.py:826
+#: ../src/plugins/textreport/DetAncestralReport.py:824
+#: ../src/plugins/textreport/DetDescendantReport.py:827
 msgid "The style used for the children list title."
 msgstr "Štýl použitý pre titul zoznamu detí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:833
-#: ../src/plugins/textreport/DetDescendantReport.py:836
+#: ../src/plugins/textreport/DetAncestralReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:837
 msgid "The style used for the children list."
 msgstr "Štýl použitý pre zoznam detí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:856
-#: ../src/plugins/textreport/DetDescendantReport.py:859
+#: ../src/plugins/textreport/DetAncestralReport.py:857
+#: ../src/plugins/textreport/DetDescendantReport.py:860
 msgid "The style used for the first personal entry."
 msgstr "Štýl použitý pre prvý osobný záznam."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:866
-#: ../src/plugins/textreport/DetDescendantReport.py:869
+#: ../src/plugins/textreport/DetAncestralReport.py:867
+#: ../src/plugins/textreport/DetDescendantReport.py:870
 msgid "The style used for the More About header."
 msgstr "Štýl použitý pre hlavičku 'viac o'."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:876
-#: ../src/plugins/textreport/DetDescendantReport.py:879
+#: ../src/plugins/textreport/DetAncestralReport.py:877
+#: ../src/plugins/textreport/DetDescendantReport.py:880
 msgid "The style used for additional detail data."
 msgstr "Štýl použitý pre doplňujúce podrobnosti."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:895
+#: ../src/plugins/textreport/DetAncestralReport.py:896
 msgid "Detailed Ancestral Report"
 msgstr "Podrobná výstupná zostava predkov"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:897
+#: ../src/plugins/textreport/DetAncestralReport.py:898
 msgid "Produces a detailed ancestral report"
 msgstr "Vytvorí podrobnú výstupnú zostavu predkov"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:204
+#: ../src/plugins/textreport/DetDescendantReport.py:205
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr "Podrobná výstupná zostava potomkov osoby: %(person_name)s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:412
+#: ../src/plugins/textreport/DetDescendantReport.py:413
 #, python-format
 msgid "Spouse: %s"
 msgstr "manžel/-ka: %s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:414
+#: ../src/plugins/textreport/DetDescendantReport.py:415
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Typ vzťahu s: %s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:711
+#: ../src/plugins/textreport/DetDescendantReport.py:712
 msgid "Use Record-style (Modified Register) numbering"
 msgstr "Použiť štýl číslovania Záznam (modifikovaný reg.)"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:714
+#: ../src/plugins/textreport/DetDescendantReport.py:715
 msgid "Whether to use Record-style numbering instead of Henry-style."
 msgstr "Otázka-použiť číslovanie typu Record namiesto štýlu Henry."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:782
+#: ../src/plugins/textreport/DetDescendantReport.py:783
 #: ../src/plugins/textreport/KinshipReport.py:350
 msgid "Include spouses"
 msgstr "Zahrnúť partnerov"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:783
+#: ../src/plugins/textreport/DetDescendantReport.py:784
 msgid "Whether to include detailed spouse information."
 msgstr "Otázka-zahrnúť podrobné informácie o manželovi."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:898
+#: ../src/plugins/textreport/DetDescendantReport.py:899
 msgid "Detailed Descendant Report"
 msgstr "Podrobná zostava potomkov"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:900
+#: ../src/plugins/textreport/DetDescendantReport.py:901
 msgid "Produces a detailed descendant report"
 msgstr "Vytvorí podrobnú výstupnú zostavu potomkov"
 
@@ -10069,8 +10069,8 @@ msgstr "Z"
 
 #: ../src/plugins/textreport/FamilyGroup.py:421
 #, python-format
-msgid "%dU"
-msgstr "%dU"
+msgid "acronym for unknown|%dU"
+msgstr "%dN"
 
 #: ../src/plugins/textreport/FamilyGroup.py:515
 #, python-format
@@ -11116,18 +11116,6 @@ msgstr "Interaktívny prehliadač potomkov"
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Poskytuje hierarchiu, ktorej základ tvorí aktívna osoba, a ktorú možno prezerať"
 
-#: ../src/plugins/tool/Eval.py:60
-msgid "Python evaluation window"
-msgstr "Okno hlásení Pythonu"
-
-#: ../src/plugins/tool/Eval.py:131
-msgid "Python Evaluation Window"
-msgstr "Okno hlásení Pythonu"
-
-#: ../src/plugins/tool/Eval.py:135
-msgid "Provides a window that can evaluate python code"
-msgstr "Otvorí okno na vyhodnotenie kódu pythonu"
-
 #: ../src/plugins/tool/EventCmp.py:69
 msgid "manual|Compare_Individual_Events..."
 msgstr "Porovnať individuálne udalosti..."
@@ -11326,31 +11314,6 @@ msgstr "Zlúčiť"
 #: ../src/plugins/tool/FindDupes.py:707
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Prehľadáva celú databázu a hľadá jednotlivé záznamy, ktoré by prípadne patrili tej istej osobe."
-
-#: ../src/plugins/tool/Leak.py:61
-msgid "Uncollected Objects Tool"
-msgstr "Nástroj -problematické objekty Pythonu"
-
-#: ../src/plugins/tool/Leak.py:95
-#, python-format
-msgid ""
-"%d uncollected objects:\n"
-"\n"
-msgstr ""
-"%d problematické objekty:\n"
-"\n"
-
-#: ../src/plugins/tool/Leak.py:101
-msgid "No uncollected objects\n"
-msgstr "Nenájdené žiadne probl. objekty\n"
-
-#: ../src/plugins/tool/Leak.py:134
-msgid "Show Uncollected Objects"
-msgstr "Zobraziť problematické objekty Pythonu"
-
-#: ../src/plugins/tool/Leak.py:138
-msgid "Provide a window listing all uncollected objects"
-msgstr "Zobrazuje okno s výpisom všetkých probl. objektov Pythonu"
 
 #: ../src/plugins/tool/MediaManager.py:66
 msgid "manual|Media_Manager..."
@@ -12865,7 +12828,7 @@ msgstr "%(person)s,·<em>birth</em>"
 #: ../src/plugins/webreport/WebCal.py:1480
 #, python-format
 msgid "%(person)s, <em>%(age)s</em> old"
-msgstr "%(person)s,·<em>%(age)s</em>·starý"
+msgstr "%(person)s,·<em>%(age)s</em> starý"
 
 #: ../src/plugins/webreport/WebCal.py:1487
 #, python-format
@@ -12875,7 +12838,7 @@ msgstr "%(couple)s,·<em>svadba</em>"
 #: ../src/plugins/webreport/WebCal.py:1490
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
-msgstr "%(couple)s,·<em>%(years)d</em>·rok výročie"
+msgstr "%(couple)s,·<em>%(years)d</em> výročie"
 
 #: ../src/plugins/webreport/WebCal.py:1618
 msgid "Web Calendar"
@@ -13113,7 +13076,7 @@ msgid "Graphics"
 msgstr "Grafika"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:1096
+#: ../src/ReportBase/_GraphvizReportDialog.py:1085
 msgid "Paper Options"
 msgstr "Nastavenie papiera"
 
@@ -13122,7 +13085,7 @@ msgid "HTML Options"
 msgstr "Nastavenia HTML"
 
 #: ../src/ReportBase/_DocReportDialog.py:155
-#: ../src/ReportBase/_GraphvizReportDialog.py:1074
+#: ../src/ReportBase/_GraphvizReportDialog.py:1063
 msgid "Output Format"
 msgstr "Výstupný formát"
 
@@ -13243,162 +13206,162 @@ msgstr "Dole"
 msgid "Processing File"
 msgstr "Spracovanie záznamu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:789
+#: ../src/ReportBase/_GraphvizReportDialog.py:778
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:795
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:807
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:813
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Komprimovaná SVG grafika"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:819
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid "JPEG image"
 msgstr "obrázok JPEG"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:825
+#: ../src/ReportBase/_GraphvizReportDialog.py:814
 msgid "GIF image"
 msgstr "obrázok GIF"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:831
+#: ../src/ReportBase/_GraphvizReportDialog.py:820
 msgid "PNG image"
 msgstr "obrázok PNG"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:837
+#: ../src/ReportBase/_GraphvizReportDialog.py:826
 msgid "Graphviz File"
 msgstr "Súbor GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:928
+#: ../src/ReportBase/_GraphvizReportDialog.py:917
 msgid "GraphViz Layout"
 msgstr "Návrh GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:930
+#: ../src/ReportBase/_GraphvizReportDialog.py:919
 #: ../src/widgets/styledtexteditor.py:364
 msgid "Font family"
 msgstr "Fonty"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:935
+#: ../src/ReportBase/_GraphvizReportDialog.py:924
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Zvoľte skupinu fontov. Ak sa nezobrazujú niektoré medzinár. znaky, použite FreeSans font, dostupný na http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:941
+#: ../src/ReportBase/_GraphvizReportDialog.py:930
 #: ../src/widgets/styledtexteditor.py:376
 msgid "Font size"
 msgstr "Veľkosť písma"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:942
+#: ../src/ReportBase/_GraphvizReportDialog.py:931
 msgid "The font size, in points."
 msgstr "Veľkost písma (v bodoch)."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:945
+#: ../src/ReportBase/_GraphvizReportDialog.py:934
 msgid "Graph Direction"
 msgstr "Orientácia grafu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:950
+#: ../src/ReportBase/_GraphvizReportDialog.py:939
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Ako má graf postupovať, zhora dole alebo zľava doprava."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:954
+#: ../src/ReportBase/_GraphvizReportDialog.py:943
 msgid "Number of Horizontal Pages"
 msgstr "Počet horizontálych strán"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:955
+#: ../src/ReportBase/_GraphvizReportDialog.py:944
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr "GraphViz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží na pravoúhle pole tvorené stránkami. Tento prvok určuje počet strán v poli horizontálne. Platí len pre dot, postscript a pdf cez Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:963
+#: ../src/ReportBase/_GraphvizReportDialog.py:952
 msgid "Number of Vertical Pages"
 msgstr "Počet strán zvisle"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:964
+#: ../src/ReportBase/_GraphvizReportDialog.py:953
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot, postscript and pdf via Ghostscript."
 msgstr "GraphViz dokáže tvoriť veľmi rozsiahle grafy tak, že ich rozloží  na pravoúhle pole tvorené stránkami. Tento prvok určuje počet strán v poli vertikálne. Platí len pre dot, postscript a pdf cez Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:972
+#: ../src/ReportBase/_GraphvizReportDialog.py:961
 msgid "Paging Direction"
 msgstr "Orientácia stránok"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:977
+#: ../src/ReportBase/_GraphvizReportDialog.py:966
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "Poradie v ktorom sa produkujú stránky grafu. Táto voľba sa uplatní len vtedy ak počet stránok vertikálne alebo vodorovne je väčší ako 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:995
+#: ../src/ReportBase/_GraphvizReportDialog.py:984
 msgid "GraphViz Options"
 msgstr "Možnosti GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:998
+#: ../src/ReportBase/_GraphvizReportDialog.py:987
 msgid "Aspect ratio"
 msgstr "Pomer strán"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1003
+#: ../src/ReportBase/_GraphvizReportDialog.py:992
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Do veľkej miery ovplyvňuje spôsob, akým je graf umiestený na stránke."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1007
+#: ../src/ReportBase/_GraphvizReportDialog.py:996
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1008
+#: ../src/ReportBase/_GraphvizReportDialog.py:997
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
 msgstr "Počet bodov na palec. Pri vytváraní .gif alebo .png obrázkov pre web skúste napr. 100  alebo 300 DPI. Pre postscript alebo pdf súbory použite 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1014
+#: ../src/ReportBase/_GraphvizReportDialog.py:1003
 msgid "Node spacing"
 msgstr "Vzdialenosť uzlov"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1015
+#: ../src/ReportBase/_GraphvizReportDialog.py:1004
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
 msgstr "Minimálny odstup medzi jednotlivými uzlami, v palcoch. Pri vertikálnych grafoch je to vzdialenosť stĺpcov, pri horizontálnych je to odstup riadkov."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1022
+#: ../src/ReportBase/_GraphvizReportDialog.py:1011
 msgid "Rank spacing"
 msgstr "Odstup radov"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1023
+#: ../src/ReportBase/_GraphvizReportDialog.py:1012
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
 msgstr "Minimálny odstup medzi radmi, v palcoch. Pri vertikálnych grafoch je to odstup riadkov, pri horizontálnych, vzdialenosť stĺpcov."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1034
+#: ../src/ReportBase/_GraphvizReportDialog.py:1023
 msgid "Note to add to the graph"
 msgstr "Poznámka ku grafu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1036
+#: ../src/ReportBase/_GraphvizReportDialog.py:1025
 msgid "This text will be added to the graph."
 msgstr "Ku grafu bude pripojený tento text."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1039
+#: ../src/ReportBase/_GraphvizReportDialog.py:1028
 msgid "Note location"
 msgstr "Umiestnenie poznámky"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1042
+#: ../src/ReportBase/_GraphvizReportDialog.py:1031
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Umiestnenie poznámky na strane hore alebo dole."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1046
+#: ../src/ReportBase/_GraphvizReportDialog.py:1035
 msgid "Note size"
 msgstr "Veľkosť-poznámky"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1047
+#: ../src/ReportBase/_GraphvizReportDialog.py:1036
 msgid "The size of note text, in points."
 msgstr "Veľkosť textu poznámky, v bodoch."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1081
+#: ../src/ReportBase/_GraphvizReportDialog.py:1070
 msgid "Open with application"
 msgstr "Otvoriť s aplikáciou"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1120
+#: ../src/ReportBase/_GraphvizReportDialog.py:1109
 msgid "Open with default application"
 msgstr "Otvoriť s  predvolenou aplikáciou"
 
@@ -17134,7 +17097,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr "Upgradovať teraz"
 
-#: ../src/gen/db/dbdir.py:2098
+#: ../src/gen/db/dbdir.py:2107
 #, python-format
 msgid "Locked by %s"
 msgstr "Uzamknutý prvkom %s"
@@ -17495,17 +17458,23 @@ msgstr "menej ako"
 #: ../src/gen/lib/date.py:487
 #, python-format
 msgid "%d year"
-msgstr "%d rok"
+msgid_plural "%d years"
+msgstr[0] "%d rok"
+msgstr[1] "%d rokov"
 
 #: ../src/gen/lib/date.py:494
 #, python-format
 msgid "%d month"
-msgstr "%d mesiac"
+msgid_plural "%d months"
+msgstr[0] "%d mesiac"
+msgstr[1] "%d mesiacov"
 
 #: ../src/gen/lib/date.py:501
 #, python-format
 msgid "%d day"
-msgstr "%d deň"
+msgid_plural "%d days"
+msgstr[0] "%d deň"
+msgstr[1] "%d dni"
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
@@ -17527,35 +17496,35 @@ msgstr "republikánsky francúzsky"
 msgid "Islamic"
 msgstr "islamský"
 
-#: ../src/gen/lib/date.py:1577
+#: ../src/gen/lib/date.py:1590
 msgid "estimated"
 msgstr "odhadovaný"
 
-#: ../src/gen/lib/date.py:1577
+#: ../src/gen/lib/date.py:1590
 msgid "calculated"
 msgstr "vypočítaný"
 
-#: ../src/gen/lib/date.py:1591
+#: ../src/gen/lib/date.py:1604
 msgid "before"
 msgstr "pred"
 
-#: ../src/gen/lib/date.py:1591
+#: ../src/gen/lib/date.py:1604
 msgid "after"
 msgstr "po"
 
-#: ../src/gen/lib/date.py:1591
+#: ../src/gen/lib/date.py:1604
 msgid "about"
 msgstr "okolo"
 
-#: ../src/gen/lib/date.py:1592
+#: ../src/gen/lib/date.py:1605
 msgid "range"
 msgstr "medzi"
 
-#: ../src/gen/lib/date.py:1592
+#: ../src/gen/lib/date.py:1605
 msgid "span"
 msgstr "od ...do"
 
-#: ../src/gen/lib/date.py:1592
+#: ../src/gen/lib/date.py:1605
 msgid "textonly"
 msgstr "Iba text"
 
@@ -18137,19 +18106,19 @@ msgid "Number must be:"
 msgstr "Počet musí byť:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-msgid "People with <count> address"
+msgid "People with <count> addresses"
 msgstr "Osoby s adresami <count>"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-msgid "Matches people with certain number of personal address"
+msgid "Matches people with a certain number of personal addresses"
 msgstr "Vyhľadá osoby s konkrétnym počtom adries"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-msgid "People with <count> association"
+msgid "People with <count> associations"
 msgstr "Osoby s asociáciami <count>"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-msgid "Matches people with certain number of association"
+msgid "Matches people with a certain number of associations"
 msgstr "Vyhľadá osoby s konkrétnym počtom asociácií"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
@@ -18902,7 +18871,7 @@ msgid "Families with a reference count of <count>"
 msgstr "Rodiny s počtom odkazov <count>"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-msgid "Matches families objects with a certain reference count"
+msgid "Matches family objects with a certain reference count"
 msgstr "Vyhľadá rodinné objekty s konkrétnym počtom odkazov"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
@@ -18998,7 +18967,7 @@ msgid "Families with child matching the <regex_name>"
 msgstr "Rodiny s dieťaťom ktoré vyhovuje <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-msgid "Matches families where child has a name matching a specified regular expression"
+msgid "Matches families where some child has a name that matches a specified regular expression"
 msgstr "Vyhovujú rodiny ktorých dieťa má meno vyhovujúce zadanému regulárnemu výrazu"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
@@ -21064,18 +21033,6 @@ msgstr "Pôvodný typ udalosti:"
 msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr "<i>Informácie o osobe upravíte po dvojkliku na riadok</i>"
 
-#: ../src/plugins/tool/eval.glade.h:1
-msgid "<b>Error Window</b>"
-msgstr "<b>Chybové okno</b>"
-
-#: ../src/plugins/tool/eval.glade.h:2
-msgid "<b>Evaluation Window</b>"
-msgstr "<b>Vyhodnocovacie okno</b>"
-
-#: ../src/plugins/tool/eval.glade.h:3
-msgid "<b>Output Window</b>"
-msgstr "<b>Výstupné okno</b>"
-
 #: ../src/plugins/tool/eventcmp.glade.h:1
 msgid "Custom filter _editor"
 msgstr "Editor užívateľských filtrov"
@@ -21149,10 +21106,6 @@ msgstr ""
 "ANSI (iso-8859-1)\n"
 "ASCII\n"
 "UTF8"
-
-#: ../src/plugins/tool/leak.glade.h:1
-msgid "<b>Uncollected Objects</b>"
-msgstr "<b>Problémy s objektmi Pythonu</b>"
 
 #: ../src/plugins/tool/merge.glade.h:1
 msgid "<b>Match Threshold</b>"
@@ -21672,124 +21625,602 @@ msgstr "Váš rodinný strom môžete ľahko exportovať do web stránky. Zvoľt
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "K rodinnému stromu GRAMPSu môžete pripojiť akékoľvek elektronické médiá, ako aj iné typy súborov (nielen textové informácie)."
 
+#: DataEntryGramplet.py:52 NoteGramplet.py:59
 msgid "Active person"
 msgstr "Aktívna osoba"
 
+#: DataEntryGramplet.py:55 DataEntryGramplet.py:82
 msgid "Surname, Given"
 msgstr "Priezvisko, Meno"
 
+#: DataEntryGramplet.py:66 NoteGramplet.py:105
 msgid "Save"
 msgstr "Uložiť"
 
+#: DataEntryGramplet.py:69 NoteGramplet.py:108
 msgid "Abandon"
 msgstr "Zrušiť"
 
+#: DataEntryGramplet.py:74
 msgid "New person"
 msgstr "Nová osoba"
 
+#: DataEntryGramplet.py:75
 msgid "Add relation"
 msgstr "Pridať vzťah"
 
+#: DataEntryGramplet.py:76
 msgid "No relation to active person"
 msgstr "Žiaden vzťah k aktívnej osobe"
 
+#: DataEntryGramplet.py:77
 msgid "Add as a Parent"
 msgstr "Pridať ako rodiča"
 
+#: DataEntryGramplet.py:78
 msgid "Add as a Spouse"
 msgstr "Pridať ako manžela/-ku"
 
+#: DataEntryGramplet.py:79
 msgid "Add as a Sibling"
 msgstr "Pridať ako súrodenca"
 
+#: DataEntryGramplet.py:80
 msgid "Add as a Child"
 msgstr "Pridať ako dieťa"
 
+#: DataEntryGramplet.py:96
 msgid "Copy Active Data"
 msgstr "Kopírovať aktuálne údaje"
 
+#: DataEntryGramplet.py:142 DataEntryGramplet.py:156 DataEntryGramplet.py:263
 msgid "in"
 msgstr "in"
 
+#: DataEntryGramplet.py:384
 msgid "Gramplet Data Edit: %s"
 msgstr "Gramplet Editovanie údajov: %s"
 
+#: DataEntryGramplet.py:404
 msgid "Please provide a name."
 msgstr "Zapíšte meno."
 
+#: DataEntryGramplet.py:404
 msgid "Can't add new person."
 msgstr "Údaje novej osoby sa nedajú uložiť."
 
+#: DataEntryGramplet.py:412 DataEntryGramplet.py:420 DataEntryGramplet.py:429
+#: DataEntryGramplet.py:434
 msgid "Please set an active person."
 msgstr "Nastaviť aktívnu osobu."
 
+#: DataEntryGramplet.py:412 DataEntryGramplet.py:415
 msgid "Can't add new person as a parent."
 msgstr "Nepodarilo sa pridať novú osobu ako rodiča."
 
+#: DataEntryGramplet.py:415 DataEntryGramplet.py:424
 msgid "Please set the new person's gender."
 msgstr "Zadajte pohlavie novej osoby."
 
+#: DataEntryGramplet.py:420 DataEntryGramplet.py:424 DataEntryGramplet.py:556
+#: DataEntryGramplet.py:593 DataEntryGramplet.py:626
 msgid "Can't add new person as a spouse."
 msgstr "Nepodarilo sa pridať novú osobu ako manželku/-a."
 
+#: DataEntryGramplet.py:429
 msgid "Can't add new person as a sibling."
 msgstr "Nepodarilo sa pridať novú osobu ako súrodenca."
 
+#: DataEntryGramplet.py:434 DataEntryGramplet.py:672
 msgid "Can't add new person as a child."
 msgstr "Nepodarilo sa pridať novú osobu ako dieťa."
 
+#: DataEntryGramplet.py:555
 msgid "Please set gender on Active or new person."
 msgstr "Zadajte pohlavie novej alebo aktívnej osoby."
 
+#: DataEntryGramplet.py:592 DataEntryGramplet.py:625
 msgid "Same genders on Active and new person."
 msgstr "Nová osoba a aktívna osoba rovnakého pohlavia."
 
+#: DataEntryGramplet.py:671
 msgid "Please set gender on Active person."
 msgstr "Zadajte pohlavie aktívnej osoby."
 
+#: DataEntryGramplet.py:693
 msgid "Gramplet Data Entry: %s"
 msgstr "Gramplet Zápis údajov: %s"
 
+#: DataEntryGramplet.py:742
 msgid "Data Entry Gramplet"
 msgstr "Gramplet Zápis dát"
 
+#: DataEntryGramplet.py:746
 msgid "Data Entry"
 msgstr "Zápis dát"
 
+#: FaqGramplet.py:44
 msgid "FAQ Gramplet"
 msgstr "Gramplet FAQ"
 
+#: FaqGramplet.py:47
 msgid "FAQ"
 msgstr "FAQ"
 
+#: HeadlineNewsGramplet.py:56
 msgid "Read headline news from the GRAMPS wiki"
 msgstr "Prečítajte si novinky o GRAMPSe na wiki"
 
+#: HeadlineNewsGramplet.py:127 PythonGramplet.py:63
 msgid "Error"
 msgstr "Chyba"
 
+#: HeadlineNewsGramplet.py:140 PluginManagerGramplet.py:57
 msgid "Reading"
 msgstr "Načitavam"
 
+#: HeadlineNewsGramplet.py:193 HeadlineNewsGramplet.py:276
 msgid "Headline News Gramplet"
 msgstr "Gramplet Novinky"
 
+#: HeadlineNewsGramplet.py:197 HeadlineNewsGramplet.py:280
 msgid "Headline News"
 msgstr "Novinky"
 
+#: NoteGramplet.py:268
 msgid "Note Gramplet"
 msgstr "Gramplet Poznámka"
 
+#: PythonGramplet.py:47
 msgid "Enter Python expressions"
 msgstr "Zapíšte výrazy Pyhtonu"
 
+#: PythonGramplet.py:152
 msgid "Python Gramplet"
 msgstr "Gramplet Python"
 
+#: PythonGramplet.py:155
 msgid "Python Shell"
 msgstr "Shell Python"
 
+#: PythonGramplet.py:53
+msgid "class name|Date"
+msgstr "Dátum"
+""
+
+#: RepositoriesReport.py:68 RepositoriesReport.py:208
+msgid "Repositories Report"
+msgstr "Správa o archívoch"
+
+#: RepositoriesReport.py:177
+msgid "The style used for repository title."
+msgstr "Štýl použitý pre nadpis archívu."
+
+#: RepositoriesReport.py:212
+msgid "Produces a textual repositories report"
+msgstr "Poskytuje textovú správu o archívoch"
+
+#: locations.py:71 locations.py:243
+msgid "Locations"
+msgstr "Miesta"
+
+#: locations.py:219 Familygroup12att23e.py:496
+msgid "The basic style used for the para title."
+msgstr "Základný štýl zobrazenia titulku."
+
+#: locations.py:244 Familygroup12att23e.py:525
+msgid "Testing"
+msgstr "Testuje sa"
+
+#: locations.py:247
+msgid "Individuals with locations"
+msgstr "Jedinci u ktorých sú priradené miesta"
+
+#: ClockGramplet.py:158
+msgid "Clock Gramplet"
+msgstr "Gramplet Hodiny"
+
+#: ClockGramplet.py:162
+msgid "Clock"
+msgstr "Hodiny"
+
+#: DeepConnections.py:57
+msgid "Pause"
+msgstr "Pauza"
+
+#: DeepConnections.py:92
+msgid "sibling"
+msgstr "súrodenec"
+
+#: DeepConnections.py:116
+msgid ""
+"\n"
+"   who is a %s of "
+msgstr ""
+"\n"
+"   je %s osoby "
+
+#: DeepConnections.py:133
+msgid "No Active Person set."
+msgstr "Nie je označená aktívna osoba."
+
+#: DeepConnections.py:140
+msgid ""
+"Looking for relationship between\n"
+"  <b>%s</b> (Home Person) and\n"
+"  <b>%s</b> (Active Person)...\n"
+msgstr ""
+"Hľadanie vzťahu medzi\n"
+"  <b>%s</b> (východzia osoba) a\n"
+"  <b>%s</b> (aktívna osoba)...\n"
+
+#: DeepConnections.py:150
+msgid ""
+"Found relation #%d: \n"
+"   "
+msgstr ""
+"zistený vzťah #%d: \n"
+"   "
+
+#: DeepConnections.py:156
+msgid ""
+"Paused.\n"
+"Press Continue to search for additional relations.\n"
+msgstr ""
+"Prerušené.\n"
+"Pre hľadanie ďalšich vzťahov stlačiť Pokračovať.\n"
+
+#: DeepConnections.py:169
+msgid ""
+"\n"
+"Search completed. %d relations found."
+msgstr ""
+"\n"
+"Hľadanie ukončené. Zistené vzťahy v počte %d."
+
+#: DeepConnections.py:180
+msgid "Deep Connections Gramplet"
+msgstr "Gramplet Hlbšie vzťahy"
+
+#: DeepConnections.py:184
+msgid "Deep Connections"
+msgstr "Hlbšie vzťahy"
+
+#: HeadlineNewsGramplet.py:98
+msgid "Read GRAMPS headline news"
+msgstr "Čítať novinky GRAMPSu"
+
+#: PlaceCompletion.py:76
+msgid "Place Completion by parsing, file lookup and batch setting of place attributes"
+msgstr "Doplnenie miesta, hľadanie súborov a dávkové nastavenie atribútov miesta"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
+#: PlaceCompletion.py:1041 PlaceCompletion.py:1081
+msgid "city"
+msgstr "mesto"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:219 PlaceCompletion.py:258
+msgid "street"
+msgstr "ulica"
+
+#: PlaceCompletion.py:180 PlaceCompletion.py:221 PlaceCompletion.py:260
+#: PlaceCompletion.py:1042
+msgid "parish"
+msgstr "farnosť"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:201 PlaceCompletion.py:237
+#: PlaceCompletion.py:1014 PlaceCompletion.py:1016 PlaceCompletion.py:1027
+#: PlaceCompletion.py:1029
+msgid "title"
+msgstr "názov"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:213 PlaceCompletion.py:252
+#: PlaceCompletion.py:1038 PlaceCompletion.py:1084
+msgid "country"
+msgstr "krajina"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:215 PlaceCompletion.py:254
+#: PlaceCompletion.py:424 PlaceCompletion.py:1040 PlaceCompletion.py:1082
+msgid "county"
+msgstr "kraj/okres"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:217 PlaceCompletion.py:256
+#: PlaceCompletion.py:424 PlaceCompletion.py:1039 PlaceCompletion.py:1083
+msgid "state"
+msgstr "štát"
+
+#: PlaceCompletion.py:181 PlaceCompletion.py:223 PlaceCompletion.py:262
+#: PlaceCompletion.py:1043
+msgid "zip"
+msgstr "PSČ"
+
+#: PlaceCompletion.py:203 PlaceCompletion.py:239 PlaceCompletion.py:923
+#: PlaceCompletion.py:979 PlaceCompletion.py:981 PlaceCompletion.py:987
+msgid "latitude"
+msgstr "zemepisná šírka"
+
+#: PlaceCompletion.py:205 PlaceCompletion.py:241 PlaceCompletion.py:924
+#: PlaceCompletion.py:991 PlaceCompletion.py:993 PlaceCompletion.py:998
+msgid "longitude"
+msgstr "zemepisná dĺžka"
+
+#: PlaceCompletion.py:226 PlaceCompletion.py:265
+msgid "Error in PlaceCompletion.py"
+msgstr "Chyba v PlaceCompletion.py"
+
+#: PlaceCompletion.py:227
+msgid "Non existing group used in get"
+msgstr "Neexistujúce skupina v metóde get"
+
+#: PlaceCompletion.py:266
+msgid "Non existing group used in set"
+msgstr "Neexistujúce skupina v metóde set"
+
+#: PlaceCompletion.py:324
+msgid "Places tool"
+msgstr "Nástroj Lokality"
+
+#: PlaceCompletion.py:416
+msgid "Non Valid Title Regex"
+msgstr "Neplatný Regex"
+
+#: PlaceCompletion.py:417
+msgid "Non valid regular expression given to match title. Quiting."
+msgstr "Neplatný regulárny výraz pre hľadanie názvu. Koniec."
+
+#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
+#: PlaceCompletion.py:1079
+msgid "lat"
+msgstr "lat"
+
+#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
+#: PlaceCompletion.py:1080
+msgid "lon"
+msgstr "lon"
+
+#: PlaceCompletion.py:432
+msgid "Missing regex groups in match lat/lon"
+msgstr "Chýbajúce skupiny regex v lat/lon"
+
+#: PlaceCompletion.py:433
+msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
+msgstr "Regex skupiny %(lat)s a %(lon)s musia byť v lat/lon. Koniec"
+
+#: PlaceCompletion.py:443
+msgid "Non valid regex for match lat/lon"
+msgstr "Neplatné regex pre vyhľadanie lat/lon"
+
+#: PlaceCompletion.py:444
+msgid "Non valid regular expression given to find lat/lon. Quiting."
+msgstr "Neplatný regul. výraz zadaný pre hľadanie lat/lon. Koniec."
+
+#: PlaceCompletion.py:502
+msgid "Finding Places and appropriate changes"
+msgstr "Hľadanie Lokalít a súvisiace zmeny"
+
+#: PlaceCompletion.py:504
+msgid "Filtering"
+msgstr "Prebieha filtrovanie"
+
+#: PlaceCompletion.py:514
+msgid "Loading lat/lon file in Memory..."
+msgstr "Ukladanie at/lon file do pamäti..."
+
+#: PlaceCompletion.py:519
+msgid "Examining places"
+msgstr "Overovanie miest"
+
+#: PlaceCompletion.py:707
+msgid "Doing Place changes"
+msgstr "Vykonávanie zmien miesta"
+
+#: PlaceCompletion.py:744 PlaceCompletion.py:754
+msgid "Change places"
+msgstr "Zmeniť miesta"
+
+#: PlaceCompletion.py:749
+msgid "No place record was modified."
+msgstr "Žiaden záznam o mieste nebol zmenený."
+
+#: PlaceCompletion.py:751
+msgid "1 place record was modified."
+msgstr "1 záznam o mieste bol zmenený."
+
+#: PlaceCompletion.py:753
+msgid "%d place records were modified."
+msgstr "záznamy o mieste v počte %d boli zmenené."
+
+#: PlaceCompletion.py:827
+msgid "The selected file is a directory, not a file."
+msgstr "Zvolený je adresár, nie súbor."
+
+#: PlaceCompletion.py:840
+msgid "The file you want to access is not a regular file."
+msgstr "Súbor ktorý chcete otvoriť nie je bežný súbor."
+
+#: PlaceCompletion.py:846
+msgid "The file does not exist."
+msgstr "Súbor neexistuje."
+
+#: PlaceCompletion.py:865
+msgid "Problem reading file"
+msgstr "Chyba pri čítaní súboru"
+
+#: PlaceCompletion.py:895 PlaceCompletion.py:898 PlaceCompletion.py:1085
+msgid "CITY"
+msgstr "MESTO"
+
+#: PlaceCompletion.py:899 PlaceCompletion.py:904 PlaceCompletion.py:1087
+msgid "TITLEBEGIN"
+msgstr "ZAČIATOKNÁZVU"
+
+#: PlaceCompletion.py:905 PlaceCompletion.py:908 PlaceCompletion.py:1086
+msgid "TITLE"
+msgstr "NÁZOV"
+
+#: PlaceCompletion.py:909 PlaceCompletion.py:912 PlaceCompletion.py:1088
+msgid "STATE"
+msgstr "ŠTÁT"
+
+#: PlaceCompletion.py:913 PlaceCompletion.py:916 PlaceCompletion.py:1089
+msgid "PARISH"
+msgstr "FARNOSŤ"
+
+#: PlaceCompletion.py:983 PlaceCompletion.py:995
+msgid "invalid lat or lon value, %(lat)s, %(lon)s"
+msgstr "neplatná hodnota lat alebo lon, %(lat)s, %(lon)s"
+
+#: PlaceCompletion.py:1064
+msgid "No lat/lon conversion"
+msgstr "Nijaká konverzia lat/lon"
+
+#: PlaceCompletion.py:1065
+msgid "All in degree notation"
+msgstr "Všetky zápisy v stupňoch"
+
+#: PlaceCompletion.py:1066
+msgid "All in decimal notation"
+msgstr "Všetky zápisy decimálne"
+
+#: PlaceCompletion.py:1067
+msgid "Correct -50° in 50°S"
+msgstr "Opraviť  -50° na 50°S"
+
+#: PlaceCompletion.py:1071
+msgid "No changes"
+msgstr "Žiadne zmeny"
+
+#: PlaceCompletion.py:1072
+msgid "City[, State]"
+msgstr "Mesto[, Štát]"
+
+#: PlaceCompletion.py:1074
+msgid "TitleStart [, City] [, State]"
+msgstr "ZačiatokNázvu [, Mesto] [, Štát]"
+
+#: PlaceCompletion.py:1097
+msgid "City [,|.] State"
+msgstr "City [,|.] State"
+
+#: PlaceCompletion.py:1099
+msgid "City [,|.] Country"
+msgstr "City [,|.] Country"
+
+#: PlaceCompletion.py:1101
+msgid "City (Country)"
+msgstr "Mesto (Krajina)"
+
+#: PlaceCompletion.py:1107
+msgid "Don't search"
+msgstr "Nehľadať"
+
+#: PlaceCompletion.py:1110
+msgid "GeoNames country file, city search"
+msgstr "Súbor GeoNames krajina, hľadanie mesta"
+
+#: PlaceCompletion.py:1115
+msgid "GeoNames country file, city localized variants search"
+msgstr "Súbor GeoNames krajina, varianty hľadania mesta"
+
+#: PlaceCompletion.py:1126
+msgid "GeoNames country file, title begin, general search"
+msgstr "Súbor GeoNames krajina, začiatok názvu, celkové prehľadávanie"
+
+#: PlaceCompletion.py:1131
+msgid "GeoNames USA state file, city search"
+msgstr "GeoNames USA súbor štát, hľadanie mesta"
+
+#: PlaceCompletion.py:1145
+msgid "GNS Geonet country file, city search"
+msgstr "GNS Geonet, súbor krajina, hľadanie mesta"
+
+#: PlaceCompletion.py:1154
+msgid "GNS Geonet country file, title begin, general search"
+msgstr "GNS Geonet, súbor krajina, začiatok názvu, celkové prehľadávanie"
+
+#: PlaceCompletion.py:1162
+msgid "Wikipedia CSV Dump"
+msgstr "Wikipedia CSV"
+
+#: PlaceCompletion.py:1250
+msgid "All Places"
+msgstr "Všetky lokality"
+
+#: PlaceCompletion.py:1253
+msgid "No Latitude/Longitude given"
+msgstr "Nie je udaná zem.šírka alebo dĺžka"
+
+#: PlaceCompletion.py:1345
+msgid "Interactive place completion"
+msgstr "Interaktívne doplňovanie miesta"
+
+#: PlaceCompletion.py:1346
+msgid "Unstable"
+msgstr "Nestabilný"
+
+#: PlaceCompletion.py:1349
+msgid "Provides a browsable list of selected places, with possibility to complete/parse/set the attribute fields"
+msgstr "Poskytuje zoznam vybraných miest ktorý je možné prezerať s možnosťou doplňovať/triediť/nastaviť atribúty polí"
+
+#: PluginManagerGramplet.py:132
+msgid "Plugin Manager Gramplet"
+msgstr "Gramplet Správca pluginov"
+
+#: PluginManagerGramplet.py:136
+msgid "Plugin Manager"
+msgstr "Správa pluginov"
+
+#~ msgid ""
+#~ "%(spouse)s and\n"
+#~ " %(person)s, %(nyears)d%(spouse)s and\n"
+#~ " %(person)s, %(nyears)d"
+#~ msgstr ""
+#~ "%(spouse)s et\n"
+#~ " %(person)s, %(nyears)d rok%(spouse)s et\n"
+#~ " %(person)s, %(nyears)d rokov"
+
+#~ msgid "%dU"
+#~ msgstr "%dU"
+
+#~ msgid "Python evaluation window"
+#~ msgstr "Okno hlásení Pythonu"
+
+#~ msgid "Python Evaluation Window"
+#~ msgstr "Okno hlásení Pythonu"
+
+#~ msgid "Provides a window that can evaluate python code"
+#~ msgstr "Otvorí okno na vyhodnotenie kódu pythonu"
+
+#~ msgid "Uncollected Objects Tool"
+#~ msgstr "Nástroj -problematické objekty Pythonu"
+
+#~ msgid ""
+#~ "%d uncollected objects:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%d problematické objekty:\n"
+#~ "\n"
+
+#~ msgid "No uncollected objects\n"
+#~ msgstr "Nenájdené žiadne probl. objekty\n"
+
+#~ msgid "Show Uncollected Objects"
+#~ msgstr "Zobraziť problematické objekty Pythonu"
+
+#~ msgid "Provide a window listing all uncollected objects"
+#~ msgstr "Zobrazuje okno s výpisom všetkých probl. objektov Pythonu"
+
+#~ msgid "<b>Error Window</b>"
+#~ msgstr "<b>Chybové okno</b>"
+
+#~ msgid "<b>Evaluation Window</b>"
+#~ msgstr "<b>Vyhodnocovacie okno</b>"
+
+#~ msgid "<b>Output Window</b>"
+#~ msgstr "<b>Výstupné okno</b>"
+
+#~ msgid "<b>Uncollected Objects</b>"
+#~ msgstr "<b>Problémy s objektmi Pythonu</b>"
+
 #~ msgid "Danger: This is unstable code!"
 #~ msgstr "Pozor: tento kód nie je stabilný!"
-
-
