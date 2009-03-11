@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-09 18:34+0100\n"
-"PO-Revision-Date: 2009-03-10 10:34+0100\n"
+"POT-Creation-Date: 2009-03-10 14:54+0100\n"
+"PO-Revision-Date: 2009-03-11 14:53+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -548,7 +548,7 @@ msgstr "Aldrig"
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
-#: ../src/plugins/tool/Check.py:1311
+#: ../src/plugins/tool/Check.py:1465
 #: ../src/plugins/webreport/NarrativeWeb.py:660
 #: ../src/gen/plug/_manager.py:313 ../src/gen/plug/_manager.py:314
 #: ../src/gen/plug/_manager.py:315 ../src/gen/plug/_manager.py:338
@@ -857,7 +857,7 @@ msgid "Father's surname"
 msgstr "Faderns efternamn"
 
 #: ../src/GrampsCfg.py:76 ../src/Spell.py:176 ../src/Spell.py:282
-#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1345
+#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1499
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -983,7 +983,7 @@ msgstr "Adress"
 #: ../src/plugins/webreport/NarrativeWeb.py:1134
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "City"
-msgstr "Stad/Kommun"
+msgstr "Ort"
 
 #: ../src/GrampsCfg.py:208 ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/webreport/NarrativeWeb.py:1137
@@ -1558,7 +1558,7 @@ msgstr "Anteckningar"
 #: ../src/gramps_main.py:115 ../src/Merge/_MergePerson.py:152
 #: ../src/DataViews/PedigreeView.py:1572 ../src/DataViews/RelationView.py:454
 #: ../src/DataViews/RelationView.py:784 ../src/DataViews/RelationView.py:818
-#: ../src/plugins/gramplet/FanChartGramplet.py:815
+#: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:798
@@ -3309,7 +3309,7 @@ msgstr "Inga föräldrar hittades"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:163 ../src/DataViews/PedigreeView.py:1458
-#: ../src/plugins/gramplet/FanChartGramplet.py:701
+#: ../src/plugins/gramplet/FanChartGramplet.py:702
 #: ../src/plugins/textreport/KinshipReport.py:106
 msgid "Spouses"
 msgstr "Makar"
@@ -3857,13 +3857,13 @@ msgstr[0] "%d generation"
 msgstr[1] "%d generationer"
 
 #: ../src/DataViews/PedigreeView.py:1410 ../src/DataViews/PedigreeView.py:1430
-#: ../src/plugins/gramplet/FanChartGramplet.py:673
+#: ../src/plugins/gramplet/FanChartGramplet.py:674
 msgid "People Menu"
 msgstr "Personmeny"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/PedigreeView.py:1492 ../src/DataViews/RelationView.py:834
-#: ../src/plugins/gramplet/FanChartGramplet.py:735
+#: ../src/plugins/gramplet/FanChartGramplet.py:736
 #: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2418
 msgid "Siblings"
@@ -3871,7 +3871,7 @@ msgstr "Syskon"
 
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1302
-#: ../src/plugins/gramplet/FanChartGramplet.py:778
+#: ../src/plugins/gramplet/FanChartGramplet.py:779
 #: ../src/plugins/textreport/FamilyGroup.py:543
 #: ../src/plugins/textreport/IndivComplete.py:333
 #: ../src/plugins/webreport/NarrativeWeb.py:2573
@@ -3880,7 +3880,7 @@ msgstr "Barn"
 
 #. Go over parents and build their menu
 #: ../src/DataViews/PedigreeView.py:1609
-#: ../src/plugins/gramplet/FanChartGramplet.py:852
+#: ../src/plugins/gramplet/FanChartGramplet.py:853
 msgid "Related"
 msgstr "Släkt"
 
@@ -4076,8 +4076,8 @@ msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
 msgstr ""
-"Försök att se valda platser med en karttjänst (OpenStreetMap, Google "
-"Maps, Eniros karta..."
+"Försök att se valda platser med en karttjänst (OpenStreetMap, Google Maps, "
+"Eniros karta..."
 
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
@@ -4597,7 +4597,7 @@ msgstr "Tempel"
 
 #: ../src/DisplayTabs/_GalleryTab.py:76
 msgid "_Gallery"
-msgstr "Fotoal_bum"
+msgstr "_Galleri"
 
 #: ../src/DisplayTabs/_GalleryTab.py:227
 msgid "Non existing media found in the Gallery"
@@ -6112,7 +6112,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
 #: ../src/plugins/textreport/Summary.py:303
 #: ../src/plugins/tool/ChangeNames.py:293
-#: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1496
+#: ../src/plugins/tool/ChangeTypes.py:208 ../src/plugins/tool/Check.py:1654
 #: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/EventCmp.py:467
 #: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:704
@@ -7254,7 +7254,7 @@ msgid "The style used for the title."
 msgstr "Stil som används för titeln."
 
 #: ../src/plugins/drawreport/FanChart.py:444
-#: ../src/plugins/gramplet/FanChartGramplet.py:901
+#: ../src/plugins/gramplet/FanChartGramplet.py:902
 msgid "Fan Chart"
 msgstr "Antavla i cirkelformat"
 
@@ -7621,11 +7621,11 @@ msgid "CD export preparation failed"
 msgstr "Preparering för CD-export misslyckades"
 
 #: ../src/plugins/export/ExportCd.py:236
-#: ../src/plugins/export/ExportPkg.py:174 ../src/plugins/tool/Check.py:535
+#: ../src/plugins/export/ExportPkg.py:174 ../src/plugins/tool/Check.py:537
 msgid "Select file"
 msgstr "Välj fil"
 
-#: ../src/plugins/export/ExportCd.py:258 ../src/plugins/tool/Check.py:554
+#: ../src/plugins/export/ExportCd.py:258 ../src/plugins/tool/Check.py:556
 msgid "Media object could not be found"
 msgstr "Mediaobjekt kunde inte återfinnas"
 
@@ -8061,7 +8061,7 @@ msgstr "Fönster med ättlingar"
 msgid "Descendants"
 msgstr "Ättlingar"
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:534
+#: ../src/plugins/gramplet/FanChartGramplet.py:535
 msgid ""
 "Click to expand/contract person\n"
 "Right-click for options\n"
@@ -8071,7 +8071,7 @@ msgstr ""
 "Högerklicka för val\n"
 "Klicka och dra på öppen yta för att rotera"
 
-#: ../src/plugins/gramplet/FanChartGramplet.py:895
+#: ../src/plugins/gramplet/FanChartGramplet.py:896
 msgid "Fan Chart Gramplet"
 msgstr "Cirkelantavla"
 
@@ -11360,35 +11360,35 @@ msgstr "Ändra namn på händelsetyper"
 msgid "Allows all the events of a certain name to be renamed to a new name."
 msgstr "Ge alla händelser med ett speciellt namn ett nytt namn."
 
-#: ../src/plugins/tool/Check.py:198
+#: ../src/plugins/tool/Check.py:199
 msgid "Check Integrity"
 msgstr "Kontrollera integritet"
 
-#: ../src/plugins/tool/Check.py:243
+#: ../src/plugins/tool/Check.py:245
 msgid "Checking Database"
 msgstr "Kontrollerar databas"
 
-#: ../src/plugins/tool/Check.py:260
+#: ../src/plugins/tool/Check.py:262
 msgid "Looking for invalid name format references"
 msgstr "Söker efter felaktiga namnformatsreferenser"
 
-#: ../src/plugins/tool/Check.py:308
+#: ../src/plugins/tool/Check.py:310
 msgid "Looking for duplicate spouses"
 msgstr "Söker efter dubblerade makar"
 
-#: ../src/plugins/tool/Check.py:326
+#: ../src/plugins/tool/Check.py:328
 msgid "Looking for character encoding errors"
 msgstr "Söker efter teckenkodningsproblem"
 
-#: ../src/plugins/tool/Check.py:353
+#: ../src/plugins/tool/Check.py:355
 msgid "Looking for broken family links"
 msgstr "Söker efter trasiga familjelänkar"
 
-#: ../src/plugins/tool/Check.py:476
+#: ../src/plugins/tool/Check.py:478
 msgid "Looking for unused objects"
 msgstr "Söker efter oanvända objekt"
 
-#: ../src/plugins/tool/Check.py:555
+#: ../src/plugins/tool/Check.py:557
 #, python-format
 msgid ""
 "The file:\n"
@@ -11405,237 +11405,252 @@ msgstr ""
 "bort referensen från databasen, behålla referensen till den saknade filen, "
 "eller välja en ny fil."
 
-#: ../src/plugins/tool/Check.py:594
+#: ../src/plugins/tool/Check.py:596
 msgid "Looking for empty people records"
 msgstr "Söker efter tomma personposter"
 
-#: ../src/plugins/tool/Check.py:602
+#: ../src/plugins/tool/Check.py:604
 msgid "Looking for empty family records"
 msgstr "Söker efter tomma familjeposter"
 
-#: ../src/plugins/tool/Check.py:610
+#: ../src/plugins/tool/Check.py:612
 msgid "Looking for empty event records"
 msgstr "Söker efter tomma händelseposter"
 
-#: ../src/plugins/tool/Check.py:618
+#: ../src/plugins/tool/Check.py:620
 msgid "Looking for empty source records"
 msgstr "Söker efter tomma källposter"
 
-#: ../src/plugins/tool/Check.py:626
+#: ../src/plugins/tool/Check.py:628
 msgid "Looking for empty place records"
 msgstr "Söker efter tomma ortsposter"
 
-#: ../src/plugins/tool/Check.py:633
+#: ../src/plugins/tool/Check.py:635
 msgid "Looking for empty media records"
 msgstr "Söker efter tomma mediaposter"
 
-#: ../src/plugins/tool/Check.py:642
+#: ../src/plugins/tool/Check.py:644
 msgid "Looking for empty repository records"
 msgstr "Söker efter tomma arkivplatsposter"
 
-#: ../src/plugins/tool/Check.py:650
+#: ../src/plugins/tool/Check.py:652
 msgid "Looking for empty note records"
 msgstr "Söker efter tomma anteckningsposter"
 
-#: ../src/plugins/tool/Check.py:692
+#: ../src/plugins/tool/Check.py:694
 msgid "Looking for empty families"
 msgstr "Söker efter tomma familjer"
 
-#: ../src/plugins/tool/Check.py:719
+#: ../src/plugins/tool/Check.py:721
 msgid "Looking for broken parent relationships"
 msgstr "Söker efter trasiga föräldrarelationer"
 
-#: ../src/plugins/tool/Check.py:750
+#: ../src/plugins/tool/Check.py:752
 msgid "Looking for event problems"
 msgstr "Söker efter problem med händelser"
 
-#: ../src/plugins/tool/Check.py:833
+#: ../src/plugins/tool/Check.py:835
 msgid "Looking for person reference problems"
 msgstr "Söker efter problem med personreferenser"
 
-#: ../src/plugins/tool/Check.py:849
+#: ../src/plugins/tool/Check.py:854
+msgid "Checking people for proper date formats"
+msgstr ""
+
+#: ../src/plugins/tool/Check.py:945
+msgid "Checking families for proper date formats"
+msgstr ""
+
+#: ../src/plugins/tool/Check.py:1002
 msgid "Looking for repository reference problems"
 msgstr "Söker efter problem med arkivplatsreferens"
 
-#: ../src/plugins/tool/Check.py:866
+#: ../src/plugins/tool/Check.py:1019
 msgid "Looking for place reference problems"
 msgstr "Söker efter problem med referenser till platser"
 
-#: ../src/plugins/tool/Check.py:913
+#: ../src/plugins/tool/Check.py:1066
 msgid "Looking for source reference problems"
 msgstr "Söker efter problem med källhänvisningar"
 
-#: ../src/plugins/tool/Check.py:1036
+#: ../src/plugins/tool/Check.py:1189
 msgid "Looking for media object reference problems"
 msgstr "Söker efter problem med referenser till mediaobjekt"
 
-#: ../src/plugins/tool/Check.py:1128
+#: ../src/plugins/tool/Check.py:1281
 msgid "Looking for note reference problems"
 msgstr "Söker efter problem med hänvisningar i anteckningar"
 
-#: ../src/plugins/tool/Check.py:1293
+#: ../src/plugins/tool/Check.py:1447
 msgid "No errors were found"
 msgstr "Inga fel upptäcktes"
 
-#: ../src/plugins/tool/Check.py:1294
+#: ../src/plugins/tool/Check.py:1448
 msgid "The database has passed internal checks"
 msgstr "Databasen har klarat interna kontroller"
 
-#: ../src/plugins/tool/Check.py:1299
+#: ../src/plugins/tool/Check.py:1453
 #, python-format
 msgid "%d broken child/family link was fixed\n"
 msgid_plural "%d broken child-family links were found\n"
 msgstr[0] "%d trasig barn-/familjelänk lagades\n"
 msgstr[1] "%d trasiga barn-/familjelänkar lagades\n"
 
-#: ../src/plugins/tool/Check.py:1306
+#: ../src/plugins/tool/Check.py:1460
 msgid "Non existing child"
 msgstr "Ickeexisterande barn"
 
-#: ../src/plugins/tool/Check.py:1313
+#: ../src/plugins/tool/Check.py:1467
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s togs bort från familjen %s\n"
 
-#: ../src/plugins/tool/Check.py:1316
+#: ../src/plugins/tool/Check.py:1470
 #, python-format
 msgid "%d broken spouse/family link was fixed\n"
 msgid_plural "%d broken spouse/family links were found\n"
 msgstr[0] "%d trasig maka-/make-/familjelänk lagades\n"
 msgstr[1] "%d trasiga maka-/make-/familjelänkar lagades\n"
 
-#: ../src/plugins/tool/Check.py:1323 ../src/plugins/tool/Check.py:1340
+#: ../src/plugins/tool/Check.py:1477 ../src/plugins/tool/Check.py:1494
 msgid "Non existing person"
 msgstr "Ickeexisterande person"
 
-#: ../src/plugins/tool/Check.py:1330 ../src/plugins/tool/Check.py:1347
+#: ../src/plugins/tool/Check.py:1484 ../src/plugins/tool/Check.py:1501
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s återställdes till familjen %s\n"
 
-#: ../src/plugins/tool/Check.py:1333
+#: ../src/plugins/tool/Check.py:1487
 #, python-format
 msgid "%d duplicate spouse/family link was found\n"
 msgid_plural "%d duplicate spouse/family links were found\n"
 msgstr[0] "%d duplicerad make-maka- eller familjelänk hittades\n"
 msgstr[1] "%d duplicerade make-maka- eller familjelänkar hittades\n"
 
-#: ../src/plugins/tool/Check.py:1350
+#: ../src/plugins/tool/Check.py:1504
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
 msgstr "%d familj utan föräldrar eller barn funnen, borttagen.\n"
 
-#: ../src/plugins/tool/Check.py:1353
+#: ../src/plugins/tool/Check.py:1507
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
 msgstr "%d familjer utan föräldrar eller barn funna, borttagna.\n"
 
-#: ../src/plugins/tool/Check.py:1356
+#: ../src/plugins/tool/Check.py:1510
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d skadad familjelänk lagade\n"
 msgstr[1] "%d skadade familjelänkar lagade\n"
 
-#: ../src/plugins/tool/Check.py:1360
+#: ../src/plugins/tool/Check.py:1514
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d person, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d personer, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1364
+#: ../src/plugins/tool/Check.py:1518
+#, python-format
+msgid "%d date was corrected\n"
+msgid_plural "%d dates were corrected\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%d repository was referenced but not found\n"
 msgid_plural "%d repositories were referenced, but not found\n"
 msgstr[0] "%d arkivplats, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d arkivplatser, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1368
+#: ../src/plugins/tool/Check.py:1526
 #, python-format
 msgid "%d media object was referenced, but not found\n"
 msgid_plural "%d media objects were referenced, but not found\n"
 msgstr[0] "%d mediaobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d mediaobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1372
+#: ../src/plugins/tool/Check.py:1530
 #, python-format
 msgid "Reference to %d missing media object was kept\n"
 msgid_plural "References to %d media objects were kept\n"
 msgstr[0] "Referens till %d saknat mediaobjekt behölls\n"
 msgstr[1] "Referens till %d saknade mediaobjekt behölls\n"
 
-#: ../src/plugins/tool/Check.py:1376
+#: ../src/plugins/tool/Check.py:1534
 #, python-format
 msgid "%d missing media object was replaced\n"
 msgid_plural "%d missing media objects were replaced\n"
 msgstr[0] "%d saknat mediaobjekt ersattes\n"
 msgstr[1] "%d saknade mediaobjekt ersattes\n"
 
-#: ../src/plugins/tool/Check.py:1380
+#: ../src/plugins/tool/Check.py:1538
 #, python-format
 msgid "%d missing media object was removed\n"
 msgid_plural "%d missing media objects were removed\n"
 msgstr[0] "%d saknat mediaobjekt togs bort\n"
 msgstr[1] "%d saknade mediaobjekt togs bort\n"
 
-#: ../src/plugins/tool/Check.py:1384
+#: ../src/plugins/tool/Check.py:1542
 #, python-format
 msgid "%d invalid event reference was removed\n"
 msgid_plural "%d invalid event references were removed\n"
 msgstr[0] "%d ogiltig händelsereferens togs bort\n"
 msgstr[1] "%d ogiltiga händelsereferenser togs bort\n"
 
-#: ../src/plugins/tool/Check.py:1388
+#: ../src/plugins/tool/Check.py:1546
 #, python-format
 msgid "%d invalid birth event name was fixed\n"
 msgid_plural "%d invalid birth event names were fixed\n"
 msgstr[0] "%d ogiltigt födelsehändelsenamn lagades\n"
 msgstr[1] "%d ogiltiga födelsehändelsenamn lagades\n"
 
-#: ../src/plugins/tool/Check.py:1392
+#: ../src/plugins/tool/Check.py:1550
 #, python-format
 msgid "%d invalid death event name was fixed\n"
 msgid_plural "%d invalid death event names were fixed\n"
 msgstr[0] "%d ogiltigt dödshändelsenamn lagades\n"
 msgstr[1] "%d ogiltiga dödshändelsenamn lagades\n"
 
-#: ../src/plugins/tool/Check.py:1396
+#: ../src/plugins/tool/Check.py:1554
 #, python-format
 msgid "%d place was referenced but not found\n"
 msgid_plural "%d places were referenced, but not found\n"
 msgstr[0] "%d plats, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d platser, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1400
+#: ../src/plugins/tool/Check.py:1558
 #, python-format
 msgid "%d source was referenced but not found\n"
 msgid_plural "%d sources were referenced, but not found\n"
 msgstr[0] "%d källa, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d källor, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1404
+#: ../src/plugins/tool/Check.py:1562
 #, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
 msgstr[0] "%d mediaobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d mediaobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1408
+#: ../src/plugins/tool/Check.py:1566
 #, python-format
 msgid "%d note object was referenced but not found\n"
 msgid_plural "%d note objects were referenced but not found\n"
 msgstr[0] "%d anteckningsobjekt, som refererats till, kunde inte hittas\n"
 msgstr[1] "%d anteckningsobjekt, som refererats till, kunde inte hittas\n"
 
-#: ../src/plugins/tool/Check.py:1412
+#: ../src/plugins/tool/Check.py:1570
 #, python-format
 msgid "%d invalid name format reference was removed\n"
 msgid_plural "%d invalid name format references were removed\n"
 msgstr[0] "%d ogiltig namnformatsreferens togs bort\n"
 msgstr[1] "%d ogiltiga namnformatsreferens togs bort\n"
 
-#: ../src/plugins/tool/Check.py:1416
+#: ../src/plugins/tool/Check.py:1574
 #, python-format
 msgid ""
 "%d empty objects removed:\n"
@@ -11658,19 +11673,19 @@ msgstr ""
 "   %d arkivplatsobjekt\n"
 "   %d anteckningsobjekt\n"
 
-#: ../src/plugins/tool/Check.py:1463
+#: ../src/plugins/tool/Check.py:1621
 msgid "Integrity Check Results"
 msgstr "Resultat av integritetskontroll"
 
-#: ../src/plugins/tool/Check.py:1468
+#: ../src/plugins/tool/Check.py:1626
 msgid "Check and Repair"
 msgstr "Kontrollera och reparera"
 
-#: ../src/plugins/tool/Check.py:1495
+#: ../src/plugins/tool/Check.py:1653
 msgid "Check and Repair Database"
 msgstr "Kontrollera och reparera"
 
-#: ../src/plugins/tool/Check.py:1499
+#: ../src/plugins/tool/Check.py:1657
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt."
 
@@ -11806,7 +11821,7 @@ msgstr "Platsbenämning"
 #: ../src/plugins/tool/ExtractCity.py:415
 #: ../src/plugins/tool/ExtractCity.py:619
 msgid "Extract Place data"
-msgstr "Extarhera platsdata"
+msgstr "Extrahera platsdata"
 
 #: ../src/plugins/tool/ExtractCity.py:432
 msgid "Checking Place Titles"
@@ -12707,7 +12722,7 @@ msgstr "Efternamn"
 #: ../src/plugins/webreport/NarrativeWeb.py:1258
 #: ../src/plugins/webreport/NarrativeWeb.py:1716
 msgid "Gallery"
-msgstr "Fotoalbum"
+msgstr "Galleri"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:438
 #: ../src/plugins/webreport/NarrativeWeb.py:1775
@@ -18370,7 +18385,7 @@ msgstr ""
 msgid "Upgrade now"
 msgstr "Uppgaderas nu"
 
-#: ../src/gen/db/dbdir.py:2107
+#: ../src/gen/db/dbdir.py:2116
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -21686,7 +21701,7 @@ msgstr "Ö_ver:"
 
 #: ../src/glade/gramps.glade.h:40
 msgid "Add_ress:"
-msgstr "Ad_ress:"
+msgstr "Adr_ess:"
 
 #: ../src/glade/gramps.glade.h:41
 msgid "Belo_w:"
@@ -21698,7 +21713,7 @@ msgstr "Födelse:"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity/County:"
-msgstr "_Stad/Kommun:"
+msgstr "O_rt:"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
@@ -23914,7 +23929,9 @@ msgstr "Läs GRAMPS nyhetsrubriker"
 msgid ""
 "Place Completion by parsing, file lookup and batch setting of place "
 "attributes"
-msgstr "Komplettering av platser genom textsökning, filuppslagning och sättning av platsattribut"
+msgstr ""
+"Komplettering av platser genom textsökning, filuppslagning och sättning av "
+"platsattribut"
 
 #: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
 #: PlaceCompletion.py:1041 PlaceCompletion.py:1081
@@ -24006,7 +24023,9 @@ msgstr "Saknar reguljära uttrycksgrupper för matchning av lat/long"
 
 #: PlaceCompletion.py:433
 msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
-msgstr "Reguljära uttrycksgrupper %(lat)s och %(lon)s måste finnas i lat/long matchning. Avslutar."
+msgstr ""
+"Reguljära uttrycksgrupper %(lat)s och %(lon)s måste finnas i lat/long "
+"matchning. Avslutar."
 
 #: PlaceCompletion.py:443
 msgid "Non valid regex for match lat/lon"
@@ -24184,7 +24203,9 @@ msgstr "Ostabil"
 msgid ""
 "Provides a browsable list of selected places, with possibility to complete/"
 "parse/set the attribute fields"
-msgstr "Ger en bläddringsbar lista av valda platser, med möjlighet att komplettera/passa/sätt attributfälten"
+msgstr ""
+"Ger en bläddringsbar lista av valda platser, med möjlighet att komplettera/"
+"passa/sätt attributfälten"
 
 #: PluginManagerGramplet.py:132
 msgid "Plugin Manager Gramplet"
