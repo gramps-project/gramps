@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "Avril 2008" "@VERSION@"
+.TH gramps 1 "@VERSION@" "Mars 2009" "@VERSION@"
 .SH NOM
 gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
@@ -19,7 +19,7 @@ gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de G
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o|\-\^\-output= 
+.RB [ \-e|\-\^\-export= 
 .IR FICHIER
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
@@ -55,7 +55,7 @@ Le format spécifique du \fIFICHIER\fR est précédé par les arguments
 \fB\-O\fR,
 ..
 \fB\-i\fR, ou
-\fB\-o\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension ou du type-MIME.
+\fB\-e\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension ou du type-MIME.
 .br
 
 Les formats de sortie disponibles sont \fBgramps\-xml\fR (deviné si \fIFICHIER\fR se termine par
@@ -103,7 +103,7 @@ i.e. \fB\-i\fR \fIFICHIER1\fR \fB\-i\fR \fIFICHIER2\fR
 et \fB\-i\fR \fIFICHIER2\fR \fB\-i\fR \fIFICHIER1\fR vont tous les deux produire différents IDs gramps.
 
 .TP 
-.BI \-o,\-\^\-output= " FICHIER"
+.BI \-e,\-\^\-export= " FICHIER"
 Exporter des données dans un \fIFICHIER\fR. Pour le format \fBiso\fR, le \fIFICHIER\fR est le nom du répertoire dans lequel la base de données gramps est écrite.
 Pour 
 .ig
@@ -113,7 +113,7 @@ Pour
 et \fBgeneweb\fR, le \fIFICHIER\fR est le nom du fichier de sortie 
 .br
 
-Quand plus d'un fichier doit être exporté, chacun doit être précédé par la commande \fB\-o\fR. Ces fichiers sont importés dans le même ordre.
+Quand plus d'un fichier doit être exporté, chacun doit être précédé par la commande \fB\-e\fR. Ces fichiers sont importés dans le même ordre.
 
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
@@ -197,16 +197,16 @@ Si la commande \fB\-O\fR est notée, alors gramps va essayer le fichier défini 
 
 .LP
 Avec ou sans la commande \fB\-O\fR, il peut y avoir plusieurs imports, exports, et actions dans la ligne de commande \fB\-i\fR,
-\fB\-o\fR, et \fB\-a\fR.
+\fB\-e\fR, et \fB\-a\fR.
 
 .LP
-L'ordre des options \fB\-i\fR, \fB\-o\fR, ou \fB\-a\fR n'a pas de sens. L'ordre actuel est toujours : imports -> actions -> exports. Mais l'ouverture doit toujours être la première!
+L'ordre des options \fB\-i\fR, \fB\-e\fR, ou \fB\-a\fR n'a pas de sens. L'ordre actuel est toujours : imports -> actions -> exports. Mais l'ouverture doit toujours être la première!
 
 .LP
 Si aucune option \fB\-O\fR ou \fB\-i\fR n'est donnée, gramps lancera sa propre fenêtre et demarrera avec une base vide, puisqu'il n'y a pas données.
 
 .LP
-Si aucune option \fB\-o\fR ou \fB\-a\fR n'est donnée, gramps lancera sa propre fenêtre et démarrera avec la base de données issue de tout les imports. Cette base sera \fBimport_db.grdb\fR sous le répertoire \fB~/.gramps/import\fR.
+Si aucune option \fB\-e\fR ou \fB\-a\fR n'est donnée, gramps lancera sa propre fenêtre et démarrera avec la base de données issue de tout les imports. Cette base sera \fBimport_db.grdb\fR sous le répertoire \fB~/.gramps/import\fR.
 
 .LP
 Les erreurs rencontrées lors d'import, export, ou action, seront mémorisées en \fIstdout\fR (si elles sont le fait de la manipulation par gramps) ou
@@ -227,8 +227,8 @@ Lecture de quatre bases de données dont les formats peuvent être devinés d'ap
 Si vous voulez préciser les formats de fichiers dans l'exemple ci-dessus, complétez les noms de fichiers par les options \fB\-f\fR appropriées: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
-Pour enregistrer le résultat des lectures, donnez l'option  \fB\-o\fR (utiliser \fB\-f\fR si le nom de fichier ne permet pas à gramps de deviner le format):
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+Pour enregistrer le résultat des lectures, donnez l'option  \fB\-e\fR (utiliser \fB\-f\fR si le nom de fichier ne permet pas à gramps de deviner le format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 Pour lire trois ensembles de données puis lancer une session interactive de gramps sur le tout : 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
