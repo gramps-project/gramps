@@ -19,7 +19,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-e|\-\^\-exportt= 
+.RB [ \-e|\-\^\-export= 
 .IR FIL
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
