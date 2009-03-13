@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-10 14:54+0100\n"
-"PO-Revision-Date: 2009-03-11 14:53+0100\n"
+"POT-Creation-Date: 2009-03-13 12:55+0100\n"
+"PO-Revision-Date: 2009-03-13 12:59+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,12 +44,12 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/ArgHandler.py:230
+#: ../src/ArgHandler.py:229
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
 msgstr "Indatasläktträd \"%s\" saknas."
 
-#: ../src/ArgHandler.py:231
+#: ../src/ArgHandler.py:230
 msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family "
 "tree instead"
@@ -57,16 +57,16 @@ msgstr ""
 "För gedcom, gramps-xml eller -grdb, används valet -i för att importera till "
 "ett Släktträd i stället"
 
-#: ../src/ArgHandler.py:473
+#: ../src/ArgHandler.py:472
 msgid "Database is locked, cannot open it!"
 msgstr "Databasen är låst, kan inte öppna den!"
 
-#: ../src/ArgHandler.py:474
+#: ../src/ArgHandler.py:473
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../src/ArgHandler.py:477
+#: ../src/ArgHandler.py:476
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databasen behöver återhämtas, kan ej öppna den!"
 
@@ -215,11 +215,11 @@ msgstr ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) är "
 "ett genealogiprogram för privatpersoner."
 
-#: ../src/const.py:182
+#: ../src/const.py:183
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Peter Landgren"
 
-#: ../src/const.py:192 ../src/const.py:193 ../src/gen/lib/date.py:1590
+#: ../src/const.py:193 ../src/const.py:194 ../src/gen/lib/date.py:1590
 #: ../src/gen/lib/date.py:1604
 msgid "none"
 msgstr "ingen"
@@ -856,8 +856,8 @@ msgstr "GRAMPS hemsida"
 msgid "Father's surname"
 msgstr "Faderns efternamn"
 
-#: ../src/GrampsCfg.py:76 ../src/Spell.py:176 ../src/Spell.py:282
-#: ../src/Spell.py:284 ../src/plugins/tool/Check.py:1499
+#: ../src/GrampsCfg.py:76 ../src/Spell.py:176 ../src/Spell.py:283
+#: ../src/Spell.py:285 ../src/plugins/tool/Check.py:1499
 #: ../src/gen/lib/childreftype.py:58
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
@@ -970,7 +970,7 @@ msgstr "Internetkartor"
 #: ../src/GrampsCfg.py:206 ../src/gramps_main.py:97 ../src/ScratchPad.py:159
 #: ../src/ScratchPad.py:176 ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:149
-#: ../src/plugins/textreport/FamilyGroup.py:285
+#: ../src/plugins/textreport/FamilyGroup.py:298
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adress"
@@ -1127,8 +1127,8 @@ msgstr "Arkivplats"
 #: ../src/plugins/export/ExportCsv.py:342
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:171
-#: ../src/plugins/textreport/FamilyGroup.py:303
-#: ../src/ReportBase/_GraphvizReportDialog.py:1020
+#: ../src/plugins/textreport/FamilyGroup.py:316
+#: ../src/ReportBase/_GraphvizReportDialog.py:1037
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -2089,7 +2089,7 @@ msgstr "Mor"
 #: ../src/Reorder.py:32 ../src/Merge/_MergePerson.py:173
 #: ../src/DataViews/PersonView.py:74 ../src/DataViews/RelationView.py:1287
 #: ../src/Selectors/_SelectPerson.py:83 ../src/Selectors/_SelectPerson.py:111
-#: ../src/plugins/textreport/FamilyGroup.py:478
+#: ../src/plugins/textreport/FamilyGroup.py:491
 #: ../src/plugins/tool/RelCalc.py:63
 msgid "Spouse"
 msgstr "Maka/make"
@@ -2292,8 +2292,8 @@ msgstr "Personlänk"
 #: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:559
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
-#: ../src/plugins/textreport/FamilyGroup.py:436
-#: ../src/plugins/textreport/FamilyGroup.py:438
+#: ../src/plugins/textreport/FamilyGroup.py:449
+#: ../src/plugins/textreport/FamilyGroup.py:451
 #: ../src/plugins/textreport/MarkerReport.py:125
 #: ../src/plugins/webreport/NarrativeWeb.py:789
 #: ../src/plugins/webreport/NarrativeWeb.py:939
@@ -3286,8 +3286,8 @@ msgstr "Kön"
 
 #: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:570
 #: ../src/DataViews/RelationView.py:595
-#: ../src/plugins/textreport/FamilyGroup.py:442
-#: ../src/plugins/textreport/FamilyGroup.py:444
+#: ../src/plugins/textreport/FamilyGroup.py:455
+#: ../src/plugins/textreport/FamilyGroup.py:457
 #: ../src/plugins/textreport/MarkerReport.py:131
 #: ../src/plugins/webreport/NarrativeWeb.py:792
 #: ../src/plugins/webreport/NarrativeWeb.py:941 ../src/gen/lib/eventtype.py:99
@@ -3317,7 +3317,7 @@ msgstr "Makar"
 #: ../src/Merge/_MergePerson.py:179 ../src/DataViews/RelationView.py:1203
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:215
-#: ../src/plugins/textreport/FamilyGroup.py:341
+#: ../src/plugins/textreport/FamilyGroup.py:354
 #: ../src/gen/lib/eventtype.py:131
 msgid "Marriage"
 msgstr "Giftermål"
@@ -3732,7 +3732,7 @@ msgid "Preview"
 msgstr "Förhandsgranskning"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:70
-#: ../src/plugins/textreport/MarkerReport.py:439
+#: ../src/plugins/textreport/MarkerReport.py:438
 #: ../src/plugins/tool/NotRelated.py:119
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
@@ -3872,7 +3872,7 @@ msgstr "Syskon"
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1302
 #: ../src/plugins/gramplet/FanChartGramplet.py:779
-#: ../src/plugins/textreport/FamilyGroup.py:543
+#: ../src/plugins/textreport/FamilyGroup.py:556
 #: ../src/plugins/textreport/IndivComplete.py:333
 #: ../src/plugins/webreport/NarrativeWeb.py:2573
 msgid "Children"
@@ -6079,7 +6079,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/graph/GVFamilyLines.py:1062
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
-#: ../src/plugins/mapservices/eniroswedenmap.py:189
+#: ../src/plugins/mapservices/eniroswedenmap.py:190
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
 #: ../src/plugins/quickview/AgeOnDate.py:104
@@ -6103,10 +6103,10 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/textreport/DetAncestralReport.py:897
 #: ../src/plugins/textreport/DetDescendantReport.py:900
 #: ../src/plugins/textreport/EndOfLineReport.py:324
-#: ../src/plugins/textreport/FamilyGroup.py:775
+#: ../src/plugins/textreport/FamilyGroup.py:800
 #: ../src/plugins/textreport/IndivComplete.py:646
 #: ../src/plugins/textreport/KinshipReport.py:409
-#: ../src/plugins/textreport/MarkerReport.py:529
+#: ../src/plugins/textreport/MarkerReport.py:535
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:211
 #: ../src/plugins/textreport/PlaceReport.py:403
 #: ../src/plugins/textreport/SimpleBookTitle.py:189
@@ -6520,16 +6520,16 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/DetAncestralReport.py:706
 #: ../src/plugins/textreport/DetDescendantReport.py:696
 #: ../src/plugins/textreport/EndOfLineReport.py:236
-#: ../src/plugins/textreport/FamilyGroup.py:586
+#: ../src/plugins/textreport/FamilyGroup.py:599
 #: ../src/plugins/textreport/IndivComplete.py:513
 #: ../src/plugins/textreport/KinshipReport.py:336
-#: ../src/plugins/textreport/MarkerReport.py:437
+#: ../src/plugins/textreport/MarkerReport.py:436
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:168
 #: ../src/plugins/textreport/PlaceReport.py:250
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3289
 #: ../src/plugins/webreport/WebCal.py:1126
-#: ../src/ReportBase/_ReportDialog.py:343
+#: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
@@ -6611,10 +6611,10 @@ msgstr "Familjeposter"
 #: ../src/plugins/textreport/DetDescendantReport.py:853
 #: ../src/plugins/textreport/EndOfLineReport.py:273
 #: ../src/plugins/textreport/EndOfLineReport.py:291
-#: ../src/plugins/textreport/FamilyGroup.py:679
+#: ../src/plugins/textreport/FamilyGroup.py:692
 #: ../src/plugins/textreport/IndivComplete.py:599
 #: ../src/plugins/textreport/KinshipReport.py:391
-#: ../src/plugins/textreport/MarkerReport.py:487
+#: ../src/plugins/textreport/MarkerReport.py:486
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 msgid "The basic style used for the text display."
@@ -6760,7 +6760,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../src/plugins/docgen/LaTeXDoc.py:655
-#: ../src/ReportBase/_GraphvizReportDialog.py:883
+#: ../src/ReportBase/_GraphvizReportDialog.py:902
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -6775,7 +6775,7 @@ msgid "Open Document Text"
 msgstr "Open Document-text"
 
 #: ../src/plugins/docgen/PSDrawDoc.py:348
-#: ../src/ReportBase/_GraphvizReportDialog.py:790
+#: ../src/ReportBase/_GraphvizReportDialog.py:809
 msgid "PostScript"
 msgstr "PostScript"
 
@@ -7525,10 +7525,10 @@ msgstr "Stil som används för objekt och värden."
 #: ../src/plugins/textreport/DetAncestralReport.py:804
 #: ../src/plugins/textreport/DetDescendantReport.py:807
 #: ../src/plugins/textreport/EndOfLineReport.py:255
-#: ../src/plugins/textreport/FamilyGroup.py:670
+#: ../src/plugins/textreport/FamilyGroup.py:683
 #: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/KinshipReport.py:374
-#: ../src/plugins/textreport/MarkerReport.py:467
+#: ../src/plugins/textreport/MarkerReport.py:466
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:186
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:266
@@ -7549,8 +7549,8 @@ msgid "Timeline"
 msgstr "Livslängdslinje"
 
 #: ../src/plugins/drawreport/TimeLine.py:108
-#: ../src/ReportBase/_ReportDialog.py:639
-#: ../src/ReportBase/_ReportDialog.py:644
+#: ../src/ReportBase/_ReportDialog.py:638
+#: ../src/ReportBase/_ReportDialog.py:643
 msgid "Report could not be created"
 msgstr "Rapporten kunde inte skapas"
 
@@ -7670,14 +7670,14 @@ msgstr "Dödekälla"
 
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:212
-#: ../src/plugins/textreport/FamilyGroup.py:524
+#: ../src/plugins/textreport/FamilyGroup.py:537
 #: ../src/plugins/webreport/NarrativeWeb.py:2593
 msgid "Husband"
 msgstr "Make"
 
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:208
-#: ../src/plugins/textreport/FamilyGroup.py:533
+#: ../src/plugins/textreport/FamilyGroup.py:546
 #: ../src/plugins/webreport/NarrativeWeb.py:2595
 msgid "Wife"
 msgstr "Maka"
@@ -9361,40 +9361,40 @@ msgid "Provides common functionality for Gramps XML import/export."
 msgstr "Tillhandahåller gemensamma funktioner för Gramps XML import/export."
 
 #. Make upper case of translaed country so string search works later
-#: ../src/plugins/mapservices/eniroswedenmap.py:43
+#: ../src/plugins/mapservices/eniroswedenmap.py:44
 #: ../src/plugins/tool/ExtractCity.py:62
 msgid "Sweden"
 msgstr "Sverige"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:49
+#: ../src/plugins/mapservices/eniroswedenmap.py:50
 msgid "Denmark"
 msgstr "Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:75
+#: ../src/plugins/mapservices/eniroswedenmap.py:76
 msgid " parish"
 msgstr " församling"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:79
+#: ../src/plugins/mapservices/eniroswedenmap.py:80
 msgid " state"
 msgstr " län"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:137
+#: ../src/plugins/mapservices/eniroswedenmap.py:138
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitud ej inom %s till %s\n"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:138
+#: ../src/plugins/mapservices/eniroswedenmap.py:139
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitud ej inom %s till %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:140
-#: ../src/plugins/mapservices/eniroswedenmap.py:144
-#: ../src/plugins/mapservices/eniroswedenmap.py:172
+#: ../src/plugins/mapservices/eniroswedenmap.py:141
+#: ../src/plugins/mapservices/eniroswedenmap.py:145
+#: ../src/plugins/mapservices/eniroswedenmap.py:173
 msgid "Eniro map not available"
 msgstr "Eniros karta ej tillgänglig"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:145
+#: ../src/plugins/mapservices/eniroswedenmap.py:146
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
@@ -9402,24 +9402,24 @@ msgstr ""
 "Latitud och longitud,\n"
 "eller gata och stad behövs"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:173
+#: ../src/plugins/mapservices/eniroswedenmap.py:174
 msgid "Coordinates needed in Denmark"
 msgstr "Koordinater behövs i Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:177
+#: ../src/plugins/mapservices/eniroswedenmap.py:178
 #, python-format
 msgid "Eniro map not available for %s"
 msgstr "Eniros karta ej tillgänglig för %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:178
+#: ../src/plugins/mapservices/eniroswedenmap.py:179
 msgid "Only for Sweden and Denmark"
 msgstr "Endast för Sverige och Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:188
+#: ../src/plugins/mapservices/eniroswedenmap.py:189
 msgid "EniroMaps"
 msgstr "Eniros karta"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:190
+#: ../src/plugins/mapservices/eniroswedenmap.py:191
 msgid "Opens on kartor.eniro.se"
 msgstr "Öppnar på kartor.eniro.se"
 
@@ -10360,7 +10360,7 @@ msgstr "Huruvida lägg till ättlingareferens i barnlista"
 #. #########################
 #: ../src/plugins/textreport/DetAncestralReport.py:754
 #: ../src/plugins/textreport/DetDescendantReport.py:753
-#: ../src/plugins/textreport/FamilyGroup.py:599
+#: ../src/plugins/textreport/FamilyGroup.py:612
 #: ../src/plugins/webreport/NarrativeWeb.py:3433
 msgid "Include"
 msgstr "Ta med"
@@ -10382,7 +10382,7 @@ msgstr "Ta med attribut"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:761
 #: ../src/plugins/textreport/DetDescendantReport.py:760
-#: ../src/plugins/textreport/FamilyGroup.py:621
+#: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Whether to include attributes."
 msgstr "Huruvida ta med attribut."
 
@@ -10551,7 +10551,7 @@ msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:264
-#: ../src/plugins/textreport/MarkerReport.py:477
+#: ../src/plugins/textreport/MarkerReport.py:476
 msgid "The style used for the section headers."
 msgstr "Stil som används för sektionsrubriken."
 
@@ -10572,143 +10572,148 @@ msgstr "Skapar en textrapport för oavslutade släktband."
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
 
-#: ../src/plugins/textreport/FamilyGroup.py:336
+#: ../src/plugins/textreport/FamilyGroup.py:349
 msgid "Marriage:"
 msgstr "Giftermål:"
 
-#: ../src/plugins/textreport/FamilyGroup.py:417
+#: ../src/plugins/textreport/FamilyGroup.py:430
 msgid "acronym for male|M"
 msgstr "M"
 
-#: ../src/plugins/textreport/FamilyGroup.py:419
+#: ../src/plugins/textreport/FamilyGroup.py:432
 msgid "acronym for female|F"
 msgstr "K"
 
-#: ../src/plugins/textreport/FamilyGroup.py:421
+#: ../src/plugins/textreport/FamilyGroup.py:434
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dO"
 
-#: ../src/plugins/textreport/FamilyGroup.py:515
+#: ../src/plugins/textreport/FamilyGroup.py:528
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Familjegruppsrapport - generation %d"
 
-#: ../src/plugins/textreport/FamilyGroup.py:517
-#: ../src/plugins/textreport/FamilyGroup.py:566
-#: ../src/plugins/textreport/FamilyGroup.py:774
+#: ../src/plugins/textreport/FamilyGroup.py:530
+#: ../src/plugins/textreport/FamilyGroup.py:579
+#: ../src/plugins/textreport/FamilyGroup.py:799
 msgid "Family Group Report"
 msgstr "Familjegrupp"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:589
+#: ../src/plugins/textreport/FamilyGroup.py:602
 msgid "Center Family"
 msgstr "Huvudfamilj"
 
-#: ../src/plugins/textreport/FamilyGroup.py:590
+#: ../src/plugins/textreport/FamilyGroup.py:603
 msgid "The center family for the report"
 msgstr "Huvudfamiljen för rapporten"
 
-#: ../src/plugins/textreport/FamilyGroup.py:593
+#: ../src/plugins/textreport/FamilyGroup.py:606
 msgid "Recursive"
 msgstr "Rekursiv"
 
-#: ../src/plugins/textreport/FamilyGroup.py:594
+#: ../src/plugins/textreport/FamilyGroup.py:607
 msgid "Create reports for all descendants of this family."
 msgstr "Skapa rapporter för alla ättlingar till denna familj."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:602
+#: ../src/plugins/textreport/FamilyGroup.py:615
 msgid "Generation numbers (recursive only)"
 msgstr "Generationsnummer (endast rekursivt)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:604
+#: ../src/plugins/textreport/FamilyGroup.py:617
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "Huruvida ta med generationen på varje rapport (endast rekursivt)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:608
+#: ../src/plugins/textreport/FamilyGroup.py:621
 msgid "Parent Events"
 msgstr "Föräldrarnas händelser"
 
-#: ../src/plugins/textreport/FamilyGroup.py:609
+#: ../src/plugins/textreport/FamilyGroup.py:622
 msgid "Whether to include events for parents."
 msgstr "Huruvida ta med händelser för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:612
+#: ../src/plugins/textreport/FamilyGroup.py:625
 msgid "Parent Addresses"
 msgstr "Föräldrarnas adresser"
 
-#: ../src/plugins/textreport/FamilyGroup.py:613
+#: ../src/plugins/textreport/FamilyGroup.py:626
 msgid "Whether to include addresses for parents."
 msgstr "Huruvida ta med adresser till föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:616
+#: ../src/plugins/textreport/FamilyGroup.py:629
 msgid "Parent Notes"
 msgstr "Föräldrarnas anteckningar"
 
-#: ../src/plugins/textreport/FamilyGroup.py:617
+#: ../src/plugins/textreport/FamilyGroup.py:630
 msgid "Whether to include notes for parents."
 msgstr "Huruvida ta med anteckningar för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:620
+#: ../src/plugins/textreport/FamilyGroup.py:633
 msgid "Parent Attributes"
 msgstr "Föräldraattribut"
 
-#: ../src/plugins/textreport/FamilyGroup.py:624
+#: ../src/plugins/textreport/FamilyGroup.py:637
 msgid "Alternate Parent Names"
 msgstr "Föräldrarnas alternativa namn"
 
-#: ../src/plugins/textreport/FamilyGroup.py:625
+#: ../src/plugins/textreport/FamilyGroup.py:638
 msgid "Whether to include alternate names for parents."
 msgstr "Huruvida ta med alternativt namn på föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:629
+#: ../src/plugins/textreport/FamilyGroup.py:642
 msgid "Parent Marriage"
 msgstr "Föräldrarnas giftermål"
 
-#: ../src/plugins/textreport/FamilyGroup.py:630
+#: ../src/plugins/textreport/FamilyGroup.py:643
 msgid "Whether to include marriage information for parents."
 msgstr "Huruvida ta med giftermålssinformation för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:634
+#: ../src/plugins/textreport/FamilyGroup.py:647
 msgid "Dates of Relatives"
 msgstr "Släktingars datum"
 
-#: ../src/plugins/textreport/FamilyGroup.py:635
+#: ../src/plugins/textreport/FamilyGroup.py:648
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "Huruvida ta med släktingars datum (far, mor, make/maka)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:639
+#: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Children Marriages"
 msgstr "Barns giftermål"
 
-#: ../src/plugins/textreport/FamilyGroup.py:640
+#: ../src/plugins/textreport/FamilyGroup.py:653
 msgid "Whether to include marriage information for children."
 msgstr "Huruvida ta med giftermålsformation för barn."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:645
+#: ../src/plugins/textreport/FamilyGroup.py:658
 msgid "Missing Information"
 msgstr "Saknad information"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:648
+#: ../src/plugins/textreport/FamilyGroup.py:661
 msgid "Print fields for missing information"
 msgstr "Skriv fält för saknad information"
 
-#: ../src/plugins/textreport/FamilyGroup.py:650
+#: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Whether to include fields for missing information."
 msgstr "Huruvida ta med fält för saknad information."
 
-#: ../src/plugins/textreport/FamilyGroup.py:688
+#: ../src/plugins/textreport/FamilyGroup.py:704
+#: ../src/plugins/textreport/MarkerReport.py:504
+msgid "The basic style used for the note display."
+msgstr "Grundläggande mall som används för textvisning."
+
+#: ../src/plugins/textreport/FamilyGroup.py:713
 msgid "The style used for the text related to the children."
 msgstr "Stil som används för text angående barnen."
 
-#: ../src/plugins/textreport/FamilyGroup.py:697
+#: ../src/plugins/textreport/FamilyGroup.py:722
 msgid "The style used for the parent's name"
 msgstr "Stil som används för förälderns namn"
 
-#: ../src/plugins/textreport/FamilyGroup.py:778
+#: ../src/plugins/textreport/FamilyGroup.py:803
 msgid ""
 "Produces a family group report showing information on a set of parents and "
 "their children."
@@ -10850,19 +10855,19 @@ msgstr "Markeringsrapport: %s poster"
 msgid "Id"
 msgstr "Id"
 
-#: ../src/plugins/textreport/MarkerReport.py:450
+#: ../src/plugins/textreport/MarkerReport.py:449
 msgid "The marker to use for the report"
 msgstr "Den markering, som skall användas för rapporten"
 
-#: ../src/plugins/textreport/MarkerReport.py:498
+#: ../src/plugins/textreport/MarkerReport.py:497
 msgid "The basic style used for table headings."
 msgstr "Grundläggande stil som används för tabellrubriker."
 
-#: ../src/plugins/textreport/MarkerReport.py:528
+#: ../src/plugins/textreport/MarkerReport.py:534
 msgid "Marker Report"
 msgstr "Markeringsrapport"
 
-#: ../src/plugins/textreport/MarkerReport.py:530
+#: ../src/plugins/textreport/MarkerReport.py:536
 msgid "Produces a list of people with a specified marker"
 msgstr "Skapar en lista över personer med en särskild markering"
 
@@ -11455,11 +11460,11 @@ msgstr "Söker efter problem med personreferenser"
 
 #: ../src/plugins/tool/Check.py:854
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "Kontrollerar personer för korrekt datumformat"
 
 #: ../src/plugins/tool/Check.py:945
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "Kontrollerar familjer för korrekt datumfomat"
 
 #: ../src/plugins/tool/Check.py:1002
 msgid "Looking for repository reference problems"
@@ -11556,8 +11561,8 @@ msgstr[1] "%d personer, som refererats till, kunde inte hittas\n"
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d datum rättades\n"
+msgstr[1] "%d datum rättades\n"
 
 #: ../src/plugins/tool/Check.py:1522
 #, python-format
@@ -12263,7 +12268,7 @@ msgid "Relationship to %(person_name)s"
 msgstr "Släktskap med %(person_name)s"
 
 #: ../src/plugins/tool/RelCalc.py:146 ../src/PluginUtils/_Tool.py:136
-#: ../src/ReportBase/_ReportDialog.py:597
+#: ../src/ReportBase/_ReportDialog.py:596
 msgid "Active person has not been set"
 msgstr "Ingen aktiv person har valts"
 
@@ -13611,12 +13616,12 @@ msgid "Colour"
 msgstr "Färg"
 
 #: ../src/PluginUtils/_GuiOptions.py:1244
-#: ../src/ReportBase/_ReportDialog.py:447
+#: ../src/ReportBase/_ReportDialog.py:446
 msgid "Save As"
 msgstr "Spara som"
 
 #: ../src/PluginUtils/_GuiOptions.py:1309
-#: ../src/ReportBase/_ReportDialog.py:304 ../src/ReportBase/_StyleEditor.py:97
+#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilmallsredigerare"
 
@@ -13803,7 +13808,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:1085
+#: ../src/ReportBase/_GraphvizReportDialog.py:1102
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -13812,7 +13817,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:155
-#: ../src/ReportBase/_GraphvizReportDialog.py:1063
+#: ../src/ReportBase/_GraphvizReportDialog.py:1080
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -13937,50 +13942,50 @@ msgstr "Nederkant"
 msgid "Processing File"
 msgstr "Bearbetar fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:778
+#: ../src/ReportBase/_GraphvizReportDialog.py:797
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:803
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:815
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:802
+#: ../src/ReportBase/_GraphvizReportDialog.py:821
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:808
+#: ../src/ReportBase/_GraphvizReportDialog.py:827
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:833
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:820
+#: ../src/ReportBase/_GraphvizReportDialog.py:839
 msgid "PNG image"
 msgstr "PNG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:845
 msgid "Graphviz File"
 msgstr "Graphviz-fil"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:917
+#: ../src/ReportBase/_GraphvizReportDialog.py:936
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:919
+#: ../src/ReportBase/_GraphvizReportDialog.py:938
 #: ../src/widgets/styledtexteditor.py:364
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:924
+#: ../src/ReportBase/_GraphvizReportDialog.py:943
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -13989,56 +13994,56 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:930
+#: ../src/ReportBase/_GraphvizReportDialog.py:949
 #: ../src/widgets/styledtexteditor.py:376
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:931
+#: ../src/ReportBase/_GraphvizReportDialog.py:950
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:934
+#: ../src/ReportBase/_GraphvizReportDialog.py:953
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:939
+#: ../src/ReportBase/_GraphvizReportDialog.py:958
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:943
+#: ../src/ReportBase/_GraphvizReportDialog.py:962
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:944
+#: ../src/ReportBase/_GraphvizReportDialog.py:963
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
-"horizontally. Only valid for dot, postscript and pdf via Ghostscript."
+"horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
 "GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
-"horisontellt. Endast giltigt för dot, postscript och pdf via Ghostscript."
+"horisontellt. Endast giltigt för dot och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:952
+#: ../src/ReportBase/_GraphvizReportDialog.py:970
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:953
+#: ../src/ReportBase/_GraphvizReportDialog.py:971
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
-"vertically. Only valid for dot, postscript and pdf via Ghostscript."
+"vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
 "GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
-"vertikalled. Endast giltigt för dot, postscript och pdf via Ghostscript."
+"vertikalled. Endast giltigt för dot och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:961
+#: ../src/ReportBase/_GraphvizReportDialog.py:978
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:966
+#: ../src/ReportBase/_GraphvizReportDialog.py:983
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -14047,24 +14052,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:984
+#: ../src/ReportBase/_GraphvizReportDialog.py:1001
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:987
+#: ../src/ReportBase/_GraphvizReportDialog.py:1004
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:992
+#: ../src/ReportBase/_GraphvizReportDialog.py:1009
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:996
+#: ../src/ReportBase/_GraphvizReportDialog.py:1013
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:997
+#: ../src/ReportBase/_GraphvizReportDialog.py:1014
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
@@ -14074,11 +14079,11 @@ msgstr ""
 "försök med tal som 100 eller 300 DPI. För PostScript- eller PDF-filer använd "
 "72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1003
+#: ../src/ReportBase/_GraphvizReportDialog.py:1020
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1004
+#: ../src/ReportBase/_GraphvizReportDialog.py:1021
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -14088,11 +14093,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1011
+#: ../src/ReportBase/_GraphvizReportDialog.py:1028
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1012
+#: ../src/ReportBase/_GraphvizReportDialog.py:1029
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -14103,35 +14108,35 @@ msgstr ""
 "detta avståndet mellan rader."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1023
+#: ../src/ReportBase/_GraphvizReportDialog.py:1040
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1025
+#: ../src/ReportBase/_GraphvizReportDialog.py:1042
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1028
+#: ../src/ReportBase/_GraphvizReportDialog.py:1045
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1031
+#: ../src/ReportBase/_GraphvizReportDialog.py:1048
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1035
+#: ../src/ReportBase/_GraphvizReportDialog.py:1052
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1036
+#: ../src/ReportBase/_GraphvizReportDialog.py:1053
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1070
+#: ../src/ReportBase/_GraphvizReportDialog.py:1087
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1109
+#: ../src/ReportBase/_GraphvizReportDialog.py:1126
 msgid "Open with default application"
 msgstr "Öppna med standardtillämpning"
 
@@ -14152,32 +14157,32 @@ msgstr "cm"
 msgid "inch|in."
 msgstr "tum"
 
-#: ../src/ReportBase/_ReportDialog.py:112
+#: ../src/ReportBase/_ReportDialog.py:111
 msgid "Configuration"
 msgstr "Konfiguration"
 
 #. Styles Frame
-#: ../src/ReportBase/_ReportDialog.py:300
+#: ../src/ReportBase/_ReportDialog.py:299
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stil"
 
 #. need any labels at top:
-#: ../src/ReportBase/_ReportDialog.py:452
+#: ../src/ReportBase/_ReportDialog.py:451
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
 #. Save Frame
-#: ../src/ReportBase/_ReportDialog.py:467
+#: ../src/ReportBase/_ReportDialog.py:466
 msgid "Filename"
 msgstr "Filnamn"
 
-#: ../src/ReportBase/_ReportDialog.py:499
-#: ../src/ReportBase/_ReportDialog.py:524
+#: ../src/ReportBase/_ReportDialog.py:498
+#: ../src/ReportBase/_ReportDialog.py:523
 msgid "Permission problem"
 msgstr "Rättighetsproblem"
 
-#: ../src/ReportBase/_ReportDialog.py:500
+#: ../src/ReportBase/_ReportDialog.py:499
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -14188,25 +14193,25 @@ msgstr ""
 "\n"
 "Välj en annan katalog eller korrigera rättigheterna."
 
-#: ../src/ReportBase/_ReportDialog.py:509
+#: ../src/ReportBase/_ReportDialog.py:508
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: ../src/ReportBase/_ReportDialog.py:510
+#: ../src/ReportBase/_ReportDialog.py:509
 msgid "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
 
-#: ../src/ReportBase/_ReportDialog.py:512
+#: ../src/ReportBase/_ReportDialog.py:511
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: ../src/ReportBase/_ReportDialog.py:513
+#: ../src/ReportBase/_ReportDialog.py:512
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: ../src/ReportBase/_ReportDialog.py:525
+#: ../src/ReportBase/_ReportDialog.py:524
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -14217,7 +14222,7 @@ msgstr ""
 "\n"
 "Välj en annan sökväg eller korrigera rättigheterna."
 
-#: ../src/ReportBase/_ReportDialog.py:598
+#: ../src/ReportBase/_ReportDialog.py:597
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Du måste välja en aktiv person för att den här rapporten skall fungera "
@@ -23660,558 +23665,4 @@ msgid ""
 msgstr ""
 "Du kan länka alla typer av elektroniska media (inklusive information som "
 "inte är text) och andra filtyper till ditt GRAMPS-släktträd."
-
-#: DataEntryGramplet.py:52 NoteGramplet.py:59
-msgid "Active person"
-msgstr "Aktiv person"
-
-#: DataEntryGramplet.py:55 DataEntryGramplet.py:82
-msgid "Surname, Given"
-msgstr "Efternamn, Förnamn"
-
-#: DataEntryGramplet.py:66 NoteGramplet.py:105
-msgid "Save"
-msgstr "Spara"
-
-#: DataEntryGramplet.py:69 NoteGramplet.py:108
-msgid "Abandon"
-msgstr "Överge"
-
-#: DataEntryGramplet.py:74
-msgid "New person"
-msgstr "Ny person"
-
-#: DataEntryGramplet.py:75
-msgid "Add relation"
-msgstr "Lägg till släktskap/relation"
-
-#: DataEntryGramplet.py:76
-msgid "No relation to active person"
-msgstr "Inget släktskap till aktiv person"
-
-#: DataEntryGramplet.py:77
-msgid "Add as a Parent"
-msgstr "Lägg till som en föräldrar"
-
-#: DataEntryGramplet.py:78
-msgid "Add as a Spouse"
-msgstr "Lägg till en maka/make"
-
-#: DataEntryGramplet.py:79
-msgid "Add as a Sibling"
-msgstr "Lägg till ett syskon"
-
-#: DataEntryGramplet.py:80
-msgid "Add as a Child"
-msgstr "Lägg till ett barn"
-
-#: DataEntryGramplet.py:96
-msgid "Copy Active Data"
-msgstr "Kopiera aktiva data"
-
-#: DataEntryGramplet.py:142 DataEntryGramplet.py:156 DataEntryGramplet.py:263
-msgid "in"
-msgstr "i"
-
-#: DataEntryGramplet.py:384
-msgid "Gramplet Data Edit: %s"
-msgstr "Gramplet dataredigering: %s"
-
-#: DataEntryGramplet.py:404
-msgid "Please provide a name."
-msgstr "Bestäm ett namn"
-
-#: DataEntryGramplet.py:404
-msgid "Can't add new person."
-msgstr "Kan inte lägga till ny person"
-
-#: DataEntryGramplet.py:412 DataEntryGramplet.py:420 DataEntryGramplet.py:429
-#: DataEntryGramplet.py:434
-msgid "Please set an active person."
-msgstr "Bestäm en aktiv person"
-
-#: DataEntryGramplet.py:412 DataEntryGramplet.py:415
-msgid "Can't add new person as a parent."
-msgstr "Kan ej lägga till ny person som förälder"
-
-#: DataEntryGramplet.py:415 DataEntryGramplet.py:424
-msgid "Please set the new person's gender."
-msgstr "Bestäm den nya personens kön."
-
-#: DataEntryGramplet.py:420 DataEntryGramplet.py:424 DataEntryGramplet.py:556
-#: DataEntryGramplet.py:593 DataEntryGramplet.py:626
-msgid "Can't add new person as a spouse."
-msgstr "Kan ej lägga till ny person som make/maka"
-
-#: DataEntryGramplet.py:429
-msgid "Can't add new person as a sibling."
-msgstr "Kan ej lägg till ny person som ett syskon."
-
-#: DataEntryGramplet.py:434 DataEntryGramplet.py:672
-msgid "Can't add new person as a child."
-msgstr "Kan inte lägga till en ny person som ett barn"
-
-#: DataEntryGramplet.py:555
-msgid "Please set gender on Active or new person."
-msgstr "Bestäm kön för aktiv person eller ny person"
-
-#: DataEntryGramplet.py:592 DataEntryGramplet.py:625
-msgid "Same genders on Active and new person."
-msgstr "Samma kön för aktive och ny person."
-
-#: DataEntryGramplet.py:671
-msgid "Please set gender on Active person."
-msgstr "Bestäm kön för aktiv person"
-
-#: DataEntryGramplet.py:693
-msgid "Gramplet Data Entry: %s"
-msgstr "Gramplet för datainmatning: %s"
-
-#: DataEntryGramplet.py:742
-msgid "Data Entry Gramplet"
-msgstr "Dataredigerings-Gramplet"
-
-#: DataEntryGramplet.py:746
-msgid "Data Entry"
-msgstr "Datainmatning"
-
-#: FaqGramplet.py:44
-msgid "FAQ Gramplet"
-msgstr "FAQ Gramplet"
-
-#: FaqGramplet.py:47
-msgid "FAQ"
-msgstr "FAQ"
-
-#: HeadlineNewsGramplet.py:56
-msgid "Read headline news from the GRAMPS wiki"
-msgstr "Läs rubriker från GRAMPS wiki"
-
-#: HeadlineNewsGramplet.py:127 PythonGramplet.py:63
-msgid "Error"
-msgstr "Fel"
-
-#: HeadlineNewsGramplet.py:140 PluginManagerGramplet.py:57
-msgid "Reading"
-msgstr "Läser"
-
-#: HeadlineNewsGramplet.py:193 HeadlineNewsGramplet.py:276
-msgid "Headline News Gramplet"
-msgstr "Rubrik-Gramplet"
-
-#: HeadlineNewsGramplet.py:197 HeadlineNewsGramplet.py:280
-msgid "Headline News"
-msgstr "Rubriker"
-
-#: NoteGramplet.py:268
-msgid "Note Gramplet"
-msgstr "Antecknings-Gramplet"
-
-#: PythonGramplet.py:47
-msgid "Enter Python expressions"
-msgstr "Skriv in Python-uttryck"
-
-#: PythonGramplet.py:152
-msgid "Python Gramplet"
-msgstr "Python Gramplet"
-
-#: PythonGramplet.py:155
-msgid "Python Shell"
-msgstr "Pythonskal"
-
-#: PythonGramplet.py:53
-msgid "class name|Date"
-msgstr "Datum"
-
-#: RepositoriesReport.py:68 RepositoriesReport.py:208
-msgid "Repositories Report"
-msgstr "Arkivplatsrapport"
-
-#: RepositoriesReport.py:177
-msgid "The style used for repository title."
-msgstr "Mall som används för rapporttiteln."
-
-#: RepositoriesReport.py:212
-msgid "Produces a textual repositories report"
-msgstr "Skapar en textrapport över arkivplatser"
-
-#: locations.py:71 locations.py:243
-msgid "Locations"
-msgstr "Platser"
-
-#: locations.py:219 Familygroup12att23e.py:496
-msgid "The basic style used for the para title."
-msgstr "Grundläggande mall som används för visning av stycketitel."
-
-#: locations.py:244 Familygroup12att23e.py:525
-msgid "Testing"
-msgstr "Provar"
-
-#: locations.py:247
-msgid "Individuals with locations"
-msgstr "Personer med platser"
-
-#: ClockGramplet.py:158
-msgid "Clock Gramplet"
-msgstr "Grampletklocka"
-
-#: ClockGramplet.py:162
-msgid "Clock"
-msgstr "Klocka"
-
-#: DeepConnections.py:57
-msgid "Pause"
-msgstr "Paus"
-
-#: DeepConnections.py:92
-msgid "sibling"
-msgstr "syskon"
-
-#: DeepConnections.py:116
-msgid ""
-"\n"
-"   who is a %s of "
-msgstr ""
-"\n"
-"   som är en %s av "
-
-#: DeepConnections.py:133
-msgid "No Active Person set."
-msgstr "Ingen aktiv person bestämd."
-
-#: DeepConnections.py:140
-msgid ""
-"Looking for relationship between\n"
-"  <b>%s</b> (Home Person) and\n"
-"  <b>%s</b> (Active Person)...\n"
-msgstr ""
-"Letar efter släktskap mellan\n"
-"  <b>%s</b> (Home Person) och\n"
-"  <b>%s</b> (Active Person)...\n"
-
-#: DeepConnections.py:150
-msgid ""
-"Found relation #%d: \n"
-"   "
-msgstr ""
-"Hittade släktskap #%d: \n"
-"   "
-
-#: DeepConnections.py:156
-msgid ""
-"Paused.\n"
-"Press Continue to search for additional relations.\n"
-msgstr ""
-"Gjort paus.\n"
-"Tryck Fortsätt för att leta efter ytterligare släktskap.\n"
-
-#: DeepConnections.py:169
-msgid ""
-"\n"
-"Search completed. %d relations found."
-msgstr ""
-"\n"
-"Sökning genomförd. %d släktskap funna."
-
-#: DeepConnections.py:180
-msgid "Deep Connections Gramplet"
-msgstr "Gramplet för långsökta relationer"
-
-#: DeepConnections.py:184
-msgid "Deep Connections"
-msgstr "Långsökta relationer"
-
-#: HeadlineNewsGramplet.py:98
-msgid "Read GRAMPS headline news"
-msgstr "Läs GRAMPS nyhetsrubriker"
-
-#: PlaceCompletion.py:76
-msgid ""
-"Place Completion by parsing, file lookup and batch setting of place "
-"attributes"
-msgstr ""
-"Komplettering av platser genom textsökning, filuppslagning och sättning av "
-"platsattribut"
-
-#: PlaceCompletion.py:180 PlaceCompletion.py:211 PlaceCompletion.py:250
-#: PlaceCompletion.py:1041 PlaceCompletion.py:1081
-msgid "city"
-msgstr "stad/kommun"
-
-#: PlaceCompletion.py:180 PlaceCompletion.py:219 PlaceCompletion.py:258
-msgid "street"
-msgstr "gatuadress"
-
-#: PlaceCompletion.py:180 PlaceCompletion.py:221 PlaceCompletion.py:260
-#: PlaceCompletion.py:1042
-msgid "parish"
-msgstr "församling"
-
-#: PlaceCompletion.py:181 PlaceCompletion.py:201 PlaceCompletion.py:237
-#: PlaceCompletion.py:1014 PlaceCompletion.py:1016 PlaceCompletion.py:1027
-#: PlaceCompletion.py:1029
-msgid "title"
-msgstr "titel"
-
-#: PlaceCompletion.py:181 PlaceCompletion.py:213 PlaceCompletion.py:252
-#: PlaceCompletion.py:1038 PlaceCompletion.py:1084
-msgid "country"
-msgstr "land"
-
-#: PlaceCompletion.py:181 PlaceCompletion.py:215 PlaceCompletion.py:254
-#: PlaceCompletion.py:424 PlaceCompletion.py:1040 PlaceCompletion.py:1082
-msgid "county"
-msgstr "landskap"
-
-#: PlaceCompletion.py:181 PlaceCompletion.py:217 PlaceCompletion.py:256
-#: PlaceCompletion.py:424 PlaceCompletion.py:1039 PlaceCompletion.py:1083
-msgid "state"
-msgstr "län"
-
-#: PlaceCompletion.py:181 PlaceCompletion.py:223 PlaceCompletion.py:262
-#: PlaceCompletion.py:1043
-msgid "zip"
-msgstr "zip"
-
-#: PlaceCompletion.py:203 PlaceCompletion.py:239 PlaceCompletion.py:923
-#: PlaceCompletion.py:979 PlaceCompletion.py:981 PlaceCompletion.py:987
-msgid "latitude"
-msgstr "latitud"
-
-#: PlaceCompletion.py:205 PlaceCompletion.py:241 PlaceCompletion.py:924
-#: PlaceCompletion.py:991 PlaceCompletion.py:993 PlaceCompletion.py:998
-msgid "longitude"
-msgstr "longitud"
-
-#: PlaceCompletion.py:226 PlaceCompletion.py:265
-msgid "Error in PlaceCompletion.py"
-msgstr "Fel i PlaceCompletion.py"
-
-#: PlaceCompletion.py:227
-msgid "Non existing group used in get"
-msgstr "Ickeexisterande grupp använd i \"get\""
-
-#: PlaceCompletion.py:266
-msgid "Non existing group used in set"
-msgstr "Ickeexisterande grupp använd i \"set\""
-
-#: PlaceCompletion.py:324
-msgid "Places tool"
-msgstr "Platsverktyg"
-
-#: PlaceCompletion.py:416
-msgid "Non Valid Title Regex"
-msgstr "Inget giltigt reguljärt uttryck för titel"
-
-#: PlaceCompletion.py:417
-msgid "Non valid regular expression given to match title. Quiting."
-msgstr "Inget giltigt reguljärt uttryck givet för att matcha titel. Avsluter."
-
-#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
-#: PlaceCompletion.py:1079
-msgid "lat"
-msgstr "lat"
-
-#: PlaceCompletion.py:429 PlaceCompletion.py:562 PlaceCompletion.py:919
-#: PlaceCompletion.py:1080
-msgid "lon"
-msgstr "long"
-
-#: PlaceCompletion.py:432
-msgid "Missing regex groups in match lat/lon"
-msgstr "Saknar reguljära uttrycksgrupper för matchning av lat/long"
-
-#: PlaceCompletion.py:433
-msgid "Regex groups %(lat)s and %(lon)s must be present in lat/lon match. Quiting"
-msgstr ""
-"Reguljära uttrycksgrupper %(lat)s och %(lon)s måste finnas i lat/long "
-"matchning. Avslutar."
-
-#: PlaceCompletion.py:443
-msgid "Non valid regex for match lat/lon"
-msgstr "Inget giltigt reguljärt uttryck för matchning av lat/long"
-
-#: PlaceCompletion.py:444
-msgid "Non valid regular expression given to find lat/lon. Quiting."
-msgstr "Inget giltigt reguljärt uttryck givet för att finna lat/long. Avslutar."
-
-#: PlaceCompletion.py:502
-msgid "Finding Places and appropriate changes"
-msgstr "Leta platser och lämpliga ändringar"
-
-#: PlaceCompletion.py:504
-msgid "Filtering"
-msgstr "Filtrering"
-
-#: PlaceCompletion.py:514
-msgid "Loading lat/lon file in Memory..."
-msgstr "Laddar lat/long-fil till minnet..."
-
-#: PlaceCompletion.py:519
-msgid "Examining places"
-msgstr "Undersöker platser"
-
-#: PlaceCompletion.py:707
-msgid "Doing Place changes"
-msgstr "Utför platsförändringar"
-
-#: PlaceCompletion.py:744 PlaceCompletion.py:754
-msgid "Change places"
-msgstr "Förändra platser"
-
-#: PlaceCompletion.py:749
-msgid "No place record was modified."
-msgstr "Ingen platspost ändrades."
-
-#: PlaceCompletion.py:751
-msgid "1 place record was modified."
-msgstr "1 platspost ändrades."
-
-#: PlaceCompletion.py:753
-msgid "%d place records were modified."
-msgstr "%d platsposter ändrades."
-
-#: PlaceCompletion.py:827
-msgid "The selected file is a directory, not a file."
-msgstr "Den valda filen är en katalog, inte en fil."
-
-#: PlaceCompletion.py:840
-msgid "The file you want to access is not a regular file."
-msgstr "Den fil du vill komma åt är inte en vanlig fil."
-
-#: PlaceCompletion.py:846
-msgid "The file does not exist."
-msgstr "Filen finns inte."
-
-#: PlaceCompletion.py:865
-msgid "Problem reading file"
-msgstr "Problem vid läsning av fil"
-
-#: PlaceCompletion.py:895 PlaceCompletion.py:898 PlaceCompletion.py:1085
-msgid "CITY"
-msgstr "STAD"
-
-#: PlaceCompletion.py:899 PlaceCompletion.py:904 PlaceCompletion.py:1087
-msgid "TITLEBEGIN"
-msgstr "BEGYNNELSETITEL"
-
-#: PlaceCompletion.py:905 PlaceCompletion.py:908 PlaceCompletion.py:1086
-msgid "TITLE"
-msgstr "TITEL"
-
-#: PlaceCompletion.py:909 PlaceCompletion.py:912 PlaceCompletion.py:1088
-msgid "STATE"
-msgstr "LAND"
-
-#: PlaceCompletion.py:913 PlaceCompletion.py:916 PlaceCompletion.py:1089
-msgid "PARISH"
-msgstr "FÖRSAMLING"
-
-#: PlaceCompletion.py:983 PlaceCompletion.py:995
-msgid "invalid lat or lon value, %(lat)s, %(lon)s"
-msgstr "ogiltigt värde på lat eller long, %(lat)s, %(lon)s"
-
-#: PlaceCompletion.py:1064
-msgid "No lat/lon conversion"
-msgstr "Ingen omvandling av lat/long"
-
-#: PlaceCompletion.py:1065
-msgid "All in degree notation"
-msgstr "Allt i grader"
-
-#: PlaceCompletion.py:1066
-msgid "All in decimal notation"
-msgstr "Allt som decimaltal"
-
-#: PlaceCompletion.py:1067
-msgid "Correct -50° in 50°S"
-msgstr "Korrekt -50° i 50°S"
-
-#: PlaceCompletion.py:1071
-msgid "No changes"
-msgstr "Inga ändringar"
-
-#: PlaceCompletion.py:1072
-msgid "City[, State]"
-msgstr "Stad/Kommun[, Land]"
-
-#: PlaceCompletion.py:1074
-msgid "TitleStart [, City] [, State]"
-msgstr "Begynnelsetitel [, Stad/Kommun] [,Land]"
-
-#: PlaceCompletion.py:1097
-msgid "City [,|.] State"
-msgstr "Stad/Kommun [,| ] Land"
-
-#: PlaceCompletion.py:1099
-msgid "City [,|.] Country"
-msgstr "Stad/kommun [,|.] land"
-
-#: PlaceCompletion.py:1101
-msgid "City (Country)"
-msgstr "Stad/Kommun (land)"
-
-#: PlaceCompletion.py:1107
-msgid "Don't search"
-msgstr "Leta ej"
-
-#: PlaceCompletion.py:1110
-msgid "GeoNames country file, city search"
-msgstr "GeoNames landsfil, stad/kommun-sökning"
-
-#: PlaceCompletion.py:1115
-msgid "GeoNames country file, city localized variants search"
-msgstr "GeoNames landsfil, stad/kommun-variantsökning"
-
-#: PlaceCompletion.py:1126
-msgid "GeoNames country file, title begin, general search"
-msgstr "GeoNames landsfil, titelbörjan, allmän sökning"
-
-#: PlaceCompletion.py:1131
-msgid "GeoNames USA state file, city search"
-msgstr "GeoNames USA delstatsfil, stadssökning"
-
-#: PlaceCompletion.py:1145
-msgid "GNS Geonet country file, city search"
-msgstr "GNS Geonet landsfil, stadssökning"
-
-#: PlaceCompletion.py:1154
-msgid "GNS Geonet country file, title begin, general search"
-msgstr "GNS Geonet landsfil, titelbörjan, allmän sökning"
-
-#: PlaceCompletion.py:1162
-msgid "Wikipedia CSV Dump"
-msgstr "Wikipedia CSV Dump"
-
-#: PlaceCompletion.py:1250
-msgid "All Places"
-msgstr "Alla platser"
-
-#: PlaceCompletion.py:1253
-msgid "No Latitude/Longitude given"
-msgstr "Ingen latitud eller longitud angivet"
-
-#: PlaceCompletion.py:1345
-msgid "Interactive place completion"
-msgstr "Interaktiv komplettering av platsuppgifter"
-
-#: PlaceCompletion.py:1346
-msgid "Unstable"
-msgstr "Ostabil"
-
-#: PlaceCompletion.py:1349
-msgid ""
-"Provides a browsable list of selected places, with possibility to complete/"
-"parse/set the attribute fields"
-msgstr ""
-"Ger en bläddringsbar lista av valda platser, med möjlighet att komplettera/"
-"passa/sätt attributfälten"
-
-#: PluginManagerGramplet.py:132
-msgid "Plugin Manager Gramplet"
-msgstr "Instickshanterare för Gramplet"
-
-#: PluginManagerGramplet.py:136
-msgid "Plugin Manager"
-msgstr "Instickshanterare"
 
