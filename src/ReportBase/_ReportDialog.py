@@ -56,13 +56,13 @@ import ManagedWindow
 from _StyleComboBox import StyleComboBox
 from _StyleEditor import StyleListDisplay
 from _FileEntry import FileEntry
-
+from const import URL_MANUAL_PAGE
 #-------------------------------------------------------------------------
 #
 # Private Constants
 #
 #-------------------------------------------------------------------------
-URL_REPORT_PAGE = "Gramps_3.0_Wiki_Manual_-_Reports"
+URL_REPORT_PAGE = URL_MANUAL_PAGE + "_-_Reports"
 
 #-------------------------------------------------------------------------
 #
