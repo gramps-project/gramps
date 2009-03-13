@@ -392,6 +392,13 @@ class GVPsDoc(GVDocBase):
         # GV documentation says dpi is only for image formats.
         options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
+        # GV documentation allow multiple pages only for ps format,
+        # But it does not work with -Tps:cairo in order to
+        # show Non Latin-1 letters. Force to only 1 page.
+        # See bug tracker issue 2815
+        options.menu.get_option_by_name('v_pages').set_value(1)
+        options.menu.get_option_by_name('h_pages').set_value(1)
+        GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
         """ Implements GVDocBase.close() """
@@ -416,6 +423,16 @@ class GVPsDoc(GVDocBase):
         dotfile.close()
         
         # Generate the PS file.
+        # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
+        # Some testing with Tps:cairo. Non Latin-1 letters are OK i all cases:
+        # Output format:   ps       PDF-GostScript  PDF-GraphViz
+        # Single page      OK           OK              OK
+        # Multip page    1 page,        OK             1 page,
+        #               corrupted                    set by gramps
+        # If I take a correct multip page PDF and convert it with pdf2ps I get multip pages,
+        # but the output is clipped, some margins have disappeared. I used 1 inch margins always.
+        # See bug tracker issue 2815
+
         os.system( 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot) )
         
         # Delete the temporary dot file
@@ -743,6 +760,8 @@ class GVPdfGsDoc(GVDocBase):
         os.close( handle )
         
         # Generate PostScript using dot
+        # Reason for using -Tps:cairo. Needed for Non Latin-1 letters
+        # See bug tracker issue 2815
         command = 'dot -Tps:cairo -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         os.system(command)
         
@@ -945,8 +964,7 @@ class GraphvizReportDialog(ReportDialog):
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array horizontally. "
-                           "Only valid for dot, postscript and pdf "
-                           "via Ghostscript."))
+                           "Only valid for dot and pdf via Ghostscript."))
         self.options.add_menu_option(category, "h_pages", h_pages)
         
         v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
@@ -954,8 +972,7 @@ class GraphvizReportDialog(ReportDialog):
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array vertically. "
-                           "Only valid for dot, postscript and pdf "
-                           "via Ghostscript."))
+                           "Only valid for dot and pdf via Ghostscript."))
         self.options.add_menu_option(category, "v_pages", v_pages)
 
         page_dir = EnumeratedListOption(_("Paging Direction"), "BL")
