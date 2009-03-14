@@ -212,7 +212,7 @@ a:visited {
     background-color:#CCC;
     border-bottom:solid 1px #000;
 }
-#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     padding-bottom:4px;
     border-top:solid 1px #999;
     border-right:solid 1px #999;
@@ -220,10 +220,10 @@ a:visited {
     border-bottom:solid 1px #FFF;
     background-color:#FFF;
 }
-#navigation ul li#CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover {
     background-color:#FFF;
 }
-#subnavigation ul li#CurrentSection a {
+#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
 }
 

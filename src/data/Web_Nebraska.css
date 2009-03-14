@@ -236,7 +236,7 @@ p#user_header {
     background-color:#C1B398;
     border-bottom:solid 1px #542;
 }
-#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-size:19px;
     margin-top:-6px;
     padding-top:11px;
@@ -246,10 +246,10 @@ p#user_header {
     border-bottom:solid 1px #FFF;
     background-color:#FFF;
 }
-#navigation ul li#CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover {
     background-color:#FFF;
 }
-#subnavigation ul li#CurrentSection a {
+#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
 }
 

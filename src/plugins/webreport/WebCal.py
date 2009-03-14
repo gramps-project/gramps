@@ -404,7 +404,7 @@ class WebCalReport(Report):
                 url += self.ext
 
             # Figure out if we need <li id="CurrentSection"> or just plain <li>
-            cs = url_fname == currentsection and ' id="CurrentSection"' or ''
+            cs = url_fname == currentsection and ' class="CurrentSection"' or ''
             of.write('\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url, nav_text))
 
         of.write('\t</ul>\n')
@@ -456,7 +456,7 @@ class WebCalReport(Report):
                 # determine if we need to highlight???
                 highlight = ''
                 if str(cal_year) == currentsection:
-                    highlight = ' id="CurrentSection"'
+                    highlight = ' class="CurrentSection"'
 
                 of.write('\t\t<li%s><a href="%s">%d</a></li>\n' 
                     % (highlight, url, cal_year))
@@ -682,7 +682,8 @@ class WebCalReport(Report):
                   root of the directory tree (i.e. to self.html_dir).
         """
 
-        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n')
+        of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
+        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"')
         of.write('\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
@@ -699,19 +700,19 @@ class WebCalReport(Report):
 
         # link to screen stylesheet
         fname = '/'.join(subdirs + ['styles'] + [self.css])
-        of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
-        of.write('\t\ttype="text/css" media="screen">\n')
+        of.write('\t<link rel="stylesheet" href="%s"' % fname)
+        of.write('type="text/css" media="screen">\n')
 
         # link to print stylesheet
         if add_print:
             fname = '/'.join(subdirs + ['styles'] + ["Web_Print-Default.css"])
-            of.write('\t<link rel="stylesheet" href="%s"\n' % fname)
-            of.write('\t\ttype="text/css" media="print">\n')
+            of.write('\t<link rel="stylesheet" href="%s"' % fname)
+            of.write('type="text/css" media="print">\n')
 
         # link to GRAMPS favicon
         fname = '/'.join(subdirs + ['images'] + ['favicon.ico'])
-        of.write('\t<link rel="shortcut icon" href="%s" \n' % fname)
-        of.write('\t\ttype="image/icon" />\n')
+        of.write('\t<link rel="shortcut icon" href="%s" ' % fname)
+        of.write('type="image/icon" />\n')
 
         of.write('</head>\n\n')
 
