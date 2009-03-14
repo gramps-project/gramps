@@ -211,7 +211,7 @@ a:visited {
     background-color:#FFC35E;
     border-bottom:solid 1px #36220B;
 }
-#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     padding-bottom:4px;
     border-top:solid 1px #8C581C;
     border-right:solid 1px #8C581C;
@@ -219,10 +219,10 @@ a:visited {
     border-bottom:solid 1px #FFFBE7;
     background-color:#FFFBE7;
 }
-#navigation ul li#CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover {
     background-color:#FFFBE7;
 }
-#subnavigation ul li#CurrentSection a {
+#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
 }
 

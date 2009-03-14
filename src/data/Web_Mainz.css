@@ -232,7 +232,7 @@ a:visited {
 #navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#FFFFE7;
 }
-#navigation ul li#CurrentSection a, #subnavigation ul li#CurrentSection a {
+#navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-family:Georgia, serif;
     font-weight:bold;
     font-style:italic;
@@ -242,12 +242,12 @@ a:visited {
     border-width:1px 1px 0 1px;
     border-color:#7D5925;
 }
-#navigation ul li#CurrentSection a:hover {
+#navigation ul li.CurrentSection a:hover {
 }
 #subnavigation {
     background-image:url(../images/Web_Mainz_Mid.png);
 }
-#subnavigation ul li#CurrentSection a {
+#subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
 }
 

@@ -379,12 +379,13 @@ class BasePage:
 
     def write_header(self, of, title):
         """
-        Note. 'title' is used as currentsection in the navigation links.
+        Note. 'title' is used as currentsection in the navigation links and
+        as part of the header title.
         """
 
         of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
         of.write('<!DOCTYPE html PUBLIC ')
-        of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" \n')
+        of.write('\t"-//W3C//DTD XHTML 1.0 Strict//EN" ')
         of.write('\t\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
@@ -400,23 +401,23 @@ class BasePage:
 
         # Link to media reference regions behaviour stylesheet
         url = self.report.build_url_fname("behaviour.css", "styles", self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="screen" />\n' % url)
 
         # Link to screen stylesheet
         url = self.report.build_url_fname(_NARRATIVESCREEN, "styles", self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="screen" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="screen" />\n' % url)
 
         # Link to printer stylesheet
         url = self.report.build_url_fname(_NARRATIVEPRINT, "styles", self.up)
-        of.write('\t<link href="%s" rel="stylesheet" \n'
-            '\t\ttype="text/css" media="print" />\n' % url)
+        of.write('\t<link href="%s" rel="stylesheet" '
+            'type="text/css" media="print" />\n' % url)
 
         # Link to GRAMPS favicon
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('\t<link href="%s" rel="Shortcut Icon" \n'
-            '\t\ttype="image/icon" />\n' % url)
+        of.write('\t<link href="%s" rel="Shortcut Icon" '
+            'ttype="image/icon" />\n' % url)
         of.write('</head>\n\n')
 
         of.write('<body id="NarrativeWeb">\n')        # Terminated in write_footer()
@@ -453,47 +454,47 @@ class BasePage:
         of.write('\t<div id="navigation">\n')
         of.write('\t\t<ul>\n') 
 
-        for url_fname, nav_text, cond in navs:
-            if cond:
+        navs = [(u, n) for u, n, c in navs if c]
+        for url_fname, nav_text in navs:
 
-                if not url_fname.endswith(self.ext):
-                    url_fname += self.ext
+            if not url_fname.endswith(self.ext):
+                url_fname += self.ext
 
-                if self.up:
-                    # TODO. Check if build_url_fname can be used.
-                    url_fname = '/'.join(['..']*3 + [url_fname])
+            if self.up:
+                # TODO. Check if build_url_fname can be used.
+                url_fname = '/'.join(['..']*3 + [url_fname])
 
-                # TODO. Move this logic to a higher level (caller of write_header).
+            # TODO. Move this logic to a higher level (caller of write_header).
 
-                # Define 'currentsection' to correctly set navlink item CSS id
-                # 'CurrentSection' for Navigation styling.
-                # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
-                # elements for Navigation styling.
+            # Define 'currentsection' to correctly set navlink item CSS id
+            # 'CurrentSection' for Navigation styling.
+            # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+            # elements for Navigation styling.
 
-                # Figure out if we need <li id="CurrentSection"> of just plain <li>
-                cs = False
-                if nav_text == currentsection:
+            # Figure out if we need <li id="CurrentSection"> of just plain <li>
+            cs = False
+            if nav_text == currentsection:
+                cs = True
+            elif nav_text == _('Surnames'):
+                if "srn" in self.report.cur_fname:
                     cs = True
-                elif nav_text == _('Surnames'):
-                    if "srn" in self.report.cur_fname:
-                        cs = True
-                    elif _('Surnames') in currentsection:
-                        cs = True
-                elif nav_text == _('Individuals'):
-                    if "ppl" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _('Sources'):
-                    if "src" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _('Places'):
-                    if "plc" in self.report.cur_fname:
-                        cs = True
-                elif nav_text == _('Gallery'):
-                    if "img" in self.report.cur_fname:
-                        cs = True
+                elif _('Surnames') in currentsection:
+                    cs = True
+            elif nav_text == _('Individuals'):
+                if "ppl" in self.report.cur_fname:
+                    cs = True
+            elif nav_text == _('Sources'):
+                if "src" in self.report.cur_fname:
+                    cs = True
+            elif nav_text == _('Places'):
+                if "plc" in self.report.cur_fname:
+                    cs = True
+            elif nav_text == _('Gallery'):
+                if "img" in self.report.cur_fname:
+                    cs = True
 
-                cs = cs and ' id="CurrentSection"' or ''
-                of.write('\t\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url_fname, nav_text))
+            cs = cs and ' class="CurrentSection"' or ''
+            of.write('\t\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, url_fname, nav_text))
 
         of.write('\t\t</ul>\n')
         of.write('\t</div>\n') # End Navigation Menu
