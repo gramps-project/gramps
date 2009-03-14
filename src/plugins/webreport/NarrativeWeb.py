@@ -367,8 +367,7 @@ class BasePage:
                     'person' : self.author,
                     'year' : year}
         elif 0 < copy_nr < len(_CC):
-            fname = os.path.join("images", "somerights20.gif")
-            fname = self.report.build_url_fname(fname, None, self.up)
+            fname = self.report.build_url_fname("somerights20.gif", "images", self.up)
             text = _CC[copy_nr] % {'gif_fname' : fname}
         of.write('\t<p id="copyright">%s</p>\n' % text)
 
@@ -400,20 +399,17 @@ class BasePage:
         of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
         # Link to media reference regions behaviour stylesheet
-        fname = os.path.join("styles", "behaviour.css")
-        url = self.report.build_url_fname(fname, None, self.up)
+        url = self.report.build_url_fname("behaviour.css", "styles", self.up)
         of.write('\t<link href="%s" rel="stylesheet" \n'
             '\t\ttype="text/css" media="screen" />\n' % url)
 
         # Link to screen stylesheet
-        fname = os.path.join("styles", _NARRATIVESCREEN)
-        url = self.report.build_url_fname(fname, None, self.up)
+        url = self.report.build_url_fname(_NARRATIVESCREEN, "styles", self.up)
         of.write('\t<link href="%s" rel="stylesheet" \n'
             '\t\ttype="text/css" media="screen" />\n' % url)
 
         # Link to printer stylesheet
-        fname = os.path.join("styles", _NARRATIVEPRINT)
-        url = self.report.build_url_fname(fname, None, self.up)
+        url = self.report.build_url_fname(_NARRATIVEPRINT, "styles", self.up)
         of.write('\t<link href="%s" rel="stylesheet" \n'
             '\t\ttype="text/css" media="print" />\n' % url)
 
