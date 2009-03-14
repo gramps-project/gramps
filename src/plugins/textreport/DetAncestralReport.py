@@ -185,6 +185,9 @@ class DetAncestorReport(Report):
                         if mother_handle is None                         or    \
                            mother_handle not in self.map.values()        or    \
                            person.get_gender() == gen.lib.Person.FEMALE:
+                            # The second test above also covers the 1. person's
+                            # mate, which is not an ancestor and as such is not
+                            # included in the self.map dictionary
                             if self.listchildren:
                                 self.write_children(family)
                             if self.inc_events:
@@ -569,15 +572,15 @@ class DetAncestorReport(Report):
                 first = 0
             self.write_event(event_ref)
 
-    def write_mate(self, mate):
+    def write_mate(self, person):
         """Output birth, death, parentage, marriage and notes information """
         ind = None
         has_info = False
         
-        for family_handle in mate.get_family_handle_list():
+        for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             ind_handle = None
-            if mate.get_gender() == gen.lib.Person.MALE:
+            if person.get_gender() == gen.lib.Person.MALE:
                 ind_handle = family.get_mother_handle()
             else:
                 ind_handle = family.get_father_handle()
@@ -602,7 +605,7 @@ class DetAncestorReport(Report):
                             break
 
             if has_info:
-                self.doc.start_paragraph("DAR-Entry")
+                self.doc.start_paragraph("DAR-MoreHeader")
 
                 plist = ind.get_media_list()
                 
@@ -613,11 +616,16 @@ class DetAncestorReport(Report):
                 name = _nd.display_formal(ind)
                 mark = ReportUtils.get_person_mark(self.database, ind)
         
-                self.doc.write_text(name, mark)
-                if name[-1:] == '.':
-                    self.doc.write_text_citation("%s " % self.endnotes(ind))
+                if family.get_relationship() == gen.lib.FamilyRelType.MARRIED:
+                    self.doc.write_text(_("Spouse: %s") % name, mark)
                 else:
-                    self.doc.write_text_citation("%s. " % self.endnotes(ind))
+                    self.doc.write_text(_("Relationship with: %s") % name, mark)
+                if name[-1:] != '.':
+                    self.doc.write_text(".")
+                self.doc.write_text_citation(self.endnotes(ind))
+                self.doc.end_paragraph()
+
+                self.doc.start_paragraph("DAR-Entry")
 
                 first_name = ReportUtils.common_name(ind, self.usecall)
                 print_name = first_name
@@ -629,6 +637,13 @@ class DetAncestorReport(Report):
                     print_name = 0
 
                 text = ReportUtils.baptised_str(self.database, ind, print_name, 
+                            self.verbose, self.endnotes, self.EMPTY_DATE, 
+                            self.EMPTY_PLACE)
+                if text:
+                    self.doc.write_text_citation(text)
+                    print_name = 0
+
+                text = ReportUtils.christened_str(self.database, ind, print_name, 
                             self.verbose, self.endnotes, self.EMPTY_DATE, 
                             self.EMPTY_PLACE)
                 if text:
@@ -656,12 +671,6 @@ class DetAncestorReport(Report):
                 self.write_parents(ind, print_name)
 
                 self.doc.end_paragraph()
-
-            if has_info and mate.get_gender() == gen.lib.Person.MALE:
-                if self.listchildren:
-                    self.write_children(family)
-                if self.inc_events:
-                    self.write_family_events(family)
 
     def calc_age(self,ind):
         """
