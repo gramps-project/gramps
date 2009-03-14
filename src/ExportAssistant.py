@@ -446,7 +446,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'The data will be saved as follows:\n\n'
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press Apply to proceed, Back to revisit '
-                'your options, or Cancel to abort') % (format, name, folder)
+                'your options, or Cancel to abort') % (format.replace("_",""), name, folder)
                 self.set_page_complete(page, True)
             else :
                 confirm_text = _(
