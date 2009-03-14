@@ -901,7 +901,7 @@ class RelationshipView(PageView.PersonNavView):
                         eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
                     eventbox.add(vbox)
                     self.attach.attach(
-                        eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                        eventbox, _CDATA_START-1, _CDATA_STOP, self.row,
                         self.row+1)
 
             self.row += 1
@@ -1358,7 +1358,7 @@ class RelationshipView(PageView.PersonNavView):
                     eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
                 eventbox.add(vbox)
                 self.attach.attach(
-                    eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                    eventbox, _CDATA_START-1, _CDATA_STOP, self.row,
                     self.row+1)
                 self.row += 1
 
