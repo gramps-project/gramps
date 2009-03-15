@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-13 12:55+0100\n"
-"PO-Revision-Date: 2009-03-13 12:59+0100\n"
+"POT-Creation-Date: 2009-03-15 20:21+0100\n"
+"PO-Revision-Date: 2009-03-15 20:23+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2737,10 +2737,10 @@ msgstr "kvinna"
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
 #: ../src/plugins/gramplet/SessionLogGramplet.py:72
 #: ../src/plugins/gramplet/SessionLogGramplet.py:73
-#: ../src/plugins/textreport/DetAncestralReport.py:501
-#: ../src/plugins/textreport/DetAncestralReport.py:508
-#: ../src/plugins/textreport/DetAncestralReport.py:551
-#: ../src/plugins/textreport/DetAncestralReport.py:558
+#: ../src/plugins/textreport/DetAncestralReport.py:504
+#: ../src/plugins/textreport/DetAncestralReport.py:511
+#: ../src/plugins/textreport/DetAncestralReport.py:554
+#: ../src/plugins/textreport/DetAncestralReport.py:561
 #: ../src/plugins/textreport/DetDescendantReport.py:435
 #: ../src/plugins/textreport/DetDescendantReport.py:442
 #: ../src/plugins/textreport/DetDescendantReport.py:492
@@ -6100,7 +6100,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/textreport/AncestorReport.py:348
 #: ../src/plugins/textreport/BirthdayReport.py:498
 #: ../src/plugins/textreport/DescendReport.py:258
-#: ../src/plugins/textreport/DetAncestralReport.py:897
+#: ../src/plugins/textreport/DetAncestralReport.py:906
 #: ../src/plugins/textreport/DetDescendantReport.py:900
 #: ../src/plugins/textreport/EndOfLineReport.py:324
 #: ../src/plugins/textreport/FamilyGroup.py:800
@@ -6160,27 +6160,17 @@ msgstr ""
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#. -------------------------------------------------------------------------
-#.
-#. Register the plugin
-#.
-#. -------------------------------------------------------------------------
 #: ../src/plugins/export/ExportXml.py:1221
-#: ../src/plugins/export/ExportCd.py:302
 msgid ""
-"Exporting to CD copies all your data and media object files to the CD "
-"Creator. You may later burn the CD with this data, and that copy will be "
-"completely portable across different machines and binary architectures."
-msgstr ""
-"Att exportera till CD kopierar alla dina data och mediaobjektfiler till CD-"
-"skaparen. Du kan senare bränna CD:n med dessa data och kopian blir helt "
-"portabel mellan olika maskiner och binära arkitekturer."
+"GRAMPS XML export is a complete archived XML backup of the GRAMPS database "
+"without the media object files."
+msgstr "GRAMPS-XML export är en arkiverad komplett XML-databas utan med mediaobjektfiler."
 
-#: ../src/plugins/export/ExportXml.py:1225
+#: ../src/plugins/export/ExportXml.py:1223
 msgid "GRAMPS XML export options"
 msgstr "Alternativ vid GRAMPS XML-export"
 
-#: ../src/plugins/export/ExportXml.py:1228
+#: ../src/plugins/export/ExportXml.py:1226
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-databas"
 
@@ -6517,7 +6507,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
-#: ../src/plugins/textreport/DetAncestralReport.py:706
+#: ../src/plugins/textreport/DetAncestralReport.py:715
 #: ../src/plugins/textreport/DetDescendantReport.py:696
 #: ../src/plugins/textreport/EndOfLineReport.py:236
 #: ../src/plugins/textreport/FamilyGroup.py:599
@@ -6607,7 +6597,7 @@ msgstr "Familjeposter"
 #: ../src/plugins/drawreport/DescendTree.py:495
 #: ../src/plugins/drawreport/FanChart.py:402
 #: ../src/plugins/textreport/AncestorReport.py:330
-#: ../src/plugins/textreport/DetAncestralReport.py:850
+#: ../src/plugins/textreport/DetAncestralReport.py:859
 #: ../src/plugins/textreport/DetDescendantReport.py:853
 #: ../src/plugins/textreport/EndOfLineReport.py:273
 #: ../src/plugins/textreport/EndOfLineReport.py:291
@@ -6805,7 +6795,7 @@ msgstr "Trädalternativ"
 #: ../src/plugins/textreport/AncestorReport.py:249
 #: ../src/plugins/textreport/BirthdayReport.py:341
 #: ../src/plugins/textreport/DescendReport.py:197
-#: ../src/plugins/textreport/DetAncestralReport.py:708
+#: ../src/plugins/textreport/DetAncestralReport.py:717
 #: ../src/plugins/textreport/DetDescendantReport.py:698
 #: ../src/plugins/textreport/EndOfLineReport.py:238
 #: ../src/plugins/textreport/KinshipReport.py:338
@@ -6823,7 +6813,7 @@ msgstr "Huvudpersonen för trädet"
 #: ../src/plugins/drawreport/FanChart.py:346
 #: ../src/plugins/textreport/AncestorReport.py:253
 #: ../src/plugins/textreport/DescendReport.py:201
-#: ../src/plugins/textreport/DetAncestralReport.py:712
+#: ../src/plugins/textreport/DetAncestralReport.py:721
 #: ../src/plugins/textreport/DetDescendantReport.py:702
 msgid "Generations"
 msgstr "Generationer"
@@ -6966,7 +6956,7 @@ msgstr "Välj ett filter, som begränsar vilka personer, som tas med på kalende
 #: ../src/plugins/textreport/AncestorReport.py:250
 #: ../src/plugins/textreport/BirthdayReport.py:342
 #: ../src/plugins/textreport/DescendReport.py:198
-#: ../src/plugins/textreport/DetAncestralReport.py:709
+#: ../src/plugins/textreport/DetAncestralReport.py:718
 #: ../src/plugins/textreport/DetDescendantReport.py:699
 #: ../src/plugins/textreport/EndOfLineReport.py:239
 #: ../src/plugins/textreport/KinshipReport.py:339
@@ -7192,7 +7182,7 @@ msgstr "%(generations)d generationers cirkeldiagram för %(person)s"
 #: ../src/plugins/drawreport/FanChart.py:347
 #: ../src/plugins/textreport/AncestorReport.py:254
 #: ../src/plugins/textreport/DescendReport.py:202
-#: ../src/plugins/textreport/DetAncestralReport.py:713
+#: ../src/plugins/textreport/DetAncestralReport.py:722
 #: ../src/plugins/textreport/DetDescendantReport.py:703
 msgid "The number of generations to include in the report"
 msgstr "Antal generationer, som skall tas med i rapporten"
@@ -7522,7 +7512,7 @@ msgstr "Stil som används för objekt och värden."
 #: ../src/plugins/drawreport/TimeLine.py:389
 #: ../src/plugins/textreport/AncestorReport.py:307
 #: ../src/plugins/textreport/DescendReport.py:218
-#: ../src/plugins/textreport/DetAncestralReport.py:804
+#: ../src/plugins/textreport/DetAncestralReport.py:813
 #: ../src/plugins/textreport/DetDescendantReport.py:807
 #: ../src/plugins/textreport/EndOfLineReport.py:255
 #: ../src/plugins/textreport/FamilyGroup.py:683
@@ -7641,6 +7631,21 @@ msgstr ""
 "ha blivit raderad eller flyttats till en annan plats. Du kan välja endera av "
 "att ta bort referensen från databasen, behålla referensen till den saknade "
 "filen eller välja en ny fil."
+
+#. -------------------------------------------------------------------------
+#.
+#. Register the plugin
+#.
+#. -------------------------------------------------------------------------
+#: ../src/plugins/export/ExportCd.py:302
+msgid ""
+"Exporting to CD copies all your data and media object files to the CD "
+"Creator. You may later burn the CD with this data, and that copy will be "
+"completely portable across different machines and binary architectures."
+msgstr ""
+"Att exportera till CD kopierar alla dina data och mediaobjektfiler till CD-"
+"skaparen. Du kan senare bränna CD:n med dessa data och kopian blir helt "
+"portabel mellan olika maskiner och binära arkitekturer."
 
 #: ../src/plugins/export/ExportCd.py:308
 msgid "_Export to CD (portable XML)"
@@ -10045,13 +10050,13 @@ msgid "Ahnentafel Report for %s"
 msgstr "Antavla för %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:257
-#: ../src/plugins/textreport/DetAncestralReport.py:716
+#: ../src/plugins/textreport/DetAncestralReport.py:725
 #: ../src/plugins/textreport/DetDescendantReport.py:707
 msgid "Page break between generations"
 msgstr "Sidbrytning mellan generationer"
 
 #: ../src/plugins/textreport/AncestorReport.py:259
-#: ../src/plugins/textreport/DetAncestralReport.py:718
+#: ../src/plugins/textreport/DetAncestralReport.py:727
 #: ../src/plugins/textreport/DetDescendantReport.py:709
 msgid "Whether to start a new page after each generation."
 msgstr "Huruvida påbörja en ny sida efter varje generation."
@@ -10065,7 +10070,7 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Visar om ny rad borde komma efter namnet."
 
 #: ../src/plugins/textreport/AncestorReport.py:320
-#: ../src/plugins/textreport/DetAncestralReport.py:814
+#: ../src/plugins/textreport/DetAncestralReport.py:823
 #: ../src/plugins/textreport/DetDescendantReport.py:817
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
@@ -10203,22 +10208,22 @@ msgstr "Skapar en kortfattad lista över den aktiva personens ättlingar."
 msgid "Ancestral Report for %s"
 msgstr "Antavla för %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:228
+#: ../src/plugins/textreport/DetAncestralReport.py:231
 #: ../src/plugins/textreport/DetDescendantReport.py:263
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s är samma person som [%(id_str)s]."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:293
+#: ../src/plugins/textreport/DetAncestralReport.py:296
 #: ../src/plugins/textreport/DetDescendantReport.py:579
 #, python-format
 msgid "Notes for %s"
 msgstr "Anteckningar om %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:305
-#: ../src/plugins/textreport/DetAncestralReport.py:328
-#: ../src/plugins/textreport/DetAncestralReport.py:339
-#: ../src/plugins/textreport/DetAncestralReport.py:358
+#: ../src/plugins/textreport/DetAncestralReport.py:308
+#: ../src/plugins/textreport/DetAncestralReport.py:331
+#: ../src/plugins/textreport/DetAncestralReport.py:342
+#: ../src/plugins/textreport/DetAncestralReport.py:361
 #: ../src/plugins/textreport/DetDescendantReport.py:591
 #: ../src/plugins/textreport/DetDescendantReport.py:609
 #: ../src/plugins/textreport/DetDescendantReport.py:620
@@ -10227,270 +10232,282 @@ msgstr "Anteckningar om %s"
 msgid "More about %(person_name)s:"
 msgstr "Mer om %(person_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:312
+#: ../src/plugins/textreport/DetAncestralReport.py:315
 #: ../src/plugins/textreport/DetDescendantReport.py:598
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:347
+#: ../src/plugins/textreport/DetAncestralReport.py:350
 #: ../src/plugins/textreport/DetDescendantReport.py:628
 msgid "Address: "
 msgstr "Adress: "
 
-#: ../src/plugins/textreport/DetAncestralReport.py:365
-#: ../src/plugins/textreport/DetAncestralReport.py:417
+#: ../src/plugins/textreport/DetAncestralReport.py:368
+#: ../src/plugins/textreport/DetAncestralReport.py:420
 #: ../src/plugins/textreport/DetDescendantReport.py:325
 #: ../src/plugins/textreport/DetDescendantReport.py:646
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:387
+#: ../src/plugins/textreport/DetAncestralReport.py:390
 #: ../src/plugins/textreport/DetDescendantReport.py:295
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:390
+#: ../src/plugins/textreport/DetAncestralReport.py:393
 #: ../src/plugins/textreport/DetDescendantReport.py:298
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:392
+#: ../src/plugins/textreport/DetAncestralReport.py:395
 #: ../src/plugins/textreport/DetDescendantReport.py:300
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:404
+#: ../src/plugins/textreport/DetAncestralReport.py:407
 #: ../src/plugins/textreport/DetDescendantReport.py:312
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:512
+#: ../src/plugins/textreport/DetAncestralReport.py:515
 #: ../src/plugins/textreport/DetDescendantReport.py:446
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Barn till %(mother_name)s och %(father_name)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:565
+#: ../src/plugins/textreport/DetAncestralReport.py:568
 #: ../src/plugins/textreport/DetDescendantReport.py:506
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Mer om %(mother_name)s och %(father_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:721
+#: ../src/plugins/textreport/DetAncestralReport.py:620
+#: ../src/plugins/textreport/DetDescendantReport.py:413
+#, python-format
+msgid "Spouse: %s"
+msgstr "Makar: %s"
+
+#: ../src/plugins/textreport/DetAncestralReport.py:622
+#: ../src/plugins/textreport/DetDescendantReport.py:415
+#, python-format
+msgid "Relationship with: %s"
+msgstr "Släktskap med: %s"
+
+#: ../src/plugins/textreport/DetAncestralReport.py:730
 #: ../src/plugins/textreport/DetDescendantReport.py:719
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:723
+#: ../src/plugins/textreport/DetAncestralReport.py:732
 #: ../src/plugins/textreport/DetDescendantReport.py:721
 msgid "Use callname for common name"
 msgstr "Använd tilltalsnamn"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:724
+#: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:722
 msgid "Whether to use the call name as the first name."
 msgstr "Huruvida använda tilltalsnamn, som första namn."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:728
+#: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:725
 msgid "Use full dates instead of only the year"
 msgstr "Använd fullständiga datum i stället för enbart årtal"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:729
+#: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:727
 msgid "Whether to use full dates instead of just year."
 msgstr "Huruvida använda fullständiga datum i stället för enbart årtal."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:732
+#: ../src/plugins/textreport/DetAncestralReport.py:741
 #: ../src/plugins/textreport/DetDescendantReport.py:730
 msgid "List children"
 msgstr "Lista barn"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:733
+#: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:731
 msgid "Whether to list children."
 msgstr "Huruvida lista barn."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:736
+#: ../src/plugins/textreport/DetAncestralReport.py:745
 #: ../src/plugins/textreport/DetDescendantReport.py:734
 msgid "Compute age"
 msgstr "Beräkna ålder"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:737
+#: ../src/plugins/textreport/DetAncestralReport.py:746
 #: ../src/plugins/textreport/DetDescendantReport.py:735
 msgid "Whether to compute age."
 msgstr "Huruvida beräkna ålder."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:740
+#: ../src/plugins/textreport/DetAncestralReport.py:749
 #: ../src/plugins/textreport/DetDescendantReport.py:738
 msgid "Omit duplicate ancestors"
 msgstr "Utelämna dubblerade anor"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:741
+#: ../src/plugins/textreport/DetAncestralReport.py:750
 #: ../src/plugins/textreport/DetDescendantReport.py:739
 msgid "Whether to omit duplicate ancestors."
 msgstr "Huruvida utelämna dubblerade anor."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:744
+#: ../src/plugins/textreport/DetAncestralReport.py:753
 #: ../src/plugins/textreport/DetDescendantReport.py:742
 msgid "Use Complete Sentences"
 msgstr "Använd fullständiga meningar"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:746
+#: ../src/plugins/textreport/DetAncestralReport.py:755
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Huruvida använda fullständiga meningar eller ett kortfattat språk."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:749
+#: ../src/plugins/textreport/DetAncestralReport.py:758
 #: ../src/plugins/textreport/DetDescendantReport.py:747
 msgid "Add descendant reference in child list"
 msgstr "Lägg till ättlingareferens i barnlista"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:751
+#: ../src/plugins/textreport/DetAncestralReport.py:760
 #: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "Whether to add descendant references in child list."
 msgstr "Huruvida lägg till ättlingareferens i barnlista"
 
 #. #########################
-#: ../src/plugins/textreport/DetAncestralReport.py:754
+#: ../src/plugins/textreport/DetAncestralReport.py:763
 #: ../src/plugins/textreport/DetDescendantReport.py:753
 #: ../src/plugins/textreport/FamilyGroup.py:612
 #: ../src/plugins/webreport/NarrativeWeb.py:3433
 msgid "Include"
 msgstr "Ta med"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:756
+#: ../src/plugins/textreport/DetAncestralReport.py:765
 #: ../src/plugins/textreport/DetDescendantReport.py:755
 msgid "Include notes"
 msgstr "Ta med noteringar"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:757
+#: ../src/plugins/textreport/DetAncestralReport.py:766
 #: ../src/plugins/textreport/DetDescendantReport.py:756
 msgid "Whether to include notes."
 msgstr "Huruvida ta med anteckningar."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:760
+#: ../src/plugins/textreport/DetAncestralReport.py:769
 #: ../src/plugins/textreport/DetDescendantReport.py:759
 msgid "Include attributes"
 msgstr "Ta med attribut"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:761
+#: ../src/plugins/textreport/DetAncestralReport.py:770
 #: ../src/plugins/textreport/DetDescendantReport.py:760
 #: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Whether to include attributes."
 msgstr "Huruvida ta med attribut."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:764
+#: ../src/plugins/textreport/DetAncestralReport.py:773
 #: ../src/plugins/textreport/DetDescendantReport.py:763
 msgid "Include Photo/Images from Gallery"
 msgstr "Ta med foton/bilder från galleri"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:765
+#: ../src/plugins/textreport/DetAncestralReport.py:774
 #: ../src/plugins/textreport/DetDescendantReport.py:764
 msgid "Whether to include images."
 msgstr "Huruvida ta med bilder."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:768
+#: ../src/plugins/textreport/DetAncestralReport.py:777
 #: ../src/plugins/textreport/DetDescendantReport.py:767
 msgid "Include alternative names"
 msgstr "Ta med alternativa namn"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:769
+#: ../src/plugins/textreport/DetAncestralReport.py:778
 #: ../src/plugins/textreport/DetDescendantReport.py:768
 msgid "Whether to include other names."
 msgstr "Huruvida ta med andra namn."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:772
+#: ../src/plugins/textreport/DetAncestralReport.py:781
 #: ../src/plugins/textreport/DetDescendantReport.py:771
 msgid "Include events"
 msgstr "Ta med händelser"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:773
+#: ../src/plugins/textreport/DetAncestralReport.py:782
 #: ../src/plugins/textreport/DetDescendantReport.py:772
 msgid "Whether to include events."
 msgstr "Huruvida ta med händelser."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:776
+#: ../src/plugins/textreport/DetAncestralReport.py:785
 #: ../src/plugins/textreport/DetDescendantReport.py:775
 msgid "Include addresses"
 msgstr "Ta med adresser"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:777
+#: ../src/plugins/textreport/DetAncestralReport.py:786
 #: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Whether to include addresses."
 msgstr "Huruvida ta med adresser."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:780
+#: ../src/plugins/textreport/DetAncestralReport.py:789
 #: ../src/plugins/textreport/DetDescendantReport.py:779
 msgid "Include sources"
 msgstr "Ta med källor"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:781
+#: ../src/plugins/textreport/DetAncestralReport.py:790
 #: ../src/plugins/textreport/DetDescendantReport.py:780
 msgid "Whether to include source references."
 msgstr "Huruvida ta med källreferenser."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:784
+#: ../src/plugins/textreport/DetAncestralReport.py:793
 #: ../src/plugins/textreport/DetDescendantReport.py:787
 msgid "Missing information"
 msgstr "Saknad information"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:786
+#: ../src/plugins/textreport/DetAncestralReport.py:795
 #: ../src/plugins/textreport/DetDescendantReport.py:789
 msgid "Replace missing places with ______"
 msgstr "Ersätt saknade platser med ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:787
+#: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:790
 msgid "Whether to replace missing Places with blanks."
 msgstr "Huruvida ersätta saknade platser med mellanslag."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:790
+#: ../src/plugins/textreport/DetAncestralReport.py:799
 #: ../src/plugins/textreport/DetDescendantReport.py:793
 msgid "Replace missing dates with ______"
 msgstr "Ersätt saknade datum med ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:791
+#: ../src/plugins/textreport/DetAncestralReport.py:800
 #: ../src/plugins/textreport/DetDescendantReport.py:794
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Huruvida ersätta saknade datum med mellanslag."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:824
+#: ../src/plugins/textreport/DetAncestralReport.py:833
 #: ../src/plugins/textreport/DetDescendantReport.py:827
 msgid "The style used for the children list title."
 msgstr "Stil som används för barnlistetiteln."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:834
+#: ../src/plugins/textreport/DetAncestralReport.py:843
 #: ../src/plugins/textreport/DetDescendantReport.py:837
 msgid "The style used for the children list."
 msgstr "Stil som används för barnlistan."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:857
+#: ../src/plugins/textreport/DetAncestralReport.py:866
 #: ../src/plugins/textreport/DetDescendantReport.py:860
 msgid "The style used for the first personal entry."
 msgstr "Stil som används för den första personinformationen."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:867
+#: ../src/plugins/textreport/DetAncestralReport.py:876
 #: ../src/plugins/textreport/DetDescendantReport.py:870
 msgid "The style used for the More About header."
 msgstr "Stil som används för notisdelens rubrik."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:877
+#: ../src/plugins/textreport/DetAncestralReport.py:886
 #: ../src/plugins/textreport/DetDescendantReport.py:880
 msgid "The style used for additional detail data."
 msgstr "Stil som används för allmänna data."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:896
+#: ../src/plugins/textreport/DetAncestralReport.py:905
 msgid "Detailed Ancestral Report"
 msgstr "Antavla, detaljerad"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:898
+#: ../src/plugins/textreport/DetAncestralReport.py:907
 msgid "Produces a detailed ancestral report"
 msgstr "Skapar en antavla med mycket information."
 
@@ -10498,16 +10515,6 @@ msgstr "Skapar en antavla med mycket information."
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr "Stamtavla för %(person_name)s"
-
-#: ../src/plugins/textreport/DetDescendantReport.py:413
-#, python-format
-msgid "Spouse: %s"
-msgstr "Makar: %s"
-
-#: ../src/plugins/textreport/DetDescendantReport.py:415
-#, python-format
-msgid "Relationship with: %s"
-msgstr "Släktskap med: %s"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:712
 msgid "Use Record-style (Modified Register) numbering"
