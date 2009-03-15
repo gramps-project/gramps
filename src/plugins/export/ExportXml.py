@@ -1218,10 +1218,8 @@ class XmlWriter(GrampsDbXmlWriter):
 # Register with the plugin system
 #
 #------------------------------------------------------------------------
-_description = _('Exporting to CD copies all your data and media object files '
-                 'to the CD Creator. You may later burn the CD with this data, '
-                 'and that copy will be completely portable across different '
-                 'machines and binary architectures.')
+_description = _('GRAMPS XML export is a complete archived XML backup of the' 
+                 ' GRAMPS database without the media object files.' )
 _config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
 
 pmgr = PluginManager.get_instance()
