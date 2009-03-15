@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-14 10:45+0100\n"
-"PO-Revision-Date: 2009-03-14 10:59+0100\n"
+"PO-Revision-Date: 2009-03-15 20:41+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6713,11 +6713,11 @@ msgstr "Lebendes Paar mit den meisten Heiraten vor langer Zeit"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
-msgstr "Kürzeste letzte Hochzeit"
+msgstr "Kürzeste beendete Ehe"
 
 #: ../src/plugins/Records.py:552
 msgid "Longest past marriage"
-msgstr "Längste letzte Hochzeit"
+msgstr "Längste beendete Ehe"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
