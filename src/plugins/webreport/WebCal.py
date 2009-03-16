@@ -27,11 +27,6 @@
 Web Calendar generator.
 
 Refactoring. This is an ongoing job until this plugin is in a better shape.
-TODO list:
- - progress bar, rethink its usage
- - in year navigation, use month in link, or 'fullyear'
- - daylight saving not just for USA and Europe
- - move the close_file() from one_day() to caller
 """
 
 #------------------------------------------------------------------------
@@ -39,12 +34,8 @@ TODO list:
 # python modules
 #
 #------------------------------------------------------------------------
-import os
-import time
-import datetime
-import calendar
-import codecs
-import shutil
+import os, codecs, shutil
+import time, datetime, calendar
 from gettext import gettext as _
 from gettext import ngettext
 
@@ -83,9 +74,19 @@ import libholiday
 # constants
 #
 #------------------------------------------------------------------------
+# Calendar stylesheet names
+_CALENDARSCREEN = 'calendar-screen.css'
+_CALENDARPRINT = 'calendar-print.css'
+
+# Mainz stylesheet graphics
+# will only be used if Mainz is slected as the stylesheet
+_WEBBKGD = "Web_Mainz_Bkgd.png"
+_WEBHEADER = "Web_Mainz_Header.png"
+_WEBMID = "Web_Mainz_Mid.png"
+_WEBMIDLIGHT = "Web_Mainz_MidLight.png"
 
 # This information defines the list of styles in the Web calendar
-# options dialog as well as the location of the corresponding SCREEN
+# options dialog as well as the location of the corresponding
 # stylesheets.
 _CSS_FILES = [
     # First is used as default selection.
@@ -178,52 +179,43 @@ class WebCalReport(Report):
     """
     def __init__(self, database, options):
         Report.__init__(self, database, options)
-        menu = options.menu
+        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
 
         self.database = database
         self.options = options
 
-        self.html_dir = menu.get_option_by_name('target').get_value()
-        self.title_text  = menu.get_option_by_name('title').get_value()
-        filter_option =  menu.get_option_by_name('filter')
+        self.html_dir = mgobn('target')
+        self.title_text  = mgobn('title')
+        filter_option =  options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
-        self.ext = menu.get_option_by_name('ext').get_value()
-        self.copy = menu.get_option_by_name('cright').get_value()
-        self.encoding = menu.get_option_by_name('encoding').get_value()
-        self.css = menu.get_option_by_name('css').get_value()
+        self.ext = mgobn('ext')
+        self.copy = mgobn('cright')
+        self.encoding = mgobn('encoding')
+        self.css = mgobn('css')
 
-        self.country = menu.get_option_by_name('country').get_value()
-        self.start_dow = menu.get_option_by_name('start_dow').get_value()
+        self.country = mgobn('country')
+        self.start_dow = mgobn('start_dow')
 
-        self.multiyear = menu.get_option_by_name('multiyear').get_value()
+        self.multiyear = mgobn('multiyear')
 
-        self.start_year = menu.get_option_by_name('start_year').get_value()
-        self.end_year = menu.get_option_by_name('end_year').get_value()
+        self.start_year = mgobn('start_year')
+        self.end_year = mgobn('end_year')
 
-        self.fullyear = menu.get_option_by_name('fullyear').get_value()
+        self.fullyear = mgobn('fullyear')
 
-        self.maiden_name = menu.get_option_by_name('maiden_name').get_value()
+        self.maiden_name = mgobn('maiden_name')
 
-        self.alive = menu.get_option_by_name('alive').get_value()
-        self.birthday = menu.get_option_by_name('birthdays').get_value()
-        self.anniv = menu.get_option_by_name('anniversaries').get_value()
-        self.home_link = menu.get_option_by_name('home_link').get_value().strip()
+        self.alive = mgobn('alive')
+        self.birthday = mgobn('birthdays')
+        self.anniv = mgobn('anniversaries')
+        self.home_link = mgobn('home_link')
 
-        self.month_notes  = [menu.get_option_by_name('note_jan').get_value(),
-                             menu.get_option_by_name('note_feb').get_value(),
-                             menu.get_option_by_name('note_mar').get_value(),
-                             menu.get_option_by_name('note_apr').get_value(),
-                             menu.get_option_by_name('note_may').get_value(),
-                             menu.get_option_by_name('note_jun').get_value(),
-                             menu.get_option_by_name('note_jul').get_value(),
-                             menu.get_option_by_name('note_aug').get_value(),
-                             menu.get_option_by_name('note_sep').get_value(),
-                             menu.get_option_by_name('note_oct').get_value(),
-                             menu.get_option_by_name('note_nov').get_value(),
-                             menu.get_option_by_name('note_dec').get_value()]
+        self.month_notes = [mgobn('note_' + month) \
+            for month in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 
+                'aug', 'sep', 'oct', 'nov', 'dec']]
 
         # identify researcher name and e-mail address
-        # as Narrated WebSite already does
+        # as NarrativeWeb already does
         researcher = get_researcher()
         self.author = researcher.name
         if self.author:
@@ -330,28 +322,24 @@ class WebCalReport(Report):
         # Copy the screen stylesheet
         if self.css:
             fname = os.path.join(const.DATA_DIR, self.css)
-            self.copy_file(fname, self.css, "styles")
+            self.copy_file(fname, _CALENDARSCREEN, "styles")
 
         # copy print stylesheet
         fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-        self.copy_file(fname, "Web_Print-Default.css", "styles")
+        self.copy_file(fname, _CALENDARPRINT, "styles")
 
         # set imgs to empty
         imgs = []
 
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
-            imgs += ["Web_Mainz_Bkgd.png",
-                     "Web_Mainz_Header.png",
-                     "Web_Mainz_Mid.png",
-                     "Web_Mainz_MidLight.png",
-                     ]
+            imgs += [_WEBBKGD, _WEBHEADER, _WEBMID, _WEBMIDLIGHT]
 
         # Copy GRAMPS favicon
         imgs += ['favicon.ico']
 
         # copy copyright image
-        if 0 < self.copy < len(_CC):
+        if 0 < self.copy <= len(_CC):
             imgs += ['somerights20.gif']
 
         for fname in imgs:
@@ -683,38 +671,36 @@ class WebCalReport(Report):
         """
 
         of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
-        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"')
-        of.write('\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" ')
+        of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
             'xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
         of.write('<head>\n')
-        of.write('\t<title>%s</title>\n\n' % title)
+        of.write('\t<title>%s</title>\n' % title)
         of.write('\t<meta http-equiv="Content-Type" content="text/html;charset=%s" />\n'
                 % self.encoding)
         of.write('\t<meta name="generator" content="%s %s %s" />\n' %
             (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
-        of.write('\t<meta name="author" content="%s" />\n\n' % self.author)
-
-        subdirs = ['..'] * nr_up
+        of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
         # link to screen stylesheet
-        fname = '/'.join(subdirs + ['styles'] + [self.css])
-        of.write('\t<link rel="stylesheet" href="%s"' % fname)
-        of.write('type="text/css" media="screen">\n')
+        fname = '../'*nr_up + 'styles/' + _CALENDARSCREEN
+        of.write('\t<link rel="stylesheet" href="%s" ' % fname)
+        of.write('type="text/css" media="screen" />\n')
 
         # link to print stylesheet
         if add_print:
-            fname = '/'.join(subdirs + ['styles'] + ["Web_Print-Default.css"])
-            of.write('\t<link rel="stylesheet" href="%s"' % fname)
-            of.write('type="text/css" media="print">\n')
+            fname = '../'*nr_up + 'styles/' + _CALENDARPRINT
+            of.write('\t<link rel="stylesheet" href="%s" ' % fname)
+            of.write('type="text/css" media="print" />\n')
 
         # link to GRAMPS favicon
-        fname = '/'.join(subdirs + ['images'] + ['favicon.ico'])
+        fname = '../'*nr_up + 'images/' + 'favicon.ico'
         of.write('\t<link rel="shortcut icon" href="%s" ' % fname)
         of.write('type="image/icon" />\n')
 
-        of.write('</head>\n\n')
+        of.write('</head>\n')
 
     def write_footer(self, of, nr_up):
         """
@@ -874,7 +860,7 @@ class WebCalReport(Report):
         of.write('<p id="description">%s</p></div>\n' % msg)
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendars'), 12)
+        self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
 
         for month in range(1, 13):
 
@@ -962,8 +948,7 @@ class WebCalReport(Report):
         # do some error correcting if needed
         if self.multiyear:
             if self.end_year < self.start_year:
-                # Huh? Why start_year+1?
-                self.end_year = self.start_year + 1
+                self.end_year = self.start_year
 
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
@@ -1050,7 +1035,7 @@ class WebCalReport(Report):
                             if mother_handle == person_handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
-                                    if father != None:
+                                    if father is not None:
                                         father_name = father.primary_name
                                         father_surname = _get_regular_surname(sex, father_name)
                 short_name = _get_short_name(person, father_surname)
@@ -1075,26 +1060,24 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
 
-                        are_married = get_marrital_status(self.database, fam)
-                        if are_married is not None:
-                            for event_ref in fam.get_event_ref_list():
-                                event = self.database.get_event_from_handle(event_ref.ref)
-                                event_obj = event.get_date_object()
-                                year = event_obj.get_year()
-                                month = event_obj.get_month()
-                                day = event_obj.get_day()
+                        marriage_event = get_marriage_event(self.database, fam)
+                        if marriage_event:
+                            event_obj = marriage_event.get_date_object()
+                            year = event_obj.get_year()
+                            month = event_obj.get_month()
+                            day = event_obj.get_day()
 
-                                prob_alive_date = gen.lib.Date(this_year, month, day)
+                            prob_alive_date = gen.lib.Date(this_year, month, day)
 
-                                if event_obj.is_valid():
-                                    text = _('%(spouse)s and %(person)s') % {
-                                             'spouse' : spouse_name,
-                                             'person' : short_name}
+                            if event_obj.is_valid():
+                                text = _('%(spouse)s and %(person)s') % {
+                                         'spouse' : spouse_name,
+                                         'person' : short_name}
 
-                                    alive1 = probably_alive(person, self.database, prob_alive_date)
-                                    alive2 = probably_alive(spouse, self.database, prob_alive_date)
-                                    if ((self.alive and alive1 and alive2) or not self.alive):
-                                        self.add_day_item(text, year, month, day, 'Anniversary')
+                                alive1 = probably_alive(person, self.database, prob_alive_date)
+                                alive2 = probably_alive(spouse, self.database, prob_alive_date)
+                                if ((self.alive and alive1 and alive2) or not self.alive):
+                                    self.add_day_item(text, year, month, day, 'Anniversary')
 
 #------------------------------------------------------------------------
 #
@@ -1212,7 +1195,7 @@ class WebCalOptions(MenuReportOptions):
         self.__multiyear_changed()
 
         fullyear = BooleanOption(_('Create "Year At A Glance" '
-                                   'Calendar(s)'), False)
+                                   'Calendar'), False)
         fullyear.set_help(_('Whether to create A one-page mini calendar '
                             'with dates highlighted'))
         menu.add_option(category_name, 'fullyear', fullyear)
@@ -1352,7 +1335,7 @@ def _get_regular_surname(sex, name):
     Returns a name string built from the components of the Name instance.
     """
 
-    surname = name.surname
+    surname = name.get_surname()
     prefix = name.get_surname_prefix()
     if prefix:
         surname = prefix + " " + surname
@@ -1366,9 +1349,10 @@ def _get_short_name(person, maiden_name=None):
     """ Return person's name, unless maiden_name given, 
     unless married_name listed. """
     # Get all of a person's names:
-    primary_name = person.get_primary_name()
-    sex = person.get_gender()
+    primary_name = person.primary_name
+    sex = person.gender
 
+    call_name = None
     married_name = None
     names = [primary_name] + person.get_alternate_names()
     for name in names:
@@ -1376,22 +1360,19 @@ def _get_short_name(person, maiden_name=None):
             married_name = name
 
     # Now, decide which to use:
-    if maiden_name is not None:
-        if married_name is not None:
-            first_name, family_name = married_name.get_first_name(), \
-                _get_regular_surname(sex, married_name)
+    if maiden_name:
+        if married_name:
+            first_name, family_name = married_name.get_first_name(), _get_regular_surname(sex, married_name)
             call_name = married_name.get_call_name()
         else:
-            first_name, family_name = primary_name.get_first_name(), \
-                maiden_name
+            first_name, family_name = primary_name.get_first_name(), maiden_name
             call_name = primary_name.get_call_name()
     else:
-        first_name, family_name = primary_name.get_first_name(), \
-            _get_regular_surname(sex, primary_name)
+        first_name, family_name = primary_name.get_first_name(), _get_regular_surname(sex, primary_name)
         call_name = primary_name.get_call_name()
 
-    # If they have a nickname use it
-    if call_name is not None and call_name.strip() != "":
+    # If they have a nickname, use it?
+    if call_name:
         first_name = call_name.strip()
     else: # else just get the first name:
         first_name = first_name.strip()
@@ -1402,15 +1383,9 @@ def _get_short_name(person, maiden_name=None):
 
 # Simple utility list to convert Gramps day-of-week numbering 
 # to calendar.firstweekday numbering
-dow_gramps2iso = [ -1,
-                   calendar.SUNDAY,
-                   calendar.MONDAY,
-                   calendar.TUESDAY,
-                   calendar.WEDNESDAY,
-                   calendar.THURSDAY,
-                   calendar.FRIDAY,
-                   calendar.SATURDAY,
-                 ]
+dow_gramps2iso = [ -1, calendar.SUNDAY, calendar.MONDAY, calendar.TUESDAY,
+                   calendar.WEDNESDAY, calendar.THURSDAY, calendar.FRIDAY,
+                   calendar.SATURDAY]
 
 # define names for full and abbreviated month names in GrampsLocale
 full_month_name = GrampsLocale.long_months
@@ -1474,12 +1449,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         # a birthday
         if event == 'Birthday':
 
-            if nyears == 0:
-                txt_str = _('%(person)s, <em>birth</em>') % {
-                            'person' : text}
-            else: 
-                txt_str = _('%(person)s, <em>%(age)s</em> old') % {
-                            'person' : text, 'age' : age_str}
+            txt_str = _(text + ', <em>'
+            + ('%s old' % str(age_str) if nyears else 'birth')
+            + '</em>')
 
         # an anniversary
         elif event == 'Anniversary':
@@ -1504,25 +1476,22 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     return day_list
 
-def get_marrital_status(db, family):
+def get_marriage_event(db, family):
     """
-    Returns the marital status of two people, a couple
-
-    are_married will either be the marriage event 
-    or None if not married anymore
+    are_married will either be the marriage event or None
     """
 
-    are_married = None
+    marriage_event = False
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event.type in [gen.lib.EventType.MARRIAGE, 
                           gen.lib.EventType.MARR_ALT]:
-            are_married = event
+            marriage_event = event
         elif event.type in [gen.lib.EventType.DIVORCE, 
                             gen.lib.EventType.ANNULMENT, 
                             gen.lib.EventType.DIV_FILING]:
-            are_married = None
-    return are_married
+            marriage_event = False
+    return marriage_event
 
 def get_first_day_of_month(year, month):
     """

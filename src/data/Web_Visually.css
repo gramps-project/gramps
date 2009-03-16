@@ -237,7 +237,8 @@ p#user_header {
 }
 #navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#C1B398;
-    border-bottom:solid 1px #453619;
+    color:#000;
+    border-bottom:solid 1px #000;
 }
 #navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-weight:bold;
