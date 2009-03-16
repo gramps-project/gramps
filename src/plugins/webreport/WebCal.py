@@ -671,28 +671,28 @@ class WebCalReport(Report):
         """
 
         of.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
-        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"')
-        of.write('\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" ')
+        of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         xmllang = Utils.xml_lang()
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" '
             'xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
         of.write('<head>\n')
-        of.write('\t<title>%s</title>\n\n' % title)
+        of.write('\t<title>%s</title>\n' % title)
         of.write('\t<meta http-equiv="Content-Type" content="text/html;charset=%s" />\n'
                 % self.encoding)
         of.write('\t<meta name="generator" content="%s %s %s" />\n' %
             (const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE))
-        of.write('\t<meta name="author" content="%s" />\n\n' % self.author)
+        of.write('\t<meta name="author" content="%s" />\n' % self.author)
 
         # link to screen stylesheet
         fname = '../'*nr_up + 'styles/' + _CALENDARSCREEN
-        of.write('\t<link rel="stylesheet" href="%s"' % fname)
+        of.write('\t<link rel="stylesheet" href="%s" ' % fname)
         of.write('type="text/css" media="screen" />\n')
 
         # link to print stylesheet
         if add_print:
             fname = '../'*nr_up + 'styles/' + _CALENDARPRINT
-            of.write('\t<link rel="stylesheet" href="%s"' % fname)
+            of.write('\t<link rel="stylesheet" href="%s" ' % fname)
             of.write('type="text/css" media="print" />\n')
 
         # link to GRAMPS favicon
@@ -700,7 +700,7 @@ class WebCalReport(Report):
         of.write('\t<link rel="shortcut icon" href="%s" ' % fname)
         of.write('type="image/icon" />\n')
 
-        of.write('</head>\n\n')
+        of.write('</head>\n')
 
     def write_footer(self, of, nr_up):
         """
@@ -860,7 +860,7 @@ class WebCalReport(Report):
         of.write('<p id="description">%s</p></div>\n' % msg)
 
         # generate progress pass for "Year At A Glance"
-        self.progress.set_pass(_('Creating Year At A Glance calendars'), 12)
+        self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
 
         for month in range(1, 13):
 
@@ -1060,9 +1060,9 @@ class WebCalReport(Report):
                             spouse_name = _get_short_name(spouse)
                             short_name = _get_short_name(person)
 
-                        are_married = get_marriage_event(self.database, fam)
-                        if are_married is not None:
-                            event_obj = are_married.get_date_object()
+                        marriage_event = get_marriage_event(self.database, fam)
+                        if marriage_event:
+                            event_obj = marriage_event.get_date_object()
                             year = event_obj.get_year()
                             month = event_obj.get_month()
                             day = event_obj.get_day()
@@ -1195,7 +1195,7 @@ class WebCalOptions(MenuReportOptions):
         self.__multiyear_changed()
 
         fullyear = BooleanOption(_('Create "Year At A Glance" '
-                                   'Calendar(s)'), False)
+                                   'Calendar'), False)
         fullyear.set_help(_('Whether to create A one-page mini calendar '
                             'with dates highlighted'))
         menu.add_option(category_name, 'fullyear', fullyear)
@@ -1481,16 +1481,17 @@ def get_marriage_event(db, family):
     are_married will either be the marriage event or None
     """
 
+    marriage_event = False
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
         if event.type in [gen.lib.EventType.MARRIAGE, 
                           gen.lib.EventType.MARR_ALT]:
-            return event
+            marriage_event = event
         elif event.type in [gen.lib.EventType.DIVORCE, 
                             gen.lib.EventType.ANNULMENT, 
                             gen.lib.EventType.DIV_FILING]:
-            return None
-    return None
+            marriage_event = False
+    return marriage_event
 
 def get_first_day_of_month(year, month):
     """
