@@ -37,9 +37,7 @@ from gettext import gettext as _
 import BaseDoc
 from gen.plug import PluginManager
 import Errors
-import Mime
 import Utils
-
 
 #------------------------------------------------------------------------
 #
@@ -372,6 +370,5 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #------------------------------------------------------------------------
 print_label = None
 pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt", 
-                       _("Open with default viewer"))
+pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt")
 

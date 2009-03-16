@@ -52,7 +52,7 @@ class TextFormatComboBox(gtk.ComboBox):
         for item in self.__text_doc_list:
             name = item[0]
             self.store.append(row=[name])
-            if item[6] == active:
+            if item[5] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -74,8 +74,8 @@ class TextFormatComboBox(gtk.ComboBox):
     def get_ext(self):
         return self.__text_doc_list[self.get_active()][4]
 
-    def get_printable(self):
-        return self.__text_doc_list[self.get_active()][5]
+    def is_file_output(self):
+        return len(self.get_ext()) > 0
 
     def get_clname(self):
-        return self.__text_doc_list[self.get_active()][6]
+        return self.__text_doc_list[self.get_active()][5]

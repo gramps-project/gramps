@@ -46,7 +46,6 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------------
-import Mime
 import Utils
 import BaseDoc
 import Config
@@ -892,19 +891,8 @@ class GraphvizFormatComboBox(gtk.ComboBox):
     def get_format_str(self):
         return _FORMATS[self.get_active()]["type"]
 
-    def get_printable(self):
-        _apptype = _FORMATS[self.get_active()]["mime"]
-        print_label = None
-        try:
-            mprog = Mime.get_application(_apptype)
-            if Utils.search_for(mprog[0]):
-                print_label = _("Open in %(program_name)s") % { 'program_name':
-                                                                mprog[1] }
-            else:
-                print_label = None
-        except:
-            print_label = None
-        return print_label
+    def is_file_output(self):
+        return True
 
     def get_clname(self):
         return _FORMATS[self.get_active()]["type"]
@@ -1083,8 +1071,8 @@ class GraphvizReportDialog(ReportDialog):
                         yoptions=gtk.SHRINK)
         self.row += 1
 
-        self.print_report = gtk.CheckButton(_("Open with application"))
-        self.tbl.attach(self.print_report, 2, 4, self.row, self.row+1,
+        self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
 
@@ -1122,8 +1110,7 @@ class GraphvizReportDialog(ReportDialog):
         paper size/orientation options, but it does need a template
         file.  Those chances are made here.
         """
-        self.print_report.set_label (_("Open with default application"))
-        self.print_report.set_sensitive(True)
+        self.open_with_app.set_sensitive(True)
             
         fname = self.target_fileentry.get_full_path(0)
         (spath, ext) = os.path.splitext(fname)
@@ -1144,7 +1131,7 @@ class GraphvizReportDialog(ReportDialog):
         
         self.options.set_document(self.doc)
 
-        if self.print_report.get_active():
+        if self.open_with_app.get_active():
             self.doc.open_requested()
             
     def on_ok_clicked(self, obj):

@@ -66,7 +66,7 @@ class BookFormatComboBox(gtk.ComboBox):
             self.data.append(item)
             name = item[0]
             self.store.append(row=[name])
-            if item[6] == active:
+            if item[5] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -85,8 +85,8 @@ class BookFormatComboBox(gtk.ComboBox):
     def get_ext(self):
         return self.data[self.get_active()][4]
 
-    def get_printable(self):
-        return self.data[self.get_active()][5]
+    def is_file_output(self):
+        return len(self.get_ext()) > 0
 
     def get_clname(self):
-        return self.data[self.get_active()][6]
+        return self.data[self.get_active()][5]

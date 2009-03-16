@@ -37,7 +37,6 @@ import BaseDoc
 import Errors
 
 from Utils import gformat
-import Mime
 import Utils
 
 def lrgb(grp):
@@ -345,5 +344,4 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('grestore\n')
 
 pmgr = PluginManager.get_instance()
-pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps", 
-                       _("Open with default viewer"))
+pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps")

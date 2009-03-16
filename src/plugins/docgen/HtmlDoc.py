@@ -44,9 +44,7 @@ import const
 import Errors
 import BaseDoc
 from QuestionDialog import ErrorDialog, WarningDialog
-import Mime
 import Utils
-
 
 #------------------------------------------------------------------------
 #
@@ -477,7 +475,5 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-print_label = None
 pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('HTML'), HtmlDoc, 0, 1, ".html", 
-                       _("Open with default viewer"))
+pmgr.register_text_doc(_('HTML'), HtmlDoc, 0, 1, ".html")

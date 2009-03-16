@@ -50,7 +50,6 @@ from gen.plug import PluginManager
 from ReportBase import ReportUtils
 import ImgManip
 import FontScale
-import Mime
 import Utils
 import Errors
 
@@ -1144,12 +1143,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 # Register plugins
 #
 #--------------------------------------------------------------------------
-print_label = _("Open with default viewer")
 pmgr = PluginManager.get_instance()
-
-pmgr.register_text_doc(_('Open Document Text'), 
-                       ODFDoc, 1, 1, ".odt", print_label)
-pmgr.register_book_doc(_("Open Document Text"), 
-                       ODFDoc, 1, 1, ".odt", print_label)
-pmgr.register_draw_doc(_("Open Document Text"), 
-                       ODFDoc, 1, 1, ".odt", print_label);
+pmgr.register_text_doc(_('Open Document Text'), ODFDoc, 1, 1, ".odt")
+pmgr.register_book_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt")
+pmgr.register_draw_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt")

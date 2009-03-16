@@ -38,10 +38,7 @@ import BaseDoc
 from gen.plug import PluginManager
 import ImgManip
 import Errors
-import Mime
 import Utils
-
-mime_type = "application/rtf"
 
 #------------------------------------------------------------------------
 #
@@ -441,5 +438,4 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #
 #------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, ".rtf", 
-                       _("Open with default viewer"))
+pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, ".rtf")

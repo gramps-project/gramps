@@ -43,10 +43,7 @@ import BaseDoc
 from gen.plug import PluginManager
 import ImgManip
 import Errors
-import Mime
 import Utils
-
-_apptype = 'text/x-tex'
 
 #------------------------------------------------------------------------
 #
@@ -646,17 +643,5 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 # Register plugins
 #
 #------------------------------------------------------------------------
-print_label = None
 pmgr = PluginManager.get_instance()
-try:
-    mprog = Mime.get_application(_apptype)
-
-    if Utils.search_for(mprog[0]):
-        print_label = _("Open in %(program_name)s") % { 'program_name':
-                                                        mprog[1]}
-    else:
-        print_label = None
-except:
-    print_label = None
-
-pmgr.register_text_doc(_('LaTeX'), LaTeXDoc, 1, 0, ".tex", print_label)
+pmgr.register_text_doc(_('LaTeX'), LaTeXDoc, 1, 0, ".tex")

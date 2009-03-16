@@ -94,7 +94,7 @@ class DocReportDialog(ReportDialog):
         
         self.options.set_document(self.doc)
 
-        if self.print_report.get_active():
+        if self.open_with_app.get_active():
             self.doc.open_requested()
 
     def doc_type_changed(self, obj):
@@ -104,14 +104,10 @@ class DocReportDialog(ReportDialog):
         file format.  For example, a HTML document doesn't need any
         paper size/orientation options, but it does need a template
         file.  Those chances are made here."""
-
-        label = obj.get_printable()
-        if label:
-            self.print_report.set_label (label)
-            self.print_report.set_sensitive (True)
+        if obj.is_file_output():
+            self.open_with_app.set_sensitive (True)
         else:
-            self.print_report.set_label (_("Open with default viewer"))
-            self.print_report.set_sensitive (False)
+            self.open_with_app.set_sensitive (False)
 
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
@@ -129,15 +125,20 @@ class DocReportDialog(ReportDialog):
             self.notebook.insert_page(self.html_table,self.html_label,0)
             self.html_table.show_all()
 
-        fname = self.target_fileentry.get_full_path(0)
-        (spath,ext) = os.path.splitext(fname)
-
-        ext_val = obj.get_ext()
-        if ext_val:
-            fname = spath + ext_val
+        if obj.is_file_output():
+            fname = self.target_fileentry.get_full_path(0)
+            (spath, ext) = os.path.splitext(fname)
+    
+            ext_val = obj.get_ext()
+            if ext_val:
+                fname = spath + ext_val
+            else:
+                fname = spath
+            self.target_fileentry.set_filename(fname)
+            self.target_fileentry.set_sensitive(True)
         else:
-            fname = spath
-        self.target_fileentry.set_filename(fname)
+            self.target_fileentry.set_filename("")
+            self.target_fileentry.set_sensitive(False)
 
         # Does this report format use styles?
         if self.style_button:
@@ -159,8 +160,8 @@ class DocReportDialog(ReportDialog):
                         yoptions=gtk.SHRINK)
         self.row += 1
 
-        self.print_report = gtk.CheckButton (_("Print a copy"))
-        self.tbl.attach(self.print_report,2,4,self.row,self.row+1,
+        self.open_with_app = gtk.CheckButton(_("Open with default viewer"))
+        self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
 

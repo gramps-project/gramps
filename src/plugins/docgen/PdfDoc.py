@@ -39,7 +39,6 @@ from gettext import gettext as _
 from CairoDoc import CairoDoc
 from gen.plug import PluginManager
 import Utils
-import Mime
 
 #------------------------------------------------------------------------
 #
@@ -136,12 +135,10 @@ class PdfDoc(CairoDoc):
 def register_docgen():
     """Register the docgen with the GRAMPS plugin system.
     """
-    mtype = _('PDF document')
-    print_label = _("Open with default viewer")
-        
+    doc_name = _('PDF document')
     pmgr = PluginManager.get_instance()
-    pmgr.register_text_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
-    pmgr.register_draw_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
-    pmgr.register_book_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
+    pmgr.register_text_doc(doc_name, PdfDoc, 1, 1, ".pdf")
+    pmgr.register_draw_doc(doc_name, PdfDoc, 1, 1, ".pdf")
+    pmgr.register_book_doc(doc_name, PdfDoc, 1, 1, ".pdf")
 
 register_docgen()
