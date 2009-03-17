@@ -494,8 +494,6 @@ class WebCalReport(Report):
         # identify currentsection for proper highlighting
         self.display_month_navs(of, nr_up, year, currentsection, use_home)
 
-        of.write('<div class="content">\n')
-
     def calendar_build(self, of, cal, year, month):
         """
         This does the work of building the calendar
@@ -710,7 +708,6 @@ class WebCalReport(Report):
         """
 
         of.write('<div class="fullclear"></div>\n')
-        of.write('</div>\n')            # Closing "content"
 
         of.write('<div id="footer">\n')
 
@@ -857,7 +854,10 @@ class WebCalReport(Report):
          'to all your data at a glance compressed into one page. Clicking '
          'on a date will take you to a page that shows all the events for '
          'that date, if there are any!\n'))
-        of.write('<p id="description">%s</p></div>\n' % msg)
+        of.write('\t<p id="description">%s</p>\n' % msg)
+
+        # close page description division
+        of.write('</div>\n')
 
         # generate progress pass for "Year At A Glance"
         self.progress.set_pass(_('Creating Year At A Glance calendar'), 12)
@@ -867,15 +867,8 @@ class WebCalReport(Report):
             # build the calendar
             self.calendar_build(of, "yg", year, month)
 
-            # create note section for "Year At A Glance"
-            note = self.month_notes[month-1].strip()
-            note = note or "&nbsp;"
-            of.write('\t<tfoot>\n')
-            of.write('\t\t<tr>\n')
-            of.write('\t\t\t<td colspan="7">%s</td>\n' % note)
-            of.write('\t\t</tr>\n')
-            of.write('\t</tfoot>\n')
-            of.write('</table>\n\n')
+            # close table
+            of.write('</table>\n')
 
             # increase progress bar
             self.progress.step()

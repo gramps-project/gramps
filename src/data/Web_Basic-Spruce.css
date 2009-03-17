@@ -1136,27 +1136,24 @@ body#WebCal #CreatorInfo {
 }
 
 /* Calendar : Full Year */
-body#fullyear div.content, body#fullyearlinked div.content {
+body#fullyearlinked div.content {
     width:963px;
     margin:0 auto;
     padding:15px 0 2px 2px;
 }
-body#fullyear table.calendar, body#fullyearlinked table.calendar {
+body#fullyearlinked table.calendar {
     float:left;
     width:320px;
     height:18em;
     border:solid 1px #7D5925;
 }
-body#fullyear table.calendar thead tr th, body#fullyearlinked table.calendar thead tr th {
+body#fullyearlinked table.calendar thead tr th {
     height:2em;
 }
-body#fullyear table.calendar thead tr th.monthName, body#fullyearlinked table.calendar thead tr th.monthName {
+body#fullyearlinked table.calendar thead tr th.monthName {
     font-size:1.2em;
     padding:2px 0;
 }
-body#fullyear table.calendar tbody tr td, body#fullyearlinked table.calendar tbody tr td {
+ body#fullyearlinked table.calendar tbody tr td {
     height:3em;
-}
-body#fullyear table.calendar tfoot tr td, body#fullyearlinked table.calendar tfoot tr td {
-    display:none;
 }
