@@ -108,6 +108,21 @@ class CommandLineReport:
 
     def __init__(self, database, name, category, option_class, options_str_dict,
                  noopt=False):
+        
+        pmgr = gen.plug.PluginManager.get_instance()
+        self.__textdoc_plugins = []
+        self.__drawdoc_plugins = []
+        self.__bookdoc_plugins = []
+        for plugin in pmgr.get_docgen_plugins():
+            if plugin.get_text_support() and plugin.get_extension():
+                self.__textdoc_plugins.append(plugin)
+            if plugin.get_draw_support() and plugin.get_extension():
+                self.__drawdoc_plugins.append(plugin)
+            if plugin.get_text_support() and \
+               plugin.get_draw_support() and \
+               plugin.get_extension():
+                self.__bookdoc_plugins.append(plugin)
+        
         self.database = database
         self.category = category
         self.format = None
@@ -125,11 +140,6 @@ class CommandLineReport:
         """
         Initialize the options that are hard-coded into the report system.
         """
-        pmgr = gen.plug.PluginManager.get_instance()
-        _textdoc_list = pmgr.get_text_doc_list()
-        _drawdoc_list = pmgr.get_draw_doc_list()
-        _bookdoc_list = pmgr.get_book_doc_list()
-        
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
@@ -142,7 +152,7 @@ class CommandLineReport:
 
         self.options_help = {
             'of'        : ["=filename", "Output file name. MANDATORY", ""],
-            'off'       : ["=format", "Output file format.", ""],
+            'off'       : ["=format", "Output file format.", []],
             'style'     : ["=name", "Style name.", ""],
             'papers'    : ["=name", "Paper size name.", ""],
             'papero'    : ["=num", "Paper orientation number.", ""],
@@ -156,14 +166,17 @@ class CommandLineReport:
                                                   "whatever_name")
 
         if self.category == CATEGORY_TEXT:
-            self.options_help['off'][2] = \
-                [ item[6] for item in _textdoc_list ]
+            for plugin in self.__textdoc_plugins:
+                self.options_help['off'][2].append( 
+                    plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_DRAW:
-            self.options_help['off'][2] = \
-                [ item[6] for item in _drawdoc_list ]
+            for plugin in self.__drawdoc_plugins:
+                self.options_help['off'][2].append(  
+                    plugin.get_extension() + "\t" + plugin.get_description() )
         elif self.category == CATEGORY_BOOK:
-            self.options_help['off'][2] = \
-                [ item[6] for item in _bookdoc_list ]
+            for plugin in self.__bookdoc_plugins:
+                self.options_help['off'][2].append(  
+                    plugin.get_extension() + "\t" + plugin.get_description() )
         else:
             self.options_help['off'][2] = "NA"
 
@@ -284,29 +297,27 @@ class CommandLineReport:
         
         self.option_class.handler.output = self.options_dict['of']
 
-        pmgr = gen.plug.PluginManager.get_instance()
-
         if self.category == CATEGORY_TEXT:
-            for item in pmgr.get_text_doc_list():
-                if item[6] == self.options_dict['off']:
-                    self.format = item[1]
+            for plugin in self.__textdoc_plugins:
+                if plugin.get_extension() == self.options_dict['off']:
+                    self.format = plugin.get_basedoc()
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = pmgr.get_text_doc_list()[0][1]
+                self.format = self.__textdoc_plugins[0].get_basedoc()
         elif self.category == CATEGORY_DRAW:
-            for item in pmgr.get_draw_doc_list():
-                if item[6] == self.options_dict['off']:
-                    self.format = item[1]
+            for plugin in self.__drawdoc_plugins:
+                if plugin.get_extension() == self.options_dict['off']:
+                    self.format = plugin.get_basedoc()
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = pmgr.get_draw_doc_list()[0][1]
+                self.format = self.__drawdoc_plugins[0].get_basedoc()
         elif self.category == CATEGORY_BOOK:
-            for item in pmgr.get_book_doc_list():
-                if item[6] == self.options_dict['off']:
-                    self.format = item[1]
+            for plugin in self.__bookdoc_plugins:
+                if plugin.get_extension() == self.options_dict['off']:
+                    self.format = plugin.get_basedoc()
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = pmgr.get_book_doc_list()[0][1]
+                self.format = self.__bookdoc_plugins[0].get_basedoc()
         else:
             self.format = None
 

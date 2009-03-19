@@ -136,8 +136,6 @@ IPREFIX              = ('preferences', 'iprefix', 2)
 OPREFIX              = ('preferences', 'oprefix', 2)
 PPREFIX              = ('preferences', 'pprefix', 2)
 SPREFIX              = ('preferences', 'sprefix', 2)
-GOUTPUT_PREFERENCE   = ('preferences', 'goutput-preference', 2)
-OUTPUT_PREFERENCE    = ('preferences', 'output-preference', 2)
 PAPER_METRIC         = ('preferences', 'paper-metric', 1)
 PAPER_PREFERENCE     = ('preferences', 'paper-preference', 2)
 RECENT_FILE          = ('paths', 'recent-file', 2)
@@ -285,9 +283,7 @@ default_value = {
     IPREFIX              : 'I%04d', 
     OPREFIX              : 'O%04d', 
     PPREFIX              : 'P%04d', 
-    SPREFIX              : 'S%04d', 
-    GOUTPUT_PREFERENCE   : 'No default format', 
-    OUTPUT_PREFERENCE    : 'No default format', 
+    SPREFIX              : 'S%04d',  
     PAPER_METRIC         : 0, 
     PAPER_PREFERENCE     : 'Letter', 
     RECENT_FILE          : '', 

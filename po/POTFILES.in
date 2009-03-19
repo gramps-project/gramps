@@ -392,6 +392,7 @@ src/PluginUtils/_Tool.py
 src/gen/utils/dbutils.py
 src/gen/utils/progressmon.py
 src/gen/plug/__init__.py
+src/gen/plug/_docgen.py
 src/gen/plug/_export.py
 src/gen/plug/_import.py
 src/gen/plug/_manager.py
@@ -418,11 +419,9 @@ src/gen/plug/menu/_text.py
 
 
 # ReportBase package
-src/ReportBase/_BookFormatComboBox.py
 src/ReportBase/_CommandLineReport.py
 src/ReportBase/_Constants.py
 src/ReportBase/_DocReportDialog.py
-src/ReportBase/_DrawFormatComboBox.py
 src/ReportBase/_DrawReportDialog.py
 src/ReportBase/_Endnotes.py
 src/ReportBase/_GraphvizReportDialog.py
@@ -437,7 +436,6 @@ src/ReportBase/_ReportUtils.py
 src/ReportBase/_StyleComboBox.py
 src/ReportBase/_StyleEditor.py
 src/ReportBase/_TemplateParser.py
-src/ReportBase/_TextFormatComboBox.py
 src/ReportBase/_TextReportDialog.py
 
 # gen

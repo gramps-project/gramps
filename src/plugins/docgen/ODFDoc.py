@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2005-2006  Serge Noiraud
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ from xml.sax.saxutils import escape
 #-------------------------------------------------------------------------
 import BaseDoc
 import const
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 from ReportBase import ReportUtils
 import ImgManip
 import FontScale
@@ -1138,12 +1138,23 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.cntnt.write('</draw:text-box>')
         self.cntnt.write('</draw:frame>\n')
 
-#--------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
-# Register plugins
+# register_plugin
 #
-#--------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('Open Document Text'), ODFDoc, 1, 1, ".odt")
-pmgr.register_book_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt")
-pmgr.register_draw_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt")
+#------------------------------------------------------------------------
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _('Open Document Text'), 
+                          description = _("Generates documents in Open "
+                                          "Document Text format (.odt)."),
+                          basedoc     = ODFDoc,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "odt" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()

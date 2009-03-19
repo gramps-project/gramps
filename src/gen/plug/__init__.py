@@ -25,5 +25,7 @@ from _plugin import Plugin
 from _manager import PluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin
+from _docgen import DocGenPlugin
 
-__all__ = [ "menu", Plugin, PluginManager, ImportPlugin, ExportPlugin ]
+__all__ = [ "menu", Plugin, PluginManager, ImportPlugin, ExportPlugin, \
+            DocGenPlugin ]

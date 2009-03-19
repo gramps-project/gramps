@@ -95,13 +95,11 @@ class PluginManager(gen.utils.Callback):
         self.__tool_list         = []
         self.__import_plugins    = []
         self.__export_plugins    = []
+        self.__docgen_plugins    = []
         self.__general_plugins   = []
         self.__mapservice_list   = []
         self.__attempt_list      = []
         self.__loaddir_list      = []
-        self.__textdoc_list      = []
-        self.__bookdoc_list      = []
-        self.__drawdoc_list      = []
         self.__failmsg_list      = []
         self.__bkitems_list      = []
         self.__cl_list           = []
@@ -169,6 +167,7 @@ class PluginManager(gen.utils.Callback):
         # TODO: do other lists need to be reset here, too?
         self.__import_plugins[:] = []
         self.__export_plugins[:] = []
+        self.__docgen_plugins[:] = []
 
         for plugin in self.__success_list:
             filename = plugin[0]
@@ -250,18 +249,6 @@ class PluginManager(gen.utils.Callback):
         """ Return the list of book plugins. """
         return self.__bkitems_list
     
-    def get_text_doc_list(self):
-        """ Return the list of text document generator plugins. """
-        return self.__textdoc_list
-    
-    def get_draw_doc_list(self):
-        """ Return the list of graphical document generator plugins. """
-        return self.__drawdoc_list
-    
-    def get_book_doc_list(self):
-        """ Return the list of book document generator plugins. """
-        return self.__bookdoc_list
-    
     def get_cl_list(self):
         """ Return the list of command line report plugins. """
         return self.__cl_list
@@ -288,6 +275,8 @@ class PluginManager(gen.utils.Callback):
             self.__import_plugins.append(plugin)
         elif isinstance(plugin, gen.plug.ExportPlugin):
             self.__export_plugins.append(plugin)
+        elif isinstance(plugin, gen.plug.DocGenPlugin):
+            self.__docgen_plugins.append(plugin)
         elif isinstance(plugin, gen.plug.Plugin):
             self.__general_plugins.append(plugin)
         
@@ -308,7 +297,15 @@ class PluginManager(gen.utils.Callback):
         @return: [gen.plug.ExportPlugin] (a list of ExportPlugin instances)
         """
         return self.__export_plugins
-
+    
+    def get_docgen_plugins(self):
+        """
+        Get the list of docgen plugins.
+        
+        @return: [gen.plug.DocGenPlugin] (a list of DocGenPlugin instances)
+        """
+        return self.__docgen_plugins
+    
     def register_tool(self, name, category, tool_class, options_class,
                       modes, translated_name, status=_("Unknown"), 
                       description=_UNAVAILABLE, author_name=_("Unknown"),
@@ -461,59 +458,6 @@ class PluginManager(gen.utils.Callback):
         self.__cl_list.append( (name, category, report_class, options_class,
                                 translated_name, unsupported, require_active) )
 
-    def register_text_doc(self, name, classref, paper, style, ext, clname=''):
-        """
-        Register a text document generator.
-        """
-        del_index = -1
-        for i in range(0, len(self.__textdoc_list)):
-            val = self.__textdoc_list[i]
-            if val[0] == name:
-                del_index = i
-        if del_index != -1:
-            del self.__textdoc_list[del_index]
-    
-        if not clname:
-            clname = ext[1:]
-    
-        self.__textdoc_list.append( (name, classref, paper, style,
-                                     ext, clname) )
-        self.__mod2text[classref.__module__] = name
-
-    def register_book_doc(self, name, classref, paper, style, ext, clname=''):
-        """
-        Register a text document generator.
-        """
-        del_index = -1
-        for i in range(0, len(self.__bookdoc_list)):
-            val = self.__bookdoc_list[i]
-            if val[0] == name:
-                del_index = i
-        if del_index != -1:
-            del self.__bookdoc_list[del_index]
-    
-        if not clname:
-            clname = ext[1:]
-        self.__bookdoc_list.append( (name, classref, paper, style, ext, 
-                                     clname) )
-
-    def register_draw_doc(self, name, classref, paper, style, ext, clname=''):
-        """
-        Register a drawing document generator.
-        """
-        del_index = -1
-        for i in range(0, len(self.__drawdoc_list)):
-            val = self.__drawdoc_list[i]
-            if val[0] == name:
-                del_index = i
-        if del_index != -1:
-            del self.__drawdoc_list[del_index]
-        if not clname:
-            clname = ext[1:]
-        self.__drawdoc_list.append( (name, classref, paper, style, ext,
-                                     clname) )
-        self.__mod2text[classref.__module__] = name
-
     def register_quick_report(self, name, category, run_func, translated_name,
                               status=_("Unknown"), description=_UNAVAILABLE,
                               author_name=_("Unknown"),
@@ -595,6 +539,8 @@ class PluginManager(gen.utils.Callback):
                     if item.get_module_name() not in failed_module_names ][:]
         self.__import_plugins[:] = [ item for item in self.__import_plugins
                     if item.get_module_name() not in failed_module_names ][:]
+        self.__docgen_plugins[:] = [ item for item in self.__docgen_plugins
+                    if item.get_module_name() not in failed_module_names ][:]
         self.__tool_list[:] = [ item for item in self.__tool_list
                       if item[0].__module__ not in failed_module_names ][:]
         self.__cli_tool_list[:] = [ item for item in self.__cli_tool_list
@@ -608,12 +554,6 @@ class PluginManager(gen.utils.Callback):
                          if item[2].__module__ not in failed_module_names ][:]
         self.__cl_list[:] = [ item for item in self.__cl_list
                     if item[2].__module__ not in failed_module_names ][:]
-        self.__textdoc_list[:] = [ item for item in self.__textdoc_list
-                         if item[1].__module__ not in failed_module_names ][:]
-        self.__bookdoc_list[:] = [ item for item in self.__bookdoc_list
-                         if item[1].__module__ not in failed_module_names ][:]
-        self.__drawdoc_list[:] = [ item for item in self.__drawdoc_list
-                         if item[1].__module__ not in failed_module_names ][:]
 
     def register_relcalc(self, relclass, languages):
         """

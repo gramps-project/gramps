@@ -37,7 +37,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from CairoDoc import CairoDoc
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import Utils
 
 #------------------------------------------------------------------------
@@ -126,19 +126,24 @@ class PdfDoc(CairoDoc):
         # load the result into an external viewer
         if self.open_req:
             Utils.open_file_with_default_application(self._filename) 
-            
-#------------------------------------------------------------------------
-#
-# Functions
-#
-#------------------------------------------------------------------------
-def register_docgen():
-    """Register the docgen with the GRAMPS plugin system.
-    """
-    doc_name = _('PDF document')
-    pmgr = PluginManager.get_instance()
-    pmgr.register_text_doc(doc_name, PdfDoc, 1, 1, ".pdf")
-    pmgr.register_draw_doc(doc_name, PdfDoc, 1, 1, ".pdf")
-    pmgr.register_book_doc(doc_name, PdfDoc, 1, 1, ".pdf")
 
-register_docgen()
+#------------------------------------------------------------------------
+#
+# register_plugin
+#
+#------------------------------------------------------------------------
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _('PDF document'), 
+                          description = _("Generates documents in PDF "
+                                          "format (.pdf)."),
+                          basedoc     = PdfDoc,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "pdf" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()

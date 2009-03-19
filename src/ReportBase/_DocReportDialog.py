@@ -104,7 +104,8 @@ class DocReportDialog(ReportDialog):
         file format.  For example, a HTML document doesn't need any
         paper size/orientation options, but it does need a template
         file.  Those chances are made here."""
-        if obj.is_file_output():
+        docgen_plugin = obj.get_active_plugin()
+        if docgen_plugin.get_extension():
             self.open_with_app.set_sensitive (True)
         else:
             self.open_with_app.set_sensitive (False)
@@ -114,7 +115,7 @@ class DocReportDialog(ReportDialog):
 
         if self.page_html_added:
             self.notebook.remove_page(0)
-        if obj.get_paper() == 1:
+        if docgen_plugin.get_paper_used():
             self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
             self.paper_label.set_use_markup(True)
             self.notebook.insert_page(self.paper_frame,self.paper_label,0)
@@ -125,15 +126,12 @@ class DocReportDialog(ReportDialog):
             self.notebook.insert_page(self.html_table,self.html_label,0)
             self.html_table.show_all()
 
-        if obj.is_file_output():
+        ext_val = docgen_plugin.get_extension()
+        if ext_val:
             fname = self.target_fileentry.get_full_path(0)
             (spath, ext) = os.path.splitext(fname)
-    
-            ext_val = obj.get_ext()
-            if ext_val:
-                fname = spath + ext_val
-            else:
-                fname = spath
+            
+            fname = spath + "." + ext_val
             self.target_fileentry.set_filename(fname)
             self.target_fileentry.set_sensitive(True)
         else:
@@ -142,8 +140,8 @@ class DocReportDialog(ReportDialog):
 
         # Does this report format use styles?
         if self.style_button:
-            self.style_button.set_sensitive(obj.get_styles())
-            self.style_menu.set_sensitive(obj.get_styles())
+            self.style_button.set_sensitive(docgen_plugin.get_style_support())
+            self.style_menu.set_sensitive(docgen_plugin.get_style_support())
         self.page_html_added = True
 
     def setup_format_frame(self):
@@ -165,13 +163,13 @@ class DocReportDialog(ReportDialog):
                         yoptions=gtk.SHRINK)
         self.row += 1
 
-        ext = self.format_menu.get_ext()
+        ext = self.format_menu.get_active_plugin().get_extension()
         if ext is None:
             ext = ""
         else:
             spath = self.get_default_directory()
             base = self.get_default_basename()
-            spath = os.path.normpath("%s/%s%s" % (spath, base, ext))
+            spath = os.path.normpath("%s/%s.%s" % (spath, base, ext))
             self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
@@ -253,8 +251,9 @@ class DocReportDialog(ReportDialog):
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
-        self.format = self.format_menu.get_reference()
-        format_name = self.format_menu.get_clname()
+        docgen_plugin = self.format_menu.get_active_plugin()
+        self.format = docgen_plugin.get_basedoc()
+        format_name = docgen_plugin.get_extension()
         self.options.handler.set_format_name(format_name)
         
     def parse_html_frame(self):

@@ -2,8 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
-# Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
+# Copyright (C) 2007-2009  Brian G. Matherly
+# Copyright (C) 2009       Benny Malengier <benny.malengier@gramps-project.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import Errors
 import Utils
 
@@ -365,10 +365,21 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
 #------------------------------------------------------------------------
 #
-# Register the document generator with the GRAMPS plugin system
+# register_plugin
 #
 #------------------------------------------------------------------------
-print_label = None
-pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt")
-
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _("Plain Text"), 
+                          description = _("Generates documents in plain text "
+                                          "format (.txt)."),
+                          basedoc     = AsciiDoc,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "txt" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()

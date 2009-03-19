@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import BaseDoc
 import Errors
 
@@ -257,11 +257,23 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
 def units(val):
     return (val[0]*35.433, val[1]*35.433)
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
-# Register document generator
+# register_plugin
 #
-#-------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"), SvgDrawDoc, 1, 1, 
-                       ".svg")
+#------------------------------------------------------------------------
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _("SVG (Scalable Vector Graphics)"), 
+                          description = _("Generates documents in Scalable "
+                                          "Vector Graphics format (.svg)."),
+                          basedoc     = SvgDrawDoc,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "svg" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()

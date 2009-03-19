@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ from gettext import gettext as _
 #Gramps modules
 #-------------------------------------------------------------------------
 from ReportBase import ReportUtils, run_print_dialog, get_print_dialog_app
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import BaseDoc
 import Errors
 
@@ -343,5 +343,23 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 
-pmgr = PluginManager.get_instance()
-pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps")
+#------------------------------------------------------------------------
+#
+# register_plugin
+#
+#------------------------------------------------------------------------
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _("PostScript"), 
+                          description = _("Generates documents in postscript "
+                                          "format (.ps)."),
+                          basedoc     = PSDrawDoc,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "ps" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()

@@ -58,6 +58,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 from gtk import glade
 from gtk import RESPONSE_OK
 
@@ -78,7 +79,6 @@ import ManagedWindow
 
 # Import from specific modules in ReportBase
 from ReportBase import CATEGORY_BOOK, book_categories
-from ReportBase._BookFormatComboBox import BookFormatComboBox
 from ReportBase._ReportDialog import ReportDialog
 from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
@@ -1039,6 +1039,45 @@ class BookItemDialog(ReportDialog):
     def parse_target_frame(self):
         """Target frame is not used."""
         return 1
+    
+#-------------------------------------------------------------------------
+#
+# _BookFormatComboBox
+#
+#-------------------------------------------------------------------------
+class _BookFormatComboBox(gtk.ComboBox):
+
+    def __init__(self, active):
+
+        gtk.ComboBox.__init__(self)
+        
+        pmgr = PluginManager.get_instance()
+        self.__bookdoc_plugins = []
+        for plugin in pmgr.get_docgen_plugins():
+            if plugin.get_text_support() and plugin.get_draw_support():
+                self.__bookdoc_plugins.append(plugin)
+        
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
+
+        index = 0
+        active_index = 0
+        for plugin in self.__bookdoc_plugins:
+            name = plugin.get_name()
+            self.store.append(row=[name])
+            if plugin.get_extension() == active:
+                active_index = index
+            index = index + 1
+        self.set_active(active_index)
+
+    def get_active_plugin(self):
+        """
+        Get the plugin represented by the currently active selection.
+        """
+        return self.__bookdoc_plugins[self.get_active()]
 
 #------------------------------------------------------------------------
 #
@@ -1053,6 +1092,7 @@ class BookReportDialog(DocReportDialog):
     """
 
     def __init__(self, dbstate, uistate, book, options):
+        self.format_menu = None
         self.options = options
         self.page_html_added = False
         DocReportDialog.__init__(self, dbstate, uistate, options,
@@ -1117,8 +1157,7 @@ class BookReportDialog(DocReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        self.format_menu = BookFormatComboBox()
-        self.format_menu.set(self.doc_type_changed, None, active)
+        self.format_menu = _BookFormatComboBox( active )
 
     def make_document(self):
         """Create a document of the type requested by the user."""

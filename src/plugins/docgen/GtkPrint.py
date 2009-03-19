@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Zsolt Foldvari
-# Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2007       Zsolt Foldvari
+# Copyright (C) 2008-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from CairoDoc import CairoDoc
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import Errors
 
 #------------------------------------------------------------------------
@@ -613,13 +613,24 @@ class GtkPrint(CairoDoc):
         context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
         
         return True
+
+#------------------------------------------------------------------------
+#
+# register_plugin
+#
+#------------------------------------------------------------------------
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _('Print...'), 
+                          description = _("Generates documents and prints them "
+                                          "directly."),
+                          basedoc     = GtkPrint,
+                          paper       = True,
+                          style       = True, 
+                          extension   = "" )
+    pmgr.register_plugin(plugin)
     
-#------------------------------------------------------------------------
-#
-# Register the document generator with the GRAMPS plugin system
-#
-#------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('Print...'), GtkPrint, 1, 1, "")
-pmgr.register_draw_doc(_('Print...'), GtkPrint, 1, 1, "")
-pmgr.register_book_doc(_('Print...'), GtkPrint, 1, 1, "")
+register_plugin()

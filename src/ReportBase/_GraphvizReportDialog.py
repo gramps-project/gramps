@@ -860,15 +860,12 @@ class GraphvizFormatComboBox(gtk.ComboBox):
         self.pack_start(cell, True)
         self.add_attribute(cell, 'text', 0)
 
-        out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
         active_index = 0
         for item in _FORMATS:
             name = item["descr"]
             self.store.append(row=[name])
             if item['type'] == active:
-                active_index = index
-            elif not active and name == out_pref:
                 active_index = index
             index = index + 1
         self.set_active(active_index)

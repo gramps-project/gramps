@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2008       Raphael Ackermann
 #               2002-2003  Donald A. Peterson
 #               2003       Alex Roitman
@@ -40,7 +40,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from gen.plug import PluginManager
+from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import Errors
 import Utils
@@ -637,11 +637,23 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('\\end{verbatim}')
         self.end_paragraph()
 
-
 #------------------------------------------------------------------------
 #
-# Register plugins
+# register_plugin
 #
 #------------------------------------------------------------------------
-pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('LaTeX'), LaTeXDoc, 1, 0, ".tex")
+def register_plugin():
+    """
+    Register the document generator with the GRAMPS plugin system.
+    """
+    pmgr = PluginManager.get_instance()
+    plugin = DocGenPlugin(name        = _('LaTeX'), 
+                          description = _("Generates documents in LaTeX "
+                                          "format."),
+                          basedoc     = LaTeXDoc,
+                          paper       = True,
+                          style       = False, 
+                          extension   = "tex" )
+    pmgr.register_plugin(plugin)
+    
+register_plugin()
