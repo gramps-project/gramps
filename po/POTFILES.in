@@ -428,7 +428,6 @@ src/ReportBase/_GraphvizReportDialog.py
 src/ReportBase/_FileEntry.py
 src/ReportBase/__init__.py
 src/ReportBase/_PaperMenu.py
-src/ReportBase/_PrintTools.py
 src/ReportBase/_ReportDialog.py
 src/ReportBase/_ReportOptions.py
 src/ReportBase/_Report.py

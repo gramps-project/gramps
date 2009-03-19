@@ -38,5 +38,3 @@ import _ReportUtils as ReportUtils
 
 from _Bibliography import Bibliography, Citation
 import _Endnotes as Endnotes
-
-from _PrintTools import run_print_dialog, get_print_dialog_app

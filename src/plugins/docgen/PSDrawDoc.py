@@ -31,7 +31,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 #Gramps modules
 #-------------------------------------------------------------------------
-from ReportBase import ReportUtils, run_print_dialog, get_print_dialog_app
+from ReportBase import ReportUtils
 from gen.plug import PluginManager, DocGenPlugin
 import BaseDoc
 import Errors
