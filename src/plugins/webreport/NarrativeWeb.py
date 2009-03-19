@@ -706,7 +706,7 @@ class BasePage:
             of.write(' class="noThumb"')
         of.write('>')
         if thumbnailUrl:
-            of.write('<span class="thumbnail"><img src="%s" width="" height="" alt="Image of %s" /></span>' % (thumbnailUrl, name))
+            of.write('<span class="thumbnail"><img src="%s" alt="Image of %s" /></span>' % (thumbnailUrl, name))
         of.write('%s' % name)
         if not self.noid and gid:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
