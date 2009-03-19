@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007  Zsolt Foldvari
 # Copyright (C) 2009  Benny Malengier
+# Copyright (C) 2009  Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
+from gettext import gettext as _
 from math import radians
 from xml.sax.saxutils import escape
 
@@ -39,6 +41,7 @@ from xml.sax.saxutils import escape
 #------------------------------------------------------------------------
 import BaseDoc
 from ReportBase import ReportUtils
+from gen.plug import PluginManager, Plugin
 
 #------------------------------------------------------------------------
 #
@@ -46,7 +49,7 @@ from ReportBase import ReportUtils
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".CairoDoc")
+log = logging.getLogger(".libcairodoc")
 
 #-------------------------------------------------------------------------
 #
@@ -1483,3 +1486,20 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             cr.stroke()
 
         self._pages[page_nr].draw(cr, layout, width, dpi_x, dpi_y)
+
+#------------------------------------------------------------------------
+#
+# register_plugin
+#
+#------------------------------------------------------------------------
+def register_plugin():
+    PluginManager.get_instance().register_plugin( 
+    Plugin(
+        name = __name__, 
+        description = _("Provides a library for using Cairo to "
+                        "generate documents."),
+        module_name = __name__ 
+          )
+    )
+    
+register_plugin()

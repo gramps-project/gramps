@@ -43,7 +43,7 @@ import os
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from CairoDoc import CairoDoc
+import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Errors
 
@@ -509,7 +509,7 @@ class PrintPreview:
 # GtkPrint class
 #
 #------------------------------------------------------------------------
-class GtkPrint(CairoDoc):
+class GtkPrint(libcairodoc.CairoDoc):
     """Print document via GtkPrint* interface.
     
     Requires Gtk+ 2.10.

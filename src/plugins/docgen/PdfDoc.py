@@ -36,7 +36,7 @@ from gettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from CairoDoc import CairoDoc
+import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Utils
 
@@ -71,7 +71,7 @@ DPI = 72.0
 # PdfDoc class
 #
 #------------------------------------------------------------------------
-class PdfDoc(CairoDoc):
+class PdfDoc(libcairodoc.CairoDoc):
     """Render the document into PDF file using Cairo.
     """
     def run(self):
