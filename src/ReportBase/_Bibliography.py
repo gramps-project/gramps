@@ -78,10 +78,10 @@ class Citation:
         second_letter = ''
         letter_count = len(string.lowercase)
         ref_count = len(self.__ref_list)
-        if ref_count > letter_count:
+        if ref_count > letter_count -1:
             # If there are more than 26 references, we need to use two 
             # characters to uniquely identify them all.
-            first_letter = string.lowercase[ ref_count / letter_count ]
+            first_letter = string.lowercase[ ref_count / letter_count -1 ]
         second_letter = string.lowercase[ ref_count % letter_count ]
         
         key = first_letter + second_letter
