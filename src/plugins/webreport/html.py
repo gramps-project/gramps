@@ -20,12 +20,20 @@
 
 # $Id: html.py 10874 2009-03-03 18:00:00Z gbritton $
 
+#------------------------------------------------------------------------
+#
+# Html
+#
+#------------------------------------------------------------------------
+
 """
 HTML operations.
 
-This module exports one class and two functions.
+This module exports one class and one function.
 
 """
+
+__all__ = ['Html','newpage']
 
 #------------------------------------------------------------------------
 #
@@ -77,14 +85,94 @@ _START_CLOSE = (
     'meta', 
     'param'
     )
+
+#------------------------------------------------------------------------
 #
+# helper functions.
+#
+#------------------------------------------------------------------------
+
+def print_(line):
+    """
+    Print function
+    """
+    print line
+
+def newpage(title='Title', encoding='utf-8', lang='en'):
+    """
+    This function prepares a new Html class based page and returns
+
+    @type  title: string
+    @param title: title for HTML page. Default='Title'
+    @type  encoding: string
+    @param encoding: encoding to be used. Default = 'utf-8'
+    @type  lang: string
+    @param lang: language to be used. Defaul = 'en'
+    @rtype:   three object references
+    @return:  references to the newly-created Html instances for
+              page, head and body
+    """
+    meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
+    meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
+    page = Html(
+         xmlns=_XMLNS, 
+         attr='xml:lang="%s" lang="%s"' % ((lang,)*2)
+         )
+    page.addXML(encoding=encoding)
+    page.addDOCTYPE()
+    head = Html('head')
+    head += Html('title', title, inline=True, indent=True)
+    head += Html('meta', attr=meta1 % encoding, indent=True)
+    head += Html('meta', attr=meta2, indent=True)
+    body = Html('body')
+    page += (head, body)
+    return page, head, body
+
+#------------------------------------------------------------------------
+#
+# Html class.
+#
+#------------------------------------------------------------------------
+
 class Html(list):
     """
-    HTML class.
+    HTML class: Manages a rooted tree of HTML objects
     """
-    __slots__ = ['items','indent','inline','end']
+    __slots__ = ['items', 'indent', 'inline', 'end']
 #
     def __init__(self, tag='html', *args, **keywargs):
+        """
+        Class Constructor: Returns a new instance of the Html class
+        
+        @type  tag: string
+        @param tag: The HTML tag. Default is 'html'
+        @type  args: optional positional parameters
+        @param args: 0 more positional arguments to be inserted between
+                     opening and closing HTML tags.
+        @type  indent: boolean
+        @param indent: True  ==> indent this object with respect to its parent
+                       False ==> do not indent this object
+                       Defauls to False
+        @type  inline: boolean
+        @param inline: True  ==> instructs the write() method to output this
+                                 object and any child objects as a single string
+                       False ==> output this object and its contents one string
+                                 at a time
+                       Defaults to False
+        @type  close: boolean or None
+        @param close: True  ==> this tag should be closed normally
+                                e.g. <tag>...</tag>
+                      False ==> this tag should be automatically closed
+                                e.g. <tag />
+                      None  ==> do not provide any closing for this tag
+        @type  keywargs: optional keyword parameters
+        @param keywargs: 0 or more keyword=argument pairs that should be
+                         copied into the opening tag as keyword="argument"
+                         attributes
+        @rtype:   object reference
+        @return:  reference to the newly-created Html instance
+        """
+#
         super(Html, self).__init__([])
         attr, indent, close, inline = '', False, True, False
 #
@@ -96,13 +184,13 @@ class Html(list):
         for keyw, arg in keywargs.iteritems():
             if keyw in ['indent', 'close', 'inline'] and \
                arg in [True, False, None]:
-                exec '%s = %s' % (keyw, arg)                # keep these settings
-            elif keyw == 'attr':                            # pass attributes along
+                exec '%s = %s' % (keyw, arg)            # keep these settings
+            elif keyw == 'attr':                        # pass attributes along
                 attr += ' ' + arg
-            elif keyw[-1] == '_':                           # avoid Python conflicts
-                attr += ' %s="%s"' % (keyw[:-1], arg)       # pass keyword arg along
+            elif keyw[-1] == '_':                       # avoid Python conflicts
+                attr += ' %s="%s"' % (keyw[:-1], arg)   # pass keyword arg along
             else:
-                attr += ' %s="%s"' % (keyw, arg)            # pass keyword arg along
+                attr += ' %s="%s"' % (keyw, arg)        # pass keyword arg along
 #
         self.indent = indent                                
         self.inline = inline
@@ -112,9 +200,9 @@ class Html(list):
             self += [tag]
             self.end = None
         else: 
-            if tag in _START_CLOSE:     # is tag in special list that need no closer?
-                self.end = close = False
-            begin = '<%s%s%s>' % (      # build opening tag, passing in attributes
+            if tag in _START_CLOSE:         # if tag in special list
+                self.end = close = False    #   it needs no closing tag
+            begin = '<%s%s%s>' % (      # build opening tag; pass in attributes
                 tag,
                 attr,
                 ('' if close or close is None else ' /')
@@ -125,6 +213,15 @@ class Html(list):
                 )
 #
     def __add__(self, value):
+        """
+        Overload function for + and += operators
+
+        @type  value: object
+        @param value: object to be added
+
+        @rtype:  object reference
+        @return: reference to object with new value added
+        """
         if isinstance(value, Html) or not hasattr(value, '__iter__'):
             value = [value]
         index = len(self) - (1 if self.end else 0)
@@ -134,23 +231,49 @@ class Html(list):
     __iadd__ = append = extend = __add__
 #
     def replace(self, cur_value, value):
+        """
+        Replace current value with new value
+
+        @type  cur_value: object
+        @param cur_value: value of object to be replaced
+        @type  value: object
+        @param value: replacement value
+
+        @rtype:  object reference
+        @return: reference to object with new value added
+        """
         self[self.index(cur_value)] = value
 #
     def __sub__(self, value):
+        """
+        Overload function for - and -= operators
+        @type  value: object
+        @param value: object to be removed
+
+        @rtype:  object reference
+        @return: reference to object with value removed
+        """
         del self[self.index(value)]
         return self
 #
     __isub__ = remove = __sub__
 #
-    def print_(data):
-        print data
-#
     def __str__(self):
+        """
+        Returns string representation
+
+        @rtype:  string
+        @return: string representatiof object
+        """
         return '%s'*len(self) % tuple(self[:])
 #
     def __iter__(self):
+        """
+        Iterator function: returns a generator that performs an
+        insertion-order tree traversal and yields each item found.
+        """
         for item in self[:]:                    # loop through all list elements
-            if isinstance(item, self.Html):     # if nested list found
+            if isinstance(item, Html):     # if nested list found
                 for sub_item in item:           #     recurse
                     yield sub_item
             else:
@@ -159,39 +282,64 @@ class Html(list):
     iterkeys = itervalues = iteritems = __iter__
 #
     def write(self, method=print_, tabs=''):
+        """
+        Output function: performs an insertion-order tree traversal
+        and calls supplied method for each item found.
+
+        @type  method: function reference
+        @param method: function to call with each item found
+        @type  tabs: string
+        @oaram tabs: starting indentation
+        """
         tabs += '\t' if self.indent else ''
         if self.inline:                         # if inline, write all list and
-            method('%s%s' % (tabs,self))        # nested list elements
+            method('%s%s' % (tabs, self))       # nested list elements
 #
         else:
-            for item in self[:]:                # not inline: write one at a time
+            for item in self[:]:                # else write one at a time
                 if isinstance(item, Html):
-                    item.write(method=method, tabs=tabs)    # recurse if nested
+                    item.write(method=method, tabs=tabs)  # recurse if nested
                 else:
-                    method('%s%s' % (tabs, item))           # write the line if not
+                    method('%s%s' % (tabs, item))         # else write the line
 #
     def addXML(self, version=1.0, encoding="UTF-8", standalone="no"):
-        xml = XML(version=version, encoding=encoding, standalone=standalone)
+        """
+        Add an XML statement to the start of the list for this object
+
+        @type  version: decimal number
+        @param version: version of XML to be used. Defaults to 1.0
+        @type  encoding: string
+        @param encoding: encoding method to be used. Defaults to "UTF-8"
+        @type  standalone: string
+        @param standalone: "yes" or "no".  Defaults to "no"
+        """
+        xml = '<?xml %s %s %s?>' % (
+            'version="%s"' % version,
+            'encoding="%s"' % encoding,
+            'standalone="%s"' % standalone
+            )
         self.insert(0, xml)
 #
     def addDOCTYPE(self, name='html', external_id=_XHTML10_STRICT, *args):
-        doctype = DOCTYPE(name='html', external_id=external_id, *args)
+        """
+        Add a DOCTYPE statement to the start of the list
+
+        @type  name: string
+        @param name: name of this DOCTYPE. Defaults to "html"
+        @type  external_id: string
+        @param external_id: external identifier of this DOCTYPE. 
+                            Defaults to XHTML 1.0 STRICT
+        @type  args: object
+        @param args: 0 or more positional parameters to be added to this    
+                     DOCTYPE.
+        """
+        doctype = '<!DOCTYPE %s %s%s>' % (
+            name, 
+            external_id,
+            ' %s'*len(args) % args
+            )
         if len(self) and self[0][:6] == '<?xml ':
             self.insert(1, doctype)
         else:
             self.insert(0, doctype)
-#
-def XML(version=1.0, encoding="UTF-8", standalone="no"):
-    return '<?xml %s %s %s?>' % (
-        'version="%s"' % version,
-        'encoding="%s"' % encoding,
-        'standalone="%s"' % standalone
-        )
-#
-def DOCTYPE(name='html', external_id=_XHTML10_STRICT, *args):
-    return '<!DOCTYPE %s %s%s>' % (
-        name, 
-        external_id,
-        ' %s'*len(args) % args
-        )
 
