@@ -189,7 +189,7 @@ span.preposition {
     height:1.5cm;
     padding:0 0 .9em 0;
     background-color:#542;
-    border-bottom:solid 1px #453619;
+    border-bottom:solid 4px #6AF364;
 }
 #SiteTitle {
     color:#FFF;
@@ -990,7 +990,7 @@ div#pedigree {
     margin:0;
     padding:0;
     background-color:#542;
-    border-top:solid 8px #6AF364;
+    border-top:solid 4px #6AF364;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
