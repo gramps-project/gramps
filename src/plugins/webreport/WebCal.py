@@ -68,7 +68,7 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 
 import libholiday
-from html import Html
+from html import Html, newpage
 
 #------------------------------------------------------------------------
 #
@@ -448,12 +448,11 @@ class WebCalReport(Report):
 
         # Header contants
         xmllang = Utils.xml_lang()
-        _XMLNS = 'http://www.w3.org/1999/xhtml'
-        _META1 = 'http-equiv="content-type" content="text/html;charset=%s"' % self.encoding
-        _META2 = 'http-equiv="Content-Style-Type" content="text/css"'  
-        _META3 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME, const.VERSION,
+        _META1 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME, const.VERSION,
              const.URL_HOMEPAGE)
-        _META4 = 'name="author" content="%s"' % self.author
+        _META2 = 'name="author" content="%s"' % self.author
+
+        page, head, body = newpage(title=title, encoding=self.encoding, lang=xmllang)
 
         # GRAMPS favicon
         fname1 =  '/'.join([subdirs] + ['images'] + ['favicon.ico'])
@@ -461,36 +460,30 @@ class WebCalReport(Report):
         # _CALENDARSCREEN stylesheet
         fname2 = '/'.join([subdirs] + ['styles'] + [_CALENDARSCREEN])
 
-        header = Html(xmlns=_XMLNS, attr='xml:lang="%s" lang="%s"' % ((xmllang,)*2))
-        header.addXML()
-        header.addDOCTYPE()
-        head = Html('head') + (
+        # create additional meta tags
+        meta = Html('meta', attr = _META1, indent = True) + (
+            Html('meta', attr = _META2)
+            )
 
-            # header title
-            Html('title', title, indent=True, inline=True),
+        # add meta tags to head section
+        head += meta
 
-            # meta tags for head section
-            Html('meta', attr = _META1, indent = True, inline = True),
-            Html('meta', attr = _META2, indent = True, inline = True),
-            Html('meta', attr = _META3, indent = True, inline = True),
-            Html('meta', attr = _META4, indent = True, inline = True),
-
-            # links for GRAMPS favicon and stylesheets
-            Html('link',rel='shortcut icon', href=fname1,type='image/x-icon',indent=True),
-            Html('link',rel='stylesheet', href=fname2,type='text/css',media='screen',indent=True)
+        # links for GRAMPS favicon and stylesheets
+        links = Html('link',rel='shortcut icon', href=fname1,type='image/x-icon',indent=True) + (
+            Html('link',rel='stylesheet', href=fname2,type='text/css',media='screen')
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = '/'.join([subdirs] + ['styles'] + [_CALENDARPRINT])
-            head += Html('link',rel='stylesheet', href=fname,type='text/css',media='print',indent=True)
+            links += Html('link',rel='stylesheet', href=fname,type='text/css',media='print')
 
-        # add head section to page header
-        header += head
+        # add stylesheet links to head section
+        head += links
 
-        # return header section to its caller
+        # return to its caller
         # either webcalendar(), year_glance(), or one_day()
-        return header
+        return page, body
 
 # ---------------------------------------------------------------------------------------
 #
@@ -905,7 +898,7 @@ class WebCalReport(Report):
             of = self.create_file(cal_fname, str(year))
 
             # Add Header
-            webcal = self.write_header(nr_up, self.title_text)
+            webcal, body = self.write_header(nr_up, self.title_text)
 
             # Created for ?
             if self.author:
@@ -920,7 +913,7 @@ class WebCalReport(Report):
             body = Html('body', id = 'WebCal')
 
             # start header division section
-            headdiv = Html('div', id="header", indent=True) + (
+            headerdiv = Html('div', id="header", indent=True) + (
 
                 # page title 
                 Html('h1', self.title_text, id = "SiteTitle", indent=True, inline=True),
@@ -930,16 +923,20 @@ class WebCalReport(Report):
                 ) 
 
             # add header section to body section
-            body += headdiv
+            body += headerdiv
 
             # create Year Navigation menu
             if self.multiyear:
-                body += self.display_year_navs(nr_up, str(year))
+                menu = self.display_year_navs(nr_up, str(year))
+                body += menu
 
             # Create Month Navigation Menu
             # identify currentsection for proper highlighting
             currentsection = get_full_month_name(month)
-            body += self.display_month_navs(nr_up, year, currentsection, True)
+            menu = self.display_month_navs(nr_up, year, currentsection, True)
+
+            # add menu to body section
+            body += menu
 
             # build the calendar
             monthly_calendar = self.calendar_build("wc", year, month)
@@ -948,7 +945,7 @@ class WebCalReport(Report):
             note = self.month_notes[month-1].strip()
             note = note or "&nbsp;"
 
-            # table foot   
+            # table foot  section 
             cal_note = Html('tfoot', indent=True)
             tr = Html('tr', indent=True)
             td = Html('td', note, colspan=7, indent=True, inline=True)
