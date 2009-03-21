@@ -23,7 +23,7 @@
 Contain and organize bibliographic information.
 """
 import string
-
+import math
 from gen.lib import SourceRef as SourceRef
 
 class Citation:
@@ -74,17 +74,28 @@ class Citation:
         @return: The key of the added reference among all the references.
         @rtype: char
         """
-        first_letter = ''
-        second_letter = ''
         letter_count = len(string.lowercase)
         ref_count = len(self.__ref_list)
-        if ref_count > letter_count -1:
-            # If there are more than 26 references, we need to use two 
-            # characters to uniquely identify them all.
-            first_letter = string.lowercase[ ref_count / letter_count -1 ]
-        second_letter = string.lowercase[ ref_count % letter_count ]
-        
-        key = first_letter + second_letter
+        x_ref_count = ref_count
+        # Return "a" for ref_count = 0, otherwise log(0) does not work
+        if ref_count == 0:
+            self.__ref_list.append(("a", source_ref))
+            return "a"
+        last_letter = string.lowercase[ ref_count % letter_count ]
+        key = ""
+        # Calculate prek number of digits.
+        number_of_letters = int(math.log(float(ref_count),float(letter_count)))+1
+        # Exclude index for number_of_letters-1
+        for n in range(1, number_of_letters-1):
+            ref_count = ref_count - pow(letter_count, n) 
+        # Adjust number_of_letters for new index
+        number_of_letters = int(math.log(float(ref_count),float(letter_count))) +1
+        for n in range(1, number_of_letters):
+            x_ref_count = x_ref_count - pow(letter_count, n) 
+        for letter in range(1, number_of_letters):
+            index = x_ref_count  / pow(letter_count, letter)  % letter_count
+            key += string.lowercase[ index ]
+        key = key + last_letter
         self.__ref_list.append((key, source_ref))
         return key
 
