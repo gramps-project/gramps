@@ -540,7 +540,7 @@ class WebCalReport(Report):
                 # pathname.
                 url = '/'.join(subdirs + [full_month_name]) + self.ext
 
-                # Figure out if we need <li id="CurrentSection"> or just plain <li>
+                # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
                 li = Html('li',attr=cs , indent=True, inline=True)
 
@@ -624,7 +624,7 @@ class WebCalReport(Report):
             if not _has_webpage_extension(url):
                 url += self.ext
 
-            # Figure out if we need <li id="CurrentSection"> or just plain <li>
+            # Figure out if we need <li class="CurrentSection"> or just plain <li>
             cs = url_fname == currentsection and 'class="CurrentSection"' or ''
             li = Html('li', attr = cs, indent=True, inline=True)
 
