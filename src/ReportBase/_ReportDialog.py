@@ -499,7 +499,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                                 _("You do not have permission to write "
                                   "under the directory %s\n\n"
                                   "Please select another directory or correct "
-                                  "the permissions." % self.target_path) 
+                                  "the permissions.") % self.target_path 
                                 )
                     return None
 
@@ -521,10 +521,10 @@ class ReportDialog(ManagedWindow.ManagedWindow):
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
             if not os.access(parent_dir, os.W_OK):
                 ErrorDialog(_('Permission problem'),
-                            _("You do not have permission to create "
-                              "%s\n\n"
-                              "Please select another path or correct "
-                              "the permissions." % self.target_path) 
+                            _('You do not have permission to create '
+                              '%s\n\n'
+                              'Please select another path or correct '
+                              'the permissions.') % self.target_path 
                             )
                 return None
         
