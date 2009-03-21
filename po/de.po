@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-17 12:31+0100\n"
-"PO-Revision-Date: 2009-03-17 12:55+0100\n"
+"POT-Creation-Date: 2009-03-21 21:00+0100\n"
+"PO-Revision-Date: 2009-03-21 21:05+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6183,14 +6183,16 @@ msgstr ""
 #: ../src/plugins/export/ExportXml.py:1221
 msgid ""
 "GRAMPS XML export is a complete archived XML backup of the GRAMPS database "
-"without the media object files."
-msgstr "Der GRAMPS-XML Export ist eine komplett archivierte XML-Sicherung der GRAMPS Datenbank ohne die Medienobjektedateien."
+"without the media object files. Suitable for backup purposes."
+msgstr ""
+"Der GRAMPS-XML Export ist eine komplett archivierte XML-Sicherung der GRAMPS "
+"Datenbank ohne die Medienobjektedateien. Passend für Sicherungszwecke."
 
-#: ../src/plugins/export/ExportXml.py:1223
+#: ../src/plugins/export/ExportXml.py:1224
 msgid "GRAMPS XML export options"
 msgstr "GRAMPS XML Exportoptionen"
 
-#: ../src/plugins/export/ExportXml.py:1226
+#: ../src/plugins/export/ExportXml.py:1227
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-Datenbank"
 
