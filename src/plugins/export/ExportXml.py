@@ -1219,7 +1219,8 @@ class XmlWriter(GrampsDbXmlWriter):
 #
 #------------------------------------------------------------------------
 _description = _('GRAMPS XML export is a complete archived XML backup of the' 
-                 ' GRAMPS database without the media object files.' )
+                 ' GRAMPS database without the media object files.'
+                 ' Suitable for backup purposes.' )
 _config = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
 
 pmgr = PluginManager.get_instance()
