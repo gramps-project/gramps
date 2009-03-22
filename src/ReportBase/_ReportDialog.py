@@ -500,7 +500,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                                 _("You do not have permission to write "
                                   "under the directory %s\n\n"
                                   "Please select another directory or correct "
-                                  "the permissions." % self.target_path) 
+                                  "the permissions.") % self.target_path 
                                 )
                     return None
 
@@ -525,7 +525,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                             _("You do not have permission to create "
                               "%s\n\n"
                               "Please select another path or correct "
-                              "the permissions." % self.target_path) 
+                              "the permissions.") % self.target_path 
                             )
                 return None
         
