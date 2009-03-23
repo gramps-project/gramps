@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: html.py 10874 2009-03-03 18:00:00Z gbritton $
+# $Id: libhtml.py 10874 2009-03-03 18:00:00Z gbritton $
 
 #------------------------------------------------------------------------
 #
