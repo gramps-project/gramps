@@ -313,7 +313,7 @@ class DetDescendantReport(Report):
                  'event_name' : _(event_name),
                  'event_text' : text }
         
-        self.doc.write_text(text)
+        self.doc.write_text_citation(text)
         
         if self.inc_attrs:
             text = ""
