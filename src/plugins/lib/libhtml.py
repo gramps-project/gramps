@@ -37,6 +37,14 @@ __all__ = ['Html','newpage']
 
 #------------------------------------------------------------------------
 #
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+
+from gen.plug import PluginManager, Plugin
+
+#------------------------------------------------------------------------
+#
 # Constants
 #
 #------------------------------------------------------------------------
@@ -342,4 +350,17 @@ class Html(list):
             self.insert(1, doctype)
         else:
             self.insert(0, doctype)
+
+# ------------------------------------------
+#
+#            Register Plugin
+#
+# -------------------------------------------
+PluginManager.get_instance().register_plugin( 
+Plugin(
+    name = __name__,
+    description = _("Manages an HTML DOM tree."),
+    module_name = __name__ 
+      )
+)
 
