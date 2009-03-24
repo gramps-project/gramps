@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: $
+# $Id: WebCal.py 12238 2009-03-07 09:51:27Z s_charette $
 
 """
 Web Calendar generator.
@@ -433,7 +433,7 @@ class WebCalReport(Report):
 # 
 # ---------------------------------------------------------------------------------------
 
-    def write_header(self, nr_up, title, add_print=True):
+    def write_header(self, nr_up, body_id, title, add_print=True):
         """
         This creates the header for the Calendars
         'nr_up' - number of directory levels up, started from current page, to the
@@ -481,9 +481,35 @@ class WebCalReport(Report):
         # add stylesheet links to head section
         head += links
 
+        # begin page body
+        new_body = Html('body', id = body_id)
+
+        # replace standard body element with custom one
+        page.replace(body, new_body)
+
+        # start header division section
+        headerdiv = Html('div', id="header", indent=True) + (
+
+            # page title 
+            Html('h1', title, id = "SiteTitle", indent=True, inline=True),
+            )
+
+        # Created for ?
+        if self.author:
+            if self.email:  
+                msg = _('Created for <a href="mailto:%(email)s?'
+                               'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
+                                                                                                 'author' : self.author}
+            else:
+                msg = _('Created for %(author)s') % {'author' : self.author}
+            headerdiv += Html('p', msg, id="CreatorInfo", indent=True)
+
+        # add header division to body
+        new_body += headerdiv
+
         # return to its caller
         # either webcalendar(), year_glance(), or one_day()
-        return page, body
+        return page, new_body
 
 # ---------------------------------------------------------------------------------------
 #
@@ -491,7 +517,7 @@ class WebCalReport(Report):
 #
 # ---------------------------------------------------------------------------------------
 
-    def display_year_navs(self, nr_up, currentsection):
+    def year_navigation(self, nr_up, currentsection):
         """
         This will create the year navigation menu bar
 
@@ -564,7 +590,7 @@ class WebCalReport(Report):
 #
 # ---------------------------------------------------------------------------------------
 
-    def display_month_navs(self, nr_up, year, currentsection, add_home):
+    def month_navigation(self, nr_up, year, currentsection, add_home):
         """
         Will create and display the navigation menu bar
 
@@ -897,46 +923,18 @@ class WebCalReport(Report):
             cal_fname = get_full_month_name(month)
             of = self.create_file(cal_fname, str(year))
 
-            # Add Header
-            webcal, body = self.write_header(nr_up, self.title_text)
-
-            # Created for ?
-            if self.author:
-                if self.email:  
-                    msg = _('Created for <a href="mailto:%(email)s?'
-                                   'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
-                                                                                                 'author' : self.author}
-                else:
-                    msg = _('Created for %(author)s') % {'author' : self.author}
-
-            # begin page body
-            body = Html('body', id = 'WebCal')
-
-            # start header division section
-            headerdiv = Html('div', id="header", indent=True) + (
-
-                # page title 
-                Html('h1', self.title_text, id = "SiteTitle", indent=True, inline=True),
-
-                # Created for?
-                Html('p', msg, id="CreatorInfo", indent=True),
-                ) 
-
-            # add header section to body section
-            body += headerdiv
+            # Add xml, doctype, meta and stylesheets
+            # body has already been added to webcal  already once
+            webcal, body = self.write_header(nr_up, 'WebCal', self.title_text)
 
             # create Year Navigation menu
             if self.multiyear:
-                menu = self.display_year_navs(nr_up, str(year))
-                body += menu
+                body += self.year_navigation(nr_up, str(year))
 
             # Create Month Navigation Menu
             # identify currentsection for proper highlighting
             currentsection = get_full_month_name(month)
-            menu = self.display_month_navs(nr_up, year, currentsection, True)
-
-            # add menu to body section
-            body += menu
+            body += self.month_navigation(nr_up, year, currentsection, True)
 
             # build the calendar
             monthly_calendar = self.calendar_build("wc", year, month)
@@ -962,19 +960,13 @@ class WebCalReport(Report):
             body += monthly_calendar 
 
             # create blank line for stylesheets
-            clearline = Html('div', class_ = 'fullclear', indent=True, inline=True)
+            body += Html('div', class_ = 'fullclear', indent=True, inline=True)
 
-            # add clear line
-            body += clearline 
-
-            # write footer section
+            # create footer division section
             footer = self.write_footer(nr_up)
 
             # add footer to WebCal
             body += footer
-
-            # add body to page
-            webcal += body
 
             # send calendar page to web output
             mywriter(webcal, of)
@@ -1009,40 +1001,16 @@ class WebCalReport(Report):
         title = _("%(year)d, At A Glance") % {'year' : year}
 
         # Create page header
-        yearglance = self.write_header(nr_up, title, False)
-
-        # begin page body
-        body = Html('body', id = 'fullyearlinked')
-
-        # Created for ?
-        if self.author:
-            if self.email:  
-                msg = _('Created for <a href="mailto:%(email)s?'
-                               'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
-                                                                                                 'author' : self.author}
-            else:
-                msg = _('Created for %(author)s') % {'author' : self.author}
-
-        # start header division section
-        headdiv = Html('div', id="header", indent=True) + (
-
-            # page title 
-            Html('h1', title, id = "SiteTitle", indent=True, inline=True),
-
-            # Created for?
-            Html('p', msg, id="CreatorInfo", indent=True)
-            )  
-
-        # add header division to body
-        body += headdiv
+            # body has already been added to yearglance  already once
+        yearglance, body = self.write_header(nr_up, 'fullyearlinked', title, False)
 
         # create Year Navigation menu
         if self.multiyear:
-            body += self.display_year_navs(nr_up, str(year))
+            body += self.year_navigation(nr_up, str(year))
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        body += self.display_month_navs(nr_up, year, 'fullyearlinked', False)
+        body += self.month_navigation(nr_up, year, 'fullyearlinked', False)
 
         msg = (_('This calendar is meant to give you access '
                        'to all your data at a glance compressed into one page. Clicking '
@@ -1071,19 +1039,13 @@ class WebCalReport(Report):
             self.progress.step()
 
         # create blank line for stylesheets
-        clearline = Html('div', class_ = 'fullclear', indent=True, inline=True)
-
-        # add clear line
-        body += clearline 
+        body += Html('div', class_ = 'fullclear', indent=True, inline=True)
 
         # write footer section
         footer = self.write_footer(nr_up)
 
         # add footer to body
         body += footer
-
-        # add body to page
-        yearglance += body     
 
         # send calendar page to web output
         mywriter(yearglance, of)
@@ -1115,7 +1077,6 @@ class WebCalReport(Report):
         # break up event_date to get year, month, day for this day
         year = event_date.get_year()
         month = event_date.get_month()   
-        day = event_date.get_day()
 
         # Name the file, and create it (see code in calendar_build)
         # chose 'od' as I will be opening and closing more than one file
@@ -1129,42 +1090,18 @@ class WebCalReport(Report):
         title =  _('One Day Within A Year')
 
         # create page header
-        oneday = self.write_header(nr_up, title)
-
-        # begin page body
-        body = Html('body', id = 'OneDay')
-
-        # Created for ?
-        if self.author:
-            if self.email:  
-                msg = _('Created for <a href="mailto:%(email)s?'
-                               'subject=WebCal">%(author)s</a>') % {'email'  : self.email,
-                                                                                                 'author' : self.author}
-            else:
-                msg = _('Created for %(author)s') % {'author' : self.author}
-
-        # start header division section
-        headdiv = Html('div', id='header', indent=True) + (
-
-            # page title
-            Html('h1', title, id = "SiteTitle", indent=True, inline=True),
-
-            # created for?
-            Html('p', msg, id="CreatorInfo", indent=True)
-            )
-
-        # add header division to body
-        body += headdiv
+            # body has already been added to oneday  already once
+        oneday, body = self.write_header(nr_up, 'OneDay', title)
 
         # create Year Navigation menu
         if self.multiyear:
-            body += self.display_year_navs(nr_up, str(year))
+            body += self.year_navigation(nr_up, str(year))
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
         # connect it back to year_glance() calendar 
         currentsection = 'fullyearlinked'
-        body += self.display_month_navs(nr_up, year, currentsection, False)
+        body += self.month_navigation(nr_up, year, currentsection, False)
 
         # page date
         h3 = Html('h3', pg_date, indent=True,inline=True)
@@ -1182,19 +1119,13 @@ class WebCalReport(Report):
         body += ol
 
         # create blank line for stylesheets
-        clearline = Html('div', class_ = 'fullclear', indent=True, inline=True)
-
-        # add clear line
-        body += clearline 
+        body += Html('div', class_ = 'fullclear', indent=True, inline=True)
 
         # write footer section
         footer = self.write_footer(nr_up)
 
         # add footer to WebCal
         body += footer
-
-        # add body to page
-        oneday += body
 
         # send calendar page to web output
         mywriter(oneday, od)
@@ -1472,12 +1403,10 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), \
-            _CSS_FILES[0][1])
+        css = EnumeratedListOption(_('StyleSheet'), _CSS_FILES[0][1])
         for style in _CSS_FILES:
             css.add_item(style[1], style[0])
-        css.set_help( _('The Style Sheet to be used '
-            'for the web page'))
+        css.set_help( _('The Style Sheet to be used for the web page'))
         menu.add_option(category_name, "css", css)
 
     def __add_content_options(self, menu):
@@ -1618,16 +1547,13 @@ class WebCalOptions(MenuReportOptions):
 
         category_name = _('Advanced Options')
 
-        encoding = EnumeratedListOption(_('Character set encoding'), \
-            _CHARACTER_SETS[0][1])
+        encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1])
         for eopt in _CHARACTER_SETS:
             encoding.add_item(eopt[1], eopt[0])
-        encoding.set_help( _('The encoding to be used for '
-                             'the web files'))
+        encoding.set_help( _('The encoding to be used for the web files'))
         menu.add_option(category_name, "encoding", encoding)
 
-        fullyear = BooleanOption(_('Create "Year At A Glance" '
-                                   'Calendar'), False)
+        fullyear = BooleanOption(_('Create "Year At A Glance" Calendar'), False)
         fullyear.set_help(_('Whether to create A one-page mini calendar '
                             'with dates highlighted'))
         menu.add_option(category_name, 'fullyear', fullyear)
