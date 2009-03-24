@@ -968,15 +968,6 @@ div#sourcerefs ol li ol {
 #footer p#copyright img {
     margin-right:10px;
 }
-#footer p#quality {
-    width:100%;
-    text-align:center;
-    padding-bottom:14px;
-    margin-bottom:0;
-}
-#footer p#quality img {
-    float:center;
-}
 #user_footer {
     width:70%;
     float:left;

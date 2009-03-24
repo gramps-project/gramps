@@ -9,8 +9,8 @@ pkgdata_PYTHON = \
 	libcairodoc.py\
 	libgrampsxml.py\
 	libholiday.py\
-	libmapservice.py \
-    libhtml.py
+	libmapservice.py\
+        libhtml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib

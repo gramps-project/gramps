@@ -1013,14 +1013,6 @@ div#pedigree {
 #footer p#copyright img {
     margin-right:10px;
 }
-#footer p#quality {
-    width:100%;
-    text-align:center;
-    color:#FFF;
-}
-#footer p#quality img {
-    float:center;
-}
 #user_footer {
     width:70%;
     float:left;
