@@ -561,16 +561,11 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                li = Html('li',attr=cs , indent=True, inline=True)
+                ul += Html('li',attr=cs , indent=True, inline=True) + (
 
-                # create hyperlink
-                ahref = Html('a', str(cal_year), href = url, inline=True)
-
-                # add hyperlink to <li> cell
-                li += ahref
-
-                # add cell to unordered list
-                ul += li
+                    # create hyperlink
+                    Html('a', str(cal_year), href = url, inline=True)
+                    )
 
                 # increase columns
                 cols += 1
@@ -618,8 +613,6 @@ class WebCalReport(Report):
 
         navs = [(u, n) for u, n, c in navs if c]
         for url_fname, nav_text in navs:
-            subdirs = ['..'] * nr_up
-            subdirs.append(str(year)) 
 
             if type(url_fname) == int:
                 url_fname = get_full_month_name(url_fname)
@@ -638,6 +631,8 @@ class WebCalReport(Report):
                          
             # whether to add subdirs or not???
             if add_subdirs: 
+                subdirs = ['..'] * nr_up
+                subdirs.append(str(year)) 
                 url = '/'.join(subdirs + [url_fname])
 
             if not _has_webpage_extension(url):
@@ -645,16 +640,11 @@ class WebCalReport(Report):
 
             # Figure out if we need <li class="CurrentSection"> or just plain <li>
             cs = url_fname == currentsection and 'class="CurrentSection"' or ''
-            li = Html('li', attr = cs, indent=True, inline=True)
+            ul += Html('li', attr = cs, indent=True, inline=True) + (
 
-            # create hyperlink
-            ahref = Html('a', nav_text, href = url)
-
-            # add hyperlink to <li> cell
-            li += ahref
-
-            # add <li> to <ul>
-            ul += li
+                # create hyperlink
+                Html('a', nav_text, href = url)
+                )
 
         # add ul to monthnav
         monthnav += ul
@@ -1063,7 +1053,7 @@ class WebCalReport(Report):
         """
         This method creates the One Day page for "Year At A Glance"
 
-        event_date -- date for this file and events
+        event_date -- date for the listed events
 
         fname_date -- filename date from calendar_build()
 
@@ -1074,17 +1064,13 @@ class WebCalReport(Report):
 
         nr_up = 2                    # number of directory levels up to get to root
 
-        # break up event_date to get year, month, day for this day
+        # get year from event_date for use in this section
         year = event_date.get_year()
-        month = event_date.get_month()   
 
-        # Name the file, and create it (see code in calendar_build)
+        # Name the file, and crate it (see code in calendar_build)
         # chose 'od' as I will be opening and closing more than one file
         # at one time
         od = self.create_file(fname_date, str(year))
-
-        # set date display as in user prevferences 
-        pg_date = _dd.display(event_date)
 
         # page title
         title =  _('One Day Within A Year')
@@ -1100,14 +1086,11 @@ class WebCalReport(Report):
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
         # connect it back to year_glance() calendar 
-        currentsection = 'fullyearlinked'
-        body += self.month_navigation(nr_up, year, currentsection, False)
+        body += self.month_navigation(nr_up, year, 'fullyearlinked', False)
 
-        # page date
-        h3 = Html('h3', pg_date, indent=True,inline=True)
-
-        # add <h3> to body, <body>
-        body += h3
+        # set date display as in user prevferences 
+        pg_date = _dd.display(event_date)
+        body += Html('h3', pg_date, indent=True,inline=True)
 
         # list the events
         ol = Html('ol', indent=True)
@@ -1115,7 +1098,7 @@ class WebCalReport(Report):
             ol += Html('li', text, indent=True, inline=False if event == 'Anniversary' 
             else True)
 
-        # add unordered list to body
+        # add ordered list to body section
         body += ol
 
         # create blank line for stylesheets
@@ -1854,7 +1837,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                                     '%(couple)s, <em>%(years)d'
                                     '</em> year anniversary', nyears)
                            % {'couple' : text, 'years'  : nyears})
-            txt_str = '<span class="yearsmarried">%s</span>' % txt_str
+            txt_str = Html('span', txt_str, class_ = 'yearsmarried')
 
         if txt_str is not None:
             day_list.append((nyears, date, txt_str, event))
