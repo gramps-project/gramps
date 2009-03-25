@@ -115,6 +115,9 @@ _WEBHEADER = 'Web_Mainz_Header.png'
 _WEBMID = 'Web_Mainz_Mid.png'
 _WEBMIDLIGHT = 'Web_Mainz_MidLight.png'
 
+# Web page filename extensions
+_WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
+
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
@@ -140,26 +143,27 @@ _CSS_FILES = [
     [_("Mainz"),                'Web_Mainz.css'],
     [_("Nebraska"),             'Web_Nebraska.css'],
     [_("Visually Impaired"),    'Web_Visually.css'],
-
     [_("No style sheet"),  ''],
     ]
 
 _CHARACTER_SETS = [
     # First is used as default selection.
-    [_('Unicode (recommended)'), 'utf-8'],
-    ['ISO-8859-1',  'iso-8859-1' ],
-    ['ISO-8859-2',  'iso-8859-2' ],
-    ['ISO-8859-3',  'iso-8859-3' ],
-    ['ISO-8859-4',  'iso-8859-4' ],
-    ['ISO-8859-5',  'iso-8859-5' ],
-    ['ISO-8859-6',  'iso-8859-6' ],
-    ['ISO-8859-7',  'iso-8859-7' ],
-    ['ISO-8859-8',  'iso-8859-8' ],
-    ['ISO-8859-9',  'iso-8859-9' ],
-    ['ISO-8859-10', 'iso-8859-10' ],
-    ['ISO-8859-13', 'iso-8859-13' ],
-    ['ISO-8859-14', 'iso-8859-14' ],
-    ['ISO-8859-15', 'iso-8859-15' ],
+    # As you see these on the internet, they are in full capital letters.
+    # UTF-8 is specifically identified instead of the entire unicode set.
+    [_('Unicode UTF-8 (recommended)'), 'UTF-8'],
+    ['ISO-8859-1',  'ISO-8859-1' ],
+    ['ISO-8859-2',  'ISO-8859-2' ],
+    ['ISO-8859-3',  'ISO-8859-3' ],
+    ['ISO-8859-4',  'ISO-8859-4' ],
+    ['ISO-8859-5',  'ISO-8859-5' ],
+    ['ISO-8859-6',  'ISO-8859-6' ],
+    ['ISO-8859-7',  'ISO-8859-7' ],
+    ['ISO-8859-8',  'ISO-8859-8' ],
+    ['ISO-8859-9',  'ISO-8859-9' ],
+    ['ISO-8859-10', 'ISO-8859-10' ],
+    ['ISO-8859-13', 'ISO-8859-13' ],
+    ['ISO-8859-14', 'ISO-8859-14' ],
+    ['ISO-8859-15', 'ISO-8859-15' ],
     ['koi8_r',      'koi8_r',     ],
     ]
 
@@ -208,11 +212,9 @@ _COPY_OPTIONS = [
         _('No copyright notice'),
         ]
 
-
 wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
-
 
 _html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
 _html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
@@ -353,7 +355,6 @@ class BasePage:
             if home_person:
                 home_person_url = self.report.build_url_fname_html(home_person.handle, 'ppl', self.up)
                 home_person_name = home_person.get_primary_name().get_regular_name()
-                msg += '<br />'
                 msg += _('Created for <a href="%s">%s</a>') % (home_person_url, home_person_name)
 
         of.write('\t<p id="createdate">%s</p>\n' % msg)
@@ -462,7 +463,7 @@ class BasePage:
         navs = [(u, n) for u, n, c in navs if c]
         for url_fname, nav_text in navs:
 
-            if not url_fname.endswith(self.ext):
+            if not _has_webpage_extension(url_fname):
                 url_fname += self.ext
 
             if self.up:
@@ -476,7 +477,7 @@ class BasePage:
             # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
             # elements for Navigation styling.
 
-            # Figure out if we need <li id="CurrentSection"> of just plain <li>
+            # Figure out if we need <li class="CurrentSection"> of just plain <li>
             cs = False
             if nav_text == currentsection:
                 cs = True
@@ -780,9 +781,6 @@ class IndividualListPage(BasePage):
         of = self.report.create_file("individuals")
         self.write_header(of, _('Individuals'))
 
-        # begin alphabetic navigation
-        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
-
         of.write('<div id="Individuals" class="content">\n')
 
         msg = _("This page contains an index of all the individuals in the "
@@ -795,6 +793,10 @@ class IndividualListPage(BasePage):
         showparents = report.options['showparents']
 
         of.write('\t<p id="description">%s</p>\n' % msg)
+
+        # begin alphabetic navigation
+        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+
         of.write('\t<table class="infolist individuallist">\n')
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
@@ -1062,9 +1064,6 @@ class PlaceListPage(BasePage):
         of = self.report.create_file("places")
         self.write_header(of, _('Places'))
 
-        # begin alphabetic navigation
-        self.alphabet_navigation(of, db, place_handles, _PLACE) 
-
         of.write('<div id="Places" class="content">\n')
 
         msg = _("This page contains an index of all the places in the "
@@ -1072,6 +1071,9 @@ class PlaceListPage(BasePage):
                 "title will take you to that place&#8217;s page.")
 
         of.write('\t<p id="description">%s</p>\n' % msg )
+
+        # begin alphabetic navigation
+        self.alphabet_navigation(of, db, place_handles, _PLACE) 
 
         of.write('\t<table class="infolist placelist">\n')
         of.write('\t<thead>\n')
@@ -3335,7 +3337,7 @@ class NavWebOptions(MenuReportOptions):
         self.__update_filters()
 
         ext = EnumeratedListOption(_("File extension"), ".html" )
-        for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
+        for etype in _WEB_EXT:
             ext.add_item(etype, etype)
         ext.set_help( _("The extension to be used for the web files"))
         menu.add_option(category_name, "ext", ext)
@@ -3345,12 +3347,6 @@ class NavWebOptions(MenuReportOptions):
             cright.add_item(index, copt)
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
-
-        encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1] )
-        for eopt in _CHARACTER_SETS:
-            encoding.add_item(eopt[1], eopt[0])
-        encoding.set_help( _("The encoding to be used for the web files"))
-        menu.add_option(category_name, "encoding", encoding)
 
         css = EnumeratedListOption(_('StyleSheet'), _CSS_FILES[0][1])
         for style in _CSS_FILES:
@@ -3464,6 +3460,12 @@ class NavWebOptions(MenuReportOptions):
         Options on the "Advanced" tab.
         """
         category_name = _("Advanced")
+
+        encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1] )
+        for eopt in _CHARACTER_SETS:
+            encoding.add_item(eopt[1], eopt[0])
+        encoding.set_help( _("The encoding to be used for the web files"))
+        menu.add_option(category_name, "encoding", encoding)
 
         linkhome = BooleanOption(_('Include link to home person on every '
                                    'page'), False)
@@ -3619,6 +3621,18 @@ def get_first_letters(db, handle_list, key):
             first_letters.append(c)
 
     return first_letters
+
+def _has_webpage_extension(url):
+    """
+    determine if a filename has an extension or not...
+
+    url = filename to be checked
+    """
+
+    for ext in _WEB_EXT:
+        if url.endswith(ext):
+            return True
+    return False
 
 # ------------------------------------------
 #
