@@ -745,7 +745,7 @@ class RelationshipView(PageView.PersonNavView):
             if not self.toolbar_visible and not self.dbstate.db.readonly:
                 # Show edit-Buttons if toolbar is not visible
                 if self.reorder_sensitive:
-                    add = widgets.IconButton(self.reorder, None, 
+                    add = widgets.IconButton(self.reorder_button_press, None, 
                                              gtk.STOCK_SORT_ASCENDING)
                     self.tooltips.set_tip(add, ord_msg)
                     hbox.pack_start(add, False)
@@ -1561,6 +1561,10 @@ class RelationshipView(PageView.PersonNavView):
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)
 
+    def reorder_button_press(self, obj, event, handle):
+        if button_activated(event, _LEFT_BUTTON):
+            self.reorder(obj)
+            
     def reorder(self, obj, dumm1=None, dummy2=None):
         if self.dbstate.active:
             try:
