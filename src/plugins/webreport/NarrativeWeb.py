@@ -109,12 +109,6 @@ _NARRATIVEPRINT = 'narrative-print.css'
 _PERSON = 0
 _PLACE = 1
 
-# graphics for Maiz stylesheet
-_WEBBKGD = 'Web_Mainz_Bkgd.png'
-_WEBHEADER = 'Web_Mainz_Header.png'
-_WEBMID = 'Web_Mainz_Mid.png'
-_WEBMIDLIGHT = 'Web_Mainz_MidLight.png'
-
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 
@@ -367,7 +361,7 @@ class BasePage:
                 text = '&copy; %(year)d %(person)s' % {
                     'person' : self.author,
                     'year' : year}
-        elif 0 < copy_nr < len(_CC):
+        elif 0 < copy_nr <= len(_CC):
             # Note. This is a URL
             fname = '/'.join(["images", "somerights20.gif"])
             fname = self.report.build_url_fname(fname, None, self.up)
@@ -2204,7 +2198,7 @@ class IndividualPage(BasePage):
             birth_event = self.report.database.get_event_from_handle(birth_ref.ref)
             birth_date = birth_event.get_date_object()
 
-        if (birth_date is not None and birth_date.get_valid()):
+        if (birth_date is not None and birth_date.is_valid()):
             alive = probably_alive(self.person, self.report.database, gen.lib.date.Today())
             death_ref = self.person.get_death_ref()
             death_date = None
@@ -2991,9 +2985,14 @@ class NavWebReport(Report):
 
         imgs = []
 
+        # Mainz stylesheet graphics
+        # will only be used if Mainz is slected as the stylesheet
+        Mainz_images = ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
+                                     "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
+
         # Copy Mainz Style Images
         if self.css == "Web_Mainz.css":
-            imgs += [_WEBBKGD, _WEBHEADER, _WEBMID, _WEBMIDLIGHT]
+            imgs += Mainz_images
 
         # Copy the Creative Commons icon if the Creative Commons
         # license is requested???

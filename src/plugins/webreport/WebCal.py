@@ -82,13 +82,6 @@ _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 _CALENDARSCREEN = 'calendar-screen.css'
 _CALENDARPRINT = 'calendar-print.css'
 
-# Mainz stylesheet graphics
-# will only be used if Mainz is slected as the stylesheet
-_WEBBKGD = "Web_Mainz_Bkgd.png"
-_WEBHEADER = "Web_Mainz_Header.png"
-_WEBMID = "Web_Mainz_Mid.png"
-_WEBMIDLIGHT = "Web_Mainz_MidLight.png"
-
 # This information defines the list of styles in the Web calendar
 # options dialog as well as the location of the corresponding
 # stylesheets.
@@ -229,8 +222,7 @@ class WebCalReport(Report):
         self.email = researcher.email
 
         # set to today's date
-        today = time.localtime()
-        self.today = gen.lib.Date(today[0], today[1], today[2])
+        self.today = gen.lib.date.Today()
 
         self.warn_dir = True            # Only give warning once.
 
@@ -283,12 +275,16 @@ class WebCalReport(Report):
 #                         Adds Birthdays and Anniversaries
 #
 # ---------------------------------------------------------------------------------------
-
     def add_day_item(self, text, year, month, day, event):
         if day == 0:
             # This may happen for certain "about" dates.
             day = 1     # Use first day of the month
-        month_dict = self.calendar.get(month, {})
+
+        # determine which dictionary to use???
+        if event in ['Birthday', 'Anniversary']:
+            month_dict = self.calendar.get(month, {})
+        else:
+            month_dict = self.holidays.get(month, {})
         day_list = month_dict.get(day, [])
 
         if month > 0:
@@ -302,14 +298,19 @@ class WebCalReport(Report):
 
         day_list.append((text, event, event_date))
         month_dict[day] = day_list
-        self.calendar[month] = month_dict
+
+        # determine which dictionary to add it to???
+        if event in ['Birthday', 'Anniversary']:
+            self.calendar[month] = month_dict
+        else:
+            self.holidays[month] = month_dict
 
 # ---------------------------------------------------------------------------------------
 #
-# Retrieves Holidays from the Holiday file, src/plugins/lib/holidays.xml
+#         Retrieves Holidays from the Holiday file, 
+#         src/plugins/lib/holidays.xml
 #
 # ---------------------------------------------------------------------------------------
-
     def __get_holidays(self, year):
 
         self.progress.set_pass(_('Calculating Holidays for year %d' % year), 365)
@@ -322,42 +323,16 @@ class WebCalReport(Report):
             for day in range(1, 32):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
-                    self.add_holiday_item(holiday_name, month, day)
+                    self.add_day_item(holiday_name, year, month, day, 'Holiday')
 
                 # increment progress bar
                 self.progress.step() 
 
 # ---------------------------------------------------------------------------------------
 #
-#                                 Adds Holiday events
-#
-# ---------------------------------------------------------------------------------------
-
-    def add_holiday_item(self, text, month, day):
-        """
-        add holiday to its dictionary 
-
-        text -- holiday title
-        month -- month of holiday
-        day -- day of holiday
-        """
-
-        if day == 0:
-            # This may happen for certain "about" dates.
-            day = 1     # Use first day of the month
-        month_dict = self.holidays.get(month, {})
-        day_list = month_dict.get(day, [])
-
-        day_list.append(text)
-        month_dict[day] = day_list
-        self.holidays[month] = month_dict
-
-# ---------------------------------------------------------------------------------------
-#
 #          Copies all of the calendar files for all calendars
 #
 # ---------------------------------------------------------------------------------------
-
     def copy_calendar_files(self):
         """
         Copies all the necessary stylesheets and images for these calendars
@@ -374,9 +349,14 @@ class WebCalReport(Report):
         # set imgs to empty
         imgs = []
 
+        # Mainz stylesheet graphics
+        # will only be used if Mainz is slected as the stylesheet
+        Mainz_images = ["Web_Mainz_Bkgd.png", "Web_Mainz_Header.png", 
+                                     "Web_Mainz_Mid.png", "Web_Mainz_MidLight.png"]
+
         if self.css == "Web_Mainz.css":
             # Copy Mainz Style Images
-            imgs += [_WEBBKGD, _WEBHEADER, _WEBMID, _WEBMIDLIGHT]
+            imgs += Mainz_images
 
         # Copy GRAMPS favicon
         imgs += ['favicon.ico']
@@ -465,9 +445,6 @@ class WebCalReport(Report):
             Html('meta', attr = _META2)
             )
 
-        # add meta tags to head section
-        head += meta
-
         # links for GRAMPS favicon and stylesheets
         links = Html('link',rel='shortcut icon', href=fname1,type='image/x-icon',indent=True) + (
             Html('link',rel='stylesheet', href=fname2,type='text/css',media='screen')
@@ -478,8 +455,8 @@ class WebCalReport(Report):
             fname = '/'.join([subdirs] + ['styles'] + [_CALENDARPRINT])
             links += Html('link',rel='stylesheet', href=fname,type='text/css',media='print')
 
-        # add stylesheet links to head section
-        head += links
+        # add additional meta tags and stylesheet links to head section
+        head += (meta, links)
 
         # begin page body
         new_body = Html('body', id = body_id)
@@ -507,8 +484,7 @@ class WebCalReport(Report):
         # add header division to body
         new_body += headerdiv
 
-        # return to its caller
-        # either webcalendar(), year_glance(), or one_day()
+        # return to its caller; either webcalendar(), year_glance(), or one_day()
         return page, new_body
 
 # ---------------------------------------------------------------------------------------
@@ -561,10 +537,10 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                ul += Html('li',attr=cs , indent=True, inline=True) + (
+                ul += Html('li', attr=cs , indent=True, inline=True) + (
 
                     # create hyperlink
-                    Html('a', str(cal_year), href = url, inline=True)
+                    Html('a', str(cal_year), href = url, indent=True, inline=True)
                     )
 
                 # increase columns
@@ -643,7 +619,7 @@ class WebCalReport(Report):
             ul += Html('li', attr = cs, indent=True, inline=True) + (
 
                 # create hyperlink
-                Html('a', nav_text, href = url)
+                Html('a', nav_text, href = url,indent=True,inline=True)
                 )
 
         # add ul to monthnav
@@ -717,11 +693,11 @@ class WebCalReport(Report):
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
             dayname = get_name_for_daycol(day_col)
-            th = Html('th', class_ =dayclass, indent=True, inline=True)
-            abbr = Html('abbr', dayname[0], title=dayname)
+            th = Html('th', class_ =dayclass, indent=True, inline=True) + (
+                Html('abbr', dayname[0], title=dayname)
+                )
 
             # now add it all together
-            th += abbr
             weekday_names += th
 
         # add  weekdays names to table body
@@ -736,13 +712,15 @@ class WebCalReport(Report):
         # get first of the month and month information 
         current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
 
+        # begin calendar table rows, starting week0 
         nweeks = len(monthinfo)
         for week_row in range(0, nweeks):
             week = monthinfo[week_row]
 
             # if you look this up in wikipedia, the first week is called week0
-            tr = Html('tr', class_ = 'week%02d' % week_row, indent=True)
+            tr = Html('tr', class_ = 'week%d' % week_row, indent=True)
 
+            # begin calendar day column
             for day_col in range(0, 7):
                 dayclass = get_class_for_daycol(day_col)
 
@@ -755,30 +733,35 @@ class WebCalReport(Report):
                 # adds date for all pieces of this calendar building
                 datediv = Html('div', day, class_ ='date',indent=True,inline=True)
 
-                if day == 0:               # a day in the previous or next month
-                    if week_row == 0:      # a day in the previous month
+                # a day in the previous or next month
+                if day == 0:
+
+                    # day in previous month
+                    if week_row == 0:
                         specday = get_previous_day(year, month, day_col)
                         specclass = "previous " + dayclass
-                    elif week_row == nweeks-1:         # a day in the next month
+
+                    # a day in the next month
+                    elif week_row == (nweeks-1):
                         specday = get_next_day(year, month, day_col)   
                         specclass = "next " + dayclass
 
-                    # continue table cell, <td>
-                    td = Html('td', class_ = specclass, indent=True,inline=True)
+                    # continue table cell, <td>, without id tag
+                    td = Html('td', class_ = specclass, indent=True,inline=True) + (
 
-                    # adds date for all pieces of this calendar building
-                    datediv = Html('div', specday, class_ = 'date',indent=True,inline=True)
-
-                    # add date to table cell, <td>
-                    td += datediv
+                        # adds date for previous and next month days
+                        Html('div', specday, class_ = 'date',indent=True,inline=True)
+                        ) 
 
                     # add table cell, <td>, to table row, <tr> 
                     tr += td
 
-                else:                # normal day number in current month
+                # normal day number in current month
+                else: 
                     thisday = datetime.date.fromordinal(current_ord)
 
-                    if thisday.month == month: # Something this month
+                    # Something this month
+                    if thisday.month == month:
                         holiday_list = self.holidays.get(month, {}).get(thisday.day, [])
                         bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
 
@@ -818,9 +801,12 @@ class WebCalReport(Report):
                                 # just year_glance(), but no one_day() pages
                                 else:
 
-                                    # date division section
-                                    # show hilighted date, but no hyperlink   
-                                    td += datediv
+                                    # continue table cell, <td>, without id tag
+                                    td = Html('td', class_ = hilightday, indent=True,inline=True) + (
+
+                                        # adds date division
+                                        Html('div', day, class_ = 'date',indent=True,inline=True)
+                                        ) 
 
                             # WebCal
                             else:
@@ -841,17 +827,19 @@ class WebCalReport(Report):
                         else: 
 
                             # create empty day with date 
-                            td = Html('td', id=tdid, class_ = dayclass, indent=True)
+                            td = Html('td', class_ = dayclass, indent=True, inline=True) + (
 
-                            # add date to table cell, <td>
-                            td += datediv
+                                # adds date division
+                                Html('div', day, class_ = 'date',indent=True,inline=True)
+                                ) 
 
                     # nothing for this month
                     else:
-                        td = Html('td', id=tdid, class_ = dayclass, indent=True)
+                        td = Html('td', class_ = dayclass, indent=True) + (
 
-                        # add date to table cell, <td>
-                        td += datediv 
+                            # adds date division
+                            Html('div', day, class_ = 'date',indent=True,inline=True)
+                            ) 
 
                     # add table cell, <td>, to table row, <tr>
                     # close the day column
@@ -867,13 +855,11 @@ class WebCalReport(Report):
         if cal == "yg":
             # Fill up till we have 6 rows, so that the months align properly
             for i in range(nweeks, 6):
-                six_weeks = Html('tr', class_ = 'week%02d' % (i + 1), indent=True)
+                six_weeks = Html('tr', class_ = 'week%d' % (i + 1), indent=True) + (
 
-                # create table cell, <td>
-                td = Html('td', colspan=7, indent=True)
-
-                # add table cell, <td>, to six weeks
-                six_weeks += td 
+                    # create table cell, <td>
+                    Html('td', colspan=7, indent=True,inline=True)
+                    )
 
                 # add extra weeks to tbody if needed
                 tbody += six_weeks
@@ -1399,29 +1385,23 @@ class WebCalOptions(MenuReportOptions):
         category_name = _("Content Options")
 
         # set to today's date for use in menu, etc.
-        # 0 = year, 1 = month, 2 = day
-        today = time.localtime()
-        today = datetime.date(today[0], today[1], today[2]) 
+        today = gen.lib.date.Today()
 
-        self.__multiyear = BooleanOption(_('Create multiple year '
-                                           'calendars'), False)
-        self.__multiyear.set_help(_('Whether to create Multiple year '
-                                    'calendars or not.'))
+        self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
+        self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
         menu.add_option(category_name, 'multiyear', self.__multiyear)
         self.__multiyear.connect('value-changed', self.__multiyear_changed) 
 
-        self.__start_year = NumberOption(_('Start Year for the '
-                                           'Calendar(s)'), today.year, 1900, 3000)
+        self.__start_year = NumberOption(_('Start Year for the Calendar(s)'), today.get_year(),
+            1900, 3000)
         self.__start_year.set_help(_('Enter the starting year for the calendars '
                                      'between 1900 - 3000'))
         menu.add_option(category_name, 'start_year', self.__start_year)
 
-        self.__end_year = NumberOption(_('End Year for the '
-                                         'Calendar(s)'), today.year, 1900, 3000)
+        self.__end_year = NumberOption(_('End Year for the Calendar(s)'), today.get_year(),
+             1900, 3000)
         self.__end_year.set_help(_('Enter the ending year for the calendars '
-                                   'between 1900 - 3000.  if multiple years '
-                                   'is selected, then only twenty years at any '
-                                   'given time'))
+                                   'between 1900 - 3000.'))
         menu.add_option(category_name, 'end_year', self.__end_year)
 
         self.__multiyear_changed()
@@ -1792,11 +1772,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
 
     ##################################################################
     # holiday on this day
-    # The 0 will force holidays to be first in the list
-    for event_name in holiday_list:
-        for line in event_name.splitlines():
-            day_list.append((0, event_date, line, 'Holiday'))
-    ##################################################################
+    # '...' signifies an incomplete date for an event. See add_day_item()
+    holiday_list = [(t, e, d) for t, e, d in holiday_list
+                       if d != '...']
 
     ##################################################################
     # birthday/ anniversary on this day
@@ -1810,9 +1788,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     for text, event, date in bday_anniv_list:
 
         # number of years married, ex: 10
-        nyears = event_date.get_year() - date.get_year()
-
-        txt_str = None
+        # zero will force holidays to be first in list
+        nyears = (event_date.get_year() - date.get_year())
 
         # number of years for birthday, ex: 10 years
         age_str = event_date - date
@@ -1839,13 +1816,16 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                            % {'couple' : text, 'years'  : nyears})
             txt_str = Html('span', txt_str, class_ = 'yearsmarried')
 
-        if txt_str is not None:
-            day_list.append((nyears, date, txt_str, event))
+        day_list.append((nyears, date, txt_str, event))
+
+    # a holiday
+    for text, event, date in holiday_list:
+            day_list.append((0, date, text, 'Holiday'))
 
     # sort them based on number of years
-    # holidays will always be on top of day 
     day_list.sort()
  
+    # return to its caller calendar_build()
     return day_list
 
 # ---------------------------------------------------------------------------------------
