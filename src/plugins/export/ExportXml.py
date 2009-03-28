@@ -423,7 +423,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             
             self.g.write('  ' * index + '<tag name="%s"' % name)
             if value:
-                self.g.write(' value="%s"' % str(value))
+                self.g.write(' value="%s"' % escxml(str(value)))
             self.g.write('>\n')
             
             for (start, end) in tag.ranges:
@@ -717,7 +717,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             marker_text = ''
         priv_text = conf_priv(obj)
         change_text = ' change="%d"' % obj.get_change_time()
-        handle_id_text = ' id="%s" handle="_%s"' % (obj.gramps_id, obj.handle)
+        handle_id_text = ' id="%s" handle="_%s"' % (escxml(obj.gramps_id), obj.handle)
         obj_text = '%s<%s' % (sp,tagname)
 
         self.g.write(obj_text + handle_id_text + priv_text + marker_text +
@@ -1064,7 +1064,6 @@ class GrampsDbXmlWriter(UpdateCallback):
         title = self.fix(place.get_title())
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        handle = place.get_gramps_id()
         main_loc = place.get_main_location()
         llen = len(place.get_alternate_locations()) \
                + len(place.get_url_list()) + \
