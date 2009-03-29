@@ -1785,6 +1785,8 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     # number of years have to be at least zero
     bday_anniv_list = [(t, e, d) for t, e, d in bday_anniv_list
                        if (event_date.get_year() - d.get_year()) >= 0]
+
+    # birthday and anniversary list
     for text, event, date in bday_anniv_list:
 
         # number of years married, ex: 10
@@ -1803,7 +1805,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
             + '</em>')
 
         # an anniversary
-        elif event == 'Anniversary':
+        else:
 
             if nyears == 0:
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
@@ -1819,10 +1821,14 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         day_list.append((nyears, date, txt_str, event))
 
     # a holiday
+    # will force holidays to be on top
+    nyears = 0
+
     for text, event, date in holiday_list:
-            day_list.append((0, date, text, 'Holiday'))
+            day_list.append((nyears, date, text, event))
 
     # sort them based on number of years
+    # holidays will always be on top of event list
     day_list.sort()
  
     # return to its caller calendar_build()

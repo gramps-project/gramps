@@ -1206,9 +1206,3 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
 }
-body#fullyearlinked table.calendar tbody tr td.saturday {
-    border-right:solid 2px #000;
-}
-body#fullyearlinked able.calendar tbody tr td.sunday {
-    border:solid 2px #000;
-}
