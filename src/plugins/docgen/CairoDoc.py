@@ -476,6 +476,9 @@ class GtkDocParagraph(GtkDocBaseElement):
         # and divide the text, first create the second part
         new_style = BaseDoc.ParagraphStyle(self._style)
         new_style.set_top_margin(0)
+        #we split a paragraph, text should begin in correct position: no indent
+        #as if the paragraph just continues from normal text
+        new_style.set_first_indent(0)
         new_paragraph = GtkDocParagraph(new_style)
         new_paragraph.add_text(self._text.encode('utf-8')[index:])
         # then update the first one
