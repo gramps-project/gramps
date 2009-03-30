@@ -578,11 +578,37 @@ class EditRule(ManagedWindow.ManagedWindow):
                 tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
+        self.rname.connect('button-press-event', self._button_press)
+        self.rname.connect('key-press-event', self._key_press)
         self.get_widget('ok').connect('clicked', self.rule_ok)
         self.get_widget('cancel').connect('clicked', self.close_window)
         self.get_widget('help').connect('clicked', self.on_help_clicked)
 
         self.show()
+
+    def _button_press(self, obj, event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            return self.expand_collapse()
+
+    def _key_press(self, obj, event):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                return self.expand_collapse()
+        return False    
+    
+    def expand_collapse(self):
+        """
+        Expand or collapse the selected parent name node.
+        Return True if change done, False otherwise
+        """
+        store, paths = self.selection.get_selected_rows()
+        if paths and len(paths[0]) == 1 :
+            if self.rname.row_expanded(paths[0]):
+                self.rname.collapse_row(paths[0])
+            else:
+                self.rname.expand_row(paths[0], 0)
+            return True
+        return False
 
     def on_help_clicked(self, obj):
         """
