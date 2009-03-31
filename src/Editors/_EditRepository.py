@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -107,28 +107,38 @@ class EditRepository(EditPrimary):
         
         notebook = gtk.Notebook()
 
-        self.addr_tab = self._add_tab(
-                        notebook,
-                        AddrEmbedList(self.dbstate, self.uistate, self.track,
-                                      self.obj.get_address_list()))
+        self.addr_tab = AddrEmbedList(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_address_list())
+        self._add_tab(notebook, self.addr_tab)
+        self.track_ref_for_deletion("addr_tab")
 
-        self.url_tab = self._add_tab(
-                        notebook,
-                        WebEmbedList(self.dbstate, self.uistate, self.track,
-                                     self.obj.get_url_list()))
+        self.url_tab = WebEmbedList(self.dbstate,
+                                    self.uistate,
+                                    self.track,
+                                    self.obj.get_url_list())
+        self._add_tab(notebook, self.url_tab)
+        self.track_ref_for_deletion("url_tab")
         
-        self.note_tab = self._add_tab(
-                        notebook,
-                        NoteTab(self.dbstate, self.uistate, self.track,
-                                self.obj.get_note_list(), self.get_menu_title(),
-                                notetype=gen.lib.NoteType.REPO))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_note_list(),
+                                self.get_menu_title(),
+                                notetype=gen.lib.NoteType.REPO)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
 
-        self.backref_tab = self._add_tab(
-                        notebook,
-                        SourceBackRefList(self.dbstate, self.uistate, self.track,
-                               self.db.find_backlink_handles(self.obj.handle)))
+        self.backref_tab = SourceBackRefList(self.dbstate,
+                                             self.uistate,
+                                             self.track,
+                               self.db.find_backlink_handles(self.obj.handle))
+        self.backref_list = self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
+        self.track_ref_for_deletion("backref_list")
 
-        self._setup_notebook_tabs( notebook)
+        self._setup_notebook_tabs(notebook)
         notebook.show_all()
         self.glade.get_widget("vbox").pack_start(notebook, True, True)
 
@@ -174,7 +184,7 @@ class EditRepository(EditPrimary):
         self.close()
 
     def _cleanup_on_exit(self):
-        self.backref_tab.close()
+        self.backref_list.close()
 
 class DelRepositoryQuery:
     def __init__(self, dbstate, uistate, repository, sources):

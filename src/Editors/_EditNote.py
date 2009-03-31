@@ -178,6 +178,7 @@ class EditNote(EditPrimary):
         notebook.remove_page(0)
         self.ntab = NoteTab(self.dbstate, self.uistate, self.track, 
                               _('_Note'), vboxnote)
+        self.track_ref_for_deletion("ntab")
         
         self.build_interface()
         
@@ -232,8 +233,13 @@ class EditNote(EditPrimary):
         self._add_tab(notebook, self.ntab)
 
         handles = self.dbstate.db.find_backlink_handles(self.obj.handle)
-        rlist = NoteBackRefList(self.dbstate, self.uistate, self.track, handles)
-        self.backref_tab = self._add_tab(notebook, rlist)
+        self.rlist = NoteBackRefList(self.dbstate,
+                                     self.uistate,
+                                     self.track,
+                                     handles)
+        self.backref_tab = self._add_tab(notebook, self.rlist)
+        self.track_ref_for_deletion("rlist")
+        self.track_ref_for_deletion("backref_tab")
         
         self._setup_notebook_tabs(notebook)
 

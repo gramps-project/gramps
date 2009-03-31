@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-#               2009       Gary Burton
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -171,25 +171,35 @@ class EditMedia(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
-        self.src_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        self.src_tab = SourceEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track,
+                                       self.obj)
+        self._add_tab(notebook, self.src_tab)
+        self.track_ref_for_deletion("src_tab")
         
-        self.attr_list = self._add_tab(
-            notebook,
-            AttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_attribute_list()))
+        self.attr_tab = AttrEmbedList(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.obj.get_attribute_list())
+        self._add_tab(notebook, self.attr_tab)
+        self.track_ref_for_deletion("attr_tab")
         
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), 
-                    notetype=gen.lib.NoteType.MEDIA))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.obj.get_note_list(), 
+                                notetype=gen.lib.NoteType.MEDIA)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
 
-        self.backref_list = self._add_tab(
-            notebook,
-            MediaBackRefList(self.dbstate,self.uistate,self.track,
-                             self.db.find_backlink_handles(self.obj.handle)))
+        self.backref_tab = MediaBackRefList(self.dbstate,
+                                            self.uistate,
+                                            self.track,
+                             self.db.find_backlink_handles(self.obj.handle))
+        self.backref_list = self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
+        self.track_ref_for_deletion("backref_list")
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
