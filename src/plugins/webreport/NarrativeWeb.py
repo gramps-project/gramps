@@ -1482,18 +1482,21 @@ class SurnameListPage(BasePage):
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
             self.write_header(of, _('Surnames'))
-            self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
         else:
             of = self.report.create_file("surnames_count")
             self.write_header(of, _('Surnames by person count'))
 
         of.write('<div id="Surnames" class="content">\n')
 
-        of.write('\t<p id="description">%s</p>\n' % _(
-            'This page contains an index of all the '
+        msg = _( 'This page contains an index of all the '
             'surnames in the database. Selecting a link '
             'will lead to a list of individuals in the '
-            'database with this same surname.'))
+            'database with this same surname.')
+        of.write('\t<p id="description">%s</p>\n' % msg)
+
+        # add alphabet navigation after page msg
+        if order_by == self.ORDER_BY_NAME:
+            self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
 
         if order_by == self.ORDER_BY_COUNT:
             of.write('\t<table id="SortByCount" class="infolist surnamelist">\n')
