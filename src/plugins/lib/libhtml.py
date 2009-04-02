@@ -29,11 +29,11 @@
 """
 HTML operations.
 
-This module exports one class and one function.
+This module exports the Html class
 
 """
 
-__all__ = ['Html','newpage']
+__all__ = ['Html']
 
 #------------------------------------------------------------------------
 #
@@ -41,7 +41,11 @@ __all__ = ['Html','newpage']
 #
 #------------------------------------------------------------------------
 
-from gen.plug import PluginManager, Plugin
+try:
+    from gen.plug import PluginManager, Plugin
+    from gettext import gettext as _
+except ImportError:
+    print 'Plugin manager not imported.'
 
 #------------------------------------------------------------------------
 #
@@ -54,17 +58,18 @@ from gen.plug import PluginManager, Plugin
 # XHTML DOCTYPE constants to be used in <!DOCTYPE ... > statements
 #
 #------------------------------------------------------------------------
-_XHTML10_STRICT = 'PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n' \
+
+_XHTML10_STRICT = '"-//W3C//DTD XHTML 1.0 Strict//EN"\n' \
                   '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"'
-_XTHML10_TRANS = 'PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n' \
+_XTHML10_TRANS = '"-//W3C//DTD XHTML 1.0 Transitional//EN"\n' \
                  '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"'
-_XHTML10_FRAME = 'PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"\n' \
+_XHTML10_FRAME = '"-//W3C//DTD XHTML 1.0 Frameset//EN"\n' \
                  '\t"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"'
-_XHTML11 = 'PUBLIC "-//W3C//DTD XHTML 1.1//EN"\n' \
+_XHTML11 = '"-//W3C//DTD XHTML 1.1//EN"\n' \
            '\t"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"'
-_XHTML10_BASIC = 'PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"\n' \
+_XHTML10_BASIC = '"-//W3C//DTD XHTML Basic 1.0//EN"\n' \
                  '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd"'
-_XHTML11_BASIC = 'PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN"\n ' \
+_XHTML11_BASIC = '"-//W3C//DTD XHTML Basic 1.1//EN"\n ' \
                  '\t"http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd"'
 
 #------------------------------------------------------------------------
@@ -77,7 +82,7 @@ _XMLNS = "http://www.w3.org/1999/xhtml"
 
 #------------------------------------------------------------------------
 #
-# local constants.
+# Local constants.
 #
 #------------------------------------------------------------------------
 
@@ -96,7 +101,7 @@ _START_CLOSE = (
 
 #------------------------------------------------------------------------
 #
-# helper functions.
+# Helper functions.
 #
 #------------------------------------------------------------------------
 
@@ -105,36 +110,6 @@ def print_(line):
     Print function
     """
     print line
-
-def newpage(title='Title', encoding='utf-8', lang='en'):
-    """
-    This function prepares a new Html class based page and returns
-
-    @type  title: string
-    @param title: title for HTML page. Default='Title'
-    @type  encoding: string
-    @param encoding: encoding to be used. Default = 'utf-8'
-    @type  lang: string
-    @param lang: language to be used. Defaul = 'en'
-    @rtype:   three object references
-    @return:  references to the newly-created Html instances for
-              page, head and body
-    """
-    meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
-    meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
-    page = Html(
-         xmlns=_XMLNS, 
-         attr='xml:lang="%s" lang="%s"' % ((lang,)*2)
-         )
-    page.addXML(encoding=encoding)
-    page.addDOCTYPE()
-    head = Html('head')
-    head += Html('title', title, inline=True, indent=True)
-    head += Html('meta', attr=meta1 % encoding, indent=True)
-    head += Html('meta', attr=meta2, indent=True)
-    body = Html('body')
-    page += (head, body)
-    return page, head, body
 
 #------------------------------------------------------------------------
 #
@@ -147,6 +122,116 @@ class Html(list):
     HTML class: Manages a rooted tree of HTML objects
     """
     __slots__ = ['items', 'indent', 'inline', 'end']
+#
+    @staticmethod
+    def xmldecl(version=1.0, encoding="UTF-8", standalone="no"):
+        """
+        Build and return an XML declaration statement
+
+        @type  version: decimal number
+        @param version: version of XML to be used. Defaults to 1.0
+        @type  encoding: string
+        @param encoding: encoding method to be used. Defaults to "UTF-8"
+        @type  standalone: string
+        @param standalone: "yes" or "no".  Defaults to "no"
+        """
+        return '<?xml %s %s %s?>' % (
+            'version="%s"' % version,
+            'encoding="%s"' % encoding,
+            'standalone="%s"' % standalone
+            )
+#
+    @staticmethod
+    def doctype(name='html', public='PUBLIC', external_id=_XHTML10_STRICT):
+        """
+        Build and return a DOCTYPE statement
+
+        @type  name: string
+        @param name: name of this DOCTYPE. Defaults to "html"
+        @type  public: string
+        @param public: class of this DOCTYPE. Defaults to 'PUBLIC
+        @type  external_id: string
+        @param external_id: external identifier of this DOCTYPE. 
+                            Defaults to XHTML 1.0 STRICT
+        @type  args: object
+        @param args: 0 or more positional parameters to be added to this    
+                     DOCTYPE.
+        """
+        return '<!DOCTYPE %s %s %s>' % (
+            name,
+            public, 
+            external_id,
+            )
+#
+    @staticmethod
+    def html(xmlns=_XMLNS, lang='en', *args, **keywargs):
+        """
+        Build and return a properly-formated <html> object
+
+        @type  xmlns: string
+        @param xmlns: XML namespace string. Default = 'http://www.w3.org/1999/xhtml'
+        @type  lang: string
+        @param lang: language to be used. Defaul = 'en'
+        @rtype:   reference to new Html instance
+        @return:  reference to the newly-created Html instances for <html> object
+        """      
+        return Html('html',
+            indent=False,
+            xmlns=xmlns,
+            attr='xml:lang="%s" lang="%s"' % ((lang,)*2),
+            *args, **keywargs
+            )
+#
+    @staticmethod
+    def head(title='Title', encoding='utf-8', *args, **keywargs):
+        """
+        Build and return a properly-formated <head> object
+    
+        @type  title: string
+        @param title: title for HTML page. Default='Title'
+        @type  encoding: string
+        @param encoding: encoding to be used. Default = 'utf-8'
+        @rtype  reference to new Html instance
+        @return reference to the newly-created Html instances for <head> object
+        """ 
+        meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
+        meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
+        head = Html('head', *args, **keywargs) + (
+            Html('title', title, inline=True, indent=True),
+            Html('meta', attr=meta1 % encoding, indent=True),
+            Html('meta', attr=meta2, indent=True)
+            )
+        return head
+#
+    @staticmethod
+    def page(title='Title', encoding='utf-8', lang='en', *args, **keywargs):
+        """
+        This function prepares a new Html class based page and returns
+    
+        @type  title: string
+        @param title: title for HTML page. Default='Title'
+        @type  encoding: string
+        @param encoding: encoding to be used. Default = 'utf-8'
+        @type  lang: string
+        @param lang: language to be used. Defaul = 'en'
+        @rtype:   three object references
+        @return:  references to the newly-created Html instances for
+                  page, head and body
+        """
+        page = Html.html(lang=lang, *args, **keywargs)
+        page.addXML(encoding=encoding)
+        page.addDOCTYPE()
+#
+        head = Html.head(title=title,
+               encoding=encoding,
+               lang=lang,
+               indent=False,
+               *args, **keywargs 
+               )
+#
+        body = Html('body', indent=False, *args, **keywargs)
+        page += (head, body)
+        return page, head, body
 #
     def __init__(self, tag='html', *args, **keywargs):
         """
@@ -180,14 +265,13 @@ class Html(list):
         @rtype:   object reference
         @return:  reference to the newly-created Html instance
         """
-#
-        super(Html, self).__init__([])
-        attr, indent, close, inline = '', False, True, False
+        super(Html, self).__init__([])                  # instantiate object
+        attr, indent, close, inline = '', True, True, False
 #
 #       Handle keyword arguments passed to this constructor.
 #       Keywords that we process directly are handled. 
-#       Keywords we don't recognize are passed into the 
-#       opening tag.
+#       Keywords we don't recognize are saved for later 
+#       addition to the opening tag as attributes.
 #
         for keyw, arg in keywargs.iteritems():
             if keyw in ['indent', 'close', 'inline'] and \
@@ -204,25 +288,26 @@ class Html(list):
         self.inline = inline
         self.end = close
 #
-        if tag[0] == '<':               # did caller provide preformatted tag?
-            self += [tag]
+        if tag[0] == '<':               # if caller provided preformatted tag?
+            self[0:] = [tag]            #   add it in
             self.end = None
         else: 
             if tag in _START_CLOSE:         # if tag in special list
                 self.end = close = False    #   it needs no closing tag
-            begin = '<%s%s%s>' % (      # build opening tag; pass in attributes
+            begin = '<%s%s%s>' % (      # build opening tag with attributes
                 tag,
                 attr,
                 ('' if close or close is None else ' /')
                 )
-            self += [begin] + list(args)    # add beginning tag to list
-            super(Html, self).extend(       # add closing tag if necessary
-                ['</%s>' % tag] if close else []
-                )
 #
-    def __add__(self, value):
+            self[0:] = [begin] + list(args)         # add beginning tag
+            if close:                               # if need closing tab
+                self[len(self):] = ['</%s>' % tag]         #   add it on the end
+#
+    def __add(self, value):
         """
-        Overload function for + and += operators
+        Helper function for +, +=, operators and append() and extend()
+        methods
 
         @type  value: object
         @param value: object to be added
@@ -236,7 +321,19 @@ class Html(list):
         self[index:index] = value
         return self
 #
-    __iadd__ = append = extend = __add__
+    def __add__(self, value):
+        """
+        Overload method for + and += operators
+        """
+        return self.__add(value)
+    __iadd__ = __add__
+#
+    def append(self, value):
+        """
+        Append a new value
+        """
+        self.__add(value)
+    extend = append
 #
     def replace(self, cur_value, value):
         """
@@ -271,7 +368,7 @@ class Html(list):
         Returns string representation
 
         @rtype:  string
-        @return: string representatiof object
+        @return: string representation of object
         """
         return '%s'*len(self) % tuple(self[:])
 #
@@ -289,24 +386,27 @@ class Html(list):
 #
     iterkeys = itervalues = iteritems = __iter__
 #
-    def write(self, method=print_, tabs=''):
+    def write(self, method=print_, indent='\t', tabs=''):
         """
         Output function: performs an insertion-order tree traversal
         and calls supplied method for each item found.
 
         @type  method: function reference
         @param method: function to call with each item found
+        @type  indent: string
+        @param indenf: string to use for indentation. Default = '\t' (tab)
         @type  tabs: string
         @oaram tabs: starting indentation
         """
-        tabs += '\t' if self.indent else ''
+        if self.indent: 
+            tabs += indent
         if self.inline:                         # if inline, write all list and
             method('%s%s' % (tabs, self))       # nested list elements
 #
         else:
             for item in self[:]:                # else write one at a time
-                if isinstance(item, Html):
-                    item.write(method=method, tabs=tabs)  # recurse if nested
+                if isinstance(item, Html):      # recurse if nested Html class
+                    item.write(method=method, indent=indent, tabs=tabs)
                 else:
                     method('%s%s' % (tabs, item))         # else write the line
 #
@@ -321,12 +421,12 @@ class Html(list):
         @type  standalone: string
         @param standalone: "yes" or "no".  Defaults to "no"
         """
-        xml = '<?xml %s %s %s?>' % (
-            'version="%s"' % version,
-            'encoding="%s"' % encoding,
-            'standalone="%s"' % standalone
+        xmldecl = Html.xmldecl(
+            version=version,
+            encoding=encoding,
+            standalone=standalone
             )
-        self.insert(0, xml)
+        self[0:0] = [xmldecl]
 #
     def addDOCTYPE(self, name='html', external_id=_XHTML10_STRICT, *args):
         """
@@ -346,21 +446,104 @@ class Html(list):
             external_id,
             ' %s'*len(args) % args
             )
+        # Note: DOCTYPE declaration must follow XML declaration
+
         if len(self) and self[0][:6] == '<?xml ':
-            self.insert(1, doctype)
+            self[1:1] = [doctype]
         else:
-            self.insert(0, doctype)
+            self[0:0] = [doctype]
+#
+    def __gettag(self):
+        """
+        Returns HTML tag for this object
+
+        @rtype:  string
+        @return: HTML tag
+        """
+        return self[0].split()[0].strip('< >')
+#
+    def __settag(self, newtag):
+        """
+        Sets a new HTML tag for this object
+
+        @type  name: string
+        @param name: new HTML tag
+        """
+        curtag = self.tag
+        if self[-1] == '</%s>' % curtag:
+            self[-1] = '</%s>' % newtag
+        self[0] = self[0].replace('<' + curtag, '<' + newtag)
+    tag = property(__gettag, __settag)
+#
+    def __getattr(self):
+        """
+        Returns HTML attributes for this object
+
+        @rtype:  string
+        @return: HTML attributes
+        """
+        attr = self[0].strip('<!?>').split(None, 1)
+        return attr[1] if len(attr) > 1 else ''
+#
+    def __setattr(self, value):
+        """
+        Sets new HTML attributes for this object
+
+        @type  name: string
+        @param name: new HTML attributes
+        """
+        self[0] = self[0][:len(self.tag)+1] + ' ' + value + self[0][-1:]
+#
+    def __delattr(self):
+        """
+        Removes HTML attributes for this object
+        """
+        self[0] = '<' + self.tag + '>'
+    attr = property(__getattr,  __setattr, __delattr)
+#
+    def __getinside(self):
+        """
+        Returns list of items between opening and closing tags
+
+        @rtype:  list
+        @return: list of items between opening and closing HTML tags 
+        """
+        return self[1:-1]
+#
+    def __setinside(self, value):
+        """
+        Sets new contents between opening and closing tags
+
+        @type  name: list
+        @param name: new HTML contents
+        """
+        if len(self) < 2:
+            raise AttributeError, 'No closing tag. Cannot set inside value' 
+        if isinstance(value, Html) or not hasattr(value, '__iter__'):
+            value = [value]
+        self[1:-1] = value
+#
+    def __delinside(self):
+        """
+        Removes contents between opening and closing tag
+        """
+        if len(self) > 2:
+            self[:] = self[:1] + self[-1:]
+    inside = property(__getinside, __setinside, __delinside)
 
 # ------------------------------------------
 #
 #            Register Plugin
 #
 # -------------------------------------------
-PluginManager.get_instance().register_plugin( 
-Plugin(
-    name = __name__,
-    description = _("Manages an HTML DOM tree."),
-    module_name = __name__ 
-      )
-)
 
+try:
+    PluginManager.get_instance().register_plugin( 
+    Plugin(
+        name = __name__,
+        description = _("Manages an HTML DOM tree."),
+        module_name = __name__ 
+        )
+    )
+except NameError:
+    print 'Plugin not registered.'
