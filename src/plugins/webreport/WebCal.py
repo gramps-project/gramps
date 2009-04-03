@@ -35,7 +35,7 @@ Refactoring. This is an ongoing job until this plugin is in a better shape.
 #
 #------------------------------------------------------------------------
 import os, codecs, shutil
-import time, datetime, calendar
+import datetime, calendar
 from gettext import gettext as _
 from gettext import ngettext
 
@@ -65,10 +65,9 @@ import GrampsLocale
 from QuestionDialog import WarningDialog
 from Utils import probably_alive
 from DateHandler import displayer as _dd
-from DateHandler import parser as _dp
 
 import libholiday
-from libhtml import Html, newpage
+from libhtml import Html
 
 #------------------------------------------------------------------------
 #
@@ -272,13 +271,23 @@ class WebCalReport(Report):
 
 # ---------------------------------------------------------------------------------------
 #
-#                         Adds Birthdays and Anniversaries
+#                Adds Birthdays, Anniversaries, and holidays
 #
 # ---------------------------------------------------------------------------------------
     def add_day_item(self, text, year, month, day, event):
+        """
+        adds birthdays, anniversaries, and holidays to their perspective lists
+
+        text -- line to be added
+        year, month, day -- date to add the text to 
+
+        event -- one of 'BirthDay', 'Anniversary', or 'Holiday'
+        """
+
+        # This may happen for certain "about" dates.
+        # Use first day of the month
         if day == 0:
-            # This may happen for certain "about" dates.
-            day = 1     # Use first day of the month
+            day = 1
 
         # determine which dictionary to use???
         if event in ['Birthday', 'Anniversary']:
@@ -432,7 +441,7 @@ class WebCalReport(Report):
              const.URL_HOMEPAGE)
         _META2 = 'name="author" content="%s"' % self.author
 
-        page, head, body = newpage(title=title, encoding=self.encoding, lang=xmllang)
+        page, head, body = Html.page(title=title, encoding=self.encoding, lang=xmllang)
 
         # GRAMPS favicon
         fname1 =  '/'.join([subdirs] + ['images'] + ['favicon.ico'])
@@ -441,34 +450,31 @@ class WebCalReport(Report):
         fname2 = '/'.join([subdirs] + ['styles'] + [_CALENDARSCREEN])
 
         # create additional meta tags
-        meta = Html('meta', attr = _META1, indent = True) + (
-            Html('meta', attr = _META2)
+        meta = Html('meta', attr = _META1) + (
+            Html('meta', attr = _META2,indent=False)
             )
 
         # links for GRAMPS favicon and stylesheets
-        links = Html('link',rel='shortcut icon', href=fname1,type='image/x-icon',indent=True) + (
-            Html('link',rel='stylesheet', href=fname2,type='text/css',media='screen')
+        links = Html('link',rel='shortcut icon', href=fname1,type='image/x-icon') + (
+            Html('link',rel='stylesheet', href=fname2,type='text/css',media='screen',indent=False)
             )
 
         # add printer stylesheet to webcalendar() and one_day() only
         if add_print:
             fname = '/'.join([subdirs] + ['styles'] + [_CALENDARPRINT])
-            links += Html('link',rel='stylesheet', href=fname,type='text/css',media='print')
+            links += Html('link',rel='stylesheet', href=fname,type='text/css',media='print',indent=False)
 
         # add additional meta tags and stylesheet links to head section
         head += (meta, links)
 
-        # begin page body
-        new_body = Html('body', id = body_id)
-
         # replace standard body element with custom one
-        page.replace(body, new_body)
+        body.attr = 'id="%s"' % body_id    
 
         # start header division section
-        headerdiv = Html('div', id="header", indent=True) + (
+        headerdiv = Html('div', id="header") + (
 
             # page title 
-            Html('h1', title, id = "SiteTitle", indent=True, inline=True),
+            Html('h1', title, id = "SiteTitle",inline=True),
             )
 
         # Created for ?
@@ -479,13 +485,13 @@ class WebCalReport(Report):
                                                                                                  'author' : self.author}
             else:
                 msg = _('Created for %(author)s') % {'author' : self.author}
-            headerdiv += Html('p', msg, id="CreatorInfo", indent=True)
+            headerdiv += Html('p', msg, id="CreatorInfo")
 
         # add header division to body
-        new_body += headerdiv
+        body += headerdiv
 
         # return to its caller; either webcalendar(), year_glance(), or one_day()
-        return page, new_body
+        return page, body
 
 # ---------------------------------------------------------------------------------------
 #
@@ -516,9 +522,9 @@ class WebCalReport(Report):
         nrows = get_num_of_rows(num_years, years_in_row)
 
         for rows in range(0, nrows):
-            yearnav = Html('div', id="navigation", indent=True)
+            yearnav = Html('div', id="navigation")
 
-            ul = Html('ul', indent=True)
+            ul = Html('ul')
             cols = 1
             while (cols <= years_in_row and cal_year <= self.end_year):
                 url = ''
@@ -537,10 +543,10 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                ul += Html('li', attr=cs , indent=True, inline=True) + (
+                ul += Html('li', attr=cs ,inline=True) + (
 
                     # create hyperlink
-                    Html('a', str(cal_year), href = url, indent=True, inline=True)
+                    Html('a', str(cal_year), href = url,inline=True)
                     )
 
                 # increase columns
@@ -584,8 +590,8 @@ class WebCalReport(Report):
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
 
-        monthnav = Html('div', id="subnavigation", indent=True)
-        ul = Html('ul', indent=True)
+        monthnav = Html('div', id="subnavigation")
+        ul = Html('ul')
 
         navs = [(u, n) for u, n, c in navs if c]
         for url_fname, nav_text in navs:
@@ -616,10 +622,10 @@ class WebCalReport(Report):
 
             # Figure out if we need <li class="CurrentSection"> or just plain <li>
             cs = url_fname == currentsection and 'class="CurrentSection"' or ''
-            ul += Html('li', attr = cs, indent=True, inline=True) + (
+            ul += Html('li', attr = cs,inline=True) + (
 
                 # create hyperlink
-                Html('a', nav_text, href = url,indent=True,inline=True)
+                Html('a', nav_text, href = url,inline=True)
                 )
 
         # add ul to monthnav
@@ -677,23 +683,23 @@ class WebCalReport(Report):
                 th_txt = '%s %d' % (month_name, year)
 
         # begin calendar table
-        cal_table = Html('table', class_='calendar', id = month_name, indent=True)
+        cal_table = Html('table', class_='calendar', id = month_name)
 
         # begin table head, <thead>
-        thead = Html('thead', indent=True)
-        tr = Html('tr', indent=True)
-        th = Html('th', th_txt, class_ ='monthName', colspan=7, indent=True, inline=True)
+        thead = Html('thead')
+        tr = Html('tr')
+        th = Html('th', th_txt, class_ ='monthName', colspan=7,inline=True)
 
         # add them together now
         tr += th
         thead += tr  
 
         # Calendar weekday names header
-        weekday_names = Html('tr', indent=True)
+        weekday_names = Html('tr')
         for day_col in range(7):
             dayclass = get_class_for_daycol(day_col)
             dayname = get_name_for_daycol(day_col)
-            th = Html('th', class_ =dayclass, indent=True, inline=True) + (
+            th = Html('th', class_ =dayclass,inline=True) + (
                 Html('abbr', dayname[0], title=dayname)
                 )
 
@@ -707,7 +713,7 @@ class WebCalReport(Report):
         cal_table += thead  
 
         # begin table body
-        tbody = Html('tbody', indent=True)
+        tbody = Html('tbody')
 
         # get first of the month and month information 
         current_date, current_ord, monthinfo = get_first_day_of_month(year, month)
@@ -718,7 +724,7 @@ class WebCalReport(Report):
             week = monthinfo[week_row]
 
             # if you look this up in wikipedia, the first week is called week0
-            tr = Html('tr', class_ = 'week%d' % week_row, indent=True)
+            tr = Html('tr', class_ = 'week%d' % week_row)
 
             # begin calendar day column
             for day_col in range(0, 7):
@@ -730,8 +736,8 @@ class WebCalReport(Report):
                 # start the beginning variable for <td>, table cell
                 tdid = "%s%02d" % (abbr_month_name, day)
 
-                # adds date for all pieces of this calendar building
-                datediv = Html('div', day, class_ ='date',indent=True,inline=True)
+                # add calendar date division
+                datediv = Html('div', day, class_='date',inline=True)
 
                 # a day in the previous or next month
                 if day == 0:
@@ -747,10 +753,10 @@ class WebCalReport(Report):
                         specclass = "next " + dayclass
 
                     # continue table cell, <td>, without id tag
-                    td = Html('td', class_ = specclass, indent=True,inline=True) + (
+                    td = Html('td', class_ = specclass,inline=True) + (
 
                         # adds date for previous and next month days
-                        Html('div', specday, class_ = 'date',indent=True,inline=True)
+                        Html('div', specday, class_ = 'date',inline=True)
                         ) 
 
                     # add table cell, <td>, to table row, <tr> 
@@ -776,7 +782,7 @@ class WebCalReport(Report):
                         if day_list: 
 
                             hilightday = 'highlight ' + dayclass
-                            td = Html('td', id=tdid, class_ = hilightday, indent=True)
+                            td = Html('td', id=tdid, class_ = hilightday)
 
                             # Year at a Glance
                             if cal == "yg":
@@ -790,7 +796,7 @@ class WebCalReport(Report):
 
                                     # create hyperlink to one_day()
                                     fname_date = full_month_name + '/' + fname_date 
-                                    ahref = Html('a', datediv, href=fname_date, indent=True, inline=True)
+                                    ahref = Html('a', datediv, href=fname_date,inline=True)
 
                                     # add hyperlink to table cell, <td>
                                     td += ahref 
@@ -802,10 +808,10 @@ class WebCalReport(Report):
                                 else:
 
                                     # continue table cell, <td>, without id tag
-                                    td = Html('td', class_ = hilightday, indent=True,inline=True) + (
+                                    td = Html('td', class_ = hilightday,inline=True) + (
 
                                         # adds date division
-                                        Html('div', day, class_ = 'date',indent=True,inline=True)
+                                        Html('div', day, class_ = 'date',inline=True)
                                         ) 
 
                             # WebCal
@@ -815,9 +821,9 @@ class WebCalReport(Report):
                                 td += datediv 
 
                                 # list the events
-                                ul = Html('ul', indent=True)
+                                ul = Html('ul')
                                 for nyears, date, text, event in day_list:
-                                    ul += Html('li', text, indent=True, inline=False if event == 'Anniversary' 
+                                    ul += Html('li', text,inline=False if event == 'Anniversary' 
                                         else True)
 
                                 # add events to table cell, <td>
@@ -827,18 +833,18 @@ class WebCalReport(Report):
                         else: 
 
                             # create empty day with date 
-                            td = Html('td', class_ = dayclass, indent=True, inline=True) + (
+                            td = Html('td', class_ = dayclass,inline=True) + (
 
                                 # adds date division
-                                Html('div', day, class_ = 'date',indent=True,inline=True)
+                                Html('div', day, class_ = 'date',inline=True)
                                 ) 
 
                     # nothing for this month
                     else:
-                        td = Html('td', class_ = dayclass, indent=True) + (
+                        td = Html('td', class_ = dayclass) + (
 
                             # adds date division
-                            Html('div', day, class_ = 'date',indent=True,inline=True)
+                            Html('div', day, class_ = 'date',inline=True)
                             ) 
 
                     # add table cell, <td>, to table row, <tr>
@@ -855,10 +861,10 @@ class WebCalReport(Report):
         if cal == "yg":
             # Fill up till we have 6 rows, so that the months align properly
             for i in range(nweeks, 6):
-                six_weeks = Html('tr', class_ = 'week%d' % (i + 1), indent=True) + (
+                six_weeks = Html('tr', class_ = 'week%d' % (i + 1)) + (
 
                     # create table cell, <td>
-                    Html('td', colspan=7, indent=True,inline=True)
+                    Html('td', colspan=7,inline=True)
                     )
 
                 # add extra weeks to tbody if needed
@@ -920,9 +926,9 @@ class WebCalReport(Report):
             note = note or "&nbsp;"
 
             # table foot  section 
-            cal_note = Html('tfoot', indent=True)
-            tr = Html('tr', indent=True)
-            td = Html('td', note, colspan=7, indent=True, inline=True)
+            cal_note = Html('tfoot')
+            tr = Html('tr')
+            td = Html('td', note, colspan=7,inline=True)
 
             # add table cell to table row
             # add table row to table foot section
@@ -936,7 +942,7 @@ class WebCalReport(Report):
             body += monthly_calendar 
 
             # create blank line for stylesheets
-            body += Html('div', class_ = 'fullclear', indent=True, inline=True)
+            body += Html('div', class_ = 'fullclear',inline=True)
 
             # create footer division section
             footer = self.write_footer(nr_up)
@@ -994,10 +1000,10 @@ class WebCalReport(Report):
                        'that date, if there are any!\n'))
 
         # page description 
-        descriptdiv = Html('div', class_ = 'content',indent=True) + (
+        descriptdiv = Html('div', class_ = 'content') + (
 
             # message line
-            Html('p', msg, id='description', indent=True)
+            Html('p', msg, id='description')
             )
 
         # add description to body
@@ -1015,7 +1021,7 @@ class WebCalReport(Report):
             self.progress.step()
 
         # create blank line for stylesheets
-        body += Html('div', class_ = 'fullclear', indent=True, inline=True)
+        body += Html('div', class_ = 'fullclear',inline=True)
 
         # write footer section
         footer = self.write_footer(nr_up)
@@ -1076,19 +1082,19 @@ class WebCalReport(Report):
 
         # set date display as in user prevferences 
         pg_date = _dd.display(event_date)
-        body += Html('h3', pg_date, indent=True,inline=True)
+        body += Html('h3', pg_date,inline=True)
 
         # list the events
-        ol = Html('ol', indent=True)
+        ol = Html('ol')
         for nyears, date, text, event in day_list:
-            ol += Html('li', text, indent=True, inline=False if event == 'Anniversary' 
+            ol += Html('li', text,inline=False if event == 'Anniversary' 
             else True)
 
         # add ordered list to body section
         body += ol
 
         # create blank line for stylesheets
-        body += Html('div', class_ = 'fullclear', indent=True, inline=True)
+        body += Html('div', class_ = 'fullclear',inline=True)
 
         # write footer section
         footer = self.write_footer(nr_up)
@@ -1214,14 +1220,12 @@ class WebCalReport(Report):
         """
 
         # begin calendar footer 
-        footer = Html('div', id = 'footer', indent=True)
+        footer = Html('div', id = 'footer')
 
         # Display date as user set in preferences
-        value = _dp.parse(time.strftime('%b %d %Y'))
-        value = _dd.display(value)
         msg = _('Generated by <a href="http://gramps-project.org">'
-                      'GRAMPS</a> on %(date)s') % {'date' : value}
-        p = Html('p', msg, id = 'createdate', indent=True)
+                      'GRAMPS</a> on %(date)s') % {'date' : _dd.display(gen.lib.date.Today())}
+        p = Html('p', msg, id = 'createdate')
 
         # add Generated by? to footer
         footer += p
@@ -1239,7 +1243,7 @@ class WebCalReport(Report):
         else:
             text = "&copy; %s %s" % (self.today.get_year(), self.author)
 
-        p = Html('p', text, id = 'copyright', indent=True) 
+        p = Html('p', text, id = 'copyright') 
 
         # add copyright to footer
         footer += p  
@@ -1522,7 +1526,7 @@ class WebCalOptions(MenuReportOptions):
         menu.add_option(category_name, 'fullyear', fullyear)
 
         makeoneday = BooleanOption(_('Create one day event pages for'
-                                                              'Year At A Glance calendar'), False)
+                                                              ' Year At A Glance calendar'), False)
         makeoneday.set_help(_('Whether to create one day pages or not'))
         menu.add_option(category_name, 'makeoneday', makeoneday)  
 
@@ -1769,12 +1773,6 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
 
     # initialize day_list
     day_list = []
-
-    ##################################################################
-    # holiday on this day
-    # '...' signifies an incomplete date for an event. See add_day_item()
-    holiday_list = [(t, e, d) for t, e, d in holiday_list
-                       if d != '...']
 
     ##################################################################
     # birthday/ anniversary on this day
