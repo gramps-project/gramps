@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-03-21 21:00+0100\n"
-"PO-Revision-Date: 2009-03-21 21:05+0100\n"
+"PO-Revision-Date: 2009-04-04 01:36+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6696,11 +6696,11 @@ msgstr "Paar mit den meisten Kindern"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr "Lebendes Paar mit den meisten Heiraten in letzter Zeit"
+msgstr "Lebendes Paar, das erst kürzlich geheiratet hat"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr "Lebendes Paar mit den meisten Heiraten vor langer Zeit"
+msgstr "Lebendes Paar, das vor langer Zeit geheiratet hat"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
@@ -8002,7 +8002,7 @@ msgstr "Durchschnitt"
 
 #: ../src/plugins/gramplet/AgeStats.py:220
 msgid "Median"
-msgstr "Mittlerer"
+msgstr "Median"
 
 #: ../src/plugins/gramplet/AgeStats.py:221
 msgid "Maximum"
