@@ -288,6 +288,9 @@ class BasePage:
     def alphabet_navigation(self, of, db, handle_list, key):
         """
         Will create the alphabetical navigation bar...
+
+        handle_list -- a list of people's or Places' handles
+        key -- _PERSON or _PLACE
         """
 
         sorted_set = {}
@@ -301,24 +304,34 @@ class BasePage:
         sorted_first_letter = sorted_set.keys()
         sorted_first_letter.sort(locale.strcoll)
 
+        # remove a comma as a letter in Places at the least?
+        sorted_first_letter = [(ltr) for ltr in sorted_first_letter
+            if ltr != ',']
+
         num_ltrs = len(sorted_first_letter)
         if num_ltrs <= 26:
-            of.write('\t<div id="navigation">\n')
+            of.write('\t<div id="alphabet">\n')
             of.write('\t\t<ul>\n')
             for ltr in  sorted_first_letter:
-                of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % (ltr, ltr))
+                title_str = 'Surnames'  if key == 0  else 'Places' 
+                title_str += ' starting with %s' % ltr 
+                of.write('\t\t\t<li class="letters"><a href="#%s" title="%s">%s</a></li>\n' 
+                    % (ltr, title_str, ltr))
             of.write('\t\t</ul>\n')
             of.write('\t</div>\n')
         else:
             nrows = (num_ltrs / 26)
             index = 0
             for rows in range(0, nrows):
-                of.write('\t<div id="navigation">\n')
+                of.write('\t<div id="alphabet">\n')
                 of.write('\t\t<ul>\n')
                 cols = 0
                 while (cols <= 26 and index <= num_ltrs):
-                    of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
-                        % (sorted_first_letter[index], sorted_first_letter[index]))
+                    letter = sorted_first_letter[index]
+                    title_str = 'Surnames'  if key == 0 else 'Places'
+                    title_str += ' starting with %s' % letter 
+                    of.write('\t\t\t<li class="letters"><a href="#%s" title="%s">%s</a></li>\n'
+                        % (letter, title_str, letter))
                     cols += 1
                     index += 1
                 of.write('\t\t<ul>\n')

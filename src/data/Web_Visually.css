@@ -88,22 +88,33 @@ img {
     background:none;
 }
 .content {
+    width:965px;
+    margin:0 auto;
+    padding-bottom:.5em;
     background-color:#FFF;
     color:#000;
 }
 .content div.snapshot {
-    float:right;
-    margin:1.6em;
+    margin:0;
     padding:0;
     background:none;
 }
 .content div.snapshot div.thumbnail {
     margin:0;
-    padding:0;
+    padding:2em 0 0 0;
     background:none;
 }
-.content div.snapshot div.thumbnail p {
-    display:none;
+.content div.snapshot div.thumbnail a {
+    display:block;
+    width:96px;
+    margin:0 auto;
+}
+.fullclear {
+    width:100%;
+    height:1px;
+    margin:0;
+    padding:0;
+    clear:both;
 }
 
 /* General Text
@@ -115,12 +126,11 @@ h2 {
     display:none;
 }
 h3 {
-    width:80%;
     font:normal 2em/1.2em serif;
-    text-align:left;
+    text-align:center;
     margin:0;
     padding:.5em 20px .2em 20px;
-    border-bottom:double 4px #453619;
+    border-bottom:double 4px #000;
 }
 h4 {
     font:normal 1.2em/1.2em serif;
@@ -128,7 +138,7 @@ h4 {
     margin:0;
     padding:.2em 0 .2em 20px;
     background-color:#453619;
-    border-bottom:solid 1px #6AF364;
+    border-bottom:solid 2px #6AF364;
 }
 h5, h6 {
     font:normal 1em/1.2em serif;
@@ -276,6 +286,7 @@ p#user_header {
     padding:0 0 0 9px;
     background-color:#6AF364;
     border-bottom:solid 2px #000;
+    border-top:solid 2px #000;
 }
 #alphabet ul li.letters {
     margin:0;
@@ -291,6 +302,7 @@ p#user_header {
     color:#000;
     margin:0;
     padding:5px 5px;
+    text-decoration:none;
 }
 #alphabet ul li.letters a:hover {
     background-color:#22822A;
@@ -358,7 +370,7 @@ table.infolist {
     padding:0;
     background-color:#FFF;
 }
-table.infolist tr th {
+table.infolist thead tr th {
     font:normal 1.1em/1.2em serif;
     color:#000;
     margin:0;
@@ -366,12 +378,12 @@ table.infolist tr th {
     background-color:#6AF364;
     border-bottom:solid 1px #000;
 }
-table.infolist tr th a {
+table.infolist thead tr th a {
+    background-color:#6AF364;
     color:#000;
 }
-table.infolist tr th a:hover {
+table.infolist thead tr th a:hover {
     background-color:#C1B398;
-    color:#000;
 }
 table.infolist tr td {
     font:normal 1.1em/1.4em serif;
@@ -425,15 +437,14 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
 ----------------------------------------------------- */
 #Surnames {  }
 #SurnameDetail p#description { padding-top:0; }
-table.surnamelist tr thead th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
+table.surnamelist thead tr th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width:50%;
 }
-table.surnamelist tr th {
+table.surnamelist thead tr th {
     padding:0;
 }
-table.surnamelist tr th a, table.surnamelist tr th a:visited {
+table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
     display:block;
-    color:#FFF;
     text-align:left;
     text-decoration:none;
     padding:.2em 10px;
@@ -466,10 +477,10 @@ table.surnamelist tbody tr td.ColumnSurname:hover, table#SortByName tbody tr td.
     background-color:#C1B398;
 }
 table.surname {
-    border-bottom:solid 1px #453619;
+    border-bottom:solid 1px #000;
 }
 table.surname tbody tr td {
-    border-bottom:dashed 1px #453619;
+    border-bottom:dashed 1px #000;
 }
 table.surname thead tr th.ColumnName {
     width:20%;
@@ -484,9 +495,8 @@ table.surname tbody tr td.ColumnName a {
     display:block;
     padding:.6em 10px .6em 20px;
 }
-table.surname tbody tr td.ColumnName a span.grampsid {
-    display:none;
-}
+table.surname tbody tr td.ColumnName a span.grampsid { }
+
 table.surname tbody tr td.ColumnName:hover {
     background-color:#C1B398;
 }
@@ -739,6 +749,8 @@ div.subsection table.infolist {
 ----------------------------------------------------- */
 div#events {
     padding-bottom:0;
+    height:3cm;
+    overflow:auto;
 }
 div#events h4 {
     margin-bottom:0;
@@ -874,6 +886,10 @@ div#narrative {
 
 /* Subsections : Source References
 ----------------------------------------------------- */
+div#sourcerefs {
+    height:2.5cm;
+overflow:auto;
+}
 div#sourcerefs ol {
     list-style-type:decimal;
 }
@@ -1206,9 +1222,8 @@ body#WebCal {
 .calendar tbody tr td ul li span.yearsmarried em {
     color:#453619;
 }
-.calendar tbody tr td.highlight {
+.calendar tbody tr td.highlight { }
 
-}
 .calendar tbody tr td.highlight div.date {
     color:#0A65B5;
     background-color:#C2E1FE;

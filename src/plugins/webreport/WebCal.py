@@ -52,7 +52,7 @@ log = logging.getLogger(".WebPage")
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import gen.lib
+from gen.lib import date, Date, Name, Person, NameType, EventType
 import const
 from GrampsCfg import get_researcher
 from gen.plug import PluginManager
@@ -60,11 +60,12 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption
-import Utils
 import GrampsLocale
 from QuestionDialog import WarningDialog
-from Utils import probably_alive
+from Utils import probably_alive, ProgressMeter, xml_lang
 from DateHandler import displayer as _dd
+
+from BasicUtils import name_displayer as _nd
 
 import libholiday
 from libhtml import Html
@@ -185,6 +186,7 @@ class WebCalReport(Report):
         self.title_text  = mgobn('title')
         filter_option =  options.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
+        self.name_format = mgobn('name_format')
         self.ext = mgobn('ext')
         self.copy = mgobn('cright')
         self.css = mgobn('css')
@@ -193,7 +195,6 @@ class WebCalReport(Report):
         self.start_dow = mgobn('start_dow')
 
         self.multiyear = mgobn('multiyear')
-
         self.start_year = mgobn('start_year')
         self.end_year = mgobn('end_year')
 
@@ -221,7 +222,7 @@ class WebCalReport(Report):
         self.email = researcher.email
 
         # set to today's date
-        self.today = gen.lib.date.Today()
+        self.today = date.Today()
 
         self.warn_dir = True            # Only give warning once.
 
@@ -298,7 +299,7 @@ class WebCalReport(Report):
 
         if month > 0:
             try:
-                event_date = gen.lib.Date()
+                event_date = Date()
                 event_date.set_yr_mon_day(year, month, day)
             except ValueError:
                 event_date = '...'
@@ -436,7 +437,7 @@ class WebCalReport(Report):
         subdirs = '../'*nr_up
 
         # Header contants
-        xmllang = Utils.xml_lang()
+        xmllang = xml_lang()
         _META1 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME, const.VERSION,
              const.URL_HOMEPAGE)
         _META2 = 'name="author" content="%s"' % self.author
@@ -772,7 +773,7 @@ class WebCalReport(Report):
                         bday_anniv_list = self.calendar.get(month, {}).get(thisday.day, [])
 
                         # date is an instance because of subtracting abilities in date.py
-                        event_date = gen.lib.Date()
+                        event_date = Date()
                         event_date.set_yr_mon_day(thisday.year, thisday.month, thisday.day)
 
                         # get events for this day
@@ -1110,6 +1111,40 @@ class WebCalReport(Report):
 
 # ---------------------------------------------------------------------------------------
 #
+#                             Get person's short name
+#
+# ---------------------------------------------------------------------------------------
+    def get_name(self, person, maiden_name = None):
+        """ 
+        Return person's name, unless maiden_name given, unless married_name 
+        listed. 
+
+        person -- person to get short name from
+        maiden_name  -- either a woman's maiden name or man's surname
+        """
+        # Get all of a person's names:
+        primary_name = person.primary_name
+        married_name = None
+        names = [primary_name] + person.get_alternate_names()
+        for name in names:
+            if int(name.get_type()) == NameType.MARRIED:
+                married_name = name
+                break # use first
+
+        # Now, decide which to use:
+        if maiden_name is not None:
+            if married_name is not None:
+                name = Name(married_name)
+            else:
+                name = Name(primary_name)
+                name.set_surname(maiden_name)
+        else:
+            name = Name(primary_name)
+        name.set_display_as(self.name_format)
+        return _nd.display_name(name)
+
+# ---------------------------------------------------------------------------------------
+#
 #        The database slave; Gathers information for calendars
 #
 # ---------------------------------------------------------------------------------------
@@ -1141,12 +1176,13 @@ class WebCalReport(Report):
                 month = birth_date.get_month()
                 day = birth_date.get_day()
 
-                prob_alive_date = gen.lib.Date(this_year, month, day)
+                # date to figure if someone is still alive
+                prob_alive_date = Date(this_year, month, day)
 
                 # add some things to handle maiden name:
                 father_surname = None # husband, actually
                 sex = person.gender
-                if sex == gen.lib.Person.FEMALE:
+                if sex == Person.FEMALE:
 
                     # get husband's last name:
                     if self.maiden_name in ['spouse_first', 'spouse_last']: 
@@ -1164,7 +1200,7 @@ class WebCalReport(Report):
                                     if father is not None:
                                         father_name = father.primary_name
                                         father_surname = _get_regular_surname(sex, father_name)
-                short_name = _get_short_name(person, father_surname)
+                short_name = self.get_name(person, father_surname)
                 alive = probably_alive(person, self.database, prob_alive_date)
                 if (self.alive and alive) or not self.alive:
                     text = _('%(short_name)s') % {'short_name' : short_name}
@@ -1183,8 +1219,8 @@ class WebCalReport(Report):
                     if spouse_handle:
                         spouse = self.database.get_person_from_handle(spouse_handle)
                         if spouse:
-                            spouse_name = _get_short_name(spouse)
-                            short_name = _get_short_name(person)
+                            spouse_name = self.get_name(spouse)
+                            short_name = self.get_name(person)
 
                         # will return a marriage event or False if not married any longer 
                         marriage_event = get_marriage_event(self.database, fam)
@@ -1194,7 +1230,8 @@ class WebCalReport(Report):
                             month = event_obj.get_month()
                             day = event_obj.get_day()
 
-                            prob_alive_date = gen.lib.Date(this_year, month, day)
+                            # date to figure if someone is still alive
+                            prob_alive_date = Date(this_year, month, day)
 
                             if event_obj.is_valid():
                                 text = _('%(spouse)s and %(person)s') % {
@@ -1224,7 +1261,7 @@ class WebCalReport(Report):
 
         # Display date as user set in preferences
         msg = _('Generated by <a href="http://gramps-project.org">'
-                      'GRAMPS</a> on %(date)s') % {'date' : _dd.display(gen.lib.date.Today())}
+                      'GRAMPS</a> on %(date)s') % {'date' : _dd.display(date.Today())}
         p = Html('p', msg, id = 'createdate')
 
         # add Generated by? to footer
@@ -1263,7 +1300,7 @@ class WebCalReport(Report):
         """
 
         # Create progress meter bar
-        self.progress = Utils.ProgressMeter(_("Web Calendar Report"), '')
+        self.progress = ProgressMeter(_("Web Calendar Report"), '')
 
         # get data from database for birthdays/ anniversaries
         self.collect_data(self.start_year)
@@ -1278,6 +1315,7 @@ class WebCalReport(Report):
                 self.holidays = {}
 
                 # get the information, zero is equal to None
+                print self.country 
                 if self.country != 0:
                     self.__get_holidays(cal_year)
 
@@ -1364,6 +1402,15 @@ class WebCalOptions(MenuReportOptions):
 
         self.__update_filters()
 
+        # We must figure out the value of the first option before we can
+        # create the EnumeratedListOption
+        fmt_list = _nd.get_name_format()
+        name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
+        for num, name, fmt_str, act in fmt_list:
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name, "name_format", name_format)
+
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
             ext.add_item(etype, etype)
@@ -1389,7 +1436,7 @@ class WebCalOptions(MenuReportOptions):
         category_name = _("Content Options")
 
         # set to today's date for use in menu, etc.
-        today = gen.lib.date.Today()
+        today = date.Today()
 
         self.__multiyear = BooleanOption(_('Create multiple year calendars'), False)
         self.__multiyear.set_help(_('Whether to create Multiple year calendars or not.'))
@@ -1583,6 +1630,11 @@ def mywriter(page, of):
 #
 # ---------------------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------------------
+#
+#                        Support Functions for this plugin
+#
+# ---------------------------------------------------------------------------------------
 def _get_regular_surname(sex, name):
     """
     Returns a name string built from the components of the Name instance.
@@ -1592,47 +1644,11 @@ def _get_regular_surname(sex, name):
     prefix = name.get_surname_prefix()
     if prefix:
         surname = prefix + " " + surname
-    if sex is not gen.lib.Person.FEMALE:
+    if sex is not Person.FEMALE:
         suffix = name.get_suffix()
         if suffix:
             surname = surname + ", " + suffix
     return surname
-
-def _get_short_name(person, maiden_name=None):
-    """ Return person's name, unless maiden_name given, 
-    unless married_name listed. """
-    # Get all of a person's names:
-    primary_name = person.primary_name
-    sex = person.gender
-
-    call_name = None
-    married_name = None
-    names = [primary_name] + person.get_alternate_names()
-    for name in names:
-        if int(name.get_type()) == gen.lib.NameType.MARRIED:
-            married_name = name
-
-    # Now, decide which to use:
-    if maiden_name:
-        if married_name:
-            first_name, family_name = married_name.get_first_name(), _get_regular_surname(sex, married_name)
-            call_name = married_name.get_call_name()
-        else:
-            first_name, family_name = primary_name.get_first_name(), maiden_name
-            call_name = primary_name.get_call_name()
-    else:
-        first_name, family_name = primary_name.get_first_name(), _get_regular_surname(sex, primary_name)
-        call_name = primary_name.get_call_name()
-
-    # If they have a nickname, use it?
-    if call_name:
-        first_name = call_name.strip()
-    else: # else just get the first name:
-        first_name = first_name.strip()
-        if " " in first_name:
-            # just one split max 
-            first_name, rest = first_name.split(" ", 1)
-    return ("%s %s" % (first_name, family_name)).strip()
 
 # Simple utility list to convert Gramps day-of-week numbering 
 # to calendar.firstweekday numbering
@@ -1660,12 +1676,12 @@ def get_marriage_event(db, family):
     marriage_event = False
     for event_ref in family.get_event_ref_list():
         event = db.get_event_from_handle(event_ref.ref)
-        if event.type in [gen.lib.EventType.MARRIAGE, 
-                          gen.lib.EventType.MARR_ALT]:
+        if event.type in [EventType.MARRIAGE, 
+                          EventType.MARR_ALT]:
             marriage_event = event
-        elif event.type in [gen.lib.EventType.DIVORCE, 
-                            gen.lib.EventType.ANNULMENT, 
-                            gen.lib.EventType.DIV_FILING]:
+        elif event.type in [EventType.DIVORCE, 
+                            EventType.ANNULMENT, 
+                            EventType.DIV_FILING]:
             marriage_event = False
     return marriage_event
 

@@ -2,6 +2,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
+# Copyright (C) 2009           Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,8 +28,7 @@
 #------------------------------------------------------------------------
 from gettext import gettext as _
 from gettext import ngettext
-import datetime
-import time
+import datetime, time
 
 #------------------------------------------------------------------------
 #
@@ -36,7 +36,7 @@ import time
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from BasicUtils import name_displayer
+from BasicUtils import name_displayer as _nd
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
@@ -59,24 +59,24 @@ class CalendarReport(Report):
     def __init__(self, database, options_class):
         Report.__init__(self, database, options_class)
         menu = options_class.menu
+        mgobn = lambda name:options_class.menu.get_option_by_name(name).get_value()
 
-        self.titletext = menu.get_option_by_name('titletext').get_value()
-        self.relationships = \
-                            menu.get_option_by_name('relationships').get_value()
-        self.year = menu.get_option_by_name('year').get_value()
-        self.name_format = menu.get_option_by_name('name_format').get_value()
-        self.country = menu.get_option_by_name('country').get_value()
-        self.anniversaries = menu.get_option_by_name('anniversaries').get_value()
-        self.start_dow = menu.get_option_by_name('start_dow').get_value()
-        self.maiden_name = menu.get_option_by_name('maiden_name').get_value()
-        self.alive = menu.get_option_by_name('alive').get_value()
-        self.birthdays = menu.get_option_by_name('birthdays').get_value()
-        self.text1 = menu.get_option_by_name('text1').get_value()
-        self.text2 = menu.get_option_by_name('text2').get_value()
-        self.text3 = menu.get_option_by_name('text3').get_value()
+        self.titletext = mgobn('titletext')
+        self.relationships = mgobn('relationships')
+        self.year = mgobn('year')
+        self.name_format = mgobn('name_format')
+        self.country = mgobn('country')
+        self.anniversaries = mgobn('anniversaries')
+        self.start_dow = mgobn('start_dow')
+        self.maiden_name = mgobn('maiden_name')
+        self.alive = mgobn('alive')
+        self.birthdays = mgobn('birthdays')
+        self.text1 = mgobn('text1')
+        self.text2 = mgobn('text2')
+        self.text3 = mgobn('text3')
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
-        pid = menu.get_option_by_name('pid').get_value()
+        pid = mgobn('pid')
         self.center_person = database.get_person_from_gramps_id(pid)
 
     def get_name(self, person, maiden_name = None):
@@ -102,7 +102,7 @@ class CalendarReport(Report):
         else:
             name = gen.lib.Name(primary_name)
         name.set_display_as(self.name_format)
-        return name_displayer.display_name(name)
+        return _nd.display_name(name)
 
     def add_day_item(self, text, month, day):
         """ Add an item to a day. """
@@ -152,7 +152,7 @@ class CalendarReport(Report):
         if self.relationships:
             name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
-            self.doc.write_text(_("Relationships shown are to %s") % name_displayer.display_name(name))
+            self.doc.write_text(_("Relationships shown are to %s") % _nd.display_name(name))
             self.doc.end_paragraph()
         self.progress.set_pass(_('Formatting months...'), 12)
         for month in range(1, 13):
@@ -350,7 +350,7 @@ class CalendarOptions(MenuReportOptions):
 
         # We must figure out the value of the first option before we can
         # create the EnumeratedListOption
-        fmt_list = name_displayer.get_name_format()
+        fmt_list = _nd.get_name_format()
         name_format = EnumeratedListOption(_("Name format"), fmt_list[0][0])
         for num, name, fmt_str, act in fmt_list:
             name_format.add_item(num, name)
