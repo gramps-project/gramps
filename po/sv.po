@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-21 21:15+0100\n"
-"PO-Revision-Date: 2009-03-21 21:16+0100\n"
+"POT-Creation-Date: 2009-04-08 14:40+0200\n"
+"PO-Revision-Date: 2009-04-08 14:42+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6079,7 +6079,7 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/graph/GVFamilyLines.py:1062
 #: ../src/plugins/graph/GVHourGlass.py:304
 #: ../src/plugins/graph/GVRelGraph.py:596
-#: ../src/plugins/mapservices/eniroswedenmap.py:190
+#: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
 #: ../src/plugins/quickview/AgeOnDate.py:104
@@ -6160,7 +6160,7 @@ msgstr ""
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportXml.py:1221
+#: ../src/plugins/export/ExportXml.py:1220
 msgid ""
 "GRAMPS XML export is a complete archived XML backup of the GRAMPS database "
 "without the media object files. Suitable for backup purposes."
@@ -6168,11 +6168,11 @@ msgstr ""
 "GRAMPS-XML export är en arkiverad komplett XML-databas utan med "
 "mediaobjektfiler. Passande  för säkerhetskopiering."
 
-#: ../src/plugins/export/ExportXml.py:1224
+#: ../src/plugins/export/ExportXml.py:1223
 msgid "GRAMPS XML export options"
 msgstr "Alternativ vid GRAMPS XML-export"
 
-#: ../src/plugins/export/ExportXml.py:1227
+#: ../src/plugins/export/ExportXml.py:1226
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-databas"
 
@@ -6409,7 +6409,7 @@ msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
 #: ../src/plugins/import/ImportXml.py:1307
-#: ../src/plugins/import/ImportGrdb.py:2604
+#: ../src/plugins/import/ImportGrdb.py:2926
 #, python-format
 msgid ""
 "Your family tree groups name %s together with %s, did not change this "
@@ -6425,8 +6425,8 @@ msgstr "Vittnets kommentar: %s"
 
 #: ../src/plugins/import/ImportXml.py:2446
 #: ../src/plugins/import/ImportXml.py:2452
-#: ../src/plugins/import/ImportGrdb.py:2453
-#: ../src/plugins/import/ImportGrdb.py:2466
+#: ../src/plugins/import/ImportGrdb.py:2775
+#: ../src/plugins/import/ImportGrdb.py:2788
 #: ../src/plugins/import/ImportProGen.py:71
 #: ../src/plugins/import/ImportProGen.py:80
 #, python-format
@@ -9249,11 +9249,11 @@ msgstr "GeneWeb"
 msgid "Import data from GeneWeb files"
 msgstr "Importera data från GeneWeb-filer"
 
-#: ../src/plugins/import/ImportGrdb.py:1080 ../src/gen/db/dbdir.py:1124
+#: ../src/plugins/import/ImportGrdb.py:1081 ../src/gen/db/dbdir.py:1124
 msgid "Rebuild reference map"
 msgstr "Bygg om referenskarta"
 
-#: ../src/plugins/import/ImportGrdb.py:2460 ../src/gen/db/dbdir.py:1215
+#: ../src/plugins/import/ImportGrdb.py:2782 ../src/gen/db/dbdir.py:1215
 msgid ""
 "The database version is not supported by this version of GRAMPS.\n"
 "Please upgrade to the corresponding version or use XML for porting data "
@@ -9263,19 +9263,19 @@ msgstr ""
 "Uppgradera till motsvarande version eller använd XML för att flytta data "
 "mellan olika databasversioner."
 
-#: ../src/plugins/import/ImportGrdb.py:2467
+#: ../src/plugins/import/ImportGrdb.py:2789
 msgid "The Database version is not supported by this version of GRAMPS."
 msgstr "Databasversionen stöd inte av denna version av GRAMPS."
 
-#: ../src/plugins/import/ImportGrdb.py:2618
+#: ../src/plugins/import/ImportGrdb.py:2940
 msgid "Import database"
 msgstr "Importera databas"
 
-#: ../src/plugins/import/ImportGrdb.py:2686
+#: ../src/plugins/import/ImportGrdb.py:3008
 msgid "GRAMPS 2.x database"
 msgstr "GRAMPS 2.x databas"
 
-#: ../src/plugins/import/ImportGrdb.py:2687
+#: ../src/plugins/import/ImportGrdb.py:3009
 msgid "Import data from GRAMPS 2.x database files"
 msgstr "Importera data från GRAMPS 2.x databasfil"
 
@@ -9385,23 +9385,32 @@ msgstr " församling"
 msgid " state"
 msgstr " län"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:138
+#: ../src/plugins/mapservices/eniroswedenmap.py:127
+#, python-format
+msgid "Eniro map not available for %s"
+msgstr "Eniros karta ej tillgänglig för %s"
+
+#: ../src/plugins/mapservices/eniroswedenmap.py:128
+msgid "Only for Sweden and Denmark"
+msgstr "Endast för Sverige och Danmark"
+
+#: ../src/plugins/mapservices/eniroswedenmap.py:143
 #, python-format
 msgid "Latitude not within %s to %s\n"
 msgstr "Latitud ej inom %s till %s\n"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:139
+#: ../src/plugins/mapservices/eniroswedenmap.py:144
 #, python-format
 msgid "Longitude not within %s to %s"
 msgstr "Longitud ej inom %s till %s"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:141
-#: ../src/plugins/mapservices/eniroswedenmap.py:145
-#: ../src/plugins/mapservices/eniroswedenmap.py:173
+#: ../src/plugins/mapservices/eniroswedenmap.py:146
+#: ../src/plugins/mapservices/eniroswedenmap.py:149
+#: ../src/plugins/mapservices/eniroswedenmap.py:175
 msgid "Eniro map not available"
 msgstr "Eniros karta ej tillgänglig"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:146
+#: ../src/plugins/mapservices/eniroswedenmap.py:150
 msgid ""
 "Latitude and longitude,\n"
 "or street and city needed"
@@ -9409,26 +9418,17 @@ msgstr ""
 "Latitud och longitud,\n"
 "eller gata och stad behövs"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:174
+#: ../src/plugins/mapservices/eniroswedenmap.py:176
 msgid "Coordinates needed in Denmark"
 msgstr "Koordinater behövs i Danmark"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:178
-#, python-format
-msgid "Eniro map not available for %s"
-msgstr "Eniros karta ej tillgänglig för %s"
-
-#: ../src/plugins/mapservices/eniroswedenmap.py:179
-msgid "Only for Sweden and Denmark"
-msgstr "Endast för Sverige och Danmark"
-
-#: ../src/plugins/mapservices/eniroswedenmap.py:189
+#: ../src/plugins/mapservices/eniroswedenmap.py:188
 msgid "EniroMaps"
 msgstr "Eniros karta"
 
-#: ../src/plugins/mapservices/eniroswedenmap.py:191
-msgid "Opens on kartor.eniro.se"
-msgstr "Öppnar på kartor.eniro.se"
+#: ../src/plugins/mapservices/eniroswedenmap.py:190
+msgid "Opens 'kartor.eniro.se' for places in Denmark and Sweden"
+msgstr "Öppnar 'kartor.eniro.se' för platser i Danmark och Sverige"
 
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
@@ -21307,7 +21307,7 @@ msgstr "Även familjehändelser, där person är maka/make"
 msgid "Rule Name"
 msgstr "Namn på regel"
 
-#: ../src/FilterEditor/_EditRule.py:609 ../src/FilterEditor/_EditRule.py:620
+#: ../src/FilterEditor/_EditRule.py:635 ../src/FilterEditor/_EditRule.py:646
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Ingen regel vald"
