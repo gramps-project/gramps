@@ -49,7 +49,6 @@ log = logging.getLogger(".CheckRepair")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -376,13 +375,15 @@ class CheckIntegrity:
                     self.broken_parent_links.append((mother_handle,family_handle))
                     mother_handle = None
 
-            if father_handle and father and family_handle not in father.get_family_handle_list():
+            if father_handle and father and \
+                    family_handle not in father.get_family_handle_list():
                 # The referenced father has no reference back to the family
                 self.broken_parent_links.append((father_handle,family_handle))
                 father.add_family_handle(family_handle)
                 self.db.commit_person(father,self.trans)
-            if mother_handle and mother \
-                   and (family_handle not in mother.get_family_handle_list()):
+                
+            if mother_handle and mother and \
+                    family_handle not in mother.get_family_handle_list():
                 # The referenced mother has no reference back to the family
                 self.broken_parent_links.append((mother_handle,family_handle))
                 mother.add_family_handle(family_handle)
@@ -655,13 +656,13 @@ class CheckIntegrity:
                                                     CHANGE_NOTE),
                          'remove'  : self.db.remove_note},
             }
-        for the_type in tables.keys():
-            cursor = tables[the_type]['cursor_func']()
-            total = tables[the_type]['total_func']()
-            check = tables[the_type]['check_func']
-            remove_func = tables[the_type]['remove']
+        for the_type, the_func in tables.iteritems():
+            cursor = the_func['cursor_func']()
+            total = the_func['total_func']()
+            check = the_func['check_func']
+            remove_func = the_func['remove']
             
-            self.progress.set_pass(tables[the_type]['progress'],total)
+            self.progress.set_pass(the_func['progress'],total)
             
             item = cursor.first()
             while item:
@@ -1057,11 +1058,15 @@ class CheckIntegrity:
     def check_source_references(self):
         known_handles = self.db.get_source_handles()
 
-        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
-                self.db.get_number_of_events() + self.db.get_number_of_places() + \
-                self.db.get_number_of_media_objects() + \
-                self.db.get_number_of_sources() + \
+        total = (
+                self.db.get_number_of_people() +
+                self.db.get_number_of_families() +
+                self.db.get_number_of_events() +
+                self.db.get_number_of_places() +
+                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_sources() +
                 self.db.get_number_of_repositories()
+                )
 
         self.progress.set_pass(_('Looking for source reference problems'),
                                total)
@@ -1182,9 +1187,13 @@ class CheckIntegrity:
     def check_media_references(self):
         known_handles = self.db.get_media_object_handles(False)
 
-        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
-                self.db.get_number_of_events() + self.db.get_number_of_places() + \
+        total = (
+                self.db.get_number_of_people() + 
+                self.db.get_number_of_families() +
+                self.db.get_number_of_events() + 
+                self.db.get_number_of_places() +
                 self.db.get_number_of_sources()
+                )
 
         self.progress.set_pass(_('Looking for media object reference problems'),
                                total)
@@ -1272,11 +1281,15 @@ class CheckIntegrity:
     def check_note_references(self):
         known_handles = self.db.get_note_handles()
 
-        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
-                self.db.get_number_of_events() + self.db.get_number_of_places() + \
-                self.db.get_number_of_media_objects() + \
-                self.db.get_number_of_sources() + \
+        total = (
+                self.db.get_number_of_people() + 
+                self.db.get_number_of_families() +
+                self.db.get_number_of_events() + 
+                self.db.get_number_of_places() +
+                self.db.get_number_of_media_objects() +
+                self.db.get_number_of_sources() +
                 self.db.get_number_of_repositories()
+                )
 
         self.progress.set_pass(_('Looking for note reference problems'),
                                total)
@@ -1423,21 +1436,22 @@ class CheckIntegrity:
         media_references = len(self.invalid_media_references)
         note_references = len(self.invalid_note_references)
         name_format = len(self.removed_name_format)
-        empty_objs = ( len(self.empty_objects['persons']) 
-                        + len(self.empty_objects['families'])
-                        + len(self.empty_objects['events'])
-                        + len(self.empty_objects['sources'])
-                        + len(self.empty_objects['media'])
-                        + len(self.empty_objects['places'])
-                        + len(self.empty_objects['repos'])
-                        + len(self.empty_objects['notes'])
+        empty_objs = ( 
+                     len(self.empty_objects['persons']) +
+                     len(self.empty_objects['families']) +
+                     len(self.empty_objects['events']) +
+                     len(self.empty_objects['sources']) +
+                     len(self.empty_objects['media']) +
+                     len(self.empty_objects['places']) +
+                     len(self.empty_objects['repos']) +
+                     len(self.empty_objects['notes'])
                      )
 
-        errors = (photos + efam + blink + plink + slink + rel
-                  + event_invalid + person 
-                  + person_references + place_references + source_references
-                  + repo_references + media_references  + note_references
-                  + name_format + empty_objs + invalid_dates
+        errors = (photos + efam + blink + plink + slink + rel +
+                  event_invalid + person +
+                  person_references + place_references + source_references +
+                  repo_references + media_references  + note_references +
+                  name_format + empty_objs + invalid_dates
                  )
         
         if errors == 0:
@@ -1609,15 +1623,16 @@ class Report(ManagedWindow.ManagedWindow):
         
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
-        topDialog = glade.XML(glade_file,"summary","gramps")
-        topDialog.get_widget("close").connect('clicked',self.close)
-
-        window = topDialog.get_widget("summary")
-        textwindow = topDialog.get_widget("textwindow")
+        topDialog = gtk.Builder()
+        topDialog.add_from_file(glade_file)
+        topDialog.get_object("close").connect('clicked',self.close)
+        window = topDialog.get_object ("summary")
+        textwindow = topDialog.get_object("textwindow")
         textwindow.get_buffer().set_text(text)
 
         self.set_window(window,
-                        topDialog.get_widget("title"),
+                        #topDialog.get_widget("title"),
+                        topDialog.get_object("title"),
                         _("Integrity Check Results"))
 
         self.show()
