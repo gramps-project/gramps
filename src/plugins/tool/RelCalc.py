@@ -36,7 +36,6 @@ from gettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-from gtk import glade
 import gtk
 
 #-------------------------------------------------------------------------
@@ -87,22 +86,23 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "relcalc.glade"
-        self.glade = glade.XML(glade_file, "relcalc", "gramps")
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
 
         name = ''
         if self.person:
             name = name_displayer.display(self.person)
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
-        window = self.glade.get_widget('relcalc')
-        self.titlelabel = self.glade.get_widget('title')
+        window = self.glade.get_object('relcalc')
+        self.titlelabel = self.glade.get_object('title')
         self.set_window(window, self.titlelabel,
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name },
                         self.title)
     
-        self.tree = self.glade.get_widget("peopleList")
-        self.text = self.glade.get_widget("text1")
+        self.tree = self.glade.get_object("peopleList")
+        self.text = self.glade.get_object("text1")
         self.textbuffer = gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
         
@@ -138,7 +138,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 
         self.sel = self.tree.get_selection()
         self.changedkey = self.sel.connect('changed',self.on_apply_clicked)
-        self.closebtn = self.glade.get_widget("button5")
+        self.closebtn = self.glade.get_object("button5")
         self.closebtn.connect('clicked', self.close)
 
         if not self.person:
@@ -198,8 +198,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             length = len(common)
             if length == 1:
                 person = self.db.get_person_from_handle(common[0])
-                if common[0] == other_person.handle or \
-                        common[0] == self.person.handle :
+                if common[0] in [other_person.handle, self.person.handle]:
                     commontext = ''
                 else :
                     name = name_displayer.display(person)
@@ -216,11 +215,11 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                 commontext = " " + _("Their common ancestors are: ")
                 for person_handle in common:
                     person = self.db.get_person_from_handle(person_handle)
-                    if index != 0:
-                        commontext = commontext + ", "
-                    commontext = commontext + name_displayer.display(person)
-                    index = index + 1
-                commontext = commontext + "."
+                    if index:
+                        commontext += ", "
+                    commontext += name_displayer.display(person)
+                    index += 1
+                commontext += "."
             else:
                 commontext = ""
             text.append((rstr, commontext))
