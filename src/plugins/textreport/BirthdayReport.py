@@ -42,7 +42,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
                          EnumeratedListOption, FilterOption, PersonOption
 import GrampsLocale
-import gen.lib
+from gen.lib import NameType, EventType, Name, Date, Person
 from Utils import probably_alive, ProgressMeter
 
 import libholiday
@@ -89,18 +89,18 @@ class CalendarReport(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for name in names:
-            if int(name.get_type()) == gen.lib.NameType.MARRIED:
+            if int(name.get_type()) == NameType.MARRIED:
                 married_name = name
                 break # use first
         # Now, decide which to use:
         if maiden_name is not None:
             if married_name is not None:
-                name = gen.lib.Name(married_name)
+                name = Name(married_name)
             else:
-                name = gen.lib.Name(primary_name)
+                name = Name(primary_name)
                 name.set_surname(maiden_name)
         else:
-            name = gen.lib.Name(primary_name)
+            name = Name(primary_name)
         name.set_display_as(self.name_format)
         return _nd.display_name(name)
 
@@ -211,13 +211,13 @@ class CalendarReport(Report):
                 month = birth_date.get_month()
                 day = birth_date.get_day()
 
-                prob_alive_date = gen.lib.Date(self.year, month, day)
+                prob_alive_date = Date(self.year, month, day)
 
                 nyears = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
                 if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
-                    if person.get_gender() == gen.lib.Person.FEMALE:
+                    if person.get_gender() == Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
                             if self.maiden_name == 'spouse_first':
@@ -278,12 +278,12 @@ class CalendarReport(Report):
                             are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                                if event.type in [gen.lib.EventType.MARRIAGE, 
-                                                             gen.lib.EventType.MARR_ALT]:
+                                if event.type in [EventType.MARRIAGE, 
+                                                             EventType.MARR_ALT]:
                                     are_married = event
-                                elif event.type in [gen.lib.EventType.DIVORCE, 
-                                                               gen.lib.EventType.ANNULMENT, 
-                                                               gen.lib.EventType.DIV_FILING]:
+                                elif event.type in [EventType.DIVORCE, 
+                                                               EventType.ANNULMENT, 
+                                                               EventType.DIV_FILING]:
                                     are_married = None
                             if are_married is not None:
                                 for event_ref in fam.get_event_ref_list():
@@ -306,7 +306,7 @@ class CalendarReport(Report):
                                                        'person' : short_name, 
                                                        'nyears' : nyears})
  
-                                            prob_alive_date = gen.lib.Date(self.year, month, day)
+                                            prob_alive_date = Date(self.year, month, day)
                                             alive1 = probably_alive(person, self.database, \
                                                 prob_alive_date)
                                             alive2 = probably_alive(spouse, self.database, \
