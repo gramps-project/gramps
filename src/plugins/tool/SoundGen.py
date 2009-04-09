@@ -35,7 +35,8 @@ import os
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gtk import glade
+import gtk
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -73,17 +74,18 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
 
-        self.glade = glade.XML(glade_file,"soundEx","gramps")
-        self.glade.signal_autoconnect({
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+        self.glade.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
         })
 
-        window = self.glade.get_widget("soundEx")
-        self.set_window(window,self.glade.get_widget('title'),self.label)
+        window = self.glade.get_object("soundEx")
+        self.set_window(window,self.glade.get_object('title'),self.label)
 
-        self.value = self.glade.get_widget("value")
-        self.autocomp = self.glade.get_widget("name_list")
+        self.value = self.glade.get_object("value")
+        self.autocomp = self.glade.get_object("name_list")
         self.name = self.autocomp.child
 
         self.name.connect('changed',self.on_apply_clicked)
