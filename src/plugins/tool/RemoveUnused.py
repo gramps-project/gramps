@@ -46,7 +46,6 @@ log = logging.getLogger(".RemoveUnused")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 from gen.lib import StyledText
 
@@ -133,18 +132,19 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "unused.glade"
 
-        self.top = glade.XML(self.glade_file,"unused","gramps")
-        window = self.top.get_widget("unused")
-        self.set_window(window,self.top.get_widget('title'),self.title)
+        self.top = gtk.Builder()
+        self.top.add_from_file(self.glade_file)
+        window = self.top.get_object("unused")
+        self.set_window(window,self.top.get_object('title'),self.title)
 
-        self.events_box = self.top.get_widget('events_box')
-        self.sources_box = self.top.get_widget('sources_box')
-        self.places_box = self.top.get_widget('places_box')
-        self.media_box = self.top.get_widget('media_box')
-        self.repos_box = self.top.get_widget('repos_box')
-        self.notes_box = self.top.get_widget('notes_box')
-        self.find_button = self.top.get_widget('find_button')
-        self.remove_button = self.top.get_widget('remove_button')
+        self.events_box = self.top.get_object('events_box')
+        self.sources_box = self.top.get_object('sources_box')
+        self.places_box = self.top.get_object('places_box')
+        self.media_box = self.top.get_object('media_box')
+        self.repos_box = self.top.get_object('repos_box')
+        self.notes_box = self.top.get_object('notes_box')
+        self.find_button = self.top.get_object('find_button')
+        self.remove_button = self.top.get_object('remove_button')
 
         self.events_box.set_active(self.options.handler.options_dict['events'])
         self.sources_box.set_active(
@@ -155,18 +155,18 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.repos_box.set_active(self.options.handler.options_dict['repos'])
         self.notes_box.set_active(self.options.handler.options_dict['notes'])
 
-        self.warn_tree = self.top.get_widget('warn_tree')
+        self.warn_tree = self.top.get_object('warn_tree')
         self.warn_tree.connect('button_press_event', self.double_click)
 
         self.selection = self.warn_tree.get_selection()
         
-        self.mark_button = self.top.get_widget('mark_button')
+        self.mark_button = self.top.get_object('mark_button')
         self.mark_button.connect('clicked',self.mark_clicked)
 
-        self.unmark_button = self.top.get_widget('unmark_button')
+        self.unmark_button = self.top.get_object('unmark_button')
         self.unmark_button.connect('clicked',self.unmark_clicked)
 
-        self.invert_button = self.top.get_widget('invert_button')
+        self.invert_button = self.top.get_object('invert_button')
         self.invert_button.connect('clicked',self.invert_clicked)
 
         self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
@@ -205,13 +205,13 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         name_column.set_sort_column_id(RemoveUnused.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
 
-        self.top.signal_autoconnect({
+        self.top.connect_signals({
             "destroy_passed_object"   : self.close,
             "on_remove_button_clicked": self.do_remove,
             "on_find_button_clicked"  : self.find,
             })
 
-        self.dc_label = self.top.get_widget('dc_label')
+        self.dc_label = self.top.get_object('dc_label')
 
         self.sensitive_list = [self.warn_tree,self.mark_button,
                                self.unmark_button,self.invert_button,
@@ -276,13 +276,13 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
                          'total_func' : self.db.get_number_of_notes},
             }
 
-        for the_type in tables.keys():
+        for the_type, the_func in tables.iteritems():
             if not self.options.handler.options_dict[the_type]:
                 # This table was not requested. Skip it.
                 continue
 
-            cursor = tables[the_type]['cursor_func']()
-            total = tables[the_type]['total_func']()
+            cursor = the_func['cursor_func']()
+            total = the_func['total_func']()
             self.set_total(total)
             item = cursor.first()
             while item:
