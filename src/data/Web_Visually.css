@@ -305,8 +305,8 @@ p#user_header {
     text-decoration:none;
 }
 #alphabet ul li.letters a:hover {
-    background-color:#22822A;
-    color:#FFF;
+    background-color:#C1B398;
+    color:#000;
 }
 
 /* Navigation
@@ -321,8 +321,8 @@ p#user_header {
     height:32px;
     margin:0;
     padding:0 0 0 9px;
-    background-color:#228A22;
-    border-bottom:solid 2px #D8F3D6;
+    background-color:#FFF;
+    border-bottom:solid 2px #000;
 }
 #navigation ul li, #subnavigation ul li {
     margin:0;
@@ -332,7 +332,7 @@ p#user_header {
     display:block;
     float:left;
     font:normal 16px/100% serif;
-    color:#FFF;
+    color:#000;
     text-decoration:none;
     margin:0;
     padding:5px 5px;
@@ -341,7 +341,8 @@ p#user_header {
 #navigation ul li a:hover, #subnavigation ul li a:hover {
     background-color:#C1B398;
     color:#000;
-    border-bottom:solid 1px #000;
+    border-top:solid 3px #C1B398;
+    border-bottom:solid 8px #C1B398;
 }
 #navigation ul li.CurrentSection a, #subnavigation ul li.CurrentSection a {
     font-weight:bold;
@@ -349,14 +350,15 @@ p#user_header {
     margin-top:-6px;
     padding-top:11px;
     padding-bottom:8px;
-    border-right:solid 1px #453619;
-    border-left:solid 1px #453619;
-    border-bottom:solid 1px #000;
-    background-color:#FFF;
-    color:#000;
+    border-right:solid 1px #6AF364;
+    border-left:solid 1px #6AF364;
+    border-bottom:solid 4px #000;
+    background-color:#000;
+    color:#FFF;
 }
 #navigation ul li.CurrentSection a:hover {
-    background-color:#FFF;
+    background-color:#228A22;
+    border-bottom:solid 4px #228A22;
 }
 #subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
