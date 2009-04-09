@@ -36,7 +36,6 @@ import os
 #
 #------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -80,18 +79,18 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
-
-        self.glade = glade.XML(glade_file,"top","gramps")
-        self.glade.signal_autoconnect({
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+        self.glade.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             })
 
-        window = self.glade.get_widget("top")
-        self.set_window(window,self.glade.get_widget('title'),
+        window = self.glade.get_object("top")
+        self.set_window(window,self.glade.get_object('title'),
                         self.active_name)
         
-        self.tree = self.glade.get_widget("tree1")
+        self.tree = self.glade.get_object("tree1")
         col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
         self.tree.append_column(col)
         self.tree.set_rules_hint(True)

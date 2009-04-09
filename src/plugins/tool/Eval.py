@@ -39,7 +39,7 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #------------------------------------------------------------------------
 #
@@ -62,21 +62,24 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
-        self.glade = glade.XML(glade_file,"top","gramps")
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "eval.glade"
+        glade_file = '/tmp/eval.glade'
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
 
-        window = self.glade.get_widget("top")
-        self.dbuf = self.glade.get_widget("display").get_buffer()
-        self.ebuf = self.glade.get_widget("eval").get_buffer()
-        self.error = self.glade.get_widget("error").get_buffer()
+        window = self.glade.get_object("top")
+        self.dbuf = self.glade.get_object("display").get_buffer()
+        self.ebuf = self.glade.get_object("eval").get_buffer()
+        self.error = self.glade.get_object("error").get_buffer()
 
-        self.glade.signal_autoconnect({
+        self.glade.connect_signals({
             "on_apply_clicked" : self.apply_clicked,
             "on_close_clicked" : self.close,
             "on_clear_clicked" : self.clear_clicked,
             })
 
-        self.set_window(window,self.glade.get_widget('title'),self.title)
+        self.set_window(window,self.glade.get_object('title'),self.title)
         self.show()
 
     def build_menu_names(self, obj):
