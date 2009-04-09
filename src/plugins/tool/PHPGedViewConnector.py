@@ -26,7 +26,6 @@
 import httplib
 import urllib2
 import gtk
-from gtk import glade
 import os
 from tempfile import mkstemp
 from gettext import gettext as _
@@ -280,22 +279,24 @@ class phpGedViewImporter:
         self.url = None
         self.connector = None
         
-        glade_file = "%s/phpgedview.glade" % os.path.dirname(__file__)
-        top = glade.XML(glade_file,'importer','gramps')
-        self.url_entry = top.get_widget('url_entry')
-        self.version_label = top.get_widget('version_label')
+        base = os.path.dirname(__file__)
+        glade_file = os.path.join(base, "phpgedview.glade")
+        top = gtk.Builder()
+        top.add_from_file(glade_file)
+        self.url_entry = top.get_object('url_entry')
+        self.version_label = top.get_object('version_label')
         self.version_label.set_text("")
-        self.file_combo = top.get_widget('file_combo')
+        self.file_combo = top.get_object('file_combo')
         self.file_combo.hide()
-        self.username_entry = top.get_widget('username_entry')
+        self.username_entry = top.get_object('username_entry')
         self.username_entry.hide()
-        self.password_entry = top.get_widget('password_entry')
+        self.password_entry = top.get_object('password_entry')
         self.password_entry.hide()
-        self.ok_button = top.get_widget('ok_button')
+        self.ok_button = top.get_object('ok_button')
         self.ok_button.connect("activate", self.on_next_pressed_cb)
         self.ok_button.connect("button_release_event", self.on_next_pressed_cb)
-        self.progressbar = top.get_widget('progressbar')
-        self.dialog = top.get_widget('importer')
+        self.progressbar = top.get_object('progressbar')
+        self.dialog = top.get_object('importer')
         self.dialog.show()
 
     def filter_url(self, url):
