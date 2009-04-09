@@ -37,7 +37,7 @@ from gettext import ngettext
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #------------------------------------------------------------------------
 #
@@ -79,10 +79,11 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
-        self.glade = glade.XML(glade_file,"top","gramps")
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
             
-        self.auto1 = self.glade.get_widget("original")
-        self.auto2 = self.glade.get_widget("new")
+        self.auto1 = self.glade.get_object("original")
+        self.auto2 = self.glade.get_object("new")
 
         # Need to display localized event names
         etype = EventType()
@@ -98,10 +99,10 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         etype.set_from_xml_str(self.options.handler.options_dict['totype'])
         self.auto2.child.set_text(str(etype))
 
-        window = self.glade.get_widget('top')
-        self.set_window(window,self.glade.get_widget('title'),self.title)
+        window = self.glade.get_object('top')
+        self.set_window(window,self.glade.get_object('title'),self.title)
 
-        self.glade.signal_autoconnect({
+        self.glade.connect_signals({
             "on_close_clicked"  : self.close,
             "on_apply_clicked"  : self.on_apply_clicked,
             })
