@@ -36,7 +36,6 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -100,21 +99,22 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = os.path.join(base, "ownereditor.glade")
 
         # get the main window from glade
-        top_xml = glade.XML(glade_file, "top", "gramps")
+        topDialog = gtk.Builder()
+        topDialog.add_from_file(glade_file)
 
         # set gramps style title for the window
-        window = top_xml.get_widget("top")
+        window = topDialog.get_object("top")
         self.set_window(window,
-                        top_xml.get_widget("title"),
+                        topDialog.get_object("title"),
                         _("Database Owner Editor"))
 
         # move help button to the left side
-        action_area = top_xml.get_widget("action_area")
-        help_button = top_xml.get_widget("help_button")
+        action_area = topDialog.get_object("action_area")
+        help_button = topDialog.get_object("help_button")
         action_area.set_child_secondary(help_button, True)
         
         # connect signals
-        top_xml.signal_autoconnect({
+        topDialog.connect_signals({
             "on_ok_button_clicked": self.on_ok_button_clicked,
             "on_cancel_button_clicked": self.close,
             "on_help_button_clicked": self.on_help_button_clicked,
@@ -122,9 +122,10 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         })
 
         # fetch the popup menu
-        popup_xml = glade.XML(glade_file, "popup-menu", "gramps")
-        self.menu = popup_xml.get_widget("popup-menu")
-        popup_xml.signal_connect("on_menu_activate", self.on_menu_activate)
+        popup_menu = gtk.Builder()
+        popup_menu.add_from_file(glade_file)
+        self.menu = popup_menu.get_object("popup-menu")
+        popup_menu.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()
@@ -142,7 +143,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         ]
 
         for (name,set_fn,get_fn) in entry:
-            self.entries.append(MonitoredEntry(top_xml.get_widget(name),
+            self.entries.append(MonitoredEntry(topDialog.get_object(name),
                                                set_fn,
                                                get_fn,
                                                self.db.readonly))
