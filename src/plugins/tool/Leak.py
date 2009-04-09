@@ -39,7 +39,6 @@ from bsddb.db import DBError
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gtk import glade
 import gtk
 import pango
 import gc
@@ -67,10 +66,11 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         glade_file = os.path.dirname(__file__) + os.sep + "leak.glade"
-        self.glade = glade.XML(glade_file,"top","gramps")
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
 
-        self.window = self.glade.get_widget("top")
-        self.scroll = self.glade.get_widget("scrolledwindow1")
+        self.window = self.glade.get_object("top")
+        self.scroll = self.glade.get_object("scrolledwindow1")
         #add a listview to the scrollable
         self.list = gtk.TreeView()
         self.list.set_headers_visible(True)
@@ -96,10 +96,10 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         
         gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
 
-        self.set_window(self.window, self.glade.get_widget('title'),
+        self.set_window(self.window, self.glade.get_object('title'),
                         self.title)
 
-        self.glade.signal_autoconnect({
+        self.glade.connect_signals({
             "on_apply_clicked" : self.apply_clicked,
             "on_close_clicked" : self.close,
             })
