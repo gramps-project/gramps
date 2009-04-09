@@ -37,7 +37,6 @@ import os
 #-------------------------------------------------------------------------
 import gobject
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -180,17 +179,17 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"changenames.glade")
-        
-        self.top = glade.XML(glade_file,"top","gramps")
-        window = self.top.get_widget('top')
-        self.top.signal_autoconnect({
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        window = self.top.get_object('top')
+        self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_help_clicked" : self.on_help_clicked,
             })
         
-        self.list = self.top.get_widget("list")
-        self.set_window(window,self.top.get_widget('title'),self.label)
+        self.list = self.top.get_object("list")
+        self.set_window(window,self.top.get_object('title'),self.label)
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
                                    gobject.TYPE_STRING)

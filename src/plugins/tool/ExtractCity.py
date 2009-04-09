@@ -39,7 +39,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -441,9 +440,8 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             loc = place.get_main_location()
             self.progress.step()
 
-            if loc.get_street() == "" and loc.get_city() == "" \
-                    and loc.get_state() == "" and \
-                    loc.get_postal_code() == "":
+            if loc.get_street() == loc.get_city() == \
+               loc.get_state() == loc.get_postal_code() == "":
 
                 match = CITY_STATE_ZIP.match(descr.strip())
                 if match:
@@ -516,18 +514,18 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base, "changenames.glade")
-        
-        self.top = glade.XML(glade_file, "top", "gramps")
-        window = self.top.get_widget('top')
-        self.top.signal_autoconnect({
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        window = self.top.get_object('top')
+        self.top.connect_signals({
             "destroy_passed_object" : self.close, 
             "on_ok_clicked" : self.on_ok_clicked, 
             "on_help_clicked" : self.on_help_clicked, 
             })
         
-        self.list = self.top.get_widget("list")
-        self.set_window(window, self.top.get_widget('title'), self.label)
-        lbl = self.top.get_widget('info')
+        self.list = self.top.get_object("list")
+        self.set_window(window, self.top.get_object('title'), self.label)
+        lbl = self.top.get_object('info')
         lbl.set_line_wrap(True)
         lbl.set_text(
             _('Below is a list of Places with the possible data that can '
