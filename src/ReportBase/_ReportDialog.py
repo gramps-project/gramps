@@ -447,7 +447,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.target_fileentry = FileEntry(hid, _("Save As"))
         spath = self.get_default_directory()
         self.target_fileentry.set_filename(spath)
-        self.target_fileentry.gtk_entry().set_position(len(spath))
         # need any labels at top:
         label = gtk.Label("<b>%s</b>" % _('Document Options'))
         label.set_use_markup(1)
