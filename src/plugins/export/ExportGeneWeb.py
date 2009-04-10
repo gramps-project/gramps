@@ -4,6 +4,7 @@
 # Copyright (C) 2004  Martin Hawlisch
 # Copyright (C) 2004-2006, 2008 Donald N. Allingham
 # Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2009  Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -272,7 +273,7 @@ class GeneWebWriter:
                         note = ""
                         for notehandle in notelist:
                             noteobj = self.db.get_note_from_handle(notehandle)
-                            note += noteobj.get(False)
+                            note += noteobj.get()
                             note += " "
                         if note and note != "":
                             note = note.replace('\n\r',' ')
