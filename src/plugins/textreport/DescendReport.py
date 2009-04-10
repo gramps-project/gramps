@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,64 +81,45 @@ class DescendantReport(Report):
         self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
-        birth_date = ""
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth = self.database.get_event_from_handle(birth_ref.ref)
-            birth_date = DateHandler.get_date(birth)
-        else:
-            birth = None
-
-        death_date = ""
-        death_ref = person.get_death_ref()
-        if death_ref:
-            death = self.database.get_event_from_handle(death_ref.ref)
-            death_date = DateHandler.get_date(death)
-        else:
-            death = None
+        birth = ReportUtils.get_birth_or_fallback(self.database, person)
+        death = ReportUtils.get_death_or_fallback(self.database, person)
 
         if birth or death:
             self.doc.write_text(' (')
 
-            birth_place = ""
+        if birth:
+            birth_date = DateHandler.get_date(birth)
+            bplace_handle = birth.get_place_handle()
+            if bplace_handle:
+                birth_place = self.database.get_place_from_handle(
+                    bplace_handle).get_title()
+                self.doc.write_text(_("b. %(birth_date)s - %(place)s") % {
+                    'birth_date' : birth_date,
+                    'place' : birth_place,
+                    })
+            else:
+                self.doc.write_text(_("b. %(birth_date)s") % {
+                    'birth_date' : birth_date
+                    })
+
+        if death:
+            death_date = DateHandler.get_date(death)
+            dplace_handle = death.get_place_handle()
             if birth:
-                bplace_handle = birth.get_place_handle()
-                if bplace_handle:
-                    birth_place = self.database.get_place_from_handle(
-                        bplace_handle).get_title()
+                self.doc.write_text(', ')
+            if dplace_handle:
+                death_place = self.database.get_place_from_handle(
+                    dplace_handle).get_title()
+                self.doc.write_text(_("d. %(death_date)s - %(place)s") % {
+                    'death_date' : death_date,
+                    'place' : death_place,
+                    })
+            else:
+                self.doc.write_text(_("d. %(death_date)s") % {
+                    'death_date' : death_date
+                    })
 
-            death_place = ""
-            if death:
-                dplace_handle = death.get_place_handle()
-                if dplace_handle:
-                    death_place = self.database.get_place_from_handle(
-                        dplace_handle).get_title()
-
-            if birth:
-                if birth_place:
-                    self.doc.write_text(_("b. %(birth_date)s - %(place)s") % {
-                        'birth_date' : birth_date,
-                        'place' : birth_place,
-                        })
-                else:
-                    self.doc.write_text(_("b. %(birth_date)s") % {
-                        'birth_date' : birth_date
-                        })
-
-            if death:
-                if birth:
-                    self.doc.write_text(', ')
-                if death_place:
-                    self.doc.write_text(_("d. %(death_date)s - %(place)s") % {
-                        'death_date' : death_date,
-                        'place' : death_place,
-                        })
-                else:
-                    self.doc.write_text(_("d. %(death_date)s") % {
-                        'death_date' : death_date
-                        })
-
-            self.doc.write_text(')')
+        self.doc.write_text(')')
         
     def write_report(self):
         self.doc.start_paragraph("DR-Title")

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2009      Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -296,16 +297,14 @@ class KinshipReport(Report):
         name = name_displayer.display(person)
         mark = ReportUtils.get_person_mark(self.database, person)
         birth_date = ""
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            event = self.database.get_event_from_handle(birth_ref.ref)
-            birth_date = DateHandler.get_date( event )
+        birth = ReportUtils.get_birth_or_fallback(self.database, person)
+        if birth:
+            birth_date = DateHandler.get_date(birth)
         
         death_date = ""
-        death_ref = person.get_death_ref()
-        if death_ref:
-            event = self.database.get_event_from_handle(death_ref.ref)
-            death_date = DateHandler.get_date( event )
+        death = ReportUtils.get_death_or_fallback(self.database, person)
+        if death:
+            death_date = DateHandler.get_date(death)
         dates = _(" (%(birth_date)s - %(death_date)s)") % { 
                                             'birth_date' : birth_date,
                                             'death_date' : death_date }
