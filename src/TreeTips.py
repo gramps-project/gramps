@@ -111,6 +111,9 @@ class TreeTips(gtk.Widget):
     def disable(self):
         """Disable showing tooltips"""
         self.enabled = False
+        self.timeoutID = 0
+        self.path = None
+        self.tip_window.hide()
        
     def do_get_property(self, prop):
         """Return the gproperty's value."""

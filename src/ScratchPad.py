@@ -951,6 +951,7 @@ class ScratchPadListView:
         self._widget.connect('drag_begin', self.object_drag_begin)
         self._widget.connect('drag_data_received',
                              self.object_drag_data_received)
+        self._widget.connect('drag_end', self.object_drag_end)
 
         self.register_wrapper_classes()
 
@@ -1069,7 +1070,12 @@ class ScratchPadListView:
             self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY | ACTION_MOVE)
 
     def object_drag_begin(self, context, a):
-        return
+        """ Handle the beginning of a drag operation. """
+        self.treetips.disable()
+    
+    def object_drag_end(self, widget, drag_context):
+        """ Handle the end of a drag operation. """
+        self.treetips.enable()
 
     def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
