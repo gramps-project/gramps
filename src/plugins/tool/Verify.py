@@ -45,7 +45,6 @@ import Errors
 #
 #------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #------------------------------------------------------------------------
@@ -247,54 +246,31 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
     def init_gui(self):
         # Draw dialog and make it handle everything
         base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verify.glade"
+        self.glade_file = base + os.sep + "verifysettings.glade"
         self.vr = None 
 
-        self.top = glade.XML(self.glade_file,"verify_settings","gramps")
-        self.top.signal_autoconnect({
+        self.top = gtk.Builder()
+#        self.add_from_file(self.glade_file),"verify_settings","gramps")
+        self.top.add_from_file(self.glade_file)
+        self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_verify_ok_clicked"  : self.on_apply_clicked
         })
 
-        window = self.top.get_widget('verify_settings')
-        self.set_window(window,self.top.get_widget('title'),self.label)
+        window = self.top.get_object('verify_settings')
+        self.set_window(window,self.top.get_object('title'),self.label)
 
-        self.top.get_widget("oldage").set_value(
-            self.options.handler.options_dict['oldage'])
-        self.top.get_widget("hwdif").set_value(
-            self.options.handler.options_dict['hwdif'])
-        self.top.get_widget("cspace").set_value(
-            self.options.handler.options_dict['cspace'])
-        self.top.get_widget("cbspan").set_value(
-            self.options.handler.options_dict['cbspan'])
-        self.top.get_widget("yngmar").set_value(
-            self.options.handler.options_dict['yngmar'])
-        self.top.get_widget("oldmar").set_value(
-            self.options.handler.options_dict['oldmar'])
-        self.top.get_widget("oldmom").set_value(
-            self.options.handler.options_dict['oldmom'])
-        self.top.get_widget("yngmom").set_value(
-            self.options.handler.options_dict['yngmom'])
-        self.top.get_widget("olddad").set_value(
-            self.options.handler.options_dict['olddad'])
-        self.top.get_widget("yngdad").set_value(
-            self.options.handler.options_dict['yngdad'])
-        self.top.get_widget("wedder").set_value(
-            self.options.handler.options_dict['wedder'])
-        self.top.get_widget("mxchildmom").set_value(
-            self.options.handler.options_dict['mxchildmom'])
-        self.top.get_widget("mxchilddad").set_value(
-            self.options.handler.options_dict['mxchilddad'])
-        self.top.get_widget("lngwdw").set_value(
-            self.options.handler.options_dict['lngwdw'])
-        self.top.get_widget("oldunm").set_value(
-            self.options.handler.options_dict['oldunm'])
-        self.top.get_widget("estimate").set_active(
-            self.options.handler.options_dict['estimate_age'])
-        self.top.get_widget("invdate").set_active(
-            self.options.handler.options_dict['invdate'])
-                                                          
+        for option in self.options.handler.options_dict:
+            if option in ['estimate_age', 'invdate']:
+                self.top.get_object(option).set_active(
+                    self.options.handler.options_dict[option]
+                    )
+            else:
+                self.top.get_object(option).set_value(
+                    self.options.handler.options_dict[option]
+                    )
+
         self.show()
 
     def build_menu_names(self, obj):
@@ -305,41 +281,14 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
-        self.options.handler.options_dict['oldage'] = self.top.get_widget(
-            "oldage").get_value_as_int()
-        self.options.handler.options_dict['hwdif']  = self.top.get_widget(
-            "hwdif").get_value_as_int()
-        self.options.handler.options_dict['cspace'] = self.top.get_widget(
-            "cspace").get_value_as_int()
-        self.options.handler.options_dict['cbspan'] = self.top.get_widget(
-            "cbspan").get_value_as_int()
-        self.options.handler.options_dict['yngmar'] = self.top.get_widget(
-            "yngmar").get_value_as_int()
-        self.options.handler.options_dict['oldmar'] = self.top.get_widget(
-            "oldmar").get_value_as_int()
-        self.options.handler.options_dict['oldmom'] = self.top.get_widget(
-            "oldmom").get_value_as_int()
-        self.options.handler.options_dict['yngmom'] = self.top.get_widget(
-            "yngmom").get_value_as_int()
-        self.options.handler.options_dict['olddad'] = self.top.get_widget(
-            "olddad").get_value_as_int()
-        self.options.handler.options_dict['yngdad'] = self.top.get_widget(
-            "yngdad").get_value_as_int()
-        self.options.handler.options_dict['wedder'] = self.top.get_widget(
-            "wedder").get_value_as_int()
-        self.options.handler.options_dict['mxchildmom'] = self.top.get_widget(
-            "mxchildmom").get_value_as_int()
-        self.options.handler.options_dict['mxchilddad'] = self.top.get_widget(
-            "mxchilddad").get_value_as_int()
-        self.options.handler.options_dict['lngwdw'] = self.top.get_widget(
-            "lngwdw").get_value_as_int()
-        self.options.handler.options_dict['oldunm'] = self.top.get_widget(
-            "oldunm").get_value_as_int()
+        for option in self.options.handler.options_dict:
+            if option in ['estimate_age', 'invdate']:
+                self.options.handler.options_dict[option] = \
+                self.top.get_object(option).get_active()
+            else:
+                self.options.handler.options_dict[option] = \
+                    self.top.get_object(option).get_value_as_int()
 
-        self.options.handler.options_dict['estimate_age'] = \
-                      self.top.get_widget("estimate").get_active()
-        self.options.handler.options_dict['invdate'] = \
-                      self.top.get_widget("invdate").get_active()
         try:
             self.vr = VerifyResults(self.dbstate, self.uistate, self.track)
             self.add_results = self.vr.add_results
@@ -372,23 +321,10 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
     def run_tool(self,cli=False):
 
         person_handles = self.db.get_person_handles(sort_handles=False)
-        oldage = self.options.handler.options_dict['oldage']
-        hwdif = self.options.handler.options_dict['hwdif']
-        cspace = self.options.handler.options_dict['cspace']
-        cbspan = self.options.handler.options_dict['cbspan']
-        yngmar = self.options.handler.options_dict['yngmar']
-        oldmar = self.options.handler.options_dict['oldmar']
-        oldmom = self.options.handler.options_dict['oldmom']
-        yngmom = self.options.handler.options_dict['yngmom']
-        olddad = self.options.handler.options_dict['olddad']
-        yngdad = self.options.handler.options_dict['yngdad']
-        wedder = self.options.handler.options_dict['wedder']
-        mxchildmom = self.options.handler.options_dict['mxchildmom']
-        mxchilddad = self.options.handler.options_dict['mxchilddad']
-        lngwdw = self.options.handler.options_dict['lngwdw']
-        oldunm = self.options.handler.options_dict['oldunm']
-        estimate_age = self.options.handler.options_dict['estimate_age']
-        invdate = self.options.handler.options_dict['invdate']
+        
+        for option, value in \
+          self.options.handler.options_dict.iteritems():
+            exec '%s = %s' % (option, value)
 
         self.vr.real_model.clear()
 
@@ -479,31 +415,31 @@ class VerifyResults(ManagedWindow):
         self.dbstate = dbstate
 
         base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verify.glade"
-
-        self.top = glade.XML(self.glade_file,"verify_result","gramps")
-        window = self.top.get_widget("verify_result")
-        self.set_window(window,self.top.get_widget('title'),self.title)
+        self.glade_file = base + os.sep + "verifyresult.glade"
+        self.top = gtk.Builder()
+        self.top.add_from_file(self.glade_file)
+        window = self.top.get_object("verify_result")
+        self.set_window(window,self.top.get_object('title'),self.title)
     
-        self.top.signal_autoconnect({
+        self.top.connect_signals({
             "destroy_passed_object"  : self.close,
             })
 
-        self.warn_tree = self.top.get_widget('warn_tree')
+        self.warn_tree = self.top.get_object('warn_tree')
         self.warn_tree.connect('button_press_event', self.double_click)
 
         self.selection = self.warn_tree.get_selection()
         
-        self.hide_button = self.top.get_widget('hide_button')
+        self.hide_button = self.top.get_object('hide_button')
         self.hide_button.connect('toggled',self.hide_toggled)
 
-        self.mark_button = self.top.get_widget('mark_all')
+        self.mark_button = self.top.get_object('mark_all')
         self.mark_button.connect('clicked',self.mark_clicked)
 
-        self.unmark_button = self.top.get_widget('unmark_all')
+        self.unmark_button = self.top.get_object('unmark_all')
         self.unmark_button.connect('clicked',self.unmark_clicked)
 
-        self.invert_button = self.top.get_widget('invert_all')
+        self.invert_button = self.top.get_object('invert_all')
         self.invert_button.connect('clicked',self.invert_clicked)
 
         self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
@@ -557,7 +493,7 @@ class VerifyResults(ManagedWindow):
         name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
        
-        self.window.show_all()
+        self.show()
         self.window_shown = False
 
     def load_ignored(self,db_filename):
