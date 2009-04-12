@@ -127,6 +127,8 @@ PEDVIEW_TREESIZE     = ('interface', 'pedview-tree-size', 1)
 PEDVIEW_LAYOUT       = ('interface', 'pedview-layout', 1)
 PEDVIEW_SHOW_MARRIAGE= ('interface', 'pedview-show-marriage', 0)
 PEDVIEW_SHOW_IMAGES  = ('interface', 'pedview-show-images', 0)
+CLIPBOARD_WIDTH      = ('interface', 'clipboard-width', 1)
+CLIPBOARD_HEIGHT     = ('interface', 'clipboard-height', 1)
 DATABASE_PATH        = ('behavior', 'database-path', 2)
 FPREFIX              = ('preferences', 'fprefix', 2)
 EPREFIX              = ('preferences', 'eprefix', 2)
@@ -270,6 +272,8 @@ default_value = {
     PERSON_SEL_HEIGHT    : 450,
     MEDIA_SEL_WIDTH      : 600,
     MEDIA_SEL_HEIGHT     : 450,
+    CLIPBOARD_WIDTH      : 300,
+    CLIPBOARD_HEIGHT     : 300,
     FILTER               : False, 
     PEDVIEW_TREESIZE     : 0,
     PEDVIEW_LAYOUT       : 0,
