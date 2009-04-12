@@ -51,6 +51,7 @@ from gtk import glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import gen.lib
 import TreeTips
 import DateHandler
@@ -1198,11 +1199,14 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.database_changed(self.dbstate.db)
         self.dbstate.connect('database-changed', self.database_changed)
 
+        self.width_key = Config.CLIPBOARD_WIDTH
+        self.height_key = Config.CLIPBOARD_HEIGHT
         self.glade_file = os.path.join(const.GLADE_DIR, "scratchpad.glade")
 
         self.top = glade.XML(self.glade_file,"scratch_pad","gramps")
         self.set_window(self.top.get_widget("scratch_pad"),
                         None, None, msg=_("Clipboard"))
+        self._set_size()
 
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")
