@@ -51,8 +51,7 @@ GLADEFILES = \
 	soundex.glade \
 	summary.glade \
 	unused.glade \
-	verifysettings.glade \
-	verifyresult.glade
+	verify.glade
 	
 dist_pkgdata_DATA = $(GLADEFILES)
 

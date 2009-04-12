@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <interface>
   <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy project-wide -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="verify_settings">
     <property name="visible">True</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox4">
+      <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <child>
           <object class="GtkVBox" id="vbox6">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
@@ -39,7 +38,6 @@
                       <object class="GtkSpinButton" id="oldage">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment15</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
@@ -83,7 +81,6 @@
                       <object class="GtkSpinButton" id="yngmar">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment14</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -115,7 +112,6 @@
                       <object class="GtkSpinButton" id="oldmar">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment13</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -148,7 +144,6 @@
                       <object class="GtkSpinButton" id="wedder">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment12</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -165,7 +160,6 @@
                       <object class="GtkSpinButton" id="lngwdw">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment11</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -213,7 +207,6 @@
                       <object class="GtkSpinButton" id="oldunm">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment10</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -331,7 +324,6 @@
                       <object class="GtkSpinButton" id="yngmom">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment9</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -346,7 +338,6 @@
                       <object class="GtkSpinButton" id="oldmom">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment8</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -363,7 +354,6 @@
                       <object class="GtkSpinButton" id="mxchildmom">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment7</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -454,7 +444,6 @@
                       <object class="GtkSpinButton" id="mxchilddad">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment6</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -471,7 +460,6 @@
                       <object class="GtkSpinButton" id="olddad">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment5</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -488,7 +476,6 @@
                       <object class="GtkSpinButton" id="yngdad">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment4</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -528,7 +515,6 @@
                       <object class="GtkSpinButton" id="hwdif">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -543,7 +529,6 @@
                       <object class="GtkSpinButton" id="cspace">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment2</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -560,7 +545,6 @@
                       <object class="GtkSpinButton" id="cbspan">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
                         <property name="adjustment">adjustment1</property>
                         <property name="climb_rate">1</property>
                       </object>
@@ -644,7 +628,7 @@
           </packing>
         </child>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area4">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
@@ -653,7 +637,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_clicked"/>
               </object>
@@ -664,14 +648,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="close_button">
+              <object class="GtkButton" id="button5">
                 <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <property name="xalign">0.49000000953674316</property>
                 <signal name="clicked" handler="destroy_passed_object" object="verify_settings"/>
               </object>
               <packing>
@@ -681,12 +664,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="run_button">
+              <object class="GtkButton" id="button4">
                 <property name="label" translatable="yes">_Run</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_verify_ok_clicked" object="verify_settings"/>
               </object>
@@ -707,8 +690,212 @@
     </child>
     <action-widgets>
       <action-widget response="-11">helpbutton1</action-widget>
-      <action-widget response="0">close_button</action-widget>
-      <action-widget response="0">run_button</action-widget>
+      <action-widget response="0">button5</action-widget>
+      <action-widget response="0">button4</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkDialog" id="verify_result">
+    <property name="visible">True</property>
+    <property name="default_width">500</property>
+    <property name="default_height">300</property>
+    <property name="type_hint">dialog</property>
+    <property name="has_separator">False</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox2">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkVBox" id="vbox5">
+            <property name="visible">True</property>
+            <property name="border_width">6</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="padding">6</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkHBox" id="hbox1">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow4">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="vscrollbar_policy">automatic</property>
+                    <child>
+                      <object class="GtkTreeView" id="warn_tree">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="rules_hint">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkVBox" id="vbox7">
+                    <property name="visible">True</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="padding">6</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label27">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&lt;b&gt;Double-click on a row to view/edit data&lt;/b&gt;</property>
+                <property name="use_markup">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkHBox" id="hbox2">
+                <property name="visible">True</property>
+                <property name="border_width">6</property>
+                <property name="spacing">18</property>
+                <child>
+                  <object class="GtkHButtonBox" id="hbuttonbox2">
+                    <property name="visible">True</property>
+                    <property name="spacing">6</property>
+                    <property name="layout_style">start</property>
+                    <child>
+                      <object class="GtkButton" id="mark_all">
+                        <property name="label" translatable="yes">_Mark all</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="can_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="unmark_all">
+                        <property name="label" translatable="yes">_Unmark all</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="can_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="invert_all">
+                        <property name="label" translatable="yes">In_vert marks</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="can_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToggleButton" id="hide_button">
+                    <property name="label" translatable="yes">_Hide marked</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="use_underline">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area2">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="closebutton1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">False</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="destroy_passed_object"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-7">closebutton1</action-widget>
     </action-widgets>
   </object>
   <object class="GtkAdjustment" id="adjustment1">

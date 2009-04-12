@@ -246,7 +246,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
     def init_gui(self):
         # Draw dialog and make it handle everything
         base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verifysettings.glade"
+        self.glade_file = base + os.sep + "verify.glade"
         self.vr = None 
 
         self.top = gtk.Builder()
@@ -270,8 +270,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 self.top.get_object(option).set_value(
                     self.options.handler.options_dict[option]
                     )
-
-        self.show()
+        self.top.get_object("verify_result").hide()
+        self.window.show()
 
     def build_menu_names(self, obj):
         return (_("Tool settings"),self.label)
@@ -415,7 +415,7 @@ class VerifyResults(ManagedWindow):
         self.dbstate = dbstate
 
         base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verifyresult.glade"
+        self.glade_file = base + os.sep + "verify.glade"
         self.top = gtk.Builder()
         self.top.add_from_file(self.glade_file)
         window = self.top.get_object("verify_result")
@@ -493,7 +493,8 @@ class VerifyResults(ManagedWindow):
         name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
        
-        self.show()
+        self.top.get_object("verify_settings").hide()
+        self.window.show()
         self.window_shown = False
 
     def load_ignored(self,db_filename):
@@ -646,7 +647,7 @@ class VerifyResults(ManagedWindow):
                                     True, not ignore])
         
         if not self.window_shown:
-            self.show()
+            self.window.show()
             self.window_shown = True
 
     def build_menu_names(self, obj):
