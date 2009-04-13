@@ -81,19 +81,23 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         self.dbstate = dbstate
         self.uistate = uistate
         self.db = dbstate.db
-        glade_file = "%s/NotRelated.glade" % os.path.dirname(__file__)
-        topDialog = gtk.glade.XML(glade_file, "top", "gramps")
-        topDialog.signal_autoconnect({
+        
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "NotRelated.glade"
+        topDialog = gtk.Builder()
+        topDialog.add_from_file(glade_file)
+        
+        topDialog.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
         })
 
-        window = topDialog.get_widget("top")
-        title = topDialog.get_widget("title")
+        window = topDialog.get_object("top")
+        title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
 
-        self.markercombo = topDialog.get_widget("markercombo")
-        self.markerapply = topDialog.get_widget("markerapply")
+        self.markercombo = topDialog.get_object("markercombo")
+        self.markerapply = topDialog.get_object("markerapply")
         self.markercombo.set_sensitive(False)
         self.markerapply.set_sensitive(False)
         self.markerapply.connect('clicked', self.applyMarkerClicked)
@@ -112,7 +116,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
         # note -- don't assign the model to the tree until it has been populated,
         # otherwise the screen updates are terribly slow while names are appended
-        self.treeView = topDialog.get_widget("treeview")
+        self.treeView = topDialog.get_object("treeview")
         col1 = gtk.TreeViewColumn(_('Name'),    gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('ID'),      gtk.CellRendererText(), text=1)
         col3 = gtk.TreeViewColumn(_('Parents'), gtk.CellRendererText(), text=2)
@@ -263,7 +267,8 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def findRelatedPeople(self) :
 
-        self.progress.set_pass(_('Finding relationships between %d people') % self.numberOfPeopleInDatabase, self.numberOfPeopleInDatabase)
+        self.progress.set_pass(_('Finding relationships between %d people') % 
+            self.numberOfPeopleInDatabase, self.numberOfPeopleInDatabase)
 
         # as long as we have people we haven't processed yet, keep looping
         while len(self.handlesOfPeopleToBeProcessed) > 0:
@@ -292,45 +297,48 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
             for familyHandle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(familyHandle)
                 spouseHandle = ReportUtils.find_spouse(person, family)
-                if spouseHandle:
-                    if spouseHandle not in self.handlesOfPeopleAlreadyProcessed or spouseHandle not in self.handlesOfPeopleToBeProcessed:
-                        self.handlesOfPeopleToBeProcessed.add(spouseHandle)
+                if spouseHandle and \
+                  spouseHandle not in self.handlesOfPeopleAlreadyProcessed:
+                    self.handlesOfPeopleToBeProcessed.add(spouseHandle)
 
             # step 2 -- parents
             for familyHandle in person.get_parent_family_handle_list():
                 family = self.db.get_family_from_handle(familyHandle)
                 fatherHandle = family.get_father_handle()
                 motherHandle = family.get_mother_handle()
-                if fatherHandle:
-                    if fatherHandle not in self.handlesOfPeopleAlreadyProcessed or fatherHandle not in self.handlesOfPeopleToBeProcessed:
-                        self.handlesOfPeopleToBeProcessed.add(fatherHandle)
-                if motherHandle:
-                    if motherHandle not in self.handlesOfPeopleAlreadyProcessed or motherHandle not in self.handlesOfPeopleToBeProcessed:
-                        self.handlesOfPeopleToBeProcessed.add(motherHandle)
+                if fatherHandle and \
+                  fatherHandle not in self.handlesOfPeopleAlreadyProcessed:
+                    self.handlesOfPeopleToBeProcessed.add(fatherHandle)
+                if motherHandle and \
+                  motherHandle not in self.handlesOfPeopleAlreadyProcessed:
+                    self.handlesOfPeopleToBeProcessed.add(motherHandle)
 
             # step 3 -- children
             for familyHandle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(familyHandle)
                 for childRef in family.get_child_ref_list():
                     childHandle = childRef.ref
-                    if childHandle:
-                        if childHandle not in self.handlesOfPeopleAlreadyProcessed or childHandle not in self.handlesOfPeopleToBeProcessed:
-                            self.handlesOfPeopleToBeProcessed.add(childHandle)
+                    if childHandle and \
+                      childHandle not in self.handlesOfPeopleAlreadyProcessed:
+                        self.handlesOfPeopleToBeProcessed.add(childHandle)
 
 
     def findUnrelatedPeople(self) :
 
         # update our numbers
-        self.numberOfRelatedPeople   = len(self.handlesOfPeopleAlreadyProcessed)
-        self.numberOfUnrelatedPeople = self.numberOfPeopleInDatabase - self.numberOfRelatedPeople
+        self.numberOfRelatedPeople = len(self.handlesOfPeopleAlreadyProcessed)
+        self.numberOfUnrelatedPeople = self.numberOfPeopleInDatabase - \
+            self.numberOfRelatedPeople
 
         if self.numberOfUnrelatedPeople > 0:
             # we have at least 1 "unrelated" person to find
 
             if self.numberOfUnrelatedPeople == 1:
-                self.progress.set_pass(_('Looking for 1 person'), self.numberOfPeopleInDatabase)
+                self.progress.set_pass(_('Looking for 1 person'), 
+                    self.numberOfPeopleInDatabase)
             else:
-                self.progress.set_pass(_('Looking for %d people') % self.numberOfUnrelatedPeople, self.numberOfPeopleInDatabase)
+                self.progress.set_pass(_('Looking for %d people') % 
+                    self.numberOfUnrelatedPeople, self.numberOfPeopleInDatabase)
 
             # loop through everyone in the database
             for handle in self.db.get_person_handles(False):
@@ -355,7 +363,8 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         if self.numberOfUnrelatedPeople == 1:
             self.progress.set_pass(_('Looking up the name for 1 person'), 1)
         else:
-            self.progress.set_pass(_('Looking up the names for %d people') % self.numberOfUnrelatedPeople, self.numberOfUnrelatedPeople)
+            self.progress.set_pass(_('Looking up the names for %d people') % 
+                self.numberOfUnrelatedPeople, self.numberOfUnrelatedPeople)
 
         # loop through the entire list of unrelated people
         for handle in self.handlesOfPeopleNotRelated:
