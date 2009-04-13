@@ -59,7 +59,6 @@ except:
 #-------------------------------------------------------------------------
 import gtk
 import gobject
-from gtk import glade
 from gtk import RESPONSE_OK
 
 #-------------------------------------------------------------------------
@@ -573,27 +572,30 @@ class BookListDisplay:
         self.dosave = dosave
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
-        self.xml = glade.XML(glade_file, "booklist", "gramps")
-        self.top = self.xml.get_widget('booklist')
+        self.xml = gtk.Builder()
+        self.xml.add_from_source('/tmp/book.glade')
+        self.xml.get_object('top').hide()
+        #self.xml = glade.XML(glade_file, "booklist", "gramps")
+        self.top = self.xml.get_object('booklist')
 
         ManagedWindow.set_titles(self.top,
-            self.xml.get_widget('title'),_('Available Books'))
+            self.xml.get_object('title'),_('Available Books'))
 
         if nodelete:
-            delete_button = self.xml.get_widget("delete_button")
+            delete_button = self.xml.get_object("delete_button")
             delete_button.hide()
 
-        self.xml.signal_autoconnect({
+        self.xml.connect_signals({
             "on_booklist_cancel_clicked" : self.on_booklist_cancel_clicked,
             "on_booklist_ok_clicked" : self.on_booklist_ok_clicked,
             "on_booklist_delete_clicked" : self.on_booklist_delete_clicked
             })
 
-        title_label = self.xml.get_widget('title')
+        title_label = self.xml.get_object('title')
         title_label.set_text(Utils.title(_('Book List')))
         title_label.set_use_markup(True)
         
-        self.blist = ListModel.ListModel(self.xml.get_widget("list"),
+        self.blist = ListModel.ListModel(self.xml.get_object("list"),
                                         [('Name',-1,10)],)
         self.redraw()
         self.selection = None
@@ -685,13 +687,15 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
-
-        self.xml = glade.XML(glade_file, "top", "gramps")
-        window = self.xml.get_widget("top")
-        title_label = self.xml.get_widget('title')
+        self.xml = gtk.Builder()
+        self.xml.add_from_file('/tmp/book.glade')
+        self.xml.get_object('booklist').hide()
+        #self.xml = glade.XML(glade_file, "top", "gramps")
+        window = self.xml.get_object("top")
+        title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
     
-        self.xml.signal_autoconnect({
+        self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,
             "on_remove_clicked"     : self.on_remove_clicked,
             "on_up_clicked"         : self.on_up_clicked,
@@ -705,19 +709,19 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             "destroy_passed_object" : self.close
             })
 
-        self.avail_tree = self.xml.get_widget("avail_tree")
-        self.book_tree = self.xml.get_widget("book_tree")
+        self.avail_tree = self.xml.get_object("avail_tree")
+        self.book_tree = self.xml.get_object("book_tree")
         self.avail_tree.connect('button-press-event', self.av_button_press)
         self.book_tree.connect('button-press-event', self.bk_button_press)
 
-        self.name_entry = self.xml.get_widget("name_entry")
+        self.name_entry = self.xml.get_object("name_entry")
         self.name_entry.set_text(_('New Book'))
 
-        avail_label = self.xml.get_widget('avail_label')
+        avail_label = self.xml.get_object('avail_label')
         avail_label.set_text("<b>%s</b>" % _("_Available items"))
         avail_label.set_use_markup(True)
         avail_label.set_use_underline(True)
-        book_label = self.xml.get_widget('book_label')
+        book_label = self.xml.get_object('book_label')
         book_label.set_text("<b>%s</b>" % _("Current _book"))
         book_label.set_use_underline(True)
         book_label.set_use_markup(True)
