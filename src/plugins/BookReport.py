@@ -686,8 +686,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
+        
         self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file')
+        self.xml.add_from_file(glade_file)
         self.xml.get_object('booklist').hide()
         window = self.xml.get_object("top")
         title_label = self.xml.get_object('title')
