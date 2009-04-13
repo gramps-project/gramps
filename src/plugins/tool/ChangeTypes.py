@@ -78,7 +78,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         # Draw dialog and make it handle everything
         
         base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"changetype.glade")
+        glade_file = base + os.sep + "changetype.glade"
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
             
