@@ -85,15 +85,16 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.state = state
         self.uistate = uistate
         
-        self.dialog = glade.XML(const.PLUGINS_GLADE, "report", "gramps")
-        self.dialog.signal_autoconnect({
+        self.dialog = gtk.Builder()
+        self.dialog.add_from_file(const.PLUGINS_GLADE)
+        self.dialog.connect_signals({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "destroy_passed_object"   : self.close,
             })
 
-        self.tree = self.dialog.get_widget("tree")
-        window = self.dialog.get_widget("report")
-        self.title = self.dialog.get_widget("title")
+        self.tree = self.dialog.get_object("tree")
+        window = self.dialog.get_object("report")
+        self.title = self.dialog.get_object("title")
 
         self.set_window(window, self.title, msg )
 
@@ -104,15 +105,15 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         
-        self.description = self.dialog.get_widget("description")
+        self.description = self.dialog.get_object("description")
         if label:
             self.description.set_text(label)
-        self.status = self.dialog.get_widget("report_status")
+        self.status = self.dialog.get_object("report_status")
         
-        self.author_name = self.dialog.get_widget("author_name")
-        self.author_email = self.dialog.get_widget("author_email")
+        self.author_name = self.dialog.get_object("author_name")
+        self.author_email = self.dialog.get_object("author_email")
         
-        self.apply_button = self.dialog.get_widget("apply")
+        self.apply_button = self.dialog.get_object("apply")
         if button_label:
             self.apply_button.set_label(button_label)
         else:
