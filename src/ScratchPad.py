@@ -43,7 +43,6 @@ except:
 #-------------------------------------------------------------------------
 import gtk
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -1202,17 +1201,17 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.width_key = Config.CLIPBOARD_WIDTH
         self.height_key = Config.CLIPBOARD_HEIGHT
         self.glade_file = os.path.join(const.GLADE_DIR, "scratchpad.glade")
-
-        self.top = glade.XML(self.glade_file,"scratch_pad","gramps")
-        self.set_window(self.top.get_widget("scratch_pad"),
+        self.top = gtk.Builder()
+        self.top.add_from_file(self.glade_file)
+        self.set_window(self.top.get_object("scratch_pad"),
                         None, None, msg=_("Clipboard"))
         self._set_size()
 
-        self.clear_all_btn = self.top.get_widget("btn_clear_all")
-        self.clear_btn = self.top.get_widget("btn_clear")
+        self.clear_all_btn = self.top.get_object("btn_clear_all")
+        self.clear_btn = self.top.get_object("btn_clear")
         
         self.object_list = ScratchPadListView(
-            self.dbstate,self.top.get_widget('objectlist'))
+            self.dbstate,self.top.get_object('objectlist'))
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)
         self.set_clear_btn_sensitivity(sel=self.object_list.get_selection())
@@ -1229,7 +1228,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
         self.object_list.set_model(ScratchPadWindow.otree)
         
-        self.top.signal_autoconnect({
+        self.top.connect_signals({
             "on_close_scratchpad" : self.close,
             "on_clear_clicked": self.on_clear_clicked,
             "on_help_clicked": self.on_help_clicked,
