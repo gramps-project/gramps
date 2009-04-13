@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
-# Copyright (C) 2008      Brian G. Matherly
+# Copyright (C) 2008-2009 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 import os
 import sys
 from gettext import gettext as _
+from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -456,7 +457,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 ) 
                 self.set_page_complete(page, False)
             
-            page.set_label(confirm_text)
+            page.set_label(escape(confirm_text))
                 
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_SUMMARY :
             # The summary page
@@ -488,7 +489,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 'Note: your currently opened database is safe. '
                 'It was only '
                 'a copy of your data that failed to save.')
-            self.labelsum.set_label(conclusion_text)
+            self.labelsum.set_label(escape(conclusion_text))
             self.set_page_title(page, conclusion_title)
             self.set_page_complete(page, True)
         else :
