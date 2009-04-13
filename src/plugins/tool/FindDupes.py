@@ -109,7 +109,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.use_soundex = 1
 
         base = os.path.dirname(__file__)
-        self.glade_file = "%s/%s" % (base,"merge.glade")
+        self.glade_file = base + os.sep + "merge.glade"
         top = glade.XML(self.glade_file,"dialog","gramps")
 
         # retrieve options
