@@ -37,14 +37,13 @@ import sys
 #
 #------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from Filters import GenericFilter, build_filter_menu, Rules
+from Filters import GenericFilter, build_filter_model, Rules
 import Sort
 import Utils
 from docgen import ODSTab
@@ -67,6 +66,7 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Compare_Individual_Events...')
+_GLADE_FILE = "eventcmp.glade"
 
 #------------------------------------------------------------------------
 #
@@ -122,12 +122,14 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
-        base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "eventcmp.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
         self.qual = 0
-
-        self.filterDialog = glade.XML(self.glade_file,"filters","gramps")
-        self.filterDialog.signal_autoconnect({
+        
+        self.filterDialog = gtk.Builder()
+        self.filterDialog.add_from_file(glade_file)
+        self.filterDialog.connect_signals({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
             "on_filters_delete_event": self.close,
@@ -135,25 +137,27 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             "destroy_passed_object"  : self.close
             })
     
-        window = self.filterDialog.get_widget("filters")
-        self.filters = self.filterDialog.get_widget("filter_list")
+        window = self.filterDialog.get_object("filters")
+        window.show()
+        self.filters = self.filterDialog.get_object("filter_list")
         self.label = _('Event comparison filter selection')
-        self.set_window(window,self.filterDialog.get_widget('title'),
+        self.set_window(window,self.filterDialog.get_object('title'),
                         self.label)
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
         all.add_rule(Rules.Person.Everyone([]))
 
-        the_filters = [all]
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
+        # the following three lines appear to be unnecessary.
+        # variable "the_filters" is not used anywhere else
+        # commenting out for now
+        #the_filters = [all]
+        #from Filters import CustomFilters
+        #the_filters.extend(CustomFilters.get_filters('Person'))
 
-        self.filter_menu = build_filter_menu(the_filters)
+        self.filter_menu = build_filter_model('Person')
         filter_num = self.options.handler.options_dict['filter']
-        self.filter_menu.set_active(filter_num)
-        self.filter_menu.show()
-        self.filters.set_menu(self.filter_menu)
+        self.filters.set_model(self.filter_menu)
 
         self.show()
 
@@ -173,7 +177,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             pass
 
     def on_apply_clicked(self, obj):
-        cfilter = self.filter_menu.get_active().get_data("filter")
+        cfilter = self.filter_menu[self.filters.get_active()][1]
 
         progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
         progress_bar.set_pass(_('Selecting people'),1)
@@ -183,7 +187,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
         progress_bar.step()
         progress_bar.close()
-        self.options.handler.options_dict['filter'] = self.filters.get_history()
+        self.options.handler.options_dict['filter'] = self.filters.get_active()
         # Save options
         self.options.handler.save_options()
 
@@ -226,21 +230,24 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.row_data = []
         self.save_form = None
         
-        base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "eventcmp.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
-        self.topDialog = glade.XML(self.glade_file,"view","gramps")
-        self.topDialog.signal_autoconnect({
+        self.topDialog = gtk.Builder()
+        self.topDialog.add_from_file(glade_file)
+        self.topDialog.connect_signals({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             })
 
-        window = self.topDialog.get_widget("view")
-        self.set_window(window, self.topDialog.get_widget('title'),
+        window = self.topDialog.get_object("view")
+        window.show()
+        self.set_window(window, self.topDialog.get_object('title'),
                         _('Event Comparison Results'))
                         
-        self.eventlist = self.topDialog.get_widget('treeview')
+        self.eventlist = self.topDialog.get_object('treeview')
         self.sort = Sort.Sort(self.db)
         self.my_list.sort(self.sort.by_last_name)
 
@@ -310,20 +317,18 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 else:
                     the_map[event_name] = [ievent_ref.ref]
 
-            first = 1
-            done = 0
-            while done == 0:
-                added = 0
-                if first:
-                    tlist = [name,gid]
-                else:
-                    tlist = ["",""]
+            first = True
+            done = False
+            while not done:
+                added = False
+                tlist = [name, gid] if first else ["", ""]
+
                 for ename in self.event_titles:
                     if ename in the_map and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
                         del the_map[ename][0]
-                        date = ""
-                        place = ""
+                        date = place = ""
+
                         if event_handle:
                             event = self.db.get_event_from_handle(event_handle)
                             date = DateHandler.get_date(event)
@@ -333,20 +338,16 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                             if place_handle:
                                 place = self.db. \
                                 get_place_from_handle(place_handle).get_title()
-                        tlist.append(date)
-                        tlist.append(sortdate)
-                        tlist.append(place)
-                        added = 1
+                        tlist += [date, sortdate, place]
+                        added = True
                     else:
-                        tlist.append("")
-                        tlist.append("")
-                        tlist.append("")
-                
+                        tlist += [""]*3
+
                 if first:
-                    first = 0
+                    first = False
                     self.row_data.append(tlist)
-                elif added == 0:
-                    done = 1
+                elif not added:
+                    done = True
                 else:
                     self.row_data.append(tlist)
             self.progress_bar.step()
@@ -366,11 +367,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 if not name:
                     break
                 if name in the_map:
-                    the_map[name] = the_map[name] + 1
+                    the_map[name] += 1
                 else:
                     the_map[name] = 1
 
-        unsort_list = [ (the_map[item],item) for item in the_map.keys() ]
+        unsort_list = [ (the_map[item], item) for item in the_map.keys() ]
         unsort_list.sort(by_value)
         sort_list = [ item[1] for item in unsort_list ]
 ## Presently there's no Birth and Death. Instead there's Birth Date and
