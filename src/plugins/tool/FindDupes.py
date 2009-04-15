@@ -36,7 +36,6 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -72,6 +71,7 @@ _val2label = {
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
 _GLADE_FILE = "merge.glade"
+
 #-------------------------------------------------------------------------
 #
 #
@@ -88,7 +88,7 @@ def is_initial(name):
 
 #-------------------------------------------------------------------------
 #
-#
+# The Actual tool.
 #
 #-------------------------------------------------------------------------
 class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
@@ -113,34 +113,33 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                         os.path.split(__file__)[0], 
                         _GLADE_FILE)
 
-        top = glade.XML(glade_file,"dialog","gramps")
+        top = gtk.Builder()
+        top.add_from_file(glade_file)
 
         # retrieve options
         threshold = self.options.handler.options_dict['threshold']
         use_soundex = self.options.handler.options_dict['soundex']
 
-        my_menu = gtk.Menu()
+        my_menu = gtk.ListStore(str, object)
         vals = _val2label.keys()
         vals.sort()
         for val in vals:
-            item = gtk.MenuItem(_val2label[val])
-            item.set_data("v",val)
-            item.show()
-            my_menu.append(item)
-        my_menu.set_active(vals.index(threshold))
+            my_menu.append([_val2label[val], val])
 
-        self.soundex_obj = top.get_widget("soundex")
+        self.soundex_obj = top.get_object("soundex")
         self.soundex_obj.set_active(use_soundex)
         self.soundex_obj.show()
         
-        self.menu = top.get_widget("menu")
-        self.menu.set_menu(my_menu)
+        self.menu = top.get_object("menu")
+        self.menu.set_model(my_menu)
+        self.menu.set_active(0)
 
-        window = top.get_widget('dialog')
-        self.set_window(window, top.get_widget('title'),
+        window = top.get_object('dialog')
+        window.show()
+        self.set_window(window, top.get_object('title'),
                         _('Find Possible Duplicate People'))
 
-        top.signal_autoconnect({
+        top.connect_signals({
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
@@ -169,7 +168,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             self.ancestors_of(f1.get_mother_handle(),id_list)
 
     def on_merge_ok_clicked(self, obj):
-        threshold = self.menu.get_menu().get_active().get_data("v")
+        threshold = self.menu.get_model()[self.menu.get_active()][1]
         self.use_soundex = int(self.soundex_obj.get_active())
         try:
             self.find_potentials(threshold)
@@ -237,7 +236,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
             index = 0
             for p2key in remaining:
-                index = index + 1
+                index += 1
                 if p1key == p2key:
                     continue
                 p2 = self.db.get_person_from_handle(p2key)
@@ -306,25 +305,25 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                                 birth2.get_date_object())
         if value == -1 :
             return -1
-        chance = chance + value
+        chance =+ value
 
         value = self.date_match(death1.get_date_object(),
                                 death2.get_date_object()) 
         if value == -1 :
             return -1
-        chance = chance + value
+        chance =+ value
 
         value = self.place_match(birth1.get_place_handle(),
                                  birth2.get_place_handle()) 
         if value == -1 :
             return -1
-        chance = chance + value
+        chance =+ value
 
         value = self.place_match(death1.get_place_handle(),
                                  death2.get_place_handle()) 
         if value == -1 :
             return -1
-        chance = chance + value
+        chance =+ value
 
         ancestors = []
         self.ancestors_of(p1.get_handle(),ancestors)
@@ -358,7 +357,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             if value == -1:
                 return -1
 
-            chance = chance + value
+            chance += value
             
             mom1_id = f1.get_mother_handle()
             if mom1_id:
@@ -375,7 +374,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             if value == -1:
                 return -1
             
-            chance = chance + value
+            chance += value
 
         for f1_id in p1.get_family_handle_list():
             f1 = self.db.get_family_from_handle(f1_id)
@@ -386,7 +385,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                     father2_id = f2.get_father_handle()
                     if father1_id and father2_id:
                         if father1_id == father2_id:
-                            chance = chance + 1
+                            chance += 1
                         else:
                             father1 = self.db.get_person_from_handle(father1_id)
                             father2 = self.db.get_person_from_handle(father2_id)
@@ -394,13 +393,13 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                             fname2 = get_name_obj(father2)
                             value = self.name_match(fname1,fname2)
                             if value != -1:
-                                chance = chance + value
+                                chance += value
                 else:
                     mother1_id = f1.get_mother_handle()
                     mother2_id = f2.get_mother_handle()
                     if mother1_id and mother2_id:
                         if mother1_id == mother2_id:
-                            chance = chance + 1
+                            chance += 1
                         else:
                             mother1 = self.db.get_person_from_handle(mother1_id)
                             mother2 = self.db.get_person_from_handle(mother2_id)
@@ -408,7 +407,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                             mname2 = get_name_obj(mother2)
                             value = self.name_match(mname1,mname2)
                             if value != -1:
-                                chance = chance + value
+                                chance += value
         return chance
 
     def name_compare(self,s1,s2):
@@ -445,20 +444,20 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         stop_date_1 = date1.get_stop_date()[0:3]
         stop_date_2 = date2.get_stop_date()[0:3]
         if date1.is_compound() and date2.is_compound():
-            if start_date_1 >= start_date_2 and start_date_1 <= stop_date_2 or \
-               start_date_2 >= start_date_1 and start_date_2 <= stop_date_1 or \
-               stop_date_1 >= start_date_2 and stop_date_1 <= stop_date_2 or \
-               stop_date_2 >= start_date_1 and stop_date_2 <= stop_date_1:
+            if start_date_2 <= start_date_1 <= stop_date_2 or \
+               start_date_1 <= start_date_2 <= stop_date_1 or \
+               start_date_2 <= stop_date_1 <= stop_date_2 or \
+               start-date_1 <= stop_date_2 <= stop_date_1:
                 return 0.5
             else:
                 return -1
         elif date2.is_compound():
-            if start_date_1 >= start_date_2 and start_date_1 <= stop_date_2:
+            if start_date_2 <= start_date_1 <= stop_date_2:
                 return 0.5
             else:
                 return -1
         else:
-            if start_date_2 >= start_date_1 and start_date_2 <= stop_date_1:
+            if start_date_1 <= start_date_2 <= stop_date_1:
                 return 0.5
             else:
                 return -1
@@ -518,36 +517,24 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         for name in list1:
             for name2 in list2:
                 if name == name2:
-                    value = value + 0.5
-                    break
-                if name[0] == name2[0] and self.name_compare(name, name2):
-                    value = value + 0.25
-                    break
-        if value == 0:
-            return -1
-        else:
-            return min(value,1)
+                    value += 0.5
+                elif name[0] == name2[0] and self.name_compare(name, name2):
+                    value += 0.25
+        return min(value,1) if value else -1
         
     def list_reduce(self,list1,list2):
         value = 0
         for name in list1:
             for name2 in list2:
                 if is_initial(name) and name[0] == name2[0]:
-                    value = value + 0.25
-                    break
-                if is_initial(name2) and name2[0] == name[0]:
-                    value = value + 0.25
-                    break
-                if name == name2:
-                    value = value + 0.5
-                    break
-                if name[0] == name2[0] and self.name_compare(name, name2):
-                    value = value + 0.25
-                    break
-        if value == 0:
-            return -1
-        else:
-            return min(value,1)
+                    value += 0.25
+                elif is_initial(name2) and name2[0] == name[0]:
+                    value += 0.25
+                elif name == name2:
+                    value += 0.5
+                elif name[0] == name2[0] and self.name_compare(name, name2):
+                    value += 0.25
+        return min(value,1) if value else -1
         
 
 class ShowMatches(ManagedWindow.ManagedWindow):
@@ -564,23 +551,32 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         
-        base = os.path.dirname(__file__)
-        self.glade_file = "%s/%s" % (base,"merge.glade")
-        top = glade.XML(self.glade_file,"mergelist","gramps")
-        window = top.get_widget("mergelist")
-        self.set_window(window, top.get_widget('title'),
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+                        
+        top = gtk.Builder()
+        top.add_from_file(glade_file)
+        
+        window = top.get_object("mergelist")
+        window.show()
+        self.set_window(window, top.get_object('title'),
                         _('Potential Merges'))
         
-        self.mlist = top.get_widget("mlist")
-        top.signal_autoconnect({
+        self.mlist = top.get_object("mlist")
+        top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_do_merge_clicked"   : self.on_do_merge_clicked,
             "on_help_show_clicked"  : self.on_help_clicked,
             "on_delete_show_event"  : self.close,
             })
 
-        mtitles = [(_('Rating'),3,75),(_('First Person'),1,200),
-                   (_('Second Person'),2,200),('',-1,0)]
+        mtitles = [
+                (_('Rating'),3,75),
+                (_('First Person'),1,200),
+                (_('Second Person'),2,200),
+                ('',-1,0)
+                ]
         self.list = ListModel.ListModel(self.mlist,mtitles,
                                         event_func=self.on_do_merge_clicked)
         
