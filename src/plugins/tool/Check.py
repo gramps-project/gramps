@@ -67,6 +67,13 @@ from BasicUtils import name_displayer as _nd
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "summary.glade"
+
+#-------------------------------------------------------------------------
+#
 # Low Level repair
 #
 #-------------------------------------------------------------------------
@@ -1621,8 +1628,10 @@ class Report(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "summary.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         topDialog = gtk.Builder()
         topDialog.add_from_file(glade_file)
         topDialog.get_object("close").connect('clicked',self.close)

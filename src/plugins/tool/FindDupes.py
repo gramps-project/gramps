@@ -71,6 +71,7 @@ _val2label = {
 
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
+_GLADE_FILE = "merge.glade"
 #-------------------------------------------------------------------------
 #
 #
@@ -108,9 +109,11 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.update = callback
         self.use_soundex = 1
 
-        base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "merge.glade"
-        top = glade.XML(self.glade_file,"dialog","gramps")
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
+        top = glade.XML(glade_file,"dialog","gramps")
 
         # retrieve options
         threshold = self.options.handler.options_dict['threshold']

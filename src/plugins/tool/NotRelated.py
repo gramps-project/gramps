@@ -61,6 +61,7 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Not_Related...')
+_GLADE_FILE = "NotRelated.glade"
 #------------------------------------------------------------------------
 #
 # 
@@ -82,8 +83,10 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         self.uistate = uistate
         self.db = dbstate.db
         
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "NotRelated.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         topDialog = gtk.Builder()
         topDialog.add_from_file(glade_file)
         

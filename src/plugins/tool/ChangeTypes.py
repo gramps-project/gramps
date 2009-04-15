@@ -55,6 +55,13 @@ from gen.plug import PluginManager
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "changetype.glade"
+
+#-------------------------------------------------------------------------
+#
 #
 #
 #-------------------------------------------------------------------------
@@ -77,8 +84,10 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def init_gui(self):
         # Draw dialog and make it handle everything
         
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "changetype.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
             

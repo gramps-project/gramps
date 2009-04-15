@@ -68,6 +68,7 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Verify_the_Data...')
+_GLADE_FILE = "verify.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -245,13 +246,13 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def init_gui(self):
         # Draw dialog and make it handle everything
-        base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verify.glade"
         self.vr = None 
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
         self.top = gtk.Builder()
-#        self.add_from_file(self.glade_file),"verify_settings","gramps")
-        self.top.add_from_file(self.glade_file)
+        self.top.add_from_file(glade_file)
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
@@ -413,10 +414,12 @@ class VerifyResults(ManagedWindow):
 
         self.dbstate = dbstate
 
-        base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "verify.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.top = gtk.Builder()
-        self.top.add_from_file(self.glade_file)
+        self.top.add_from_file(glade_file)
         window = self.top.get_object("verify_result")
         self.set_window(window,self.top.get_object('title'),self.title)
     

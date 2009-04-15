@@ -51,6 +51,13 @@ from QuestionDialog import ErrorDialog
 from PluginUtils import Tool
 from gen.plug import PluginManager
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "relcalc.glade"
+
 column_names = [
     _('Name'),
     _('ID') ,
@@ -84,8 +91,10 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.relationship = pmgr.get_relationship_calculator()
         self.relationship.connect_db_signals(dbstate)
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "relcalc.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
 

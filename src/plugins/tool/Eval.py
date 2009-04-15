@@ -52,6 +52,13 @@ import ManagedWindow
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "eval.glade"
+
+#-------------------------------------------------------------------------
+#
 # Actual tool
 #
 #-------------------------------------------------------------------------
@@ -62,9 +69,10 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "eval.glade"
-        glade_file = '/tmp/eval.glade'
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
 

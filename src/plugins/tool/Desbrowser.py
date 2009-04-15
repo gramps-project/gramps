@@ -56,10 +56,7 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
-
-
-
-
+_GLADE_FILE = "desbrowse.glade"
 
 class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
@@ -77,8 +74,10 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "desbrowse.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
         self.glade.connect_signals({

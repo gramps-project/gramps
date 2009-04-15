@@ -55,6 +55,13 @@ from QuestionDialog import InfoDialog
 
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "leak.glade"
+
+#-------------------------------------------------------------------------
+#
 # Actual tool
 #
 #-------------------------------------------------------------------------
@@ -65,7 +72,10 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = os.path.dirname(__file__) + os.sep + "leak.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
 

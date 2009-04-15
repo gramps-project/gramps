@@ -58,6 +58,8 @@ from gen.plug import PluginManager
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
+_GLADE_FILE = "soundex.glade"
+
 #-------------------------------------------------------------------------
 #
 # SoundGen.py
@@ -71,8 +73,9 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "soundex.glade"
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
         self.glade = gtk.Builder()
         self.glade.add_from_file(glade_file)
