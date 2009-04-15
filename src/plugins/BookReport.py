@@ -574,7 +574,6 @@ class BookListDisplay:
         glade_file = os.path.join(base,"book.glade")
         self.xml = gtk.Builder()
         self.xml.add_from_source(glade_file)
-        self.xml.get_object('top').hide()
         self.top = self.xml.get_object('booklist')
 
         ManagedWindow.set_titles(self.top,
@@ -689,10 +688,10 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         
         self.xml = gtk.Builder()
         self.xml.add_from_file(glade_file)
-        self.xml.get_object('booklist').hide()
         window = self.xml.get_object("top")
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
+        window.show()
     
         self.xml.connect_signals({
             "on_add_clicked"        : self.on_add_clicked,

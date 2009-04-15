@@ -270,7 +270,6 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 self.top.get_object(option).set_value(
                     self.options.handler.options_dict[option]
                     )
-        self.top.get_object("verify_result").hide()
         self.window.show()
 
     def build_menu_names(self, obj):
@@ -493,7 +492,6 @@ class VerifyResults(ManagedWindow):
         name_column.set_sort_column_id(VerifyResults.OBJ_NAME_COL)
         self.warn_tree.append_column(name_column)
        
-        self.top.get_object("verify_settings").hide()
         self.window.show()
         self.window_shown = False
 
