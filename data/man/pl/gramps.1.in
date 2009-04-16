@@ -22,7 +22,7 @@ i Programowego Zarządzania Tą Informacją)
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o|\-\^\-output= 
+.RB [ \-e|\-\^\-export=  
 .IR PLIK
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
@@ -66,7 +66,7 @@ Jawne określenie formatu \fIPLIKU\fR przez poprzedzenie opcji
 .ig
 \fB\-O\fR,
 ..
-\fB\-i\fR, lub \fB\-o\fR. 
+\fB\-i\fR, lub \fB\-e\fR. 
 Jeśli opcja \fB\-f\fR nie jest podana dla żadnego \fIPLIKU\fR, 
 to format pliku jest określany na podstawie rozszerzenia albo typu MIME.
 .br
@@ -126,7 +126,7 @@ poleceń, np.:  \fB\-i\fR \fIPLIK1\fR \fB\-i\fR \fIPLIK2\fR oraz
 (gramps ID) w bazie wynikowej.
 
 .TP 
-.BI \-o,\-\^\-output= " PLIK"
+.BI \-e,\-\^\-export= " PLIK"
 Eksportuje dane do \fIPLIKU\fR. Dla formatu \fBiso\fR, \fIPLIK\fR natomiast
 nazwą katalogu, do którego baza danych gramps zostanie zapisana.
 Dla
@@ -138,7 +138,7 @@ oraz \fBgeneweb\fR, \fIPLIK\fR jest nazwą pliku wynikowego.
 .br
 
 Kiedy więcej niż jeden plik wyjściowy jest podany, każdy musi być poprzedzony
-flagą \fB\-o\fR. Pliki będą zapisywane kolejno, w podanej przez parametry
+flagą \fB\-e\fR. Pliki będą zapisywane kolejno, w podanej przez parametry
 kolejności.
 
 .TP 
@@ -248,10 +248,10 @@ z linii komend.
 
 .LP
 Z flagą \fB\-O\fR czy bez, może występować wiele importów, eksportów oraz
-akcji określonych za pomocą flag \fB\-i\fR, \fB\-o\fR, oraz \fB\-a\fR .  
+akcji określonych za pomocą flag \fB\-i\fR, \fB\-e\fR, oraz \fB\-a\fR .  
 
 .LP
-Kolejność podawania opcji \fB\-i\fR, \fB\-o\fR, czy \fB\-a\fR nie ma znaczenia.
+Kolejność podawania opcji \fB\-i\fR, \fB\-e\fR, czy \fB\-a\fR nie ma znaczenia.
 Wykonywane są one zawsze w kolejności: wszystkie importy (jeśli podane) -> 
 wszystkie akcje (jeśli podane) -> wszystkie eksporty (jeśli podane)
 Ale otwarcie bazy zawsze musi być na pierwszym parametrem !
@@ -262,7 +262,7 @@ okno i rozpocznie normalną sesję interaktywną z pustą bazą danych (poniewa�
 nie zdołał przetworzyć do niej żadnych danych).
 
 .LP
-Jeśli nie podano opcji\fB\-o\fR albo \fB\-a\fR gramps uruchomi swoje głowne 
+Jeśli nie podano opcji\fB\-e\fR albo \fB\-a\fR gramps uruchomi swoje głowne 
 okno i rozpocznie normalną sesję interaktywną z bazą będącą wynikiem wszystkich importów. Ta baza będzie znajdować się w pliku \fBimport_db.grdb\fR
 w katalogu \fB~/.gramps/import\fR.
 
@@ -290,8 +290,8 @@ Aby jawnie określić formaty w powyższym przykładzie, należy dodać nazwy pl
 z odpowiednimi opcjami \fB\-f\fR options: 
 \fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIplik4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
-Aby zachować bazę z wynikami wszystkich importów, należy dodać flagę \fB\-o\fR (należy użyć \fB\-f\fR jeśli nazwa pliku nie pozwala gramps'owi na odgadnięcie formatu wyjściowego):
-\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-o\fR \fI~/nowy-pakiet\fR \fB\-f\fR \fIgramps-pkg\fR 
+Aby zachować bazę z wynikami wszystkich importów, należy dodać flagę \fB\-e\fR (należy użyć \fB\-f\fR jeśli nazwa pliku nie pozwala gramps'owi na odgadnięcie formatu wyjściowego):
+\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-e\fR \fI~/nowy-pakiet\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 W celu zaimportwania trzech baz i rozpoczęcia sesji interaktywnej z wynikiem 
 importu należy użyć polecenia podobnego do poniższego: 
