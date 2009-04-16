@@ -45,18 +45,25 @@ log = logging.getLogger(".ExportVCard")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import GenericFilter, Rules, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_model
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ExportVCard.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -74,12 +81,14 @@ class CardWriterOptionBox:
 
     def get_option_box(self):
 
-        glade_file = os.path.join(os.path.dirname(__file__), 
-                                  "ExportVCard.glade")
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
-        self.topDialog = glade.XML(glade_file,"vcardExport","gramps")
+        self.topDialog = gtk.Builder()
+        self.topDialog.add_from_file(glade_file)
 
-        filter_obj = self.topDialog.get_widget("filter")
+        self.filters = self.topDialog.get_object("filter")
         self.copy = 0
 
         all = GenericFilter()
@@ -111,17 +120,18 @@ class CardWriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
+        self.filter_menu = build_filter_model(the_filters)
+        self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
-        the_box = self.topDialog.get_widget('vbox1')
-        the_parent = self.topDialog.get_widget('dialog-vbox1')
+        the_box = self.topDialog.get_object('vbox1')
+        the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_widget("vcardExport").destroy()
+        self.topDialog.get_object("vcardExport").destroy()
         return the_box
 
     def parse_options(self):
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
+        self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
 class CardWriter:
     def __init__(self, database, cl=0, filename="", option_box=None, 
@@ -204,7 +214,14 @@ class CardWriter:
             prname = person.get_primary_name()
             
             self.writeln("FN:%s" % prname.get_regular_name())
-            self.writeln("N:%s;%s;%s;%s;%s" % (prname.get_surname(), prname.get_first_name(), person.get_nick_name(), prname.get_surname_prefix(), prname.get_suffix()))
+            self.writeln("N:%s;%s;%s;%s;%s" % 
+                    (prname.get_surname(), 
+                    prname.get_first_name(), 
+                    person.get_nick_name(), 
+                    prname.get_surname_prefix(), 
+                    prname.get_suffix()
+                    )
+                )
             if prname.get_title():
                 self.writeln("TITLE:%s" % prname.get_title())
                 
@@ -233,10 +250,8 @@ class CardWriter:
                 zip = address.get_postal_code()
                 country = address.get_country()
                 if street or city or state or zip or country:
-                    self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % (postbox, ext, 
-                                                               street, city, 
-                                                               state, zip, 
-                                                               country))
+                    self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % 
+                        (postbox, ext, street, city,state, zip, country))
                 
                 phone = address.get_phone()
                 if phone:

@@ -148,16 +148,14 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         all.set_name(_("Entire Database"))
         all.add_rule(Rules.Person.Everyone([]))
 
-        # the following three lines appear to be unnecessary.
-        # variable "the_filters" is not used anywhere else
-        # commenting out for now
-        #the_filters = [all]
-        #from Filters import CustomFilters
-        #the_filters.extend(CustomFilters.get_filters('Person'))
+        the_filters = [all]
+        from Filters import CustomFilters
+        the_filters.extend(CustomFilters.get_filters('Person'))
 
-        self.filter_menu = build_filter_model('Person')
+        self.filter_menu = build_filter_model(the_filters)
         filter_num = self.options.handler.options_dict['filter']
         self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
         self.show()
 

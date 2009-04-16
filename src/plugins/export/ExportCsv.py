@@ -39,7 +39,7 @@ import codecs
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #------------------------------------------------------------------------
 #
@@ -55,12 +55,19 @@ log = logging.getLogger(".ExportCSV")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from Filters import GenericFilter, Rules, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
 import gen.proxy
 import DateHandler
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ExportCsv.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -172,10 +179,13 @@ class CSVWriterOptionBox:
         self.translate_headers = 1
 
     def get_option_box(self):
-        glade_file = os.path.join(os.path.dirname(__file__), "ExportCsv.glade")
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
-        self.topDialog = glade.XML(glade_file,"csvExport","gramps")
-        filter_obj = self.topDialog.get_widget("filter")
+        self.topDialog = gtk.Builder()
+        self.topDialog.add_from_file(glade_file)
+        self.filters = self.topDialog.get_object("filter")
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
@@ -206,21 +216,22 @@ class CSVWriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
+        self.filter_menu = build_filter_model(the_filters)
+        self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
-        the_box = self.topDialog.get_widget('vbox1')
-        the_parent = self.topDialog.get_widget('dialog-vbox1')
+        the_box = self.topDialog.get_object('vbox1')
+        the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_widget("csvExport").destroy()
+        self.topDialog.get_object("csvExport").destroy()
         return the_box
 
     def parse_options(self):
-        self.include_individuals = self.topDialog.get_widget("individuals").get_active()
-        self.include_marriages = self.topDialog.get_widget("marriages").get_active()
-        self.include_children = self.topDialog.get_widget("children").get_active()
-        self.translate_headers = self.topDialog.get_widget("translate_headers").get_active()
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
+        self.include_individuals = self.topDialog.get_object("individuals").get_active()
+        self.include_marriages = self.topDialog.get_object("marriages").get_active()
+        self.include_children = self.topDialog.get_object("children").get_active()
+        self.translate_headers = self.topDialog.get_object("translate_headers").get_active()
+        self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
 #-------------------------------------------------------------------------
 #
@@ -406,7 +417,9 @@ class CSVWriter:
             family = self.db.get_family_from_handle(key)
             if family:
                 marriage_id = family.get_gramps_id()
-                sortorder.append( (sortable_string_representation(marriage_id), key) )
+                sortorder.append(
+                    (sortable_string_representation(marriage_id), key)
+                    )
         sortorder.sort() # will sort on tuples
         flist = [data[1] for data in sortorder]
         ########################### 

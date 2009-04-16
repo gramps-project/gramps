@@ -68,8 +68,13 @@ def build_filter_model(space, local = [], default=""):
 
     model = gtk.ListStore(gobject.TYPE_STRING, object)
 
-    flist = local + SystemFilters.get_filters(space) + \
-	                                           CustomFilters.get_filters(space)
+    if isinstance(space, basestring):
+        flist = local + SystemFilters.get_filters(space) + \
+	                    CustomFilters.get_filters(space)
+    elif isinstance(space, (list, tuple)):
+        flist = space
+    else:
+        return None
 
     for filt in flist:
         model.append(row=[filt.get_name(), filt])

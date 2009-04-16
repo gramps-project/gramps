@@ -44,7 +44,7 @@ log = logging.getLogger(".WriteFtree")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -52,10 +52,17 @@ from gtk import glade
 #
 #-------------------------------------------------------------------------
 import Utils
-from Filters import GenericFilter, Rules, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_model
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ExportFtree.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -76,12 +83,14 @@ class FtreeWriterOptionBox:
         self.restrict = True
 
     def get_option_box(self):
-        glade_file = os.path.join(os.path.dirname(__file__),
-                                  "ExportFtree.glade")
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
         
-        self.top = glade.XML(glade_file, "top", "gramps")
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
 
-        filter_obj = self.top.get_widget("filter")
+        self.filters = self.top.get_object("filter")
 
         all = GenericFilter()
         all.set_name(_("Entire Database"))
@@ -112,18 +121,19 @@ class FtreeWriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
+        self.filter_menu = build_filter_model(the_filters)
+        self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
-        the_box = self.top.get_widget("vbox1")
-        the_parent = self.top.get_widget('dialog-vbox1')
+        the_box = self.top.get_object("vbox1")
+        the_parent = self.top.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.top.get_widget("top").destroy()
+        self.top.get_object("top").destroy()
         return the_box
 
     def parse_options(self):
-        self.restrict = self.top.get_widget("restrict").get_active()
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
+        self.restrict = self.top.get_object("restrict").get_active()
+        self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
 #-------------------------------------------------------------------------
 #
@@ -156,7 +166,9 @@ class FtreeWriter:
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
+                    for p in self.option_box.cfilter.apply(
+                      self.db, self.db.get_person_handles(sort_handles=False)
+                      ):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
@@ -191,10 +203,7 @@ class FtreeWriter:
             pn = self.db.get_person_from_handle(key).get_primary_name()
             sn = pn.get_surname()
             items = pn.get_first_name().split()
-            if len(items) > 0:
-                n = "%s %s" % (items[0], sn)
-            else:
-                n = sn
+            n = ("%s %s" % (items[0], sn)) if items else sn
 
             count = -1
             if n in name_map:
@@ -217,17 +226,16 @@ class FtreeWriter:
             self.update()
             p = self.db.get_person_from_handle(key)
             name = id_name[key]
-            father = ""
-            mother = ""
-            email = ""
-            web = ""
+            father = mother = email = web = ""
 
             family_handle = p.get_main_parents_family_handle()
             if family_handle:
                 family = self.db.get_family_from_handle(family_handle)
-                if family.get_father_handle() and family.get_father_handle() in id_map:
+                if family.get_father_handle() and \
+                  family.get_father_handle() in id_map:
                     father = id_map[family.get_father_handle()]
-                if family.get_mother_handle() and family.get_mother_handle() in id_map:
+                if family.get_mother_handle() and \
+                  family.get_mother_handle() in id_map:
                     mother = id_map[family.get_mother_handle()]
 
             #
@@ -291,14 +299,17 @@ def get_name(name, count):
         
     if (name.suffix == ""):
         if name.prefix:
-            return "%s %s %s%s" % (name.first_name, name.prefix, name.surname, val)
+            return "%s %s %s%s" % (name.first_name, name.prefix, 
+                                   name.surname, val)
         else:
             return "%s %s%s" % (name.first_name, name.surname, val)
     else:
         if name.prefix:
-            return "%s %s %s%s, %s" % (name.first_name, name.prefix, name.surname, val, name.suffix)
+            return "%s %s %s%s, %s" % (name.first_name, name.prefix, 
+                                       name.surname, val, name.suffix)
         else:
-            return "%s %s%s, %s" % (name.first_name, name.surname, val, name.suffix)
+            return "%s %s%s, %s" % (name.first_name, 
+                                    name.surname, val, name.suffix)
 
 #------------------------------------------------------------------------
 #

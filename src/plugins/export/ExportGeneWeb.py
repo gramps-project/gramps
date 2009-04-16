@@ -37,7 +37,7 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #------------------------------------------------------------------------
 #
@@ -53,11 +53,18 @@ log = logging.getLogger(".WriteGeneWeb")
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from Filters import GenericFilter, Rules, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_model
 #import const
 import Utils
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ExportGeneWeb.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -77,15 +84,17 @@ class GeneWebWriterOptionBox:
         self.restrict = 1
         self.private = 1
 
-        glade_file = os.path.join(os.path.dirname(__file__), 
-                                  "ExportGeneWeb.glade")
-
-        self.topDialog = glade.XML(glade_file, "genewebExport", "gramps")
-        self.topDialog.signal_autoconnect({
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+                        
+        self.topDialog = gtk.Builder()
+        self.topDialog.add_from_file(glade_file)
+        self.topDialog.connect_signals({
                 "on_restrict_toggled": self.on_restrict_toggled
                 })
 
-        filter_obj = self.topDialog.get_widget("filter")
+        self.filters = self.topDialog.get_object("filter")
         self.copy = 0
 
         all = GenericFilter()
@@ -117,37 +126,38 @@ class GeneWebWriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
+        self.filter_menu = build_filter_model(the_filters)
+        self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
-        the_box = self.topDialog.get_widget('vbox1')
-        the_parent = self.topDialog.get_widget('dialog-vbox1')
+        the_box = self.topDialog.get_object('vbox1')
+        the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_widget("genewebExport").destroy()
+        self.topDialog.get_object("genewebExport").destroy()
         return the_box
 
     def on_restrict_toggled(self, restrict):
         active = restrict.get_active ()
-        for x in [self.topDialog.get_widget("living"),
-                  self.topDialog.get_widget("notes"),
-                  self.topDialog.get_widget("sources")]:
+        for x in [self.topDialog.get_object("living"),
+                  self.topDialog.get_object("notes"),
+                  self.topDialog.get_object("sources")]:
             x.set_sensitive(active)
 
     def parse_options(self):
-        self.restrict = self.topDialog.get_widget("restrict").get_active()
+        self.restrict = self.topDialog.get_object("restrict").get_active()
         self.living = (self.restrict and
-                       self.topDialog.get_widget("living").get_active())
+                       self.topDialog.get_object("living").get_active())
         self.exclnotes = (self.restrict and
-                          self.topDialog.get_widget("notes").get_active())
+                          self.topDialog.get_object("notes").get_active())
         self.exclsrcs = (self.restrict and
-                         self.topDialog.get_widget("sources").get_active())
-        self.private = self.topDialog.get_widget("private").get_active()
+                         self.topDialog.get_object("sources").get_active())
+        self.private = self.topDialog.get_object("private").get_active()
 
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
+        self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
-        self.images = self.topDialog.get_widget ("images").get_active ()
+        self.images = self.topDialog.get_object ("images").get_active ()
         if self.images:
-            images_path = self.topDialog.get_widget ("images_path")
+            images_path = self.topDialog.get_object ("images_path")
             self.images_path = unicode(images_path.get_text ())
         else:
             self.images_path = ""
@@ -263,7 +273,14 @@ class GeneWebWriter:
                 mother_handle = family.get_mother_handle()
                 if mother_handle:
                     mother = self.db.get_person_from_handle(mother_handle)
-                    self.writeln("fam %s %s +%s %s %s" % (self.get_ref_name(father), self.get_full_person_info_fam(father), self.get_wedding_data(family), self.get_ref_name(mother), self.get_full_person_info_fam(mother)))
+                    self.writeln("fam %s %s +%s %s %s" %
+                            (self.get_ref_name(father), 
+                            self.get_full_person_info_fam(father), 
+                            self.get_wedding_data(family), 
+                            self.get_ref_name(mother), 
+                            self.get_full_person_info_fam(mother)
+                            )
+                         )
                     self.write_witness( family)
                     self.write_sources( family.get_source_references())
                     self.write_children( family, father)
@@ -273,8 +290,7 @@ class GeneWebWriter:
                         note = ""
                         for notehandle in notelist:
                             noteobj = self.db.get_note_from_handle(notehandle)
-                            note += noteobj.get()
-                            note += " "
+                            note += noteobj.get() + " "
                         if note and note != "":
                             note = note.replace('\n\r',' ')
                             note = note.replace('\r\n',' ')
@@ -296,15 +312,20 @@ class GeneWebWriter:
                 if w_list:
                     for witness in w_list:
                         if witness and witness.type == gen.lib.Event.ID:
-                            person = self.db.get_person_from_handle(witness.get_value())
+                            person = self.db.get_person_from_handle(
+                                                        witness.get_value())
                             if person:
                                 gender = ""
                                 if person.get_gender() == gen.lib.Person.MALE:
                                     gender = "h"
                                 elif person.get_gender() == gen.lib.Person.FEMALE:
                                     gender = "f"
-                                self.writeln("wit %s %s %s" % (gender, self.get_ref_name(person), self.get_full_person_info_fam(person)))
-                            
+                                self.writeln("wit %s %s %s" % 
+                                        (gender, 
+                                        self.get_ref_name(person), 
+                                        self.get_full_person_info_fam(person)
+                                        )
+                                    )
 
     def write_sources(self,reflist):
         if self.restrict and self.exclnotes:
@@ -316,7 +337,9 @@ class GeneWebWriter:
                 if sbase:
                     source = self.db.get_source_from_handle(sbase)
                     if source:
-                        self.writeln( "src %s" % (self.rem_spaces(source.get_title())))
+                        self.writeln( "src %s" % 
+                            (self.rem_spaces(source.get_title()))
+                            )
 
     def write_children(self,family, father):
         father_lastname = father.get_primary_name().get_surname()
@@ -331,7 +354,12 @@ class GeneWebWriter:
                         gender = "h"
                     elif child.get_gender() == gen.lib.Person.FEMALE:
                         gender = "f"
-                    self.writeln("- %s %s %s" % (gender, self.get_child_ref_name(child, father_lastname), self.get_full_person_info_child(child)))
+                    self.writeln("- %s %s %s" % 
+                            (gender, 
+                            self.get_child_ref_name(child, father_lastname), 
+                            self.get_full_person_info_child(child)
+                            )
+                         )
             self.writeln("end")
 
     def write_notes(self,family, father, mother):
@@ -452,24 +480,24 @@ class GeneWebWriter:
     def get_ref_name(self,person):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = _("Living")
-        if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
+        if not (Utils.probably_alive(person,self.db) and \
+          self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        ret = "%s %s.%d" % (surname, firstname, self.person_ids[person.get_handle()])
-        return ret
+        return "%s %s.%d" % (surname, firstname, 
+                             self.person_ids[person.get_handle()])
 
     def get_child_ref_name(self,person,father_lastname):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = _("Living")
-        if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
+        if not (Utils.probably_alive(person,self.db) and \
+          self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
-        if surname != father_lastname:
-            ret = "%s.%d %s" % (firstname, self.person_ids[person.get_handle()], surname)
-        else:
-            ret = "%s.%d" % (firstname, self.person_ids[person.get_handle()])
+        ret = "%s.%d" % (firstname, self.person_ids[person.get_handle()])
+        if surname != father_lastname: ret += " " + surname
         return ret
 
     def get_wedding_data(self,family):

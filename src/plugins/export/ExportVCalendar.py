@@ -39,7 +39,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -54,12 +53,19 @@ log = logging.getLogger(".ExportVCal")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import GenericFilter, Rules, build_filter_menu
+from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ExportVCalendar.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -75,15 +81,16 @@ class CalendarWriterOptionBox:
     def __init__(self, person):
         self.person = person
 
-        glade_file = os.path.join(os.path.dirname(__file__), 
-                                  "ExportVCalendar.glade")
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
-        self.topDialog = glade.XML(glade_file, "calendarExport", "gramps")
+        self.topDialog = gtk.Builder()
+        self.topDialog.add_from_file(glade_file)
         self.copy = 0
-        self.filter_menu = gtk.Menu()
         
     def get_option_box(self):
-        filter_obj = self.topDialog.get_widget("filter")
+        self.filters = self.topDialog.get_object("filter")
 
         everyone_filter = GenericFilter()
         everyone_filter.set_name(_("Entire Database"))
@@ -114,18 +121,18 @@ class CalendarWriterOptionBox:
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
-        self.filter_menu = build_filter_menu(the_filters)
-        filter_obj.set_menu(self.filter_menu)
+        self.filter_menu = build_filter_model(the_filters)
+        self.filters.set_model(self.filter_menu)
+        self.filters.set_active(0)
 
-        the_box = self.topDialog.get_widget('vbox1')
-        the_parent = self.topDialog.get_widget('dialog-vbox1')
+        the_box = self.topDialog.get_object('vbox1')
+        the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_widget("calendarExport").destroy()
+        self.topDialog.get_object("calendarExport").destroy()
         return the_box
 
     def parse_options(self):
-        self.cfilter = self.filter_menu.get_active().get_data("filter")
-
+        self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
 class CalendarWriter:
     def __init__(self, database, cl=0, filename="", option_box=None, 
@@ -160,7 +167,8 @@ class CalendarWriter:
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
+                    for p in self.option_box.cfilter.apply(self.db, 
+                      self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
@@ -257,10 +265,13 @@ class CalendarWriter:
                     place_handle = birth.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date, place.get_title())
+                        self.write_vevent(_("Birth of %s") % 
+                            person.get_primary_name().get_name(), 
+                            b_date, place.get_title())
                     else:
-                        self.write_vevent(_("Birth of %s") 
-                                % person.get_primary_name().get_name(), b_date)
+                        self.write_vevent(_("Birth of %s") %
+                            person.get_primary_name().get_name(), 
+                            b_date)
                         
             death_ref = person.get_death_ref()
             if death_ref:
@@ -270,9 +281,14 @@ class CalendarWriter:
                     place_handle = death.get_place_handle()
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent(_("Death of %s") % person.get_primary_name().get_name(), d_date, place.get_title())
+                        self.write_vevent(_("Death of %s") % 
+                            person.get_primary_name().get_name(), 
+                            d_date, 
+                            place.get_title())
                     else:
-                        self.write_vevent(_("Death of %s") % person.get_primary_name().get_name(), d_date)
+                        self.write_vevent(_("Death of %s") % 
+                            person.get_primary_name().get_name(), 
+                            d_date)
 
     
     def format_single_date(self, subdate, thisyear, cal):
