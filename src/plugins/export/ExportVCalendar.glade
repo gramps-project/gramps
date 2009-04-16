@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
+  <requires lib="gtk+" version="2.10"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkDialog" id="calendarExport">
     <property name="visible">True</property>
