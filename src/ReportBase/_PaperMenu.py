@@ -34,7 +34,6 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -58,10 +57,11 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# 
+# Constants
 #
 #-------------------------------------------------------------------------
 paper_sizes = []
+_GLADE_FILE = "paper_settings.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -147,10 +147,11 @@ class PaperFrame(gtk.HBox):
     def __init__(self,default_metric,default_name,default_orientation,
                  margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
         gtk.HBox.__init__(self)
-        glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
-        glade_xml = glade.XML(glade_file, "paper_table", "gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        glade_xml = gtk.Builder()
+        glade_xml.add_from_file(glade_file)
 
-        self.paper_table = glade_xml.get_widget('paper_table')
+        self.paper_table = glade_xml.get_object('paper_table')
 
         
         # get all the widgets
@@ -159,7 +160,7 @@ class PaperFrame(gtk.HBox):
                    'lunits5', 'lunits6', 'metric')
         
         for w in widgets:
-            setattr(self, w, glade_xml.get_widget(w))
+            setattr(self, w, glade_xml.get_object(w))
         
         # insert custom widgets
         self.papersize_menu = PaperComboBox(default_name)
@@ -167,7 +168,7 @@ class PaperFrame(gtk.HBox):
         self.metric.set_active(default_metric)
         
         # connect all widgets
-        format_table = glade_xml.get_widget('format_table')
+        format_table = glade_xml.get_object('format_table')
         format_table.attach(self.papersize_menu, 1, 3, 0, 1,
                             yoptions=gtk.SHRINK)
         format_table.attach(self.orientation_menu, 1, 3, 3, 4,
@@ -189,7 +190,7 @@ class PaperFrame(gtk.HBox):
         self.bmargin.set_text("%.2f" % margins[3])
         
         self.paper_table.show_all()
-        self.add(self.paper_table)
+        self.paper_table.reparent(self)
 
         self.units_changed(self.metric)
         self.size_changed(None)
@@ -261,8 +262,8 @@ class PaperFrame(gtk.HBox):
         # How can we distinguish custom size though?
         if papername == _('Custom Size'):
             try:
-                h = float(unicode(self.pheight.get_text().replace(",",".")))
-                w = float(unicode(self.pwidth.get_text().replace(",",".") ))
+                h = float(unicode(self.pheight.get_text().replace(",", ".")))
+                w = float(unicode(self.pwidth.get_text().replace(",", ".") ))
                 
                 if h <= 1.0 or w <= 1.0:
                     papersize.set_height(29.7)
@@ -282,15 +283,12 @@ class PaperFrame(gtk.HBox):
         Values returned in [cm].
         
         """
-        paper_margins = []
-        paper_margins.append(unicode(self.lmargin.get_text()))
-        paper_margins.append(unicode(self.rmargin.get_text()))
-        paper_margins.append(unicode(self.tmargin.get_text()))
-        paper_margins.append(unicode(self.bmargin.get_text()))
+        paper_margins = [unicode(margin.get_text()) for margin in
+            self.lmargin, self.rmargin, self.tmargin, self.bmargin]
         
         for i, margin in enumerate(paper_margins):
             try:
-                paper_margins[i] = float(margin.replace(",","."))
+                paper_margins[i] = float(margin.replace(",", "."))
                 paper_margins[i] = paper_margins[i] * self.paper_unit_multiplier
                 paper_margins[i] = max(paper_margins[i], 0)
             except:
@@ -299,12 +297,12 @@ class PaperFrame(gtk.HBox):
         return paper_margins
 
     def get_custom_paper_size(self):
-        width   = float(self.pwidth.get_text().replace(",",".")) * self.paper_unit_multiplier
-        height  = float(self.pheight.get_text().replace(",",".")) * self.paper_unit_multiplier
+        width   = float(self.pwidth.get_text().replace(",", ".")) * \
+                        self.paper_unit_multiplier
+        height  = float(self.pheight.get_text().replace(",", ".")) * \
+                        self.paper_unit_multiplier
 
-        paper_size = []
-        paper_size.append(max(width, 1.0))
-        paper_size.append(max(height, 1.0))
+        paper_size = [max(width, 1.0), max(height, 1.0)]
 
         return paper_size
 
