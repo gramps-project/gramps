@@ -320,13 +320,13 @@ class BasePage:
             of.write('\t\t</ul>\n')
             of.write('\t</div>\n')
         else:
-            nrows = (num_ltrs / 26)
+            nrows = (num_ltrs / 26) + 1
             index = 0
             for rows in range(0, nrows):
                 of.write('\t<div id="alphabet">\n')
                 of.write('\t\t<ul>\n')
                 cols = 0
-                while (cols <= 26 and index <= num_ltrs):
+                while (cols <= 26 and index < num_ltrs):
                     letter = sorted_first_letter[index]
                     title_str = 'Surnames'  if key == 0 else 'Places'
                     title_str += ' starting with %s' % letter 
