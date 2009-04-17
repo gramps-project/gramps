@@ -61,7 +61,6 @@ log = logging.getLogger(".GtkPrint")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import cairo
 
 if gtk.pygtk_version < (2, 10, 0):
@@ -87,6 +86,9 @@ MARGIN = 6
 (ZOOM_BEST_FIT,
  ZOOM_FIT_WIDTH,
  ZOOM_FREE,) = range(3)
+ 
+# glade file
+_GLADE_FILE = 'gtkprintpreview.glade'
 
 #------------------------------------------------------------------------
 #
@@ -199,48 +201,35 @@ class PrintPreview:
     def __build_window(self):
         """Build the window from Glade.
         """
-        glade_file = os.path.join(os.path.dirname(__file__),
-                                  'gtkprintpreview.glade')
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
 
-        glade_xml = glade.XML(glade_file, 'window', 'gramps')
-        self._window = glade_xml.get_widget('window')
+        glade_xml = gtk.Builder()
+        glade_xml.add_from_file(glade_file)
+        self._window = glade_xml.get_object('window')
         #self._window.set_transient_for(parent)
  
         # remember active widgets for future use
-        self._swin = glade_xml.get_widget('swin')
-        self._drawing_area = glade_xml.get_widget('drawingarea')
-        self._first_button = glade_xml.get_widget('first')
-        self._prev_button = glade_xml.get_widget('prev')
-        self._next_button = glade_xml.get_widget('next')
-        self._last_button = glade_xml.get_widget('last')
-        self._pages_entry = glade_xml.get_widget('entry')
-        self._pages_label = glade_xml.get_widget('label')
-        self._zoom_fit_width_button = glade_xml.get_widget('zoom_fit_width')
+        self._swin = glade_xml.get_object('swin')
+        self._drawing_area = glade_xml.get_object('drawingarea')
+        self._first_button = glade_xml.get_object('first')
+        self._prev_button = glade_xml.get_object('prev')
+        self._next_button = glade_xml.get_object('next')
+        self._last_button = glade_xml.get_object('last')
+        self._pages_entry = glade_xml.get_object('entry')
+        self._pages_label = glade_xml.get_object('label')
+        self._zoom_fit_width_button = glade_xml.get_object('zoom_fit_width')
         self._zoom_fit_width_button.set_stock_id('gramps-zoom-fit-width')
-        self._zoom_best_fit_button = glade_xml.get_widget('zoom_best_fit')
+        self._zoom_best_fit_button = glade_xml.get_object('zoom_best_fit')
         self._zoom_best_fit_button.set_stock_id('gramps-zoom-best-fit')
-        self._zoom_in_button = glade_xml.get_widget('zoom_in')
+        self._zoom_in_button = glade_xml.get_object('zoom_in')
         self._zoom_in_button.set_stock_id('gramps-zoom-in')
-        self._zoom_out_button = glade_xml.get_widget('zoom_out')
+        self._zoom_out_button = glade_xml.get_object('zoom_out')
         self._zoom_out_button.set_stock_id('gramps-zoom-out')
 
         # connect the signals
-        glade_xml.signal_autoconnect({
-            'on_drawingarea_expose_event': self.on_drawingarea_expose_event,
-            'on_swin_size_allocate': self.on_swin_size_allocate,
-            'on_quit_clicked': self.on_quit_clicked,
-            'on_print_clicked': self.on_print_clicked,
-            'on_first_clicked': self.on_first_clicked,
-            'on_prev_clicked': self.on_prev_clicked,
-            'on_next_clicked': self.on_next_clicked,
-            'on_last_clicked': self.on_last_clicked,
-            'on_zoom_fit_width_toggled': self.on_zoom_fit_width_toggled,
-            'on_zoom_best_fit_toggled': self.on_zoom_best_fit_toggled,
-            'on_zoom_in_clicked': self.on_zoom_in_clicked,
-            'on_zoom_out_clicked': self.on_zoom_out_clicked,
-            'on_window_delete_event': self.on_window_delete_event,
-            'on_entry_activate': self.on_entry_activate,
-        })
+        glade_xml.connect_signals(self)
 
     ##def create_surface(self):
         ##return cairo.PDFSurface(StringIO(),
