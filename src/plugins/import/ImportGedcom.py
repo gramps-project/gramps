@@ -29,7 +29,6 @@
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -59,6 +58,13 @@ except ImportError:
     
 #-------------------------------------------------------------------------
 #
+# Constants
+#
+#-------------------------------------------------------------------------
+_GLADE_FILE = "ImportGedcom.glade"
+
+#-------------------------------------------------------------------------
+#
 # importData
 #
 #-------------------------------------------------------------------------
@@ -84,12 +90,14 @@ def importData(database, filename, callback=None):
     ifile.close()
 
     if not gramps and ansel:
-        glade_file = os.path.join(os.path.dirname(__file__), 
-                                  "ImportGedcom.glade")
-        top = glade.XML(glade_file, 'encoding','gramps')
-        code = top.get_widget('codeset')
+        glade_file = os.path.join(
+                        os.path.split(__file__)[0], 
+                        _GLADE_FILE)
+        top = gtk.Builder()
+        top.add_from_file(glade_file)
+        code = top.get_object('codeset')
         code.set_active(0)
-        dialog = top.get_widget('encoding')
+        dialog = top.get_object('encoding')
         dialog.run()
         enc = ['ANSEL', 'ANSEL', 'ANSI', 'ASCII', 'UTF-8']
         code_set = enc[ code.get_active()]

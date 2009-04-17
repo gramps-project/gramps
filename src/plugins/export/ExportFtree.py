@@ -293,7 +293,7 @@ def get_name(name, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
     
-    return = (name.first_name + ' ' +
+    return (name.first_name + ' ' +
            (name.prefix + ' ' if name.prefix else '') +
            name.surname +
            (str(count) if count != -1 else '') +
