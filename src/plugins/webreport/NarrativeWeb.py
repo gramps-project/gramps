@@ -302,13 +302,13 @@ class BasePage:
             of.write('\t\t</ul>\n')
             of.write('\t</div>\n')
         else:
-            nrows = (num_ltrs / 26)
+            nrows = (num_ltrs / 26) + 1
             index = 0
             for rows in range(0, nrows):
                 of.write('\t<div id="navigation">\n')
                 of.write('\t\t<ul>\n')
                 cols = 0
-                while (cols <= 26 and index <= num_ltrs):
+                while (cols <= 26 and index < num_ltrs):
                     of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
                         % (sorted_first_letter[index], sorted_first_letter[index]))
                     cols += 1
