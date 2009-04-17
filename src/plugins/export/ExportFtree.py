@@ -292,25 +292,14 @@ def fdate(val):
 def get_name(name, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
-    if count == -1:
-        val = ""
-    else:
-        val = str(count)
-        
-    if (name.suffix == ""):
-        if name.prefix:
-            return "%s %s %s%s" % (name.first_name, name.prefix, 
-                                   name.surname, val)
-        else:
-            return "%s %s%s" % (name.first_name, name.surname, val)
-    else:
-        if name.prefix:
-            return "%s %s %s%s, %s" % (name.first_name, name.prefix, 
-                                       name.surname, val, name.suffix)
-        else:
-            return "%s %s%s, %s" % (name.first_name, 
-                                    name.surname, val, name.suffix)
-
+    
+    return = (name.first_name + ' ' +
+           (name.prefix + ' ' if name.prefix else '') +
+           name.surname +
+           (str(count) if count != -1 else '') +
+           (', ' +name.suffix if name.suffix else '')
+           )
+    
 #------------------------------------------------------------------------
 #
 # Register with the plugin system
