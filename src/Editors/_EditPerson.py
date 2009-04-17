@@ -40,7 +40,6 @@ from TransUtils import sgettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -137,15 +136,16 @@ class EditPerson(EditPrimary):
 
         self.load_obj = None
         self.load_rect = None
-        self.top = glade.XML(const.PERSON_GLADE, "edit_person", "gramps")
+        self.top = gtk.Builder()
+        self.top.add_from_file(const.PERSON_GLADE)
 
-        self.set_window(self.top.get_widget("edit_person"), None, 
+        self.set_window(self.top.get_object("edit_person"), None, 
                         self.get_menu_title())
         
-        self.obj_photo = self.top.get_widget("personPix")
-        self.eventbox = self.top.get_widget("eventbox1")
+        self.obj_photo = self.top.get_object("personPix")
+        self.eventbox = self.top.get_object("eventbox1")
         
-        self.set_contexteventbox(self.top.get_widget("eventboxtop"))
+        self.set_contexteventbox(self.top.get_object("eventboxtop"))
         
 
     def _post_init(self):
@@ -171,12 +171,12 @@ class EditPerson(EditPrimary):
         Called by the init routine of the base class (_EditPrimary).
         
         """
-        self.define_cancel_button(self.top.get_widget("button15"))
-        self.define_ok_button(self.top.get_widget("ok"), self.save)
-        self.define_help_button(self.top.get_widget("button134"))
+        self.define_cancel_button(self.top.get_object("button15"))
+        self.define_ok_button(self.top.get_object("ok"), self.save)
+        self.define_help_button(self.top.get_object("button134"))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)
-        self.top.get_widget("button177").connect("clicked",
+        self.top.get_object("button177").connect("clicked",
                                                  self._edit_name_clicked)
 
         self.eventbox.connect('button-press-event',
@@ -224,12 +224,12 @@ class EditPerson(EditPrimary):
         """
 
         self.private = widgets.PrivacyButton(
-            self.top.get_widget('private'), 
+            self.top.get_object('private'), 
             self.obj, 
             self.db.readonly)
 
         self.gender = widgets.MonitoredMenu(
-            self.top.get_widget('gender'), 
+            self.top.get_object('gender'), 
             self.obj.set_gender, 
             self.obj.get_gender, 
             (
@@ -240,7 +240,7 @@ class EditPerson(EditPrimary):
             self.db.readonly)
 
         self.marker = widgets.MonitoredDataType(
-            self.top.get_widget('marker'), 
+            self.top.get_object('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
             self.db.readonly,
@@ -248,15 +248,15 @@ class EditPerson(EditPrimary):
             )
         
         self.ntype_field = widgets.MonitoredDataType(
-            self.top.get_widget("ntype"), 
+            self.top.get_object("ntype"), 
             self.pname.set_type, 
             self.pname.get_type,
             self.db.readonly,
             self.db.get_name_types())
 
         self.prefix_suffix = widgets.MonitoredComboSelectedEntry(
-                self.top.get_widget("prefixcmb"), 
-                self.top.get_widget("prefixentry"),
+                self.top.get_object("prefixcmb"), 
+                self.top.get_object("prefixentry"),
                 [_('Prefix'), _('Suffix')],
                 [self.pname.set_surname_prefix, self.pname.set_suffix], 
                 [self.pname.get_surname_prefix, self.pname.get_suffix],
@@ -264,8 +264,8 @@ class EditPerson(EditPrimary):
                 read_only = self.db.readonly)
         
         self.patro_title = widgets.MonitoredComboSelectedEntry(
-                self.top.get_widget("patrocmb"), 
-                self.top.get_widget("patroentry"),
+                self.top.get_object("patrocmb"), 
+                self.top.get_object("patroentry"),
                 [_('Patronymic'), _('Person|Title')],
                 [self.pname.set_patronymic, self.pname.set_title], 
                 [self.pname.get_patronymic, self.pname.get_title],
@@ -273,36 +273,36 @@ class EditPerson(EditPrimary):
                 read_only = self.db.readonly)
 
         self.call = widgets.MonitoredEntry(
-            self.top.get_widget("call"), 
+            self.top.get_object("call"), 
             self.pname.set_call_name, 
             self.pname.get_call_name, 
             self.db.readonly)
 
         self.given = widgets.MonitoredEntry(
-            self.top.get_widget("given_name"), 
+            self.top.get_object("given_name"), 
             self.pname.set_first_name, 
             self.pname.get_first_name, 
             self.db.readonly)
 
         self.surname_field = widgets.MonitoredEntry(
-            self.top.get_widget("surname"), 
+            self.top.get_object("surname"), 
             self.pname.set_surname, 
             self.pname.get_surname, 
             self.db.readonly, 
             autolist=self.db.get_surname_list())
 
         self.gid = widgets.MonitoredEntry(
-            self.top.get_widget("gid"), 
+            self.top.get_object("gid"), 
             self.obj.set_gramps_id, 
             self.obj.get_gramps_id, 
             self.db.readonly)
 
         #make sure title updates automatically
-        for obj in [self.top.get_widget("surname"),
-                    self.top.get_widget("given_name"),
-                    self.top.get_widget("patroentry"),
-                    self.top.get_widget("call"),
-                    self.top.get_widget("prefixentry"),
+        for obj in [self.top.get_object("surname"),
+                    self.top.get_object("given_name"),
+                    self.top.get_object("patroentry"),
+                    self.top.get_object("call"),
+                    self.top.get_object("prefixentry"),
                     ]:
             obj.connect('changed', self._changed_title)
 
@@ -396,7 +396,7 @@ class EditPerson(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True)
 
 
     def _changed_title(self, obj):
