@@ -39,7 +39,6 @@ from cStringIO import StringIO
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +58,22 @@ import Config
 _win_top = '<ui><menubar name="MenuBar"><menu action="WindowsMenu">'
 _win_btm = '</menu></menubar></ui>'
 DISABLED = -1
+
+#-----------------------------------------------------------------------
+#
+# Helper function
+#
+#-----------------------------------------------------------------------
+
+def get_object(self,value):
+    if self.get_name() == value:
+        return self
+    elif hasattr(self,'get_children'):
+        for child in self.get_children():
+            object = get_object(child, value)
+            if object is not None:
+                return object
+    return None
 
 class GrampsWindowManager:
     """
@@ -257,7 +272,8 @@ class GrampsWindowManager:
                     idval = self.generate_id(i)
                     data.write('<menuitem action="%s"/>'
                                % self.generate_id(i))        
-                    action_data.append((idval, None, i.menu_label, None, None,
+                    action_data.append((idval, None, i.menu_label, 
+                                        None, None,
                                         self.call_back_factory(i)))
         if isinstance(mlist, (list, tuple)):
             data.write('</menu>')
@@ -404,16 +420,26 @@ class ManagedWindow:
 
     def build_window_key(self, obj):
         return id(obj)
-
+        
     def define_glade(self, top_module, glade_file=None):
         if glade_file is None:
             glade_file = const.GLADE_FILE
-        self._gladeobj = glade.XML(glade_file, top_module, "gramps")
+        builder = gtk.Builder()
+        builder.add_from_file(glade_file)
+        self._gladeobj = builder.get_object(top_module)
+        self._gladeobj.get_object = get_object
         return self._gladeobj
 
     def get_widget(self, name):
         assert(self._gladeobj)
-        return self._gladeobj.get_widget(name)
+        object = get_object(self._gladeobj,name)
+        if object is not None:
+            return object
+        raise ValueError, (
+            'ManagedWindow.get_widget: "%s" widget not found in "%s"' %
+            (name, self._gladeobj.get_name())
+            )
+        return object
 
     def connect_button(self, button_name, function):
         assert(self._gladeobj)
