@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-12 14:36+0200\n"
-"PO-Revision-Date: 2009-04-12 14:40+0200\n"
+"POT-Creation-Date: 2009-04-18 14:37+0200\n"
+"PO-Revision-Date: 2009-04-18 15:56+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: ../src/ArgHandler.py:229
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
-msgstr "Eingabestammbaum \"%s\" existiert nicht"
+msgstr "Eingabestammbaum \"%s\" existiert nicht."
 
 #: ../src/ArgHandler.py:230
 msgid ""
@@ -34,7 +34,7 @@ msgid ""
 "tree instead"
 msgstr ""
 "Wenn gedcom, gramps-xml oder grdb die -i Option zum Import in Stammbäume "
-"stattdessen verwendet wird."
+"stattdessen verwendet wird"
 
 #: ../src/ArgHandler.py:472
 msgid "Database is locked, cannot open it!"
@@ -269,7 +269,7 @@ msgstr ""
 "Änderungen rückgängig machen.\n"
 "\n"
 "Wenn du den Import möglicherweise rückgängig machen willst, sichere bitte "
-"deine Datenbank!"
+"deine Datenbank."
 
 #: ../src/DbLoader.py:89
 msgid "_Proceed with import"
@@ -341,7 +341,7 @@ msgid ""
 msgstr ""
 "Diese Datei gibt ihren Zeichensatz falsch an, daher kann sie nicht korrekt "
 "importiert werden. Bitte korrigiere den Zeichensatz und importiere sie "
-"erneut."
+"erneut"
 
 #: ../src/DbLoader.py:316
 msgid "All files"
@@ -514,7 +514,7 @@ msgstr "Konnte Stammbaum nicht erstellen"
 
 #: ../src/DbManager.py:994
 msgid "Could not make database directory: "
-msgstr "Konnte Datenbankverzeichnis nicht erstellen:"
+msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 
 #: ../src/DbManager.py:1008
 msgid "Never"
@@ -609,35 +609,35 @@ msgstr "Keine aktive Person"
 
 #. # end
 #. set up ManagedWindow
-#: ../src/ExportAssistant.py:118
+#: ../src/ExportAssistant.py:119
 msgid "Export Assistant"
 msgstr "Exportassistent"
 
-#: ../src/ExportAssistant.py:178
+#: ../src/ExportAssistant.py:179
 msgid "Saving your data"
 msgstr "Ihre Daten speichern"
 
-#: ../src/ExportAssistant.py:225
+#: ../src/ExportAssistant.py:226
 msgid "Choose the output format"
 msgstr "Ausgabeformat wählen"
 
-#: ../src/ExportAssistant.py:305
+#: ../src/ExportAssistant.py:306
 msgid "Select Save File"
 msgstr "Speicher Datei wählen"
 
-#: ../src/ExportAssistant.py:343 ../src/plugins/tool/MediaManager.py:272
+#: ../src/ExportAssistant.py:344 ../src/plugins/tool/MediaManager.py:272
 msgid "Final confirmation"
 msgstr "Endgültige Bestätigung"
 
-#: ../src/ExportAssistant.py:356
+#: ../src/ExportAssistant.py:357
 msgid "Please wait while your data is selected and exported"
 msgstr "Bitte warten während deine Daten ausgewählt und exportiert werden"
 
-#: ../src/ExportAssistant.py:369
+#: ../src/ExportAssistant.py:370
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: ../src/ExportAssistant.py:446
+#: ../src/ExportAssistant.py:447
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -655,9 +655,9 @@ msgstr ""
 "Ordner:\t%s\n"
 "\n"
 "Klicke zum starten auf OK, auf Zurück um deine Einstellungen zu überprüfen "
-"oder auf Abbrechen."
+"oder auf Abbrechen"
 
-#: ../src/ExportAssistant.py:453
+#: ../src/ExportAssistant.py:454
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -668,11 +668,11 @@ msgstr ""
 "\n"
 "Gehe zurück und wähle einen gültigen Dateinamen."
 
-#: ../src/ExportAssistant.py:472
+#: ../src/ExportAssistant.py:473
 msgid "Your data has been saved"
 msgstr "Deine Daten wurden gespeichert"
 
-#: ../src/ExportAssistant.py:474
+#: ../src/ExportAssistant.py:475
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -686,19 +686,19 @@ msgstr ""
 "\n"
 "Anmerkung: Die Datenbank, die gerade in deinem GRAMPS-Fenster geöffnet ist, "
 "ist NICHT die Datei, die du gerade gespeichert hast. Zukünftige Änderungen "
-"werden die gerade erstellte Kopie nicht verändern."
+"werden die gerade erstellte Kopie nicht verändern. "
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:482
+#: ../src/ExportAssistant.py:483
 #, python-format
 msgid "Filename: %s"
 msgstr "Dateiname: %s"
 
-#: ../src/ExportAssistant.py:484
+#: ../src/ExportAssistant.py:485
 msgid "Saving failed"
 msgstr "Das Speichern ist gescheitert"
 
-#: ../src/ExportAssistant.py:486
+#: ../src/ExportAssistant.py:487
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -712,7 +712,7 @@ msgstr ""
 "Anmerkung: deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
 "deiner Daten konnte nicht gespeichert werden."
 
-#: ../src/ExportAssistant.py:513
+#: ../src/ExportAssistant.py:514
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -10631,7 +10631,7 @@ msgstr "F"
 #: ../src/plugins/textreport/FamilyGroup.py:434
 #, python-format
 msgid "acronym for unknown|%dU"
-msgstr "U"
+msgstr "%dU"
 
 #: ../src/plugins/textreport/FamilyGroup.py:528
 #, python-format
@@ -13617,7 +13617,7 @@ msgstr "%(couple)s, <em>Hochzeit</em>"
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
 msgstr[0] "%(couple)s, <em>%(years)d</em> Jahrestag"
-msgstr[1] "%(couple)s, <em>Hochzeit</em>"
+msgstr[1] "%(couple)s, <em>%(years)d</em> Jahrestag"
 
 #: ../src/plugins/webreport/WebCal.py:1588
 msgid "Web Calendar"
