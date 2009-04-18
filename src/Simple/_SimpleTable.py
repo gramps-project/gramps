@@ -202,11 +202,10 @@ class SimpleTable:
             elif isinstance(item, gen.lib.Family): 
                 father = self.access.father(item)
                 mother = self.access.mother(item)
-                text = ""
                 if father:
-                    text += " " + self.access.name(father)
+                    text = self.access.name(father)
                 else:
-                    text += " " + _("Unknown father")
+                    text = _("Unknown father")
                 text += " " + _("and")
                 if mother:
                     text += " " + self.access.name(mother)
