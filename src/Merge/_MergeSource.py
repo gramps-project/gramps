@@ -31,7 +31,7 @@
 # GNOME
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -72,40 +72,41 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.s1 = self.db.get_source_from_handle(self.new_handle)
         self.s2 = self.db.get_source_from_handle(self.old_handle)
 
-        self.glade = glade.XML(const.MERGE_GLADE,"merge_sources","gramps")
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(const.MERGE_GLADE)
 
-        self.set_window(self.glade.get_widget("merge_sources"),
-                        self.glade.get_widget('title'),
+        self.set_window(self.glade.get_object('merge_sources'),
+                        self.glade.get_object('source_title'),
                         _("Merge Sources"))
 
-        self.title1 = self.glade.get_widget("title1")
-        self.title2 = self.glade.get_widget("title2")
+        self.title1 = self.glade.get_object("title1")
+        self.title2 = self.glade.get_object("title2")
         self.title1.set_text(self.s1.get_title())
         self.title2.set_text(self.s2.get_title())
 
-        self.author1 = self.glade.get_widget("author1")
-        self.author2 = self.glade.get_widget("author2")
+        self.author1 = self.glade.get_object("author1")
+        self.author2 = self.glade.get_object("author2")
         self.author1.set_text(self.s1.get_author())
         self.author2.set_text(self.s2.get_author())
 
-        self.abbrev1 = self.glade.get_widget("abbrev1")
-        self.abbrev2 = self.glade.get_widget("abbrev2")
+        self.abbrev1 = self.glade.get_object("abbrev1")
+        self.abbrev2 = self.glade.get_object("abbrev2")
         self.abbrev1.set_text(self.s1.get_abbreviation())
         self.abbrev2.set_text(self.s2.get_abbreviation())
 
-        self.pub1 = self.glade.get_widget("pub1")
-        self.pub2 = self.glade.get_widget("pub2")
+        self.pub1 = self.glade.get_object("pub1")
+        self.pub2 = self.glade.get_object("pub2")
         self.pub1.set_text(self.s1.get_publication_info())
         self.pub2.set_text(self.s2.get_publication_info())
 
-        self.gramps1 = self.glade.get_widget("gramps1")
-        self.gramps2 = self.glade.get_widget("gramps2")
+        self.gramps1 = self.glade.get_object("gramps1")
+        self.gramps2 = self.glade.get_object("gramps2")
         self.gramps1.set_text(self.s1.get_gramps_id())
         self.gramps2.set_text(self.s2.get_gramps_id())
         
-        self.glade.get_widget('ok').connect('clicked',self.merge)
-        self.glade.get_widget('cancel').connect('clicked',self.close_window)
-        self.glade.get_widget('help').connect('clicked',self.help)
+        self.glade.get_object('source_ok').connect('clicked',self.merge)
+        self.glade.get_object('source_cancel').connect('clicked',self.close_window)
+        self.glade.get_object('source_help').connect('clicked',self.help)
         self.show()
 
     def close_window(self, obj):
@@ -120,11 +121,11 @@ class MergeSources(ManagedWindow.ManagedWindow):
         Performs the merge of the sources when the merge button is clicked.
         """
 
-        use_title1 = self.glade.get_widget("title_btn1").get_active()
-        use_author1 = self.glade.get_widget("author_btn1").get_active()
-        use_abbrev1 = self.glade.get_widget("abbrev_btn1").get_active()
-        use_pub1 = self.glade.get_widget("pub_btn1").get_active()
-        use_gramps1 = self.glade.get_widget("gramps_btn1").get_active()
+        use_title1 = self.glade.get_object("title_btn1").get_active()
+        use_author1 = self.glade.get_object("author_btn1").get_active()
+        use_abbrev1 = self.glade.get_object("abbrev_btn1").get_active()
+        use_pub1 = self.glade.get_object("pub_btn1").get_active()
+        use_gramps1 = self.glade.get_object("gramps_btn1").get_active()
         
         if not use_title1:
             self.s1.set_title(self.s2.get_title())
@@ -166,42 +167,48 @@ class MergeSources(ManagedWindow.ManagedWindow):
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
             if person.has_source_reference(self.old_handle):
-                person.replace_source_references(self.old_handle,self.new_handle)
+                person.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_person(person,trans)
 
         # family
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_source_reference(self.old_handle):
-                family.replace_source_references(self.old_handle,self.new_handle)
+                family.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_family(family,trans)
 
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             if event.has_source_reference(self.old_handle):
-                event.replace_source_references(self.old_handle,self.new_handle)
+                event.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_event(event,trans)
 
         # sources
         for handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(handle)
             if source.has_source_reference(self.old_handle):
-                source.replace_source_references(self.old_handle,self.new_handle)
+                source.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_source(source,trans)
 
         # places
         for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle) 
             if place.has_source_reference(self.old_handle):
-                place.replace_source_references(self.old_handle,self.new_handle)
+                place.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_place(place,trans)
 
         # media
         for handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(handle)
             if obj.has_source_reference(self.old_handle):
-                obj.replace_source_references(self.old_handle,self.new_handle)
+                obj.replace_source_references(self.old_handle,
+                                                        self.new_handle)
                 self.db.commit_media_object(obj,trans)
         
         self.db.transaction_commit(trans,_("Merge Sources"))

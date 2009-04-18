@@ -33,7 +33,8 @@
 # GNOME
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -71,22 +72,23 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.p1 = self.db.get_place_from_handle(self.new_handle)
         self.p2 = self.db.get_place_from_handle(self.old_handle)
 
-        self.glade = glade.XML(const.MERGE_GLADE,"merge_places","gramps")
-        self.set_window(self.glade.get_widget("merge_places"),
-                        self.glade.get_widget('title'),
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(const.MERGE_GLADE)
+        self.set_window(self.glade.get_object('merge_places'),
+                        self.glade.get_object('place_title'),
                         _("Merge Places"))
         
-        title1_text = self.glade.get_widget("title1_text")
-        title2_text = self.glade.get_widget("title2_text")
-        self.title3_entry = self.glade.get_widget("title3_text")
+        title1_text = self.glade.get_object("title1_text")
+        title2_text = self.glade.get_object("title2_text")
+        self.title3_entry = self.glade.get_object("title3_text")
 
         title1_text.set_text(self.p1.get_title())
         title2_text.set_text(self.p2.get_title())
         self.title3_entry.set_text(self.p1.get_title())
 
-        self.glade.get_widget('cancel').connect('clicked', self.close_window)
-        self.glade.get_widget('ok').connect('clicked', self.merge)
-        self.glade.get_widget('help').connect('clicked', self.help)
+        self.glade.get_object('place_cancel').connect('clicked', self.close_window)
+        self.glade.get_object('place_ok').connect('clicked', self.merge)
+        self.glade.get_object('place_help').connect('clicked', self.help)
         
         self.show()
 
@@ -104,11 +106,11 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         """
         Performs the merge of the places when the merge button is clicked.
         """
-        t2active = self.glade.get_widget("title2").get_active()
+        t2active = self.glade.get_object("place2").get_active()
 
         if t2active:
             self.p1.set_title(self.p2.get_title())
-        elif self.glade.get_widget("title3").get_active():
+        elif self.glade.get_object("place3").get_active():
             self.p1.set_title(unicode(self.title3_entry.get_text()))
 
         # Set longitude
@@ -132,16 +134,19 @@ class MergePlaces(ManagedWindow.ManagedWindow):
             self.p1.add_source_reference(source)
 
         # Add notes from P2 to P1
-        self.p1.set_note_list(self.p1.get_note_list() + self.p2.get_note_list())
+        self.p1.set_note_list(self.p1.get_note_list() + 
+                              self.p2.get_note_list())
             
         if t2active:
-            lst = [self.p1.get_main_location()] + self.p1.get_alternate_locations()
+            lst = [self.p1.get_main_location()] + \
+                   self.p1.get_alternate_locations()
             self.p1.set_main_location(self.p2.get_main_location())
             for l in lst:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
         else:
-            lst = [self.p2.get_main_location()] + self.p2.get_alternate_locations()
+            lst = [self.p2.get_main_location()] + \
+                   self.p2.get_alternate_locations()
             for l in lst:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
@@ -157,19 +162,22 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         for handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(handle)
             if person.has_handle_reference('Place',self.old_handle):
-                person.replace_handle_reference('Place',self.old_handle,self.new_handle)
+                person.replace_handle_reference('Place',
+                                        self.old_handle,self.new_handle)
                 self.db.commit_person(person,trans)
         # families
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_handle_reference('Place',self.old_handle):
-                family.replace_handle_reference('Place',self.old_handle,self.new_handle)
+                family.replace_handle_reference('Place',
+                                        self.old_handle,self.new_handle)
                 self.db.commit_family(family,trans)
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             if event.has_handle_reference('Place',self.old_handle):
-                event.replace_handle_reference('Place',self.old_handle,self.new_handle)
+                event.replace_handle_reference('Place',
+                                        self.old_handle,self.new_handle)
                 self.db.commit_event(event,trans)
 
         self.db.transaction_commit(trans,_("Merge Places"))
