@@ -313,8 +313,8 @@ class BasePage:
             of.write('\t<div id="alphabet">\n')
             of.write('\t\t<ul>\n')
             for ltr in  sorted_first_letter:
-                title_str = 'Surnames'  if key == 0  else 'Places' 
-                title_str += ' starting with %s' % ltr 
+                title_str = _('Surnames')  if key == 0  else _('Places') 
+                title_str += _(' starting with %s') % ltr 
                 of.write('\t\t\t<li class="letters"><a href="#%s" title="%s">%s</a></li>\n' 
                     % (ltr, title_str, ltr))
             of.write('\t\t</ul>\n')
@@ -328,8 +328,8 @@ class BasePage:
                 cols = 0
                 while (cols <= 26 and index < num_ltrs):
                     letter = sorted_first_letter[index]
-                    title_str = 'Surnames'  if key == 0 else 'Places'
-                    title_str += ' starting with %s' % letter 
+                    title_str = _('Surnames')  if key == 0 else _('Places')
+                    title_str += _(' starting with %s') % letter 
                     of.write('\t\t\t<li class="letters"><a href="#%s" title="%s">%s</a></li>\n'
                         % (letter, title_str, letter))
                     cols += 1
