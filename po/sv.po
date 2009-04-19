@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-08 14:40+0200\n"
-"PO-Revision-Date: 2009-04-08 14:42+0200\n"
+"POT-Creation-Date: 2009-04-19 08:28+0200\n"
+"PO-Revision-Date: 2009-04-19 08:37+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -125,12 +125,12 @@ msgid "Organize Bookmarks"
 msgstr "Organisera bokmärken"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:215 ../src/GrampsCfg.py:205 ../src/ScratchPad.py:193
-#: ../src/ScratchPad.py:379 ../src/ScratchPad.py:435 ../src/ScratchPad.py:468
-#: ../src/ScratchPad.py:537 ../src/ScratchPad.py:568 ../src/ScratchPad.py:585
-#: ../src/ScratchPad.py:586 ../src/ScratchPad.py:605 ../src/ScratchPad.py:655
-#: ../src/ScratchPad.py:688 ../src/ScratchPad.py:742 ../src/ScratchPad.py:753
-#: ../src/ScratchPad.py:832 ../src/ToolTips.py:173 ../src/ToolTips.py:199
+#: ../src/Bookmarks.py:215 ../src/GrampsCfg.py:205 ../src/ScratchPad.py:194
+#: ../src/ScratchPad.py:380 ../src/ScratchPad.py:436 ../src/ScratchPad.py:469
+#: ../src/ScratchPad.py:538 ../src/ScratchPad.py:569 ../src/ScratchPad.py:586
+#: ../src/ScratchPad.py:587 ../src/ScratchPad.py:606 ../src/ScratchPad.py:656
+#: ../src/ScratchPad.py:689 ../src/ScratchPad.py:743 ../src/ScratchPad.py:754
+#: ../src/ScratchPad.py:833 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
 #: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:641
 #: ../src/DataViews/PersonView.py:647 ../src/DataViews/RepositoryView.py:67
@@ -536,7 +536,7 @@ msgstr "Kunde inte skapa databasmappen: "
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/DbManager.py:1082 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1082 ../src/ScratchPad.py:102
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
 #: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -624,35 +624,35 @@ msgstr "Ingen aktiv person"
 
 #. # end
 #. set up ManagedWindow
-#: ../src/ExportAssistant.py:118
+#: ../src/ExportAssistant.py:119
 msgid "Export Assistant"
 msgstr "Exporthjälpen"
 
-#: ../src/ExportAssistant.py:178
+#: ../src/ExportAssistant.py:179
 msgid "Saving your data"
 msgstr "Sparar dina data"
 
-#: ../src/ExportAssistant.py:225
+#: ../src/ExportAssistant.py:226
 msgid "Choose the output format"
 msgstr "Välj format för utdata"
 
-#: ../src/ExportAssistant.py:305
+#: ../src/ExportAssistant.py:306
 msgid "Select Save File"
 msgstr "Välj fil att spara"
 
-#: ../src/ExportAssistant.py:343 ../src/plugins/tool/MediaManager.py:272
+#: ../src/ExportAssistant.py:344 ../src/plugins/tool/MediaManager.py:272
 msgid "Final confirmation"
 msgstr "Slutgiltigt godkännande"
 
-#: ../src/ExportAssistant.py:356
+#: ../src/ExportAssistant.py:357
 msgid "Please wait while your data is selected and exported"
 msgstr "Vänta medan dina data väljs ut och exporteras"
 
-#: ../src/ExportAssistant.py:369
+#: ../src/ExportAssistant.py:370
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: ../src/ExportAssistant.py:446
+#: ../src/ExportAssistant.py:447
 #, python-format
 msgid ""
 "The data will be saved as follows:\n"
@@ -672,7 +672,7 @@ msgstr ""
 "Tryck Verkställ för att fortsätta, Avbryt för att avbryta eller Bakåt för "
 "att återse alternativ."
 
-#: ../src/ExportAssistant.py:453
+#: ../src/ExportAssistant.py:454
 msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
@@ -683,11 +683,11 @@ msgstr ""
 "\n"
 "Tryck Back för att återvända och välj ett giltigt filnamn."
 
-#: ../src/ExportAssistant.py:472
+#: ../src/ExportAssistant.py:473
 msgid "Your data has been saved"
 msgstr "Dina data har sparats"
 
-#: ../src/ExportAssistant.py:474
+#: ../src/ExportAssistant.py:475
 msgid ""
 "The copy of your data has been successfully saved. You may press Close "
 "button now to continue.\n"
@@ -704,16 +704,16 @@ msgstr ""
 "öppnade databasen kommer inte att förändra kopian som du just tog. "
 
 #. add test, what is dir
-#: ../src/ExportAssistant.py:482
+#: ../src/ExportAssistant.py:483
 #, python-format
 msgid "Filename: %s"
 msgstr "Filnamn: %s"
 
-#: ../src/ExportAssistant.py:484
+#: ../src/ExportAssistant.py:485
 msgid "Saving failed"
 msgstr "Misslyckades att spara"
 
-#: ../src/ExportAssistant.py:486
+#: ../src/ExportAssistant.py:487
 msgid ""
 "There was an error while saving your data. You may try starting the export "
 "again.\n"
@@ -726,7 +726,7 @@ msgstr ""
 "Observera: Den aktuella databasen är oskadad. Det var bara kopian av "
 "informationen som inte gick att spara."
 
-#: ../src/ExportAssistant.py:513
+#: ../src/ExportAssistant.py:514
 msgid ""
 "Under normal circumstances, GRAMPS does not require you to directly save "
 "your changes. All changes you make are immediately saved to the database.\n"
@@ -773,7 +773,7 @@ msgstr "Ta inte med _olänkade poster"
 
 #: ../src/ExportOptions.py:107 ../src/plugins/export/ExportCsv.py:181
 #: ../src/plugins/export/ExportFtree.py:87
-#: ../src/plugins/export/ExportGeneWeb.py:91
+#: ../src/plugins/export/ExportGeneWeb.py:92
 #: ../src/plugins/export/ExportVCalendar.py:89
 #: ../src/plugins/export/ExportVCard.py:86 ../src/plugins/tool/EventCmp.py:145
 #: ../src/ReportBase/_ReportUtils.py:3165
@@ -782,7 +782,7 @@ msgstr "Hela databasen"
 
 #: ../src/ExportOptions.py:149 ../src/plugins/export/ExportCsv.py:188
 #: ../src/plugins/export/ExportFtree.py:94
-#: ../src/plugins/export/ExportGeneWeb.py:98
+#: ../src/plugins/export/ExportGeneWeb.py:99
 #: ../src/plugins/export/ExportVCalendar.py:96
 #: ../src/plugins/export/ExportVCard.py:93
 #: ../src/plugins/gramplet/DescendGramplet.py:65
@@ -799,7 +799,7 @@ msgstr "Ättlingafamiljer till %s"
 
 #: ../src/ExportOptions.py:157 ../src/plugins/export/ExportCsv.py:194
 #: ../src/plugins/export/ExportFtree.py:100
-#: ../src/plugins/export/ExportGeneWeb.py:104
+#: ../src/plugins/export/ExportGeneWeb.py:105
 #: ../src/plugins/export/ExportVCalendar.py:102
 #: ../src/plugins/export/ExportVCard.py:99
 #: ../src/ReportBase/_ReportUtils.py:3177
@@ -809,7 +809,7 @@ msgstr "Anor till %s"
 
 #: ../src/ExportOptions.py:161 ../src/plugins/export/ExportCsv.py:200
 #: ../src/plugins/export/ExportFtree.py:106
-#: ../src/plugins/export/ExportGeneWeb.py:110
+#: ../src/plugins/export/ExportGeneWeb.py:111
 #: ../src/plugins/export/ExportVCalendar.py:108
 #: ../src/plugins/export/ExportVCard.py:105
 #: ../src/ReportBase/_ReportUtils.py:3181
@@ -934,7 +934,7 @@ msgstr "Allmänt"
 msgid "Database"
 msgstr "Databas"
 
-#: ../src/GrampsCfg.py:180 ../src/ScratchPad.py:618 ../src/ScratchPad.py:626
+#: ../src/GrampsCfg.py:180 ../src/ScratchPad.py:619 ../src/ScratchPad.py:627
 #: ../src/plugins/textreport/CustomBookText.py:115
 #: ../src/plugins/textreport/MarkerReport.py:388
 #: ../src/plugins/webreport/NarrativeWeb.py:672
@@ -967,8 +967,8 @@ msgstr "Markeringsfärger"
 msgid "Internet Maps"
 msgstr "Internetkartor"
 
-#: ../src/GrampsCfg.py:206 ../src/gramps_main.py:97 ../src/ScratchPad.py:159
-#: ../src/ScratchPad.py:176 ../src/DisplayTabs/_AddrEmbedList.py:70
+#: ../src/GrampsCfg.py:206 ../src/gramps_main.py:97 ../src/ScratchPad.py:160
+#: ../src/ScratchPad.py:177 ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:149
 #: ../src/plugins/textreport/FamilyGroup.py:298
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
@@ -1053,7 +1053,7 @@ msgstr "Person"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:225 ../src/gramps_main.py:106 ../src/ScratchPad.py:589
+#: ../src/GrampsCfg.py:225 ../src/gramps_main.py:106 ../src/ScratchPad.py:590
 #: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:467
 #: ../src/DataViews/RelationView.py:1263 ../src/DataViews/RelationView.py:1285
 #: ../src/Editors/_EditFamily.py:505 ../src/plugins/export/ExportCsv.py:459
@@ -1071,7 +1071,7 @@ msgstr "Person"
 msgid "Family"
 msgstr "Familj"
 
-#: ../src/GrampsCfg.py:227 ../src/ScratchPad.py:289 ../src/ScratchPad.py:367
+#: ../src/GrampsCfg.py:227 ../src/ScratchPad.py:290 ../src/ScratchPad.py:368
 #: ../src/Simple/_SimpleTable.py:232 ../src/DataViews/EventView.py:73
 #: ../src/DisplayTabs/_EventEmbedList.py:66
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1102,7 +1102,7 @@ msgstr "Plats"
 msgid "Source"
 msgstr "Källa"
 
-#: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:639 ../src/ScratchPad.py:652
+#: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:640 ../src/ScratchPad.py:653
 #: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:282
 msgid "Media Object"
 msgstr "Mediaobjekt"
@@ -1121,7 +1121,7 @@ msgid "Repository"
 msgstr "Arkivplats"
 
 #. ###############################
-#: ../src/GrampsCfg.py:237 ../src/ScratchPad.py:318 ../src/ToolTips.py:159
+#: ../src/GrampsCfg.py:237 ../src/ScratchPad.py:319 ../src/ToolTips.py:159
 #: ../src/Simple/_SimpleTable.py:240 ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/export/ExportCsv.py:342
@@ -1242,7 +1242,7 @@ msgstr "Efternamn"
 #: ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:427 ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:430 ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432
-#: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:588
+#: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:589
 #: ../src/Utils.py:1167 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
@@ -1251,7 +1251,7 @@ msgstr "Förnamn"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
-#: ../src/ScratchPad.py:593 ../src/Utils.py:1170
+#: ../src/ScratchPad.py:594 ../src/Utils.py:1170
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
 msgid "Suffix"
@@ -1275,7 +1275,7 @@ msgstr "Tilltalsnamn"
 msgid "SURNAME"
 msgstr "EFTERNAMN"
 
-#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:590 ../src/Utils.py:1171
+#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1171
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "Patronymikon"
@@ -1469,7 +1469,7 @@ msgstr "Både formatnamn och definition måste anges"
 msgid "Family Trees"
 msgstr "Släktträd"
 
-#: ../src/gramps_main.py:98 ../src/ScratchPad.py:414 ../src/ScratchPad.py:422
+#: ../src/gramps_main.py:98 ../src/ScratchPad.py:415 ../src/ScratchPad.py:423
 #: ../src/Editors/_EditAttribute.py:133
 msgid "Attribute"
 msgstr "Attribut"
@@ -1478,7 +1478,7 @@ msgstr "Attribut"
 msgid "Add Bookmark"
 msgstr "Lägg till bokmärke"
 
-#: ../src/gramps_main.py:103 ../src/ScratchPad.py:177 ../src/ScratchPad.py:366
+#: ../src/gramps_main.py:103 ../src/ScratchPad.py:178 ../src/ScratchPad.py:367
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
 #: ../src/DisplayTabs/_EmbeddedList.py:420
@@ -1603,8 +1603,8 @@ msgstr "Rapporter"
 msgid "Repositories"
 msgstr "Arkivplatser"
 
-#: ../src/gramps_main.py:124 ../src/ScratchPad.py:192 ../src/ScratchPad.py:434
-#: ../src/ScratchPad.py:467 ../src/DataViews/SourceView.py:95
+#: ../src/gramps_main.py:124 ../src/ScratchPad.py:193 ../src/ScratchPad.py:435
+#: ../src/ScratchPad.py:468 ../src/DataViews/SourceView.py:95
 #: ../src/plugins/gramplet/QuickViewGramplet.py:72
 #: ../src/plugins/webreport/NarrativeWeb.py:441
 #: ../src/plugins/webreport/NarrativeWeb.py:476
@@ -2109,33 +2109,33 @@ msgstr "Ordna om relationer"
 msgid "Reorder Relationships: %s"
 msgstr "Ordna om relationer: %s"
 
-#: ../src/ScratchPad.py:69
+#: ../src/ScratchPad.py:70
 msgid "manual|Using_the_Clipboard"
 msgstr ""
 
-#: ../src/ScratchPad.py:178 ../src/ScratchPad.py:205 ../src/ScratchPad.py:217
+#: ../src/ScratchPad.py:179 ../src/ScratchPad.py:206 ../src/ScratchPad.py:218
 #: ../src/ToolTips.py:142
 msgid "Location"
 msgstr "Lokalisering"
 
-#: ../src/ScratchPad.py:184 ../src/ScratchPad.py:222 ../src/ToolTips.py:149
+#: ../src/ScratchPad.py:185 ../src/ScratchPad.py:223 ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../src/ScratchPad.py:234
+#: ../src/ScratchPad.py:235
 msgid "Event Link"
 msgstr "Händelselänk"
 
-#: ../src/ScratchPad.py:351 ../src/ScratchPad.py:364
+#: ../src/ScratchPad.py:352 ../src/ScratchPad.py:365
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Familjehändelse"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:365 ../src/ScratchPad.py:423 ../src/ScratchPad.py:456
-#: ../src/ScratchPad.py:594 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
-#: ../src/ScratchPad.py:833 ../src/ScratchPad.py:905 ../src/ScratchPad.py:911
+#: ../src/ScratchPad.py:366 ../src/ScratchPad.py:424 ../src/ScratchPad.py:457
+#: ../src/ScratchPad.py:595 ../src/ScratchPad.py:655 ../src/ScratchPad.py:688
+#: ../src/ScratchPad.py:834 ../src/ScratchPad.py:906 ../src/ScratchPad.py:912
 #: ../src/Merge/_MergePerson.py:175 ../src/DataViews/EventView.py:71
 #: ../src/DataViews/MediaView.py:82 ../src/DataViews/NoteView.py:69
 #: ../src/DataViews/RepositoryView.py:69
@@ -2164,11 +2164,11 @@ msgstr "Familjehändelse"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:368 ../src/gen/lib/attrtype.py:71
+#: ../src/ScratchPad.py:369 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Orsak"
 
-#: ../src/ScratchPad.py:369 ../src/ScratchPad.py:403
+#: ../src/ScratchPad.py:370 ../src/ScratchPad.py:404
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:62
 #: ../src/plugins/textreport/MarkerReport.py:308
@@ -2179,47 +2179,47 @@ msgstr "Orsak"
 msgid "Description"
 msgstr "Beskrivning"
 
-#: ../src/ScratchPad.py:378 ../src/ScratchPad.py:604 ../src/ScratchPad.py:752
+#: ../src/ScratchPad.py:379 ../src/ScratchPad.py:605 ../src/ScratchPad.py:753
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Primär källa"
 
-#: ../src/ScratchPad.py:392 ../src/ScratchPad.py:400
+#: ../src/ScratchPad.py:393 ../src/ScratchPad.py:401
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:401 ../src/DataViews/MediaView.py:83
+#: ../src/ScratchPad.py:402 ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Sökväg"
 
-#: ../src/ScratchPad.py:425 ../src/ScratchPad.py:458 ../src/ScratchPad.py:907
-#: ../src/ScratchPad.py:913 ../src/DisplayTabs/_AttrEmbedList.py:61
+#: ../src/ScratchPad.py:426 ../src/ScratchPad.py:459 ../src/ScratchPad.py:908
+#: ../src/ScratchPad.py:914 ../src/DisplayTabs/_AttrEmbedList.py:61
 #: ../src/DisplayTabs/_DataEmbedList.py:58
 #: ../src/plugins/tool/PatchNames.py:232
 msgid "Value"
 msgstr "Värde"
 
-#: ../src/ScratchPad.py:447 ../src/ScratchPad.py:455
+#: ../src/ScratchPad.py:448 ../src/ScratchPad.py:456
 msgid "Family Attribute"
 msgstr "Familjeattribut"
 
-#: ../src/ScratchPad.py:480 ../src/ScratchPad.py:509
+#: ../src/ScratchPad.py:481 ../src/ScratchPad.py:510
 msgid "Source Reference"
 msgstr "Källreferens"
 
-#: ../src/ScratchPad.py:492
+#: ../src/ScratchPad.py:493
 msgid "not available|NA"
 msgstr "Otillgänglig"
 
-#: ../src/ScratchPad.py:498
+#: ../src/ScratchPad.py:499
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
 msgstr "Volym/sida: %(pag)s -- %(sourcetext)s"
 
-#: ../src/ScratchPad.py:510 ../src/ScratchPad.py:653 ../src/ScratchPad.py:686
-#: ../src/ScratchPad.py:794 ../src/ScratchPad.py:906 ../src/ScratchPad.py:912
+#: ../src/ScratchPad.py:511 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
+#: ../src/ScratchPad.py:795 ../src/ScratchPad.py:907 ../src/ScratchPad.py:913
 #: ../src/DataViews/MediaView.py:80 ../src/DataViews/SourceView.py:67
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
@@ -2231,32 +2231,32 @@ msgstr "Volym/sida: %(pag)s -- %(sourcetext)s"
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:511 ../src/DisplayTabs/_SourceEmbedList.py:65
+#: ../src/ScratchPad.py:512 ../src/DisplayTabs/_SourceEmbedList.py:65
 #: ../src/plugins/webreport/NarrativeWeb.py:665
 msgid "Page"
 msgstr "Sida"
 
-#: ../src/ScratchPad.py:523 ../src/ScratchPad.py:536
+#: ../src/ScratchPad.py:524 ../src/ScratchPad.py:537
 msgid "Repository Reference"
 msgstr "Arkivplatsreferens"
 
-#: ../src/ScratchPad.py:538 ../src/DisplayTabs/_RepoEmbedList.py:64
+#: ../src/ScratchPad.py:539 ../src/DisplayTabs/_RepoEmbedList.py:64
 msgid "Call Number"
 msgstr "Klassifikationssignum"
 
-#: ../src/ScratchPad.py:539
+#: ../src/ScratchPad.py:540
 msgid "Media Type"
 msgstr "Mediatyp"
 
-#: ../src/ScratchPad.py:551
+#: ../src/ScratchPad.py:552
 msgid "Event Reference"
 msgstr "Händelsereferens"
 
-#: ../src/ScratchPad.py:587
+#: ../src/ScratchPad.py:588
 msgid "Call Name"
 msgstr "Tilltalsnamn"
 
-#: ../src/ScratchPad.py:591 ../src/Utils.py:1168
+#: ../src/ScratchPad.py:592 ../src/Utils.py:1168
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:279 ../src/plugins/tool/PatchNames.py:291
@@ -2269,26 +2269,26 @@ msgstr "Prefix"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:592 ../src/Utils.py:1166
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1166
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:267
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:673 ../src/ScratchPad.py:685
+#: ../src/ScratchPad.py:674 ../src/ScratchPad.py:686
 msgid "Media Reference"
 msgstr "Mediareferens"
 
-#: ../src/ScratchPad.py:699 ../src/Editors/_EditPersonRef.py:142
+#: ../src/ScratchPad.py:700 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Personreferens"
 
-#: ../src/ScratchPad.py:716 ../src/ScratchPad.py:741
+#: ../src/ScratchPad.py:717 ../src/ScratchPad.py:742
 msgid "Person Link"
 msgstr "Personlänk"
 
-#: ../src/ScratchPad.py:743 ../src/ToolTips.py:200
+#: ../src/ScratchPad.py:744 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:559
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
@@ -2301,31 +2301,31 @@ msgstr "Personlänk"
 msgid "Birth"
 msgstr "Födelse"
 
-#: ../src/ScratchPad.py:775 ../src/ScratchPad.py:793
+#: ../src/ScratchPad.py:776 ../src/ScratchPad.py:794
 msgid "Source Link"
 msgstr "Källänk"
 
-#: ../src/ScratchPad.py:795 ../src/DataViews/SourceView.py:70
+#: ../src/ScratchPad.py:796 ../src/DataViews/SourceView.py:70
 #: ../src/plugins/webreport/NarrativeWeb.py:1693
 msgid "Abbreviation"
 msgstr "Förkortning"
 
-#: ../src/ScratchPad.py:796 ../src/DataViews/SourceView.py:69
+#: ../src/ScratchPad.py:797 ../src/DataViews/SourceView.py:69
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/webreport/NarrativeWeb.py:1691
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Författare"
 
-#: ../src/ScratchPad.py:797 ../src/DataViews/SourceView.py:71
+#: ../src/ScratchPad.py:798 ../src/DataViews/SourceView.py:71
 msgid "Publication Information"
 msgstr "Publiceringsinformation"
 
-#: ../src/ScratchPad.py:816 ../src/ScratchPad.py:831
+#: ../src/ScratchPad.py:817 ../src/ScratchPad.py:832
 msgid "Repository Link"
 msgstr "Länk till arkivplats"
 
-#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1235
+#: ../src/ScratchPad.py:1208 ../src/ScratchPad.py:1245
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Urklipp"
@@ -3213,26 +3213,26 @@ msgstr "common"
 msgid "initials"
 msgstr "initialer"
 
-#: ../src/Config/_GrampsConfigKeys.py:347
+#: ../src/Config/_GrampsConfigKeys.py:351
 msgid "Missing Surname"
 msgstr "Saknar efternamn"
 
-#: ../src/Config/_GrampsConfigKeys.py:348
+#: ../src/Config/_GrampsConfigKeys.py:352
 msgid "Missing Given Name"
 msgstr "Saknar förnamn"
 
-#: ../src/Config/_GrampsConfigKeys.py:349
+#: ../src/Config/_GrampsConfigKeys.py:353
 msgid "Missing Record"
 msgstr "Saknar poster"
 
-#: ../src/Config/_GrampsConfigKeys.py:350
-#: ../src/Config/_GrampsConfigKeys.py:351
-#: ../src/plugins/export/ExportGeneWeb.py:453
-#: ../src/plugins/export/ExportGeneWeb.py:463 ../src/gen/proxy/living.py:443
+#: ../src/Config/_GrampsConfigKeys.py:354
+#: ../src/Config/_GrampsConfigKeys.py:355
+#: ../src/plugins/export/ExportGeneWeb.py:454
+#: ../src/plugins/export/ExportGeneWeb.py:464 ../src/gen/proxy/living.py:443
 msgid "Living"
 msgstr "Levande"
 
-#: ../src/Config/_GrampsConfigKeys.py:352
+#: ../src/Config/_GrampsConfigKeys.py:356
 msgid "Private Record"
 msgstr "Privat post"
 
@@ -4432,8 +4432,8 @@ msgstr ""
 #: ../src/plugins/export/ExportCsv.py:308
 #: ../src/plugins/export/ExportGedcom.py:1526
 #: ../src/plugins/export/ExportGedcom.py:1531
-#: ../src/plugins/export/ExportGeneWeb.py:234
-#: ../src/plugins/export/ExportGeneWeb.py:238
+#: ../src/plugins/export/ExportGeneWeb.py:235
+#: ../src/plugins/export/ExportGeneWeb.py:239
 #: ../src/plugins/export/ExportVCalendar.py:207
 #: ../src/plugins/export/ExportVCalendar.py:211
 #: ../src/plugins/export/ExportVCard.py:183
@@ -7561,7 +7561,7 @@ msgstr "Beräknar tidslinje..."
 #: ../src/plugins/drawreport/TimeLine.py:215
 #, python-format
 msgid "%(calendar_type)s Calendar, Sorted by %(sortby)s"
-msgstr "%(calendar_type)s Kalender, sorterad på %(sortby)s"
+msgstr "%(calendar_type)s kalender, sorterad på %(sortby)s"
 
 #: ../src/plugins/drawreport/TimeLine.py:325
 #: ../src/plugins/tool/SortEvents.py:181
@@ -7789,7 +7789,7 @@ msgstr "Alternativ för GEDCOM-export"
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/plugins/export/ExportGeneWeb.py:242
+#: ../src/plugins/export/ExportGeneWeb.py:243
 msgid "No families matched by selected filter"
 msgstr "Inga familjer matchades av det valda filtret"
 
@@ -7798,15 +7798,15 @@ msgstr "Inga familjer matchades av det valda filtret"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportGeneWeb.py:618
+#: ../src/plugins/export/ExportGeneWeb.py:619
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb är ett webbaserat släktforskningsprogram."
 
-#: ../src/plugins/export/ExportGeneWeb.py:619
+#: ../src/plugins/export/ExportGeneWeb.py:620
 msgid "GeneWeb export options"
 msgstr "Alternativ för GeneWeb-export"
 
-#: ../src/plugins/export/ExportGeneWeb.py:622
+#: ../src/plugins/export/ExportGeneWeb.py:623
 msgid "_GeneWeb"
 msgstr "_GeneWeb"
 
