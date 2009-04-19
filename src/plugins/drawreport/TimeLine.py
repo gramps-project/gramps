@@ -212,9 +212,9 @@ class TimeLine(Report):
         normal_font = style_sheet.get_paragraph_style('TLG-Name').get_font()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
 
-        byline = _("%(calendar_type)s Calendar, Sorted by %(sortby)s" % 
+        byline = _("%(calendar_type)s Calendar, Sorted by %(sortby)s") % \
                    {"calendar_type": self.calendar,
-                    "sortby": self.sort_name})
+                    "sortby": self.sort_name}
 
         self.doc.center_text('TLG-title',self.title + "\n" + byline,width/2.0,0)
         
