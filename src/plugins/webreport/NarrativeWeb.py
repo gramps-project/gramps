@@ -1536,7 +1536,7 @@ class SurnameListPage(BasePage):
                 index_val = "%90d_%s" % (999999999-len(data_list), surname)
                 temp_list[index_val] = (surname, data_list)
             temp_keys = temp_list.keys()
-            temp_keys.sort()
+            temp_keys.sort(locale.strcoll)
             person_handle_list = []
             for key in temp_keys:
                 person_handle_list.append(temp_list[key])
@@ -1552,7 +1552,7 @@ class SurnameListPage(BasePage):
             # the surname
             letter = normalize('NFKC', surname)[0].upper()
 
-            if letter is not last_letter:
+            if letter != last_letter:
                 last_letter = letter
                 of.write('\t\t<tr class="BeginLetter">\n')
                 of.write('\t\t\t<td class="ColumnLetter"><a name="%s">%s</a></td>\n' 
@@ -3632,7 +3632,7 @@ def get_first_letters(db, handle_list, key):
             keyname = get_place_keyname(db, handle) 
 
         if keyname:
-            c = normalize('NFC', keyname)[0].upper()
+            c = normalize('NFKC', keyname)[0].upper()
             first_letters.append(c)
 
     return first_letters
