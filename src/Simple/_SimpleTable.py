@@ -330,6 +330,7 @@ class SimpleTable:
                     column = gtk.TreeViewColumn(col,renderer,markup=model_index)
                 else:
                     column = gtk.TreeViewColumn(col,renderer,text=model_index)
+                column.set_resizable(True)
                 if self.__sort_vals[cnt] != []:
                     sort_data.append(self.__sort_vals[cnt])
                     column.set_sort_column_id(len(self.__columns) + 
