@@ -297,6 +297,7 @@ src/plugins/import/ImportProGen.py
 src/plugins/import/ImportVCard.py
 
 # plugins/lib directory
+src/plugins/lib/libhtml.py
 src/plugins/lib/libcairodoc.py
 src/plugins/lib/libholiday.py
 src/plugins/lib/libmapservice.py
