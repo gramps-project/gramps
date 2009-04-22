@@ -4,7 +4,7 @@ This file contains some useful details on the installation from source code
 for GRAMPS. It does not cover installation of a pre-built binary package.
 For that use your package manager, the rest is already done by the packager.
 
-uninstall old version
+Uninstall old version
 ---------------------
 If you do a source install in the same place of an existing install,
 you need to remove the old version first. You can delete the old
@@ -20,7 +20,7 @@ files, meaning that files of a previous version that are no longer
 present in the new version can still be loaded, making the new install
 unstable.
 
-configure vs autogen scripts
+Configure vs autogen scripts
 ----------------------------
 If you are building from released tarball, you should be able to just
 run "./configure && make". However, if you're building from the SVN,
@@ -36,6 +36,16 @@ packages to be installed:
 differently on other distros) and maybe something else. If autogen.sh
 fails, it should inform you what's missing.
 
+Custom directory installation
+-------------------------------------
+If you would like to install GRAMPS without being root, or in an 
+alternative location on windows, supply the --prefix argument to autogen 
+or configure. 
+
+For example:
+   ./autogen.sh --prefix=$HOME/my_gramps_path
+   or
+   ./autogen.sh --prefix=/cygdrive/c/Projects/gramps
 
 Regular vs local installation
 -----------------------------
@@ -56,7 +66,6 @@ permissions for you:
 
 Whether you're doing local install or regular install, YOU MUST INSTALL 
 MIME TYPES. YOU HAVE BEEN WARNED!
-
 
 Installing under non-default prefix
 -----------------------------------
@@ -79,7 +88,6 @@ Using the --prefix=/usr/share and installing as a root will most
 likely do everything correctly, so no extra care needs to be
 taken. You should take extra care only if you are installing under
 something like --prefix=/usr/local/my_gramps, /var/gramps123/blah, etc.
-
 
 Packager's issues
 ------------------
