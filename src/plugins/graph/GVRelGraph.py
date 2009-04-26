@@ -285,9 +285,6 @@ class RelGraphReport(Report):
                                               self.arrowheadstyle,
                                               self.arrowtailstyle )
                         self.doc.end_subgraph()
-                    # Link this person to all his/her families.
-                    #self.doc.add_link( fam_id, p_id, "", 
-                    #                  self.arrowheadstyle, self.arrowtailstyle )
 
     def get_gender_style(self, person):
         "return gender specific person style"
