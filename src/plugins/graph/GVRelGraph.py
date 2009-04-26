@@ -266,9 +266,28 @@ class RelGraphReport(Report):
                             style = "filled"
                         self.doc.add_node(fam_id, label, "ellipse",
                                           color, style, fill)
+                        
+                        f_handle = fam.get_father_handle()
+                        m_handle = fam.get_mother_handle()
+                        self.doc.start_subgraph(fam_id)
+                        if f_handle:
+                            father = \
+                              self.database.get_person_from_handle(f_handle)
+                            self.doc.add_link(fam_id,
+                                              father.get_gramps_id(), "", 
+                                              self.arrowheadstyle,
+                                              self.arrowtailstyle )
+                        if m_handle:
+                            mother = \
+                              self.database.get_person_from_handle(m_handle)
+                            self.doc.add_link(fam_id,
+                                              mother.get_gramps_id(), "", 
+                                              self.arrowheadstyle,
+                                              self.arrowtailstyle )
+                        self.doc.end_subgraph()
                     # Link this person to all his/her families.
-                    self.doc.add_link( fam_id, p_id, "", 
-                                      self.arrowheadstyle, self.arrowtailstyle )
+                    #self.doc.add_link( fam_id, p_id, "", 
+                    #                  self.arrowheadstyle, self.arrowtailstyle )
 
     def get_gender_style(self, person):
         "return gender specific person style"
