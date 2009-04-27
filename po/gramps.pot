@@ -95,7 +95,6 @@ msgstr ""
 msgid "Organize Bookmarks"
 msgstr ""
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. Add column with object name
 #: ../src/Bookmarks.py:215 ../src/GrampsCfg.py:205 ../src/ScratchPad.py:194
 #: ../src/ScratchPad.py:380 ../src/ScratchPad.py:436 ../src/ScratchPad.py:469
@@ -128,7 +127,7 @@ msgstr ""
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
-#: ../src/FilterEditor/_ShowResults.py:86 HowDescendants.py:42
+#: ../src/FilterEditor/_ShowResults.py:86
 msgid "Name"
 msgstr ""
 
@@ -335,13 +334,12 @@ msgstr ""
 msgid "Select file _type:"
 msgstr ""
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. -------------------------------------------------------------------------
 #.
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:89 FamilyTree.py:863
+#: ../src/DbManager.py:89
 msgid "Family Tree"
 msgstr ""
 
@@ -1957,7 +1955,7 @@ msgstr ""
 #: ../src/DataViews/PersonView.py:74 ../src/DataViews/RelationView.py:1287
 #: ../src/Selectors/_SelectPerson.py:83 ../src/Selectors/_SelectPerson.py:111
 #: ../src/plugins/textreport/FamilyGroup.py:491
-#: ../src/plugins/tool/RelCalc.py:63 Cousin.py:1503
+#: ../src/plugins/tool/RelCalc.py:63
 msgid "Spouse"
 msgstr ""
 
@@ -2675,7 +2673,7 @@ msgid ""
 "abandoning changes."
 msgstr ""
 
-#: ../src/Utils.py:186 ../src/Utils.py:206 FamilyTree.py:520
+#: ../src/Utils.py:186 ../src/Utils.py:206
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr ""
@@ -5869,9 +5867,8 @@ msgstr ""
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
 #: ../src/plugins/tool/SoundGen.py:156 ../src/plugins/tool/Verify.py:1584
 #: ../src/plugins/webreport/NarrativeWeb.py:3623
-#: ../src/plugins/webreport/WebCal.py:1589 Ancestor2.py:1217 Cousin.py:1649
-#: Descend2.py:1708 Descend2.py:1741 DescendantCountGramplet.py:106
-#: FamilyTree.py:864 GoogleEarthWriteKML.py:215 HowDescendants.py:93
+#: ../src/plugins/webreport/WebCal.py:1589 Ancestor2.py:1217 Descend2.py:1708
+#: Descend2.py:1741 DescendantCountGramplet.py:106 GoogleEarthWriteKML.py:215
 #: RepositoriesReport.py:209 TimelineQuickview.py:204
 msgid "Stable"
 msgstr ""
@@ -6290,19 +6287,19 @@ msgstr ""
 msgid "The center person for the filter"
 msgstr ""
 
-#: ../src/plugins/Records.py:460 FamilyTree.py:746
+#: ../src/plugins/Records.py:460
 msgid "Use call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:462 FamilyTree.py:748
+#: ../src/plugins/Records.py:462
 msgid "Don't use call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:463 FamilyTree.py:749
+#: ../src/plugins/Records.py:463
 msgid "Replace first name with call name"
 msgstr ""
 
-#: ../src/plugins/Records.py:464 FamilyTree.py:750
+#: ../src/plugins/Records.py:464
 msgid "Underline call name in first name / add call name to first name"
 msgstr ""
 
@@ -6327,8 +6324,8 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:391
 #: ../src/plugins/textreport/MarkerReport.py:486
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
-#: ../src/plugins/textreport/Summary.py:285 Ancestor2.py:1168 Cousin.py:1579
-#: Descend2.py:1636 FamilyGroups_1_0.py:581 locations.py:241
+#: ../src/plugins/textreport/Summary.py:285 Ancestor2.py:1168 Descend2.py:1636
+#: FamilyGroups_1_0.py:581 locations.py:241
 msgid "The basic style used for the text display."
 msgstr ""
 
@@ -6504,7 +6501,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:463
 #: ../src/plugins/drawreport/DescendTree.py:460 Ancestor2.py:1034
-#: Descend2.py:1489 FamilyTree.py:728
+#: Descend2.py:1489
 msgid "Tree Options"
 msgstr ""
 
@@ -6537,13 +6534,13 @@ msgstr ""
 #: ../src/plugins/textreport/DescendReport.py:201
 #: ../src/plugins/textreport/DetAncestralReport.py:721
 #: ../src/plugins/textreport/DetDescendantReport.py:702 Ancestor2.py:1040
-#: Cousin.py:1486 DenominoViso.py:2560 Descend2.py:1504
+#: DenominoViso.py:2560 Descend2.py:1504
 msgid "Generations"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:470
 #: ../src/plugins/drawreport/DescendTree.py:467 Ancestor2.py:1041
-#: Cousin.py:1487 DenominoViso.py:2561 Descend2.py:1505
+#: DenominoViso.py:2561 Descend2.py:1505
 msgid "The number of generations to include in the tree"
 msgstr ""
 
@@ -6554,30 +6551,30 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:475
 #: ../src/plugins/drawreport/DescendTree.py:472 Ancestor2.py:1066
-#: Ancestor2.py:1084 Ancestor2.py:1092 Cousin.py:1492 Cousin.py:1518
-#: Descend2.py:1520 Descend2.py:1543 Descend2.py:1551
+#: Ancestor2.py:1084 Ancestor2.py:1092 Descend2.py:1520 Descend2.py:1543
+#: Descend2.py:1551
 msgid "Display format for the outputbox."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:478
-#: ../src/plugins/drawreport/DescendTree.py:475 FamilyTree.py:742
+#: ../src/plugins/drawreport/DescendTree.py:475
 msgid "Sc_ale to fit on a single page"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:479
-#: ../src/plugins/drawreport/DescendTree.py:476 FamilyTree.py:743
+#: ../src/plugins/drawreport/DescendTree.py:476
 msgid "Whether to scale to fit on a single page."
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:479 Ancestor2.py:1127
-#: Cousin.py:1557 Descend2.py:1588
+#: Descend2.py:1588
 msgid "Include Blank Pages"
 msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:483
 #: ../src/plugins/drawreport/DescendTree.py:480 Ancestor2.py:1128
-#: Cousin.py:1558 Descend2.py:1589
+#: Descend2.py:1589
 msgid "Whether to include pages that are blank."
 msgstr ""
 
@@ -6593,7 +6590,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:508
 #: ../src/plugins/drawreport/DescendTree.py:504 Ancestor2.py:1177
-#: Cousin.py:1571 Descend2.py:1628
+#: Descend2.py:1628
 msgid "The basic style used for the title display."
 msgstr ""
 
@@ -7776,7 +7773,7 @@ msgstr ""
 msgid "Descendant Gramplet"
 msgstr ""
 
-#: ../src/plugins/gramplet/DescendGramplet.py:170 HowDescendants.py:42
+#: ../src/plugins/gramplet/DescendGramplet.py:170
 msgid "Descendants"
 msgstr ""
 
@@ -9823,11 +9820,11 @@ msgstr ""
 msgid "Custom Text"
 msgstr ""
 
-#: ../src/plugins/textreport/DescendReport.py:46 Cousin.py:67
+#: ../src/plugins/textreport/DescendReport.py:46
 msgid "b."
 msgstr ""
 
-#: ../src/plugins/textreport/DescendReport.py:47 Cousin.py:68
+#: ../src/plugins/textreport/DescendReport.py:47
 msgid "d."
 msgstr ""
 
@@ -10258,14 +10255,12 @@ msgstr ""
 msgid "Family Group Report"
 msgstr ""
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:602 Cousin.py:1482
-#: FamilyTree.py:730
+#: ../src/plugins/textreport/FamilyGroup.py:602
 msgid "Center Family"
 msgstr ""
 
-#: ../src/plugins/textreport/FamilyGroup.py:603 Cousin.py:1483
+#: ../src/plugins/textreport/FamilyGroup.py:603
 msgid "The center family for the report"
 msgstr ""
 
@@ -10351,13 +10346,12 @@ msgstr ""
 msgid "Missing Information"
 msgstr ""
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:661 FamilyTree.py:760
+#: ../src/plugins/textreport/FamilyGroup.py:661
 msgid "Print fields for missing information"
 msgstr ""
 
-#: ../src/plugins/textreport/FamilyGroup.py:663 FamilyTree.py:761
+#: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Whether to include fields for missing information."
 msgstr ""
 
@@ -22680,25 +22674,25 @@ msgid ""
 "Display Format"
 msgstr ""
 
-#: Ancestor2.py:1087 Cousin.py:1513 Descend2.py:1546
+#: Ancestor2.py:1087 Descend2.py:1546
 msgid "Include Marriage information"
 msgstr ""
 
-#: Ancestor2.py:1088 Cousin.py:1514 Descend2.py:1547
+#: Ancestor2.py:1088 Descend2.py:1547
 msgid "Whether to include marriage information in the report."
 msgstr ""
 
-#: Ancestor2.py:1091 Cousin.py:1517 Descend2.py:1550
+#: Ancestor2.py:1091 Descend2.py:1550
 msgid ""
 "Marraige\n"
 "Display Format"
 msgstr ""
 
-#: Ancestor2.py:1100 Cousin.py:1528 Descend2.py:1561
+#: Ancestor2.py:1100 Descend2.py:1561
 msgid "Print"
 msgstr ""
 
-#: Ancestor2.py:1102 Cousin.py:1530 Descend2.py:1563
+#: Ancestor2.py:1102 Descend2.py:1563
 msgid "Scale report to fit"
 msgstr ""
 
@@ -22714,39 +22708,39 @@ msgstr ""
 msgid "Scale report to fit the size of the page"
 msgstr ""
 
-#: Ancestor2.py:1106 Cousin.py:1534 Descend2.py:1567
+#: Ancestor2.py:1106 Descend2.py:1567
 msgid "Wheather to scale the report to fit a specific size"
 msgstr ""
 
-#: Ancestor2.py:1110 Cousin.py:1537 Descend2.py:1571
+#: Ancestor2.py:1110 Descend2.py:1571
 msgid "One page report"
 msgstr ""
 
-#: Ancestor2.py:1111 Cousin.py:1538 Descend2.py:1572
+#: Ancestor2.py:1111 Descend2.py:1572
 msgid "Whether to scale the size of the page to the size of the report."
 msgstr ""
 
-#: Ancestor2.py:1115 Cousin.py:1545 Descend2.py:1576
+#: Ancestor2.py:1115 Descend2.py:1576
 msgid "Include Report Title"
 msgstr ""
 
-#: Ancestor2.py:1116 Cousin.py:1546 Descend2.py:1577
+#: Ancestor2.py:1116 Descend2.py:1577
 msgid "Whether to include the report title."
 msgstr ""
 
-#: Ancestor2.py:1119 Cousin.py:1549 Descend2.py:1580
+#: Ancestor2.py:1119 Descend2.py:1580
 msgid "Print a border"
 msgstr ""
 
-#: Ancestor2.py:1120 Cousin.py:1550 Descend2.py:1581
+#: Ancestor2.py:1120 Descend2.py:1581
 msgid "Whether to make a border around the report."
 msgstr ""
 
-#: Ancestor2.py:1123 Cousin.py:1553 Descend2.py:1584
+#: Ancestor2.py:1123 Descend2.py:1584
 msgid "Print Page Numbers"
 msgstr ""
 
-#: Ancestor2.py:1124 Cousin.py:1554 Descend2.py:1585
+#: Ancestor2.py:1124 Descend2.py:1585
 msgid "Whether to print page numbers on each page."
 msgstr ""
 
@@ -22786,81 +22780,6 @@ msgstr ""
 
 #: ClockGramplet.py:162
 msgid "Clock"
-msgstr ""
-
-#: Cousin.py:69
-msgid "m."
-msgstr ""
-
-#: Cousin.py:1480
-msgid "Personal"
-msgstr ""
-
-#: Cousin.py:1490 Descend2.py:1518
-msgid ""
-"Personal\n"
-"Display Format"
-msgstr ""
-
-#: Cousin.py:1495 Descend2.py:1527
-msgid "Bold direct descendants"
-msgstr ""
-
-#: Cousin.py:1496 Descend2.py:1528
-msgid ""
-"Whether to bold those people that are direct (not step or half) decendants."
-msgstr ""
-
-#: Cousin.py:1499
-msgid "Co_mpress Personal Display Format"
-msgstr ""
-
-#: Cousin.py:1500 Descend2.py:1524
-msgid "Whether to not print empty lines within the 'Personal Display'."
-msgstr ""
-
-#: Cousin.py:1505 Descend2.py:1508
-msgid "Level of Spouses"
-msgstr ""
-
-#: Cousin.py:1506 Descend2.py:1509
-msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
-
-#: Cousin.py:1509 Descend2.py:1537
-msgid "Indent Spouses"
-msgstr ""
-
-#: Cousin.py:1510 Descend2.py:1538
-msgid "Whether to indent the spouses in the tree."
-msgstr ""
-
-#: Cousin.py:1521 Descend2.py:1554
-msgid "Replace"
-msgstr ""
-
-#: Cousin.py:1523 Descend2.py:1556
-msgid ""
-"Replace Display Format:\n"
-"'Replace this'/'with this'"
-msgstr ""
-
-#: Cousin.py:1525 Descend2.py:1558
-msgid ""
-"ie\n"
-"United States of America/U.S.A"
-msgstr ""
-
-#: Cousin.py:1591 Descend2.py:1649
-msgid "The bold style used for the text display."
-msgstr ""
-
-#: Cousin.py:1648
-msgid "Cousin Tree"
-msgstr ""
-
-#: Cousin.py:1652
-msgid "Produces a graphical cousin tree"
 msgstr ""
 
 #: DataEntryGramplet.py:52 NoteGramplet.py:59
@@ -23555,8 +23474,35 @@ msgstr ""
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr ""
 
+#: Descend2.py:1508
+msgid "Level of Spouses"
+msgstr ""
+
+#: Descend2.py:1509
+msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
+msgstr ""
+
+#: Descend2.py:1518
+msgid ""
+"Personal\n"
+"Display Format"
+msgstr ""
+
 #: Descend2.py:1523
 msgid "Co_mpress Personal and Spousal Display Formats"
+msgstr ""
+
+#: Descend2.py:1524
+msgid "Whether to not print empty lines within the 'Personal Display'."
+msgstr ""
+
+#: Descend2.py:1527
+msgid "Bold direct descendants"
+msgstr ""
+
+#: Descend2.py:1528
+msgid ""
+"Whether to bold those people that are direct (not step or half) decendants."
 msgstr ""
 
 #: Descend2.py:1533
@@ -23567,10 +23513,38 @@ msgstr ""
 msgid "Whether spouses can have a different format."
 msgstr ""
 
+#: Descend2.py:1537
+msgid "Indent Spouses"
+msgstr ""
+
+#: Descend2.py:1538
+msgid "Whether to indent the spouses in the tree."
+msgstr ""
+
 #: Descend2.py:1541
 msgid ""
 "Spousal\n"
 "Display Format"
+msgstr ""
+
+#: Descend2.py:1554
+msgid "Replace"
+msgstr ""
+
+#: Descend2.py:1556
+msgid ""
+"Replace Display Format:\n"
+"'Replace this'/'with this'"
+msgstr ""
+
+#: Descend2.py:1558
+msgid ""
+"ie\n"
+"United States of America/U.S.A"
+msgstr ""
+
+#: Descend2.py:1649
+msgid "The bold style used for the text display."
 msgstr ""
 
 #: Descend2.py:1707
@@ -23686,102 +23660,6 @@ msgstr ""
 msgid "FamilyGroups"
 msgstr ""
 
-#: FamilyTree.py:74
-msgid "Family Tree for %s"
-msgstr ""
-
-#: FamilyTree.py:641
-msgid "born"
-msgstr ""
-
-#: FamilyTree.py:643
-msgid "died"
-msgstr ""
-
-#: FamilyTree.py:645
-msgid "married"
-msgstr ""
-
-#: FamilyTree.py:647
-msgid "divorced"
-msgstr ""
-
-#: FamilyTree.py:654
-msgid "on %(ymd_date)s"
-msgstr ""
-
-#: FamilyTree.py:656
-msgid "in %(ym_date)s"
-msgstr ""
-
-#: FamilyTree.py:658
-msgid "in %(y_date)s"
-msgstr ""
-
-#: FamilyTree.py:662
-msgid "on %(placeholder)s"
-msgstr ""
-
-#: FamilyTree.py:665
-msgid "on %(placeholder)s (%(partial)s)"
-msgstr ""
-
-#: FamilyTree.py:678
-msgid "in %(place)s"
-msgstr ""
-
-#: FamilyTree.py:731
-msgid "The center family for the tree"
-msgstr ""
-
-#: FamilyTree.py:734
-msgid "Ancestor Generations"
-msgstr ""
-
-#: FamilyTree.py:735
-msgid "The number of ancestor generations to include in the tree"
-msgstr ""
-
-#: FamilyTree.py:738
-msgid "Descendant Generations"
-msgstr ""
-
-#: FamilyTree.py:739
-msgid "The number of descendant generations to include in the tree"
-msgstr ""
-
-#: FamilyTree.py:753
-msgid "Print event data"
-msgstr ""
-
-#: FamilyTree.py:755
-msgid "Year only"
-msgstr ""
-
-#: FamilyTree.py:756
-msgid "Full date"
-msgstr ""
-
-#: FamilyTree.py:757
-msgid "Full date and place"
-msgstr ""
-
-#: FamilyTree.py:775
-msgid "The style used for the title display."
-msgstr ""
-
-#: FamilyTree.py:783
-msgid "The style used for names."
-msgstr ""
-
-#: FamilyTree.py:791
-msgid "The style used for data (birth, death, marriage, divorce)."
-msgstr ""
-
-#: FamilyTree.py:867
-msgid "Produces a graphical family tree"
-msgstr ""
-
 #: FaqGramplet.py:44
 msgid "FAQ Gramplet"
 msgstr ""
@@ -23840,22 +23718,6 @@ msgstr ""
 
 #: HeadlineNewsGramplet.py:280
 msgid "Headline News"
-msgstr ""
-
-#: HowDescendants.py:40
-msgid "Descendants of the ancestor of %s"
-msgstr ""
-
-#: HowDescendants.py:42
-msgid "Sosas"
-msgstr ""
-
-#: HowDescendants.py:92
-msgid "How many descendants"
-msgstr ""
-
-#: HowDescendants.py:94
-msgid "Display how many descendants have each ancestor."
 msgstr ""
 
 #: NoteGramplet.py:268
