@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 3.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-27 17:13+0200\n"
-"PO-Revision-Date: 2009-04-27 18:47+0100\n"
+"PO-Revision-Date: 2009-04-27 21:31+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,6 @@ msgstr "%(title)s - GRAMPS"
 msgid "Organize Bookmarks"
 msgstr "Édition des signets"
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. Add column with object name
 #: ../src/Bookmarks.py:215
 #: ../src/GrampsCfg.py:205
@@ -171,7 +170,6 @@ msgstr "Édition des signets"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
 #: ../src/FilterEditor/_ShowResults.py:86
-#: HowDescendants.py:42
 msgid "Name"
 msgstr "Nom"
 
@@ -418,14 +416,12 @@ msgstr "Détecté automatiquement"
 msgid "Select file _type:"
 msgstr "Chois_ir un type de fichier :"
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. -------------------------------------------------------------------------
 #.
 #. constants
 #.
 #. -------------------------------------------------------------------------
 #: ../src/DbManager.py:89
-#: FamilyTree.py:863
 msgid "Family Tree"
 msgstr "Arbre familial"
 
@@ -2325,7 +2321,6 @@ msgstr "Mère"
 #: ../src/Selectors/_SelectPerson.py:111
 #: ../src/plugins/textreport/FamilyGroup.py:491
 #: ../src/plugins/tool/RelCalc.py:63
-#: Cousin.py:1503
 msgid "Spouse"
 msgstr "Conjoint"
 
@@ -3133,7 +3128,6 @@ msgstr "Les données peuvent être récupérées en annulant l'opération ou en 
 
 #: ../src/Utils.py:186
 #: ../src/Utils.py:206
-#: FamilyTree.py:520
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s et %(mother)s"
@@ -6515,13 +6509,10 @@ msgstr "Livre GRAMPS"
 #: ../src/plugins/webreport/NarrativeWeb.py:3623
 #: ../src/plugins/webreport/WebCal.py:1589
 #: Ancestor2.py:1217
-#: Cousin.py:1649
 #: Descend2.py:1708
 #: Descend2.py:1741
 #: DescendantCountGramplet.py:106
-#: FamilyTree.py:864
 #: GoogleEarthWriteKML.py:215
-#: HowDescendants.py:93
 #: RepositoriesReport.py:209
 #: TimelineQuickview.py:204
 msgid "Stable"
@@ -6931,22 +6922,18 @@ msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
 
 #: ../src/plugins/Records.py:460
-#: FamilyTree.py:746
 msgid "Use call name"
 msgstr "Utiliser le nom usuel"
 
 #: ../src/plugins/Records.py:462
-#: FamilyTree.py:748
 msgid "Don't use call name"
 msgstr "Ne pas utiliser le nom usuel"
 
 #: ../src/plugins/Records.py:463
-#: FamilyTree.py:749
 msgid "Replace first name with call name"
 msgstr "Remplacer le prénom par le nom usuel"
 
 #: ../src/plugins/Records.py:464
-#: FamilyTree.py:750
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Souligner ou ajouter le nom usuel dans le prénom"
 
@@ -6974,7 +6961,6 @@ msgstr "Enregistrement sur la famille"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 #: Ancestor2.py:1168
-#: Cousin.py:1579
 #: Descend2.py:1636
 #: FamilyGroups_1_0.py:581
 #: locations.py:241
@@ -7168,7 +7154,6 @@ msgstr "Arbre des ascendants de %s"
 #: ../src/plugins/drawreport/DescendTree.py:460
 #: Ancestor2.py:1034
 #: Descend2.py:1489
-#: FamilyTree.py:728
 msgid "Tree Options"
 msgstr "Options de l'arbre"
 
@@ -7204,7 +7189,6 @@ msgstr "L'individu central pour ce rapport"
 #: ../src/plugins/textreport/DetAncestralReport.py:721
 #: ../src/plugins/textreport/DetDescendantReport.py:702
 #: Ancestor2.py:1040
-#: Cousin.py:1486
 #: DenominoViso.py:2560
 #: Descend2.py:1504
 msgid "Generations"
@@ -7213,7 +7197,6 @@ msgstr "Générations"
 #: ../src/plugins/drawreport/AncestorTree.py:470
 #: ../src/plugins/drawreport/DescendTree.py:467
 #: Ancestor2.py:1041
-#: Cousin.py:1487
 #: DenominoViso.py:2561
 #: Descend2.py:1505
 msgid "The number of generations to include in the tree"
@@ -7229,8 +7212,6 @@ msgstr "Format d'affichage"
 #: Ancestor2.py:1066
 #: Ancestor2.py:1084
 #: Ancestor2.py:1092
-#: Cousin.py:1492
-#: Cousin.py:1518
 #: Descend2.py:1520
 #: Descend2.py:1543
 #: Descend2.py:1551
@@ -7239,20 +7220,17 @@ msgstr "Affiche le format de sortie dans la fenêtre."
 
 #: ../src/plugins/drawreport/AncestorTree.py:478
 #: ../src/plugins/drawreport/DescendTree.py:475
-#: FamilyTree.py:742
 msgid "Sc_ale to fit on a single page"
 msgstr "Adaptation à une page"
 
 #: ../src/plugins/drawreport/AncestorTree.py:479
 #: ../src/plugins/drawreport/DescendTree.py:476
-#: FamilyTree.py:743
 msgid "Whether to scale to fit on a single page."
 msgstr "Cocher pour adapter à une page."
 
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:479
 #: Ancestor2.py:1127
-#: Cousin.py:1557
 #: Descend2.py:1588
 msgid "Include Blank Pages"
 msgstr "Inclure des pages vierges"
@@ -7260,7 +7238,6 @@ msgstr "Inclure des pages vierges"
 #: ../src/plugins/drawreport/AncestorTree.py:483
 #: ../src/plugins/drawreport/DescendTree.py:480
 #: Ancestor2.py:1128
-#: Cousin.py:1558
 #: Descend2.py:1589
 msgid "Whether to include pages that are blank."
 msgstr "Cocher pour inclure les pages blanches."
@@ -7280,7 +7257,6 @@ msgstr "Cocher pour compresser l'arbre."
 #: ../src/plugins/drawreport/AncestorTree.py:508
 #: ../src/plugins/drawreport/DescendTree.py:504
 #: Ancestor2.py:1177
-#: Cousin.py:1571
 #: Descend2.py:1628
 msgid "The basic style used for the title display."
 msgstr "Le style de base pour afficher les titres."
@@ -8497,7 +8473,6 @@ msgid "Descendant Gramplet"
 msgstr "Gramplet Descendants"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:170
-#: HowDescendants.py:42
 msgid "Descendants"
 msgstr "Descendants"
 
@@ -10575,12 +10550,10 @@ msgid "Custom Text"
 msgstr "Texte personnalisé"
 
 #: ../src/plugins/textreport/DescendReport.py:46
-#: Cousin.py:67
 msgid "b."
 msgstr "n."
 
 #: ../src/plugins/textreport/DescendReport.py:47
-#: Cousin.py:68
 msgid "d."
 msgstr "d."
 
@@ -11014,16 +10987,12 @@ msgstr "Fiche familiale - Génération %d"
 msgid "Family Group Report"
 msgstr "Fiche familiale"
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:602
-#: Cousin.py:1482
-#: FamilyTree.py:730
 msgid "Center Family"
 msgstr "Famille centrale"
 
 #: ../src/plugins/textreport/FamilyGroup.py:603
-#: Cousin.py:1483
 msgid "The center family for the report"
 msgstr "La famille centrale pour ce rapport"
 
@@ -11109,15 +11078,12 @@ msgstr "Inclure ou non les informations du mariage des enfants."
 msgid "Missing Information"
 msgstr "Information manquante"
 
-#. #-#-#-#-#  gramps.pot (PACKAGE VERSION)  #-#-#-#-#
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:661
-#: FamilyTree.py:760
 msgid "Print fields for missing information"
 msgstr "Champs d'impression pour les informations manquantes"
 
 #: ../src/plugins/textreport/FamilyGroup.py:663
-#: FamilyTree.py:761
 msgid "Whether to include fields for missing information."
 msgstr "Inclure ou non les champs pour l'information manquante."
 
@@ -23235,19 +23201,16 @@ msgstr ""
 "Secondaire"
 
 #: Ancestor2.py:1087
-#: Cousin.py:1513
 #: Descend2.py:1546
 msgid "Include Marriage information"
 msgstr "Inclure les informations sur le mariage"
 
 #: Ancestor2.py:1088
-#: Cousin.py:1514
 #: Descend2.py:1547
 msgid "Whether to include marriage information in the report."
 msgstr "Inclure ou non les informations du mariage dans le rapport."
 
 #: Ancestor2.py:1091
-#: Cousin.py:1517
 #: Descend2.py:1550
 msgid ""
 "Marraige\n"
@@ -23257,13 +23220,11 @@ msgstr ""
 "Mariage"
 
 #: Ancestor2.py:1100
-#: Cousin.py:1528
 #: Descend2.py:1561
 msgid "Print"
 msgstr "Impression"
 
 #: Ancestor2.py:1102
-#: Cousin.py:1530
 #: Descend2.py:1563
 msgid "Scale report to fit"
 msgstr "Adapter le rapport"
@@ -23281,55 +23242,46 @@ msgid "Scale report to fit the size of the page"
 msgstr "Adaptation à la page"
 
 #: Ancestor2.py:1106
-#: Cousin.py:1534
 #: Descend2.py:1567
 msgid "Wheather to scale the report to fit a specific size"
 msgstr "Cocher pour adapter le rapport à une taille spécifique"
 
 #: Ancestor2.py:1110
-#: Cousin.py:1537
 #: Descend2.py:1571
 msgid "One page report"
 msgstr "Rapport sur une page"
 
 #: Ancestor2.py:1111
-#: Cousin.py:1538
 #: Descend2.py:1572
 msgid "Whether to scale the size of the page to the size of the report."
-msgstr ""
+msgstr "Adapter ou non la taille de la page pour le rapport"
 
 #: Ancestor2.py:1115
-#: Cousin.py:1545
 #: Descend2.py:1576
 msgid "Include Report Title"
 msgstr "Inclure le titre du rapport"
 
 #: Ancestor2.py:1116
-#: Cousin.py:1546
 #: Descend2.py:1577
 msgid "Whether to include the report title."
 msgstr "Inclure ou non le titre du rapport."
 
 #: Ancestor2.py:1119
-#: Cousin.py:1549
 #: Descend2.py:1580
 msgid "Print a border"
 msgstr "Imprimer une bordure"
 
 #: Ancestor2.py:1120
-#: Cousin.py:1550
 #: Descend2.py:1581
 msgid "Whether to make a border around the report."
 msgstr "Ajouter ou non une bordure au rapport."
 
 #: Ancestor2.py:1123
-#: Cousin.py:1553
 #: Descend2.py:1584
 msgid "Print Page Numbers"
 msgstr "Imprimer les numéros de page"
 
 #: Ancestor2.py:1124
-#: Cousin.py:1554
 #: Descend2.py:1585
 msgid "Whether to print page numbers on each page."
 msgstr "Imprimer ou non les numéros de chaque page."
@@ -23379,98 +23331,6 @@ msgstr "Gramplet Horloge"
 #: ClockGramplet.py:162
 msgid "Clock"
 msgstr "Horloge"
-
-#: Cousin.py:69
-msgid "m."
-msgstr "m."
-
-#: Cousin.py:1480
-msgid "Personal"
-msgstr "Individu"
-
-#: Cousin.py:1490
-#: Descend2.py:1518
-msgid ""
-"Personal\n"
-"Display Format"
-msgstr ""
-"Individu\n"
-"Format d'affichage"
-
-#: Cousin.py:1495
-#: Descend2.py:1527
-msgid "Bold direct descendants"
-msgstr "Ligne directe des descendants en gras"
-
-#: Cousin.py:1496
-#: Descend2.py:1528
-msgid "Whether to bold those people that are direct (not step or half) decendants."
-msgstr ""
-
-#: Cousin.py:1499
-msgid "Co_mpress Personal Display Format"
-msgstr ""
-
-#: Cousin.py:1500
-#: Descend2.py:1524
-msgid "Whether to not print empty lines within the 'Personal Display'."
-msgstr ""
-
-#: Cousin.py:1505
-#: Descend2.py:1508
-msgid "Level of Spouses"
-msgstr "Niveau des conjoints"
-
-#: Cousin.py:1506
-#: Descend2.py:1509
-msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
-msgstr ""
-
-#: Cousin.py:1509
-#: Descend2.py:1537
-msgid "Indent Spouses"
-msgstr "Indenter les conjoints"
-
-#: Cousin.py:1510
-#: Descend2.py:1538
-msgid "Whether to indent the spouses in the tree."
-msgstr "Indenter ou non les conjoints dans l'arbre."
-
-# replacer ? 
-# voir context
-#: Cousin.py:1521
-#: Descend2.py:1554
-msgid "Replace"
-msgstr "Remplacer"
-
-#: Cousin.py:1523
-#: Descend2.py:1556
-msgid ""
-"Replace Display Format:\n"
-"'Replace this'/'with this'"
-msgstr ""
-
-#: Cousin.py:1525
-#: Descend2.py:1558
-msgid ""
-"ie\n"
-"United States of America/U.S.A"
-msgstr ""
-"ex:\n"
-"United States of America/U.S.A"
-
-#: Cousin.py:1591
-#: Descend2.py:1649
-msgid "The bold style used for the text display."
-msgstr "Le style gras pour afficher du texte."
-
-#: Cousin.py:1648
-msgid "Cousin Tree"
-msgstr ""
-
-#: Cousin.py:1652
-msgid "Produces a graphical cousin tree"
-msgstr "Produit un arbre graphique des cousins"
 
 #: DataEntryGramplet.py:52
 #: NoteGramplet.py:59
@@ -23682,15 +23542,15 @@ msgstr "Roue"
 
 #: DenominoViso.py:202
 msgid "Growth Spiral"
-msgstr ""
+msgstr "Spirale grandissante"
 
 #: DenominoViso.py:203
 msgid "Mandelbrot Tree"
-msgstr ""
+msgstr "Arbre de mandelbrot"
 
 #: DenominoViso.py:204
 msgid "Pythagoras Tree"
-msgstr ""
+msgstr "Arbre de pythagore"
 
 #: DenominoViso.py:208
 msgid "right to left"
@@ -23772,7 +23632,7 @@ msgstr "abréviation"
 
 #: DenominoViso.py:1738
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: DenominoViso.py:1939
 msgid "the chart type runs out of bounds"
@@ -23804,7 +23664,7 @@ msgstr "Titre de la page internet"
 
 #: DenominoViso.py:2539
 msgid "Any string you wish."
-msgstr ""
+msgstr "La chaîne désirée."
 
 #: DenominoViso.py:2543
 msgid "Either plot ancestor or descendants graph."
@@ -23824,7 +23684,7 @@ msgstr "Sens du temps"
 
 #: DenominoViso.py:2555
 msgid "Direction in which time increases."
-msgstr ""
+msgstr "Sens de la croissance du temps."
 
 #: DenominoViso.py:2564
 msgid "Max chart width (%)"
@@ -23832,11 +23692,11 @@ msgstr "Largeur du graphique max (%)"
 
 #: DenominoViso.py:2565
 msgid "Width of the tree as fraction of the browser window"
-msgstr ""
+msgstr "Largeur de l'arbre en tant que fraction de la fenêtre du navigateur"
 
 #: DenominoViso.py:2568
 msgid "Max chart height (px)"
-msgstr ""
+msgstr "Hauteur max du graphique (px)"
 
 #: DenominoViso.py:2569
 msgid "Height of the tree in pixels."
@@ -23844,11 +23704,11 @@ msgstr "Hauteur de l'arbre en pixels."
 
 #: DenominoViso.py:2572
 msgid "Closing remarks"
-msgstr ""
+msgstr "Observations finales"
 
 #: DenominoViso.py:2573
 msgid "List of strings, free text added at the bottom, for example for a copyright notice."
-msgstr ""
+msgstr "Liste de chaînes, texte libre ajouté en bas, par exemple une notice de droit d'auteur."
 
 #: DenominoViso.py:2576
 msgid "Include Options"
@@ -23956,7 +23816,7 @@ msgstr "Copier l'image"
 
 #: DenominoViso.py:2639
 msgid "Copy the images to a designated directory."
-msgstr ""
+msgstr "Copier les images vers un répertoire désigné. "
 
 #: DenominoViso.py:2645
 msgid "Images with Attribute"
@@ -23964,7 +23824,7 @@ msgstr "Images avec attribut"
 
 #: DenominoViso.py:2646
 msgid "Determine images with which attributes to in/exclude"
-msgstr ""
+msgstr "Déterminer les images avec les attributs à inclure"
 
 #: DenominoViso.py:2649
 msgid "Include Image source references"
@@ -23980,7 +23840,7 @@ msgstr "Attribut de la référence de la source"
 
 #: DenominoViso.py:2654
 msgid "Image attribute that should be used as source reference"
-msgstr ""
+msgstr "L'attribut de l'image qui doit être utilisé comme référence de la source"
 
 #: DenominoViso.py:2660
 msgid "Style Options"
@@ -24020,19 +23880,19 @@ msgstr ""
 
 #: DenominoViso.py:2678
 msgid "Width of rectangle (hrd):"
-msgstr ""
+msgstr "Largeur du rectangle (hrd) :"
 
 #: DenominoViso.py:2682
 msgid "Height of rectangle (hrd):"
-msgstr ""
+msgstr "Hauteur du rectangle (hrd) :"
 
 #: DenominoViso.py:2686
 msgid "Vertical distance of rectangles (hrd):"
-msgstr ""
+msgstr "Distance verticale des rectangles (hrd) :"
 
 #: DenominoViso.py:2690
 msgid "Extra style settings:"
-msgstr ""
+msgstr "Préférences supplémentaires:"
 
 #: DenominoViso.py:2694
 msgid "Advanced Options"
@@ -24040,7 +23900,7 @@ msgstr "Options avancées"
 
 #: DenominoViso.py:2696
 msgid "Old browser friendly output"
-msgstr ""
+msgstr "Sortie adaptée aux anciens navigateurs"
 
 #: DenominoViso.py:2697
 msgid "Whether to create an ordinary html-file that includes the xhtml-file so that deprecated browsers can be presented with content they can swallow."
@@ -24056,41 +23916,36 @@ msgid "Mouse handler used to interact with visitor of webpage."
 msgstr ""
 
 #: DenominoViso.py:2706
-#, fuzzy
 msgid "Birth relationship linestyle"
-msgstr "Éditer la relation"
+msgstr "Style de la lignée de naissance"
 
 #: DenominoViso.py:2708
 msgid "List of lists where each sublist is a list with information about the dash pattern of lines connecting children to parents."
 msgstr ""
 
 #: DenominoViso.py:2714
-#, fuzzy
 msgid "Source confidence color"
-msgstr "Éditeur de référence de la source"
+msgstr "Couleur pour la confiance de la source"
 
 #: DenominoViso.py:2716
 msgid "List os lists where each sublist is a list with information on the color to use for a certain confidence level."
 msgstr ""
 
 #: DenominoViso.py:2719
-#, fuzzy
 msgid "Event format"
-msgstr "Date de l'événement"
+msgstr "Format de l'événement"
 
 #: DenominoViso.py:2720
-#, fuzzy
 msgid "at"
-msgstr "lat"
+msgstr "à"
 
 #: DenominoViso.py:2724
 msgid "List os strings with placeholders for events. Known placeholders: <type>, <role>, <date>, <place>, <description>, <witnesses>, <source> and any <attribute-value>."
 msgstr ""
 
 #: DenominoViso.py:2727
-#, fuzzy
 msgid "Source format"
-msgstr "Note de la source"
+msgstr "Format de la source"
 
 #: DenominoViso.py:2728
 msgid "List of strings with placeholders for sources. Known placeholders: <title>, <volume>, <author>, <publication_info> and <abbreviation>."
@@ -24106,19 +23961,19 @@ msgstr "vers le répertoire :"
 
 #: DenominoViso.py:2827
 msgid "Save images in ..."
-msgstr ""
+msgstr "Sauver les images dans ..."
 
 #: DenominoViso.py:2876
 msgid "should be"
-msgstr ""
+msgstr "devrait être"
 
 #: DenominoViso.py:2918
 msgid "Name HTML-wrapper file"
-msgstr ""
+msgstr "Nom du fichier HTML (wrapper)"
 
 #: DenominoViso.py:2920
 msgid "Save HTML-wrapper file as ..."
-msgstr ""
+msgstr "Sauver le fichier HTML (wrapper) sous ..."
 
 #: DenominoViso.py:2946
 msgid "Give a filename ..."
@@ -24130,16 +23985,15 @@ msgstr "Type de relation"
 
 #: DenominoViso.py:3096
 msgid "Use dashed linestyle"
-msgstr ""
+msgstr "Utiliser les pointillés"
 
 #: DenominoViso.py:3101
-#, fuzzy
 msgid "Dash length"
-msgstr "Mois du décès"
+msgstr "Longueur du tiret"
 
 #: DenominoViso.py:3105
 msgid "Inter-dash length"
-msgstr ""
+msgstr "Longueur du pointillé"
 
 #: DenominoViso.py:3158
 msgid "Color"
@@ -24147,41 +24001,39 @@ msgstr "Couleur"
 
 #: DenominoViso.py:3201
 msgid "DenominoViso"
-msgstr ""
+msgstr "DenominoViso"
 
 #: DenominoViso.py:3202
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 #: DenominoViso.py:3205
 msgid "Generates a web (XHTML) page with a graphical representation of ancestors/descendants (SVG) where details about individuals become visible upon mouse-events."
-msgstr ""
+msgstr "Génère une page internet (XHTML) avec une représentation graphique des ascendants/descendants (SVG) dont les détails des individus deviennent visibles avec les actions de la souris."
 
 # de ou pour ?
 #: Descend2.py:616
-#, fuzzy
 msgid "Descendant Chart for %(person)s"
-msgstr "Arbre des descendants de %s"
+msgstr "Arbre des descendants de %(person)s"
 
+# de ou pour ?
 #: Descend2.py:618
-#, fuzzy
 msgid "Descendant Chart for %(father1)s and %(mother1)s"
-msgstr "Fille de %(father)s et %(mother)s."
+msgstr "Arbre des descendants de %(father1)s et %(mother1)s"
 
 # de ou pour ?
 #: Descend2.py:622
-#, fuzzy
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr "Liste détaillée des descendants de %(person_name)s"
+msgstr "Arbre des descendants de %(person)s et %(father1)s, %(mother1)s"
 
+# de ou pour ?
 #: Descend2.py:627
-#, fuzzy
 msgid "Descendant Chart for %(person)s, %(father1)s  and %(mother1)s"
-msgstr "Fille de %(father)s et %(mother)s."
+msgstr "Arbre des descendants de %(person)s, %(father1)s et %(mother1)s"
 
 #: Descend2.py:632
 msgid "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr ""
+msgstr "Arbre des descendants de %(father1)s, %(father2)s et %(mother1)s, %(mother2)s"
 
 #: Descend2.py:1492
 #: Descend2.py:1496
@@ -24190,49 +24042,106 @@ msgstr "Rapport pour"
 
 #: Descend2.py:1493
 #: Descend2.py:1497
-#, fuzzy
 msgid "The main person for the report"
-msgstr "L'individu central pour ce rapport"
+msgstr "L'individu principal pour ce rapport"
 
 #: Descend2.py:1500
-#, fuzzy
 msgid "Start with the parent(s) of the selected first"
-msgstr "Vous n'avez pas accès en écriture au fichier sélectionné."
+msgstr "Débute avec les parent(s) du premier sélectionné"
 
 #: Descend2.py:1501
-#, fuzzy
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "Calcul du nombre d'ascendants de l'individu sélectionné"
+msgstr "Affichera les parents, frères et sœurs de l'individu sélectionné."
+
+#: Descend2.py:1508
+msgid "Level of Spouses"
+msgstr "Niveau des conjoints"
+
+#: Descend2.py:1509
+msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
+msgstr "0=aucun conjoint, 1=inclure les conjoints, 2=inclure les conjoints du conjoint, etc"
+
+#: Descend2.py:1518
+msgid ""
+"Personal\n"
+"Display Format"
+msgstr ""
+"Individu\n"
+"Format d'affichage"
 
 #: Descend2.py:1523
 msgid "Co_mpress Personal and Spousal Display Formats"
-msgstr ""
+msgstr "Co_mpresser les formats d'affichage de l'individu et du conjoint"
+
+#: Descend2.py:1524
+msgid "Whether to not print empty lines within the 'Personal Display'."
+msgstr "Imprimer ou non des lignes vides dans l'affichage de l'individu."
+
+#: Descend2.py:1527
+msgid "Bold direct descendants"
+msgstr "Ligne directe des descendants en gras"
+
+#: Descend2.py:1528
+msgid "Whether to bold those people that are direct (not step or half) decendants."
+msgstr "Afficher ou non en gras les descendants directs (pas d'alliance ou d'adoption)."
 
 #: Descend2.py:1533
 msgid "Use seperate display format for spouses"
-msgstr ""
+msgstr "Utiliser un format d'affichage différent pour les conjoints"
 
 #: Descend2.py:1534
-#, fuzzy
 msgid "Whether spouses can have a different format."
-msgstr "Afficher ou non les conjoints dans l'arbre."
+msgstr "Les conjoints utilisent ou non un format différent."
+
+#: Descend2.py:1537
+msgid "Indent Spouses"
+msgstr "Indenter les conjoints"
+
+#: Descend2.py:1538
+msgid "Whether to indent the spouses in the tree."
+msgstr "Indenter ou non les conjoints dans l'arbre."
 
 #: Descend2.py:1541
-#, fuzzy
 msgid ""
 "Spousal\n"
 "Display Format"
-msgstr "Format d'affichage"
+msgstr ""
+"Format d'affichage\n"
+"Conjoint"
+
+# replacer ?
+# voir context
+#: Descend2.py:1554
+msgid "Replace"
+msgstr "Remplacer"
+
+#: Descend2.py:1556
+msgid ""
+"Replace Display Format:\n"
+"'Replace this'/'with this'"
+msgstr ""
+"Remplacer le format d'affichage:\n"
+"'Remplacer ceci'/'par cela'"
+
+#: Descend2.py:1558
+msgid ""
+"ie\n"
+"United States of America/U.S.A"
+msgstr ""
+"ex:\n"
+"United States of America/U.S.A"
+
+#: Descend2.py:1649
+msgid "The bold style used for the text display."
+msgstr "Le style gras pour afficher du texte."
 
 #: Descend2.py:1707
-#, fuzzy
 msgid "Personal Descend Tree"
-msgstr "Arbre des descendants"
+msgstr "Arbre individuel des descendants"
 
 #: Descend2.py:1740
-#, fuzzy
 msgid "Familial Descend Tree"
-msgstr "Arbre des descendants"
+msgstr "Arbre familial des descendants"
 
 #: DescendantCountGramplet.py:81
 msgid "Descendent Count"
@@ -24261,11 +24170,11 @@ msgstr "Gramplet Nombre de descendants"
 
 #: FamilyGroups_1_0.py:86
 msgid "\"FamilyGroups\" and \"Identification Number\" attributes "
-msgstr ""
+msgstr "Les attributs \"GroupesFamilial\" et \"Numéro d'identification\""
 
 #: FamilyGroups_1_0.py:450
 msgid "TOTAL NUMBER OF INDIVIDUALS : %s"
-msgstr ""
+msgstr "NOMBRE TOTAL D'INDIVIDUS : %s"
 
 #: FamilyGroups_1_0.py:452
 #: FamilyGroups_1_0.py:485
@@ -24286,7 +24195,7 @@ msgstr " est le nom étudié (Personne active).\n"
 
 #: FamilyGroups_1_0.py:459
 msgid " ==> When the number is the lower than twenty, persons are precised with surname, ID gramps and attribut.\n"
-msgstr ""
+msgstr " ===> Quand le nombre est inférieur à 20, les individus sont précisés par le nom de famille, Identifiant Gramps et attribut.\n"
 
 #: FamilyGroups_1_0.py:471
 msgid ""
@@ -24305,11 +24214,11 @@ msgstr ""
 
 #: FamilyGroups_1_0.py:483
 msgid "  Of the individuals bear this name   : %s"
-msgstr ""
+msgstr "  Individus portant ce nom : %s"
 
 #: FamilyGroups_1_0.py:488
 msgid "  Of the individuals bear this attribute   : %s  "
-msgstr ""
+msgstr "  Individus portant cet attribut : %s"
 
 #: FamilyGroups_1_0.py:501
 msgid "                                         %s"
@@ -24322,11 +24231,11 @@ msgstr ""
 
 #: FamilyGroups_1_0.py:513
 msgid " ========= > BEWARE  %s"
-msgstr ""
+msgstr " ========= > ATTENTION  %s"
 
 #: FamilyGroups_1_0.py:514
 msgid " PERSONS HAVE a empty  \"ID\" attribut or not attribute"
-msgstr ""
+msgstr " INDIVIDUS ONT un attribut \"ID\" ou aucun attribut"
 
 #: FamilyGroups_1_0.py:572
 msgid "The basic style used for the para title."
@@ -24345,113 +24254,6 @@ msgstr "En test"
 msgid "FamilyGroups"
 msgstr "GroupesFamiliaux"
 
-#: FamilyTree.py:74
-msgid "Family Tree for %s"
-msgstr "Arbre familial pour %s"
-
-#: FamilyTree.py:641
-msgid "born"
-msgstr "né"
-
-#: FamilyTree.py:643
-msgid "died"
-msgstr "décédé"
-
-#: FamilyTree.py:645
-msgid "married"
-msgstr "marié"
-
-#: FamilyTree.py:647
-msgid "divorced"
-msgstr "divorcé"
-
-#: FamilyTree.py:654
-msgid "on %(ymd_date)s"
-msgstr "le %(ymd_date)s"
-
-#: FamilyTree.py:656
-msgid "in %(ym_date)s"
-msgstr "en %(ym_date)s"
-
-#: FamilyTree.py:658
-msgid "in %(y_date)s"
-msgstr "en %(y_date)s"
-
-#: FamilyTree.py:662
-msgid "on %(placeholder)s"
-msgstr "à %(placeholder)s"
-
-#: FamilyTree.py:665
-msgid "on %(placeholder)s (%(partial)s)"
-msgstr ""
-
-#: FamilyTree.py:678
-msgid "in %(place)s"
-msgstr "à %(place)s"
-
-#: FamilyTree.py:731
-#, fuzzy
-msgid "The center family for the tree"
-msgstr "La famille centrale pour ce rapport"
-
-#: FamilyTree.py:734
-#, fuzzy
-msgid "Ancestor Generations"
-msgstr "Maximum de générations ascendantes"
-
-#: FamilyTree.py:735
-#, fuzzy
-msgid "The number of ancestor generations to include in the tree"
-msgstr "Le nombre de générations à inclure dans le rapport"
-
-#: FamilyTree.py:738
-#, fuzzy
-msgid "Descendant Generations"
-msgstr "Maximum de générations descendantes"
-
-#: FamilyTree.py:739
-#, fuzzy
-msgid "The number of descendant generations to include in the tree"
-msgstr "Le nombre de générations à inclure dans le rapport"
-
-#: FamilyTree.py:753
-#, fuzzy
-msgid "Print event data"
-msgstr "Événements des parents"
-
-#: FamilyTree.py:755
-msgid "Year only"
-msgstr "Année seulement"
-
-#: FamilyTree.py:756
-msgid "Full date"
-msgstr "Date complète"
-
-#: FamilyTree.py:757
-#, fuzzy
-msgid "Full date and place"
-msgstr "%(date)s à %(place)s"
-
-#: FamilyTree.py:775
-#, fuzzy
-msgid "The style used for the title display."
-msgstr "Le style de base pour afficher les titres."
-
-#: FamilyTree.py:783
-#, fuzzy
-msgid "The style used for names."
-msgstr "Le style utilisé pour les en-têtes."
-
-#: FamilyTree.py:791
-#, fuzzy
-msgid "The style used for data (birth, death, marriage, divorce)."
-msgstr "Le style utilisé pour le titre du rapport."
-
-#: FamilyTree.py:867
-#, fuzzy
-msgid "Produces a graphical family tree"
-msgstr "Produit un arbre graphique des ascendants"
-
 #: FaqGramplet.py:44
 msgid "FAQ Gramplet"
 msgstr "Gramplet FAQ"
@@ -24461,24 +24263,24 @@ msgid "FAQ"
 msgstr "Foire aux questions"
 
 #: GoogleEarthWriteKML.py:81
-#, fuzzy
 msgid "No place description"
-msgstr "Pas de description"
+msgstr "Pas de description du lieu"
 
 #: GoogleEarthWriteKML.py:114
 msgid "GoogleEarth not installed!"
-msgstr ""
+msgstr "GoogleEarth n'est pas installé !"
 
 #: GoogleEarthWriteKML.py:115
 msgid ""
 "Create kmz/kml file ''%s''\n"
 "in user directory ''%s''?"
 msgstr ""
+"Créer un fichier kmz/kml ''%s''\n"
+"dans le répertoire utilisateur ''%s'' ?"
 
 #: GoogleEarthWriteKML.py:125
-#, fuzzy
 msgid "Failure writing to %s"
-msgstr "Erreur d'écriture de %s"
+msgstr "Échec à l'écriture de %s"
 
 #: GoogleEarthWriteKML.py:126
 msgid "Directory does not exist"
@@ -24486,13 +24288,15 @@ msgstr "Ce répertoire n'existe pas"
 
 #: GoogleEarthWriteKML.py:134
 msgid "GoogleEarth file exists!"
-msgstr ""
+msgstr "Le fichier GoogleEarth existe !"
 
 #: GoogleEarthWriteKML.py:135
 msgid ""
 "Overwrite kmz/kml file ''%s''\n"
 "in user home directory ''%s''?"
 msgstr ""
+"Écraser le fichier kmz/kml \"%s\"\n"
+"dans le répertoire home \"%s\" ?"
 
 #: GoogleEarthWriteKML.py:214
 msgid "GoogleEarth"
@@ -24500,7 +24304,7 @@ msgstr "GoogleEarth"
 
 #: GoogleEarthWriteKML.py:216
 msgid "Creates data file for GoogleEarth and opens it"
-msgstr ""
+msgstr "Créé un fichier de données pour GoogleEarth puis l'ouvre"
 
 #: HeadlineNewsGramplet.py:98
 msgid "Read GRAMPS headline news"
@@ -24513,22 +24317,6 @@ msgstr "Gramplet Résumé"
 #: HeadlineNewsGramplet.py:280
 msgid "Headline News"
 msgstr "Nouvelles"
-
-#: HowDescendants.py:40
-msgid "Descendants of the ancestor of %s"
-msgstr "Descendants de l'ancêtre de %s"
-
-#: HowDescendants.py:42
-msgid "Sosas"
-msgstr "Sosas"
-
-#: HowDescendants.py:92
-msgid "How many descendants"
-msgstr "Combien de descendants"
-
-#: HowDescendants.py:94
-msgid "Display how many descendants have each ancestor."
-msgstr ""
 
 #: NoteGramplet.py:268
 msgid "Note Gramplet"
@@ -24892,9 +24680,8 @@ msgid "Produces a textual repositories report"
 msgstr "Produit un rapport textuel des dépôts"
 
 #: TimelineQuickview.py:44
-#, fuzzy
 msgid "Inlaw Parents"
-msgstr "Parents"
+msgstr "Parents par alliance"
 
 #: TimelineQuickview.py:47
 msgid "Grandparents"
@@ -24902,36 +24689,34 @@ msgstr "Grands-parents"
 
 #: TimelineQuickview.py:49
 msgid "Inlaw Grandparents"
-msgstr ""
+msgstr "Grands-parents par alliance"
 
 #: TimelineQuickview.py:52
-#, fuzzy
 msgid "Great grandparents"
-msgstr "Réorganiser les parents"
+msgstr "Arrières grands-parents"
 
 #: TimelineQuickview.py:54
 msgid "Inlaw Great grandparents"
-msgstr ""
+msgstr "Arrières grands-parents par alliance"
 
 #: TimelineQuickview.py:57
 msgid "Great, "
-msgstr ""
+msgstr "Aïeux,"
 
 #: TimelineQuickview.py:57
 #: TimelineQuickview.py:59
-#, fuzzy
 msgid "great grandparents"
-msgstr "Réorganiser les parents"
+msgstr "arrières grands-parents"
 
 # !!!
 #: TimelineQuickview.py:57
 #: TimelineQuickview.py:59
 msgid "great, "
-msgstr "plus de,"
+msgstr "aïeux,"
 
 #: TimelineQuickview.py:59
 msgid "Inlaw Great, "
-msgstr ""
+msgstr "Aïeux par alliance,"
 
 #: TimelineQuickview.py:90
 msgid "Partner's spouse"
@@ -24947,33 +24732,28 @@ msgid "Timeline for %s"
 msgstr "Ligne temporel de %s"
 
 #: TimelineQuickview.py:148
-#, fuzzy
 msgid "People involved"
-msgstr "Menu Individus"
+msgstr "Individus inclus"
 
 #: TimelineQuickview.py:205
 msgid "Display a person's events on a timeline"
 msgstr "Affiche les événements au cours de sa vie"
 
 #: Tree_Base.py:500
-#, fuzzy
 msgid "Top Left"
-msgstr "Supérieur, gauche"
+msgstr "Supérieur, Gauche"
 
 #: Tree_Base.py:501
-#, fuzzy
 msgid "Top Right"
-msgstr "Supérieur, droite"
+msgstr "Supérieur, Droit"
 
 #: Tree_Base.py:502
-#, fuzzy
 msgid "Bottom Left"
-msgstr "Inférieur, gauche"
+msgstr "Inférieur, Gauche"
 
 #: Tree_Base.py:503
-#, fuzzy
 msgid "Bottom Right"
-msgstr "Inférieur, droite"
+msgstr "Inférieur, Droit"
 
 #: locations.py:76
 #: locations.py:258
@@ -25027,9 +24807,4 @@ msgstr "Le style de base pour afficher le titre du paragraphe."
 #: locations.py:262
 msgid "Individuals with locations"
 msgstr "Individus avec un emplacement"
-
-#~ msgid "Opens on kartor.eniro.se"
-#~ msgstr "Ouvrir avec kartor.eniro.se"
-#~ msgid "%(person)s, <em>birth</em>"
-#~ msgstr "%(person)s, <em>naissance</em>"
 
