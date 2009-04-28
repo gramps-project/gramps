@@ -20,9 +20,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-#
-# $Id$
-#
 
 # -------------------------------------------------------------------------
 #
@@ -34,7 +31,7 @@
 Display RepoRef for sources related to active repository
 """
 
-from Simple import SimpleDoc
+from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from gen.plug import PluginManager
 from ReportBase import CATEGORY_QR_REPOSITORY
@@ -44,7 +41,11 @@ def run(database, document, repo):
     Display back-references (sources) for this repository.
     """
 
+    # setup the simple access functions
+
+    sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
+    stab = SimpleTable(sdb)
 
     # First we find repository and add its text
 
@@ -70,10 +71,10 @@ def run(database, document, repo):
 
                 media = str(reporef.get_media_type())
                 call = reporef.get_call_number()
-                sdoc.paragraph('%s, %s' % (media, call))
-                sdoc.paragraph('%s\n' % src.get_title())
-            else:
-                continue
+
+                stab.columns(_("Source"), _("Type of media"), _("Call number"))
+                stab.row(src.get_title(), media, call)
+    stab.write(sdoc)
 
 
 # ------------------------------------------------------------------------
