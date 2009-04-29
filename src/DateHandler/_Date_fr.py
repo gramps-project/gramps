@@ -53,6 +53,10 @@ from _DateHandler import register_datehandler
 
 
 class DateParserFR(DateParser):
+    """
+    Convert a text string into a Date object. If the date cannot be
+    converted, the text string is assigned.
+    """
 
     month_to_int = DateParser.month_to_int
 
@@ -174,6 +178,16 @@ class DateParserFR(DateParser):
            u"avant J.C"] + DateParser.bce
 
     def init_strings(self):
+        """
+        This method compiles regular expression strings for matching dates.
+        
+        Most of the re's in most languages can stay as is. span and range
+        most likely will need to change. Whatever change is done, this method
+        may be called first as DateParser.init_strings(self) so that the
+        invariant expresions don't need to be repeteadly coded. All differences
+        can be coded after DateParser.init_strings(self) call, that way they
+        override stuff from this method. See DateParserRU() as an example.
+        """
         DateParser.init_strings(self)
 
         # This self._numeric is different from the base
@@ -226,6 +240,9 @@ class DateParserFR(DateParser):
 
 
 class DateDisplayFR(DateDisplay):
+    """
+    French language date display class. 
+    """
 
     calendar = ("", u" (Julien)", u" (Hébreu)", u" (Révolutionnaire)",
                 u" (Perse)", u" (Islamique)", u" (Suédois)")
@@ -240,6 +257,9 @@ class DateDisplayFR(DateDisplay):
                "MOI Jour, Année", "Jour. Mois Année", "Jour. MOI Année")
 
     def _display_gregorian(self, date_val):
+        """
+        display gregorian calendar date in different format
+        """
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
@@ -336,17 +356,19 @@ class DateDisplayFR(DateDisplay):
         elif start == Date.EMPTY:
             return ""
         elif mod == Date.MOD_SPAN:
-            d1 = (self.display_cal)[cal](start)
-            d2 = (self.display_cal)[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str, u'de', d1, u'à', d2, (self.calendar)[cal])
+            date1 = (self.display_cal)[cal](start)
+            date2 = (self.display_cal)[cal](date.get_stop_date())
+            return "%s%s %s %s %s%s" % (qual_str, u'de', date1, u'à', 
+            date2, (self.calendar)[cal])
         elif mod == Date.MOD_RANGE:
-            d1 = (self.display_cal)[cal](start)
-            d2 = (self.display_cal)[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str, u'entre', d1, u'et',
-                    d2, (self.calendar)[cal])
+            date1 = (self.display_cal)[cal](start)
+            date2 = (self.display_cal)[cal](date.get_stop_date())
+            return "%s%s %s %s %s%s" % (qual_str, u'entre', date1, u'et',
+                    date2, (self.calendar)[cal])
         else:
             text = (self.display_cal)[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str, (self._mod_str)[mod], text, (self.calendar)[cal])
+            return "%s%s%s%s" % (qual_str, (self._mod_str)[mod], text, 
+            (self.calendar)[cal])
 
 
 #-------------------------------------------------------------------------
