@@ -53,12 +53,16 @@ class DbState(Callback):
         Change the active person and emits a signal to notify those who
         are interested.
         """
+        previous_active_person = self.active
         self.active = person
         if person:
-            try:
-                self.emit('active-changed', (person.handle, ))
-            except:
-                self.emit('active-changed', ("", ))
+            if previous_active_person and previous_active_person.handle == person.handle:
+                pass # don't change to same!
+            else:
+                try:
+                    self.emit('active-changed', (person.handle, ))
+                except:
+                    self.emit('active-changed', ("", ))
 
     def change_active_handle(self, handle):
         """
