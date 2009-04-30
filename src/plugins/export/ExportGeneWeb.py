@@ -82,7 +82,6 @@ class GeneWebWriterOptionBox:
 
     def get_option_box(self):
         self.restrict = 1
-        self.private = 1
 
         glade_file = os.path.join(
                         os.path.split(__file__)[0], 
@@ -139,8 +138,7 @@ class GeneWebWriterOptionBox:
     def on_restrict_toggled(self, restrict):
         active = restrict.get_active ()
         for x in [self.topDialog.get_object("living"),
-                  self.topDialog.get_object("notes"),
-                  self.topDialog.get_object("sources")]:
+                  self.topDialog.get_object("notes")]:
             x.set_sensitive(active)
 
     def parse_options(self):
@@ -149,10 +147,6 @@ class GeneWebWriterOptionBox:
                        self.topDialog.get_object("living").get_active())
         self.exclnotes = (self.restrict and
                           self.topDialog.get_object("notes").get_active())
-        self.exclsrcs = (self.restrict and
-                         self.topDialog.get_object("sources").get_active())
-        self.private = self.topDialog.get_object("private").get_active()
-
         self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
         self.images = self.topDialog.get_object ("images").get_active ()
@@ -183,7 +177,6 @@ class GeneWebWriter:
         
         if not option_box:
             self.restrict = 0
-            self.private = 0
             self.copy = 0
             self.images = 0
         else:
@@ -192,8 +185,6 @@ class GeneWebWriter:
             self.restrict = self.option_box.restrict
             self.living = self.option_box.living
             self.exclnotes = self.option_box.exclnotes
-            self.exclsrcs = self.option_box.exclsrcs
-            self.private = self.option_box.private
             self.copy = self.option_box.copy
             self.images = self.option_box.images
             self.images_path = self.option_box.images_path

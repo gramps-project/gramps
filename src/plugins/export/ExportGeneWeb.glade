@@ -53,26 +53,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="private">
-                    <property name="label" translatable="yes">_Do not include records marked private</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="border_width">3</property>
-                    <property name="use_underline">True</property>
-                    <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">3</property>
-                    <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkCheckButton" id="restrict">
                     <property name="label" translatable="yes">_Restrict data on living people</property>
                     <property name="visible">True</property>
@@ -115,25 +95,6 @@
                         <property name="right_attach">2</property>
                         <property name="top_attach">1</property>
                         <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="sources">
-                        <property name="label" translatable="yes">Exclude _sources</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
-                        <property name="active">True</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
                         <property name="x_options">GTK_FILL</property>
                         <property name="y_options"></property>
                       </packing>
