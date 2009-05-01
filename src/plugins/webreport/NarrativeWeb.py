@@ -393,7 +393,7 @@ class BasePage:
         text = ''
         if copy_nr == 0:
             if self.author:
-                year = time.localtime()[0]
+                year = date.Today().get_year()
                 text = '&copy; %(year)d %(person)s' % {
                     'person' : self.author,
                     'year' : year}
