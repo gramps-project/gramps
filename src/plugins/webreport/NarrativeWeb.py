@@ -347,7 +347,7 @@ class BasePage:
                 while (cols <= 26 and index < num_ltrs):
                     letter = sorted_first_letter[index]
                     title_str = _('Surnames')  if key == 0 else _('Places')
-                    if lang_country == "sv_SE" and ltr == u'V':
+                    if lang_country == "sv_SE" and letter == u'V':
                         title_str += _(' starting with %s') % "V,W" 
                         of.write('\t\t\t<li class="letters"><a href="#%s" title="%s">%s</a></li>\n' 
                             % ("V,W", title_str, "V,W"))
@@ -393,7 +393,7 @@ class BasePage:
         text = ''
         if copy_nr == 0:
             if self.author:
-                year = gen.lib.date.Today().get_year()
+                year = time.localtime()[0]
                 text = '&copy; %(year)d %(person)s' % {
                     'person' : self.author,
                     'year' : year}
