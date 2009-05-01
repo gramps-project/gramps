@@ -284,6 +284,19 @@ class BasePage:
 
         sorted_set = {}
 
+        # The comment below from the glibc locale sv_SE in
+        # localedata/locales/sv_SE :
+        #
+        # % The letter w is normally not present in the Swedish alphabet. It
+        # % exists in some names in Swedish and foreign words, but is accounted
+        # % for as a variant of 'v'.  Words and names with 'w' are in Swedish
+        # % ordered alphabetically among the words and names with 'v'. If two
+        # % words or names are only to be distinguished by 'v' or % 'w', 'v' is
+        # % placed before 'w'.
+        #
+        # See : http://www.gramps-project.org/bugs/view.php?id=2933
+        #
+        (lang_country, modifier ) = locale.getlocale()
         for ltr in get_first_letters(db, handle_list, key):
             try:
                 sorted_set[ltr] += 1
@@ -298,7 +311,10 @@ class BasePage:
             of.write('\t<div id="navigation">\n')
             of.write('\t\t<ul>\n')
             for ltr in  sorted_first_letter:
-                of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % (ltr, ltr))
+                if lang_country == "sv_SE" and ltr == u'V':
+                    of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % ("V,W", "V,W"))
+                else:
+                    of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % (ltr, ltr))
             of.write('\t\t</ul>\n')
             of.write('\t</div>\n')
         else:
@@ -309,8 +325,11 @@ class BasePage:
                 of.write('\t\t<ul>\n')
                 cols = 0
                 while (cols <= 26 and index < num_ltrs):
-                    of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
-                        % (sorted_first_letter[index], sorted_first_letter[index]))
+                    if lang_country == "sv_SE" and sorted_first_letter[index] == u'V':
+                        of.write('\t\t\t<li><a href="#%s">%s</a> </li>\n' % ("V,W", "V,W"))
+                    else:
+                        of.write('\t\t\t<li><a href="#%s">%s</a></li>\n'
+                            % (sorted_first_letter[index], sorted_first_letter[index]))
                     cols += 1
                     index += 1
                 of.write('\t\t<ul>\n')
@@ -806,6 +825,14 @@ class IndividualListPage(BasePage):
 
         for (surname, handle_list) in person_handle_list:
             first = True
+            if surname:
+                letter = normalize('NFKC', surname)[0].upper()
+            else:
+                letter = u' '
+            # See : http://www.gramps-project.org/bugs/view.php?id=2933
+            (lang_country, modifier ) = locale.getlocale()
+            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
+                letter = u'V,W'
             for person_handle in handle_list:
                 person = db.get_person_from_handle(person_handle)
 
@@ -814,7 +841,7 @@ class IndividualListPage(BasePage):
                     of.write('\t\t<tr class="BeginSurname">\n')
                     if surname:
                         of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a></td>\n' 
-                            % (surname[0], surname))
+                            % (letter, surname))
                     else:
                         of.write('\t\t\t<td class="ColumnSurname">&nbsp;\n')
                 else:
@@ -1080,6 +1107,10 @@ class PlaceListPage(BasePage):
                 continue
 
             letter = normalize('NFKC', place_title)[0].upper()
+            # See : http://www.gramps-project.org/bugs/view.php?id=2933
+            (lang_country, modifier ) = locale.getlocale()
+            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
+                letter = u'V,W'
 
             if letter != last_letter:
                 last_letter = letter
@@ -1523,7 +1554,14 @@ class SurnameListPage(BasePage):
 
             # Get a capital normalized version of the first letter of
             # the surname
-            letter = normalize('NFKC', surname)[0].upper()
+            if surname:
+                letter = normalize('NFKC', surname)[0].upper()
+            else:
+                letter = u' '
+            # See : http://www.gramps-project.org/bugs/view.php?id=2933
+            (lang_country, modifier ) = locale.getlocale()
+            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
+                letter = u'V,W'
 
             if letter != last_letter:
                 last_letter = letter
@@ -3603,7 +3641,12 @@ def get_first_letters(db, handle_list, key):
 
         if keyname:
             c = normalize('NFKC', keyname)[0].upper()
-            first_letters.append(c)
+            # See : http://www.gramps-project.org/bugs/view.php?id=2933
+            (lang_country, modifier ) = locale.getlocale()
+            if lang_country == "sv_SE" and ( c == u'W' or c == u'V' ):
+                first_letters.append(u'V')
+            else:
+                first_letters.append(c)
 
     return first_letters
 
