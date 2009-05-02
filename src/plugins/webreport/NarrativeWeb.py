@@ -397,7 +397,7 @@ class BasePage:
                 text = '&copy; %(year)d %(person)s' % {
                     'person' : self.author,
                     'year' : year}
-        elif 0 < copy_nr <= len(_CC):
+        elif 0 < copy_nr < len(_CC):
             # Note. This is a URL
             fname = '/'.join(["images", "somerights20.gif"])
             fname = self.report.build_url_fname(fname, None, self.up)
