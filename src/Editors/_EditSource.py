@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
+import os
 import logging
 log = logging.getLogger(".")
 
@@ -37,7 +37,6 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -59,6 +58,8 @@ from QuestionDialog import ErrorDialog
 # Constants
 #
 #-------------------------------------------------------------------------
+_GLADE_FILE = "editsource.glade"
+
 class EditSource(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, source):
@@ -82,39 +83,42 @@ class EditSource(EditPrimary):
         self.width_key = Config.SOURCE_WIDTH
         self.height_key = Config.SOURCE_HEIGHT
         assert(self.obj)
-        self.glade = glade.XML(const.GLADE_FILE, "source_editor","gramps")
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
 
-        self.set_window(self.glade.get_widget("source_editor"), None, 
+        self.set_window(self.glade.get_object("source_editor"), None, 
                         self.get_menu_title())
 
     def _connect_signals(self):
-        self.define_ok_button(self.glade.get_widget('ok'),self.save)
-        self.define_cancel_button(self.glade.get_widget('cancel'))
-        self.define_help_button(self.glade.get_widget('help'))
+        self.define_ok_button(self.glade.get_object('ok'),self.save)
+        self.define_cancel_button(self.glade.get_object('cancel'))
+        self.define_help_button(self.glade.get_object('help'))
 
     def _setup_fields(self):
-        self.author = MonitoredEntry(self.glade.get_widget("author"),
+        self.author = MonitoredEntry(self.glade.get_object("author"),
                                      self.obj.set_author, self.obj.get_author,
                                      self.db.readonly)
 
-        self.pubinfo = MonitoredEntry(self.glade.get_widget("pubinfo"),
+        self.pubinfo = MonitoredEntry(self.glade.get_object("pubinfo"),
                                       self.obj.set_publication_info,
                                       self.obj.get_publication_info,
                                       self.db.readonly)
 
-        self.gid = MonitoredEntry(self.glade.get_widget("gid"),
+        self.gid = MonitoredEntry(self.glade.get_object("gid"),
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
 
-        self.priv = PrivacyButton(self.glade.get_widget("private"), self.obj, 
+        self.priv = PrivacyButton(self.glade.get_object("private"), self.obj, 
                                   self.db.readonly)
 
-        self.abbrev = MonitoredEntry(self.glade.get_widget("abbrev"),
+        self.abbrev = MonitoredEntry(self.glade.get_object("abbrev"),
                                      self.obj.set_abbreviation,
                                      self.obj.get_abbreviation, 
                                      self.db.readonly)
 
-        self.title = MonitoredEntry(self.glade.get_widget("source_title"),
+        self.title = MonitoredEntry(self.glade.get_object("source_title"),
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
 
@@ -161,7 +165,7 @@ class EditSource(EditPrimary):
         
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.glade.get_widget('vbox').pack_start(notebook, True)
+        self.glade.get_object('vbox').pack_start(notebook, True)
 
     def build_menu_names(self, source):
         return (_('Edit Source'), self.get_menu_title())        

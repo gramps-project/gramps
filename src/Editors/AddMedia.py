@@ -44,7 +44,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +63,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 # global variables
 #
 #-------------------------------------------------------------------------
-
+_GLADE_FILE = 'addmedia.glade'
 
 
 #-------------------------------------------------------------------------
@@ -94,17 +93,19 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
 
         self.last_directory = Config.get(Config.ADDMEDIA_IMGDIR)
         self.relative_path  = Config.get(Config.ADDMEDIA_RELPATH)
-
-        self.glade = glade.XML(const.GLADE_FILE, "imageSelect", "gramps")
         
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+
         self.set_window(
-            self.glade.get_widget("imageSelect"),
-            self.glade.get_widget('title'),
+            self.glade.get_object("imageSelect"),
+            self.glade.get_object('title'),
             _('Select a media object'))
             
-        self.description = self.glade.get_widget("photoDescription")
-        self.image = self.glade.get_widget("image")
-        self.file_text = self.glade.get_widget("fname")
+        self.description = self.glade.get_object("photoDescription")
+        self.image = self.glade.get_object("image")
+        self.file_text = self.glade.get_object("fname")
         if not(self.last_directory and os.path.isdir(self.last_directory)):
             self.last_directory = const.USER_HOME
         #if existing path, use dir of path
@@ -121,16 +122,16 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         if not self.obj.get_description() == "":
             self.description.set_text(self.obj.get_description())
 
-        self.relpath = self.glade.get_widget('relpath')
+        self.relpath = self.glade.get_object('relpath')
         self.relpath.set_active(self.relative_path)
         self.temp_name = ""
         self.object = None
 
-        self.glade.get_widget('fname').connect('update_preview',
+        self.glade.get_object('fname').connect('update_preview',
                                                self.on_name_changed)
-        self.ok_button = self.glade.get_widget('button79')
-        self.help_button = self.glade.get_widget('button103')
-        self.cancel_button = self.glade.get_widget('button81')
+        self.ok_button = self.glade.get_object('button79')
+        self.help_button = self.glade.get_object('button103')
+        self.cancel_button = self.glade.get_object('button81')
         self.ok_button.connect('clicked',self.save)
         self.ok_button.set_sensitive(not self.dbase.readonly)
         self.help_button.connect('clicked', lambda x: GrampsDisplay.help())
@@ -171,8 +172,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             return
 
         mtype = Mime.get_type(full_file)
-        if description == "":
-            description = os.path.basename(filename)
+        description = description or os.path.basename(filename)
 
         self.obj.set_description(description)
         self.obj.set_mime_type(mtype)

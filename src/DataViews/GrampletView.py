@@ -30,7 +30,6 @@ GrampletView interface.
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 import pango
 
@@ -60,6 +59,7 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
+_GLADE_FILE = 'grampletview.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +89,8 @@ def register_gramplet(data_dict):
         AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
     else: # go with highest version (or current one in case of tie)
         # GRAMPS loads system plugins first
-        loaded_version = [int(i) for i in AVAILABLE_GRAMPLETS[base_opts["name"]]["version"].split(".")]
+        loaded_version = [int(i) for i in 
+                AVAILABLE_GRAMPLETS[base_opts["name"]]["version"].split(".")]
         current_version = [int(i) for i in base_opts["version"].split(".")]
         if current_version >= loaded_version:
             AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
@@ -638,27 +639,33 @@ class GuiGramplet:
         self.tooltip = None # text
         self.tooltips = None # gtk tooltip widget
         self.tooltips_text = None
-        self.xml = glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
-        self.mainframe = self.xml.get_widget('gvgramplet')
-        self.gvoptions = self.xml.get_widget('gvoptions')
-        self.textview = self.xml.get_widget('gvtextview')
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+        self.gvwin = self.xml.get_object('gvwin')
+        self.mainframe = self.xml.get_object('gvgramplet')
+        self.gvwin.remove(self.mainframe)
+
+        self.gvoptions = self.xml.get_object('gvoptions')
+        self.textview = self.xml.get_object('gvtextview')
         self.buffer = self.textview.get_buffer()
-        self.scrolledwindow = self.xml.get_widget('gvscrolledwindow')
-        self.vboxtop = self.xml.get_widget('vboxtop')
-        self.titlelabel = self.xml.get_widget('gvtitle')
+        self.scrolledwindow = self.xml.get_object('gvscrolledwindow')
+        self.vboxtop = self.xml.get_object('vboxtop')
+        self.titlelabel = self.xml.get_object('gvtitle')
         self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
         self.titlelabel.set_use_markup(True)
-        self.gvclose = self.xml.get_widget('gvclose')
+        self.gvclose = self.xml.get_object('gvclose')
         self.gvclose.connect('clicked', self.close)
-        self.gvstate = self.xml.get_widget('gvstate')
+        self.gvstate = self.xml.get_object('gvstate')
         self.gvstate.connect('clicked', self.change_state)
-        self.gvproperties = self.xml.get_widget('gvproperties')
+        self.gvproperties = self.xml.get_object('gvproperties')
         self.gvproperties.connect('clicked', self.set_properties)
-        self.xml.get_widget('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
+        self.xml.get_object('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
                                                            gtk.ICON_SIZE_MENU)
-        self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
+        self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
                                                            gtk.ICON_SIZE_MENU)
-        self.xml.get_widget('gvpropertiesimage').set_from_stock(gtk.STOCK_PROPERTIES,
+        self.xml.get_object('gvpropertiesimage').set_from_stock(gtk.STOCK_PROPERTIES,
                                                                 gtk.ICON_SIZE_MENU)
 
         # source:
@@ -695,7 +702,7 @@ class GuiGramplet:
         self.state = state
         if state == "minimized":
             self.scrolledwindow.hide()
-            self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_ADD,
+            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_ADD,
                                                                gtk.ICON_SIZE_MENU)
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
@@ -703,7 +710,7 @@ class GuiGramplet:
 
         else:
             self.scrolledwindow.show()
-            self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
+            self.xml.get_object('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
                                                                gtk.ICON_SIZE_MENU)
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)

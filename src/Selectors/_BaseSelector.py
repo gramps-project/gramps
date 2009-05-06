@@ -28,7 +28,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import pango
-from gtk import glade
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +39,8 @@ import const
 import ManagedWindow
 from Filters import SearchBar
 from DisplayModels import PeopleModel
+
+_GLADE_FILE = 'baseselector.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -74,12 +76,16 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
 
         self.db = dbstate.db
-        self.glade = glade.XML(const.GLADE_FILE,"select_person","gramps")
-        window = self.glade.get_widget('select_person')
-        self.showall =  self.glade.get_widget('showall')
-        title_label = self.glade.get_widget('title')
-        vbox = self.glade.get_widget('select_person_vbox')
-        self.tree =  self.glade.get_widget('plist')
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+                
+        window = self.glade.get_object('select_person')
+        self.showall =  self.glade.get_object('showall')
+        title_label = self.glade.get_object('title')
+        vbox = self.glade.get_object('select_person_vbox')
+        self.tree =  self.glade.get_object('plist')
         self.tree.set_headers_visible(True)
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
@@ -156,15 +162,10 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             id_list = self.get_selected_ids()
             self.close()
             if id_list and id_list[0]:
-                return_value = self.get_from_handle_func()(id_list[0])
-            else:
-                return_value = None
-            return return_value
+                return self.get_from_handle_func()(id_list[0])
         elif val != gtk.RESPONSE_DELETE_EVENT:
             self.close()
-            return None
-        else:
-            return None
+        return None
 
     def _on_row_activated(self, treeview, path, view_col):
         self.window.response(gtk.RESPONSE_OK)
@@ -210,10 +211,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         mlist = []
         self.selection.selected_foreach(self.begintree, mlist)
-        if mlist:
-            return mlist[0]
-        else:
-            return None
+        return mlist[0] if mlist else None
             
     def column_order(self):
         """
@@ -303,10 +301,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         return True
 
     def show_toggle(self, obj):
-        if obj.get_active():
-            filter = None
-        else:
-            filter = self.filter
+        filter = None if obj.get_active() else self.filter
 
         self.model = PeopleModel(self.db, (PeopleModel.FAST, filter),
                      skip=self.skip_list)

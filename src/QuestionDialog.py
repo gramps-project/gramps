@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -33,7 +34,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 from gtk.gdk import pixbuf_new_from_file
 
 #-------------------------------------------------------------------------
@@ -44,6 +44,8 @@ from gtk.gdk import pixbuf_new_from_file
 import const
 import Config
 
+_GLADE_FILE = 'questiondialog.glade'
+
 try:
     ICON = pixbuf_new_from_file(const.ICON)
 except:
@@ -51,20 +53,23 @@ except:
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
-        self.xml = glade.XML(const.GLADE_FILE,"savedialog","gramps")
-        self.top = self.xml.get_widget('savedialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+        
+        self.top = self.xml.get_object('savedialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
         
-        self.dontask = self.xml.get_widget('dontask')
+        self.dontask = self.xml.get_object('dontask')
         self.task1 = task1
         self.task2 = task2
         
-        label1 = self.xml.get_widget('label1')
+        label1 = self.xml.get_object('sd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
         
-        label2 = self.xml.get_widget('label2')
+        label2 = self.xml.get_object('sd_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
         if parent:
@@ -81,20 +86,23 @@ class SaveDialog:
 
 class QuestionDialog:
     def __init__(self,msg1,msg2,label,task,parent=None):
-        self.xml = glade.XML(const.GLADE_FILE,"questiondialog","gramps")
-        self.top = self.xml.get_widget('questiondialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+                
+        self.top = self.xml.get_object('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
-        label1 = self.xml.get_widget('label1')
+        label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
         
-        label2 = self.xml.get_widget('label2')
+        label2 = self.xml.get_object('qd_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_widget('okbutton').set_label(label)
+        self.xml.get_object('okbutton').set_label(label)
 
         if parent:
             self.top.set_transient_for(parent)
@@ -106,23 +114,26 @@ class QuestionDialog:
 
 class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
-        self.xml = glade.XML(const.GLADE_FILE,"questiondialog","gramps")
-        self.top = self.xml.get_widget('questiondialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+              
+        self.top = self.xml.get_object('questiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
-        label1 = self.xml.get_widget('label1')
+        label1 = self.xml.get_object('qd_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
         
-        label2 = self.xml.get_widget('label2')
+        label2 = self.xml.get_object('qd_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_widget('okbutton').set_label(label_msg1)
-        self.xml.get_widget('okbutton').set_use_underline(True)
-        self.xml.get_widget('no').set_label(label_msg2)
-        self.xml.get_widget('no').set_use_underline(True)
+        self.xml.get_object('okbutton').set_label(label_msg1)
+        self.xml.get_object('okbutton').set_use_underline(True)
+        self.xml.get_object('no').set_label(label_msg2)
+        self.xml.get_object('no').set_use_underline(True)
         
         if parent:
             self.top.set_transient_for(parent)
@@ -135,21 +146,24 @@ class QuestionDialog2:
 
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
-        self.xml = glade.XML(const.GLADE_FILE,"optiondialog","gramps")
-        self.top = self.xml.get_widget('optiondialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+                
+        self.top = self.xml.get_object('optiondialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
-        label1 = self.xml.get_widget('label1')
+        label1 = self.xml.get_object('od_label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
         
-        label2 = self.xml.get_widget('label2')
+        label2 = self.xml.get_object('od_label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        self.xml.get_widget('option1').set_label(btnmsg1)
-        self.xml.get_widget('option2').set_label(btnmsg2)
+        self.xml.get_object('option1').set_label(btnmsg1)
+        self.xml.get_object('option2').set_label(btnmsg2)
         if parent:
             self.top.set_transient_for(parent)
         self.top.show()
@@ -236,16 +250,19 @@ class InfoDialog:
     Dialog to show selectable info in a scrolled window
     """
     def __init__(self, msg1, infotext, parent=None):
-        self.xml = glade.XML(const.GLADE_FILE, "infodialog", "gramps")
-        self.top = self.xml.get_widget('infodialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+                
+        self.top = self.xml.get_object('infodialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
-        label = self.xml.get_widget('toplabel')
+        label = self.xml.get_object('toplabel')
         label.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label.set_use_markup(True)
         
-        infoview = self.xml.get_widget('infoview')
+        infoview = self.xml.get_object('infoview')
         infobuffer = gtk.TextBuffer()
         infobuffer.set_text(infotext)
         infoview.set_buffer(infobuffer)
@@ -262,8 +279,11 @@ class InfoDialog:
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
-        self.xml = glade.XML(const.GLADE_FILE,"missmediadialog","gramps")
-        self.top = self.xml.get_widget('missmediadialog')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
+                
+        self.top = self.xml.get_object('missmediadialog')
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -271,15 +291,15 @@ class MissingMediaDialog:
         self.task2 = task2
         self.task3 = task3
         
-        label1 = self.xml.get_widget('label4')
+        label1 = self.xml.get_object('label4')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
         label1.set_use_markup(True)
         
-        label2 = self.xml.get_widget('label3')
+        label2 = self.xml.get_object('label3')
         label2.set_text(msg2)
         label2.set_use_markup(True)
 
-        check_button = self.xml.get_widget('use_always')
+        check_button = self.xml.get_object('use_always')
 
         if parent:
             self.top.set_transient_for(parent)
@@ -316,20 +336,22 @@ class MissingMediaDialog:
 class MessageHideDialog:
     
     def __init__(self, title, message, key, parent=None):
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)
 
-        glade_xml = glade.XML(const.GLADE_FILE, "hide_dialog", "gramps")
-        top = glade_xml.get_widget('hide_dialog')
+        top = self.xml.get_object('hide_dialog')
         top.set_icon(ICON)
         top.set_title("%s - GRAMPS" % title)
 
-        dont_show = glade_xml.get_widget('dont_show')
+        dont_show = self.xml.get_object('dont_show')
         dont_show.set_active(Config.get(key))
-        title_label = glade_xml.get_widget('title')
+        title_label = self.xml.get_object('title')
         title_label.set_text(
             '<span size="larger" weight="bold">%s</span>' % title)
         title_label.set_use_markup(True)
         
-        glade_xml.get_widget('message').set_text(message)
+        self.xml.get_object('message').set_text(message)
         
         dont_show.connect('toggled',self.update_checkbox, key)
         top.run()

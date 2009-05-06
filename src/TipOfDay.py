@@ -39,7 +39,7 @@ import os
 # GTK/GNOME modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +51,8 @@ import Config
 import ManagedWindow
 from QuestionDialog import ErrorDialog
 
+_GLADE_FILE = 'tipofday.glade'
+
 #-------------------------------------------------------------------------
 #
 # Tip Display class
@@ -61,22 +63,25 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        xml = glade.XML(const.GLADE_FILE, "tod_window", "gramps")
-        window = xml.get_widget("tod_window")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        xml = gtk.Builder()
+        xml.add_from_file(glade_file)
+        
+        window = xml.get_object("tod_window")
         self.set_window(window, 
-                        xml.get_widget("title"), 
+                        xml.get_object("title"), 
                         _("Tip of the Day"), 
                         _("Tip of the Day"))
         
-        self.tip = xml.get_widget("tip")
-        self.use = xml.get_widget('usetips')
+        self.tip = xml.get_object("tip")
+        self.use = xml.get_object('usetips')
         self.use.set_active(Config.get(Config.USE_TIPS))
-        image = xml.get_widget('image')
+        image = xml.get_object('image')
         image.set_from_file(os.path.join(const.IMAGE_DIR, 'splash.jpg'))
 
-        next = xml.get_widget('next')
+        next = xml.get_object('next')
         next.connect("clicked", self.next_tip_cb)
-        close = xml.get_widget('close')
+        close = xml.get_object('close')
         close.connect("clicked", self.close_cb)
         
         try:
@@ -107,10 +112,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         tip_text = self.escape(self.tip_list[self.new_index[self.index]])
         self.tip.set_text(_(tip_text))
         self.tip.set_use_markup(True)
-        if self.index >= len(self.tip_list)-1:
-            self.index = 0
-        else:
-            self.index += 1
+        self.index = (self.index + 1) % len(self.tip_list)
 
     def close_cb(self, dummy=None):
         Config.set(Config.USE_TIPS, self.use.get_active())

@@ -32,6 +32,7 @@ Paragraph/Font style editor
 #
 #------------------------------------------------------------------------
 from TransUtils import sgettext as _
+import os
 import logging
 log = logging.getLogger(".")
 
@@ -42,7 +43,6 @@ log = logging.getLogger(".")
 #------------------------------------------------------------------------
 import gtk
 from gtk.gdk import Color
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -54,6 +54,13 @@ import const
 import BaseDoc
 import ListModel
 import ManagedWindow
+
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+_GLADE_FILE = "styleeditor.glade"
 
 #------------------------------------------------------------------------
 #
@@ -77,14 +84,18 @@ class StyleListDisplay:
         self.callback = callback
         
         self.sheetlist = stylesheetlist
-        self.top = glade.XML(const.GLADE_FILE, "styles", "gramps")
-        self.window = self.top.get_widget('styles')
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        
+        self.window = self.top.get_object('styles')
 
         ManagedWindow.set_titles( self.window, 
-                                  self.top.get_widget('title'), 
+                                  self.top.get_object('title'), 
                                   _('Document Styles')         )
                                              
-        self.top.signal_autoconnect({
+        self.top.connect_signals({
             "destroy_passed_object" : self.__close, 
             "on_ok_clicked" : self.on_ok_clicked, 
             "on_add_clicked" : self.on_add_clicked, 
@@ -93,11 +104,11 @@ class StyleListDisplay:
             "on_edit_clicked" : self.on_edit_clicked
             })
 
-        title_label = self.top.get_widget('title')
+        title_label = self.top.get_object('title')
         title_label.set_text(Utils.title(_('Style Editor')))
         title_label.set_use_markup(True)
         
-        self.list = ListModel.ListModel(self.top.get_widget("list"), 
+        self.list = ListModel.ListModel(self.top.get_object("list"), 
                                         [(_('Style'), -1, 10)], )
         self.redraw()
         if parent_window:
@@ -190,29 +201,31 @@ class StyleEditor:
         
         self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
-        self.top = glade.XML(const.GLADE_FILE, "editor", "gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
         
-        self.top.signal_autoconnect({
+        self.top.connect_signals({
             "on_save_style_clicked" : self.on_save_style_clicked, 
             "destroy_passed_object" : self.__close, 
             })
 
-        self.window = self.top.get_widget("editor")
-        self.pname = self.top.get_widget('pname')
-        self.pdescription = self.top.get_widget('pdescription')
+        self.window = self.top.get_object("editor")
+        self.pname = self.top.get_object('pname')
+        self.pdescription = self.top.get_object('pdescription')
         
         ManagedWindow.set_titles( self.window, 
-                                  self.top.get_widget('title'), 
+                                  self.top.get_object('title'), 
                                   _('Style editor'))
-        self.top.get_widget("label6").set_text(_("point size|pt"))
+        self.top.get_object("label6").set_text(_("point size|pt"))
         
         titles = [(_('Paragraph'), 0, 130)]
-        self.plist = ListModel.ListModel(self.top.get_widget("ptree"), titles, 
+        self.plist = ListModel.ListModel(self.top.get_object("ptree"), titles, 
                                          self.change_display)
 
-        self.top.get_widget('color').connect('color-set', self.fg_color_set)
-        self.top.get_widget('bgcolor').connect('color-set', self.bg_color_set)
-        self.top.get_widget("style_name").set_text(name)
+        self.top.get_object('color').connect('color-set', self.fg_color_set)
+        self.top.get_object('bgcolor').connect('color-set', self.bg_color_set)
+        self.top.get_object("style_name").set_text(name)
 
         names = self.style.get_paragraph_style_names()
         names.reverse()
@@ -237,100 +250,97 @@ class StyleEditor:
         self.pname.set_use_markup(True)
 
         descr = p.get_description()
-        if descr:
-            self.pdescription.set_text(descr)
-        else:
-            self.pdescription.set_text(_("No description available"))
+        self.pdescription.set_text(descr or _("No description available") )
         
         font = p.get_font()
-        self.top.get_widget("size").set_value(font.get_size())
+        self.top.get_object("size").set_value(font.get_size())
         if font.get_type_face() == BaseDoc.FONT_SERIF:
-            self.top.get_widget("roman").set_active(1)
+            self.top.get_object("roman").set_active(1)
         else:
-            self.top.get_widget("swiss").set_active(1)
-        self.top.get_widget("bold").set_active(font.get_bold())
-        self.top.get_widget("italic").set_active(font.get_italic())
-        self.top.get_widget("underline").set_active(font.get_underline())
+            self.top.get_object("swiss").set_active(1)
+        self.top.get_object("bold").set_active(font.get_bold())
+        self.top.get_object("italic").set_active(font.get_italic())
+        self.top.get_object("underline").set_active(font.get_underline())
         if p.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
-            self.top.get_widget("lalign").set_active(1)
+            self.top.get_object("lalign").set_active(1)
         elif p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
-            self.top.get_widget("ralign").set_active(1)
+            self.top.get_object("ralign").set_active(1)
         elif p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
-            self.top.get_widget("calign").set_active(1)
+            self.top.get_object("calign").set_active(1)
         else:
-            self.top.get_widget("jalign").set_active(1)
-        self.top.get_widget("rmargin").set_value(p.get_right_margin())
-        self.top.get_widget("lmargin").set_value(p.get_left_margin())
-        self.top.get_widget("pad").set_value(p.get_padding())
-        self.top.get_widget("tmargin").set_value(p.get_top_margin())
-        self.top.get_widget("bmargin").set_value(p.get_bottom_margin())
-        self.top.get_widget("indent").set_value(p.get_first_indent())
-        self.top.get_widget("tborder").set_active(p.get_top_border())
-        self.top.get_widget("lborder").set_active(p.get_left_border())
-        self.top.get_widget("rborder").set_active(p.get_right_border())
-        self.top.get_widget("bborder").set_active(p.get_bottom_border())
+            self.top.get_object("jalign").set_active(1)
+        self.top.get_object("rmargin").set_value(p.get_right_margin())
+        self.top.get_object("lmargin").set_value(p.get_left_margin())
+        self.top.get_object("pad").set_value(p.get_padding())
+        self.top.get_object("tmargin").set_value(p.get_top_margin())
+        self.top.get_object("bmargin").set_value(p.get_bottom_margin())
+        self.top.get_object("indent").set_value(p.get_first_indent())
+        self.top.get_object("tborder").set_active(p.get_top_border())
+        self.top.get_object("lborder").set_active(p.get_left_border())
+        self.top.get_object("rborder").set_active(p.get_right_border())
+        self.top.get_object("bborder").set_active(p.get_bottom_border())
 
         self.fg_color = font.get_color()
         c = Color(self.fg_color[0] << 8, 
                   self.fg_color[1] << 8, 
                   self.fg_color[2] << 8)
-        self.top.get_widget("color").set_color(c)
-        self.top.get_widget('color_code').set_text(
+        self.top.get_object("color").set_color(c)
+        self.top.get_object('color_code').set_text(
                                                "#%02X%02X%02X" % self.fg_color)
 
         self.bg_color = p.get_background_color()
         c = Color(self.bg_color[0] << 8, 
                   self.bg_color[1] << 8, 
                   self.bg_color[2] << 8)
-        self.top.get_widget("bgcolor").set_color(c)
-        self.top.get_widget('bgcolor_code').set_text(
+        self.top.get_object("bgcolor").set_color(c)
+        self.top.get_object('bgcolor_code').set_text(
                                                 "#%02X%02X%02X" % self.bg_color)
 
     def bg_color_set(self, x):
         c = x.get_color()
         self.bg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_widget('bgcolor_code').set_text(
+        self.top.get_object('bgcolor_code').set_text(
                                                 "#%02X%02X%02X" % self.bg_color)
 
     def fg_color_set(self, x):
         c = x.get_color()
         self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_widget('color_code').set_text(
+        self.top.get_object('color_code').set_text(
                                                 "#%02X%02X%02X" % self.fg_color)
         
     def save_paragraph(self):
         """Saves the current paragraph displayed on the dialog"""
         p = self.current_p
         font = p.get_font()
-        font.set_size(self.top.get_widget("size").get_value_as_int())
+        font.set_size(self.top.get_object("size").get_value_as_int())
     
-        if self.top.get_widget("roman").get_active():
+        if self.top.get_object("roman").get_active():
             font.set_type_face(BaseDoc.FONT_SERIF)
         else:
             font.set_type_face(BaseDoc.FONT_SANS_SERIF)
 
-        font.set_bold(self.top.get_widget("bold").get_active())
-        font.set_italic(self.top.get_widget("italic").get_active())
-        font.set_underline(self.top.get_widget("underline").get_active())
-        if self.top.get_widget("lalign").get_active():
+        font.set_bold(self.top.get_object("bold").get_active())
+        font.set_italic(self.top.get_object("italic").get_active())
+        font.set_underline(self.top.get_object("underline").get_active())
+        if self.top.get_object("lalign").get_active():
             p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        elif self.top.get_widget("ralign").get_active():
+        elif self.top.get_object("ralign").get_active():
             p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)
-        elif self.top.get_widget("calign").get_active():
+        elif self.top.get_object("calign").get_active():
             p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)            
         else:
             p.set_alignment(BaseDoc.PARA_ALIGN_JUSTIFY)            
 
-        p.set_right_margin(self.top.get_widget("rmargin").get_value())
-        p.set_left_margin(self.top.get_widget("lmargin").get_value())
-        p.set_top_margin(self.top.get_widget("tmargin").get_value())
-        p.set_bottom_margin(self.top.get_widget("bmargin").get_value())
-        p.set_padding(self.top.get_widget("pad").get_value())
-        p.set_first_indent(self.top.get_widget("indent").get_value())
-        p.set_top_border(self.top.get_widget("tborder").get_active())
-        p.set_left_border(self.top.get_widget("lborder").get_active())
-        p.set_right_border(self.top.get_widget("rborder").get_active())
-        p.set_bottom_border(self.top.get_widget("bborder").get_active())
+        p.set_right_margin(self.top.get_object("rmargin").get_value())
+        p.set_left_margin(self.top.get_object("lmargin").get_value())
+        p.set_top_margin(self.top.get_object("tmargin").get_value())
+        p.set_bottom_margin(self.top.get_object("bmargin").get_value())
+        p.set_padding(self.top.get_object("pad").get_value())
+        p.set_first_indent(self.top.get_object("indent").get_value())
+        p.set_top_border(self.top.get_object("tborder").get_active())
+        p.set_left_border(self.top.get_object("lborder").get_active())
+        p.set_right_border(self.top.get_object("rborder").get_active())
+        p.set_bottom_border(self.top.get_object("bborder").get_active())
 
         font.set_color(self.fg_color)
         p.set_background_color(self.bg_color)
@@ -342,7 +352,7 @@ class StyleEditor:
         Saves the current style sheet and causes the parent to be updated with
         the changes.
         """
-        name = unicode(self.top.get_widget("style_name").get_text())
+        name = unicode(self.top.get_object("style_name").get_text())
 
         self.save_paragraph()
         self.style.set_name(name)

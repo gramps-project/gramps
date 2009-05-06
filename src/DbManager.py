@@ -59,7 +59,6 @@ else:
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 from gtk.gdk import ACTION_COPY
 import pango
 
@@ -91,6 +90,7 @@ NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
 ARCHIVE       = "rev.gramps"
 ARCHIVE_V     = "rev.gramps,v"
+_GLADE_FILE = "dbmanager.glade"
 
 NAME_COL  = 0
 PATH_COL  = 1
@@ -341,21 +341,20 @@ class DbManager(CLIDbManager):
         the GTK widgets that are needed.
         """
         CLIDbManager.__init__(self, dbstate)
-        self.glade = glade.XML(const.GLADE_FILE, "dbmanager", "gramps")
-        self.top = self.glade.get_widget('dbmanager')
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+        
+        self.top = self.glade.get_object('dbmanager')
         if parent:
             self.top.set_transient_for(parent)
 
-        self.connect = self.glade.get_widget('connect')
-        self.cancel  = self.glade.get_widget('cancel')
-        self.new     = self.glade.get_widget('new')
-        self.remove  = self.glade.get_widget('remove')
-        self.dblist  = self.glade.get_widget('dblist')
-        self.rename  = self.glade.get_widget('rename')
-        self.repair  = self.glade.get_widget('repair')
-        self.rcs     = self.glade.get_widget('rcs')
-        self.msg     = self.glade.get_widget('msg')
-        self.model   = None
+        for attr in ['connect', 'cancel', 'new', 'remove',
+                     'dblist', 'rename', 'repair', 'rcs', 'msg']:
+            setattr(self, attr, self.glade.get_object(attr))
+
+        self.model = None
         self.column  = None
         self.lock_file = None
         self.data_to_delete = None
@@ -527,8 +526,7 @@ class DbManager(CLIDbManager):
 
         #use current names to set up the model
         for items in self.current_names:
-            data = [items[0], items[1], items[2], items[3], 
-                    items[4], items[5], items[6]]
+            data = list(items[:7])
             node = self.model.append(None, data)
             for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
                 data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
@@ -1120,10 +1118,13 @@ def check_in(dbase, filename, callback, cursor_func = None):
     init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"GRAMPS database"' ]
     ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
     archive_name = filename + ",v"
-
-    glade_xml_file = glade.XML(const.GLADE_FILE, "comment", "gramps")
-    top = glade_xml_file.get_widget('comment')
-    text = glade_xml_file.get_widget('description')
+    
+    glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+    self.glade = gtk.Builder()
+    self.glade.add_from_file(glade_file)
+    
+    top = self.glade.get_object('comment')
+    text = self.glade.get_object('description')
 
     top.run()
     comment = text.get_text()

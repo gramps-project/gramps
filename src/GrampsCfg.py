@@ -37,7 +37,6 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -70,6 +69,7 @@ if not const.VERSION.find('SVN') == -1:
 # Constants 
 #
 #-------------------------------------------------------------------------
+_GLADE_FILE = 'grampscfg.glade'
 
 _surname_styles = [
     _("Father's surname"), 
@@ -471,6 +471,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
     def __edit_name(self, obj):
         store, node = self.format_list.get_selection().get_selected()
         path = self.fmt_model.get_path(node)
+        self.__current_path = path
         self.edit_button.set_sensitive(False)
         self.remove_button.set_sensitive(False)
         self.insert_button.set_sensitive(False)
@@ -1106,18 +1107,21 @@ class NameFormatEditDlg:
         self.fmt_str = fmt_str
         self.name = name
         self.valid = True
-
-        self.top = glade.XML(const.GLADE_FILE, 'namefmt_edit', 'gramps')
-        self.dlg = self.top.get_widget('namefmt_edit')
+        print "here"
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        
+        self.dlg = self.top.get_object('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
         
-        self.examplelabel = self.top.get_widget('example_label')
+        self.examplelabel = self.top.get_object('example_label')
         
-        self.nameentry = self.top.get_widget('name_entry')
+        self.nameentry = self.top.get_object('name_entry')
         self.nameentry.set_text('<span weight="bold">%s</span>' % self.fmt_name)
         self.nameentry.set_use_markup(True)
         
-        self.formatentry = self.top.get_widget('format_entry')
+        self.formatentry = self.top.get_object('format_entry')
         self.formatentry.connect('changed', self.cb_format_changed)
         self.formatentry.set_text(self.fmt_str)
         

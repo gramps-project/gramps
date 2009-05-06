@@ -86,7 +86,7 @@ class SelectObject(BaseSelector):
         self.preview = gtk.Image()
         self.preview.set_size_request(int(const.THUMBSCALE),
                                     int(const.THUMBSCALE))
-        vbox = self.glade.get_widget('select_person_vbox')
+        vbox = self.glade.get_object('select_person_vbox')
         vbox.pack_start(self.preview,False)
         vbox.reorder_child(self.preview,1)
         self.preview.show()

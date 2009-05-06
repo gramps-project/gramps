@@ -775,6 +775,26 @@ src/widgets/validatedmaskedentry.py
 src/plugins/docgen/gtkprintpreview.glade
 src/glade/edit_person.glade
 src/glade/gramps.glade
+
+# widgets split off from gramps.glade 
+# as part of libglade to GtkBuilder migration
+
+src/glade/grampletview.glade
+src/glade/baseselector.glade
+src/glade/reorder.glade
+src/glade/tipofday.glade
+src/glade/displaystate.glade
+src/glade/addmedia.glade
+src/glade/questiondialog.glade
+src/glade/columnorder.glade
+src/glade/grampscfg.glade
+src/glade/dateedit.glade
+src/glade/editsource.glade
+src/glade/styleeditor.glade
+src/glade/dbmanager.glade
+
+# end of widgets split off from gramps.glade
+
 src/glade/mergedata.glade
 src/glade/plugins.glade
 src/glade/rule.glade

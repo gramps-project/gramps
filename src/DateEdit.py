@@ -48,6 +48,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 #-------------------------------------------------------------------------
 import logging
 __LOG = logging.getLogger(".DateEdit")
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +56,6 @@ __LOG = logging.getLogger(".DateEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -100,6 +100,7 @@ CAL_TO_MONTHS_NAMES = {
 
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')
+_GLADE_FILE = 'dateedit.glade'
 #-------------------------------------------------------------------------
 #
 # DateEdit
@@ -190,36 +191,38 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         
         # Create self.date as a copy of the given Date object.
         self.date = Date(date)
-
-        self.top = glade.XML(const.GLADE_FILE, "date_edit","gramps" )
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
 
         self.set_window(
-            self.top.get_widget('date_edit'),
-            self.top.get_widget('title'),
+            self.top.get_object('date_edit'),
+            self.top.get_object('title'),
             _('Date selection'))            
             
-        self.calendar_box = self.top.get_widget('calendar_box')
+        self.calendar_box = self.top.get_object('calendar_box')
         for name in Date.ui_calendar_names:
-            self.calendar_box.append_text(name)
+            self.calendar_box.get_model().append([name])
 
         self.calendar_box.set_active(self.date.get_calendar())
         self.calendar_box.connect('changed', self.switch_calendar)
 
-        self.quality_box = self.top.get_widget('quality_box')
+        self.quality_box = self.top.get_object('quality_box')
         for item_number in range(len(QUAL_TEXT)):
             self.quality_box.append_text(QUAL_TEXT[item_number][1])
             if self.date.get_quality() == QUAL_TEXT[item_number][0]:
                 self.quality_box.set_active(item_number)
 
-        self.type_box = self.top.get_widget('type_box')
+        self.type_box = self.top.get_object('type_box')
         for item_number in range(len(MOD_TEXT)):
             self.type_box.append_text(MOD_TEXT[item_number][1])
             if self.date.get_modifier() == MOD_TEXT[item_number][0]:
                 self.type_box.set_active(item_number)
         self.type_box.connect('changed', self.switch_type)
 
-        self.start_month_box = self.top.get_widget('start_month_box')
-        self.stop_month_box = self.top.get_widget('stop_month_box')
+        self.start_month_box = self.top.get_object('start_month_box')
+        self.stop_month_box = self.top.get_object('stop_month_box')
         month_names = CAL_TO_MONTHS_NAMES[self.date.get_calendar()]
         for name in month_names:
             self.start_month_box.append_text(name)
@@ -227,18 +230,18 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         self.start_month_box.set_active(self.date.get_month())
         self.stop_month_box.set_active(self.date.get_stop_month())
         
-        self.start_day = self.top.get_widget('start_day')
+        self.start_day = self.top.get_object('start_day')
         self.start_day.set_value(self.date.get_day())
-        self.start_year = self.top.get_widget('start_year')
+        self.start_year = self.top.get_object('start_year')
         self.start_year.set_value(self.date.get_year())
 
-        self.stop_day = self.top.get_widget('stop_day')
+        self.stop_day = self.top.get_object('stop_day')
         self.stop_day.set_value(self.date.get_stop_day())
-        self.stop_year = self.top.get_widget('stop_year')
+        self.stop_year = self.top.get_object('stop_year')
         self.stop_year.set_value(self.date.get_stop_year())
         
-        self.dual_dated = self.top.get_widget('dualdated')
-        self.new_year = self.top.get_widget('newyear')
+        self.dual_dated = self.top.get_object('dualdated')
+        self.new_year = self.top.get_object('newyear')
         self.new_year.set_active(self.date.get_new_year())
 
         # Disable second date controls if not compound date
@@ -257,7 +260,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.dual_dated.set_sensitive(0)
             self.new_year.set_sensitive(0)
 
-        self.text_entry = self.top.get_widget('date_text_entry')
+        self.text_entry = self.top.get_object('date_text_entry')
         self.text_entry.set_text(self.date.get_text())
 
         if self.date.get_slash():

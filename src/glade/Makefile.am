@@ -10,5 +10,20 @@ dist_pkgdata_DATA = \
 	plugins.glade\
 	rule.glade\
 	scratchpad.glade\
-	paper_settings.glade
+	paper_settings.glade \
+	grampletview.glade \
+	gramps.glade \
+	baseselector.glade \
+	reorder.glade \
+	tipofday.glade \
+	displaystate.glade \
+	addmedia.glade \
+	questiondialog.glade \
+	columnorder.glade \
+	grampscfg.glade \
+	dateedit.glade \
+	editsource.glade \
+	styleeditor.glade \
+	dbmanager.glade
+
 

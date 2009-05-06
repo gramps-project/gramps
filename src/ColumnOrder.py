@@ -29,6 +29,7 @@ Handle the column ordering
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import logging
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -36,7 +37,6 @@ import logging
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -53,6 +53,7 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 __LOG = logging.getLogger(".ColumnOrder")
+_GLADE_FILE = 'columnorder.glade'
 
 
 class ColumnOrder(ManagedWindow.ManagedWindow):
@@ -66,11 +67,13 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         """
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        self.glade = glade.XML(const.GLADE_FILE, "columns", "gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)        
 
-        self.set_window(self.glade.get_widget('columns'), None, win_name)
+        self.set_window(self.glade.get_object('columns'), None, win_name)
 
-        self.tree = self.glade.get_widget('list')
+        self.tree = self.glade.get_object('list')
         self.arglist = arglist
         self.callback = callback
 
@@ -91,9 +94,9 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         column_n.set_min_width(225)
         self.tree.append_column(column_n)
 
-        self.glade.get_widget('okbutton').connect('clicked',
+        self.glade.get_object('okbutton').connect('clicked',
                                                   self.ok_clicked)
-        self.glade.get_widget('cancelbutton').connect('clicked',
+        self.glade.get_object('cancelbutton').connect('clicked',
                                                       self.cancel_clicked)
 
         for item in self.arglist:

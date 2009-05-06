@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 from cStringIO import StringIO
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +44,6 @@ _LOG = logging.getLogger(".DisplayState")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -59,6 +59,7 @@ import ManagedWindow
 from gen.plug import PluginManager
 
 DISABLED = -1
+_GLADE_FILE = 'displaystate.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -284,7 +285,9 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        xml = glade.XML(const.GLADE_FILE, 'scrollmsg')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.xml = gtk.Builder()
+        self.xml.add_from_file(glade_file)        
         top = xml.get_widget('scrollmsg')
         msg = xml.get_widget('msg')
         buf = msg.get_buffer()

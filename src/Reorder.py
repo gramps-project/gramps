@@ -20,7 +20,8 @@
 
 from gettext import gettext as _
 
-from gtk import glade
+import gtk
+import os
 
 import const
 
@@ -30,13 +31,15 @@ import ManagedWindow
 
 PARENT_TITLES = [(_('Father'), -1, 200), (_('Mother'), -1, 200), ('', -1, 0)]
 FAMILY_TITLES = [(_('Spouse'), -1, 200), (_('Relationship'), -1, 200), ('', -1, 0)]
-
+_GLADE_FILE = 'reorder.glade'
 
 class Reorder(ManagedWindow.ManagedWindow):
     
     def __init__(self, state, uistate, track, handle):
-        xml = glade.XML(const.GLADE_FILE, "reorder", "gramps")
-        top = xml.get_widget('reorder')
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        xml = gtk.Builder()
+        xml.add_from_file(glade_file)
+        top = xml.get_object('reorder')
 
         self.dbstate = state
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -50,28 +53,28 @@ class Reorder(ManagedWindow.ManagedWindow):
 
         self.set_window(top, None, _("Reorder Relationships"))
 
-        self.ptree = xml.get_widget('ptree')
+        self.ptree = xml.get_object('ptree')
         self.pmodel = ListModel.ListModel(self.ptree, PARENT_TITLES)
 
-        self.ftree = xml.get_widget('ftree')
+        self.ftree = xml.get_object('ftree')
         self.fmodel = ListModel.ListModel(self.ftree, FAMILY_TITLES)
 
-        xml.get_widget('ok').connect('clicked', self.ok_clicked)
-        xml.get_widget('cancel').connect('clicked', self.cancel_clicked)
+        xml.get_object('ok').connect('clicked', self.ok_clicked)
+        xml.get_object('cancel').connect('clicked', self.cancel_clicked)
 
-        fup = xml.get_widget('fup')
+        fup = xml.get_object('fup')
         fup.connect('clicked', self.fup_clicked)
         fup.set_sensitive(fenable)
 
-        fdown = xml.get_widget('fdown')
+        fdown = xml.get_object('fdown')
         fdown.connect('clicked', self.fdown_clicked)
         fdown.set_sensitive(fenable)
 
-        pup = xml.get_widget('pup')
+        pup = xml.get_object('pup')
         pup.connect('clicked', self.pup_clicked)
         pup.set_sensitive(penable)
 
-        pdown = xml.get_widget('pdown')
+        pdown = xml.get_object('pdown')
         pdown.connect('clicked', self.pdown_clicked)
         pdown.set_sensitive(penable)
 
