@@ -141,5 +141,7 @@ class Url(SecondaryObject, PrivacyBase):
             return "mailto:" + self.path
         elif url.get_type() == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
             return "ftp://" + self.path
+        elif self.parse_path().scheme == '':
+            return "http://" + self.path
         else:
             return self.path
