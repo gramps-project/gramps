@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009       Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +31,7 @@ Url class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from warnings import warn
+from urlparse import urlparse
 
 #-------------------------------------------------------------------------
 #
@@ -115,3 +117,29 @@ class Url(SecondaryObject, PrivacyBase):
 
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
+
+    def parse_path(self):
+        """
+        Returns a 6 tuple-based object with the following items:
+
+        Property Pos   Meaning
+        -------- ---   ---------------------------------
+        scheme   0     URL scheme specifier
+        netloc   1     Network location part
+        path     2     Hierarchical path
+        params   3     Parameters for last path element
+        query    4     Query component 
+        fragment 5     Fragment identifier
+        """
+        return urlparse(self.path)
+
+    def get_full_path(self):
+        """
+        Returns a full url, complete with scheme, even if missing from path.
+        """
+        if self.type == UrlType.EMAIL and not self.path.startswith("mailto:"):
+            return "mailto:" + self.path
+        elif url.get_type() == UrlType.WEB_FTP and not self.path.startswith("ftp://"):
+            return "ftp://" + self.path
+        else:
+            return self.path
