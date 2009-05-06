@@ -32,6 +32,7 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +40,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +53,8 @@ from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 from widgets import MonitoredEntry, PrivacyButton
 from DisplayTabs import SourceEmbedList, NoteTab
+
+_GLADE_FILE = 'editpersonref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -76,11 +78,15 @@ class EditPersonRef(EditSecondary):
     def _local_init(self):
         self.width_key = Config.PERSON_REF_WIDTH
         self.height_key = Config.PERSON_REF_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "pref_edit","gramps")
-        self.set_window(self.top.get_widget("pref_edit"),
-                        self.top.get_widget("title"),
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+                
+        self.set_window(self.top.get_object("pref_edit"),
+                        self.top.get_object("title"),
                         _('Person Reference Editor'))
-        self.person_label = self.top.get_widget('person')
+        self.person_label = self.top.get_object('person')
 
     def _setup_fields(self):
 
@@ -89,21 +95,21 @@ class EditPersonRef(EditSecondary):
             self.person_label.set_text(name_displayer.display(p))
         
         self.street = MonitoredEntry(
-            self.top.get_widget("relationship"),
+            self.top.get_object("relationship"),
             self.obj.set_relation,
             self.obj.get_relation,
             self.db.readonly)
 
         self.priv = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.obj,
             self.db.readonly)
 
     def _connect_signals(self):
-        #self.define_help_button(self.top.get_widget('help'))
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
-        self.top.get_widget('select').connect('clicked',self._select_person)
+        #self.define_help_button(self.top.get_object('help'))
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
+        self.top.get_object('select').connect('clicked',self._select_person)
 
     def _select_person(self, obj):
         from Selectors import selector_factory
@@ -136,7 +142,7 @@ class EditPersonRef(EditSecondary):
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook,True)
 
     def build_menu_names(self, obj):
         return (_('Person Reference'),_('Person Reference Editor'))

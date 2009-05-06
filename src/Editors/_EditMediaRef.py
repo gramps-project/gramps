@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -35,7 +36,6 @@ from TransUtils import sgettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +54,7 @@ from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList,
 from widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from _EditReference import RefTab, EditReference
 from AddMedia import AddMediaObject
+_GLADE_FILE = 'editmediaref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -73,24 +74,25 @@ class EditMediaRef(EditReference):
     def _local_init(self):
         self.width_key = Config.MEDIA_REF_WIDTH
         self.height_key = Config.MEDIA_REF_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE,
-                                 "change_description","gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
 
-        self.set_window(self.top.get_widget('change_description'),
-                        self.top.get_widget('title'),
+        self.set_window(self.top.get_object('change_description'),
+                        self.top.get_object('title'),
                         _('Media Reference Editor'))
-        self.define_warn_box(self.top.get_widget("warn_box"))
-        self.top.get_widget("label427").set_text(_("Y coordinate|Y"))
-        self.top.get_widget("label428").set_text(_("Y coordinate|Y"))
+        self.define_warn_box(self.top.get_object("warn_box"))
+        self.top.get_object("label427").set_text(_("Y coordinate|Y"))
+        self.top.get_object("label428").set_text(_("Y coordinate|Y"))
 
-        tblref =  self.top.get_widget('table50')
-        notebook = self.top.get_widget('notebook_ref')
+        tblref =  self.top.get_object('table50')
+        notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
-        tblref =  self.top.get_widget('table2')
-        notebook = self.top.get_widget('notebook_shared')
+        tblref =  self.top.get_object('table2')
+        notebook = self.top.get_object('notebook_shared')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
@@ -113,105 +115,99 @@ class EditMediaRef(EditReference):
         self.subpixmap.set_from_pixbuf(self.subpix)
 
         mt = Mime.get_description(self.mtype)
-        if mt:
-            self.top.get_widget("type").set_text(mt)
-        else:
-            self.top.get_widget("type").set_text("")
-
+        self.top.get_object("type").set_text(mt if mt else "")
+        
     def _setup_fields(self):
-        ebox_shared = self.top.get_widget('eventbox')
+        ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
 
         if not self.dbstate.db.readonly:
             self.button_press_coords = (0, 0)
-            ebox_ref = self.top.get_widget('eventbox1')
+            ebox_ref = self.top.get_object('eventbox1')
             ebox_ref.connect('button-press-event', self.button_press_event_ref)
-            ebox_ref.connect('button-release-event', self.button_release_event_ref)
+            ebox_ref.connect('button-release-event', 
+                                                 self.button_release_event_ref)
             ebox_ref.add_events(gtk.gdk.BUTTON_PRESS_MASK)
             ebox_ref.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
 
-        self.pixmap = self.top.get_widget("pixmap")
+        self.pixmap = self.top.get_object("pixmap")
         
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
 
         if coord is not None and coord in (
-                (None, None, None, None),  
+                (None,)*4,  
                 (0, 0, 100, 100),
-                (coord[0], coord[1], coord[0], coord[1])
+                (coord[0], coord[1])*2
             ):
             coord = None
 
         self.rectangle = coord
-        self.subpixmap = self.top.get_widget("subpixmap")
+        self.subpixmap = self.top.get_object("subpixmap")
 
         self.draw_preview()
+        
+        corners = ["corner1_x", "corner1_y", "corner2_x", "corner2_y"]
 
         if coord and isinstance(coord, tuple):
-            self.top.get_widget("corner1_x").set_value(coord[0])
-            self.top.get_widget("corner1_y").set_value(coord[1])
-            self.top.get_widget("corner2_x").set_value(coord[2])
-            self.top.get_widget("corner2_y").set_value(coord[3])
+            for index, corner in enumerate(corners):
+                self.top.get_object(corner).set_value(coord[index])
         else:
-            self.top.get_widget("corner1_x").set_value(0)
-            self.top.get_widget("corner1_y").set_value(0)
-            self.top.get_widget("corner2_x").set_value(100)
-            self.top.get_widget("corner2_y").set_value(100)
+            for corner, value in zip(corners, [0, 0, 100, 100]):
+                self.top.get_object(corner).set_value(value)
             
         if self.dbstate.db.readonly:
-            self.top.get_widget("corner1_x").set_sensitive(False)
-            self.top.get_widget("corner1_y").set_sensitive(False)
-            self.top.get_widget("corner2_x").set_sensitive(False)
-            self.top.get_widget("corner2_y").set_sensitive(False)
+            for corner in corners:
+                self.top.get_object(corner).set_sensitive(False)
         
         self.corner1_x_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("corner1_x"),
+            self.top.get_object("corner1_x"),
             self.set_corner1_x,
             self.get_corner1_x,
             self.db.readonly)
 
         self.corner1_y_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("corner1_y"),
+            self.top.get_object("corner1_y"),
             self.set_corner1_y,
             self.get_corner1_y,
             self.db.readonly)
 
         self.corner2_x_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("corner2_x"),
+            self.top.get_object("corner2_x"),
             self.set_corner2_x,
             self.get_corner2_x,
             self.db.readonly)
 
         self.corner2_y_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("corner2_y"),
+            self.top.get_object("corner2_y"),
             self.set_corner2_y,
             self.get_corner2_y,
             self.db.readonly)
 
         self.descr_window = MonitoredEntry(
-            self.top.get_widget("description"),
+            self.top.get_object("description"),
             self.source.set_description,
             self.source.get_description,
             self.db.readonly)
 
         self.ref_privacy = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.source_ref,
             self.db.readonly)
 
         self.gid = MonitoredEntry(
-            self.top.get_widget("gid"),
+            self.top.get_object("gid"),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
             self.db.readonly)
 
         self.privacy = PrivacyButton(
-            self.top.get_widget("privacy"),
+            self.top.get_object("privacy"),
             self.source,
             self.db.readonly)
 
         self.path_obj = MonitoredEntry(
-            self.top.get_widget("path"),
+            self.top.get_object("path"),
             self.source.set_path,
             self.source.get_path,
             self.db.readonly)
@@ -227,10 +223,7 @@ class EditMediaRef(EditReference):
         
         if self.rectangle is None:
             self.rectangle = (0,0,100,100)
-        self.rectangle = (value,
-                          self.rectangle[1],
-                          self.rectangle[2],
-                          self.rectangle[3])
+        self.rectangle = (value,) + self.rectangle[1:]
         self.update_subpixmap()
 
     def set_corner1_y(self, value):
@@ -244,11 +237,8 @@ class EditMediaRef(EditReference):
         
         if self.rectangle is None:
             self.rectangle = (0,0,100,100)
-        self.rectangle = (self.rectangle[0],
-                          value,
-                          self.rectangle[2],
-                          self.rectangle[3])
-        self.update_subpixmap()
+        self.rectangle = self.rectangle[:1] + (value,) + self.rectangle[2:]
+                          
 
     def set_corner2_x(self, value):
         """
@@ -261,10 +251,7 @@ class EditMediaRef(EditReference):
         
         if self.rectangle is None:
             self.rectangle = (0,0,100,100)
-        self.rectangle = (self.rectangle[0],
-                          self.rectangle[1],
-                          value,
-                          self.rectangle[3])
+        self.rectangle = self.rectangle[:2] + (value,) + self.rectangle[3:]
         self.update_subpixmap()
 
     def set_corner2_y(self, value):
@@ -278,10 +265,7 @@ class EditMediaRef(EditReference):
         
         if self.rectangle is None:
             self.rectangle = (0,0,100,100)
-        self.rectangle = (self.rectangle[0],
-                          self.rectangle[1],
-                          self.rectangle[2],
-                          value)
+        self.rectangle = self.rectangle[:3] + (value,)
         self.update_subpixmap()
 
     def get_corner1_x(self):
@@ -491,16 +475,16 @@ class EditMediaRef(EditReference):
         self.draw_preview()
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_widget('button84'))
-        self.define_ok_button(self.top.get_widget('button82'),self.save)
+        self.define_cancel_button(self.top.get_object('button84'))
+        self.define_ok_button(self.top.get_object('button82'),self.save)
 
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and inserts them into the main
         window.
         """
-        notebook_ref = self.top.get_widget('notebook_ref')
-        notebook_src = self.top.get_widget('notebook_shared')
+        notebook_ref = self.top.get_object('notebook_ref')
+        notebook_src = self.top.get_object('notebook_shared')
 
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
@@ -561,18 +545,18 @@ class EditMediaRef(EditReference):
 
         #save reference object in memory
         coord = (
-            self.top.get_widget("corner1_x").get_value_as_int(),
-            self.top.get_widget("corner1_y").get_value_as_int(),
-            self.top.get_widget("corner2_x").get_value_as_int(),
-            self.top.get_widget("corner2_y").get_value_as_int(),
+            self.top.get_object("corner1_x").get_value_as_int(),
+            self.top.get_object("corner1_y").get_value_as_int(),
+            self.top.get_object("corner2_x").get_value_as_int(),
+            self.top.get_object("corner2_y").get_value_as_int(),
             )
 
         #do not set unset or invalid coord
 
         if coord is not None and coord in (
-                (None, None, None, None),  
+                (None,)*4,  
                 (0, 0, 100, 100),
-                (coord[0], coord[1], coord[0], coord[1])
+                (coord[0], coord[1])*2
             ):
             coord = None
 

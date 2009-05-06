@@ -32,6 +32,7 @@ mechanism for the user to edit attribute information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +40,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +53,8 @@ from gen.lib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+
+_GLADE_FILE = 'editattribute.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -79,28 +81,31 @@ class EditAttribute(EditSecondary):
     def _local_init(self):
         self.width_key = Config.ATTRIBUTE_WIDTH
         self.height_key = Config.ATTRIBUTE_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "attr_edit","gramps")
-        self.set_window(self.top.get_widget("attr_edit"),
-                        self.top.get_widget('title'),
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        
+        self.set_window(self.top.get_object("attr_edit"),
+                        self.top.get_object('title'),
                         _('Attribute Editor'))
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('help'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
 
     def _setup_fields(self):
         self.value_field = MonitoredEntry(
-            self.top.get_widget("attr_value"),
+            self.top.get_object("attr_value"),
             self.obj.set_value, self.obj.get_value,
             self.db.readonly)
         
         self.priv = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.obj, self.db.readonly)
 
         self.type_selector = MonitoredDataType(
-            self.top.get_widget("attr_menu"),
+            self.top.get_object("attr_menu"),
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
@@ -121,7 +126,7 @@ class EditAttribute(EditSecondary):
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook,True)
         
     def build_menu_names(self, attrib):
         if not attrib:

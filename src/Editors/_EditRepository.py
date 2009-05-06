@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +35,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +49,8 @@ from widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from Editors._EditPrimary import EditPrimary
 from QuestionDialog import ErrorDialog
+
+_GLADE_FILE = 'editrepository.glade'
 
 class EditRepository(EditPrimary):
 
@@ -75,9 +77,12 @@ class EditRepository(EditPrimary):
     def _local_init(self):
         self.width_key = Config.REPO_WIDTH
         self.height_key = Config.REPO_HEIGHT
-        self.glade = glade.XML(const.GLADE_FILE, "repository_editor","gramps")
-
-        self.set_window(self.glade.get_widget("repository_editor"), None, 
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.glade = gtk.Builder()
+        self.glade.add_from_file(glade_file)
+        
+        self.set_window(self.glade.get_object("repository_editor"), None, 
                         self.get_menu_title())
 
     def build_menu_names(self, source):
@@ -85,22 +90,22 @@ class EditRepository(EditPrimary):
 
     def _setup_fields(self):
         
-        self.name = MonitoredEntry(self.glade.get_widget("repository_name"),
+        self.name = MonitoredEntry(self.glade.get_object("repository_name"),
                                    self.obj.set_name, self.obj.get_name,
                                    self.db.readonly)
 
-        self.type = MonitoredDataType(self.glade.get_widget("repository_type"),
+        self.type = MonitoredDataType(self.glade.get_object("repository_type"),
                                       self.obj.set_type, self.obj.get_type,
                                       self.db.readonly,
                                       self.db.get_repository_types(),
             )
 
-        self.call_number = MonitoredEntry(self.glade.get_widget('gid'),
+        self.call_number = MonitoredEntry(self.glade.get_object('gid'),
                                           self.obj.set_gramps_id,
                                           self.obj.get_gramps_id, 
                                           self.db.readonly)
 
-        self.privacy = PrivacyButton(self.glade.get_widget("private"), 
+        self.privacy = PrivacyButton(self.glade.get_object("private"), 
                                      self.obj, self.db.readonly)
 
     def _create_tabbed_pages(self):
@@ -140,12 +145,12 @@ class EditRepository(EditPrimary):
 
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
-        self.glade.get_widget("vbox").pack_start(notebook, True, True)
+        self.glade.get_object("vbox").pack_start(notebook, True, True)
 
     def _connect_signals(self):
-        self.define_help_button(self.glade.get_widget('help'))
-        self.define_cancel_button(self.glade.get_widget('cancel'))
-        self.define_ok_button(self.glade.get_widget('ok'), self.save)
+        self.define_help_button(self.glade.get_object('help'))
+        self.define_cancel_button(self.glade.get_object('cancel'))
+        self.define_ok_button(self.glade.get_object('ok'), self.save)
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)

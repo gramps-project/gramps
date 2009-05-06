@@ -27,13 +27,14 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +49,8 @@ from gen.lib import NoteType
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from _EditReference import RefTab, EditReference
+
+_GLADE_FILE = 'editreporef.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -65,63 +68,66 @@ class EditRepoRef(EditReference):
         self.width_key = Config.REPO_REF_WIDTH
         self.height_key = Config.REPO_REF_HEIGHT
         
-        self.top = glade.XML(const.GLADE_FILE, "repository_ref_edit","gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
         
-        self.set_window(self.top.get_widget('repository_ref_edit'),
-                        self.top.get_widget('repo_title'),        
+        
+        self.set_window(self.top.get_object('repository_ref_edit'),
+                        self.top.get_object('repo_title'),        
                         _('Repository Reference Editor'))
 
-        self.define_warn_box(self.top.get_widget("warn_box"))
-        self.define_expander(self.top.get_widget("src_expander"))
+        self.define_warn_box(self.top.get_object("warn_box"))
+        self.define_expander(self.top.get_object("src_expander"))
 
-        tblref =  self.top.get_widget('table70')
-        notebook = self.top.get_widget('notebook_ref')
+        tblref =  self.top.get_object('table70')
+        notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
-        tblref =  self.top.get_widget('table69')
-        notebook = self.top.get_widget('notebook_src')
+        tblref =  self.top.get_object('table69')
+        notebook = self.top.get_object('notebook_src')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('_General'), tblref)
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
-        self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
+        self.define_cancel_button(self.top.get_object('cancel'))
         
     def _setup_fields(self):
         self.callno = MonitoredEntry(
-            self.top.get_widget("call_number"),
+            self.top.get_object("call_number"),
             self.source_ref.set_call_number,
             self.source_ref.get_call_number,
             self.db.readonly)
         
         self.gid = MonitoredEntry(
-            self.top.get_widget('gid'),
+            self.top.get_object('gid'),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
             self.db.readonly)
 
         self.privacy = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.source,
             self.db.readonly)
 
         self.privacy = PrivacyButton(
-            self.top.get_widget("private_ref"),
+            self.top.get_object("private_ref"),
             self.source_ref,
             self.db.readonly)
 
         self.title = MonitoredEntry(
-            self.top.get_widget('repo_name'),
+            self.top.get_object('repo_name'),
             self.source.set_name,
             self.source.get_name,
             self.db.readonly)
         
         self.type_selector = MonitoredDataType(
-            self.top.get_widget("media_type"),
+            self.top.get_object("media_type"),
             self.source_ref.set_media_type,
             self.source_ref.get_media_type,
             self.db.readonly,
@@ -129,7 +135,7 @@ class EditRepoRef(EditReference):
             )
 
         self.media_type_selector = MonitoredDataType(
-            self.top.get_widget("repo_type"),
+            self.top.get_object("repo_type"),
             self.source.set_type,
             self.source.get_type,
             self.db.readonly,
@@ -142,8 +148,8 @@ class EditRepoRef(EditReference):
         window.
         """
 
-        notebook_src = self.top.get_widget('notebook_src')
-        notebook_ref = self.top.get_widget('notebook_ref')
+        notebook_src = self.top.get_object('notebook_src')
+        notebook_ref = self.top.get_object('notebook_ref')
 
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)

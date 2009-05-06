@@ -792,6 +792,18 @@ src/glade/dateedit.glade
 src/glade/editsource.glade
 src/glade/styleeditor.glade
 src/glade/dbmanager.glade
+src/glade/editurl.glade
+src/glade/editrepository.glade
+src/glade/editreporef.glade
+src/glade/editpersonref.glade
+src/glade/editlocation.glade
+src/glade/editfamily.glade
+src/glade/editchildref.glade
+src/glade/editattribute.glade
+src/glade/editaddress.glade
+src/glade/editmedia.glade
+src/glade/editmediaref.glade
+
 
 # end of widgets split off from gramps.glade
 

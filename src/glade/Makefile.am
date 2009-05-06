@@ -24,6 +24,18 @@ dist_pkgdata_DATA = \
 	dateedit.glade \
 	editsource.glade \
 	styleeditor.glade \
-	dbmanager.glade
+	dbmanager.glade \
+	editurl.glade \
+	editrepository.glade \
+	editreporef.glade \
+	editpersonref.glade \
+	editlocation.glade \
+	editfamily.glade \
+	editchildref.glade \
+	editattribute.glade \
+	editaddress.glade \
+	editmedia.glade \
+	editmediaref.glade
+
 
 

@@ -26,7 +26,8 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +40,8 @@ from _EditSecondary import EditSecondary
 
 from widgets import MonitoredEntry
 from gettext import gettext as _
+
+_GLADE_FILE = 'editlocation.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -54,63 +57,66 @@ class EditLocation(EditSecondary):
     def _local_init(self):
         self.width_key = Config.LOCATION_WIDTH
         self.height_key = Config.LOCATION_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "loc_edit","gramps")
-        self.set_window(self.top.get_widget("loc_edit"), None,
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
+
+        self.set_window(self.top.get_object("loc_edit"), None,
                         _('Location Editor'))
 
     def _setup_fields(self):
         self.street = MonitoredEntry(
-            self.top.get_widget("street"),
+            self.top.get_object("street"),
             self.obj.set_street,
             self.obj.get_street,
             self.db.readonly)
 
         self.city   = MonitoredEntry(
-            self.top.get_widget("city"),
+            self.top.get_object("city"),
             self.obj.set_city,
             self.obj.get_city,
             self.db.readonly)
         
         self.state  = MonitoredEntry(
-            self.top.get_widget("state"),
+            self.top.get_object("state"),
             self.obj.set_state,
             self.obj.get_state,
             self.db.readonly)
         
         self.postal = MonitoredEntry(
-            self.top.get_widget("postal"),
+            self.top.get_object("postal"),
             self.obj.set_postal_code,
             self.obj.get_postal_code,
             self.db.readonly)
         
         self.phone = MonitoredEntry(
-            self.top.get_widget("phone"),
+            self.top.get_object("phone"),
             self.obj.set_phone,
             self.obj.get_phone,
             self.db.readonly)
         
         self.parish = MonitoredEntry(
-            self.top.get_widget("parish"),
+            self.top.get_object("parish"),
             self.obj.set_parish,
             self.obj.get_parish,
             self.db.readonly)
         
         self.county = MonitoredEntry(
-            self.top.get_widget("county"),
+            self.top.get_object("county"),
             self.obj.set_county,
             self.obj.get_county,
             self.db.readonly)
         
         self.country = MonitoredEntry(
-            self.top.get_widget("country"),
+            self.top.get_object("country"),
             self.obj.set_country,
             self.obj.get_country,
             self.db.readonly)
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_widget('button119'))
-        self.define_ok_button(self.top.get_widget('button118'),self.save)
-        self.define_help_button(self.top.get_widget('button128'))
+        self.define_cancel_button(self.top.get_object('button119'))
+        self.define_ok_button(self.top.get_object('button118'),self.save)
+        self.define_help_button(self.top.get_object('button128'))
         
     def save(self,*obj):
         if self.callback:

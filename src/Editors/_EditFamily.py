@@ -30,6 +30,8 @@ from bsddb import db as bsddb_db
 from gettext import gettext as _
 from DdTargets import DdTargets
 import pickle
+import os
+
 #-------------------------------------------------------------------------
 #
 # enable logging for error handling
@@ -44,7 +46,6 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 from gtk import gdk
 import pango
 
@@ -79,6 +80,7 @@ _RETURN = gdk.keyval_from_name("Return")
 _KP_ENTER = gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
+_GLADE_FILE = 'editfamily.glade'
 
 class ChildEmbedList(EmbeddedList):
     """
@@ -515,10 +517,12 @@ class EditFamily(EditPrimary):
     def build_interface(self):
         self.width_key = Config.FAMILY_WIDTH
         self.height_key = Config.FAMILY_HEIGHT
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
 
-        self.top = glade.XML(const.GLADE_FILE, "family_editor", "gramps")
-
-        self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
+        self.set_window(self.top.get_object("family_editor"), None, self.get_menu_title())
 
         # HACK: how to prevent hidden items from showing
         #       when you use show_all?
@@ -526,23 +530,23 @@ class EditFamily(EditPrimary):
         # FIXME: remove if we can use show()
         self.window.show_all = self.window.show
 
-        self.fbirth  = self.top.get_widget('fbirth')
-        self.fdeath  = self.top.get_widget('fdeath')
-        self.fbirth_label = self.top.get_widget('label578')
-        self.fdeath_label = self.top.get_widget('label579')
+        self.fbirth  = self.top.get_object('fbirth')
+        self.fdeath  = self.top.get_object('fdeath')
+        self.fbirth_label = self.top.get_object('label578')
+        self.fdeath_label = self.top.get_object('label579')
         
-        self.mbirth  = self.top.get_widget('mbirth')
-        self.mdeath  = self.top.get_widget('mdeath')
-        self.mbirth_label = self.top.get_widget('label567')
-        self.mdeath_label = self.top.get_widget('label568')
+        self.mbirth  = self.top.get_object('mbirth')
+        self.mdeath  = self.top.get_object('mdeath')
+        self.mbirth_label = self.top.get_object('label567')
+        self.mdeath_label = self.top.get_object('label568')
 
-        self.mname    = self.top.get_widget('mname')
-        self.fname    = self.top.get_widget('fname')
+        self.mname    = self.top.get_object('mname')
+        self.fname    = self.top.get_object('fname')
         
-        self.mbutton_index = self.top.get_widget('mbutton_index')
-        self.mbutton_add = self.top.get_widget('mbutton_add')
-        self.mbutton_del = self.top.get_widget('mbutton_del')
-        self.mbutton_edit = self.top.get_widget('mbutton_edit')
+        self.mbutton_index = self.top.get_object('mbutton_index')
+        self.mbutton_add = self.top.get_object('mbutton_add')
+        self.mbutton_del = self.top.get_object('mbutton_del')
+        self.mbutton_edit = self.top.get_object('mbutton_edit')
 
         self.tooltips.set_tip(self.mbutton_index, 
                               _("Select a person as the mother"))
@@ -557,10 +561,10 @@ class EditFamily(EditPrimary):
         self.mbutton_del.connect('clicked', self.del_mother_clicked)
         self.mbutton_add.connect('clicked', self.add_mother_clicked)
 
-        self.fbutton_index = self.top.get_widget('fbutton_index')
-        self.fbutton_add = self.top.get_widget('fbutton_add')
-        self.fbutton_del = self.top.get_widget('fbutton_del')
-        self.fbutton_edit = self.top.get_widget('fbutton_edit')
+        self.fbutton_index = self.top.get_object('fbutton_index')
+        self.fbutton_add = self.top.get_object('fbutton_add')
+        self.fbutton_del = self.top.get_object('fbutton_del')
+        self.fbutton_edit = self.top.get_object('fbutton_edit')
 
         self.tooltips.set_tip(self.fbutton_index, 
                               _("Select a person as the father"))
@@ -576,11 +580,11 @@ class EditFamily(EditPrimary):
         self.fbutton_add.connect('clicked', self.add_father_clicked)
 
         #allow for a context menu
-        self.set_contexteventbox(self.top.get_widget("eventboxtop"))
+        self.set_contexteventbox(self.top.get_object("eventboxtop"))
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'), self.save)
-        self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_ok_button(self.top.get_object('ok'), self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
 
     def _can_be_replaced(self):
         pass
@@ -588,18 +592,18 @@ class EditFamily(EditPrimary):
     def _setup_fields(self):
         
         self.private = PrivacyButton(
-            self.top.get_widget('private'),
+            self.top.get_object('private'),
             self.obj,
             self.db.readonly)
 
         self.gid = MonitoredEntry(
-            self.top.get_widget('gid'),
+            self.top.get_object('gid'),
             self.obj.set_gramps_id,
             self.obj.get_gramps_id,
             self.db.readonly)
         
         self.marker = MonitoredDataType(
-            self.top.get_widget('marker'), 
+            self.top.get_object('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
             self.db.readonly,
@@ -607,7 +611,7 @@ class EditFamily(EditPrimary):
             )
 
         self.data_type = MonitoredDataType(
-            self.top.get_widget('marriage_type'),
+            self.top.get_object('marriage_type'),
             self.obj.set_relationship,
             self.obj.get_relationship,
             self.db.readonly,
@@ -685,8 +689,8 @@ class EditFamily(EditPrimary):
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
 
-        self.hidden = (notebook, self.top.get_widget('info'))
-        self.top.get_widget('vbox').pack_start(notebook, True)
+        self.hidden = (notebook, self.top.get_object('info'))
+        self.top.get_object('vbox').pack_start(notebook, True)
 
     def update_father(self, handle):
         self.load_parent(handle, self.fname, self.fbirth, self.fbirth_label,

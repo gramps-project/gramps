@@ -27,13 +27,14 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +45,8 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+
+_GLADE_FILE = 'editurl.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -60,18 +63,22 @@ class EditUrl(EditSecondary):
     def _local_init(self):
         self.width_key = Config.URL_WIDTH
         self.height_key = Config.URL_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "url_edit", "gramps")
-        self.jump = self.top.get_widget('jump')
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+        
+        self.jump = self.top.get_object('jump')
 
-        self.set_window(self.top.get_widget("url_edit"),
-                        self.top.get_widget("title"),
+        self.set_window(self.top.get_object("url_edit"),
+                        self.top.get_object("title"),
                         _('Internet Address Editor'))
             
     def _connect_signals(self):
         self.jump.connect('clicked', self.jump_to)
-        self.define_cancel_button(self.top.get_widget('button125'))
-        self.define_ok_button(self.top.get_widget('button124'), self.save)
-        self.define_help_button(self.top.get_widget('button130'))
+        self.define_cancel_button(self.top.get_object('button125'))
+        self.define_ok_button(self.top.get_object('button124'), self.save)
+        self.define_help_button(self.top.get_object('button130'))
         
     def jump_to(self, obj):
         if self.obj.get_path():
@@ -79,18 +86,18 @@ class EditUrl(EditSecondary):
             GrampsDisplay.url(self.obj.get_path())
 
     def _setup_fields(self):
-        self.des  = MonitoredEntry(self.top.get_widget("url_des"),
+        self.des  = MonitoredEntry(self.top.get_object("url_des"),
                                    self.obj.set_description, 
                                    self.obj.get_description, self.db.readonly)
 
-        self.addr  = MonitoredEntry(self.top.get_widget("url_addr"), 
+        self.addr  = MonitoredEntry(self.top.get_object("url_addr"), 
                                     self.obj.set_path, self.obj.get_path, 
                                     self.db.readonly)
         
-        self.priv = PrivacyButton(self.top.get_widget("priv"),
+        self.priv = PrivacyButton(self.top.get_object("priv"),
                                   self.obj, self.db.readonly)
 
-        self.type_sel = MonitoredDataType(self.top.get_widget("type"), 
+        self.type_sel = MonitoredDataType(self.top.get_object("type"), 
                                           self.obj.set_type, 
                                           self.obj.get_type, self.db.readonly)
             
