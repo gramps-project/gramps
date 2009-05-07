@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 3.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-27 17:13+0200\n"
-"PO-Revision-Date: 2009-04-27 21:31+0100\n"
+"PO-Revision-Date: 2009-05-07 18:21+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19972,7 +19972,7 @@ msgstr "Correspond aux individus sans date ou lieu dans un événement"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
 msgid "On date:"
-msgstr "A la date :"
+msgstr "À la date :"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
@@ -23636,7 +23636,7 @@ msgstr "de"
 
 #: DenominoViso.py:1939
 msgid "the chart type runs out of bounds"
-msgstr ""
+msgstr "le type de graphique est hors limites"
 
 #: DenominoViso.py:1984
 msgid "Search"
@@ -23668,7 +23668,7 @@ msgstr "La chaîne désirée."
 
 #: DenominoViso.py:2543
 msgid "Either plot ancestor or descendants graph."
-msgstr ""
+msgstr "Soit table d'ascendant soit graphique de descendants"
 
 #: DenominoViso.py:2548
 msgid "Display type"
@@ -23748,7 +23748,7 @@ msgstr "Inclure la note du témoin"
 
 #: DenominoViso.py:2602
 msgid "Whether to include the note belonging to a witness (if the event_format contains <witnesses>)"
-msgstr ""
+msgstr "Inclure ou non la note propre à un témoin (si le format de l'événement contient <témoins>) "
 
 #: DenominoViso.py:2606
 msgid "Include Attributes"
@@ -23852,7 +23852,7 @@ msgstr "Couleur de l'individu actif:"
 
 #: DenominoViso.py:2663
 msgid "RGB-color of geometric shape of the activated person."
-msgstr ""
+msgstr "Couleur RGB de la figure géométrique pour la personne active."
 
 #: DenominoViso.py:2666
 msgid "Color of found persons:"
@@ -23860,7 +23860,7 @@ msgstr "Couleur des individus trouvés:"
 
 #: DenominoViso.py:2667
 msgid "RGB-color of geometric shape of the persons found."
-msgstr ""
+msgstr "Couleur RGB de la figure géométrique pour les individus trouvés."
 
 #: DenominoViso.py:2670
 msgid "Color of male persons:"
@@ -23868,7 +23868,7 @@ msgstr "Couleur des individus masculins:"
 
 #: DenominoViso.py:2671
 msgid "RGB-color of geometric shape of the male persons."
-msgstr ""
+msgstr "Couleur RGB de la figure géométrique pour les individus de genre masculin."
 
 #: DenominoViso.py:2674
 msgid "Colour of female persons:"
@@ -23876,7 +23876,7 @@ msgstr "Couleur des individus féminins:"
 
 #: DenominoViso.py:2675
 msgid "RGB-color of geometric shape of the female persons."
-msgstr ""
+msgstr "Couleur RGB pour la figure géométrique des individus de genre féminin."
 
 #: DenominoViso.py:2678
 msgid "Width of rectangle (hrd):"
@@ -23904,7 +23904,7 @@ msgstr "Sortie adaptée aux anciens navigateurs"
 
 #: DenominoViso.py:2697
 msgid "Whether to create an ordinary html-file that includes the xhtml-file so that deprecated browsers can be presented with content they can swallow."
-msgstr ""
+msgstr "Créer ou non un simple fichier html incluant un fichier xhtml pour que les navigateurs moins récents puissent contenir ces données."
 
 # context ?
 #: DenominoViso.py:2700
@@ -23913,7 +23913,7 @@ msgstr "Gestion de l'action de la souris"
 
 #: DenominoViso.py:2702
 msgid "Mouse handler used to interact with visitor of webpage."
-msgstr ""
+msgstr "La gestion du curseur de la souris est utilisé pour interagir avec le visiteur de la page internet."
 
 #: DenominoViso.py:2706
 msgid "Birth relationship linestyle"
@@ -23921,7 +23921,7 @@ msgstr "Style de la lignée de naissance"
 
 #: DenominoViso.py:2708
 msgid "List of lists where each sublist is a list with information about the dash pattern of lines connecting children to parents."
-msgstr ""
+msgstr "Liste dont les listes contiennent l'information sur le motif pointillé entre les enfants et les parents."
 
 #: DenominoViso.py:2714
 msgid "Source confidence color"
@@ -23929,7 +23929,7 @@ msgstr "Couleur pour la confiance de la source"
 
 #: DenominoViso.py:2716
 msgid "List os lists where each sublist is a list with information on the color to use for a certain confidence level."
-msgstr ""
+msgstr "Liste dont les listes contiennent l'information sur la couleur du niveau de confiance de la source."
 
 #: DenominoViso.py:2719
 msgid "Event format"
@@ -23941,7 +23941,7 @@ msgstr "à"
 
 #: DenominoViso.py:2724
 msgid "List os strings with placeholders for events. Known placeholders: <type>, <role>, <date>, <place>, <description>, <witnesses>, <source> and any <attribute-value>."
-msgstr ""
+msgstr "Liste des protagonistes des événements : <type>, <rôle>, <date>, <lieu>, <description>, <témoins>, <source> et tout autre <attribut>."
 
 #: DenominoViso.py:2727
 msgid "Source format"
@@ -23949,7 +23949,7 @@ msgstr "Format de la source"
 
 #: DenominoViso.py:2728
 msgid "List of strings with placeholders for sources. Known placeholders: <title>, <volume>, <author>, <publication_info> and <abbreviation>."
-msgstr ""
+msgstr "Liste des protagonistes des sources : <titre>, <volume>, <auteur>, <informations de publication> et <abréviation>."
 
 #: DenominoViso.py:2785
 msgid "restricted to:"
