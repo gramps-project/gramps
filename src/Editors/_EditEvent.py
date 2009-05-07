@@ -27,13 +27,14 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
+import os
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +61,8 @@ from widgets import (MonitoredEntry, PrivacyButton,
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Information_About_Events')
+_GLADE_FILE = 'editevent.glade'
+
 #-------------------------------------------------------------------------
 #
 # EditEvent class
@@ -99,19 +102,22 @@ class EditEvent(EditPrimary):
         self.width_key = Config.EVENT_WIDTH
         self.height_key = Config.EVENT_HEIGHT
 
-        self.top = glade.XML(const.GLADE_FILE, "event_edit","gramps")
-        self.set_window(self.top.get_widget("event_edit"), None, 
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+
+        self.set_window(self.top.get_object("event_edit"), None, 
                         self.get_menu_title())
 
-        self.place = self.top.get_widget('place')
-        self.share_btn = self.top.get_widget('select_place')
-        self.add_del_btn = self.top.get_widget('add_del_place')
+        self.place = self.top.get_object('place')
+        self.share_btn = self.top.get_object('select_place')
+        self.add_del_btn = self.top.get_object('add_del_place')
 
     def _connect_signals(self):
-        self.top.get_widget('button111').connect('clicked', self.close)
-        self.top.get_widget('button126').connect('clicked', self.help_clicked)
+        self.top.get_object('button111').connect('clicked', self.close)
+        self.top.get_object('button126').connect('clicked', self.help_clicked)
 
-        self.ok_button = self.top.get_widget('ok')
+        self.ok_button = self.top.get_object('ok')
         self.ok_button.set_sensitive(not self.db.readonly)
         self.ok_button.connect('clicked', self.save)
 
@@ -120,30 +126,30 @@ class EditEvent(EditPrimary):
         # place, select_place, add_del_place
         
         self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
-                                      self.top.get_widget("place"),
+                                      self.top.get_object("place"),
                                       self.obj.set_place_handle,
                                       self.obj.get_place_handle,
                                       self.add_del_btn, self.share_btn)
         
-        self.descr_field = MonitoredEntry(self.top.get_widget("event_description"),
+        self.descr_field = MonitoredEntry(self.top.get_object("event_description"),
                                           self.obj.set_description,
                                           self.obj.get_description, 
                                           self.db.readonly)
 
-        self.gid = MonitoredEntry(self.top.get_widget("gid"),
+        self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.obj.set_gramps_id,
                                   self.obj.get_gramps_id, self.db.readonly)
 
-        self.priv = PrivacyButton( self.top.get_widget("private"),
+        self.priv = PrivacyButton( self.top.get_object("private"),
                                    self.obj, self.db.readonly)
 
-        self.event_menu = MonitoredDataType(self.top.get_widget("personal_events"),
+        self.event_menu = MonitoredDataType(self.top.get_object("personal_events"),
                                             self.obj.set_type,
                                             self.obj.get_type,
                                             custom_values=self.get_custom_events())
 
-        self.date_field = MonitoredDate(self.top.get_widget("date_entry"),
-                                        self.top.get_widget("date_stat"),
+        self.date_field = MonitoredDate(self.top.get_object("date_entry"),
+                                        self.top.get_object("date_stat"),
                                         self.obj.get_date_object(),
                                         self.uistate, self.track, 
                                         self.db.readonly)
@@ -191,7 +197,7 @@ class EditEvent(EditPrimary):
         self._setup_notebook_tabs(notebook)
         
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook, True)
+        self.top.get_object('vbox').pack_start(notebook, True)
 
         self.track_ref_for_deletion("source_list")
         self.track_ref_for_deletion("note_list")

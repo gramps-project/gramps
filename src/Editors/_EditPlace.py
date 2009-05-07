@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 import logging
 log = logging.getLogger(".")
@@ -37,7 +38,6 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -54,6 +54,8 @@ from widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
 from QuestionDialog import ErrorDialog
+
+_GLADE_FILE = 'editplace.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -116,12 +118,15 @@ class EditPlace(EditPrimary):
     def _local_init(self):
         self.width_key = Config.PLACE_WIDTH
         self.height_key = Config.PLACE_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "place_editor","gramps")
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
 
-        self.set_window(self.top.get_widget("place_editor"), None,
+        self.set_window(self.top.get_object("place_editor"), None,
                         self.get_menu_title())
-        tblmloc =  self.top.get_widget('table19')
-        notebook = self.top.get_widget('notebook3')
+        tblmloc =  self.top.get_object('table19')
+        notebook = self.top.get_object('notebook3')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
@@ -138,71 +143,71 @@ class EditPlace(EditPrimary):
         return dialog_title
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'), self.save)
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'))
+        self.define_ok_button(self.top.get_object('ok'), self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('help'))
 
     def _setup_fields(self):
         mloc = self.obj.get_main_location()
         
-        self.title = MonitoredEntry(self.top.get_widget("place_title"),
+        self.title = MonitoredEntry(self.top.get_object("place_title"),
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
         
-        self.street = MonitoredEntry(self.top.get_widget("street"),
+        self.street = MonitoredEntry(self.top.get_object("street"),
                                      mloc.set_street, mloc.get_street, 
                                      self.db.readonly)
 
-        self.city = MonitoredEntry(self.top.get_widget("city"),
+        self.city = MonitoredEntry(self.top.get_object("city"),
                                    mloc.set_city, mloc.get_city, 
                                    self.db.readonly)
         
-        self.gid = MonitoredEntry(self.top.get_widget("gid"),
+        self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.obj.set_gramps_id, 
                                   self.obj.get_gramps_id, self.db.readonly)
         
-        self.privacy = PrivacyButton(self.top.get_widget("private"), self.obj, 
+        self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
 
-        self.parish = MonitoredEntry(self.top.get_widget("parish"),
+        self.parish = MonitoredEntry(self.top.get_object("parish"),
                                      mloc.set_parish, mloc.get_parish, 
                                      self.db.readonly)
         
-        self.county = MonitoredEntry(self.top.get_widget("county"),
+        self.county = MonitoredEntry(self.top.get_object("county"),
                                      mloc.set_county, mloc.get_county, 
                                      self.db.readonly)
         
-        self.state = MonitoredEntry(self.top.get_widget("state"),
+        self.state = MonitoredEntry(self.top.get_object("state"),
                                     mloc.set_state, mloc.get_state, 
                                     self.db.readonly)
 
-        self.phone = MonitoredEntry(self.top.get_widget("phone"),
+        self.phone = MonitoredEntry(self.top.get_object("phone"),
                                     mloc.set_phone, mloc.get_phone, 
                                     self.db.readonly)
         
-        self.postal = MonitoredEntry(self.top.get_widget("postal"),
+        self.postal = MonitoredEntry(self.top.get_object("postal"),
                                      mloc.set_postal_code, 
                                      mloc.get_postal_code, self.db.readonly)
 
-        self.country = MonitoredEntry(self.top.get_widget("country"),
+        self.country = MonitoredEntry(self.top.get_object("country"),
                                       mloc.set_country, mloc.get_country, 
                                       self.db.readonly)
 
         self.longitude = MonitoredEntry(
-            self.top.get_widget("lon_entry"),
+            self.top.get_object("lon_entry"),
             self.obj.set_longitude, self.obj.get_longitude,
             self.db.readonly)
         self.longitude.connect("validate", self._validate_coordinate, "lon")
         #force validation now with initial entry
-        self.top.get_widget("lon_entry").validate(force=True)
+        self.top.get_object("lon_entry").validate(force=True)
 
         self.latitude = MonitoredEntry(
-            self.top.get_widget("lat_entry"),
+            self.top.get_object("lat_entry"),
             self.obj.set_latitude, self.obj.get_latitude,
             self.db.readonly)
         self.latitude.connect("validate", self._validate_coordinate, "lat")
         #force validation now with initial entry
-        self.top.get_widget("lat_entry").validate(force=True)
+        self.top.get_object("lat_entry").validate(force=True)
         
     def _validate_coordinate(self, widget, text, typedeg):
         if (typedeg == 'lat') and not conv_lat_lon(text, "0", "ISO-D"):
@@ -221,7 +226,7 @@ class EditPlace(EditPrimary):
         window.
         
         """
-        notebook = self.top.get_widget('notebook3')
+        notebook = self.top.get_object('notebook3')
 
         self._add_tab(notebook, self.mloc)
 

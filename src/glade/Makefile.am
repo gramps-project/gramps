@@ -35,7 +35,14 @@ dist_pkgdata_DATA = \
 	editattribute.glade \
 	editaddress.glade \
 	editmedia.glade \
-	editmediaref.glade
-
-
-
+	editmediaref.glade \
+	editaddress.glade \
+	editeventref.glade \
+	editldsord.glade \
+	editmedia.glade \
+	editnote.glade \
+	editplace.glade \
+	editsourceref.glade \
+	editname.glade \
+	editevent.glade \
+	editurl.glade

@@ -27,13 +27,14 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +59,7 @@ from ObjectEntries import PlaceEntry
 #
 #-------------------------------------------------------------------------
 
+_GLADE_FILE = 'editeventref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -74,24 +76,27 @@ class EditEventRef(EditReference):
     def _local_init(self):
         self.width_key = Config.EVENT_REF_WIDTH
         self.height_key = Config.EVENT_REF_HEIGHT
-
-        self.top = glade.XML(const.GLADE_FILE, "event_eref_edit","gramps")
-        self.set_window(self.top.get_widget('event_eref_edit'),
-                        self.top.get_widget('eer_title'),
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
+        
+        self.set_window(self.top.get_object('event_eref_edit'),
+                        self.top.get_object('eer_title'),
                         _('Event Reference Editor'))
-        self.define_warn_box(self.top.get_widget("eer_warning"))
-        self.define_expander(self.top.get_widget("eer_expander"))
-        self.share_btn = self.top.get_widget('share_place')
-        self.add_del_btn = self.top.get_widget('add_del_place')
+        self.define_warn_box(self.top.get_object("eer_warning"))
+        self.define_expander(self.top.get_object("eer_expander"))
+        self.share_btn = self.top.get_object('share_place')
+        self.add_del_btn = self.top.get_object('add_del_place')
 
-        tblref =  self.top.get_widget('table64')
-        notebook = self.top.get_widget('notebook_ref')
+        tblref =  self.top.get_object('table64')
+        notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
-        tblref =  self.top.get_widget('table62')
-        notebook = self.top.get_widget('notebook')
+        tblref =  self.top.get_object('table62')
+        notebook = self.top.get_object('notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
@@ -105,25 +110,25 @@ class EditEventRef(EditReference):
         return self.db.get_person_event_types()
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
-        self.define_cancel_button(self.top.get_widget('cancel'))
+        self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
+        self.define_cancel_button(self.top.get_object('cancel'))
         # FIXME: activate when help page is available
-        #self.define_help_button(self.top.get_widget('help'))
+        #self.define_help_button(self.top.get_object('help'))
 
     def _setup_fields(self):
         
         self.ref_privacy = PrivacyButton(
-            self.top.get_widget('eer_ref_priv'),
+            self.top.get_object('eer_ref_priv'),
             self.source_ref, self.db.readonly)
 
         self.descr_field = MonitoredEntry(
-            self.top.get_widget("eer_description"),
+            self.top.get_object("eer_description"),
             self.source.set_description,
             self.source.get_description,
             self.db.readonly)
 
         self.gid = MonitoredEntry(
-            self.top.get_widget("gid"),
+            self.top.get_object("gid"),
             self.source.set_gramps_id,
             self.source.get_gramps_id,
             self.db.readonly)
@@ -132,18 +137,18 @@ class EditEventRef(EditReference):
             self.dbstate,
             self.uistate,
             self.track,
-            self.top.get_widget("eer_place"),
+            self.top.get_object("eer_place"),
             self.source.set_place_handle,
             self.source.get_place_handle,
             self.share_btn,
             self.add_del_btn)
 
         self.ev_privacy = PrivacyButton(
-            self.top.get_widget("eer_ev_priv"),
+            self.top.get_object("eer_ev_priv"),
             self.source, self.db.readonly)
                 
         self.role_selector = MonitoredDataType(
-            self.top.get_widget('eer_role_combo'),
+            self.top.get_object('eer_role_combo'),
             self.source_ref.set_role,
             self.source_ref.get_role,
             self.db.readonly,
@@ -151,15 +156,15 @@ class EditEventRef(EditReference):
             )
 
         self.event_menu = MonitoredDataType(
-            self.top.get_widget("eer_type_combo"),
+            self.top.get_object("eer_type_combo"),
             self.source.set_type,
             self.source.get_type,
             self.db.readonly,
             custom_values=self.get_custom_events())
 
         self.date_check = MonitoredDate(
-            self.top.get_widget("eer_date_entry"),
-            self.top.get_widget("eer_date_stat"),
+            self.top.get_object("eer_date_entry"),
+            self.top.get_object("eer_date_stat"),
             self.source.get_date_object(),
             self.uistate,
             self.track,
@@ -171,8 +176,8 @@ class EditEventRef(EditReference):
         window.
         """
 
-        notebook = self.top.get_widget('notebook')
-        notebook_ref = self.top.get_widget('notebook_ref')
+        notebook = self.top.get_object('notebook')
+        notebook_ref = self.top.get_object('notebook_ref')
 
         self._add_tab(notebook, self.primtab)
         self._add_tab(notebook_ref, self.reftab)

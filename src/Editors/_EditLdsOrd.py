@@ -18,8 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-import gtk
-
 # $Id$ 
 
 """
@@ -33,13 +31,14 @@ mechanism for the user to edit personal LDS information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -121,6 +120,8 @@ _DATA_MAP = {
         gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
     }
+    
+_GLADE_FILE = 'editldsord.glade'    
 
 #-------------------------------------------------------------------------
 #
@@ -146,18 +147,22 @@ class EditLdsOrd(EditSecondary):
     def _local_init(self):
         self.width_key = Config.LDS_WIDTH
         self.height_key = Config.LDS_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
-        self.set_window(self.top.get_widget("lds_person_edit"),
-                        self.top.get_widget('title'),
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
+        
+        self.set_window(self.top.get_object("lds_person_edit"),
+                        self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
-        self.share_btn = self.top.get_widget('share_place')
-        self.add_del_btn = self.top.get_widget('add_del_place')
+        self.share_btn = self.top.get_object('share_place')
+        self.add_del_btn = self.top.get_object('add_del_place')
 
     def _connect_signals(self):
         self.parents_select.connect('clicked',self.select_parents_clicked)
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('help'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
 
     def _get_types(self):
         return (gen.lib.LdsOrd.BAPTISM,
@@ -167,17 +172,17 @@ class EditLdsOrd(EditSecondary):
 
     def _setup_fields(self):
 
-        self.parents_label = self.top.get_widget('parents_label')
-        self.parents = self.top.get_widget('parents')
-        self.parents_select = self.top.get_widget('parents_select')
+        self.parents_label = self.top.get_object('parents_label')
+        self.parents = self.top.get_object('parents')
+        self.parents_select = self.top.get_object('parents_select')
 
         self.priv = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.obj, self.db.readonly)
 
         self.date_field = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"),
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
             self.track,
@@ -187,14 +192,14 @@ class EditLdsOrd(EditSecondary):
             self.dbstate,
             self.uistate,
             self.track,
-            self.top.get_widget("place"),
+            self.top.get_object("place"),
             self.obj.set_place_handle,
             self.obj.get_place_handle,
             self.add_del_btn,
             self.share_btn)
 
         self.type_menu = MonitoredMenu(
-            self.top.get_widget('type'),
+            self.top.get_object('type'),
             self.obj.set_type,
             self.obj.get_type,
             [(item[1],item[0]) for item in gen.lib.LdsOrd._TYPE_MAP
@@ -203,14 +208,14 @@ class EditLdsOrd(EditSecondary):
             changed=self.ord_type_changed)
 
         self.temple_menu = MonitoredStrMenu(
-            self.top.get_widget('temple'),
+            self.top.get_object('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
             LdsUtils.TEMPLES.name_code_data(),
             self.db.readonly)
 
         self.status_menu = MonitoredMenu(
-            self.top.get_widget('status'),
+            self.top.get_object('status'),
             self.obj.set_status,
             self.obj.get_status,
             [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
@@ -251,7 +256,7 @@ class EditLdsOrd(EditSecondary):
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook,True)
 
     def select_parents_clicked(self, obj):
         from Selectors import selector_factory
@@ -333,33 +338,33 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _local_init(self):
         self.top = glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
-        self.set_window(self.top.get_widget("lds_person_edit"),
-                        self.top.get_widget('title'),
+        self.set_window(self.top.get_object("lds_person_edit"),
+                        self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
-        self.share_btn = self.top.get_widget('share_place')
-        self.add_del_btn = self.top.get_widget('add_del_place')
+        self.share_btn = self.top.get_object('share_place')
+        self.add_del_btn = self.top.get_object('add_del_place')
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('help'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
 
     def _get_types(self):
         return (gen.lib.LdsOrd.SEAL_TO_SPOUSE,)
 
     def _setup_fields(self):
 
-        self.parents_label = self.top.get_widget('parents_label')
-        self.parents = self.top.get_widget('parents')
-        self.parents_select = self.top.get_widget('parents_select')
+        self.parents_label = self.top.get_object('parents_label')
+        self.parents = self.top.get_object('parents')
+        self.parents_select = self.top.get_object('parents_select')
 
         self.priv = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.obj, self.db.readonly)
 
         self.date_field = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"),
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"),
             self.obj.get_date_object(),
             self.uistate,
             self.track,
@@ -369,14 +374,14 @@ class EditFamilyLdsOrd(EditSecondary):
             self.dbstate,
             self.uistate,
             self.track,
-            self.top.get_widget("place"),
+            self.top.get_object("place"),
             self.obj.set_place_handle,
             self.obj.get_place_handle,
             self.add_del_btn,
             self.share_btn)
 
         self.type_menu = MonitoredMenu(
-            self.top.get_widget('type'),
+            self.top.get_object('type'),
             self.obj.set_type,
             self.obj.get_type,
             [(item[1],item[0]) for item in gen.lib.LdsOrd._TYPE_MAP
@@ -384,14 +389,14 @@ class EditFamilyLdsOrd(EditSecondary):
             self.db.readonly)
 
         self.temple_menu = MonitoredStrMenu(
-            self.top.get_widget('temple'),
+            self.top.get_object('temple'),
             self.obj.set_temple,
             self.obj.get_temple,
             LdsUtils.TEMPLES.name_code_data(),
             self.db.readonly)
 
         self.status_menu = MonitoredMenu(
-            self.top.get_widget('status'),
+            self.top.get_object('status'),
             self.obj.set_status,
             self.obj.get_status,
             [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
@@ -411,7 +416,7 @@ class EditFamilyLdsOrd(EditSecondary):
                     notetype=gen.lib.NoteType.LDS))
         
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook,True)
 
     def build_menu_names(self, attrib):
         label = _("LDS Ordinance")

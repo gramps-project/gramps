@@ -803,7 +803,16 @@ src/glade/editattribute.glade
 src/glade/editaddress.glade
 src/glade/editmedia.glade
 src/glade/editmediaref.glade
-
+src/glade/editaddress.glade
+src/glade/editeventref.glade
+src/glade/editldsord.glade
+src/glade/editmedia.glade
+src/glade/editnote.glade
+src/glade/editplace.glade
+src/glade/editsourceref.glade
+src/glade/editname.glade
+src/glade/editevent.glade
+src/glade/editurl.glade
 
 # end of widgets split off from gramps.glade
 

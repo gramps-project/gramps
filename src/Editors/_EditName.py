@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -34,7 +35,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +50,7 @@ from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
 from widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
 
+_GLADE_FILE = 'editname.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -110,13 +111,16 @@ class EditName(EditSecondary):
         self.width_key = Config.NAME_WIDTH
         self.height_key = Config.NAME_HEIGHT
         
-        self.top = glade.XML(const.GLADE_FILE, "name_edit","gramps")
-        self.set_window(self.top.get_widget("name_edit"),
-                        self.top.get_widget("title"),
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
+        
+        self.set_window(self.top.get_object("name_edit"),
+                        self.top.get_object("title"),
                         _("Name Editor"))
 
-        tblgnam =  self.top.get_widget('table23')
-        notebook = self.top.get_widget('notebook')
+        tblgnam =  self.top.get_object('table23')
+        notebook = self.top.get_object('notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 
@@ -127,7 +131,7 @@ class EditName(EditSecondary):
         srn = self.obj.get_surname()
         self._get_global_grouping(srn)
 
-        self.group_over = self.top.get_widget('group_over')
+        self.group_over = self.top.get_object('group_over')
         self.group_over.connect('toggled',self.on_group_over_toggled)
         self.group_over.set_sensitive(not self.db.readonly)
         
@@ -140,13 +144,13 @@ class EditName(EditSecondary):
             self.group_over.set_active(True)
 
     def _connect_signals(self):
-        self.define_cancel_button(self.top.get_widget('button119'))
-        self.define_help_button(self.top.get_widget('button131'))
-        self.define_ok_button(self.top.get_widget('button118'),self.save)
+        self.define_cancel_button(self.top.get_object('button119'))
+        self.define_help_button(self.top.get_object('button131'))
+        self.define_ok_button(self.top.get_object('button118'),self.save)
 
     def _setup_fields(self):
         self.group_as = MonitoredEntry(
-            self.top.get_widget("group_as"),
+            self.top.get_object("group_as"),
             self.obj.set_group_as,
             self.obj.get_group_as,
             self.db.readonly)
@@ -161,51 +165,51 @@ class EditName(EditSecondary):
                        in name_displayer.get_name_format(also_default=True)]
             
         self.sort_as = MonitoredMenu(
-            self.top.get_widget('sort_as'),
+            self.top.get_object('sort_as'),
             self.obj.set_sort_as,
             self.obj.get_sort_as,
             format_list,
             self.db.readonly)
 
         self.display_as = MonitoredMenu(
-            self.top.get_widget('display_as'),
+            self.top.get_object('display_as'),
             self.obj.set_display_as,
             self.obj.get_display_as,
             format_list,
             self.db.readonly)
 
         self.given_field = MonitoredEntry(
-            self.top.get_widget("alt_given"),
+            self.top.get_object("alt_given"),
             self.obj.set_first_name,
             self.obj.get_first_name,
             self.db.readonly)
 
         self.call_field = MonitoredEntry(
-            self.top.get_widget("call"),
+            self.top.get_object("call"),
             self.obj.set_call_name,
             self.obj.get_call_name,
             self.db.readonly)
 
         self.title_field = MonitoredEntry(
-            self.top.get_widget("alt_title"),
+            self.top.get_object("alt_title"),
             self.obj.set_title,
             self.obj.get_title,
             self.db.readonly)
 
         self.suffix_field = MonitoredEntry(
-            self.top.get_widget("alt_suffix"),
+            self.top.get_object("alt_suffix"),
             self.obj.set_suffix,
             self.obj.get_suffix,
             self.db.readonly)
 
         self.patronymic_field = MonitoredEntry(
-            self.top.get_widget("patronymic"),
+            self.top.get_object("patronymic"),
             self.obj.set_patronymic,
             self.obj.get_patronymic,
             self.db.readonly)
 
         self.surname_field = MonitoredEntry(
-            self.top.get_widget("alt_surname"),
+            self.top.get_object("alt_surname"),
             self.obj.set_surname,
             self.obj.get_surname,
             self.db.readonly,
@@ -213,21 +217,21 @@ class EditName(EditSecondary):
             changed=self.update_group_as)
 
         self.prefix_field = MonitoredEntry(
-            self.top.get_widget("alt_prefix"),
+            self.top.get_object("alt_prefix"),
             self.obj.set_surname_prefix,
             self.obj.get_surname_prefix,
             self.db.readonly)
 
         self.date = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"), 
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"), 
             self.obj.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
 
         self.obj_combo = MonitoredDataType(
-            self.top.get_widget("name_type"),
+            self.top.get_object("name_type"),
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
@@ -235,12 +239,12 @@ class EditName(EditSecondary):
             )
         
         self.privacy = PrivacyButton(
-            self.top.get_widget("priv"), self.obj,
+            self.top.get_object("priv"), self.obj,
             self.db.readonly)
         
     def _create_tabbed_pages(self):
 
-        notebook = self.top.get_widget("notebook")
+        notebook = self.top.get_object("notebook")
 
         self._add_tab(notebook, self.gennam)
 

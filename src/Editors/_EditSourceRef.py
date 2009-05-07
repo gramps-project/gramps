@@ -27,13 +27,14 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +50,8 @@ from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList,
 from widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
                      MonitoredDate)
 from _EditReference import RefTab, EditReference
+
+_GLADE_FILE = 'editsourceref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -66,69 +69,71 @@ class EditSourceRef(EditReference):
         self.width_key = Config.EVENT_REF_WIDTH
         self.height_key = Config.EVENT_REF_HEIGHT
         
-        self.top = glade.XML(const.GLADE_FILE, "source_ref_edit","gramps")
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
         
-        self.set_window(self.top.get_widget('source_ref_edit'),
-                        self.top.get_widget('source_title'),        
+        self.set_window(self.top.get_object('source_ref_edit'),
+                        self.top.get_object('source_title'),        
                         _('Source Reference Editor'))
 
-        self.define_warn_box(self.top.get_widget("warn_box"))
-        self.define_expander(self.top.get_widget("src_expander"))
+        self.define_warn_box(self.top.get_object("warn_box"))
+        self.define_expander(self.top.get_object("src_expander"))
 
-        tblref =  self.top.get_widget('table67')
-        notebook = self.top.get_widget('notebook_ref')
+        tblref =  self.top.get_object('table67')
+        notebook = self.top.get_object('notebook_ref')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
-        tblref =  self.top.get_widget('table68')
-        notebook = self.top.get_widget('notebook_src')
+        tblref =  self.top.get_object('table68')
+        notebook = self.top.get_object('notebook_src')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget("help"))
+        self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object("help"))
 
     def _setup_fields(self):
         self.ref_privacy = PrivacyButton(
-            self.top.get_widget('privacy'), self.source_ref, self.db.readonly)
+            self.top.get_object('privacy'), self.source_ref, self.db.readonly)
 
         self.volume = MonitoredEntry(
-            self.top.get_widget("volume"), self.source_ref.set_page,
+            self.top.get_object("volume"), self.source_ref.set_page,
             self.source_ref.get_page, self.db.readonly)
         
         self.gid = MonitoredEntry(
-            self.top.get_widget('gid'), self.source.set_gramps_id,
+            self.top.get_object('gid'), self.source.set_gramps_id,
             self.source.get_gramps_id,self.db.readonly)
         
         self.source_privacy = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.source, self.db.readonly)
 
         self.title = MonitoredEntry(
-            self.top.get_widget('title'), 
+            self.top.get_object('title'), 
             self.source.set_title,
             self.source.get_title,
             self.db.readonly)
         
         self.abbrev = MonitoredEntry(
-            self.top.get_widget('abbrev'), self.source.set_abbreviation,
+            self.top.get_object('abbrev'), self.source.set_abbreviation,
             self.source.get_abbreviation,self.db.readonly)
 
         self.author = MonitoredEntry(
-            self.top.get_widget('author'), self.source.set_author,
+            self.top.get_object('author'), self.source.set_author,
             self.source.get_author,self.db.readonly)
         
         self.pubinfo = MonitoredEntry(
-            self.top.get_widget('pub_info'), self.source.set_publication_info,
+            self.top.get_object('pub_info'), self.source.set_publication_info,
             self.source.get_publication_info,self.db.readonly)
 
         self.type_mon = MonitoredMenu(
-            self.top.get_widget('confidence'),
+            self.top.get_object('confidence'),
             self.source_ref.set_confidence_level,
             self.source_ref.get_confidence_level, [
             (_('Very Low'), gen.lib.SourceRef.CONF_VERY_LOW),
@@ -139,8 +144,8 @@ class EditSourceRef(EditReference):
             self.db.readonly)
 
         self.date = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"), 
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"), 
             self.source_ref.get_date_object(),
             self.uistate,
             self.track,
@@ -151,8 +156,8 @@ class EditSourceRef(EditReference):
         Create the notebook tabs and inserts them into the main
         window.
         """
-        notebook_src = self.top.get_widget('notebook_src')
-        notebook_ref = self.top.get_widget('notebook_ref')
+        notebook_src = self.top.get_object('notebook_src')
+        notebook_ref = self.top.get_object('notebook_ref')
 
         self._add_tab(notebook_src, self.primtab)
         self._add_tab(notebook_ref, self.reftab)

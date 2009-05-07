@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 import logging
 _LOG = logging.getLogger(".Editors.EditNote")
@@ -38,7 +39,6 @@ _LOG = logging.getLogger(".Editors.EditNote")
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 import pango
 
@@ -48,7 +48,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import Config
-from const import GLADE_FILE
+import const
 from widgets import StyledTextEditor
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
@@ -56,6 +56,8 @@ from widgets import (MonitoredDataType, MonitoredCheckbox,
                      MonitoredEntry, PrivacyButton)
 from gen.lib import Note
 from QuestionDialog import ErrorDialog
+
+_GLADE_FILE = 'editnote.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -167,13 +169,17 @@ class EditNote(EditPrimary):
         """
         self.width_key = Config.NOTE_WIDTH
         self.height_key = Config.NOTE_HEIGHT
-        self.top = glade.XML(GLADE_FILE, "edit_note", "gramps")
-        win = self.top.get_widget("edit_note")
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)
+
+        win = self.top.get_object("edit_note")
         self.set_window(win, None, self.get_menu_title())
 
 
-        vboxnote =  self.top.get_widget('vbox131')
-        notebook = self.top.get_widget('note_notebook')
+        vboxnote =  self.top.get_object('vbox131')
+        notebook = self.top.get_object('note_notebook')
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.ntab = NoteTab(self.dbstate, self.uistate, self.track, 
@@ -185,7 +191,7 @@ class EditNote(EditPrimary):
     def _setup_fields(self):
         """Get control widgets and attach them to Note's attributes."""
         self.type_selector = MonitoredDataType(
-            self.top.get_widget('type'),
+            self.top.get_object('type'),
             self.obj.set_type,
             self.obj.get_type,
             self.db.readonly,
@@ -194,26 +200,26 @@ class EditNote(EditPrimary):
 
         self.check = MonitoredCheckbox(
             self.obj,
-            self.top.get_widget('format'),
+            self.top.get_object('format'),
             self.obj.set_format,
             self.obj.get_format,
             readonly = self.db.readonly)
         
         self.gid = MonitoredEntry(
-            self.top.get_widget('id'),
+            self.top.get_object('id'),
             self.obj.set_gramps_id,
             self.obj.get_gramps_id,
             self.db.readonly)
 
         self.marker = MonitoredDataType(
-            self.top.get_widget('marker'), 
+            self.top.get_object('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
             self.db.readonly,
             self.db.get_marker_types())
 
         self.priv = PrivacyButton(
-            self.top.get_widget("private"),
+            self.top.get_object("private"),
             self.obj, self.db.readonly)
         
     def _connect_signals(self):
@@ -222,13 +228,13 @@ class EditNote(EditPrimary):
         Called by the init routine of the base class L{EditPrimary}.
         
         """
-        self.define_ok_button(self.top.get_widget('ok'), self.save)
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'))
+        self.define_ok_button(self.top.get_object('ok'), self.save)
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_help_button(self.top.get_object('help'))
     
     def _create_tabbed_pages(self):
         """Create the notebook tabs and inserts them into the main window."""
-        notebook = self.top.get_widget("note_notebook")
+        notebook = self.top.get_object("note_notebook")
 
         self._add_tab(notebook, self.ntab)
 
@@ -244,13 +250,13 @@ class EditNote(EditPrimary):
         self._setup_notebook_tabs(notebook)
 
     def build_interface(self):
-        self.texteditor = self.top.get_widget('texteditor')
+        self.texteditor = self.top.get_object('texteditor')
         self.texteditor.set_editable(not self.dbstate.db.readonly)
         self.texteditor.set_wrap_mode(gtk.WRAP_WORD)
 
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
-            vbox = self.top.get_widget('container')
+            vbox = self.top.get_object('container')
             vbox.pack_start(self.texteditor.get_toolbar(),
                             expand=False, fill=False)
                 

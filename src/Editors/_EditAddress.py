@@ -32,6 +32,7 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +40,6 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -53,6 +53,8 @@ from gen.lib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredDate, MonitoredEntry, PrivacyButton
+
+_GLADE_FILE = 'editaddress.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -77,51 +79,55 @@ class EditAddress(EditSecondary):
     def _local_init(self):
         self.width_key = Config.ADDRESS_WIDTH
         self.height_key = Config.ADDRESS_HEIGHT
-        self.top = glade.XML(const.GLADE_FILE, "addr_edit","gramps")
-        self.set_window(self.top.get_widget("addr_edit"),
-                        self.top.get_widget("title"),
+        
+        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
+        self.top = gtk.Builder()
+        self.top.add_from_file(glade_file)        
+        
+        self.set_window(self.top.get_object("addr_edit"),
+                        self.top.get_object("title"),
                         _('Address Editor'))
 
     def _setup_fields(self):
         self.addr_start = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"), 
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"), 
             self.obj.get_date_object(),
             self.uistate,
             self.track,
             self.db.readonly)
             
         self.street = MonitoredEntry(
-            self.top.get_widget("street"), self.obj.set_street,
+            self.top.get_object("street"), self.obj.set_street,
             self.obj.get_street, self.db.readonly)
 
         self.city = MonitoredEntry(
-            self.top.get_widget("city"), self.obj.set_city,
+            self.top.get_object("city"), self.obj.set_city,
             self.obj.get_city, self.db.readonly)
 
         self.state = MonitoredEntry(
-            self.top.get_widget("state"), self.obj.set_state,
+            self.top.get_object("state"), self.obj.set_state,
             self.obj.get_state, self.db.readonly)
 
         self.country = MonitoredEntry(
-            self.top.get_widget("country"), self.obj.set_country,
+            self.top.get_object("country"), self.obj.set_country,
             self.obj.get_country, self.db.readonly)
 
         self.postal = MonitoredEntry(
-            self.top.get_widget("postal"), self.obj.set_postal_code,
+            self.top.get_object("postal"), self.obj.set_postal_code,
             self.obj.get_postal_code, self.db.readonly)
 
         self.phone = MonitoredEntry(
-            self.top.get_widget("phone"), self.obj.set_phone,
+            self.top.get_object("phone"), self.obj.set_phone,
             self.obj.get_phone, self.db.readonly)
             
-        self.priv = PrivacyButton(self.top.get_widget("private"),
+        self.priv = PrivacyButton(self.top.get_object("private"),
                                   self.obj, self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_widget('help'))
-        self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_help_button(self.top.get_object('help'))
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
 
     def _create_tabbed_pages(self):
         """
@@ -143,7 +149,7 @@ class EditAddress(EditSecondary):
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_object('vbox').pack_start(notebook,True)
 
     def build_menu_names(self, obj):
         return (_('Address'),_('Address Editor'))
