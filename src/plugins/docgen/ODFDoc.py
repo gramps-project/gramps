@@ -532,9 +532,10 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.cntnt.write('</text:span>')
 
     def _add_zip(self, zfile, name, data, t):
-        zipinfo = zipfile.ZipInfo(name.encode('latin-1'))
+        zipinfo = zipfile.ZipInfo(name.encode('utf-8'))
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED
+        zipinfo.external_attr = 0644 << 16L
         zfile.writestr(zipinfo, data)
 
     def _write_zip(self):
