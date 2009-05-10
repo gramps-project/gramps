@@ -198,7 +198,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self.write( '{\n'                           )
         self.write( '  bgcolor=white;\n'            )
         self.write( '  center="true"; \n'           )
-        self.write( '  charset="iso-8859-1";\n'     )
+        self.write( '  charset="utf8";\n'     )
         self.write( '  concentrate="false";\n'      )
         self.write( '  dpi="%d";\n'                 % self.dpi          )
         self.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
@@ -229,7 +229,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
 
     def write(self, text):
         """ Write text to the dot file """
-        self._dot.write(text.encode('iso-8859-1', 'xmlcharrefreplace'))
+        self._dot.write(text.encode('utf8', 'xmlcharrefreplace'))
 
     def open(self, filename):
         """ Implement BaseDoc.BaseDoc.open() """
