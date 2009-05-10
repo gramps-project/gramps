@@ -17,7 +17,7 @@ gramps \- Genealogisch Onderzoek en Analyse Beheersysteem.
 .IR FORMAAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
-.RB [ \-o|\-\^\-output= 
+.RB [ \-e|\-\^\-export= 
 .IR BESTAND
 .RB [ \-f|\-\^\-format= 
 .IR FORMAAT ]] 
@@ -63,7 +63,7 @@ Expliciet een formaat opgeven voor \fIBESTAND\fR door de optie
 \fB\-O\fR,
 ..
 \fB\-i\fR, of 
-\fB\-o\fR mee te geven. Indien de \fB\-f\fR optie niet opgegeven wordt voor
+\fB\-e\fR mee te geven. Indien de \fB\-f\fR optie niet opgegeven wordt voor
 \fIBESTAND\fR, wordt het formaat gebaseerd op de bestandsextensie of het 
 MIME-type. 
 .br
@@ -106,7 +106,7 @@ and \fB\-i\fR \fIFILE2\fR \fB\-i\fR \fIFILE1\fR might produce different
 gramps IDs in the resulting database. 
 
 .TP 
-.BI \-o,\-\^\-output= " FILE"
+.BI \-e,\-\^\-export= " FILE"
 Export data into \fIFILE\fR. For \fBiso\fR format, the \fIFILE\fR is actually
 the name of directory the gramps database will be written into. 
 For
@@ -118,7 +118,7 @@ and \fBgeneweb\fR, the \fIFILE\fR is the name of the resulting file.
 .br
 
 When more than one output file is given, each has to be preceded 
-by \fB\-o\fR flag. The files are written one by one, in the specified order.
+by \fB\-e\fR flag. The files are written one by one, in the specified order.
 
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
@@ -218,10 +218,10 @@ further command line parameters.
 .LP
 With or without the \fB\-O\fR flag, there could be multiple imports,
 exports, and actions specified further on the command line by using \fB\-i\fR,
-\fB\-o\fR, and \fB\-a\fR flags.  
+\fB\-e\fR, and \fB\-a\fR flags.  
 
 .LP
-The order of \fB\-i\fR, \fB\-o\fR, or \fB\-a\fR options does not matter. The
+The order of \fB\-i\fR, \fB\-e\fR, or \fB\-a\fR options does not matter. The
 actual order always is: all imports (if any) -> all actions (if any)
 -> all exports (if any). But opening must always be first!
 
@@ -256,8 +256,8 @@ To import four databases (whose formats can be determined from their names) and 
 To explicitly specify the formats in the above example, append filenames with appropriate \fB\-f\fR options: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
-To record the database resulting from all imports, supply \fB\-o\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
-\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+To record the database resulting from all imports, supply \fB\-e\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-e\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
 To import three databases and start interactive gramps session with the result: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
