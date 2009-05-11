@@ -710,9 +710,6 @@ class WebCalReport(Report):
         # add  weekdays names to table body
         thead += weekday_names
 
-        # add table row to table head
-        cal_table += thead  
-
         # begin table body
         tbody = Html('tbody')
 
@@ -871,8 +868,8 @@ class WebCalReport(Report):
                 # add extra weeks to tbody if needed
                 tbody += six_weeks
 
-        # close table body
-        cal_table += tbody
+        # bring table head and table body back together
+        cal_table += (thead, tbody)
 
         # return calendar table to its caller
         return cal_table

@@ -681,6 +681,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #researcher h3 {
     font:normal 1.2em/1.4em serif;
     padding:0;
+    text-align:left;
 }
 #researcher span {
     float:left;
@@ -689,7 +690,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
     margin-right:.4em;
 }
 #streetaddress {
-    width:80%;
+    width:100%;
 }
 #city:after {
     content:",";
@@ -707,13 +708,49 @@ table.individuallist tbody tr td.ColumnName a:hover {
     text-decoration:underline;
 }
 
+/* Download 
+----------------------------------------------------- */
+#Download { 
+    padding:1cm;
+}
+table.Download {
+    border:solid 1px #000;
+    width:100%;
+}
+table.Download tbody tr td { 
+    padding:1em;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+}
+table.Download tbody tr td.ColumnAttribute {
+    width:30%;
+    background-color:#6AF364;
+}
+table.Download tbody tr td.ColumnValue {
+    width:70%;
+}
+table.Download tbody tr td.ColumnValue a {
+    font-weight:bold;
+    font-style: italic;
+}
+table.Download tbody tr td.ColumnValue a:hover {
+    text-decoration:underline;
+    background-color:#C1B398;
+    padding-top:15px;
+    padding-bottom:15px;
+   padding-right:190px;
+   padding-left:35px;
+}
+table.Download img {
+    float:left;
+    text-align:left;
+}
+
 /* Subsections
 ----------------------------------------------------- */
 #Home, #Introduction, #Contact {
     padding:2em 0 3em 0;
-}
-#Download {
-    padding:1em 0 3em 0;
 }
 #Home p, #Introduction p, #Download p {
     margin:0 20px 1em 20px;
