@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 3.1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-27 17:13+0200\n"
-"PO-Revision-Date: 2009-05-07 18:21+0100\n"
+"PO-Revision-Date: 2009-05-13 08:26+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -24807,4 +24807,59 @@ msgstr "Le style de base pour afficher le titre du paragraphe."
 #: locations.py:262
 msgid "Individuals with locations"
 msgstr "Individus avec un emplacement"
+
+msgid "<b>1. Look up latitude and longitude:</b>"
+msgstr "<b>1. Recherche de la latitude et de la longitude :</b>"
+
+msgid "<b>2. Parsing and Conversion of existing title or position:</b>"
+msgstr "<b>2. Parsage et conversion d'un titre ou partie existant(e) :</b>"
+
+msgid "<b>3. Set attributes of all selected places:</b>"
+msgstr "<b>3. Définition des attributs pour tous les lieux sélectionnés :</b>"
+
+msgid ""
+"<i>Delete to delete a row, Double-click on the row to edit place with changes pre-entered, \n"
+"Press Tab on a row or Google Maps button to see place on a map. Press Apply to do all changes automatically</i><span size=\"large\"><b>Selection of the Places you want to complete:</b></span>"
+msgstr ""
+"<i>Supprimer pour enlever une ligne, cliquez deux fois sur une ligne pour éditer un lieu avec les changements pré-entrés, \n"
+"Appuyez sur Tab à la ligne ou sur le bouton Google Maps pour visualiser le lieu sur une carte. Appuyez sur Appliquer pour effectuer les changements automatiquement</i><span size=\"large\"><b>Sélection des lieux à compléter :</b></span>"
+
+msgid "Apply all suggested changes"
+msgstr "Appliquer les changements suggérés"
+
+msgid "C_enter latitude:"
+msgstr "C_entre de la latitude :"
+
+msgid "Center longitude:"
+msgstr "Centre de la longitude :"
+
+msgid "Change title into:"
+msgstr "Changer le titre en :"
+
+msgid "Convert lat/lon as:"
+msgstr "Convertir lat/long en :"
+
+msgid "Parish"
+msgstr "Paroisse"
+
+msgid "Parish:"
+msgstr "Paroisse :"
+
+msgid "Parse as:"
+msgstr "Parser comme :"
+
+msgid "Parse title:"
+msgstr "Parsage du titre :"
+
+msgid "Place _filter:"
+msgstr "_Filtre lieux :"
+
+msgid "Places in a rectangle:"
+msgstr "Lieux dans un rectangle :"
+
+msgid "Search in:"
+msgstr "Rechercher dans :"
+
+msgid "Select A File"
+msgstr "Sélectionner un fichier"
 
