@@ -41,6 +41,7 @@ from xml.sax.saxutils import escape
 #------------------------------------------------------------------------
 import BaseDoc
 from ReportBase import ReportUtils
+from Errors import PluginError
 from gen.plug import PluginManager, Plugin
 
 #------------------------------------------------------------------------
@@ -401,11 +402,40 @@ class GtkDocParagraph(GtkDocBaseElement):
             self._style.set_tabs([-1 * self._style.get_first_indent()])
         else:
             self._text = ''
+            
+        self._plaintext = None
+        self._attrlist = None
         
     def add_text(self, text):
+        if self._plaintext is not None:
+            raise PluginError('CairoDoc: text is already parsed.'
+                            ' You cannot add text anymore')
         self._text = self._text + text
+    
+    def __set_plaintext(self, plaintext):
+        """
+        Internal method to allow for splitting of paragraphs
+        """
+        self._plaintext = plaintext
+        
+    def __set_attrlist(self, attrlist):
+        """
+        Internal method to allow for splitting of paragraphs
+        """
+        self._attrlist = attrlist
+    
+    def __parse_text(self):
+        """
+        Parse the markup text. This method will only do this if not 
+        done already
+        """
+        if self._plaintext is None:
+            self._attrlist, self._plaintext, dummy = \
+                                pango.parse_markup(self._text)
         
     def divide(self, layout, width, height, dpi_x, dpi_y):
+        self.__parse_text()
+        
         l_margin = self._style.get_left_margin() * dpi_x / 2.54
         r_margin = self._style.get_right_margin() * dpi_x / 2.54
         t_margin = self._style.get_top_margin() * dpi_y / 2.54
@@ -440,41 +470,54 @@ class GtkDocParagraph(GtkDocBaseElement):
         #
         font_style = self._style.get_font()
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
-        
-        # calculate the height of one line
-        # FIXME, we should do set_markup(self._text) and get height of entire
-        #        block somehow, as with markup we allow for setting height
-        #        of pieces of text ... only needed for styled notes though...
-        layout.set_text('Test')
-        layout_width, layout_height = layout.get_pixel_size()
-        line_height = layout_height + self.spacing
-        # and the number of lines fit on the available height
         text_height = height - t_margin - 2 * v_padding
-        line_per_height = text_height / line_height
-        
-        # if nothing fits return now with result
-        if line_per_height < 1:
-            return (None, self), 0
         
         # calculate where to cut the paragraph
-        layout.set_markup(self._text)
+        layout.set_text(self._plaintext)
+        layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         line_count = layout.get_line_count()
         
         # if all paragraph fits we don't need to cut
-        if line_count <= line_per_height:
-            paragraph_height = (layout_height + t_margin + (2 * v_padding))
+        if layout_height <= text_height:
+            paragraph_height = layout_height + t_margin + (2 * v_padding)
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
             return (self, None), paragraph_height
         
-        # if paragraph part of a cell, we do not divide if only small part,
+        # we need to cut paragraph:
+        
+        # 1. if paragraph part of a cell, we do not divide if only small part,
         # of paragraph can be shown, instead move to next page
-        if  line_per_height < line_count < 4 and self._parent._type == 'CELL':
+        if  line_count < 4 and self._parent._type == 'CELL':
             return (None, self), 0
         
+        lineiter = layout.get_iter()
+        linenr = 0
+        linerange = lineiter.get_line_yrange()
+        # 2. if nothing fits, move to next page without split
+        if linerange[1] - linerange[0] > text_height * pango.SCALE:
+            return (None, self), 0
+        
+        # 3. split the paragraph
+        startheight = linerange[0]
+        endheight = linerange[1]
+        splitline = -1
+        while not lineiter.at_last_line():
+            #go to next line, see if all fits, if not split
+            lineiter.next_line()
+            linenr += 1
+            linerange = lineiter.get_line_yrange()
+            if linerange[1] - startheight > text_height * pango.SCALE:
+                splitline = linenr
+                break
+            endheight = linerange[1]
+        if splitline == -1:
+            print 'CairoDoc STRANGE '
+            return (None, self), 0
+        #we split at splitline
         # get index of first character which doesn't fit on available height
-        layout_line = layout.get_line(int(line_per_height))
+        layout_line = layout.get_line(splitline)
         index = layout_line.start_index
         # and divide the text, first create the second part
         new_style = BaseDoc.ParagraphStyle(self._style)
@@ -483,16 +526,41 @@ class GtkDocParagraph(GtkDocBaseElement):
         #as if the paragraph just continues from normal text
         new_style.set_first_indent(0)
         new_paragraph = GtkDocParagraph(new_style)
-        new_paragraph.add_text(self._text.encode('utf-8')[index:])
+        #index is in bytecode in the text..
+        new_paragraph.__set_plaintext(self._plaintext.encode('utf-8')[index:])
+        #now recalculate the attrilist:
+        newattrlist = layout.get_attributes().copy()
+        newattrlist.filter(self.filterattr, index)
+        oldattrlist = newattrlist.get_iterator()
+        while oldattrlist.next() :
+            vals = oldattrlist.get_attrs()
+            #print vals
+            for attr in vals:
+                newattr = attr.copy()
+                newattr.start_index -= index if newattr.start_index > index \
+                                                else 0
+                newattr.end_index -= index
+                newattrlist.insert(newattr)
+        new_paragraph.__set_attrlist(newattrlist)
+        
         # then update the first one
-        self._text = self._text.encode('utf-8')[:index]
+        self.__set_plaintext(self._plaintext.encode('utf-8')[:index])
         self._style.set_bottom_margin(0)
         
-        paragraph_height = line_height * line_count + t_margin + 2 * v_padding
-        #paragraph_height = 0
+        paragraph_height = endheight - startheight + t_margin + 2 * v_padding
         return (self, new_paragraph), paragraph_height
-    
+
+    def filterattr(self, attr, index):
+        """callback to filter out attributes in the removed piece at beginning
+        """
+        if attr.start_index > index or \
+                (attr.start_index < index and attr.end_index > index):
+            return False
+        return True
+
     def draw(self, cr, layout, width, dpi_x, dpi_y):
+        self.__parse_text()
+        
         l_margin = self._style.get_left_margin() * dpi_x / 2.54
         r_margin = self._style.get_right_margin() * dpi_x / 2.54
         t_margin = self._style.get_top_margin() * dpi_y / 2.54
@@ -527,7 +595,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_font_description(fontstyle_to_fontdescription(font_style))
 
         # layout the text
-        layout.set_markup(self._text)
+        layout.set_text(self._plaintext)
+        layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         
         # render the layout onto the cairo surface
