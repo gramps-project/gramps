@@ -1707,7 +1707,7 @@ class TextDoc:
                     #make sure text can split
                     splitpos = text[start:pos].find(split)
                     while splitpos <> -1:
-                        otext += self.ESCAPE_FUNC()(text[start:splitpos])
+                        otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
                         #close open tags
                         opentags.reverse()
                         for opentag in opentags:
