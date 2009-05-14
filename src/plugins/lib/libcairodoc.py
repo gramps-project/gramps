@@ -1305,7 +1305,8 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             #size is in thousandths of a point in pango
             value = str(1000 * value)
         
-        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[type], value), 
+        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[type], 
+                                    self.ESCAPE_FUNC()(value)), 
                 '</span>')
     
     def write_note(self, text, format, style_name):
