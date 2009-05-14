@@ -31,7 +31,6 @@ mechanism for the user to edit personal LDS information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -50,10 +49,9 @@ import Config
 import gen.lib
 from BasicUtils import name_displayer
 import LdsUtils
-
+from glade import Glade
 from _EditSecondary import EditSecondary
 from ObjectEntries import PlaceEntry
-
 from DisplayTabs import SourceEmbedList,NoteTab
 from widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
@@ -121,8 +119,6 @@ _DATA_MAP = {
         ],
     }
     
-_GLADE_FILE = 'editldsord.glade'    
-
 #-------------------------------------------------------------------------
 #
 # EditLdsOrd class
@@ -148,11 +144,8 @@ class EditLdsOrd(EditSecondary):
         self.width_key = Config.LDS_WIDTH
         self.height_key = Config.LDS_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
-        
-        self.set_window(self.top.get_object("lds_person_edit"),
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
         self.share_btn = self.top.get_object('share_place')

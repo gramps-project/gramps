@@ -30,7 +30,6 @@ from bsddb import db as bsddb_db
 from gettext import gettext as _
 from DdTargets import DdTargets
 import pickle
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +60,7 @@ from BasicUtils import name_displayer
 import gen.lib
 import Errors
 import DateHandler
+from glade import Glade
 
 from Editors import EditPrimary
 from ReportBase import ReportUtils
@@ -80,7 +80,6 @@ _RETURN = gdk.keyval_from_name("Return")
 _KP_ENTER = gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
-_GLADE_FILE = 'editfamily.glade'
 
 class ChildEmbedList(EmbeddedList):
     """
@@ -518,11 +517,8 @@ class EditFamily(EditPrimary):
         self.width_key = Config.FAMILY_WIDTH
         self.height_key = Config.FAMILY_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
-
-        self.set_window(self.top.get_object("family_editor"), None, self.get_menu_title())
+        self.top = Glade()
+        self.set_window(self.top.toplevel, None, self.get_menu_title())
 
         # HACK: how to prevent hidden items from showing
         #       when you use show_all?

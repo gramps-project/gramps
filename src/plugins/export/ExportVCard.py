@@ -28,8 +28,8 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-import os
 import sys
+import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -42,13 +42,6 @@ log = logging.getLogger(".ExportVCard")
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -57,17 +50,11 @@ from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ExportVCard.glade"
-
-#-------------------------------------------------------------------------
-#
-#
+# CardWriterOptionBox class
 #
 #-------------------------------------------------------------------------
 class CardWriterOptionBox:
@@ -81,12 +68,7 @@ class CardWriterOptionBox:
 
     def get_option_box(self):
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.topDialog = gtk.Builder()
-        self.topDialog.add_from_file(glade_file)
+        self.topDialog = Glade()
 
         self.filters = self.topDialog.get_object("filter")
         self.copy = 0
@@ -127,7 +109,7 @@ class CardWriterOptionBox:
         the_box = self.topDialog.get_object('vbox1')
         the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_object("vcardExport").destroy()
+        self.topDialog.toplevel.destroy()
         return the_box
 
     def parse_options(self):

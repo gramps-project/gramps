@@ -28,7 +28,7 @@ pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 
 GLADEFILES = \
-	book.glade
+	bookreport.glade
 
 GRAPHICS = 
 

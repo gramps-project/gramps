@@ -76,9 +76,11 @@ import Config
 import Mime
 from DdTargets import DdTargets
 import RecentFiles
+from glade import Glade
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +92,6 @@ NAME_FILE     = "name.txt"
 META_NAME     = "meta_data.db"
 ARCHIVE       = "rev.gramps"
 ARCHIVE_V     = "rev.gramps,v"
-_GLADE_FILE = "dbmanager.glade"
 
 NAME_COL  = 0
 PATH_COL  = 1
@@ -341,12 +342,9 @@ class DbManager(CLIDbManager):
         the GTK widgets that are needed.
         """
         CLIDbManager.__init__(self, dbstate)
-        
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
-        
-        self.top = self.glade.get_object('dbmanager')
+        self.glade = Glade()
+        self.top = self.glade.toplevel
+
         if parent:
             self.top.set_transient_for(parent)
 
@@ -1119,13 +1117,9 @@ def check_in(dbase, filename, callback, cursor_func = None):
     ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
     archive_name = filename + ",v"
     
-    glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-    self.glade = gtk.Builder()
-    self.glade.add_from_file(glade_file)
-    
-    top = self.glade.get_object('comment')
+    self.glade = Glade(toplevel='comment')
+    self.top = self.glade.toplevel
     text = self.glade.get_object('description')
-
     top.run()
     comment = text.get_text()
     top.destroy()

@@ -57,14 +57,7 @@ import Mime
 import GrampsDisplay
 import ManagedWindow
 from QuestionDialog import ErrorDialog, WarningDialog
-
-#-------------------------------------------------------------------------
-#
-# global variables
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = 'addmedia.glade'
-
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -94,12 +87,9 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.last_directory = Config.get(Config.ADDMEDIA_IMGDIR)
         self.relative_path  = Config.get(Config.ADDMEDIA_RELPATH)
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
-
+        self.glade = Glade()
         self.set_window(
-            self.glade.get_object("imageSelect"),
+            self.glade.toplevel,
             self.glade.get_object('title'),
             _('Select a media object'))
             

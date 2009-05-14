@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -44,6 +43,7 @@ import gobject
 import BaseDoc
 import const
 import Utils
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +61,7 @@ except:
 #
 #-------------------------------------------------------------------------
 paper_sizes = []
-_GLADE_FILE = "paper_settings.glade"
+_GLADE_FILE = "papermenu.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -147,9 +147,7 @@ class PaperFrame(gtk.HBox):
     def __init__(self,default_metric,default_name,default_orientation,
                  margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
         gtk.HBox.__init__(self)
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        glade_xml = gtk.Builder()
-        glade_xml.add_from_file(glade_file)
+        glade_xml = Glade()
 
         self.paper_table = glade_xml.get_object('paper_table')
 

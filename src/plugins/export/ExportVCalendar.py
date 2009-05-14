@@ -33,13 +33,6 @@ import sys
 from time import localtime
 from gettext import gettext as _
 
-#-------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -59,17 +52,11 @@ from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ExportVCalendar.glade"
-
-#-------------------------------------------------------------------------
-#
-#
+# CalendarWriterOptionBox class
 #
 #-------------------------------------------------------------------------
 class CalendarWriterOptionBox:
@@ -81,12 +68,7 @@ class CalendarWriterOptionBox:
     def __init__(self, person):
         self.person = person
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.topDialog = gtk.Builder()
-        self.topDialog.add_from_file(glade_file)
+        self.topDialog = Glade()
         self.copy = 0
         
     def get_option_box(self):
@@ -128,7 +110,7 @@ class CalendarWriterOptionBox:
         the_box = self.topDialog.get_object('vbox1')
         the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_object("calendarExport").destroy()
+        self.topDialog.toplevel.destroy()
         return the_box
 
     def parse_options(self):

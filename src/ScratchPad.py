@@ -57,7 +57,7 @@ import DateHandler
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
-
+from glade import Glade
 from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------
@@ -1200,11 +1200,9 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
 
         self.width_key = Config.CLIPBOARD_WIDTH
         self.height_key = Config.CLIPBOARD_HEIGHT
-        self.glade_file = os.path.join(const.GLADE_DIR, "scratchpad.glade")
-        self.top = gtk.Builder()
-        self.top.add_from_file(self.glade_file)
-        self.set_window(self.top.get_object("scratch_pad"),
-                        None, None, msg=_("Clipboard"))
+        
+        self.top = Glade()
+        self.set_window(self.top.toplevel, None, None, msg=_("Clipboard"))
         self._set_size()
 
         self.clear_all_btn = self.top.get_object("btn_clear_all")

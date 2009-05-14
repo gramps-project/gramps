@@ -25,20 +25,6 @@
 
 #------------------------------------------------------------------------
 #
-# standard python modules
-#
-#------------------------------------------------------------------------
-import os
-
-#------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
@@ -50,6 +36,7 @@ import AutoComp
 from TransUtils import sgettext as _
 from PluginUtils import Tool
 from gen.plug import PluginManager
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +45,6 @@ from gen.plug import PluginManager
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
-_GLADE_FILE = "soundex.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -73,18 +59,13 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
+        self.glade = Glade()
         self.glade.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
         })
 
-        window = self.glade.get_object("soundEx")
+        window = self.glade.toplevel
         self.set_window(window,self.glade.get_object('title'),self.label)
 
         self.value = self.glade.get_object("value")

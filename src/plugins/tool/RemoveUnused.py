@@ -29,7 +29,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -60,14 +59,7 @@ from DateHandler import displayer as _dd
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool
 from gen.plug import PluginManager
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "unused.glade"
-
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -137,14 +129,8 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.init_gui()
 
     def init_gui(self):
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        window = self.top.get_object("unused")
+        self.top = Glade()
+        window = self.top.toplevel
         self.set_window(window,self.top.get_object('title'),self.title)
 
         self.events_box = self.top.get_object('events_box')

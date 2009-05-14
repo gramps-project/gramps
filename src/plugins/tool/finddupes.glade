@@ -182,7 +182,7 @@
       <action-widget response="-11">button13</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="dialog">
+  <object class="GtkDialog" id="finddupes">
     <property name="default_width">350</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
@@ -315,7 +315,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="dialog"/>
+                <signal name="clicked" handler="destroy_passed_object" object="finddupes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -331,7 +331,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_merge_ok_clicked" object="dialog"/>
+                <signal name="clicked" handler="on_merge_ok_clicked" object="finddupes"/>
               </object>
               <packing>
                 <property name="expand">False</property>

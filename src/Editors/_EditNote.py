@@ -28,8 +28,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
 import logging
 _LOG = logging.getLogger(".Editors.EditNote")
 
@@ -56,8 +54,7 @@ from widgets import (MonitoredDataType, MonitoredCheckbox,
                      MonitoredEntry, PrivacyButton)
 from gen.lib import Note
 from QuestionDialog import ErrorDialog
-
-_GLADE_FILE = 'editnote.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -170,11 +167,9 @@ class EditNote(EditPrimary):
         self.width_key = Config.NOTE_WIDTH
         self.height_key = Config.NOTE_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
 
-        win = self.top.get_object("edit_note")
+        win = self.top.toplevel
         self.set_window(win, None, self.get_menu_title())
 
 

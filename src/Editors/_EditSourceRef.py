@@ -27,14 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -44,14 +36,12 @@ import gtk
 import const
 import Config
 import gen.lib
-
+from glade import Glade
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
                          DataEmbedList, RepoEmbedList)
 from widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
                      MonitoredDate)
 from _EditReference import RefTab, EditReference
-
-_GLADE_FILE = 'editsourceref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -69,11 +59,9 @@ class EditSourceRef(EditReference):
         self.width_key = Config.EVENT_REF_WIDTH
         self.height_key = Config.EVENT_REF_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
+        self.top = Glade()
         
-        self.set_window(self.top.get_object('source_ref_edit'),
+        self.set_window(self.top.toplevel,
                         self.top.get_object('source_title'),        
                         _('Source Reference Editor'))
 

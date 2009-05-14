@@ -19,7 +19,7 @@ pkgpyexecdir = @pkgpyexecdir@/plugins/import
 pkgpythondir = @pkgpythondir@/plugins/import
 
 GLADEFILES = \
-	ImportGedcom.glade
+	importgedcom.glade
 
 GRAPHICS = 
 

@@ -27,8 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
 import logging
 log = logging.getLogger(".")
 
@@ -54,8 +52,7 @@ from widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
 from QuestionDialog import ErrorDialog
-
-_GLADE_FILE = 'editplace.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -119,11 +116,9 @@ class EditPlace(EditPrimary):
         self.width_key = Config.PLACE_WIDTH
         self.height_key = Config.PLACE_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
+        self.top = Glade()
 
-        self.set_window(self.top.get_object("place_editor"), None,
+        self.set_window(self.top.toplevel, None,
                         self.get_menu_title())
         tblmloc =  self.top.get_object('table19')
         notebook = self.top.get_object('notebook3')

@@ -29,6 +29,7 @@ import gtk
 import os
 from tempfile import mkstemp
 from gettext import gettext as _
+from glade import Glade
 #
 # Interface to phpGedView
 #
@@ -279,10 +280,7 @@ class phpGedViewImporter:
         self.url = None
         self.connector = None
         
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base, "phpgedview.glade")
-        top = gtk.Builder()
-        top.add_from_file(glade_file)
+        top = Glade("phpgedview.glade")
         self.url_entry = top.get_object('url_entry')
         self.version_label = top.get_object('version_label')
         self.version_label.set_text("")
@@ -296,7 +294,7 @@ class phpGedViewImporter:
         self.ok_button.connect("activate", self.on_next_pressed_cb)
         self.ok_button.connect("button_release_event", self.on_next_pressed_cb)
         self.progressbar = top.get_object('progressbar')
-        self.dialog = top.get_object('importer')
+        self.dialog = top.toplevel
         self.dialog.show()
 
     def filter_url(self, url):

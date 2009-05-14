@@ -32,7 +32,6 @@ Paragraph/Font style editor
 #
 #------------------------------------------------------------------------
 from TransUtils import sgettext as _
-import os
 import logging
 log = logging.getLogger(".")
 
@@ -54,6 +53,7 @@ import const
 import BaseDoc
 import ListModel
 import ManagedWindow
+from glade import Glade
 
 #------------------------------------------------------------------------
 #
@@ -85,11 +85,8 @@ class StyleListDisplay:
         
         self.sheetlist = stylesheetlist
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        
-        self.window = self.top.get_object('styles')
+        self.top = Glade(toplevel='styles')
+        self.window = self.top.toplevel
 
         ManagedWindow.set_titles( self.window, 
                                   self.top.get_object('title'), 
@@ -201,19 +198,17 @@ class StyleEditor:
         
         self.style = BaseDoc.StyleSheet(style)
         self.parent = parent
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade(toplevel='editor')
+        self.window = self.top.toplevel
         
         self.top.connect_signals({
             "on_save_style_clicked" : self.on_save_style_clicked, 
             "destroy_passed_object" : self.__close, 
             })
 
-        self.window = self.top.get_object("editor")
         self.pname = self.top.get_object('pname')
         self.pdescription = self.top.get_object('pdescription')
-        
+
         ManagedWindow.set_titles( self.window, 
                                   self.top.get_object('title'), 
                                   _('Style editor'))

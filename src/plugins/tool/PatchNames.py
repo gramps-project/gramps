@@ -28,7 +28,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import os
 import re
 
 #-------------------------------------------------------------------------
@@ -53,6 +52,7 @@ import ManagedWindow
 import GrampsDisplay
 import gen.lib
 from TransUtils import sgettext as _
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -199,11 +199,8 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def display(self):
 
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base, "patchnames.glade")
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        window = self.top.get_object('top')
+        self.top = Glade()
+        window = self.top.toplevel
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,

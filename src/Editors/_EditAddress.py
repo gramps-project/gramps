@@ -32,7 +32,6 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -50,11 +49,9 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-
+from glade import Glade
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredDate, MonitoredEntry, PrivacyButton
-
-_GLADE_FILE = 'editaddress.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -80,11 +77,8 @@ class EditAddress(EditSecondary):
         self.width_key = Config.ADDRESS_WIDTH
         self.height_key = Config.ADDRESS_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
-        
-        self.set_window(self.top.get_object("addr_edit"),
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Address Editor'))
 

@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="change_description">
+  <object class="GtkDialog" id="editmediaref">
     <property name="default_width">600</property>
     <property name="default_height">450</property>
     <property name="type_hint">dialog</property>

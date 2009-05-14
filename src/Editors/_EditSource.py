@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 import logging
 log = logging.getLogger(".")
 
@@ -52,13 +51,13 @@ from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
 from widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# EditSource class
 #
 #-------------------------------------------------------------------------
-_GLADE_FILE = "editsource.glade"
 
 class EditSource(EditPrimary):
 
@@ -84,11 +83,8 @@ class EditSource(EditPrimary):
         self.height_key = Config.SOURCE_HEIGHT
         assert(self.obj)
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
-
-        self.set_window(self.glade.get_object("source_editor"), None, 
+        self.glade = Glade()
+        self.set_window(self.glade.toplevel, None, 
                         self.get_menu_title())
 
     def _connect_signals(self):

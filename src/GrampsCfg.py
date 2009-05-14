@@ -54,6 +54,7 @@ import ManagedWindow
 from widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
+from glade import Glade
 
 geopresent = True
 try:
@@ -69,7 +70,6 @@ if not const.VERSION.find('SVN') == -1:
 # Constants 
 #
 #-------------------------------------------------------------------------
-_GLADE_FILE = 'grampscfg.glade'
 
 _surname_styles = [
     _("Father's surname"), 
@@ -1107,10 +1107,7 @@ class NameFormatEditDlg:
         self.fmt_str = fmt_str
         self.name = name
         self.valid = True
-        print "here"
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
         
         self.dlg = self.top.get_object('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))

@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="url_edit">
+  <object class="GtkDialog" id="editurl">
     <property name="default_width">600</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>

@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkDialog" id="merge_places">
+  <object class="GtkDialog" id="mergeplace">
     <property name="modal">True</property>
     <property name="default_width">450</property>
     <property name="type_hint">dialog</property>
@@ -233,7 +233,7 @@
       <action-widget response="-11">place_help</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="merge">
+  <object class="GtkDialog" id="mergedata">
     <property name="modal">True</property>
     <property name="default_width">700</property>
     <property name="default_height">500</property>
@@ -440,7 +440,7 @@
       <action-widget response="-11">merge_help</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="merge_sources">
+  <object class="GtkDialog" id="mergesource">
     <property name="default_width">500</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
@@ -948,7 +948,7 @@
       <action-widget response="-11">source_help</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="merge_people">
+  <object class="GtkDialog" id="mergeperson">
     <property name="modal">True</property>
     <property name="default_width">300</property>
     <property name="type_hint">dialog</property>

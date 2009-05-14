@@ -3,7 +3,6 @@
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkDialog" id="styles">
-    <property name="visible">True</property>
     <property name="default_width">400</property>
     <property name="default_height">300</property>
     <property name="type_hint">dialog</property>

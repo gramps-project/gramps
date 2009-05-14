@@ -27,9 +27,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
-import gtk
 
 #------------------------------------------------------------------------
 #
@@ -49,6 +47,7 @@ from GrampsDbUtils._GedcomParse import GedcomParser
 from GrampsDbUtils._GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 from gen.plug import PluginManager, ImportPlugin
+from glade import Glade
 
 try:
     import Config
@@ -57,13 +56,6 @@ except ImportError:
     LOG.warn("No Config module available using defaults.")
     DEFAULT_SOURCE = False
     
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ImportGedcom.glade"
-
 #-------------------------------------------------------------------------
 #
 # importData
@@ -91,14 +83,10 @@ def importData(database, filename, callback=None):
     ifile.close()
 
     if not gramps and ansel:
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-        top = gtk.Builder()
-        top.add_from_file(glade_file)
+        top = Glade()
         code = top.get_object('codeset')
         code.set_active(0)
-        dialog = top.get_object('encoding')
+        dialog = top.toplevel
         dialog.run()
         enc = ['ANSEL', 'ANSEL', 'ANSI', 'ASCII', 'UTF-8']
         code_set = enc[ code.get_active()]

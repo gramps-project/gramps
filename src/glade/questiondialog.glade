@@ -728,7 +728,7 @@
       <action-widget response="3">button11</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkDialog" id="hide_dialog">
+  <object class="GtkDialog" id="hidedialog">
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">

@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -49,8 +48,7 @@ from gen.lib import NoteType
 from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
 from widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
                      MonitoredDataType, PrivacyButton)
-
-_GLADE_FILE = 'editname.glade'
+from glade import Glade                     
 
 #-------------------------------------------------------------------------
 #
@@ -111,11 +109,9 @@ class EditName(EditSecondary):
         self.width_key = Config.NAME_WIDTH
         self.height_key = Config.NAME_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
+        self.top = Glade()
         
-        self.set_window(self.top.get_object("name_edit"),
+        self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _("Name Editor"))
 

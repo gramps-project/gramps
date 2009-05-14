@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkDialog" id="edit_person">
+  <object class="GtkDialog" id="editperson">
     <property name="has_focus">True</property>
     <property name="default_height">500</property>
     <property name="type_hint">dialog</property>
@@ -114,7 +114,6 @@
                           <object class="GtkImage" id="image2261">
                             <property name="visible">True</property>
                             <property name="stock">gtk-edit</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -330,7 +329,6 @@
                           <object class="GtkImage" id="image2262">
                             <property name="visible">True</property>
                             <property name="icon_name">gramps-unlock</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -595,13 +593,13 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
   </object>
   <object class="GtkListStore" id="liststore1">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
     <data>

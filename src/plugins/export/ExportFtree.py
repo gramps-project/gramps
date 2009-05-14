@@ -41,13 +41,6 @@ log = logging.getLogger(".WriteFtree")
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -56,13 +49,7 @@ from Filters import GenericFilter, Rules, build_filter_model
 import Errors
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ExportFtree.glade"
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -83,12 +70,7 @@ class FtreeWriterOptionBox:
         self.restrict = True
 
     def get_option_box(self):
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-        
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
 
         self.filters = self.top.get_object("filter")
 
@@ -128,7 +110,7 @@ class FtreeWriterOptionBox:
         the_box = self.top.get_object("vbox1")
         the_parent = self.top.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.top.get_object("top").destroy()
+        self.top.toplevel.destroy()
         return the_box
 
     def parse_options(self):

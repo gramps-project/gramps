@@ -1,33 +1,60 @@
 <?xml version="1.0"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="editattribute">
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkDialog" id="changetypes">
+    <property name="visible">True</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
+    <signal name="delete_event" handler="on_delete_event"/>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox28">
+      <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
+        <property name="spacing">8</property>
         <child>
-          <object class="GtkVBox" id="vbox">
+          <object class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="orientation">vertical</property>
+            <property name="border_width">10</property>
             <child>
-              <object class="GtkTable" id="table22">
+              <object class="GtkLabel" id="title">
+                <property name="visible">True</property>
+                <property name="ypad">10</property>
+                <property name="justify">center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+                <property name="xpad">12</property>
+                <property name="ypad">12</property>
+                <property name="label" translatable="yes">This tool will rename all events of one type to a different type. Once completed, this cannot be undone by the regular Undo function.</property>
+                <property name="wrap">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
                 <property name="border_width">12</property>
                 <property name="n_rows">2</property>
-                <property name="n_columns">3</property>
+                <property name="n_columns">2</property>
                 <property name="column_spacing">12</property>
                 <property name="row_spacing">6</property>
                 <child>
-                  <object class="GtkLabel" id="label171">
+                  <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">_Attribute:</property>
+                    <property name="label" translatable="yes">_Original event type:</property>
                     <property name="use_underline">True</property>
-                    <property name="justify">center</property>
-                    <property name="mnemonic_widget">attr_menu</property>
                   </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
@@ -35,13 +62,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label172">
+                  <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">_Value:</property>
+                    <property name="label" translatable="yes">_New event type:</property>
                     <property name="use_underline">True</property>
-                    <property name="justify">center</property>
-                    <property name="mnemonic_widget">attr_value</property>
                   </object>
                   <packing>
                     <property name="top_attach">1</property>
@@ -51,42 +76,20 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="attr_value">
+                  <object class="GtkComboBoxEntry" id="new">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="invisible_char">&#x25CF;</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">3</property>
+                    <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
+                    <property name="x_options">GTK_FILL</property>
+                    <property name="y_options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToggleButton" id="private">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="relief">none</property>
-                    <child>
-                      <object class="GtkImage" id="image2684">
-                        <property name="visible">True</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
-                        <property name="icon-size">1</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="x_options"></property>
-                    <property name="y_options"></property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkComboBoxEntry" id="attr_menu">
+                  <object class="GtkComboBoxEntry" id="original">
                     <property name="visible">True</property>
                   </object>
                   <packing>
@@ -97,8 +100,7 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="position">0</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -107,17 +109,18 @@
           </packing>
         </child>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area28">
+          <object class="GtkHButtonBox" id="dialog-action_area2">
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancel">
+              <object class="GtkButton" id="button5">
                 <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_close_clicked" object="top"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -126,34 +129,19 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="ok">
+              <object class="GtkButton" id="button3">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
-                <property name="has_default">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_apply_clicked" object="top"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -166,9 +154,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-6">cancel</action-widget>
-      <action-widget response="-5">ok</action-widget>
-      <action-widget response="-11">help</action-widget>
+      <action-widget response="0">button5</action-widget>
+      <action-widget response="0">button3</action-widget>
     </action-widgets>
   </object>
 </interface>

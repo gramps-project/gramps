@@ -25,13 +25,6 @@
 
 #------------------------------------------------------------------------
 #
-# standard python modules
-#
-#------------------------------------------------------------------------
-import os
-
-#------------------------------------------------------------------------
-#
 # GTK/GNOME modules
 #
 #------------------------------------------------------------------------
@@ -49,6 +42,8 @@ from gen.plug import PluginManager
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
+from glade import Glade
+
 #------------------------------------------------------------------------
 #
 # Constants
@@ -56,7 +51,6 @@ from TransUtils import sgettext as _
 #------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
-_GLADE_FILE = "desbrowse.glade"
 
 class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
@@ -74,18 +68,13 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
+        self.glade = Glade()
         self.glade.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             })
 
-        window = self.glade.get_object("top")
+        window = self.glade.toplevel
         self.set_window(window,self.glade.get_object('title'),
                         self.active_name)
         

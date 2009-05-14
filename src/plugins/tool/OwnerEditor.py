@@ -25,13 +25,6 @@
 
 #-------------------------------------------------------------------------
 #
-# python modules
-#
-#-------------------------------------------------------------------------
-import os
-
-#-------------------------------------------------------------------------
-#
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
@@ -51,6 +44,7 @@ import ManagedWindow
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from TransUtils import sgettext as _
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -95,15 +89,11 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         self.display()
 
     def display(self):
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base, "ownereditor.glade")
-
         # get the main window from glade
-        topDialog = gtk.Builder()
-        topDialog.add_from_file(glade_file)
+        topDialog = Glade()
 
         # set gramps style title for the window
-        window = topDialog.get_object("top")
+        window = topDialog.toplevel
         self.set_window(window,
                         topDialog.get_object("title"),
                         _("Database Owner Editor"))
@@ -122,10 +112,8 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         })
 
         # fetch the popup menu
-        popup_menu = gtk.Builder()
-        popup_menu.add_from_file(glade_file)
-        self.menu = popup_menu.get_object("popup-menu")
-        popup_menu.connect_signals({"on_menu_activate": self.on_menu_activate})
+        self.menu = topDialog.get_object("popup_menu")
+        topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()

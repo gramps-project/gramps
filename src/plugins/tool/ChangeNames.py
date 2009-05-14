@@ -25,13 +25,6 @@
 
 #-------------------------------------------------------------------------
 #
-# python modules
-#
-#-------------------------------------------------------------------------
-import os
-
-#-------------------------------------------------------------------------
-#
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
@@ -52,6 +45,8 @@ from QuestionDialog import OkDialog
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from TransUtils import sgettext as _
+from glade import Glade
+
 #-------------------------------------------------------------------------
 #
 # constants
@@ -177,11 +172,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def display(self):
 
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base,"changenames.glade")
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        window = self.top.get_object('top')
+        self.top = Glade()
+        window = self.top.toplevel
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_ok_clicked" : self.on_ok_clicked,

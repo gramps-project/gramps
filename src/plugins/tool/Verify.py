@@ -61,6 +61,8 @@ from BasicUtils import UpdateCallback
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from TransUtils import sgettext as _
+from glade import Glade
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -68,7 +70,6 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Verify_the_Data...')
-_GLADE_FILE = "verify.glade"
 
 #-------------------------------------------------------------------------
 #
@@ -247,19 +248,14 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
     def init_gui(self):
         # Draw dialog and make it handle everything
         self.vr = None 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
         self.top.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             "on_verify_ok_clicked"  : self.on_apply_clicked
         })
 
-        window = self.top.get_object('verify_settings')
+        window = self.top.toplevel
         self.set_window(window,self.top.get_object('title'),self.label)
 
         for option in self.options.handler.options_dict:
@@ -413,14 +409,8 @@ class VerifyResults(ManagedWindow):
         ManagedWindow.__init__(self,uistate,track,self.__class__)
 
         self.dbstate = dbstate
-
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        window = self.top.get_object("verify_result")
+        self.top = Glade(toplevel="verify_result")
+        window = self.top.toplevel
         self.set_window(window,self.top.get_object('title'),self.title)
     
         self.top.connect_signals({

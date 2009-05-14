@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkWindow" id="tod_window">
+  <object class="GtkWindow" id="tipofday">
     <property name="visible">True</property>
     <property name="border_width">8</property>
     <property name="title" translatable="yes">window1</property>

@@ -43,8 +43,7 @@ from gtk.gdk import pixbuf_new_from_file
 #-------------------------------------------------------------------------
 import const
 import Config
-
-_GLADE_FILE = 'questiondialog.glade'
+from glade import Glade
 
 try:
     ICON = pixbuf_new_from_file(const.ICON)
@@ -53,11 +52,9 @@ except:
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2,parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
+        self.xml = Glade(toplevel='savedialog')
         
-        self.top = self.xml.get_object('savedialog')
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
         
@@ -86,11 +83,9 @@ class SaveDialog:
 
 class QuestionDialog:
     def __init__(self,msg1,msg2,label,task,parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
+        self.xml = Glade(toplevel='questiondialog')
                 
-        self.top = self.xml.get_object('questiondialog')
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -114,11 +109,9 @@ class QuestionDialog:
 
 class QuestionDialog2:
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
+        self.xml = Glade(toplevel='questiondialog')
               
-        self.top = self.xml.get_object('questiondialog')
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -146,11 +139,9 @@ class QuestionDialog2:
 
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-                
-        self.top = self.xml.get_object('optiondialog')
+        self.xml = Glade(toplevel='optiondialog')
+              
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -250,11 +241,9 @@ class InfoDialog:
     Dialog to show selectable info in a scrolled window
     """
     def __init__(self, msg1, infotext, parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-                
-        self.top = self.xml.get_object('infodialog')
+        self.xml = Glade(toplevel='infodialog')
+              
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -279,11 +268,9 @@ class InfoDialog:
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-                
-        self.top = self.xml.get_object('missmediadialog')
+        self.xml = Glade(toplevel='missmediadialog')
+              
+        self.top = self.xml.toplevel
         self.top.set_icon(ICON)
         self.top.set_title("%s - GRAMPS" % msg1)
 
@@ -336,11 +323,9 @@ class MissingMediaDialog:
 class MessageHideDialog:
     
     def __init__(self, title, message, key, parent=None):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-
-        top = self.xml.get_object('hide_dialog')
+        self.xml = Glade(toplevel='hidedialog')
+              
+        self.top = self.xml.toplevel
         top.set_icon(ICON)
         top.set_title("%s - GRAMPS" % title)
 

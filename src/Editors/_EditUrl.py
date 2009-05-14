@@ -27,14 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -45,8 +37,7 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-
-_GLADE_FILE = 'editurl.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -64,13 +55,10 @@ class EditUrl(EditSecondary):
         self.width_key = Config.URL_WIDTH
         self.height_key = Config.URL_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        
+        self.top = Glade()
         self.jump = self.top.get_object('jump')
 
-        self.set_window(self.top.get_object("url_edit"),
+        self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Internet Address Editor'))
             

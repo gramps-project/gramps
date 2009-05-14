@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkWindow" id="gvwin">
+  <object class="GtkWindow" id="grampletview">
     <property name="title" translatable="yes">window2</property>
     <child>
       <object class="GtkVBox" id="gvgramplet">

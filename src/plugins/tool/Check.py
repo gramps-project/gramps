@@ -64,6 +64,7 @@ from PluginUtils import Tool
 from gen.plug import PluginManager
 from QuestionDialog import OkDialog, MissingMediaDialog
 from BasicUtils import name_displayer as _nd
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -1628,14 +1629,9 @@ class Report(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        topDialog = gtk.Builder()
-        topDialog.add_from_file(glade_file)
+        topDialog = Glade()
         topDialog.get_object("close").connect('clicked',self.close)
-        window = topDialog.get_object ("summary")
+        window = topDialog.toplevel
         textwindow = topDialog.get_object("textwindow")
         textwindow.get_buffer().set_text(text)
 

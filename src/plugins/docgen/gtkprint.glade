@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkWindow" id="gtkprint">
+    <property name="title" translatable="yes">Print Preview</property>
+    <property name="modal">True</property>
+    <property name="window_position">center</property>
+    <property name="default_width">800</property>
+    <property name="default_height">600</property>
+    <signal name="delete_event" handler="on_window_delete_event"/>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkToolbar" id="toolbar">
+            <property name="visible">True</property>
+            <property name="toolbar_style">icons</property>
+            <child>
+              <object class="GtkToolButton" id="quit">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Closes print preview window</property>
+                <property name="stock_id">gtk-quit</property>
+                <signal name="clicked" handler="on_quit_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="print">
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Prints the current file</property>
+                <property name="stock_id">gtk-print</property>
+                <signal name="clicked" handler="on_print_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="separatortoolitem3">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="first">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Shows the first page</property>
+                <property name="is_important">True</property>
+                <property name="stock_id">gtk-goto-first</property>
+                <signal name="clicked" handler="on_first_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="prev">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Shows previous page</property>
+                <property name="is_important">True</property>
+                <property name="stock_id">gtk-go-back</property>
+                <signal name="clicked" handler="on_prev_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="next">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Shows the next page</property>
+                <property name="is_important">True</property>
+                <property name="stock_id">gtk-go-forward</property>
+                <signal name="clicked" handler="on_next_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="last">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="tooltip_text" translatable="yes">Shows the last page</property>
+                <property name="is_important">True</property>
+                <property name="stock_id">gtk-goto-last</property>
+                <signal name="clicked" handler="on_last_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="separatortoolitem1">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolItem" id="toolitem1">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkHBox" id="hbox1">
+                    <property name="visible">True</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkEntry" id="entry">
+                        <property name="visible">True</property>
+                        <property name="invisible_char">&#x2022;</property>
+                        <property name="width_chars">6</property>
+                        <signal name="activate" handler="on_entry_activate"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label">
+                        <property name="visible">True</property>
+                        <property name="label">of 8</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="separatortoolitem2">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleToolButton" id="zoom_fit_width">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Zooms to fit the page width</property>
+                <property name="use_underline">True</property>
+                <signal name="toggled" handler="on_zoom_fit_width_toggled"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleToolButton" id="zoom_best_fit">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Zooms to fit the whole page</property>
+                <property name="stock_id">gtk-zoom-fit</property>
+                <signal name="toggled" handler="on_zoom_best_fit_toggled"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="zoom_in">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Zooms the page in</property>
+                <property name="stock_id">gtk-zoom-in</property>
+                <signal name="clicked" handler="on_zoom_in_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="zoom_out">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Zooms the page out</property>
+                <property name="stock_id">gtk-zoom-out</property>
+                <signal name="clicked" handler="on_zoom_out_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="swin">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">in</property>
+            <signal name="size_allocate" handler="on_swin_size_allocate"/>
+            <child>
+              <object class="GtkViewport" id="viewport1">
+                <property name="visible">True</property>
+                <property name="shadow_type">none</property>
+                <child>
+                  <object class="GtkDrawingArea" id="drawingarea">
+                    <property name="visible">True</property>
+                    <signal name="expose_event" handler="on_drawingarea_expose_event"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

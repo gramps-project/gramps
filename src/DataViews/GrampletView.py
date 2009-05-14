@@ -52,6 +52,7 @@ import ConfigParser
 import Utils
 from QuickReports import run_quick_report_by_name
 import GrampsDisplay
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +60,6 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = const.URL_MANUAL_PAGE + '_-_Gramplets'
-_GLADE_FILE = 'grampletview.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -640,10 +640,8 @@ class GuiGramplet:
         self.tooltips = None # gtk tooltip widget
         self.tooltips_text = None
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-        self.gvwin = self.xml.get_object('gvwin')
+        self.xml = Glade()
+        self.gvwin = self.xml.toplevel
         self.mainframe = self.xml.get_object('gvgramplet')
         self.gvwin.remove(self.mainframe)
 

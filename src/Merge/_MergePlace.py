@@ -44,6 +44,8 @@ from TransUtils import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+from glade import Glade
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS constants
@@ -51,6 +53,7 @@ import ManagedWindow
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Places')
+_GLADE_FILE = 'mergedata.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -72,9 +75,8 @@ class MergePlaces(ManagedWindow.ManagedWindow):
         self.p1 = self.db.get_place_from_handle(self.new_handle)
         self.p2 = self.db.get_place_from_handle(self.old_handle)
 
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(const.MERGE_GLADE)
-        self.set_window(self.glade.get_object('merge_places'),
+        self.glade = Glade(_GLADE_FILE, toplevel='mergeplace')
+        self.set_window(self.glade.toplevel,
                         self.glade.get_object('place_title'),
                         _("Merge Places"))
         

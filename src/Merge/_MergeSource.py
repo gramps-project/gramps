@@ -42,6 +42,7 @@ from TransUtils import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +51,7 @@ import ManagedWindow
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Sources')
+_GLADE_FILE = 'mergedata.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -72,10 +74,9 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.s1 = self.db.get_source_from_handle(self.new_handle)
         self.s2 = self.db.get_source_from_handle(self.old_handle)
 
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(const.MERGE_GLADE)
+        self.glade = Glade(_GLADE_FILE, toplevel='mergesource')
 
-        self.set_window(self.glade.get_object('merge_sources'),
+        self.set_window(self.glade.toplevel,
                         self.glade.get_object('source_title'),
                         _("Merge Sources"))
 

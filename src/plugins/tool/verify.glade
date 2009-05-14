@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkDialog" id="verify_settings">
+  <object class="GtkDialog" id="verify">
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
@@ -654,7 +654,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="verify_settings"/>
+                <signal name="clicked" handler="destroy_passed_object" object="verify"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -670,7 +670,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_verify_ok_clicked" object="verify_settings"/>
+                <signal name="clicked" handler="on_verify_ok_clicked" object="verify"/>
               </object>
               <packing>
                 <property name="expand">False</property>

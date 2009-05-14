@@ -48,7 +48,6 @@ unambiguously built using UI controls such as menus and spin buttons.
 #-------------------------------------------------------------------------
 import logging
 __LOG = logging.getLogger(".DateEdit")
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -69,6 +68,7 @@ import const
 import GrampsDisplay
 import ManagedWindow
 from Errors import ValidationError
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -100,7 +100,7 @@ CAL_TO_MONTHS_NAMES = {
 
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_1' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Dates')
-_GLADE_FILE = 'dateedit.glade'
+
 #-------------------------------------------------------------------------
 #
 # DateEdit
@@ -192,12 +192,10 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         # Create self.date as a copy of the given Date object.
         self.date = Date(date)
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
 
         self.set_window(
-            self.top.get_object('date_edit'),
+            self.top.toplevel,
             self.top.get_object('title'),
             _('Date selection'))            
             

@@ -28,7 +28,6 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -48,13 +47,12 @@ import Mime
 import ThumbNails
 import Utils
 from gen.lib import NoteType
-
+from glade import Glade
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from _EditReference import RefTab, EditReference
 from AddMedia import AddMediaObject
-_GLADE_FILE = 'editmediaref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -74,11 +72,9 @@ class EditMediaRef(EditReference):
     def _local_init(self):
         self.width_key = Config.MEDIA_REF_WIDTH
         self.height_key = Config.MEDIA_REF_HEIGHT
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
 
-        self.set_window(self.top.get_object('change_description'),
+        self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('Media Reference Editor'))
         self.define_warn_box(self.top.get_object("warn_box"))

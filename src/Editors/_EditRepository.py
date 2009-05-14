@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -49,8 +48,7 @@ from widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from Editors._EditPrimary import EditPrimary
 from QuestionDialog import ErrorDialog
-
-_GLADE_FILE = 'editrepository.glade'
+from glade import Glade
 
 class EditRepository(EditPrimary):
 
@@ -78,11 +76,9 @@ class EditRepository(EditPrimary):
         self.width_key = Config.REPO_WIDTH
         self.height_key = Config.REPO_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
+        self.glade = Glade()
         
-        self.set_window(self.glade.get_object("repository_editor"), None, 
+        self.set_window(self.glade.toplevel, None, 
                         self.get_menu_title())
 
     def build_menu_names(self, source):

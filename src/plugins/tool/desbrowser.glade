@@ -1,60 +1,79 @@
 <?xml version="1.0"?>
 <interface>
-  <!-- interface-requires gtk+ 2.12 -->
-  <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="columnorder">
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkDialog" id="desbrowser">
     <property name="visible">True</property>
+    <property name="default_width">450</property>
+    <property name="default_height">400</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
+    <signal name="delete_event" handler="on_delete_event"/>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox15">
+      <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
         <child>
-          <object class="GtkTable" id="table46">
+          <object class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
-            <property name="border_width">12</property>
-            <property name="n_rows">3</property>
-            <property name="column_spacing">6</property>
-            <property name="row_spacing">6</property>
             <child>
-              <object class="GtkScrolledWindow" id="scrolledwindow77">
-                <property name="width_request">400</property>
-                <property name="height_request">300</property>
+              <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="justify">center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="padding">10</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="hscrollbar_policy">automatic</property>
                 <property name="vscrollbar_policy">automatic</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkTreeView" id="list">
+                  <object class="GtkTreeView" id="tree1">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="reorderable">True</property>
                   </object>
                 </child>
               </object>
               <packing>
-                <property name="bottom_attach">3</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">&lt;i&gt;Double-click on the row to edit personal information&lt;/i&gt;</property>
+                <property name="use_markup">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
-            <property name="padding">6</property>
             <property name="position">1</property>
           </packing>
         </child>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area15">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="cancelbutton">
-                <property name="label">gtk-cancel</property>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="destroy_passed_object" object="desbrowser"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -63,13 +82,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="okbutton">
-                <property name="label">gtk-ok</property>
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_help_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -87,8 +107,8 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-6">cancelbutton</action-widget>
-      <action-widget response="-5">okbutton</action-widget>
+      <action-widget response="0">button1</action-widget>
+      <action-widget response="-11">button2</action-widget>
     </action-widgets>
   </object>
 </interface>

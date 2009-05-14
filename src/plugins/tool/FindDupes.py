@@ -25,13 +25,6 @@
 
 #-------------------------------------------------------------------------
 #
-# standard python models
-#
-#-------------------------------------------------------------------------
-import os
-
-#-------------------------------------------------------------------------
-#
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
@@ -57,6 +50,8 @@ from PluginUtils import Tool
 from gen.plug import PluginManager
 from QuestionDialog import ErrorDialog, RunDatabaseRepair
 from TransUtils import sgettext as _
+from glade import Glade
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -109,12 +104,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.update = callback
         self.use_soundex = 1
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        top = gtk.Builder()
-        top.add_from_file(glade_file)
+        top = Glade()
 
         # retrieve options
         threshold = self.options.handler.options_dict['threshold']
@@ -134,7 +124,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.menu.set_model(my_menu)
         self.menu.set_active(0)
 
-        window = top.get_object('dialog')
+        window = top.toplevel
         window.show()
         self.set_window(window, top.get_object('title'),
                         _('Find Possible Duplicate People'))
@@ -551,14 +541,8 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-                        
-        top = gtk.Builder()
-        top.add_from_file(glade_file)
-        
-        window = top.get_object("mergelist")
+        top = Glade(toplevel="mergelist")
+        window = top.toplevel
         window.show()
         self.set_window(window, top.get_object('title'),
                         _('Potential Merges'))

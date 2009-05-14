@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +52,7 @@ from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab,
                          MediaBackRefList)
 from Editors.AddMedia import AddMediaObject
 from QuestionDialog import ErrorDialog
-
-_GLADE_FILE = 'editmedia.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -95,11 +93,8 @@ class EditMedia(EditPrimary):
         self.width_key = Config.MEDIA_WIDTH
         self.height_key = Config.MEDIA_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)        
-        
-        self.set_window(self.glade.get_object('change_global'), 
+        self.glade = Glade()
+        self.set_window(self.glade.toplevel, 
                         None, self.get_menu_title())
 
     def _connect_signals(self):

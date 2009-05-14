@@ -39,7 +39,6 @@ import os
 # GTK/GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -50,8 +49,7 @@ import const
 import Config
 import ManagedWindow
 from QuestionDialog import ErrorDialog
-
-_GLADE_FILE = 'tipofday.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -63,11 +61,8 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        xml = gtk.Builder()
-        xml.add_from_file(glade_file)
-        
-        window = xml.get_object("tod_window")
+        xml = Glade()
+        window = xml.toplevel
         self.set_window(window, 
                         xml.get_object("title"), 
                         _("Tip of the Day"), 

@@ -29,7 +29,6 @@ Handle the column ordering
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import logging
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +45,8 @@ import gobject
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
+from glade import Glade
+
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +54,6 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 __LOG = logging.getLogger(".ColumnOrder")
-_GLADE_FILE = 'columnorder.glade'
-
 
 class ColumnOrder(ManagedWindow.ManagedWindow):
     """
@@ -67,11 +66,8 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         """
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)        
-
-        self.set_window(self.glade.get_object('columns'), None, win_name)
+        self.glade = Glade()
+        self.set_window(self.glade.toplevel, None, win_name)
 
         self.tree = self.glade.get_object('list')
         self.arglist = arglist

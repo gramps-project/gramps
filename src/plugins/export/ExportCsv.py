@@ -34,13 +34,6 @@ import csv
 import cStringIO
 import codecs
 
-#-------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -61,13 +54,7 @@ from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
 import gen.proxy
 import DateHandler
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ExportCsv.glade"
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -179,12 +166,7 @@ class CSVWriterOptionBox:
         self.translate_headers = 1
 
     def get_option_box(self):
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.topDialog = gtk.Builder()
-        self.topDialog.add_from_file(glade_file)
+        self.topDialog = Glade()
         self.filters = self.topDialog.get_object("filter")
 
         all = GenericFilter()
@@ -223,7 +205,7 @@ class CSVWriterOptionBox:
         the_box = self.topDialog.get_object('vbox1')
         the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_object("csvExport").destroy()
+        self.topDialog.toplevel.destroy()
         return the_box
 
     def parse_options(self):

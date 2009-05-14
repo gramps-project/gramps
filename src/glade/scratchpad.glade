@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkDialog" id="scratch_pad">
+  <object class="GtkDialog" id="scratchpad">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Clipboard</property>
     <property name="default_width">500</property>

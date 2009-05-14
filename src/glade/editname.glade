@@ -3,7 +3,7 @@
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="name_edit">
+  <object class="GtkDialog" id="editname">
     <property name="default_width">600</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
@@ -636,13 +636,13 @@
   </object>
   <object class="GtkListStore" id="liststore1">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkListStore" id="liststore2">
     <columns>
-      <!-- column-name item text -->
+      <!-- column-name item -->
       <column type="gchararray"/>
     </columns>
   </object>

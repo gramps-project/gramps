@@ -30,7 +30,6 @@
 #
 #-------------------------------------------------------------------------
 import re
-import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -52,6 +51,7 @@ import GrampsDisplay
 from PluginUtils import Tool
 from gen.plug import PluginManager
 import Utils
+from glade import Glade
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
 CITY_STATE = re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*),((?:\w|\s)+)", re.UNICODE)
@@ -512,11 +512,8 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def display(self):
 
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base, "changenames.glade")
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        window = self.top.get_object('top')
+        self.top = Glade("changenames.glade")
+        window = self.top.toplevel
         self.top.connect_signals({
             "destroy_passed_object" : self.close, 
             "on_ok_clicked" : self.on_ok_clicked, 

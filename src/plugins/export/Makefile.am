@@ -20,11 +20,12 @@ pkgpyexecdir = @pkgpyexecdir@/plugins/export
 pkgpythondir = @pkgpythondir@/plugins/export
 
 GLADEFILES = \
-	ExportCsv.glade \
-	ExportFtree.glade \
-	ExportGeneWeb.glade \
-	ExportVCalendar.glade \
-	ExportVCard.glade
+	exportcsv.glade \
+	exportftree.glade \
+	exportgeneweb.glade \
+	exportvcalendar.glade \
+	exportvcard.glade
+
 
 GRAPHICS = 
 

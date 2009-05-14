@@ -77,7 +77,6 @@
                               <object class="GtkImage" id="image33">
                                 <property name="visible">True</property>
                                 <property name="stock">gtk-clear</property>
-                                <property name="icon-size">4</property>
                               </object>
                             </child>
                           </object>
@@ -99,7 +98,6 @@
                               <object class="GtkImage" id="image34">
                                 <property name="visible">True</property>
                                 <property name="stock">gtk-save</property>
-                                <property name="icon-size">4</property>
                               </object>
                             </child>
                           </object>
@@ -121,7 +119,6 @@
                               <object class="GtkImage" id="image35">
                                 <property name="visible">True</property>
                                 <property name="stock">gtk-open</property>
-                                <property name="icon-size">4</property>
                               </object>
                             </child>
                           </object>
@@ -143,7 +140,6 @@
                               <object class="GtkImage" id="image36">
                                 <property name="visible">True</property>
                                 <property name="stock">gtk-index</property>
-                                <property name="icon-size">4</property>
                               </object>
                             </child>
                           </object>
@@ -288,7 +284,6 @@
                           <object class="GtkImage" id="image24">
                             <property name="visible">True</property>
                             <property name="stock">gtk-add</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -310,7 +305,6 @@
                           <object class="GtkImage" id="image25">
                             <property name="visible">True</property>
                             <property name="stock">gtk-remove</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -332,7 +326,6 @@
                           <object class="GtkImage" id="image26">
                             <property name="visible">True</property>
                             <property name="stock">gtk-go-up</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -354,7 +347,6 @@
                           <object class="GtkImage" id="image27">
                             <property name="visible">True</property>
                             <property name="stock">gtk-go-down</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -376,7 +368,6 @@
                           <object class="GtkImage" id="image28">
                             <property name="visible">True</property>
                             <property name="stock">gtk-preferences</property>
-                            <property name="icon-size">4</property>
                           </object>
                         </child>
                       </object>
@@ -456,7 +447,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkDialog" id="booklist">
+  <object class="GtkDialog" id="bookreport">
     <property name="height_request">300</property>
     <property name="type_hint">normal</property>
     <property name="has_separator">False</property>

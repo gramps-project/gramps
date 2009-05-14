@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkWindow" id="paper_settings">
+  <object class="GtkWindow" id="papermenu">
     <property name="title" translatable="yes">Paper Settings</property>
     <child>
       <object class="GtkHBox" id="paper_table">

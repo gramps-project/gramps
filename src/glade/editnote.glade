@@ -3,7 +3,7 @@
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="edit_note">
+  <object class="GtkDialog" id="editnote">
     <property name="default_width">500</property>
     <property name="default_height">400</property>
     <property name="type_hint">dialog</property>

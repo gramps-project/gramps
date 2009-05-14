@@ -32,7 +32,6 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +52,7 @@ from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 from widgets import MonitoredEntry, PrivacyButton
 from DisplayTabs import SourceEmbedList, NoteTab
-
-_GLADE_FILE = 'editpersonref.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -79,11 +77,9 @@ class EditPersonRef(EditSecondary):
         self.width_key = Config.PERSON_REF_WIDTH
         self.height_key = Config.PERSON_REF_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
                 
-        self.set_window(self.top.get_object("pref_edit"),
+        self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Person Reference Editor'))
         self.person_label = self.top.get_object('person')

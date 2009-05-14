@@ -287,7 +287,6 @@
     </action-widgets>
   </object>
   <object class="GtkDialog" id="comment">
-    <property name="visible">False</property>
     <property name="title" translatable="yes">Revision comment - GRAMPS</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>

@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="scrollmsg">
+  <object class="GtkDialog" id="displaystate">
     <property name="visible">True</property>
     <property name="title" translatable="yes">GRAMPS</property>
     <property name="window_position">center-always</property>

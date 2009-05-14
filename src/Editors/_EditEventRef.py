@@ -27,14 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +36,7 @@ import gtk
 import const
 import Config
 import gen.lib
-
+from glade import Glade
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
 from widgets import (PrivacyButton, MonitoredEntry,
@@ -52,14 +44,6 @@ from widgets import (PrivacyButton, MonitoredEntry,
 from _EditReference import RefTab, EditReference
 
 from ObjectEntries import PlaceEntry
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-
-_GLADE_FILE = 'editeventref.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -77,11 +61,8 @@ class EditEventRef(EditReference):
         self.width_key = Config.EVENT_REF_WIDTH
         self.height_key = Config.EVENT_REF_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
-        
-        self.set_window(self.top.get_object('event_eref_edit'),
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
                         self.top.get_object('eer_title'),
                         _('Event Reference Editor'))
         self.define_warn_box(self.top.get_object("eer_warning"))

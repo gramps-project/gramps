@@ -29,7 +29,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -39,6 +38,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import logging
 log = logging.getLogger(".BookReport")
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +59,6 @@ except:
 #-------------------------------------------------------------------------
 import gtk
 import gobject
-from gtk import RESPONSE_OK
 
 #-------------------------------------------------------------------------
 #
@@ -75,6 +74,7 @@ from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
+from glade import Glade
 
 # Import from specific modules in ReportBase
 from ReportBase import CATEGORY_BOOK, book_categories
@@ -570,11 +570,8 @@ class BookListDisplay:
         
         self.booklist = booklist
         self.dosave = dosave
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base,"book.glade")
-        self.xml = gtk.Builder()
-        self.xml.add_from_source(glade_file)
-        self.top = self.xml.get_object('booklist')
+        self.xml = Glade()
+        self.top = self.xml.toplevel
 
         ManagedWindow.set_titles(self.top,
             self.xml.get_object('title'),_('Available Books'))
@@ -683,12 +680,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
-        base = os.path.dirname(__file__)
-        glade_file = os.path.join(base,"book.glade")
+        self.xml = Glade(toplevel="top")
+        window = self.xml.toplevel
         
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)
-        window = self.xml.get_object("top")
         title_label = self.xml.get_object('title')
         self.set_window(window, title_label, self.title)
         window.show()
@@ -884,7 +878,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                                      item.get_translated_name(),
                                      self.track)
         response = item_dialog.window.run()
-        if response == RESPONSE_OK:
+        if response == gtk.RESPONSE_OK:
             subject = _get_subject(option_class, self.db)
             self.bk_model.model.set_value(the_iter, 2, subject)
             self.book.set_item(row, item)
@@ -1134,7 +1128,7 @@ class BookReportDialog(DocReportDialog):
                     this_style_name,style_sheet.get_cell_style(this_style_name))
 
         response = self.window.run()
-        if response == RESPONSE_OK:
+        if response == gtk.RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:

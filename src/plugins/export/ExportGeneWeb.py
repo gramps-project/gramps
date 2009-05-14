@@ -32,13 +32,6 @@
 import os
 from gettext import gettext as _
 
-#-------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#-------------------------------------------------------------------------
-import gtk
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -58,17 +51,11 @@ from Filters import GenericFilter, Rules, build_filter_model
 import Utils
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "ExportGeneWeb.glade"
-
-#-------------------------------------------------------------------------
-#
-#
+# GeneWebWriterOptionBox class
 #
 #-------------------------------------------------------------------------
 class GeneWebWriterOptionBox:
@@ -83,12 +70,7 @@ class GeneWebWriterOptionBox:
     def get_option_box(self):
         self.restrict = 1
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-                        
-        self.topDialog = gtk.Builder()
-        self.topDialog.add_from_file(glade_file)
+        self.topDialog = Glade()
         self.topDialog.connect_signals({
                 "on_restrict_toggled": self.on_restrict_toggled
                 })
@@ -132,7 +114,7 @@ class GeneWebWriterOptionBox:
         the_box = self.topDialog.get_object('vbox1')
         the_parent = self.topDialog.get_object('dialog-vbox1')
         the_parent.remove(the_box)
-        self.topDialog.get_object("genewebExport").destroy()
+        self.topDialog.toplevel.destroy()
         return the_box
 
     def on_restrict_toggled(self, restrict):

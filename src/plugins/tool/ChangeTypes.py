@@ -28,16 +28,8 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 from gettext import ngettext
-
-#------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
 
 #------------------------------------------------------------------------
 #
@@ -52,6 +44,7 @@ from gen.lib import EventType
 from QuestionDialog import OkDialog
 from PluginUtils import Tool
 from gen.plug import PluginManager
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -84,12 +77,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
     def init_gui(self):
         # Draw dialog and make it handle everything
         
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
+        self.glade = Glade()
             
         self.auto1 = self.glade.get_object("original")
         self.auto2 = self.glade.get_object("new")
@@ -108,7 +96,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         etype.set_from_xml_str(self.options.handler.options_dict['totype'])
         self.auto2.child.set_text(str(etype))
 
-        window = self.glade.get_object('top')
+        window = self.glade.toplevel
         self.set_window(window,self.glade.get_object('title'),self.title)
 
         self.glade.connect_signals({

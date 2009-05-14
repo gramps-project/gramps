@@ -38,20 +38,22 @@ pkgpythondir = @pkgpythondir@/plugins/tool
 
 GLADEFILES = \
 	changenames.glade \
-	changetype.glade \
-	desbrowse.glade \
+	changetypes.glade \
+	check.glade \
+	desbrowser.glade \
 	eval.glade \
 	eventcmp.glade \
+	finddupes.glade \
 	leak.glade \
-	merge.glade \
-	NotRelated.glade \
+	notrelated.glade \
 	ownereditor.glade \
 	patchnames.glade \
+	phpgedview.glade \
 	relcalc.glade \
-	soundex.glade \
-	summary.glade \
-	unused.glade \
+	removeunused.glade \
+	soundgen.glade \
 	verify.glade
+
 	
 dist_pkgdata_DATA = $(GLADEFILES)
 

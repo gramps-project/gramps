@@ -53,7 +53,7 @@ import gen.lib
 import widgets
 from BasicUtils import name_displayer
 import Errors
-
+from glade import Glade
 from gen.utils import set_birth_death_index
 
 from Editors._EditPrimary import EditPrimary
@@ -136,10 +136,9 @@ class EditPerson(EditPrimary):
 
         self.load_obj = None
         self.load_rect = None
-        self.top = gtk.Builder()
-        self.top.add_from_file(const.PERSON_GLADE)
+        self.top = Glade()
 
-        self.set_window(self.top.get_object("edit_person"), None, 
+        self.set_window(self.top.toplevel, None, 
                         self.get_menu_title())
         
         self.obj_photo = self.top.get_object("personPix")

@@ -32,7 +32,6 @@ mechanism for the user to edit attribute information.
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -50,11 +49,9 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-
+from glade import Glade
 from DisplayTabs import SourceEmbedList, NoteTab
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
-
-_GLADE_FILE = 'editattribute.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -81,11 +78,9 @@ class EditAttribute(EditSecondary):
     def _local_init(self):
         self.width_key = Config.ATTRIBUTE_WIDTH
         self.height_key = Config.ATTRIBUTE_HEIGHT
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
+        self.top = Glade()
         
-        self.set_window(self.top.get_object("attr_edit"),
+        self.set_window(self.top.toplevel,
                         self.top.get_object('title'),
                         _('Attribute Editor'))
 

@@ -772,8 +772,8 @@ src/widgets/validatedmaskedentry.py
 #
 #	Glade files
 #
-src/plugins/docgen/gtkprintpreview.glade
-src/glade/edit_person.glade
+src/plugins/docgen/gtkprint.glade
+src/glade/editperson.glade
 src/glade/gramps.glade
 
 # widgets split off from gramps.glade 
@@ -803,16 +803,13 @@ src/glade/editattribute.glade
 src/glade/editaddress.glade
 src/glade/editmedia.glade
 src/glade/editmediaref.glade
-src/glade/editaddress.glade
 src/glade/editeventref.glade
 src/glade/editldsord.glade
-src/glade/editmedia.glade
 src/glade/editnote.glade
 src/glade/editplace.glade
 src/glade/editsourceref.glade
 src/glade/editname.glade
 src/glade/editevent.glade
-src/glade/editurl.glade
 
 # end of widgets split off from gramps.glade
 
@@ -820,28 +817,29 @@ src/glade/mergedata.glade
 src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
-src/glade/paper_settings.glade
-src/plugins/tool/NotRelated.glade
-src/plugins/book.glade
+src/glade/papermenu.glade
+src/plugins/tool/notrelated.glade
+src/plugins/bookreport.glade
 src/plugins/tool/changenames.glade
-src/plugins/tool/changetype.glade
-src/plugins/tool/desbrowse.glade
+src/plugins/tool/changetypes.glade
+src/plugins/tool/check.glade
+src/plugins/tool/desbrowser.glade
 src/plugins/tool/eval.glade
 src/plugins/tool/eventcmp.glade
-src/plugins/import/ImportGedcom.glade
+src/plugins/import/importgedcom.glade
 src/plugins/tool/leak.glade
-src/plugins/tool/merge.glade
+src/plugins/tool/finddupes.glade
 src/plugins/tool/ownereditor.glade
 src/plugins/tool/patchnames.glade
+src/plugins/tool/phpgedview.glade
 src/plugins/tool/relcalc.glade
-src/plugins/tool/soundex.glade
-src/plugins/tool/summary.glade
-src/plugins/tool/unused.glade
-src/plugins/export/ExportCsv.glade
-src/plugins/export/ExportFtree.glade
-src/plugins/export/ExportGeneWeb.glade
-src/plugins/export/ExportVCard.glade
-src/plugins/export/ExportVCalendar.glade
+src/plugins/tool/soundgen.glade
+src/plugins/tool/removeunused.glade
+src/plugins/export/exportcsv.glade
+src/plugins/export/exportftree.glade
+src/plugins/export/exportgeneweb.glade
+src/plugins/export/exportvcalendar.glade
+src/plugins/export/exportvcard.glade
 src/plugins/tool/verify.glade
 #
 #	Files to extract from and then merge into

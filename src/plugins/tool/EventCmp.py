@@ -29,7 +29,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import sys
 
 #------------------------------------------------------------------------
 #
@@ -57,6 +56,7 @@ from ReportBase import ReportUtils
 import GrampsDisplay 
 import ManagedWindow
 from TransUtils import sgettext as _
+from glade import Glade
 
 
 #-------------------------------------------------------------------------
@@ -121,14 +121,9 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
-
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
         self.qual = 0
         
-        self.filterDialog = gtk.Builder()
-        self.filterDialog.add_from_file(glade_file)
+        self.filterDialog = Glade(toplevel="filters")
         self.filterDialog.connect_signals({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
@@ -137,7 +132,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             "destroy_passed_object"  : self.close
             })
     
-        window = self.filterDialog.get_object("filters")
+        window = self.filterDialog.toplevel
         window.show()
         self.filters = self.filterDialog.get_object("filter_list")
         self.label = _('Event comparison filter selection')
@@ -228,19 +223,14 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.row_data = []
         self.save_form = None
         
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        self.topDialog = gtk.Builder()
-        self.topDialog.add_from_file(glade_file)
+        self.topDialog = Glade()
         self.topDialog.connect_signals({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
             })
 
-        window = self.topDialog.get_object("view")
+        window = self.topDialog.toplevel
         window.show()
         self.set_window(window, self.topDialog.get_object('title'),
                         _('Event Comparison Results'))

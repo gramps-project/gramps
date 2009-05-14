@@ -27,14 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
-
-#-------------------------------------------------------------------------
-#
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -49,8 +41,7 @@ from gen.lib import NoteType
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from _EditReference import RefTab, EditReference
-
-_GLADE_FILE = 'editreporef.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -68,12 +59,8 @@ class EditRepoRef(EditReference):
         self.width_key = Config.REPO_REF_WIDTH
         self.height_key = Config.REPO_REF_HEIGHT
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-        
-        
-        self.set_window(self.top.get_object('repository_ref_edit'),
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
                         self.top.get_object('repo_title'),        
                         _('Repository Reference Editor'))
 

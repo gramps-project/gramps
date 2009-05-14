@@ -5,14 +5,13 @@ pkgdatadir = $(datadir)/@PACKAGE@/glade
 
 dist_pkgdata_DATA = \
 	gramps.glade\
-	edit_person.glade\
+	editperson.glade\
 	mergedata.glade\
 	plugins.glade\
 	rule.glade\
 	scratchpad.glade\
-	paper_settings.glade \
+	papermenu.glade \
 	grampletview.glade \
-	gramps.glade \
 	baseselector.glade \
 	reorder.glade \
 	tipofday.glade \
@@ -36,13 +35,10 @@ dist_pkgdata_DATA = \
 	editaddress.glade \
 	editmedia.glade \
 	editmediaref.glade \
-	editaddress.glade \
 	editeventref.glade \
 	editldsord.glade \
-	editmedia.glade \
 	editnote.glade \
 	editplace.glade \
 	editsourceref.glade \
 	editname.glade \
-	editevent.glade \
-	editurl.glade
+	editevent.glade

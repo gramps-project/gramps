@@ -23,25 +23,15 @@
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
-#
-#-------------------------------------------------------------------------
-import gtk
-import os
-
-#-------------------------------------------------------------------------
-#
 # gramps modules
 #
 #-------------------------------------------------------------------------
 import const
 import Config
 from _EditSecondary import EditSecondary
-
+from glade import Glade
 from widgets import MonitoredEntry
 from gettext import gettext as _
-
-_GLADE_FILE = 'editlocation.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -57,11 +47,8 @@ class EditLocation(EditSecondary):
     def _local_init(self):
         self.width_key = Config.LOCATION_WIDTH
         self.height_key = Config.LOCATION_HEIGHT
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)        
-
-        self.set_window(self.top.get_object("loc_edit"), None,
+        self.top = Glade()
+        self.set_window(self.top.toplevel, None,
                         _('Location Editor'))
 
     def _setup_fields(self):

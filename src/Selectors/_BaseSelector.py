@@ -28,7 +28,6 @@
 #-------------------------------------------------------------------------
 import gtk
 import pango
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -39,8 +38,7 @@ import const
 import ManagedWindow
 from Filters import SearchBar
 from DisplayModels import PeopleModel
-
-_GLADE_FILE = 'baseselector.glade'
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -77,11 +75,9 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
         self.db = dbstate.db
         
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
+        self.glade = Glade()
                 
-        window = self.glade.get_object('select_person')
+        window = self.glade.toplevel
         self.showall =  self.glade.get_object('showall')
         title_label = self.glade.get_object('title')
         vbox = self.glade.get_object('select_person_vbox')

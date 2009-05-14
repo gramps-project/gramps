@@ -30,7 +30,6 @@ Show uncollected objects in a window.
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 from bsddb.db import DBError
 
@@ -52,13 +51,7 @@ from PluginUtils import Tool
 from gen.plug import PluginManager
 import ManagedWindow
 from QuestionDialog import InfoDialog
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "leak.glade"
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -72,14 +65,9 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
+        self.glade = Glade()
 
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
-
-        self.window = self.glade.get_object("top")
+        self.window = self.glade.toplevel
         self.scroll = self.glade.get_object("scrolledwindow1")
         #add a listview to the scrollable
         self.list = gtk.TreeView()

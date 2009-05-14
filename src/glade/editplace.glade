@@ -3,7 +3,7 @@
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="place_editor">
+  <object class="GtkDialog" id="editplace">
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">

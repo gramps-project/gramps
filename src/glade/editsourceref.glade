@@ -3,7 +3,7 @@
   <!-- interface-requires gtk+ 2.12 -->
   <!-- interface-requires grampswidgets 0.0 -->
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkDialog" id="source_ref_edit">
+  <object class="GtkDialog" id="editsourceref">
     <property name="default_width">600</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>

@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from TransUtils import sgettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +46,7 @@ import gen.lib
 import GrampsDisplay
 from _EditPrimary import EditPrimary
 from ObjectEntries import PlaceEntry
-
+from glade import Glade
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
@@ -61,7 +60,6 @@ from widgets import (MonitoredEntry, PrivacyButton,
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_2' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Editing_Information_About_Events')
-_GLADE_FILE = 'editevent.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -102,11 +100,8 @@ class EditEvent(EditPrimary):
         self.width_key = Config.EVENT_WIDTH
         self.height_key = Config.EVENT_HEIGHT
 
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.top = gtk.Builder()
-        self.top.add_from_file(glade_file)
-
-        self.set_window(self.top.get_object("event_edit"), None, 
+        self.top = Glade()
+        self.set_window(self.top.toplevel, None, 
                         self.get_menu_title())
 
         self.place = self.top.get_object('place')

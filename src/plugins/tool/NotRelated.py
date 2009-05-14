@@ -25,13 +25,6 @@
 
 #------------------------------------------------------------------------
 #
-# standard python modules
-#
-#------------------------------------------------------------------------
-import os
-
-#------------------------------------------------------------------------
-#
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
@@ -53,6 +46,7 @@ import ManagedWindow
 import Utils
 import GrampsDisplay
 from TransUtils import sgettext as _
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -61,10 +55,10 @@ from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Not_Related...')
-_GLADE_FILE = "NotRelated.glade"
+
 #------------------------------------------------------------------------
 #
-# 
+# NotRelated class
 #
 #------------------------------------------------------------------------
 class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
@@ -83,19 +77,14 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         self.uistate = uistate
         self.db = dbstate.db
         
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
-
-        topDialog = gtk.Builder()
-        topDialog.add_from_file(glade_file)
+        topDialog = Glade()
         
         topDialog.connect_signals({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
         })
 
-        window = topDialog.get_object("top")
+        window = topDialog.toplevel
         title = topDialog.get_object("title")
         self.set_window(window, title, self.title)
 

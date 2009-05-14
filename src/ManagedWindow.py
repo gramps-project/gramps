@@ -48,6 +48,7 @@ import gtk
 import const
 import Errors
 import Config
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #

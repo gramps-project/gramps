@@ -20,26 +20,20 @@
 
 from gettext import gettext as _
 
-import gtk
-import os
-
 import const
-
 from BasicUtils import name_displayer
 import ListModel
 import ManagedWindow
+from glade import Glade
 
 PARENT_TITLES = [(_('Father'), -1, 200), (_('Mother'), -1, 200), ('', -1, 0)]
 FAMILY_TITLES = [(_('Spouse'), -1, 200), (_('Relationship'), -1, 200), ('', -1, 0)]
-_GLADE_FILE = 'reorder.glade'
 
 class Reorder(ManagedWindow.ManagedWindow):
     
     def __init__(self, state, uistate, track, handle):
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        xml = gtk.Builder()
-        xml.add_from_file(glade_file)
-        top = xml.get_object('reorder')
+        xml = Glade()
+        top = xml.toplevel
 
         self.dbstate = state
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)

@@ -29,17 +29,9 @@ Provide a python evaluation window
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 import cStringIO
 import sys
 from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
 
 #------------------------------------------------------------------------
 #
@@ -49,13 +41,7 @@ import gtk
 from PluginUtils import Tool
 from gen.plug import PluginManager
 import ManagedWindow
-
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-_GLADE_FILE = "eval.glade"
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -69,16 +55,11 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
+        self.glade = Glade()
 
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(glade_file)
-
-        window = self.glade.get_object("top")
+        window = self.glade.toplevel
         self.dbuf = self.glade.get_object("display").get_buffer()
-        self.ebuf = self.glade.get_object("eval").get_buffer()
+        self.ebuf = self.glade.get_object("ebuf").get_buffer()
         self.error = self.glade.get_object("error").get_buffer()
 
         self.glade.connect_signals({

@@ -57,9 +57,9 @@ from BasicUtils import name_displayer
 import const
 import ManagedWindow
 from gen.plug import PluginManager
+from glade import Glade
 
 DISABLED = -1
-_GLADE_FILE = 'displaystate.glade'
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +83,7 @@ class History(gen.utils.Callback):
 
     def clear(self):
         """
-        Cleares the history, resetting the values back to their defaults
+        Clears the history, resetting the values back to their defaults
         """
         self.history = []
         self.mhistory = []
@@ -285,11 +285,9 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        glade_file = os.path.join(const.GLADE_DIR, _GLADE_FILE)
-        self.xml = gtk.Builder()
-        self.xml.add_from_file(glade_file)        
-        top = xml.get_widget('scrollmsg')
-        msg = xml.get_widget('msg')
+        self.glade = Glade()
+        top = self.toplevel
+        msg = self.glade.get_object('msg')
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
             buf.insert_at_cursor(i + '\n')

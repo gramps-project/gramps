@@ -375,7 +375,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkDialog" id="encoding">
+  <object class="GtkDialog" id="importgedcom">
     <property name="width_request">400</property>
     <property name="title" translatable="yes">GRAMPS - GEDCOM Encoding</property>
     <property name="window_position">center-on-parent</property>

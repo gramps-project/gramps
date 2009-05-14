@@ -43,6 +43,7 @@ from QuestionDialog import ErrorDialog
 import GrampsDisplay
 import ManagedWindow
 import gen.utils
+from glade import Glade
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +52,7 @@ import gen.utils
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_People')
+_GLADE_FILE = 'mergedata.glade'
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -59,10 +61,9 @@ class PersonCompare(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, person1, person2, update=None) :
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        self.glade = Glade(_GLADE_FILE, toplevel='mergedata')
+        window = self.glade.toplevel
 
-        self.glade = gtk.Builder()
-        self.glade.add_from_file(const.MERGE_GLADE)
-        window = self.glade.get_object('merge')
         window.show()
         self.text1 = self.glade.get_object('text1')
         self.text2 = self.glade.get_object('text2')
@@ -284,9 +285,9 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         
-        glade_xml = gtk.Builder()
-        glade_xml.add_from_file(const.MERGE_GLADE)
-        window = glade_xml.get_object('merge_people')
+        
+        glade_xml = Glade(_GLADE_FILE, toplevel='mergeperson')
+        window = glade_xml.toplevel
 
         self.set_window(window, glade_xml.get_object('people_title'), _("Merge People"))
 

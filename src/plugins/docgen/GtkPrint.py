@@ -31,7 +31,7 @@
 #------------------------------------------------------------------------
 from gettext import gettext as _
 from math import radians
-import os
+
 ##try:
     ##from cStringIO import StringIO
 ##except:
@@ -46,6 +46,7 @@ import BaseDoc
 import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Errors
+from glade import Glade
 
 #------------------------------------------------------------------------
 #
@@ -87,9 +88,6 @@ MARGIN = 6
  ZOOM_FIT_WIDTH,
  ZOOM_FREE,) = range(3)
  
-# glade file
-_GLADE_FILE = 'gtkprintpreview.glade'
-
 #------------------------------------------------------------------------
 #
 # Converter functions
@@ -201,13 +199,9 @@ class PrintPreview:
     def __build_window(self):
         """Build the window from Glade.
         """
-        glade_file = os.path.join(
-                        os.path.split(__file__)[0], 
-                        _GLADE_FILE)
 
-        glade_xml = gtk.Builder()
-        glade_xml.add_from_file(glade_file)
-        self._window = glade_xml.get_object('window')
+        glade_xml = Glade()
+        self._window = glade_xml.toplevel
         #self._window.set_transient_for(parent)
  
         # remember active widgets for future use
