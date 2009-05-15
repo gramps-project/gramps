@@ -238,7 +238,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="gedcomExport"/>
+                <signal name="clicked" handler="destroy_passed_object" object="exportcsv"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -254,7 +254,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_ok_clicked" object="gedcomExport"/>
+                <signal name="clicked" handler="on_ok_clicked" object="exportcsv"/>
               </object>
               <packing>
                 <property name="expand">False</property>

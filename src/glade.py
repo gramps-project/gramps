@@ -80,16 +80,12 @@ class Glade(gtk.Builder):
         """        
         gtk.Builder.__init__(self)
         
-        if isinstance(toplevel, gtk.Container):     # if we have a Gtk object
-            self.__toplevel = toplevel              # just remember it
-            return                                  # and we're done
-        
         filename_given = filename is not None
         dirname_given = dirname is not None
 
         # if filename not given, use module name to derive it
         
-        if not filename:
+        if not filename_given:
             filename = sys._getframe(1).f_code.co_filename
             filename = os.path.basename(filename)
             filename = filename.rpartition('.')[0] + '.glade'
@@ -97,7 +93,7 @@ class Glade(gtk.Builder):
 
         # if dirname not given, use current directory
          
-        if not dirname:
+        if not dirname_given:
             dirname = sys._getframe(1).f_code.co_filename
             dirname = os.path.dirname(dirname)
             
@@ -209,6 +205,8 @@ class Glade(gtk.Builder):
                 
         if isinstance(toplevel, basestring):
             toplevel = self.get_object(toplevel)
+            
+        # Simple Breadth-First Search
             
         queue = [toplevel]
         while queue:

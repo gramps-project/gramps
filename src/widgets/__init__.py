@@ -1,3 +1,4 @@
+
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -44,6 +45,7 @@ from gtk.glade import set_custom_handler
 
 def get_custom_handler(glade, function_name, widget_name, 
                        str1, str2, int1, int2):
+    raise DeprecationWarning, "get_custom_handler: shouldn't get here"                           
     if function_name == 'ValidatableMaskedEntry':
         return ValidatableMaskedEntry()
     if function_name == 'StyledTextEditor':

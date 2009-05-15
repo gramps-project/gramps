@@ -32,6 +32,7 @@ the create/deletion of dialog windows.
 #
 #-------------------------------------------------------------------------
 from cStringIO import StringIO
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +68,7 @@ DISABLED = -1
 #-----------------------------------------------------------------------
 
 def get_object(self,value):
+    raise DeprecationWarning, "ManagedWindow.get_object: shouldn't get here"
     if self.get_name() == value:
         return self
     elif hasattr(self,'get_children'):
@@ -424,16 +426,14 @@ class ManagedWindow:
         
     def define_glade(self, top_module, glade_file=None):
         if glade_file is None:
+            raise TypeError, "ManagedWindow.define_glade: no glade file"
             glade_file = const.GLADE_FILE
-        builder = gtk.Builder()
-        builder.add_from_file(glade_file)
-        self._gladeobj = builder.get_object(top_module)
-        self._gladeobj.get_object = get_object
+        self._gladeobj = Glade(glade_file, "", top_module)
         return self._gladeobj
 
     def get_widget(self, name):
         assert(self._gladeobj)
-        object = get_object(self._gladeobj,name)
+        object = self._gladeobj.get_child_object(name)
         if object is not None:
             return object
         raise ValueError, (

@@ -178,7 +178,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="merge_places"/>
+                <signal name="clicked" handler="destroy_passed_object" object="mergeplace"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -194,7 +194,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_merge_places_clicked" object="merge_places"/>
+                <signal name="clicked" handler="on_merge_places_clicked" object="mergeplace"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -367,7 +367,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="merge"/>
+                <signal name="clicked" handler="destroy_passed_object" object="mergedata"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -384,7 +384,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_next_clicked" object="merge"/>
+                <signal name="clicked" handler="on_next_clicked" object="mergedata"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -400,7 +400,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <signal name="clicked" handler="on_merge_clicked" object="merge"/>
+                <signal name="clicked" handler="on_merge_clicked" object="mergedata"/>
               </object>
               <packing>
                 <property name="expand">False</property>

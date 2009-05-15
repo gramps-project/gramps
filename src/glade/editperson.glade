@@ -534,7 +534,7 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="destroy_passed_object" object="editPerson"/>
+                <signal name="clicked" handler="destroy_passed_object" object="editperson"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -552,7 +552,7 @@ Title: A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_apply_person_clicked" object="editPerson"/>
+                <signal name="clicked" handler="on_apply_person_clicked" object="editperson"/>
               </object>
               <packing>
                 <property name="expand">False</property>

@@ -65,7 +65,6 @@ _val2label = {
 
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Find_Possible_Duplicate_People...')
-_GLADE_FILE = "merge.glade"
 
 #-------------------------------------------------------------------------
 #

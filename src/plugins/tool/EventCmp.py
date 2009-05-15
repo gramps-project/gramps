@@ -66,7 +66,6 @@ from glade import Glade
 #-------------------------------------------------------------------------
 WIKI_HELP_PAGE = '%s_-_Tools' % const.URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Compare_Individual_Events...')
-_GLADE_FILE = "eventcmp.glade"
 
 #------------------------------------------------------------------------
 #

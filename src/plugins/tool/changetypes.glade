@@ -120,7 +120,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_close_clicked" object="top"/>
+                <signal name="clicked" handler="on_close_clicked" object="changetypes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -136,7 +136,7 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_apply_clicked" object="top"/>
+                <signal name="clicked" handler="on_apply_clicked" object="changetypes"/>
               </object>
               <packing>
                 <property name="expand">False</property>

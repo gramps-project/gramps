@@ -233,12 +233,18 @@ class PackageWriter:
                                   sys.getfilesystemencoding())
                 if os.path.isfile(newfile):
                     self.copy_file(newfile, 'burn:///%s/%s' % (base, obase))
-    
-            fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
-            fs_top.hide_fileop_buttons()
-            fs_top.ok_button.connect('clicked', fs_ok_clicked)
-            fs_top.cancel_button.connect('clicked', fs_close_window)
-            fs_top.run()
+                    
+            fs_top = gtk.FileChooserDialog("%s - GRAMPS" % _("Select file"),
+                        buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                 gtk.STOCK_OK, gtk.RESPONSE_OK)
+                        )
+                        
+            response = fs_top.run()
+            if response == gtk.RESPONSE_OK:
+                fs_ok_clicked(fs_top)
+            elif response == gtk.RESPONSE_CANCEL:
+                fs_close_window(fs_top)                    
+
             fs_top.destroy()
 
         #----------------------------------------------------------
