@@ -285,8 +285,8 @@ p#user_header {
     margin:0;
     padding:0 0 0 9px;
     background-color:#6AF364;
-    border-bottom:solid 2px #000;
     border-top:solid 2px #000;
+    border-bottom:solid 4px #000;
 }
 #alphabet ul li.letters {
     margin:0;
@@ -306,7 +306,6 @@ p#user_header {
 }
 #alphabet ul li.letters a:hover {
     background-color:#C1B398;
-    color:#000;
 }
 
 /* Navigation

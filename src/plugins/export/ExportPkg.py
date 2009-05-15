@@ -175,7 +175,6 @@ class PackageWriter:
                         buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
                                  gtk.STOCK_OK, gtk.RESPONSE_OK)
                         )
-                        s
             response = fs_top.run()
             if response == gtk.RESPONSE_OK:
                 fs_ok_clicked(fs_top)
