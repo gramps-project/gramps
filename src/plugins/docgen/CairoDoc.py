@@ -500,6 +500,10 @@ class GtkDocParagraph(GtkDocBaseElement):
         startheight = linerange[0]
         endheight = linerange[1]
         splitline = -1
+        if lineiter.at_last_line():
+            #only one line of text that does not fit
+            return (None, self), 0
+            
         while not lineiter.at_last_line():
             #go to next line, see if all fits, if not split
             lineiter.next_line()
