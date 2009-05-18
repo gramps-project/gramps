@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkUIManager" id="uimanager1"/>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="ownereditor">
     <property name="window_position">center</property>
     <property name="default_width">500</property>
@@ -327,5 +326,27 @@
       </object>
     </child>
   </object>
-  <object class="GtkMenu" id="popup_menu"/>
+  <object class="GtkMenu" id="popup_menu">
+    <child>
+      <object class="GtkImageMenuItem" id="copy_from_db_to_preferences">
+        <property name="label">Copy from DB to Preferences</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <property name="accel_group">accelgroup1</property>
+        <signal name="activate" handler="on_menu_activate"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="copy_from_preferences_to_db">
+        <property name="label">Copy from Preferences to DB</property>
+        <property name="visible">True</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <property name="accel_group">accelgroup1</property>
+        <signal name="activate" handler="on_menu_activate"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAccelGroup" id="accelgroup1"/>
 </interface>
