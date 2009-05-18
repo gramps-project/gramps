@@ -100,12 +100,22 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
         """
         return self.source_list
 
+    def get_note_child_list(self):
+        """
+        Return the list of child secondary objects that may refer notes.
+
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
+        @rtype: list
+        """
+        return self.source_list
+
     def get_handle_referents(self):
         """
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
+        @return: Returns the list of objects referencing primary objects.
         @rtype: list
         """
         return self.source_list
