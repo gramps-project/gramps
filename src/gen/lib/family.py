@@ -258,7 +258,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         @rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
-            self.lds_ord_list + self.child_ref_list
+            self.lds_ord_list + self.child_ref_list + \
+            self.event_ref_list
         return check_list
 
     def get_note_child_list(self):
@@ -270,7 +271,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         @rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
-            self.lds_ord_list + self.child_ref_list + self.source_list
+            self.lds_ord_list + self.child_ref_list + self.source_list + \
+            self.event_ref_list
         return check_list
 
     def get_referenced_handles(self):
@@ -282,7 +284,6 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
-        ret += [('Event', ref.ref) for ref in self.event_ref_list]
         ret += [('Person', handle) for handle
                 in ([ref.ref for ref in self.child_ref_list] +
                     [self.father_handle, self.mother_handle])
@@ -297,7 +298,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.get_sourcref_child_list() + self.source_list
+        return self.get_sourcref_child_list() + self.source_list 
 
     def set_relationship(self, relationship_type):
         """
