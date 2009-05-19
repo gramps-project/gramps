@@ -153,7 +153,7 @@ class LivingProxyDb(ProxyDbBase):
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
-        if self.__is_living(person):
+        if person and self.__is_living(person):
             if self.mode == self.MODE_EXCLUDE_ALL:
                 return None
             else:
