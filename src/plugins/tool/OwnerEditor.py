@@ -109,11 +109,12 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
             "on_cancel_button_clicked": self.close,
             "on_help_button_clicked": self.on_help_button_clicked,
             "on_eventbox_button_press_event": self.on_button_press_event,
-        })
+            "on_menu_activate": self.on_menu_activate,
+            })
 
         # fetch the popup menu
         self.menu = topDialog.get_object("popup_menu")
-        topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
+        #topDialog.connect_signals({"on_menu_activate": self.on_menu_activate})
 
         # get current db owner and attach it to the entries of the window
         self.owner = self.db.get_researcher()
@@ -158,7 +159,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_menu_activate(self, menuitem):
         """Copies the owner information from/to the preferences"""
         if menuitem.name == 'copy_from_preferences_to_db':
-            self.owner.set(*GrampsCfg.get_researcher().get())
+            self.owner.set_from(GrampsCfg.get_researcher())
             for entry in self.entries:
                 entry.update()
                 

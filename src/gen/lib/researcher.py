@@ -107,3 +107,9 @@ class Researcher(LocationBase):
         self.name = other_researcher.name
         self.addr = other_researcher.addr
         self.email =  other_researcher.email
+        
+    def get(self):
+        return [getattr(self, value) for value in
+            ['name', 'addr', 'city', 'state', 
+             'country', 'postal', 'phone', 'email']
+            ]
