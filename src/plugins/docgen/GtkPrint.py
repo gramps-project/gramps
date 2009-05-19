@@ -589,8 +589,14 @@ class GtkPrint(libcairodoc.CairoDoc):
         
         # give a dummy cairo context to gtk.PrintContext,
         # PrintPreview will update it with the real one
-        width = int(round(context.get_width()))
-        height = int(round(context.get_height()))
+        try:
+            width = int(round(context.get_width()))
+        except ValueError:
+            width = 0
+        try:
+            height = int(round(context.get_height()))
+        except ValueError:
+            height = 0
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         cr = cairo.Context(surface)
         context.set_cairo_context(cr, PRINTER_DPI, PRINTER_DPI)
