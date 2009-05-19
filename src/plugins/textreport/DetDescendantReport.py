@@ -120,6 +120,7 @@ class DetDescendantReport(Report):
         self.inc_sources   = menu.get_option_by_name('incsources').get_value()
         self.inc_mates     = menu.get_option_by_name('incmates').get_value()
         self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
+        self.inc_paths     = menu.get_option_by_name('incpaths').get_value()
         pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
@@ -232,6 +233,37 @@ class DetDescendantReport(Report):
         if self.inc_sources:
             Endnotes.write_endnotes(self.bibli, self.database, self.doc)
 
+    def write_path(self, person):
+        path = []
+        while True:
+            family_handle = person.get_main_parents_family_handle()
+            if family_handle:
+                family = self.database.get_family_from_handle(family_handle)
+                mother_handle = family.get_mother_handle()
+                father_handle = family.get_father_handle()
+                if mother_handle and mother_handle in self.henry:
+                    person = self.database.get_person_from_handle(mother_handle)
+                    person_name = _nd.display_name(person.get_primary_name())
+                    path.append(person_name)
+                elif father_handle and father_handle in self.henry:
+                    person = self.database.get_person_from_handle(father_handle)
+                    person_name = _nd.display_name(person.get_primary_name())
+                    path.append(person_name)
+                else:
+                    break
+
+        index = len(path)
+
+        if index:
+            self.doc.write_text("(")
+
+        for name in path:
+            if index == 1:
+                self.doc.write_text(name + "-" + str(index) + ") ")
+            else:
+                self.doc.write_text(name + "-" + str(index) + "; ")
+            index -= 1
+
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
 
@@ -251,6 +283,9 @@ class DetDescendantReport(Report):
         else:
             self.doc.write_text_citation("%s. " % self.endnotes(person))
         self.doc.end_bold()
+
+        if self.inc_paths:
+            self.write_path(person)
         
         if self.dubperson:
             # Check for duplicate record (result of distant cousins marrying)
@@ -783,6 +818,11 @@ class DetDescendantOptions(MenuReportOptions):
         incmates = BooleanOption(_("Include spouses"), False)
         incmates.set_help(_("Whether to include detailed spouse information."))
         menu.add_option(category_name, "incmates", incmates)
+
+        incpaths = BooleanOption(_("Include path to start-person"), False)
+        incpaths.set_help(_("Whether to include the path of descendancy " \
+                            "from the start-person to each descendant"))
+        menu.add_option(category_name, "incpaths", incpaths)
 
         category_name = _("Missing information")        
 
