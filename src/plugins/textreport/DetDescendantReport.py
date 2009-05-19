@@ -127,7 +127,7 @@ class DetDescendantReport(Report):
         self.gen_handles = {}
         self.prev_gen_handles = {}
         self.gen_keys = []
-        self.henry = {}
+        self.dnumber = {}
 
         if blankdate:
             self.EMPTY_DATE = EMPTY_ENTRY
@@ -141,10 +141,10 @@ class DetDescendantReport(Report):
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
-    def apply_filter(self,person_handle, index, pid, cur_gen=1):
+    def apply_henry_filter(self,person_handle, index, pid, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
             return
-        self.henry[person_handle] = pid
+        self.dnumber[person_handle] = pid
         self.map[index] = person_handle
 
         if len(self.gen_keys) < cur_gen:
@@ -158,12 +158,12 @@ class DetDescendantReport(Report):
             family = self.database.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 ix = max(self.map.keys())
-                self.apply_filter(child_ref.ref, ix+1,
+                self.apply_henry_filter(child_ref.ref, ix+1,
                                   pid+HENRY[index], cur_gen+1)
                 index += 1
 
     # Filter for Record-style (Modified Register) numbering
-    def mod_reg_filter_aux(self, person_handle, index, cur_gen=1):
+    def apply_mod_reg_filter_aux(self, person_handle, index, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         self.map[index] = person_handle
@@ -179,15 +179,15 @@ class DetDescendantReport(Report):
             family = self.database.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 ix = max(self.map.keys())
-                self.mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
+                self.apply_mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
 
-    def mod_reg_filter(self,person_handle):
-        self.mod_reg_filter_aux(person_handle, 1, 1)
+    def apply_mod_reg_filter(self,person_handle):
+        self.apply_mod_reg_filter_aux(person_handle, 1, 1)
         mod_reg_number = 1
         for generation in xrange(len(self.gen_keys)):
             for key in self.gen_keys[generation]:
                 person_handle = self.map[key]
-                self.henry[person_handle] = mod_reg_number
+                self.dnumber[person_handle] = mod_reg_number
                 mod_reg_number += 1
 
     def write_report(self):
@@ -195,9 +195,9 @@ class DetDescendantReport(Report):
         This function is called by the report system and writes the report.
         """
         if self.record_num:
-            self.mod_reg_filter(self.center_person.get_handle())
+            self.apply_mod_reg_filter(self.center_person.get_handle())
         else:
-            self.apply_filter(self.center_person.get_handle(), 1, "1")
+            self.apply_henry_filter(self.center_person.get_handle(), 1, "1")
 
         name = _nd.display_name(self.center_person.get_primary_name())
 
@@ -241,11 +241,11 @@ class DetDescendantReport(Report):
                 family = self.database.get_family_from_handle(family_handle)
                 mother_handle = family.get_mother_handle()
                 father_handle = family.get_father_handle()
-                if mother_handle and mother_handle in self.henry:
+                if mother_handle and mother_handle in self.dnumber:
                     person = self.database.get_person_from_handle(mother_handle)
                     person_name = _nd.display_name(person.get_primary_name())
                     path.append(person_name)
-                elif father_handle and father_handle in self.henry:
+                elif father_handle and father_handle in self.dnumber:
                     person = self.database.get_person_from_handle(father_handle)
                     person_name = _nd.display_name(person.get_primary_name())
                     path.append(person_name)
@@ -270,7 +270,7 @@ class DetDescendantReport(Report):
         person_handle = self.map[key]
         person = self.database.get_person_from_handle(person_handle)
 
-        val = self.henry[person_handle]
+        val = self.dnumber[person_handle]
         self.doc.start_paragraph("DDR-First-Entry","%s." % val)
 
         name = _nd.display_formal(person)
@@ -499,9 +499,9 @@ class DetDescendantReport(Report):
                                      ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            if child_handle in self.henry:
+            if child_handle in self.dnumber:
                 self.doc.write_text("%s [%s]. " % (child_name,
-                                                   self.henry[child_handle]),
+                                                   self.dnumber[child_handle]),
                                     child_mark )
             else:
                 self.doc.write_text("%s. " % child_name, child_mark)
