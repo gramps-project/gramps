@@ -477,9 +477,10 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout.set_attributes(self._attrlist)
         layout_width, layout_height = layout.get_pixel_size()
         line_count = layout.get_line_count()
+        spacing = layout.get_spacing() / pango.SCALE
         
         # if all paragraph fits we don't need to cut
-        if layout_height <= text_height:
+        if layout_height - spacing <= text_height:
             paragraph_height = layout_height + t_margin + (2 * v_padding)
             if height - paragraph_height > b_margin:
                 paragraph_height += b_margin
@@ -493,10 +494,13 @@ class GtkDocParagraph(GtkDocBaseElement):
             return (None, self), 0
         
         lineiter = layout.get_iter()
+        
         linenr = 0
         linerange = lineiter.get_line_yrange()
         # 2. if nothing fits, move to next page without split
-        if linerange[1] - linerange[0] > text_height * pango.SCALE:
+        #  there is a spacing above and under the text
+        if linerange[1] - linerange[0] + 2.*spacing \
+                    > text_height * pango.SCALE:
             return (None, self), 0
         
         # 3. split the paragraph
@@ -512,7 +516,8 @@ class GtkDocParagraph(GtkDocBaseElement):
             lineiter.next_line()
             linenr += 1
             linerange = lineiter.get_line_yrange()
-            if linerange[1] - startheight > text_height * pango.SCALE:
+            if linerange[1] - startheight  + 2.*spacing \
+                        > text_height * pango.SCALE:
                 splitline = linenr
                 break
             endheight = linerange[1]
