@@ -55,6 +55,7 @@ import locale
 import shutil
 import codecs
 import tarfile
+import tempfile
 import operator
 from TransUtils import sgettext as _
 from cStringIO import StringIO
@@ -115,8 +116,8 @@ _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NAME_COL  = 3
 
-_MAX_IMG_WIDTH = 800   # resize images that are wider than this
-_MAX_IMG_HEIGHT = 600  # resize images that are taller than this
+_DEFAULT_MAX_IMG_WIDTH = 800   # resize images that are wider than this (settable in options)
+_DEFAULT_MAX_IMG_HEIGHT = 600  # resize images that are taller than this (settable in options)
 _WIDTH = 160
 _HEIGHT = 50
 _VGAP = 10
@@ -1339,22 +1340,43 @@ class MediaPage(BasePage):
                     of.write('\t\t<div id="GalleryDisplay">\n')
                     of.write('\t\t\t<span class="MissingImage">(%s)</span>' % _("The file has been moved or deleted"))
                 else:
-                    # if the image is spectacularly large, then force the client
-                    # to resize it, and include a "<a href=" link to the actual
-                    # image; most web browsers will dynamically resize an image
-                    # and provide zoom-in/zoom-out functionality when the image
-                    # is displayed directly
-                    (width, height) = ImgManip.image_size(
-                            Utils.media_path_full(db, photo.get_path()))
-                    scale = 1.0
+                    # Check how big the image is relative to the requested 'initial'
+                    # image size. If it's significantly bigger, scale it down to
+                    # improve the site's responsiveness. We don't want the user to
+                    # have to await a large download unnecessarily. Either way, set
+                    # the display image size as requested.
+                    orig_image_path = Utils.media_path_full(db, photo.get_path())
+                    (width, height) = ImgManip.image_size(orig_image_path)
+                    max_width = self.report.options['maxinitialimagewidth']
+                    max_height = self.report.options['maxinitialimageheight']
+                    scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that a max of zero is ignored
+                    scale_h = (float(max_height)/height) or 1
+                    scale = min(scale_w, scale_h)
+                    new_width = int(width*scale)
+                    new_height = int(height*scale)
+                    if scale < 0.8:
+                        # scale factor is significant enough to warrant making a smaller image
+                        initial_image_path = '%s_init.jpg' % os.path.splitext(newpath)[0]
+                        initial_image_data = ImgManip.resize_to_jpeg_buffer(orig_image_path,
+                                new_width, new_height)
+                        if self.report.archive:
+                            filed, dest = tempfile.mkstemp()
+                            os.write(filed, initial_image_data)
+                            os.close(filed)
+                            self.report.archive.add(dest, initial_image_path)
+                        else:
+                            filed = open(os.path.join(self.html_dir, initial_image_path), 'w')
+                            filed.write(initial_image_data)
+                            filed.close()
+                    else:
+                        # not worth actually making a smaller image
+                        initial_image_path = newpath
+
                     # TODO. Convert disk path to URL.
-                    url = self.report.build_url_fname(newpath, None, self.up)
-                    if width > _MAX_IMG_WIDTH or height > _MAX_IMG_HEIGHT:
-                        # image is too large -- scale it down and link to the full image
-                        scale = min(float(_MAX_IMG_WIDTH)/float(width), float(_MAX_IMG_HEIGHT)/float(height))
-                        width = int(width * scale)
-                        height = int(height * scale)
-                    of.write('\t\t<div id="GalleryDisplay" style="width:%dpx; height:%dpx;">\n' % (width, height))
+                    url = self.report.build_url_fname(initial_image_path, None, self.up)
+                    if initial_image_path != newpath:
+                        of.write('<p>%s (%dx%d)</p>\n' % (_('Click on the image to see the full size version'), width, height))
+                    of.write('\t\t<div id="GalleryDisplay" style="width:%dpx; height:%dpx;">\n' % (new_width, new_height))
 
                     # Feature #2634; display the mouse-selectable regions.
                     # See the large block at the top of this function where
@@ -1374,17 +1396,15 @@ class MediaPage(BasePage):
 
                     # display the image
                     of.write('\t\t\t')
-                    if scale != 1.0:
-                        of.write('<a href="%s">' % url)
-                    of.write('<img width="%d" height="%d" src="%s" alt="%s" />' % (width, height, url, html_escape(self.page_title)))
-                    if scale != 1.0:
+                    if initial_image_path != newpath:
+                        of.write('<a href="%s">' % self.report.build_url_fname(newpath, None, self.up))
+                    of.write('<img width="%d" height="%d" src="%s" alt="%s" />' % (new_width, new_height, url, html_escape(self.page_title)))
+                    if initial_image_path != newpath:
                         of.write('</a>')
                     of.write('\n')
 
                 of.write('\t\t</div>\n\n')
             else:
-                import tempfile
-
                 dirname = tempfile.mkdtemp()
                 thmb_path = os.path.join(dirname, "temp.png")
                 if ThumbNails.run_thumbnailer(mime_type,
@@ -3477,6 +3497,17 @@ class NavWebOptions(MenuReportOptions):
         nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
+
+        self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
+        self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
+                              "of the image shown on the media page. Set to 0 for no limit."))
+        menu.add_option(category_name, 'maxinitialimagewidth',
+                        self.__maxinitialimagewidth)
+        self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
+        self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
+                              "of the image shown on the media page. Set to 0 for no limit."))
+        menu.add_option(category_name, 'maxinitialimageheight',
+                        self.__maxinitialimageheight)
 
     def __add_privacy_options(self, menu):
         """
