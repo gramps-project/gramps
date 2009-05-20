@@ -31,7 +31,7 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 #-------------------------------------------------------------------------
 from gen.lib import (MediaRef, SourceRef, Attribute, Address, EventRef, 
                      Person, Name, Source, RepoRef, MediaObject, Place, Event, 
-                     Family, ChildRef, Repository)
+                     Family, ChildRef, Repository, LdsOrd)
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
@@ -474,7 +474,7 @@ def copy_media_ref_list(db, original_obj,clean_obj):
             handle = media_ref.get_reference_handle()
             media_object = db.get_object_from_handle(handle)
             if not media_object.get_privacy():
-                clean_obj.add_media_reference(MediaRef(media_ref))
+                clean_obj.add_media_reference(sanitize_media_ref(db, media_ref))
 
 def copy_source_ref_list(db, original_obj,clean_obj):
     """
@@ -494,7 +494,7 @@ def copy_source_ref_list(db, original_obj,clean_obj):
             handle = ref.get_reference_handle()
             source = db.get_source_from_handle(handle)
             if not source.get_privacy():
-                clean_obj.add_source_reference(SourceRef(ref))
+                clean_obj.add_source_reference(sanitize_source_ref(db, ref))
                 
 def copy_notes(db, original_obj,clean_obj):
     """
@@ -568,7 +568,7 @@ def copy_lds_ords(db, original_obj,clean_obj):
     """         
     for lds_ord in original_obj.get_lds_ord_list():
         if not lds_ord.get_privacy():
-            clean_obj.add_lds_ord( lds_ord )
+            clean_obj.add_lds_ord(sanitize_lds_ord(db, lds_ord))
            
 def copy_addresses(db, original_obj,clean_obj):
     """
@@ -585,8 +585,74 @@ def copy_addresses(db, original_obj,clean_obj):
     """         
     for address in original_obj.get_address_list():
         if not address.get_privacy():
-            clean_obj.add_address(Address(address))
-            
+            clean_obj.add_address(sanitize_address(db, address))
+
+def sanitize_lds_ord(db, lds_ord):
+    """
+    Create a new LdsOrd instance based off the passed LdsOrd
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the LdsOrd object belongs
+    @type db: GrampsDbBase
+    @param name: source LdsOrd object that will be copied with
+    privacy records removed
+    @type name: LdsOrd
+    @returns: 'cleansed' LdsOrd object
+    @rtype: LdsOrd
+    """
+    new_lds_ord = LdsOrd()
+    new_lds_ord.set_type(lds_ord.get_type())
+    new_lds_ord.set_status(lds_ord.get_status())
+    new_lds_ord.set_temple(lds_ord.get_temple())
+
+    fam_handle = lds_ord.get_family_handle()
+    fam = db.get_family_from_handle(fam_handle)
+    if fam and not fam.get_privacy():
+        new_lds_ord.set_family_handle(fam_handle)
+    
+    new_lds_ord.set_date_object(lds_ord.get_date_object())
+    
+    place_handle = lds_ord.get_place_handle()
+    place = db.get_place_from_handle(place_handle)
+    if place and not place.get_privacy():
+        new_lds_ord.set_place_handle(place_handle)
+
+    copy_source_ref_list(db, lds_ord, new_lds_ord)
+    copy_notes(db, lds_ord, new_lds_ord)
+    
+    return new_lds_ord
+    
+def sanitize_address(db, address):
+    """
+    Create a new Address instance based off the passed Address
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param name: source Address object that will be copied with
+    privacy records removed
+    @type name: Address
+    @returns: 'cleansed' Address object
+    @rtype: Address
+    """
+    new_address = Address()
+    
+    new_address.set_street(address.get_street())
+    new_address.set_city(address.get_city())
+    new_address.set_postal_code(address.get_postal_code())
+    new_address.set_phone(address.get_phone())
+    new_address.set_state(address.get_state())
+    new_address.set_country(address.get_country())
+    new_address.set_county(address.get_county())
+    
+    new_address.set_date_object(address.get_date_object())
+    copy_source_ref_list(db, address, new_address)
+    copy_notes(db, address, new_address)
+    
+    return new_address
+    
 def sanitize_name(db, name):
     """
     Create a new Name instance based off the passed Name
@@ -619,8 +685,53 @@ def sanitize_name(db, name):
     copy_notes(db, name, new_name)
     
     return new_name
+
+def sanitize_media_ref(db, media_ref):
+    """
+    Create a new MediaRef instance based off the passed MediaRef
+    instance. The returned instance has all private records
+    removed from it.
     
-def sanitize_event_ref(db,event_ref):
+    @param db: GRAMPS database to which the MediaRef object belongs
+    @type db: GrampsDbBase
+    @param source_ref: source MediaRef object that will be copied with
+    privacy records removed
+    @type source_ref: MediaRef
+    @returns: 'cleansed' MediaRef object
+    @rtype: MediaRef
+    """
+    new_ref = MediaRef()
+    new_ref.set_rectangle(media_ref.get_rectangle())
+    
+    new_ref.set_reference_handle(media_ref.get_reference_handle())
+    copy_notes(db, media_ref, new_ref)
+    copy_attributes(db, media_ref, new_ref)
+    copy_source_ref_list(db, media_ref, new_ref)
+    
+    return new_ref
+
+def sanitize_source_ref(db, source_ref):
+    """
+    Create a new SourceRef instance based off the passed SourceRef
+    instance. The returned instance has all private records
+    removed from it.
+    
+    @param db: GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param source_ref: source SourceRef object that will be copied with
+    privacy records removed
+    @type source_ref: SourceRef
+    @returns: 'cleansed' SourceRef object
+    @rtype: SourceRef
+    """
+    new_ref = SourceRef()
+    new_ref.set_date_object(source_ref.get_date_object())
+    new_ref.set_reference_handle(source_ref.get_reference_handle())
+    copy_notes(db, source_ref, new_ref)
+    
+    return new_ref
+    
+def sanitize_event_ref(db, event_ref):
     """
     Create a new EventRef instance based off the passed EventRef
     instance. The returned instance has all private records
