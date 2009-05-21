@@ -1109,7 +1109,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             class_func = primary_tables[primary_table_name]['class_func']
             while data:
                 found_handle, val = data
-                obj = InstanceType(class_func)
+                obj = class_func()
                 obj.unserialize(val)
 
                 the_txn = self.env.txn_begin()
@@ -1516,7 +1516,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             if data_map:
                 _LOG.error("Failed to get from handle", exc_info=True)
         if data:
-            newobj = InstanceType(class_type)
+            newobj = class_type()
             newobj.unserialize(data)
             return newobj
         return None

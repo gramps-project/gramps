@@ -1097,7 +1097,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         button.show()
         return button
     
-class NameFormatEditDlg:
+class NameFormatEditDlg(object):
     """
     """
     

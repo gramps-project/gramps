@@ -53,7 +53,7 @@ from DdTargets import DdTargets
 from Errors import WindowActiveError
 from Selectors import selector_factory
 
-class ObjEntry:
+class ObjEntry(object):
     """
     Handles the selection of a existing or new Object. Supports Drag and Drop
     to select the object.

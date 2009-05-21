@@ -36,7 +36,7 @@ from gen.lib.url import Url
 # UrlBase classes
 #
 #-------------------------------------------------------------------------
-class UrlBase:
+class UrlBase(object):
     """
     Base class for url-aware objects.
     """

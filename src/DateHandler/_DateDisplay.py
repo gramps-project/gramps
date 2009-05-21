@@ -46,7 +46,7 @@ import GrampsLocale
 # DateDisplay
 #
 #-------------------------------------------------------------------------
-class DateDisplay:
+class DateDisplay(object):
 
     _months = GrampsLocale.long_months
     MONS   = GrampsLocale.short_months

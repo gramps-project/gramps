@@ -29,7 +29,7 @@ PlaceBase class for GRAMPS.
 # PlaceBase class
 #
 #-------------------------------------------------------------------------
-class PlaceBase:
+class PlaceBase(object):
     """
     Base class for place-aware objects.
     """

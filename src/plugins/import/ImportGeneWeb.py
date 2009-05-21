@@ -95,7 +95,7 @@ def importData(database, filename, cb=None):
 # For a description of the file format see
 # http://cristal.inria.fr/~ddr/GeneWeb/en/gwformat.htm
 #-------------------------------------------------------------------------
-class GeneWebParser:
+class GeneWebParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
         self.f = open(file,"rU")

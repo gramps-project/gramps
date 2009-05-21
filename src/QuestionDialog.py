@@ -49,7 +49,7 @@ try:
 except:
     ICON = None
 
-class SaveDialog:
+class SaveDialog(object):
     def __init__(self,msg1,msg2,task1,task2,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
@@ -79,7 +79,7 @@ class SaveDialog:
         Config.set(Config.DONT_ASK,self.dontask.get_active())
         self.top.destroy()
 
-class QuestionDialog:
+class QuestionDialog(object):
     def __init__(self,msg1,msg2,label,task,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
@@ -104,7 +104,7 @@ class QuestionDialog:
         if response == gtk.RESPONSE_ACCEPT:
             task()
 
-class QuestionDialog2:
+class QuestionDialog2(object):
     def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
@@ -133,7 +133,7 @@ class QuestionDialog2:
         self.top.destroy()
         return (response == gtk.RESPONSE_ACCEPT)
 
-class OptionDialog:
+class OptionDialog(object):
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
@@ -231,7 +231,7 @@ class OkDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
-class InfoDialog:
+class InfoDialog(object):
     """
     Dialog to show selectable info in a scrolled window
     """
@@ -260,7 +260,7 @@ class InfoDialog:
     def get_response(self):
         return self.response
 
-class MissingMediaDialog:
+class MissingMediaDialog(object):
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
@@ -313,7 +313,7 @@ class MissingMediaDialog:
             self.top)
         return True
 
-class MessageHideDialog:
+class MessageHideDialog(object):
     
     def __init__(self, title, message, key, parent=None):
 

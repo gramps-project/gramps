@@ -21,7 +21,7 @@
 Least recently used algorithm
 """
 
-class Node:
+class Node(object):
     """
     Node to be stored in the LRU structure
     """
@@ -30,7 +30,7 @@ class Node:
         self.value = value
         self.next = None
 
-class LRU: 
+class LRU(object): 
     """
     Implementation of a length-limited O(1) LRU cache
     """

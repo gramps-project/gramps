@@ -105,7 +105,7 @@ WIKI_HELP_SEC = _('manual|Editing_Dates')
 # DateEdit
 #
 #-------------------------------------------------------------------------
-class DateEdit:
+class DateEdit(object):
     """Class that associates a pixmap with a text widget, providing visual
     feedback that indicates if the text widget contains a valid date"""
 

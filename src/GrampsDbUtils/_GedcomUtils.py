@@ -33,7 +33,7 @@ SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 # CurrentState
 #
 #-------------------------------------------------------------------------
-class CurrentState:
+class CurrentState(object):
     """
     Keep track of the current state variables.
     """
@@ -65,7 +65,7 @@ class CurrentState:
 # PlaceParser
 #
 #-------------------------------------------------------------------------
-class PlaceParser:
+class PlaceParser(object):
     """
     Provide the ability to parse GEDCOM FORM statements for places, and
     the parse the line of text, mapping the text components to Location
@@ -128,7 +128,7 @@ class PlaceParser:
 # IdFinder
 #
 #-------------------------------------------------------------------------
-class IdFinder:
+class IdFinder(object):
     """
     Provide method of finding the next available ID.
     """
@@ -161,7 +161,7 @@ class IdFinder:
 # IdMapper
 #
 #-------------------------------------------------------------------------
-class IdMapper:
+class IdMapper(object):
 
     def __init__(self, trans, find_next, translate):
         if translate:

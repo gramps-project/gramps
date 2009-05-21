@@ -1624,7 +1624,7 @@ class ValidatableMaskedEntry(MaskedEntry):
             self.queue_draw()
             fadeout.disconnect(c.signal_id)
 
-        class SignalContainer:
+        class SignalContainer(object):
             pass
         c = SignalContainer()
         c.signal_id = self._fade.connect('done', done, c)

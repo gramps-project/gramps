@@ -60,7 +60,7 @@ _win_top = '<ui><menubar name="MenuBar"><menu action="WindowsMenu">'
 _win_btm = '</menu></menubar></ui>'
 DISABLED = -1
 
-class GrampsWindowManager:
+class GrampsWindowManager(object):
     """
     Manage hierarchy of open GRAMPS windows.
 
@@ -285,7 +285,7 @@ class GrampsWindowManager:
 # Gramps Managed Window class
 #
 #-------------------------------------------------------------------------
-class ManagedWindow:
+class ManagedWindow(object):
     """
     Managed window base class.
     

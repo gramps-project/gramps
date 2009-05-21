@@ -94,7 +94,7 @@ _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 _LEFT_BUTTON = 1
 _RIGHT_BUTTON = 3
 
-class AttachList:
+class AttachList(object):
 
     def __init__(self):
         self.list = []

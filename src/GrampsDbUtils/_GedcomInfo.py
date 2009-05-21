@@ -156,7 +156,7 @@ lds_status = {
 #-------------------------------------------------------------------------
 from xml.parsers.expat import ParserCreate
 
-class GedcomDescription:
+class GedcomDescription(object):
     def __init__(self, name):
         self.name = name
         self.dest = ""
@@ -246,7 +246,7 @@ class GedcomDescription:
             return self.tag2gramps_map[key]
         return key
 
-class GedcomInfoDB:
+class GedcomInfoDB(object):
     def __init__(self):
         self.map = {}
 
@@ -288,7 +288,7 @@ class GedcomInfoDB:
 # 
 #
 #-------------------------------------------------------------------------
-class GedInfoParser:
+class GedInfoParser(object):
     def __init__(self,parent):
         self.parent = parent
         self.current = None

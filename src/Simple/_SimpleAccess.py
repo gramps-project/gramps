@@ -33,7 +33,7 @@ from ReportBase import ReportUtils
 from gen.lib import EventType
 import Config
 
-class SimpleAccess:
+class SimpleAccess(object):
     """
     Provide a simplified database access system. This system has been designed to
     ease the development of reports. 

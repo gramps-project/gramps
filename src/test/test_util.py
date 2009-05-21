@@ -151,7 +151,7 @@ def delete_tree(dir):
 # NB: current code reflects limited expertise on the 
 # uses of the logging module
 # ---------------------------------------------------------
-class TestLogger():
+class TestLogger(object):
     """this class mainly just encapsulates some globals
     namely lfname, lfh  for a file log name and handle
 

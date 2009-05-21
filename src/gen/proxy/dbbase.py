@@ -34,7 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from gen.lib import *
 
-class DbBase:
+class DbBase(object):
     """
     DbBase is intended to be an abstract base class for building classes that 
     implement the Gramps database. All functions raise a NotImplementedError to 

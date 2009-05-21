@@ -49,7 +49,7 @@ from ReportBase import ReportUtils
 #
 #-------------------------------------------------------------------------
 
-class Sort:
+class Sort(object):
     
     def __init__(self, database):
         self.database = database

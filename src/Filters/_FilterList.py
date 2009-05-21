@@ -40,7 +40,7 @@ from Filters._FilterParser import FilterParser
 # FilterList
 #
 #-------------------------------------------------------------------------
-class FilterList:
+class FilterList(object):
     """
     Container class for managing the generic filters.
     It stores, saves, and loads the filters.

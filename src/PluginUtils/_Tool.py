@@ -71,7 +71,7 @@ tool_categories = {
 # Tool
 #
 #-------------------------------------------------------------------------
-class Tool:
+class Tool(object):
     """
     The Tool base class.  This is a base class for generating
     customized tools.  It cannot be used as is, but it can be easily
@@ -82,12 +82,13 @@ class Tool:
         from PluginUtils import MenuToolOptions
         self.db = dbstate.db
         self.person = dbstate.active
-        if issubclass(options_class, MenuToolOptions):
-            # FIXME: pass in person_id
-            self.options = options_class(name, None, dbstate)
-        elif isinstance(options_class, ClassType):
-            self.options = options_class(name)
-        elif isinstance(options_class, InstanceType):
+        try:
+            if issubclass(options_class, MenuToolOptions):
+                # FIXME: pass in person_id
+                self.options = options_class(name, None, dbstate)
+            else:   # must be some kind of class or we get a TypeError
+                self.options = options_class(name)
+        except TypeError:
             self.options = options_class
         self.options.load_previous_values()
 
@@ -147,7 +148,7 @@ class ActivePersonTool(Tool):
 # Command-line tool
 #
 #------------------------------------------------------------------------
-class CommandLineTool:
+class CommandLineTool(object):
     """
     Provide a way to run tool from the command line.
     

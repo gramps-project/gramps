@@ -380,7 +380,7 @@ class ChildEmbedList(EmbeddedList):
         else:
             return ("", "")
 
-class FastMaleFilter:
+class FastMaleFilter(object):
 
     def __init__(self, db):
         self.db = db
@@ -389,7 +389,7 @@ class FastMaleFilter:
         value = self.db.get_raw_person_data(handle)
         return value[2] == gen.lib.Person.MALE
 
-class FastFemaleFilter:
+class FastFemaleFilter(object):
 
     def __init__(self, db):
         self.db = db

@@ -36,7 +36,7 @@ from gen.lib.srcref import SourceRef
 # SourceBase classes
 #
 #-------------------------------------------------------------------------
-class SourceBase:
+class SourceBase(object):
     """
     Base class for storing source references.
     """

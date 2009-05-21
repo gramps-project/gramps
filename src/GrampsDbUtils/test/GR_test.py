@@ -46,7 +46,7 @@ from test import gedread_util as gr
 #
 # ? candidate for inclusion in gedread_util.py
 #
-class nc():
+class nc(object):
     """nc object -- creates a numcheck function
     
     instantiate a nc object as follows
@@ -72,7 +72,7 @@ class nc():
         dbcall = getattr(db,self.getname)
         self.dbncheck(dbcall)
 
-class fnci():
+class fnci(object):
     """fnci (frag-numcheckset item) is a data container for:
     a fragment of gedcom 
     a sequence of nc items to check

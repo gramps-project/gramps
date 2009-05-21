@@ -102,7 +102,7 @@ STOCK_COL = 6
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
-class CLIDbManager:
+class CLIDbManager(object):
     """
     Database manager without GTK functionality, allows users to create and
     open databases

@@ -292,7 +292,7 @@ class EditFamilyEvent(EditEvent):
 # Delete Query class
 #
 #-------------------------------------------------------------------------
-class DelEventQuery:
+class DelEventQuery(object):
     def __init__(self, dbstate, uistate, event, person_list, family_list):
         self.event = event
         self.db = dbstate.db

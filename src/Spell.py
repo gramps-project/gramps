@@ -168,7 +168,7 @@ LANGUAGES = {
     'zu': _('Zulu'),
 }
 
-class Spell:
+class Spell(object):
     """Attach a gtkspell instance to the passed TextView instance.
     """
     lang = locale.getlocale()[0]

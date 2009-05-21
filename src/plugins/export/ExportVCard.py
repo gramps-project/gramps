@@ -63,7 +63,7 @@ from gen.plug import PluginManager, ExportPlugin
 #
 #
 #-------------------------------------------------------------------------
-class CardWriterOptionBox:
+class CardWriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
@@ -123,7 +123,7 @@ class CardWriterOptionBox:
     def parse_options(self):
         self.cfilter = self.filter_menu.get_active().get_data("filter")
 
-class CardWriter:
+class CardWriter(object):
     def __init__(self, database, cl=0, filename="", option_box=None, 
                  callback=None):
         self.db = database

@@ -171,7 +171,7 @@ def paperstyle_to_pagesetup(paper_style):
 # PrintPreview class
 #
 #------------------------------------------------------------------------
-class PrintPreview:
+class PrintPreview(object):
     """Implement a dialog to show print preview.
     """
     zoom_factors = {

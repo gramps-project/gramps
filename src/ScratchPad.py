@@ -888,7 +888,7 @@ class ScratchPadListModel(gtk.ListStore):
 # ScratchPadListView class
 # Now shown as 'Clipboard'
 #-------------------------------------------------------------------------
-class ScratchPadListView:
+class ScratchPadListView(object):
 
     LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
     LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'

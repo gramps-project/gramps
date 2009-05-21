@@ -48,7 +48,7 @@ import gen.lib
 # SubstKeywords
 #
 #------------------------------------------------------------------------
-class SubstKeywords:
+class SubstKeywords(object):
     """
     Produce an object that will substitute information about a person
     into a passed string.

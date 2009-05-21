@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-class GrampsCursor:
+class GrampsCursor(object):
     """
     Provide a basic iterator that allows the user to cycle through
     the elements in a particular map. 

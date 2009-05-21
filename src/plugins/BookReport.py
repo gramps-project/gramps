@@ -182,7 +182,7 @@ def _get_subject(options, dbase):
 # Book Item class
 #
 #------------------------------------------------------------------------
-class BookItem:
+class BookItem(object):
     """
     Interface into the book item -- a smallest element of the book.
     """
@@ -253,7 +253,7 @@ class BookItem:
 # Book class
 #
 #------------------------------------------------------------------------
-class Book:
+class Book(object):
     """
     Interface into the user-defined book -- a collection of book items.
     """
@@ -360,7 +360,7 @@ class Book:
 # BookList class
 #
 #------------------------------------------------------------------------
-class BookList:
+class BookList(object):
     """
     Interface into the user-defined list of books.  
 
@@ -553,7 +553,7 @@ class BookParser(handler.ContentHandler):
 # BookList Display class
 #
 #------------------------------------------------------------------------
-class BookListDisplay:
+class BookListDisplay(object):
     """
     Interface into a dialog with the list of available books. 
 

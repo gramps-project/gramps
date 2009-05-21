@@ -64,7 +64,7 @@ from gen.plug import PluginManager, ExportPlugin
 #
 #
 #-------------------------------------------------------------------------
-class GeneWebWriterOptionBox:
+class GeneWebWriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
@@ -152,7 +152,7 @@ class GeneWebWriterOptionBox:
         else:
             self.images_path = ""
 
-class GeneWebWriter:
+class GeneWebWriter(object):
     def __init__(self, database, filename="", option_box=None, 
                  callback=None):
         self.db = database

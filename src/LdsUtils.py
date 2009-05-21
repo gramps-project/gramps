@@ -33,7 +33,7 @@ from gettext import gettext as _
 
 LOG = logging.getLogger(".")
 
-class LdsTemples:
+class LdsTemples(object):
     """
     Parsing class for the LDS temples file
     """

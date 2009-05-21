@@ -36,7 +36,7 @@ import re
 # Base Object
 #
 #-------------------------------------------------------------------------
-class BaseObject:
+class BaseObject(object):
     """
     The BaseObject is the base class for all data objects in GRAMPS,
     whether primary or not. 

@@ -89,7 +89,7 @@ def add_to_list(table, key, value):
 # StageOne
 #
 #-------------------------------------------------------------------------
-class StageOne:
+class StageOne(object):
     """
     The StageOne parser scans the file quickly, looking for a few things. This
     includes:

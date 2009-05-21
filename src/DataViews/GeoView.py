@@ -104,7 +104,7 @@ NB_MARKERS_PER_PAGE = 200
 # Renderer
 #
 #-------------------------------------------------------------------------
-class Renderer():
+class Renderer(object):
     """
     Renderer renders the webpage. Several backend implementations are 
     possible

@@ -116,7 +116,7 @@ class GedcomDateParser(DateParser):
 # GedLine - represents a tokenized version of a GEDCOM line
 #
 #-----------------------------------------------------------------------
-class GedLine:
+class GedLine(object):
     """
     GedLine is a class the represents a GEDCOM line. The form of a  GEDCOM line 
     is:
@@ -325,7 +325,7 @@ def extract_date(text):
 # Reader - serves as the lexical analysis engine
 #
 #-------------------------------------------------------------------------
-class Reader:
+class Reader(object):
 
     def __init__(self, ifile):
         self.ifile = ifile

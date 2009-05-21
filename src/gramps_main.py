@@ -196,7 +196,7 @@ def build_user_paths():
 # Main Gramps class
 #
 #-------------------------------------------------------------------------
-class Gramps:
+class Gramps(object):
     """
     Main class corresponding to a running gramps process.
 

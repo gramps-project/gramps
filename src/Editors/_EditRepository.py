@@ -176,7 +176,7 @@ class EditRepository(EditPrimary):
     def _cleanup_on_exit(self):
         self.backref_tab.close()
 
-class DelRepositoryQuery:
+class DelRepositoryQuery(object):
     def __init__(self, dbstate, uistate, repository, sources):
         self.obj = repository
         self.db = dbstate.db

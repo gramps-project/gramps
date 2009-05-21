@@ -21,7 +21,7 @@
 from ansel_utf8 import ansel_to_utf8
 import codecs
 
-class BaseReader:
+class BaseReader(object):
     def __init__(self, ifile, encoding):
         self.ifile = ifile
         self.enc = encoding

@@ -35,7 +35,7 @@ from gettext import gettext as _
 #
 # See http://phpgedview.sourceforge.net/racp.php
 #
-class PHPGedViewConnector:
+class PHPGedViewConnector(object):
     
     TYPE_INDI   = 1
     TYPE_FAM    = 2
@@ -273,7 +273,7 @@ class PHPGedViewConnector:
 # Wrapper that uses the PHPGedViewConnector to download
 # the GEDCOM file and import it into the database.
 #
-class phpGedViewImporter:
+class phpGedViewImporter(object):
 
     def __init__(self, database):
         self.db = database

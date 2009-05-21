@@ -76,7 +76,7 @@ def importData(database, filename, cb=None):
 #
 #
 #-------------------------------------------------------------------------
-class VCardParser:
+class VCardParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
         self.f = open(file,"rU")

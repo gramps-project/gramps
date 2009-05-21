@@ -32,7 +32,7 @@ from gettext import gettext as _
 # Rule
 #
 #-------------------------------------------------------------------------
-class Rule:
+class Rule(object):
     """Base rule class."""
 
     labels      = []

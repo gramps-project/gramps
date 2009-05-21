@@ -46,7 +46,7 @@ from Filters import GenericFilter, Rules
 # WriterOptionBox
 #
 #-------------------------------------------------------------------------
-class WriterOptionBox:
+class WriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.

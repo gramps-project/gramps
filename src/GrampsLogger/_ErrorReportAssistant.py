@@ -6,7 +6,7 @@ import sys, os,bsddb
 
 
 
-class ErrorReportAssistant:
+class ErrorReportAssistant(object):
 
     def __init__(self,error_detail,rotate_handler):
         self._error_detail = error_detail

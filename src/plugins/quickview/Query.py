@@ -183,7 +183,7 @@ def cleanup_column_name(column):
     return retval
 
 
-class DBI:
+class DBI(object):
     def __init__(self, database, document):
         self.database = database
         self.document = document

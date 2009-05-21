@@ -66,7 +66,7 @@ def writeData(database, filename, option_box=None, callback=None):
     writer = FtreeWriter(database, filename, option_box, callback)
     return writer.export_data()
     
-class FtreeWriterOptionBox:
+class FtreeWriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
@@ -130,7 +130,7 @@ class FtreeWriterOptionBox:
 # FtreeWriter
 #
 #-------------------------------------------------------------------------
-class FtreeWriter:
+class FtreeWriter(object):
 
     def __init__(self, database, filename="", option_box=None, 
                  callback = None):

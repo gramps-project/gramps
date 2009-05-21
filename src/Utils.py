@@ -994,7 +994,7 @@ def media_path_full(db, filename):
     return os.path.join(mpath, filename)
     
 
-class ProgressMeter:
+class ProgressMeter(object):
     """
     Progress meter class for GRAMPS.
     

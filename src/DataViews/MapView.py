@@ -152,7 +152,7 @@ class GuideMap(gtk.DrawingArea):
         return (px,py)
 
 # Map tile files used by the ZoomMap
-class MapTile:
+class MapTile(object):
     def __init__( self, filename, x, y, w, h, pw, ph):
         self.filename = filename
         self.full_path = os.path.join(const.IMAGE_DIR,filename)
@@ -226,7 +226,7 @@ class MapTile:
         self.scale = None
         self.scaled_pixbuf = None
 
-class WMSMapTile:
+class WMSMapTile(object):
     def __init__(self,capabilities,change_cb=None):
         self.change_cb = change_cb
         self.scaled_pixbuf = None

@@ -48,7 +48,7 @@ def run(database, document, person):
     report = AllRelReport(database, document, person)
     report.run()
     
-class AllRelReport():
+class AllRelReport(object):
     """
     Obtains all relationships, displays the relations, and in details, the 
     relation path

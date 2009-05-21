@@ -81,7 +81,7 @@ class DisplayBuf(ManagedWindow.ManagedWindow):
     def get_title(self):
         return self.title
 
-class DocumentManager:
+class DocumentManager(object):
     def __init__(self, title, document, text_view):
         self.title = title
         self.document = document

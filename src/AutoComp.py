@@ -76,7 +76,7 @@ def fill_entry(entry, data_list):
 # StandardCustomSelector class
 #
 #-------------------------------------------------------------------------
-class StandardCustomSelector:
+class StandardCustomSelector(object):
     """
     This class provides an interface to selecting from the predefined
     options or entering custom string.

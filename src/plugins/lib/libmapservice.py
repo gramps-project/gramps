@@ -38,7 +38,7 @@ from gen.plug import PluginManager, Plugin
 from PlaceUtils import conv_lat_lon
 import GrampsDisplay
 
-class MapService():
+class MapService(object):
     """Generic base class for map services
        A service is a singleton, we only need one to exist
        Usage is as a callable when used 

@@ -340,7 +340,7 @@ _nephews_nieces_level = [   "",
 #-------------------------------------------------------------------------
 
 
-class RelationshipCalculator:
+class RelationshipCalculator(object):
     
     REL_MOTHER           = 'm'      # going up to mother
     REL_FATHER           = 'f'      # going up to father

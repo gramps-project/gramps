@@ -36,7 +36,7 @@ from gen.lib.date import Date
 # Base classes
 #
 #-------------------------------------------------------------------------
-class DateBase:
+class DateBase(object):
     """
     Base class for storing date information.
     """

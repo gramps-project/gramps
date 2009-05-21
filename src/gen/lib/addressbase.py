@@ -36,7 +36,7 @@ from gen.lib.address import Address
 # AddressBase classes
 #
 #-------------------------------------------------------------------------
-class AddressBase:
+class AddressBase(object):
     """
     Base class for address-aware objects.
     """

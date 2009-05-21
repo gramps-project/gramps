@@ -36,7 +36,7 @@ from gen.lib.person import Person
 # 
 #
 #-------------------------------------------------------------------------
-class GenderStats:
+class GenderStats(object):
     """
     Class for keeping track of statistics related to Given Name vs. Gender. 
     

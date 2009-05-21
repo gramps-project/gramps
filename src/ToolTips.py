@@ -85,7 +85,7 @@ def short(val,size=60):
 #
 #-------------------------------------------------------------------------
 
-class TipFromFunction:
+class TipFromFunction(object):
     """
     TipFromFunction generates a tooltip callable. 
     """
@@ -118,7 +118,7 @@ class TipFromFunction:
 #
 #-------------------------------------------------------------------------
 
-class RepositoryTip:
+class RepositoryTip(object):
     def __init__(self,db,repos):
         self._db = db
         self._obj = repos
@@ -176,7 +176,7 @@ class RepositoryTip:
 
     __call__ = get_tip
 
-class PersonTip:
+class PersonTip(object):
     def __init__(self,db,repos):
         self._db = db
         self._obj = repos
@@ -214,7 +214,7 @@ class PersonTip:
 
     __call__ = get_tip
 
-class FamilyTip:
+class FamilyTip(object):
     def __init__(self,db, obj):
         self._db = db
         self._obj = obj

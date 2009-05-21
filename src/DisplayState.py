@@ -192,7 +192,7 @@ _RCT_BTM = '</menu></menu></menubar></ui>'
 import RecentFiles
 import os
 
-class RecentDocsMenu:
+class RecentDocsMenu(object):
     def __init__(self, uistate, state, fileopen):
         self.action_group = gtk.ActionGroup('RecentFiles')
         self.active = DISABLED

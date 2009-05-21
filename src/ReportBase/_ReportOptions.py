@@ -542,7 +542,7 @@ class OptionParser(_Options.OptionParser):
 # we don't have to handle them for reports that don't use documents (web)
 #
 #------------------------------------------------------------------------
-class EmptyDoc:
+class EmptyDoc(object):
     def init(self):
         pass
 

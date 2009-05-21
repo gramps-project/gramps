@@ -209,7 +209,7 @@ class Check(Tool.BatchTool):
 #
 #
 #-------------------------------------------------------------------------
-class CheckIntegrity:
+class CheckIntegrity(object):
     
     def __init__(self, dbstate, uistate, trans):
         self.db = dbstate.db

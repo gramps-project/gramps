@@ -30,7 +30,7 @@ import Config
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
-class SidebarFilter:
+class SidebarFilter(object):
     _FILTER_WIDTH = 200
     _FILTER_ELLIPSIZE = pango.ELLIPSIZE_END
 

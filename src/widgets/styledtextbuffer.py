@@ -87,7 +87,7 @@ STYLE_TO_PROPERTY = {
 # GtkSpellState class
 #
 #-------------------------------------------------------------------------
-class GtkSpellState:
+class GtkSpellState(object):
     """A simple state machine kinda thingy.
     
     Trying to track gtk.Spell activities on a buffer and re-apply formatting

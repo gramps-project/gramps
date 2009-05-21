@@ -36,7 +36,7 @@ from gen.lib.mediaref import MediaRef
 # MediaBase class
 #
 #-------------------------------------------------------------------------
-class MediaBase:
+class MediaBase(object):
     """
     Base class for storing media references.
     """
