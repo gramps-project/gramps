@@ -11783,8 +11783,8 @@ msgstr[1] "Er waren verwijzingen naar %d personen, die niet werden gevonden\n"
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] "%d datum werd verbeterd"
-msgstr[1] "%d datums werden verbeterd"
+msgstr[0] "%d datum werd verbeterd\n"
+msgstr[1] "%d datums werden verbeterd\n"
 
 #: ../src/plugins/tool/Check.py:1522
 #, python-format
