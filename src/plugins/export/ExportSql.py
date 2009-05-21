@@ -243,7 +243,7 @@ def makeDB(db):
                  value TEXT, 
                  private BOOLEAN);""")
 
-class Database:
+class Database(object):
     """
     The db connection.
     """

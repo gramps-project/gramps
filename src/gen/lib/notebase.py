@@ -29,7 +29,7 @@ NoteBase class for GRAMPS.
 # NoteBase class
 #
 #-------------------------------------------------------------------------
-class NoteBase:
+class NoteBase(object):
     """
     Base class for storing notes.
 

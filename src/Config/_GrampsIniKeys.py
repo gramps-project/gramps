@@ -42,7 +42,7 @@ def make_bool(val):
     else:
         return True
 
-class IniKeyClient:
+class IniKeyClient(object):
     """ Class to emulate gconf's client """
     def __init__(self, filename = None):
         """ Constructor takes an optional filename """

@@ -68,7 +68,7 @@ def log2(val):
 # Layout class
 #
 #------------------------------------------------------------------------
-class GenChart:
+class GenChart(object):
 
     def __init__(self, generations):
         self.generations = generations

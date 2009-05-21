@@ -27,7 +27,7 @@
 # Report
 #
 #-------------------------------------------------------------------------
-class Report:
+class Report(object):
     """
     The Report base class.  This is a base class for generating
     customized reports.  It cannot be used as is, but it can be easily

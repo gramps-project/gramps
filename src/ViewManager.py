@@ -183,7 +183,7 @@ WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
 # ViewManager
 #
 #-------------------------------------------------------------------------
-class ViewManager:
+class ViewManager(object):
     """
     Overview
     ========

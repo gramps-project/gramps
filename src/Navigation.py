@@ -55,7 +55,7 @@ _btm = [
     ]
 
 
-class BaseNavigation:
+class BaseNavigation(object):
     """
     Base history navigation class. Builds the action group and ui for the
     uimanager. Changes to the associated history objects are tracked. When

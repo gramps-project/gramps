@@ -30,7 +30,7 @@ import gen.lib
 # GenericFilter
 #
 #-------------------------------------------------------------------------
-class GenericFilter:
+class GenericFilter(object):
     """Filter class that consists of several rules."""
     
     logical_functions = ['or', 'and', 'xor', 'one']

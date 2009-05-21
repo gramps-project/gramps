@@ -29,7 +29,7 @@ Base Reference class for GRAMPS.
 # RefBase class
 #
 #-------------------------------------------------------------------------
-class RefBase:
+class RefBase(object):
     """
     Base reference class to manage references to other objects.
 

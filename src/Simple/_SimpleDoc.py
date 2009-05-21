@@ -23,7 +23,7 @@ Provide a simplified database access interface to the GRAMPS database.
 """
 import BaseDoc
 
-class SimpleDoc:
+class SimpleDoc(object):
     """
     Provide a simplified database access interface to the GRAMPS database.
     """

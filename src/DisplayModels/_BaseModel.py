@@ -46,7 +46,7 @@ import Config
 # NodeMap
 #
 #-------------------------------------------------------------------------
-class NodeMap:
+class NodeMap(object):
     """
     Provide the Path to Iter mappings for a TreeView model. The implementation
     provides a list of nodes and a dictionary of handles. The datalist provides

@@ -86,7 +86,7 @@ def _make_cmp(a,b): return -cmp(a[1], b[1])
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
-class NameDisplay:
+class NameDisplay(object):
     """
     Base class for displaying of Name instances.
     """

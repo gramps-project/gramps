@@ -68,7 +68,7 @@ from Lru import LRU
 _CACHE_SIZE = 250
 invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
 
-class NodeTreeMap:
+class NodeTreeMap(object):
 
     def __init__(self):
 

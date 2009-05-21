@@ -66,7 +66,7 @@ _PERSON_SPOUSE = 2
 # Layout class
 #
 #------------------------------------------------------------------------
-class GenChart:
+class GenChart(object):
 
     def __init__(self, generations):
         self.generations = generations

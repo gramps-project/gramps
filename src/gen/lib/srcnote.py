@@ -29,7 +29,7 @@ SourceNote class for GRAMPS.
 # SourceNote classes
 #
 #-------------------------------------------------------------------------
-class SourceNote:
+class SourceNote(object):
     """This class is only present to enable db upgrade."""
 
     def __init__(self):

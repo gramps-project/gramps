@@ -1073,43 +1073,32 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.reference_map.associate(self.reference_map_primary_map,
                                      find_primary_handle, open_flags)
 
-        # Make a dictionary of the functions and classes that we need for
+        # Make a tuple of the functions and classes that we need for
         # each of the primary object tables.
-        primary_tables = {
-            'Person': {'cursor_func': self.get_person_cursor,
-                       'class_func': Person},
-            'Family': {'cursor_func': self.get_family_cursor,
-                       'class_func': Family},
-            'Event': {'cursor_func': self.get_event_cursor,
-                      'class_func': Event},
-            'Place': {'cursor_func': self.get_place_cursor,
-                      'class_func': Place},
-            'Source': {'cursor_func': self.get_source_cursor,
-                       'class_func': Source},
-            'MediaObject': {'cursor_func': self.get_media_cursor,
-                            'class_func': MediaObject},
-            'Repository': {'cursor_func': self.get_repository_cursor,
-                           'class_func': Repository},
-            'Note': {'cursor_func': self.get_note_cursor,
-                           'class_func': Note},
-            }
 
         transaction = self.transaction_begin(batch=True, no_magic=True)
         callback(4)
 
+        primary_table = (
+                         (self.get_person_cursor, Person),
+                         (self.get_family_cursor, Family),
+                         (self.get_event_cursor, Event),
+                         (self.get_place_cursor, Place),
+                         (self.get_source_cursor, Source),
+                         (self.get_media_cursor, MediaObject),
+                         (self.get_repository_cursor, Repository),
+                         (self.get_note_cursor, Note),
+                         )
+                         
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
-        for primary_table_name in primary_tables.keys():
-            
-            cursor = primary_tables[primary_table_name]['cursor_func']()
+        
+        for cursor_func, class_func in primary_table:
+            cursor = cursor_func()
             data = cursor.first()
-
-            # Grab the real object class here so that the lookup does
-            # not happen inside the cursor loop.
-            class_func = primary_tables[primary_table_name]['class_func']
             while data:
                 found_handle, val = data
-                obj = InstanceType(class_func)
+                obj = class_func()
                 obj.unserialize(val)
 
                 the_txn = self.env.txn_begin()
@@ -1516,7 +1505,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             if data_map:
                 _LOG.error("Failed to get from handle", exc_info=True)
         if data:
-            newobj = InstanceType(class_type)
+            newobj = class_type()
             newobj.unserialize(data)
             return newobj
         return None

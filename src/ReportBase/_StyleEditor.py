@@ -60,7 +60,7 @@ from glade import Glade
 # StyleList class
 #
 #------------------------------------------------------------------------
-class StyleListDisplay:
+class StyleListDisplay(object):
     """
     Shows the available paragraph/font styles. Allows the user to select, 
     add, edit, and delete styles from a StyleSheet.
@@ -172,7 +172,7 @@ class StyleListDisplay:
 # StyleEditor class
 #
 #------------------------------------------------------------------------
-class StyleEditor:
+class StyleEditor(object):
     """
     Edits the current style definition. Presents a dialog allowing the values
     of the paragraphs in the style to be altered.

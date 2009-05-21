@@ -56,7 +56,7 @@ import Utils
 # List of options for a single module
 #
 #-------------------------------------------------------------------------
-class OptionList:
+class OptionList(object):
     """
     Implements a set of options to parse and store for a given module.
     """
@@ -114,7 +114,7 @@ class OptionList:
 # Collection of option lists
 #
 #-------------------------------------------------------------------------
-class OptionListCollection:
+class OptionListCollection(object):
     """
     Implements a collection of option lists.
     """
@@ -288,7 +288,7 @@ class OptionParser(handler.ContentHandler):
 # Class handling options for plugins 
 #
 #-------------------------------------------------------------------------
-class OptionHandler:
+class OptionHandler(object):
     """
     Implements handling of the options for the plugins.
     """
@@ -394,7 +394,7 @@ class OptionHandler:
 # Base Options class
 #
 #------------------------------------------------------------------------
-class Options:
+class Options(object):
 
     """
     Defines options and provides handling interface.

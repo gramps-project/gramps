@@ -64,7 +64,7 @@ NAVIGATION_PERSON = 0
 # PageView
 #
 #------------------------------------------------------------------------------
-class PageView:
+class PageView(object):
     """
     The PageView class is the base class for all Data Views in GRAMPS.  All 
     Views should derive from this class. The ViewManager understands the public

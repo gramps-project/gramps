@@ -357,7 +357,7 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
         else:
             self.window.draw_rectangle(self.border_gc, False, 0, 0, alloc.width-4, alloc.height-4)
 
-class FormattingHelper:
+class FormattingHelper(object):
     def __init__(self,dbstate):
         self.dbstate = dbstate
         self._text_cache = {}

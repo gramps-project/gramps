@@ -601,7 +601,7 @@ class Gramplet(object):
     def save_options(self):
         pass
 
-class GuiGramplet:
+class GuiGramplet(object):
     """
     Class that handles the plugin interfaces for the GrampletView.
     """

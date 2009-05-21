@@ -78,7 +78,7 @@ class _options:
 # Data extraction methods from the database
 #
 #------------------------------------------------------------------------
-class Extract:
+class Extract(object):
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""

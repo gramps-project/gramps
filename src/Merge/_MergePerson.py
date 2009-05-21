@@ -346,7 +346,7 @@ def name_of(p):
 # Merge People
 #
 #-------------------------------------------------------------------------
-class MergePeople:
+class MergePeople(object):
 
     def __init__(self, db, person1, person2):
         self.db = db

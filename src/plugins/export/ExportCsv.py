@@ -85,7 +85,7 @@ def sortable_string_representation(text):
 # Encoding support for CSV, from http://docs.python.org/lib/csv-examples.html
 #
 #-------------------------------------------------------------------------
-class UTF8Recoder:
+class UTF8Recoder(object):
     """Iterator that reads an encoded stream and reencodes the input to UTF-8."""
     def __init__(self, f, encoding):
         self.reader = codecs.getreader(encoding)(f)
@@ -96,7 +96,7 @@ class UTF8Recoder:
     def next(self):
         return self.reader.next().encode("utf-8")
 
-class UnicodeReader:
+class UnicodeReader(object):
     """
     A CSV reader which will iterate over lines in the CSV file "f", which is 
     encoded in the given encoding.
@@ -114,7 +114,7 @@ class UnicodeReader:
     def __iter__(self):
         return self
 
-class UnicodeWriter:
+class UnicodeWriter(object):
     """
     A CSV writer which will write rows to CSV file "f", which is encoded in 
     the given encoding.
@@ -152,7 +152,7 @@ class UnicodeWriter:
 # CSVWriter Options
 #
 #-------------------------------------------------------------------------
-class CSVWriterOptionBox:
+class CSVWriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
@@ -220,7 +220,7 @@ class CSVWriterOptionBox:
 # CSVWriter class
 #
 #-------------------------------------------------------------------------
-class CSVWriter:
+class CSVWriter(object):
     def __init__(self, database, filename, option_box=None, callback=None):
         self.db = database
         self.option_box = option_box

@@ -118,7 +118,7 @@ class SimpleButton(gtk.Button):
 # PrivacyButton class
 #
 #-------------------------------------------------------------------------
-class PrivacyButton:
+class PrivacyButton(object):
 
     def __init__(self, button, obj, readonly=False):
         self.button = button

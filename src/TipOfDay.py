@@ -121,7 +121,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 # Tip parser class
 #
 #-------------------------------------------------------------------------
-class TipParser:
+class TipParser(object):
     """
     Interface to the document template file
     """

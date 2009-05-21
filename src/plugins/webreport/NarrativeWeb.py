@@ -252,7 +252,7 @@ def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
     return md5(text).hexdigest()
 
-class BasePage:
+class BasePage(object):
     """
     This is the base class to write certain HTML pages.
     """

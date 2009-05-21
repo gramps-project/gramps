@@ -29,7 +29,7 @@ LocationBase class for GRAMPS.
 # LocationBase class
 #
 #-------------------------------------------------------------------------
-class LocationBase:
+class LocationBase(object):
     """
     Base class for all things Address.
     """

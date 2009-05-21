@@ -318,7 +318,7 @@ class EditPlace(EditPrimary):
 # DeletePlaceQuery
 #
 #-------------------------------------------------------------------------
-class DeletePlaceQuery:
+class DeletePlaceQuery(object):
 
     def __init__(self, dbstate, uistate, place, person_list, family_list, 
                  event_list):

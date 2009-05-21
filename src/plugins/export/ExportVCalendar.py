@@ -59,7 +59,7 @@ from glade import Glade
 # CalendarWriterOptionBox class
 #
 #-------------------------------------------------------------------------
-class CalendarWriterOptionBox:
+class CalendarWriterOptionBox(object):
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options.
@@ -116,7 +116,7 @@ class CalendarWriterOptionBox:
     def parse_options(self):
         self.cfilter = self.filter_menu[self.filters.get_active()][1]
 
-class CalendarWriter:
+class CalendarWriter(object):
     def __init__(self, database, cl=0, filename="", option_box=None, 
                  callback=None):
         self.db = database

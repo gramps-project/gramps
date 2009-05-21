@@ -52,7 +52,7 @@ MAX_GRAMPS_ITEMS = 10
 # RecentItem
 #
 #-------------------------------------------------------------------------
-class RecentItem:
+class RecentItem(object):
     """
     Interface to a single GRAMPS recent-items item
     """
@@ -88,7 +88,7 @@ class RecentItem:
 # RecentFiles
 #
 #-------------------------------------------------------------------------
-class RecentFiles:
+class RecentFiles(object):
     """
     Interface to a RecentFiles collection
     """
@@ -187,7 +187,7 @@ class RecentFiles:
 # RecentParser
 #
 #-------------------------------------------------------------------------
-class RecentParser:
+class RecentParser(object):
     """
     Parsing class for the RecentFiles collection.
     """

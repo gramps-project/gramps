@@ -40,7 +40,7 @@ import time
 # Callback updater
 #
 #-------------------------------------------------------------------------
-class UpdateCallback:
+class UpdateCallback(object):
     """
     Basic class providing way of calling the callback to update
     things during lenghty operations.

@@ -721,7 +721,7 @@ class VerifyOptions(Tool.ToolOptions):
 # Base classes for different tests -- the rules
 #
 #-------------------------------------------------------------------------
-class Rule:
+class Rule(object):
     """
     Basic class for use in this tool.
 

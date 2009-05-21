@@ -24,7 +24,7 @@
 Package providing filtering framework for GRAMPS.
 """
 
-class SearchFilter:
+class SearchFilter(object):
     def __init__(self, func, text, invert):
         self.func = func
         self.text = text.upper()

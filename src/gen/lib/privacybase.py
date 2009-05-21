@@ -29,7 +29,7 @@ PrivacyBase Object class for GRAMPS.
 # PrivacyBase Object
 #
 #-------------------------------------------------------------------------
-class PrivacyBase:
+class PrivacyBase(object):
     """
     Base class for privacy-aware objects.
     """

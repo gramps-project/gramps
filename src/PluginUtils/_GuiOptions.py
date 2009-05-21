@@ -1331,7 +1331,7 @@ class GuiStyleOption(GuiEnumeratedListOption):
 # GuiMenuOptions class
 #
 #------------------------------------------------------------------------
-class GuiMenuOptions:
+class GuiMenuOptions(object):
     """
     Introduction
     ============

@@ -26,7 +26,7 @@ import string
 import math
 from gen.lib import SourceRef as SourceRef
 
-class Citation:
+class Citation(object):
     """
     Store information about a citation and all of its references.
     """
@@ -99,7 +99,7 @@ class Citation:
         self.__ref_list.append((key, source_ref))
         return key
 
-class Bibliography:
+class Bibliography(object):
     """
     Store and organize multiple citations into a bibliography.
     """

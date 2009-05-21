@@ -32,7 +32,7 @@ import Errors
 import Config
 import DateHandler
 
-class SimpleTable:
+class SimpleTable(object):
     """
     Provide a simplified table creation interface.
     """

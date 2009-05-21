@@ -36,7 +36,7 @@ from gen.lib.ldsord import LdsOrd
 # LdsOrdBase classes
 #
 #-------------------------------------------------------------------------
-class LdsOrdBase:
+class LdsOrdBase(object):
     """
     Base class for lds_ord-aware objects.
     """

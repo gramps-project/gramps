@@ -138,7 +138,7 @@ def cnv2color(text):
 # PaperSize
 #
 #------------------------------------------------------------------------
-class PaperSize:
+class PaperSize(object):
     """
     Defines the dimensions of a sheet of paper. All dimensions are in
     centimeters.
@@ -188,7 +188,7 @@ class PaperSize:
 # PaperStyle
 #
 #------------------------------------------------------------------------
-class PaperStyle:
+class PaperStyle(object):
     """
     Define the various options for a sheet of paper.
     """
@@ -301,7 +301,7 @@ class PaperStyle:
 # FontStyle
 #
 #------------------------------------------------------------------------
-class FontStyle:
+class FontStyle(object):
     """
     Defines a font style. Controls the font face, size, color, and
     attributes. In order to remain generic, the only font faces available
@@ -415,7 +415,7 @@ class FontStyle:
 # TableStyle
 #
 #------------------------------------------------------------------------
-class TableStyle:
+class TableStyle(object):
     """
     Specifies the style or format of a table. The TableStyle contains the
     characteristics of table width (in percentage of the full width), the
@@ -498,7 +498,7 @@ class TableStyle:
 # TableCellStyle
 #
 #------------------------------------------------------------------------
-class TableCellStyle:
+class TableCellStyle(object):
     """
     Defines the style of a particular table cell. Characteristics are:
     right border, left border, top border, bottom border, and padding.
@@ -592,7 +592,7 @@ class TableCellStyle:
 # ParagraphStyle
 #
 #------------------------------------------------------------------------
-class ParagraphStyle:
+class ParagraphStyle(object):
     """
     Defines the characteristics of a paragraph. The characteristics are:
     font (a FontStyle instance), right margin, left margin, first indent,
@@ -885,7 +885,7 @@ class ParagraphStyle:
 # StyleSheetList
 #
 #------------------------------------------------------------------------
-class StyleSheetList:
+class StyleSheetList(object):
     """
     Interface into the user's defined style sheets. Each StyleSheetList
     has a predefined default style specified by the report. Additional
@@ -1013,7 +1013,7 @@ class StyleSheetList:
 # StyleSheet
 #
 #------------------------------------------------------------------------
-class StyleSheet:
+class StyleSheet(object):
     """
     A collection of named paragraph styles.
     """
@@ -1239,7 +1239,7 @@ class SheetParser(handler.ContentHandler):
 # GraphicsStyle
 #
 #------------------------------------------------------------------------
-class GraphicsStyle:
+class GraphicsStyle(object):
     """
     Defines the properties of graphics objects, such as line width,
     color, fill, ect.
@@ -1318,7 +1318,7 @@ class GraphicsStyle:
 # IndexMark
 #
 #------------------------------------------------------------------------
-class IndexMark:
+class IndexMark(object):
     """
     Defines a mark to be associated with text for indexing.
     """
@@ -1335,7 +1335,7 @@ class IndexMark:
 # BaseDoc
 #
 #------------------------------------------------------------------------
-class BaseDoc:
+class BaseDoc(object):
     """
     Base class for document generators. Different output formats,
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
@@ -1412,7 +1412,7 @@ class BaseDoc:
 def noescape(text):
     return text
     
-class TextDoc:
+class TextDoc(object):
     """
     Abstract Interface for text document generators. Output formats for
     text reports must implment this interface to be used by the report 
@@ -1760,7 +1760,7 @@ class TextDoc:
 # DrawDoc
 #
 #------------------------------------------------------------------------
-class DrawDoc:
+class DrawDoc(object):
     """
     Abstract Interface for graphical document generators. Output formats
     for graphical reports must implment this interface to be used by the
@@ -1820,7 +1820,7 @@ class DrawDoc:
 # GVDoc
 #
 #-------------------------------------------------------------------------------
-class GVDoc:
+class GVDoc(object):
     """
     Abstract Interface for Graphviz document generators. Output formats
     for Graphviz reports must implment this interface to be used by the

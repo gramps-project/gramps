@@ -25,7 +25,7 @@ import BaseDoc
 # 
 #
 #------------------------------------------------------------------------
-class SpreadSheetDoc:
+class SpreadSheetDoc(object):
     def __init__(self,type, orientation=BaseDoc.PAPER_PORTRAIT):
         self.orientation = orientation
         if orientation == BaseDoc.PAPER_PORTRAIT:

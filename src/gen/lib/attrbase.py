@@ -36,7 +36,7 @@ from gen.lib.attribute import Attribute
 # AttributeBase class
 #
 #-------------------------------------------------------------------------
-class AttributeBase:
+class AttributeBase(object):
     """
     Base class for attribute-aware objects.
     """

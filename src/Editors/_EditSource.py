@@ -205,7 +205,7 @@ class EditSource(EditPrimary):
     def _cleanup_on_exit(self):
         self.backref_tab.close()
 
-class DelSrcQuery:
+class DelSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source
         self.db = dbstate.db

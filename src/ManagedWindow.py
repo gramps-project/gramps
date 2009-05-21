@@ -78,7 +78,7 @@ def get_object(self,value):
                 return object
     return None
 
-class GrampsWindowManager:
+class GrampsWindowManager(object):
     """
     Manage hierarchy of open GRAMPS windows.
 
@@ -304,7 +304,7 @@ class GrampsWindowManager:
 # Gramps Managed Window class
 #
 #-------------------------------------------------------------------------
-class ManagedWindow:
+class ManagedWindow(object):
     """
     Managed window base class.
     

@@ -223,7 +223,7 @@ def _display_welcome_message():
 # Main Gramps class
 #
 #-------------------------------------------------------------------------
-class Gramps:
+class Gramps(object):
     """
     Main class corresponding to a running gramps process.
 

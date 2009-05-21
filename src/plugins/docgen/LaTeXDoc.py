@@ -109,7 +109,7 @@ def roman2arabic(strval):
 # Paragraph Handling
 #
 #------------------------------------------------------------------------
-class TexFont:
+class TexFont(object):
     def __init__(self, style=None):
         if style:
             self.font_beg = style.font_beg

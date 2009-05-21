@@ -73,7 +73,7 @@ class DateError(Exception):
     def __str__(self):
         return self.value
 
-class Span:
+class Span(object):
     """
     Span is used to represent the difference between two dates for three
     main purposes: sorting, ranking, and describing.
@@ -578,7 +578,7 @@ class Span:
 # Date class
 #
 #-------------------------------------------------------------------------
-class Date:
+class Date(object):
     """
     The core date handling class for GRAMPs. 
     

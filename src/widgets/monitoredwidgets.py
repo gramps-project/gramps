@@ -55,7 +55,7 @@ import DateEdit
 # MonitoredCheckbox class
 #
 #-------------------------------------------------------------------------
-class MonitoredCheckbox:
+class MonitoredCheckbox(object):
 
     def __init__(self, obj, button, set_val, get_val, on_toggle=None, readonly = False):
         self.button = button
@@ -77,7 +77,7 @@ class MonitoredCheckbox:
 # MonitoredEntry class
 #
 #-------------------------------------------------------------------------
-class MonitoredEntry:
+class MonitoredEntry(object):
 
     def __init__(self, obj, set_val, get_val, read_only=False, 
                  autolist=None, changed=None):
@@ -132,7 +132,7 @@ class MonitoredEntry:
 # MonitoredSpinButton class
 #
 #-------------------------------------------------------------------------
-class MonitoredSpinButton:
+class MonitoredSpinButton(object):
     """
     Class for signal handling of spinbuttons.
     (Code is a modified copy of MonitoredEntry)
@@ -253,7 +253,7 @@ class MonitoredSpinButton:
 # MonitoredText class
 #
 #-------------------------------------------------------------------------
-class MonitoredText:
+class MonitoredText(object):
 
     def __init__(self, obj, set_val, get_val, read_only=False):
         self.buf = obj.get_buffer()
@@ -274,7 +274,7 @@ class MonitoredText:
 # MonitoredType class
 #
 #-------------------------------------------------------------------------
-class MonitoredType:
+class MonitoredType(object):
 
     def __init__(self, obj, set_val, get_val, mapping, custom, readonly=False, 
                  custom_values=None):
@@ -313,7 +313,7 @@ class MonitoredType:
 # MonitoredDataType class
 #
 #-------------------------------------------------------------------------
-class MonitoredDataType:
+class MonitoredDataType(object):
     
 
     def __init__(self, obj, set_val, get_val, readonly=False, 
@@ -395,7 +395,7 @@ class MonitoredDataType:
 # MonitoredMenu class
 #
 #-------------------------------------------------------------------------
-class MonitoredMenu:
+class MonitoredMenu(object):
 
     def __init__(self, obj, set_val, get_val, mapping, 
                  readonly=False, changed=None):
@@ -433,7 +433,7 @@ class MonitoredMenu:
 # MonitoredStrMenu class
 #
 #-------------------------------------------------------------------------
-class MonitoredStrMenu:
+class MonitoredStrMenu(object):
 
     def __init__(self, obj, set_val, get_val, mapping, readonly=False):
         self.set_val = set_val
@@ -472,7 +472,7 @@ class MonitoredStrMenu:
 # MonitoredDate class
 #
 #-------------------------------------------------------------------------
-class MonitoredDate:
+class MonitoredDate(object):
 
     def __init__(self, field, button, value, uistate, track, readonly=False):
         self.date = value
@@ -486,7 +486,7 @@ class MonitoredDate:
 # MonitoredComboSelectedEntry class
 #
 #-------------------------------------------------------------------------
-class MonitoredComboSelectedEntry:
+class MonitoredComboSelectedEntry(object):
     """
     A MonitoredEntry driven by a Combobox to select what the entry field
     works upon

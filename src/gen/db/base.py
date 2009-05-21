@@ -94,7 +94,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
 _SIGBASE = ('person', 'family', 'source', 'event', 
             'media', 'place', 'repository', 'reference', 'note')
 
-class GrampsDbBookmarks:
+class GrampsDbBookmarks(object):
     def __init__(self, default=[]):
         self.bookmarks = list(default) # want a copy (not an alias)
 
@@ -2540,7 +2540,7 @@ class GrampsDbBase(Callback):
         """
         return self._bm_changes > 0
         
-class Transaction:
+class Transaction(object):
     """
     Define a group of database commits that define a single logical operation.
     """

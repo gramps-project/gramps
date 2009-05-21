@@ -122,7 +122,7 @@ def french_valid(date_tuple):
 # Parser class
 #
 #-------------------------------------------------------------------------
-class DateParser:
+class DateParser(object):
     """
     Convert a text string into a Date object. If the date cannot be
     converted, the text string is assigned.

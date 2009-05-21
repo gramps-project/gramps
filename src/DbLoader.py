@@ -68,7 +68,7 @@ import Errors
 # DbLoader class
 #
 #-------------------------------------------------------------------------
-class DbLoader:
+class DbLoader(object):
     def __init__(self, dbstate, uistate):
         self.dbstate = dbstate
         self.uistate = uistate

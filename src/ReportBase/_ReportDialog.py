@@ -97,9 +97,11 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         self.init_interface()
         
     def init_options(self, option_class):
-        if isinstance(option_class, ClassType):
-            self.options = option_class(self.raw_name, self.db)
-        elif isinstance(option_class, InstanceType):
+        try:
+            if (issubclass(option_class, object) or     # New-style class
+              isinstance(options_class, ClassType)):     # Old-style class
+                self.options = option_class(self.raw_name, self.db)
+        except TypeError:
             self.options = option_class
 
         self.options.load_previous_values()

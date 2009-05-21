@@ -910,11 +910,13 @@ class GraphvizReportDialog(ReportDialog):
                               name, translated_name)
         
     def init_options(self, option_class):
-        if isinstance(option_class, ClassType):
-            self.options = option_class(self.raw_name,
+        try:
+            if (issubclass(option_class, object) or     # New-style class
+              isinstance(options_class, ClassType)):     # Old-style class
+                self.options = option_class(self.raw_name,
                                         self.dbstate.get_database())
-        elif isinstance(option_class, InstanceType):
-            self.options = option_class
+        except TypeError:
+            self.options = option_class        
 
         ################################
         category = _("GraphViz Layout")

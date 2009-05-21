@@ -187,7 +187,7 @@ def fix_spaces(text_list):
 #
 #-------------------------------------------------------------------------
 
-class ImportInfo:
+class ImportInfo(object):
     """
     Class object that can hold information about the import
     """
@@ -288,7 +288,7 @@ class ImportInfo:
                     )
         return txt
 
-class LineParser:
+class LineParser(object):
     def __init__(self, filename):
 
         self.count = 0
@@ -2382,7 +2382,7 @@ def build_place_title(loc):
 # VersionParser
 #
 #-------------------------------------------------------------------------
-class VersionParser:
+class VersionParser(object):
     """
     Utility class to quickly get the versions from an XML file.
     """

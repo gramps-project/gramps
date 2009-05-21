@@ -55,7 +55,7 @@ def g2iso(dow):
 # HolidayTable
 #
 #------------------------------------------------------------------------
-class HolidayTable:
+class HolidayTable(object):
     """ 
     HolidayTable is a class which provides holidays for various 
     countries and years.

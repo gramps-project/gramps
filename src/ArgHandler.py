@@ -80,7 +80,7 @@ Application options
 #-------------------------------------------------------------------------
 # ArgHandler
 #-------------------------------------------------------------------------
-class ArgHandler:
+class ArgHandler(object):
     """
     This class is responsible for handling command line arguments (if any)
     given to gramps. The valid arguments are:
