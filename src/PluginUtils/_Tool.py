@@ -87,9 +87,9 @@ class Tool(object):
                 # FIXME: pass in person_id
                 self.options = options_class(name, None, dbstate)
             else:   # must be some kind of class or we get a TypeError
-                self.options = option_class(name)
+                self.options = options_class(name)
         except TypeError:
-            self.options = option_class
+            self.options = options_class
         self.options.load_previous_values()
 
     def run_tool(self):
