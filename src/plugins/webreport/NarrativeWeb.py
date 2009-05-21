@@ -3486,9 +3486,22 @@ class NavWebOptions(MenuReportOptions):
         footernote.set_help( _("A note to be used as the page footer"))
         menu.add_option(category_name, "footernote", footernote)
 
-        gallery = BooleanOption(_("Include images and media objects"), True)
-        gallery.set_help(_('Whether to include a gallery of media objects'))
-        menu.add_option(category_name, 'gallery', gallery)
+        self.__gallery = BooleanOption(_("Include images and media objects"), True)
+        self.__gallery.set_help(_('Whether to include a gallery of media objects'))
+        menu.add_option(category_name, 'gallery', self.__gallery)
+        self.__gallery.connect('value-changed', self.__gallery_changed)
+
+        self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
+        self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
+                              "of the image shown on the media page. Set to 0 for no limit."))
+        menu.add_option(category_name, 'maxinitialimagewidth', self.__maxinitialimagewidth)
+
+        self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
+        self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
+                              "of the image shown on the media page. Set to 0 for no limit."))
+        menu.add_option(category_name, 'maxinitialimageheight', self.__maxinitialimageheight)
+
+        self.__gallery_changed()
 
         incdownload = BooleanOption(_("Include download page"), False)
         incdownload.set_help(_('Whether to include a database download option'))
@@ -3497,17 +3510,6 @@ class NavWebOptions(MenuReportOptions):
         nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
-
-        self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
-        self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
-                              "of the image shown on the media page. Set to 0 for no limit."))
-        menu.add_option(category_name, 'maxinitialimagewidth',
-                        self.__maxinitialimagewidth)
-        self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
-        self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
-                              "of the image shown on the media page. Set to 0 for no limit."))
-        menu.add_option(category_name, 'maxinitialimageheight',
-                        self.__maxinitialimageheight)
 
     def __add_privacy_options(self, menu):
         """
@@ -3625,6 +3627,18 @@ class NavWebOptions(MenuReportOptions):
         Handle enabling or disabling the ancestor graph
         """
         self.__graphgens.set_available(self.__graph.get_value())
+
+    def __gallery_changed(self):
+        """
+        Handles the changing nature of gallery
+        """
+
+        if self.__gallery.get_value() == False:
+            self.__maxinitialimagewidth.set_available(False)
+            self.__maxinitialimageheight.set_available(False)
+        else:
+            self.__maxinitialimagewidth.set_available(True)
+            self.__maxinitialimageheight.set_available(True)
 
     def __living_changed(self):
         """

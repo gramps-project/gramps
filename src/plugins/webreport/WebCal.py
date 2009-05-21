@@ -522,10 +522,13 @@ class WebCalReport(Report):
         # figure out number of rows  
         nrows = get_num_of_rows(num_years, years_in_row)
 
-        for rows in range(0, nrows):
-            yearnav = Html('div', id="navigation")
+        # begin year division and table
+        yearnav = Html('div', id="navigation")
+        year_table = Html('table')
 
-            ul = Html('ul')
+        for rows in range(0, nrows):
+            tabrow = Html('tr')
+            unordered = Html('ul')
             cols = 1
             while (cols <= years_in_row and cal_year <= self.end_year):
                 url = ''
@@ -544,7 +547,7 @@ class WebCalReport(Report):
 
                 # Figure out if we need <li class="CurrentSection"> or just plain <li>
                 cs = str(cal_year) == currentsection and 'class="CurrentSection"' or ''
-                ul += Html('li', attr=cs ,inline=True) + (
+                unordered += Html('li', attr=cs ,inline=True) + (
 
                     # create hyperlink
                     Html('a', str(cal_year), href = url,inline=True)
@@ -556,8 +559,14 @@ class WebCalReport(Report):
                 # increase calendar year
                 cal_year += 1
 
-        # add ul to yearnav
-        yearnav += ul
+            # add unordered list to table row
+            tabrow += unordered
+
+            # close row and add to table
+            year_table += tabrow
+
+        # close table and add to year division
+        yearnav += year_table
 
         # return yearnav to its caller
         return yearnav  
@@ -1312,7 +1321,6 @@ class WebCalReport(Report):
                 self.holidays = {}
 
                 # get the information, zero is equal to None
-                print self.country 
                 if self.country != 0:
                     self.__get_holidays(cal_year)
 
