@@ -1050,14 +1050,14 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
-        for primary_table_name, primary_table_dict in primary_tables.iteritems():
+        for primary_table_name in primary_tables.keys():
             
-            cursor = primary_table_dict['cursor_func']()
+            cursor = primary_tables[primary_table_name]['cursor_func']()
             data = cursor.first()
 
             # Grab the real object class here so that the lookup does
             # not happen inside the cursor loop.
-            class_func = primary_table_dict['class_func']
+            class_func = primary_tables[primary_table_name]['class_func']
             while data:
                 found_handle, val = data
                 obj = class_func()
@@ -1331,7 +1331,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         The function must be overridden in the derived class.
         """
         name = str(person.get_primary_name().get_surname())
-        print type(surnames)
         try:
             if self.surnames.keys().count(name) == 1:
                 self.surname_list.remove(unicode(name))
@@ -1671,8 +1670,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                  + self.get_number_of_families()
         self.set_total(length)
 
-        for handle, info in self.event_map.iteritems():
-            
+        for handle in self.event_map.keys():
+            info = self.event_map[handle]
+
             (junk_handle, gramps_id, the_type, date, description, 
              place, cause, source_list, note, media_list, 
              change, marker, private) = info
@@ -1703,8 +1703,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.event_map.sync()
 
         # Personal event references
-        for handle, info in self.person_map.iteritems():
-            
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
+
             (junk_handle, gramps_id, gender, 
              primary_name, alternate_names, death_ref_index, 
              birth_ref_index, event_ref_list, family_list, 
@@ -1742,7 +1743,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.person_map.sync()
 
         # Family event references
-        for handle, info in self.family_map.iteritems():
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
 
             (junk_handle, gramps_id, father_handle, 
              mother_handle, child_ref_list, the_type, event_ref_list, 
@@ -1794,8 +1796,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.set_total(length)
 
         # Personal addresses
-        for handle, info in self.person_map.iteritems():
-            
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
+
             (junk_handle, gramps_id, gender, 
              primary_name, alternate_names, death_ref_index, 
              birth_ref_index, event_ref_list, family_list, 
@@ -1827,7 +1830,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.person_map.sync()
         
         # Repositories
-        for handle, info in self.repository_map.iteritems():
+        for handle in self.repository_map.keys():
+            info = self.repository_map[handle]
 
             (junk_handle, gramps_id, the_type, name, note, 
              address_list, urls, marker, private) = info
@@ -1851,7 +1855,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.repository_map.sync()
 
         # Places
-        for handle, info in self.place_map.iteritems():
+        for handle in self.place_map.keys():
+            info = self.place_map[handle]
 
             (junk_handle, gramps_id, title, long, lat, main_loc, alt_loc, urls, 
              media_list, source_list, note, change, marker, private) = info
@@ -1944,50 +1949,50 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.change_13 = int(time.time())
 
         # Person upgrade
-        for handle, info in self.person_map.iteritems():
-
+        for handle in self.person_map.keys():
+            info = self.person_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Person', info)
             self.commit_13(new_info, PERSON_KEY, self.person_map, note_handles)
             self.update()
 
         # Family upgrade
-        for handle, info in self.family_map.iteritems():
-
+        for handle in self.family_map.keys():
+            info = self.family_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Family', info)
             self.commit_13(new_info, FAMILY_KEY, self.family_map, note_handles)
             self.update()
 
         # Event upgrade
-        for handle, info in self.event_map.iteritems():
-
+        for handle in self.event_map.keys():
+            info = self.event_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Event', info)
             self.commit_13(new_info, EVENT_KEY, self.event_map, note_handles)
             self.update()
 
         # Source upgrade
-        for handle, info in self.source_map.iteritems():
-
+        for handle in self.source_map.keys():
+            info = self.source_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Source', info)
             self.commit_13(new_info, SOURCE_KEY, self.source_map, note_handles)
             self.update()
 
         # Place upgrade
-        for handle, info in self.place_map.iteritems():
-
+        for handle in self.place_map.keys():
+            info = self.place_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Place', info)
             self.commit_13(new_info, PLACE_KEY, self.place_map, note_handles)
             self.update()
 
         # Media upgrade
-        for handle, info in self.media_map.iteritems():
-
+        for handle in self.media_map.keys():
+            info = self.media_map[handle]
             (new_info, note_handles) = self.convert_notes_13('MediaObject', info)
             self.commit_13(new_info, MEDIA_KEY, self.media_map, note_handles)
             self.update()
 
         # Repo upgrade
-        for handle, info in self.repository_map.iteritems():
-
+        for handle in self.repository_map.keys():
+            info = self.repository_map[handle]
             (new_info, note_handles) = self.convert_notes_13('Repository', info)
             self.commit_13(new_info, REPOSITORY_KEY, 
                            self.repository_map, note_handles)
@@ -2399,8 +2404,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # Modify Notes
         # ---------------------------------
         # replace clear text with StyledText in Notes
-        for handle, note in self.note_map.iteritems():
-
+        for handle in self.note_map.keys():
+            note = self.note_map[handle]
             (junk_handle, gramps_id, text, format, note_type,
              change, marker, private) = note
             styled_text = (text, [])
@@ -2415,8 +2420,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # Modify Event
         # ---------------------------------
         # update dates with newyear
-        for handle, event in self.event_map.iteritems():
-
+        for handle in self.event_map.keys():
+            event = self.event_map[handle]
             (junk_handle, gramps_id, the_type, date, description, place, 
              source_list, note_list, media_list, attribute_list,
              change, marker, private) = event
@@ -2436,8 +2441,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # Modify Person
         # ---------------------------------
         # update dates with newyear
-        for handle, person in self.person_map.iteritems():
-
+        for handle in self.person_map.keys():
+            person = self.person_map[handle]
             (junk_handle,        #  0
              gramps_id,          #  1
              gender,             #  2
@@ -2518,8 +2523,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # Modify Family
         # ---------------------------------
         # update dates with newyear
-        for handle, family in self.family_map.iteritems():
-
+        for handle in self.family_map.keys():
+            family = self.family_map[handle]
             (junk_handle, gramps_id, father_handle, mother_handle,
              child_ref_list, the_type, event_ref_list, media_list,
              attribute_list, lds_seal_list, source_list, note_list,
@@ -2549,8 +2554,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # Modify Repository
         # ---------------------------------
         # update dates with newyear
-        for handle, repository in self.repository_map.iteritems():
-
+        for handle in self.repository_map.keys():
+            repository = self.repository_map[handle]
             # address
             (junk_handle, gramps_id, the_type, name, note_list,
              address_list, urls, change, marker, private) = repository
@@ -2574,8 +2579,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # ---------------------------------
         # Modify Media
         # ---------------------------------
-        for media_handle, media in self.media_map.iteritems():
-
+        for media_handle in self.media_map.keys():
+            media = self.media_map[media_handle]
             (handle, gramps_id, path, mime, desc,
              attribute_list, source_list, note_list, change,
              date, marker, private) = media
@@ -2593,8 +2598,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # ---------------------------------
         # Modify Place
         # ---------------------------------
-        for place_handle, place in self.place_map.iteritems():
-
+        for place_handle in self.place_map.keys():
+            place = self.place_map[place_handle]
             (handle, gramps_id, title, long, lat,
              main_loc, alt_loc, urls, media_list, source_list, note_list,
              change, marker, private) = place
@@ -2612,8 +2617,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # ---------------------------------
         # Modify Source
         # ---------------------------------
-        for source_handle, source in self.source_map.iteritems():
-
+        for source_handle in self.source_map.keys():
+            source = self.source_map[source_handle]
             (handle, gramps_id, title, author,
              pubinfo, note_list, media_list,
              abbrev, change, datamap, reporef_list,
@@ -2866,13 +2871,13 @@ def importData(database, filename, callback=None, cl=0):
         }
 
     uc = UpdateCallback(callback)
-    uc.set_total(len(tables))
+    uc.set_total(len(tables.keys()))
 
     the_len = 0
 
     # Check for duplicate handles.
-    for key, table_dict in tables.iteritems():
-
+    for key in tables:
+        table_dict = tables[key]
         table = table_dict['table']
         other_table = table_dict['other_table']
         msg = '%s handles in two databases overlap.' % key
@@ -2949,7 +2954,7 @@ def check_common_handles(table, other_table, msg):
 def import_table(id_table, add_obj, find_next_gramps_id, 
                 other_table, other_get_from_handle, trans, uc):
 
-    for handle in other_table:
+    for handle in other_table.keys():
         obj = other_get_from_handle(handle)
         
         # Then we check gramps_id for conflicts and change it if needed
