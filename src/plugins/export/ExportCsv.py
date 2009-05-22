@@ -268,7 +268,7 @@ class CSVWriter(object):
             family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
-                if child_handle in self.plist.keys():
+                if child_handle in self.plist:
                     self.flist[family_handle] = 1
                         
     def update_empty(self):

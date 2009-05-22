@@ -59,7 +59,7 @@ class FilterList(object):
     def add(self, namespace, filt):
         assert(isinstance(namespace, basestring))
         
-        if namespace not in self.filter_namespaces.keys():
+        if namespace not in self.filter_namespaces:
             self.filter_namespaces[namespace] = []
         self.filter_namespaces[namespace].append(filt)
 
@@ -88,7 +88,7 @@ class FilterList(object):
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
-        for namespace in self.filter_namespaces.keys():
+        for namespace in self.filter_namespaces:
             f.write('<object type="%s">\n' % namespace)
             filter_list = self.filter_namespaces[namespace]
             for the_filter in filter_list:

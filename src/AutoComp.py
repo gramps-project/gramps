@@ -204,7 +204,7 @@ class StandardCustomSelector(object):
             int_val = self.custom_key
             str_val = self.selector.child.get_text().strip()
         if str_val in self.mapping.values():
-            for key in self.mapping.keys():
+            for key in self.mapping:
                 if str_val == self.mapping[key]:
                     int_val = key
                     break
@@ -220,7 +220,7 @@ class StandardCustomSelector(object):
         @type val: tuple
         """
         key, text = val
-        if key in self.mapping.keys() and key != self.custom_key:
+        if key in self.mapping and key != self.custom_key:
             self.store.foreach(self.set_int_value, key)
         elif self.custom_key is not None:
             self.selector.child.set_text(text)

@@ -379,7 +379,7 @@ class Extract(object):
                 value = [_("Personal information missing")]
             # list of information found
             for key in value:
-                if key in chart[1].keys():
+                if key in chart[1]:
                     chart[1][key] += 1
                 else:
                     chart[1][key] = 1
@@ -408,7 +408,7 @@ class Extract(object):
         data = []
         ext = self.extractors
         # which methods to use
-        for name in self.extractors.keys():
+        for name in self.extractors:
             option = menu.get_option_by_name(name)
             if option.get_value() == True:
                 # localized data title, value dict, type and data method

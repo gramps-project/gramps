@@ -338,7 +338,7 @@ def ansel_to_utf8(s):
             elif s[0] in _onebyte:
                 head = _onebyte[s[0]]
                 s = s[1:]
-            elif s[0] in _acombiners.keys():
+            elif s[0] in _acombiners:
                 c =  _acombiners[s[0]]
                 # always consume the combiner
                 s = s[1:]
@@ -372,9 +372,9 @@ def utf8_to_ansel(s):
             if not head in _use_ASCII:
                 head = ' '
         else:
-            if s[0] in _utoa.keys():
+            if s[0] in _utoa:
                 head = _utoa[s[0]]
-            elif s[0] in _ucombiners.keys():
+            elif s[0] in _ucombiners:
                 c = _ucombiners[s[0]]
                 # head happens to have last conversion to ansel
                 if len(head) == 1 and head[-1] in _printable_ascii:

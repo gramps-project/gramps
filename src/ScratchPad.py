@@ -141,7 +141,7 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
                           'Source': self._db.get_source_from_handle}
 
         for (classname, handle) in self._obj.get_referenced_handles_recursively():
-            if classname in valid_func_map.keys():
+            if classname in valid_func_map:
                 if not valid_func_map[classname](handle):
                     return False
             
@@ -1100,7 +1100,7 @@ class ScratchPadListView(object):
 
         # Find a wrapper class
         possible_wrappers = [target for target in context.targets \
-                             if target in self._target_type_to_wrapper_class_map.keys()]
+                             if target in self._target_type_to_wrapper_class_map]
 
         if len(possible_wrappers) == 0:
             # No wrapper for this class

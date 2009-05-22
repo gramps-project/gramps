@@ -796,7 +796,7 @@ class RelationshipCalculator(object):
             self.dirtymap = False
             self.map_handle = orig_person.handle
             
-        for person_handle in secondMap.keys() :
+        for person_handle in secondMap :
             if person_handle in firstMap :
                 com = []
                 #a common ancestor
@@ -957,7 +957,7 @@ class RelationshipCalculator(object):
                                 self.REL_FATHER_NOTBIRTH, childrel[0][1]), 
                              (mhandle, self.REL_MOTHER, 
                                 self.REL_MOTHER_NOTBIRTH, childrel[0][0])]:
-                    if data[0] and not data[0] in parentstodo.keys() :
+                    if data[0] and data[0] not in parentstodo :
                         persontodo = db.get_person_from_handle(data[0])
                         if data[3] == gen.lib.ChildRefType.BIRTH :
                             addstr = data[1]
@@ -969,7 +969,7 @@ class RelationshipCalculator(object):
                             parentstodo[data[0]] = (persontodo, 
                                                     rel_str + addstr,
                                                     rel_fam_new)
-                    elif data [0] and data[0] in parentstodo.keys():
+                    elif data [0] and data[0] in parentstodo:
                         #this person is already scheduled to research
                         #update family list
                         famlist = parentstodo[data[0]][2]
@@ -999,8 +999,7 @@ class RelationshipCalculator(object):
                             pmap[chandle] = [[rel_str+addstr],[rel_fam_new]]
                 fam += 1
 
-            for handle in parentstodo.keys():
-                data = parentstodo[handle]
+            for handle, data in parentstodo.iteritems():
                 self.__apply_filter(db, data[0],
                                 data[1], data[2],
                                 pmap, depth, stoprecursemap)

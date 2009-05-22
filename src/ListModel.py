@@ -393,7 +393,7 @@ class ListModel(object):
         """
         Selects the item associated with the pass information.
         """
-        if info in self.idmap.keys():
+        if info in self.idmap:
             node = self.idmap[str(info)]
             self.selection.select_iter(node)
 

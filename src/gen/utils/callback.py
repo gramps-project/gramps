@@ -276,12 +276,13 @@ class Callback(object):
         returns a unique key that can be passed to disconnect().
         """
         # Check that signal exists.
-        if signal_name not in self.__signal_map.keys():
-            self._log("Warning: attempt to connect to unknown signal: %s\n" % str(signal_name))
+        if signal_name not in self.__signal_map:
+            self._log("Warning: attempt to connect to unknown signal: %s\n" 
+                % str(signal_name))
             return
         
         # Add callable to callback_map
-        if signal_name not in self.__callback_map.keys():
+        if signal_name not in self.__callback_map:
             self.__callback_map[signal_name] = []
 
         self._current_key += 1
@@ -298,7 +299,7 @@ class Callback(object):
         """
         
         # Find the key in the callback map.
-        for signal_name in self.__callback_map.keys():
+        for signal_name in self.__callback_map:
             for cb in self.__callback_map[signal_name]:
                 (skey, fn) = cb
                 if skey == key:
@@ -320,7 +321,7 @@ class Callback(object):
             return
         
         # Check signal exists
-        if signal_name not in self.__signal_map.keys():
+        if signal_name not in self.__signal_map:
             self._warn("Attempt to emit to unknown signal: %s\n"
                        "         from: file: %s\n"
                        "               line: %d\n"
@@ -390,8 +391,7 @@ class Callback(object):
                                        % ((str(signal_name), ) + inspect.stack()[1][1:4] +\
                                           (args[i], repr(type(args[i])), repr(arg_types[i]))))                   
                             return 
-
-            if signal_name in self.__callback_map.keys():
+            if signal_name in self.__callback_map:
                 self._log("emitting signal: %s\n" % (signal_name, ))
                 # Don't bother if there are no callbacks.
                 for (key, fn) in self.__callback_map[signal_name]:

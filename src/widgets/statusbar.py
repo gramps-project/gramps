@@ -139,7 +139,7 @@ class Statusbar(gtk.HBox):
         """Get next unused statusbar id.
         """
         id = 1
-        while id in self._bars.keys():
+        while id in self._bars:
             id = id + 1
             
         return id

@@ -82,7 +82,7 @@ class FilterParser(handler.ContentHandler):
             self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":
             save_name = attrs['class']
-            if save_name in old_names_2_class.keys():
+            if save_name in old_names_2_class:
                 self.r = old_names_2_class[save_name]
             else:
                 try:

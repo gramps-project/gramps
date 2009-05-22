@@ -281,8 +281,8 @@ class CommandLineReport(object):
             return
         menu = self.option_class.menu
         menu_opt_names = menu.get_all_option_names()
-        for opt in self.options_str_dict.keys():
-            if opt in self.options_dict.keys():
+        for opt in self.options_str_dict:
+            if opt in self.options_dict:
                 converter = Utils.get_type_converter(self.options_dict[opt])
                 self.options_dict[opt] = converter(self.options_str_dict[opt])
                 self.option_class.handler.options_dict[opt] = \
@@ -349,8 +349,8 @@ class CommandLineReport(object):
             return
         elif self.show == 'all':
             print "   Available options:"
-            for key in self.options_dict.keys():
-                if key in self.options_dict.keys():
+            for key in self.options_dict:
+                if key in self.options_dict:
                 # Make the output nicer to read, assume that tab has 8 spaces
                     if len(key) < 10:
                         print "      %s\t\t%s (%s)" % (key, 
@@ -363,7 +363,7 @@ class CommandLineReport(object):
                 else:
                     print " %s" % key
             print "   Use 'show=option' to see description and acceptable values"
-        elif self.show in self.options_dict.keys():
+        elif self.show in self.options_dict:
             print '   %s%s\t%s' % (self.show,
                                     self.options_help[self.show][0],
                                     self.options_help[self.show][1])

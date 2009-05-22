@@ -345,7 +345,7 @@ class CSVParser(object):
                     return self.lookup(type, id)
                 else:
                     return db_lookup
-            elif id.lower() in self.fref.keys():
+            elif id.lower() in self.fref:
                 return self.fref[id.lower()]
             else:
                 return None
@@ -357,7 +357,7 @@ class CSVParser(object):
                     return self.lookup(type, id)
                 else:
                     return db_lookup
-            elif id.lower() in self.pref.keys():
+            elif id.lower() in self.pref:
                 return self.pref[id.lower()]
             else:
                 return None

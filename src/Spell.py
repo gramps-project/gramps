@@ -214,10 +214,10 @@ class Spell(object):
         if self.lang and Config.get(Config.SPELLCHECK):
             # if LANG is not a correct key (pt_BR or pt_PT),
             #  try only the language part of LANG
-            if self.lang not in self._installed_languages.keys():
+            if self.lang not in self._installed_languages:
                 self.lang = self.lang.split('_')[0]
             # if this still doesn't work we fall back to 'off'
-            if self.lang not in self._installed_languages.keys():
+            if self.lang not in self._installed_languages:
                 self.lang = 'off'
         else:
             self.lang = 'off'

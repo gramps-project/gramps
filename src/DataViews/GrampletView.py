@@ -1248,8 +1248,7 @@ class GrampletView(PageView.PersonNavView):
 
     def save(self, *args):
         if debug: print "saving"
-        if len(self.frame_map.keys() + 
-               self.detached_gramplets) == 0:
+        if len(self.frame_map) + len(self.detached_gramplets) == 0:
             return # something is the matter
         filename = GRAMPLET_FILENAME
         try:
@@ -1581,7 +1580,7 @@ class GrampletView(PageView.PersonNavView):
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = gtk.Menu()
                 names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
-                         in AVAILABLE_GRAMPLETS.keys()]
+                         in AVAILABLE_GRAMPLETS]
                 names.sort()
                 for name in names:
                     Utils.add_menuitem(qr_menu, name, 

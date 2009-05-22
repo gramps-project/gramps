@@ -174,18 +174,18 @@ class CommandLineTool(object):
             return
 
         # Add tool-specific options
-        for key in self.option_class.handler.options_dict.keys():
-            if key not in self.options_dict.keys():
+        for key in self.option_class.handler.options_dict:
+            if key not in self.options_dict:
                 self.options_dict[key] = self.option_class.handler.options_dict[key]
 
         # Add help for tool-specific options
-        for key in self.option_class.options_help.keys():
-            if key not in self.options_help.keys():
+        for key in self.option_class.options_help:
+            if key not in self.options_help:
                 self.options_help[key] = self.option_class.options_help[key]
 
     def parse_option_str(self):
-        for opt in self.options_str_dict.keys():
-            if opt in self.options_dict.keys():
+        for opt in self.options_str_dict:
+            if opt in self.options_dict:
                 converter = Utils.get_type_converter(self.options_dict[opt])
                 self.options_dict[opt] = converter(self.options_str_dict[opt])
                 self.option_class.handler.options_dict[opt] = self.options_dict[opt]
@@ -208,10 +208,10 @@ class CommandLineTool(object):
             return
         elif self.show == 'all':
             print "   Available options:"
-            for key in self.options_dict.keys():
+            for key in self.options_dict:
                 print "      %s" % key
             print "   Use 'show=option' to see description and acceptable values"
-        elif self.show in self.options_dict.keys():
+        elif self.show in self.options_dict:
             print '   %s%s\t%s' % (self.show,
                                     self.options_help[self.show][0],
                                     self.options_help[self.show][1])
