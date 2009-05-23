@@ -177,6 +177,43 @@ a:visited {
     margin:0;
 }
 
+/* Alphabet Navigation
+----------------------------------------------------- */
+#alphabet {
+    padding:0;
+    margin:0;
+}
+#alphabet ul {
+    list-style:none;
+    min-width:770px;
+    height:24px;
+    margin:0;
+    padding:0 0 0 9px;
+    border-top:solid 2px #000;
+    border-bottom:solid 4px #000;
+    background-color:#EAEEF4;
+}
+#alphabet ul li.letters {
+    margin:0;
+    float:left;
+}
+.letters:after {
+    content:" |";
+}
+#alphabet ul li.letters a {
+    display:block;
+    float:left;
+    font:bold 16px/100% sans;
+    color:#000;
+    margin:0;
+    padding:5px 5px;
+    text-decoration:none;
+}
+#alphabet ul li.letters a:hover {
+    background-color:#000;
+    color:#FFF;
+}
+
 /* Navigation
 ----------------------------------------------------- */
 #navigation, #subnavigation {
@@ -396,10 +433,23 @@ table.individuallist tbody tr td.ColumnName a {
 table.individuallist tbody tr td.ColumnName a:hover {
     background-color:#BFD0EA;
 }
-#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
+#Individuals div table.infolist tr td p {
     vertical-align:top;
 }
-#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
+#Individuals div table.infolist tr td p a {
+    display:inline;
+}
+
+/* IndividualDetail
+------------------------------------------------------ */
+#IndividualDetail {
+    background-color:#EAEEF4;
+}
+#IndividualDetail div table.infolist tr td {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align:top;
+}
+#IndividualDetail div table.infolist tr td a {
     display:inline;
 }
 #IndividualDetail table.infolist tr td a:hover {
@@ -407,8 +457,10 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#7CA3DD;
-    padding-left:5px;
+    color:#696969;
+}
+#IndividualDetail div.subsection table tr td:first-child {
+    padding-left:20px;
 }
 
 /* Sources
@@ -557,15 +609,67 @@ table.individuallist tbody tr td.ColumnName a:hover {
     text-decoration:underline;
 }
 
+/* Download 
+----------------------------------------------------- */
+#Download { 
+    padding:1cm;
+    height:396px;
+}
+table.download {
+    border:solid 2px #000;
+    width:100%;
+}
+table.download img {
+    float:center;
+}
+table.download thead tr th {
+    text-align:center;
+    border:solid 2px #000;
+    color: #000;
+    text-transform:uppercase;
+}
+table.download tbody tr#Row02 {
+    border-bottom:solid 2px #000;
+}
+table.download thead tr th, table.download tbody tr td { 
+    padding-left:10px;
+    padding-top:20px;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+    text-align:left;
+}
+table.download td.Description {
+    width: 50%;
+}
+table.download td.License {
+    width:8%;
+}
+table.download td.Filename {
+    width:30%;
+}
+table.download td.Filename a {
+    font-weight:bold;
+    font-style: italic;
+    text-decoration:none;
+}
+table.download td.Filename a:hover {
+    text-decoration:underline;
+}
+table.download td.Modified {
+    width:12%;
+    font-weight:bold;
+}
+
 /* Subsections
 ----------------------------------------------------- */
-#Home, #Introduction, #Download, #Contact {
+#Home, #Introduction, #Contact {
     padding:1.5em 0 3em 0;
 }
-#Home p, #Introduction p, #Download p, #Contact p {
+#Home p, #Introduction p, #Contact p {
     margin:0 20px 1em 20px;
 }
-#Home img, #Introduction img, #Download img, #Contact img {
+#Home img, #Introduction img, #Contact img {
     float:right;
     margin:0;
     padding:0 20px 3em 20px;
@@ -969,15 +1073,6 @@ div#sourcerefs ol li ol {
 #footer p#copyright img {
     margin-right:10px;
 }
-#footer p#quality {
-    width:100%;
-    text-align:center;
-    padding-bottom:14px;
-    margin-bottom:0;
-}
-#footer p#quality img {
-    float:center;
-}
 #user_footer {
     width:70%;
     float:left;
@@ -1136,27 +1231,24 @@ body#WebCal #CreatorInfo {
 }
 
 /* Calendar : Full Year */
-body#fullyear div.content, body#fullyearlinked div.content {
+body#fullyearlinked div.content {
     width:963px;
     margin:0 auto;
     padding:15px 0 2px 2px;
 }
-body#fullyear table.calendar, body#fullyearlinked table.calendar {
+body#fullyearlinked table.calendar {
     float:left;
     width:320px;
     height:18em;
     border:solid 1px #7D5925;
 }
-body#fullyear table.calendar thead tr th, body#fullyearlinked table.calendar thead tr th {
+body#fullyearlinked table.calendar thead tr th {
     height:2em;
 }
-body#fullyear table.calendar thead tr th.monthName, body#fullyearlinked table.calendar thead tr th.monthName {
+body#fullyearlinked table.calendar thead tr th.monthName {
     font-size:1.2em;
     padding:2px 0;
 }
-body#fullyear table.calendar tbody tr td, body#fullyearlinked table.calendar tbody tr td {
+ body#fullyearlinked table.calendar tbody tr td {
     height:3em;
-}
-body#fullyear table.calendar tfoot tr td, body#fullyearlinked table.calendar tfoot tr td {
-    display:none;
 }

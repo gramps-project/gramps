@@ -178,7 +178,7 @@ ol {
 
 /* Navigation
 ----------------------------------------------------- */
-#navigation { display:none; }
+#alphabet, #navigation, #subnavigation { display:none; }
 
 /* Main Table
 ----------------------------------------------------- */
@@ -191,6 +191,7 @@ table {
     border-bottom:solid .5pt #FFF;
 }
 table thead tr th {
+    text-align:left;
     font:normal 11pt/13pt serif;
     color:#000;
     margin:0;
@@ -668,4 +669,26 @@ body#WebCal a {
     font-weight:normal;
     font-size:12pt;
     color:#999;
+}
+/* Calendar : Full Year */
+body#fullyearlinked div.content {
+    width:963px;
+    margin:0 auto;
+    padding:15px 0 2px 2px;
+}
+body#fullyearlinked table.calendar {
+    float:left;
+    width:320px;
+    height:18em;
+    border:solid 1px #000;
+}
+body#fullyearlinked table.calendar thead tr th {
+    height:2em;
+}
+body#fullyearlinked table.calendar thead tr th.monthName {
+    font-size:1.2em;
+    padding:2px 0;
+}
+body#fullyearlinked table.calendar tbody tr td {
+    height:3em;
 }
