@@ -164,13 +164,16 @@ class IdFinder(object):
 class IdMapper(object):
 
     def __init__(self, trans, find_next, translate):
-        if translate:
-            self.__getitem__ = self.get_translate
-        else:
-            self.__getitem__ = self.no_translate
+        self.translate = translate
         self.trans = trans
         self.find_next = find_next
         self.swap = {}
+    
+    def __getitem__(self, gid):
+        if self.translate:
+            return self.get_translate(gid)
+        else:
+            return self.no_translate(gid)
     
     def clean(self, gid):
         temp = gid.strip()
