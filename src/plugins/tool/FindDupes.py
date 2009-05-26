@@ -110,9 +110,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         use_soundex = self.options.handler.options_dict['soundex']
 
         my_menu = gtk.ListStore(str, object)
-        vals = _val2label.keys()
-        vals.sort()
-        for val in vals:
+        for val in sorted(_val2label):
             my_menu.append([_val2label[val], val])
 
         self.soundex_obj = top.get_object("soundex")
@@ -243,8 +241,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                     else:
                         self.map[p1key] = (p2key,chance)
 
-        self.list = self.map.keys()
-        self.list.sort()
+        self.list = sorted(self.map)
         self.length = len(self.list)
         self.progress.close()
 
@@ -575,10 +572,10 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
     def redraw(self):
         list = []
-        for p1key in self.map.keys():
+        for p1key, p1data in self.map.iteritems():
             if p1key in self.dellist:
                 continue
-            (p2key,c) = self.map[p1key]
+            (p2key,c) = p1data
             if p1key == p2key:
                 continue
             list.append((c,p1key,p2key))
@@ -608,8 +605,8 @@ class ShowMatches(ManagedWindow.ManagedWindow):
 
     def on_update(self):
         self.dellist[self.p2] = self.p1
-        for key in self.dellist.keys():
-            if self.dellist[key] == self.p2:
+        for key, data in self.dellist.iteritems():
+            if data == self.p2:
                 self.dellist[key] = self.p1
         self.update()
         self.redraw()

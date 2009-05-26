@@ -154,12 +154,10 @@ class DetAncestorReport(Report):
         self.doc.write_text(title,mark)
         self.doc.end_paragraph()
 
-        keys = self.map.keys()
-        keys.sort()
         generation = 0
         need_header = 1
 
-        for key in keys :
+        for key in sorted(self.map):
             if generation == 0 or key >= 2**generation:
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
@@ -221,9 +219,7 @@ class DetAncestorReport(Report):
 
         if self.dupperson:
             # Check for duplicate record (result of distant cousins marrying)
-            keys = self.map.keys()
-            keys.sort()
-            for dkey in keys:
+            for dkey in sorted(self.map):
                 if dkey >= key: 
                     break
                 if self.map[key] == self.map[dkey]:

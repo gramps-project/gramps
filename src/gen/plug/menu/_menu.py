@@ -123,7 +123,7 @@ class Menu(object):
         
         @return: an Option instance or None on failure.
         """
-        for category in self.__options.keys():
+        for category in self.__options:
             for (oname, option) in self.__options[category]:
                 if oname == name:
                     return option

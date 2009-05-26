@@ -155,8 +155,7 @@ class StandardCustomSelector(object):
         """
         Fill with data
         """
-        keys = self.mapping.keys()
-        keys.sort(self.by_value)
+        keys = sorted(self.mapping, self.by_value)
         index = 0
         for key in keys:
             if key != self.custom_key:

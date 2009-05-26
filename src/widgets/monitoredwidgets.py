@@ -349,7 +349,7 @@ class MonitoredDataType(object):
             
         map = get_val().get_map().copy()
         if ignore_values :
-            for key in map.keys():
+            for key in map:
                 try :
                     i = ignore_values.index(key)
                 except ValueError:
@@ -535,14 +535,12 @@ class MonitoredComboSelectedEntry(object):
         Fill combo with data
         """
         self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
-        keys = self.mapping.keys()
-        keys.sort(self.__by_value)
-        index = 0
-        for key in keys:
+        keys = sorted(self.mapping.keys(), self.__by_value)
+
+        for index, key in enumerate(keys):
             self.store.append(row=[key, self.mapping[key]])
             if key == self.active_key:
                 self.active_index = index
-            index = index + 1
 
     def __by_value(self, first, second):
         """

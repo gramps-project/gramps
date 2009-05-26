@@ -54,19 +54,16 @@ LOG = logging.getLogger(".GedcomImport")
 #-------------------------------------------------------------------------
 
 GED2GRAMPS = {}
-for __val in personalConstantEvents.keys():
-    __key = personalConstantEvents[__val]
+for __val, __key in personalConstantEvents.iteritems():
     if __key != "":
         GED2GRAMPS[__key] = __val
 
-for __val in familyConstantEvents.keys():
-    __key = familyConstantEvents[__val]
+for __val, __key in familyConstantEvents.iteritems():
     if __key != "":
         GED2GRAMPS[__key] = __val
 
 GED2ATTR = {}
-for __val in personalConstantAttributes.keys():
-    __key = personalConstantAttributes[__val]
+for __val, __key in personalConstantAttributes.iteritems():
     if __key != "":
         GED2ATTR[__key] = __val
     

@@ -157,7 +157,7 @@ class DetDescendantReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
-                ix = max(self.map.keys())
+                ix = max(self.map)
                 self.apply_henry_filter(child_ref.ref, ix+1,
                                   pid+HENRY[index], cur_gen+1)
                 index += 1
@@ -178,7 +178,7 @@ class DetDescendantReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
-                ix = max(self.map.keys())
+                ix = max(self.map)
                 self.apply_mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
 
     def apply_mod_reg_filter(self,person_handle):
@@ -209,8 +209,7 @@ class DetDescendantReport(Report):
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
-        keys = self.map.keys()
-        keys.sort()
+        keys = sorted(self.map)
         generation = 0
 
         for generation in xrange(len(self.gen_keys)):
@@ -289,9 +288,7 @@ class DetDescendantReport(Report):
         
         if self.dubperson:
             # Check for duplicate record (result of distant cousins marrying)
-            keys = self.map.keys()
-            keys.sort()
-            for dkey in keys:
+            for dkey in sorted(self.map):
                 if dkey >= key: 
                     break
                 if self.map[key] == self.map[dkey]:

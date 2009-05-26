@@ -98,12 +98,10 @@ class IniKeyClient(object):
             fp = open(filename, "w")
             fp.write(";; Gramps key file" + NL)
             fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
-            sections = self.data.keys()
-            sections.sort()
+            sections = sorted(self.data)
             for section in sections:
                 fp.write(("[%s]" + NL) % section)
-                keys = self.data[section].keys()
-                keys.sort()
+                keys = sorted(self.data[section])
                 for key in keys:
                     fp.write(("%s=%s" + NL)% (key, self.data[section][key]))
                 fp.write(NL)

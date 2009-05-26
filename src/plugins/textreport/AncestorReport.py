@@ -166,11 +166,9 @@ class AncestorReport(Report):
     
         # get the entries out of the map, and sort them.
 
-        keys = self.map.keys()
-        keys.sort()
         generation = 0
 
-        for key in keys :
+        for key in sorted(self.map):
 
             # check the index number to see if we need to start a new generation
             if generation == log2(key):

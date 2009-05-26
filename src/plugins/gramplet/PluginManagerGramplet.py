@@ -80,7 +80,7 @@ class PluginManagerGramplet(Gramplet):
             types[row[1]] = 1
         self.set_text("")
         # name, type, ver, desc, gver, use, rating, contact, download
-        for type in types.keys():
+        for type in types:
             self.render_text("<b>%s Plugins</b>\n" % _(type))
             row_count = 1
             for row in rows:

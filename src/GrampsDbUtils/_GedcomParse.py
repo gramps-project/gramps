@@ -197,14 +197,14 @@ MEDIA_MAP = {
 #
 #-------------------------------------------------------------------------
 GED_2_GRAMPS = {}
-for _val in GedcomInfo.personalConstantEvents.keys():
-    _key = GedcomInfo.personalConstantEvents[_val]
+for _val, _key in GedcomInfo.personalConstantEvents.iteritems():
+    #_key = GedcomInfo.personalConstantEvents[_val]
     if _key != "":
         GED_2_GRAMPS[_key] = _val
 
 GED_2_FAMILY = {}
-for _val in GedcomInfo.familyConstantEvents.keys():
-    _key = GedcomInfo.familyConstantEvents[_val]
+for _val, _key in GedcomInfo.familyConstantEvents.iteritems():
+    #_key = GedcomInfo.familyConstantEvents[_val]
     if _key != "":
         GED_2_FAMILY[_key] = _val
 
@@ -786,8 +786,8 @@ class GedcomParser(UpdateCallback):
         
         self.attrs = amap.values()
         self.gedattr = {}
-        for val in amap.keys():
-            self.gedattr[amap[val]] = val
+        for val, key in amap.iteritems():
+            self.gedattr[key] = val
         self.search_paths = []
 
     def parse_gedcom_file(self, use_trans=False):
@@ -807,9 +807,7 @@ class GedcomParser(UpdateCallback):
             self.dbase.add_source(self.def_src, self.trans)
         self.__parse_record()
         self.__parse_trailer()
-            
-        for title in self.inline_srcs.keys():
-            handle = self.inline_srcs[title]
+        for title, handle in self.inline_srcs.iteritems():
             src = gen.lib.Source()
             src.set_handle(handle)
             src.set_title(title)

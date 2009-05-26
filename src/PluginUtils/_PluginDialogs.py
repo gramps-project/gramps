@@ -72,7 +72,6 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         reports. This is used to build the selection tree on the left
         hand side of the dialog box.
         """
-        
         self.active = state.active
         self.imap = {}
         self.msg = msg
@@ -189,7 +188,6 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         Items in the same category are grouped under the same submenu.
         The categories must be dicts from integer to string.
         """
-
         ilist = []
         self.store.clear()
 
@@ -207,9 +205,8 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.
-        key_list = [ item for item in item_hash.keys() if item != _UNSUPPORTED]
-        key_list.sort()
-        key_list.reverse()
+        key_list = [item for item in item_hash if item != _UNSUPPORTED]
+        key_list.sort(reverse=True)
         
         prev = None
         if _UNSUPPORTED in item_hash:
@@ -228,7 +225,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             node = self.store.insert_after(None, prev)
             self.store.set(node, 0, key)
             next = None
-            data.sort(lambda x, y: cmp(x[2], y[2]))
+            data.sort(key=lambda k:k[2])
             for item in data:
                 next = self.store.insert_after(node, next)
                 ilist.append((next, item))

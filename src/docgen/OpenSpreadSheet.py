@@ -106,8 +106,8 @@ class OpenSpreadSheet(SpreadSheetDoc):
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-decls>\n')
         self.f.write('<office:automatic-styles>\n')
-        for key in self.table_styles.keys():
-            table = self.table_styles[key]
+
+        for key, table in self.table_styles.iteritems():
             self.f.write('<style:style style:name="')
             self.f.write(key)
             self.f.write('" style:family="table">\n')
@@ -125,9 +125,8 @@ class OpenSpreadSheet(SpreadSheetDoc):
             self.f.write('<style:style style:name="ro1" style:family="table-row">\n')
             self.f.write('<style:properties fo:break-before="auto"/>\n')
             self.f.write('</style:style>\n')
-
-        for key in self.style_list.keys():
-            style = self.style_list[key]
+            
+        for key, style in self.style_list.iteritems():
             font = style.get_font()
             self.f.write('<style:style style:name="')
             self.f.write(key)

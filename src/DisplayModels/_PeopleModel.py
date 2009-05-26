@@ -92,9 +92,7 @@ class NodeTreeMap(object):
         self.temp_sname_sub = {}
 
     def build_toplevel(self):
-        mylist = self.temp_sname_sub.keys()
-        mylist.sort(locale.strcoll)
-        self.temp_top_path2iter = mylist
+        self.temp_top_path2iter = sorted(self.temp_sname_sub, locale.strcoll)
         for name in self.temp_top_path2iter:
             self.build_sub_entry(name)
 

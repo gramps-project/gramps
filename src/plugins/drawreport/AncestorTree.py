@@ -123,16 +123,14 @@ class GenChart(object):
         self.array[y][x] = value
 
     def dimensions(self):
-        return (max(self.array.keys())+1, self.max_x+1)
+        return (max(self.array)+1, self.max_x+1)
 
     def compress(self):
         new_map = {}
         new_array = {}
         old_y = 0
         new_y = 0
-
-        for key in self.array.keys():
-            i = self.array[key]
+        for key, i in self.array.iteritems():
             old_y = key
             if self.not_blank(i.values()):
                 self.compress_map[old_y] = new_y
@@ -203,14 +201,12 @@ class AncestorTree(Report):
         self.scale = 1
 
         self.apply_filter(center_person.get_handle(), 1)
-
-        keys = self.map.keys()
-        keys.sort()
+        keys = sorted(self.map)
         max_key = log2(keys[-1])
 
         self.genchart = GenChart(max_key+1)
-        for key in self.map.keys():
-            self.genchart.set(key,self.map[key])
+        for key, chart in self.map.iteritems():
+            self.genchart.set(key, chart)
         self.calc()
         
         if self.force_fit:

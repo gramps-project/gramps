@@ -220,10 +220,10 @@ class StyledTextEditor(gtk.TextView):
         Handle formatting shortcuts.
         
         """
-        for accel in self.action_accels.keys():
+        for accel, accel_name in self.action_accels.iteritems():
             key, mod = gtk.accelerator_parse(accel)
             if (event.keyval, event.state) == (key, mod):
-                action_name = self.action_accels[accel]
+                action_name = accel_name
                 action = self.action_group.get_action(action_name)
                 action.activate()
                 return True
@@ -523,18 +523,18 @@ class StyledTextEditor(gtk.TextView):
 
     def _on_buffer_style_changed(self, buffer, changed_styles):
         """Synchronize actions as the format changes at the buffer's cursor."""
-        for style in changed_styles.keys():
+        for style, style_value in changed_styles.iteritems():
             if str(style) in self.toggle_actions:
                 action = self.action_group.get_action(str(style))
                 self._internal_style_change = True
-                action.set_active(changed_styles[style])
+                action.set_active(style_value)
                 self._internal_style_change = False
             
             if ((style == StyledTextTagType.FONTFACE) or
                 (style == StyledTextTagType.FONTSIZE)):
                 action = self.action_group.get_action(str(style))
                 self._internal_style_change = True
-                action.set_value(changed_styles[style])
+                action.set_value(style_value)
                 self._internal_style_change = False
             
     def _spell_change_cb(self, menuitem, language):

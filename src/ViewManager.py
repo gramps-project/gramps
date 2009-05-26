@@ -1389,7 +1389,7 @@ class ViewManager(object):
                     (item[0], item[1], item[2], item[4], item[3], item[10])]
                 
         # Sort categories, skipping the unsupported
-        catlist = [item for item in hash_data.keys()
+        catlist = [item for item in hash_data
                    if item != _UNSUPPORTED]
         catlist.sort()
         for key in catlist:

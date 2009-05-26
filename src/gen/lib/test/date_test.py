@@ -204,7 +204,7 @@ def eval_func(dateval, e1, e2, e3):
 def suite3():
     suite = unittest.TestSuite()            
     count = 1
-    for testset in date_tests.keys():
+    for testset in date_tests:
         for format in range( len( DateHandler.get_date_formats())):
             DateHandler.set_format(format)
             for dateval in date_tests[testset]:

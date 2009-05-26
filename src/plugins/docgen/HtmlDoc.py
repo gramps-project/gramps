@@ -340,13 +340,13 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     def write_support_files(self):
         if self.map:
-            for name in self.map.keys():
+            for name, handle in self.map.iteritems():
                 if name == 'template.html':
                     continue
                 fname = '%s%s%s' % (self.base, os.path.sep, name)
                 try:
                     f = open(fname, 'wb')
-                    f.write(self.map[name].read())
+                    f.write(handle.read())
                     f.close()
                 except IOError,msg:
                     errmsg = "%s\n%s" % (_("Could not create %s") % fname, msg)

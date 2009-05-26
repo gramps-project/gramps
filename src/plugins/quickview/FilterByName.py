@@ -147,10 +147,8 @@ def run(database, document, filter_name, *args, **kwargs):
                 surnames = list(set([name.get_group_name() for name in names]))
                 for surname in surnames:
                     namelist[surname] = namelist.get(surname, 0) + 1
-        surnames = namelist.keys()
-        surnames.sort()
         stab.columns(_("Surname"), _("Count"))
-        for name in surnames:
+        for name in sorted(namelist):
             stab.row(name, namelist[name])
             matches += 1
         stab.set_callback("leftdouble", 

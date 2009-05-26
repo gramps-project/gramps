@@ -200,8 +200,7 @@ class AgeStatsGramplet(Gramplet):
     
     def compute_stats(self, hash):
         """ Returns the statistics of a dictionary of data """
-        hashkeys = hash.keys()
-        hashkeys.sort()
+        hashkeys = sorted(hash)
         count = sum(hash.values())
         sumval = sum([k * hash[k] for k in hash])
         minval = min(hashkeys)
@@ -241,8 +240,8 @@ class AgeStatsGramplet(Gramplet):
         """
         # first, binify:
         bin = [0] * (max_val/bin_size)
-        for value in hash.keys():
-            bin[value/bin_size] += hash[value]
+        for value, hash_value in hash.iteritems():
+            bin[value/bin_size] += hash_value
         text = ""
         max_bin = float(max(bin))
         if max_bin != 0:

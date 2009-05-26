@@ -1,4 +1,4 @@
-#
+k#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -111,10 +111,9 @@ class ODSDoc(SpreadSheetDoc):
         self.f.write('style:font-family-generic="swiss" ')
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-face-decls>\n')
-        
         self.f.write('<office:automatic-styles>\n')
-        for key in self.table_styles.keys():
-            table = self.table_styles[key]
+
+        for key, table in self.table_styles.iteritems():
             self.f.write('<style:style style:name="')
             self.f.write(key)
             self.f.write('" style:family="table" ')
@@ -133,8 +132,7 @@ class ODSDoc(SpreadSheetDoc):
         self.f.write('<style:table-row-properties fo:break-before="auto"/>\n')
         self.f.write('</style:style>\n')
 
-        for key in self.style_list.keys():
-            style = self.style_list[key]
+        for key, style in self.style_list.iteritems():
             font = style.get_font()
             self.f.write('<style:style style:name="')
             self.f.write(key)

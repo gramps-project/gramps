@@ -103,10 +103,9 @@ class TipFromFunction(object):
         o = self._fetch_function()
 
         # check if we have a handler for the object type returned
-        for cls in CLASS_MAP.keys():
+        for cls, handler in CLASS_MAP.iteritems():
             if isinstance(o,cls):
-                return CLASS_MAP[cls](self._db, o)()
-
+                return handler(self._db, o)()
         return "no tip"
 
     __call__ = get_tip

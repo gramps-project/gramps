@@ -540,9 +540,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         else:
             self.sel_class = None
 
-        keys = the_map.keys()
-        keys.sort(by_rule_name)
-        keys.reverse()
+        keys = sorted(the_map, by_rule_name, reverse=True)
         catlist = []
         for class_obj in keys:
             category = class_obj.category

@@ -49,11 +49,10 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
                                                  self.__class__)
 
         stats_list = []
-
-        for name in dbstate.db.genderStats.stats.keys():
+        for name, value in dbstate.db.genderStats.stats.iteritems():
             stats_list.append(
                 (name,)
-                + dbstate.db.genderStats.stats[name]
+                + value
                 + (_GENDER[dbstate.db.genderStats.guess_gender(name)],)
                 )
 
@@ -81,10 +80,10 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
             self.show()
             
         else:
-            print "\t%s\t%s\t%s\t%s\t%s\n" % (
-                'Name','Male','Female','Unknown','Guess')
+            print '\t%s'*5 % ('Name','Male','Female','Unknown','Guess')
+            print
             for entry in stats_list:
-                print "\t%s\t%s\t%s\t%s\t%s" % entry
+                print '\t%s'*5 % entry
 
     def build_menu_names(self, obj):
         return (self.label,None)

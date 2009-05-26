@@ -152,7 +152,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
 
         src2_map = self.s2.get_data_map()
         src1_map = self.s1.get_data_map()
-        for key in src2_map.keys():
+        for key in src2_map:
             if key not in src1_map:
                 src1_map[key] = src2_map[key]
 

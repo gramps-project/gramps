@@ -127,7 +127,7 @@ class PHPGedViewConnector(object):
         result = []
         types = []
         if type == self.TYPE_ALL:
-            for entry in self.type_trans.keys():
+            for entry in self.type_trans:
                 types.append(entry)
         else:
             types.append(type)

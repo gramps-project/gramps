@@ -426,9 +426,9 @@ class StyledTextBuffer(gtk.TextBuffer):
     def _remove_style_from_selection(self, style):
         start, end = self._get_selection()
         tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
-        for tag_name in tags.keys():
+        for tag_name, tag_data in tags.iteritems():
             if tag_name.startswith(str(style)):
-                for start, end in tags[tag_name]:
+                for start, end in tag_data:
                     self.remove_tag_by_name(tag_name,
                                             self.get_iter_at_offset(start),
                                             self.get_iter_at_offset(end+1))

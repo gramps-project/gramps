@@ -951,10 +951,10 @@ class StyleSheetList(object):
         xml_file = open(self.file,"w")
         xml_file.write("<?xml version=\"1.0\"?>\n")
         xml_file.write('<stylelist>\n')
-        for name in self.map.keys():
+        
+        for name, sheet in self.map.iteritems():
             if name == "default":
                 continue
-            sheet = self.map[name]
             xml_file.write('<sheet name="%s">\n' % escxml(name))
             for p_name in sheet.get_paragraph_style_names():
                 para = sheet.get_paragraph_style(p_name)
@@ -1031,17 +1031,13 @@ class StyleSheet(object):
         self.cell_styles = {}
         self.name = ""
         if obj is not None:
-            for style_name in obj.para_styles.keys():
-                style = obj.para_styles[style_name]
+            for style_name, style in obj.para_styles.iteritems():
                 self.para_styles[style_name] = ParagraphStyle(style)
-            for style_name in obj.draw_styles.keys():
-                style = obj.draw_styles[style_name]
+            for style_name, style in obj.draw_styles.iteritems():
                 self.draw_styles[style_name] = GraphicsStyle(style)
-            for style_name in obj.table_styles.keys():
-                style = obj.table_styles[style_name]
+            for style_name, style in obj.table_styles.iteritems():
                 self.table_styles[style_name] = TableStyle(style)
-            for style_name in obj.cell_styles.keys():
-                style = obj.cell_styles[style_name]
+            for style_name, style in obj.cell_styles.iteritems():
                 self.cell_styles[style_name] = TableCellStyle(style)
 
     def set_name(self, name):

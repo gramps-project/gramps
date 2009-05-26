@@ -142,12 +142,11 @@ class EndOfLineReport(Report):
         self.doc.end_paragraph()
         
         self.doc.start_table('EolTable','EOL-Table')
-
-        for generation in self.eol_map.keys():
+        for generation, handles in self.eol_map.iteritems():
             self.write_generation_row(generation)
-            for person_handle in self.eol_map[generation].keys():
+            for person_handle, pedigrees in handles.iteritems():
                 self.write_person_row(person_handle)
-                for pedigree in self.eol_map[generation][person_handle]:
+                for pedigree in pedigrees:
                     self.write_pedigree_row(pedigree)
         self.doc.end_table()
 

@@ -113,8 +113,8 @@ class KinshipReport(Report):
         self.traverse_up(self.person.get_handle(), 1, 0)
                 
         # Write Kin
-        for Ga in self.kinship_map.keys():
-            for Gb in self.kinship_map[Ga]:
+        for Ga, Gbs in self.kinship_map.iteritems():
+            for Gb in Gbs:
                 # To understand these calculations, see: 
                 # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
                 x = min (Ga,Gb)

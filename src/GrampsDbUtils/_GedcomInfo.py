@@ -272,16 +272,13 @@ class GedcomInfoDB(object):
         return self.standard
 
     def get_from_source_tag(self, name):
-        for k in self.map.keys():
-            val = self.map[k]
+        for k, val in self.map.iteritems():
             if val.get_dest() == name:
                 return val
         return self.standard
 
     def get_name_list(self):
-        mylist = self.map.keys()
-        mylist.sort()
-        return ["GEDCOM 5.5 standard"] + mylist
+        return ["GEDCOM 5.5 standard"] + sorted(self.map)
     
 #-------------------------------------------------------------------------
 #

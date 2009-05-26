@@ -371,9 +371,9 @@ class ReferencedProxyDb(ProxyDbBase):
         last_count = 0
         while has_unreferenced_handles:
             current_count = 0
-            for object_type in object_types.keys():
-                unref_list = object_types[object_type]['unref_list']
-                handle_list = object_types[object_type]['handle_list']()
+            for object_type, object_dict in object_types.iteritems():
+                unref_list = object_dict['unref_list']
+                handle_list = object_dict['handle_list']()
                 for handle in handle_list:
                     ref_handles = [i for i in \
                         self.find_backlink_handles(handle)]

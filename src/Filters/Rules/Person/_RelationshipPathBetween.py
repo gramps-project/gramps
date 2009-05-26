@@ -128,6 +128,6 @@ class RelationshipPathBetween(Rule):
             self.map[e] = 1
 
     def get_intersection(self,target, map1, map2):
-        for e in map1.keys():
+        for e in map1:
             if e in map2:
                 target[e] = map2[e]

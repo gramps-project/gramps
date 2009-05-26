@@ -198,20 +198,20 @@ class OptionListCollection(object):
             option_list = self.get_option_list(module_name)
             f.write('<module name=%s>\n' % quoteattr(module_name))
             options = option_list.get_options()
-            for option_name in options.keys():
-                if isinstance(options[option_name], (list, tuple)):
+            for option_name, option_data in options.iteritems():
+                if isinstance(option_data, (list, tuple)):
                     f.write('  <option name=%s value="" length="%d">\n' % (
                                 quoteattr(option_name),
-                                len(options[option_name]) ) )
-                    for list_index in range(len(options[option_name])):
+                                len(option_data) ) )
+                    for list_index, list_data in enumerate(option_data):
                         f.write('    <listitem number="%d" value=%s/>\n' % (
                                 list_index,
-                                quoteattr(unicode(options[option_name][list_index]))) )
+                                quoteattr(unicode(list_data))) )
                     f.write('  </option>\n')
                 else:
                     f.write('  <option name=%s value=%s/>\n' % (
                             quoteattr(option_name),
-                            quoteattr(unicode(options[option_name]))) )
+                            quoteattr(unicode(option_data))) )
 
             self.write_module_common(f, option_list)
 
@@ -334,7 +334,7 @@ class OptionHandler(object):
         # First we set options_dict values based on the saved options
         options = self.saved_option_list.get_options()
         bad_opts = []
-        for option_name in options.keys():
+        for option_name, option_data in options.iteritems():
             if option_name not in self.options_dict:
                 print "Option %s is present in the %s but is not known "\
                       "to the module." % (option_name,
@@ -344,7 +344,7 @@ class OptionHandler(object):
                 continue
             try:
                 converter = Utils.get_type_converter(self.options_dict[option_name])
-                self.options_dict[option_name] = converter(options[option_name])
+                self.options_dict[option_name] = converter(option_data)
             except ValueError:
                 pass
             except TypeError:
@@ -368,8 +368,8 @@ class OptionHandler(object):
         """
 
         # First we save options from options_dict
-        for option_name in self.options_dict.keys():
-            if self.options_dict[option_name] == self.default_options_dict[option_name]:
+        for option_name, option_data in self.options_dict.iteritems():
+            if option_data == self.default_options_dict[option_name]:
                 self.saved_option_list.remove_option(option_name)
             else:
                 self.saved_option_list.set_option(option_name,self.options_dict[option_name])

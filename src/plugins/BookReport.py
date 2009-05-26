@@ -421,8 +421,7 @@ class BookList(object):
         f = open(self.file, "w")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<booklist>\n')
-
-        for name in self.bookmap.keys():
+        for name in self.bookmap:
             book = self.get_book(name)
             dbname = book.get_dbname()
             f.write('<book name="%s" database="%s">\n' % (name, dbname) )
@@ -430,14 +429,13 @@ class BookList(object):
                 f.write('  <item name="%s" trans_name="%s">\n' % 
                             (item.get_name(),item.get_translated_name() ) )
                 options = item.option_class.handler.options_dict
-                for option_name in options.keys():
-                    option_value = options[option_name]
+                for option_name, option_value in options.iteritems():
                     if isinstance(option_value, (list, tuple)):
                         f.write('  <option name="%s" value="" '
                                 'length="%d">\n' % (
                                     escape(option_name),
                                     len(options[option_name]) ) )
-                        for list_index in range(len(options[option_name])):
+                        for list_index in range(len(option_value)):
                             option_type = \
                                 Utils.type_name(option_value[list_index])
                             value = escape(unicode(option_value[list_index]))

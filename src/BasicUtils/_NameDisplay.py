@@ -221,8 +221,7 @@ class NameDisplay(object):
         """
         the_list = []
 
-        keys = self.name_formats.keys()
-        keys.sort(self._sort_name_format)
+        keys = sorted(self.name_formats, self._sort_name_format) 
         
         for num in keys:
             if ((also_default or num) and
@@ -340,12 +339,12 @@ class NameDisplay(object):
         # key-word replacement. Just replace ikeywords with
         # %codes (ie, replace "irstnamefay" with "%f", and
         # "IRSTNAMEFAY" for %F)
+
         if (len(format_str) > 2 and 
-            format_str[0] == '"' and 
-            format_str[-1] == '"'):
+            format_str[0] == format_str[-1] == '"'):
             pass
         else:
-            d_keys = [(code, d[code][2]) for code in d.keys()]
+            d_keys = [(code, _tuple[2]) for code, _tuple in d.iteritems()]
             d_keys.sort(_make_cmp) # reverse sort by ikeyword
             for (code, ikeyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
@@ -358,11 +357,10 @@ class NameDisplay(object):
         # %codes (ie, replace "firstname" with "%f", and
         # "FIRSTNAME" for %F)
         if (len(format_str) > 2 and 
-            format_str[0] == '"' and 
-            format_str[-1] == '"'):
-            format_str = format_str[1:-1]
+            format_str[0] == format_str[-1] == '"'):
+            pass
         else:
-            d_keys = [(code, d[code][1]) for code in d.keys()]
+            d_keys = [(code, _tuple[1]) for code, _tuple in d.iteritems()]
             d_keys.sort(_make_cmp) # reverse sort by keyword
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
@@ -372,7 +370,7 @@ class NameDisplay(object):
                 format_str = format_str.replace(keyword.title(),"%"+ code)
                 format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
         # Get lower and upper versions of codes:
-        codes = d.keys() + [c.upper() for c in d.keys()]
+        codes = d.keys() + [c.upper() for c in d]
         # Next, list out the matching patterns:
         # If it starts with "!" however, treat the punctuation verbatim:
         if len(format_str) > 0 and format_str[0] == "!":

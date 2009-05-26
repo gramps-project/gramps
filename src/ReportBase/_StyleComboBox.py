@@ -59,18 +59,14 @@ class StyleComboBox(gtk.ComboBox):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         self.style_map = style_map
-        keys = style_map.keys()
-        keys.sort()
-        index = 0
         start_index = 0
-        for key in keys:
+        for index, key in enumerate(sorted(style_map)):
             if key == "default":
                 self.store.append(row=[_('default')])
             else:
                 self.store.append(row=[key])
             if key == default:
                 start_index = index
-            index += 1
             
         self.set_active(start_index)
 

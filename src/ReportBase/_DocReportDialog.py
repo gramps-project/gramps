@@ -210,20 +210,17 @@ class DocReportDialog(ReportDialog):
                                yoptions=gtk.SHRINK)
 
         self.template_combo = gtk.combo_box_new_text()
-        tlist = _template_map.keys()
-        tlist.sort()
+        tlist = sorted(_template_map)
 
         template_name = self.options.handler.get_template_name()
 
         self.template_combo.append_text(_default_template)
-        template_index = 1
         active_index = 0
-        for template in tlist:
+        for template_index, template in enumerate(sorted(_template_map)):
             if template != _user_template:
                 self.template_combo.append_text(template)
                 if _template_map[template] == os.path.basename(template_name):
                     active_index = template_index
-                template_index = template_index + 1
         self.template_combo.append_text(_user_template)
 
         self.template_combo.connect('changed',self.html_file_enable)

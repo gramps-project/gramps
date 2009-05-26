@@ -279,12 +279,12 @@ class PrintPreview(object):
         self._drawing_area.queue_draw()
         
         self._zoom_in_button.set_sensitive(self._zoom !=
-                                           max(self.zoom_factors.keys()))
+                                           max(self.zoom_factors))
         self._zoom_out_button.set_sensitive(self._zoom !=
-                                            min(self.zoom_factors.keys()))
+                                            min(self.zoom_factors))
         
     def __zoom_in(self):
-        zoom = [z for z in self.zoom_factors.keys() if z > self._zoom]
+        zoom = [z for z in self.zoom_factors if z > self._zoom]
 
         if zoom:
             return min(zoom)
@@ -292,7 +292,7 @@ class PrintPreview(object):
             return self._zoom
             
     def __zoom_out(self):
-        zoom = [z for z in self.zoom_factors.keys() if z < self._zoom]
+        zoom = [z for z in self.zoom_factors if z < self._zoom]
         
         if zoom:
             return max(zoom)

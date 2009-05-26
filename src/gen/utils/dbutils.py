@@ -252,10 +252,9 @@ def db_copy(from_db,to_db,callback):
 
     # Start batch transaction to use async TXN and other tricks
     trans = to_db.transaction_begin("", batch=True)
-
-    for table_name in tables.keys():
-        cursor_func = tables[table_name]['cursor_func']
-        add_func = tables[table_name]['add_func']
+    for table_name, table_dict in tables.iteritems():
+        cursor_func = table_dict['cursor_func']
+        add_func = table_dict['add_func']
 
         cursor = cursor_func()
         item = cursor.first()

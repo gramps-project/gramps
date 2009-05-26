@@ -236,8 +236,7 @@ class PedigreeGramplet(Gramplet):
         self.process_person(active_person.handle, 1, "f") # father
         self.process_person(active_person.handle, 0, "a") # active #FIXME: should be 1?
         self.process_person(active_person.handle, 1, "m") # mother
-        gens = self._generations.keys()
-        gens.sort()
+        gens = sorted(self._generations)
         self.append_text(_("\nBreakdown by generation:\n"))
         all = [active_person.handle]
         percent_sign = _("percent sign or text string|%")
