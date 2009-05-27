@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-21 08:32+0200\n"
+"POT-Creation-Date: 2009-05-27 13:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Date selection"
 msgstr ""
 
-#: ../src/DbLoader.py:83 ../src/PluginUtils/_Tool.py:108
+#: ../src/DbLoader.py:83 ../src/PluginUtils/_Tool.py:109
 msgid "Undo history warning"
 msgstr ""
 
@@ -259,7 +259,7 @@ msgstr ""
 msgid "_Proceed with import"
 msgstr ""
 
-#: ../src/DbLoader.py:89 ../src/PluginUtils/_Tool.py:115
+#: ../src/DbLoader.py:89 ../src/PluginUtils/_Tool.py:116
 msgid "_Stop"
 msgstr ""
 
@@ -1014,7 +1014,7 @@ msgstr ""
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:171
 #: ../src/plugins/textreport/FamilyGroup.py:316
-#: ../src/ReportBase/_GraphvizReportDialog.py:1037
+#: ../src/ReportBase/_GraphvizReportDialog.py:1039
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -6117,8 +6117,8 @@ msgstr ""
 msgid "Witness comment: %s"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2446
-#: ../src/plugins/import/ImportXml.py:2452
+#: ../src/plugins/import/ImportXml.py:2458
+#: ../src/plugins/import/ImportXml.py:2464
 #: ../src/plugins/import/ImportGrdb.py:2775
 #: ../src/plugins/import/ImportGrdb.py:2788
 #: ../src/plugins/import/ImportProGen.py:71
@@ -6127,7 +6127,7 @@ msgstr ""
 msgid "%s could not be opened"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2464
+#: ../src/plugins/import/ImportXml.py:2476
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
@@ -6135,12 +6135,47 @@ msgid ""
 "upgrade to the latest version of GRAMPS and try again."
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2484 ../data/gramps.keys.in.h:2
+#: ../src/plugins/import/ImportXml.py:2488
+#, python-format
+msgid ""
+"The .gramps file you are importing was made by version %(oldgramps)s of "
+"GRAMPS, while you are running a more recent version %(newgramps)s.\n"
+"\n"
+"The file will not be imported. Please use an older version of GRAMPS that "
+"supports version %(xmlversion)s of the xml.\n"
+"See\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" for more info."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2503
+msgid "The file will not be imported"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2506
+#, python-format
+msgid ""
+"The .gramps file you are importing was made by version %(oldgramps)s of "
+"GRAMPS, while you are running a much more recent version %(newgramps)s.\n"
+"\n"
+"Ensure after import everything is imported correctly. In the event of "
+"problems, please submit a bug and use an older version of GRAMPS in the "
+"meantime to import this file, which is version %(xmlversion)s of the xml.\n"
+"See\n"
+"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"for more info."
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2523
+msgid "Old xml file"
+msgstr ""
+
+#: ../src/plugins/import/ImportXml.py:2533 ../data/gramps.keys.in.h:2
 #: ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
 msgstr ""
 
-#: ../src/plugins/import/ImportXml.py:2485
+#: ../src/plugins/import/ImportXml.py:2534
 msgid ""
 "The GRAMPS XML database is a text version of a family tree. It is read-write "
 "compatible with the present GRAMPS database format."
@@ -6210,7 +6245,7 @@ msgstr ""
 #: ../src/plugins/textreport/SimpleBookTitle.py:118
 #: ../src/plugins/webreport/NarrativeWeb.py:3328
 #: ../src/plugins/webreport/WebCal.py:1110
-#: ../src/ReportBase/_ReportDialog.py:342
+#: ../src/ReportBase/_ReportDialog.py:344
 msgid "Report Options"
 msgstr ""
 
@@ -7221,8 +7256,8 @@ msgid "Timeline"
 msgstr ""
 
 #: ../src/plugins/drawreport/TimeLine.py:108
-#: ../src/ReportBase/_ReportDialog.py:638
-#: ../src/ReportBase/_ReportDialog.py:643
+#: ../src/ReportBase/_ReportDialog.py:640
+#: ../src/ReportBase/_ReportDialog.py:645
 msgid "Report could not be created"
 msgstr ""
 
@@ -11802,12 +11837,12 @@ msgstr ""
 msgid "Relationship to %(person_name)s"
 msgstr ""
 
-#: ../src/plugins/tool/RelCalc.py:146 ../src/PluginUtils/_Tool.py:136
-#: ../src/ReportBase/_ReportDialog.py:596
+#: ../src/plugins/tool/RelCalc.py:146 ../src/PluginUtils/_Tool.py:137
+#: ../src/ReportBase/_ReportDialog.py:598
 msgid "Active person has not been set"
 msgstr ""
 
-#: ../src/plugins/tool/RelCalc.py:147 ../src/PluginUtils/_Tool.py:137
+#: ../src/plugins/tool/RelCalc.py:147 ../src/PluginUtils/_Tool.py:138
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 
@@ -13119,12 +13154,12 @@ msgid "Colour"
 msgstr ""
 
 #: ../src/PluginUtils/_GuiOptions.py:1244
-#: ../src/ReportBase/_ReportDialog.py:446
+#: ../src/ReportBase/_ReportDialog.py:448
 msgid "Save As"
 msgstr ""
 
 #: ../src/PluginUtils/_GuiOptions.py:1309
-#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
+#: ../src/ReportBase/_ReportDialog.py:305 ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr ""
 
@@ -13220,7 +13255,7 @@ msgstr ""
 msgid "Utilities"
 msgstr ""
 
-#: ../src/PluginUtils/_Tool.py:109
+#: ../src/PluginUtils/_Tool.py:110
 msgid ""
 "Proceeding with this tool will erase the undo history for this session. In "
 "particular, you will not be able to revert the changes made by this tool or "
@@ -13230,7 +13265,7 @@ msgid ""
 "backup your database."
 msgstr ""
 
-#: ../src/PluginUtils/_Tool.py:115
+#: ../src/PluginUtils/_Tool.py:116
 msgid "_Proceed with the tool"
 msgstr ""
 
@@ -13304,7 +13339,7 @@ msgid "Graphics"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:1102
+#: ../src/ReportBase/_GraphvizReportDialog.py:1104
 msgid "Paper Options"
 msgstr ""
 
@@ -13313,7 +13348,7 @@ msgid "HTML Options"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:155
-#: ../src/ReportBase/_GraphvizReportDialog.py:1080
+#: ../src/ReportBase/_GraphvizReportDialog.py:1082
 msgid "Output Format"
 msgstr ""
 
@@ -13467,112 +13502,112 @@ msgid "Graphviz File"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:936
+#: ../src/ReportBase/_GraphvizReportDialog.py:938
 msgid "GraphViz Layout"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:938
+#: ../src/ReportBase/_GraphvizReportDialog.py:940
 #: ../src/widgets/styledtexteditor.py:364
 msgid "Font family"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:943
+#: ../src/ReportBase/_GraphvizReportDialog.py:945
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:949
+#: ../src/ReportBase/_GraphvizReportDialog.py:951
 #: ../src/widgets/styledtexteditor.py:376
 msgid "Font size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:950
+#: ../src/ReportBase/_GraphvizReportDialog.py:952
 msgid "The font size, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:953
+#: ../src/ReportBase/_GraphvizReportDialog.py:955
 msgid "Graph Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:958
+#: ../src/ReportBase/_GraphvizReportDialog.py:960
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:962
+#: ../src/ReportBase/_GraphvizReportDialog.py:964
 msgid "Number of Horizontal Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:963
+#: ../src/ReportBase/_GraphvizReportDialog.py:965
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally. Only valid for dot and pdf via Ghostscript."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:970
+#: ../src/ReportBase/_GraphvizReportDialog.py:972
 msgid "Number of Vertical Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:971
+#: ../src/ReportBase/_GraphvizReportDialog.py:973
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically. Only valid for dot and pdf via Ghostscript."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:978
+#: ../src/ReportBase/_GraphvizReportDialog.py:980
 msgid "Paging Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:983
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1001
+#: ../src/ReportBase/_GraphvizReportDialog.py:1003
 msgid "GraphViz Options"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1004
+#: ../src/ReportBase/_GraphvizReportDialog.py:1006
 msgid "Aspect ratio"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1009
+#: ../src/ReportBase/_GraphvizReportDialog.py:1011
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1013
+#: ../src/ReportBase/_GraphvizReportDialog.py:1015
 msgid "DPI"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1014
+#: ../src/ReportBase/_GraphvizReportDialog.py:1016
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
 "use 72 DPI."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1020
+#: ../src/ReportBase/_GraphvizReportDialog.py:1022
 msgid "Node spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1021
+#: ../src/ReportBase/_GraphvizReportDialog.py:1023
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1028
+#: ../src/ReportBase/_GraphvizReportDialog.py:1030
 msgid "Rank spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1029
+#: ../src/ReportBase/_GraphvizReportDialog.py:1031
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -13580,35 +13615,35 @@ msgid ""
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1040
+#: ../src/ReportBase/_GraphvizReportDialog.py:1042
 msgid "Note to add to the graph"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1042
+#: ../src/ReportBase/_GraphvizReportDialog.py:1044
 msgid "This text will be added to the graph."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1045
+#: ../src/ReportBase/_GraphvizReportDialog.py:1047
 msgid "Note location"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1048
+#: ../src/ReportBase/_GraphvizReportDialog.py:1050
 msgid "Whether note will appear on top or bottom of the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1052
+#: ../src/ReportBase/_GraphvizReportDialog.py:1054
 msgid "Note size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1053
+#: ../src/ReportBase/_GraphvizReportDialog.py:1055
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1087
+#: ../src/ReportBase/_GraphvizReportDialog.py:1089
 msgid "Open with application"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1126
+#: ../src/ReportBase/_GraphvizReportDialog.py:1128
 msgid "Open with default application"
 msgstr ""
 
@@ -13629,32 +13664,32 @@ msgstr ""
 msgid "inch|in."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:111
+#: ../src/ReportBase/_ReportDialog.py:113
 msgid "Configuration"
 msgstr ""
 
 #. Styles Frame
-#: ../src/ReportBase/_ReportDialog.py:299
+#: ../src/ReportBase/_ReportDialog.py:301
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr ""
 
 #. need any labels at top:
-#: ../src/ReportBase/_ReportDialog.py:451
+#: ../src/ReportBase/_ReportDialog.py:453
 msgid "Document Options"
 msgstr ""
 
 #. Save Frame
-#: ../src/ReportBase/_ReportDialog.py:466
+#: ../src/ReportBase/_ReportDialog.py:468
 msgid "Filename"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:498
-#: ../src/ReportBase/_ReportDialog.py:523
+#: ../src/ReportBase/_ReportDialog.py:500
+#: ../src/ReportBase/_ReportDialog.py:525
 msgid "Permission problem"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:499
+#: ../src/ReportBase/_ReportDialog.py:501
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -13662,24 +13697,24 @@ msgid ""
 "Please select another directory or correct the permissions."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:508
+#: ../src/ReportBase/_ReportDialog.py:510
 msgid "File already exists"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:509
+#: ../src/ReportBase/_ReportDialog.py:511
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:511
+#: ../src/ReportBase/_ReportDialog.py:513
 msgid "_Overwrite"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:512
+#: ../src/ReportBase/_ReportDialog.py:514
 msgid "_Change filename"
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:524
+#: ../src/ReportBase/_ReportDialog.py:526
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -13687,7 +13722,7 @@ msgid ""
 "Please select another path or correct the permissions."
 msgstr ""
 
-#: ../src/ReportBase/_ReportDialog.py:597
+#: ../src/ReportBase/_ReportDialog.py:599
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 
