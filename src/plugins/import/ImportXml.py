@@ -37,7 +37,7 @@ import re
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 import Mime
 import gen.lib
 import Utils
@@ -2402,7 +2402,16 @@ class VersionParser(object):
         " Handle XML elements "
         if tag == "database" and 'xmlns' in attrs:
             xmlns = attrs.get('xmlns')
-            self.__xml_version = xmlns.split('/')[4]
+            try:
+                self.__xml_version = xmlns.split('/')[4]
+            except:
+                #leave version at 1.0.0
+                pass
+        elif tag == "database" and not 'xmlns' in attrs:
+            #1.0 or before xml, no dtd schema yet on 
+            # http://www.gramps-project.org/xml/
+            self.__xml_version = '0.0.0'
+                
         elif tag == "created" and 'version' in attrs:
             self.__gramps_version = attrs.get('version')
 
@@ -2472,7 +2481,44 @@ def version_is_valid(filename, cli):
         else:
             ErrorDialog(msg)
             return False
-            
+    if parser.get_xmlns_version() < '1.0.0':
+        msg = _("The .gramps file you are importing was made by version "
+                "%(oldgramps)s of GRAMPS, while you are running a more "
+                "recent version %(newgramps)s.\n\n"
+                "The file will not be imported. Please use an older version of"
+                " GRAMPS that supports version %(xmlversion)s of the xml.\nSee"
+                "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n "
+                "for more info."
+                ) % {'oldgramps': parser.get_gramps_version(), 
+                     'newgramps': const.VERSION,
+                     'xmlversion': parser.get_xmlns_version(),
+                    }
+        if cli:
+            print msg
+            return False
+        else:
+            ErrorDialog(_('The file will not be imported'), msg)
+            return False
+    elif parser.get_xmlns_version() < '1.1.0':
+        msg = _("The .gramps file you are importing was made by version "
+                "%(oldgramps)s of GRAMPS, while you are running a much "
+                "more recent version %(newgramps)s.\n\n"
+                "Ensure after import everything is imported correctly. In the "
+                "event of problems, please submit a bug and use an older "
+                "version of GRAMPS in the meantime to import this file, which "
+                "is version %(xmlversion)s of the xml.\nSee"
+                "\n  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+                "for more info."
+                ) % {'oldgramps': parser.get_gramps_version(), 
+                     'newgramps': const.VERSION,
+                     'xmlversion': parser.get_xmlns_version(),
+                    }
+        if cli:
+            print msg
+            return True
+        else:
+            WarningDialog(_('Old xml file'), msg)
+            return True
     return True
 
 #------------------------------------------------------------------------
