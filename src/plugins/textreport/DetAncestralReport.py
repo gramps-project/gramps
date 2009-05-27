@@ -180,9 +180,9 @@ class DetAncestorReport(Report):
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
-                        if mother_handle is None                         or    \
-                           mother_handle not in self.map.values()        or    \
-                           person.get_gender() == gen.lib.Person.FEMALE:
+                        if (mother_handle is None                      or
+                            mother_handle not in self.map.itervalues()  or
+                            person.get_gender() == gen.lib.Person.FEMALE):
                             # The second test above also covers the 1. person's
                             # mate, which is not an ancestor and as such is not
                             # included in the self.map dictionary

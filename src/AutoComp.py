@@ -202,7 +202,7 @@ class StandardCustomSelector(object):
         else:
             int_val = self.custom_key
             str_val = self.selector.child.get_text().strip()
-        if str_val in self.mapping.values():
+        if str_val in self.mapping.itervalues():
             for key in self.mapping:
                 if str_val == self.mapping[key]:
                     int_val = key

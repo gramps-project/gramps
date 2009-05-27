@@ -132,7 +132,8 @@ class GenChart(object):
         new_y = 0
         for key, i in self.array.iteritems():
             old_y = key
-            if self.not_blank(i.values()):
+            print __name__, i
+            if self.not_blank(i.itervalues()):
                 self.compress_map[old_y] = new_y
                 new_array[new_y] = i
                 x = 0

@@ -200,8 +200,9 @@ class AgeStatsGramplet(Gramplet):
     
     def compute_stats(self, hash):
         """ Returns the statistics of a dictionary of data """
+        print "compute_stats", hash
         hashkeys = sorted(hash)
-        count = sum(hash.values())
+        count = sum(hash.itervalues())
         sumval = sum([k * hash[k] for k in hash])
         minval = min(hashkeys)
         maxval = max(hashkeys)
@@ -239,6 +240,7 @@ class AgeStatsGramplet(Gramplet):
         where the key is the age, and the value stored is the count.
         """
         # first, binify:
+        print "create_bargraph", hash
         bin = [0] * (max_val/bin_size)
         for value, hash_value in hash.iteritems():
             bin[value/bin_size] += hash_value
@@ -246,22 +248,36 @@ class AgeStatsGramplet(Gramplet):
         max_bin = float(max(bin))
         if max_bin != 0:
             i = 0
-            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
-            self.append_text(column.center(8) + self.format(title, graph_width-4, align="center") + "  %  " + "\n")
-            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
+            self.append_text("--------" + 
+                self.format("", graph_width-4, fill = "-", borders="++") +
+                "-----\n")
+            self.append_text(column.center(8) + 
+                self.format(title, graph_width-4, align="center") + 
+                "  %  " + "\n")
+            self.append_text("--------" + 
+                self.format("", graph_width-4, fill = "-", borders="++") + 
+                "-----\n")
             for bin in bin:
                 self.append_text((" %3d-%3d" % (i * 5, (i+1)* 5,)))
                 selected = self.make_handles_set(i * 5, (i+1) *5, handles)
-                self.link(self.format("X" * int(bin/max_bin * (graph_width-4)), graph_width-4),
+                self.link(self.format("X" * int(bin/max_bin * (graph_width-4)), 
+                            graph_width-4),
                           'PersonList', 
                           selected,
-                          tooltip=_("Double-click to see %d people") % len(selected))
-                procent = float(len(selected))/(float(sum(hash.values())))*100
+                          tooltip=_("Double-click to see %d people") % 
+                            len(selected))
+                procent = (float(len(selected)) / 
+                                (float(sum(hash.itervalues())))*100)
                 self.append_text(locale.format("%#5.2f", procent))
                 self.append_text("\n")
                 i += 1
-            self.append_text("--------" + self.format("", graph_width-4, fill = "-", borders="++") + "-----\n")
-            self.append_text("    %   " + self.ticks(graph_width-4, start = 0, stop = int(max_bin/(float(sum(hash.values())))*100)) + "\n\n")
+            self.append_text("--------" + 
+                self.format("", graph_width-4, fill = "-", borders="++") + 
+                "-----\n")
+            self.append_text("    %   " + 
+                self.ticks(graph_width-4, start = 0, 
+                    stop = int(max_bin/(float(sum(hash.itervalues())))*100)) +
+                "\n\n")
             self.append_text(self.compute_stats(hash))
             self.append_text("\n")
     

@@ -107,19 +107,19 @@ def set_font_families():
     families = pangocairo.cairo_font_map_get_default().list_families()
     family_names = [family.get_name() for family in families]
     
-    fam = [f for f in _TTF_FREEFONT.values() if f in family_names]
+    fam = [f for f in _TTF_FREEFONT.itervalues() if f in family_names]
     if len(fam) == len(_TTF_FREEFONT):
         font_families = _TTF_FREEFONT
         log.debug('Using FreeFonts: %s' % font_families)
         return
     
-    fam = [f for f in _MS_TTFONT.values() if f in family_names]
+    fam = [f for f in _MS_TTFONT.itervalues() if f in family_names]
     if len(fam) == len(_MS_TTFONT):
         font_families = _MS_TTFONT
         log.debug('Using MS TrueType fonts: %s' % font_families)
         return
     
-    fam = [f for f in _GNOME_FONT.values() if f in family_names]
+    fam = [f for f in _GNOME_FONT.itervalues() if f in family_names]
     if len(fam) == len(_GNOME_FONT):
         font_families = _GNOME_FONT
         log.debug('Using Gnome fonts: %s' % font_families)

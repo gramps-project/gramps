@@ -1685,7 +1685,7 @@ class TextDoc(object):
                     else:
                         tagspos[start] = [(tag, FIRST)]
                     if end in tagspos:
-                        tagspos[end] = [(tag, LAST)] + tagspos[end]
+                        tagspos[end] += [(tag, LAST)]
                     else:
                         tagspos[end] = [(tag, LAST)]
         start = 0
@@ -1705,10 +1705,8 @@ class TextDoc(object):
                     while splitpos <> -1:
                         otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
                         #close open tags
-                        opentags.reverse()
-                        for opentag in opentags:
+                        for opentag in reversed(opentags):
                             otext += opentag[1]
-                        opentags.reverse()
                         #add split text
                         otext += self.ESCAPE_FUNC()(split)
                         #open the tags again
@@ -1722,10 +1720,8 @@ class TextDoc(object):
             #write out tags
             for tag in tagspos[pos]:
                 #close open tags starting from last open
-                opentags.reverse()
-                for opentag in opentags:
+                for opentag in reversed(opentags):
                     otext += opentag[1]
-                opentags.reverse()
                 #if start, add to opentag in beginning as first to open
                 if tag[1] == FIRST:
                     opentags = [tag[0]] + opentags
@@ -1744,8 +1740,7 @@ class TextDoc(object):
         if opentags:
             print 'WARNING: TextDoc : More style tags in text than length '\
                     'of text allows.\n', opentags
-            opentags.reverse()
-            for opentag in opentags:
+            for opentag in reversed(opentags):
                 otext += opentag[1]
         
         return otext

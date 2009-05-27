@@ -114,8 +114,7 @@ class SurnameCloudGramplet(Gramplet):
         totals = {}
         for (count, givensubname) in cloud_names: # givensubname_sort:
             totals[count] = totals.get(count, 0) + 1
-        sums = sorted(totals)
-        sums.reverse()
+        sums = sorted(totals, reverse=True)
         total = 0
         include_greater_than = 0
         for s in sums:

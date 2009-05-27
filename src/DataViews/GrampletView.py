@@ -1077,7 +1077,8 @@ class MyScrolledWindow(gtk.ScrolledWindow):
         # Hack to get around show_all that shows hidden items
         # do once, the first time showing
         if self.viewpage:
-            gramplets = [g for g in self.viewpage.gramplet_map.values() if g is not None]
+            gramplets = (g for g in self.viewpage.gramplet_map.itervalues() 
+                            if g is not None)
             self.viewpage = None
             for gramplet in gramplets:
                 gramplet.gvoptions.hide()
@@ -1171,7 +1172,8 @@ class GrampletView(PageView.PersonNavView):
         """
         Detach all of the mainframe gramplets from the columns.
         """
-        gramplets = [g for g in self.gramplet_map.values() if g is not None]
+        gramplets = (g for g in self.gramplet_map.itervalues() 
+                        if g is not None)
         for gramplet in gramplets:
             if (gramplet.state == "detached" or gramplet.state == "closed"):
                 continue
@@ -1183,12 +1185,13 @@ class GrampletView(PageView.PersonNavView):
         """
         Place the gramplet mainframes in the columns.
         """
-        gramplets = [g for g in self.gramplet_map.values() if g is not None]
+        gramplets = [g for g in self.gramplet_map.itervalues() 
+                        if g is not None]
         # put the gramplets where they go:
         # sort by row
-        gramplets.sort(lambda a, b: cmp(a.row, b.row))
-        cnt = 0
-        for gramplet in gramplets:
+        gramplets.sort(key=lambda x: x.row)
+
+        for cnt, gramplet in enumerate(gramplets):
             # see if the user wants this in a particular location:
             # and if there are that many columns
             if gramplet.column >= 0 and gramplet.column < self.column_count:
@@ -1213,7 +1216,6 @@ class GrampletView(PageView.PersonNavView):
                 gramplet.detach() 
             elif gramplet.state == "closed":
                 gramplet.close() 
-            cnt += 1
 
     def load_gramplets(self):
         self.column_count = 2 # default for new user
@@ -1609,7 +1611,8 @@ class GrampletView(PageView.PersonNavView):
         return False
 
     def on_delete(self):
-        gramplets = [g for g in self.gramplet_map.values() if g is not None]
+        gramplets = (g for g in self.gramplet_map.itervalues() 
+                        if g is not None)
         for gramplet in gramplets:
             # this is the only place where the gui runs user code directly
             if gramplet.pui:

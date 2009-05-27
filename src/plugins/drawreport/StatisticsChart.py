@@ -534,19 +534,15 @@ class StatisticsChart(Report):
         """creates & stores a sorted index for the items"""
 
         # sort by item keys
-        index = data.keys()
-        index.sort()
-        if reverse:
-            index.reverse()
+        index = sorted(data, reverse=True if reverse else False)
 
         if sort == _options.SORT_VALUE:
             # set for the sorting function
             self.lookup_items = data
         
             # then sort by value
-            index.sort(self.lookup_compare)
-            if reverse:
-                index.reverse()
+            index.sort(self.lookup_compare, 
+                reverse=True if reverse else False)
 
         return index
 
