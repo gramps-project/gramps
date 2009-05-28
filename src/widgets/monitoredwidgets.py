@@ -349,7 +349,7 @@ class MonitoredDataType(object):
             
         map = get_val().get_map().copy()
         if ignore_values :
-            for key in map:
+            for key in map.keys():
                 try :
                     i = ignore_values.index(key)
                 except ValueError:
