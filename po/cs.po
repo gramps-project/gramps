@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-05-27 13:00+0200\n"
-"PO-Revision-Date: 2009-05-28 16:50+0100\n"
+"PO-Revision-Date: 2009-05-28 23:56+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4564,7 +4564,7 @@ msgstr "Vztah: %s"
 #: ../src/DataViews/RelationView.py:1230
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
-msgstr "%(event_type)s: %(date)s, v(na) %(place)s"
+msgstr "%(event_type)s: %(date)s, %(place)s"
 
 #: ../src/DataViews/RelationView.py:1234
 #, python-format
@@ -6812,27 +6812,27 @@ msgstr "Nejstarší žijící osoba"
 
 #: ../src/plugins/Records.py:538
 msgid "Person died at youngest age"
-msgstr ""
+msgstr "Nejmladší zesnulá osoba"
 
 #: ../src/plugins/Records.py:539
 msgid "Person died at oldest age"
-msgstr ""
+msgstr "Nejstarší zesnulá osoba"
 
 #: ../src/plugins/Records.py:540
 msgid "Person married at youngest age"
-msgstr ""
+msgstr "Nejmladší ženich/nevěsta"
 
 #: ../src/plugins/Records.py:541
 msgid "Person married at oldest age"
-msgstr ""
+msgstr "Nejstarší ženich/nevěsta"
 
 #: ../src/plugins/Records.py:542
 msgid "Person divorced at youngest age"
-msgstr ""
+msgstr "Nejmladší rozvedená osoba"
 
 #: ../src/plugins/Records.py:543
 msgid "Person divorced at oldest age"
-msgstr ""
+msgstr "Nejstarší rozvedená osoba"
 
 #: ../src/plugins/Records.py:544
 msgid "Youngest father"
@@ -6856,11 +6856,11 @@ msgstr "Dvojice s nejvíce dětmi"
 
 #: ../src/plugins/Records.py:549
 msgid "Living couple married most recently"
-msgstr ""
+msgstr "Žijící dvojice v nejmladším manželství"
 
 #: ../src/plugins/Records.py:550
 msgid "Living couple married most long ago"
-msgstr ""
+msgstr "Žijící dvojice v nejstarším manželství"
 
 #: ../src/plugins/Records.py:551
 msgid "Shortest past marriage"
@@ -10095,9 +10095,9 @@ msgstr "Osoby s příjmením '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] "Existuje %d osoba odpovídajícího jména.\n"
-msgstr[1] "Existuje %d osoby odpovídajícího jména.\n"
-msgstr[2] "Existuje %d osob odpovídajícího jména.\n"
+msgstr[0] "Existuje %d osoba tohoto jména.\n"
+msgstr[1] "Existuje %d osoby tohoto jména.\n"
+msgstr[2] "Existuje %d osob tohoto jména.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
@@ -12215,7 +12215,7 @@ msgstr "Bez vztahu"
 
 #: ../src/plugins/tool/NotRelated.py:446
 msgid "Find people who are not in any way related to the selected person"
-msgstr "Najít osoby, které nemajá žádný vztah k vybrané osobě"
+msgstr "Najde osoby, které nemají žádný vztah k vybrané osobě"
 
 #: ../src/plugins/tool/OwnerEditor.py:62
 #, fuzzy
@@ -12233,15 +12233,15 @@ msgstr "Hlavní okno"
 
 #: ../src/plugins/tool/OwnerEditor.py:167
 msgid "Edit database owner information"
-msgstr "Změnit informace o vlastníku databáze"
+msgstr "Úprava informací o vlastníku databáze"
 
 #: ../src/plugins/tool/OwnerEditor.py:202
 msgid "Edit Database Owner Information"
-msgstr "Změnit informace o vlastníku databáze"
+msgstr "Úprava informací o vlastníku databáze"
 
 #: ../src/plugins/tool/OwnerEditor.py:206
 msgid "Allow editing database owner information."
-msgstr "Umožnit modifikaci informací o vlastníku databáze."
+msgstr "Umožní modifikaci informací o vlastníku databáze."
 
 #: ../src/plugins/tool/PatchNames.py:64
 #, fuzzy
@@ -12379,7 +12379,7 @@ msgstr "Kalkulace vztahu mezi dvěma lidmi"
 
 #: ../src/plugins/tool/RemoveUnused.py:78
 msgid "Unused Objects"
-msgstr "Nepoužité objekty"
+msgstr "Nepoužívané objekty"
 
 #. Add mark column
 #. Add ignore column
@@ -12390,11 +12390,11 @@ msgstr "Značka"
 
 #: ../src/plugins/tool/RemoveUnused.py:316
 msgid "Remove unused objects"
-msgstr "Odstranit nepoužité objekty"
+msgstr "Odstraní nepoužívané objekty"
 
 #: ../src/plugins/tool/RemoveUnused.py:496
 msgid "Remove Unused Objects"
-msgstr "Odstranit nepoužívané objekty"
+msgstr "Odstranění nepoužívaných objektů"
 
 #: ../src/plugins/tool/RemoveUnused.py:500
 msgid "Removes unused objects from the database"
@@ -12509,7 +12509,7 @@ msgstr "Vytvoří kódy SoundEx"
 
 #: ../src/plugins/tool/SoundGen.py:159
 msgid "Generates SoundEx codes for names"
-msgstr "Vytvořit kódy SoundEx ze jmen"
+msgstr "Vytvoří kódy SoundEx ze jmen"
 
 #: ../src/plugins/tool/Verify.py:71
 #, fuzzy
@@ -14238,7 +14238,7 @@ msgstr "%(female_name)s se narodila %(birth_date)s v %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:72
 #, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
-msgstr "Narodil(a) se %(birth_date)s v(na) %(birth_place)s."
+msgstr "Narodil(a) se %(birth_date)s  %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:77
 #, python-format
