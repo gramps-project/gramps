@@ -350,11 +350,7 @@ class MonitoredDataType(object):
         map = get_val().get_map().copy()
         if ignore_values :
             for key in map.keys():
-                try :
-                    i = ignore_values.index(key)
-                except ValueError:
-                    i = None
-                if (i is not None) and (not ignore_values[i] == default) :
+                if key in ignore_values and key not in (None, default):
                     del map[key]
 
         self.sel = AutoComp.StandardCustomSelector(
