@@ -270,14 +270,14 @@ class GrampsDbBase(Callback):
 
     def set_prefixes(self, person, media, family, source, place, event,
                      repository, note):
-        self.person_prefix = person
-        self.mediaobject_prefix = media
-        self.family_prefix = family
-        self.source_prefix = source
-        self.place_prefix = place
-        self.event_prefix = event
-        self.repository_prefix = repository
-        self.note_prefix = note
+        self.person_prefix = self._validated_id_prefix(person, 'I')
+        self.mediaobject_prefix = self._validated_id_prefix(media, 'M')
+        self.family_prefix = self._validated_id_prefix(family, 'F')
+        self.source_prefix = self._validated_id_prefix(source, 'S')
+        self.place_prefix = self._validated_id_prefix(place, 'P')
+        self.event_prefix = self._validated_id_prefix(event, 'E')
+        self.repository_prefix = self._validated_id_prefix(repository, 'R')
+        self.note_prefix = self._validated_id_prefix(note, 'N')
 
     def rebuild_secondary(self, callback):
         pass
@@ -1045,7 +1045,7 @@ class GrampsDbBase(Callback):
         Find a Person in the database from the passed GRAMPS ID.
         
         If no such Person exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1054,7 +1054,7 @@ class GrampsDbBase(Callback):
         Find a Family in the database from the passed GRAMPS ID.
         
         If no such Family exists, None is returned.
-        Need to be overridden by the derrived class.
+        Need to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1063,7 +1063,7 @@ class GrampsDbBase(Callback):
         Find an Event in the database from the passed GRAMPS ID.
         
         If no such Event exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1072,7 +1072,7 @@ class GrampsDbBase(Callback):
         Find a Place in the database from the passed gramps' ID.
         
         If no such Place exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1081,7 +1081,7 @@ class GrampsDbBase(Callback):
         Find a Source in the database from the passed gramps' ID.
         
         If no such Source exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1090,7 +1090,7 @@ class GrampsDbBase(Callback):
         Find a MediaObject in the database from the passed gramps' ID.
 
         If no such MediaObject exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1099,7 +1099,7 @@ class GrampsDbBase(Callback):
         Find a Repository in the database from the passed gramps' ID.
 
         If no such Repository exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived class.
         """
         raise NotImplementedError
 
@@ -1108,7 +1108,7 @@ class GrampsDbBase(Callback):
         Find a Note in the database from the passed gramps' ID.
 
         If no such Note exists, None is returned.
-        Needs to be overridden by the derrived class.
+        Needs to be overridden by the derived classderri.
         """
         raise NotImplementedError
 
@@ -1496,19 +1496,15 @@ class GrampsDbBase(Callback):
         return person
 
     def _validated_id_prefix(self, val, default):
-        if val:
+        if isinstance(val, basestring) and val:
             try:
-                junk = val % 1
-                prefix_var = val    # use the prefix as is because it works fine
-            except:
-                try:
-                    val = val + "%d"
-                    junk = val % 1
-                    prefix_var = val    # format string was missing
-                except:
-                    prefix_var = default+"%04d" # use default
+                str_ = val % 1
+            except TypeError:           # missing conversion specifier
+                prefix_var = val + "%d"
+            else:
+                prefix_var = val        # OK as given
         else:
-            prefix_var = default+"%04d"
+            prefix_var = default+"%04d" # not a string or empty string
         return prefix_var
     
     def set_person_id_prefix(self, val):
