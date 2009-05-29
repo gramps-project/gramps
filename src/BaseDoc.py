@@ -1405,41 +1405,13 @@ class BaseDoc(object):
 # TextDoc
 #
 #------------------------------------------------------------------------
-def noescape(text):
-    return text
-    
+   
 class TextDoc(object):
     """
     Abstract Interface for text document generators. Output formats for
     text reports must implment this interface to be used by the report 
     system.
     """
-    BOLD = 0
-    ITALIC = 1
-    UNDERLINE = 2
-    FONTFACE = 3
-    FONTSIZE = 4
-    FONTCOLOR = 5
-    HIGHLIGHT = 6
-    SUPERSCRIPT = 7
-    
-    SUPPORTED_MARKUP = []
-
-    ESCAPE_FUNC = lambda x: noescape
-    #Map between styletypes and internally used values. This map is needed
-    # to make TextDoc officially independant of gen.lib.styledtexttag
-    STYLETYPE_MAP = {
-        }
-    CLASSMAP = None
-    
-    #STYLETAGTABLE to store markup for write_markup associated with style tags
-    STYLETAG_MARKUP = {
-        BOLD        : ("", ""),
-        ITALIC      : ("", ""),
-        UNDERLINE   : ("", ""),
-        SUPERSCRIPT : ("", ""),
-        }
-
     def page_break(self):
         "Forces a page break, creating a new page"
         raise NotImplementedError
@@ -1592,159 +1564,6 @@ class TextDoc(object):
         @param h_cm: height in centimeters
         """
         raise NotImplementedError
-    
-    def find_tag_by_stag(self, s_tag):
-        """
-        @param s_tag: object: assumed styledtexttag
-        @param s_tagvalue: None/int/str: value associated with the tag
-        
-        A styled tag is type with a value. 
-        Every styled tag must be converted to the tags used in the corresponding
-            markup for the backend, eg <b>text</b> for bold in html.
-        These markups are stored in STYLETAG_MARKUP. They are tuples for begin
-            and end tag
-        If a markup is not present yet, it is created, using the 
-            _create_xmltag method you can overwrite
-        """
-        type = s_tag.name
-        
-        if not self.STYLETYPE_MAP or \
-        self.CLASSMAP <> type.__class__.__name__ :
-            self.CLASSMAP == type.__class__.__name__
-            self.STYLETYPE_MAP[type.__class__.BOLD]        = self.BOLD
-            self.STYLETYPE_MAP[type.ITALIC]      = self.ITALIC
-            self.STYLETYPE_MAP[type.UNDERLINE]   = self.UNDERLINE
-            self.STYLETYPE_MAP[type.FONTFACE]    = self.FONTFACE
-            self.STYLETYPE_MAP[type.FONTSIZE]    = self.FONTSIZE
-            self.STYLETYPE_MAP[type.FONTCOLOR]   = self.FONTCOLOR
-            self.STYLETYPE_MAP[type.HIGHLIGHT]   = self.HIGHLIGHT
-            self.STYLETYPE_MAP[type.SUPERSCRIPT] = self.SUPERSCRIPT
-
-        typeval = int(s_tag.name)
-        s_tagvalue = s_tag.value
-        tag_name = None
-        if type.STYLE_TYPE[typeval] == bool:
-            return self.STYLETAG_MARKUP[self.STYLETYPE_MAP[typeval]]
-        elif type.STYLE_TYPE[typeval] == str:
-            tag_name = "%d %s" % (typeval, s_tagvalue)
-        elif type.STYLE_TYPE[typeval] == int:
-            tag_name = "%d %d" % (typeval, s_tagvalue)
-        if not tag_name:
-            return None
-        
-        tags = self.STYLETAG_MARKUP.get(tag_name)
-        if tags is not None:
-            return tags
-        #no tag known yet, create the markup, add to lookup, and return
-        tags = self._create_xmltag(self.STYLETYPE_MAP[typeval], s_tagvalue)
-        self.STYLETAG_MARKUP[tag_name] = tags
-        return tags
-
-    def _create_xmltag(self, type, value):
-        """
-        Create the xmltags for the backend.
-        Overwrite this method to create functionality with a backend
-        """
-        if type not in self.SUPPORTED_MARKUP:
-            return None
-        return ('', '')
-    
-    def _add_markup_from_styled(self, text, s_tags, split=''):
-        """
-        Input is plain text, output is text with markup added according to the
-        s_tags which are assumed to be styledtexttags.
-        When split is given the text will be split over the value given, and 
-        tags applied in such a way that it the text can be safely splitted in
-        pieces along split
-        
-        @param text   : str, a piece of text
-        @param s_tags : styledtexttags that must be applied to the text
-        @param split  : str, optional. A string along which the output can 
-                    be safely split without breaking the styling.
-        As adding markup means original text must be escaped, ESCAPE_FUNC is 
-            used
-        This can be used to convert the text of a styledtext to the format 
-            needed for a document backend
-        Do not call this method in a report, use the write_markup method
-            
-        @note: the algorithm is complex as it assumes mixing of tags is not
-                allowed: eg <b>text<i> here</b> not</i> is assumed invalid
-                as markup. If the s_tags require such a setup, what is returned
-                is <b>text</b><i><b> here</b> not</i>
-               overwrite this method if this complexity is not needed. 
-        """
-        FIRST = 0
-        LAST = 1
-        tagspos = {}
-        for s_tag in s_tags:
-            tag = self.find_tag_by_stag(s_tag)
-            if tag is not None:
-                for (start, end) in s_tag.ranges:
-                    if start in tagspos:
-                        tagspos[start] += [(tag, FIRST)]
-                    else:
-                        tagspos[start] = [(tag, FIRST)]
-                    if end in tagspos:
-                        tagspos[end] += [(tag, LAST)]
-                    else:
-                        tagspos[end] = [(tag, LAST)]
-        start = 0
-        end = len(text)
-        keylist = tagspos.keys()
-        keylist.sort()
-        keylist = [x for x in keylist if x<=len(text)]
-        opentags = []
-        otext = u""  #the output, text with markup
-        lensplit = len(split)
-        for pos in keylist:
-            #write text up to tag
-            if pos > start:
-                if split:
-                    #make sure text can split
-                    splitpos = text[start:pos].find(split)
-                    while splitpos <> -1:
-                        otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
-                        #close open tags
-                        for opentag in reversed(opentags):
-                            otext += opentag[1]
-                        #add split text
-                        otext += self.ESCAPE_FUNC()(split)
-                        #open the tags again
-                        for opentag in opentags:
-                            otext += opentag[0]
-                        #obtain new values
-                        start = start + splitpos + lensplit
-                        splitpos = text[start:pos].find(split)
-                    
-                otext += self.ESCAPE_FUNC()(text[start:pos])
-            #write out tags
-            for tag in tagspos[pos]:
-                #close open tags starting from last open
-                for opentag in reversed(opentags):
-                    otext += opentag[1]
-                #if start, add to opentag in beginning as first to open
-                if tag[1] == FIRST:
-                    opentags = [tag[0]] + opentags
-                else:
-                    #end tag, is closed already, remove from opentag
-                    opentags = [x for x in opentags if not x == tag[0] ]
-                #now all tags are closed, open the ones that should open
-                for opentag in opentags:
-                    otext += opentag[0]
-            start = pos
-        #add remainder of text, no markup present there
-        otext += self.ESCAPE_FUNC()(text[start:end])
-        
-        #opentags should be empty. If not, user gave tags on positions that 
-        # are over the end of the text. Just close the tags still open
-        if opentags:
-            print 'WARNING: TextDoc : More style tags in text than length '\
-                    'of text allows.\n', opentags
-            for opentag in reversed(opentags):
-                otext += opentag[1]
-        
-        return otext
-    
 
 #------------------------------------------------------------------------
 #

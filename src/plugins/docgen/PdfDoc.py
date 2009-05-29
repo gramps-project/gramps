@@ -86,7 +86,7 @@ class PdfDoc(libcairodoc.CairoDoc):
         top_margin = self.paper.get_top_margin() * DPI / 2.54
 
         # create cairo context and pango layout
-        surface = cairo.PDFSurface(self._filename, paper_width, paper_height)
+        surface = cairo.PDFSurface(self._backend.filename, paper_width, paper_height)
         surface.set_fallback_resolution(300, 300)
         cr = pangocairo.CairoContext(cairo.Context(surface))
 
@@ -125,7 +125,7 @@ class PdfDoc(libcairodoc.CairoDoc):
 
         # load the result into an external viewer
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename) 
+            Utils.open_file_with_default_application(self._backend.filename) 
 
 #------------------------------------------------------------------------
 #

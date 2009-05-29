@@ -40,6 +40,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
+from docbackend.latexbackend import LateXBackend, latexescape
 from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import Errors
@@ -128,81 +129,18 @@ class TexFont(object):
 #
 #------------------------------------------------------------------------
 
-def latexescape(text):
-    """
-    change text in text that latex shows correctly
-    special characters: \&     \$     \%     \#     \_    \{     \}
-    """
-    text = text.replace('&','\\&')
-    text = text.replace('$','\\$')
-    text = text.replace('%','\\%')
-    text = text.replace('#','\\#')
-    text = text.replace('_','\\_')
-    text = text.replace('{','\\{')
-    text = text.replace('}','\\}')
-    return text
-
-def latexescapeverbatim(text):
-    """
-    change text in text that latex shows correctly respecting whitespace
-    special characters: \&     \$     \%     \#     \_    \{     \}
-    Now also make sure space and newline is respected
-    """
-    text = text.replace('&', '\\&')
-    text = text.replace('$', '\\$')
-    text = text.replace('%', '\\%')
-    text = text.replace('#', '\\#')
-    text = text.replace('_', '\\_')
-    text = text.replace('{', '\\{')
-    text = text.replace('}', '\\}')
-    text = text.replace(' ', '\\ ')
-    text = text.replace('\n', '\\newline\n')
-    #spaces at begin are normally ignored, make sure they are not.
-    #due to above a space at begin is now \newline\n\ 
-    text = text.replace('\\newline\n\\ ', '\\newline\n\\hspace*{0.1cm}\\ ')
-    return text
-
 class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
 
-    # overwrite base class attributes, they become static var of LaTeXDoc
-    SUPPORTED_MARKUP = [
-            BaseDoc.TextDoc.BOLD,
-            BaseDoc.TextDoc.ITALIC,
-            BaseDoc.TextDoc.UNDERLINE,
-            BaseDoc.TextDoc.FONTSIZE,
-            BaseDoc.TextDoc.FONTFACE,
-            BaseDoc.TextDoc.SUPERSCRIPT ]
-
-    STYLETAG_MARKUP = {
-        BaseDoc.TextDoc.BOLD        : ("\\textbf{", "}"),
-        BaseDoc.TextDoc.ITALIC      : ("\\textit{", "}"),
-        BaseDoc.TextDoc.UNDERLINE   : ("\\underline{", "}"),
-        BaseDoc.TextDoc.SUPERSCRIPT : ("\\textsuperscript{", "}"),
-    }
-    
-    ESCAPE_FUNC = lambda x: latexescape
-
     def page_break(self):
         "Forces a page break, creating a new page"
-        self.f.write('\\newpage ')
+        self._backend.write('\\newpage ')
     
-    def open(self,filename):
+    def open(self, filename):
         """Opens the specified file, making sure that it has the
         extension of .tex"""
-        
-        if filename[-4:] != ".tex":
-            self.filename = filename + ".tex"
-        else:
-            self.filename = filename
-
-        try:
-            self.f = open(self.filename,"w")
-        except IOError,msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
-        except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+        self._backend = LateXBackend(filename)
+        self._backend.open()
 
         # Font size control seems to be limited. For now, ignore
         # any style constraints, and use 12pt has the default
@@ -229,45 +167,45 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
         # Use the article template, T1 font encodings, and specify
         # that we should use Latin1 and unicode character encodings.
-        self.f.write('\\documentclass[%s]{article}\n' % options)
-        self.f.write('\\usepackage[T1]{fontenc}\n')
-        self.f.write('%\n% We use latin1 encoding at a minimum by default.\n')
-        self.f.write('% GRAMPS uses unicode UTF-8 encoding for its\n')
-        self.f.write('% international support. LaTeX can deal gracefully\n')
-        self.f.write('% with unicode encoding by using the ucs style invoked\n')
-        self.f.write('% when utf8 is specified as an option to the inputenc\n')
-        self.f.write('% package. This package is included by default in some\n')
-        self.f.write('% installations, but not in others, so we do not make it\n')
-        self.f.write('% the default.  Uncomment the second line if you wish to use it\n')
-        self.f.write('% (If you do not have ucs.sty, you may obtain it from\n')
-        self.f.write('%  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)\n')
-        self.f.write('%\n')
-        self.f.write('\\usepackage[latin1]{inputenc}\n')
-        self.f.write('%\\usepackage[latin1,utf8]{inputenc}\n')
+        self._backend.write('\\documentclass[%s]{article}\n' % options)
+        self._backend.write('\\usepackage[T1]{fontenc}\n')
+        self._backend.write('%\n% We use latin1 encoding at a minimum by default.\n')
+        self._backend.write('% GRAMPS uses unicode UTF-8 encoding for its\n')
+        self._backend.write('% international support. LaTeX can deal gracefully\n')
+        self._backend.write('% with unicode encoding by using the ucs style invoked\n')
+        self._backend.write('% when utf8 is specified as an option to the inputenc\n')
+        self._backend.write('% package. This package is included by default in some\n')
+        self._backend.write('% installations, but not in others, so we do not make it\n')
+        self._backend.write('% the default.  Uncomment the second line if you wish to use it\n')
+        self._backend.write('% (If you do not have ucs.sty, you may obtain it from\n')
+        self._backend.write('%  http://www.tug.org/tex-archive/macros/latex/contrib/supported/unicode/)\n')
+        self._backend.write('%\n')
+        self._backend.write('\\usepackage[latin1]{inputenc}\n')
+        self._backend.write('%\\usepackage[latin1,utf8]{inputenc}\n')
         # add packages (should be standard on a default installation)
         # for finer output control.  Put comments in file for user to read
-        self.f.write('\\usepackage{graphicx}  % Extended graphics support\n')
-        self.f.write('\\usepackage{longtable} % For multi-page tables\n')
-        self.f.write('\\usepackage{calc} % For margin indents\n')
-        self.f.write('%\n% Depending on your LaTeX installation, the')
-        self.f.write(' margins may be too\n% narrow. ')
-        self.f.write(' This can be corrected by uncommenting the following\n')
-        self.f.write('% two lines and adjusting the width appropriately.')
-        self.f.write(' The example\n% removes 0.5in from each margin.')
-        self.f.write(' (Adds 1 inch to the text)\n')
-        self.f.write('%\\addtolength{\\oddsidemargin}{-0.5in}\n')
-        self.f.write('%\\addtolength{\\textwidth}{1.0in}\n%\n')
-        self.f.write('% Create a margin-adjusting command that allows LaTeX\n')
-        self.f.write('% to behave like the other gramps-supported output formats\n')
-        self.f.write('\\newlength{\\leftedge}\n')
-        self.f.write('\\setlength{\\leftedge}{\\parindent}\n')
-        self.f.write('\\newlength{\\grampstext}\n')
-        self.f.write('\\setlength{\\grampstext}{\\textwidth}\n')
-        self.f.write('\\newcommand{\\grampsindent}[1]{%\n')
-        self.f.write('   \\setlength{\\parindent}{\\leftedge + #1}%\n')
-        self.f.write('   \\setlength{\\textwidth}{\\grampstext - #1}%\n')
-        self.f.write('}\n\n')
-        self.f.write('\\begin{document}\n\n')
+        self._backend.write('\\usepackage{graphicx}  % Extended graphics support\n')
+        self._backend.write('\\usepackage{longtable} % For multi-page tables\n')
+        self._backend.write('\\usepackage{calc} % For margin indents\n')
+        self._backend.write('%\n% Depending on your LaTeX installation, the')
+        self._backend.write(' margins may be too\n% narrow. ')
+        self._backend.write(' This can be corrected by uncommenting the following\n')
+        self._backend.write('% two lines and adjusting the width appropriately.')
+        self._backend.write(' The example\n% removes 0.5in from each margin.')
+        self._backend.write(' (Adds 1 inch to the text)\n')
+        self._backend.write('%\\addtolength{\\oddsidemargin}{-0.5in}\n')
+        self._backend.write('%\\addtolength{\\textwidth}{1.0in}\n%\n')
+        self._backend.write('% Create a margin-adjusting command that allows LaTeX\n')
+        self._backend.write('% to behave like the other gramps-supported output formats\n')
+        self._backend.write('\\newlength{\\leftedge}\n')
+        self._backend.write('\\setlength{\\leftedge}{\\parindent}\n')
+        self._backend.write('\\newlength{\\grampstext}\n')
+        self._backend.write('\\setlength{\\grampstext}{\\textwidth}\n')
+        self._backend.write('\\newcommand{\\grampsindent}[1]{%\n')
+        self._backend.write('   \\setlength{\\parindent}{\\leftedge + #1}%\n')
+        self._backend.write('   \\setlength{\\textwidth}{\\grampstext - #1}%\n')
+        self._backend.write('}\n\n')
+        self._backend.write('\\begin{document}\n\n')
     
         self.in_list = 0
         self.in_table = 0
@@ -351,15 +289,15 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     def close(self):
         """Clean up and close the document"""
         if self.in_list:
-            self.f.write('\\end{enumerate}\n')
-        self.f.write('\n\\end{document}\n')
-        self.f.close()
+            self._backend.write('\\end{enumerate}\n')
+        self._backend.write('\n\\end{document}\n')
+        self._backend.close()
         if self.open_req:
-            Utils.open_file_with_default_application(self.filename)
+            Utils.open_file_with_default_application(self._backend.filename)
 
     def end_page(self):
         """Issue a new page command"""
-        self.f.write('\\newpage')
+        self._backend.write('\\newpage')
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 
@@ -378,11 +316,11 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     
         if self.indent is not None and not self.in_table:
             myspace = '%scm' % str(self.indent)
-            self.f.write('\\grampsindent{%s}\n' % myspace)
+            self._backend.write('\\grampsindent{%s}\n' % myspace)
             self.fix_indent = 1
     
             if leader is not None and not self.in_list:
-                self.f.write('\\begin{enumerate}\n')
+                self._backend.write('\\begin{enumerate}\n')
                 self.in_list = 1
             if leader is not None:
                 # try obtaining integer
@@ -394,22 +332,22 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                         num = int(leader_1)
                     except ValueError:
                         num = 1
-                    self.f.write('  \\renewcommand\\theenumi{\\arabic{enumi}}')
+                    self._backend.write('  \\renewcommand\\theenumi{\\arabic{enumi}}')
                 else:
                     # roman, set the case correctly
                     if leader_1.islower():
-                        self.f.write('  \\renewcommand\\theenumi{\\roman{enumi}}')
+                        self._backend.write('  \\renewcommand\\theenumi{\\roman{enumi}}')
                     else:
-                        self.f.write('  \\renewcommand\\theenumi{\\Roman{enumi}}')
+                        self._backend.write('  \\renewcommand\\theenumi{\\Roman{enumi}}')
     
-                self.f.write('  \\setcounter{enumi}{%d} ' % num)
-                self.f.write('  \\addtocounter{enumi}{-1}\n')
-                self.f.write('  \\item ')
+                self._backend.write('  \\setcounter{enumi}{%d} ' % num)
+                self._backend.write('  \\addtocounter{enumi}{-1}\n')
+                self._backend.write('  \\item ')
 
         if leader is None and not self.in_list and not self.in_table:
-            self.f.write('\n')
+            self._backend.write('\n')
         
-            self.f.write('%s ' % self.fbeg)
+            self._backend.write('%s ' % self.fbeg)
     
     def end_paragraph(self):
         """End the current paragraph"""
@@ -417,30 +355,30 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     
         if self.in_list:
             self.in_list = 0
-            self.f.write('\n\\end{enumerate}\n')
+            self._backend.write('\n\\end{enumerate}\n')
             newline = ''
     
         elif self.in_table:
             newline = ('')
     
-        self.f.write('%s%s' % (self.fend, newline))
+        self._backend.write('%s%s' % (self.fend, newline))
         if self.fix_indent == 1:
             self.fix_indent = 0
-            self.f.write('\\grampsindent{0cm}\n')
+            self._backend.write('\\grampsindent{0cm}\n')
 
     def start_bold(self):
         """Bold face"""
-        self.f.write('\\textbf{')
+        self._backend.write('\\textbf{')
 
     def end_bold(self):
         """End bold face"""
-        self.f.write('}')
+        self._backend.write('}')
         
     def start_superscript(self):
-        self.f.write('\\textsuperscript{')
+        self._backend.write('\\textsuperscript{')
 
     def end_superscript(self):
-        self.f.write('}')
+        self._backend.write('}')
 
     def start_table(self, name,style_name):
         """Begin new table"""
@@ -453,13 +391,13 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.numcols = self.tblstyle.get_columns()
 
         tblfmt = '*{%d}{l}' % self.numcols
-        self.f.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
+        self._backend.write('\n\n\\begin{longtable}[l]{%s}\n' % tblfmt)
 
     def end_table(self):
         """Close the table environment"""
         self.in_table = 0
         # Create a paragraph separation below the table.
-        self.f.write('\\end{longtable}\n\\par\n')
+        self._backend.write('\\end{longtable}\n\\par\n')
 
     def start_row(self):
         """Begin a new row"""
@@ -471,14 +409,14 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     
     def end_row(self):
         """End the row (new line)"""
-        self.f.write('\\\\ ')
+        self._backend.write('\\\\ ')
         if self.doline == 1:
             if self.skipfirst == 1:
-                self.f.write('\\cline{2-%d}\n' % self.numcols)
+                self._backend.write('\\cline{2-%d}\n' % self.numcols)
             else:
-                self.f.write('\\hline \\\\ \n')
+                self._backend.write('\\hline \\\\ \n')
         else:
-            self.f.write('\n')
+            self._backend.write('\n')
         
     def start_cell(self,style_name,span=1):
         """Add an entry to the table.
@@ -513,14 +451,14 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.skipfirst = 1
 
         if self.tborder != 0:
-            self.f.write('\\hline\n')
-        self.f.write ('\\multicolumn{%d}{%s}{' % (span,cellfmt))
+            self._backend.write('\\hline\n')
+        self._backend.write ('\\multicolumn{%d}{%s}{' % (span,cellfmt))
     
     def end_cell(self):
         """Prepares for next cell"""
-        self.f.write('} ')
+        self._backend.write('} ')
         if self.curcol < self.numcols:
-            self.f.write('& ')
+            self._backend.write('& ')
 
     def add_media_object(self, name,pos,x,y):
         """Add photo to report"""
@@ -538,11 +476,11 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         # x and y will be maximum width OR height in units of cm
         mysize = 'width=%dcm, height=%dcm,keepaspectratio' % (x,y)
         if pos == "right":
-            self.f.write('\\hfill\\includegraphics[%s]{%s}\n' % (mysize,picf))
+            self._backend.write('\\hfill\\includegraphics[%s]{%s}\n' % (mysize,picf))
         elif pos == "left":
-            self.f.write('\\includegraphics[%s]{%s}\\hfill\n' % (mysize,picf))
+            self._backend.write('\\includegraphics[%s]{%s}\\hfill\n' % (mysize,picf))
         else:
-            self.f.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
+            self._backend.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
 
     def write_text(self,text,mark=None):
         """Write the text to the file"""
@@ -552,7 +490,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         #hard coded replace of the underline used for missing names/data
         text = text.replace('\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_',
                             '\\underline{\hspace{3cm}}')
-        self.f.write(text)
+        self._backend.write(text)
 
     def write_styled_note(self, styledtext, format, style_name):
         """
@@ -569,72 +507,34 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         s_tags = styledtext.get_tags()
         if format == 1:
             #preformatted, use different escape function
-            BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescapeverbatim
+            self._backend.setescape(True)
         
-        markuptext = self._add_markup_from_styled(text, s_tags)
+        markuptext = self._backend.add_markup_from_styled(text, s_tags)
         
         #there is a problem if we write out a note in a table. No newline is
         # possible, the note runs over the margin into infinity.
         # A good solution for this ???
         # A quick solution: create a minipage for the note and add that always
         #   hoping that the user will have left sufficient room for the page
-        self.f.write("\\begin{minipage}{{0.8\\linewidth}}\n")
+        self._backend.write("\\begin{minipage}{{0.8\\linewidth}}\n")
         self.start_paragraph(style_name)
-        self.f.write(markuptext)
+        self._backend.write(markuptext)
         self.end_paragraph()
         #end the minipage, add trick to have a white line at bottom of note,
         # we assume here a note should be distinct from its surrounding.
-        self.f.write("\n\\vspace*{0.5cm} \n\end{minipage}\n")
+        self._backend.write("\n\\vspace*{0.5cm} \n\end{minipage}\n\n")
         if format == 1:
             #preformatted finished, go back to normal escape function
-            BaseDoc.TextDoc.ESCAPE_FUNC = lambda x: latexescape
-
-    def _create_xmltag(self, type, value):
-        """
-        overwrites the method in BaseDoc.TextDoc.
-        creates the latex tags needed for non bool style types we support:
-            BaseDoc.TextDoc.FONTSIZE : use different \large denomination based
-                                        on size
-                                     : very basic, in mono in the font face 
-                                        then we use {\ttfamily }
-        """
-        if type not in self.SUPPORTED_MARKUP:
-            return None
-        elif type == BaseDoc.TextDoc.FONTSIZE:
-            #translate size in point to something LaTeX can work with
-            if value >= 22:
-                return ("{\\Huge ", "}")
-            elif value >= 20:
-                return ("{\\huge ", "}")
-            elif value >= 18:
-                return ("{\\LARGE ", "}")
-            elif value >= 16:
-                return ("{\\Large ", "}")
-            elif value >= 14:
-                return ("{\\large ", "}")
-            elif value < 8:
-                return ("{\\scriptsize ", "}")
-            elif value < 10:
-                return ("{\\footnotesize ", "}")
-            elif value < 12:
-                return ("{\\small ", "}")
-            else:
-                return ("", "")
-        elif type == BaseDoc.TextDoc.FONTFACE:
-            if 'MONO' in value.upper():
-                return ("{\\ttfamily ", "}")
-            elif 'ROMAN' in value.upper():
-                return ("{\\rmfamily ", "}")
-        return None
+            self._backend.setescape(False)
 
     def write_note(self,text,format,style_name):
         """Write the note's text to the file, respecting the format"""
         self.start_paragraph(style_name)
         if format == 1:
-            self.f.write('\\begin{verbatim}')
+            self._backend.write('\\begin{verbatim}')
         self.write_text(text)
         if format == 1:
-            self.f.write('\\end{verbatim}')
+            self._backend.write('\\end{verbatim}')
         self.end_paragraph()
 
 #------------------------------------------------------------------------

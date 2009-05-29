@@ -32,7 +32,6 @@
 #------------------------------------------------------------------------
 from gettext import gettext as _
 from math import radians
-from xml.sax.saxutils import escape
 
 #------------------------------------------------------------------------
 #
@@ -43,6 +42,7 @@ import BaseDoc
 from ReportBase import ReportUtils
 from Errors import PluginError
 from gen.plug import PluginManager, Plugin
+from docbackend import CairoBackend
 
 #------------------------------------------------------------------------
 #
@@ -1200,37 +1200,11 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     page style.
         
     """
-    STYLETAG_TO_PROPERTY = {
-        BaseDoc.TextDoc.FONTCOLOR : 'foreground',
-        BaseDoc.TextDoc.HIGHLIGHT : 'background',
-        BaseDoc.TextDoc.FONTFACE  : 'face',
-        BaseDoc.TextDoc.FONTSIZE  : 'size',
-    }
-
-    # overwrite base class attributes, they become static var of CairoDoc
-    SUPPORTED_MARKUP = [
-            BaseDoc.TextDoc.BOLD,
-            BaseDoc.TextDoc.ITALIC,
-            BaseDoc.TextDoc.UNDERLINE,
-            BaseDoc.TextDoc.FONTFACE,
-            BaseDoc.TextDoc.FONTSIZE,
-            BaseDoc.TextDoc.FONTCOLOR,
-            BaseDoc.TextDoc.HIGHLIGHT,
-            BaseDoc.TextDoc.SUPERSCRIPT ]
-
-    STYLETAG_MARKUP = {
-        BaseDoc.TextDoc.BOLD        : ("<b>", "</b>"),
-        BaseDoc.TextDoc.ITALIC      : ("<i>", "</i>"),
-        BaseDoc.TextDoc.UNDERLINE   : ("<u>", "</u>"),
-        BaseDoc.TextDoc.SUPERSCRIPT : ("<sup>", "</sup>"),
-    }
-    
-    ESCAPE_FUNC = lambda x: escape
     
     # BaseDoc implementation
     
     def open(self, filename):
-        self._filename = filename
+        self._backend = CairoBackend(filename)
         self._doc = GtkDocDocument()
         self._active_element = self._doc
         self._pages = []
@@ -1303,21 +1277,6 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
     def end_cell(self):
         self._active_element = self._active_element.get_parent()
     
-    def _create_xmltag(self, type, value):
-        """
-        overwrites the method in BaseDoc.TextDoc.
-        creates the pango xml tags needed for non bool style types
-        """
-        if type not in self.SUPPORTED_MARKUP:
-            return None
-        if type == BaseDoc.TextDoc.FONTSIZE:
-            #size is in thousandths of a point in pango
-            value = str(1000 * value)
-        
-        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[type], 
-                                    self.ESCAPE_FUNC()(value)), 
-                '</span>')
-    
     def write_note(self, text, format, style_name):
         """
         Method to write the note objects text on a
@@ -1358,7 +1317,8 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
         s_tags = styledtext.get_tags()
         #FIXME: following split should be regex to match \n\s*\n instead?
-        markuptext = self._add_markup_from_styled(text, s_tags, split='\n\n')
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, 
+                                                          split='\n\n')
 
         if format == 1:
             #preformatted, retain whitespace. Cairo retains \n automatically,
@@ -1391,7 +1351,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             # calls. This way we save the markup created by the report
             # The markup in the note editor is not in the text so is not 
             # considered. It must be added by pango too
-            text = escape(text)
+            text = self._backend.ESCAPE_FUNC()(text)
         self._active_element.add_text(text)
 
     def write_text(self, text, mark=None):
@@ -1411,7 +1371,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         @param s_tags:  assumed to be list of styledtexttags to apply to the
                         text
         """
-        markuptext = self._add_markup_from_styled(text, s_tags)
+        markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(text, markup=True)
     
     def add_media_object(self, name, pos, x_cm, y_cm):
