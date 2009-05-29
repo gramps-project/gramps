@@ -39,7 +39,9 @@ from gettext import gettext as _
 import gen.lib
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from Utils import media_path_full
 import DateHandler
 
@@ -73,7 +75,7 @@ class SummaryReport(Report):
         """
         self.doc.start_paragraph("SR-Title")
         title = _("Database Summary Report")
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
@@ -252,32 +254,32 @@ class SummaryOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Summary Report."""
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(16)
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_bold(1)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
         para.set_top_margin(ReportUtils.pt2cm(3))
         para.set_bottom_margin(ReportUtils.pt2cm(3))
         para.set_font(font)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("SR-Title", para)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_top_margin(0)
         para.set_description(_('The basic style used for sub-headings.'))
         default_style.add_paragraph_style("SR-Heading", para)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set(first_indent=-0.75, lmargin=.75)
         para.set_font(font)
         para.set_top_margin(ReportUtils.pt2cm(3))

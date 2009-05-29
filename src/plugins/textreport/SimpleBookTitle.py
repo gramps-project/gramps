@@ -37,7 +37,8 @@ from gen.plug import PluginManager
 from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
 #------------------------------------------------------------------------
 #
@@ -143,33 +144,33 @@ class SimpleBookTitleOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Simple Boot Title report."""
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=16, bold=1, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set(pad=0.5)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_paragraph_style("SBT-Title", para)
     
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=14, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set(pad=0.5)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the subtitle.'))
         default_style.add_paragraph_style("SBT-Subtitle", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=10, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=10, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set(pad=0.5)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the footer.'))
         default_style.add_paragraph_style("SBT-Footer", para)
 

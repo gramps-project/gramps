@@ -38,7 +38,10 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle,\
+                        TableStyle, TableCellStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.lib import MarkerType
 from Filters import GenericFilterFactory, Rules
 from BasicUtils import name_displayer
@@ -79,7 +82,7 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Title")
         title = _("Marker Report for %s Items") % markerstr
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
@@ -100,7 +103,7 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Heading")
         header = _("People")
-        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
@@ -187,7 +190,7 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Families")
-        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC, 2)
+        mark = IndexMark(header,INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
@@ -277,7 +280,7 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Events")
-        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
@@ -363,7 +366,7 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Notes")
-        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
         self.doc.write_text(header ,mark)
         self.doc.end_paragraph()
 
@@ -452,23 +455,23 @@ class MarkerOptions(MenuReportOptions):
     def make_default_style(self,default_style):
         """Make the default output style for the Marker Report."""
         # Paragraph Styles
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(16)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        f.set_type_face(FONT_SANS_SERIF)
         f.set_bold(1)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_header_level(1)
         p.set_bottom_border(1)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("MR-Title", p)
         
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=14, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.25)
@@ -476,9 +479,9 @@ class MarkerOptions(MenuReportOptions):
         para.set_description(_('The style used for the section headers.'))
         default_style.add_paragraph_style("MR-Heading", para)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
@@ -486,10 +489,10 @@ class MarkerOptions(MenuReportOptions):
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("MR-Normal", p)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
@@ -497,7 +500,7 @@ class MarkerOptions(MenuReportOptions):
         p.set_description(_('The basic style used for table headings.'))
         default_style.add_paragraph_style("MR-Normal-Bold", p)
         
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         p.set(first_indent=-0.75, lmargin=.75)
         para.set_top_margin(ReportUtils.pt2cm(3))
         para.set_bottom_margin(ReportUtils.pt2cm(3))
@@ -505,10 +508,10 @@ class MarkerOptions(MenuReportOptions):
         default_style.add_paragraph_style("MR-Note",para)
  
         #Table Styles
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         default_style.add_cell_style('MR-TableCell', cell)
 
-        table = BaseDoc.TableStyle()
+        table = TableStyle()
         table.set_width(100)
         table.set_columns(4)
         table.set_column_width(0, 10)

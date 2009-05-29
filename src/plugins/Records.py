@@ -35,7 +35,8 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 from gen.lib import ChildRefType, Date, EventType, Name
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 
@@ -500,29 +501,29 @@ class RecordsReportOptions(MenuReportOptions):
     def make_default_style(self, default_style):
 
         #Paragraph Styles
-        font = BaseDoc.FontStyle()
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(10)
         font.set_bold(0)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style('REC-Normal', para)
 
-        font = BaseDoc.FontStyle()
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(10)
         font.set_bold(1)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The style used for headings.'))
         default_style.add_paragraph_style('REC-Heading', para)
 
-        font = BaseDoc.FontStyle()
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(12)
         font.set_bold(1)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_("The style used for the report title"))
         default_style.add_paragraph_style('REC-Title', para)

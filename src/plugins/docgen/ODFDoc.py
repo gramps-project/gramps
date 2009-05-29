@@ -44,7 +44,10 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import BaseDoc, TextDoc, DrawDoc
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
+                    INDEX_TYPE_ALP, PARA_ALIGN_RIGHT)
 import const
 from gen.plug import PluginManager, DocGenPlugin
 from ReportBase import ReportUtils
@@ -74,10 +77,10 @@ _esc_map = {
 # ODFDoc
 #
 #-------------------------------------------------------------------------
-class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
+class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
     def __init__(self, styles, type, template):
-        BaseDoc.BaseDoc.__init__(self, styles, type, template)
+        BaseDoc.__init__(self, styles, type, template)
         self.media_list = []
         self.cntnt = None
         self.filename = None
@@ -180,7 +183,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.cntnt.write('draw:stroke="none" ')
                 self.cntnt.write('draw:stroke-color="#000000" ')
 
-            if style.get_line_style() == BaseDoc.DASHED:
+            if style.get_line_style() == DASHED:
                 self.cntnt.write('svg:fill-color="#cccccc" ')
             else:
                 self.cntnt.write('svg:fill-color="#%02x%02x%02x" ' % style.get_color())
@@ -249,18 +252,18 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.cntnt.write('fo:keep-with-next="true" ')
 
             align = style.get_alignment()
-            if align == BaseDoc.PARA_ALIGN_LEFT:
+            if align == PARA_ALIGN_LEFT:
                 self.cntnt.write('fo:text-align="start" ')
-            elif align == BaseDoc.PARA_ALIGN_RIGHT:
+            elif align == PARA_ALIGN_RIGHT:
                 self.cntnt.write('fo:text-align="end" ')
-            elif align == BaseDoc.PARA_ALIGN_CENTER:
+            elif align == PARA_ALIGN_CENTER:
                 self.cntnt.write('fo:text-align="center" ')
                 self.cntnt.write('style:justify-single-word="false" ')
             else:
                 self.cntnt.write('fo:text-align="justify" ')
                 self.cntnt.write('style:justify-single-word="false" ')
             font = style.get_font()
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == FONT_SANS_SERIF:
                 self.cntnt.write('style:font-name="Arial" ')
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
@@ -287,15 +290,15 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.cntnt.write('style:family="text">\n')
             self.cntnt.write('<style:text-properties ')
             align = style.get_alignment()
-            if align == BaseDoc.PARA_ALIGN_LEFT:
+            if align == PARA_ALIGN_LEFT:
                 self.cntnt.write('fo:text-align="start" ')
-            elif align == BaseDoc.PARA_ALIGN_RIGHT:
+            elif align == PARA_ALIGN_RIGHT:
                 self.cntnt.write('fo:text-align="end" ')
-            elif align == BaseDoc.PARA_ALIGN_CENTER:
+            elif align == PARA_ALIGN_CENTER:
                 self.cntnt.write('fo:text-align="center" ')
                 self.cntnt.write('style:justify-single-word="false" ')
             font = style.get_font()
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == FONT_SANS_SERIF:
                 self.cntnt.write('style:font-name="Arial" ')
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
@@ -687,12 +690,12 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
                 self.sfile.write('fo:keep-with-next="always" ')
 
             align = style.get_alignment()
-            if align == BaseDoc.PARA_ALIGN_LEFT:
+            if align == PARA_ALIGN_LEFT:
                 self.sfile.write('fo:text-align="start" ')
                 self.sfile.write('style:justify-single-word="false" ')
-            elif align == BaseDoc.PARA_ALIGN_RIGHT:
+            elif align == PARA_ALIGN_RIGHT:
                 self.sfile.write('fo:text-align="end" ')
-            elif align == BaseDoc.PARA_ALIGN_CENTER:
+            elif align == PARA_ALIGN_CENTER:
                 self.sfile.write('fo:text-align="center" ')
                 self.sfile.write('style:justify-single-word="false" ')
             else:
@@ -704,7 +707,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             font = style.get_font()
             color = font.get_color()
             self.sfile.write('fo:color="#%02x%02x%02x" ' % color)
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == FONT_SANS_SERIF:
                 self.sfile.write('style:font-name="Arial" ')
             else:
                 self.sfile.write('style:font-name="Times New Roman" ')
@@ -771,7 +774,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.sfile.write('<style:page-layout-properties fo:page-width="%.2fcm" ' % self.paper.get_size().get_width())
         self.sfile.write('fo:page-height="%.2fcm" ' % self.paper.get_size().get_height())
         self.sfile.write('style:num-format="1" ')
-        if self.paper.get_orientation() == BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() == PAPER_PORTRAIT:
             self.sfile.write('style:print-orientation="portrait" ')
         else:
             self.sfile.write('style:print-orientation="landscape" ')
@@ -887,10 +890,10 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         if mark:
             key = escape(mark.key, _esc_map)
             key = key.replace('"', '&quot;')
-            if mark.type == BaseDoc.INDEX_TYPE_ALP:
+            if mark.type == INDEX_TYPE_ALP:
                 self.cntnt.write('<text:alphabetical-index-mark ')
                 self.cntnt.write('text:string-value="%s" />' % key)
-            elif mark.type == BaseDoc.INDEX_TYPE_TOC:
+            elif mark.type == INDEX_TYPE_TOC:
                 self.cntnt.write('<text:toc-mark ')
                 self.cntnt.write('text:string-value="%s" ' % key)
                 self.cntnt.write('text:outline-level="%d" />' % mark.level)

@@ -42,7 +42,8 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import gen
 import Utils
-import BaseDoc
+from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
+from gen.plug.docgen.basedoc import (PAPER_PORTRAIT, PAPER_LANDSCAPE)
 from BasicUtils import name_displayer
 from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
     CATEGORY_GRAPHVIZ
@@ -185,19 +186,19 @@ class CommandLineReport(object):
                         if paper.get_name() != _("Custom Size") ]
 
         self.options_help['papero'][2] = [
-            "%d\tPortrait" % BaseDoc.PAPER_PORTRAIT,
-            "%d\tLandscape" % BaseDoc.PAPER_LANDSCAPE ]
+            "%d\tPortrait" % PAPER_PORTRAIT,
+            "%d\tLandscape" % PAPER_LANDSCAPE ]
 
         self.options_help['template'][2] = os.path.join(const.USER_HOME,
                                                           "whatever_name")
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
-            default_style = BaseDoc.StyleSheet()
+            default_style = StyleSheet()
             self.option_class.make_default_style(default_style)
 
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
-            self.style_list = BaseDoc.StyleSheetList(style_file, default_style)
+            self.style_list = StyleSheetList(style_file, default_style)
             
             self.options_help['style'][2] = self.style_list.get_style_names()
             
@@ -330,12 +331,12 @@ class CommandLineReport(object):
         self.template_name = self.options_dict['template']
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
-            default_style = BaseDoc.StyleSheet()
+            default_style = StyleSheet()
             self.option_class.make_default_style(default_style)
 
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
-            self.style_list = BaseDoc.StyleSheetList(style_file,default_style)
+            self.style_list = StyleSheetList(style_file,default_style)
 
             # Get the selected stylesheet
             style_name = self.option_class.handler.get_default_stylesheet_name()
@@ -401,7 +402,7 @@ def cl_report(database, name, category, report_class, options_class,
                         CATEGORY_GRAPHVIZ]:
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
-                        BaseDoc.PaperStyle(clr.paper,clr.orien),
+                        PaperStyle(clr.paper,clr.orien),
                         clr.template_name)
         MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()

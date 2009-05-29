@@ -35,7 +35,9 @@ import datetime, time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
+from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_RIGHT,
+                    PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
 from BasicUtils import name_displayer as _nd
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
@@ -426,17 +428,17 @@ class CalendarOptions(MenuReportOptions):
         self.__filter.set_filters(filter_list)
 
     def make_my_style(self, default_style, name, description, 
-                      size=9, font=BaseDoc.FONT_SERIF, justified ="left", 
-                      color=None, align=BaseDoc.PARA_ALIGN_CENTER, 
+                      size=9, font=FONT_SERIF, justified ="left", 
+                      color=None, align=PARA_ALIGN_CENTER, 
                       shadow = None, italic=0, bold=0, borders=0, indent=None):
         """ Create paragraph and graphic styles of the same name """
         # Paragraph:
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(size)
         f.set_type_face(font)
         f.set_italic(italic)
         f.set_bold(bold)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(f)
         p.set_alignment(align)
         p.set_description(description)
@@ -447,14 +449,14 @@ class CalendarOptions(MenuReportOptions):
         if indent:
             p.set(first_indent=indent)
         if justified == "left":
-            p.set_alignment(BaseDoc.PARA_ALIGN_LEFT)       
+            p.set_alignment(PARA_ALIGN_LEFT)       
         elif justified == "right":
-            p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)       
+            p.set_alignment(PARA_ALIGN_RIGHT)       
         elif justified == "center":
-            p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
+            p.set_alignment(PARA_ALIGN_CENTER)       
         default_style.add_paragraph_style(name, p)
         # Graphics:
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style(name)
         if shadow:
             g.set_shadow(*shadow)

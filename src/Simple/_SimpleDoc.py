@@ -21,7 +21,9 @@
 """
 Provide a simplified database access interface to the GRAMPS database.
 """
-import BaseDoc
+from gen.plug.docgen import StyleSheet, ParagraphStyle,\
+                        TableStyle, TableCellStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_LEFT
 
 class SimpleDoc(object):
     """
@@ -76,69 +78,69 @@ def make_basic_stylesheet():
     """
     Create the basic style sheet for the SimpleDoc class
     """
-    sheet = BaseDoc.StyleSheet()
+    sheet = StyleSheet()
 
-    pstyle = BaseDoc.ParagraphStyle()
+    pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
-    fstyle.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    fstyle.set_type_face(FONT_SANS_SERIF)
     fstyle.set_size(14)
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
-    pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_alignment(PARA_ALIGN_LEFT)
     sheet.add_paragraph_style('Title', pstyle)
 
-    pstyle = BaseDoc.ParagraphStyle()
+    pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
-    fstyle.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    fstyle.set_type_face(FONT_SANS_SERIF)
     fstyle.set_size(12)
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
-    pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_alignment(PARA_ALIGN_LEFT)
     pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header1', pstyle)
 
-    pstyle = BaseDoc.ParagraphStyle()
+    pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
-    fstyle.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    fstyle.set_type_face(FONT_SANS_SERIF)
     fstyle.set_size(10)
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
-    pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_alignment(PARA_ALIGN_LEFT)
     pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header2', pstyle)
 
-    pstyle = BaseDoc.ParagraphStyle()
+    pstyle = ParagraphStyle()
     fstyle = pstyle.get_font()
-    fstyle.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    fstyle.set_type_face(FONT_SANS_SERIF)
     fstyle.set_size(10)
     fstyle.set_bold(True)
     fstyle.set_italic(True)
     pstyle.set_font(fstyle)
-    pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+    pstyle.set_alignment(PARA_ALIGN_LEFT)
     pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Header3', pstyle)
 
-    pstyle = BaseDoc.ParagraphStyle()
+    pstyle = ParagraphStyle()
     pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Normal', pstyle)
 
     # Styles for tables:
-    tbl = BaseDoc.TableStyle()
+    tbl = TableStyle()
     tbl.set_width(100)
     tbl.set_columns(2)
     tbl.set_column_width(0,20)
     tbl.set_column_width(1,80)
     sheet.add_table_style("Table",tbl)
 
-    cell = BaseDoc.TableCellStyle()
+    cell = TableCellStyle()
     cell.set_top_border(1)
     cell.set_bottom_border(1)
     sheet.add_cell_style("TableHead",cell)
 
-    cell = BaseDoc.TableCellStyle()
+    cell = TableCellStyle()
     sheet.add_cell_style("TableNormalCell",cell)
 
-    cell = BaseDoc.TableCellStyle()
+    cell = TableCellStyle()
     cell.set_longlist(1)
     sheet.add_cell_style("TableListCell",cell)
 

@@ -37,7 +37,10 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import FilterOption, PlaceListOption
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle, TableStyle,\
+                            TableCellStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 import Sort
 from BasicUtils import name_displayer as _nd
@@ -91,7 +94,7 @@ class PlaceReport(Report):
         # identified as a major category if this is included in a Book report.
 
         title = _("Place Report")
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)        
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("PLC-ReportTitle")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -284,14 +287,14 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for the report title
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=16, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
+        para.set_alignment(PARA_ALIGN_CENTER)       
         para.set_description(_('The style used for the title of the report.'))
         self.default_style.add_paragraph_style("PLC-ReportTitle", para)
 
@@ -299,9 +302,9 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for the place title
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=12, italic=0, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=12, italic=0, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.75)
@@ -313,9 +316,9 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for the place details
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=10)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=10)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_description(_('The style used for place details.'))
@@ -325,9 +328,9 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for the event table column title
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=10, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=10, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_description(_('The style used for a column title.'))
@@ -337,9 +340,9 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for each section
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=10, italic=0, bold=0)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=10, italic=0, bold=0)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.5)
@@ -351,7 +354,7 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for event table
         """
-        table = BaseDoc.TableStyle()
+        table = TableStyle()
         table.set_width(80)
         table.set_columns(3)
         table.set_column_width(0, 20)
@@ -363,9 +366,9 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for person and event details
         """
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=10)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=10)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The style used for event and person details.'))
         self.default_style.add_paragraph_style("PLC-Details", para)
@@ -374,14 +377,14 @@ class PlaceOptions(MenuReportOptions):
         """
         Define the style used for cells in the event table
         """
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         self.default_style.add_cell_style("PLC-Cell", cell)
 
     def __table_column_style(self):
         """
         Define the style used for event table columns
         """
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         cell.set_bottom_border(1)
         self.default_style.add_cell_style('PLC-TableColumn', cell)
 

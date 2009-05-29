@@ -35,7 +35,8 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
 from SubstKeywords import SubstKeywords
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
@@ -488,38 +489,38 @@ class AncestorTreeOptions(MenuReportOptions):
         """Make the default output style for the Ancestor Tree."""
         
         ## Paragraph Styles:
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(9)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("AC2-Normal", p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(16)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the title display.'))
         default_style.add_paragraph_style("AC2-Title", p)
         
         ## Draw styles
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("AC2-Normal")
         g.set_shadow(1, 0.2)
         g.set_fill_color((255, 255, 255))
         default_style.add_draw_style("AC2-box", g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("AC2-Title")
         g.set_color((0, 0, 0))
         g.set_fill_color((255, 255, 255))
         g.set_line_width(0)
         default_style.add_draw_style("AC2-title", g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         default_style.add_draw_style("AC2-line", g)
 
 #------------------------------------------------------------------------

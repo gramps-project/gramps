@@ -42,7 +42,8 @@ import ImgManip
 import tarfile
 import const
 import Errors
-import BaseDoc
+from gen.plug.docgen import BaseDoc, TextDoc
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
 
@@ -94,10 +95,10 @@ _bottom = [
 # HtmlDoc
 #
 #------------------------------------------------------------------------
-class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
+class HtmlDoc(BaseDoc,TextDoc):
 
     def __init__(self,styles,type,template):
-        BaseDoc.BaseDoc.__init__(self,styles,None,template)
+        BaseDoc.__init__(self,styles,None,template)
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
         self.meta = ""
@@ -306,7 +307,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 italic = 'font-style:italic; '
             if font.get_bold():
                 bold = 'font-weight:bold; '
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == FONT_SANS_SERIF:
                 family = '"Helvetica","Arial","sans-serif"'
             else:
                 family = '"Times New Roman","Times","serif"'

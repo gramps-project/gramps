@@ -44,7 +44,9 @@ from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from ReportBase import Bibliography, Endnotes
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 from BasicUtils import name_displayer as _nd
 import Utils
@@ -205,7 +207,7 @@ class DetDescendantReport(Report):
 
         title = _("Descendant Report for %(person_name)s") % {
                     'person_name' : name }
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
@@ -217,7 +219,7 @@ class DetDescendantReport(Report):
                 self.doc.page_break()
             self.doc.start_paragraph("DDR-Generation")
             text = _("Generation %d") % (generation+1)
-            mark = BaseDoc.IndexMark(text, BaseDoc.INDEX_TYPE_TOC, 2)
+            mark = IndexMark(text, INDEX_TYPE_TOC, 2)
             self.doc.write_text(text, mark)
             self.doc.end_paragraph()
             if self.childref:
@@ -833,20 +835,20 @@ class DetDescendantOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Detailed Ancestral Report"""
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=16, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_paragraph_style("DDR-Title", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=14, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.25)
@@ -854,9 +856,9 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_description(_('The style used for the generation header.'))
         default_style.add_paragraph_style("DDR-Generation", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=10, italic=0, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=10, italic=0, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_left_margin(1.5)   # in centimeters
         para.set_top_margin(0.25)
@@ -864,9 +866,9 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_description(_('The style used for the children list title.'))
         default_style.add_paragraph_style("DDR-ChildTitle", para)
 
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set(size=10)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=-0.75, lmargin=2.25)
         para.set_top_margin(0.125)
@@ -874,32 +876,32 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_description(_('The style used for the children list.'))
         default_style.add_paragraph_style("DDR-ChildList", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=10, italic=0, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=10, italic=0, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         default_style.add_paragraph_style("DDR-NoteHeader", para)
 
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set(lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("DDR-Entry", para)
 
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set(first_indent=-1.5, lmargin=1.5)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)        
         para.set_description(_('The style used for the first personal entry.'))
         default_style.add_paragraph_style("DDR-First-Entry", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(size=10, face=BaseDoc.FONT_SANS_SERIF, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(size=10, face=FONT_SANS_SERIF, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)
@@ -907,9 +909,9 @@ class DetDescendantOptions(MenuReportOptions):
         para.set_description(_('The style used for the More About header.'))
         default_style.add_paragraph_style("DDR-MoreHeader", para)
 
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=10)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SERIF, size=10)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set(first_indent=0.0, lmargin=1.5)
         para.set_top_margin(0.25)

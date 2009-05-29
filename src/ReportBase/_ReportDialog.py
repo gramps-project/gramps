@@ -51,7 +51,7 @@ from QuestionDialog import ErrorDialog, OptionDialog
 from ReportBase import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, 
                         CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ, 
                         standalone_categories)
-import BaseDoc
+from gen.plug.docgen import StyleSheet, StyleSheetList
 import ManagedWindow
 from _StyleComboBox import StyleComboBox
 from _StyleEditor import StyleListDisplay
@@ -291,7 +291,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         the builds a menu of all the available styles for the user to
         choose from."""
         # Build the default style set for this report.
-        self.default_style = BaseDoc.StyleSheet()
+        self.default_style = StyleSheet()
         self.options.make_default_style(self.default_style)
 
         if self.default_style.is_empty():
@@ -316,7 +316,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
-        self.style_sheet_list = BaseDoc.StyleSheetList(
+        self.style_sheet_list = StyleSheetList(
                             self.options.handler.get_stylesheet_savefile(),
                             self.default_style)
 

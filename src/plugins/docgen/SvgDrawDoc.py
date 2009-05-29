@@ -35,7 +35,8 @@ import StringIO
 #
 #-------------------------------------------------------------------------
 from gen.plug import PluginManager, DocGenPlugin
-import BaseDoc
+from gen.plug.docgen import BaseDoc, DrawDoc 
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF
 import Errors
 
 #-------------------------------------------------------------------------
@@ -43,10 +44,10 @@ import Errors
 # SvgDrawDoc
 #
 #-------------------------------------------------------------------------
-class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
+class SvgDrawDoc(BaseDoc, DrawDoc):
 
     def __init__(self,styles,type,template):
-        BaseDoc.BaseDoc.__init__(self,styles,type,template)
+        BaseDoc.__init__(self,styles,type,template)
         self.f = None
         self.filename = None
         self.level = 0
@@ -112,7 +113,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         if font.get_italic():
             self.t.write('font-style:italic;')
         self.t.write('font-size:%d; ' % size)
-        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+        if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
             self.t.write('font-family:serif;')
@@ -206,7 +207,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
                 if font.get_italic():
                     self.t.write(' font-style:italic;')
                 self.t.write(' font-size:%d;' % font_size)
-                if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+                if font.get_type_face() == FONT_SANS_SERIF:
                     self.t.write(' font-family:sans-serif;')
                 else:
                     self.t.write(' font-family:serif;')
@@ -235,7 +236,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         if font.get_italic():
             self.t.write('font-style:italic;')
         self.t.write('font-size:%d; ' % font_size)
-        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+        if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
             self.t.write('font-family:serif;')

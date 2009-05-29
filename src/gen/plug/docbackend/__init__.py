@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  Brian G. Matherly
+# Copyright (C) 2009 B. Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,15 +17,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id: __init__.py 10055 2008-02-18 20:07:09Z acraphae $
+
 """
-The "plug" package for handling plugins in Gramps.
+The docbackend package for managing the specific files an implementation of the
+docgen API writes on. It provides common functionality, and translates between
+gen data specific for output (eg markup in gen/lib) and output where needed
 """
 
-from _plugin import Plugin
-from _manager import PluginManager
-from _import import ImportPlugin
-from _export import ExportPlugin
-from _docgenplugin import DocGenPlugin
+from docbackend import DocBackendError, DocBackend
+from cairobackend import CairoBackend
+from latexbackend import LateXBackend, latexescape, latexescapeverbatim
 
-__all__ = [ "docgen", "menu", Plugin, PluginManager, ImportPlugin, 
-            ExportPlugin, DocGenPlugin ]
+#__all__ = [ DocBackend, CairoBackend, LateXBackend ]

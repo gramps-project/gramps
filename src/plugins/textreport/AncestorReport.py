@@ -39,7 +39,9 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from BasicUtils import name_displayer
 
 from gen.lib import ChildRefType
@@ -159,7 +161,7 @@ class AncestorReport(Report):
 
         name = name_displayer.display_formal(self.center_person)
         title = _("Ahnentafel Report for %s") % name
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)        
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -179,7 +181,7 @@ class AncestorReport(Report):
                 generation += 1
 
                 # Create the Generation title, set an index marker
-                mark =  BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 2)  
+                mark =  IndexMark(title, INDEX_TYPE_TOC, 2)  
                 self.doc.start_paragraph("AHN-Generation")
                 self.doc.write_text(_("Generation %d") % generation, mark)
                 self.doc.end_paragraph()
@@ -294,23 +296,23 @@ class AncestorOptions(MenuReportOptions):
         #
         # AHN-Title
         #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=16, bold=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
+        para.set_alignment(PARA_ALIGN_CENTER)       
         para.set_description(_('The style used for the title of the page.'))
         default_style.add_paragraph_style("AHN-Title", para)
     
         #
         # AHN-Generation
         #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
-        para = BaseDoc.ParagraphStyle()
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF, size=14, italic=1)
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.125)
@@ -321,7 +323,7 @@ class AncestorOptions(MenuReportOptions):
         #
         # AHN-Entry
         #
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set(first_indent=-1.0, lmargin=1.0)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)        

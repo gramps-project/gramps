@@ -38,11 +38,14 @@ from math import radians
 # Gramps modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import BaseDoc, TextDoc, DrawDoc, ParagraphStyle,\
+                        TableCellStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
+                    FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from ReportBase import ReportUtils
 from Errors import PluginError
 from gen.plug import PluginManager, Plugin
-from docbackend import CairoBackend
+from gen.plug.docbackend import CairoBackend
 
 #------------------------------------------------------------------------
 #
@@ -77,21 +80,21 @@ DEBUG = False
 #------------------------------------------------------------------------
 
 _TTF_FREEFONT = {
-    BaseDoc.FONT_SERIF: 'FreeSerif',
-    BaseDoc.FONT_SANS_SERIF: 'FreeSans',
-    BaseDoc.FONT_MONOSPACE: 'FreeMono',
+    FONT_SERIF: 'FreeSerif',
+    FONT_SANS_SERIF: 'FreeSans',
+    FONT_MONOSPACE: 'FreeMono',
 }
 
 _MS_TTFONT = {
-    BaseDoc.FONT_SERIF: 'Times New Roman',
-    BaseDoc.FONT_SANS_SERIF: 'Arial',
-    BaseDoc.FONT_MONOSPACE: 'Courier New',
+    FONT_SERIF: 'Times New Roman',
+    FONT_SANS_SERIF: 'Arial',
+    FONT_MONOSPACE: 'Courier New',
 }
 
 _GNOME_FONT = {
-    BaseDoc.FONT_SERIF: 'Serif',
-    BaseDoc.FONT_SANS_SERIF: 'Sans',
-    BaseDoc.FONT_MONOSPACE: 'Monospace',
+    FONT_SERIF: 'Serif',
+    FONT_SANS_SERIF: 'Sans',
+    FONT_MONOSPACE: 'Monospace',
 }
 
 font_families = _GNOME_FONT
@@ -136,7 +139,7 @@ set_font_families()
 #------------------------------------------------------------------------
 
 def fontstyle_to_fontdescription(font_style):
-    """Convert a BaseDoc.FontStyle instance to a pango.FontDescription one.
+    """Convert a FontStyle instance to a pango.FontDescription one.
     
     Font color and underline are not implemented in pango.FontDescription,
     and have to be set with pango.Layout.set_attributes(attrlist) method.
@@ -179,7 +182,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
 ##class RowStyle(list):
     ##"""Specifies the format of a table row.
     
-    ##RowStyle extents the available styles in BaseDoc.
+    ##RowStyle extents the available styles in 
     
     ##The RowStyle contains the width of each column as a percentage of the
     ##width of the full row. Note! The width of the row is not known until
@@ -390,7 +393,7 @@ class GtkDocParagraph(GtkDocBaseElement):
     _type = 'PARAGRAPH'
     _allowed_children = []
     
-    # line spacing is not defined in BaseDoc.ParagraphStyle
+    # line spacing is not defined in ParagraphStyle
     spacing = 2
     
     def __init__(self, style, leader=None):
@@ -529,7 +532,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         layout_line = layout.get_line(splitline)
         index = layout_line.start_index
         # and divide the text, first create the second part
-        new_style = BaseDoc.ParagraphStyle(self._style)
+        new_style = ParagraphStyle(self._style)
         new_style.set_top_margin(0)
         #we split a paragraph, text should begin in correct position: no indent
         #as if the paragraph just continues from normal text
@@ -809,7 +812,7 @@ class GtkDocTableCell(GtkDocBaseElement):
                 available_height -= child_height
                 if e2 is not None:
                     #divide the cell
-                    new_style = BaseDoc.TableCellStyle(self._style)
+                    new_style = TableCellStyle(self._style)
                     if e1 is not None:
                         new_style.set_top_border(False)
                     new_cell = GtkDocTableCell(new_style, self._span)
@@ -1114,7 +1117,7 @@ class GtkDocText(GtkDocBaseElement):
     _type = 'TEXT'
     _allowed_children = []
 
-    # line spacing is not defined in BaseDoc.ParagraphStyle
+    # line spacing is not defined in ParagraphStyle
     spacing = 0
     
     def __init__(self, style, vertical_alignment, text, x, y, angle=0):
@@ -1189,7 +1192,7 @@ class GtkDocText(GtkDocBaseElement):
 # CairoDoc class
 #
 #------------------------------------------------------------------------
-class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
+class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     """Act as an abstract document that can render onto a cairo context.
     
     Maintains an abstract model of the document. The root of this abstract
@@ -1421,7 +1424,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         paragraph_style_name = style.get_paragraph_style()
         if paragraph_style_name:
             paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
-            paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+            paragraph_style.set_alignment(PARA_ALIGN_LEFT)
             
             # horizontal position of the text is not included in the style,
             # we assume that it is the size of the shadow, or 0.2mm
@@ -1439,7 +1442,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
-        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
+        paragraph_style.set_alignment(PARA_ALIGN_LEFT)
         
         new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
         self._active_element.add_child(new_text)
@@ -1449,7 +1452,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
-        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'top', text, x, y, angle=0)
         self._active_element.add_child(new_text)
@@ -1459,7 +1462,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         style = style_sheet.get_draw_style(style_name)
         paragraph_style_name = style.get_paragraph_style()
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
-        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        paragraph_style.set_alignment(PARA_ALIGN_CENTER)
         
         new_text = GtkDocText(paragraph_style, 'center', '\n'.join(text),
                               x, y, angle)

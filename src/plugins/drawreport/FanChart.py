@@ -33,7 +33,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
 from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
@@ -383,46 +384,46 @@ class FanChartOptions(MenuReportOptions):
                             ]
 
         #Paragraph Styles
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(20)
         f.set_bold(1)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_('The style used for the title.'))
         default_style.add_paragraph_style("FC-Title",p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(9)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("text_style", p)
             
         # GraphicsStyles
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style('FC-Title')
         g.set_line_width(0)
         default_style.add_draw_style("t",g)
 
         for i in range (0, self.MAX_GENERATIONS):
-            g = BaseDoc.GraphicsStyle()
+            g = GraphicsStyle()
             g.set_fill_color(BACKGROUND_COLORS[i])
             g.set_paragraph_style('FC-Normal')
             background_style_name = 'background_style' + '%d' % i
             default_style.add_draw_style(background_style_name,g)
 
-            g = BaseDoc.GraphicsStyle()
+            g = GraphicsStyle()
             g.set_fill_color(BACKGROUND_COLORS[i])
             g.set_paragraph_style('text_style')
             g.set_line_width(0)
             text_style_name = 'text_style' + '%d' % i
             default_style.add_draw_style(text_style_name,g)
             
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_fill_color((255,255,255))
         g.set_paragraph_style('FC-Normal')
         default_style.add_draw_style('background_style_white',g)

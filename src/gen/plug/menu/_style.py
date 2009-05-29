@@ -30,7 +30,7 @@ Option class representing a document style.
 #
 #-------------------------------------------------------------------------
 from gen.plug.menu import EnumeratedListOption
-import BaseDoc
+from gen.plug.docgen import StyleSheetList
 
 #-------------------------------------------------------------------------
 #
@@ -47,9 +47,9 @@ class StyleOption(EnumeratedListOption):
         @param label: A friendly label to be applied to this option.
             Example: "Style"
         @type label: string
-        @param default_style: A BaseDoc.StyleSheet instance which provides the 
+        @param default_style: A docgen StyleSheet instance which provides the 
         default styles.
-        @type default_style: BaseDoc.StyleSheet
+        @type default_style: docgen StyleSheet
         @param module_name: The name of the module the style sheets belong to.
             Example: "web_cal"
         @type module_name: string
@@ -60,7 +60,7 @@ class StyleOption(EnumeratedListOption):
         self.__default_style = default_style
         self.__default_style.set_name("default")
         self.__style_file = "%s_style.xml" % module_name
-        style_list = BaseDoc.StyleSheetList(self.__style_file, 
+        style_list = StyleSheetList(self.__style_file, 
                                             self.__default_style)
         for style_name in style_list.get_style_names():
             self.add_item(style_name, style_name)
@@ -75,6 +75,6 @@ class StyleOption(EnumeratedListOption):
         
     def get_style(self):
         """ Get the selected style """
-        style_list = BaseDoc.StyleSheetList(self.__style_file, 
+        style_list = StyleSheetList(self.__style_file, 
                                             self.__default_style)
         return style_list.get_style_sheet(self.get_value())

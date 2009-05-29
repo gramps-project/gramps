@@ -35,7 +35,10 @@ import pango
 # Gramps modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import BaseDoc, TextDoc
+from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_RIGHT,
+                        FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
+                        PARA_ALIGN_LEFT)
 import ManagedWindow
 
 try:
@@ -93,7 +96,7 @@ class DocumentManager(object):
 # TextBuf
 #
 #------------------------------------------------------------------------
-class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
+class TextBufDoc(BaseDoc, TextDoc):
 
     #--------------------------------------------------------------------
     #
@@ -111,21 +114,21 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
 
             style = sheet.get_paragraph_style(name)
             font = style.get_font()
-            if font.get_type_face() == BaseDoc.FONT_SERIF:
+            if font.get_type_face() == FONT_SERIF:
                 tag.set_property("family", "Serif")
-            elif font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            elif font.get_type_face() == FONT_SANS_SERIF:
                 tag.set_property("family", "Sans")
-            elif font.get_type_face() == BaseDoc.FONT_MONOSPACE:
+            elif font.get_type_face() == FONT_MONOSPACE:
                 tag.set_property("family", "MonoSpace")
 
             tag.set_property("size-points", float(font.get_size()))
             if font.get_bold():
                 tag.set_property("weight", pango.WEIGHT_BOLD)
-            if style.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
+            if style.get_alignment() == PARA_ALIGN_RIGHT:
                 tag.set_property("justification", gtk.JUSTIFY_RIGHT)
-            elif style.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
+            elif style.get_alignment() == PARA_ALIGN_LEFT:
                 tag.set_property("justification", gtk.JUSTIFY_LEFT)
-            elif style.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+            elif style.get_alignment() == PARA_ALIGN_CENTER:
                 tag.set_property("justification", gtk.JUSTIFY_CENTER)
             else:
                 tag.set_property("justification", gtk.JUSTIFY_FILL)

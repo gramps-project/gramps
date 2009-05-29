@@ -44,7 +44,8 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import TextOption
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
 #------------------------------------------------------------------------
 #

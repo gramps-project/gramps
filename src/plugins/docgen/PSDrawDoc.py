@@ -33,7 +33,8 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from ReportBase import ReportUtils
 from gen.plug import PluginManager, DocGenPlugin
-import BaseDoc
+from gen.plug.docgen import BaseDoc, DrawDoc
+from gen.plug.docgen.basedoc import FONT_SERIF, PAPER_PORTRAIT, SOLID
 import Errors
 
 from Utils import gformat
@@ -51,10 +52,10 @@ def coords(grp):
 # PSDrawDoc
 #
 #-------------------------------------------------------------------------
-class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
+class PSDrawDoc(BaseDoc,DrawDoc):
 
     def __init__(self,styles,type,template):
-        BaseDoc.BaseDoc.__init__(self,styles,type,template)
+        BaseDoc.__init__(self,styles,type,template)
         self.f = None
         self.filename = None
         self.level = 0
@@ -62,7 +63,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
 
     def fontdef(self,para):
         font = para.get_font()
-        if font.get_type_face() == BaseDoc.FONT_SERIF:
+        if font.get_type_face() == FONT_SERIF:
             if font.get_bold():
                 if font.get_italic():
                     font_name = "/Times-BoldItalic"
@@ -108,7 +109,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
         self.f.write('%%PageOrder: Ascend\n')
-        if self.paper.get_orientation() != BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() != PAPER_PORTRAIT:
             self.f.write('%%Orientation: Landscape\n')
         else:
             self.f.write('%%Orientation: Portrait\n')
@@ -145,7 +146,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
-        if self.paper.get_orientation() != BaseDoc.PAPER_PORTRAIT:
+        if self.paper.get_orientation() != PAPER_PORTRAIT:
             self.f.write('90 rotate %s cm %s cm translate\n' % (
                 gformat(0),gformat(-1*self.paper.get_size().get_height())))
 
@@ -242,7 +243,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('gsave\n')
         self.f.write('newpath\n')
         self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
-        if stype.get_line_style() == BaseDoc.SOLID:
+        if stype.get_line_style() == SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')
@@ -274,7 +275,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
         self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x2,y2)))
         self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
-        if stype.get_line_style() == BaseDoc.SOLID:
+        if stype.get_line_style() == SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')

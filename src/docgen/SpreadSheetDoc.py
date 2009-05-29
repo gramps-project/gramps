@@ -18,7 +18,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle, TableStyle,\
+                            TableCellStyle
+from gen.plug.docgen.basedoc import PAPER_PORTRAIT
 
 #------------------------------------------------------------------------
 #
@@ -26,9 +28,9 @@ import BaseDoc
 #
 #------------------------------------------------------------------------
 class SpreadSheetDoc(object):
-    def __init__(self,type, orientation=BaseDoc.PAPER_PORTRAIT):
+    def __init__(self,type, orientation=PAPER_PORTRAIT):
         self.orientation = orientation
-        if orientation == BaseDoc.PAPER_PORTRAIT:
+        if orientation == PAPER_PORTRAIT:
             self.width = type.get_width()
             self.height = type.get_height()
         else:
@@ -39,7 +41,7 @@ class SpreadSheetDoc(object):
         self.lmargin = 2.54
         self.rmargin = 2.54
                 
-        self.font = BaseDoc.FontStyle()
+        self.font = FontStyle()
         self.actfont = self.font
         self.style_list = {}
         self.table_styles = {}
@@ -56,16 +58,16 @@ class SpreadSheetDoc(object):
         self.name = name
 
     def add_style(self, name,style):
-        self.style_list[name] = BaseDoc.ParagraphStyle(style)
+        self.style_list[name] = ParagraphStyle(style)
 
     def add_table_style(self, name,style):
-        self.table_styles[name] = BaseDoc.TableStyle(style)
+        self.table_styles[name] = TableStyle(style)
 
     def add_cell_style(self, name,style):
-        self.cell_styles[name] = BaseDoc.TableCellStyle(style)
+        self.cell_styles[name] = TableCellStyle(style)
 
     def change_font(self,font):
-        self.actfont = BaseDoc.FontStyle(font)
+        self.actfont = FontStyle(font)
 
     def restore_font(self):
         self.actfont = self.font

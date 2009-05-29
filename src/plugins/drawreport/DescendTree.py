@@ -35,7 +35,8 @@ from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
 from TransUtils import sgettext as _
-import BaseDoc
+from gen.plug.docgen import GraphicsStyle, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
 
 #------------------------------------------------------------------------
 #
@@ -487,38 +488,38 @@ class DescendTreeOptions(MenuReportOptions):
     def make_default_style(self,default_style):
         """Make the default output style for the Ancestor Tree."""
         ## Paragraph Styles:
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(9)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
         p.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("DC2-Normal", p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(16)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the title display.'))
         default_style.add_paragraph_style("DC2-Title", p)
         
         ## Draw styles
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("DC2-Normal")
         g.set_shadow(1, 0.2)
         g.set_fill_color((255, 255, 255))
         default_style.add_draw_style("DC2-box", g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("DC2-Title")
         g.set_color((0, 0, 0))
         g.set_fill_color((255, 255, 255))
         g.set_line_width(0)
         default_style.add_draw_style("DC2-title", g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         default_style.add_draw_style("DC2-line", g)
 
 #------------------------------------------------------------------------

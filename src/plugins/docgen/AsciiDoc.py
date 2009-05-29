@@ -34,7 +34,8 @@ from gettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import BaseDoc, TextDoc
+from gen.plug.docgen.basedoc import (PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
 from gen.plug import PluginManager, DocGenPlugin
 import Errors
 import Utils
@@ -120,7 +121,7 @@ def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0,first=0):
 # Ascii
 #
 #------------------------------------------------------------------------
-class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
+class AsciiDoc(BaseDoc,TextDoc):
 
     #--------------------------------------------------------------------
     #
@@ -196,9 +197,9 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     #
     #--------------------------------------------------------------------
     def end_paragraph(self):
-        if self.p.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
+        if self.p.get_alignment() == PARA_ALIGN_RIGHT:
             fmt = RIGHT
-        elif self.p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+        elif self.p.get_alignment() == PARA_ALIGN_CENTER:
             fmt = CENTER
         else:
             fmt = LEFT

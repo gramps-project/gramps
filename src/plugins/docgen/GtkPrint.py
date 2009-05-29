@@ -42,7 +42,7 @@ from math import radians
 # Gramps modules
 #
 #------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen.basedoc import PAPER_PORTRAIT
 import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Errors
@@ -95,10 +95,10 @@ MARGIN = 6
 #------------------------------------------------------------------------
 
 def paperstyle_to_pagesetup(paper_style):
-    """Convert a BaseDoc.PaperStyle instance into a gtk.PageSetup instance.
+    """Convert a PaperStyle instance into a gtk.PageSetup instance.
     
     @param paper_style: Gramps paper style object to convert
-    @param type: BaseDoc.PaperStyle
+    @param type: PaperStyle
     @return: page_setup
     @rtype: gtk.PageSetup
     """
@@ -149,7 +149,7 @@ def paperstyle_to_pagesetup(paper_style):
     page_setup.set_paper_size(paper_size)
     
     # Set paper orientation
-    if paper_style.get_orientation() == BaseDoc.PAPER_PORTRAIT:
+    if paper_style.get_orientation() == PAPER_PORTRAIT:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_PORTRAIT)
     else:
         page_setup.set_orientation(gtk.PAGE_ORIENTATION_LANDSCAPE)

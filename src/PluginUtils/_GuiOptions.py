@@ -1315,9 +1315,9 @@ class GuiStyleOption(GuiEnumeratedListOption):
         """The user has clicked on the 'Edit Styles' button.  Create a
         style sheet editor object and let them play.  When they are
         done, update the displayed styles."""
-        import BaseDoc
+        from gen.plug.docgen import StyleSheetList
         from ReportBase._StyleEditor import StyleListDisplay
-        style_list = BaseDoc.StyleSheetList(self.__option.get_style_file(), 
+        style_list = StyleSheetList(self.__option.get_style_file(), 
                                             self.__option.get_default_style())
         StyleListDisplay(style_list, None, None)
 

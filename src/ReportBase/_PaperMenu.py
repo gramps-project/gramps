@@ -40,7 +40,8 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen import PaperStyle, PaperSize
+from gen.plug.docgen.basedoc import (PAPER_PORTRAIT, PAPER_LANDSCAPE)
 import const
 import Utils
 from glade import Glade
@@ -104,7 +105,7 @@ class PaperComboBox(gtk.ComboBox):
 #-------------------------------------------------------------------------
 class OrientationComboBox(gtk.ComboBox):
 
-    def __init__(self,default=BaseDoc.PAPER_PORTRAIT):
+    def __init__(self,default=PAPER_PORTRAIT):
         gtk.ComboBox.__init__(self)
         
         self.store = gtk.ListStore(gobject.TYPE_STRING)
@@ -116,13 +117,13 @@ class OrientationComboBox(gtk.ComboBox):
 
         self.store.append(row=[_('Portrait')])
         self.store.append(row=[_('Landscape')])
-        if default == BaseDoc.PAPER_PORTRAIT:
+        if default == PAPER_PORTRAIT:
             self.set_active(0)
         else:
             self.set_active(1)
 
     def set_value(self,value=0):
-        if value == BaseDoc.PAPER_PORTRAIT:
+        if value == PAPER_PORTRAIT:
             self.set_active(0)
         else:
             self.set_active(1)
@@ -132,9 +133,9 @@ class OrientationComboBox(gtk.ComboBox):
         if active < 0:
             return None
         if active == 0:
-            return BaseDoc.PAPER_PORTRAIT
+            return PAPER_PORTRAIT
         else:
-            return BaseDoc.PAPER_LANDSCAPE
+            return PAPER_LANDSCAPE
 
 #-------------------------------------------------------------------------
 #
@@ -308,7 +309,7 @@ class PaperFrame(gtk.HBox):
         paper_orientation = self.orientation_menu.get_value()
         paper_margins = self.get_paper_margins()
         
-        pstyle = BaseDoc.PaperStyle(paper_size,
+        pstyle = PaperStyle(paper_size,
                             paper_orientation,
                             *paper_margins)
         return pstyle
@@ -343,7 +344,7 @@ class PageSizeParser(handler.ContentHandler):
             name = attrs['name']
             height = Utils.gfloat(attrs['height'])
             width = Utils.gfloat(attrs['width'])
-            self.paper_list.append(BaseDoc.PaperSize(name, height,width))
+            self.paper_list.append(PaperSize(name, height,width))
 
 #-------------------------------------------------------------------------
 #
@@ -356,27 +357,27 @@ try:
     the_file = open(const.PAPERSIZE)
     parser.parse(the_file)
     the_file.close()
-    paper_sizes.append(BaseDoc.PaperSize(_("Custom Size"),-1,-1))
+    paper_sizes.append(PaperSize(_("Custom Size"),-1,-1))
 except (IOError,OSError,SAXParseException):
     paper_sizes = [
-        BaseDoc.PaperSize("Letter",27.94,21.59),
-        BaseDoc.PaperSize("Legal",35.56,21.59),
-        BaseDoc.PaperSize("A0",118.9,84.1),
-        BaseDoc.PaperSize("A1",84.1,59.4),
-        BaseDoc.PaperSize("A2",59.4,42.0),
-        BaseDoc.PaperSize("A3",42.0,29.7),
-        BaseDoc.PaperSize("A4",29.7,21.0),
-        BaseDoc.PaperSize("A5",21.0,14.8),
-        BaseDoc.PaperSize("B0",141.4,100.0),
-        BaseDoc.PaperSize("B1",100.0,70.7),
-        BaseDoc.PaperSize("B2",70.7,50.0),
-        BaseDoc.PaperSize("B3",50.0,35.3),
-        BaseDoc.PaperSize("B4",35.3,25.0),
-        BaseDoc.PaperSize("B5",25.0,17.6),
-        BaseDoc.PaperSize("B6",17.6,12.5),
-        BaseDoc.PaperSize("B",43.18,27.94),
-        BaseDoc.PaperSize("C",55.88,43.18),
-        BaseDoc.PaperSize("D",86.36, 55.88),
-        BaseDoc.PaperSize("E",111.76,86.36),
-        BaseDoc.PaperSize(_("Custom Size"),-1,-1)
+        PaperSize("Letter",27.94,21.59),
+        PaperSize("Legal",35.56,21.59),
+        PaperSize("A0",118.9,84.1),
+        PaperSize("A1",84.1,59.4),
+        PaperSize("A2",59.4,42.0),
+        PaperSize("A3",42.0,29.7),
+        PaperSize("A4",29.7,21.0),
+        PaperSize("A5",21.0,14.8),
+        PaperSize("B0",141.4,100.0),
+        PaperSize("B1",100.0,70.7),
+        PaperSize("B2",70.7,50.0),
+        PaperSize("B3",50.0,35.3),
+        PaperSize("B4",35.3,25.0),
+        PaperSize("B5",25.0,17.6),
+        PaperSize("B6",17.6,12.5),
+        PaperSize("B",43.18,27.94),
+        PaperSize("C",55.88,43.18),
+        PaperSize("D",86.36, 55.88),
+        PaperSize("E",111.76,86.36),
+        PaperSize(_("Custom Size"),-1,-1)
     ]

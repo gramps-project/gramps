@@ -35,7 +35,7 @@ from gettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import BaseDoc
+from gen.plug.docgen.basedoc import FONT_SERIF
 from SpreadSheetDoc import SpreadSheetDoc
 
 import const
@@ -142,7 +142,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
             self.f.write('fo:padding-left="%.3fcm" ' % style.get_padding())
             self.f.write('style:text-outline="false" ')
             self.f.write('style:text-crossing-out="none" ')
-            if font.get_type_face() == BaseDoc.FONT_SERIF:
+            if font.get_type_face() == FONT_SERIF:
                 self.f.write('style:font-name="Times New Roman" ')
             else:
                 self.f.write('style:font-name="Arial" ')

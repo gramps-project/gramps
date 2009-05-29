@@ -22,8 +22,8 @@
 """
 Provide utilities for printing endnotes in text reports.
 """
-
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import FONT_SANS_SERIF
 from gettext import gettext as _
 
 def add_endnote_styles(style_sheet):
@@ -31,11 +31,11 @@ def add_endnote_styles(style_sheet):
     Add paragraph styles to a style sheet to be used for displaying endnotes.
     
     @param style_sheet: Style sheet
-    @type style_sheet: L{Basedoc.StyleSheet}
+    @type style_sheet: L{docgen.StyleSheet}
     """
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
-    para = BaseDoc.ParagraphStyle()
+    font = FontStyle()
+    font.set(face=FONT_SANS_SERIF, size=14, italic=1)
+    para = ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
     para.set_top_margin(0.25)
@@ -43,14 +43,14 @@ def add_endnote_styles(style_sheet):
     para.set_description(_('The style used for the generation header.'))
     style_sheet.add_paragraph_style("Endnotes-Header", para)
 
-    para = BaseDoc.ParagraphStyle()
+    para = ParagraphStyle()
     para.set(first_indent=-0.75, lmargin=.75)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
     para.set_description(_('The basic style used for the endnotes source display.'))
     style_sheet.add_paragraph_style("Endnotes-Source", para)
 
-    para = BaseDoc.ParagraphStyle()
+    para = ParagraphStyle()
     para.set(lmargin=1.5)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
@@ -89,7 +89,7 @@ def write_endnotes(bibliography, database, doc):
     @param database: The database that the sources come from.
     @type database: GrampsDbBase
     @param doc: The document to write the endnotes into.
-    @type doc: L{BaseDoc.TextDoc}
+    @type doc: L{docgen.TextDoc}
     """
     if bibliography.get_citation_count() == 0:
         return

@@ -39,9 +39,11 @@ from gettext import gettext as _
 # gramps modules 
 #
 #------------------------------------------------------------------------
-import BaseDoc
-from docbackend.latexbackend import LateXBackend, latexescape
+
 from gen.plug import PluginManager, DocGenPlugin
+from gen.plug.docgen import BaseDoc, TextDoc
+from gen.plug.docgen.basedoc import PAPER_LANDSCAPE, FONT_SANS_SERIF
+from gen.plug.docbackend import LateXBackend, latexescape
 import ImgManip
 import Errors
 import Utils
@@ -129,7 +131,7 @@ class TexFont(object):
 #
 #------------------------------------------------------------------------
 
-class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
+class LaTeXDoc(BaseDoc, TextDoc):
     """LaTeX document interface class. Derived from BaseDoc"""
 
     def page_break(self):
@@ -147,7 +149,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         
         options = "12pt"
 
-        if self.paper.get_orientation() == BaseDoc.PAPER_LANDSCAPE:
+        if self.paper.get_orientation() == PAPER_LANDSCAPE:
             options = options + ",landscape"
 
         # Paper selections are somewhat limited on a stock installation. 
@@ -235,7 +237,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
     
             # Establish font face and shape
-            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == FONT_SANS_SERIF:
                 thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
                 thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
             if font.get_bold():

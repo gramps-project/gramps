@@ -39,7 +39,9 @@ from string import capitalize
 from gen.plug import PluginManager
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
+                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from BasicUtils import name_displayer
 import DateHandler
 
@@ -97,7 +99,7 @@ class KinshipReport(Report):
         
         self.doc.start_paragraph("KIN-Title")
         title = _("Kinship Report for %s") % pname
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
@@ -282,7 +284,7 @@ class KinshipReport(Report):
         cap_title = capitalize(title)
         subtitle = "%s (%d)" % (cap_title, len(people_handles))
         self.doc.start_paragraph("KIN-Subtitle")
-        mark = BaseDoc.IndexMark(cap_title, BaseDoc.INDEX_TYPE_TOC, 2)
+        mark = IndexMark(cap_title, INDEX_TYPE_TOC, 2)
         self.doc.write_text(subtitle, mark)
         self.doc.end_paragraph()
         for person_handle in people_handles:
@@ -360,31 +362,31 @@ class KinshipOptions(MenuReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Kinship Report."""
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(16)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        f.set_type_face(FONT_SANS_SERIF)
         f.set_bold(1)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_header_level(1)
         p.set_bottom_border(1)
         p.set_bottom_margin(ReportUtils.pt2cm(8))
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("KIN-Title",p)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
         font.set_bold(True)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for sub-headings.'))
         default_style.add_paragraph_style("KIN-Subtitle",p)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(10)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(font)
         p.set_left_margin(0.5)
         p.set_description(_('The basic style used for the text display.'))

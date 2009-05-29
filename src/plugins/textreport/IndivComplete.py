@@ -35,7 +35,10 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle, TableStyle,\
+                            TableCellStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                    PARA_ALIGN_CENTER)
 import DateHandler
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FilterOption, PersonOption
@@ -398,7 +401,7 @@ class IndivCompleteReport(Report):
         media_list = self.person.get_media_list()
         name = _nd.display(self.person)
         title = _("Summary of %s") % name
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDS-Title")
         self.doc.write_text(title,mark)
         self.doc.end_paragraph()
@@ -555,44 +558,44 @@ class IndivCompleteOptions(MenuReportOptions):
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Complete Report."""
         # Paragraph Styles
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_bold(1)
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(16)
-        p = BaseDoc.ParagraphStyle()
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p = ParagraphStyle()
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_top_margin(ReportUtils.pt2cm(8))
         p.set_bottom_margin(ReportUtils.pt2cm(8))
         p.set_font(font)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("IDS-Title",p)
     
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_bold(1)
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(12)
         font.set_italic(1)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for category labels."))
         default_style.add_paragraph_style("IDS-TableTitle",p)
 
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_bold(1)
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_("The style used for the spouse's name."))
         default_style.add_paragraph_style("IDS-Spouse",p)
 
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
@@ -600,29 +603,29 @@ class IndivCompleteOptions(MenuReportOptions):
         default_style.add_paragraph_style("IDS-Normal",p)
         
         # Table Styles
-        tbl = BaseDoc.TableStyle()
+        tbl = TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
         default_style.add_table_style("IDS-IndTable",tbl)
 
-        tbl = BaseDoc.TableStyle()
+        tbl = TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,50)
         tbl.set_column_width(1,50)
         default_style.add_table_style("IDS-ParentsTable",tbl)
 
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
         default_style.add_cell_style("IDS-TableHead",cell)
 
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         default_style.add_cell_style("IDS-NormalCell",cell)
 
-        cell = BaseDoc.TableCellStyle()
+        cell = TableCellStyle()
         cell.set_longlist(1)
         default_style.add_cell_style("IDS-ListCell",cell)
         

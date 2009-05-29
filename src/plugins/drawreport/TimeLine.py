@@ -41,7 +41,9 @@ from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 pt2cm = ReportUtils.pt2cm
-import BaseDoc
+from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
+                    DASHED, PARA_ALIGN_CENTER)
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
@@ -363,29 +365,29 @@ class TimeLineOptions(MenuReportOptions):
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""
         # Paragraph Styles
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(10)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
         p.set_description(_("The style used for the person's name."))
         default_style.add_paragraph_style("TLG-Name",p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(8)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the year labels."))
         default_style.add_paragraph_style("TLG-Label",p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(14)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        p = BaseDoc.ParagraphStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("TLG-Title",p)
         
@@ -404,44 +406,44 @@ class TimeLineOptions(MenuReportOptions):
             TLG-label - Contains the TLG-Label paragraph style used for the year
                         label's in the document.
         """
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         default_style.add_draw_style("TLG-line",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((0,0,0))
         default_style.add_draw_style("TLG-solid",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         default_style.add_draw_style("open",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_line_width(0.5)
-        g.set_line_style(BaseDoc.DASHED)
+        g.set_line_style(DASHED)
         g.set_color((0,0,0))
         default_style.add_draw_style("TLG-grid",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("TLG-Name")
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         default_style.add_draw_style("TLG-text",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("TLG-Title")
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         default_style.add_draw_style("TLG-title",g)
 
-        g = BaseDoc.GraphicsStyle()
+        g = GraphicsStyle()
         g.set_paragraph_style("TLG-Label")
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))

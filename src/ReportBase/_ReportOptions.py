@@ -55,7 +55,7 @@ except:
 #-------------------------------------------------------------------------
 import const
 import Config
-import BaseDoc
+from gen.plug.docgen.basedoc import PAPER_PORTRAIT
 from PluginUtils import _Options, GuiMenuOptions
 
 #-------------------------------------------------------------------------
@@ -131,7 +131,7 @@ class OptionList(_Options.OptionList):
         """
         Set the orientation for the OptionList.
         @param orientation: orientation to set. Possible values are
-            BaseDoc.PAPER_LANDSCAPE or BaseDoc.PAPER_PORTRAIT
+            PAPER_LANDSCAPE or PAPER_PORTRAIT
         @type orientation: int
         """
         self.orientation = orientation
@@ -140,7 +140,7 @@ class OptionList(_Options.OptionList):
         """
         Return the orientation for the OptionList.
         @returns: returns the selected orientation. Valid values are
-            BaseDoc.PAPER_LANDSCAPE or BaseDoc.PAPER_PORTRAIT
+            PAPER_LANDSCAPE or PAPER_PORTRAIT
         @rtype: int
         """
         return self.orientation
@@ -247,7 +247,7 @@ class OptionListCollection(_Options.OptionListCollection):
         self.default_paper_metric = Config.get(Config.PAPER_METRIC)
         self.default_paper_name = Config.get(Config.PAPER_PREFERENCE)
         self.default_template_name = ""
-        self.default_orientation = BaseDoc.PAPER_PORTRAIT
+        self.default_orientation = PAPER_PORTRAIT
         self.default_custom_paper_size = [29.7, 21.0]
         self.default_margins = [2.54, 2.54, 2.54, 2.54]
         self.default_format_name = 'print'

@@ -47,7 +47,7 @@ import gobject
 #
 #-------------------------------------------------------------------------------
 import Utils
-import BaseDoc
+from gen.plug.docgen import BaseDoc, GVDoc 
 import Config
 from ReportBase import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
@@ -143,14 +143,14 @@ def _run_long_process_in_thread(func, header):
 # GVDocBase
 #
 #-------------------------------------------------------------------------------
-class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
+class GVDocBase(BaseDoc, GVDoc):
     """
     Base document generator for all Graphiz document generators. Classes that
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
     def __init__(self, options, paper_style):
-        BaseDoc.BaseDoc.__init__(self, None, paper_style, None)
+        BaseDoc.__init__(self, None, paper_style, None)
 
         self._filename      = None
         self._dot           = StringIO()
@@ -231,7 +231,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         self._dot.write(text.encode('utf8', 'xmlcharrefreplace'))
 
     def open(self, filename):
-        """ Implement BaseDoc.BaseDoc.open() """
+        """ Implement BaseDoc.open() """
         self._filename = os.path.normpath(os.path.abspath(filename))
 
     def close(self):
@@ -264,7 +264,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
-        Implements BaseDoc.GVDoc.add_node().
+        Implements GVDoc.add_node().
         """
         text = '['
 
@@ -298,7 +298,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         """
         Add a link between two nodes.
         
-        Implementes BaseDoc.GVDoc.add_link().
+        Implementes GVDoc.add_link().
         """
         self.write('  %s -> %s' % (id1, id2))
         
@@ -325,7 +325,7 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         """
         Add a comment.
         
-        Implementes BaseDoc.GVDoc.add_comment().
+        Implementes GVDoc.add_comment().
         """
         tmp = comment.split('\n')
         for line in tmp:
@@ -338,13 +338,13 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
                 self.write('# %s\n' % text)
 
     def start_subgraph(self, graph_id):
-        """ Implement BaseDoc.GVDoc.start_subgraph() """
+        """ Implement GVDoc.start_subgraph() """
         self.write('  subgraph cluster_%s\n' % graph_id)
         self.write('  {\n')
         self.write('  style="invis";\n') # no border around subgraph (#0002176)
     
     def end_subgraph(self):
-        """ Implement BaseDoc.GVDoc.end_subgraph() """
+        """ Implement GVDoc.end_subgraph() """
         self.write('  }\n')
 
 #-------------------------------------------------------------------------------

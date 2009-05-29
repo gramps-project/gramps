@@ -69,7 +69,7 @@ import const
 import Utils
 import ListModel
 import Errors
-import BaseDoc
+from gen.plug.docgen import StyleSheet, StyleSheetList
 from QuestionDialog import WarningDialog, ErrorDialog
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, FamilyOption
@@ -1093,17 +1093,17 @@ class BookReportDialog(DocReportDialog):
                                   'book', _("Book Report"))
         self.book = book
         self.database = dbstate.db
-        self.selected_style = BaseDoc.StyleSheet()
+        self.selected_style = StyleSheet()
 
         for item in self.book.get_item_list():
             # Set up default style
-            default_style = BaseDoc.StyleSheet()
+            default_style = StyleSheet()
             make_default_style = item.option_class.make_default_style
             make_default_style(default_style)
 
             # Read all style sheets available for this item
             style_file = item.option_class.handler.get_stylesheet_savefile()
-            style_list = BaseDoc.StyleSheetList(style_file, default_style)
+            style_list = StyleSheetList(style_file, default_style)
 
             # Get the selected stylesheet
             style_name = item.option_class.handler.get_default_stylesheet_name()
@@ -1205,17 +1205,17 @@ def cl_report(database, name, category, options_str_dict):
     book_list = BookList('books.xml', database)
     book_name = clr.options_dict['bookname']
     book = book_list.get_book(book_name)
-    selected_style = BaseDoc.StyleSheet()
+    selected_style = StyleSheet()
 
     for item in book.get_item_list():
         # Set up default style
-        default_style = BaseDoc.StyleSheet()
+        default_style = StyleSheet()
         make_default_style = item.option_class.make_default_style
         make_default_style(default_style)
 
         # Read all style sheets available for this item
         style_file = item.option_class.handler.get_stylesheet_savefile()
-        style_list = BaseDoc.StyleSheetList(style_file, default_style)
+        style_list = StyleSheetList(style_file, default_style)
 
         # Get the selected stylesheet
         style_name = item.option_class.handler.get_default_stylesheet_name()

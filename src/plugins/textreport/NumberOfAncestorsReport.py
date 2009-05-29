@@ -44,7 +44,9 @@ from gen.plug import PluginManager
 from gen.plug.menu import PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_TEXT
 from BasicUtils import name_displayer
-import BaseDoc
+from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
+from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                        INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------
 #
@@ -83,7 +85,7 @@ class NumberOfAncestorsReport(Report):
         self.doc.start_paragraph("NOA-Title")
         name = name_displayer.display(self.__person)
         title = _("Number of Ancestors for %s") % name
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
@@ -175,22 +177,22 @@ class NumberOfAncestorsOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Number of Ancestors Report."""
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(16)
-        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_type_face(FONT_SANS_SERIF)
         font.set_bold(1)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_header_level(1)
         para.set_bottom_border(1)
         para.set_bottom_margin(ReportUtils.pt2cm(8))
         para.set_font(font)
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_alignment(PARA_ALIGN_CENTER)
         para.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("NOA-Title", para)
         
-        font = BaseDoc.FontStyle()
+        font = FontStyle()
         font.set_size(12)
-        para = BaseDoc.ParagraphStyle()
+        para = ParagraphStyle()
         para.set_font(font)
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("NOA-Normal", para)

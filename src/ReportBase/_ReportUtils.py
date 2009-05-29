@@ -50,7 +50,8 @@ from gen.lib.person import Person
 from BasicUtils import name_displayer as _nd
 from Utils import media_path_full
 from QuestionDialog import WarningDialog
-import BaseDoc
+from gen.plug.docgen import IndexMark
+from gen.plug.docgen.basedoc import INDEX_TYPE_ALP
 
 #------------------------------------------------------------------------
 #
@@ -3101,7 +3102,7 @@ def get_person_mark(db, person):
     else:
         key = "%s (%s - %s)" % (name, birth, death)
         
-    return BaseDoc.IndexMark( key, BaseDoc.INDEX_TYPE_ALP )
+    return IndexMark( key, INDEX_TYPE_ALP )
 
 #-------------------------------------------------------------------------
 #
