@@ -165,6 +165,8 @@ src/gen/db/Makefile
 src/gen/lib/Makefile
 src/gen/utils/Makefile
 src/gen/plug/Makefile
+src/gen/plug/docbackend/Makefile
+src/gen/plug/docgen/Makefile
 src/gen/plug/menu/Makefile
 src/data/Makefile
 src/data/templates/Makefile

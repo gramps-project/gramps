@@ -36,7 +36,6 @@ gdir_PYTHON = \
 	ArgHandler.py\
 	Assistant.py\
 	AutoComp.py\
-	BaseDoc.py\
 	Bookmarks.py\
 	ColumnOrder.py\
 	const.py\

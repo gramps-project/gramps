@@ -7,7 +7,6 @@ src/ansel_utf8.py
 src/ArgHandler.py
 src/Assistant.py
 src/AutoComp.py
-src/BaseDoc.py
 src/Bookmarks.py
 src/ColumnOrder.py
 src/const.py
@@ -394,7 +393,7 @@ src/PluginUtils/_Tool.py
 src/gen/utils/dbutils.py
 src/gen/utils/progressmon.py
 src/gen/plug/__init__.py
-src/gen/plug/_docgen.py
+src/gen/plug/_docgenplugin.py
 src/gen/plug/_export.py
 src/gen/plug/_import.py
 src/gen/plug/_manager.py
@@ -418,6 +417,11 @@ src/gen/plug/menu/_string.py
 src/gen/plug/menu/_style.py
 src/gen/plug/menu/_surnamecolor.py
 src/gen/plug/menu/_text.py
+src/gen/plug/docgen/basedoc.py
+src/gen/plug/docbackend/__init__.py
+src/gen/plug/docbackend/cairobackend.py
+src/gen/plug/docbackend/docbackend.py
+src/gen/plug/docbackend/latexbackend.py
 
 
 # ReportBase package
