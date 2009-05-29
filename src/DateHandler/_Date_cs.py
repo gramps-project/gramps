@@ -103,7 +103,7 @@ class DateDisplayCZ(DateDisplay):
     calendar = (
         "", u" (juliánský)", u" (hebrejský)", 
         u" (republikánský)", u" (perský)", u" (islámský)", 
-        u" (swedish)" 
+        u" (švédský)" 
         )
 
     _mod_str = ("", u"před ", u"po ", u"kolem ", "", "", "")
