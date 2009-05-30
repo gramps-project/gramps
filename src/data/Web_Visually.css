@@ -548,6 +548,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 table.individuallist tbody tr td.ColumnPartner {
     padding:0;
+    background-color:#FFF;
 }
 table.individuallist tbody tr td.ColumnPartner a {
     display:block;
