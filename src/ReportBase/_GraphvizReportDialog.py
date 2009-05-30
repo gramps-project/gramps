@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2007-2009  Stephane Charette
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +54,8 @@ import Config
 from ReportBase import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption
+from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
+                          BooleanOption
 
 #-------------------------------------------------------------------------------
 #
@@ -159,19 +161,20 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
         
         menu = options.menu
 
-        self.dpi            = menu.get_option_by_name('dpi').get_value()
-        self.fontfamily     = menu.get_option_by_name('font_family').get_value()
-        self.fontsize       = menu.get_option_by_name('font_size').get_value()
-        self.hpages         = menu.get_option_by_name('h_pages').get_value()
-        self.nodesep        = menu.get_option_by_name('nodesep').get_value()
-        self.noteloc        = menu.get_option_by_name('noteloc').get_value()
-        self.notesize       = menu.get_option_by_name('notesize').get_value()
-        self.note           = menu.get_option_by_name('note').get_value()
-        self.pagedir        = menu.get_option_by_name('page_dir').get_value()
-        self.rankdir        = menu.get_option_by_name('rank_dir').get_value()
-        self.ranksep        = menu.get_option_by_name('ranksep').get_value()
-        self.ratio          = menu.get_option_by_name('ratio').get_value()
-        self.vpages         = menu.get_option_by_name('v_pages').get_value()
+        self.dpi           = menu.get_option_by_name('dpi').get_value()
+        self.fontfamily    = menu.get_option_by_name('font_family').get_value()
+        self.fontsize      = menu.get_option_by_name('font_size').get_value()
+        self.hpages        = menu.get_option_by_name('h_pages').get_value()
+        self.nodesep       = menu.get_option_by_name('nodesep').get_value()
+        self.noteloc       = menu.get_option_by_name('noteloc').get_value()
+        self.notesize      = menu.get_option_by_name('notesize').get_value()
+        self.note          = menu.get_option_by_name('note').get_value()
+        self.pagedir       = menu.get_option_by_name('page_dir').get_value()
+        self.rankdir       = menu.get_option_by_name('rank_dir').get_value()
+        self.ranksep       = menu.get_option_by_name('ranksep').get_value()
+        self.ratio         = menu.get_option_by_name('ratio').get_value()
+        self.vpages        = menu.get_option_by_name('v_pages').get_value()
+        self.usesubgraphs  = menu.get_option_by_name('usesubgraphs').get_value()
 
         paper_size          = paper_style.get_size()
 
@@ -1034,6 +1037,13 @@ class GraphvizReportDialog(ReportDialog):
                             "horizontal graphs, this corresponds to spacing "
                             "between columns."))
         self.options.add_menu_option(category, "ranksep", ranksep)
+
+        use_subgraphs = BooleanOption(_('Use subgraphs'), True)
+        use_subgraphs.set_help(_("Subgraphs can help GraphViz position "
+                                "spouses together, but with non-trivial "
+                                "graphs will result in longer lines and "
+                                "larger graphs."))
+        self.options.add_menu_option(category, "usesubgraphs", use_subgraphs)
 
         ################################
         category = _("Note")

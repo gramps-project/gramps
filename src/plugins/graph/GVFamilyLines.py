@@ -218,13 +218,6 @@ class FamilyLinesOptions(MenuReportOptions):
                                       'between women and men.'))
         menu.add_option(category, "useroundedcorners", use_roundedcorners)
 
-        use_subgraphs = BooleanOption(_('Use subgraphs'), False)
-        use_subgraphs.set_help(_("Subgraphs can help GraphViz position "
-                                "certain linked nodes closer together, "
-                                "but with non-trivial graphs will result "
-                                "in longer lines and larger graphs."))
-        menu.add_option(category, "usesubgraphs", use_subgraphs)
-
         self.include_dates = BooleanOption(_('Include dates'), True)
         self.include_dates.set_help(_('Whether to include dates for people ' \
                                       'and families.'))
