@@ -125,6 +125,7 @@ class RelGraphReport(Report):
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
         self.use_place = menu.get_option_by_name('use_place').get_value()
+        self.use_subgraphs = menu.get_option_by_name('usesubgraphs').get_value()
 
         self.colorize = menu.get_option_by_name('color').get_value()
         color_males = menu.get_option_by_name('colormales').get_value()
@@ -243,48 +244,65 @@ class RelGraphReport(Report):
             if self.show_families:
                 family_list = person.get_family_handle_list()
                 for fam_handle in family_list:
-                    fam = self.database.get_family_from_handle(fam_handle)
-                    fam_id = fam.get_gramps_id()
+                    family = self.database.get_family_from_handle(fam_handle)
+                    fam_id = family.get_gramps_id()
                     if fam_handle not in families_done:
                         families_done[fam_handle] = 1
-                        label = ""
-                        for event_ref in fam.get_event_ref_list():
-                            event = self.database.get_event_from_handle(
-                                event_ref.ref)
-                            if event.type == gen.lib.EventType.MARRIAGE:
-                                label = self.get_event_string(event)
-                                break
-                        if self.includeid:
-                            label = "%s (%s)" % (label, fam_id)
-                        color = ""
-                        fill = ""
-                        style = "solid"
-                        if self.colorize == 'colored':
-                            color = self.colors['family']
-                        elif self.colorize == 'filled':
-                            fill = self.colors['family']
-                            style = "filled"
-                        self.doc.add_node(fam_id, label, "ellipse",
-                                          color, style, fill)
+                        self.__add_family(fam_handle)
+                    # If subgraphs are not chosen then each parent is linked 
+                    # separately to the family. This gives Graphviz greater
+                    # control over the layout of the whole graph but
+                    # may leave spouses not positioned together.
+                    if not self.use_subgraphs:
+                        self.doc.add_link(fam_id, p_id, "",
+                                          self.arrowheadstyle,
+                                          self.arrowtailstyle)
                         
-                        f_handle = fam.get_father_handle()
-                        m_handle = fam.get_mother_handle()
-                        self.doc.start_subgraph(fam_id)
-                        if f_handle:
-                            father = \
-                              self.database.get_person_from_handle(f_handle)
-                            self.doc.add_link(fam_id,
-                                              father.get_gramps_id(), "", 
-                                              self.arrowheadstyle,
-                                              self.arrowtailstyle )
-                        if m_handle:
-                            mother = \
-                              self.database.get_person_from_handle(m_handle)
-                            self.doc.add_link(fam_id,
-                                              mother.get_gramps_id(), "", 
-                                              self.arrowheadstyle,
-                                              self.arrowtailstyle )
-                        self.doc.end_subgraph()
+    def __add_family(self, fam_handle):
+        """Add a node for a family and optionally link the spouses to it"""
+        fam = self.database.get_family_from_handle(fam_handle)
+        fam_id = fam.get_gramps_id()
+
+        label = ""
+        for event_ref in fam.get_event_ref_list():
+            event = self.database.get_event_from_handle(event_ref.ref)
+            if event.type == gen.lib.EventType.MARRIAGE:
+                label = self.get_event_string(event)
+                break
+        if self.includeid:
+            label = "%s (%s)" % (label, fam_id)
+        color = ""
+        fill = ""
+        style = "solid"
+        if self.colorize == 'colored':
+            color = self.colors['family']
+        elif self.colorize == 'filled':
+            fill = self.colors['family']
+            style = "filled"
+        self.doc.add_node(fam_id, label, "ellipse", color, style, fill)
+        
+        # If subgraphs are used then we add both spouses here and Graphviz
+        # will attempt to position both spouses closely together.
+        # TODO: A person who is a parent in more than one family may only be
+        #       positioned next to one of their spouses. The code currently
+        #       does not take into account multiple spouses.
+        if self.use_subgraphs:
+            self.doc.start_subgraph(fam_id)
+            f_handle = fam.get_father_handle()
+            m_handle = fam.get_mother_handle()
+            if f_handle:
+                father = self.database.get_person_from_handle(f_handle)
+                self.doc.add_link(fam_id,
+                                  father.get_gramps_id(), "", 
+                                  self.arrowheadstyle,
+                                  self.arrowtailstyle)
+            if m_handle:
+                mother = self.database.get_person_from_handle(m_handle)
+                self.doc.add_link(fam_id,
+                                  mother.get_gramps_id(), "", 
+                                  self.arrowheadstyle,
+                                  self.arrowtailstyle)
+            self.doc.end_subgraph()
 
     def get_gender_style(self, person):
         "return gender specific person style"
