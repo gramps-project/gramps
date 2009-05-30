@@ -44,13 +44,13 @@ Narrative Web Page generator.
 # python modules
 #
 #------------------------------------------------------------------------
-import os
+import os, sys
 import re
 try:
     from hashlib import md5
 except ImportError:
     from md5 import md5
-import time
+import time, datetime
 import locale
 import shutil
 import codecs
@@ -285,6 +285,27 @@ class BasePage(object):
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
+
+    def get_copyright_license(self, copyright):
+        """
+        will return either the text or image of the copyright license
+        """
+
+        text = ''
+        if copyright == 0:
+            if self.author:
+                year = date.Today().get_year()
+                text = '&copy; %(year)d %(person)s' % {
+                    'person' : self.author,
+                    'year' : year}
+        elif 0 < copyright <= len(_CC):
+            # Note. This is a URL
+            fname = '/'.join(["images", "somerights20.gif"])
+            url = self.report.build_url_fname(fname, None, up=False)
+            text = _CC[copyright] % {'gif_fname' : url}
+
+        # return text or image to its callers
+        return text
 
     def alphabet_navigation(self, of, db, handle_list, key):
         """
@@ -808,7 +829,6 @@ class IndividualListPage(BasePage):
     def __init__(self, report, title, person_handle_list):
         BasePage.__init__(self, report, title)
 
-        db = report.database
         of = self.report.create_file("individuals")
         self.write_header(of, _('Individuals'))
 
@@ -820,13 +840,13 @@ class IndividualListPage(BasePage):
 
         showbirth = report.options['showbirth']
         showdeath = report.options['showdeath']
-        showspouse = report.options['showspouse']
+        showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
         of.write('\t<p id="description">%s</p>\n' % msg)
 
         # begin alphabetic navigation
-        self.alphabet_navigation(of, db, person_handle_list, _PERSON) 
+        self.alphabet_navigation(of, report.database, person_handle_list, _PERSON) 
 
         of.write('\t<table class="infolist individuallist">\n')
         of.write('\t<thead>\n')
@@ -840,7 +860,7 @@ class IndividualListPage(BasePage):
         if showdeath:
             of.write('\t\t\t<th class="ColumnDeath">%s</th>\n' % _('Death'))
             column_count += 1
-        if showspouse:
+        if showpartner:
             of.write('\t\t\t<th class="ColumnPartner">%s</th>\n' % _('Partner'))
             column_count += 1
         if showparents:
@@ -850,7 +870,7 @@ class IndividualListPage(BasePage):
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
 
-        person_handle_list = sort_people(db, person_handle_list)
+        person_handle_list = sort_people(report.database, person_handle_list)
 
         for (surname, handle_list) in person_handle_list:
             first = True
@@ -863,7 +883,7 @@ class IndividualListPage(BasePage):
             if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
                 letter = u'V,W'
             for person_handle in handle_list:
-                person = db.get_person_from_handle(person_handle)
+                person = report.database.get_person_from_handle(person_handle)
 
                 # surname column
                 if first:
@@ -888,7 +908,7 @@ class IndividualListPage(BasePage):
                 # birth column
                 if showbirth:
                     of.write('\t\t\t<td class="ColumnBirth">')
-                    birth = ReportUtils.get_birth_or_fallback(db, person)
+                    birth = ReportUtils.get_birth_or_fallback(report.database, person)
                     if birth:
                         if birth.get_type() == EventType.BIRTH:
                             of.write(_dd.display(birth.get_date_object()))
@@ -901,7 +921,7 @@ class IndividualListPage(BasePage):
                 # death column
                 if showdeath:
                     of.write('\t\t\t<td class="ColumnDeath">')
-                    death = ReportUtils.get_death_or_fallback(db, person)
+                    death = ReportUtils.get_death_or_fallback(report.database, person)
                     if death:
                         if death.get_type() == EventType.DEATH:
                             of.write(_dd.display(death.get_date_object()))
@@ -911,22 +931,22 @@ class IndividualListPage(BasePage):
                             of.write('</em>')
                     of.write('</td>\n')
 
-                # spouse (partner) column
-                if showspouse:
+                # partner column
+                if showpartner:
                     of.write('\t\t\t<td class="ColumnPartner">')
                     family_list = person.get_family_handle_list()
                     first_family = True
-                    spouse_name = None
+                    partner_name = None
                     if family_list:
                         for family_handle in family_list:
-                            family = db.get_family_from_handle(family_handle)
-                            spouse_id = ReportUtils.find_spouse(person, family)
-                            if spouse_id:
-                                spouse = db.get_person_from_handle(spouse_id)
-                                spouse_name = spouse.get_primary_name().get_regular_name()
+                            family = report.database.get_family_from_handle(family_handle)
+                            partner_handle = ReportUtils.find_spouse(person, family)
+                            if partner_handle:
+                                partner = report.database.get_person_from_handle(partner_handle)
+                                partner_name = partner.get_primary_name().get_regular_name()
                                 if not first_family:
                                     of.write(', ')
-                                of.write('%s' % spouse_name)
+                                of.write('%s' % partner_name)
                                 first_family = False
                     of.write('</td>\n')
 
@@ -936,13 +956,13 @@ class IndividualListPage(BasePage):
                     parent_handle_list = person.get_parent_family_handle_list()
                     if parent_handle_list:
                         parent_handle = parent_handle_list[0]
-                        family = db.get_family_from_handle(parent_handle)
+                        family = report.database.get_family_from_handle(parent_handle)
                         father_name = ''
                         mother_name = ''
                         father_id = family.get_father_handle()
                         mother_id = family.get_mother_handle()
-                        father = db.get_person_from_handle(father_id)
-                        mother = db.get_person_from_handle(mother_id)
+                        father = report.database.get_person_from_handle(father_id)
+                        mother = report.database.get_person_from_handle(mother_id)
                         if father:
                             father_name = father.get_primary_name().get_regular_name()
                         if mother:
@@ -970,7 +990,6 @@ class SurnamePage(BasePage):
     def __init__(self, report, title, surname, person_handle_list):
         BasePage.__init__(self, report, title)
 
-        db = report.database
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
         self.write_header(of, "%s - %s" % (_('Surname'), surname))
@@ -983,7 +1002,7 @@ class SurnamePage(BasePage):
 
         showbirth = report.options['showbirth']
         showdeath = report.options['showdeath']
-        showspouse = report.options['showspouse']
+        showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
         of.write('\t<h3>%s</h3>\n' % html_escape(surname))
@@ -996,7 +1015,7 @@ class SurnamePage(BasePage):
             of.write('\t\t\t<th class="ColumnBirth">%s</th>\n' % _('Birth'))
         if showdeath:
             of.write('\t\t\t<th class="ColumnDeath">%s</th>\n' % _('Death'))
-        if showspouse:
+        if showpartner:
             of.write('\t\t\t<th class="ColumnPartner">%s</th>\n' % _('Partner'))
         if showparents:
             of.write('\t\t\t<th class="ColumnParents">%s</th>\n' % _('Parents'))
@@ -1007,7 +1026,7 @@ class SurnamePage(BasePage):
         for person_handle in person_handle_list:
 
             # firstname column
-            person = db.get_person_from_handle(person_handle)
+            person = report.database.get_person_from_handle(person_handle)
             of.write('\t\t<tr>\n')
             of.write('\t\t\t<td class="ColumnName">')
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
@@ -1018,7 +1037,7 @@ class SurnamePage(BasePage):
             # birth column
             if showbirth:
                 of.write('\t\t\t<td class="ColumnBirth">')
-                birth = ReportUtils.get_birth_or_fallback(db, person)
+                birth = ReportUtils.get_birth_or_fallback(report.database, person)
                 if birth:
                     if birth.get_type() == EventType.BIRTH:
                         of.write(_dd.display(birth.get_date_object()))
@@ -1031,7 +1050,7 @@ class SurnamePage(BasePage):
             # death column
             if showdeath:
                 of.write('\t\t\t<td class="ColumnDeath">')
-                death = ReportUtils.get_death_or_fallback(db, person)
+                death = ReportUtils.get_death_or_fallback(report.database, person)
                 if death:
                     if death.get_type() == EventType.DEATH:
                         of.write(_dd.display(death.get_date_object()))
@@ -1041,22 +1060,22 @@ class SurnamePage(BasePage):
                         of.write('</em>')
                 of.write('</td>\n')
 
-            # spouse (partner) column
-            if showspouse:
+            # partner column
+            if showpartner:
                 of.write('\t\t\t<td class="ColumnPartner">')
                 family_list = person.get_family_handle_list()
                 first_family = True
-                spouse_name = None
+                partner_name = None
                 if family_list:
                     for family_handle in family_list:
-                        family = db.get_family_from_handle(family_handle)
-                        spouse_id = ReportUtils.find_spouse(person, family)
-                        if spouse_id:
-                            spouse = db.get_person_from_handle(spouse_id)
-                            spouse_name = spouse.get_primary_name().get_regular_name()
+                        family = report.database.get_family_from_handle(family_handle)
+                        partner_handle = ReportUtils.find_spouse(person, family)
+                        if partner_handle:
+                            partner = report.database.get_person_from_handle(partner_handle)
+                            partner_name = partner.get_primary_name().get_regular_name()
                             if not first_family:
                                 of.write(', ')
-                            of.write('%s' % spouse_name)
+                            of.write('%s' % partner_name)
                             first_family = False
                 of.write('</td>\n')
 
@@ -1066,13 +1085,13 @@ class SurnamePage(BasePage):
                 parent_handle_list = person.get_parent_family_handle_list()
                 if parent_handle_list:
                     parent_handle = parent_handle_list[0]
-                    family = db.get_family_from_handle(parent_handle)
+                    family = report.database.get_family_from_handle(parent_handle)
                     father_name = ''
                     mother_name = ''
                     father_id = family.get_father_handle()
                     mother_id = family.get_mother_handle()
-                    father = db.get_person_from_handle(father_id)
-                    mother = db.get_person_from_handle(mother_id)
+                    father = report.database.get_person_from_handle(father_id)
+                    mother = report.database.get_person_from_handle(mother_id)
                     if father:
                         father_name = father.get_primary_name().get_regular_name()
                     if mother:
@@ -1099,7 +1118,6 @@ class PlaceListPage(BasePage):
         BasePage.__init__(self, report, title)
         self.src_list = src_list        # TODO verify that this is correct
 
-        db = report.database
         of = self.report.create_file("places")
         self.write_header(of, _('Places'))
 
@@ -1112,7 +1130,7 @@ class PlaceListPage(BasePage):
         of.write('\t<p id="description">%s</p>\n' % msg )
 
         # begin alphabetic navigation
-        self.alphabet_navigation(of, db, place_handles, _PLACE) 
+        self.alphabet_navigation(of, report.database, place_handles, _PLACE) 
 
         of.write('\t<table class="infolist placelist">\n')
         of.write('\t<thead>\n')
@@ -1123,14 +1141,14 @@ class PlaceListPage(BasePage):
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n\n')
 
-        sort = Sort.Sort(db)
+        sort = Sort.Sort(report.database)
         handle_list = place_handles.keys()
         handle_list.sort(sort.by_place_title)
         last_letter = ''
 
         for handle in handle_list:
-            place = db.get_place_from_handle(handle)
-            place_title = ReportUtils.place_name(db, handle)
+            place = report.database.get_place_from_handle(handle)
+            place_title = ReportUtils.place_name(report.database, handle)
 
             if not place_title:
                 continue
@@ -1164,14 +1182,13 @@ class PlaceListPage(BasePage):
 class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
-        db = report.database
-        place = db.get_place_from_handle(place_handle)
+        place = report.database.get_place_from_handle(place_handle)
         BasePage.__init__(self, report, title, place.gramps_id)
         self.src_list = src_list        # TODO verify that this is correct
 
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
-        self.page_title = ReportUtils.place_name(db, place_handle)
+        self.page_title = ReportUtils.place_name(report.database, place_handle)
         self.write_header(of, "%s - %s" % (_('Places'), self.page_title))
 
         of.write('<div id="PlaceDetail" class="content">\n')
@@ -1861,12 +1878,132 @@ class DownloadPage(BasePage):
     def __init__(self, report, title):
         BasePage.__init__(self, report, title)
 
+        # menu options for class
+        # download and description #1
+        dlfname1 = self.report.dl_fname1
+        dldescr1 = self.report.dl_descr1
+        dldescr = ''.join(wrapper.wrap(dldescr1))
+
+        # download and description #2
+        dlfname2 = self.report.dl_fname2
+        dldescr2 = self.report.dl_descr2
+        dldescr2 = ''.join(wrapper.wrap(dldescr2))
+
+        # download copyright
+        dlcopy = self.report.dl_copy
+
+        # if no filenames at all, return???
+        if not dlfname1 and not dlfname2:
+            return
+
         of = self.report.create_file("download")
         self.write_header(of, _('Download'))
 
-        of.write('<div id="Download" class="content">\n')
+        # begin download page and table
+        of.write('\t<div id="Download" class="content"> \n')
+        of.write('\t\t<table class="download">\n')
 
+        # table head
+        of.write('\t\t\t<thead>\n')
+        of.write('\t\t\t\t<tr>\n') 
+        for title in ['Description', 'License',  'Filename', 'Last Modified']:
+            of.write('\t\t\t\t\t<th class="%s">%s</th>\n' % (title, title))
+        of.write('\t\t\t\t</tr>\n')
+        of.write('\t\t\t</thead>\n')
+
+        # if dlfname1 is not None, show it???
+        if dlfname1:
+
+            # table body
+            of.write('\t\t\t<tbody>\n')
+            of.write('\t\t\t\t<tr id="Row01">\n')
+
+            # table Row 1, column 1 -- File Description
+            of.write('\t\t\t\t\t<td id="Col01" class="Description">')
+            if dldescr1:
+                of.write('%s' % dldescr1)  
+            else:
+                of.write('&nbsp;')
+            of.write('</td>\n\n')
+
+            # table row 1, column 2 -- Copyright License
+            of.write('\t\t\t\t\t<td id="Col02" class="License">\n')
+            of.write('\t\t\t\t\t\t')
+            copyright = self.get_copyright_license(dlcopy)
+            if copyright:
+                of.write('%s' % copyright)
+            else:
+                of.write('&nbsp;')
+            of.write('</td>\n\n')
+
+            # table row 1, column 3 -- File
+            fname = os.path.basename(dlfname1)
+            of.write('\t\t\t\t\t<td id="Col03" class="FileName">\n')
+            of.write('\t\t\t\t\t\t<a href="%s" alt="%s">%s</a></td>\n\n'
+                % (dlfname1, dldescr1, fname))
+
+            # table row 1, column 4 -- Last Modified
+            modified = os.stat(dlfname1).st_mtime
+            last_mod = datetime.datetime.fromtimestamp(modified)
+            of.write('\t\t\t\t\t<td id="Col04" class="Modified">%s</td>\n\n'
+                % last_mod)
+
+            # close row #1
+            of.write('\t\t\t\t</tr>\n')
+     
+        # if download filename #2, show it???
+        if dlfname2:
+
+            # begin row #2
+            of.write('\t\t\t\t<tr id="Row02">\n') 
+
+            # table row 2, column 1 -- Description
+            of.write('\t\t\t\t\t<td id="Col01" class="Description">')
+            if dldescr2:
+                of.write('%s' % dldescr2)
+            else:
+                of.write('&nbsp;')
+            of.write('</td>\n\n')
+
+            # table row 2, column 2 -- Copyright License
+            of.write('\t\t\t\t\t<td id="Col02" class="License">\n')
+            copyright = self.get_copyright_license(dlcopy)
+            of.write('\t\t\t\t\t\t')
+            if copyright:
+                of.write('%s' % copyright)  
+            else:
+                of.write('&nbsp;')
+            of.write('</td>\n\n')
+
+            # table row 2, column 3 -- File
+            fname = os.path.basename(dlfname2)
+            of.write('\t\t\t\t\t<td id="Col03" class="Filename">\n')
+            of.write('\t\t\t\t\t\t<a href="%s" alt="%s">%s</a></td>\n\n'
+                % (dlfname2, dldescr2, fname))
+
+            # table row 2, column 4 -- Last Modified
+            modified = os.stat(dlfname2).st_mtime
+            last_mod = datetime.datetime.fromtimestamp(modified)
+            of.write('\t\t\t\t\t<td id="Col04" class="Modified">%s</td>\n\n'
+                % last_mod)
+
+            # close row #2
+            of.write('\t\t\t\t</tr>\n')
+
+        # close table head andd body
+        of.write('\t\t\t</tbody>\n')
+
+        # close Download table
+        of.write('\t\t</table>\n')
+
+        # create footer section
+        # clear line for proper styling
+        of.write('\t<div class="fullclear"></div>\n')
+
+        # add footer section
         self.write_footer(of)
+
+        # close the file
         self.report.close_file(of)
 
 class ContactPage(BasePage):
@@ -2689,9 +2826,9 @@ class IndividualPage(BasePage):
         else:
             relstr = _("Partner")
 
-        spouse_id = ReportUtils.find_spouse(self.person, family)
-        if spouse_id:
-            spouse = db.get_person_from_handle(spouse_id)
+        partner_handle = ReportUtils.find_spouse(self.person, family)
+        if partner_handle:
+            spouse = db.get_person_from_handle(partner_handle)
             name = _nd.display(spouse)
         else:
             name = _("unknown")
@@ -2700,9 +2837,9 @@ class IndividualPage(BasePage):
         of.write('\t\t\t\t<td class="ColumnType">%s</td>\n' % rtype)
         of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % relstr)
         of.write('\t\t\t\t<td class="ColumnValue">')
-        if spouse_id:
+        if partner_handle:
             gid = spouse.get_gramps_id()
-            if spouse_id in self.ind_list:
+            if partner_handle in self.ind_list:
                 spouse_name = _nd.display(spouse)
                 url = self.report.build_url_fname_html(spouse.handle, 'ppl', True)
                 self.person_link(of, url, spouse_name, gid)
@@ -2917,7 +3054,15 @@ class NavWebReport(Report):
         self.inc_gallery = self.options['gallery']
         self.inc_contact = self.options['contactnote'] or \
                            self.options['contactimg']
+
+        # Download Options Tab
         self.inc_download = self.options['incdownload']
+        self.dl_fname1 = self.options['down_fname1']
+        self.dl_descr1 = self.options['dl_descr1']
+        self.dl_fname2 = self.options['down_fname2']
+        self.dl_descr2 = self.options['dl_descr2']
+        self.dl_copy = self.options['dl_cright']
+
         self.use_archive = self.options['archive']
         self.use_intro = self.options['intronote'] or \
                          self.options['introimg']
@@ -3373,6 +3518,7 @@ class NavWebOptions(MenuReportOptions):
         self.__add_report_options(menu)
         self.__add_page_generation_options(menu)
         self.__add_privacy_options(menu)
+        self.__add_download_options(menu)
         self.__add_advanced_options(menu)
 
     def __add_report_options(self, menu):
@@ -3503,10 +3649,6 @@ class NavWebOptions(MenuReportOptions):
 
         self.__gallery_changed()
 
-        incdownload = BooleanOption(_("Include download page"), False)
-        incdownload.set_help(_('Whether to include a database download option'))
-        menu.add_option(category_name, 'incdownload', incdownload)
-
         nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
@@ -3545,6 +3687,44 @@ class NavWebOptions(MenuReportOptions):
 
         self.__living_changed()
 
+    def __add_download_options(self, menu):
+        """
+        Options for the download tab ...
+        """
+
+        category_name = _("Download Options")
+
+        self.__incdownload = BooleanOption(_("Include download page"), False)
+        self.__incdownload.set_help(_('Whether to include a database download option'))
+        menu.add_option(category_name, 'incdownload', self.__incdownload)
+        self.__incdownload.connect('value-changed', self.__download_changed)
+
+        self.__down_fname1 = DestinationOption(_("Download Filename #1"),
+            os.path.join(const.USER_HOME, ""))
+        self.__down_fname1.set_help(_("File to be used for downloading of database"))
+        menu.add_option(category_name, "down_fname1", self.__down_fname1)
+
+        self.__dl_descr1 = StringOption(_("Description for this Download"), _('Smith Family Tree'))
+        self.__dl_descr1.set_help(_('Give a description for this file.'))
+        menu.add_option(category_name, 'dl_descr1', self.__dl_descr1)
+
+        self.__down_fname2 = DestinationOption(_("Download Filename #2"),
+            os.path.join(const.USER_HOME, ""))
+        self.__down_fname2.set_help(_("File to be used for downloading of database"))
+        menu.add_option(category_name, "down_fname2", self.__down_fname2)
+
+        self.__dl_descr2 = StringOption(_("Description for this Download"), _('Johnson Family Tree'))
+        self.__dl_descr2.set_help(_('Give a description for this file.'))
+        menu.add_option(category_name, 'dl_descr2', self.__dl_descr2)
+
+        self.__dl_cright = EnumeratedListOption(_('Download Copyright License'), 0 )
+        for index, copt in enumerate(_COPY_OPTIONS):
+            self.__dl_cright.add_item(index, copt)
+        self.__dl_cright.set_help( _("The copyright to be used for ths download file?"))
+        menu.add_option(category_name, "dl_cright", self.__dl_cright)
+
+        self.__download_changed()
+
     def __add_advanced_options(self, menu):
         """
         Options on the "Advanced" tab.
@@ -3572,10 +3752,10 @@ class NavWebOptions(MenuReportOptions):
         showdeath.set_help(_('Whether to include a death column'))
         menu.add_option(category_name, 'showdeath', showdeath)
 
-        showspouse = BooleanOption(_("Include a column for partners on the "
+        showpartner = BooleanOption(_("Include a column for partners on the "
                                     "index pages"), False)
-        showspouse.set_help(_('Whether to include a partners column'))
-        menu.add_option(category_name, 'showspouse', showspouse)
+        showpartner.set_help(_('Whether to include a partners column'))
+        menu.add_option(category_name, 'showpartner', showpartner)
 
         showparents = BooleanOption(_("Include a column for parents on the "
                                       "index pages"), False)
@@ -3639,6 +3819,24 @@ class NavWebOptions(MenuReportOptions):
         else:
             self.__maxinitialimagewidth.set_available(True)
             self.__maxinitialimageheight.set_available(True)
+
+    def __download_changed(self):
+        """
+        Handles the changing nature of include download page
+        """
+
+        if self.__incdownload.get_value() == False:
+            self.__down_fname1.set_available(False)
+            self.__dl_descr1.set_available(False)
+            self.__down_fname2.set_available(False)
+            self.__dl_descr2.set_available(False)
+            self.__dl_cright.set_available(False)
+        else:
+            self.__down_fname1.set_available(True)
+            self.__dl_descr1.set_available(True)
+            self.__down_fname2.set_available(True)
+            self.__dl_descr2.set_available(True)
+            self.__dl_cright.set_available(True)
 
     def __living_changed(self):
         """

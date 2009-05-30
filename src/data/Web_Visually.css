@@ -251,13 +251,9 @@ p#user_header {
     margin:0 auto;
     vertical-align:middle;
 }
-#footer p:first-letter {
-    color:yellow;
-    font:x-large;
-}
 #footer p#createdate {
     float:left;
-    width:40%;
+    width:45%;
     text-align:left;
     margin-left:10px;
     color:#FFF;
@@ -335,7 +331,7 @@ div#alphabet ul li.letters a:hover {
     min-width:770px;
     height:32px;
     margin:0;
-    padding:0 0 0 9px;
+    padding:0 0 0 20px;
     background-color:#FFF;
     border-bottom:solid 2px #000;
 }
@@ -430,7 +426,7 @@ table.infolist tbody tr td.ColumnDeath {
 }
 table.infolist tbody tr td.ColumnRowLabel {
     width:2%;
-    color:#696969;
+    color:#000;
     padding-left:20px;
 }
 table.infolist tbody tr td.ColumnType {
@@ -439,9 +435,6 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
-}
-table.infolist tbody tr td.ColumnPartner a {
-    background-color:#FFF;
 }
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
@@ -555,7 +548,6 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 table.individuallist tbody tr td.ColumnPartner {
     padding:0;
-    background-color:#FFF;
 }
 table.individuallist tbody tr td.ColumnPartner a {
     display:block;
@@ -757,8 +749,11 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 /* Download 
 ----------------------------------------------------- */
 #Download { 
-    padding:1cm;
-    height:420px;
+    padding-top:2cm;
+    padding-bottom:2cm;
+    padding-left:.5cm;
+    padding-right:.5cm;
+    height:390px;
 }
 table.download {
     border:solid 2px #000;
@@ -768,27 +763,33 @@ table.download img {
     float:center;
 }
 table.download thead tr th {
-    text-align:center;
-    border:solid 2px #000;
+    background-color:#6AF364;
     color: #000;
     text-transform:uppercase;
+    padding-left:20px;
+    padding-top:15px;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+    text-align:left;
 }
 table.download tbody tr#Row02 {
     border-bottom:solid 2px #000;
 }
-table.download thead tr th, table.download tbody tr td { 
-    padding-left:10px;
-    padding-top:20px;
+table.download tbody tr td { 
+    padding-left:20px;
+    padding-top:15px;
     border-style:solid;
     border-color:#000;
     border-width:0 2px 2px 2px;
     text-align:left;
 }
 table.download td.Description {
-    width: 50%;
+    width:45%;
 }
 table.download td.License {
-    width:8%;
+    width:6%;
+    padding-left:20px;
 }
 table.download td.Filename {
     width:30%;
@@ -802,7 +803,7 @@ table.download td.Filename a:hover {
     text-decoration:underline;
 }
 table.download td.Modified {
-    width:12%;
+    width:17%;
     font-weight:bold;
 }
 
