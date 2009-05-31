@@ -33,11 +33,9 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from ReportBase import ReportUtils
 from gen.plug import PluginManager, DocGenPlugin
-from gen.plug.docgen import BaseDoc, DrawDoc
-from gen.plug.docgen.basedoc import FONT_SERIF, PAPER_PORTRAIT, SOLID
+from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
+from gen.plug.utils import gformat
 import Errors
-
-from Utils import gformat
 import Utils
 
 def lrgb(grp):

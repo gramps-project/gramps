@@ -43,9 +43,9 @@ from TransUtils import sgettext as _
 # Person and relation types
 from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF,
-                    PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                            FONT_SANS_SERIF, FONT_SERIF,
+                            PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption

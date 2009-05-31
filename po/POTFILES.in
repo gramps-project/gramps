@@ -19,7 +19,6 @@ src/DisplayState.py
 src/Errors.py
 src/ExportAssistant.py
 src/ExportOptions.py
-src/FontScale.py
 src/GrampsAboutDialog.py
 src/GrampsCfg.py
 src/GrampsDisplay.py
@@ -417,7 +416,18 @@ src/gen/plug/menu/_string.py
 src/gen/plug/menu/_style.py
 src/gen/plug/menu/_surnamecolor.py
 src/gen/plug/menu/_text.py
+src/gen/plug/docgen/__init__.py
 src/gen/plug/docgen/basedoc.py
+src/gen/plug/docgen/drawdoc.py
+src/gen/plug/docgen/fontscale.py
+src/gen/plug/docgen/fontstyle.py
+src/gen/plug/docgen/graphdoc.py
+src/gen/plug/docgen/graphicstyle.py
+src/gen/plug/docgen/paperstyle.py
+src/gen/plug/docgen/paragraphstyle.py
+src/gen/plug/docgen/stylesheet.py
+src/gen/plug/docgen/tablestyle.py
+src/gen/plug/docgen/textdoc.py
 src/gen/plug/docbackend/__init__.py
 src/gen/plug/docbackend/cairobackend.py
 src/gen/plug/docbackend/docbackend.py

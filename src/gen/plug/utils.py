@@ -21,18 +21,32 @@
 # $Id: __init__.py 10055 2008-02-18 20:07:09Z acraphae $
 
 """
-The docgen package providing the API the document generating plugins can use.
-A docgen plugin should fully implement this api for TextDoc or DrawDoc
+General utility functions usefull for the generic plugin system
 """
 
-from basedoc import BaseDoc
-from paperstyle import PaperSize, PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
-from fontstyle import FontStyle, FONT_SANS_SERIF, FONT_SERIF, FONT_MONOSPACE
-from paragraphstyle import ParagraphStyle, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,\
-                           PARA_ALIGN_RIGHT, PARA_ALIGN_JUSTIFY
-from tablestyle import TableStyle, TableCellStyle
-from stylesheet import StyleSheetList, StyleSheet, SheetParser
-from graphicstyle import GraphicsStyle, SOLID, DASHED
-from textdoc import TextDoc, IndexMark,INDEX_TYPE_ALP, INDEX_TYPE_TOC
-from drawdoc import DrawDoc
-from graphdoc import GVDoc
+def gfloat(val):
+    """Convert to floating number, taking care of possible locale differences.
+    
+    Useful for reading float values from text entry fields 
+    while under non-English locale.
+    """
+
+    try:
+        return float(val)
+    except:
+        try:
+            return float(val.replace('.', ', '))
+        except:
+            return float(val.replace(', ', '.'))
+    return 0.0
+
+def gformat(val):
+    """Performs ('%.3f' % val) formatting with the resulting string always 
+    using dot ('.') as a decimal point.
+    
+    Useful for writing float values into XML when under non-English locale.
+    """
+
+    decimal_point = locale.localeconv()['decimal_point']
+    return_val = "%.3f" % val
+    return return_val.replace(decimal_point, '.')

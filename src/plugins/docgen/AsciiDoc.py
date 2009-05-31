@@ -34,8 +34,8 @@ from gettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc
-from gen.plug.docgen.basedoc import (PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER)
+from gen.plug.docgen import BaseDoc, TextDoc,\
+                            PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER
 from gen.plug import PluginManager, DocGenPlugin
 import Errors
 import Utils

@@ -39,9 +39,8 @@ from gettext import gettext as _
 import gen.lib
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                    FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from Utils import media_path_full
 import DateHandler
 

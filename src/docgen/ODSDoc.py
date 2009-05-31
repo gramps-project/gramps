@@ -35,7 +35,7 @@ from gettext import gettext as _
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen.basedoc import FONT_SERIF
+from gen.plug.docgen import FONT_SERIF
 from docgen import SpreadSheetDoc
 
 import const

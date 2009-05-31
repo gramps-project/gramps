@@ -34,9 +34,8 @@ from gettext import gettext as _
 # Load the base BaseDoc class
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc
-from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_RIGHT
-                        , PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
+from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
+                             PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
 from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import Errors

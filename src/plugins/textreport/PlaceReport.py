@@ -37,10 +37,9 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import FilterOption, PlaceListOption
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle, TableStyle,\
-                            TableCellStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+                            TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
+                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 import Sort
 from BasicUtils import name_displayer as _nd

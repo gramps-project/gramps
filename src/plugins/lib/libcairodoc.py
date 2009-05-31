@@ -38,10 +38,9 @@ from math import radians
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc, DrawDoc, ParagraphStyle,\
-                        TableCellStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
-                    FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
+from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
+                        TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
+                        FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
 from ReportBase import ReportUtils
 from Errors import PluginError
 from gen.plug import PluginManager, Plugin

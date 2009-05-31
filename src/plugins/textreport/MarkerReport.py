@@ -38,10 +38,9 @@ from gettext import gettext as _
 from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle,\
-                        TableStyle, TableCellStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                        TableStyle, TableCellStyle, FONT_SANS_SERIF, 
+                        INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.lib import MarkerType
 from Filters import GenericFilterFactory, Rules
 from BasicUtils import name_displayer

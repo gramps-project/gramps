@@ -258,6 +258,8 @@ def string_width(font, text):
     """
     returns with width of a string in the specified font
     """
+    ## TODO: Does it not make sense to use writing on a pango Layout to know
+    ##       text width?
     i = font.get_type_face()
     j = font.get_bold() + font.get_italic()*2
     s = font.get_size()

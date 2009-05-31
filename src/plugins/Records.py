@@ -35,8 +35,7 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 from gen.lib import ChildRefType, Date, EventType, Name
-from gen.plug.docgen import FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF
+from gen.plug.docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from gen.plug.menu import (BooleanOption, EnumeratedListOption, 

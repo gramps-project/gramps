@@ -37,8 +37,8 @@ from gen.plug import PluginManager
 from gen.plug.menu import StringOption, MediaOption, NumberOption
 from Utils import media_path_full
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (FontStyle, ParagraphStyle,
+                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
 #------------------------------------------------------------------------
 #

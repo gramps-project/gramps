@@ -55,7 +55,7 @@ except:
 #-------------------------------------------------------------------------
 import const
 import Config
-from gen.plug.docgen.basedoc import PAPER_PORTRAIT
+from gen.plug.docgen import PAPER_PORTRAIT
 from PluginUtils import _Options, GuiMenuOptions
 
 #-------------------------------------------------------------------------

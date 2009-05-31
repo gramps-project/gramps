@@ -35,8 +35,7 @@ import pango
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc
-from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_RIGHT,
+from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                         FONT_SANS_SERIF, FONT_MONOSPACE, PARA_ALIGN_CENTER, 
                         PARA_ALIGN_LEFT)
 import ManagedWindow

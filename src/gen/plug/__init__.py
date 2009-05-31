@@ -26,6 +26,7 @@ from _manager import PluginManager
 from _import import ImportPlugin
 from _export import ExportPlugin
 from _docgenplugin import DocGenPlugin
+from utils import *
 
-__all__ = [ "docgen", "menu", Plugin, PluginManager, ImportPlugin, 
-            ExportPlugin, DocGenPlugin ]
+__all__ = [ "docbackend", "docgen", "menu", Plugin, PluginManager, 
+            ImportPlugin, ExportPlugin, DocGenPlugin ]

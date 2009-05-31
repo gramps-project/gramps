@@ -34,9 +34,10 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_CENTER
-                        , PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT)
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                             FONT_SERIF, PARA_ALIGN_CENTER,
+                             PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT)
+from gen.plug.docgen.fontscale import string_trim
 from BasicUtils import name_displayer
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
@@ -45,7 +46,7 @@ from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
-from FontScale import string_trim
+
 
 import libholiday
 from libholiday import g2iso

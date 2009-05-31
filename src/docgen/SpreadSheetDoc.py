@@ -19,8 +19,7 @@
 #
 
 from gen.plug.docgen import FontStyle, ParagraphStyle, TableStyle,\
-                            TableCellStyle
-from gen.plug.docgen.basedoc import PAPER_PORTRAIT
+                            TableCellStyle,PAPER_PORTRAIT
 
 #------------------------------------------------------------------------
 #

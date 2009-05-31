@@ -35,9 +35,9 @@ import datetime, time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import (FONT_SERIF, PARA_ALIGN_RIGHT,
-                    PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                             FONT_SERIF, PARA_ALIGN_RIGHT,
+                             PARA_ALIGN_LEFT, PARA_ALIGN_CENTER)
 from BasicUtils import name_displayer as _nd
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT

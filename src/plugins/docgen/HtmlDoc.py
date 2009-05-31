@@ -42,8 +42,7 @@ import ImgManip
 import tarfile
 import const
 import Errors
-from gen.plug.docgen import BaseDoc, TextDoc
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
 

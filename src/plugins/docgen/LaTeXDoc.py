@@ -41,8 +41,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 
 from gen.plug import PluginManager, DocGenPlugin
-from gen.plug.docgen import BaseDoc, TextDoc
-from gen.plug.docgen.basedoc import PAPER_LANDSCAPE, FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, TextDoc, PAPER_LANDSCAPE, FONT_SANS_SERIF
 from gen.plug.docbackend import LateXBackend, latexescape
 import ImgManip
 import Errors

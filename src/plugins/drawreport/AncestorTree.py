@@ -35,8 +35,8 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
+from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle,\
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER
 from SubstKeywords import SubstKeywords
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption

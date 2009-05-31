@@ -50,8 +50,7 @@ from gen.lib.person import Person
 from BasicUtils import name_displayer as _nd
 from Utils import media_path_full
 from QuestionDialog import WarningDialog
-from gen.plug.docgen import IndexMark
-from gen.plug.docgen.basedoc import INDEX_TYPE_ALP
+from gen.plug.docgen import IndexMark, INDEX_TYPE_ALP
 
 #------------------------------------------------------------------------
 #

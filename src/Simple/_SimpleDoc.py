@@ -21,9 +21,8 @@
 """
 Provide a simplified database access interface to the GRAMPS database.
 """
-from gen.plug.docgen import StyleSheet, ParagraphStyle,\
-                        TableStyle, TableCellStyle
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_LEFT
+from gen.plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
+                            TableCellStyle,  FONT_SANS_SERIF, PARA_ALIGN_LEFT
 
 class SimpleDoc(object):
     """

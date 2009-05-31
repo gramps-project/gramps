@@ -35,10 +35,9 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle, TableStyle,\
-                            TableCellStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                    PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
+                             PARA_ALIGN_CENTER)
 import DateHandler
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FilterOption, PersonOption

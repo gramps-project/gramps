@@ -35,8 +35,7 @@ import StringIO
 #
 #-------------------------------------------------------------------------
 from gen.plug import PluginManager, DocGenPlugin
-from gen.plug.docgen import BaseDoc, DrawDoc 
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, DrawDoc,FONT_SANS_SERIF
 import Errors
 
 #-------------------------------------------------------------------------

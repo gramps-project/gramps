@@ -41,9 +41,8 @@ from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, FilterOption, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 pt2cm = ReportUtils.pt2cm
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
-                    DASHED, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                    FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER)
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer

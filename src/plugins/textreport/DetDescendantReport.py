@@ -44,9 +44,9 @@ from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from ReportBase import Bibliography, Endnotes
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
+                             FONT_SANS_SERIF, FONT_SERIF, 
+                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 from BasicUtils import name_displayer as _nd
 import Utils

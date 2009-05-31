@@ -35,8 +35,8 @@ from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
 from TransUtils import sgettext as _
-from gen.plug.docgen import GraphicsStyle, FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
+from gen.plug.docgen import GraphicsStyle, FontStyle, ParagraphStyle,\
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER
 
 #------------------------------------------------------------------------
 #

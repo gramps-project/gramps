@@ -32,10 +32,9 @@ import gen.lib
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, FamilyOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle, TableStyle,\
-                            TableCellStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, FONT_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
+                            TableCellStyle, FONT_SANS_SERIF, FONT_SERIF, 
+                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 import DateHandler
 from TransUtils import sgettext as _
 from BasicUtils import name_displayer as _nd

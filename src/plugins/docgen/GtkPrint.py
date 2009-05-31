@@ -42,7 +42,7 @@ from math import radians
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen.basedoc import PAPER_PORTRAIT
+from gen.plug.docgen import PAPER_PORTRAIT
 import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Errors

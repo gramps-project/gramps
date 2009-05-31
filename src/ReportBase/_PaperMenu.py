@@ -40,10 +40,10 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import PaperStyle, PaperSize
-from gen.plug.docgen.basedoc import (PAPER_PORTRAIT, PAPER_LANDSCAPE)
+from gen.plug.docgen import PaperStyle, PaperSize, PAPER_PORTRAIT, \
+                            PAPER_LANDSCAPE
+from gen.plug.utils import gfloat
 import const
-import Utils
 from glade import Glade
 
 #-------------------------------------------------------------------------
@@ -342,8 +342,8 @@ class PageSizeParser(handler.ContentHandler):
     def startElement(self,tag,attrs):
         if tag == "page":
             name = attrs['name']
-            height = Utils.gfloat(attrs['height'])
-            width = Utils.gfloat(attrs['width'])
+            height = gfloat(attrs['height'])
+            width = gfloat(attrs['width'])
             self.paper_list.append(PaperSize(name, height,width))
 
 #-------------------------------------------------------------------------

@@ -33,8 +33,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle
-from gen.plug.docgen.basedoc import FONT_SANS_SERIF, PARA_ALIGN_CENTER
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW

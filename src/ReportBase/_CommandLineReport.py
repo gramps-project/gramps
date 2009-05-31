@@ -42,8 +42,8 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import gen
 import Utils
-from gen.plug.docgen import StyleSheet, StyleSheetList, PaperStyle
-from gen.plug.docgen.basedoc import (PAPER_PORTRAIT, PAPER_LANDSCAPE)
+from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
+                             PAPER_PORTRAIT, PAPER_LANDSCAPE)
 from BasicUtils import name_displayer
 from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
     CATEGORY_GRAPHVIZ

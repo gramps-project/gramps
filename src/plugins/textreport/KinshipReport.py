@@ -39,9 +39,8 @@ from string import capitalize
 from gen.plug import PluginManager
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from gen.plug.docgen import IndexMark, FontStyle, ParagraphStyle
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, 
-                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
+                    FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from BasicUtils import name_displayer
 import DateHandler
 

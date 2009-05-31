@@ -7,7 +7,17 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/docgen
 
 pkgdata_PYTHON = \
 	__init__.py \
-	basedoc.py  
+	basedoc.py  \
+	drawdoc.py \
+	fontscale.py \
+	fontstyle.py \
+	graphdoc.py \
+	graphicstyle.py \
+	paperstyle.py \
+	paragraphstyle.py \
+	stylesheet.py \
+	tablestyle.py \
+	textdoc.py 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug/docgen
 pkgpythondir = @pkgpythondir@/gen/plug/docgen

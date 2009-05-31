@@ -44,15 +44,15 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.plug.docgen import BaseDoc, TextDoc, DrawDoc
-from gen.plug.docgen.basedoc import (FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
+from gen.plug import PluginManager, DocGenPlugin
+from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
+                    FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT)
+from gen.plug.docgen.fontscale import string_width
 import const
-from gen.plug import PluginManager, DocGenPlugin
 from ReportBase import ReportUtils
 import ImgManip
-import FontScale
 import Utils
 import Errors
 
@@ -988,7 +988,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         height = size*(len(text))
         width = 0
         for line in text:
-            width = max(width, FontScale.string_width(font, line))
+            width = max(width, string_width(font, line))
         wcm = ReportUtils.pt2cm(width)
         hcm = ReportUtils.pt2cm(height)
 
@@ -1061,7 +1061,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         para_name = box_style.get_paragraph_style()
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
-        sw = ReportUtils.pt2cm(FontScale.string_width(font, text))*1.3
+        sw = ReportUtils.pt2cm(string_width(font, text))*1.3
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="2" ')
@@ -1121,7 +1121,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pstyle = style_sheet.get_paragraph_style(para_name)
         font = pstyle.get_font()
 
-        size = (FontScale.string_width(font, text)/72.0) * 2.54
+        size = (string_width(font, text)/72.0) * 2.54
 
         self.cntnt.write('<draw:frame text:anchor-type="paragraph" ')
         self.cntnt.write('draw:style-name="%s" ' % style)
