@@ -1,4 +1,4 @@
-# translation of svnewtot.po to svenska
+# translation of sv.po to svenska
 # translation of svny1.po to
 # translation of sv99.po to
 # translation of svny.po to
@@ -32,10 +32,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: svnewtot\n"
+"Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-27 13:00+0200\n"
-"PO-Revision-Date: 2009-05-27 16:39+0200\n"
+"POT-Creation-Date: 2009-05-30 16:43+0200\n"
+"PO-Revision-Date: 2009-06-01 14:14+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -544,7 +544,7 @@ msgstr "Aldrig"
 #: ../src/plugins/gramplet/RelativeGramplet.py:122
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #: ../src/plugins/graph/GVFamilyLines.py:152
-#: ../src/plugins/graph/GVRelGraph.py:527
+#: ../src/plugins/graph/GVRelGraph.py:545
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
@@ -1128,7 +1128,7 @@ msgstr "Arkivplats"
 #: ../src/plugins/export/ExportCsv.py:416
 #: ../src/plugins/import/ImportCsv.py:171
 #: ../src/plugins/textreport/FamilyGroup.py:316
-#: ../src/ReportBase/_GraphvizReportDialog.py:1039
+#: ../src/ReportBase/_GraphvizReportDialog.py:1049
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -3404,7 +3404,7 @@ msgstr "Radera den valda familjen"
 #: ../src/DataViews/FamilyList.py:91
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/graph/GVFamilyLines.py:157
-#: ../src/plugins/graph/GVRelGraph.py:532
+#: ../src/plugins/graph/GVRelGraph.py:550
 #: ../src/plugins/textreport/MarkerReport.py:189
 #: ../src/plugins/webreport/NarrativeWeb.py:2601
 msgid "Families"
@@ -6076,9 +6076,9 @@ msgstr "GRAMPS-bok"
 #: ../src/plugins/drawreport/FanChart.py:445
 #: ../src/plugins/drawreport/StatisticsChart.py:903
 #: ../src/plugins/drawreport/TimeLine.py:466
-#: ../src/plugins/graph/GVFamilyLines.py:1062
+#: ../src/plugins/graph/GVFamilyLines.py:1055
 #: ../src/plugins/graph/GVHourGlass.py:304
-#: ../src/plugins/graph/GVRelGraph.py:612
+#: ../src/plugins/graph/GVRelGraph.py:630
 #: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
@@ -6456,9 +6456,11 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
 msgstr ""
-"Den grampsfil du importerar var gjorde med GRAMPS version %(oldgramps)s, medan du kör GRAMPS %(newgramps)s, som är en senare version.\n"
+"Den grampsfil du importerar var gjorde med GRAMPS version %(oldgramps)s, "
+"medan du kör GRAMPS %(newgramps)s, som är en senare version.\n"
 "\n"
-"Filen kommer inta att importeras. Kör i stället en äldre version av GRAMPS, som stöder version %(xmlversion)s av xml.\n"
+"Filen kommer inta att importeras. Kör i stället en äldre version av GRAMPS, "
+"som stöder version %(xmlversion)s av xml.\n"
 "Se\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " för ytterligare info."
@@ -6480,10 +6482,12 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
-"Den grampsfil du importerar var gjorde med GRAMPS version %(oldgramps)s, medan du kör GRAMPS %(newgramps)s, som är en senare version.\n"
+"Den grampsfil du importerar var gjorde med GRAMPS version %(oldgramps)s, "
+"medan du kör GRAMPS %(newgramps)s, som är en senare version.\n"
 "\n"
-"Kontrollera efter import, att allt importerats rätt. I händelse av "
-"problem, Skicka in en felrapport och använd en äldre version av GRAMPS under tiden för att importera denna fil, som är av version %(xmlversion)s av xml.\n"
+"Kontrollera efter import, att allt importerats rätt. I händelse av problem, "
+"Skicka in en felrapport och använd en äldre version av GRAMPS under tiden "
+"för att importera denna fil, som är av version %(xmlversion)s av xml.\n"
 "Se\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "för ytterligare info."
@@ -6553,7 +6557,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/drawreport/FanChart.py:340
 #: ../src/plugins/drawreport/StatisticsChart.py:678
 #: ../src/plugins/drawreport/TimeLine.py:310
-#: ../src/plugins/graph/GVRelGraph.py:445
+#: ../src/plugins/graph/GVRelGraph.py:463
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
@@ -6577,7 +6581,7 @@ msgstr "Rapportalternativ"
 #: ../src/plugins/Records.py:447 ../src/plugins/drawreport/Calendar.py:382
 #: ../src/plugins/drawreport/StatisticsChart.py:680
 #: ../src/plugins/drawreport/TimeLine.py:312
-#: ../src/plugins/graph/GVRelGraph.py:448
+#: ../src/plugins/graph/GVRelGraph.py:466
 #: ../src/plugins/quickview/FilterByName.py:237
 #: ../src/plugins/textreport/BirthdayReport.py:336
 #: ../src/plugins/textreport/IndivComplete.py:516
@@ -6598,7 +6602,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten"
 #: ../src/plugins/Records.py:453
 #: ../src/plugins/drawreport/StatisticsChart.py:686
 #: ../src/plugins/drawreport/TimeLine.py:318
-#: ../src/plugins/graph/GVRelGraph.py:454
+#: ../src/plugins/graph/GVRelGraph.py:472
 #: ../src/plugins/textreport/IndivComplete.py:522
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
@@ -6610,7 +6614,7 @@ msgstr "Filtrera person"
 #: ../src/plugins/Records.py:454
 #: ../src/plugins/drawreport/StatisticsChart.py:687
 #: ../src/plugins/drawreport/TimeLine.py:319
-#: ../src/plugins/graph/GVRelGraph.py:455
+#: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/IndivComplete.py:523
 #: ../src/plugins/tool/CalculateEstimatedDates.py:71
 #: ../src/plugins/tool/SortEvents.py:175
@@ -6800,7 +6804,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../src/plugins/docgen/LaTeXDoc.py:655
-#: ../src/ReportBase/_GraphvizReportDialog.py:902
+#: ../src/ReportBase/_GraphvizReportDialog.py:905
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -6815,7 +6819,7 @@ msgid "Open Document Text"
 msgstr "Open Document-text"
 
 #: ../src/plugins/docgen/PSDrawDoc.py:348
-#: ../src/ReportBase/_GraphvizReportDialog.py:809
+#: ../src/ReportBase/_GraphvizReportDialog.py:812
 msgid "PostScript"
 msgstr "PostScript"
 
@@ -8378,14 +8382,14 @@ msgstr "Antal personer"
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
-#: ../src/plugins/graph/GVRelGraph.py:519
+#: ../src/plugins/graph/GVRelGraph.py:537
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Män"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:132
 #: ../src/plugins/graph/GVFamilyLines.py:148
-#: ../src/plugins/graph/GVRelGraph.py:523
+#: ../src/plugins/graph/GVRelGraph.py:541
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Kvinnor"
@@ -8748,22 +8752,22 @@ msgid "Colours to use for various family lines."
 msgstr "Färger, som används för olika släktlinjer."
 
 #: ../src/plugins/graph/GVFamilyLines.py:145
-#: ../src/plugins/graph/GVRelGraph.py:520
+#: ../src/plugins/graph/GVRelGraph.py:538
 msgid "The colour to use to display men."
 msgstr "Färgen som används för att visa män."
 
 #: ../src/plugins/graph/GVFamilyLines.py:149
-#: ../src/plugins/graph/GVRelGraph.py:524
+#: ../src/plugins/graph/GVRelGraph.py:542
 msgid "The colour to use to display women."
 msgstr "Färgen som används för att visa kvinnor."
 
 #: ../src/plugins/graph/GVFamilyLines.py:153
-#: ../src/plugins/graph/GVRelGraph.py:528
+#: ../src/plugins/graph/GVRelGraph.py:546
 msgid "The colour to use when the gender is unknown."
 msgstr "Färgen som används för att visa okänt kön."
 
 #: ../src/plugins/graph/GVFamilyLines.py:158
-#: ../src/plugins/graph/GVRelGraph.py:533
+#: ../src/plugins/graph/GVRelGraph.py:551
 msgid "The colour to use to display families."
 msgstr "Färgen, som används vid visning av familjer."
 
@@ -8792,7 +8796,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: ../src/plugins/graph/GVFamilyLines.py:190
-#: ../src/plugins/graph/GVRelGraph.py:493
+#: ../src/plugins/graph/GVRelGraph.py:511
 msgid "Include thumbnail images of people"
 msgstr "Ta med miniatyrbilder på personer"
 
@@ -8801,17 +8805,17 @@ msgid "Thumbnail location"
 msgstr "Minatyrbildsplats"
 
 #: ../src/plugins/graph/GVFamilyLines.py:197
-#: ../src/plugins/graph/GVRelGraph.py:500
+#: ../src/plugins/graph/GVRelGraph.py:518
 msgid "Above the name"
 msgstr "Ovanför namnet"
 
 #: ../src/plugins/graph/GVFamilyLines.py:198
-#: ../src/plugins/graph/GVRelGraph.py:501
+#: ../src/plugins/graph/GVRelGraph.py:519
 msgid "Beside the name"
 msgstr "Vid sidan om namnet"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#: ../src/plugins/graph/GVRelGraph.py:503
+#: ../src/plugins/graph/GVRelGraph.py:521
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Var miniatyrbilden skall synas relativt till namnet"
 
@@ -8828,7 +8832,7 @@ msgstr "Alternativ"
 #. ###############################
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:274
-#: ../src/plugins/graph/GVRelGraph.py:511
+#: ../src/plugins/graph/GVRelGraph.py:529
 msgid "Graph coloring"
 msgstr "Färgläggning av diagram"
 
@@ -8844,44 +8848,31 @@ msgstr ""
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
-#: ../src/plugins/graph/GVRelGraph.py:543
+#: ../src/plugins/graph/GVRelGraph.py:561
 msgid "Use rounded corners"
 msgstr "Använd avrundade hörn"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
-#: ../src/plugins/graph/GVRelGraph.py:545
+#: ../src/plugins/graph/GVRelGraph.py:563
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Använd avrundade hörn för att skilja mellan kvinnor och män."
 
 #: ../src/plugins/graph/GVFamilyLines.py:221
-msgid "Use subgraphs"
-msgstr "Använd underordnade stycken"
-
-#: ../src/plugins/graph/GVFamilyLines.py:222
-msgid ""
-"Subgraphs can help GraphViz position certain linked nodes closer together, "
-"but with non-trivial graphs will result in longer lines and larger graphs."
-msgstr ""
-"Underordnade stycken kan hjälpa GraphViz att placera länkade noder tätare "
-"ihop, men kan även orsaka längre linjer och större diagram vid komplicerade "
-"sådana."
-
-#: ../src/plugins/graph/GVFamilyLines.py:228
 msgid "Include dates"
 msgstr "Ta med datum"
 
-#: ../src/plugins/graph/GVFamilyLines.py:229
+#: ../src/plugins/graph/GVFamilyLines.py:222
 msgid "Whether to include dates for people and families."
 msgstr "Huruvida ta med datum för personer och familjer."
 
-#: ../src/plugins/graph/GVFamilyLines.py:234
-#: ../src/plugins/graph/GVRelGraph.py:468
+#: ../src/plugins/graph/GVFamilyLines.py:227
+#: ../src/plugins/graph/GVRelGraph.py:486
 msgid "Limit dates to years only"
 msgstr "Begränsa datum till år enbart"
 
-#: ../src/plugins/graph/GVFamilyLines.py:235
-#: ../src/plugins/graph/GVRelGraph.py:469
+#: ../src/plugins/graph/GVFamilyLines.py:228
+#: ../src/plugins/graph/GVRelGraph.py:487
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -8889,60 +8880,60 @@ msgstr ""
 "Skriver enbart ut år för datum, varken månad eller dag eller datumskattning "
 "eller -intervall visas."
 
-#: ../src/plugins/graph/GVFamilyLines.py:240
+#: ../src/plugins/graph/GVFamilyLines.py:233
 msgid "Include places"
 msgstr "Ta med platser"
 
-#: ../src/plugins/graph/GVFamilyLines.py:241
+#: ../src/plugins/graph/GVFamilyLines.py:234
 msgid "Whether to include placenames for people and families."
 msgstr "Huruvida ta med namn på platser för personer och familjer."
 
-#: ../src/plugins/graph/GVFamilyLines.py:246
+#: ../src/plugins/graph/GVFamilyLines.py:239
 msgid "Include the number of children"
 msgstr "Ta med antal barn"
 
-#: ../src/plugins/graph/GVFamilyLines.py:247
+#: ../src/plugins/graph/GVFamilyLines.py:240
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr "Huruvida ta med antal barn för familjer med mer än ett barn."
 
-#: ../src/plugins/graph/GVFamilyLines.py:252
+#: ../src/plugins/graph/GVFamilyLines.py:245
 msgid "Include private records"
 msgstr "Ta med privata poster"
 
-#: ../src/plugins/graph/GVFamilyLines.py:253
+#: ../src/plugins/graph/GVFamilyLines.py:246
 msgid "Whether to include names, dates, and families that are marked as private."
 msgstr "Huruvida ta med namn, datum och familjer, vilka är att betrakta som privata."
 
-#: ../src/plugins/graph/GVFamilyLines.py:404
+#: ../src/plugins/graph/GVFamilyLines.py:397
 msgid "Generating Family Lines"
 msgstr "Skapa släktlinjer"
 
 #. start the progress indicator
-#: ../src/plugins/graph/GVFamilyLines.py:405
+#: ../src/plugins/graph/GVFamilyLines.py:398
 #: ../src/plugins/tool/NotRelated.py:103 ../src/plugins/tool/NotRelated.py:233
 msgid "Starting"
 msgstr "Börjar"
 
-#: ../src/plugins/graph/GVFamilyLines.py:410
+#: ../src/plugins/graph/GVFamilyLines.py:403
 msgid "Finding ancestors and children"
 msgstr "Hittar förfäder och barn"
 
-#: ../src/plugins/graph/GVFamilyLines.py:433
+#: ../src/plugins/graph/GVFamilyLines.py:426
 msgid "Writing family lines"
 msgstr "Skriver släktlinjer"
 
-#: ../src/plugins/graph/GVFamilyLines.py:972
+#: ../src/plugins/graph/GVFamilyLines.py:965
 #, python-format
 msgid "%d children"
 msgstr "%d barn"
 
-#: ../src/plugins/graph/GVFamilyLines.py:1056
+#: ../src/plugins/graph/GVFamilyLines.py:1049
 msgid "Family Lines Graph"
 msgstr "Släktlinjediagram"
 
-#: ../src/plugins/graph/GVFamilyLines.py:1065
+#: ../src/plugins/graph/GVFamilyLines.py:1058
 msgid "Produces family line graphs using GraphViz"
 msgstr "Skapar ett diagram för en släktlinje med GraphViz."
 
@@ -8980,12 +8971,12 @@ msgstr "Antal förfadersgenerationer, som skall ingå i rapporten"
 
 #. ###############################
 #: ../src/plugins/graph/GVHourGlass.py:271
-#: ../src/plugins/graph/GVRelGraph.py:508
+#: ../src/plugins/graph/GVRelGraph.py:526
 msgid "Graph Style"
 msgstr "Diagrammall"
 
 #: ../src/plugins/graph/GVHourGlass.py:277
-#: ../src/plugins/graph/GVRelGraph.py:514
+#: ../src/plugins/graph/GVRelGraph.py:532
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -9017,15 +9008,15 @@ msgstr "Ättlingar <-> Anor"
 msgid "Descendants - Ancestors"
 msgstr "Ättlingar - Anor"
 
-#: ../src/plugins/graph/GVRelGraph.py:450
+#: ../src/plugins/graph/GVRelGraph.py:468
 msgid "Determines what people are included in the graph"
 msgstr "Avgör vilka personer, som tas med i rapporten"
 
-#: ../src/plugins/graph/GVRelGraph.py:462
+#: ../src/plugins/graph/GVRelGraph.py:480
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Ta med födelse-, giftermåls- och dödsdatum"
 
-#: ../src/plugins/graph/GVRelGraph.py:463
+#: ../src/plugins/graph/GVRelGraph.py:481
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -9033,11 +9024,11 @@ msgstr ""
 "Ta med de datum när personen föddes, gifte sig och/eller dog i "
 "diagrametiketterna."
 
-#: ../src/plugins/graph/GVRelGraph.py:474
+#: ../src/plugins/graph/GVRelGraph.py:492
 msgid "Use place when no date"
 msgstr "Använd plats när datum saknas"
 
-#: ../src/plugins/graph/GVRelGraph.py:475
+#: ../src/plugins/graph/GVRelGraph.py:493
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -9045,11 +9036,11 @@ msgstr ""
 "När inget födelse-, giftermåls- eller dödsdatum finns tillgängligt, kommer "
 "motsvarande platsfält att användas."
 
-#: ../src/plugins/graph/GVRelGraph.py:480
+#: ../src/plugins/graph/GVRelGraph.py:498
 msgid "Include URLs"
 msgstr "Ta med URL:er"
 
-#: ../src/plugins/graph/GVRelGraph.py:481
+#: ../src/plugins/graph/GVRelGraph.py:499
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -9059,51 +9050,51 @@ msgstr ""
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
 "'Skapa webbplats."
 
-#: ../src/plugins/graph/GVRelGraph.py:488
+#: ../src/plugins/graph/GVRelGraph.py:506
 msgid "Include IDs"
 msgstr "Ta med ID:n"
 
-#: ../src/plugins/graph/GVRelGraph.py:489
+#: ../src/plugins/graph/GVRelGraph.py:507
 msgid "Include individual and family IDs."
 msgstr "Ta med individ- och familje-ID."
 
-#: ../src/plugins/graph/GVRelGraph.py:495
+#: ../src/plugins/graph/GVRelGraph.py:513
 msgid "Whether to include thumbnails of people."
 msgstr "Huruvida miniatyrbilder av personer skall tas med."
 
-#: ../src/plugins/graph/GVRelGraph.py:499
+#: ../src/plugins/graph/GVRelGraph.py:517
 msgid "Thumbnail Location"
 msgstr "Miniatyrbildsplats"
 
-#: ../src/plugins/graph/GVRelGraph.py:536
+#: ../src/plugins/graph/GVRelGraph.py:554
 msgid "Arrowhead direction"
 msgstr "Riktning för pilspets"
 
-#: ../src/plugins/graph/GVRelGraph.py:539
+#: ../src/plugins/graph/GVRelGraph.py:557
 msgid "Choose the direction that the arrows point."
 msgstr "Välj den riktning som pilarna ska peka åt."
 
-#: ../src/plugins/graph/GVRelGraph.py:550
+#: ../src/plugins/graph/GVRelGraph.py:568
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
-#: ../src/plugins/graph/GVRelGraph.py:551
+#: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
-#: ../src/plugins/graph/GVRelGraph.py:555
+#: ../src/plugins/graph/GVRelGraph.py:573
 msgid "Show family nodes"
 msgstr "Visa familjenoder"
 
-#: ../src/plugins/graph/GVRelGraph.py:556
+#: ../src/plugins/graph/GVRelGraph.py:574
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
-#: ../src/plugins/graph/GVRelGraph.py:611
+#: ../src/plugins/graph/GVRelGraph.py:629
 msgid "Relationship Graph"
 msgstr "Släktskapsdiagram"
 
-#: ../src/plugins/graph/GVRelGraph.py:613
+#: ../src/plugins/graph/GVRelGraph.py:631
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Skapar en släktskapsdiagram genom att använda Graphviz."
 
@@ -13859,7 +13850,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:1104
+#: ../src/ReportBase/_GraphvizReportDialog.py:1114
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -13868,7 +13859,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:155
-#: ../src/ReportBase/_GraphvizReportDialog.py:1082
+#: ../src/ReportBase/_GraphvizReportDialog.py:1092
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -13909,134 +13900,134 @@ msgstr "Slutnoter"
 #. Private Contstants
 #.
 #. -------------------------------------------------------------------------------
-#: ../src/ReportBase/_GraphvizReportDialog.py:63
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:64
+#: ../src/ReportBase/_GraphvizReportDialog.py:66
 msgid "PostScript / Helvetica"
 msgstr "PostScript / Helvetica"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "TrueType / FreeSans"
 msgstr "TrueType / FreeSans"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Vertical (top to bottom)"
 msgstr "Vertikalt (uppifrån och ner)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:68
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Vertical (bottom to top)"
 msgstr "Vertikalt (nerifrån och upp)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Horizontal (left to right)"
 msgstr "Horisontellt (vänster till höger)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Horizontal (right to left)"
 msgstr "Horisontellt (höger till vänster)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Bottom, left"
 msgstr "Nederkant, vänster"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
+#: ../src/ReportBase/_GraphvizReportDialog.py:75
 msgid "Bottom, right"
 msgstr "Nederkant, höger"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Top, left"
 msgstr "Överkant, vänster"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Top, Right"
 msgstr "Överkant, höger"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
+#: ../src/ReportBase/_GraphvizReportDialog.py:78
 msgid "Right, bottom"
 msgstr "Höger, nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:77
+#: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Right, top"
 msgstr "Höger, överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:78
+#: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Left, bottom"
 msgstr "Vänster, nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Left, top"
 msgstr "Vänster, överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:81
+#: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Minimal size"
 msgstr "Minsta storlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:82
+#: ../src/ReportBase/_GraphvizReportDialog.py:84
 msgid "Fill the given area"
 msgstr "Fyll givet område"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:83
+#: ../src/ReportBase/_GraphvizReportDialog.py:85
 msgid "Use optimal number of pages"
 msgstr "Använd optimalt antal sidor"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:85
+#: ../src/ReportBase/_GraphvizReportDialog.py:87
 msgid "Top"
 msgstr "Överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:86
+#: ../src/ReportBase/_GraphvizReportDialog.py:88
 msgid "Bottom"
 msgstr "Nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:125
+#: ../src/ReportBase/_GraphvizReportDialog.py:127
 msgid "Processing File"
 msgstr "Bearbetar fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:797
+#: ../src/ReportBase/_GraphvizReportDialog.py:800
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:803
+#: ../src/ReportBase/_GraphvizReportDialog.py:806
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:815
+#: ../src/ReportBase/_GraphvizReportDialog.py:818
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:821
+#: ../src/ReportBase/_GraphvizReportDialog.py:824
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:827
+#: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:833
+#: ../src/ReportBase/_GraphvizReportDialog.py:836
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:839
+#: ../src/ReportBase/_GraphvizReportDialog.py:842
 msgid "PNG image"
 msgstr "PNG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:845
+#: ../src/ReportBase/_GraphvizReportDialog.py:848
 msgid "Graphviz File"
 msgstr "Graphviz-fil"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:938
+#: ../src/ReportBase/_GraphvizReportDialog.py:941
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:940
+#: ../src/ReportBase/_GraphvizReportDialog.py:943
 #: ../src/widgets/styledtexteditor.py:364
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:945
+#: ../src/ReportBase/_GraphvizReportDialog.py:948
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -14045,28 +14036,28 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:951
+#: ../src/ReportBase/_GraphvizReportDialog.py:954
 #: ../src/widgets/styledtexteditor.py:376
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:952
+#: ../src/ReportBase/_GraphvizReportDialog.py:955
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:955
+#: ../src/ReportBase/_GraphvizReportDialog.py:958
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:960
+#: ../src/ReportBase/_GraphvizReportDialog.py:963
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:964
+#: ../src/ReportBase/_GraphvizReportDialog.py:967
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:965
+#: ../src/ReportBase/_GraphvizReportDialog.py:968
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -14076,11 +14067,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt. Endast giltigt för dot och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:972
+#: ../src/ReportBase/_GraphvizReportDialog.py:975
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:973
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -14090,11 +14081,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled. Endast giltigt för dot och pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:980
+#: ../src/ReportBase/_GraphvizReportDialog.py:983
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:985
+#: ../src/ReportBase/_GraphvizReportDialog.py:988
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -14103,24 +14094,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1003
+#: ../src/ReportBase/_GraphvizReportDialog.py:1006
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:1006
+#: ../src/ReportBase/_GraphvizReportDialog.py:1009
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1011
+#: ../src/ReportBase/_GraphvizReportDialog.py:1014
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1015
+#: ../src/ReportBase/_GraphvizReportDialog.py:1018
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1016
+#: ../src/ReportBase/_GraphvizReportDialog.py:1019
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
@@ -14130,11 +14121,11 @@ msgstr ""
 "försök med tal som 100 eller 300 DPI. För PostScript- eller PDF-filer använd "
 "72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1022
+#: ../src/ReportBase/_GraphvizReportDialog.py:1025
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1023
+#: ../src/ReportBase/_GraphvizReportDialog.py:1026
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -14144,11 +14135,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1030
+#: ../src/ReportBase/_GraphvizReportDialog.py:1033
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1031
+#: ../src/ReportBase/_GraphvizReportDialog.py:1034
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -14158,36 +14149,46 @@ msgstr ""
 "motsvarar detta avståndet mellan kolumner. För horisontella diagram motsvara "
 "detta avståndet mellan rader."
 
-#. ###############################
+#: ../src/ReportBase/_GraphvizReportDialog.py:1041
+msgid "Use subgraphs"
+msgstr "Använd underordnade stycken"
+
 #: ../src/ReportBase/_GraphvizReportDialog.py:1042
+msgid ""
+"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"graphs will result in longer lines and larger graphs."
+msgstr "Underordnade stycken kan hjälpa GraphViz att placera makar ihop, men kan även orsaka längre linjer och större diagram."
+
+#. ###############################
+#: ../src/ReportBase/_GraphvizReportDialog.py:1052
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1044
+#: ../src/ReportBase/_GraphvizReportDialog.py:1054
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1047
+#: ../src/ReportBase/_GraphvizReportDialog.py:1057
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1050
+#: ../src/ReportBase/_GraphvizReportDialog.py:1060
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1054
+#: ../src/ReportBase/_GraphvizReportDialog.py:1064
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1055
+#: ../src/ReportBase/_GraphvizReportDialog.py:1065
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1089
+#: ../src/ReportBase/_GraphvizReportDialog.py:1099
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:1128
+#: ../src/ReportBase/_GraphvizReportDialog.py:1138
 msgid "Open with default application"
 msgstr "Öppna med standardtillämpning"
 
