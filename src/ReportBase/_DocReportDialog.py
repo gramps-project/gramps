@@ -168,8 +168,8 @@ class DocReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            base = self.get_default_basename()
-            spath = os.path.normpath("%s/%s.%s" % (spath, base, ext))
+            base = "%s.%s" % (self.raw_name, ext)
+            spath = os.path.normpath(os.path.join(spath, base))
             self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):

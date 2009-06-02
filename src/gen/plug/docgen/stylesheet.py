@@ -43,7 +43,6 @@ def escxml(string):
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
 from gen.plug.utils import gformat, gfloat
 from paragraphstyle import ParagraphStyle
 from fontstyle import FontStyle
@@ -103,7 +102,7 @@ class StyleSheetList(object):
         """
         defstyle.set_name('default')
         self.map = { "default" : defstyle }
-        self.file = os.path.join(const.HOME_DIR, filename)
+        self.__file = filename
         self.parse()
 
     def delete_style_sheet(self, name):
@@ -149,7 +148,7 @@ class StyleSheetList(object):
         """
         Saves the current StyleSheet definitions to the associated file.
         """
-        xml_file = open(self.file,"w")
+        xml_file = open(self.__file,"w")
         xml_file.write("<?xml version=\"1.0\"?>\n")
         xml_file.write('<stylelist>\n')
         
@@ -200,10 +199,10 @@ class StyleSheetList(object):
         Loads the StyleSheets from the associated file, if it exists.
         """
         try:
-            if os.path.isfile(self.file):
+            if os.path.isfile(self.__file):
                 parser = make_parser()
                 parser.setContentHandler(SheetParser(self))
-                the_file = open(self.file)
+                the_file = open(self.__file)
                 parser.parse(the_file)
                 the_file.close()
         except (IOError,OSError,SAXParseException):

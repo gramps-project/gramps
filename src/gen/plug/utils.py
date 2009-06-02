@@ -24,6 +24,13 @@
 General utility functions usefull for the generic plugin system
 """
 
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
+import locale
+
 def gfloat(val):
     """Convert to floating number, taking care of possible locale differences.
     

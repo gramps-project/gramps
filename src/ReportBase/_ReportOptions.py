@@ -633,7 +633,8 @@ class OptionHandler(_Options.OptionHandler):
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
-        return "%s.xml" % self.module_name
+        filename = "%s.xml" % self.module_name
+        return os.path.join(const.HOME_DIR, filename) 
 
     def get_default_stylesheet_name(self):
         return self.style_name

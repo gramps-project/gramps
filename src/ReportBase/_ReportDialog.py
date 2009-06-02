@@ -181,25 +181,6 @@ class ReportDialog(ManagedWindow.ManagedWindow):
     
     #------------------------------------------------------------------------
     #
-    # Customization hooks for subclasses
-    #
-    #------------------------------------------------------------------------
-    def get_stylesheet_savefile(self):
-        """Where should new styles for this report be saved?  This is
-        the name of an XML file that will be located in the ~/.gramps
-        directory.  This file does not have to exist; it will be
-        created when needed.  All subclasses should probably override
-        this function."""
-        return "basic_report.xml"
-    
-    def get_default_basename(self):
-        """What should the default name be?
-        """
-        spath = self.options.handler.get_stylesheet_savefile()
-        return spath.split('.')[0]
-    
-    #------------------------------------------------------------------------
-    #
     # Functions related to extending the options
     #
     #------------------------------------------------------------------------
@@ -443,7 +424,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
     #------------------------------------------------------------------------
     def setup_init(self):
         # add any elements that we are going to need:
-        hid = self.get_stylesheet_savefile()
+        hid = self.style_name
         if hid[-4:] == ".xml":
             hid = hid[0:-4]
         self.target_fileentry = FileEntry(hid, _("Save As"))

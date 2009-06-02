@@ -1143,10 +1143,6 @@ class BookReportDialog(DocReportDialog):
     def get_header(self, name):
         return _("GRAMPS Book")
 
-    def get_stylesheet_savefile(self):
-        """Needed solely for forming sane filename for the output."""
-        return "book.xml"
-
     def make_doc_menu(self, active=None):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
