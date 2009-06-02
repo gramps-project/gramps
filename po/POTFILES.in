@@ -431,8 +431,6 @@ src/gen/plug/docgen/textdoc.py
 src/gen/plug/docbackend/__init__.py
 src/gen/plug/docbackend/cairobackend.py
 src/gen/plug/docbackend/docbackend.py
-src/gen/plug/docbackend/latexbackend.py
-
 
 # ReportBase package
 src/ReportBase/_CommandLineReport.py

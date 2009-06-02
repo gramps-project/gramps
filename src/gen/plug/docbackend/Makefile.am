@@ -8,8 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/plug/docbackend
 pkgdata_PYTHON = \
 	__init__.py \
 	cairobackend.py \
-	docbackend.py \
-	latexbackend.py 
+	docbackend.py 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug/docbackend
 pkgpythondir = @pkgpythondir@/gen/plug/docbackend

@@ -28,6 +28,5 @@ gen data specific for output (eg markup in gen/lib) and output where needed
 
 from docbackend import DocBackendError, DocBackend
 from cairobackend import CairoBackend
-from latexbackend import LateXBackend, latexescape, latexescapeverbatim
 
 #__all__ = [ DocBackend, CairoBackend, LateXBackend ]
