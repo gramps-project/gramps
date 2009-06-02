@@ -6,7 +6,7 @@
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
-# Espen Berg <espenbe@gmail.com>, 2006, 2007.
+# Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
@@ -10431,7 +10431,7 @@ msgstr "Lager en liste med personer med en bestemt markering"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:85
 #, python-format
 msgid "Number of Ancestors for %s"
-msgstr "Antall Aner for %s"
+msgstr "Antall aner for %s"
 
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:104
 #, python-format
