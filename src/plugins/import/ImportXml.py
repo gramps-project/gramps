@@ -2401,12 +2401,15 @@ class VersionParser(object):
     def __element_handler(self, tag, attrs):
         " Handle XML elements "
         if tag == "database" and 'xmlns' in attrs:
-            xmlns = attrs.get('xmlns')
-            try:
-                self.__xml_version = xmlns.split('/')[4]
-            except:
-                #leave version at 1.0.0
-                pass
+            xmlns = attrs.get('xmlns').split('/')
+            if len(xmlns)>= 2 and not xmlns[2] == 'gramps-project.org':
+                self.__xml_version = '0.0.0'
+            else:
+                try:
+                    self.__xml_version = xmlns[4]
+                except:
+                    #leave version at 1.0.0 although it could be 0.0.0 ??
+                    pass
         elif tag == "database" and not 'xmlns' in attrs:
             #1.0 or before xml, no dtd schema yet on 
             # http://www.gramps-project.org/xml/
