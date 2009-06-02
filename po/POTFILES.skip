@@ -1,4 +1,3 @@
-src/DataViews/MapView.py
 src/Filters/Rules/_HasGalleryBase.py
 src/Filters/Rules/_HasLDSBase.py
 src/Filters/Rules/_HasNoteBase.py

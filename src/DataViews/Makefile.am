@@ -20,8 +20,6 @@ pkgdata_PYTHON = \
 	RepositoryView.py\
         SourceView.py
 
-#	_MapView.py
-
 pkgpyexecdir = @pkgpyexecdir@/DataViews
 pkgpythondir = @pkgpythondir@/DataViews
 
