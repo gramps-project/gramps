@@ -205,7 +205,7 @@ class StyleSheetList(object):
                 the_file = open(self.__file)
                 parser.parse(the_file)
                 the_file.close()
-        except (IOError,OSError,SAXParseException):
+        except (IOError, OSError, SAXParseException):
             pass
         
 #------------------------------------------------------------------------

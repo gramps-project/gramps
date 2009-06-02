@@ -79,7 +79,7 @@ class OptionList(_Options.OptionList):
         self.template_name = None
         self.format_name = None
     
-    def set_style_name(self,style_name):
+    def set_style_name(self, style_name):
         """
         Set the style name for the OptionList.
         @param style_name: name of the style to set.
@@ -95,7 +95,7 @@ class OptionList(_Options.OptionList):
         """
         return self.style_name
 
-    def set_paper_metric(self,paper_metric):
+    def set_paper_metric(self, paper_metric):
         """
         Set the paper metric for the OptionList.
         @param paper_metric: whether to use metric.
@@ -111,7 +111,7 @@ class OptionList(_Options.OptionList):
         """
         return self.paper_metric
 
-    def set_paper_name(self,paper_name):
+    def set_paper_name(self, paper_name):
         """
         Set the paper name for the OptionList.
         @param paper_name: name of the paper to set.
@@ -145,7 +145,7 @@ class OptionList(_Options.OptionList):
         """
         return self.orientation
 
-    def set_custom_paper_size(self,paper_size):
+    def set_custom_paper_size(self, paper_size):
         """
         Set the custom paper size for the OptionList.
         @param paper_size: paper size to set in cm.
@@ -161,7 +161,7 @@ class OptionList(_Options.OptionList):
         """
         return self.custom_paper_size
 
-    def set_margins(self,margins):
+    def set_margins(self, margins):
         """
         Set the margins for the OptionList.
         @param margins: margins to set. Possible values are floats in cm
@@ -177,7 +177,7 @@ class OptionList(_Options.OptionList):
         """
         return copy.copy(self.margins)
 
-    def set_margin(self,pos,value):
+    def set_margin(self, pos, value):
         """
         Set a margin for the OptionList.
         @param pos: Position of margin [left, right, top, bottom]
@@ -187,7 +187,7 @@ class OptionList(_Options.OptionList):
         """
         self.margins[pos] = value
 
-    def get_margin(self,pos):
+    def get_margin(self, pos):
         """
         Return a margin for the OptionList.
         @param pos: Position of margin [left, right, top, bottom]
@@ -197,7 +197,7 @@ class OptionList(_Options.OptionList):
         """
         return self.margins[pos]
 
-    def set_template_name(self,template_name):
+    def set_template_name(self, template_name):
         """
         Set the template name for the OptionList.
         @param template_name: name of the template to set.
@@ -213,7 +213,7 @@ class OptionList(_Options.OptionList):
         """
         return self.template_name
 
-    def set_format_name(self,format_name):
+    def set_format_name(self, format_name):
         """
         Set the format name for the OptionList.
         @param format_name: name of the format to set.
@@ -238,8 +238,8 @@ class OptionListCollection(_Options.OptionListCollection):
     """
     Implements a collection of option lists.
     """
-    def __init__(self,filename):
-        _Options.OptionListCollection.__init__(self,filename)
+    def __init__(self, filename):
+        _Options.OptionListCollection.__init__(self, filename)
 
     def init_common(self):
         # Default values for common options
@@ -261,7 +261,7 @@ class OptionListCollection(_Options.OptionListCollection):
         self.last_format_name = self.default_format_name
         self.option_list_map = {}
 
-    def set_last_paper_metric(self,paper_metric):
+    def set_last_paper_metric(self, paper_metric):
         """
         Set the last paper metric used for the any report in this collection.
         @param paper_metric: whether to use metric.
@@ -277,7 +277,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_paper_metric
 
-    def set_last_paper_name(self,paper_name):
+    def set_last_paper_name(self, paper_name):
         """
         Set the last paper name used for the any report in this collection.
         @param paper_name: name of the paper to set.
@@ -310,7 +310,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_orientation
 
-    def set_last_custom_paper_size(self,custom_paper_size):
+    def set_last_custom_paper_size(self, custom_paper_size):
         """
         Set the last custom paper size used for the any report in this collection.
         @param custom_paper_size: size to set in cm (width, height)
@@ -327,7 +327,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return copy.copy(self.last_custom_paper_size)
 
-    def set_last_margins(self,margins):
+    def set_last_margins(self, margins):
         """
         Set the last margins used for the any report in this collection.
         @param margins: margins to set in cm (left, right, top, bottom)
@@ -344,7 +344,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return copy.copy(self.last_margins)
 
-    def set_last_margin(self,pos,value):
+    def set_last_margin(self, pos, value):
         """
         Set the last margin used for the any report in this collection.
         @param pos: pos to set (0-4) (left, right, top, bottom)
@@ -354,7 +354,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         self.last_margins[pos] = value
 
-    def get_last_margin(self,pos):
+    def get_last_margin(self, pos):
         """
         Return the last margins used for the any report in this
         collection.
@@ -365,7 +365,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_margins[pos]
 
-    def set_last_template_name(self,template_name):
+    def set_last_template_name(self, template_name):
         """
         Set the last template used for the any report in this collection.
         
@@ -379,7 +379,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_template_name
 
-    def set_last_format_name(self,format_name):
+    def set_last_format_name(self, format_name):
         """
         Set the last format used for the any report in this collection.
         
@@ -393,7 +393,7 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_format_name
 
-    def write_common(self,f):
+    def write_common(self, f):
         f.write('<last-common>\n')
         if self.get_last_paper_metric() != self.default_paper_metric:
             f.write('  <metric value="%d"/>\n' % self.get_last_paper_metric() )
@@ -410,7 +410,7 @@ class OptionListCollection(_Options.OptionListCollection):
             f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
         f.write('</last-common>\n')
 
-    def write_module_common(self,f, option_list):
+    def write_module_common(self, f, option_list):
         if option_list.get_style_name() \
                and option_list.get_style_name() != self.default_style_name:
             f.write('  <style name="%s"/>\n' % escxml(option_list.get_style_name()) )
@@ -450,7 +450,7 @@ class OptionListCollection(_Options.OptionListCollection):
                 the_file = open(self.filename)
                 p.parse(the_file)
                 the_file.close()
-        except (IOError,OSError,SAXParseException):
+        except (IOError, OSError, SAXParseException):
             pass
 
 #-------------------------------------------------------------------------
@@ -463,17 +463,17 @@ class OptionParser(_Options.OptionParser):
     SAX parsing class for the OptionListCollection XML file.
     """
     
-    def __init__(self,collection):
+    def __init__(self, collection):
         """
         Create a OptionParser class that populates the passed collection.
 
         collection:   BookList to be loaded from the file.
         """
-        _Options.OptionParser.__init__(self,collection)
+        _Options.OptionParser.__init__(self, collection)
         self.common = False
         self.list_class = OptionList
 
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         """
         Overridden class that handles the start of a XML element
         """
@@ -524,16 +524,16 @@ class OptionParser(_Options.OptionParser):
                 self.option_list.set_margin(pos, value)
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            _Options.OptionParser.startElement(self,tag,attrs)
+            _Options.OptionParser.startElement(self, tag, attrs)
 
-    def endElement(self,tag):
+    def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
         # First we try report-specific tags
         if tag == "last-common":
             self.common = False
         else:
             # Tag is not report-specific, so we let the base class handle it.
-            _Options.OptionParser.endElement(self,tag)
+            _Options.OptionParser.endElement(self, tag)
             
 #------------------------------------------------------------------------
 #
@@ -564,7 +564,7 @@ class OptionHandler(_Options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
-    def __init__(self,module_name, options_dict):
+    def __init__(self, module_name, options_dict):
         _Options.OptionHandler.__init__(self, module_name, options_dict, None)
 
     def init_subclass(self):
@@ -639,25 +639,25 @@ class OptionHandler(_Options.OptionHandler):
     def get_default_stylesheet_name(self):
         return self.style_name
 
-    def set_default_stylesheet_name(self,style_name):
+    def set_default_stylesheet_name(self, style_name):
         self.style_name = style_name
 
     def get_format_name(self):
         return self.format_name
 
-    def set_format_name(self,format_name):
+    def set_format_name(self, format_name):
         self.format_name = format_name
 
     def get_paper_metric(self):
         return self.paper_metric
 
-    def set_paper_metric(self,paper_metric):
+    def set_paper_metric(self, paper_metric):
         self.paper_metric = paper_metric
 
     def get_paper_name(self):
         return self.paper_name
 
-    def set_paper_name(self,paper_name):
+    def set_paper_name(self, paper_name):
         self.paper_name = paper_name
 
     def get_paper(self):
@@ -666,7 +666,7 @@ class OptionHandler(_Options.OptionHandler):
         """
         return self.paper
 
-    def set_paper(self,paper):
+    def set_paper(self, paper):
         """
         This method is for temporary storage, not for saving/restoring.
         """
@@ -675,7 +675,7 @@ class OptionHandler(_Options.OptionHandler):
     def get_template_name(self):
         return self.template_name
 
-    def set_template_name(self,template_name):
+    def set_template_name(self, template_name):
         self.template_name = template_name
 
     def get_orientation(self):
@@ -687,7 +687,7 @@ class OptionHandler(_Options.OptionHandler):
     def get_custom_paper_size(self):
         return copy.copy(self.custom_paper_size)
 
-    def set_custom_paper_size(self,custom_paper_size):
+    def set_custom_paper_size(self, custom_paper_size):
         self.custom_paper_size = copy.copy(custom_paper_size)
 
     def get_margins(self):
@@ -763,7 +763,7 @@ class ReportOptions(_Options.Options):
         """
         return self.handler.doc
 
-    def set_document(self,val):
+    def set_document(self, val):
         """
         Set document to a given instance.
         
@@ -779,7 +779,7 @@ class ReportOptions(_Options.Options):
         """
         return self.handler.output
 
-    def set_output(self,val):
+    def set_output(self, val):
         """
         Set output destination to a given string.
         
@@ -792,7 +792,7 @@ class ReportOptions(_Options.Options):
 # MenuReportOptions
 #
 #-------------------------------------------------------------------------
-class MenuReportOptions(GuiMenuOptions,ReportOptions):
+class MenuReportOptions(GuiMenuOptions, ReportOptions):
     """
 
     The MenuReportOptions class implementes the ReportOptions

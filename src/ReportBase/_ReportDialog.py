@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 import os
-from types import ClassType, InstanceType
+from types import ClassType
 from gettext import gettext as _
 
 import logging
@@ -99,7 +99,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
     def init_options(self, option_class):
         try:
             if (issubclass(option_class, object) or     # New-style class
-              isinstance(options_class, ClassType)):     # Old-style class
+                isinstance(option_class, ClassType)):   # Old-style class
                 self.options = option_class(self.raw_name, self.db)
         except TypeError:
             self.options = option_class
@@ -205,7 +205,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         appended to the Options section of the dialog. The text string
         is used to create a label for the passed widget. This allows the
         subclass to extend the Options section with its own widgets. The
-        subclass is reponsible for all managing of the widgets, including
+        subclass is responsible for all managing of the widgets, including
         extracting the final value before the report executes. This task
         should only be called in the add_user_options task."""
         self.widgets.append((label_text, widget))
@@ -215,7 +215,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         text string and a Gtk Widget. When the interface is built,
         all widgets with the same frame_name are grouped into a
         GtkFrame. This allows the subclass to create its own sections,
-        filling them with its own widgets. The subclass is reponsible for
+        filling them with its own widgets. The subclass is responsible for
         all managing of the widgets, including extracting the final value
         before the report executes. This task should only be called in
         the add_user_options task."""

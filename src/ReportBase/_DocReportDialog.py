@@ -78,7 +78,7 @@ class DocReportDialog(ReportDialog):
     # Functions related to selecting/changing the current file format.
     #
     #------------------------------------------------------------------------
-    def make_doc_menu(self,active=None):
+    def make_doc_menu(self, active=None):
         """Build a menu of document types that are appropriate for
         this report.  This menu will be generated based upon the type
         of document (text, draw, graph, etc. - a subclass), whether or
@@ -118,12 +118,12 @@ class DocReportDialog(ReportDialog):
         if docgen_plugin.get_paper_used():
             self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
             self.paper_label.set_use_markup(True)
-            self.notebook.insert_page(self.paper_frame,self.paper_label,0)
+            self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()
         else:
             self.html_label = gtk.Label('<b>%s</b>' % _("HTML Options"))
             self.html_label.set_use_markup(True)
-            self.notebook.insert_page(self.html_table,self.html_label,0)
+            self.notebook.insert_page(self.html_table, self.html_label, 0)
             self.html_table.show_all()
 
         ext_val = docgen_plugin.get_extension()
@@ -150,11 +150,11 @@ class DocReportDialog(ReportDialog):
         work."""
 
         self.make_doc_menu(self.options.handler.get_format_name())
-        self.format_menu.connect('changed',self.doc_type_changed)
+        self.format_menu.connect('changed', self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
-        label.set_alignment(0.0,0.5)
-        self.tbl.attach(label,1,2,self.row,self.row+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.row,self.row+1,
+        label.set_alignment(0.0, 0.5)
+        self.tbl.attach(label, 1, 2, self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
 
@@ -199,13 +199,13 @@ class DocReportDialog(ReportDialog):
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        self.html_table = gtk.Table(3,3)
+        self.html_table = gtk.Table(3, 3)
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)
 
         label = gtk.Label("%s:" % _("Template"))
-        label.set_alignment(0.0,0.5)
+        label.set_alignment(0.0, 0.5)
         self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL,
                                yoptions=gtk.SHRINK)
 
@@ -223,11 +223,12 @@ class DocReportDialog(ReportDialog):
                     active_index = template_index
         self.template_combo.append_text(_user_template)
 
-        self.template_combo.connect('changed',self.html_file_enable)
+        self.template_combo.connect('changed', self.html_file_enable)
         
-        self.html_table.attach(self.template_combo,2,3,1,2, yoptions=gtk.SHRINK)
+        self.html_table.attach(self.template_combo, 2, 3, 1, 2, 
+                               yoptions=gtk.SHRINK)
         label = gtk.Label("%s:" % _("User Template"))
-        label.set_alignment(0.0,0.5)
+        label.set_alignment(0.0, 0.5)
         self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL,
                                yoptions=gtk.SHRINK)
         self.html_fileentry = FileEntry("HTML_Template",
@@ -242,7 +243,8 @@ class DocReportDialog(ReportDialog):
 
         if os.path.isfile(user_template):
             self.html_fileentry.set_filename(user_template)
-        self.html_table.attach(self.html_fileentry,2,3,2,3, yoptions=gtk.SHRINK)
+        self.html_table.attach(self.html_fileentry, 2, 3, 2, 3, 
+                               yoptions=gtk.SHRINK)
         self.template_combo.set_active(active_index)
 
     def parse_format_frame(self):
@@ -267,7 +269,8 @@ class DocReportDialog(ReportDialog):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:
-                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR, os.path.sep,
+                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR, 
+                                                 os.path.sep,
                                                 _template_map[text])
         else:
             self.template_name = ""
