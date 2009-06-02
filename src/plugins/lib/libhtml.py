@@ -530,6 +530,12 @@ class Html(list):
         if len(self) > 2:
             self[:] = self[:1] + self[-1:]
     inside = property(__getinside, __setinside, __delinside)
+#
+    def __enter__(self):
+        return self
+#
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        return exc_type is None
 
 # ------------------------------------------
 #
