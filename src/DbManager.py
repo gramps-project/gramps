@@ -1064,15 +1064,17 @@ def find_revisions(name):
 
 def find_locker_name(dirpath):
     """
-    Opens the lock file if it exists, reads the contexts and returns 
-    the contents, which should be like "Locked by USERNAME". 
+    Opens the lock file if it exists, reads the contexts which is "USERNAME"
+    and returns the contents, with correct string before "USERNAME",
+    so the message can be printed with correct locale.
     If a file is encountered with errors, we return 'Unknown'
     This data is displayed in the time column of the manager
     """
     try:
         fname = os.path.join(dirpath, "lock")
         ifile = open(fname)
-        last = ifile.read().strip()
+        username = ifile.read().strip()
+        last = _("Locked by %s") % username
         ifile.close()
     except (OSError, IOError):
         last = _("Unknown")
