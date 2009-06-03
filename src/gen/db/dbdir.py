@@ -2113,7 +2113,9 @@ def write_lock_file(name):
         except:
             user = os.environ.get('USER')
         text = "%s@%s" % (user, host)
-    f.write(_("Locked by %s") % text)
+    # Save only the username and host, so the massage can be
+    # printed with correct locale in DbManager.py when a lock is found
+    f.write(text)
     f.close()
 
 if __name__ == "__main__":
