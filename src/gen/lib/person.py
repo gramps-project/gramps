@@ -215,14 +215,15 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         @rtype: bool
         """
         if classname == 'Event':
-            return handle in [ref.ref for ref in self.event_ref_list]
+            return any(ref.ref == handle for ref in self.event_ref_list)
         elif classname == 'Person':
-            return handle in [ref.ref for ref in self.person_ref_list]
+            return any(ref.ref == handle for ref in self.person_ref_list)
         elif classname == 'Family':
-            return handle in (self.family_list + self.parent_family_list)
+            return any(ref == handle 
+                for ref in self.family_list + self.parent_family_list)
         elif classname == 'Place':
-            return handle in [ordinance.place for ordinance
-                              in self.lds_ord_list]
+            return any(ordinance.place == handle 
+                for ordinance in self.lds_ord_list)
         return False
 
     def _remove_handle_references(self, classname, handle_list):
@@ -414,12 +415,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         self.alternate_names.append(name)
 
     def get_nick_name(self):
-        nicks = [ attr for attr in self.attribute_list \
-                  if int(attr.type) == AttributeType.NICKNAME ]
-        if len(nicks) == 0:
-            return u''
+        for attr in self.attribute_list:
+            if int(attr.type) == AttributeType.NICKNAME:
+                return attr.get_value()
         else:
-            return nicks[0].get_value()
+            return u''
 
     def set_gender(self, gender) :
         """
@@ -462,11 +462,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         if event_ref is None:
             self.birth_ref_index = -1
             return
+
         # check whether we already have this ref in the list
-        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
-        try:
-            self.birth_ref_index = matches.index(True)
-        except ValueError:
+        for self.birth_ref_index, ref in enumerate(self.event_ref_list):
+            if event_ref.is_equal(ref):
+                return    # Note: self.birth_ref_index already set
+        else:
             self.event_ref_list.append(event_ref)
             self.birth_ref_index = len(self.event_ref_list)-1
 
@@ -486,11 +487,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         if event_ref is None:
             self.death_ref_index = -1
             return
+            
         # check whether we already have this ref in the list
-        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
-        try:
-            self.death_ref_index = matches.index(True)
-        except ValueError:
+        for self.death_ref_index, ref in enumerate(self.event_ref_list):
+            if event_ref.is_equal(ref):
+                return    # Note: self.death_ref_index already set
+        else:
             self.event_ref_list.append(event_ref)
             self.death_ref_index = len(self.event_ref_list)-1
 
@@ -504,13 +506,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             L{Event} has been assigned.
         @rtype: EventRef
         """
-        if self.birth_ref_index == -1:
-            return None
+        
+        if 0 <= self.birth_ref_index < len(self.event_ref_list):
+            return self.event_ref_list[self.birth_ref_index]
         else:
-            try:
-                return self.event_ref_list[self.birth_ref_index]
-            except IndexError:
-                return None
+            return None
 
     def get_death_ref(self):
         """
@@ -522,13 +522,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             L{Event} has been assigned.
         @rtype: event_ref
         """
-        if self.death_ref_index == -1:
-            return None
+        
+        if 0 <= self.death_ref_index < len(self.event_ref_list):
+            return self.event_ref_list[self.death_ref_index]
         else:
-            try:
-                return self.event_ref_list[self.death_ref_index]
-            except IndexError:
-                return None
+            return None
 
     def add_event_ref(self, event_ref):
         """
@@ -543,9 +541,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
+
         # check whether we already have this ref in the list
-        matches = [event_ref.is_equal(ref) for ref in self.event_ref_list]
-        if matches.count(True) == 0:
+        if not any(event_ref.is_equal(ref) for ref in self.event_ref_list):
             self.event_ref_list.append(event_ref)
 
     def get_event_ref_list(self):
@@ -564,12 +562,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Return the list of L{EventRef} objects associated with L{Event}
         instances that have been marked as primary events.
 
-        @returns: Returns the list of L{EventRef} objects associated with
+        @returns: Returns generator of L{EventRef} objects associated with
             the Person instance.
-        @rtype: list
+        @rtype: generator
         """
-        return [ ref for ref in self.event_ref_list \
-		 if ref.get_role() == EventRoleType.PRIMARY ]
+        return (ref for ref in self.event_ref_list
+                if ref.get_role() == EventRoleType.PRIMARY
+               )
 
     def set_event_ref_list(self, event_ref_list):
         """
@@ -773,10 +772,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             If no L{Family} is assigned, None is returned
         @rtype: str
         """
-        if len(self.parent_family_list) == 0:
-            return None
-        else:
+        if self.parent_family_list:
             return self.parent_family_list[0]
+        else:
+            return None
 
     def add_person_ref(self, person_ref):
         """
