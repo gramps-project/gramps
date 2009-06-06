@@ -328,7 +328,6 @@ class CommandLineReport(object):
         self.option_class.handler.set_paper(self.paper)
 
         self.orien = self.options_dict['papero']
-        self.template_name = self.options_dict['template']
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = StyleSheet()

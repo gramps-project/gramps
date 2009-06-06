@@ -295,11 +295,13 @@ src/plugins/import/ImportProGen.py
 src/plugins/import/ImportVCard.py
 
 # plugins/lib directory
-src/plugins/lib/libhtml.py
 src/plugins/lib/libcairodoc.py
-src/plugins/lib/libholiday.py
-src/plugins/lib/libmapservice.py
 src/plugins/lib/libgrampsxml.py
+src/plugins/lib/libholiday.py
+src/plugins/lib/libhtml.py
+src/plugins/lib/libhtmlbackend.py
+src/plugins/lib/libhtmlconst.py
+src/plugins/lib/libmapservice.py
 
 # plugins/mapservices  directory
 src/plugins/mapservices/eniroswedenmap.py
@@ -448,7 +450,6 @@ src/ReportBase/_Report.py
 src/ReportBase/_ReportUtils.py
 src/ReportBase/_StyleComboBox.py
 src/ReportBase/_StyleEditor.py
-src/ReportBase/_TemplateParser.py
 src/ReportBase/_TextReportDialog.py
 
 # gen

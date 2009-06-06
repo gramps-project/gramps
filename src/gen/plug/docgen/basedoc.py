@@ -61,7 +61,7 @@ class BaseDoc(object):
     such as OpenOffice, AbiWord, and LaTeX are derived from this base
     class, providing a common interface to all document generators.
     """
-    def __init__(self, styles, paper_style, template):
+    def __init__(self, styles, paper_style):
         """
         Create a BaseDoc instance, which provides a document generation
         interface. This class should never be instantiated directly, but
@@ -71,10 +71,7 @@ class BaseDoc(object):
         @param paper_style: PaperStyle instance containing information about
             the paper. If set to None, then the document is not a page
             oriented document (e.g. HTML)
-        @param template: Format template for document generators that are
-            not page oriented.
         """
-        self.template = template
         self.paper = paper_style
         self._style_sheet = styles
         self._creator = ""

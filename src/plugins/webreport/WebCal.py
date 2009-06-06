@@ -56,7 +56,8 @@ from gen.lib import date, Date, Name, Person, NameType, EventType
 import const
 from GrampsCfg import get_researcher
 from gen.plug import PluginManager
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, \
+                       CSS_FILES 
 from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           EnumeratedListOption, FilterOption, PersonOption, \
                           DestinationOption
@@ -69,6 +70,7 @@ from BasicUtils import name_displayer as _nd
 
 import libholiday
 from libhtml import Html
+from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 #------------------------------------------------------------------------
 #
@@ -81,90 +83,6 @@ _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
 # Calendar stylesheet names
 _CALENDARSCREEN = 'calendar-screen.css'
 _CALENDARPRINT = 'calendar-print.css'
-
-# This information defines the list of styles in the Web calendar
-# options dialog as well as the location of the corresponding
-# stylesheets.
-_CSS_FILES = [
-    # First is used as default selection.
-    [_("Basic-Ash"),            'Web_Basic-Ash.css'],
-    [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
-    [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
-    [_("Basic-Peach"),          'Web_Basic-Peach.css'],
-    [_("Basic-Spruce"),         'Web_Basic-Spruce.css'],
-    [_("Mainz"),                'Web_Mainz.css'],
-    [_("Nebraska"),             'Web_Nebraska.css'],
-    [_("Visually Impaired"),    'Web_Visually.css'],
-    [_("No style sheet"),       ''],
-    ]
-
-_CHARACTER_SETS = [
-    # First is used as default selection.
-    # As seen on the internet, ISO-xxx are listed as capital letters
-    [_('Unicode UTF-8 (recommended)'), 'UTF-8'],
-    ['ISO-8859-1',  'ISO-8859-1' ],
-    ['ISO-8859-2',  'ISO-8859-2' ],
-    ['ISO-8859-3',  'ISO-8859-3' ],
-    ['ISO-8859-4',  'ISO-8859-4' ],
-    ['ISO-8859-5',  'ISO-8859-5' ],
-    ['ISO-8859-6',  'ISO-8859-6' ],
-    ['ISO-8859-7',  'ISO-8859-7' ],
-    ['ISO-8859-8',  'ISO-8859-8' ],
-    ['ISO-8859-9',  'ISO-8859-9' ],
-    ['ISO-8859-10', 'ISO-8859-10' ],
-    ['ISO-8859-13', 'ISO-8859-13' ],
-    ['ISO-8859-14', 'ISO-8859-14' ],
-    ['ISO-8859-15', 'ISO-8859-15' ],
-    ['koi8_r',      'koi8_r',     ],
-    ]
-
-_CC = [
-    '',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
-    '<img alt="Creative Commons License - By attribution" '
-    'title="Creative Commons License - By attribution" '
-    'src="%(gif_fname)s" /></a>',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/">'
-    '<img alt="Creative Commons License - By attribution, No derivations" '
-    'title="Creative Commons License - By attribution, No derivations" '
-    'src="%(gif_fname)s" /></a>',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Share-alike" '
-    'title="Creative Commons License - By attribution, Share-alike" '
-    'src="%(gif_fname)s" /></a>',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Non-commercial" '
-    'title="Creative Commons License - By attribution, Non-commercial" '
-    'src="%(gif_fname)s" /></a>',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Non-commercial, No derivations" '
-    'title="Creative Commons License - By attribution, Non-commercial, No derivations" '
-    'src="%(gif_fname)s" /></a>',
-
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" '
-    'title="Creative Commons License - By attribution, Non-commerical, Share-alike" '
-    'src="%(gif_fname)s" /></a>'
-    ]
-
-_COPY_OPTIONS = [
-        _('Standard copyright'),
-
-        # This must match _CC
-        _('Creative Commons - By attribution'),
-        _('Creative Commons - By attribution, No derivations'),
-        _('Creative Commons - By attribution, Share-alike'),
-        _('Creative Commons - By attribution, Non-commercial'),
-        _('Creative Commons - By attribution, Non-commercial, No derivations'),
-        _('Creative Commons - By attribution, Non-commercial, Share-alike'),
-
-        _('No copyright notice'),
-        ]
 
 #------------------------------------------------------------------------
 #
@@ -1428,8 +1346,8 @@ class WebCalOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        css = EnumeratedListOption(_('StyleSheet'), _CSS_FILES[0][1])
-        for style in _CSS_FILES:
+        css = EnumeratedListOption(_('StyleSheet'), CSS_FILES[0][1])
+        for style in CSS_FILES:
             css.add_item(style[1], style[0])
         css.set_help( _('The Style Sheet to be used for the web page'))
         menu.add_option(category_name, "css", css)

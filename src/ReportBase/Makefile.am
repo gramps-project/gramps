@@ -19,7 +19,6 @@ pkgdata_PYTHON = \
 	_ReportUtils.py\
 	_StyleComboBox.py\
 	_StyleEditor.py\
-	_TemplateParser.py\
 	_TextReportDialog.py\
 	_WebReportDialog.py
 

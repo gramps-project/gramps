@@ -42,8 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from _ReportDialog import ReportDialog
-from _FileEntry import FileEntry
-from _TemplateParser import _template_map, _default_template, _user_template
+from _Constants import CSS_FILES
 from _PaperMenu import PaperFrame
 
 #-------------------------------------------------------------------------
@@ -62,7 +61,7 @@ class DocReportDialog(ReportDialog):
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        self.page_html_added = False
+        self.firstpage_added = False
         ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
 
@@ -90,7 +89,11 @@ class DocReportDialog(ReportDialog):
         """
         pstyle = self.paper_frame.get_paper_style()
         
-        self.doc = self.format(self.selected_style, pstyle, self.template_name)
+        self.doc = self.format(self.selected_style, pstyle)
+        if not self.format_menu.get_active_plugin().get_paper_used():
+            #set css filename
+            self.doc.set_css_filename(const.DATA_DIR + os.sep + 
+                                        self.css_filename)
         
         self.options.set_document(self.doc)
 
@@ -102,7 +105,7 @@ class DocReportDialog(ReportDialog):
         formats for the report.  It adjust the various dialog sections
         to reflect the appropriate values for the currently selected
         file format.  For example, a HTML document doesn't need any
-        paper size/orientation options, but it does need a template
+        paper size/orientation options, but it does need a css
         file.  Those chances are made here."""
         docgen_plugin = obj.get_active_plugin()
         if docgen_plugin.get_extension():
@@ -113,7 +116,7 @@ class DocReportDialog(ReportDialog):
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
-        if self.page_html_added:
+        if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
             self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
@@ -125,6 +128,7 @@ class DocReportDialog(ReportDialog):
             self.html_label.set_use_markup(True)
             self.notebook.insert_page(self.html_table, self.html_label, 0)
             self.html_table.show_all()
+        self.firstpage_added = True
 
         ext_val = docgen_plugin.get_extension()
         if ext_val:
@@ -142,7 +146,6 @@ class DocReportDialog(ReportDialog):
         if self.style_button:
             self.style_button.set_sensitive(docgen_plugin.get_style_support())
             self.style_menu.set_sensitive(docgen_plugin.get_style_support())
-        self.page_html_added = True
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function
@@ -182,70 +185,34 @@ class DocReportDialog(ReportDialog):
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
 
-    def html_file_enable(self, obj):
-        active = obj.get_active()
-        text = unicode(obj.get_model()[active][0])
-        if text in _template_map:
-            if _template_map[text]:
-                self.html_fileentry.set_sensitive(0)
-            else:
-                self.html_fileentry.set_sensitive(1)
-        else:
-            self.html_fileentry.set_sensitive(0)
-            
-
     def setup_html_frame(self):
         """Set up the html frame of the dialog.  This sole purpose of
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        self.html_table = gtk.Table(3, 3)
+        self.html_table = gtk.Table(3,3)
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)
 
-        label = gtk.Label("%s:" % _("Template"))
-        label.set_alignment(0.0, 0.5)
+        label = gtk.Label("%s:" % _("CSS file"))
+        label.set_alignment(0.0,0.5)
         self.html_table.attach(label, 1, 2, 1, 2, gtk.SHRINK|gtk.FILL,
                                yoptions=gtk.SHRINK)
 
-        self.template_combo = gtk.combo_box_new_text()
-        tlist = sorted(_template_map)
+        self.css_combo = gtk.combo_box_new_text()
 
-        template_name = self.options.handler.get_template_name()
-
-        self.template_combo.append_text(_default_template)
+        css_filename = self.options.handler.get_css_filename()
         active_index = 0
-        for template_index, template in enumerate(sorted(_template_map)):
-            if template != _user_template:
-                self.template_combo.append_text(template)
-                if _template_map[template] == os.path.basename(template_name):
-                    active_index = template_index
-        self.template_combo.append_text(_user_template)
+        index = 0
+        for style in CSS_FILES:
+            self.css_combo.append_text(style[0])
+            if css_filename == style[1]:
+                active_index = index
+            index += 1
 
-        self.template_combo.connect('changed', self.html_file_enable)
-        
-        self.html_table.attach(self.template_combo, 2, 3, 1, 2, 
-                               yoptions=gtk.SHRINK)
-        label = gtk.Label("%s:" % _("User Template"))
-        label.set_alignment(0.0, 0.5)
-        self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL,
-                               yoptions=gtk.SHRINK)
-        self.html_fileentry = FileEntry("HTML_Template",
-                                        _("Choose File"))
-        if template_name and not active_index:
-            active_index = template_index
-            user_template = template_name
-            self.html_fileentry.set_sensitive(True)
-        else:
-            user_template = ''
-            self.html_fileentry.set_sensitive(False)
-
-        if os.path.isfile(user_template):
-            self.html_fileentry.set_filename(user_template)
-        self.html_table.attach(self.html_fileentry, 2, 3, 2, 3, 
-                               yoptions=gtk.SHRINK)
-        self.template_combo.set_active(active_index)
+        self.html_table.attach(self.css_combo,2,3,1,2, yoptions=gtk.SHRINK)
+        self.css_combo.set_active(active_index)
 
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
@@ -254,7 +221,7 @@ class DocReportDialog(ReportDialog):
         self.format = docgen_plugin.get_basedoc()
         format_name = docgen_plugin.get_extension()
         self.options.handler.set_format_name(format_name)
-        
+
     def parse_html_frame(self):
         """Parse the html frame of the dialog.  Save the user selected
         html template name for later use.  Note that this routine
@@ -262,19 +229,8 @@ class DocReportDialog(ReportDialog):
         displayed on the screen.  The subclass will know whether this
         entry was enabled.  This is for simplicity of programming."""
 
-        model = self.template_combo.get_model()
-        text = unicode(model[self.template_combo.get_active()][0])
-
-        if text in _template_map:
-            if text == _user_template:
-                self.template_name = self.html_fileentry.get_full_path(0)
-            else:
-                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR, 
-                                                 os.path.sep,
-                                                _template_map[text])
-        else:
-            self.template_name = ""
-        self.options.handler.set_template_name(self.template_name)
+        self.css_filename = CSS_FILES[self.css_combo.get_active()][1]
+        self.options.handler.set_css_filename(self.css_filename)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate

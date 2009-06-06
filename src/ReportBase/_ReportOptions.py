@@ -76,8 +76,8 @@ class OptionList(_Options.OptionList):
         self.orientation = None
         self.custom_paper_size = [29.7, 21.0]
         self.margins = [2.54, 2.54, 2.54, 2.54]
-        self.template_name = None
         self.format_name = None
+        self.css_filename = None
     
     def set_style_name(self, style_name):
         """
@@ -197,21 +197,21 @@ class OptionList(_Options.OptionList):
         """
         return self.margins[pos]
 
-    def set_template_name(self, template_name):
+    def set_css_filename(self, css_filename):
         """
         Set the template name for the OptionList.
         @param template_name: name of the template to set.
         @type template_name: str
         """
-        self.template_name = template_name
+        self.css_filename = css_filename
 
-    def get_template_name(self):
+    def get_css_filename(self):
         """
         Return the template name of the OptionList.
         @returns: template name
         @rtype: str
         """
-        return self.template_name
+        return self.css_filename
 
     def set_format_name(self, format_name):
         """
@@ -246,8 +246,8 @@ class OptionListCollection(_Options.OptionListCollection):
         self.default_style_name = "default"
         self.default_paper_metric = Config.get(Config.PAPER_METRIC)
         self.default_paper_name = Config.get(Config.PAPER_PREFERENCE)
-        self.default_template_name = ""
         self.default_orientation = PAPER_PORTRAIT
+        self.default_css_filename = ""
         self.default_custom_paper_size = [29.7, 21.0]
         self.default_margins = [2.54, 2.54, 2.54, 2.54]
         self.default_format_name = 'print'
@@ -257,7 +257,7 @@ class OptionListCollection(_Options.OptionListCollection):
         self.last_orientation = self.default_orientation
         self.last_custom_paper_size = copy.copy(self.default_custom_paper_size)
         self.last_margins = copy.copy(self.default_margins)
-        self.last_template_name = self.default_template_name
+        self.last_css_filename = self.default_css_filename
         self.last_format_name = self.default_format_name
         self.option_list_map = {}
 
@@ -365,19 +365,19 @@ class OptionListCollection(_Options.OptionListCollection):
         """
         return self.last_margins[pos]
 
-    def set_last_template_name(self, template_name):
+    def set_last_css_filename(self, css_filename):
         """
-        Set the last template used for the any report in this collection.
-        
-        template_name: name of the style to set.
-        """
-        self.last_template_name = template_name
+        Set the last css used for the any report in this collection.
 
-    def get_last_template_name(self):
+        css_filename: name of the style to set.
+        """
+        self.last_css_name = css_filename
+
+    def get_last_css_filename(self):
         """
         Return the last template used for the any report in this collection.
         """
-        return self.last_template_name
+        return self.last_css_filename
 
     def set_last_format_name(self, format_name):
         """
@@ -402,8 +402,8 @@ class OptionListCollection(_Options.OptionListCollection):
             f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
         if self.get_last_paper_name() != self.default_paper_name:
             f.write('  <paper name="%s"/>\n' % escxml(self.get_last_paper_name()) )
-        if self.get_last_template_name() != self.default_template_name:
-            f.write('  <template name="%s"/>\n' % escxml(self.get_last_template_name()) )
+        if self.get_last_css_filename() != self.default_css_filename:
+            f.write('  <css name="%s"/>\n' % escxml(self.get_last_css_filename()) )
         if self.get_last_format_name() != self.default_format_name:
             f.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()) )
         if self.get_last_orientation() != self.default_orientation:
@@ -424,9 +424,9 @@ class OptionListCollection(_Options.OptionListCollection):
         if option_list.get_paper_name() \
                and option_list.get_paper_name() != self.default_paper_name:
             f.write('  <paper name="%s"/>\n' % escxml(option_list.get_paper_name()) )
-        if option_list.get_template_name() \
-               and option_list.get_template_name() != self.default_template_name:
-            f.write('  <template name="%s"/>\n' % escxml(option_list.get_template_name()) )
+        if option_list.get_css_filename() \
+               and option_list.get_css_filename() != self.default_css_filename:
+            f.write('  <css name="%s"/>\n' % escxml(option_list.get_css_filename()))
         if option_list.get_format_name() \
                and option_list.get_format_name() != self.default_format_name:
             f.write('  <format name="%s"/>\n' % escxml(option_list.get_format_name()) )
@@ -487,11 +487,11 @@ class OptionParser(_Options.OptionParser):
                 self.collection.set_last_paper_name(attrs['name'])
             else:
                 self.option_list.set_paper_name(attrs['name'])
-        elif tag == "template":
+        elif tag == "css":
             if self.common:
-                self.collection.set_last_template_name(attrs['name'])
+                self.collection.set_last_css_filename(attrs['name'])
             else:
-                self.option_list.set_template_name(attrs['name'])
+                self.option_list.set_css_filename(attrs['name'])
         elif tag == "format":
             if self.common:
                 self.collection.set_last_format_name(attrs['name'])
@@ -587,8 +587,8 @@ class OptionHandler(_Options.OptionHandler):
         self.paper_name = self.option_list_collection.get_last_paper_name()
         self.orientation = self.option_list_collection.get_last_orientation()
         self.custom_paper_size = self.option_list_collection.get_last_custom_paper_size()
+        self.css_filename = self.option_list_collection.get_last_css_filename()
         self.margins = self.option_list_collection.get_last_margins()
-        self.template_name = self.option_list_collection.get_last_template_name()
         self.format_name = self.option_list_collection.get_last_format_name()
 
     def set_common_options(self):
@@ -600,8 +600,8 @@ class OptionHandler(_Options.OptionHandler):
             self.custom_paper_size = self.saved_option_list.get_custom_paper_size()
         if self.saved_option_list.get_margins():
             self.margins = self.saved_option_list.get_margins()
-        if self.saved_option_list.get_template_name():
-            self.template_name = self.saved_option_list.get_template_name()
+        if self.saved_option_list.get_css_filename():
+            self.css_filename = self.saved_option_list.get_css_filename()
         if self.saved_option_list.get_paper_metric():
             self.paper_metric = self.saved_option_list.get_paper_metric()
         if self.saved_option_list.get_paper_name():
@@ -615,9 +615,9 @@ class OptionHandler(_Options.OptionHandler):
         self.saved_option_list.set_orientation(self.orientation)
         self.saved_option_list.set_custom_paper_size(self.custom_paper_size)
         self.saved_option_list.set_margins(self.margins)
-        self.saved_option_list.set_template_name(self.template_name)
         self.saved_option_list.set_paper_metric(self.paper_metric)
         self.saved_option_list.set_paper_name(self.paper_name)
+        self.saved_option_list.set_css_filename(self.css_filename)
         self.saved_option_list.set_format_name(self.format_name)
         self.option_list_collection.set_option_list(self.module_name,
                                                     self.saved_option_list)
@@ -626,9 +626,9 @@ class OptionHandler(_Options.OptionHandler):
         self.option_list_collection.set_last_orientation(self.orientation)
         self.option_list_collection.set_last_custom_paper_size(self.custom_paper_size)
         self.option_list_collection.set_last_margins(self.margins)
-        self.option_list_collection.set_last_template_name(self.template_name)
         self.option_list_collection.set_last_paper_metric(self.paper_metric)
         self.option_list_collection.set_last_paper_name(self.paper_name)
+        self.option_list_collection.set_last_css_filename(self.css_filename)
         self.option_list_collection.set_last_format_name(self.format_name)
 
     def get_stylesheet_savefile(self):
@@ -672,11 +672,11 @@ class OptionHandler(_Options.OptionHandler):
         """
         self.paper = paper
 
-    def get_template_name(self):
-        return self.template_name
+    def get_css_filename(self):
+        return self.css_filename
 
-    def set_template_name(self, template_name):
-        self.template_name = template_name
+    def set_css_filename(self, css_filename):
+        self.css_filename = css_filename
 
     def get_orientation(self):
         return self.orientation

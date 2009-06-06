@@ -85,7 +85,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        self.page_html_added = False
+        self.firstpage_added = False
         self.raw_name = name
         self.dbstate = dbstate
         self.db = dbstate.db

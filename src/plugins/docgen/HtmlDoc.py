@@ -43,6 +43,7 @@ import tarfile
 import const
 import Errors
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
+from libhtmlbackend import HtmlBackend
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
 
@@ -94,10 +95,10 @@ _bottom = [
 # HtmlDoc
 #
 #------------------------------------------------------------------------
-class HtmlDoc(BaseDoc,TextDoc):
+class HtmlDoc(BaseDoc, TextDoc):
 
-    def __init__(self,styles,type,template):
-        BaseDoc.__init__(self,styles,None,template)
+    def __init__(self,styles,type):
+        BaseDoc.__init__(self, styles, None)
         self.year = time.localtime(time.time())[0]
         self.ext = '.html'
         self.meta = ""
@@ -105,13 +106,17 @@ class HtmlDoc(BaseDoc,TextDoc):
         self.map = None
         self.f = None
         self.filename = None
-        self.top = []
-        self.bottom = []
         self.base = ""
-        self.load_template()
         self.build_header()
         self.style_declaration = None
         self.image_dir = "images"
+
+    def set_css_filename(self, css_filename):
+        """
+        Set the css file to use. The path must be included. 
+        Note: DocReportDialog sets this for html doc
+        """
+        self.css_filename = css_filename
 
     def set_extension(self,val):
         if val[0] != '.':
@@ -123,87 +128,6 @@ class HtmlDoc(BaseDoc,TextDoc):
 
     def set_keywords(self,keywords):
         self.meta = ",".join(keywords)
-        
-    def load_tpkg(self):
-        start = re.compile(r"<!--\s*START\s*-->")
-        stop = re.compile(r"<!--\s*STOP\s*-->")
-        top_add = 1
-        bottom_add = 0
-        archive = tarfile.open(self.template)
-        self.map = {}
-        for tarinfo in archive:
-            self.map[tarinfo.name] = archive.extractfile(tarinfo)
-        templateFile = self.map['template.html']
-        while 1:
-            line = templateFile.readline()
-            if line == '':
-                break
-            if top_add == 1:
-                self.top.append(line)
-                match = start.search(line)
-                if match:
-                    top_add = 0
-            elif bottom_add == 0:
-                match = stop.search(line)
-                if match is not None:
-                    bottom_add = 1
-                    self.bottom.append(line)
-            else:
-                self.bottom.append(line)
-        templateFile.close()
-        archive.close
-
-        if top_add == 1:
-            mymsg = _("The marker '<!-- START -->' was not in the template")
-            ErrorDialog(_("Template Error"),mymsg)
-
-    def load_html(self):
-        start = re.compile(r"<!--\s*START\s*-->")
-        stop = re.compile(r"<!--\s*STOP\s*-->")
-        top_add = 1
-        bottom_add = 0
-        templateFile = open(self.template,"r")
-        for line in templateFile.readlines():
-            if top_add == 1:
-                self.top.append(line)
-                match = start.search(line)
-                if match:
-                    top_add = 0
-            elif bottom_add == 0:
-                match = stop.search(line)
-                if match is not None:
-                    bottom_add = 1
-                    self.bottom.append(line)
-            else:
-                self.bottom.append(line)
-        templateFile.close()
-
-        if top_add == 1:
-            mymsg = _("The marker '<!-- START -->' was not in the template")
-            ErrorDialog(_("Template Error"),mymsg)
-            
-    def load_template(self):
-        if self.template:
-            try:
-                if self.template[-4:] == 'tpkg':
-                    self.load_tpkg()
-                else:
-                    self.load_html()
-            except IOError,msg:
-                mymsg = _("Could not open %s\nUsing the default template") % \
-                        self.template
-                WarningDialog(mymsg,str(msg))
-                self.bottom = _bottom
-                self.top = _top
-            except:
-                mymsg = _("Could not open %s\nUsing the default template") % \
-                        self.template
-                WarningDialog(mymsg)
-                self.bottom = _bottom
-                self.top = _top
-        else:
-            self.bottom = _bottom
-            self.top = _top
 
     def process_line(self,line):
         l = line.replace('$VERSION',const.VERSION)
@@ -226,34 +150,13 @@ class HtmlDoc(BaseDoc,TextDoc):
         except:
             raise Errors.ReportError(_("Could not create %s") % self.filename)
 
-        if self.meta:
-            match = t_keyword_line_re.match(self.file_header)
-            if match:
-                g = match.groups()
-                line = "%s%s%s" % (g[0],self.meta,g[2])
-            else:
-                line = self.file_header
-        else:
-            line = self.file_header
-        self.f.write(line)
         if not self.style_declaration:
             self.build_style_declaration()
         self.f.write(self.style_declaration)
 
     def build_header(self):
-        self.fix_title("".join(self.top))
-
-    def fix_title(self,msg=None):
-        if msg is None:
-            match = t_header_line_re.match(self.file_header)
-        else:
-            match = t_header_line_re.match(msg)
-        if match:
-            m = match.groups()
-            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
-        else:
-            self.file_header = "".join(self.top)
-        self.file_header = self.process_line(self.file_header)
+        ## TODO REMOVE ??
+        pass
 
     def build_style_declaration(self):
         styles = self.get_style_sheet()
@@ -330,8 +233,6 @@ class HtmlDoc(BaseDoc,TextDoc):
         self.style_declaration = '\n'.join(text)
 
     def close(self):
-        for line in self.bottom:
-            self.f.write(self.process_line(line))
         self.f.close()
         self.write_support_files()
 

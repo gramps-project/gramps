@@ -69,3 +69,22 @@ CATEGORY_QR_PLACE      = 4
 CATEGORY_QR_REPOSITORY = 5
 CATEGORY_QR_NOTE       = 6
 CATEGORY_QR_DATE       = 7
+
+#Common data for html reports
+## TODO: move to a system where css files are registered
+# This information defines the list of styles in the Web reports
+# options dialog as well as the location of the corresponding
+# stylesheets in src/data.
+
+CSS_FILES = [
+    # First is used as default selection.
+    [_("Basic-Ash"),            'Web_Basic-Ash.css'],
+    [_("Basic-Cypress"),        'Web_Basic-Cypress.css'],
+    [_("Basic-Lilac"),          'Web_Basic-Lilac.css'],
+    [_("Basic-Peach"),          'Web_Basic-Peach.css'],
+    [_("Basic-Spruce"),         'Web_Basic-Spruce.css'],
+    [_("Mainz"),                'Web_Mainz.css'],
+    [_("Nebraska"),             'Web_Nebraska.css'],
+    [_("Visually Impaired"),    'Web_Visually.css'],
+    [_("No style sheet"),       ''],
+    ]

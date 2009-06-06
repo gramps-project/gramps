@@ -111,9 +111,8 @@ TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
 
 ENV_DIR        = os.path.join(HOME_DIR, "env")
 TEMP_DIR       = os.path.join(HOME_DIR, "temp")
-THUMB_DIR      = os.path.join(HOME_DIR, "thumb")  
-USER_PLUGINS   = os.path.join(HOME_DIR, "plugins")    
-USER_TEMPLATES = os.path.join(HOME_DIR, "templates")    
+THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
+USER_PLUGINS   = os.path.join(HOME_DIR, "plugins")
 # dirs checked/made for each Gramps session
 USER_DIRLIST = (HOME_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 USER_PLUGINS, USER_TEMPLATES)
@@ -138,7 +137,6 @@ RULE_GLADE     = os.path.join(GLADE_DIR, "rule.glade")
 PLUGINS_DIR    = os.path.join(ROOT_DIR, "plugins")
 DATA_DIR       = os.path.join(ROOT_DIR, "data")
 SYSTEM_FILTERS = os.path.join(DATA_DIR, "system_filters.xml")
-TEMPLATE_DIR   = os.path.join(DATA_DIR, "templates")
 TIP_DATA       = os.path.join(DATA_DIR, "tips.xml")
 
 PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
