@@ -89,13 +89,13 @@ class QuickViewGramplet(Gramplet):
         from gen.plug.menu import EnumeratedListOption
         # Add types:
         type_list = EnumeratedListOption(_("View Type"), CATEGORY_QR_PERSON)
-        for item in [(CATEGORY_QR_PERSON, "Person"), 
+        for item in [(CATEGORY_QR_PERSON, _("Person")), 
                      #TODO: add these once they have active change signals
-                     #(CATEGORY_QR_FAMILY, "Family"), 
-                     #(CATEGORY_QR_EVENT, "Event"), 
-                     #(CATEGORY_QR_SOURCE, "Source"), 
-                     #(CATEGORY_QR_PLACE, "Place"), 
-                     #(CATEGORY_QR_REPOSITORY, "Repository"),
+                     #(CATEGORY_QR_FAMILY, _("Family")), 
+                     #(CATEGORY_QR_EVENT, _("Event")), 
+                     #(CATEGORY_QR_SOURCE, _("Source")), 
+                     #(CATEGORY_QR_PLACE, _("Place")), 
+                     #(CATEGORY_QR_REPOSITORY, _("Repository")),
                      ]:
             type_list.add_item(item[0], item[1])
         # Add particular lists:
