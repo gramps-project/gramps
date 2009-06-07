@@ -1,3 +1,16 @@
+Version 3.1.2 -- the "Skip the impersonations" release.
+* Contains translation updates and small bug fixes.  No new features.
+* ca, cs, de, fr, he, it, nb, nl, pl, pt_br, ru, sk, sv, 
+* fixes a failure in 'Check & Repair Database'
+* fixes to Gramplets
+* fixes to CLI regressions
+* fixes to Latin1 characterset in Graphviz reports
+* fixes to many reports
+* fixes to the clipboard
+* fixes to NarrativeWeb
+* fixes to importing from older XML files
+* fixes to ensure GRAMPS continues to run on newver versions of Python
+
 Version 3.1.1 -- the "Spam, bacon, sausage and spam" release.
 * The release of 3.1.1 is primarily to fix a crash bug that needed to be addressed immediately:
 * -> bug #2792, crash with the message "need more than 6 values to unpack"
