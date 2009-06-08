@@ -437,7 +437,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         if self.open_req:
             Utils.open_file_with_default_application(self.filename)
 
-    def add_media_object(self, file_name, pos, x_cm, y_cm):
+    def add_media_object(self, file_name, pos, x_cm, y_cm, alt=''):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)

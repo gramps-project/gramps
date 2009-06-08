@@ -1311,9 +1311,6 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        
-        @note: text=normal text, p_text=text with pango markup, s_tags=styled
-                text tags, p
         """
         text = str(styledtext)
 
@@ -1376,7 +1373,7 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         self.__write_text(text, markup=True)
     
-    def add_media_object(self, name, pos, x_cm, y_cm):
+    def add_media_object(self, name, pos, x_cm, y_cm, alt=''):
         new_image = GtkDocPicture(pos, name, x_cm, y_cm)
         self._active_element.add_child(new_image)
 

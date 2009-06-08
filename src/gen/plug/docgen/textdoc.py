@@ -225,7 +225,7 @@ class TextDoc(object):
                 else:
                     self.write_text(piece)
 
-    def add_media_object(self, name, align, w_cm, h_cm):
+    def add_media_object(self, name, align, w_cm, h_cm, alt=''):
         """
         Add a photo of the specified width (in centimeters)
 
@@ -234,5 +234,6 @@ class TextDoc(object):
             'right', 'center', and 'single'
         @param w_cm: width in centimeters
         @param h_cm: height in centimeters
+        @param alt: an alternative text to use. Usefull for eg html reports
         """
         raise NotImplementedError

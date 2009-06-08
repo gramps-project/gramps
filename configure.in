@@ -169,7 +169,6 @@ src/gen/plug/docbackend/Makefile
 src/gen/plug/docgen/Makefile
 src/gen/plug/menu/Makefile
 src/data/Makefile
-src/data/templates/Makefile
 src/glade/Makefile
 src/images/Makefile
 src/images/scalable/Makefile

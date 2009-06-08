@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 from xml.sax.saxutils import escape
+import os.path
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +44,7 @@ from xml.sax.saxutils import escape
 #------------------------------------------------------------------------
 from gen.plug.docbackend import DocBackend
 from libhtml import Html
+from Utils import xml_lang
 
 try:
     from gen.plug import PluginManager, Plugin
@@ -100,35 +102,58 @@ class HtmlBackend(DocBackend):
         self.html_page = None
         self.html_header = None
         self.html_body = None
+        self._subdir = None
+        self.title = 'GRAMPS Html Document'
         
-    def _create_xmltag(self, type, value):
+    def _create_xmltag(self, tagtype, value):
         """
         overwrites the method in DocBackend
         creates the pango xml tags needed for non bool style types
         """
-        if type not in self.SUPPORTED_MARKUP:
+        if tagtype not in self.SUPPORTED_MARKUP:
             return None
-        if type == DocBackend.FONTSIZE:
+        if tagtype == DocBackend.FONTSIZE:
             #size is in points
             value = str(value)
         
-        return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[type] %
+        return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
                                        (value)), 
                 '</span>')
+
+    def _checkfilename(self):
+        """
+        Check to make sure filename satisfies the standards for this filetype
+        """
+        fparts = os.path.basename(self._filename).split('.')
+        if not len(fparts) >= 2 and not (fparts[-1] == 'html' or 
+                fparts[-1] == 'htm' or fparts[-1] == 'php'):
+            self._filename = self._filename + ".htm"
+        fparts = self._filename.split('.')
+        self._subdir = '.'.join(fparts[:-1])
+
+    def set_title(self, title):
+        """
+        Set the title to use for the html page
+        """
+        self.title = title
 
     def open(self):
         """
         overwrite method, htmlbackend creates a html object that is written on
         close
         """
-        self.html_page, self.html_header, self.html_body = Html.page()
+        DocBackend.open(self)
+        if not os.path.isdir(self._subdir): 
+            os.mkdir(self._subdir)
+        self.html_page, self.html_header, self.html_body = Html.page(
+                        lang=xml_lang(), title=self.title)
 
-    def __write(self, str):
+    def __write(self, string):
         """ a write to the file
         """
-        DocBackend.write(self, str)
+        DocBackend.write(self, string)
 
-    def write(obj):
+    def write(self, obj):
         """ write to the html page. One can pass a html object, or a string
         """
         self.html_body += obj
@@ -137,9 +162,14 @@ class HtmlBackend(DocBackend):
         """
         write out the html to the page
         """
-        DocBackend.open(self)
-        self._html.write(self.__write)
+        self.html_page.write(self.__write)
         DocBackend.close(self)
+    
+    def datadir(self):
+        """
+        the directory where to save extra files
+        """
+        return self._subdir
 
 # ------------------------------------------
 #

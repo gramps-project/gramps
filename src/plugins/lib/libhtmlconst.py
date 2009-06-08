@@ -26,6 +26,10 @@
 
 # $Id: NarrativeWeb.py 12593 2009-05-30 08:46:12Z robhealey1 $
 
+"""
+General constants used in different html enabled plugins
+"""
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -37,6 +41,7 @@ try:
     from gettext import gettext as _
 except ImportError:
     print 'Plugin manager not imported.'
+
 
 #------------------------------------------------------------------------
 #
@@ -88,13 +93,17 @@ _CC = [
     'src="%(gif_fname)s" /></a>',
 
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Non-commercial, No derivations" '
-    'title="Creative Commons License - By attribution, Non-commercial, No derivations" '
+    '<img alt="Creative Commons License - By attribution, Non-commercial, '
+    'No derivations" '
+    'title="Creative Commons License - By attribution, Non-commercial, '
+    'No derivations" '
     'src="%(gif_fname)s" /></a>',
 
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
-    '<img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" '
-    'title="Creative Commons License - By attribution, Non-commerical, Share-alike" '
+    '<img alt="Creative Commons License - By attribution, Non-commerical, '
+    'Share-alike" '
+    'title="Creative Commons License - By attribution, Non-commerical, '
+    'Share-alike" '
     'src="%(gif_fname)s" /></a>'
     ]
 

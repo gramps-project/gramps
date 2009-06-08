@@ -49,7 +49,7 @@ from docbackend import DocBackend
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".cairobackend.py")
+LOG = logging.getLogger(".cairobackend.py")
 
 #------------------------------------------------------------------------
 #
@@ -89,17 +89,17 @@ class CairoBackend(DocBackend):
     
     ESCAPE_FUNC = lambda x: escape
 
-    def _create_xmltag(self, type, value):
+    def _create_xmltag(self, tagtype, value):
         """
         overwrites the method in DocBackend
         creates the pango xml tags needed for non bool style types
         """
-        if type not in self.SUPPORTED_MARKUP:
+        if tagtype not in self.SUPPORTED_MARKUP:
             return None
-        if type == DocBackend.FONTSIZE:
+        if tagtype == DocBackend.FONTSIZE:
             #size is in thousandths of a point in pango
             value = str(1000 * value)
         
-        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[type], 
+        return ('<span %s="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype], 
                                     self.ESCAPE_FUNC()(value)), 
                 '</span>')

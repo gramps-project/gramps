@@ -584,7 +584,7 @@ class LaTeXDoc(BaseDoc, TextDoc):
         if self.curcol < self.numcols:
             self._backend.write('& ')
 
-    def add_media_object(self, name,pos,x,y):
+    def add_media_object(self, name, pos, x, y, alt=''):
         """Add photo to report"""
         return
 
@@ -622,9 +622,6 @@ class LaTeXDoc(BaseDoc, TextDoc):
         styledtext : assumed a StyledText object to write
         format : = 0 : Flowed, = 1 : Preformatted
         style_name : name of the style to use for default presentation
-        
-        @note: text=normal text, p_text=text with pango markup, s_tags=styled
-                text tags, p
         """
         text = str(styledtext)
 

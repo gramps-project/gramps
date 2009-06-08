@@ -48,7 +48,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".docbackend.py")
+LOG = logging.getLogger(".docbackend.py")
 
 #------------------------------------------------------------------------
 #
@@ -57,6 +57,9 @@ log = logging.getLogger(".docbackend.py")
 #------------------------------------------------------------------------
 
 def noescape(text):
+    """
+    Function that does not escape the text passed. Default for backends
+    """
     return text
 
 #-------------------------------------------------------------------------
@@ -122,9 +125,17 @@ class DocBackend(object):
         self._filename = filename
     
     def getf(self):
+        """
+        Obtain the filename on which backend writes
+        """
         return self._filename
     
     def setf(self, value):
+        """
+        Set the filename on which the backend writes, changing the value 
+        passed on initialization
+        Can only be done if the previous filename is not open
+        """
         if self.__file is not None:
             raise ValueError, _('Close file first')
         self._filename = value
@@ -156,17 +167,20 @@ class DocBackend(object):
         pass
     
     def close(self):
+        """
+        Closes the file that is written on.
+        """
         if self.__file is None:
             raise IOError, 'No file open'
         self.__file.close()
         self.__file = None        
 
-    def write(self, str):
+    def write(self, string):
         """Write a string to the file. There is no return value. 
             Due to buffering, the string may not actually show up untill the 
             close() method is called.
         """
-        self.__file.write(str)
+        self.__file.write(string)
 
     def writelines(self, sequence):
         """Write a sequence of strings to the file. The sequence can be any 
@@ -197,28 +211,28 @@ class DocBackend(object):
         If a markup is not present yet, it is created, using the 
             _create_xmltag method you can overwrite
         """
-        type = s_tag.name
+        tagtype = s_tag.name
         
         if not self.STYLETYPE_MAP or \
-        self.CLASSMAP <> type.__class__.__name__ :
-            self.CLASSMAP == type.__class__.__name__
-            self.STYLETYPE_MAP[type.__class__.BOLD]        = self.BOLD
-            self.STYLETYPE_MAP[type.ITALIC]      = self.ITALIC
-            self.STYLETYPE_MAP[type.UNDERLINE]   = self.UNDERLINE
-            self.STYLETYPE_MAP[type.FONTFACE]    = self.FONTFACE
-            self.STYLETYPE_MAP[type.FONTSIZE]    = self.FONTSIZE
-            self.STYLETYPE_MAP[type.FONTCOLOR]   = self.FONTCOLOR
-            self.STYLETYPE_MAP[type.HIGHLIGHT]   = self.HIGHLIGHT
-            self.STYLETYPE_MAP[type.SUPERSCRIPT] = self.SUPERSCRIPT
+        self.CLASSMAP != tagtype.__class__.__name__ :
+            self.CLASSMAP == tagtype.__class__.__name__
+            self.STYLETYPE_MAP[tagtype.__class__.BOLD]        = self.BOLD
+            self.STYLETYPE_MAP[tagtype.ITALIC]      = self.ITALIC
+            self.STYLETYPE_MAP[tagtype.UNDERLINE]   = self.UNDERLINE
+            self.STYLETYPE_MAP[tagtype.FONTFACE]    = self.FONTFACE
+            self.STYLETYPE_MAP[tagtype.FONTSIZE]    = self.FONTSIZE
+            self.STYLETYPE_MAP[tagtype.FONTCOLOR]   = self.FONTCOLOR
+            self.STYLETYPE_MAP[tagtype.HIGHLIGHT]   = self.HIGHLIGHT
+            self.STYLETYPE_MAP[tagtype.SUPERSCRIPT] = self.SUPERSCRIPT
 
         typeval = int(s_tag.name)
         s_tagvalue = s_tag.value
         tag_name = None
-        if type.STYLE_TYPE[typeval] == bool:
+        if tagtype.STYLE_TYPE[typeval] == bool:
             return self.STYLETAG_MARKUP[self.STYLETYPE_MAP[typeval]]
-        elif type.STYLE_TYPE[typeval] == str:
+        elif tagtype.STYLE_TYPE[typeval] == str:
             tag_name = "%d %s" % (typeval, s_tagvalue)
-        elif type.STYLE_TYPE[typeval] == int:
+        elif tagtype.STYLE_TYPE[typeval] == int:
             tag_name = "%d %d" % (typeval, s_tagvalue)
         if not tag_name:
             return None
@@ -231,12 +245,12 @@ class DocBackend(object):
         self.STYLETAG_MARKUP[tag_name] = tags
         return tags
 
-    def _create_xmltag(self, type, value):
+    def _create_xmltag(self, tagtype, value):
         """
         Create the xmltags for the backend.
         Overwrite this method to create functionality with a backend
         """
-        if type not in self.SUPPORTED_MARKUP:
+        if tagtype not in self.SUPPORTED_MARKUP:
             return None
         return ('', '')
     
@@ -283,7 +297,7 @@ class DocBackend(object):
         end = len(text)
         keylist = tagspos.keys()
         keylist.sort()
-        keylist = [x for x in keylist if x<=len(text)]
+        keylist = [x for x in keylist if x <= len(text)]
         opentags = []
         otext = u""  #the output, text with markup
         lensplit = len(split)
@@ -293,7 +307,7 @@ class DocBackend(object):
                 if split:
                     #make sure text can split
                     splitpos = text[start:pos].find(split)
-                    while splitpos <> -1:
+                    while splitpos != -1:
                         otext += self.ESCAPE_FUNC()(text[start:start+splitpos])
                         #close open tags
                         for opentag in reversed(opentags):

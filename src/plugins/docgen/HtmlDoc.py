@@ -22,13 +22,18 @@
 
 # $Id:HtmlDoc.py 9912 2008-01-22 09:17:46Z acraphae $
 
+
+"""
+Report output generator for html documents, based on Html and HtmlBackend
+"""
+
 #------------------------------------------------------------------------
 #
 # python modules 
 #
 #------------------------------------------------------------------------
 import os
-import re
+import shutil
 import time
 from gettext import gettext as _
 
@@ -39,77 +44,42 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
-import tarfile
 import const
-import Errors
 from gen.plug.docgen import BaseDoc, TextDoc, FONT_SANS_SERIF
 from libhtmlbackend import HtmlBackend
-from QuestionDialog import ErrorDialog, WarningDialog
-import Utils
+from libhtml import Html
+from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
 #
-# Constant regular expressions
+# Set up logging
 #
 #------------------------------------------------------------------------
-t_header_line_re = re.compile(
-    r"(.*)<TITLE>(.*)</TITLE>(.*)",
-    re.DOTALL|re.IGNORECASE|re.MULTILINE)
-t_keyword_line_re = re.compile(
-    r'(.*name="keywords"\s+content=")([^\"]*)(".*)$',
-    re.DOTALL|re.IGNORECASE|re.MULTILINE)
+import logging
+LOG = logging.getLogger(".htmldoc")
 
-#------------------------------------------------------------------------
-#
-# Default template
-#
-#------------------------------------------------------------------------
-_top = [
-    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">\n',
-    '<HTML>\n',
-    '<HEAD>\n',
-    '  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">\n',
-    '  <META NAME="keywords" CONTENT="">\n',
-    '  <TITLE>\n',
-    '  </TITLE>\n',
-    '  <STYLE type="text/css">\n',
-    '  <!--\n',
-    '    BODY { background-color: #ffffff }\n',
-    '    .parent_name { font-family: Arial; font-style: bold }\n',
-    '    .child_name { font-family: Arial; font-style: bold }\n',
-    '    -->\n',
-    '  </STYLE>\n',
-    '</HEAD>\n',
-    '<BODY>\n',
-    '  <!-- START -->\n'
-    ]
-
-_bottom = [
-    '  <!-- STOP -->\n',
-    '</BODY>\n',
-    '</HTML>\n'
-    ]
-
+_HTMLSCREEN = 'grampshtml.css'
 #------------------------------------------------------------------------
 #
 # HtmlDoc
 #
 #------------------------------------------------------------------------
 class HtmlDoc(BaseDoc, TextDoc):
+    """Implementation of the BaseDoc and TextDoc gen.plug.docgen api for the 
+    creation of Html files. This is achieved by writing on a HtmlBackend
+    object
+    """
 
-    def __init__(self,styles,type):
+    def __init__(self, styles, paper_style):
         BaseDoc.__init__(self, styles, None)
-        self.year = time.localtime(time.time())[0]
-        self.ext = '.html'
-        self.meta = ""
-        self.copyright = 'Copyright &copy; %d' % (self.year)
-        self.map = None
-        self.f = None
-        self.filename = None
-        self.base = ""
-        self.build_header()
-        self.style_declaration = None
-        self.image_dir = "images"
+        self.style_declaration = ''
+        self.htmllist = []
+        self._backend = None
+        self.css_filename = None
+        self.warn_dir = True
+        self._col = 0
+        self._tbl = None
+        self._empty = 1
 
     def set_css_filename(self, css_filename):
         """
@@ -118,47 +88,47 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         self.css_filename = css_filename
 
-    def set_extension(self,val):
-        if val[0] != '.':
-            val = "." + val
-        self.ext = val
-
-    def set_image_dir(self,dirname):
-        self.image_dir = dirname
-
-    def set_keywords(self,keywords):
-        self.meta = ",".join(keywords)
-
-    def process_line(self,line):
-        l = line.replace('$VERSION',const.VERSION)
-        return l.replace('$COPYRIGHT',self.copyright)
+    def open(self, filename):
+        """
+        Overwrite base method
+        """
+        self._backend = HtmlBackend(filename)
+        #self._backend.set_title(....)
+        self._backend.open()
+        self.htmllist += [self._backend.html_body]
         
-    def open(self,filename):
-        (r,e) = os.path.splitext(filename)
-        if e == self.ext:
-            self.filename = filename
-        else:
-            self.filename = filename + self.ext
-
-        self.base = os.path.dirname(self.filename)
-
-        try:
-            self.f = open(self.filename,"w")
-        except IOError,msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
-            raise Errors.ReportError(errmsg)
-        except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
-
-        if not self.style_declaration:
-            self.build_style_declaration()
-        self.f.write(self.style_declaration)
+        self.build_header()
 
     def build_header(self):
-        ## TODO REMOVE ??
-        pass
+        """
+        Build up the header of the html file over the defaults of Html()
+        """
+        # add additional meta tags and stylesheet links to head section
+        # create additional meta tags
+        _meta1 = 'name="generator" content="%s %s %s"' % (const.PROGRAM_NAME,
+                    const.VERSION, const.URL_HOMEPAGE)
+        meta = Html('meta', attr = _meta1) 
+        
+        #set styles of the report as inline css
+        self.build_style_declaration()
+        self._backend.html_header += self.style_declaration
+        
+        # GRAMPS favicon en css
+        fname1 =  '/'.join([self._backend.datadir(), 'favicon.ico'])
+        fname2 = '/'.join([self._backend.datadir(), _HTMLSCREEN])
+        
+        # links for GRAMPS favicon and stylesheets
+        links = Html('link', rel='shortcut icon', href=fname1,
+                        type='image/x-icon') + (
+                Html('link', rel='stylesheet', href=fname2, type='text/css',
+                        media='screen', indent=False)
+                )
+        self._backend.html_header += (meta, links)
 
     def build_style_declaration(self):
+        """
+        Convert the styles of the report into inline css for the html doc
+        """
         styles = self.get_style_sheet()
         
         text = ['<style type="text/css">\n<!--']
@@ -179,7 +149,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                         '\tpadding: %s %s %s %s;\n'
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n}' 
-                        % (sname, pad, pad, pad, pad, top, bottom, left, right))
+                    % (sname, pad, pad, pad, pad, top, bottom, left, right))
 
 
         for style_name in styles.get_paragraph_style_names():
@@ -233,142 +203,265 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.style_declaration = '\n'.join(text)
 
     def close(self):
-        self.f.close()
+        """
+        Overwrite base method
+        """
+        while len(self.htmllist)>1 :
+            self.__reduce_list()
+        #now write the actual file
+        self._backend.close()
         self.write_support_files()
 
         if self.open_req:
-            Utils.open_file_with_default_application(self.filename)
+            import Utils
+            Utils.open_file_with_default_application(self._backend.getf())
 
+    def copy_file(self, from_fname, to_fname, to_dir=''):
+        """
+        Copy a file from a source to a (report) destination.
+        If to_dir is not present, then the destination directory will be created.
+
+        Normally 'to_fname' will be just a filename, without directory path.
+
+        'to_dir' is the relative path name in the destination root. It will
+        be prepended before 'to_fname'.
+        """
+        dest = os.path.join(self._backend.datadir(), to_dir, to_fname)
+
+        destdir = os.path.dirname(dest)
+        if not os.path.isdir(destdir):
+            os.makedirs(destdir)
+
+        if from_fname != dest:
+            shutil.copyfile(from_fname, dest)
+        elif self.warn_dir:
+            WarningDialog(
+                _("Possible destination error") + "\n" +
+                _("You appear to have set your target directory "
+                  "to a directory used for data storage. This "
+                  "could create problems with file management. "
+                  "It is recommended that you consider using "
+                  "a different directory to store your generated "
+                  "web pages."))
+            self.warn_dir = False
+    
     def write_support_files(self):
-        if self.map:
-            for name, handle in self.map.iteritems():
-                if name == 'template.html':
-                    continue
-                fname = '%s%s%s' % (self.base, os.path.sep, name)
-                try:
-                    f = open(fname, 'wb')
-                    f.write(handle.read())
-                    f.close()
-                except IOError,msg:
-                    errmsg = "%s\n%s" % (_("Could not create %s") % fname, msg)
-                    raise Errors.ReportError(errmsg)
-                except:
-                    raise Errors.ReportError(_("Could not create %s") % fname)
-            
-    def add_media_object(self, name,pos,x,y,alt=''):
-        self.empty = 0
-        size = int(max(x,y) * float(150.0/2.54))
-        refname = "is%s" % os.path.basename(name)
+        """
+        Copy support files to the datadir that needs to hold them
+        """
+        #css file
+        self.copy_file(os.path.join(const.DATA_DIR, self.css_filename), 
+                        _HTMLSCREEN)
+        #favicon
+        self.copy_file(os.path.join(const.IMAGE_DIR, 'favicon.ico'), 
+                        'favicon.ico')
 
-        if self.image_dir:
-            imdir = '%s%s%s' % (self.base, os.path.sep,self.image_dir)
-        else:
-            imdir = self.base
-
-        if not os.path.isdir(imdir):
-            try:
-                os.mkdir(imdir)
-            except:
-                return
-
-        try:
-            ImgManip.resize_to_jpeg(name, refname, size, size)
-        except:
-            return
-
-        if pos == "right":
-            xtra = ' align="right"'
-        elif pos == "left" :
-            xtra = ' align="left"'
-        else:
-            xtra = ''
-            
-        if self.image_dir:
-            self.f.write('<img src="%s/%s" border="0" alt="%s"%s>\n' % \
-                         (self.image_dir, refname, alt, xtra))
-        else:
-            self.f.write('<img src="%s" border="0" alt="%s"%s>\n' 
-                        % (refname, alt, xtra))
-
-    def start_table(self, name,style):
+    def __reduce_list(self):
+        """
+        Takes the internal list of html objects, and adds the last to the 
+        previous. This closes the upper tag
+        """
+        self.htmllist[-2] += self.htmllist[-1]
+        self.htmllist.pop()
+    
+    def __write_text(self, text, mark=None, markup=False):
+        """
+        @param text: text to write.
+        @param mark:  IndexMark to use for indexing (if supported)
+        @param markup: True if text already contains markup info. 
+                       Then text will no longer be escaped
+        """
+        if not markup:            
+            text = self._backend.ESCAPE_FUNC()(text)
+        self.htmllist[-1] += text
+    
+    def __empty_char(self):
+        """
+        Output a non breaking whitespace so as to have browser behave ok on 
+        empty content
+        """
+        self.__write_text('&nbsp;', markup=True)
+    
+    def write_text(self, text, mark=None):
+        """
+        Overwrite base method
+        """
+        if text != "":
+            self._empty = 0
+        self.__write_text(text, mark)
+    
+    def start_table(self, name, style):
+        """
+        Overwrite base method
+        """
         styles = self.get_style_sheet()
-        self.tbl = styles.get_table_style(style)
-        self.f.write('<table width="%d%%" ' % self.tbl.get_width())
-        self.f.write('cellspacing="0">\n')
+        self._tbl = styles.get_table_style(style)
+        self.htmllist += [Html('table', width=str(self._tbl.get_width())+'%%',
+                                cellspacing='0')]
 
     def end_table(self):
-        self.f.write('</table>\n')
+        """
+        Overwrite base method
+        """
+        self.__reduce_list()
 
     def start_row(self):
-        self.col = 0
-        self.f.write('<tr>\n')
+        """
+        Overwrite base method
+        """
+        self.htmllist += [Html('tr')]
+        self._col = 0
 
     def end_row(self):
-        self.f.write('</tr>\n')
+        """
+        Overwrite base method
+        """
+        self.__reduce_list()
 
-    def start_cell(self,style_name,span=1):
-        self.empty = 1
-        self.f.write('<td valign="top"')
+    def start_cell(self, style_name, span=1):
+        """
+        Overwrite base method
+        """
+        self._empty = 1
+        #self.f.write('<td valign="top"')
         if span > 1:
-            self.f.write(' colspan="' + str(span) + '"')
-            self.col = self.col + 1
+            self.htmllist += [Html('td', colspan=str(span), 
+                                    _class=style_name)]
+            self._col += span
         else:
-            self.f.write(' width="')
-            self.f.write(str(self.tbl.get_column_width(self.col)))
-            self.f.write('%"')
-        self.f.write(' class="')
-        self.f.write(style_name)
-        self.f.write('">')
-        self.col = self.col + 1
+            self.htmllist += [Html('td', colspan=str(span), 
+                                width=str(self._tbl.get_column_width(
+                                            self._col))+ '%%',
+                                _class=style_name)]
+        self._col += 1
 
     def end_cell(self):
-        self.f.write('</td>\n')
+        """
+        Overwrite base method
+        """
+        self.__reduce_list()
 
-    def start_paragraph(self,style_name,leader=None):
-        self.f.write('<p class="' + style_name + '">')
+    def start_paragraph(self, style_name, leader=None):
+        """
+        Overwrite base method
+        """
+        self.htmllist += [Html('p', _class=style_name)]
         if leader is not None:
-            self.f.write(leader)
-            self.f.write(' ')
+            self.write_text(leader+' ')
 
     def end_paragraph(self):
-        if self.empty == 1:
-            self.f.write('&nbsp;')
-        self.empty = 0
-        self.f.write('</p>\n')
+        """
+        Overwrite base method
+        """
+        if self._empty == 1:
+            self.__empty_char()
+        self._empty = 0
+        self.__reduce_list()
 
     def start_bold(self):
-        self.f.write('<b>')
+        """
+        Overwrite base method
+        """
+        self.htmllist += [Html('strong')]
 
     def end_bold(self):
-        self.f.write('</b>')
+        """
+        Overwrite base method
+        """
+        self.__reduce_list()
         
     def start_superscript(self):
-        self.f.write('<sup>')
+        """
+        Overwrite base method
+        """
+        self.htmllist += [Html('sup')]
 
     def end_superscript(self):
-        self.f.write('</sup>')
+        """
+        Overwrite base method
+        """
+        self.__reduce_list()
 
-    def write_note(self,text,format,style_name):
+    def write_note(self, text, format, style_name):
+        """
+        Overwrite base method
+        """
         if format == 1:
-            self.f.write('<pre class=%s style="font-family: courier, monospace">' % style_name)
+            #preformatted, retain whitespace.
+            #  User should use write_styled_note for correct behavior, in this 
+            #    more basic method we convert all to a monospace character
+            self.htmllist += [Html('pre', _class=style_name, 
+                                style = 'font-family: courier, monospace')]
             self.write_text(text)
-            self.f.write('</pre>')
+            self.__reduce_list()
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                self.write_text(line.strip().replace('\n',' '))
+                self.write_text(line)
+                self.end_paragraph()
+        else:
+            raise NotImplementedError
+
+    def write_styled_note(self, styledtext, format, style_name):
+        """
+        Convenience function to write a styledtext to the html doc. 
+        styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
+        """
+        text = str(styledtext)
+
+        s_tags = styledtext.get_tags()
+        #FIXME: following split should be regex to match \n\s*\n instead?
+        markuptext = self._backend.add_markup_from_styled(text, s_tags, 
+                                                          split='\n\n')
+
+        if format == 1:
+            #preformatted, retain whitespace.
+            #so use \n\n for paragraph detection
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            for line in markuptext.split('\n\n'):
+                self.start_paragraph(style_name)
+                for realline in line.split('\n'):
+                    self.__write_text(realline, markup=True)
+                    self.htmllist[-1] += Html('br')
+                self.end_paragraph()
+        elif format == 0:
+            #flowed
+            #FIXME: following split should be regex to match \n\s*\n instead?
+            for line in markuptext.split('\n\n'):
+                self.start_paragraph(style_name)
+                self.__write_text(line, markup=True)
                 self.end_paragraph()
 
-    def write_text(self,text,mark=None):
-        text = text.replace('&','&amp;');       # Must be first
-        text = text.replace('<','&lt;');
-        text = text.replace('>','&gt;');
-        text = text.replace('\n','<br>')
-        if text != "":
-            self.empty = 0
-        self.f.write(text)
+    def add_media_object(self, name, pos, w_cm, h_cm, alt=''):
+        """
+        Overwrite base method
+        """
+        self._empty = 0
+        size = int(max(w_cm, h_cm) * float(150.0/2.54))
+        refname = "is%s" % os.path.basename(name)
+
+        imdir = self._backend.datadir()
+
+        try:
+            ImgManip.resize_to_jpeg(name, imdir + os.sep + refname, size, size)
+        except:
+            LOG.warn(_("Could not create jpeg version of image %(name)s") % 
+                        {'name' : name})
+            return
+
+        if pos not in ["right", "left"] :
+            self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+                            border = '0', alt=alt)
+        else:
+            self.htmllist[-1] += Html('img', src= imdir + os.sep + refname, 
+                            border = '0', alt=alt, align=pos)
 
     def page_break(self):
+        """
+        overwrite base method so page break has no effect
+        """
         pass
 
 #------------------------------------------------------------------------
