@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-05-30 16:43+0200\n"
-"PO-Revision-Date: 2009-06-04 09:33+0100\n"
+"PO-Revision-Date: 2009-06-09 20:41+0100\n"
 "Last-Translator: Erik de Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -8299,7 +8299,7 @@ msgstr "Dubbelklikken om %d personen te zien"
 
 #: ../src/plugins/gramplet/AgeStats.py:268
 msgid "Age Stats Gramplet"
-msgstr "Leeftijd op datum gramplet"
+msgstr "Leeftijdsstatistiekengramplet"
 
 #: ../src/plugins/gramplet/AgeStats.py:272
 msgid "Age Stats"
@@ -8489,7 +8489,7 @@ msgstr "Dubbelklikken om de personen in generatie %d te zien"
 msgid " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
 msgid_plural " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n"
 msgstr[0] " heeft %(count_person)d van %(max_count_person)d personen (%(percent)s compleet)\n"
-msgstr[1] "heeft %(count_person)d van %(max_count_person)d personen (%(percent)s compleet)\n"
+msgstr[1] " heeft %(count_person)d van %(max_count_person)d personen (%(percent)s compleet)\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:262
 msgid "All generations"
@@ -8733,7 +8733,7 @@ msgstr "Totaal aantal achternamen"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:156
 msgid "Surname Cloud Gramplet"
-msgstr "Achternamenwolk gramplet"
+msgstr "Achternamenwolkgramplet"
 
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:160
 msgid "Surname Cloud"
@@ -8796,7 +8796,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:68
 msgid "Welcome Gramplet"
-msgstr "Welkom gramplet"
+msgstr "Welkomgramplet"
 
 #: ../src/plugins/gramplet/WelcomeGramplet.py:72
 msgid "Welcome to GRAMPS!"
