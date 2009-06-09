@@ -162,7 +162,7 @@ class HtmlBackend(DocBackend):
         """
         write out the html to the page
         """
-        self.html_page.write(self.__write)
+        self.html_page.write(self.__write, indent='')
         DocBackend.close(self)
     
     def datadir(self):

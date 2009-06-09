@@ -68,6 +68,14 @@ class HtmlDoc(BaseDoc, TextDoc):
     """Implementation of the BaseDoc and TextDoc gen.plug.docgen api for the 
     creation of Html files. This is achieved by writing on a HtmlBackend
     object
+    
+    div id's defined here:
+        id="grampstextdoc" : the entire text report
+        id="grampsheading" : a small defined heading, but not h1 to h6 !
+        id="grampsstylednote" : start of part with a styled note, divided in 
+                                paragraphs
+        id="grampsnote" : start of part with a note. This id is normally not 
+                          used
     """
 
     def __init__(self, styles, paper_style):
@@ -80,6 +88,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         self._col = 0
         self._tbl = None
         self._empty = 1
+        self.title = ''
+        self.__title_written = -1  # -1 = not written, 0 = writing, 1 = written
 
     def set_css_filename(self, css_filename):
         """
@@ -93,9 +103,10 @@ class HtmlDoc(BaseDoc, TextDoc):
         Overwrite base method
         """
         self._backend = HtmlBackend(filename)
-        #self._backend.set_title(....)
         self._backend.open()
         self.htmllist += [self._backend.html_body]
+        #start a gramps report
+        self.htmllist += [Html('div', id="grampstextdoc")]
         
         self.build_header()
 
@@ -145,7 +156,7 @@ class HtmlDoc(BaseDoc, TextDoc):
                 left = 'thin solid #000000'
             if style.get_right_border():
                 right = 'thin solid #000000'
-            text.append('.%s {\n'
+            text.append('#grampstextdoc .%s {\n'
                         '\tpadding: %s %s %s %s;\n'
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n}' 
@@ -156,7 +167,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             style = styles.get_paragraph_style(style_name)
             font = style.get_font()
             font_size = font.get_size()
-            font_color = '#%02x%02x%02x' % font.get_color()
+            #font_color = '#%02x%02x%02x' % font.get_color()
             align = style.get_alignment_text()
             text_indent = "%.2f" % style.get_first_indent()
             right_margin = "%.2f" % style.get_right_margin()
@@ -179,25 +190,27 @@ class HtmlDoc(BaseDoc, TextDoc):
                 italic = 'font-style:italic; '
             if font.get_bold():
                 bold = 'font-weight:bold; '
-            if font.get_type_face() == FONT_SANS_SERIF:
-                family = '"Helvetica","Arial","sans-serif"'
-            else:
-                family = '"Times New Roman","Times","serif"'
-
-            text.append('.%s {\n'
-                        '\tfont-size: %dpt; color: %s;\n' 
+            #if font.get_type_face() == FONT_SANS_SERIF:
+            #    family = '"Helvetica","Arial","sans-serif"'
+            #else:
+            #    family = '"Times New Roman","Times","serif"'
+            # do not allow color, set in base css ! 
+            #    so no : 'color: %s' % font_color 
+            #    so no : 'font-family:%s;' % family
+            text.append('#grampstextdoc .%s {\n'
+                        '\tfont-size: %dpt;\n' 
                         '\ttext-align: %s; text-indent: %scm;\n' 
                         '\tmargin-right: %scm; margin-left: %scm;\n' 
                         '\tmargin-top: %scm; margin-bottom: %scm;\n' 
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n' 
-                        '\t%s%sfont-family:%s;\n}' 
-                        % (style_name, font_size, font_color,
+                        '\t%s%s\n}' 
+                        % (style_name, font_size, 
                            align, text_indent,
                            right_margin, left_margin,
                            top_margin, bottom_margin,
                            top, bottom, left, right,
-                           italic, bold, family))
+                           italic, bold))
 
         text.append('-->\n</style>')
         self.style_declaration = '\n'.join(text)
@@ -273,6 +286,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         if not markup:            
             text = self._backend.ESCAPE_FUNC()(text)
+        if self.__title_written == 0 :
+            self.title += text
         self.htmllist[-1] += text
     
     def __empty_char(self):
@@ -289,7 +304,15 @@ class HtmlDoc(BaseDoc, TextDoc):
         if text != "":
             self._empty = 0
         self.__write_text(text, mark)
-    
+
+    def write_title(self):
+        """
+        Add title field to header
+        """
+        self._backend.html_header += Html('title', self.title, 
+                                          inline=True, indent=True)
+        
+        
     def start_table(self, name, style):
         """
         Overwrite base method
@@ -303,6 +326,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.write_text('\n')
         self.__reduce_list()
 
     def start_row(self):
@@ -316,6 +340,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.write_text('\n')
         self.__reduce_list()
 
     def start_cell(self, style_name, span=1):
@@ -326,26 +351,47 @@ class HtmlDoc(BaseDoc, TextDoc):
         #self.f.write('<td valign="top"')
         if span > 1:
             self.htmllist += [Html('td', colspan=str(span), 
-                                    _class=style_name)]
+                                    class_=style_name)]
             self._col += span
         else:
             self.htmllist += [Html('td', colspan=str(span), 
                                 width=str(self._tbl.get_column_width(
                                             self._col))+ '%%',
-                                _class=style_name)]
+                                class_=style_name)]
         self._col += 1
 
     def end_cell(self):
         """
         Overwrite base method
         """
+        self.write_text('\n')
         self.__reduce_list()
 
     def start_paragraph(self, style_name, leader=None):
         """
         Overwrite base method
         """
-        self.htmllist += [Html('p', _class=style_name)]
+        style_sheet = self.get_style_sheet()
+        style = style_sheet.get_paragraph_style(style_name)
+        level = style.get_header_level()
+        if level == 0:
+            #a normal paragraph
+            self.htmllist += [Html('p', class_=style_name)]
+        elif level == 1:
+            if self.__title_written == -1 and \
+                    style_name.upper().find('TITLE') != -1:
+                self.__title_written == 0
+                self.htmllist += [Html('div', id="header")]
+                self.htmllist += [Html('h1', id='SiteTitle')]
+            else:
+                self.htmllist += [Html('h1', class_=style_name)]
+        elif 2<= level <= 5:
+            tag = 'h'+str(level+1)
+            self.htmllist += [Html(tag, class_=style_name)]
+        else:
+            # a low level header
+            self.htmllist += [Html('div', id='grampsheading',
+                                   class_=style_name)]
         if leader is not None:
             self.write_text(leader+' ')
 
@@ -353,10 +399,16 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.write_text('\n')
         if self._empty == 1:
             self.__empty_char()
         self._empty = 0
         self.__reduce_list()
+        if self.__title_written == 0:
+            self.__title_written = 1
+            #close div statement
+            self.__reduce_list()
+            self.write_title()
 
     def start_bold(self):
         """
@@ -386,13 +438,15 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
+        self.htmllist += [Html('div', id='grampsstylednote')]
         if format == 1:
             #preformatted, retain whitespace.
             #  User should use write_styled_note for correct behavior, in this 
             #    more basic method we convert all to a monospace character
-            self.htmllist += [Html('pre', _class=style_name, 
+            self.htmllist += [Html('pre', class_=style_name, 
                                 style = 'font-family: courier, monospace')]
             self.write_text(text)
+            #end pre element
             self.__reduce_list()
         elif format == 0:
             for line in text.split('\n\n'):
@@ -401,6 +455,8 @@ class HtmlDoc(BaseDoc, TextDoc):
                 self.end_paragraph()
         else:
             raise NotImplementedError
+        #end div element
+        self.__reduce_list()
 
     def write_styled_note(self, styledtext, format, style_name):
         """
@@ -415,17 +471,20 @@ class HtmlDoc(BaseDoc, TextDoc):
         #FIXME: following split should be regex to match \n\s*\n instead?
         markuptext = self._backend.add_markup_from_styled(text, s_tags, 
                                                           split='\n\n')
-
+        self.htmllist += [Html('div', id='grampsstylednote')]
         if format == 1:
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
             #FIXME: following split should be regex to match \n\s*\n instead?
+            self.htmllist += [Html('pre')]
             for line in markuptext.split('\n\n'):
                 self.start_paragraph(style_name)
                 for realline in line.split('\n'):
                     self.__write_text(realline, markup=True)
                     self.htmllist[-1] += Html('br')
                 self.end_paragraph()
+            #end pre element
+            self.__reduce_list()
         elif format == 0:
             #flowed
             #FIXME: following split should be regex to match \n\s*\n instead?
@@ -433,6 +492,8 @@ class HtmlDoc(BaseDoc, TextDoc):
                 self.start_paragraph(style_name)
                 self.__write_text(line, markup=True)
                 self.end_paragraph()
+        #end div element
+        self.__reduce_list()
 
     def add_media_object(self, name, pos, w_cm, h_cm, alt=''):
         """
