@@ -245,7 +245,7 @@ class Html(list):
         @type  indent: boolean
         @param indent: True  ==> indent this object with respect to its parent
                        False ==> do not indent this object
-                       Defauls to False
+                       Defaults to False
         @type  inline: boolean
         @param inline: True  ==> instructs the write() method to output this
                                  object and any child objects as a single string
@@ -264,6 +264,9 @@ class Html(list):
                          attributes
         @rtype:   object reference
         @return:  reference to the newly-created Html instance
+        
+        For full usage of the Html class with examples, please see the wiki
+        page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
         """
         super(Html, self).__init__([])                  # instantiate object
         attr, indent, close, inline = '', True, True, False
@@ -398,7 +401,9 @@ class Html(list):
         @type  tabs: string
         @oaram tabs: starting indentation
         """
-        if self.indent: 
+        if self.indent is None:
+            tabs = ''
+        elif self.indent: 
             tabs += indent
         if self.inline:                         # if inline, write all list and
             method('%s%s' % (tabs, self))       # nested list elements
