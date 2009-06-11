@@ -115,7 +115,7 @@ THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
 USER_PLUGINS   = os.path.join(HOME_DIR, "plugins")
 # dirs checked/made for each Gramps session
 USER_DIRLIST = (HOME_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
-                USER_PLUGINS, USER_TEMPLATES)
+                USER_PLUGINS)
 
 ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
 LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")
