@@ -67,7 +67,7 @@ class HtmlBackend(DocBackend):
     """
     
     STYLETAG_TO_PROPERTY = {
-        DocBackend.FONTCOLOR : 'font-color:%s;',
+        DocBackend.FONTCOLOR : 'color:%s;',
         DocBackend.HIGHLIGHT : 'background-color:%s;',
         DocBackend.FONTFACE  : "font-family:'%s';",
         DocBackend.FONTSIZE  : 'font-size:%spx;',
@@ -103,7 +103,7 @@ class HtmlBackend(DocBackend):
         self.html_header = None
         self.html_body = None
         self._subdir = None
-        self.title = 'GRAMPS Html Document'
+        self.title = None
         
     def _create_xmltag(self, tagtype, value):
         """
@@ -115,6 +115,9 @@ class HtmlBackend(DocBackend):
         if tagtype == DocBackend.FONTSIZE:
             #size is in points
             value = str(value)
+        elif tagtype == DocBackend.FONTFACE:
+            #fonts can have strange symbols in them, ' needs to be escaped
+            value = value.replace("'", "\\'")
         
         return ('<span style="%s">' % (self.STYLETAG_TO_PROPERTY[tagtype] %
                                        (value)), 
@@ -128,7 +131,7 @@ class HtmlBackend(DocBackend):
         if not len(fparts) >= 2 and not (fparts[-1] == 'html' or 
                 fparts[-1] == 'htm' or fparts[-1] == 'php'):
             self._filename = self._filename + ".htm"
-        fparts = self._filename.split('.')
+        fparts = os.path.basename(self._filename).split('.')
         self._subdir = '.'.join(fparts[:-1])
 
     def set_title(self, title):
@@ -143,15 +146,15 @@ class HtmlBackend(DocBackend):
         close
         """
         DocBackend.open(self)
-        if not os.path.isdir(self._subdir): 
-            os.mkdir(self._subdir)
+        if not os.path.isdir(self.datadirfull()): 
+            os.mkdir(self.datadirfull())
         self.html_page, self.html_header, self.html_body = Html.page(
                         lang=xml_lang(), title=self.title)
 
     def __write(self, string):
         """ a write to the file
         """
-        DocBackend.write(self, string)
+        DocBackend.write(self, string + '\n')
 
     def write(self, obj):
         """ write to the html page. One can pass a html object, or a string
@@ -162,7 +165,7 @@ class HtmlBackend(DocBackend):
         """
         write out the html to the page
         """
-        self.html_page.write(self.__write, indent='')
+        self.html_page.write(self.__write, indent='  ')
         DocBackend.close(self)
     
     def datadir(self):
@@ -170,6 +173,12 @@ class HtmlBackend(DocBackend):
         the directory where to save extra files
         """
         return self._subdir
+    
+    def datadirfull(self):
+        """
+        full path of the datadir directory
+        """
+        return os.path.join(os.path.dirname(self.getf()), self.datadir())
 
 # ------------------------------------------
 #

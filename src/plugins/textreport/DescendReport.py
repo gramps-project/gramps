@@ -127,7 +127,7 @@ class DescendantReport(Report):
         self.doc.start_paragraph("DR-Title")
         name = name_displayer.display(self.center_person)
         title = _("Descendants of %s") % name
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
+        mark = IndexMark(title,INDEX_TYPE_TOC,1)
         self.doc.write_text(title,mark)
         self.doc.end_paragraph()
         self.dump(1,self.center_person)
@@ -188,24 +188,24 @@ class DescendantOptions(MenuReportOptions):
 
     def make_default_style(self,default_style):
         """Make the default output style for the Descendant Report."""
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(12)
-        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        f.set_type_face(FONT_SANS_SERIF)
         f.set_bold(1)
-        p = BaseDoc.ParagraphStyle()
+        p = ParagraphStyle()
         p.set_header_level(1)
         p.set_bottom_border(1)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_font(f)
-        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
         default_style.add_paragraph_style("DR-Title",p)
 
-        f = BaseDoc.FontStyle()
+        f = FontStyle()
         f.set_size(10)
         for i in range(1,33):
-            p = BaseDoc.ParagraphStyle()
+            p = ParagraphStyle()
             p.set_font(f)
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))
@@ -215,7 +215,7 @@ class DescendantOptions(MenuReportOptions):
                                 "level %d display.") % i)
             default_style.add_paragraph_style("DR-Level%d" % min(i,32), p)
 
-            p = BaseDoc.ParagraphStyle()
+            p = ParagraphStyle()
             p.set_font(f)
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))

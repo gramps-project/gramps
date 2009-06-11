@@ -183,12 +183,13 @@ class Html(list):
             )
 #
     @staticmethod
-    def head(title='Title', encoding='utf-8', *args, **keywargs):
+    def head(title=_('Title'), encoding='utf-8', *args, **keywargs):
         """
         Build and return a properly-formated <head> object
     
-        @type  title: string
-        @param title: title for HTML page. Default='Title'
+        @type  title: string or None
+        @param title: title for HTML page. Default='Title'. If None no 
+                    title tag is written
         @type  encoding: string
         @param encoding: encoding to be used. Default = 'utf-8'
         @rtype  reference to new Html instance
@@ -196,15 +197,17 @@ class Html(list):
         """ 
         meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
         meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
-        head = Html('head', *args, **keywargs) + (
-            Html('title', title, inline=True, indent=True),
+        head = Html('head', *args, **keywargs) 
+        if title != None: 
+            head += (Html('title', title, inline=True, indent=True))
+        head += (
             Html('meta', attr=meta1 % encoding, indent=True),
             Html('meta', attr=meta2, indent=True)
             )
         return head
 #
     @staticmethod
-    def page(title='Title', encoding='utf-8', lang='en', *args, **keywargs):
+    def page(title=_('Title'), encoding='utf-8', lang='en', *args, **keywargs):
         """
         This function prepares a new Html class based page and returns
     
@@ -242,9 +245,10 @@ class Html(list):
         @type  args: optional positional parameters
         @param args: 0 more positional arguments to be inserted between
                      opening and closing HTML tags.
-        @type  indent: boolean
+        @type  indent: boolean or None
         @param indent: True  ==> indent this object with respect to its parent
                        False ==> do not indent this object
+                       None  ==> no indent for this object (use eg for pre tag)
                        Defaults to False
         @type  inline: boolean
         @param inline: True  ==> instructs the write() method to output this
@@ -399,7 +403,7 @@ class Html(list):
         @type  indent: string
         @param indenf: string to use for indentation. Default = '\t' (tab)
         @type  tabs: string
-        @oaram tabs: starting indentation
+        @param tabs: starting indentation
         """
         if self.indent is None:
             tabs = ''

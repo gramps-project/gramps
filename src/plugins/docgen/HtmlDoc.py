@@ -58,7 +58,9 @@ from QuestionDialog import WarningDialog
 import logging
 LOG = logging.getLogger(".htmldoc")
 
+_TEXTDOCSCREEN = 'grampstextdoc.css'
 _HTMLSCREEN = 'grampshtml.css'
+
 #------------------------------------------------------------------------
 #
 # HtmlDoc
@@ -76,6 +78,10 @@ class HtmlDoc(BaseDoc, TextDoc):
                                 paragraphs
         id="grampsnote" : start of part with a note. This id is normally not 
                           used
+    
+    The styles as defined in the stylesheed of the textdoc, will be converted
+    to css class. Color is removed to avoid conflicts with the css. Also 
+    Fontface is removed. Size, italic, bold, margins, borders are retained
     """
 
     def __init__(self, styles, paper_style):
@@ -83,7 +89,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         self.style_declaration = ''
         self.htmllist = []
         self._backend = None
-        self.css_filename = None
+        self.css_filename = ''
         self.warn_dir = True
         self._col = 0
         self._tbl = None
@@ -96,7 +102,10 @@ class HtmlDoc(BaseDoc, TextDoc):
         Set the css file to use. The path must be included. 
         Note: DocReportDialog sets this for html doc
         """
-        self.css_filename = css_filename
+        if os.path.basename(css_filename):
+            self.css_filename = css_filename
+        else:
+            self.css_filename = ''
 
     def open(self, filename):
         """
@@ -122,17 +131,21 @@ class HtmlDoc(BaseDoc, TextDoc):
         
         #set styles of the report as inline css
         self.build_style_declaration()
-        self._backend.html_header += self.style_declaration
+        
         
         # GRAMPS favicon en css
-        fname1 =  '/'.join([self._backend.datadir(), 'favicon.ico'])
-        fname2 = '/'.join([self._backend.datadir(), _HTMLSCREEN])
+        fname1 = '/'.join([self._backend.datadir(), 'favicon.ico'])
+        fname2 = '/'.join([self._backend.datadir(), _TEXTDOCSCREEN])
+        fname3 = '/'.join([self._backend.datadir(), _HTMLSCREEN])
         
         # links for GRAMPS favicon and stylesheets
         links = Html('link', rel='shortcut icon', href=fname1,
                         type='image/x-icon') + (
                 Html('link', rel='stylesheet', href=fname2, type='text/css',
-                        media='screen', indent=False)
+                        media='screen', indent=False),)
+        if self.css_filename:
+            links += (Html('link', rel='stylesheet', href=fname3, 
+                      type='text/css', media='screen', indent=False),
                 )
         self._backend.html_header += (meta, links)
 
@@ -239,7 +252,8 @@ class HtmlDoc(BaseDoc, TextDoc):
         'to_dir' is the relative path name in the destination root. It will
         be prepended before 'to_fname'.
         """
-        dest = os.path.join(self._backend.datadir(), to_dir, to_fname)
+        #build absolute path
+        dest = os.path.join(self._backend.datadirfull(), to_dir, to_fname)
 
         destdir = os.path.dirname(dest)
         if not os.path.isdir(destdir):
@@ -262,8 +276,14 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Copy support files to the datadir that needs to hold them
         """
+        #css of textdoc styles
+        tdfile = open(os.path.join(self._backend.datadirfull(), 
+                      _TEXTDOCSCREEN), 'w')
+        tdfile.write(self.style_declaration)
+        tdfile.close()
         #css file
-        self.copy_file(os.path.join(const.DATA_DIR, self.css_filename), 
+        if self.css_filename:
+            self.copy_file(os.path.join(const.DATA_DIR, self.css_filename), 
                         _HTMLSCREEN)
         #favicon
         self.copy_file(os.path.join(const.IMAGE_DIR, 'favicon.ico'), 
@@ -310,8 +330,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         Add title field to header
         """
         self._backend.html_header += Html('title', self.title, 
-                                          inline=True, indent=True)
-        
+                                          inline=True)
         
     def start_table(self, name, style):
         """
@@ -326,7 +345,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
-        self.write_text('\n')
         self.__reduce_list()
 
     def start_row(self):
@@ -340,7 +358,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
-        self.write_text('\n')
         self.__reduce_list()
 
     def start_cell(self, style_name, span=1):
@@ -348,23 +365,21 @@ class HtmlDoc(BaseDoc, TextDoc):
         Overwrite base method
         """
         self._empty = 1
-        #self.f.write('<td valign="top"')
         if span > 1:
-            self.htmllist += [Html('td', colspan=str(span), 
-                                    class_=style_name)]
+            self.htmllist += (Html('td', colspan=str(span), 
+                                    class_=style_name),)
             self._col += span
         else:
-            self.htmllist += [Html('td', colspan=str(span), 
+            self.htmllist += (Html('td', colspan=str(span), 
                                 width=str(self._tbl.get_column_width(
                                             self._col))+ '%%',
-                                class_=style_name)]
+                                class_=style_name),)
         self._col += 1
 
     def end_cell(self):
         """
         Overwrite base method
         """
-        self.write_text('\n')
         self.__reduce_list()
 
     def start_paragraph(self, style_name, leader=None):
@@ -376,22 +391,22 @@ class HtmlDoc(BaseDoc, TextDoc):
         level = style.get_header_level()
         if level == 0:
             #a normal paragraph
-            self.htmllist += [Html('p', class_=style_name)]
+            self.htmllist += (Html('p', class_=style_name),)
         elif level == 1:
             if self.__title_written == -1 and \
                     style_name.upper().find('TITLE') != -1:
-                self.__title_written == 0
-                self.htmllist += [Html('div', id="header")]
-                self.htmllist += [Html('h1', id='SiteTitle')]
+                self.__title_written = 0
+                self.htmllist += (Html('div', id="header"),)
+                self.htmllist += (Html('h1', id='SiteTitle'),)
             else:
-                self.htmllist += [Html('h1', class_=style_name)]
+                self.htmllist += (Html('h1', class_=style_name),)
         elif 2<= level <= 5:
             tag = 'h'+str(level+1)
-            self.htmllist += [Html(tag, class_=style_name)]
+            self.htmllist += (Html(tag, class_=style_name),)
         else:
             # a low level header
-            self.htmllist += [Html('div', id='grampsheading',
-                                   class_=style_name)]
+            self.htmllist += (Html('div', id='grampsheading',
+                                   class_=style_name),)
         if leader is not None:
             self.write_text(leader+' ')
 
@@ -399,7 +414,6 @@ class HtmlDoc(BaseDoc, TextDoc):
         """
         Overwrite base method
         """
-        self.write_text('\n')
         if self._empty == 1:
             self.__empty_char()
         self._empty = 0
@@ -444,7 +458,8 @@ class HtmlDoc(BaseDoc, TextDoc):
             #  User should use write_styled_note for correct behavior, in this 
             #    more basic method we convert all to a monospace character
             self.htmllist += [Html('pre', class_=style_name, 
-                                style = 'font-family: courier, monospace')]
+                                style = 'font-family: courier, monospace',
+                                indent=None, inline=True)]
             self.write_text(text)
             #end pre element
             self.__reduce_list()
@@ -476,7 +491,7 @@ class HtmlDoc(BaseDoc, TextDoc):
             #preformatted, retain whitespace.
             #so use \n\n for paragraph detection
             #FIXME: following split should be regex to match \n\s*\n instead?
-            self.htmllist += [Html('pre')]
+            self.htmllist += [Html('pre', indent=None, inline=True)]
             for line in markuptext.split('\n\n'):
                 self.start_paragraph(style_name)
                 for realline in line.split('\n'):
@@ -503,7 +518,7 @@ class HtmlDoc(BaseDoc, TextDoc):
         size = int(max(w_cm, h_cm) * float(150.0/2.54))
         refname = "is%s" % os.path.basename(name)
 
-        imdir = self._backend.datadir()
+        imdir = self._backend.datadirfull()
 
         try:
             ImgManip.resize_to_jpeg(name, imdir + os.sep + refname, size, size)
