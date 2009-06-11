@@ -174,6 +174,9 @@ class StyledTextEditor(gtk.TextView):
         settings = gtk.settings_get_default()
         self.show_unicode = settings.get_property('gtk-show-unicode-menu')
         settings.set_property('gtk-show-unicode-menu', False)
+        
+        # variable to not copy to clipboard on double/triple click
+        self.selclick = False
 
     # virtual methods
     
@@ -262,12 +265,26 @@ class StyledTextEditor(gtk.TextView):
         self.window.get_pointer()
         return False
 
+    def on_button_release_event(self, widget, event):
+        """
+        Copy selection to clipboard for left click if selection given
+        """
+        if (event.type == gtk.gdk.BUTTON_RELEASE and self.selclick and
+                event.button == 1):
+            bounds = self.textbuffer.get_selection_bounds()
+            if bounds:
+                clip = gtk.Clipboard(selection="PRIMARY")
+                clip.set_text(str(self.textbuffer.get_text(bounds[0], 
+                                                           bounds[1])))
+        return False
+            
     def on_button_press_event(self, widget, event):
         """Signal handler.
         
         Handles the <CTRL> + Left click over a URL match.
         
         """
+        self.selclick=False
         if ((event.type == gtk.gdk.BUTTON_PRESS) and
             (event.button == 1) and
             (event.state and gtk.gdk.CONTROL_MASK) and
@@ -276,9 +293,12 @@ class StyledTextEditor(gtk.TextView):
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
             self._open_url_cb(None, url, flavor)
-            
+        elif (event.type == gtk.gdk.BUTTON_PRESS and event.button == 1) :
+            #on release we will copy selected data to clipboard
+            self.selclick = True
+        #propagate click
         return False
-        
+
     def on_populate_popup(self, widget, menu):
         """Signal handler.
         
@@ -323,6 +343,7 @@ class StyledTextEditor(gtk.TextView):
         self.connect('paste-clipboard', self.on_paste_clipboard)
         self.connect('motion-notify-event', self.on_motion_notify_event)
         self.connect('button-press-event', self.on_button_press_event)
+        self.connect('button-release-event', self.on_button_release_event)
         self.connect('populate-popup', self.on_populate_popup)
         self.connect('unrealize', self.on_unrealize)
         
