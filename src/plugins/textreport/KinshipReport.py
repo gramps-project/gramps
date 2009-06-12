@@ -378,6 +378,7 @@ class KinshipOptions(MenuReportOptions):
         font.set_size(12)
         font.set_bold(True)
         p = ParagraphStyle()
+        p.set_header_level(3)
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for sub-headings.'))

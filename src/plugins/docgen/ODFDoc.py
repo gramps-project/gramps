@@ -79,8 +79,8 @@ _esc_map = {
 #-------------------------------------------------------------------------
 class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
-    def __init__(self, styles, type, template):
-        BaseDoc.__init__(self, styles, type, template)
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
         self.media_list = []
         self.cntnt = None
         self.filename = None
