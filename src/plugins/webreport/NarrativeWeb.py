@@ -1023,141 +1023,151 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
-        of = self.report.create_file(name_to_md5(surname), 'srn')
-        self.up = True
-        surname, body = self.write_header("%s - %s" % (_('Surname'), surname))
-
-        # plugin variables
+        # module variables
         showbirth = report.options['showbirth']
         showdeath = report.options['showdeath']
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
+        of = self.report.create_file(name_to_md5(surname), 'srn')
+        self.up = True
+        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname))
+
         # begin SurnameDetail division
-        with Html('div', class_='content', id='SurnameDetail') as section:
-            body += section
+        with Html('div', id='SurnameDetail', class_='contente') as surnamedetail:
+            body += surnamedetail
 
             # section title
-            title = Html('h3', html_escape(surname), inline=True)
-            section += title
+            surnamedetail += Html('h3', html_escape(surname), inline=True)
 
             msg = _("This page contains an index of all the individuals in the "
-                          "database with the surname of %s. Selecting the person&#8217;s name "
-                          "will take you to that person&#8217;s individual page.") % surname
-            descr = Html('p', msg, id='description')
-            section += descr
+                    "database with the surname of %s. Selecting the person&#8217;s name "
+                    "will take you to that person&#8217;s individual page.") % surname
+            surnamedetail += Html('p', msg, id='description')
 
-            # begin surname table
-            with Html('table', class_='infolist surname') as table:
-                section += table  
+            # begin surname table and thead
+            with Html('table', class_='infolist surname') as surname_table:
+                surnamedetail += surname_table
                 with Html('thead') as thead:
-                    table += thead
+                    surname_table += thead
+                    tabhead = []
+                    tabhead.append('Name')
+                    if report.options['showbirth']:
+                        tabhead.append('Birth')
+                    if report.options['showdeath']:
+                        tabhead.append('Death')
+                    if report.options['showpartner']:
+                        tabhead.append('Partner')
+                    if report.options['showparents']:
+                        tabhead.append('Parents')
                     with Html('tr') as trow:
-                        thead += trow
-                        trow += Html('th', _('Name'), class_='ColumnName', inline=True)  
-                        if report.options['showbirth']:
-                            trow += Html('th', _('Birth'), class_='ColumnBirth', inline=True)
-                        if report.options['showdeath']:
-                            trow += Html('th', _('Death'), class_='ColumnDeath', inline=True) 
-                        if report.options['showpartner']:
-                            trow += Html('th', _('Partner'), class_='ColumnPartner', inline=True)
-                        if report.options['showparents']:
-                            trow += Html('th', _('Parents'), class_='ColumnParents', inline=True)
+                        thead += trow   
+
+                        # now spit out whatever is in table head
+                        for column in tabhead:
+                            trow += Html('th', _(column), class_='Column%s' % column, 
+                                inline=True)
 
                 # begin table body 
                 with Html('tbody') as tbody:
-                    table += tbody
+                    surname_table += tbody
 
                     for person_handle in person_handle_list:
  
                         # firstname column
                         person = db.get_person_from_handle(person_handle)
-                        with Html('tr') as trow:
-                            tbody += trow
-                            with Html('td', class_='ColumnName') as tcell:
-                                trow += tcell 
-                                url = self.report.build_url_fname_html(person.handle, 'ppl', True)
-                                first_suffix = _get_short_name(person.gender, person.primary_name)
-                                tcell += self.person_link(url, first_suffix, person.gramps_id)
+                        trow = Html('tr')
+                        tcell = Html('td', class_='ColumnName')
+                        url = self.report.build_url_fname_html(person.handle, 'ppl', True)
+                        first_suffix = _get_short_name(person.gender, person.primary_name)
+                        tcell += self.person_link(url, first_suffix, person.gramps_id)
+                        trow += tcell 
 
-                            # birth column
-                            if showbirth:
-                                with Html('td', class_='ColumnBirth', inline=True) as tcell:
-                                    trow += tcell
-                                    birth = ReportUtils.get_birth_or_fallback(db, person)
-                                    if birth:
-                                        birth_date = _dd.display(birth.get_date_object())
-                                        if birth.get_type() == EventType.BIRTH:
-                                            tcell += birth_date
-                                        else:
-                                            tcell += Html('em', birth_date)
-                                    else:
-                                       tcell += '&nbsp;'
+                        # birth column
+                        if showbirth:
+                            tcell = Html('td', class_='ColumnBirth', inline=True)
+                            birth = ReportUtils.get_birth_or_fallback(db, person)
+                            if birth:
+                                birth_date = _dd.display(birth.get_date_object())
+                                if birth.get_type() == EventType.BIRTH:
+                                    tcell += birth_date
+                                else:
+                                    tcell += Html('em', birth_date)
+                            else:
+                                tcell += '&nbsp;'
+                            trow += tcell
 
-                            # death column
-                            if report.options['showdeath']:
-                                with Html('td', class_='ColumnDeath', inline=True) as tcell:
-                                    trow += tcell
-                                    death = ReportUtils.get_death_or_fallback(report.database, person)
-                                    if death:
-                                        death_date = _dd.display(death.get_date_object())
-                                        if death.get_type() == EventType.DEATH:
-                                            tcell += death_date
+                        # death column
+                        if showdeath:
+                            tcell = Html('td', class_='ColumnDeath', inline=True)
+                            death = ReportUtils.get_death_or_fallback(db, person)
+                            if death:
+                                death_date = _dd.display(death.get_date_object())
+                                if death.get_type() == EventType.DEATH:
+                                    tcell += death_date
+                                else:
+                                    tcell += Html('em', death_date)
+                            else:
+                                tcell += '&nbsp;'
+                            trow += tcell
+
+                        # partner column
+                        if showpartner:
+                            tcell = Html('td', class_='ColumnPartner')
+                            family_list = person.get_family_handle_list()
+                            first_family = True
+                            if family_list:
+                                for family_handle in family_list:
+                                    family = db.get_family_from_handle(family_handle)
+                                    partner_handle = ReportUtils.find_spouse(person, family)
+                                    if partner_handle:
+                                        partner = db.get_person_from_handle(partner_handle)
+                                        partner_name = self.get_name(partner)
+                                        if not first_family:
+                                            tcell += ','
+                                        if partner_handle in report_handle_list:
+                                            url = self.report.build_url_fname_html(
+                                                partner_handle, 
+                                                'ppl', True) 
+                                            tcell += self.person_link(url, partner_name)
                                         else:
-                                            tcell += Html('em', death_date)
+                                            tcell += partner_name
                                     else:
                                         tcell += '&nbsp;'
+                            else:
+                                tcell += '&nbsp;' 
+                            trow += tcell
 
-                            # partner column
-                            if report.options['showpartner']:
-                                with Html('td', class_='ColumnParter') as tcell:
-                                    trow += tcell
-                                    family_list = person.get_family_handle_list()
-                                    first_family = True
-                                    partner_name = None
-                                    if family_list:
-                                        for family_handle in family_list:
-                                            family = report.database.get_family_from_handle(family_handle)
-                                            partner_handle = ReportUtils.find_spouse(person, family)
-                                            if partner_handle:
-                                                partner = report.database.get_person_from_handle(partner_handle)
-                                                partner_name = self.get_name(partner)
-                                            if not first_family:
-                                                tcell += ','
-                                            if partner_handle in report_handle_list:
-                                                url = self.report.build_url_fname_html(partner_handle, 'ppl', True)
-                                                tcell += self.person_link(url, partner_name)
-                                            else:
-                                                tcell += partner_name
-                                    else:
-                                        tcell += '&nbsp;'
+                        # parents column
+                        if report.options['showparents']:
+                            tcell = Html('td', class_='ColumnParents')
+                            parent_handle_list = person.get_parent_family_handle_list()
+                            if parent_handle_list:
+                                parent_handle = parent_handle_list[0]
+                                family = db.get_family_from_handle(parent_handle)
+                                father_id = family.get_father_handle()
+                                mother_id = family.get_mother_handle()
+                                father = db.get_person_from_handle(father_id)
+                                mother = db.get_person_from_handle(mother_id)
+                                if father:
+                                    father_name = self.get_name(father)
+                                if mother:
+                                    mother_name = self.get_name(mother)
+                                if mother and father:
+                                    tcell += Html('span', father_name, 
+                                        class_='father fatherNmother') + (
+                                        Html('span', mother_name, class_='mother')
+                                        )
+                                elif mother:
+                                    tcell += Html('span', mother_name, class_='mother')
+                                elif father:
+                                    tcell += Html('span', father_name, class_='father')
+                            else:
+                                tcell += '&nbsp;'
+                            trow += tcell
+                        tbody += trow
 
-                            # parents column
-                            if report.options['showparents']:
-                                with Html('td', class_='ColumnParents') as tcell:
-                                    trow += tcell 
-                                    parent_handle_list = person.get_parent_family_handle_list()
-                                    if parent_handle_list:
-                                        parent_handle = parent_handle_list[0]
-                                        family = report.database.get_family_from_handle(parent_handle)
-                                        father_name = ''
-                                        mother_name = ''
-                                        father_id = family.get_father_handle()
-                                        mother_id = family.get_mother_handle()
-                                        father = report.database.get_person_from_handle(father_id)
-                                        mother = report.database.get_person_from_handle(mother_id)
-                                        if father:
-                                            father_name = self.get_name(father)
-                                        if mother:
-                                            mother_name = self.get_name(mother)
-                                        if mother and father:
-                                            tcell += Html('span', father_name, class_='father fatherNmother') + \
-                                            Html('span', mother, class_='mother')
-                                        elif mother:
-                                            tcell += Html('span', mother_name, class_='mother')
-                                        elif father:
-                                            tcell += Html('span', father_name, class_='father')
-
+        # add surnames table
         # add clearline for proper styling
         # add footer section
         footer = self.write_footer()
@@ -1165,7 +1175,7 @@ class SurnamePage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(surname, of)  
+        self.mywriter(surnamepage, of)  
 
 class IndividualListPage(BasePage):
 

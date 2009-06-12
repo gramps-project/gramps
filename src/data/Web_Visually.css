@@ -435,11 +435,21 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
+    background-color:#FFF;
+}
+table.infolist tbody tr td.ColumnPartner a {
+    display:block;
+    padding:.6em 10px;
+    vertical-align:middle;
+}
+table.infolist tbody tr td.ColumnPartner a:hover {
+    background-color:#C1B398;
 }
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
 }
-table.infolist tbody tr td.ColumnParents span.father, table.infolist tbody tr td.ColumnParents span.mother {
+table.infolist tbody tr td.ColumnParents span.father, 
+table.infolist tbody tr td.ColumnParents span.mother {
     display:block;
 }
 table.infolist tbody tr td.ColumnParents span.mother:before {
@@ -569,7 +579,7 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 /* IndividualDetail
 ------------------------------------------------------ */
 #IndividualDetail {
-    background-color:#C1B398;
+    background-color:#FFF;
 }
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
@@ -846,7 +856,7 @@ div.subsection table.infolist {
 ----------------------------------------------------- */
 div#events {
     padding-bottom:0;
-    height:3.5cm;
+    height:2.8cm;
     overflow:auto;
 }
 div#events h4 {
