@@ -117,27 +117,6 @@ class GrampsDBDirCursor(GrampsCursor):
         self.cursor = source.db.cursor(txn)
         self.source = source
         
-    def first(self):
-        d = self.cursor.first()
-        if d:
-            return (d[0], pickle.loads(d[1]))
-        return None
-
-    def next(self):
-        d = self.cursor.next()
-        if d:
-            return (d[0], pickle.loads(d[1]))
-        return None
-
-    def close(self):
-        self.cursor.close()
-
-    def delete(self):
-        self.cursor.delete()
-        
-    def get_length(self):
-        return self.source.stat()['ndata']
-
 #-------------------------------------------------------------------------
 #
 # GrampsDBDirAssocCursor
@@ -149,27 +128,6 @@ class GrampsDBDirAssocCursor(GrampsCursor):
         self.cursor = source.cursor(txn)
         self.source = source
         
-    def first(self):
-        d = self.cursor.first()
-        if d:
-            return (d[0], pickle.loads(d[1]))
-        return None
-
-    def next(self):
-        d = self.cursor.next()
-        if d:
-            return (d[0], pickle.loads(d[1]))
-        return None
-
-    def close(self):
-        self.cursor.close()
-
-    def delete(self):
-        self.cursor.delete()
-        
-    def get_length(self):
-        return self.source.stat()['ndata']
-
 #-------------------------------------------------------------------------
 #
 # GrampsDBDirDupCursor

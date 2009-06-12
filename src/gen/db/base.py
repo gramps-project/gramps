@@ -24,7 +24,7 @@
 Base class for the GRAMPS databases. All database interfaces should inherit
 from this class.
 """
-
+from __future__ import with_statement
 #-------------------------------------------------------------------------
 #
 # libraries
@@ -1347,7 +1347,7 @@ class GrampsDbBase(Callback):
 
     def all_handles(self, table):
         return table.keys()
-
+        
     def get_person_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Person in
@@ -1357,18 +1357,20 @@ class GrampsDbBase(Callback):
         """
         if self.db_is_open:
             if sort_handles:
-                slist = []
-                cursor = self.get_person_cursor()
-                data = cursor.first()
-                while data:
-                    slist.append((data[1][3][3], data[0]))
-                    data = cursor.next()
-                cursor.close()
-                slist.sort()
+                with self.get_person_cursor() as cursor:
+                    slist = sorted((data[1][3][3], data[0]) for data in cursor)
                 return [x[1] for x in slist]
             else:
                 return self.all_handles(self.person_map)
         return []
+
+    def iter_person_handles(self):
+        """
+        Return an iterator over handles for Persons in the database
+        """
+        with self.get_person_cursor() as cursor:
+            for data in cursor:
+                yield data[0]
 
     def get_place_handles(self, sort_handles=True):
         """
@@ -1377,21 +1379,24 @@ class GrampsDbBase(Callback):
         
         If sort_handles is True, the list is sorted by Place title.
         """
+        print "base.py: get_place_handles"
         if self.db_is_open:
             if sort_handles:
-                slist = []
-                cursor = self.get_place_cursor()
-                data = cursor.first()
-                while data:
-                    slist.append((data[1][2], data[0]))
-                    data = cursor.next()
-                cursor.close()
-                slist.sort()
+                with self.get_place_cursor() as cursor:
+                    slist = sorted(((data[1][2], data[0])) for data in cursor)
                 return [x[1] for x in slist]
             else:
                 return self.all_handles(self.place_map)
         return []
-
+        
+    def iter_place_handles(self):
+        """
+        Return an iterator over handles for Places in the database
+        """
+        with self.get_place_cursor() as cursor:
+            for data in cursor:
+                yield data[0]
+                
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in
@@ -1399,13 +1404,22 @@ class GrampsDbBase(Callback):
         
          If sort_handles is True, the list is sorted by Source title.
         """
+        print "base.py: get_source_handles"
         if self.db_is_open:
             handle_list = self.all_handles(self.source_map)
             if sort_handles:
-                handle_list.sort(self.__sortbysource)
+                handle_list.sort(key=self.__sortbysource_key)
             return handle_list
         return []
-
+        
+    def iter_source_handles(self):
+        """
+        Return an iterator over handles for Sources in the database
+        """
+        with self.get_source_cursor() as cursor:
+            for data in cursor:
+                yield data[0]
+                
     def get_media_object_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each MediaObject in
@@ -1413,12 +1427,21 @@ class GrampsDbBase(Callback):
         
         If sort_handles is True, the list is sorted by title.
         """
+        print "base.py: get_media_object_handles"
         if self.db_is_open:
             handle_list = self.all_handles(self.media_map)
             if sort_handles:
-                handle_list.sort(self.__sortbymedia)
+                handle_list.sort(key=self.__sortbymedia_key)
             return handle_list
         return []
+        
+    def iter_media_handles(self):
+        """
+        Return an iterator over handles for Media in the database
+        """
+        with self.get_media_cursor() as cursor:
+            for data in cursor:
+                yield data[0]
 
     def get_event_handles(self):
         """
@@ -1428,6 +1451,14 @@ class GrampsDbBase(Callback):
         if self.db_is_open:
             return self.all_handles(self.event_map)
         return []
+        
+    def iter_event_handles(self):
+        """
+        Return an iterator over handles for Events in the database
+        """
+        with self.get_event_cursor() as cursor:
+            for data in cursor:
+                yield data[0]        
 
     def get_family_handles(self):
         """
@@ -1437,6 +1468,14 @@ class GrampsDbBase(Callback):
         if self.db_is_open:
             return self.all_handles(self.family_map)
         return []
+        
+    def iter_family_handles(self):
+        """
+        Return an iterator over handles for Families in the database
+        """
+        with self.get_family_cursor() as cursor:
+            for data in cursor:
+                yield data[0]        
 
     def get_repository_handles(self):
         """
@@ -1446,6 +1485,14 @@ class GrampsDbBase(Callback):
         if self.db_is_open:
             return self.all_handles(self.repository_map)
         return []
+        
+    def iter_repository_handles(self):
+        """
+        Return an iterator over handles for Repositories in the database
+        """
+        with self.get_repository_cursor() as cursor:
+            for data in cursor:
+                yield data[0]        
 
     def get_note_handles(self):
         """
@@ -1455,6 +1502,14 @@ class GrampsDbBase(Callback):
         if self.db_is_open:
             return self.all_handles(self.note_map)
         return []
+        
+    def iter_note_handles(self):
+        """
+        Return an iterator over handles for Notes in the database
+        """
+        with self.get_note_cursor() as cursor:
+            for data in cursor:
+                yield data[0]
 
     def get_gramps_ids(self, obj_key):
         key2table = {
@@ -2236,15 +2291,26 @@ class GrampsDbBase(Callback):
         return locale.strcoll(self.place_map.get(str(first))[2], 
                               self.place_map.get(str(second))[2])
 
+    def __sortbyplace_key(self, place):
+        return locale.strxfrm(self.place_map.get(str(place))[2])
+
     def __sortbysource(self, first, second):
         source1 = unicode(self.source_map[str(first)][2])
         source2 = unicode(self.source_map[str(second)][2])
         return locale.strcoll(source1, source2)
+        
+    def __sortbysource_key(self, key):
+        source = unicode(self.source_map[str(key)][2])
+        return locale.strxfrm(source)
 
     def __sortbymedia(self, first, second):
         media1 = self.media_map[str(first)][4]
         media2 = self.media_map[str(second)][4]
         return locale.strcoll(media1, media2)
+
+    def __sortbymedia_key(self, key):
+        media = self.media_map[str(key)][4]
+        return locale.strxfrm(media)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""

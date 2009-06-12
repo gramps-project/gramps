@@ -18,6 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import cPickle as pickle
+
+#-------------------------------------------------------------------------
+#
+# GrampsCursor class
+#
+#-------------------------------------------------------------------------
+
 class GrampsCursor(object):
     """
     Provide a basic iterator that allows the user to cycle through
@@ -30,6 +43,13 @@ class GrampsCursor(object):
     database. If multiple passes are needed, multiple cursors
     should be used.
     """
+    
+    def __init__(self):
+        """
+        Instantiate the object. Note, this method should be overridden in
+        derived classes that properly set self.cursor and self.source
+        """
+        self.cursor = self.source = None
 
     def first(self):
         """
@@ -42,6 +62,10 @@ class GrampsCursor(object):
 
         If no data is available, None is returned.
         """
+        
+        data = self.cursor.first()
+        if data:
+            return (data[0], pickle.loads(data[1]))
         return None
 
     def next(self):
@@ -55,7 +79,17 @@ class GrampsCursor(object):
 
         None is returned when no more data is available.
         """
+        
+        data = self.cursor.next()
+        if data:
+            return (data[0], pickle.loads(data[1]))
         return None
+        
+    def delete(self):
+        """
+        Delete the data at the current cursor position
+        """
+        self.cursor.delete()        
 
     def close(self):
         """
@@ -64,11 +98,34 @@ class GrampsCursor(object):
         This should be called when the user is finished using the cursor, 
         freeing up the cursor's resources.
         """
-        raise NotImplementedError
+        self.cursor.close()
     
     def get_length(self):
         """
         Return the number of records in the table referenced by the cursor.
         """
-        raise NotImplementedError
+        return self.source.stat()['ndata']
+        
+    def __iter__(self):
+        """
+        Iterator
+        """
+        
+        data = self.first()
+        while data:
+            yield data
+            data = self.next()
+        
+    def __enter__(self):
+        """
+        Context manager enter method
+        """
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        Context manager exit method
+        """
+        self.close()
+        return exc_type is None
 
