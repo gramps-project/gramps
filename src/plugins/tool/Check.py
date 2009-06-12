@@ -266,7 +266,7 @@ class CheckIntegrity(object):
                                 in self.db.name_formats if not act]
         
         # remove the invalid references from all Name objects
-        for person_handle in self.db.get_person_handles():
+        for person_handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(person_handle)
 
             p_changed = False
@@ -310,7 +310,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for duplicate spouses'),
                                self.db.get_number_of_people())
 
-        for handle in self.db.person_map.keys():
+        for handle in self.db.iter_person_handles():
             value = self.db.person_map[handle]
             p = gen.lib.Person(value)
             splist = p.get_family_handle_list()
@@ -328,7 +328,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for character encoding errors'),
                                self.db.get_number_of_media_objects())
 
-        for handle in self.db.media_map.keys():
+        for handle in self.db.iter_media_handles():
             data = self.db.media_map[handle]
             if not isinstance(data[2], unicode) or not isinstance(data[4], unicode):
                 obj = self.db.get_object_from_handle(handle)
@@ -351,9 +351,10 @@ class CheckIntegrity(object):
     def check_for_broken_family_links(self):
         # Check persons referenced by the family objects
 
-        fhandle_list = self.db.get_family_handles()
+        fhandle_list = self.db.iter_family_handles()
         self.progress.set_pass(_('Looking for broken family links'),
-                               len(fhandle_list) + self.db.get_number_of_people())
+                               self.db.get_number_of_families()+
+                               self.db.get_number_of_people())
         
         for family_handle in fhandle_list:
             family = self.db.get_family_from_handle(family_handle)
@@ -433,7 +434,7 @@ class CheckIntegrity(object):
             self.progress.step()
             
         # Check persons membership in referenced families
-        for person_handle in self.db.get_person_handles():
+        for person_handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(person_handle)
 
             phandle_list = person.get_parent_family_handle_list()
@@ -478,38 +479,38 @@ class CheckIntegrity(object):
     def cleanup_missing_photos(self,cl=0):
 
         self.progress.set_pass(_('Looking for unused objects'),
-                               len(self.db.get_media_object_handles()))
+                               self.db.get_number_of_media_objects())
                                
         missmedia_action = 0
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
             
-            for handle in self.db.get_person_handles(sort_handles=False):
+            for handle in self.db.iter_person_handles():
                 person = self.db.get_person_from_handle(handle)
                 if person.has_media_reference(ObjectId):
                     person.remove_media_references([ObjectId])
                     self.db.commit_person(person,self.trans)
 
-            for handle in self.db.get_family_handles():
+            for handle in self.db.iter_family_handles():
                 family = self.db.get_family_from_handle(handle)
                 if family.has_media_reference(ObjectId):
                     family.remove_media_references([ObjectId])
                     self.db.commit_family(family,self.trans)
                     
-            for handle in self.db.get_event_handles():
+            for handle in self.db.iter_event_handles():
                 event = self.db.get_event_from_handle(handle)
                 if event.has_media_reference(ObjectId):
                     event.remove_media_references([ObjectId])
                     self.db.commit_event(event,self.trans)
                 
-            for handle in self.db.get_source_handles():
+            for handle in self.db.iter_source_handles():
                 source = self.db.get_source_from_handle(handle)
                 if source.has_media_reference(ObjectId):
                     source.remove_media_references([ObjectId])
                     self.db.commit_source(source,self.trans)
                 
-            for handle in self.db.get_place_handles():
+            for handle in self.db.iter_place_handles():
                 place = self.db.get_place_from_handle(handle)
                 if place.has_media_reference(ObjectId):
                     place.remove_media_references([ObjectId])
@@ -549,7 +550,7 @@ class CheckIntegrity(object):
 
         #-------------------------------------------------------------------------
         
-        for ObjectId in self.db.get_media_object_handles():
+        for ObjectId in self.db.iter_media_handles():
             obj = self.db.get_object_from_handle(ObjectId)
             photo_name = Utils.media_path_full(self.db, obj.get_path())
             if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
@@ -695,10 +696,10 @@ class CheckIntegrity(object):
 
     def cleanup_empty_families(self,automatic):
 
-        fhandle_list = self.db.get_family_handles()
+        fhandle_list = self.db.iter_family_handles()
 
         self.progress.set_pass(_('Looking for empty families'),
-                               len(fhandle_list))
+                               self.db.get_number_of_families())
         for family_handle in fhandle_list:
             self.progress.step()
             
@@ -713,7 +714,7 @@ class CheckIntegrity(object):
                 self.delete_empty_family(family_handle)
 
     def delete_empty_family(self,family_handle):
-        for key in self.db.get_person_handles(sort_handles=False):
+        for key in self.iter.get_person_handles():
             child = self.db.get_person_from_handle(key)
             child.remove_parent_family_handle(family_handle)
             child.remove_family_handle(family_handle)
@@ -723,9 +724,9 @@ class CheckIntegrity(object):
         """Repair father=female or mother=male in hetero families
         """
 
-        fhandle_list = self.db.get_family_handles()
+        fhandle_list = self.db.iter_family_handles()
         self.progress.set_pass(_('Looking for broken parent relationships'),
-                               len(fhandle_list))
+                               self.db.get_number_of_families())
 
         for family_handle in fhandle_list:
             self.progress.step()
@@ -759,7 +760,7 @@ class CheckIntegrity(object):
                                self.db.get_number_of_people()
                                +self.db.get_number_of_families())
         
-        for key in self.db.get_person_handles(sort_handles=False):
+        for key in self.db.iter_person_handles():
             self.progress.step()
             
             person = self.db.get_person_from_handle(key)
@@ -813,7 +814,7 @@ class CheckIntegrity(object):
                 self.db.commit_person(person,self.trans)
                 self.invalid_events.append(key)
 
-        for key in self.db.get_family_handles():
+        for key in self.db.iter_family_handles():
             self.progress.step()
             family = self.db.get_family_from_handle(key)
             if family.get_event_ref_list():
@@ -836,10 +837,10 @@ class CheckIntegrity(object):
                 self.invalid_events.append(key)
 
     def check_person_references(self):
-        plist = self.db.get_person_handles()
+        plist = self.db.iter_person_handles()
         
         self.progress.set_pass(_('Looking for person reference problems'),
-                               len(plist))
+                               self.db.get_number_of_people())
         
         for key in plist:
             person = self.db.get_person_from_handle(key)
@@ -856,9 +857,9 @@ class CheckIntegrity(object):
         Fix issues in 3.1.0 upgrade: missed some dates on associated people
         source dates.
         """
-        plist = self.db.get_person_handles()
+        plist = self.db.iter_person_handles()
         self.progress.set_pass(_('Checking people for proper date formats'),
-                               len(plist))
+                               self.db.get_number_of_people())
         # First, decode all of a person:
         for handle in plist:
             need_to_fix = False
@@ -947,9 +948,9 @@ class CheckIntegrity(object):
                 self.invalid_dates.append(handle)
             self.progress.step()
 
-        flist = self.db.get_family_handles()
+        flist = self.db.iter_family_handles()
         self.progress.set_pass(_('Checking families for proper date formats'),
-                               len(flist))
+                               self.db.get_number_of_families())
         # First, decode all of a person:
         for handle in flist:
             need_to_fix = False
@@ -1003,10 +1004,10 @@ class CheckIntegrity(object):
             self.progress.step()
 
     def check_repo_references(self):
-        slist = self.db.get_source_handles()
+        slist = self.db.iter_source_handles()
         
         self.progress.set_pass(_('Looking for repository reference problems'),
-                               len(slist))
+                               self.db.get_number_of_sources)
         
         for key in slist:
             source = self.db.get_source_from_handle(key)
@@ -1019,11 +1020,13 @@ class CheckIntegrity(object):
                     self.invalid_repo_references.append(key)
 
     def check_place_references(self):
-        plist = self.db.get_person_handles()
-        flist = self.db.get_family_handles()
-        elist = self.db.get_event_handles()
+        plist = self.db.iter_person_handles()
+        flist = self.db.iter_family_handles()
+        elist = self.db.iter_event_handles()
         self.progress.set_pass(_('Looking for place reference problems'),
-                               len(elist)+len(plist)+len(flist))
+                               self.db.get_number_of_people()+
+                               self.db.get_number_of_events()+
+                               self.db.get_number_of_families())
         # check persons -> the LdsOrd references a place
         for key in plist:
             person = self.db.get_person_from_handle(key)
@@ -1076,7 +1079,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for source reference problems'),
                                total)
         
-        for handle in self.db.person_map.keys():
+        for handle in self.db.iter_person_handles():
             self.progress.step()
             info = self.db.person_map[handle]
             person = gen.lib.Person()
@@ -1092,7 +1095,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
 
-        for handle in self.db.family_map.keys():
+        for handle in self.db.iter_family_handles():
             self.progress.step()
             info = self.db.family_map[handle]
             family = gen.lib.Family()
@@ -1108,7 +1111,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
 
-        for handle in self.db.place_map.keys():
+        for handle in self.db.iter_place_handles():
             self.progress.step()
             info = self.db.place_map[handle]
             place = gen.lib.Place()
@@ -1124,7 +1127,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
 
-        for handle in self.db.repository_map.keys():
+        for handle in self.db.iter_repository_handles():
             self.progress.step()
             info = self.db.repository_map[handle]
             repo = gen.lib.Repository()
@@ -1157,7 +1160,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
 
-        for handle in self.db.media_map.keys():
+        for handle in self.db.iter_media_handles():
             self.progress.step()
             info = self.db.media_map[handle]
             obj = gen.lib.MediaObject()
@@ -1173,7 +1176,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
 
-        for handle in self.db.event_map.keys():
+        for handle in self.db.iter_event_handles():
             self.progress.step()
             info = self.db.event_map[handle]
             event = gen.lib.Event()
@@ -1203,7 +1206,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for media object reference problems'),
                                total)
         
-        for handle in self.db.person_map.keys():
+        for handle in self.db.iter_person_handles():
             self.progress.step()
             info = self.db.person_map[handle]
             person = gen.lib.Person()
@@ -1219,7 +1222,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
 
-        for handle in self.db.family_map.keys():
+        for handle in self.db.iter_family_handles():
             self.progress.step()
             info = self.db.family_map[handle]
             family = gen.lib.Family()
@@ -1235,7 +1238,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
 
-        for handle in self.db.place_map.keys():
+        for handle in self.db.iter_place_handles():
             self.progress.step()
             info = self.db.place_map[handle]
             place = gen.lib.Place()
@@ -1251,7 +1254,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
         
-        for handle in self.db.event_map.keys():
+        for handle in self.db.iter_event_handles():
             self.progress.step()
             info = self.db.event_map[handle]
             event = gen.lib.Event()
@@ -1267,7 +1270,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
         
-        for handle in self.db.source_map.keys():
+        for handle in self.db.iter_source_handles():
             self.progress.step()
             info = self.db.source_map[handle]
             source = gen.lib.Source()
@@ -1299,7 +1302,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for note reference problems'),
                                total)
         
-        for handle in self.db.person_map.keys():
+        for handle in self.db.iter_person_handles():
             self.progress.step()
             info = self.db.person_map[handle]
             person = gen.lib.Person()
@@ -1316,7 +1319,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.family_map.keys():
+        for handle in self.db.iter_family_handles():
             self.progress.step()
             info = self.db.family_map[handle]
             family = gen.lib.Family()
@@ -1333,7 +1336,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.place_map.keys():
+        for handle in self.db.iter_place_handles():
             self.progress.step()
             info = self.db.place_map[handle]
             place = gen.lib.Place()
@@ -1350,7 +1353,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.source_map.keys():
+        for handle in self.db.iter_source_handles():
             self.progress.step()
             info = self.db.source_map[handle]
             source = gen.lib.Source()
@@ -1367,7 +1370,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.media_map.keys():
+        for handle in self.db.iter_media_handles():
             self.progress.step()
             info = self.db.media_map[handle]
             obj = gen.lib.MediaObject()
@@ -1384,7 +1387,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.event_map.keys():
+        for handle in self.db.iter_event_handles():
             self.progress.step()
             info = self.db.event_map[handle]
             event = gen.lib.Event()
@@ -1401,7 +1404,7 @@ class CheckIntegrity(object):
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-        for handle in self.db.repository_map.keys():
+        for handle in self.db.iter_repository_handles():
             self.progress.step()
             info = self.db.repository_map[handle]
             repo = gen.lib.Repository()
