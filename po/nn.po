@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-05-30 16:43+0200\n"
-"PO-Revision-Date: 2009-02-25 18:47+0100\n"
+"PO-Revision-Date: 2009-06-11 17:03+0200\n"
 "Last-Translator: Sigmund Lorentsen <sigmund.lorentsen@tele2.no>\n"
-"Language-Team: Norwegian Nynorsk <kde-i18n-doc@lists.kde.org>\n"
+"Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3323,13 +3323,12 @@ msgid "Start page for the Html View"
 msgstr "Startside for Html-visning"
 
 #: ../src/DataViews/GeoView.py:572
-#, fuzzy
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a webpage in this page\n"
 "<br>\n"
 "For example: <b>http://gramps-project.org</p>"
 msgstr ""
-"Skriv inn adressa til ei intenettside øverst og trykk på Utfør-knappen for å ei nettside på denne sida\n"
+"Skriv inn adressa til ei intenettside øverst og trykk på Utfør-knappen for å lasta ei nettside på denne sida\n"
 "<br>\n"
 "Til dømes: <b>http://gramps-project.org</p>"
 
@@ -3934,9 +3933,8 @@ msgid "Loading..."
 msgstr "Lastar..."
 
 #: ../src/DataViews/PlaceView.py:133
-#, fuzzy
 msgid "Attempt to see selected locations with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr "Prøver å visa den valde staden med ei kartteneste (OpenstreetMap, Google Maps, ..."
+msgstr "Prøver å visa den valde staden med ei kartteneste (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:136
 msgid "Select a Map Service"
@@ -3947,9 +3945,8 @@ msgid "_Look up with Map Service"
 msgstr "_Sjå etter med ei kartteneste"
 
 #: ../src/DataViews/PlaceView.py:140
-#, fuzzy
 msgid "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, ...)"
-msgstr "Prøver å sjå denne staden  med ei kartteneste (OpenstreetMap, Google Maps, ..."
+msgstr "Prøver å visa denne staden  med ei kartteneste (OpenstreetMap, Google Maps, ...)"
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
@@ -5841,7 +5838,7 @@ msgstr "Databasen kan ikkje lagrast då du ikkje har skriverett til fila.  Kontr
 #. ------------------------------------------------------------------------
 #: ../src/plugins/export/ExportXml.py:1220
 msgid "GRAMPS XML export is a complete archived XML backup of the GRAMPS database without the media object files. Suitable for backup purposes."
-msgstr ""
+msgstr "GRAMPS XML-eksport er ein fullstendig tryggleikskopi av GRAMPS-databasen utan mediaobjekta.  Denne XML-fila høver godt som tryggleikskopiering."
 
 #: ../src/plugins/export/ExportXml.py:1223
 msgid "GRAMPS XML export options"
@@ -6079,7 +6076,7 @@ msgid "The .gramps file you are importing was made by version %s of GRAMPS, whil
 msgstr "GRAMPS-fila du importerar vart laga med versjon %s av GRAMPS, medan du køyrer ein eldre verson %s.  Fila vil ikkje bli importert.  Oppgrader til siste versjon av GRAMPS og prøv på nytt."
 
 #: ../src/plugins/import/ImportXml.py:2488
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of GRAMPS, while you are running a more recent version %(newgramps)s.\n"
 "\n"
@@ -6087,12 +6084,17 @@ msgid ""
 "See\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
-msgstr "GRAMPS-fila du importerar vart laga med versjon %s av GRAMPS, medan du køyrer ein eldre verson %s.  Fila vil ikkje bli importert.  Oppgrader til siste versjon av GRAMPS og prøv på nytt."
+msgstr ""
+"Den .gramps-fila du importerar vart laga med versjon %(oldgramps)s av GRAMPS, medan du køyrer ein nyare verson %(newgramps)s.\n"
+"\n"
+"Fila vil ikkje bli importert.  Bruk ein eldre versjon av GRAMPS som støttar versjon %(xmlversion)s av xml-fila.\n"
+"Sjå\n"
+" http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+" for meir informasjon."
 
 #: ../src/plugins/import/ImportXml.py:2503
-#, fuzzy
 msgid "The file will not be imported"
-msgstr "%s kunne ikkje importerast"
+msgstr "Fila kan ikkje importerast"
 
 #: ../src/plugins/import/ImportXml.py:2506
 #, python-format
@@ -6104,11 +6106,15 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "for more info."
 msgstr ""
+"Den .gramps-fila du importerer vart laga med versjon %(oldgramps)s av GRAMPS, medan du køyrer ein mykje nyare versjon %(newgramps)s.\n"
+"Kontroller etter importen at alt vart rett importert.  Skulle det oppstå problem, ber vi deg melda feilen og og i mellomtida bruka ein eldre versjon av GRAMPS for å importera denne fila som er versjon %(xmlversion)s av xml.\n"
+"Sjå\n"
+" http://gramps-project.org.wiki.index.php?title=GRAMPS_XML\n"
+" for meir informasjon."
 
 #: ../src/plugins/import/ImportXml.py:2523
-#, fuzzy
 msgid "Old xml file"
-msgstr "Alle filer"
+msgstr "Gamal XML-fil"
 
 #: ../src/plugins/import/ImportXml.py:2533 ../data/gramps.keys.in.h:2
 #: ../data/gramps.xml.in.h:2
@@ -6207,7 +6213,7 @@ msgstr "Filter"
 #: ../src/plugins/drawreport/StatisticsChart.py:682
 #: ../src/plugins/drawreport/TimeLine.py:314
 msgid "Determines what people are included in the report"
-msgstr "Bereknar kva for personar som skal takast med i rapporten"
+msgstr "Finn personar som skal takast med i rapporten"
 
 #: ../src/plugins/Records.py:453
 #: ../src/plugins/drawreport/StatisticsChart.py:686
@@ -6505,7 +6511,7 @@ msgstr "_Skaler slik at det høver på ei side"
 #: ../src/plugins/drawreport/AncestorTree.py:479
 #: ../src/plugins/drawreport/DescendTree.py:476
 msgid "Whether to scale to fit on a single page."
-msgstr "Skal det skalerarst for å høve på ei side?."
+msgstr "Om det skal skalerarst for å høve på ei side."
 
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:479
@@ -6515,7 +6521,7 @@ msgstr "Ta med blanke sider"
 #: ../src/plugins/drawreport/AncestorTree.py:483
 #: ../src/plugins/drawreport/DescendTree.py:480
 msgid "Whether to include pages that are blank."
-msgstr "Skal blanke sider takast med?."
+msgstr "Om blanke sider skal takast med."
 
 #: ../src/plugins/drawreport/AncestorTree.py:486
 msgid "Co_mpress tree"
@@ -6523,7 +6529,7 @@ msgstr "Ko_mprimer treet"
 
 #: ../src/plugins/drawreport/AncestorTree.py:487
 msgid "Whether to compress the tree."
-msgstr "Skal treet komprimerast?."
+msgstr "Om treet skal komprimerast."
 
 #: ../src/plugins/drawreport/AncestorTree.py:508
 #: ../src/plugins/drawreport/DescendTree.py:504
@@ -8968,7 +8974,7 @@ msgstr "Eniro kart"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
 msgid "Opens 'kartor.eniro.se' for places in Denmark and Sweden"
-msgstr ""
+msgstr "Opnar 'kartor.eniro.se' for stader i Danmark og Sverige"
 
 #: ../src/plugins/mapservices/googlemap.py:79
 msgid "GoogleMaps"
@@ -9593,7 +9599,7 @@ msgstr "Sideskift mellom generasjonar"
 #: ../src/plugins/textreport/DetAncestralReport.py:727
 #: ../src/plugins/textreport/DetDescendantReport.py:709
 msgid "Whether to start a new page after each generation."
-msgstr "Skal det vera sideskift etter kvar generasjon?."
+msgstr "Om det skal vera sideskift etter kvar generasjon."
 
 #: ../src/plugins/textreport/AncestorReport.py:262
 msgid "Add linebreak after each name"
@@ -9846,7 +9852,7 @@ msgstr "Bruk kallenamn som vanleg namn"
 #: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:722
 msgid "Whether to use the call name as the first name."
-msgstr "Skal kallenamn brukast som første namn?."
+msgstr "Om kallenamn skal brukast som første namn."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:725
@@ -9856,7 +9862,7 @@ msgstr "Bruk fullstendige datoar i staden for berre årtalet"
 #: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:727
 msgid "Whether to use full dates instead of just year."
-msgstr "Skal fullstendige datoar brukast i staden for berre årtal?."
+msgstr "Om fullstendige datoar skal brukast i staden for berre årtal."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:741
 #: ../src/plugins/textreport/DetDescendantReport.py:730
@@ -9866,7 +9872,7 @@ msgstr "Lag ei liste over barna"
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:731
 msgid "Whether to list children."
-msgstr "Skal det lagast ei liste over barna?."
+msgstr "Om det skal lagast ei liste over barna."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:745
 #: ../src/plugins/textreport/DetDescendantReport.py:734
@@ -9876,7 +9882,7 @@ msgstr "Rekna ut alder"
 #: ../src/plugins/textreport/DetAncestralReport.py:746
 #: ../src/plugins/textreport/DetDescendantReport.py:735
 msgid "Whether to compute age."
-msgstr "Skal alder reknast ut?."
+msgstr "Om alder skal reknast ut."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:749
 #: ../src/plugins/textreport/DetDescendantReport.py:738
@@ -9886,7 +9892,7 @@ msgstr "Utelat dobbelt oppførte forfedrar"
 #: ../src/plugins/textreport/DetAncestralReport.py:750
 #: ../src/plugins/textreport/DetDescendantReport.py:739
 msgid "Whether to omit duplicate ancestors."
-msgstr "Skal dobbelt oppførte forfedrar utelatast?."
+msgstr "Om dobbelt oppførte forfedrar skal utelatast."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:753
 #: ../src/plugins/textreport/DetDescendantReport.py:742
@@ -9896,7 +9902,7 @@ msgstr "Bruk fullstendige setningar"
 #: ../src/plugins/textreport/DetAncestralReport.py:755
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Whether to use complete sentences or succinct language."
-msgstr "Skal det brukast fullstendige setningar eller eit kompakt språk?."
+msgstr "Om det skal brukast fullstendige setningar eller eit kompakt språk."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:758
 #: ../src/plugins/textreport/DetDescendantReport.py:747
@@ -9906,7 +9912,7 @@ msgstr "Legg til etterkomar-referansar i lista over barn"
 #: ../src/plugins/textreport/DetAncestralReport.py:760
 #: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "Whether to add descendant references in child list."
-msgstr "Skal det leggjast til etterkomar-referansar i lista over barn?."
+msgstr "Om det skal leggjast til etterkomar-referansar i lista over barn."
 
 #. #########################
 #: ../src/plugins/textreport/DetAncestralReport.py:763
@@ -9924,7 +9930,7 @@ msgstr "Ta med kommentarar"
 #: ../src/plugins/textreport/DetAncestralReport.py:766
 #: ../src/plugins/textreport/DetDescendantReport.py:756
 msgid "Whether to include notes."
-msgstr "Skal notat takast med?."
+msgstr "Om notat skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:769
 #: ../src/plugins/textreport/DetDescendantReport.py:759
@@ -9935,7 +9941,7 @@ msgstr "Ta med eigenskapar"
 #: ../src/plugins/textreport/DetDescendantReport.py:760
 #: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Whether to include attributes."
-msgstr "Skal eigenskapar takast med?."
+msgstr "Om eigenskapar skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:773
 #: ../src/plugins/textreport/DetDescendantReport.py:763
@@ -9945,7 +9951,7 @@ msgstr "Ta med foto/bilete frå galleriet"
 #: ../src/plugins/textreport/DetAncestralReport.py:774
 #: ../src/plugins/textreport/DetDescendantReport.py:764
 msgid "Whether to include images."
-msgstr "Skal bilete takast med?."
+msgstr "Om bilete skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:777
 #: ../src/plugins/textreport/DetDescendantReport.py:767
@@ -9955,7 +9961,7 @@ msgstr "Ta med alternative namn"
 #: ../src/plugins/textreport/DetAncestralReport.py:778
 #: ../src/plugins/textreport/DetDescendantReport.py:768
 msgid "Whether to include other names."
-msgstr "Skal andre namn takast med?."
+msgstr "Om andre namn skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:781
 #: ../src/plugins/textreport/DetDescendantReport.py:771
@@ -9965,7 +9971,7 @@ msgstr "Ta med hendingar"
 #: ../src/plugins/textreport/DetAncestralReport.py:782
 #: ../src/plugins/textreport/DetDescendantReport.py:772
 msgid "Whether to include events."
-msgstr "Skal hendingar takast med?."
+msgstr "Om hendingar skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:785
 #: ../src/plugins/textreport/DetDescendantReport.py:775
@@ -9975,7 +9981,7 @@ msgstr "Ta med adresser"
 #: ../src/plugins/textreport/DetAncestralReport.py:786
 #: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Whether to include addresses."
-msgstr "Skal adresser takast med?."
+msgstr "Om adresser skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:789
 #: ../src/plugins/textreport/DetDescendantReport.py:779
@@ -9985,7 +9991,7 @@ msgstr "Ta med kjelder"
 #: ../src/plugins/textreport/DetAncestralReport.py:790
 #: ../src/plugins/textreport/DetDescendantReport.py:780
 msgid "Whether to include source references."
-msgstr "Skal kjeldereferansar takast med?."
+msgstr "Om kjeldereferansar skal takast med."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:793
 #: ../src/plugins/textreport/DetDescendantReport.py:787
@@ -10000,7 +10006,7 @@ msgstr "Erstatt manglande stadar med______"
 #: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:790
 msgid "Whether to replace missing Places with blanks."
-msgstr "Skal manglande stader erstattast med tomrom?."
+msgstr "Om manglande stader skal erstattast med tomrom."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:799
 #: ../src/plugins/textreport/DetDescendantReport.py:793
@@ -10010,7 +10016,7 @@ msgstr "Erstatt manglande datoar med______"
 #: ../src/plugins/textreport/DetAncestralReport.py:800
 #: ../src/plugins/textreport/DetDescendantReport.py:794
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Skal manglande datoar erstattast med tomrom?."
+msgstr "Om manglande datoar skal erstattast med tomrom."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:833
 #: ../src/plugins/textreport/DetDescendantReport.py:827
@@ -10065,7 +10071,7 @@ msgstr "Ta med ektefeller"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:784
 msgid "Whether to include detailed spouse information."
-msgstr "Skal detaljert informasjon om ektefeller takast med?."
+msgstr "Om detaljert informasjon om ektefeller skal takast med."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:899
 msgid "Detailed Descendant Report"
@@ -10126,9 +10132,9 @@ msgid "acronym for female|F"
 msgstr "K"
 
 #: ../src/plugins/textreport/FamilyGroup.py:434
-#, fuzzy, python-format
+#, python-format
 msgid "acronym for unknown|%dU"
-msgstr "M"
+msgstr "%dU"
 
 #: ../src/plugins/textreport/FamilyGroup.py:528
 #, python-format
@@ -10165,7 +10171,7 @@ msgstr "Generasjonsnummer (rekursivt)"
 
 #: ../src/plugins/textreport/FamilyGroup.py:617
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "Skal generasjonar takast med på kvar rapport (berre rekursivt)?."
+msgstr "Om generasjonar skal takast med på kvar rapport (berre rekursivt)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:621
 msgid "Parent Events"
@@ -10173,7 +10179,7 @@ msgstr "Hendingar for foreldre"
 
 #: ../src/plugins/textreport/FamilyGroup.py:622
 msgid "Whether to include events for parents."
-msgstr "Ta med hendingar for foreldre."
+msgstr "Om hendingar for foreldre skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:625
 msgid "Parent Addresses"
@@ -10181,7 +10187,7 @@ msgstr "Adresser til foreldre"
 
 #: ../src/plugins/textreport/FamilyGroup.py:626
 msgid "Whether to include addresses for parents."
-msgstr "Ta med adresser til foreldre."
+msgstr "Om adresser til foreldre skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:629
 msgid "Parent Notes"
@@ -10189,7 +10195,7 @@ msgstr "Notat for foreldre"
 
 #: ../src/plugins/textreport/FamilyGroup.py:630
 msgid "Whether to include notes for parents."
-msgstr "Skal notat for foreldre takast med?."
+msgstr "Om notat for foreldre skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:633
 msgid "Parent Attributes"
@@ -10201,7 +10207,7 @@ msgstr "Alternative namn på foreldre"
 
 #: ../src/plugins/textreport/FamilyGroup.py:638
 msgid "Whether to include alternate names for parents."
-msgstr "Skal alternative namn for foreldre takast med?."
+msgstr "Om alternative namn for foreldre skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:642
 msgid "Parent Marriage"
@@ -10209,7 +10215,7 @@ msgstr "Ekteskap mellom foreldre"
 
 #: ../src/plugins/textreport/FamilyGroup.py:643
 msgid "Whether to include marriage information for parents."
-msgstr "Skal ekteskapsinformasjon for foreldre takast med?."
+msgstr "Om ekteskapsinformasjon for foreldre skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:647
 msgid "Dates of Relatives"
@@ -10217,7 +10223,7 @@ msgstr "Datoar for slektningar"
 
 #: ../src/plugins/textreport/FamilyGroup.py:648
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "Skal datoar for slektningar (far, mor, ektefelle) takast med?."
+msgstr "Om datoar for slektningar (far, mor, ektefelle) skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Children Marriages"
@@ -10225,7 +10231,7 @@ msgstr "Ekteskap for barn"
 
 #: ../src/plugins/textreport/FamilyGroup.py:653
 msgid "Whether to include marriage information for children."
-msgstr "Skal ekteskapsinformasjon for barn takast med?."
+msgstr "Om ekteskapsinformasjon for barn skal takast med."
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:658
@@ -10239,13 +10245,12 @@ msgstr "Skriv ut felt for manglande informasjon"
 
 #: ../src/plugins/textreport/FamilyGroup.py:663
 msgid "Whether to include fields for missing information."
-msgstr "Skal felt for manglande informasjon takast med?."
+msgstr "Om felt for manglande informasjon skal takast med."
 
 #: ../src/plugins/textreport/FamilyGroup.py:704
 #: ../src/plugins/textreport/MarkerReport.py:504
-#, fuzzy
 msgid "The basic style used for the note display."
-msgstr "Den grunnleggjande stilen for tekst-visning."
+msgstr "Den grunnleggjande stilen for notatvisning."
 
 #: ../src/plugins/textreport/FamilyGroup.py:713
 msgid "The style used for the text related to the children."
@@ -10980,11 +10985,11 @@ msgstr "Ser etter problem med personreferansar"
 
 #: ../src/plugins/tool/Check.py:854
 msgid "Checking people for proper date formats"
-msgstr ""
+msgstr "Sjekkar personar for gyldige datoformat"
 
 #: ../src/plugins/tool/Check.py:945
 msgid "Checking families for proper date formats"
-msgstr ""
+msgstr "Sjekkar familiar for gyldige datoformat"
 
 #: ../src/plugins/tool/Check.py:1002
 msgid "Looking for repository reference problems"
@@ -11081,22 +11086,22 @@ msgstr[1] "Det var referanse til %d personar som ikkje vart funne\n"
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dato vart retta\n"
+msgstr[1] "%d datoar vart retta\n"
 
 #: ../src/plugins/tool/Check.py:1522
 #, python-format
 msgid "%d repository was referenced but not found\n"
 msgid_plural "%d repositories were referenced, but not found\n"
 msgstr[0] "Det var referanse til %d bibliotek som ikkje vart funne\n"
-msgstr[1] "Det var referanse til %d bibliotek som ikkje vart funne\n"
+msgstr[1] "Det var referansar til %d bibliotek som ikkje vart funne\n"
 
 #: ../src/plugins/tool/Check.py:1526
 #, python-format
 msgid "%d media object was referenced, but not found\n"
 msgid_plural "%d media objects were referenced, but not found\n"
 msgstr[0] "Det var referanse til %d mediaobjekt som ikkje vart funne\n"
-msgstr[1] "Det var referanse til %d mediaobjekt som ikkje vart funne\n"
+msgstr[1] "Det var referansar til %d mediaobjekt som ikkje vart funne\n"
 
 #: ../src/plugins/tool/Check.py:1530
 #, python-format
@@ -12695,9 +12700,8 @@ msgstr "Det er meininga at denne kalendaren skal gi deg rask oversikt oversikt o
 
 #. generate progress pass for "Year At A Glance"
 #: ../src/plugins/webreport/WebCal.py:863
-#, fuzzy
 msgid "Creating Year At A Glance calendar"
-msgstr "Lagar årsoversiktskalendar"
+msgstr "Lagar kalendar for årsoversikt"
 
 #. open progress meter bar
 #: ../src/plugins/webreport/WebCal.py:893
@@ -12771,9 +12775,8 @@ msgid "Enter the ending year for the calendars between 1900 - 3000.  if multiple
 msgstr "Skriv inn sluttåret for kalendarar mellom 1900 og 3000.  Du kan ikkje velja meir enn tjue år om gongen"
 
 #: ../src/plugins/webreport/WebCal.py:1197
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar"
-msgstr "Lag oversiktskalendar(ar)"
+msgstr "Lag årsoversiktskalendar"
 
 #: ../src/plugins/webreport/WebCal.py:1199
 msgid "Whether to create A one-page mini calendar with dates highlighted"
@@ -12945,7 +12948,7 @@ msgstr "Notat for desember månad"
 
 #: ../src/plugins/webreport/WebCal.py:1452
 msgid ", <em>"
-msgstr ""
+msgstr ", <em>"
 
 #: ../src/plugins/webreport/WebCal.py:1460
 #, python-format
@@ -13394,18 +13397,16 @@ msgid "Number of Horizontal Pages"
 msgstr "Talet på vassrette sider"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:968
-#, fuzzy
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz kan laga svært store grafar ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast horisontalt.  Dette gjeld berre for dot, postscrift og pdf via Ghostscript."
+msgstr "GraphViz kan laga svært store grafar ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast horisontalt.  Dette gjeld berre for dot og pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:975
 msgid "Number of Vertical Pages"
 msgstr "Tal på sider loddrett"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:976
-#, fuzzy
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
-msgstr "GraphViz kan laga svært store slektstre ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast loddrett.  Dette gjeld berre for dot, postscrift og pdf via Ghostscript."
+msgstr "GraphViz kan laga svært store slektstre ved å dela grafen på ei rektangelforma samling av sider.  Dette kontrollerer kor mange sider som skal brukast loddrett.  Dette gjeld berre for dot og pdf via Ghostscript."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:983
 msgid "Paging Direction"
@@ -13458,7 +13459,6 @@ msgid "Use subgraphs"
 msgstr "Bruk delgrafar"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1042
-#, fuzzy
 msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
 msgstr "Delgrafar kan hjelpa GraphViz med å plassera partnarar nærare einannan, men det kan føra til at linjene blir lengre og at grafen difor blir større."
 
@@ -18236,22 +18236,18 @@ msgid "Number must be:"
 msgstr "Talet må vera:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-#, fuzzy
 msgid "People with <count> addresses"
 msgstr "Personar med <count> adresser"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:48
-#, fuzzy
 msgid "Matches people with a certain number of personal addresses"
 msgstr "Samsvarar med personar som har eit bestemt tal på personlege adresser"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-#, fuzzy
 msgid "People with <count> associations"
 msgstr "Personar med <count> relasjonar"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
-#, fuzzy
 msgid "Matches people with a certain number of associations"
 msgstr "Samsvarar med personar som har eit bestemt tal på relasjonar"
 
@@ -19005,7 +19001,6 @@ msgid "Families with a reference count of <count>"
 msgstr "Familieobjekt som er referert til <count> gonger"
 
 #: ../src/Filters/Rules/Family/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches family objects with a certain reference count"
 msgstr "Samsvarar med familieobjekt som er referert til eit bestemt antall gonger"
 
@@ -19102,7 +19097,6 @@ msgid "Families with child matching the <regex_name>"
 msgstr "Familiar med barn som samsvarar med <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-#, fuzzy
 msgid "Matches families where some child has a name that matches a specified regular expression"
 msgstr "Samsvarar med familiar som har barn med namn som svarar til eit bestemt regulært uttrykk"
 
