@@ -153,7 +153,7 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
             break
     if report:
         # FIXME: allow auto lookup of obj like below?
-        d = TextBufDoc(make_basic_stylesheet(), None, None)
+        d = TextBufDoc(make_basic_stylesheet(), None)
         d.dbstate = document.dbstate
         d.uistate = document.uistate
         d.open("")
@@ -173,7 +173,7 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
         from Simple import make_basic_stylesheet
         container = None
         if handle:
-            d = TextBufDoc(make_basic_stylesheet(), None, None)
+            d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
             if "container" in kwargs:
