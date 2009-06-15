@@ -56,7 +56,8 @@ class HasEventBase(Rule):
     def prepare(self, db):
         self.date = None
         if self.list[0]:
-            self.etype = self.list[0]
+            self.etype = EventType()
+            self.etype.set_from_xml_str(self.list[0])
         else:
             self.etype = None
         try:
@@ -66,9 +67,7 @@ class HasEventBase(Rule):
 
     def apply(self, db, event):
         if self.etype:
-            specified_type = EventType()
-            specified_type.set_from_xml_str(self.etype)
-            if event.type != specified_type:
+            if event.type != self.etype:
                 return False
         if self.list[3] and event.get_description().upper().find(
                                         self.list[3].upper())==-1:
