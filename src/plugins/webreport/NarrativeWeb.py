@@ -1274,90 +1274,6 @@ class PlaceListPage(BasePage):
         # send page out for processing
         self.mywriter(placeslist, of)
 
-class PlaceListPage(BasePage):
-
-    def __init__(self, report, title, place_handles, src_list):
-        BasePage.__init__(self, report, title)
-        self.src_list = src_list        # TODO verify that this is correct
-
-        of = self.report.create_file("places")
-        placeslist, body = self.write_header(_('Places'))
-
-        # begin places division
-        sect_places = Html('div', id='Places', class_='content')
-        body += (sect_places, fullclear)
-
-        msg = _("This page contains an index of all the places in the "
-                "database, sorted by their title. Clicking on a place&#8217;s "
-                "title will take you to that place&#8217;s page.")
-        descr= Html('p', msg, id='description')
-        sect_places += descr
-
-        # begin alphabetic navigation
-        alpha_nav = alphabet_navigation(report.database, place_handles, _PLACE) 
-        sect_places += alpha_nav
-
-        # begin places table and table head
-        places_table = Html('table', class_='infolist placelist')
-        sect_places += places_table
-
-        # begin table head
-        thead = Html('thead')
-        places_table += thead
-
-        tabrow = Html('tr')  + (
-            Html('th', _('Letter'), class_='ColumnLetter', inline=True),
-            Html('th', _('Name'), class_='ColumnName', inline=True)
-            )
-        thead += tabrow
-
-        sort = Sort.Sort(report.database)
-        handle_list = sorted(place_handles, sort.by_place_title)
-        last_letter = ''
-
-        # begin table body
-        tbody = Html('tbody')
-        places_table += tbody
-
-        for handle in handle_list:
-            place = report.database.get_place_from_handle(handle)
-            place_title = ReportUtils.place_name(report.database, handle)
-
-            if not place_title:
-                continue
-
-            letter = normalize('NFKC', place_title)[0].upper()
-            # See : http://www.gramps-project.org/bugs/view.php?id=2933
-            (lang_country, modifier ) = locale.getlocale()
-            if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
-                letter = u'V,W'
-
-            if letter != last_letter:
-                last_letter = letter
-                tabrow = Html('tr', class_='BeginLetter')
-                tabcol = Html('td', class_='ColumnLetter', inline=True) + (
-                    Html('a', last_letter, name=last_letter, title="Letter %s" % last_letter)
-                    )
-            else:
-                tabrow = Html('tr')
-                tabcol = Html('td', '&nbsp;', class_='ColumnLetter', inline=True)
-            tabrow += tabcol
-
-            tabcol = Html('td', class_='ColumnName')
-            hyper = self.place_link(place.handle, place_title, place.gramps_id)
-            tabcol += hyper
-            tabrow += tabcol
-            tbody += tabrow
-
-        # add footer section
-        # add clearline for proper styling
-        # bring body pieces together
-        footer = self.write_footer()
-        body += footer
-
-        # send page out for processing
-        self.mywriter(placeslist, of)
-
 class PlacePage(BasePage):
 
     def __init__(self, report, title, place_handle, src_list, place_list):
@@ -2082,9 +1998,10 @@ class SourceListPage(BasePage):
                     trow = Html('tr') + (
                         Html('td', index+1, class_='ColumnRowLabel', inline=True)
                         )
+                    tbody += trow 
                     tcell = Html('td', class_='ColumnName') + \
                        self.source_link(handle, source.get_title(), source.gramps_id)
-                    tbody += trow
+                    trow += tcell
 
         # add clearline for proper styling
         # add footer section
@@ -2554,7 +2471,8 @@ class IndividualPage(BasePage):
 
             # display pedigree
             sect11 = self.display_ind_pedigree()
-            individualdetail += sect11
+            if sect11 is not None:
+                individualdetail += sect11
 
             # display ancestor tree   
             if report.options['graph']:
@@ -2579,20 +2497,18 @@ class IndividualPage(BasePage):
             return
 
         # begin attributes division
-        with Html('div', class_='subsection', id='attributes') as sect_attrib:
-
-            # begin section title
-            sect_attrib += Html('h4', _('Attributes'), inline=True)
+        with Html('div', class_='subsection', id='attributes') as section:
+            section += Html('h4', _('Attributes'), inline=True)
 
             #begin attributes table
             with Html('table', class_='infolist') as table:
-                sect_attrib += table
+                section += table
 
                 for attr in attrlist:
                     atType = str( attr.get_type() )
                     trow = Html('tr')
                     table += trow
-                    tcell1 = Html('td', atType, class_='ColumnAttribute', inline=True)
+                    tcell = Html('td', atType, class_='ColumnAttribute', inline=True)
                     trow += tcell
                     value = attr.get_value()
                     value += self.get_citation_links( attr.get_source_references() )
@@ -2600,7 +2516,7 @@ class IndividualPage(BasePage):
                     trow += tcell
 
         # return aatributes division to its caller
-        return sect_attrib
+        return section
 
     def draw_box(self, center, col, person):
         db = self.report.database
