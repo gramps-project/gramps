@@ -1226,6 +1226,9 @@ class GuiDestinationOption(gtk.HBox):
         
         self.__option.connect('options-changed', self.__option_changed)
         
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+        
     def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
         Handle the change of the value.
@@ -1286,6 +1289,13 @@ class GuiDestinationOption(gtk.HBox):
             self.__option.set_value(value)
         
         self.__entry.set_text( self.__option.get_value() )
+        
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
         
 #-------------------------------------------------------------------------
 #
