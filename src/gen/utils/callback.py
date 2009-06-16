@@ -399,7 +399,7 @@ class Callback(object):
                     try:
                         if isinstance(fn, types.FunctionType) or \
                                 isinstance(fn, types.MethodType): # call func
-                            fn(*args)                        
+                            fn(*args)
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:

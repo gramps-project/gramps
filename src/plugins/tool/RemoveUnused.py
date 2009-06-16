@@ -29,6 +29,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -277,19 +278,14 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
                 # This table was not requested. Skip it.
                 continue
 
-            cursor = the_func['cursor_func']()
-            total = the_func['total_func']()
-            self.set_total(total)
-            item = cursor.first()
-            while item:
-                (handle,data) = item
-
-                hlist = [x for x in self.db.find_backlink_handles(handle)]
-                if len(hlist) == 0:
-                    self.add_results((the_type, handle, data))
-                item = cursor.next()
-                self.update()
-            cursor.close()
+            with the_func['cursor_func']() as cursor:
+                total = the_func['total_func']()
+                self.set_total(total)
+                fbh = self.db.find_backlink_handles
+                for handle, data in cursor:
+                    if not any(h for h in fbh(handle)):
+                        self.add_results((the_type, handle, data))
+                    self.update()
             self.reset()
 
     def do_remove(self, obj):

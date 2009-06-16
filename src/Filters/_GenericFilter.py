@@ -23,7 +23,7 @@
 """
 Package providing filtering framework for GRAMPS.
 """
-
+from __future__ import with_statement
 import gen.lib
 #-------------------------------------------------------------------------
 #
@@ -116,17 +116,14 @@ class GenericFilter(object):
         final_list = []
         
         if id_list is None:
-            cursor = self.get_cursor(db)
-            data = cursor.first()
-            while data:
-                person = self.make_obj()
-                person.unserialize(data[1])
-                if progress:
-                    progress.step()
-                if task(db, person) != self.invert:
-                    final_list.append(data[0])
-                data = cursor.next()
-            cursor.close()
+            with self.get_cursor(db) as cursor:
+                for handle, data in cursor:
+                    person = self.make_obj()
+                    person.unserialize(data)
+                    if progress:
+                        progress.step()
+                    if task(db, person) != self.invert:
+                        final_list.append(handle)
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
@@ -139,33 +136,23 @@ class GenericFilter(object):
     def check_and(self, db, id_list, progress=None):
         final_list = []
         flist = self.flist
+
         if id_list is None:
-            cursor = self.get_cursor(db)
-            data = cursor.first()
-            while data:
-                person = self.make_obj()
-                person.unserialize(data[1])
-                if progress:
-                    progress.step()
-                val = True
-                for rule in flist:
-                    if not rule.apply(db, person):
-                        val = False
-                        break
-                if val != self.invert:
-                    final_list.append(data[0])
-                data = cursor.next()
-            cursor.close()
+            with self.get_cursor(db) as cursor:
+                for handle, data in cursor:
+                    person = self.make_obj()
+                    person.unserialize(data)
+                    if progress:
+                        progress.step()
+                    val = all(rule.apply(db, person) for rule in flist)
+                    if val != self.invert:
+                        final_list.append(handle)
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
                 if progress:
                     progress.step()
-                val = True
-                for rule in flist:
-                    if not rule.apply(db, person):
-                        val = False
-                        break
+                val = all(rule.apply(db, person) for rule in flist)
                 if val != self.invert:
                     final_list.append(handle)
         return final_list

@@ -30,6 +30,7 @@ This is used since GRAMPS version 3.0
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 import cPickle as pickle
 import os
 import sys
@@ -1052,21 +1053,16 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # to loop through each of the primary object tables.
         
         for cursor_func, class_func in primary_table:
-            cursor = cursor_func()
-            data = cursor.first()
-            while data:
-                found_handle, val = data
-                obj = class_func()
-                obj.unserialize(val)
+            with cursor_func() as cursor:
+                for found_handle, val in cursor:
+                    obj = class_func()
+                    obj.unserialize(val)
 
-                the_txn = self.env.txn_begin()
-                self.update_reference_map(obj, transaction, the_txn)
-                if the_txn:
-                    the_txn.commit()
-                
-                data = cursor.next()
+                    the_txn = self.env.txn_begin()
+                    self.update_reference_map(obj, transaction, the_txn)
+                    if the_txn:
+                        the_txn.commit()
 
-            cursor.close()
         callback(5)
         self.transaction_commit(transaction, _("Rebuild reference map"))
 
@@ -2072,12 +2068,9 @@ if __name__ == "__main__":
     d = GrampsDBDir()
     d.load(sys.argv[1], lambda x: x)
 
-    c = d.get_person_cursor()
-    data = c.first()
-    while data:
-        person = Person(data[1])
-        print data[0], person.get_primary_name().get_name(),
-        data = c.next()
-    c.close()
+    with d.get_person_cursor() as c:
+        for key, data in c:
+            person = Person(data)
+            print key, person.get_primary_name().get_name(),
 
     print d.surnames.keys()

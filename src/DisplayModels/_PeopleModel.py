@@ -29,6 +29,7 @@ TreeModel for the GRAMPS Person tree.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 from gettext import gettext as _
 import time
 import cgi
@@ -308,61 +309,48 @@ class PeopleModel(gtk.GenericTreeModel):
         self.current_filter = data_filter
         
     def _build_search_sub(self,dfilter, skip):
-
         ngn = name_displayer.name_grouping_data
         nsn = name_displayer.raw_sorted_name
 
         self.mapper.clear_sort_names()
-
-        cursor = self.db.get_person_cursor()
-        node = cursor.first()
 
         self.total = 0
         self.displayed = 0
-
-        while node:
-            self.total += 1
-            handle, d = node
-            if not (handle in skip or (dfilter and not dfilter.match(handle,self.db))):
-                name_data = d[PeopleModel._NAME_COL]
-
-                group_name = ngn(self.db, name_data)
-                sorted_name = nsn(name_data)
-                self.displayed += 1
-                self.mapper.assign_sort_name(handle, sorted_name, group_name)
-            node = cursor.next()
-        cursor.close()
+        with self.db.get_person_cursor() as cursor:
+            for handle, d in cursor:
+                self.total += 1
+                if not (handle in skip or (dfilter and not dfilter.match(handle,self.db))):
+                    name_data = d[PeopleModel._NAME_COL]
+                    group_name = ngn(self.db, name_data)
+                    sorted_name = nsn(name_data)
+                    self.displayed += 1
+                    self.mapper.assign_sort_name(handle, sorted_name, group_name)
 
     def _build_filter_sub(self,dfilter, skip):
-
         ngn = name_displayer.name_grouping_data
         nsn = name_displayer.raw_sorted_name
-
+        handle_list = self.db.iter_person_handles()
+            
         if dfilter:
-            handle_list = dfilter.apply(self.db, self.db.get_person_handles())
+            handle_list = dfilter.apply(self.db, handle_list)
+            self.displayed = len(handle_list)
         else:
-            handle_list = self.db.get_person_handles()
-
-        self.displayed = len(handle_list)
+            self.displayed = self.db.get_number_of_people()
 
         self.mapper.clear_sort_names()
-
         status = LongOpStatus(msg="Loading People",
-                              total_steps=len(handle_list),
-                              interval=len(handle_list)/10)
+                              total_steps=self.displayed,
+                              interval=self.displayed//10)
         self.db.emit('long-op-start', (status,))
-        
         for handle in handle_list:
             status.heartbeat()
             d = self.db.get_raw_person_data(handle)
             if not handle in skip:
                 name_data = d[PeopleModel._NAME_COL]
-
                 group_name = ngn(self.db, name_data)
                 sorted_name = nsn(name_data)
 
                 self.mapper.assign_sort_name(handle, sorted_name, group_name)
-        
         status.end()
         
     def calculate_data(self, dfilter=None, skip=[]):
@@ -387,7 +375,6 @@ class PeopleModel(gtk.GenericTreeModel):
             return
 
         self._build_data(dfilter, skip)
-
         self.mapper.build_toplevel()
 
         self.in_build  = False

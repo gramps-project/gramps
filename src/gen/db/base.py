@@ -1293,13 +1293,18 @@ class GrampsDbBase(Callback):
         Needs to be overridden in the derived class.
         """
         raise NotImplementedError
+        
+    @staticmethod
+    def get_number_of_records(table):
+        return table.stat(db.DB_FAST_STAT)['nkeys'] 
 
     def get_number_of_people(self):
         """
         Return the number of people currently in the database.
         """
         if self.db_is_open:
-            return len(self.person_map)
+            return self.get_number_of_records(self.person_map)
+            #return len(self.person_map)
         else:
             return 0
 
@@ -1307,25 +1312,25 @@ class GrampsDbBase(Callback):
         """
         Return the number of families currently in the database.
         """
-        return len(self.family_map)
+        return self.get_number_of_records(self.family_map)
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the database.
         """
-        return len(self.event_map)
+        return self.get_number_of_records(self.event_map)
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the database.
         """
-        return len(self.place_map)
+        return self.get_number_of_records(self.place_map)
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the database.
         """
-        return len(self.source_map)
+        return self.get_number_of_records(self.source_map)
 
     def get_number_of_media_objects(self):
         """
@@ -1337,13 +1342,13 @@ class GrampsDbBase(Callback):
         """
         Return the number of source repositories currently in the database.
         """
-        return len(self.repository_map)
+        return self.get_number_of_records(self.repository_map)
 
     def get_number_of_notes(self):
         """
         Return the number of notes currently in the database.
         """
-        return len(self.note_map)
+        return self.get_number_of_records(self.note_map)
 
     def all_handles(self, table):
         return table.keys()
@@ -1358,7 +1363,7 @@ class GrampsDbBase(Callback):
         if self.db_is_open:
             if sort_handles:
                 with self.get_person_cursor() as cursor:
-                    slist = sorted((data[1][3][3], data[0]) for data in cursor)
+                    slist = sorted((data[3][3], key) for key, data in cursor)
                 return [x[1] for x in slist]
             else:
                 return self.all_handles(self.person_map)
@@ -1379,11 +1384,10 @@ class GrampsDbBase(Callback):
         
         If sort_handles is True, the list is sorted by Place title.
         """
-        print "base.py: get_place_handles"
         if self.db_is_open:
             if sort_handles:
                 with self.get_place_cursor() as cursor:
-                    slist = sorted(((data[1][2], data[0])) for data in cursor)
+                    slist = sorted((data[2], key) for key, data in cursor)
                 return [x[1] for x in slist]
             else:
                 return self.all_handles(self.place_map)
@@ -1404,7 +1408,6 @@ class GrampsDbBase(Callback):
         
          If sort_handles is True, the list is sorted by Source title.
         """
-        print "base.py: get_source_handles"
         if self.db_is_open:
             handle_list = self.all_handles(self.source_map)
             if sort_handles:
@@ -1427,7 +1430,6 @@ class GrampsDbBase(Callback):
         
         If sort_handles is True, the list is sorted by title.
         """
-        print "base.py: get_media_object_handles"
         if self.db_is_open:
             handle_list = self.all_handles(self.media_map)
             if sort_handles:
@@ -2565,29 +2567,21 @@ class GrampsDbBase(Callback):
         
         # Now we use the functions and classes defined above to loop through
         # each of the existing primary object tables
-        for primary_table_name in the_tables:
-            cursor = primary_tables[primary_table_name]['cursor_func']()
-            data = cursor.first()
+        for primary_table_name, funcs in the_tables.iteritems():
+            with funcs['cursor_func']() as cursor:
 
             # Grab the real object class here so that the lookup does
             # not happen inside the main loop.
-            class_func = primary_tables[primary_table_name]['class_func']
+                class_func = funcs['class_func']
+                for found_handle, val in cursor:
+                    obj = class_func()
+                    obj.unserialize(val)
 
-            while data:
-                found_handle, val = data
-                obj = class_func()
-                obj.unserialize(val)
-
-                # Now we need to loop over all object types
-                # that have been requests in the include_classes list
-                for classname in primary_tables.keys():               
-                    if obj.has_handle_reference(classname, handle):
-                        yield (primary_table_name, found_handle)
-                        
-                data = cursor.next()
-                    
-            cursor.close()
-
+                    # Now we need to loop over all object types
+                    # that have been requests in the include_classes list
+                    for classname in primary_tables:               
+                        if obj.has_handle_reference(classname, handle):
+                            yield (primary_table_name, found_handle)
         return
 
     def report_bm_change(self):

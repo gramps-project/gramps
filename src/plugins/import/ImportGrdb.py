@@ -29,6 +29,7 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
+from __future__ import with_statement
 import os
 import shutil
 import tempfile
@@ -1008,32 +1009,26 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
-        for primary_table_name in primary_tables.keys():
-            
-            cursor = primary_tables[primary_table_name]['cursor_func']()
-            data = cursor.first()
+        for primary_table_name, funcs in primary_tables.iteritems():
+            with funcs['cursor_func']() as cursor:
 
             # Grab the real object class here so that the lookup does
             # not happen inside the cursor loop.
-            class_func = primary_tables[primary_table_name]['class_func']
-            while data:
-                found_handle, val = data
-                obj = class_func()
-                obj.unserialize(val)
+                class_func = funcs['class_func']
+                for found_handle, val in cursor:
+                    obj = class_func()
+                    obj.unserialize(val)
 
-                if self.UseTXN:
-                    the_txn = self.env.txn_begin()
-                else:
-                    the_txn = None
-                self.update_reference_map(obj, transaction, the_txn)
-                if not self.UseTXN:
-                    self.reference_map.sync()
-                if the_txn:
-                    the_txn.commit()
-                
-                data = cursor.next()
+                    if self.UseTXN:
+                        the_txn = self.env.txn_begin()
+                    else:
+                        the_txn = None
+                    self.update_reference_map(obj, transaction, the_txn)
+                    if not self.UseTXN:
+                        self.reference_map.sync()
+                    if the_txn:
+                        the_txn.commit()
 
-            cursor.close()
         if callback:
             callback(5)
         self.transaction_commit(transaction, _("Rebuild reference map"))

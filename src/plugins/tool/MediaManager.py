@@ -31,6 +31,7 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
+from __future__ import with_statement
 import os
 
 #------------------------------------------------------------------------
@@ -460,19 +461,15 @@ class PathChange(BatchOp):
         
     def _prepare(self):
         from_text = unicode(self.from_entry.get_text())
-        cursor = self.db.get_media_cursor()
         self.set_total(self.db.get_number_of_media_objects())
-        item = cursor.first()
-        while item:
-            (handle,data) = item
-            obj = MediaObject()
-            obj.unserialize(data)
-            if obj.get_path().find(from_text) != -1:
-                self.handle_list.append(handle)
-                self.path_list.append(obj.path)
-            item = cursor.next()
-            self.update()
-        cursor.close()
+        with self.db.get_media_cursor() as cursor:
+            for handle, data in cursor:
+                obj = MediaObject()
+                obj.unserialize(data)
+                if obj.get_path().find(from_text) != -1:
+                    self.handle_list.append(handle)
+                    self.path_list.append(obj.path)
+                self.update()
         self.reset()
         self.prepared = True
 
@@ -501,19 +498,15 @@ class Convert2Abs(BatchOp):
                     "that is not set, it prepends user's directory.")
 
     def _prepare(self):
-        cursor = self.db.get_media_cursor()
         self.set_total(self.db.get_number_of_media_objects())
-        item = cursor.first()
-        while item:
-            (handle,data) = item
-            obj = MediaObject()
-            obj.unserialize(data)
-            if not os.path.isabs(obj.path):
-                self.handle_list.append(handle)
-                self.path_list.append(obj.path)
-            item = cursor.next()
-            self.update()
-        cursor.close()
+        with self.db.get_media_cursor() as cursor:
+            for handle, data in cursor:
+                obj = MediaObject()
+                obj.unserialize(data)
+                if not os.path.isabs(obj.path):
+                    self.handle_list.append(handle)
+                    self.path_list.append(obj.path)
+                self.update()
         self.reset()
 
     def _run(self):
@@ -541,19 +534,15 @@ class Convert2Rel(BatchOp):
                     "a base path that can change to your needs.")
 
     def _prepare(self):
-        cursor = self.db.get_media_cursor()
         self.set_total(self.db.get_number_of_media_objects())
-        item = cursor.first()
-        while item:
-            (handle,data) = item
-            obj = MediaObject()
-            obj.unserialize(data)
-            if os.path.isabs(obj.path):
-                self.handle_list.append(handle)
-                self.path_list.append(obj.path)
-            item = cursor.next()
-            self.update()
-        cursor.close()
+        with self.db.get_media_cursor() as cursor:
+            for handle, data in cursor:
+                obj = MediaObject()
+                obj.unserialize(data)
+                if os.path.isabs(obj.path):
+                    self.handle_list.append(handle)
+                    self.path_list.append(obj.path)
+                self.update()
         self.reset()
 
     def _run(self):

@@ -20,6 +20,7 @@
 
 # $Id$
 
+from __future__ import with_statement
 from gettext import gettext as _
 import copy
 
@@ -222,7 +223,6 @@ def db_copy(from_db,to_db,callback):
 
     uc = UpdateCallback(callback)
     uc.set_total(get_total(from_db))
-    
     tables = {
         'Person': {'cursor_func': from_db.get_person_cursor,
                    'add_func' : to_db.add_person,
@@ -253,19 +253,15 @@ def db_copy(from_db,to_db,callback):
     # Start batch transaction to use async TXN and other tricks
     trans = to_db.transaction_begin("", batch=True)
     for table_name, table_dict in tables.iteritems():
-        cursor_func = table_dict['cursor_func']
-        add_func = table_dict['add_func']
-
-        cursor = cursor_func()
-        item = cursor.first()
-        while item:
-            (handle,data) = item
-            exec('obj = gen.lib.%s()' % table_name)
-            obj.unserialize(data)
-            add_func(obj,trans)
-            item = cursor.next()
-            uc.update()
-        cursor.close()
+        with table_dict['cursor_func']() as cursor:
+            add_func = table_dict['add_func']
+            for handle, data in cursor:
+                exec('obj = gen.lib.%s()' % table_name)
+                obj_ = getattr(gen.lib, table_name)()
+                assert obj_ == obj
+                obj.unserialize(data)
+                add_func(obj,trans)
+                uc.update()
 
     # Copy name grouping
     group_map = from_db.get_name_group_keys()

@@ -21,7 +21,7 @@
 """
 Provide a simplified database access interface to the GRAMPS database.
 """
-
+from __future__ import with_statement
 from types import NoneType
 
 import gen.lib
@@ -686,16 +686,10 @@ class SimpleAccess(object):
         @return: list of objects of a particular type in the database
         @rtype: list
         """
-        slist = []
-        cursor = gen_cursor()
-        data = cursor.first()
-        while data:
-            slist.append(data[0])
-            data = cursor.next()
-        cursor.close()
-        for info in slist:
-            obj = get_object(info)
-            yield obj
+        
+        with gen_cursor() as cursor:
+            for key, data in cursor:
+                yield get_object(key)
 
     def all_people(self):
         """
@@ -708,14 +702,10 @@ class SimpleAccess(object):
         @return: list of people in the database
         @rtype: list
         """
-        slist = []
-        cursor = self.dbase.get_person_cursor()
-        data = cursor.first()
-        while data:
-            slist.append((data[1][3][3], data[0]))
-            data = cursor.next()
-        cursor.close()
-        slist.sort()
+        
+        with self.dbase.get_person_cursor() as cursor:
+            slist = sorted((data[3][3], key) for key, data in cursor)
+
         for info in slist:
             obj = self.dbase.get_person_from_handle(info[1])
             yield obj
