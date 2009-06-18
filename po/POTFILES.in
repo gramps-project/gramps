@@ -4,7 +4,6 @@
 # 	Python files
 #
 src/ansel_utf8.py
-src/ArgHandler.py
 src/Assistant.py
 src/AutoComp.py
 src/Bookmarks.py
@@ -12,8 +11,6 @@ src/ColumnOrder.py
 src/const.py
 src/DateEdit.py
 src/Date.py
-src/DbLoader.py
-src/DbManager.py
 src/DdTargets.py
 src/DisplayState.py
 src/Errors.py
@@ -22,7 +19,6 @@ src/ExportOptions.py
 src/GrampsAboutDialog.py
 src/GrampsCfg.py
 src/GrampsDisplay.py
-src/gramps_main.py
 src/gramps.py
 src/ImgManip.py
 src/ListModel.py
@@ -47,10 +43,13 @@ src/TransUtils.py
 src/TreeTips.py
 src/Utils.py
 src/UndoHistory.py
-src/ViewManager.py
 
 # cli 
 src/cli/__init__.py
+src/cli/arghandler.py
+src/cli/argparser.py
+src/cli/clidbman.py
+src/cli/grampscli.py
 
 # gen API
 src/gen/__init__.py
@@ -182,6 +181,10 @@ src/gen/plug/docbackend/docbackend.py
 
 # gui - GUI code
 src/gui/__init__.py
+src/gui/dbloader.py
+src/gui/dbman.py
+src/gui/grampsgui.py
+src/gui/viewmanager.py
 
 # gui/views - the GUI views package
 src/gui/views/__init__.py
@@ -823,7 +826,7 @@ src/glade/grampscfg.glade
 src/glade/dateedit.glade
 src/glade/editsource.glade
 src/glade/styleeditor.glade
-src/glade/dbmanager.glade
+src/glade/dbman.glade
 src/glade/editurl.glade
 src/glade/editrepository.glade
 src/glade/editreporef.glade

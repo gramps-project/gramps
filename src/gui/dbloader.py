@@ -54,6 +54,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from cli.grampscli import CLIDbLoader
 import const
 import Config
 import gen.db
@@ -68,11 +69,32 @@ import Errors
 # DbLoader class
 #
 #-------------------------------------------------------------------------
-class DbLoader(object):
+class DbLoader(CLIDbLoader):
     def __init__(self, dbstate, uistate):
-        self.dbstate = dbstate
+        CLIDbLoader.__init__(self, dbstate)
         self.uistate = uistate
         self.import_info = None
+    
+    def _warn(title, warnmessage):
+        WarningDialog(title, warnmessage)
+    
+    def _errordialog(title, errormessage):
+        """
+        Show the error. 
+        In the GUI, the error is shown, and a return happens
+        """
+        ErrorDialog(title, errormessage)
+        return 1
+    
+    def _dberrordialog(self, msg):
+        DBErrorDialog(str(msg.value))
+    
+    def _begin_progress(self):
+        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.uistate.progress.show()
+    
+    def _pulse_progress(self, value):
+        self.uistate.pulse_progressbar(value)
 
     def import_file(self):
         # First thing first: import is a batch transaction
@@ -197,58 +219,6 @@ class DbLoader(object):
                 return True
 
         return False
-
-    def read_file(self, filename):
-        """
-        This method takes care of changing database, and loading the data.
-        In 3.0 we only allow reading of real databases of filetype 
-        'x-directory/normal'
-        
-        This method should only return on success.
-        Returning on failure makes no sense, because we cannot recover,
-        since database has already beeen changed.
-        Therefore, any errors should raise exceptions.
-
-        On success, return with the disabled signals. The post-load routine
-        should enable signals, as well as finish up with other UI goodies.
-        """
-
-        if os.path.exists(filename):
-            if not os.access(filename, os.W_OK):
-                mode = "r"
-                WarningDialog(_('Read only database'), 
-                                             _('You do not have write access '
-                                               'to the selected file.'))
-            else:
-                mode = "w"
-        else:
-            mode = 'w'
-
-        dbclass = gen.db.GrampsDBDir
-        
-        self.dbstate.change_database(dbclass())
-        self.dbstate.db.disable_signals()
-
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.uistate.progress.show()
-        
-        try:
-            self.dbstate.db.load(filename, self.uistate.pulse_progressbar, mode)
-            self.dbstate.db.set_save_path(filename)
-        except gen.db.FileVersionDeclineToUpgrade:
-            self.dbstate.no_database()
-        except gen.db.exceptions.FileVersionError, msg:
-            ErrorDialog( _("Cannot open database"), str(msg))
-            self.dbstate.no_database()
-        except OSError, msg:
-            ErrorDialog(
-                _("Could not open file: %s") % filename, str(msg))
-        except Errors.DbError, msg:
-            DBErrorDialog(str(msg.value))
-            self.dbstate.no_database()
-        except Exception:
-            _LOG.error("Failed to open database.", exc_info=True)
-        return True
 
     def do_import(self, dialog, importer, filename):
         self.import_info = None

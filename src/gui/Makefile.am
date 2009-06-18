@@ -9,7 +9,11 @@ SUBDIRS = \
 pkgdatadir = $(datadir)/@PACKAGE@/gui
 
 pkgdata_PYTHON = \
-	__init__.py
+	__init__.py \
+	dbloader.py \
+	dbman.py \
+	grampsgui.py \
+	viewmanager.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui
 pkgpythondir = @pkgpythondir@/gui

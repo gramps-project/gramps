@@ -170,6 +170,7 @@ class Assistant(gtk.Object, ManagedWindow.ManagedWindow):
             gtk.main_iteration()
 
     def destroy(self, *obj):
+        self.window.emit('delete-event', None)
         self.window.destroy()
 
     def do_get_property(self, prop):

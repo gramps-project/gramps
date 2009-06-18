@@ -6,7 +6,11 @@
 pkgdatadir = $(datadir)/@PACKAGE@/cli
 
 pkgdata_PYTHON = \
-	__init__.py
+	__init__.py \
+	arghandler.py \
+	argparser.py \
+	clidbman.py \
+	grampscli.py
 
 pkgpyexecdir = @pkgpyexecdir@/cli
 pkgpythondir = @pkgpythondir@/cli

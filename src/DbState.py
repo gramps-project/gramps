@@ -28,7 +28,7 @@ import Config
 
 class DbState(Callback):
     """
-    Provide a class to encapsulate the state of the database..
+    Provide a class to encapsulate the state of the database.
     """
 
     __signals__ = {

@@ -24,4 +24,9 @@
 Package init for the gui package.
 """
 
+from grampsgui import startgtkloop
+from viewmanager import ViewManager
+from dbman import DbManager
+from dbloader import DbLoader
+
 __all__ = [ "views" ]

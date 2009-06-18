@@ -55,9 +55,9 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from cli import CLIManager
 from PluginUtils import Tool, PluginWindows, \
     ReportPluginDialog, ToolPluginDialog
-from gen.plug import PluginManager
 import ReportBase
 import DisplayState
 import const
@@ -72,7 +72,7 @@ import RecentFiles
 from BasicUtils import name_displayer
 import widgets
 import UndoHistory
-from DbLoader import DbLoader
+from gui.dbloader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
 from GrampsAboutDialog import GrampsAboutDialog
@@ -178,17 +178,20 @@ UIDEFAULT = '''<ui>
 WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
 WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
+
 #-------------------------------------------------------------------------
 #
 # ViewManager
 #
 #-------------------------------------------------------------------------
-class ViewManager(object):
+
+class ViewManager(CLIManager):
     """
     Overview
     ========
 
-    The ViewManager is the main window of the program. It is closely tied
+    The ViewManager is the session manager of the program. 
+    Specifically, it manages the main window of the program. It is closely tied
     into the gtk.UIManager to control all menus and actions.
 
     The ViewManager controls the various Views within the GRAMPS programs.
@@ -204,14 +207,13 @@ class ViewManager(object):
 
     The View Manager does not have to know the number of views, the type of
     views, or any other details about the views. It simply provides the 
-    method of containing each view, and switching between the views.s
+    method of containing each view, and switching between the views.
        
     """
 
-    def __init__(self, state):
-
+    def __init__(self, dbstate):
+        CLIManager.__init__(self, dbstate, False)
         self.page_is_changing = False
-        self.state = state
         self.active_page = None
         self.views = []
         self.pages = []
@@ -220,19 +222,24 @@ class ViewManager(object):
         self.merge_ids = []
         self.tips = gtk.Tooltips()
         self._key = None
-        self.file_loaded = False
 
         self.show_sidebar = Config.get(Config.VIEW)
         self.show_toolbar = Config.get(Config.TOOLBAR_ON)
         self.show_filter = Config.get(Config.FILTER)
         self.fullscreen = Config.get(Config.FULLSCREEN)
-        
-        self.__pmgr = PluginManager.get_instance()
 
         self.__build_main_window()
         self.__connect_signals()
-        self.__do_load_plugins()
+        self.do_load_plugins()
 
+    def _errordialog(title, errormessage):
+        """
+        Show the error. 
+        In the GUI, the error is shown, and a return happens
+        """
+        ErrorDialog(title, errormessage)
+        return 1
+        
     def __build_main_window(self):
         """
         Builds the GTK interface
@@ -244,7 +251,7 @@ class ViewManager(object):
         self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
         
-        self.rel_class = self.__pmgr.get_relationship_calculator()
+        self.rel_class = self._pmgr.get_relationship_calculator()
 
         vbox = gtk.VBox()
         self.window.add(vbox)
@@ -278,7 +285,7 @@ class ViewManager(object):
             self.window, self.statusbar, self.progress, self.warnbtn, 
             self.uimanager, self.progress_monitor, self)
 
-        self.state.connect('database-changed', self.uistate.db_changed)
+        self.dbstate.connect('database-changed', self.uistate.db_changed)
 
         self.filter_menu = self.uimanager.get_widget(
             '/MenuBar/ViewMenu/Filter/')
@@ -290,14 +297,14 @@ class ViewManager(object):
         self.uistate.set_open_widget(openbtn)
         self.toolbar.insert(openbtn, 0)
         
-        self.person_nav = Navigation.PersonNavigation(self.state, self.uistate)
+        self.person_nav = Navigation.PersonNavigation(self.dbstate, self.uistate)
         self._navigation_type[PageView.NAVIGATION_PERSON] = (self.person_nav, 
                                                              None)
         self.recent_manager = DisplayState.RecentDocsMenu(
-            self.uistate, self.state, self.__read_recent_file)
+            self.uistate, self.dbstate, self._read_recent_file)
         self.recent_manager.build()
 
-        self.db_loader = DbLoader(self.state, self.uistate)
+        self.db_loader = DbLoader(self.dbstate, self.uistate)
 
         self.__setup_sidebar()
 
@@ -501,7 +508,7 @@ class ViewManager(object):
         try:
             self.active_page.call_function(name)
         except Exception:
-            self.uistate.push_message(self.state, 
+            self.uistate.push_message(self.dbstate, 
                                       _("Key %s is not bound") % name)
 
     def __next_view(self, action):
@@ -549,10 +556,10 @@ class ViewManager(object):
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.__build_tools_menu(self.__pmgr.get_tool_list())
-        self.__build_report_menu(self.__pmgr.get_report_list())
+        self.__build_tools_menu(self._pmgr.get_tool_list())
+        self.__build_report_menu(self._pmgr.get_report_list())
         self.uistate.set_relationship_class()
-        self.__pmgr.connect('plugins-reloaded', 
+        self._pmgr.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
@@ -565,7 +572,7 @@ class ViewManager(object):
         """
         Callback function for statusbar key update
         """
-        self.uistate.modify_statusbar(self.state)
+        self.uistate.modify_statusbar(self.dbstate)
 
     def __filter_signal(self, client, cnxn_id, entry, data):
         """
@@ -580,7 +587,7 @@ class ViewManager(object):
         ArgHandler can work without it always shown
         """
         self.window.show()
-        if not self.state.db.is_open() and show_manager:
+        if not self.dbstate.db.is_open() and show_manager:
             self.__open_activate(None)
 
     def post_load_newdb(self, filename, filetype):
@@ -592,23 +599,22 @@ class ViewManager(object):
             ifile.close()
         except:
             title = filename
-        self.__post_load_newdb(filename, filetype, title)
+        self._post_load_newdb(filename, filetype, title)
 
-    def __do_load_plugins(self):
+    def do_load_plugins(self):
         """
         Loads the plugins at initialization time. The plugin status window is 
         opened on an error if the user has requested.
         """
         # load plugins
         self.uistate.status_text(_('Loading plugins...'))
-        error = self.__pmgr.load_plugins(const.PLUGINS_DIR)
-        error |= self.__pmgr.load_plugins(const.USER_PLUGINS)
+        error = CLIManager.do_load_plugins(self)
 
         #  get to see if we need to open the plugin status window
         if error and Config.get(Config.POP_PLUGIN_STATUS):
             self.__plugin_status()
 
-        self.uistate.push_message(self.state, _('Ready'))
+        self.uistate.push_message(self.dbstate, _('Ready'))
 
     def quit(self, *obj):
         """
@@ -619,7 +625,7 @@ class ViewManager(object):
 
         # backup data, and close the database
         self.__backup()
-        self.state.db.close()
+        self.dbstate.db.close()
 
         # have each page save anything, if they need to:
         self.__delete_pages()
@@ -637,11 +643,11 @@ class ViewManager(object):
         """
         import GrampsDbUtils
 
-        if self.state.db.undoindex >= 0:
+        if self.dbstate.db.undoindex >= 0:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
-            self.uistate.push_message(self.state, _("Autobackup..."))
-            GrampsDbUtils.Backup.backup(self.state.db)
+            self.uistate.push_message(self.dbstate, _("Autobackup..."))
+            GrampsDbUtils.Backup.backup(self.dbstate.db)
             self.uistate.set_busy_cursor(0)
             self.uistate.progress.hide()
 
@@ -649,7 +655,7 @@ class ViewManager(object):
         """
         Abandon changes and quit.
         """
-        if self.state.db.abort_possible:
+        if self.dbstate.db.abort_possible:
 
             dialog = QuestionDialog2(
                 _("Abort changes?"), 
@@ -659,8 +665,8 @@ class ViewManager(object):
                 _("Cancel"))
 
             if dialog.run():
-                self.state.db.disable_signals()
-                while self.state.db.undo():
+                self.dbstate.db.disable_signals()
+                while self.dbstate.db.undo():
                     pass
                 self.quit()
         else:
@@ -713,7 +719,7 @@ class ViewManager(object):
         Open the preferences dialog.
         """
         try:
-            GrampsCfg.GrampsPreferences(self.uistate, self.state)
+            GrampsCfg.GrampsPreferences(self.uistate, self.dbstate)
             self._key = self.uistate.connect('nameformat-changed', 
                                              self.active_page.build_tree)
         except Errors.WindowActiveError:
@@ -824,7 +830,7 @@ class ViewManager(object):
         
         index = 0
         for page_def in self.views:
-            page = page_def(self.state, self.uistate)
+            page = page_def(self.dbstate, self.uistate)
             page_title = page.get_title()
             page_stock = page.get_stock()
 
@@ -1013,7 +1019,7 @@ class ViewManager(object):
         # set button of current page active
         self.__set_active_button(num)
 
-        if self.state.open:
+        if self.dbstate.open:
             
             self.__disconnect_previous_page()
 
@@ -1041,89 +1047,60 @@ class ViewManager(object):
         """
         Imports a file
         """
-        if self.state.db.is_open():
+        if self.dbstate.db.is_open():
             self.db_loader.import_file()
             infotxt = self.db_loader.import_info_text()
             if infotxt:
                 InfoDialog(_('Import Statistics'), infotxt, self.window)
             self.__post_load()
     
-    def open_activate(self, path):
-        """
-        Open and make a family tree active
-        """
-        self.__read_recent_file(path)
     
     def __open_activate(self, obj):
         """
         Called when the Open button is clicked, opens the DbManager
         """
-        import DbManager
-        dialog = DbManager.DbManager(self.state, self.window)
+        from dbman import DbManager
+        dialog = DbManager(self.dbstate, self.window)
         value = dialog.run()
         if value:
             (filename, title) = value
             self.db_loader.read_file(filename)
-            self.__post_load_newdb(filename, 'x-directory/normal', title)
-
-    def __read_recent_file(self, filename):
-        """
-        Called when the recent file is loaded
-        """
-        # A recent database should already have a directory 
-        # If not, do nothing, just return. This can be handled better if family tree
-        # delete/rename also updated the recent file menu info in DisplayState.py
-        if not  os.path.isdir(filename):
-            ErrorDialog(
-                    _("Could not load a recent Family Tree."), 
-                    _("Family Tree does not exist, as it has been deleted."))
-            return
-
-        if self.db_loader.read_file(filename):
-            # Attempt to figure out the database title
-            path = os.path.join(filename, "name.txt")
-            try:
-                ifile = open(path)
-                title = ifile.readline().strip()
-                ifile.close()
-            except:
-                title = filename
-
-            self.__post_load_newdb(filename, 'x-directory/normal', title)
+            self._post_load_newdb(filename, 'x-directory/normal', title)
 
     def __post_load(self):
         """
         This method is for the common UI post_load, both new files
         and added data like imports.
         """
-        if self.state.active :
+        if self.dbstate.active :
             # clear history and fill history with first entry, active person
-            self.uistate.clear_history(self.state.active.handle)
+            self.uistate.clear_history(self.dbstate.active.handle)
         else :
             self.uistate.clear_history(None)
         self.uistate.progress.hide()
 
-        self.state.db.undo_callback = self.__change_undo_label
-        self.state.db.redo_callback = self.__change_redo_label
+        self.dbstate.db.undo_callback = self.__change_undo_label
+        self.dbstate.db.redo_callback = self.__change_redo_label
         self.__change_undo_label(None)
         self.__change_redo_label(None)
-        self.state.db.undo_history_callback = self.undo_history_update
+        self.dbstate.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
 
         self.uistate.window.window.set_cursor(None)
 
-    def __post_load_newdb(self, filename, filetype, title=None):
+    def _post_load_newdb(self, filename, filetype, title=None):
         """
-        Called after a new database is loaded.
+        The method called after load of a new database. 
+        Inherit CLI method to add GUI part
         """
-        if not filename:
-            return
-
-        # This method is for UI stuff when the database has changed.
-        # Window title, recent files, etc related to new file.
-
-        self.state.db.set_save_path(filename)
-
+        self._post_load_newdb_nongui(filename, filetype, title)
+        self._post_load_newdb_gui(filename, filetype, title)
+        
+    def _post_load_newdb_gui(self, filename, filetype, title=None):
+        """
+        Called after a new database is loaded to do GUI stuff
+        """
+        # GUI related post load db stuff
         # Update window title
         if filename[-1] == os.path.sep:
             filename = filename[:-1]
@@ -1131,7 +1108,7 @@ class ViewManager(object):
         if title:
             name = title
 
-        if self.state.db.readonly:
+        if self.dbstate.db.readonly:
             msg =  "%s (%s) - GRAMPS" % (name, _('Read Only'))
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(False)
@@ -1140,39 +1117,15 @@ class ViewManager(object):
             self.uistate.window.set_title(msg)
             self.actiongroup.set_sensitive(True)
 
-        # apply preferred researcher if loaded file has none
-        res = self.state.db.get_researcher()
-        owner = GrampsCfg.get_researcher()
-        if res.get_name() == "" and owner.get_name() != "":
-            self.state.db.set_researcher(owner)
-
         self.setup_bookmarks()
-        
-        name_displayer.set_name_format(self.state.db.name_formats)
-        fmt_default = Config.get(Config.NAME_FORMAT)
-        if fmt_default < 0:
-            name_displayer.set_default_format(fmt_default)
-
-        self.state.db.enable_signals()
-        self.state.signal_change()
-
-        Config.set(Config.RECENT_FILE, filename)
-
-        try:
-            self.state.change_active_person(self.state.db.find_initial_person())
-        except:
-            pass
         
         self.change_page(None, None)
         self.actiongroup.set_visible(True)
         self.readonlygroup.set_visible(True)
-
-        self.file_loaded = True
-
-        RecentFiles.recent_files(filename, name)
+        
         self.recent_manager.build()
         
-        # Call common __post_load
+        # Call common __post_load method for GUI update after a change
         self.__post_load()
 
     def __change_undo_label(self, label):
@@ -1240,16 +1193,16 @@ class ViewManager(object):
         """
         import Bookmarks
         self.bookmarks = Bookmarks.Bookmarks(
-            self.state, self.uistate, self.state.db.get_bookmarks())
+            self.dbstate, self.uistate, self.dbstate.db.get_bookmarks())
 
     def add_bookmark(self, obj):
         """
         Add a bookmark to the bookmark list
         """
-        if self.state.active:
-            self.bookmarks.add(self.state.active.get_handle())
-            name = name_displayer.display(self.state.active)
-            self.uistate.push_message(self.state, 
+        if self.dbstate.active:
+            self.bookmarks.add(self.dbstate.active.get_handle())
+            name = name_displayer.display(self.dbstate.active)
+            self.uistate.push_message(self.dbstate, 
                                       _("%s has been bookmarked") % name)
         else:
             WarningDialog(
@@ -1268,7 +1221,7 @@ class ViewManager(object):
         Displays the Reports dialog
         """
         try:
-            ReportPluginDialog(self.state, self.uistate, [])
+            ReportPluginDialog(self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             return
 
@@ -1277,7 +1230,7 @@ class ViewManager(object):
         Displays the Tools dialog
         """
         try:
-            ToolPluginDialog(self.state, self.uistate, [])
+            ToolPluginDialog(self.dbstate, self.uistate, [])
         except Errors.WindowActiveError:
             return          
         
@@ -1287,7 +1240,7 @@ class ViewManager(object):
         """
         import ScratchPad
         try:
-            ScratchPad.ScratchPadWindow(self.state, self.uistate)
+            ScratchPad.ScratchPadWindow(self.dbstate, self.uistate)
         except Errors.WindowActiveError:
             return
 
@@ -1296,7 +1249,7 @@ class ViewManager(object):
         Calls the undo function on the database
         """
         self.uistate.set_busy_cursor(1)
-        self.state.db.undo()
+        self.dbstate.db.undo()
         self.uistate.set_busy_cursor(0)
 
     def redo(self, obj):
@@ -1304,7 +1257,7 @@ class ViewManager(object):
         Calls the redo function on the database
         """
         self.uistate.set_busy_cursor(1)
-        self.state.db.redo()
+        self.dbstate.db.redo()
         self.uistate.set_busy_cursor(0)
 
     def undo_history(self, obj):
@@ -1312,7 +1265,7 @@ class ViewManager(object):
         Displays the Undo history window
         """
         try:
-            self.undo_history_window = UndoHistory.UndoHistory(self.state, 
+            self.undo_history_window = UndoHistory.UndoHistory(self.dbstate, 
                                                                self.uistate)
         except Errors.WindowActiveError:
             return
@@ -1321,10 +1274,10 @@ class ViewManager(object):
         """
         Calls the ExportAssistant to export data
         """
-        if self.state.db.db_is_open:
+        if self.dbstate.db.db_is_open:
             import ExportAssistant
             try:
-                ExportAssistant.ExportAssistant(self.state, self.uistate)
+                ExportAssistant.ExportAssistant(self.dbstate, self.uistate)
             except Errors.WindowActiveError:
                 return
 
@@ -1332,8 +1285,8 @@ class ViewManager(object):
         """
         Callback that rebuilds the tools and reports menu
         """
-        tool_menu_list = self.__pmgr.get_tool_list()
-        report_menu_list = self.__pmgr.get_report_list()
+        tool_menu_list = self._pmgr.get_tool_list()
+        report_menu_list = self._pmgr.get_report_list()
         self.__build_tools_menu(tool_menu_list)
         self.__build_report_menu(report_menu_list)
         self.uistate.set_relationship_class()
@@ -1403,7 +1356,7 @@ class ViewManager(object):
                 menu_name = ("%s...") % name[2]
                 ofile.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, menu_name, None, None, 
-                                func(name, self.state, self.uistate)))
+                                func(name, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
         # If there are any unsupported items we add separator
@@ -1418,7 +1371,7 @@ class ViewManager(object):
                 new_key = name[3].replace(' ', '-')
                 ofile.write('<menuitem action="%s"/>' % new_key)
                 actions.append((new_key, None, name[2], None, None, 
-                                func(name, self.state, self.uistate)))
+                                func(name, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
         ofile.write('</menu></menubar></ui>')

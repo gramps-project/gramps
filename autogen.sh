@@ -5,7 +5,7 @@
 PKG_NAME="gramps"
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
-srcfile=$srcdir/src/gramps_main.py
+srcfile=$srcdir/src/gramps.py
 
 REQUIRED_AUTOMAKE_VERSION=1.9
 DIE=0

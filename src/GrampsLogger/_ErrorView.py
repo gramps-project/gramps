@@ -46,9 +46,12 @@ class ErrorView(object):
             if response == gtk.RESPONSE_HELP:
                 self.help_clicked()
             elif response == gtk.RESPONSE_YES:
+                self.top.destroy()
                 ErrorReportAssistant(error_detail = self._error_detail,
-                                     rotate_handler = self._rotate_handler)
-        self.top.destroy()
+                                     rotate_handler = self._rotate_handler,
+                                     ownthread=True)
+            elif response == gtk.RESPONSE_CANCEL:
+                self.top.destroy()
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""

@@ -21,9 +21,7 @@ class GtkHandler(logging.Handler):
     def emit(self, record):
         """
         Add the record to the rotating buffer.
-
         """
-
         self._record = record
         ErrorView(error_detail=self,rotate_handler=self._rotate_handler)
 

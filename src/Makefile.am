@@ -3,6 +3,7 @@
 
 SUBDIRS = \
 	BasicUtils \
+	cli \
 	Config \
 	data \
 	DataViews \
@@ -18,6 +19,7 @@ SUBDIRS = \
 	GrampsDbUtils \
 	GrampsLocale \
 	GrampsLogger \
+	gui \
 	images \
 	Merge \
 	mapstraction \
@@ -33,7 +35,6 @@ gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
 	ansel_utf8.py\
-	ArgHandler.py\
 	Assistant.py\
 	AutoComp.py\
 	Bookmarks.py\
@@ -41,8 +42,6 @@ gdir_PYTHON = \
 	const.py\
 	DateEdit.py\
 	Date.py\
-	DbLoader.py\
-	DbManager.py\
 	DbState.py\
 	DdTargets.py\
 	DisplayState.py\
@@ -52,7 +51,6 @@ gdir_PYTHON = \
 	GrampsAboutDialog.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\
-	gramps_main.py\
 	gramps.py\
 	ImgManip.py\
 	LdsUtils.py \
@@ -77,7 +75,6 @@ gdir_PYTHON = \
 	TransUtils.py\
 	TreeTips.py\
 	Utils.py\
-	ViewManager.py\
 	UndoHistory.py\
 	PlaceUtils.py\
 	ProgressDialog.py

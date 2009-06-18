@@ -8,7 +8,7 @@ import sys, os,bsddb
 
 class ErrorReportAssistant(object):
 
-    def __init__(self,error_detail,rotate_handler):
+    def __init__(self,error_detail,rotate_handler, ownthread=False):
         self._error_detail = error_detail
         self._rotate_handler = rotate_handler
 
@@ -18,6 +18,9 @@ class ErrorReportAssistant(object):
         self._final_report_text_buffer = None
         
         self.w = Assistant.Assistant(None,None,self.complete)
+        #connect our extra close to close by x, and close by cancel click
+        self.w.window.connect('delete-event', self.close)
+        self.w.cancel.connect('clicked', self.close)      
 
         self.w.add_text_page(
             _('Report a bug'),
@@ -52,13 +55,23 @@ class ErrorReportAssistant(object):
         self.w.connect('page-changed',self.on_page_changed)
 
         self.w.show()
+        
+        self.ownthread = ownthread
+        if self.ownthread:
+            gtk.main()
 
+    def close(self, *obj):
+        if self.ownthread:
+            gtk.main_quit()
+            
     def on_page_changed(self, obj,page,data=None):
         if page in self.cb:
             self.cb[page]()
             
     def complete(self):
-        pass
+        if self.ownthread:
+            #stop the thread we started
+            gtk.main_quit()
 
     def _copy_to_clipboard(self, obj=None):
         clipboard = gtk.Clipboard()
@@ -75,7 +88,8 @@ class ErrorReportAssistant(object):
 
     def _start_email_client(self, obj=None):
         import GrampsDisplay
-        GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject="bug report"&body="%s"' \
+        GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject='
+                          '"bug report"&body="%s"' \
                           % self._final_report_text_buffer.get_text(
                                self._final_report_text_buffer.get_start_iter(),
                                self._final_report_text_buffer.get_end_iter()))

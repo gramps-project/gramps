@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2009 Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,29 +34,14 @@ import signal
 import gettext
 import logging
 
-log = logging.getLogger(".")
+LOG = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
-# pygtk
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
-try:
-    import pygtk
-    pygtk.require('2.0')
-except ImportError:
-    pass
-
-#-------------------------------------------------------------------------
-#
-# Miscellaneous initialization
-#
-#-------------------------------------------------------------------------
-import gtk
-from gtk import glade
-import gobject
-
-gobject.threads_init()
+from Mime import mime_type_is_defined
 
 #-------------------------------------------------------------------------
 #
@@ -78,13 +64,6 @@ except ValueError:
     pass
 
 gettext.bindtextdomain("gramps",loc)
-glade.bindtextdomain("gramps",loc)
-
-try:
-    glade.textdomain("gramps")
-except:
-    pass
-
 gettext.textdomain("gramps")
 gettext.install("gramps",loc,unicode=1)
 
@@ -117,24 +96,15 @@ except:
 
 args = sys.argv
 
+MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
+
 def setup_logging():
     """Setup basic logging support."""
-
-    from GrampsLogger import RotateHandler, GtkHandler
 
     # Setup a formatter
     form = logging.Formatter(fmt="%(relativeCreated)d: %(levelname)s: %(filename)s: line %(lineno)d: %(message)s")
     
     # Create the log handlers
-    rh = RotateHandler(capacity=20)
-    rh.setFormatter(form)
-
-    # Only error and critical log records should
-    # trigger the GUI handler.
-    gtkh = GtkHandler(rotate_handler=rh)
-    gtkh.setFormatter(form)
-    gtkh.setLevel(logging.ERROR)
-    
     stderrh = logging.StreamHandler(sys.stderr)
     stderrh.setFormatter(form)
     stderrh.setLevel(logging.DEBUG)
@@ -143,8 +113,6 @@ def setup_logging():
     # everything.
     l = logging.getLogger()
     l.setLevel(logging.WARNING)
-    l.addHandler(rh)
-    l.addHandler(gtkh)
     l.addHandler(stderrh)
 
     # put a hook on to catch any completely unhandled exceptions.
@@ -156,69 +124,53 @@ def setup_logging():
             # strange Windows logging error on close
             return
         import traceback
-        log.error("Unhandled exception\n" +
+        LOG.error("Unhandled exception\n" +
                   "".join(traceback.format_exception(type, value, tb)))
 
     sys.excepthook = exc_hook
     
+def build_user_paths():
+    """ check/make user-dirs on each Gramps session"""
+    for path in const.USER_DIRLIST:
+        if not os.path.isdir(path):
+            os.mkdir(path)
+
 def run():
-
-    setup_logging()
-
-    try:
-        #This is GNOME initialization code that is necessary for use 
-        # with the other GNOME libraries. 
-        #It only gets called if the user has gnome installed on his/her system.
-        #There is *no* requirement for it.
-        #If you don't call this, you are not guaranteed that the other GNOME
-        #libraries will function properly. I learned this the hard way.
-        import gnome
-        program = gnome.program_init('gramps',const.VERSION, 
-                                     gnome.libgnome_module_info_get(),
-                                     args, const.POPT_TABLE)
+    error = []
     
-        program.set_property('app-libdir',
-                             '%s/lib' % const.PREFIXDIR)
-        program.set_property('app-datadir',
-                             '%s/share' % const.PREFIXDIR)
-        program.set_property('app-sysconfdir',const.SYSCONFDIR)
-        program.set_property('app-prefix', const.PREFIXDIR)
+    setup_logging()
+    
+    try:
+        build_user_paths()   
+    except OSError, msg:
+        error += [(_("Configuration error"), str(msg))]
+        return False
     except:
-        pass
-
-    try:        
-        quit_now = False
-        exit_code = 0
-        import gramps_main 
-        gramps_main.Gramps(args)
-        # TODO: check for returns from gramps_main.Gramps.__init__()
-        #  that perhaps should have raised an exception to be caught here
-
-    except SystemExit, e:
-        quit_now = True
-        if e.code:
-            exit_code = e.code
-            log.error("Gramps terminated with exit code: %d." \
-                      % e.code, exc_info=True)
-    except OSError, e:
-        quit_now = True
-        exit_code = e[0] or 1
-        try:
-            fn = e.filename
-        except AttributeError:
-            fn = ""
-        log.error("Gramps terminated because of OS Error\n" +
-            "Error details: %s %s" % (repr(e), fn), exc_info=True)
-    except:
-        quit_now = True
-        exit_code = 1
-        log.error("Gramps failed to start.", exc_info=True)
-
-    if quit_now:
-        gtk.main_quit()
-        sys.exit(exit_code)
+        LOG.error("Error reading configuration.", exc_info=True)
+        return False
         
-    return False
+    if not mime_type_is_defined(const.APP_GRAMPS):
+        error += [(_("Configuration error"), 
+                    _("A definition for the MIME-type %s could not "
+                      "be found \n\n Possibly the installation of GRAMPS "
+                      "was incomplete. Make sure the MIME-types "
+                      "of GRAMPS are properly installed.")
+                    % const.APP_GRAMPS)]
+    
+    #we start with parsing the arguments to determine if we have a cli or a
+    # gui session
+    from cli import ArgParser
+    argpars = ArgParser(sys.argv)
+    
+    if argpars.need_gui():
+        #A GUI is needed, set it up 
+        from gui import startgtkloop
+        startgtkloop(error, argpars)
+    else:
+        #CLI use of GRAMPS
+        argpars.print_help()
         
-gobject.timeout_add(100, run, priority=100)
-gtk.main()
+        from cli import startcli
+        startcli(error, argpars)
+
+run()
