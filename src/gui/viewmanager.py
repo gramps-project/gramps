@@ -1093,7 +1093,7 @@ class ViewManager(CLIManager):
         The method called after load of a new database. 
         Inherit CLI method to add GUI part
         """
-        self._post_load_newdb_nongui(filename, filetype, title)
+        self._post_load_newdb_nongui(filename, title)
         self._post_load_newdb_gui(filename, filetype, title)
         
     def _post_load_newdb_gui(self, filename, filetype, title=None):

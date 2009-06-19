@@ -107,6 +107,12 @@ class DbManager(CLIDbManager):
     Database Manager. Opens a database manager window that allows users to
     create, rename, delete and open databases.
     """
+    ICON_MAP = {
+                CLIDbManager.ICON_NONE : '',
+                CLIDbManager.ICON_RECOVERY : gtk.STOCK_DIALOG_ERROR,
+                CLIDbManager.ICON_LOCK : 'gramps-lock',
+                CLIDbManager.ICON_OPEN : gtk.STOCK_OPEN,
+               }
 
     def __init__(self, dbstate, parent=None):
         """
@@ -680,7 +686,7 @@ class DbManager(CLIDbManager):
         """
         Create a new database, append to model
         """
-        new_path, title = self._create_new_db_cli(title)
+        new_path, title = self.create_new_db_cli(title)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 

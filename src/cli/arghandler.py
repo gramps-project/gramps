@@ -35,17 +35,13 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import sys
-import getopt
 from gettext import gettext as _
-import logging
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
-import Config
 import RecentFiles
 import Utils
 import gen
@@ -71,14 +67,6 @@ class ArgHandler(object):
         self.sm = sessionmanager
         self.errorfunc = errorfunc
         self.gui = gui
-        self.dbman = CLIDbManager(self.dbstate)
-        self.force_unlock = parser.force_unlock
-        self.open = self.__handle_open_option(parser.open)
-        self.cl = 0
-        self.imports = []
-        self.exports = []
-        self.sanitize_args(parser.imports, parser.exports)
-        self.open_gui = parser.open_gui
         if self.gui:
             self.actions = []
             self.list = False
@@ -88,9 +76,21 @@ class ArgHandler(object):
             self.actions = parser.actions
             self.list = parser.list
             self.list_more = parser.list_more
+        self.open_gui = parser.open_gui
         self.imp_db_path = None
+        self.dbman = CLIDbManager(self.dbstate)
+        self.force_unlock = parser.force_unlock
+        self.cl = 0
+        self.imports = []
+        self.exports = []
+
+        self.open = self.__handle_open_option(parser.open)
+        self.sanitize_args(parser.imports, parser.exports)
     
-    def error(self, string):
+    def __error(self, string):
+        """
+        Output an error. Uses errorfunc if given, otherwise a simple print
+        """
         if self.errorfunc:
             self.errorfunc(string)
         else:
@@ -110,7 +110,8 @@ class ArgHandler(object):
 
     def __handle_open_option(self, value):
         """
-        Handle the "-O" or "--open" option.                            
+        Handle the "-O" or "--open" option.
+        Only Family trees or a dir with a family tree can be opened.                  
         """
         if value is None:
             return None
@@ -123,19 +124,20 @@ class ArgHandler(object):
                 sys.exit(0)
             return db_path
         else:
-            self.error( _('Error: Input family tree "%s" does not exist.\n'
+            self.__error( _('Error: Input family tree "%s" does not exist.\n'
                     "If gedcom, gramps-xml or grdb, use the -i option to "
                     "import into a family tree instead.") % value)
             sys.exit(0)
 
     def __handle_import_option(self, value, format):
         """
-        Handle the "-i" or "--import" option.                            
+        Handle the "-i" or "--import" option.
+        Only Files supported by a plugin can be imported, so not Family Trees
         """
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if not os.path.exists(fullpath):
-            self.error(_('Error: Import file %s not found.') % fname)
+            self.__error(_('Error: Import file %s not found.') % fname)
             sys.exit(0)
         
         if format is None:
@@ -153,7 +155,7 @@ class ArgHandler(object):
         if plugin_found:
             self.imports.append((fname, format))
         else:
-            self.error(_('Error: Unrecognized type: "%(format)s" for '
+            self.__error(_('Error: Unrecognized type: "%(format)s" for '
                     'import file: %(filename)s') \
                   % {'format' : format, 
                      'filename' : fname})
@@ -162,21 +164,21 @@ class ArgHandler(object):
     def __handle_export_option(self, value, format):
         """
         Handle the "-e" or "--export" option.  
-        Note: only the CLI version has export                          
+        Note: this can only happen in the CLI version                          
         """
         if self.gui:
             return
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if os.path.exists(fullpath):
-            self.error(_("WARNING: Output file already exist!\n"
+            self.__error(_("WARNING: Output file already exist!\n"
                     "WARNING: It will be overwritten:\n   %(name)s") % \
                     {'name' : fullpath})
             answer = None
             while not answer:
                 answer = raw_input(_('OK to overwrite? (yes/no) '))
-            if answer.upper() in ('Y','YES', _('YES')):
-                self.error( _("Will overwrite the existing file: %s") 
+            if answer.upper() in ('Y', 'YES', _('YES')):
+                self.__error( _("Will overwrite the existing file: %s") 
                                 % fullpath)
             else:
                 sys.exit(0)
@@ -196,7 +198,7 @@ class ArgHandler(object):
         if plugin_found:
             self.exports.append((fullpath, format))
         else:
-            self.error(_("ERROR: Unrecognized format for export file %s") 
+            self.__error(_("ERROR: Unrecognized format for export file %s") 
                             % fname)
             sys.exit(0)
         
@@ -226,14 +228,16 @@ class ArgHandler(object):
     # Overall argument handler: 
     # sorts out the sequence and details of operations
     #-------------------------------------------------------------------------
-    def handle_args_gui(self, dbman):
+    def handle_args_gui(self):
         """
         method to handle the arguments that can be given for a GUI session.
-        Returns the filename of the family tree that should be openend
+        Returns the filename of the family tree that should be openend if 
+        user just passed a famtree or a filename
             1/no options: a family tree can be given, if so, this name is tested
                         and returned. If a filename, it is imported in a new db
                         and name of new db returned
-            2/an open option can have been given
+            2/an open and/or import option can have been given, if so, this 
+                is handled, and None is returned
             
         """
         if self.open_gui:
@@ -259,6 +263,8 @@ class ArgHandler(object):
                 except:
                     title = db_path
                 RecentFiles.recent_files(db_path, title)
+                self.open = db_path
+                self.__open_action()
             else:
                 sys.exit(0)
             return db_path
@@ -267,8 +273,9 @@ class ArgHandler(object):
         #  open argument, and perhaps some import arguments
         self.__open_action()
         self.__import_action()
+        return None
     
-    def handle_args_cli(self, climan):
+    def handle_args_cli(self):
         """
         Depending on the given arguments, import or open data, launch
         session, write files, and/or perform actions.
@@ -315,13 +322,21 @@ class ArgHandler(object):
         sys.exit(0)
 
     def __import_action(self):
+        """
+        Take action for all given to import files. Note: Family trees are not
+            supported.
+        If a fam tree is open, the import happens on top of it. If not open, 
+        a new family tree is created, and the import done. If this is CLI, 
+        the created tree is deleted at the end (as some action will have 
+        happened that is now finished), if this is GUI, it is opened.
+        """
         if self.imports:
             self.cl = bool(self.exports or self.actions or self.cl)
 
             if not self.open:
                 # Create empty dir for imported database(s)
                 if self.gui:
-                    self.imp_db_path, title = self.dbman._create_new_db_cli()
+                    self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
                 
@@ -341,6 +356,10 @@ class ArgHandler(object):
                 self.cl_import(imp[0], imp[1])
 
     def __open_action(self):
+        """
+        Take action on a Fam tree dir to open. It will be opened in the 
+        sessionmanager
+        """
         if self.open:
             # Family Tree to open was given. Open it 
             # Then go on and process the rest of the command line arguments.
@@ -356,15 +375,18 @@ class ArgHandler(object):
                 sys.exit(0)
 
     def check_db(self, dbpath, force_unlock = False):
+        """
+        Test a given family tree path if it can be opened.
+        """
         # Test if not locked or problematic
         if force_unlock:
             self.dbman.break_lock(dbpath)
         if self.dbman.is_locked(dbpath):
-            print _("Database is locked, cannot open it!")
-            print _("  Info: %s") % find_locker_name(dbpath)
+            self.__error((_("Database is locked, cannot open it!") + '\n' +
+                          _("  Info: %s")) % find_locker_name(dbpath))
             return False
         if self.dbman.needs_recovery(dbpath):
-            print _("Database needs recovery, cannot open it!")
+            self.__error( _("Database needs recovery, cannot open it!"))
             return False
         return True
 
@@ -449,8 +471,9 @@ class ArgHandler(object):
                             options_class(self.dbstate.db, name, category, 
                                           options_str_dict)
                         else:
-                            cl_report(self.dbstate.db, name, category, report_class, 
-                                      options_class, options_str_dict)
+                            cl_report(self.dbstate.db, name, category, 
+                                      report_class, options_class,
+                                      options_str_dict)
                         return
                 # name exists, but is not in the list of valid report names
                 msg = "Unknown report name."

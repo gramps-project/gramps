@@ -33,7 +33,6 @@ Module responsible for handling the command line arguments for GRAMPS.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import sys
 import getopt
 from gettext import gettext as _
@@ -250,6 +249,9 @@ class ArgParser(object):
         return True
     
     def print_help(self):
+        """
+        If the user gives the --help or -h option, print the output to terminal
+        """
         if self.help:
             print _HELP
             sys.exit(0)

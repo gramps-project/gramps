@@ -21,6 +21,13 @@
 
 # $Id:gramps_main.py 9912 2008-01-22 09:17:46Z acraphae $
 
+"""
+Provides the startcli function, which the main program calls for CLI
+execution of GRAMPS.
+
+Provides also two small base classes: CLIDbLoader, CLIManager
+"""
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -30,6 +37,9 @@ from gettext import gettext as _
 import os
 import sys
 
+import logging
+
+LOG = logging.getLogger(".grampscli")
 #-------------------------------------------------------------------------
 #
 # GRAMPS  modules
@@ -40,7 +50,8 @@ import Config
 import const
 import Errors
 import DbState
-from gen.db import GrampsDBDir
+from gen.db import (GrampsDBDir, FileVersionDeclineToUpgrade)
+import gen.db.exceptions
 from gen.plug import PluginManager
 import GrampsCfg
 import RecentFiles
@@ -51,20 +62,34 @@ import RecentFiles
 #
 #-------------------------------------------------------------------------
 class CLIDbLoader(object):
+    """
+    Base class for Db loading action inside a dbstate. Only the minimum is 
+    present needed for CLI handling
+    """
     def __init__(self, dbstate):
         self.dbstate = dbstate
     
-    def _warn(title, warnmessage):
-        print _('WARNING: %s') %warnmessage
+    def _warn(self, title, warnmessage):
+        """
+        Issue a warning message. Inherit for GUI action
+        """
+        print _('WARNING: %s') % warnmessage
     
-    def _errordialog(title, errormessage):
+    def _errordialog(self, title, errormessage):
         """
         Show the error. A title for the error and an errormessage
+        Inherit for GUI action
         """
         print _('ERROR: %s') % errormessage
         sys.exit(1)
     
     def _dberrordialog(self, msg):
+        """
+        Show a database error. 
+        @param: msg : an error message
+        @type: string
+        @note: Inherit for GUI action
+        """
         self._errordialog( '', _("Low level database corruption detected") 
             + '\n' +
             _("GRAMPS has detected a problem in the underlying "
@@ -73,9 +98,17 @@ class CLIDbLoader(object):
               'click on the Repair button') + '\n\n' + str(msg))
     
     def _begin_progress(self):
+        """
+        Convenience method to allow to show a progress bar if wanted on load
+        actions. Inherit if needed
+        """
         pass
     
     def _pulse_progress(self, value):
+        """
+        Convenience method to allow to show a progress bar if wantedon load
+        actions. Inherit if needed
+        """
         pass
 
     def read_file(self, filename):
@@ -114,7 +147,7 @@ class CLIDbLoader(object):
         try:
             self.dbstate.db.load(filename, self._pulse_progress, mode)
             self.dbstate.db.set_save_path(filename)
-        except gen.db.FileVersionDeclineToUpgrade:
+        except FileVersionDeclineToUpgrade:
             self.dbstate.no_database()
         except gen.db.exceptions.FileVersionError, msg:
             self.dbstate.no_database()
@@ -128,7 +161,7 @@ class CLIDbLoader(object):
             self._dberrordialog(msg)
         except Exception:
             self.dbstate.no_database()
-            _LOG.error("Failed to open database.", exc_info=True)
+            LOG.error("Failed to open database.", exc_info=True)
         return True
 
 #-------------------------------------------------------------------------
@@ -139,8 +172,10 @@ class CLIDbLoader(object):
 
 class CLIManager(object):
     """
-    A reduced viewmanager suitable for cli actions. 
-    Aim is to manage a database on which to work
+    Sessionmanager for GRAMPS. This is in effect a reduced viewmanager 
+    instance (see gui/viewmanager), suitable for CLI actions. 
+    Aim is to manage a dbstate on which to work (load, unload), and interact
+    with the plugin session
     """
     def __init__(self, dbstate, setloader):
         self.dbstate = dbstate
@@ -157,7 +192,7 @@ class CLIManager(object):
         """
         self._read_recent_file(path)
     
-    def _errordialog(title, errormessage):
+    def _errordialog(self, title, errormessage):
         """
         Show the error. A title for the error and an errormessage
         """
@@ -168,11 +203,11 @@ class CLIManager(object):
         """
         Called when a file needs to be loaded
         """
-        # A recent database should already have a directory 
-        # If not, do nothing, just return. This can be handled better if family tree
-        # delete/rename also updated the recent file menu info in DisplayState.py
+        # A recent database should already have a directory If not, do nothing,
+        #  just return. This can be handled better if family tree delete/rename
+        #  also updated the recent file menu info in DisplayState.py
         if not  os.path.isdir(filename):
-            self.errordialog(
+            self._errordialog(
                     _("Could not load a recent Family Tree."), 
                     _("Family Tree does not exist, as it has been deleted."))
             return
@@ -194,9 +229,9 @@ class CLIManager(object):
         The method called after load of a new database. 
         Here only CLI stuff is done, inherit this method to add extra stuff
         """
-        self._post_load_newdb_nongui(filename, filetype, title)
+        self._post_load_newdb_nongui(filename, title)
     
-    def _post_load_newdb_nongui(self, filename, filetype, title=None):
+    def _post_load_newdb_nongui(self, filename, title=None):
         """
         Called after a new database is loaded.
         """
@@ -231,7 +266,8 @@ class CLIManager(object):
         Config.set(Config.RECENT_FILE, filename)
 
         try:
-            self.dbstate.change_active_person(self.dbstate.db.find_initial_person())
+            self.dbstate.change_active_person(
+                                    self.dbstate.db.find_initial_person())
         except:
             pass
         
@@ -279,6 +315,6 @@ def startcli(errors, argparser):
     handler = ArgHandler(dbstate, argparser, climanager)
     # create a manager to manage the database
     
-    handler.handle_args_cli(climanager)
+    handler.handle_args_cli()
     
     sys.exit(0)

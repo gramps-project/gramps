@@ -43,8 +43,6 @@ from gettext import gettext as _
 import logging
 LOG = logging.getLogger(".clidbman")
 
-from gtk import STOCK_DIALOG_ERROR, STOCK_OPEN
-
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -74,6 +72,18 @@ class CLIDbManager(object):
     Database manager without GTK functionality, allows users to create and
     open databases
     """
+    ICON_NONE     = 0
+    ICON_RECOVERY = 1
+    ICON_LOCK     = 2
+    ICON_OPEN     = 3
+    
+    ICON_MAP = {
+                ICON_NONE : None,
+                ICON_RECOVERY : None,
+                ICON_LOCK : None,
+                ICON_OPEN : None,
+               }
+    
     def __init__(self, dbstate):
         self.dbstate = dbstate
         self.msg = None
@@ -166,7 +176,7 @@ class CLIDbManager(object):
                 name = file(path_name).readline().strip()
 
                 (tval, last) = time_val(dirpath)
-                (enable, stock_id) = icon_values(dirpath, self.active, 
+                (enable, stock_id) = self.icon_values(dirpath, self.active, 
                                                  self.dbstate.db.is_open())
 
                 if (stock_id == 'gramps-lock'):
@@ -206,7 +216,7 @@ class CLIDbManager(object):
         """
         print _('Import finished...')
 
-    def _create_new_db_cli(self, title=None):
+    def create_new_db_cli(self, title=None):
         """
         Create a new database.
         """
@@ -237,7 +247,7 @@ class CLIDbManager(object):
         """
         Create a new database, do extra stuff needed
         """
-        return self._create_new_db_cli(title)
+        return self.create_new_db_cli(title)
 
     def import_new_db(self, filename, callback):
         """
@@ -295,6 +305,20 @@ class CLIDbManager(object):
         """
         if os.path.exists(os.path.join(dbpath, "lock")):
             os.unlink(os.path.join(dbpath, "lock"))
+    
+    def icon_values(self, dirpath, active, is_open):
+        """
+        If the directory path is the active path, then return values
+        that indicate to use the icon, and which icon to use.
+        """
+        if os.path.isfile(os.path.join(dirpath,"need_recover")):
+            return (True, self.ICON_MAP[self.ICON_RECOVERY])
+        elif dirpath == active and is_open:
+            return (True, self.ICON_MAP[self.ICON_OPEN])
+        elif os.path.isfile(os.path.join(dirpath,"lock")):
+            return (True, self.ICON_MAP[self.ICON_LOCK])
+        else:
+            return (False, self.ICON_MAP[self.ICON_NONE])
 
 def make_dbdir(dbdir):
     """
@@ -346,20 +370,6 @@ def time_val(dirpath):
         tval = 0
         last = _("Never")
     return (tval, last)
-
-def icon_values(dirpath, active, is_open):
-    """
-    If the directory path is the active path, then return values
-    that indicate to use the icon, and which icon to use.
-    """
-    if os.path.isfile(os.path.join(dirpath,"need_recover")):
-        return (True, STOCK_DIALOG_ERROR)
-    elif dirpath == active and is_open:
-        return (True, STOCK_OPEN)
-    elif os.path.isfile(os.path.join(dirpath,"lock")):
-        return (True, 'gramps-lock')
-    else:
-        return (False, "")
 
 def find_locker_name(dirpath):
     """

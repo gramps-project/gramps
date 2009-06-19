@@ -75,10 +75,10 @@ class DbLoader(CLIDbLoader):
         self.uistate = uistate
         self.import_info = None
     
-    def _warn(title, warnmessage):
+    def _warn(self, title, warnmessage):
         WarningDialog(title, warnmessage)
     
-    def _errordialog(title, errormessage):
+    def _errordialog(self, title, errormessage):
         """
         Show the error. 
         In the GUI, the error is shown, and a return happens
