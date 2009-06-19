@@ -1,52 +1,54 @@
 /*
-**************************************************************************************************
+ **************************************************************************************************
 Copyright Holder and License
 **************************************************************************************************
 GRAMPS Cascading Style Sheet
-Style Name: Print Style Sheet
+Style Name: Web_Print-Default
 Style Author: Jason M. Simanek (2008)
-Modified by Rob G. Healey, July 2008
-
 **************************************************************************************************
-This website was created with GRAMPS <http://www.gramps-project.org/>
+This website was created with GRAMPS
+http://www.gramps-project.org
 --------------------------------------------------------------------------------------------------
-GRAMPS is a Free Software Project for Genealogy, offering a professional
-genealogy program, and a wiki open to all. It is a community project, created,
-developed and governed by genealogists.
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
 
-'Go to <http://gramps-project.org/> to learn more!
+Go to http://gramps-project.org to learn more!
 
 --------------------------------------------------------------------------------------------------
-Copyright 2008 Rob G. Healey
+Copyright 2009 Stephane Charette
 
 This file is part of the GRAMPS program.
 
-GRAMPS is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, version 2 of the License.
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, version 2 of the License.
 
-GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with
-GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with GRAMPS. If not,
+see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------------------------------
-
 Color Palette
 --------------------------------------------------------------------------------------------------
-gray            #A7A7A7
-red             #520
-black           #000
-white           #FFF
----------------------------------------------------------------------------------------------------
+White			#FFF
+black			#000
+
+===== Ancestor Graph Color Scheme =====
+Males       #E5F2FE
+Females     #FFC0CB
+Unknown     #000
+
+===== Web Graphics =====
+Males       Web_Gender_Male.png
+Females     Web_Gender_Female.png
 
 # $Id$
 
  NarrativeWeb Styles
 -------------------------------------------------------------------------------------------- 
 
- General Elements 
+ General Elements
 ----------------------------------------------------- */
 
 body {
@@ -59,28 +61,43 @@ div {
     margin:0;
     padding:0;
 }
+table {
+    border:none;
+    border-collapse:collapse;
+}
+th {
+    font-weight:bold;
+    text-align:left;
+    padding:1px 3em 1px 0.5em;
+}
+td {
+    vertical-align:top;
+    padding:0;
+}
 img {
     border:none;
     margin:0;
 }
-.content {  }
+.content {
+    width:965px;
+    margin:0 auto;
+    padding-bottom:.5em;
+    background-color:#FFF;
+    color:#000;
+}
 .content div.snapshot {
-    float:right;
-    margin:1.6em;
+    margin:0;
     padding:0;
     background:none;
 }
 .content div.snapshot div.thumbnail {
     margin:0;
-    padding:0;
+    padding:2em 0 0 0;
     background:none;
-}
-.content .thumbnail a:link:after, .content .thumbnail a:visited:after {
-    content:"";
 }
 .fullclear {
     width:100%;
-    height:1pt;
+    height:1px;
     margin:0;
     padding:0;
     clear:both;
@@ -89,57 +106,35 @@ img {
 /* General Text
 ----------------------------------------------------- */
 h1 {
-    font:normal 16pt/18pt serif;
-    margin:0;
-    padding:0;
+    font:normal 2em/1.2em serif;
 }
 h2 {
-    font:normal 18pt/23pt serif;
-    display:inline;
-    margin:0;
-    padding:0;
+    display:none;
 }
 h3 {
-    font:normal 18pt/23pt serif;
-    text-align:left;
-    display:inline;
-    margin:0 0 0 8pt;
-    padding:0;
+    font:normal 2em/1.2em serif;
+    text-align:center;
+    margin:0;
+    padding:.5em 20px .2em 20px;
+    border-bottom:double 4px #000;
 }
 h4 {
-    display:block;
-    clear:both;
-    font:normal 14pt/16pt serif;
-    margin:8pt 0 0 0;
-    padding:8pt 0 1pt 0;
-    border-top:solid .5pt #A7A7A7
+    font:normal 1.2em/1.2em serif;
+    color:#000;
+    margin:0;
+    padding:.2em 0 .2em 20px;
+    border-bottom:solid 2px #000;
 }
 h5, h6 {
-    font:normal 14pt/16pt serif;
+    font:normal 1em/1.2em serif;
     font-style:italic;
-    margin:0;
-    padding:0;
+    margin:1.3em 0 .5em 1em;
 }
-p {
-    font:normal 11pt/14pt serif;
-}
+
 p#description {
-    margin:0 0 14pt 0;
-}
-a:link, a:visited {
-    color:#520;
-    text-decoration:underline;
-}
-.content a:link:after, content a:visited:after {
-    font-size:70%;
-    font-family:sans-serif;
-    content:" (" attr(href) ") ";
-}
-.content ol li a:link {
-    text-decoration:none;
-}
-.content ol li a:link:after, .content ol li a:visited:after {
-    content:"";
+    max-width:800px;
+    margin:0;
+    padding:1em 20px;
 }
 sup {
     line-height:0;
@@ -151,149 +146,287 @@ ol {
     padding-top:.5em;
     padding-bottom:0;
 }
+span.preposition {
+    padding-left:1em;
+    padding-right:1em;
+}
+.grampsid {
+    font:normal .8em/1.2em monospace;
+    color:#000;
+}
 
 /* Header
 ----------------------------------------------------- */
-#Header {
-    padding:0 0 8pt 0;
-    margin:0 0 8pt 0;
-    border-bottom:solid .5pt #000;
+#header  {
+    margin:0;
+    height:1.5cm;
+    padding:0 0 .9em 0;
+    border-bottom:solid 2px #000;
 }
 #SiteTitle {
-    text-align:center;
+    margin:0;
+    padding:.5em 0 0 20px;
+    font-style:italic;
+}
+p#user_header {
+    font-size:1.3em;
+    text-align:left;
+    margin:0;
+    padding:.2em 0 .6em 20px;
+}
+
+/* Footer
+----------------------------------------------------- */
+#footer {
+    clear:both;
+    height:1.5cm;
+    width:100%;
+    font-size:12px;
+    line-height:130%;
+    font-family:sans-serif;
+    margin:0;
+    padding:0;
+    border-top:solid 2px #000;
+    background-color:#FFF;
+    color:#000;
+}
+#footer img {
+    border:0;
+    margin:0 auto;
+    vertical-align:middle;
+}
+#footer p#createdate {
+    float:left;
+    width:45%;
+    text-align:left;
+    margin-left:10px;
+}
+#footer p#copyright {
+    float:right;
+    width:40%;
+    text-align:right;
+    color:#000;
+    margin-right:10px;
+}
+#footer p#copyright img {
+    margin-right:10px;
+}
+#user_footer {
+    width:70%;
+    float:left;
+    margin:1em;
+}
+#user_footer p {
+    font:normal 1em/1.2em serif;
     margin:0;
     padding:0;
 }
-#user_header {
-    font-style:italic;
-    text-align:center;
-    margin:0;
-    padding:0
-}
-.grampsid {
-    font-size:60%;
-    font-family:monospace;
-    color:#A7A7A7
+
+/* Alphabet Navigation
+----------------------------------------------------- */
+div#alphabet {
+    display:none;
 }
 
 /* Navigation
 ----------------------------------------------------- */
-#alphabet, #navigation, #subnavigation { display:none; }
+#navigation, #subnavigation {
+    display:none;
+}
 
 /* Main Table
 ----------------------------------------------------- */
-table {
+table.infolist {
     width:100%;
     margin:0;
     padding:0;
-    border:none;
-    border-collapse:collapse;
-    border-bottom:solid .5pt #FFF;
+    background-color:#FFF;
 }
-table thead tr th {
-    text-align:left;
-    font:normal 11pt/13pt serif;
+table.infolist thead tr th {
+    font:normal 1.1em/1.2em serif;
     color:#000;
     margin:0;
-    padding:0;
-    padding-bottom:1pt;
-    border-bottom:solid .5pt #000;
+    padding:.2em 10px;
+    border-bottom:solid 1px #000;
 }
-.content table thead tr th a {
-    text-decoration:none;
-}
-.content table thead tr th a:link:after, .content table thead tr th a:visited:after {
-    content:"";
-}
-table tbody tr td {
-    font:normal 9pt/11pt sans-serif;
+table.infolist tr td {
+    font:normal 1.1em/1.4em serif;
     vertical-align:middle;
-    padding:2pt 6pt 1pt 0;
-    border-bottom:dashed .5pt #A7A7A7;
+    padding:.1em 10px;
 }
-.content table tbody tr td a {
-    text-decoration:none;
+table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
+    border-top:solid 1px #453619;
 }
-.content table tbody tr td a:link:after, .content table tbody tr td a:visited:after {
-    content:"";
-}
-table tr.BeginLetter td, table.infolist tr.BeginSurname td {
-    border-top:solid .5pt #A7A7A7;
-}
-table tbody tr td.ColumnRowLabel {
-    width:2%;
-    color:#A7A7A7;
-    text-align:center;
-}
-table tr td.ColumnLetter {
+table.infolist tr td.ColumnLetter {
     width:3%;
     text-align:center;
 }
-table tr td.ColumnAttribute {
+table.infolist tbody tr td.ColumnBirth {
+    font-size:.9em;
+    color:#000;
     width:10%;
 }
-.content table tbody tr td.ColumnName a {
-    text-decoration:none;
-}
-table tbody tr td.ColumnBirth {
+table.infolist tbody tr td.ColumnDeath {
+    font-size:.9em;
     width:10%;
 }
-table tbody tr td.ColumnDeath {
-    width:10%;
-    text-decoration:underline;
+table.infolist tbody tr td.ColumnRowLabel {
+    width:2%;
+    color:#000;
+    padding-left:20px;
 }
-table tbody tr td.ColumnParents {
-    font-size:70%;
+table.infolist tbody tr td.ColumnType {
+    width:6%;
+    padding-left:20px;
 }
-table tbody tr td.ColumnParents span.mother:before {
+table.infolist tbody tr td.ColumnPartner {
+    font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents {
+    font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents span.father, 
+table.infolist tbody tr td.ColumnParents span.mother {
+    display:block;
+}
+table.infolist tbody tr td.ColumnParents span.mother:before {
     content:"+ ";
-}
-
-/* Home/Welcome
------------------------------------------------------ */
-#Home p {
-    margin:0 0 9pt 0;
-}
-#Home img {
-    float:right;
-    margin:0;
-    padding:0 0 9pt 9pt;
-}
-
-/* Introduction
------------------------------------------------------ */
-#Introduction p {
-    margin:0 0 9pt 0;
-}
-#Introduction img {
-    float:right;
-    margin:0;
-    padding:0 0 9pt 9pt;
 }
 
 /* Surnames
 ----------------------------------------------------- */
 #Surnames {  }
-table.surnamelist tr thead th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
+#SurnameDetail p#description { padding-top:0; }
+table.surnamelist thead tr th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
     width:50%;
+}
+table.surnamelist thead tr th {
+    padding:0;
+}
+table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
+    display:block;
+    text-align:left;
+    text-decoration:none;
+    padding:.2em 10px;
+}
+table.surnamelist tr th:hover {
+    background-color:#C1B398;
+}
+table.surnamelist thead tr th.ColumnLetter {
+    padding-left:20px;
+    padding-right:10px;
+}
+table#SortByName thead tr th.ColumnSurname, table#SortByCount thead tr th.ColumnQuantity {
+    background-color:#C1B398;
 }
 table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
     content:" ↓";
 }
+table#SortByName tbody tr td.ColumnSurname {
+    padding:0;
+    background-color:#FFF;
+}
+table#SortByCount tbody tr td.ColumnQuantity {
+    background-color:#FFF;
+}
+table.surnamelist tbody tr td.ColumnSurname:hover, table#SortByName tbody tr td.ColumnSurname:hover {
+    background-color:#C1B398;
+}
+table.surname {
+    border-bottom:solid 1px #000;
+}
+table.surname tbody tr td {
+    border-bottom:dashed 1px #000;
+}
+table.surname thead tr th.ColumnName {
+    width:20%;
+    padding-left:20px;
+}
+table.surname tbody tr td.ColumnName {
+    width:20%;
+    padding:0;
+}
 table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
-    width:35%;
+    width:25%;
 }
 
 /* Individuals
 ----------------------------------------------------- */
+#Individuals {  }
+#Individuals table.individuallist {
+    border-bottom:solid 1px #000;
+}
+#Individuals table.individuallist tbody tr td {
+    border-bottom:dashed 1px #000;
+}
+table.individuallist tbody tr td.ColumnName {
+    padding:0;
+}
+table.individuallist tbody tr td.ColumnPartner {
+    padding:0;
+}
+#Individuals div table.infolist tr td p {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align:top;
+}
+
+/* IndividualDetail
+------------------------------------------------------ */
+#IndividualDetail {
+    background-color:#FFF;
+    color:#000;
+}
+#IndividualDetail div table.infolist tr td {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align:top;
+}
+#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+    width:10%;
+}
+#IndividualDetail div.subsection table tr td:first-child {
+    padding-left:20px;
+}
+
+/* Sources
+----------------------------------------------------- */
+#Sources {  }
+#Sources table.infolist tbody tr td.ColumnRowLabel {
+    padding-bottom:0;
+}
+#Sources table.infolist tbody tr td.ColumnName {
+    padding:0;
+}
+#SourceDetail div#references ol li {
+    padding-bottom:.5em;
+}
+
+/* Places
+----------------------------------------------------- */
+#Places {  }
+#Places table.infolist tbody tr td.ColumnName {
+    padding:0;
+}
 
 /* Gallery
 ----------------------------------------------------- */
-#GalleryDetail h2 {
-    display:none;
+#Gallery {  }
+#Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
+    padding-bottom:0;
+}
+#Gallery table.infolist tbody tr td.ColumnName {
+    padding:0;
 }
 #GalleryNav {
-    display:none;
+    display:none'
+}
+#GalleryPages {
+    margin:0 1em;
+}
+#GalleryCurrent {
+    font:bold 1.2em/1em sans-serif;
+}
+#GalleryTotal {
+    font-weight:normal;
 }
 #GalleryDisplay {
     margin:0 auto;
@@ -301,126 +434,353 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     position:relative;
     overflow:hidden;
     text-align:center;
+    border:solid 1px #000;
 }
 #GalleryDisplay img {
     margin:0 auto;
-    border:solid 1pt #542;
 }
-#GalleryDetail h3 {
-    display:block;
+#GalleryDetail div#summaryarea{
+    margin:0;
+    padding:2em 0 0 0;
+}
+#GalleryDetail div#summaryarea h3 {
+    font:normal 1.2em/1.2em serif;
     text-align:center;
-    margin:2pt 0 8pt 0;
+}
+#GalleryDetail div h4 {
+    margin-top:0;
+}
+#GalleryDetail div#summaryarea table.gallery {
+    padding-bottom:0;
+    margin-top:1.5em;
+    margin-bottom:0;
+    background-color:#FFF;
+    border-style:solid;
+    border-width:8px 0 0 0;
+    border-color:#000;
 }
 
-/* Download
+/* Contact
 ----------------------------------------------------- */
-#Download p {
-    margin:0 0 9pt 0;
+#Contact #summaryarea {
+    width:500px;
+    margin:0 auto;
+    padding:3em;
 }
-#Download img {
+#Contact #summaryarea img {
     float:right;
     margin:0;
-    padding:0 0 9pt 9pt;
 }
-
-/* Contact 
------------------------------------------------------ */
 #researcher {
-    margin:16pt 0 0 0;
-}
-#Contact img {
-    float:right;
-    margin:0;
-    padding:0 0 9pt 9pt;
+    font:normal 1.5em/1.4em serif;
+    margin-top:.3em;
 }
 #researcher h3 {
-    margin:0;
+    font:normal 1.2em/1.4em serif;
+    padding:0;
+    text-align:left;
 }
 #researcher span {
-    font:normal .9em/1.4em serif;
-    display:block;
     float:left;
+    display:block;
+    font:normal .9em/1.4em serif;
     margin-right:.4em;
 }
-#city {
-    clear:left;
+#streetaddress {
+    width:100%;
 }
 #city:after {
     content:",";
+}
+#country {
+    clear:left;
 }
 #email {
     clear:left;
 }
 
-/* Subsections 
+/* Download 
 ----------------------------------------------------- */
-#Home, #Introduction, #Download, #Contact {
-    padding:3em 20px;
+#Download { 
+    padding-top:2cm;
+    padding-bottom:2cm;
+    padding-left:.5cm;
+    padding-right:.5cm;
+    height:390px;
+    color:#000;
+}
+table.download {
+    border:solid 2px #000;
+    width:100%;
+}
+table.download img {
+    float:center;
+}
+table.download thead tr th {
+    text-transform:uppercase;
+    padding-left:20px;
+    padding-top:15px;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+    text-align:left;
+}
+table.download tbody tr#Row02 {
+    border-bottom:solid 2px #000;
+}
+table.download tbody tr td { 
+    padding-left:20px;
+    padding-top:15px;
+    border-style:solid;
+    border-color:#000;
+    border-width:0 2px 2px 2px;
+    text-align:left;
+}
+table.download td.Description {
+    width:45%;
+}
+table.download td.License {
+    width:6%;
+    padding-left:20px;
+}
+table.download td.Filename {
+    width:30%;
+}
+table.download td.Modified {
+    width:17%;
+    font-weight:bold;
 }
 
-/* Subsections : Events 
+/* Subsections
 ----------------------------------------------------- */
-#IndividualDetail .ColumnValue {
-    padding:4pt 0;
+#Home, #Introduction, #Contact {
+    padding:2em 0 3em 0;
 }
-.ColumnValue p {
-    font:normal 9pt/11pt sans-serif;
-    margin:1pt 0 0 18pt;
+#Home p, #Introduction p {
+    margin:0 20px 1em 20px;
+}
+#Home img, #Introduction img {
+    float:right;
+    margin:0;
+    padding:0 20px 3em 2em;
+}
+div.subsection{
+    padding-bottom:.5em;
+    background-color:#FFF;
+}
+div.subsection h4 {
+    margin-bottom:.5em;
+}
+div.subsection table, div.subsection ol, div.subsection p {
+    font-size:.9em;
+}
+div.subsection table.infolist {
+    width:100%;
+    margin:0;
 }
 
-/* Subsections : Gallery 
+/* Subsections : Events
+----------------------------------------------------- */
+div#events {
+    padding-bottom:0;
+    height:2.5cm;
+    overflow:auto;
+}
+div#events h4 {
+    margin-bottom:0;
+    border:none;
+}
+#IndividualDetail div#events table.infolist thead tr th {
+    font-weight:bold;
+    font-size:12px;
+    line-height:12px;
+    font-family:sans-serif;
+    text-transform:uppercase;
+    color:#000;
+    padding-top:6px;
+    padding-bottom:4px;
+    background-color:#6AF364;
+}
+#IndividualDetail div#events table.eventtable {
+    width:100%;
+    padding-bottom:15px;
+}
+#IndividualDetail div#events table.infolist thead tr th:first-child {
+    padding-left:20px;
+}
+#IndividualDetail div#events table.infolist tbody tr td {
+    padding-top:.4em;
+    padding-bottom:.8em;
+}
+#IndividualDetail div#events table.infolist tbody tr td.ColumnAttribute {
+    border-bottom:solid 1px #453619;
+}
+#IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
+    border-bottom:solid 1px #453619;
+}
+table.infolist tbody tr td.ColumnValue p {
+    font-family:sans-serif;
+    color:#696969;
+    margin:.2em 0 0 2em;
+}
+
+/* Subsections : Attributes
+----------------------------------------------------- */
+
+/* Subsections : Parents
+----------------------------------------------------- */
+div#parents table.infolist {
+    margin-top:.5em;
+}
+div#parents table.infolist tbody tr td.ColumnAttribute {
+    width:19%;
+}
+div#parents table.infolist tbody tr td.ColumnValue ol {
+    margin:0;
+    padding-top:0;
+}
+div#parents table.infolist tbody tr td.ColumnValue ol li {
+    padding-bottom:.2em;
+}
+
+/* Subsections : Families
+----------------------------------------------------- */
+div#families table.infolist {
+    margin-top:.5em;
+}
+div#families table.infolist tbody tr td.ColumnValue p {
+    margin-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol {
+    margin:0;
+    padding-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol li {
+    padding-bottom:.2em;
+}
+
+/* Subsections : Addresses
+----------------------------------------------------- */
+div#addresses {
+    padding-bottom:0;
+}
+div#addresses table.infolist tbody tr td {
+    padding-top:.4em;
+    padding-bottom:.4em;
+}
+div#addresses table.infolist tbody tr td.ColumnAttribute {
+    width:30%;
+    border-bottom:solid 1px #453619;
+}
+div#addresses table.infolist tbody tr td.ColumnValue {
+    border-bottom:solid 1px #453619;
+}
+
+/* Subsections : Gallery
 ----------------------------------------------------- */
 #indivgallery h4 {
     margin-bottom:1em;
 }
-#indivgallery .thumbnail {
+#indivgallery .thumbnail tr {
     margin:0;
     float:left;
     width:130px;
     height:150px;
     text-align:center;
 }
-#indivgallery .thumbnail a {
+#indivgallery .thumbnail tr a {
     display:block;
     margin:0;
     padding:0;
     background:none;
 }
-#indivgallery .thumbnail a img {
+#indivgallery .thumbnail tr a img {
     margin:0;
     padding:0;
-    border:solid .5pt #000;
+    border:solid 1px #453619;
 }
 #indivgallery div.thumbnail p {
-    font:normal 7pt/9pt sans-serif;
+    font:normal .7em/1.4em sans-serif;
     text-align:center;
     width:80%;
     margin:0 auto;
     padding:0;
 }
 
-/* Subsections : Pedigree 
+/* Subsections : Narrative
 ----------------------------------------------------- */
-#pedigree a {
-    text-decoration:none;
+div#narrative {
+    padding-bottom:0;
 }
-.content #pedigree a:link:after, .content #pedigree a:visited:after {
-    content:"";
+#narrative p {
+    font:normal .9em/1.4em sans-serif;
+    margin-top:.5em;
+    margin-bottom:0;
+    padding:0 20px 1em 20px;
+}
+
+/* Subsections : References
+----------------------------------------------------- */
+
+/* Subsections : Source References
+----------------------------------------------------- */
+div#sourcerefs {
+    height:2.5cm;
+    overflow:auto;
+}
+div#sourcerefs ol {
+    list-style-type:decimal;
+}
+div#sourcerefs ol li ol {
+    list-style-type:lower-alpha;
+}
+
+/* Subsections : Summary Area
+----------------------------------------------------- */
+div#summaryarea {
+    background:none;
+}
+div#summaryarea table.infolist {
+    margin:0;
+    padding:0;
+    background:#FFF;
+    border-bottom:solid .7em #FFF;
+}
+div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
+    font:normal .9em/1.2em sans-serif;
+    vertical-align:top;
+}
+div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
+    display:inline;
+}
+div#summaryarea table.infolist tbody tr td.ColumnAttribute {
+    width:14%;
+    color:#696969;
+    padding-left:20px;
+}
+
+/* Subsections : Weblinks
+----------------------------------------------------- */
+
+/* Subsections : Pedigree
+----------------------------------------------------- */
+div#pedigree {
+    padding-bottom:1.2em;
 }
 .pedigreegen {
-    font:normal 10pt/12pt sans-serif;
+    font:normal .9em/1.2em sans-serif;
     list-style:none;
-    margin:8pt 0 0 0;
+    margin:.5em 0 0 0;
     padding:0 0 0 20px;
 }
 .pedigreegen li ol {
     list-style:none;
-    margin-left:16pt;
+    margin-left:.5em;
 }
 .pedigreegen li ol li ol {
-    font:normal 9pt/11pt sans-serif;
+    font:normal 1em/1.4em sans-serif;
     list-style:decimal;
-    margin-left:16pt;
+    margin-left:1.6em;
 }
 .pedigreegen li ol li ol li ol.spouselist {
     list-style:none;
@@ -428,11 +788,12 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 }
 .spouselist li.spouse ol {
     list-style:decimal;
-    margin-left:16pt;
+    margin-left:1.6em;
 }
 .spouse a {
     font-weight:normal;
     font-style:normal;
+    color:#000;
 }
 .spouse:before {
     content: "+ ";
@@ -441,47 +802,75 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
     font-weight:bold;
 }
 
-/* Subsections : Ancestors Tree 
+/* Subsections : Ancestors Tree
 ----------------------------------------------------- */
 #tree {
     page-break-before:always;
     margin:0;
     padding:0;
+    background:none;
 }
 #treeContainer {
     position:relative;
     z-index:1;
 }
-#treeContainer div.boxbg a:link:after, #treeContainer div.boxbg a:visited:after {
-    font-size:70%;
-    font-family:sans-serif;
-    content:"";
-}
-.boxbg {
+#treeContainer div.boxbg {
     position:absolute;
     margin:0;
     padding:0;
     background:none;
 }
-#treeContainer div.boxbg span.thumbnail {
-    display:block;
-    margin:0 auto;
-}
-.boxbg a {
+#treeContainer div.boxbg a,
+#treeContainer div.boxbg span.unlinked {
     position:relative;
     z-index:10;
     display:block;
     font:normal .7em/1.4em sans-serif;
     text-align:center;
     text-decoration:none;
-    width:50pt;
-    padding:5pt 8pt;
-    margin:5pt 0 0 0;
+    color:#542;
+    width:118px;
+    padding:5px 20px 7px 20px;
+    margin-top:-25px;
+    margin-left:16px;
     background-color:#FFF;
-    border:solid 1pt #000;
+    border:solid 1px #453619;
+}
+#treeContainer div.boxbg a.noThumb, 
+#treeContainer div.AncCol3 a, 
+#treeContainer div.AncCol4 a, 
+#treeContainer div.AncCol3 span.unlinked, 
+#treeContainer div.AncCol4 span.unlinked {
+    margin-top:10px;
+}
+#treeContainer div.boxbg a.noThumb:hover {
+    margin-top:0;
+}
+#treeContainer div.boxbg span.thumbnail {
+    display:block;
+    height:65px;
+    margin:0 auto;
+    padding:4px 0;
+}
+#treeContainer div.boxbg span.thumbnail img {
+    height:65px;
+    margin:0 auto;
 }
 #treeContainer div.AncCol3 span.thumbnail, #treeContainer div.AncCol4 span.thumbnail {
     display:none;
+}
+#treeContainer div.male a,
+#treeContainer div.male span.unlinked {
+    background:url(../images/Web_Gender_Male.png) #BCEAF6 no-repeat top right;
+}
+#treeContainer div.female a, 
+#treeContainer div.female span.unlinked {
+    background:url(../images/Web_Gender_Female.png) #FFC0CB no-repeat top right;
+}
+#treeContainer div.unknown a,
+#treeContainer div.unknown span.unlinked {
+    background-color:#000;
+    color:#FAFAFA;
 }
 .shadow {
     display:none;
@@ -489,147 +878,115 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 #tree div div.bvline {
     position:absolute;
     z-index:2;
-    height:1pt;
-    margin:0;
+    height:1px;
+    margin:0 0 0 16px;
     padding:0;
-    background-color:#FFF;
-    border-bottom:solid .5pt #A7A7A7
+    background-color:#453619;
 }
 #tree div div.bhline {
     position:absolute;
     z-index:2;
-    width:1pt;
-    margin:0;
+    width:1px;
+    margin:0 0 0 16px;
     padding:0;
-    background-color:#FFF;
-    border-right:solid .5pt #A7A7A7
+    background-color:#453619;
 }
 .ghline, .gvline {
     display:none;
 }
 
-/* Footer
------------------------------------------------------ */
-#footer {
-    width:100%;
-    margin:0;
-    padding:.1in 0 0 0;
-    clear:both;
-    border-top:solid .5pt #000;
-}
-#user_footer {
-    float:left;
-    width:70%;
-}
-#user_footer p {
-    font-style:italic;
-}
-p#createdate {
-    float:left;
-    width:3in;
-    font:normal 9pt/10pt sans-serif;
-    margin:0;
-}
-#copyright {
-    float:right;
-    width:4in;
-    margin:0;
-    font:normal 9pt/10pt sans-serif;
-    text-align:right;
-}
-p#quality {
-    display:none;
-}
-
-/* Calendar Styles 
+/* Calendar Styles
 -------------------------------------------------------------------------------------------- */
 /* Calendar : General */
-body#WebCal h1#SiteTitle {
-    float:left;
-    font-size:14pt;
-    line-height:16pt;
-    padding-bottom:.1in;
+body#WebCal {
+    padding:0 14px;
+    background-color:#542;
 }
 .calendar {
-    clear:both;
     empty-cells:show;
     width:100%;
-    font-size:14pt;
+    font-size:1em;
     font-weight:normal;
     margin:0;
     padding:0;
     border:none;
     border-collapse:collapse;
 }
-.calendar thead, .calendar tbody {
-    border-style:solid;
-    border-width:2pt 2pt 2pt 2pt;
-    border-color:#000;
-}
-.calendar tbody {
-    border-top:none;
-}
 .calendar thead tr th {
-    width:12%;
-    font-family:sans-serif;
-    font-size:10pt;
-    font-weight:bold;
+    width:14%;
+    font-weight:normal;
+    font-size:18px;
+    line-height:18px;
     text-align:center;
     text-transform:uppercase;
-    padding:.2em 0 .1em 0;
+    padding:2px 0;
 }
 .calendar thead tr th.monthName {
     width:100%;
-    font-size:20pt;
+    font-size:2em;
     line-height:100%;
     text-transform:none;
-    padding:5pt;
-    border-width:0;
+    color:#542;
+    padding:.3em 0 .2em 0;
+    background-color:#FFF;
 }
 #CreatorInfo {
     float:right;
-    margin:0 10px 0 0;
+    color:#FFF;
+    margin:-24px 10px 0 0;
 }
-body#WebCal a {
-    text-decoration:none;
+.calendar thead tr th.weekend, 
+.calendar thead tr th.weekday {
+    font-style:italic;
     color:#000;
-}
-.calendar tfoot {
-    border:none;
+    background-color:#6AF364;
+    border:solid 2px #453619;
 }
 .calendar tfoot tr td {
-    font-size:12pt;
-    font-style:italic;
     padding:.7em 5% 1em 5%;
+    border-top:solid 2px #000;
+    vertical-align:middle;
+    color:#453619;
+    background-color:#D8F3D6;
 }
 
 /* Calendar : Date Numeral */
-.calendar td div.date {
+.calendar tbody tr td div.date {
     float:right;
     display:block;
-    font-size:16pt;
+    width:1.8em;
+    font-size:1.2em;
     line-height:100%;
-    font-weight:bold;
     text-align:center;
-    color:#000;
+    color:#542;
     margin:0 0 0 .5em;
-    padding:7pt;
-}
-.calendar td.highlight div.date {
-    color:#F00;
+    padding:.2em 0;
+    background-color:#D8F3D6;
 }
 
 /* Calendar : Date Container */
 .calendar tbody tr td {
     vertical-align:top;
-    height:4em;
+    height:10em;
     padding:0;
     border-width:1px 0 0 1px;
     border-style:solid;
-    border-color:#999;
+    border-color:#453619;
+}
+.calendar tbody tr td.weekday {
+    background-color:#FFF;
+}
+.calendar tbody tr td.weekend {
+    background-color:#D8F3D6;
+}
+.calendar tbody tr td.saturday {
+    border-right:solid 1px #453619;
+ }
+.calendar tbody tr td.sunday {
+    border-left:solid 1px #453619;
 }
 .calendar tbody tr td:first-child {
-    border-left:none;
+    border-left:solid 1px #453619;
 }
 .calendar tbody tr:first-child td {
     border-top:none;
@@ -639,8 +996,8 @@ body#WebCal a {
 .calendar tbody tr td ul {
     list-style:none;
     font-family:sans-serif;
-    font-size:8pt;
-    margin:30pt 0 5pt 0;
+    font-size:1em;
+    margin:2.3em 0 .3em 0;
     padding:0;
 }
 .calendar tbody tr td ul li {
@@ -648,17 +1005,25 @@ body#WebCal a {
     width:92%;
     margin:0 4%;
     padding:.2em 0 .3em 0;
-    border-top:dashed .5pt #999;
+    border-top:dashed 1px #453619;
 }
 .calendar tbody tr td ul li:first-child {
     border:none;
 }
+
+/* Calendar : Birthday, Anniversary, Highlight */
 .calendar tbody tr td ul li em {
     font-style:normal;
-    color:#000;
+    color:#0A65B5;
 }
 .calendar tbody tr td ul li span.yearsmarried em {
-    color:#000;
+    color:#453619;
+}
+.calendar tbody tr td.highlight { }
+
+.calendar tbody tr td.highlight div.date {
+    color:#0A65B5;
+    background-color:#C2E1FE;
 }
 
 /* Calendar : Previous-Next Month */
@@ -666,10 +1031,10 @@ body#WebCal a {
 .calendar tbody tr td.next, 
 .calendar tbody tr td.previous div.date, 
 .calendar tbody tr td.next div.date {
-    font-weight:normal;
-    font-size:12pt;
-    color:#999;
+    color:#333;
+    background-color:#D8F3D6;
 }
+
 /* Calendar : Full Year */
 body#fullyearlinked div.content {
     width:963px;
@@ -680,7 +1045,7 @@ body#fullyearlinked table.calendar {
     float:left;
     width:320px;
     height:18em;
-    border:solid 1px #000;
+    border:solid 1px #453619;
 }
 body#fullyearlinked table.calendar thead tr th {
     height:2em;
@@ -691,4 +1056,10 @@ body#fullyearlinked table.calendar thead tr th.monthName {
 }
 body#fullyearlinked table.calendar tbody tr td {
     height:3em;
+}
+body#fullyearlinked table.calendar tbody tr td.saturday {
+    border-right:solid 2px #000;
+}
+body#fullyearlinked able.calendar tbody tr td.sunday {
+    border:solid 2px #000;
 }
