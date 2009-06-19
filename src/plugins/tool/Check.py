@@ -58,6 +58,7 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import Utils
+from gui.utils import ProgressMeter
 #import const
 import ManagedWindow
 
@@ -243,7 +244,7 @@ class CheckIntegrity(object):
                               'repos'   : [],
                               'notes'   : [],
                              }
-        self.progress = Utils.ProgressMeter(_('Checking Database'),'')
+        self.progress = ProgressMeter(_('Checking Database'),'')
 
     def family_errors(self):
         return len(self.broken_parent_links) + \

@@ -54,7 +54,7 @@ from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from gen.plug import PluginManager, ImportPlugin
 from Utils import gender as gender_map
-from Utils import ProgressMeter
+from gui.utils import ProgressMeter
 from Utils import create_id
 
 #-------------------------------------------------------------------------

@@ -45,6 +45,7 @@ import gtk
 from Filters import GenericFilter, build_filter_model, Rules
 import Sort
 import Utils
+from gui.utils import ProgressMeter
 from docgen import ODSTab
 import const
 import Errors
@@ -171,7 +172,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
     def on_apply_clicked(self, obj):
         cfilter = self.filter_menu[self.filters.get_active()][1]
 
-        progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
+        progress_bar = ProgressMeter(_('Comparing events'),'')
         progress_bar.set_pass(_('Selecting people'),1)
 
         plist = cfilter.apply(self.db,
@@ -288,7 +289,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.progress_bar.close()
 
     def build_row_data(self):
-        self.progress_bar = Utils.ProgressMeter(_('Comparing Events'),'')
+        self.progress_bar = ProgressMeter(_('Comparing Events'),'')
         self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)

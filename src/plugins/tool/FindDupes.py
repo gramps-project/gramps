@@ -37,7 +37,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import gen.lib
-import Utils
+from gui.utils import ProgressMeter
 import soundex
 from BasicUtils import name_displayer
 from QuestionDialog import OkDialog
@@ -180,7 +180,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 pass
     
     def find_potentials(self,thresh):
-        self.progress = Utils.ProgressMeter(_('Find Duplicates'),
+        self.progress = ProgressMeter(_('Find Duplicates'),
                                             _('Looking for duplicate people'))
 
         index = 0

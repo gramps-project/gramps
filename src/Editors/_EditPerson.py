@@ -48,6 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
+from gui.utils import add_menuitem
 import Mime
 import gen.lib
 import widgets
@@ -496,8 +497,8 @@ class EditPerson(EditPrimary):
         menu.set_title(_("Media Object"))
         obj = self.db.get_object_from_handle(photo.get_reference_handle())
         if obj:
-            Utils.add_menuitem(menu, _("View"), photo, self._popup_view_photo)
-        Utils.add_menuitem(menu, _("Edit Object Properties"), photo, 
+            add_menuitem(menu, _("View"), photo, self._popup_view_photo)
+        add_menuitem(menu, _("Edit Object Properties"), photo, 
                            self._popup_change_description)
         menu.popup(None, None, None, event.button, event.time)
 

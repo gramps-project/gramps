@@ -44,7 +44,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
+from gui.utils import ProgressMeter
 from PluginUtils import Tool
 from gen.plug import PluginManager
 from QuestionDialog import OkDialog
@@ -117,7 +117,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.prefix1_list = []
         self.prefix2_list = []
 
-        self.progress = Utils.ProgressMeter(
+        self.progress = ProgressMeter(
             _('Extracting Information from Names'), '')
         self.progress.set_pass(_('Analyzing names'),
                                self.db.get_number_of_people())

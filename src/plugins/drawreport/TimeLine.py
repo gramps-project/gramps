@@ -46,7 +46,8 @@ from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
-from Utils import probably_alive, ProgressMeter
+from Utils import probably_alive
+from gui.utils import ProgressMeter
 import gen.lib
 
 #------------------------------------------------------------------------

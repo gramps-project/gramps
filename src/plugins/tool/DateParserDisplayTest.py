@@ -45,7 +45,7 @@ from gettext import gettext as _
 import gen.lib
 from PluginUtils import Tool
 from gen.plug import PluginManager
-import Utils
+from gui.utils import ProgressMeter
 from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
@@ -68,7 +68,7 @@ class DateParserDisplayTest(Tool.Tool):
 
 
     def run_tool(self):
-        self.progress = Utils.ProgressMeter(_('Running Date Test'),'')
+        self.progress = ProgressMeter(_('Running Date Test'),'')
         self.progress.set_pass(_('Generating dates'),
                                4)
         dates = []

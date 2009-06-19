@@ -48,6 +48,7 @@ log = logging.getLogger('.ImportProGen')
 #
 #-------------------------------------------------------------------------
 import Utils
+from gui.utils import ProgressMeter
 import gen.lib
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ImportPlugin
@@ -488,7 +489,7 @@ class ProgenParser(object):
         self.skeys = {}                 # Caching source handles
 
     def parse_progen_file(self):
-        self.progress = Utils.ProgressMeter(_("Import from Pro-Gen"), '')
+        self.progress = ProgressMeter(_("Import from Pro-Gen"), '')
 
         self.def_ = PG30_Def(self.fname)
         #print self.def_.diag()

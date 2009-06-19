@@ -347,7 +347,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         buffer.set_text("")
         
     def pre_run(self):
-        from Utils import ProgressMeter
+        from gui.utils import ProgressMeter
         self.progress = ProgressMeter(self.get_title())
         
     def run(self):

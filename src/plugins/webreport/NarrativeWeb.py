@@ -79,7 +79,6 @@ log = logging.getLogger(".WebPage")
 from gen.lib import UrlType, EventType, Person, date, Date, ChildRefType, \
                     FamilyRelType, NameType, Name
 import const
-from GrampsCfg import get_researcher
 import Sort
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption, NumberOption, StringOption, \
@@ -88,6 +87,7 @@ from gen.plug.menu import PersonOption, NumberOption, StringOption, \
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB,
                         Bibliography, CSS_FILES )
 import Utils
+from gui.utils import ProgressMeter
 import ThumbNails
 import ImgManip
 import Mime
@@ -198,7 +198,7 @@ class BasePage(object):
 
         self.page_title = ""
 
-        self.author = get_researcher().get_name()
+        self.author = Utils.get_researcher().get_name()
         if self.author:
             self.author = self.author.replace(',,,', '')
         self.up = False
@@ -2326,7 +2326,7 @@ class ContactPage(BasePage):
                 if contactimg:
                     summaryarea += contactimg
 
-                r = get_researcher()
+                r = Utils.get_researcher()
 
                 with Html('div', id='researcher') as researcher:
                     summaryarea += researcher
@@ -3682,7 +3682,7 @@ class NavWebReport(Report):
                             value)
                 return
 
-        self.progress = Utils.ProgressMeter(_("Narrated Web Site Report"), '')
+        self.progress = ProgressMeter(_("Narrated Web Site Report"), '')
 
         # Build the person list
         ind_list = self.build_person_list()

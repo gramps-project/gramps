@@ -43,7 +43,7 @@ from ReportBase import ReportUtils
 from PluginUtils import Tool
 from Editors import EditPerson, EditFamily
 import ManagedWindow
-import Utils
+from gui.utils import ProgressMeter
 import GrampsDisplay
 from TransUtils import sgettext as _
 from glade import Glade
@@ -96,7 +96,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     
         # start the progress indicator
-        self.progress = Utils.ProgressMeter(self.title,_('Starting'))
+        self.progress = ProgressMeter(self.title,_('Starting'))
 
         # setup the columns
         self.model = gtk.TreeStore(
@@ -226,7 +226,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
         # if more than 1 person is selected, use a progress indicator
         if rows > 1:
-            progress = Utils.ProgressMeter(self.title,_('Starting'))
+            progress = ProgressMeter(self.title,_('Starting'))
             progress.set_pass(_('Setting marker for %d people') % rows, rows)
 
         # start the db transaction

@@ -46,7 +46,7 @@ import gtk
 import gen.lib
 import PageView
 import DisplayModels
-import Utils
+from gui.utils import add_menuitem
 import Errors
 import Bookmarks
 import Config
@@ -195,7 +195,7 @@ class PlaceView(PageView.ListView):
         servlist = PluginManager.get_instance().get_mapservice_list()
         for i, service in zip(range(len(servlist)), servlist):
             key = service[2].replace(' ', '-')
-            Utils.add_menuitem(menu, service[1], None, 
+            add_menuitem(menu, service[1], None, 
                                make_callback(self.set_mapservice, key))
             self.mapservicedata[key] = (service[0], service[2], service[3])
 

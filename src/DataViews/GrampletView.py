@@ -49,7 +49,7 @@ import const
 import PageView
 import ManagedWindow
 import ConfigParser
-import Utils
+from gui.utils import add_menuitem
 from QuickReports import run_quick_report_by_name
 import GrampsDisplay
 from glade import Glade
@@ -1585,7 +1585,7 @@ class GrampletView(PageView.PersonNavView):
                          in AVAILABLE_GRAMPLETS]
                 names.sort()
                 for name in names:
-                    Utils.add_menuitem(qr_menu, name, 
+                    add_menuitem(qr_menu, name, 
                                        None, self.add_gramplet)
                 self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
             rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
@@ -1602,7 +1602,7 @@ class GrampletView(PageView.PersonNavView):
                 if len(names) > 0:
                     qr_menu = gtk.Menu()
                     for name in names:
-                        Utils.add_menuitem(qr_menu, name, 
+                        add_menuitem(qr_menu, name, 
                                            None, self.restore_gramplet)
                     self.uistate.uimanager.get_widget('/Popup/RestoreGramplet').set_submenu(qr_menu)
             if menu:

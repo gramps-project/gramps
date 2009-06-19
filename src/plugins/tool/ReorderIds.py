@@ -39,7 +39,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
+from gui.utils import ProgressMeter
 import gen.lib
 from PluginUtils import Tool
 from gen.plug import PluginManager
@@ -60,7 +60,7 @@ class ReorderIds(Tool.BatchTool):
         db = dbstate.db
         self.uistate = uistate
         if uistate:
-            self.progress = Utils.ProgressMeter(_('Reordering GRAMPS IDs'),'')
+            self.progress = ProgressMeter(_('Reordering GRAMPS IDs'),'')
         else:
             print "Reordering GRAMPS IDs..."
 

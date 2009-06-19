@@ -197,7 +197,8 @@ class GenericFilter(object):
     def check(self, db, handle):
         return self.get_check_func()(db, [handle])
 
-    # progress is optional. If present it must be an instance of Utils.ProgressMeter
+    # progress is optional. If present it must be an instance of 
+    #  gui.utils.ProgressMeter
     def apply(self, db, id_list=None, progress=None):
         m = self.get_check_func()
         for rule in self.flist:

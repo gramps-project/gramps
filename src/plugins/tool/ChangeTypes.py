@@ -36,7 +36,7 @@ from gettext import ngettext
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
+from gui.utils import ProgressMeter
 import locale
 import ManagedWindow
 import AutoComp
@@ -113,7 +113,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         if not cli:
-            progress = Utils.ProgressMeter(_('Analyzing Events'),'')
+            progress = ProgressMeter(_('Analyzing Events'),'')
             progress.set_pass('',self.db.get_number_of_events())
             
         for event_handle in self.db.get_event_handles():

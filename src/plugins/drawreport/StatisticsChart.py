@@ -51,7 +51,7 @@ from gen.plug.menu import BooleanOption, NumberOption, EnumeratedListOption, \
                          FilterOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 import DateHandler
-from Utils import ProgressMeter
+from gui.utils import ProgressMeter
 
 #------------------------------------------------------------------------
 #

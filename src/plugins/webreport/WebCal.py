@@ -54,7 +54,6 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 from gen.lib import date, Date, Name, Person, NameType, EventType
 import const
-from GrampsCfg import get_researcher
 from gen.plug import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, \
                        CSS_FILES 
@@ -63,7 +62,8 @@ from gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           DestinationOption
 import GrampsLocale
 from QuestionDialog import WarningDialog
-from Utils import probably_alive, ProgressMeter, xml_lang
+from Utils import probably_alive, xml_lang, get_researcher
+from gui.utils import ProgressMeter
 from DateHandler import displayer as _dd
 
 from BasicUtils import name_displayer as _nd

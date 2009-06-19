@@ -37,7 +37,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
+from gui.utils import ProgressMeter
 import GrampsDisplay
 import ManagedWindow
 
@@ -81,7 +81,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         if self.fail:
             return
 
-        self.progress = Utils.ProgressMeter(_('Checking Family Names'),'')
+        self.progress = ProgressMeter(_('Checking Family Names'),'')
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
         self.name_list = []

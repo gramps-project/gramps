@@ -213,48 +213,6 @@ def family_upper_name(family, db):
         name = mother.get_primary_name().get_upper_name()
     return name
         
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def redraw_list(dlist, clist, func):
-    clist.clear()
-    
-    index = 0
-    for obj in dlist:
-        col = 0
-        node = clist.append()
-        for data in func(obj):
-            clist.set_value(node, col, data)
-            col = col + 1
-        index = index + 1
-    return index
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def delete_selected(obj, dlist):
-    sel = obj.get_selection()
-    model, node = sel.get_selected()
-    if node:
-        index = model.get_path(node)[0]
-        del dlist[index]
-    return 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def add_menuitem(menu, msg, obj, func):
-    item = gtk.MenuItem(msg)
-    item.set_data('o', obj)
-    item.connect("activate", func)
-    item.show()
-    menu.append(item)
 
 #-------------------------------------------------------------------------
 #
@@ -334,55 +292,6 @@ def get_unicode_path(path):
     else:
         return unicode(path,sys.getfilesystemencoding())
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_string_optmenu(mapping, start_val):
-    index = 0
-    start_index = 0
-    keys = mapping.keys()
-    keys.sort()
-    myMenu = gtk.Menu()
-
-    for key in keys:
-        if key == "default":
-            menuitem = gtk.MenuItem(_("default"))
-        else:
-            menuitem = gtk.MenuItem(key)
-        menuitem.set_data("d", mapping[key])
-        menuitem.set_data("l", key)
-        menuitem.show()
-        myMenu.append(menuitem)
-        if key == start_val:
-            start_index = index
-        index = index + 1
-    
-    if start_index:
-        myMenu.set_active(start_index)
-    return myMenu
-
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_columns(tree, list):
-    cnum = 0
-    for name in list:
-        renderer = gtk.CellRendererText()
-        renderer.set_fixed_height_from_font(1)
-        column = gtk.TreeViewColumn(name[0], renderer, text=cnum)
-        column.set_min_width(name[1])
-        if name[2] >= 0:
-            column.set_sort_column_id(name[2])
-        if name[0] == '':
-            column.set_clickable(True)
-            column.set_visible(False)
-        cnum = cnum + 1
-        tree.append_column(column)
 
 #-------------------------------------------------------------------------
 #
@@ -447,69 +356,6 @@ def search_for(name):
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
     return 0
-                  
-#-------------------------------------------------------------------------
-#
-#  Change label appearance
-#
-#-------------------------------------------------------------------------
-def bold_label(label, widget=None):
-    if label.__class__ == gtk.Label:
-        text = unicode(label.get_text())
-        text = text.replace('<i>', '')
-        text = text.replace('</i>', '')
-        label.set_text("<b>%s</b>" % text )
-        label.set_use_markup(True)
-    else:
-        clist = label.get_children()
-        text = unicode(clist[1].get_text())
-        text = text.replace('<i>', '')
-        text = text.replace('</i>', '')
-        clist[0].show()
-        clist[1].set_text("<b>%s</b>" % text )
-        clist[1].set_use_markup(True)
-    if widget:
-        widget.window.set_cursor(None)
-        
-def unbold_label(label, widget=None):
-    if label.__class__ == gtk.Label:
-        text = unicode(label.get_text())
-        text = text.replace('<b>', '')
-        text = text.replace('</b>', '')
-        text = text.replace('<i>', '')
-        text = text.replace('</i>', '')
-        label.set_text(text)
-        label.set_use_markup(False)
-    else:
-        clist = label.get_children()
-        text = unicode(clist[1].get_text())
-        text = text.replace('<b>', '')
-        text = text.replace('</b>', '')
-        text = text.replace('<i>', '')
-        text = text.replace('</i>', '')
-        clist[0].hide()
-        clist[1].set_text(text)
-        clist[1].set_use_markup(False)
-    if widget:
-        widget.window.set_cursor(None)
-
-def temp_label(label, widget=None):
-    if label.__class__ == gtk.Label:
-        text = unicode(label.get_text())
-        text = text.replace('<b>', '')
-        text = text.replace('</b>', '')
-        label.set_text("<i>%s</i>" % text )
-        label.set_use_markup(True)
-    else:
-        clist = label.get_children()
-        text = unicode(clist[1].get_text())
-        text = text.replace('<b>', '')
-        text = text.replace('</b>', '')
-        clist[0].hide()
-        clist[1].set_text("<i>%s</i>" % text )
-        clist[1].set_use_markup(True)
-    if widget:
-        widget.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
 
 #-------------------------------------------------------------------------
 #
@@ -965,153 +811,6 @@ def media_path_full(db, filename):
         return filename
     mpath = media_path(db)
     return os.path.join(mpath, filename)
-    
-
-class ProgressMeter(object):
-    """
-    Progress meter class for GRAMPS.
-    
-    The progress meter has two modes:
-    
-    MODE_FRACTION is used when you know the number of steps that will be taken.
-    Set the total number of steps, and then call step() that many times. 
-    The progress bar will progress from left to right.
-    
-    MODE_ACTIVITY is used when you don't know the number of steps that will be
-    taken. Set up the total number of steps for the bar to get from one end of
-    the bar to the other. Then, call step() as many times as you want. The bar
-    will move from left to right until you stop calling step. 
-    """
-    
-    MODE_FRACTION = 0
-    MODE_ACTIVITY = 1
-    
-    def __init__(self, title, header=''):
-        """
-        Specify the title and the current pass header.
-        """
-        self.__mode = ProgressMeter.MODE_FRACTION
-        self.__pbar_max = 100.0
-        self.__pbar_index = 0.0
-        self.__old_val = -1
-        
-        self.__dialog = gtk.Dialog()
-        self.__dialog.connect('delete_event', self.__warn)
-        self.__dialog.set_has_separator(False)
-        self.__dialog.set_title(title)
-        self.__dialog.set_border_width(12)
-        self.__dialog.vbox.set_spacing(10)
-        self.__dialog.vbox.set_border_width(24)
-        self.__dialog.set_size_request(350, 125)
-        
-        tlbl = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
-        tlbl.set_use_markup(True)
-        self.__dialog.vbox.add(tlbl)
-        
-        self.__lbl = gtk.Label(header)
-        self.__lbl.set_use_markup(True)
-        self.__dialog.vbox.add(self.__lbl)
- 
-        self.__pbar = gtk.ProgressBar()
-        self.__dialog.vbox.add(self.__pbar)
-        
-        self.__dialog.show_all()
-        if header == '':
-            self.__lbl.hide()
-
-    def set_pass(self, header="", total=100, mode=MODE_FRACTION):
-        """
-        Reset for another pass. Provide a new header and define number
-        of steps to be used.
-        """
-        self.__mode = mode
-        self.__pbar_max = total
-        self.__pbar_index = 0.0
-        
-        self.__lbl.set_text(header)
-        if header == '':
-            self.__lbl.hide()
-        else:
-            self.__lbl.show()
-
-        if self.__mode is ProgressMeter.MODE_FRACTION:
-            self.__pbar.set_fraction(0.0)
-        else: # ProgressMeter.MODE_ACTIVITY
-            self.__pbar.set_pulse_step(1.0/self.__pbar_max)
-        
-        while gtk.events_pending():
-            gtk.main_iteration()
-
-    def step(self):
-        """Click the progress bar over to the next value.  Be paranoid
-        and insure that it doesn't go over 100%."""
-        
-        if self.__mode is ProgressMeter.MODE_FRACTION:
-            self.__pbar_index = self.__pbar_index + 1.0
-            
-            if self.__pbar_index > self.__pbar_max:
-                self.__pbar_index = self.__pbar_max
-    
-            try:
-                val = int(100*self.__pbar_index/self.__pbar_max)
-            except ZeroDivisionError:
-                val = 0
-    
-            if val != self.__old_val:
-                self.__pbar.set_text("%d%%" % val)
-                self.__pbar.set_fraction(val/100.0)
-                self.__old_val = val
-        else: # ProgressMeter.MODE_ACTIVITY
-            self.__pbar.pulse()
-            
-        while gtk.events_pending():
-            gtk.main_iteration()
-
-    def __warn(self, *obj):
-        """
-        Don't let the user close the progress dialog.
-        """
-        WarningDialog(
-            _("Attempt to force closing the dialog"), 
-            _("Please do not force closing this important dialog."), 
-            self.__dialog)
-        return True
-
-    def close(self):
-        """
-        Close the progress meter
-        """
-        self.__dialog.destroy()
-        
-def open_file_with_default_application( file_path ):
-    """
-    Launch a program to open an arbitrary file. The file will be opened using 
-    whatever program is configured on the host as the default program for that 
-    type of file.
-    
-    @param file_path: The path to the file to be opened.
-        Example: "c:\foo.txt"
-    @type file_path: string
-    @return: nothing
-    """
-    norm_path = os.path.normpath( file_path )
-    
-    if not os.path.exists(norm_path):
-        ErrorDialog(_("Error Opening File"), _("File does not exist"))
-        return
-        
-    if os.sys.platform == 'win32':
-        try:
-            os.startfile(norm_path)
-        except WindowsError, msg:
-            ErrorDialog(_("Error Opening File"), str(msg))
-    else:
-        search = os.environ['PATH'].split(':')
-        for lpath in search:
-            prog = os.path.join(lpath, 'xdg-open')
-            if os.path.isfile(prog):
-                os.spawnvpe(os.P_NOWAIT, prog, [prog, norm_path], os.environ)
-                return
 
 def profile(func, *args):
     import hotshot.stats
@@ -1176,4 +875,33 @@ def get_translations():
     trans = TRANS_TO_KEY.keys()
     trans.sort(lambda a,b: -cmp(len(a), len(b)))
     return trans
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_researcher():
+    import gen.lib
+    import Config
     
+    n  = Config.get(Config.RESEARCHER_NAME)
+    a  = Config.get(Config.RESEARCHER_ADDR)
+    c  = Config.get(Config.RESEARCHER_CITY)
+    s  = Config.get(Config.RESEARCHER_STATE)
+    ct = Config.get(Config.RESEARCHER_COUNTRY)
+    p  = Config.get(Config.RESEARCHER_POSTAL)
+    ph = Config.get(Config.RESEARCHER_PHONE)
+    e  = Config.get(Config.RESEARCHER_EMAIL)
+
+    owner = gen.lib.Researcher()
+    owner.set_name(n)
+    owner.set_address(a)
+    owner.set_city(c)
+    owner.set_state(s)
+    owner.set_country(ct)
+    owner.set_postal_code(p)
+    owner.set_phone(ph)
+    owner.set_email(e)
+
+    return owner

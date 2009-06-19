@@ -45,8 +45,8 @@ from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
                          EnumeratedListOption, FilterOption, PersonOption
 import GrampsLocale
 import gen.lib
-from Utils import probably_alive, ProgressMeter
-
+from Utils import probably_alive
+from gui.utils import ProgressMeter
 
 import libholiday
 from libholiday import g2iso

@@ -53,7 +53,7 @@ import DbState
 from gen.db import (GrampsDBDir, FileVersionDeclineToUpgrade)
 import gen.db.exceptions
 from gen.plug import PluginManager
-import GrampsCfg
+from Utils import get_researcher
 import RecentFiles
 
 #-------------------------------------------------------------------------
@@ -251,7 +251,7 @@ class CLIManager(object):
         
         # apply preferred researcher if loaded file has none
         res = self.dbstate.db.get_researcher()
-        owner = GrampsCfg.get_researcher()
+        owner = get_researcher()
         if res.get_name() == "" and owner.get_name() != "":
             self.dbstate.db.set_researcher(owner)
         

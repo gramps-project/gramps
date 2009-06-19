@@ -55,7 +55,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from cli import CLIManager
+from cli.grampscli import CLIManager
 from PluginUtils import Tool, PluginWindows, \
     ReportPluginDialog, ToolPluginDialog
 import ReportBase

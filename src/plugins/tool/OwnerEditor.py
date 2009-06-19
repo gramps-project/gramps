@@ -37,7 +37,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import GrampsCfg
+from Utils import get_researcher
 import GrampsDisplay
 from widgets import MonitoredEntry
 import ManagedWindow
@@ -159,7 +159,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
     def on_menu_activate(self, menuitem):
         """Copies the owner information from/to the preferences"""
         if menuitem.name == 'copy_from_preferences_to_db':
-            self.owner.set_from(GrampsCfg.get_researcher())
+            self.owner.set_from(get_researcher())
             for entry in self.entries:
                 entry.update()
                 

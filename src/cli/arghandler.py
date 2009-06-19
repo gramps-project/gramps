@@ -439,7 +439,7 @@ class ArgHandler(object):
         pmgr = PluginManager.get_instance()
         if action == 'check':
             import Check
-            checker = Check.CheckIntegrity(self.dbstate.db, None, None)
+            checker = Check.CheckIntegrity(self.dbstate, None, None)
             checker.check_for_broken_family_links()
             checker.cleanup_missing_photos(1)
             checker.check_parent_relationships()
@@ -448,6 +448,7 @@ class ArgHandler(object):
             if errs:
                 checker.report(1)
         elif action == 'summary':
+            ## FIXME, this is broken, Summary no longer has build_report !
             import Summary
             text = Summary.build_report(self.dbstate.db, None)
             print text

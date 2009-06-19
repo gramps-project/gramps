@@ -56,15 +56,6 @@ from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 from glade import Glade
 
-geopresent = True
-try:
-    import DataViews.GeoView
-except:
-    geopresent = False
-#experimental feature, don't show in release
-if not const.VERSION.find('SVN') == -1:
-    gepresent = False
-
 #-------------------------------------------------------------------------
 #
 # Constants 
@@ -83,34 +74,6 @@ COL_NUM  = 0
 COL_NAME = 1
 COL_FMT  = 2
 COL_EXPL = 3
-
-def set_calendar_date_format():
-    format_list = DateHandler.get_date_formats()
-    DateHandler.set_format(Config.get_date_format(format_list))
-
-def get_researcher():
-    import gen.lib
-    
-    n  = Config.get(Config.RESEARCHER_NAME)
-    a  = Config.get(Config.RESEARCHER_ADDR)
-    c  = Config.get(Config.RESEARCHER_CITY)
-    s  = Config.get(Config.RESEARCHER_STATE)
-    ct = Config.get(Config.RESEARCHER_COUNTRY)
-    p  = Config.get(Config.RESEARCHER_POSTAL)
-    ph = Config.get(Config.RESEARCHER_PHONE)
-    e  = Config.get(Config.RESEARCHER_EMAIL)
-
-    owner = gen.lib.Researcher()
-    owner.set_name(n)
-    owner.set_address(a)
-    owner.set_city(c)
-    owner.set_state(s)
-    owner.set_country(ct)
-    owner.set_postal_code(p)
-    owner.set_phone(ph)
-    owner.set_email(e)
-
-    return owner
 
 #-------------------------------------------------------------------------
 #
@@ -188,7 +151,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Researcher')))
         panel.append_page(self.add_color_panel(), 
                           MarkupLabel(_('Marker Colors')))
-        if geopresent:
+        import DataViews
+        if DataViews.geopresent:
             panel.append_page(self.add_geoview_panel(), 
                               MarkupLabel(_('Internet Maps')))
         self.window.show_all()

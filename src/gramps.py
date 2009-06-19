@@ -159,18 +159,18 @@ def run():
     
     #we start with parsing the arguments to determine if we have a cli or a
     # gui session
-    from cli import ArgParser
+    from cli.argparser import ArgParser
     argpars = ArgParser(sys.argv)
     
     if argpars.need_gui():
         #A GUI is needed, set it up 
-        from gui import startgtkloop
+        from gui.grampsgui import startgtkloop
         startgtkloop(error, argpars)
     else:
         #CLI use of GRAMPS
         argpars.print_help()
         
-        from cli import startcli
+        from cli.grampscli import startcli
         startcli(error, argpars)
 
 run()

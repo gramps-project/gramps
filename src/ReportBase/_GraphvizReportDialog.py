@@ -48,6 +48,7 @@ import gobject
 #
 #-------------------------------------------------------------------------------
 import Utils
+from gui.utils import ProgressMeter
 from gen.plug.docgen import BaseDoc, GVDoc 
 import Config
 from ReportBase import CATEGORY_GRAPHVIZ
@@ -123,9 +124,9 @@ def _run_long_process_in_thread(func, header):
     @return: nothing
     
     """
-    pbar = Utils.ProgressMeter(_('Processing File'))
+    pbar = ProgressMeter(_('Processing File'))
     pbar.set_pass(total=40, 
-                  mode=Utils.ProgressMeter.MODE_ACTIVITY, 
+                  mode=ProgressMeter.MODE_ACTIVITY, 
                   header=header)
     
     sys_thread = threading.Thread(target=func)

@@ -48,6 +48,7 @@ log = logging.getLogger(".FamilyLines")
 #------------------------------------------------------------------------
 import gen.lib
 import Utils
+from gui.utils import ProgressMeter
 import ThumbNails
 from DateHandler import displayer as _dd
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
@@ -394,7 +395,7 @@ class FamilyLinesReport(Report):
         from the database is going to be output into the report
         """
 
-        self.progress = Utils.ProgressMeter(_('Generating Family Lines'),
+        self.progress = ProgressMeter(_('Generating Family Lines'),
                                             _('Starting'))
 
         # starting with the people of interest, we then add parents:

@@ -35,7 +35,7 @@ import re
 import gen.lib
 from gen.plug import PluginManager, ExportPlugin
 import DateHandler
-from Utils import ProgressMeter
+from gui.utils import ProgressMeter
 import ExportOptions
 
 def makeDB(db):

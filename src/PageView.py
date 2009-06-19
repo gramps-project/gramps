@@ -50,6 +50,7 @@ import Bookmarks
 import Errors
 from Filters import SearchBar
 import Utils
+from gui.utils import add_menuitem
 import const
 from widgets.menutoolbuttonaction import MenuToolButtonAction
 
@@ -1041,7 +1042,7 @@ class ListView(BookMarkView):
                 if len(reportactions) > 1 :
                     qr_menu = gtk.Menu()
                     for action in reportactions[1:] :
-                        Utils.add_menuitem(qr_menu, action[2], None, action[5])
+                        add_menuitem(qr_menu, action[2], None, action[5])
                     self.uistate.uimanager.get_widget('/Popup/QuickReport').\
                             set_submenu(qr_menu)
             if menu:

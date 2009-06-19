@@ -45,7 +45,8 @@ from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
                          EnumeratedListOption, FilterOption, PersonOption
 import GrampsLocale
 from gen.lib import NameType, EventType, Name, Date, Person
-from Utils import probably_alive, ProgressMeter
+from Utils import probably_alive
+from gui.utils import ProgressMeter
 
 import libholiday
 

@@ -50,7 +50,7 @@ import GrampsDisplay
 
 from PluginUtils import Tool
 from gen.plug import PluginManager
-import Utils
+from gui.utils import ProgressMeter
 from glade import Glade
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
@@ -428,7 +428,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         Performs the actual extraction of information
         """
 
-        self.progress = Utils.ProgressMeter(_('Checking Place Titles'), '')
+        self.progress = ProgressMeter(_('Checking Place Titles'), '')
         self.progress.set_pass(_('Looking for place fields'), 
                                len(self.db.get_place_handles()))
 

@@ -47,6 +47,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Utils
+from gui.utils import ProgressMeter
 import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
@@ -107,7 +108,7 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
             # build up the list of surnames, keeping track of the count for each
             # name (this can be a lengthy process, so by passing in the 
             # dictionary we can be certain we only do this once)
-            progress = Utils.ProgressMeter(_('Finding Surnames'))
+            progress = ProgressMeter(_('Finding Surnames'))
             progress.set_pass(_('Finding surnames'), 
                               database.get_number_of_people())
             for person_handle in database.get_person_handles(False):

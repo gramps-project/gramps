@@ -51,6 +51,7 @@ from DisplayModels import PeopleModel
 import PageView
 from BasicUtils import name_displayer
 import Utils
+from gui.utils import add_menuitem
 from QuestionDialog import ErrorDialog, QuestionDialog
 import TreeTips
 import Errors
@@ -856,7 +857,7 @@ class PersonView(PageView.PersonNavView):
             if len(reportactions) > 1 :
                 qr_menu = gtk.Menu()
                 for action in reportactions[1:] :
-                    Utils.add_menuitem(qr_menu, action[2], None, action[5])
+                    add_menuitem(qr_menu, action[2], None, action[5])
                 self.uistate.uimanager.get_widget('/Popup/QuickReport').\
                             set_submenu(qr_menu)
             if menu:
