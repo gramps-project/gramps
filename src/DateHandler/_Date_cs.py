@@ -69,7 +69,7 @@ class DateParserCZ(DateParser):
         u'r'             : Date.CAL_FRENCH, 
         u'perský'       : Date.CAL_PERSIAN, 
         u'p'             : Date.CAL_PERSIAN, 
-        u'swedish'       : Date.CAL_SWEDISH, 
+        u'švédský'       : Date.CAL_SWEDISH, 
         u's'             : Date.CAL_SWEDISH, 
         }
 
@@ -138,7 +138,7 @@ class DateDisplayCZ(DateDisplay):
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%s%s %s %s %s%s" % (qual_str, u'medzi', 
+            return "%s%s %s %s %s%s" % (qual_str, u'mezi', 
                                         d1, u'a', d2, self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
