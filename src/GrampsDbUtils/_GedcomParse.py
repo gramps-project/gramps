@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -2488,7 +2489,7 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.__not_recognized(line, state.level)
         else:
-            (form, filename, title, note) = self.__obje(state.level)
+            (form, filename, title, note) = self.__obje(state.level + 1)
             self.build_media_object(state.family, form, filename, title, note)
 
     def __family_comm(self, line, state):
@@ -2686,7 +2687,7 @@ class GedcomParser(UpdateCallback):
         if line.data and line.data[0] == '@':
             self.__not_recognized(line, state.level)
         else:
-            (form, filename, title, note) = self.__obje(state.level)
+            (form, filename, title, note) = self.__obje(state.level + 1)
             self.build_media_object(state.event, form, filename, title, note)
 
     def __event_type(self, line, state):
