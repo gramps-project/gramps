@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS VERSION 3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-17 21:28+0800\n"
-"PO-Revision-Date: 2009-06-18 22:54+0800\n"
+"PO-Revision-Date: 2009-06-20 12:27+0800\n"
 "Last-Translator: grampscn <grampscn@gmail.com>\n"
 "Language-Team: zh <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,10 +20,11 @@ msgstr ""
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
+# 初级版本 20090620
 #: ../src/ArgHandler.py:229
 #, python-format
 msgid "Input family tree \"%s\" does not exist."
-msgstr "所输入的家谱树 “%s” 不存在。"
+msgstr "输入的家谱树 \"%s\"不存在."
 
 #: ../src/ArgHandler.py:230
 msgid ""
@@ -38,7 +39,7 @@ msgstr "数据库被锁定，无法打开"
 #: ../src/ArgHandler.py:473
 #, python-format
 msgid "  Info: %s"
-msgstr "...信息： %s "
+msgstr "  信息: %s"
 
 #: ../src/ArgHandler.py:476
 msgid "Database needs recovery, cannot open it!"
@@ -59,32 +60,32 @@ msgstr "地址:"
 #: ../src/Assistant.py:339 ../src/Filters/Rules/Place/_HasPlace.py:51
 #: ../src/plugins/tool/ownereditor.glade.h:2
 msgid "City:"
-msgstr "城市："
+msgstr "城市:"
 
 #: ../src/Assistant.py:340 ../src/plugins/tool/ownereditor.glade.h:9
 msgid "State/Province:"
-msgstr "州／省："
+msgstr "州／省:"
 
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:54
 #: ../src/plugins/tool/ownereditor.glade.h:5
 msgid "Country:"
-msgstr "国家："
+msgstr "国家:"
 
 #: ../src/Assistant.py:342
 msgid "ZIP/Postal code:"
-msgstr "邮编："
+msgstr "邮编:"
 
 #: ../src/Assistant.py:343 ../src/plugins/tool/ownereditor.glade.h:8
 msgid "Phone:"
-msgstr "电话："
+msgstr "电话:"
 
 #: ../src/Assistant.py:344 ../src/plugins/tool/ownereditor.glade.h:6
 msgid "Email:"
-msgstr "电子邮件："
+msgstr "电子邮件:"
 
 #: ../src/Bookmarks.py:66
 msgid "manual|Bookmarks"
-msgstr "manual|书签"
+msgstr "书签"
 
 #: ../src/Bookmarks.py:201
 #, python-format
@@ -185,14 +186,14 @@ msgstr "条目编辑器"
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
-msgstr "GRAMPS（家谱调查和研究管理系统）是一个家谱程序。"
+msgstr "GRAMPS（家谱调查和研究管理系统）是一套个人家谱程序."
 
 #: ../src/const.py:183
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"陈欣(Celia)\n"
-"赖洁(Lexi)\n"
-"黄友诚<grampscn@gmail.com>"
+"陈欣(Celia) 2009\n"
+"赖洁(Lexi) 2009\n"
+"黄友诚<grampscn@gmail.com>,20090620"
 
 #: ../src/const.py:193 ../src/const.py:194 ../src/gen/lib/date.py:1590
 #: ../src/gen/lib/date.py:1604
@@ -237,7 +238,7 @@ msgstr "据计算"
 
 #: ../src/DateEdit.py:102
 msgid "manual|Editing_Dates"
-msgstr "manual|修改日期"
+msgstr "编辑日期(_D)"
 
 #: ../src/DateEdit.py:151
 msgid "Bad Date"
@@ -259,7 +260,7 @@ msgid ""
 "\n"
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
-msgstr "继续导入操作将会擦除本次对话的恢复历史。"
+msgstr "继续导入操作将会擦除本次对话的恢复历史."
 
 #: ../src/DbLoader.py:89
 msgid "_Proceed with import"
@@ -271,12 +272,12 @@ msgstr "停止(_S)"
 
 #: ../src/DbLoader.py:96
 msgid "GRAMPS: Import database"
-msgstr "GRAMPS：导入数据库"
+msgstr "GRAMPS:导入数据库"
 
 #: ../src/DbLoader.py:154 ../src/DbLoader.py:245
 #, python-format
 msgid "Could not open file: %s"
-msgstr "无法打开文件： %s"
+msgstr "无法打开文件: %s"
 
 #: ../src/DbLoader.py:155
 #, python-format
@@ -286,9 +287,9 @@ msgid ""
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, GEDCOM, and "
 "others."
 msgstr ""
-"GRAMPS无法识别 \"%s\" 的文件类型。\n"
+"GRAMPS无法识别 \"%s\" 的文件类型.\n"
 "\n"
-"有效文件类型包括：GRAMPS 数据库，GRAMPS XML， GRAMPS包，和 GEDCOM"
+"有效文件类型包括:GRAMPS 数据库，GRAMPS XML, GRAMPS包，和 GEDCOM."
 
 #: ../src/DbLoader.py:179 ../src/DbLoader.py:185
 msgid "Cannot open file"
@@ -296,11 +297,11 @@ msgstr "无法打开文档"
 
 #: ../src/DbLoader.py:180
 msgid "The selected file is a directory, not a file.\n"
-msgstr "所选文档是一个目录，不是一个文件。\n"
+msgstr "所选文档是一个目录，不是一个文件.\n"
 
 #: ../src/DbLoader.py:186
 msgid "You do not have read access to the selected file."
-msgstr "你没有读取该文档的权限。"
+msgstr "你没有读取该文档的权限."
 
 #: ../src/DbLoader.py:195
 msgid "Cannot create file"
@@ -308,7 +309,7 @@ msgstr "不能创建文档"
 
 #: ../src/DbLoader.py:196 ../src/DbLoader.py:220
 msgid "You do not have write access to the selected file."
-msgstr "你没有写入该文档的权限。"
+msgstr "你没有写入该文档的权限."
 
 #: ../src/DbLoader.py:219
 msgid "Read only database"
@@ -321,14 +322,14 @@ msgstr "不能打开数据库"
 #: ../src/DbLoader.py:268
 #, python-format
 msgid "Could not import file: %s"
-msgstr "无法导入文件： %s"
+msgstr "无法导入文件: %s"
 
 #: ../src/DbLoader.py:269
 msgid ""
 "This file incorrectly identifies its character set, so it cannot be "
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
-"不能正确识别本文档的字符，因此未能正确导入。请修正编码方式，并尝试再次导入。"
+"不能正确识别本文档的字符，因此未能正确导入.请修正编码方式，并尝试再次导入"
 
 #: ../src/DbLoader.py:316
 msgid "All files"
@@ -340,7 +341,7 @@ msgstr "已自动删除"
 
 #: ../src/DbLoader.py:366
 msgid "Select file _type:"
-msgstr "选择文件类型："
+msgstr "选择文件类型:"
 
 #. -------------------------------------------------------------------------
 #.
@@ -362,11 +363,11 @@ msgstr "存档(_A)"
 #: ../src/DbManager.py:234
 #, python-format
 msgid "Starting Import, %s"
-msgstr "开始导入， %s"
+msgstr "开始导入, %s"
 
 #: ../src/DbManager.py:240
 msgid "Import finished..."
-msgstr "导入完成"
+msgstr "导入完成..."
 
 #. Create a new database
 #: ../src/DbManager.py:294 ../src/plugins/import/ImportCsv.py:383
@@ -390,7 +391,7 @@ msgstr "上次修订"
 #: ../src/DbManager.py:591
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "是否解除对数据库 '%s' 的锁定？"
+msgstr "是否解除对数据库 '%s' 的锁定?"
 
 #: ../src/DbManager.py:592
 msgid ""
@@ -399,9 +400,9 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"GRAMPS发现其他人正在编辑数据库。该数据库已经被锁定，你不能进行编辑。如果确信"
-"没有人正在编辑，你可以安全的解除锁定。 但是如果有人在编辑时你解除锁定，你可能"
-"会毁坏数据库的完整。"
+"GRAMPS发现其他人正在编辑数据库.该数据库已经被锁定，你不能进行编辑.如果确信没"
+"有人正在编辑，你可以安全的解除锁定. 但是如果有人在编辑时你解除锁定，你可能会"
+"毁坏数据库的完整."
 
 #: ../src/DbManager.py:598
 msgid "Break lock"
@@ -418,17 +419,17 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"尝试重命名版本时失败，并反馈以下信息：\n"
+"尝试重命名版本时失败，并反馈以下信息:\n"
 "\n"
 "%s"
 
 #: ../src/DbManager.py:691
 msgid "Could not rename the Family Tree."
-msgstr "无法重命名家族树"
+msgstr "无法重命名家族树."
 
 #: ../src/DbManager.py:692
 msgid "Family Tree already exists, choose a unique name."
-msgstr "家族树已经存在，请选择唯一的名称"
+msgstr "家族树已经存在，请选择唯一的名称."
 
 #: ../src/DbManager.py:705
 msgid "Could not rename family tree"
@@ -449,7 +450,7 @@ msgstr "移除家族树 %s"
 
 #: ../src/DbManager.py:761
 msgid "Removing this family tree will permanently destroy the data."
-msgstr "移除本家族树会永久破坏数据。"
+msgstr "移除本家族树会永久破坏数据."
 
 #: ../src/DbManager.py:762
 msgid "Remove family tree"
@@ -458,12 +459,12 @@ msgstr "移除家族树"
 #: ../src/DbManager.py:768
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "移除数据库 '%(database)s' 的第 '%(revision)s' 修订版本。"
+msgstr "移除数据库 '%(database)s' 的第 '%(revision)s' 修订版本"
 
 #: ../src/DbManager.py:772
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
-msgstr "移除这个版本可以防止未来你再将它解压缩出来。"
+msgstr "移除这个版本可以防止未来你再将它解压缩出来."
 
 #: ../src/DbManager.py:774
 msgid "Remove version"
@@ -484,7 +485,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"尝试删除一个版本时失败，并反馈以下信息：\n"
+"尝试删除一个版本时失败，并反馈以下信息:\n"
 "\n"
 "%s"
 
@@ -498,7 +499,7 @@ msgstr "无法创建家族树"
 
 #: ../src/DbManager.py:994
 msgid "Could not make database directory: "
-msgstr "无法创建数据库目录"
+msgstr "无法创建数据库目录: "
 
 #: ../src/DbManager.py:1008
 msgid "Never"
@@ -507,7 +508,7 @@ msgstr "从不"
 #: ../src/DbManager.py:1081
 #, python-format
 msgid "Locked by %s"
-msgstr ""
+msgstr "被 %s 锁定"
 
 #: ../src/DbManager.py:1084 ../src/ScratchPad.py:102
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
@@ -552,7 +553,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"尝试恢复数据失败，反馈以下信息：\n"
+"尝试恢复数据失败，反馈以下信息:\n"
 "\n"
 "%s"
 
@@ -567,17 +568,17 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"尝试创建存档失败，反馈以下信息：\n"
+"尝试创建存档失败，反馈以下信息:\n"
 "\n"
 "%s"
 
 #: ../src/DbManager.py:1151
 msgid "Creating data to be archived..."
-msgstr "创建存档数据"
+msgstr "创建存档数据..."
 
 #: ../src/DbManager.py:1160
 msgid "Saving archive..."
-msgstr "保存存档"
+msgstr "保存存档..."
 
 #: ../src/DbManager.py:1174
 #, python-format
@@ -586,7 +587,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"尝试存档数据时失败，反馈以下信息：\n"
+"尝试存档数据时失败，反馈以下信息:\n"
 "\n"
 "%s"
 
@@ -635,11 +636,11 @@ msgid ""
 "\n"
 "Press Apply to proceed, Back to revisit your options, or Cancel to abort"
 msgstr ""
-"数据将被保存如下：\n"
+"数据将被保存如下:\n"
 "\n"
-"格式：\t%s\n"
-"名称：\t%s\n"
-"文件夹：\t%s\n"
+"格式:\t%s\n"
+"名称:\t%s\n"
+"文件夹:\t%s\n"
 "\n"
 "按“执行”继续，“后退”去修改你的选项，“取消”退出"
 
@@ -648,7 +649,9 @@ msgid ""
 "The selected file and folder to save to cannot be created or found.\n"
 "\n"
 "Press Back to return and select a valid filename."
-msgstr "要保存的文件和文件夹"
+msgstr ""
+"选中的文件和要保存的目录无法被创建或者被找到.\n"
+"按后退返回并选择一个有效的文件名."
 
 #: ../src/ExportAssistant.py:473
 msgid "Your data has been saved"
@@ -663,16 +666,16 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"你的数据拷贝已经被成功保存。你可以按“关闭”按钮继续操作。\n"
+"你的数据拷贝已经被成功保存.你可以按“关闭”按钮继续操作.\n"
 "\n"
-"注：GRAMPS窗口中打开的数据库，不是你刚保存的文件。编辑现在打开的数据库，不会"
-"改变你刚保存的拷贝。"
+"注:GRAMPS窗口中打开的数据库，不是你刚保存的文件.编辑现在打开的数据库，不会改"
+"变你刚保存的拷贝. "
 
 #. add test, what is dir
 #: ../src/ExportAssistant.py:483
 #, python-format
 msgid "Filename: %s"
-msgstr "文件名： %s"
+msgstr "文件名: %s"
 
 #: ../src/ExportAssistant.py:485
 msgid "Saving failed"
@@ -686,9 +689,9 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"在你保存的数据时出错，你可以尝试再次导出。\n"
+"在你保存的数据时出错，你可以尝试再次导出.\n"
 "\n"
-"注：你现在打开的数据库是安全的，那只是无法保存数据的拷贝。"
+"注:你现在打开的数据库是安全的，那只是无法保存数据的拷贝."
 
 #: ../src/ExportAssistant.py:514
 msgid ""
@@ -703,22 +706,22 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"通常情况下，GRAMPS 不需要你直接保存所作变更。 所有的改变会立即被保存于数据"
-"库。\n"
+"通常情况下，GRAMPS 不需要你直接保存所作变更. 所有的改变会立即被保存于数据"
+"库.\n"
 "\n"
-"本进程将会帮助你在任何GRAMPS 支持的格式下保存你的数据。这可以用来制作你数据的"
-"拷贝，备份数据，或者转换到其他格式便于传给其他程序。\n"
+"本进程将会帮助你在任何GRAMPS 支持的格式下保存你的数据.这可以用来制作你数据的"
+"拷贝，备份数据，或者转换到其他格式便于传给其他程序.\n"
 "\n"
 "如果你在整个操作中改变了主意，你可以很安全的在任何时候按 “取消”按钮，并且你现"
-"在的数据库将会完好无损。"
+"在的数据库将会完好无损."
 
 #: ../src/ExportOptions.py:73
 msgid "_Person Filter"
-msgstr "成员过滤(_P)"
+msgstr "成员筛选(_P)"
 
 #: ../src/ExportOptions.py:79
 msgid "_Note Filter"
-msgstr "笔记过滤(_N)"
+msgstr "笔记筛选(_N)"
 
 #: ../src/ExportOptions.py:84 ../src/plugins/export/ExportGeneWeb.glade.h:8
 msgid "_Do not include records marked private"
@@ -805,9 +808,9 @@ msgid ""
 "license."
 msgstr ""
 "大多GRAMPS的创作己来自Tango项目\n"
-"或者其衍生项目。\n"
+"或者其衍生项目.\n"
 "本项工作基于创建共同的特性－ShareAlike 2.5 \n"
-"授权。"
+"授权."
 
 #: ../src/GrampsAboutDialog.py:94
 msgid "GRAMPS Homepage"
@@ -860,7 +863,7 @@ msgid ""
 "Use the same keyword in UPPERCASE to force to upper. Parentheses and commas\n"
 "will be removed around empty fields. Other text will appear literally."
 msgstr ""
-"以下关键字将会被名称替代：\n"
+"以下关键字将会被名称替代:\n"
 "<tt> \n"
 "<b>Given</b>      - given name (first name)\n"
 "  <b>Surname</b>    - surname (last name)\n"
@@ -873,7 +876,7 @@ msgstr ""
 "  <b>Initials</b>   - persons's first letters of given names\n"
 "</tt>\n"
 "相同的关键字强制使用大写，圆括号和逗号\n"
-"中的空区域将被移除。其他文本将会逐字显示。"
+"中的空区域将被移除.其他文本将会逐字显示."
 
 #: ../src/GrampsCfg.py:158
 msgid " Name Editor"
@@ -1103,7 +1106,7 @@ msgstr "摘录"
 
 #: ../src/GrampsCfg.py:247
 msgid "Suppress warning when adding parents to a child"
-msgstr "当为孩子填写父母时不提示错误。"
+msgstr "当为孩子填写父母时不提示错误"
 
 #: ../src/GrampsCfg.py:251
 msgid "Suppress warning when cancelling with changed data"
@@ -1139,19 +1142,19 @@ msgstr "定制"
 msgid ""
 "You need a broadband internet connection to use Internet mapping "
 "applications from within GRAMPS"
-msgstr "你需要宽带连接到因特网，你才能使用在GRAMPS内的的网络地图应用程序。"
+msgstr "你需要宽带连接到因特网，你才能使用在GRAMPS内的的网络地图应用程序"
 
 #: ../src/GrampsCfg.py:311
 msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-msgstr "基于你的数据添加GeoView 到Gramps显示网络地图"
+msgstr "基于你的数据添加GeoView 到Gramps显示网络地图."
 
 #: ../src/GrampsCfg.py:316
 msgid ""
 "GeoView uses OpenStreetMap and one other map provider.\n"
 "Choose one of the following map providers:"
 msgstr ""
-"GeoView 使用开启街景地图和其他地图提供程序。\n"
-"选择以下的任一地图选项："
+"GeoView 使用开启街景地图和其他地图提供程序.\n"
+"选择以下的任一地图选项:"
 
 #: ../src/GrampsCfg.py:321
 msgid "Google Maps"
@@ -1252,7 +1255,7 @@ msgstr "格式"
 
 #: ../src/GrampsCfg.py:582
 msgid "Example"
-msgstr "例："
+msgstr "例:"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:743 ../src/plugins/drawreport/Calendar.py:397
@@ -1275,11 +1278,11 @@ msgstr "猜测父姓"
 
 #: ../src/GrampsCfg.py:786
 msgid "Active person's name and ID"
-msgstr "当前人的姓名和ID "
+msgstr "当前人的姓名和ID"
 
 #: ../src/GrampsCfg.py:787
 msgid "Relationship to home person"
-msgstr "与家庭成员的关系:"
+msgstr "与家主的关系:"
 
 #: ../src/GrampsCfg.py:797
 msgid "Status bar"
@@ -1287,7 +1290,7 @@ msgstr "状态栏"
 
 #: ../src/GrampsCfg.py:804
 msgid "Show text in sidebar buttons (requires restart)"
-msgstr "在侧边栏显示文本信息。（需要重启）"
+msgstr "在侧边栏显示文本信息.（需要重启）"
 
 #: ../src/GrampsCfg.py:815
 msgid "Missing surname"
@@ -1321,7 +1324,7 @@ msgstr "改变不是立即"
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
-msgstr "改变数据格式直到下次GRAMPS重启后才会生效。"
+msgstr "改变数据格式直到下次GRAMPS重启后才会生效."
 
 #: ../src/GrampsCfg.py:856
 msgid "Date about range"
@@ -1409,7 +1412,7 @@ msgstr "格式定义无效"
 
 #: ../src/GrampsCfg.py:1137
 msgid "What would you like to do?"
-msgstr "你打算怎么作？"
+msgstr "你打算怎么作?"
 
 #: ../src/GrampsCfg.py:1138
 msgid "_Continue anyway"
@@ -1634,7 +1637,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"可能是GRAMPS安装不完整。确认GRAMPS的GConf 图被正确安装。"
+"可能是GRAMPS安装不完整.确认GRAMPS的GConf 图被正确安装."
 
 #: ../src/gramps_main.py:225
 #, python-format
@@ -1646,7 +1649,7 @@ msgid ""
 msgstr ""
 "关于 %s 的MIME格式定义无法找到\n"
 "\n"
-"可能GRAMPS程序安装不完整。 确保GRAMPS的MIME格式安装正确。"
+"可能GRAMPS程序安装不完整. 确保GRAMPS的MIME格式安装正确."
 
 #: ../src/gramps.py:99
 #, python-format
@@ -1656,19 +1659,19 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
-"你的Python版本不能满足系统要求。GRAMPS需要 %d.%d.%d python以上版本\n"
+"你的Python版本不能满足系统要求.GRAMPS需要 %d.%d.%d python以上版本\n"
 "\n"
-"GRAMPS 将要终止。"
+"GRAMPS 将要终止."
 
 #: ../src/PageView.py:292
 msgid "Remove selected items?"
-msgstr "是否移除所选栏目？"
+msgstr "是否移除所选栏目?"
 
 #: ../src/PageView.py:293
 msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
-msgstr "至少一个栏目已经被选中即将被删除，在删除每一项前是否询问？"
+msgstr "至少一个栏目已经被选中即将被删除，在删除每一项前是否询问?"
 
 #: ../src/PageView.py:295 ../src/plugins/quickview/all_relations.py:306
 #: ../src/PluginUtils/_GuiOptions.py:912
@@ -1684,11 +1687,11 @@ msgstr "否"
 msgid ""
 "This item is currently being used. Deleting it will remove it from the "
 "database and from all other items that reference it."
-msgstr "栏目现在正在被使用，删除它将会从数据库中移除所有和它有关信息。"
+msgstr "栏目现在正在被使用，删除它将会从数据库中移除所有和它有关信息."
 
 #: ../src/PageView.py:310
 msgid "Deleting item will remove it from the database."
-msgstr "删除栏目将会从数据库中移除它"
+msgstr "删除栏目将会从数据库中移除它."
 
 #: ../src/PageView.py:317 ../src/DataViews/PersonView.py:604
 #, python-format
@@ -1712,7 +1715,7 @@ msgstr "不能设定书签"
 #: ../src/PageView.py:396 ../src/ViewManager.py:1257
 #: ../src/DataViews/FamilyList.py:190
 msgid "A bookmark could not be set because no one was selected."
-msgstr "由于没有选中内容，书签不能被设定。"
+msgstr "由于没有选中内容，书签不能被设定."
 
 #: ../src/PageView.py:419
 msgid "_Add Bookmark"
@@ -1765,15 +1768,15 @@ msgstr "跳到GRAMPS ID"
 #: ../src/PageView.py:544 ../src/PageView.py:721
 #, python-format
 msgid "Error: %s is not a valid GRAMPS ID"
-msgstr "错误： %s 不是有效的GRAMPS ID"
+msgstr "错误: %s 不是有效的GRAMPS ID"
 
 #: ../src/PageView.py:689
 msgid "A bookmark could not be set because nothing was selected."
-msgstr "不能设定书签，因为未选中内容。"
+msgstr "不能设定书签，因为未选中内容."
 
 #: ../src/PageView.py:994 ../src/DataViews/PersonView.py:157
 msgid "_Add..."
-msgstr "添加...(_A)"
+msgstr "添加(_A)..."
 
 #: ../src/PageView.py:996 ../src/DataViews/PersonView.py:159
 msgid "_Remove"
@@ -1781,11 +1784,11 @@ msgstr "删除(_R)"
 
 #: ../src/PageView.py:998 ../src/DataViews/PersonView.py:167
 msgid "Export View..."
-msgstr "导出(_E) "
+msgstr "导出视图..."
 
 #: ../src/PageView.py:1003 ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
-msgstr "编辑...(_E)"
+msgstr "编辑(_E)..."
 
 #: ../src/PageView.py:1008
 msgid "_Filter"
@@ -1797,7 +1800,7 @@ msgstr "用电子表格导出视图"
 
 #: ../src/PageView.py:1082 ../src/DataViews/PersonView.py:919
 msgid "Format:"
-msgstr "格式："
+msgstr "格式:"
 
 #: ../src/PageView.py:1087 ../src/DataViews/PersonView.py:924
 msgid "CSV"
@@ -1840,10 +1843,10 @@ msgid ""
 "bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
-"GRAMPS 数据库中侦测到了一个错误。可以通过运行“检查和修复数据库”工具来解决。\n"
+"GRAMPS 数据库中侦测到了一个错误.可以通过运行“检查和修复数据库”工具来解决.\n"
 "\n"
 "如果运行工具后问题依然存在，请到 http://bugs.gramps-project.org\n"
-"提交错误报告。\n"
+"提交错误报告.\n"
 "\n"
 
 #: ../src/QuestionDialog.py:198
@@ -1856,7 +1859,7 @@ msgid ""
 "be repaired by from the Family Tree Manager. Select the database and click "
 "on the Repair button"
 msgstr ""
-"GRAMPS侦测到在Berkeley数据库中有一个问题。 可以从家族树管理中修复。 选择“数据"
+"GRAMPS侦测到在Berkeley数据库中有一个问题. 可以从家族树管理中修复. 选择“数据"
 "库“ 并点击”修复“按钮"
 
 #: ../src/QuestionDialog.py:310 ../src/Utils.py:1102
@@ -1868,7 +1871,7 @@ msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
-"请不要强制关闭该重要对话框。\n"
+"请不要强制关闭该重要对话框.\n"
 "请选择有效的选项"
 
 #: ../src/QuickReports.py:81 ../src/DataViews/EventView.py:188
@@ -1889,12 +1892,12 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"家族树搜寻，返回了最多 %d 代。\n"
-"可能其关系已经遗漏。"
+"家族树搜寻，返回了最多 %d 代.\n"
+"可能其关系已经遗漏"
 
 #: ../src/Relationship.py:921
 msgid "Relationship loop detected:"
-msgstr "环状关系侦测："
+msgstr "环状关系侦测:"
 
 #: ../src/Relationship.py:922
 #, python-format
@@ -2055,7 +2058,7 @@ msgstr "记录关系"
 #: ../src/Reorder.py:135
 #, python-format
 msgid "Reorder Relationships: %s"
-msgstr "记录关系: %s "
+msgstr "记录关系: %s"
 
 #: ../src/ScratchPad.py:70
 msgid "manual|Using_the_Clipboard"
@@ -2151,7 +2154,7 @@ msgstr "值"
 
 #: ../src/ScratchPad.py:448 ../src/ScratchPad.py:456
 msgid "Family Attribute"
-msgstr "家庭属性 "
+msgstr "家庭属性"
 
 #: ../src/ScratchPad.py:481 ../src/ScratchPad.py:510
 msgid "Source Reference"
@@ -2164,7 +2167,7 @@ msgstr "N/A"
 #: ../src/ScratchPad.py:499
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
-msgstr "卷/页： %(pag)s -- %(sourcetext)s "
+msgstr "卷/页: %(pag)s -- %(sourcetext)s"
 
 #: ../src/ScratchPad.py:511 ../src/ScratchPad.py:654 ../src/ScratchPad.py:687
 #: ../src/ScratchPad.py:795 ../src/ScratchPad.py:907 ../src/ScratchPad.py:913
@@ -2752,7 +2755,7 @@ msgstr "未明确的男女之间的关系"
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
-msgstr "数据只能通过撤销操作或者退出并摒弃变更来恢复。"
+msgstr "数据只能通过撤销操作或者退出并摒弃变更来恢复."
 
 #: ../src/Utils.py:186 ../src/Utils.py:206
 #, python-format
@@ -2767,11 +2770,11 @@ msgstr "默认"
 #: ../src/Utils.py:703 ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "数据库错误： %s 被定义为 他/她自己的祖先"
+msgstr "数据库错误: %s 被定义为 他/她自己的祖先"
 
 #: ../src/Utils.py:1103
 msgid "Please do not force closing this important dialog."
-msgstr "请不要强制关闭这个重要的对话框"
+msgstr "请不要强制关闭这个重要的对话框."
 
 #: ../src/Utils.py:1127 ../src/Utils.py:1134
 msgid "Error Opening File"
@@ -2832,7 +2835,7 @@ msgstr "删除确认"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "是否确认清空恢复历史？"
+msgstr "是否确认清空恢复历史?"
 
 #: ../src/UndoHistory.py:178
 msgid "Clear"
@@ -2876,7 +2879,7 @@ msgstr "家谱树（_F)"
 
 #: ../src/ViewManager.py:386
 msgid "_Manage Family Trees..."
-msgstr "管理家谱树（_M)"
+msgstr "管理家谱树(_M)..."
 
 #: ../src/ViewManager.py:388
 msgid "Open _Recent"
@@ -2900,7 +2903,7 @@ msgstr "编辑(_E)"
 
 #: ../src/ViewManager.py:394
 msgid "_Preferences..."
-msgstr "首选项（_N)"
+msgstr "首选项(_N)..."
 
 #: ../src/ViewManager.py:396
 msgid "_Help"
@@ -2944,7 +2947,7 @@ msgstr "用户手册(_U)"
 
 #: ../src/ViewManager.py:418
 msgid "_Export..."
-msgstr "导出(_E)"
+msgstr "导出(_E)..."
 
 #: ../src/ViewManager.py:421
 msgid "_Abandon Changes and Quit"
@@ -2976,7 +2979,7 @@ msgstr "打开粘贴板对话框"
 
 #: ../src/ViewManager.py:454
 msgid "_Import..."
-msgstr "导入(_I)"
+msgstr "导入(_I).."
 
 #: ../src/ViewManager.py:456 ../src/ViewManager.py:460
 msgid "_Tools"
@@ -3038,13 +3041,13 @@ msgstr "自动备份..."
 
 #: ../src/ViewManager.py:655
 msgid "Abort changes?"
-msgstr "退出修改？"
+msgstr "退出修改?"
 
 #: ../src/ViewManager.py:656
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
-msgstr "退出修改将会恢复到数据库开始修改前的状态。"
+msgstr "退出修改将会恢复到数据库开始修改前的状态."
 
 #: ../src/ViewManager.py:658
 msgid "Abort changes"
@@ -3062,7 +3065,7 @@ msgstr "无法废弃对话修改"
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
-msgstr "修改不能被完全遗弃，因为对话中的修改数目超过了限定。"
+msgstr "修改不能被完全遗弃，因为对话中的修改数目超过了限定."
 
 #: ../src/ViewManager.py:1048
 msgid "Import Statistics"
@@ -3070,11 +3073,11 @@ msgstr "导入统计"
 
 #: ../src/ViewManager.py:1078
 msgid "Could not load a recent Family Tree."
-msgstr "无法载入最近打开的家族树"
+msgstr "无法载入最近打开的家族树."
 
 #: ../src/ViewManager.py:1079
 msgid "Family Tree does not exist, as it has been deleted."
-msgstr "家族树不存在，可能已经被删除。"
+msgstr "家族树不存在，可能已经被删除."
 
 #: ../src/ViewManager.py:1135
 msgid "Read Only"
@@ -3126,7 +3129,7 @@ msgstr "名"
 #: ../src/BasicUtils/_NameDisplay.py:281 ../src/BasicUtils/_NameDisplay.py:320
 #: ../src/plugins/import/ImportCsv.py:235
 msgid "prefix"
-msgstr "家族前缀 "
+msgstr "家族前缀"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
 #: ../src/plugins/import/ImportCsv.py:223
@@ -3199,14 +3202,14 @@ msgstr "无法合并成员"
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
-msgstr "配偶无法被合并。 合并这些人，你必须先断开他们之间的联系。"
+msgstr "配偶无法被合并. 合并这些人，你必须先断开他们之间的联系."
 
 #: ../src/Merge/_MergePerson.py:96 ../src/Merge/_MergePerson.py:276
 #: ../src/Merge/_MergePerson.py:312
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
-msgstr "父母和孩子无法合并。合并这些人，你必须先断开他们之间的联系"
+msgstr "父母和孩子无法合并.合并这些人，你必须先断开他们之间的联系."
 
 #: ../src/Merge/_MergePerson.py:127 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:105 ../src/Selectors/_SelectPerson.py:78
@@ -3354,7 +3357,7 @@ msgstr "选择家庭栏目"
 
 #: ../src/DataViews/FamilyList.py:167 ../src/DataViews/PersonView.py:161
 msgid "_Column Editor..."
-msgstr "栏目编辑器(_C)"
+msgstr "栏目编辑器(_C)..."
 
 #: ../src/DataViews/FamilyList.py:169
 msgid "Family Filter Editor"
@@ -3379,7 +3382,7 @@ msgstr "刷新(_R)"
 
 #: ../src/DataViews/GeoView.py:541
 msgid "Stop and reload the page."
-msgstr "停止并重新载入页面"
+msgstr "停止并重新载入页面."
 
 #: ../src/DataViews/GeoView.py:571
 msgid "Start page for the Html View"
@@ -3410,7 +3413,7 @@ msgstr "google 地图(_G)"
 
 #: ../src/DataViews/GeoView.py:745
 msgid "Select Google Maps."
-msgstr "选择google 地图"
+msgstr "选择google 地图."
 
 #: ../src/DataViews/GeoView.py:748
 msgid "_OpenLayers Maps"
@@ -3418,7 +3421,7 @@ msgstr "打开分层地图(_O)"
 
 #: ../src/DataViews/GeoView.py:750
 msgid "Select OpenLayers Maps."
-msgstr "选择打开层地图"
+msgstr "选择打开层地图."
 
 #: ../src/DataViews/GeoView.py:753
 msgid "_Yahoo! Maps"
@@ -3426,7 +3429,7 @@ msgstr "Yahoo! 地图(_Y)"
 
 #: ../src/DataViews/GeoView.py:755
 msgid "Select Yahoo Maps."
-msgstr "选择Yahoo 地图"
+msgstr "选择Yahoo 地图."
 
 #: ../src/DataViews/GeoView.py:758
 msgid "_Microsoft Maps"
@@ -3442,7 +3445,7 @@ msgstr "所有地点(_A)"
 
 #: ../src/DataViews/GeoView.py:763
 msgid "Attempt to view all places in the family tree."
-msgstr "尝试在家庭树中浏览所有地点"
+msgstr "尝试在家庭树中浏览所有地点."
 
 #: ../src/DataViews/GeoView.py:764
 msgid "_Person"
@@ -3450,7 +3453,7 @@ msgstr "人员（_P)"
 
 #: ../src/DataViews/GeoView.py:766
 msgid "Attempt to view all the places where the selected people lived."
-msgstr "尝试浏览选中人员居住的所有的地方"
+msgstr "尝试浏览选中人员居住的所有的地方."
 
 #: ../src/DataViews/GeoView.py:767
 msgid "_Family"
@@ -3458,7 +3461,7 @@ msgstr "家庭(_F)"
 
 #: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view places of the selected people's family."
-msgstr "尝试浏览所选人员的家庭的地点"
+msgstr "尝试浏览所选人员的家庭的地点."
 
 #: ../src/DataViews/GeoView.py:770
 msgid "_Event"
@@ -3466,7 +3469,7 @@ msgstr "事件 (_E)"
 
 #: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view places connected to all events."
-msgstr "尝试浏览连接到所有事件的地点"
+msgstr "尝试浏览连接到所有事件的地点."
 
 #: ../src/DataViews/GeoView.py:868
 msgid "List of places without coordinates"
@@ -3476,15 +3479,14 @@ msgstr "列出所有没有坐标的地址"
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
-msgstr ""
-"本处列出了家庭树中没有包含坐标的所有地点。<br> 意味着没有经度和纬度.<p>"
+msgstr "本处列出了家庭树中没有包含坐标的所有地点.<br> 意味着没有经度和纬度.<p>"
 
 #: ../src/DataViews/GeoView.py:919
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
-msgstr "有 %d 标记将要被显示。它们被分成 %d 页面共 %d 个标记： "
+msgstr "有 %d 标记将要被显示.它们被分成 %d 页面共 %d 个标记: "
 
 #: ../src/DataViews/GeoView.py:958
 msgid "All"
@@ -3492,47 +3494,47 @@ msgstr "所有"
 
 #: ../src/DataViews/GeoView.py:1417
 msgid "No location."
-msgstr "没有定位"
+msgstr "没有定位."
 
 #: ../src/DataViews/GeoView.py:1420
 msgid "You have no places in your family tree  with coordinates."
-msgstr "你的家庭树中的地点未包含坐标。"
+msgstr "你的家庭树中的地点未包含坐标."
 
 #: ../src/DataViews/GeoView.py:1423
 msgid "You are looking at the default map."
-msgstr "你正在看默认地图"
+msgstr "你正在看默认地图."
 
 #: ../src/DataViews/GeoView.py:1448
 #, python-format
 msgid "%(comment)s : birth place."
-msgstr "%(comment)s : 出生地"
+msgstr "%(comment)s : 出生地."
 
 #: ../src/DataViews/GeoView.py:1451
 msgid "birth place."
-msgstr "出生地点。"
+msgstr "出生地点."
 
 #: ../src/DataViews/GeoView.py:1483
 #, python-format
 msgid "%(comment)s : death place."
-msgstr "%(comment)s : 死亡地点。"
+msgstr "%(comment)s : 死亡地点."
 
 #: ../src/DataViews/GeoView.py:1486
 msgid "death place."
-msgstr "死亡地点。"
+msgstr "死亡地点."
 
 #: ../src/DataViews/GeoView.py:1522
 #, python-format
 msgid "Id : %s"
-msgstr "Id：%s"
+msgstr "Id:%s"
 
 #: ../src/DataViews/GeoView.py:1539 ../src/DataViews/GeoView.py:1616
 #: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1737
 msgid "Cannot center the map. No location with coordinates."
-msgstr "无法定位地图的中心。没有地点包含坐标"
+msgstr "无法定位地图的中心.没有地点包含坐标."
 
 #: ../src/DataViews/GeoView.py:1543
 msgid "All places in the family tree with coordinates."
-msgstr "家族树中的地点均包含了坐标"
+msgstr "家族树中的地点均包含了坐标."
 
 #: ../src/DataViews/GeoView.py:1568
 #, python-format
@@ -3541,7 +3543,7 @@ msgstr "Id : %(id)s (%(year)s)"
 
 #: ../src/DataViews/GeoView.py:1619
 msgid "All events in the family tree with coordinates."
-msgstr "家族树中所有的事件均包含了坐标"
+msgstr "家族树中所有的事件均包含了坐标."
 
 #: ../src/DataViews/GeoView.py:1647
 #, python-format
@@ -3560,17 +3562,17 @@ msgstr "Id : 子女 : %(id)s %(index)d"
 
 #: ../src/DataViews/GeoView.py:1668
 msgid "The active person's family members have no places with coordinates."
-msgstr "激活人员的家庭成员没有包含有坐标的地址"
+msgstr "激活人员的家庭成员没有包含有坐标的地址."
 
 #: ../src/DataViews/GeoView.py:1672 ../src/DataViews/GeoView.py:1742
 msgid "No active person set."
-msgstr "未设定激活人员"
+msgstr "未设定激活人员."
 
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
-msgstr "所有 %(name)s 人员，在家庭树中的家庭地址包含了坐标。"
+msgstr "所有 %(name)s 人员，在家庭树中的家庭地址包含了坐标."
 
 #: ../src/DataViews/GeoView.py:1720
 #, python-format
@@ -3579,12 +3581,12 @@ msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1740
 msgid "The active person has no places with coordinates."
-msgstr "激活人员未包含有坐标的地址。"
+msgstr "激活人员未包含有坐标的地址."
 
 #: ../src/DataViews/GeoView.py:1745
 #, python-format
 msgid "All event places for %s."
-msgstr "%s 的所有事件地点"
+msgstr "%s 的所有事件地点."
 
 #: ../src/DataViews/GeoView.py:1752
 msgid "Not yet implemented ..."
@@ -3705,29 +3707,29 @@ msgstr "选择摘要栏目"
 #: ../src/plugins/drawreport/AncestorTree.py:52
 #: ../src/plugins/drawreport/DescendTree.py:53
 msgid "short for born|b."
-msgstr "short for born|b."
+msgstr "b."
 
 #: ../src/DataViews/PedigreeView.py:74
 #: ../src/plugins/drawreport/AncestorTree.py:53
 #: ../src/plugins/drawreport/DescendTree.py:55
 msgid "short for died|d."
-msgstr "short for died|d."
+msgstr "d."
 
 #: ../src/DataViews/PedigreeView.py:75
 msgid "short for baptized|bap."
-msgstr "short for died|d."
+msgstr "bap."
 
 #: ../src/DataViews/PedigreeView.py:76
 msgid "short for chistianized|chr."
-msgstr "short for chistianized|chr."
+msgstr "chr."
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "short for buried|bur."
-msgstr "short for buried|bur."
+msgstr "bur."
 
 #: ../src/DataViews/PedigreeView.py:78
 msgid "short for cremated|crem."
-msgstr "short for cremated|crem."
+msgstr "crem."
 
 #: ../src/DataViews/PedigreeView.py:981
 msgid "Jump to child..."
@@ -3743,7 +3745,7 @@ msgstr "跳转到母亲"
 
 #: ../src/DataViews/PedigreeView.py:1272
 msgid "A person was found to be his/her own ancestor."
-msgstr "人员被发现成为了他／她自己的祖先"
+msgstr "人员被发现成为了他／她自己的祖先."
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -3790,7 +3792,7 @@ msgstr "自动的"
 #, python-format
 msgid "%d generation"
 msgid_plural "%d generations"
-msgstr[0] "%d 代"
+msgstr[0] "%d 代人"
 
 #: ../src/DataViews/PedigreeView.py:1410 ../src/DataViews/PedigreeView.py:1430
 #: ../src/plugins/gramplet/FanChartGramplet.py:674
@@ -3852,7 +3854,7 @@ msgstr "出生地点"
 #: ../src/plugins/quickview/lineage.py:62
 #: ../src/plugins/quickview/lineage.py:93 ../src/plugins/tool/RelCalc.py:61
 msgid "Death Date"
-msgstr "死亡日期 "
+msgstr "死亡日期"
 
 #: ../src/DataViews/PersonView.py:73 ../src/Editors/_EditFamily.py:111
 #: ../src/Selectors/_SelectPerson.py:82 ../src/Selectors/_SelectPerson.py:110
@@ -3868,7 +3870,7 @@ msgstr "上次变更"
 #: ../src/DataViews/PersonView.py:87
 #: ../src/plugins/textreport/MarkerReport.py:102
 msgid "People"
-msgstr "人 "
+msgstr "人"
 
 #: ../src/DataViews/PersonView.py:145
 msgid "Expand all Nodes"
@@ -3896,7 +3898,7 @@ msgstr "对比并合并(_M)..."
 
 #: ../src/DataViews/PersonView.py:165
 msgid "_Fast Merge..."
-msgstr "快速合并(_F)"
+msgstr "快速合并(_F)..."
 
 #: ../src/DataViews/PersonView.py:191 ../src/DataViews/PersonView.py:204
 #: ../src/DataViews/PersonView.py:215 ../src/DataViews/PersonView.py:229
@@ -3905,8 +3907,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "person."
 msgstr ""
-"相同的两个人的信息需要合并时。 如果要选中第二个人，请在按下CTRL 键同时点击目"
-"标个人。"
+"相同的两个人的信息需要合并时. 如果要选中第二个人，请在按下CTRL 键同时点击目标"
+"个人."
 
 #: ../src/DataViews/PersonView.py:237
 msgid "Select Person Columns"
@@ -3922,7 +3924,7 @@ msgstr "正在更新显示...."
 
 #: ../src/DataViews/PersonView.py:601
 msgid "Deleting the person will remove the person from the database."
-msgstr "删除成员将会从数据库中移除"
+msgstr "删除成员将会从数据库中移除."
 
 #: ../src/DataViews/PersonView.py:606
 msgid "_Delete Person"
@@ -4024,7 +4026,7 @@ msgstr "使用地图服务寻找(_L)"
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
-msgstr "尝试使用地图服务查看这个位置。(打开街景地图，Google地图，...)"
+msgstr "尝试使用地图服务查看这个位置.(打开街景地图，Google地图，...)"
 
 #: ../src/DataViews/PlaceView.py:142
 msgid "Place Filter Editor"
@@ -4032,13 +4034,13 @@ msgstr "地点筛选编辑器"
 
 #: ../src/DataViews/PlaceView.py:230
 msgid "No place selected."
-msgstr "无地点被选中"
+msgstr "无地点被选中."
 
 #: ../src/DataViews/PlaceView.py:231
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
-msgstr "你需要选择一个地点，可以在地图上查看。一些地图信息可能支持多重选择。"
+msgstr "你需要选择一个地点，可以在地图上查看.一些地图信息可能支持多重选择."
 
 #: ../src/DataViews/PlaceView.py:251
 msgid "Select Place Columns"
@@ -4046,7 +4048,7 @@ msgstr "选择地址栏"
 
 #: ../src/DataViews/PlaceView.py:352
 msgid "Cannot merge places."
-msgstr "无法合并地点。"
+msgstr "无法合并地点."
 
 #: ../src/DataViews/PlaceView.py:353
 msgid ""
@@ -4054,8 +4056,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "place."
 msgstr ""
-"确切的两个地点必需被选中才能执行合并。 第二个地点可以通过同时按CTRL+鼠标点击"
-"目标地点来选中。"
+"确切的两个地点必需被选中才能执行合并. 第二个地点可以通过同时按CTRL+鼠标点击目"
+"标地点来选中."
 
 #: ../src/DataViews/RelationView.py:325
 msgid "_Reorder"
@@ -4172,7 +4174,7 @@ msgstr "移除此人相对这个家庭作为父母的关系"
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
-msgstr[0] " (%d 同胞兄弟)"
+msgstr[0] " (%d 同胞兄弟姐妹)"
 
 #: ../src/DataViews/RelationView.py:799 ../src/DataViews/RelationView.py:855
 msgid " (1 brother)"
@@ -4206,12 +4208,12 @@ msgstr "b. %(birthdate)s, d. %(deathdate)s"
 #: ../src/DataViews/RelationView.py:1126
 #, python-format
 msgid "short for born|b. %s"
-msgstr "short for born|b. %s"
+msgstr "b. %s"
 
 #: ../src/DataViews/RelationView.py:1128
 #, python-format
 msgid "short for dead|d. %s"
-msgstr "short for dead|d. %s"
+msgstr "d. %s"
 
 #: ../src/DataViews/RelationView.py:1190
 #, python-format
@@ -4235,7 +4237,7 @@ msgstr "%(event_type)s: %(place)s"
 
 #: ../src/DataViews/RelationView.py:1249
 msgid "Broken family detected"
-msgstr "侦测到破碎家庭 "
+msgstr "侦测到破碎家庭"
 
 #: ../src/DataViews/RelationView.py:1250
 msgid "Please run the Check and Repair Database tool"
@@ -4315,7 +4317,7 @@ msgstr "选择来源栏目"
 
 #: ../src/DataViews/SourceView.py:206
 msgid "Cannot merge sources."
-msgstr "无法合并来源"
+msgstr "无法合并来源."
 
 #: ../src/DataViews/SourceView.py:207
 msgid ""
@@ -4323,8 +4325,8 @@ msgid ""
 "be selected by holding down the control key while clicking on the desired "
 "source."
 msgstr ""
-"确切的两个来源必需被选中才能执行合并。 第二个来源可以通过同时按CTRL+鼠标点击"
-"目标来源来选中。"
+"确切的两个来源必需被选中才能执行合并. 第二个来源可以通过同时按CTRL+鼠标点击目"
+"标来源来选中."
 
 #: ../src/docgen/ODSDoc.py:75 ../src/docgen/ODSDoc.py:77
 #: ../src/docgen/ODSDoc.py:216 ../src/docgen/ODSDoc.py:219
@@ -4366,7 +4368,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:2950
 #, python-format
 msgid "Could not create %s"
-msgstr "无法创建 %s "
+msgstr "无法创建 %s"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 msgid "Create and add a new address"
@@ -4509,10 +4511,10 @@ msgid ""
 "\n"
 "To edit this event reference, you need to close the event."
 msgstr ""
-"现在这个时间索引无法被编辑。相关的事件可能正在被编辑或者另一事件索引正在编辑"
-"相同的时间。\n"
+"现在这个时间索引无法被编辑.相关的事件可能正在被编辑或者另一事件索引正在编辑相"
+"同的时间.\n"
 "\n"
-"如果编辑事件索引，你需要关闭事件。"
+"如果编辑事件索引，你需要关闭事件."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
@@ -4521,7 +4523,7 @@ msgstr "寺庙"
 
 #: ../src/DisplayTabs/_GalleryTab.py:76
 msgid "_Gallery"
-msgstr "相册(_G)"
+msgstr "画廊(_G)"
 
 #: ../src/DisplayTabs/_GalleryTab.py:227
 msgid "Non existing media found in the Gallery"
@@ -4541,7 +4543,7 @@ msgstr "编辑所选LDS ordinance"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 msgid "Move the selected LDS ordinance upwards"
-msgstr "上移所选的LDS ordinance "
+msgstr "上移所选的LDS ordinance"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
 msgid "Move the selected LDS ordinance downwards"
@@ -4676,9 +4678,9 @@ msgid ""
 "To edit this repository reference, you need to close the repository."
 msgstr ""
 "仓库索引暂时无法被编辑. 或许相关的仓库正在被编辑，或者其他仓库索引正在被编"
-"辑。\n"
+"辑.\n"
 "\n"
-"编辑此仓库索引，你需要关闭仓库。"
+"编辑此仓库索引，你需要关闭仓库."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
@@ -4712,10 +4714,10 @@ msgid ""
 "\n"
 "To edit this source reference, you need to close the source."
 msgstr ""
-"本来源索引无法被编辑。可能相关的来源正在被编辑或者另外一个指向相同来源的索引"
-"正在被编辑。\n"
+"本来源索引无法被编辑.可能相关的来源正在被编辑或者另外一个指向相同来源的索引正"
+"在被编辑.\n"
 "\n"
-"编辑来源索引，你需要先关闭来源。"
+"编辑来源索引，你需要先关闭来源."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
 msgid "Create and add a new web address"
@@ -4759,7 +4761,7 @@ msgstr "导入失败"
 
 #: ../src/Editors/AddMedia.py:156 ../src/Editors/AddMedia.py:169
 msgid "The filename supplied could not be found."
-msgstr "提供的文件名无法找到"
+msgstr "提供的文件名无法找到."
 
 #: ../src/Editors/AddMedia.py:168
 #, python-format
@@ -4769,13 +4771,13 @@ msgstr "无法导入%s"
 #: ../src/Editors/AddMedia.py:231
 #, python-format
 msgid "Cannot display %s"
-msgstr "无法显示 %s "
+msgstr "无法显示 %s"
 
 #: ../src/Editors/AddMedia.py:232
 msgid ""
 "GRAMPS is not able to display the image file. This may be caused by a "
 "corrupt file."
-msgstr "GRAMPS 无法显示图像文件，可能文件已经损坏。"
+msgstr "GRAMPS 无法显示图像文件，可能文件已经损坏."
 
 #: ../src/Editors/ObjectEntries.py:247
 msgid "To select a place, use drag-and-drop or use the buttons"
@@ -4873,7 +4875,7 @@ msgstr "编辑关于事件的信息"
 #: ../src/Editors/_EditEvent.py:89 ../src/Editors/_EditEventRef.py:223
 #, python-format
 msgid "Event: %s"
-msgstr "事件：%s"
+msgstr "事件:%s"
 
 #: ../src/Editors/_EditEvent.py:91 ../src/Editors/_EditEventRef.py:225
 msgid "New Event"
@@ -4889,11 +4891,11 @@ msgstr "无法保存事件"
 
 #: ../src/Editors/_EditEvent.py:200
 msgid "No data exists for this event. Please enter data or cancel the edit."
-msgstr "本事件中未存在任何数据。请输入数据或者取消编辑。"
+msgstr "本事件中未存在任何数据.请输入数据或者取消编辑."
 
 #: ../src/Editors/_EditEvent.py:209
 msgid "Cannot save event. ID already exists."
-msgstr "无法保存时间。ID已经存在。"
+msgstr "无法保存时间.ID已经存在."
 
 #: ../src/Editors/_EditEvent.py:210 ../src/Editors/_EditMedia.py:248
 #: ../src/Editors/_EditPerson.py:688 ../src/Editors/_EditPlace.py:275
@@ -4904,8 +4906,8 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"你正尝试使用现有存在的GRAMPS ID号  %(id)s 。 这个号码已经被 '%(prim_object)"
-"s' 占用。 请输入不同的ID号或者留作空白获取下一个可用的ID号。"
+"你正尝试使用现有存在的GRAMPS ID号  %(id)s . 这个号码已经被 '%(prim_object)s' "
+"占用. 请输入不同的ID号或者留作空白获取下一个可用的ID号."
 
 #: ../src/Editors/_EditEvent.py:223
 msgid "The event type cannot be empty"
@@ -4927,7 +4929,7 @@ msgstr "事件索引编辑器"
 #: ../src/Editors/_EditEventRef.py:98 ../src/Editors/_EditMediaRef.py:97
 #: ../src/Editors/_EditName.py:123 ../src/Editors/_EditRepoRef.py:88
 msgid "_General"
-msgstr "概要（_G)"
+msgstr "一般（_G)"
 
 #: ../src/Editors/_EditEventRef.py:233
 msgid "Modify Event"
@@ -4996,8 +4998,8 @@ msgid ""
 "available when you create a new family. The remaining fields will become "
 "available after you attempt to select a parent."
 msgstr ""
-"可能会意外以相同父母创建多个家庭。 为了防止发生，当创建家庭时，只有选择了父母"
-"时按钮才有效。其他区域，当你选择父母时才会变得有效。"
+"可能会意外以相同父母创建多个家庭. 为了防止发生，当创建家庭时，只有选择了父母"
+"时按钮才有效.其他区域，当你选择父母时才会变得有效."
 
 #: ../src/Editors/_EditFamily.py:477
 msgid "Family has changed"
@@ -5009,8 +5011,8 @@ msgid ""
 "not corrupted, GRAMPS has updated the family to reflect these changes. Any "
 "edits you have made may have been lost."
 msgstr ""
-"你正在编辑的家庭已经变更。 为确保数据库未崩溃，GRAMPS已经更新了家庭信息来反映"
-"这些变更。你所有的编辑可能已经丢失。"
+"你正在编辑的家庭已经变更. 为确保数据库未崩溃，GRAMPS已经更新了家庭信息来反映"
+"这些变更.你所有的编辑可能已经丢失."
 
 #: ../src/Editors/_EditFamily.py:504 ../src/Editors/_EditFamily.py:507
 msgid "New Family"
@@ -5062,12 +5064,12 @@ msgid ""
 "will create a duplicate family. It is recommended that you cancel the "
 "editing of this window, and select the existing family"
 msgstr ""
-"拥有这些父母家庭已经存在于数据库中，如果你保存，将会创建一个家庭拷贝。建议你"
-"取消编辑这个窗口，并选择已经存在的家庭。"
+"拥有这些父母家庭已经存在于数据库中，如果你保存，将会创建一个家庭拷贝.建议你取"
+"消编辑这个窗口，并选择已经存在的家庭"
 
 #: ../src/Editors/_EditFamily.py:853
 msgid "Baptism:"
-msgstr "基督教，洗礼："
+msgstr "基督教，洗礼:"
 
 #: ../src/Editors/_EditFamily.py:857
 msgid "Burial:"
@@ -5080,7 +5082,7 @@ msgstr "一个父亲不能成为他自己的孩子"
 #: ../src/Editors/_EditFamily.py:928
 #, python-format
 msgid "%s is listed as both the father and child of the family."
-msgstr "%s 列出了家庭中的父亲和孩子"
+msgstr "%s 列出了家庭中的父亲和孩子."
 
 #: ../src/Editors/_EditFamily.py:937
 msgid "A mother cannot be her own child"
@@ -5089,7 +5091,7 @@ msgstr "一个母亲不能称谓她自己的孩子"
 #: ../src/Editors/_EditFamily.py:938
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
-msgstr "%s 列出了家庭汇中的母亲和孩子。"
+msgstr "%s 列出了家庭汇中的母亲和孩子."
 
 #: ../src/Editors/_EditFamily.py:945
 msgid "Cannot save family"
@@ -5097,11 +5099,11 @@ msgstr "无法保存家庭"
 
 #: ../src/Editors/_EditFamily.py:946
 msgid "No data exists for this family. Please enter data or cancel the edit."
-msgstr "这个家庭没有数据存在，请输入数据并取消编辑。"
+msgstr "这个家庭没有数据存在，请输入数据并取消编辑."
 
 #: ../src/Editors/_EditFamily.py:953
 msgid "Cannot save family. ID already exists."
-msgstr "无法保存家庭，ID已经存在"
+msgstr "无法保存家庭，ID已经存在."
 
 #: ../src/Editors/_EditFamily.py:954 ../src/Editors/_EditNote.py:292
 #, python-format
@@ -5110,8 +5112,8 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"你正尝试使用GRAMPS ID为%(id)s 的数据。 这个值已经被使用。请输入不同的ID或者留"
-"作空白来获取下一个有效的ID值。"
+"你正尝试使用GRAMPS ID为%(id)s 的数据. 这个值已经被使用.请输入不同的ID或者留作"
+"空白来获取下一个有效的ID值."
 
 #: ../src/Editors/_EditFamily.py:995
 msgid "Add Family"
@@ -5148,7 +5150,7 @@ msgstr "位置编辑器"
 #: ../src/Editors/_EditMedia.py:85 ../src/Editors/_EditMediaRef.py:385
 #, python-format
 msgid "Media: %s"
-msgstr "媒体：%s"
+msgstr "媒体:%s"
 
 #: ../src/Editors/_EditMedia.py:87 ../src/Editors/_EditMediaRef.py:387
 msgid "New Media"
@@ -5160,16 +5162,16 @@ msgstr "编辑媒介对象"
 
 #: ../src/Editors/_EditMedia.py:237
 msgid "Cannot save media object"
-msgstr "无法保存媒介对象 "
+msgstr "无法保存媒介对象"
 
 #: ../src/Editors/_EditMedia.py:238
 msgid ""
 "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "本媒介物不包含数据。 请输入数据或取消编辑。"
+msgstr "本媒介物不包含数据. 请输入数据或取消编辑."
 
 #: ../src/Editors/_EditMedia.py:247
 msgid "Cannot save media object. ID already exists."
-msgstr "无法保存媒介物， ID已经存在"
+msgstr "无法保存媒介物, ID已经存在."
 
 #: ../src/Editors/_EditMedia.py:265 ../src/Editors/_EditMediaRef.py:559
 #, python-format
@@ -5192,7 +5194,7 @@ msgstr "参考媒介编辑器"
 #: ../src/Editors/_EditMediaRef.py:83 ../src/Editors/_EditMediaRef.py:84
 #: ../src/glade/gramps.glade.h:137
 msgid "Y coordinate|Y"
-msgstr "Y coordinate|Y"
+msgstr "Y"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
@@ -5204,14 +5206,14 @@ msgstr "新名称"
 
 #: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
-msgstr "是否断开全局组命名？"
+msgstr "是否断开全局组命名?"
 
 #: ../src/Editors/_EditName.py:341
 #, python-format
 msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
-msgstr "所有以%(surname)s 命名的人员将不再以 组名 %(group_name)s 分组。"
+msgstr "所有以%(surname)s 命名的人员将不再以 组名 %(group_name)s 分组."
 
 #: ../src/Editors/_EditName.py:345
 msgid "Continue"
@@ -5223,7 +5225,7 @@ msgstr "返回名称编辑器"
 
 #: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
-msgstr "是否将同名的人分组？"
+msgstr "是否将同名的人分组?"
 
 #: ../src/Editors/_EditName.py:372
 #, python-format
@@ -5231,8 +5233,8 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"你可以选择用组名%(group_name)s 为所有以%(surname)s为姓的人员分组， 或分散显示"
-"个别姓名。"
+"你可以选择用组名%(group_name)s 为所有以%(surname)s为姓的人员分组, 或分散显示"
+"个别姓名."
 
 #: ../src/Editors/_EditName.py:377
 msgid "Group all"
@@ -5271,11 +5273,11 @@ msgstr "不能保存注解"
 
 #: ../src/Editors/_EditNote.py:284
 msgid "No data exists for this note. Please enter data or cancel the edit."
-msgstr "此注释没有数据存在。请输入数据或取消编辑。"
+msgstr "此注释没有数据存在.请输入数据或取消编辑."
 
 #: ../src/Editors/_EditNote.py:291
 msgid "Cannot save note. ID already exists."
-msgstr "无法保存注释。 ID 已经存在。"
+msgstr "无法保存注释. ID 已经存在."
 
 #: ../src/Editors/_EditNote.py:305
 msgid "Add Note"
@@ -5325,8 +5327,8 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"改变性别导致婚姻信息出错。\n"
-"请检查该人婚姻信息。"
+"改变性别导致婚姻信息出错.\n"
+"请检查该人婚姻信息."
 
 #: ../src/Editors/_EditPerson.py:677
 msgid "Cannot save person"
@@ -5334,11 +5336,11 @@ msgstr "无法保存成员"
 
 #: ../src/Editors/_EditPerson.py:678
 msgid "No data exists for this person. Please enter data or cancel the edit."
-msgstr "此人没有数据存在，请输入回数据或取消编辑。"
+msgstr "此人没有数据存在，请输入回数据或取消编辑."
 
 #: ../src/Editors/_EditPerson.py:687
 msgid "Cannot save person. ID already exists."
-msgstr "无法保存人员。ID已经存在"
+msgstr "无法保存人员.ID已经存在."
 
 #: ../src/Editors/_EditPerson.py:708
 #, python-format
@@ -5358,7 +5360,7 @@ msgstr "未知性别"
 msgid ""
 "The gender of the person is currently unknown. Usually, this is a mistake. "
 "Please specify the gender."
-msgstr "未知此人性别。通常，这是不正确的。请确认性别。"
+msgstr "未知此人性别.通常，这是不正确的.请确认性别."
 
 #: ../src/Editors/_EditPerson.py:873
 msgid "_Male"
@@ -5415,11 +5417,11 @@ msgstr "无法保存地址"
 
 #: ../src/Editors/_EditPlace.py:265
 msgid "No data exists for this place. Please enter data or cancel the edit."
-msgstr "地点中未包含数据。请输入或取消编辑。"
+msgstr "地点中未包含数据.请输入或取消编辑."
 
 #: ../src/Editors/_EditPlace.py:274
 msgid "Cannot save place. ID already exists."
-msgstr "无法保存地点。 ID已经存在。"
+msgstr "无法保存地点. ID已经存在."
 
 #: ../src/Editors/_EditPlace.py:287
 #, python-format
@@ -5438,7 +5440,7 @@ msgstr "删除地点(%s)"
 
 #: ../src/Editors/_EditPrimary.py:164
 msgid "Save Changes?"
-msgstr "是否保存修改？"
+msgstr "是否保存修改?"
 
 #: ../src/Editors/_EditPrimary.py:165
 msgid "If you close without saving, the changes you have made will be lost"
@@ -5480,11 +5482,11 @@ msgstr "无法保存仓库"
 #: ../src/Editors/_EditRepository.py:144
 msgid ""
 "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "仓库中没有数据。请输入数据或取消编辑。"
+msgstr "仓库中没有数据.请输入数据或取消编辑."
 
 #: ../src/Editors/_EditRepository.py:153
 msgid "Cannot save repository. ID already exists."
-msgstr "无法保存仓库。ID已经存在。"
+msgstr "无法保存仓库.ID已经存在."
 
 #: ../src/Editors/_EditRepository.py:166
 #, python-format
@@ -5515,11 +5517,11 @@ msgstr "无法保存来源"
 
 #: ../src/Editors/_EditSource.py:161
 msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr "本来源未包含任何数据。 请输入数据或取消编辑。"
+msgstr "本来源未包含任何数据. 请输入数据或取消编辑."
 
 #: ../src/Editors/_EditSource.py:170
 msgid "Cannot save source. ID already exists."
-msgstr "无法保存源。 ID已经存在。"
+msgstr "无法保存源. ID已经存在."
 
 #: ../src/Editors/_EditSource.py:183
 #, python-format
@@ -5574,20 +5576,20 @@ msgstr "恢复备份数据时出错"
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
-msgstr "你的GEDCOM 文件已经损坏，文件使用UTF16编码，但是丢失了BOM标记。"
+msgstr "你的GEDCOM 文件已经损坏，文件使用UTF16编码，但是丢失了BOM标记."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:58
 msgid "Your GEDCOM file is empty."
-msgstr "你的GEDCOM文件为空"
+msgstr "你的GEDCOM文件为空."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:155
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
-msgstr "无效行 %d 在GEDCOM文件中。"
+msgstr "无效行 %d 在GEDCOM文件中."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:133
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "你的GEDCOM文件已经崩溃，可能文件已被截断。"
+msgstr "你的GEDCOM文件已经崩溃，可能文件已被截断."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
@@ -5601,14 +5603,14 @@ msgstr "GEDCOM 文件导入"
 #: ../src/GrampsDbUtils/_GedcomParse.py:1072
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
-msgstr "行 %d 无法辨别， 因此被忽略。"
+msgstr "行 %d 无法辨别, 因此被忽略."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
 #: ../src/GrampsDbUtils/_GedcomParse.py:2918
 #, python-format
 msgid "Line %d: empty event note was ignored."
-msgstr "行 %d: 空事件注释被忽略"
+msgstr "行 %d: 空事件注释被忽略."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:3601
 #: ../src/GrampsDbUtils/_GedcomParse.py:4169
@@ -5625,7 +5627,7 @@ msgstr "从 %s 中导入"
 #: ../src/GrampsDbUtils/_GedcomParse.py:4047
 #, python-format
 msgid "Line %d: empty note was ignored."
-msgstr "行 %d: 空注释被忽略"
+msgstr "行 %d: 空注释被忽略."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:4086
 #, python-format
@@ -5648,46 +5650,45 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"这是错误报告助手。 它将会帮助你制作一个尽可能详细的错误报告给Gramps 开发"
-"者。\n"
+"这是错误报告助手. 它将会帮助你制作一个尽可能详细的错误报告给Gramps 开发者.\n"
 "\n"
-"帮助将会询问您一些问题并收集一些关于错误的信息和发生错误时的操作环境。 在帮助"
-"的而最后，你将会被要求整理一个错误文件给Gramps错误追踪系统。帮助将会把错误报"
-"告发到粘贴板，你可以讲它粘贴到错误追踪网站，并检查是否包含你想发送的信息。"
+"帮助将会询问您一些问题并收集一些关于错误的信息和发生错误时的操作环境. 在帮助"
+"的而最后，你将会被要求整理一个错误文件给Gramps错误追踪系统.帮助将会把错误报告"
+"发到粘贴板，你可以讲它粘贴到错误追踪网站，并检查是否包含你想发送的信息."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
 msgid "Report a bug: Step 1 of 5"
-msgstr "报告错误：步骤1 共5步"
+msgstr "报告错误:步骤1 共5步"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
 msgid "Report a bug: Step 2 of 5"
-msgstr "报告错误：步骤 2 共5步"
+msgstr "报告错误:步骤 2 共5步"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
 msgid "Report a bug: Step 3 of 5"
-msgstr "报告错误：步骤3 共5步"
+msgstr "报告错误:步骤3 共5步"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
 msgid "Report a bug: Step 4 of 5"
-msgstr "报告错误：步骤4共5步"
+msgstr "报告错误:步骤4共5步"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
 msgid "Report a bug: Step 5 of 5"
-msgstr "报告错误：步骤5 共5步"
+msgstr "报告错误:步骤5 共5步"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
 msgid ""
 "GRAMPS is an Open Source project. Its success depends on its users. User "
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
-"GRAMPS 是一个开源项目。它的成功依赖于它的用户。用户的反馈非常重要。十分感谢您"
-"抽时间提交错误报告。"
+"GRAMPS 是一个开源项目.它的成功依赖于它的用户.用户的反馈非常重要.十分感谢您抽"
+"时间提交错误报告."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:134
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
-msgstr "如果你发现在错误中包含任何个人信息，请移除它。"
+msgstr "如果你发现在错误中包含任何个人信息，请移除它."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 msgid "Error Details"
@@ -5699,8 +5700,8 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
-"这是份详细的Gramps错误信息，你无需担心无法了解其内容。你将有机会添加更加详细"
-"的错误到以下助手网页中。"
+"这是份详细的Gramps错误信息，你无需担心无法了解其内容.你将有机会添加更加详细的"
+"错误到以下助手网页中."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:202
 msgid ""
@@ -5709,7 +5710,7 @@ msgid ""
 "report."
 msgstr ""
 "请检查以下信息并纠正你认为是错误的信息，移除所有你不愿意包含在错误报告中的信"
-"息。"
+"息."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:249
 msgid "System Information"
@@ -5719,13 +5720,13 @@ msgstr "系统信息"
 msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
-msgstr "这是关于你系统的信息，它将会帮助开发者修复错误。"
+msgstr "这是关于你系统的信息，它将会帮助开发者修复错误."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:270
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
-msgstr "当错误发生时你所作的事情，请提供尽可能多的信息。"
+msgstr "当错误发生时你所作的事情，请提供尽可能多的信息. "
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:311
 msgid "Further Information"
@@ -5735,7 +5736,7 @@ msgstr "更深入的信息"
 msgid ""
 "This is your opportunity to describe what you were doing when the error "
 "occured."
-msgstr "这是一次机会！ 你可以描述当错误发生时你正在作什么。"
+msgstr "这是一次机会！ 你可以描述当错误发生时你正在作什么."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:333
 msgid ""
@@ -5743,8 +5744,8 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
-"请检查信息是否正确，不用担心你不了解错误信息的详细内容。 仅仅需要确认是否包含"
-"有你不希望发送给开发者的信息。"
+"请检查信息是否正确，不用担心你不了解错误信息的详细内容. 仅仅需要确认是否包含"
+"有你不希望发送给开发者的信息."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:367
 msgid "Bug Report Summary"
@@ -5756,15 +5757,15 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug  on the Gramps bug tracking system website."
 msgstr ""
-"这个是完整的错误报告。 下一页在Gramps错误追踪系统网页，将会协助你提交一个错误"
-"文件。"
+"这个是完整的错误报告. 下一页在Gramps错误追踪系统网页，将会协助你提交一个错误"
+"文件."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:401
 msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"使用以下两个按钮，先拷贝错误报告到粘贴板，然后打开浏览器提交一份错误报告。"
+"使用以下两个按钮，先拷贝错误报告到粘贴板，然后打开浏览器提交一份错误报告 "
 
 #. url_label = gtk.Label(_("If your email client is configured correctly you may be able "#. "to use this button to start it with the bug report ready to send. "#. "(This will probably only work if you are running Gnome)"))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:413
@@ -5772,7 +5773,7 @@ msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
-"使用这个按钮启动一个网页浏览器，并在Gramps错误追踪系统提交一个错误报告。"
+"使用这个按钮启动一个网页浏览器，并在Gramps错误追踪系统提交一个错误报告."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
 #. "to copy the bug report onto the clipboard. Then start your "
@@ -5784,8 +5785,8 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"使用按钮拷贝错误报告到粘贴板。 然后点击以下的按钮进入错误追踪网站，粘贴报告并"
-"点击发送报告。"
+"使用按钮拷贝错误报告到粘贴板. 然后点击以下的按钮进入错误追踪网站，粘贴报告并"
+"点击发送报告"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 msgid "Send Bug Report"
@@ -5798,8 +5799,8 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
-"这是最后一步。使用本页按钮启动一个网页浏览器，并提交一份错误报告到Gramps错误"
-"追踪系统。"
+"这是最后一步.使用本页按钮启动一个网页浏览器，并提交一份错误报告到Gramps错误追"
+"踪系统."
 
 #: ../src/GrampsLogger/_ErrorView.py:24
 msgid "manual|General"
@@ -5820,8 +5821,8 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"你的数据仍然安全，但是强烈建议理解重启GRAMPS软件。如果你希望向GRAMPS团队汇报"
-"问题，请点击汇报，然后错误报告向导将会帮助你提交错误报告。"
+"你的数据仍然安全，但是强烈建议理解重启GRAMPS软件.如果你希望向GRAMPS团队汇报问"
+"题，请点击汇报，然后错误报告向导将会帮助你提交错误报告."
 
 #: ../src/GrampsLogger/_ErrorView.py:88 ../src/GrampsLogger/_ErrorView.py:101
 msgid "Error Detail"
@@ -5932,11 +5933,11 @@ msgid ""
 "Therefore, the central person for each item is being set to the active "
 "person of the currently opened database."
 msgstr ""
-"列表引用数据库%s创建。\n"
+"列表引用数据库%s创建.\n"
 "\n"
-"这使得存于列表中引用的中心人员无效。\n"
+"这使得存于列表中引用的中心人员无效.\n"
 "\n"
-"因此，每个条目的重要人员在现在打开的数据库中，被设为激活的人员，"
+"因此，每个条目的重要人员在现在打开的数据库中，被设为激活的人员."
 
 #: ../src/plugins/BookReport.py:922
 msgid "Setup"
@@ -6013,7 +6014,7 @@ msgstr "稳定版"
 
 #: ../src/plugins/BookReport.py:1251
 msgid "Produces a book containing several reports."
-msgstr "生成包含多份报告的名册。"
+msgstr "生成包含多份报告的名册."
 
 #: ../src/plugins/export/ExportXml.py:126
 #: ../src/plugins/export/ExportXml.py:136
@@ -6028,14 +6029,13 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"数据库无法被保存，因为你没有写入目录的权限。请确认你有写入的权限再试一下。"
+"数据库无法被保存，因为你没有写入目录的权限.请确认你有写入的权限再试一下."
 
 #: ../src/plugins/export/ExportXml.py:137
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
-msgstr ""
-"数据库无法被保存，你没有权限写入文档。请确认你有权限写入文件后再试一次。"
+msgstr "数据库无法被保存，你没有权限写入文档.请确认你有权限写入文件后再试一次."
 
 #. ------------------------------------------------------------------------
 #.
@@ -6047,8 +6047,8 @@ msgid ""
 "GRAMPS XML export is a complete archived XML backup of the GRAMPS database "
 "without the media object files. Suitable for backup purposes."
 msgstr ""
-"GRAMPS XML 导出一个完整的GRAMPS 数据库XML备份，不包含媒介对象文件。适合备份目"
-"的。"
+"GRAMPS XML 导出一个完整的GRAMPS 数据库XML备份，不包含媒介对象文件.适合备份目"
+"的."
 
 #: ../src/plugins/export/ExportXml.py:1223
 msgid "GRAMPS XML export options"
@@ -6074,7 +6074,7 @@ msgstr "媒介目录 %s 不可写入"
 #, python-format
 msgid ""
 "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "媒介目录 %s 已经存在。先删除，然后重启导入进程"
+msgstr "媒介目录 %s 已经存在.先删除，然后重启导入进程"
 
 #: ../src/plugins/import/ImportGpkg.py:91
 #, python-format
@@ -6093,9 +6093,9 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"家庭树的基础媒介路径已经被设定为 %s 。 如果要选择一个简单的路径。你可以在喜爱"
-"选项中修改，当移动你的媒介文件到新的位置，或者使用了媒介管理工具，使用选项'替"
-"换路径名'来修正你的媒介对象目录。"
+"家庭树的基础媒介路径已经被设定为 %s . 如果要选择一个简单的路径.你可以在喜爱选"
+"项中修改，当移动你的媒介文件到新的位置，或者使用了媒介管理工具，使用选项'替换"
+"路径名'来修正你的媒介对象目录."
 
 #: ../src/plugins/import/ImportGpkg.py:117
 msgid "Cannot set base media path"
@@ -6112,10 +6112,10 @@ msgid ""
 "option 'Replace substring in the path' to set correct paths in your media "
 "objects."
 msgstr ""
-"你导入的家族树已经有了基础媒介路径：  %(orig_path)s 。导入的媒介对象仍然于路"
-"径 %(path)s 相关联。 你可以在喜爱选项中修改媒介路径，或者你可以转换导入的文件"
-"到已经存在的基础媒介路径。你可以移动你的媒介文件到新的位置，使用选项'替换路径"
-"名'来修正你的媒介对象目录。"
+"你导入的家族树已经有了基础媒介路径:  %(orig_path)s .导入的媒介对象仍然于路径 "
+"%(path)s 相关联. 你可以在喜爱选项中修改媒介路径，或者你可以转换导入的文件到已"
+"经存在的基础媒介路径.你可以移动你的媒介文件到新的位置，使用选项'替换路径名'来"
+"修正你的媒介对象目录."
 
 #: ../src/plugins/import/ImportGpkg.py:146 ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
@@ -6149,7 +6149,7 @@ msgstr "读取%s出错"
 
 #: ../src/plugins/import/ImportXml.py:133
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "文件可能已经崩溃或者不是有效的GRAMPS 数据库。"
+msgstr "文件可能已经崩溃或者不是有效的GRAMPS 数据库."
 
 #: ../src/plugins/import/ImportXml.py:237
 #, python-format
@@ -6224,7 +6224,7 @@ msgstr "地点: %d \n"
 #: ../src/plugins/import/ImportXml.py:266
 #, python-format
 msgid "  Repositories: %d\n"
-msgstr "仓库： %d \n"
+msgstr "仓库: %d \n"
 
 #: ../src/plugins/import/ImportXml.py:267
 #, python-format
@@ -6233,7 +6233,7 @@ msgstr "  笔记: %d\n"
 
 #: ../src/plugins/import/ImportXml.py:269
 msgid "Number of new objects imported:\n"
-msgstr "已导入的新对象的数量：\n"
+msgstr "已导入的新对象的数量:\n"
 
 #: ../src/plugins/import/ImportXml.py:278
 msgid ""
@@ -6243,7 +6243,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"对象导入，合并并覆盖：\n"
+"对象导入，合并并覆盖:\n"
 
 #: ../src/plugins/import/ImportXml.py:284
 msgid ""
@@ -6257,7 +6257,7 @@ msgstr ""
 "含有相对路径的媒介对象已经被导入\n"
 "这些路径与媒介的目录相关联\n"
 "你可以在喜爱选项中设定，\n"
-"或者，如果不设定，则与用户目录相关联。\n"
+"或者，如果不设定，则与用户目录相关联.\n"
 
 #: ../src/plugins/import/ImportXml.py:763
 msgid "Could not change media path"
@@ -6271,8 +6271,8 @@ msgid ""
 "Copy the files to a correct directory or change the media path in the "
 "Preferences."
 msgstr ""
-"打开的文件有媒介路径 %s， 与你导入的家庭树的媒介路径冲突。原有的媒介路径已经"
-"被保留。 拷贝文件到正确的目录下或者在喜爱选项中改变媒介路径。"
+"打开的文件有媒介路径 %s, 与你导入的家庭树的媒介路径冲突.原有的媒介路径已经被"
+"保留. 拷贝文件到正确的目录下或者在喜爱选项中改变媒介路径."
 
 #: ../src/plugins/import/ImportXml.py:776
 msgid "GRAMPS XML import"
@@ -6282,7 +6282,7 @@ msgstr "GRAMPS XML导入"
 #: ../src/plugins/import/ImportXml.py:2020
 #, python-format
 msgid "Witness name: %s"
-msgstr "目击者姓名：%s"
+msgstr "目击者姓名:%s"
 
 #: ../src/plugins/import/ImportXml.py:1307
 #: ../src/plugins/import/ImportGrdb.py:2926
@@ -6295,7 +6295,7 @@ msgstr "你的家族树组名命名 %s 和%s，请不要改变分组到 %s"
 #: ../src/plugins/import/ImportXml.py:1911
 #, python-format
 msgid "Witness comment: %s"
-msgstr "目击者评论：%s"
+msgstr "目击者评论:%s"
 
 #: ../src/plugins/import/ImportXml.py:2458
 #: ../src/plugins/import/ImportXml.py:2464
@@ -6314,8 +6314,8 @@ msgid ""
 "you are running an older version %s. The file will not be imported. Please "
 "upgrade to the latest version of GRAMPS and try again."
 msgstr ""
-"你导入的gramps文件定为GRAMPS %s 版本，你正在运行一个更旧的不版本 %s 。文件将"
-"无法导入。 请升级到最新版本的GRAMPS 重试一次。"
+"你导入的gramps文件定为GRAMPS %s 版本，你正在运行一个更旧的不版本 %s .文件将无"
+"法导入. 请升级到最新版本的GRAMPS 重试一次."
 
 #: ../src/plugins/import/ImportXml.py:2488
 #, python-format
@@ -6329,13 +6329,13 @@ msgid ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 " for more info."
 msgstr ""
-"你正在导入的gramps 文件属于GRAMPS版本 %(oldgramps)s， 当前运行版本为 %"
-"(newgramps)s 。\n"
+"你正在导入的gramps 文件属于GRAMPS版本 %(oldgramps)s, 当前运行版本为 %"
+"(newgramps)s .\n"
 "\n"
-"文件将不能被导入清使用旧版本GRAMPS支持版本 %(xmlversion)s 的xml。\n"
+"文件将不能被导入清使用旧版本GRAMPS支持版本 %(xmlversion)s 的xml.\n"
 "相关请查阅\n"
 " http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
-" 了解更多信息。"
+" 了解更多信息."
 
 #: ../src/plugins/import/ImportXml.py:2503
 msgid "The file will not be imported"
@@ -6355,13 +6355,13 @@ msgid ""
 "for more info."
 msgstr ""
 "你正在导入的gramps 文件属于版本  %(oldgramps)s 的GRAMPS，正在运行的是最新的版"
-"本 %(newgramps)s。\n"
+"本 %(newgramps)s.\n"
 "\n"
-"确认在导入所有内容后导入正确。事件出错，请提交错误并同时使用旧版本GRAMPS导入"
-"这个文件，也就是版本为 %(xmlversion)s 的 xml。\n"
+"确认在导入所有内容后导入正确.事件出错，请提交错误并同时使用旧版本GRAMPS导入这"
+"个文件，也就是版本为 %(xmlversion)s 的 xml.\n"
 "相关请查阅\n"
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
-"了解更多信息。"
+"了解更多信息."
 
 #: ../src/plugins/import/ImportXml.py:2523
 msgid "Old xml file"
@@ -6377,7 +6377,7 @@ msgid ""
 "The GRAMPS XML database is a text version of a family tree. It is read-write "
 "compatible with the present GRAMPS database format."
 msgstr ""
-"GRAMPS XML 数据库是一个家庭树的文本格式。它与现有的GRAMPS 数据库格式兼容。"
+"GRAMPS XML 数据库是一个家庭树的文本格式.它与现有的GRAMPS 数据库格式兼容."
 
 #: ../src/plugins/Records.py:217
 #: ../src/plugins/gramplet/SessionLogGramplet.py:84
@@ -6401,7 +6401,7 @@ msgstr "双击“名“了解详细信息"
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:39
 #: ../src/plugins/gramplet/WhatsNext.py:61
 msgid "No Family Tree loaded."
-msgstr "未载入家庭树"
+msgstr "未载入家庭树."
 
 #: ../src/plugins/Records.py:342
 #: ../src/plugins/gramplet/GivenNameGramplet.py:54
@@ -6532,11 +6532,11 @@ msgstr "家庭记录"
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:193
 #: ../src/plugins/textreport/Summary.py:285
 msgid "The basic style used for the text display."
-msgstr "文本显示的基本风格。"
+msgstr "文本显示的基本风格."
 
 #: ../src/plugins/Records.py:518
 msgid "The style used for headings."
-msgstr "标题使用风格"
+msgstr "标题使用风格."
 
 #: ../src/plugins/Records.py:527
 msgid "The style used for the report title"
@@ -6544,7 +6544,7 @@ msgstr "汇报标题应用风格"
 
 #: ../src/plugins/Records.py:536
 msgid "Youngest living person"
-msgstr "最年轻的成员。"
+msgstr "最年轻的成员"
 
 #: ../src/plugins/Records.py:537
 msgid "Oldest living person"
@@ -6612,7 +6612,7 @@ msgstr "持续最长的婚姻"
 
 #: ../src/plugins/Records.py:564
 msgid "Records Gramplet"
-msgstr "记录Gramplet "
+msgstr "记录Gramplet"
 
 #: ../src/plugins/Records.py:576
 msgid "Records Report"
@@ -6620,7 +6620,7 @@ msgstr "记录报告"
 
 #: ../src/plugins/Records.py:581
 msgid "Shows some interesting records about people and families"
-msgstr "显示一些关于家庭和个人有趣的记录。"
+msgstr "显示一些关于家庭和个人有趣的记录"
 
 #: ../src/plugins/docgen/AsciiDoc.py:375
 msgid "Plain Text"
@@ -6755,7 +6755,7 @@ msgstr "显示格式"
 #: ../src/plugins/drawreport/AncestorTree.py:475
 #: ../src/plugins/drawreport/DescendTree.py:472
 msgid "Display format for the outputbox."
-msgstr "outputbox的输出格式"
+msgstr "outputbox的输出格式."
 
 #: ../src/plugins/drawreport/AncestorTree.py:478
 #: ../src/plugins/drawreport/DescendTree.py:475
@@ -6765,7 +6765,7 @@ msgstr "缩放到单一页面"
 #: ../src/plugins/drawreport/AncestorTree.py:479
 #: ../src/plugins/drawreport/DescendTree.py:476
 msgid "Whether to scale to fit on a single page."
-msgstr "是否缩放到单一页面"
+msgstr "是否缩放到单一页面."
 
 #: ../src/plugins/drawreport/AncestorTree.py:482
 #: ../src/plugins/drawreport/DescendTree.py:479
@@ -6775,7 +6775,7 @@ msgstr "包含空白页面"
 #: ../src/plugins/drawreport/AncestorTree.py:483
 #: ../src/plugins/drawreport/DescendTree.py:480
 msgid "Whether to include pages that are blank."
-msgstr "是否包含空白页面"
+msgstr "是否包含空白页面."
 
 #: ../src/plugins/drawreport/AncestorTree.py:486
 msgid "Co_mpress tree"
@@ -6783,12 +6783,12 @@ msgstr "压缩树 (_M)"
 
 #: ../src/plugins/drawreport/AncestorTree.py:487
 msgid "Whether to compress the tree."
-msgstr "是否压缩树"
+msgstr "是否压缩树."
 
 #: ../src/plugins/drawreport/AncestorTree.py:508
 #: ../src/plugins/drawreport/DescendTree.py:504
 msgid "The basic style used for the title display."
-msgstr "标题显示基本形式"
+msgstr "标题显示基本形式."
 
 #: ../src/plugins/drawreport/AncestorTree.py:542
 msgid "Ancestor Tree"
@@ -6807,7 +6807,7 @@ msgstr "日历报告"
 #: ../src/plugins/drawreport/Calendar.py:151
 #: ../src/plugins/textreport/BirthdayReport.py:154
 msgid "Formatting months..."
-msgstr "以月为格式"
+msgstr "以月为格式..."
 
 #: ../src/plugins/drawreport/Calendar.py:244
 #: ../src/plugins/textreport/BirthdayReport.py:191
@@ -7043,17 +7043,17 @@ msgstr "周文本天数Days of the week text"
 #: ../src/plugins/drawreport/Calendar.py:516
 #: ../src/plugins/textreport/BirthdayReport.py:477
 msgid "Text at bottom, line 1"
-msgstr "底部文字， 第一行"
+msgstr "底部文字, 第一行"
 
 #: ../src/plugins/drawreport/Calendar.py:518
 #: ../src/plugins/textreport/BirthdayReport.py:479
 msgid "Text at bottom, line 2"
-msgstr "底部文字， 第二行"
+msgstr "底部文字, 第二行"
 
 #: ../src/plugins/drawreport/Calendar.py:520
 #: ../src/plugins/textreport/BirthdayReport.py:481
 msgid "Text at bottom, line 3"
-msgstr "底部文字， 第三行"
+msgstr "底部文字, 第三行"
 
 #: ../src/plugins/drawreport/Calendar.py:522
 msgid "Borders"
@@ -7071,7 +7071,7 @@ msgstr "生成一个图形日历"
 
 #: ../src/plugins/drawreport/DescendTree.py:54
 msgid "short for married|m."
-msgstr "m.(已婚)"
+msgstr "m.(已婚)."
 
 #: ../src/plugins/drawreport/DescendTree.py:151
 #, python-format
@@ -7084,7 +7084,7 @@ msgstr "显示配偶(_O)"
 
 #: ../src/plugins/drawreport/DescendTree.py:484
 msgid "Whether to show spouses in the tree."
-msgstr "是否在树中显示配偶"
+msgstr "是否在树中显示配偶."
 
 #: ../src/plugins/drawreport/DescendTree.py:538
 msgid "Descendant Tree"
@@ -7097,7 +7097,7 @@ msgstr "生成一张后代图像树"
 #: ../src/plugins/drawreport/FanChart.py:190
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
-msgstr "%(generations)d 的后代扇形图表， %(person)s"
+msgstr "%(generations)d 的后代扇形图表, %(person)s"
 
 #: ../src/plugins/drawreport/FanChart.py:347
 #: ../src/plugins/textreport/AncestorReport.py:254
@@ -7125,7 +7125,7 @@ msgstr "1／4圈"
 
 #: ../src/plugins/drawreport/FanChart.py:354
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr "图表的格式：圆，半圆，或者1／4圆"
+msgstr "图表的格式:圆，半圆，或者1／4圆."
 
 #: ../src/plugins/drawreport/FanChart.py:358
 msgid "Background color"
@@ -7161,7 +7161,7 @@ msgstr "打印半径向上或者一圈Print radial texts upright or roundabout"
 
 #: ../src/plugins/drawreport/FanChart.py:393
 msgid "The style used for the title."
-msgstr "标题应用的风格"
+msgstr "标题应用的风格."
 
 #: ../src/plugins/drawreport/FanChart.py:444
 #: ../src/plugins/gramplet/FanChartGramplet.py:902
@@ -7346,7 +7346,7 @@ msgstr "出生于 %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:556
 msgid "Saving charts..."
-msgstr "保存图表"
+msgstr "保存图表..."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:603
 #: ../src/plugins/drawreport/StatisticsChart.py:639
@@ -7360,7 +7360,7 @@ msgstr "整理图表栏目,通过"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:698
 msgid "Select how the statistical data is sorted."
-msgstr "选择统计数据如何被整理"
+msgstr "选择统计数据如何被整理."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:701
 msgid "Sort in reverse order"
@@ -7368,11 +7368,11 @@ msgstr "反向顺序整理"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:702
 msgid "Check to reverse the sorting order."
-msgstr "钩选反向排列顺序。"
+msgstr "钩选反向排列顺序."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:706
 msgid "People Born After"
-msgstr "People Born After 人员出生于 。。之后"
+msgstr "People Born After 人员出生于 ..之后"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:708
 msgid "Birth year from which to include people"
@@ -7380,7 +7380,7 @@ msgstr "出生的年份 开始"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:711
 msgid "People Born Before"
-msgstr "出生于 。。。之前"
+msgstr "出生于 ...之前"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:713
 msgid "Birth year until which to include people"
@@ -7400,7 +7400,7 @@ msgstr "性别已纳入"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:727
 msgid "Select which genders are included into statistics."
-msgstr "选择何种性别纳入统计"
+msgstr "选择何种性别纳入统计."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:731
 msgid "Max. items for a pie"
@@ -7409,7 +7409,7 @@ msgstr "饼图中最多项目"
 #: ../src/plugins/drawreport/StatisticsChart.py:732
 msgid ""
 "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr "更少的项目的饼图和 lengend 将被使用来代替条状图"
+msgstr "更少的项目的饼图和 lengend 将被使用来代替条状图."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:743
 msgid "Charts 1"
@@ -7425,7 +7425,7 @@ msgstr "包含有显示数据的图表"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:788
 msgid "The style used for the items and values."
-msgstr "栏目和数值的应用风格"
+msgstr "栏目和数值的应用风格."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:797
 #: ../src/plugins/drawreport/TimeLine.py:389
@@ -7442,7 +7442,7 @@ msgstr "栏目和数值的应用风格"
 #: ../src/plugins/textreport/SimpleBookTitle.py:153
 #: ../src/plugins/textreport/Summary.py:266
 msgid "The style used for the title of the page."
-msgstr "页面标题的样式"
+msgstr "页面标题的样式."
 
 #: ../src/plugins/drawreport/StatisticsChart.py:906
 msgid "Produces statistical bar and pie charts of the people in the database"
@@ -7496,11 +7496,11 @@ msgstr "决定年限长度的日历"
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "The style used for the person's name."
-msgstr "个人姓名使用风格"
+msgstr "个人姓名使用风格."
 
 #: ../src/plugins/drawreport/TimeLine.py:380
 msgid "The style used for the year labels."
-msgstr "年限标签使用风格"
+msgstr "年限标签使用风格."
 
 #: ../src/plugins/drawreport/TimeLine.py:465
 msgid "Timeline Chart"
@@ -7508,7 +7508,7 @@ msgstr "年谱"
 
 #: ../src/plugins/drawreport/TimeLine.py:469
 msgid "Produces a timeline chart."
-msgstr "生成时间线图表"
+msgstr "生成时间线图表."
 
 #: ../src/plugins/export/ExportCd.py:55
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
@@ -7544,9 +7544,8 @@ msgid ""
 "either remove the reference from the database, keep the reference to the "
 "missing file, or select a new file."
 msgstr ""
-"%(file_name)s 是数据库的索引，已不存在。 文件可能已被删除或者移到一个不同的位"
-"置。你可以选择从数据库移除索引，保留对缺失的文件的索引，或者选择一个新的文"
-"件。"
+"%(file_name)s 是数据库的索引，已不存在. 文件可能已被删除或者移到一个不同的位"
+"置.你可以选择从数据库移除索引，保留对缺失的文件的索引，或者选择一个新的文件."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7559,8 +7558,8 @@ msgid ""
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
 msgstr ""
-"导出到CD 拷贝所有的数据和媒介对象文件到CD创建工具。 你可以稍后使用这些数据录"
-"制CD，并且这个拷贝可以完全移动到不同的机器和二进制的架构中。"
+"导出到CD 拷贝所有的数据和媒介对象文件到CD创建工具. 你可以稍后使用这些数据录制"
+"CD，并且这个拷贝可以完全移动到不同的机器和二进制的架构中."
 
 #: ../src/plugins/export/ExportCd.py:308
 msgid "_Export to CD (portable XML)"
@@ -7581,7 +7580,7 @@ msgstr "出生来源"
 #: ../src/plugins/import/ImportCsv.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
-msgstr "死亡日期 "
+msgstr "死亡日期"
 
 #: ../src/plugins/export/ExportCsv.py:342
 #: ../src/plugins/import/ImportCsv.py:189
@@ -7613,7 +7612,7 @@ msgstr "逗号分割数值的电子表格（CSV）"
 
 #: ../src/plugins/export/ExportCsv.py:490
 msgid "CSV is a common spreadsheet format."
-msgstr "CSV是一种通用电子表格格式。"
+msgstr "CSV是一种通用电子表格格式."
 
 #: ../src/plugins/export/ExportCsv.py:491
 msgid "CSV spreadsheet options"
@@ -7634,7 +7633,7 @@ msgstr "网页家族树(_W）"
 
 #: ../src/plugins/export/ExportFtree.py:312
 msgid "Web Family Tree format."
-msgstr "网页家族树格式。"
+msgstr "网页家族树格式."
 
 #: ../src/plugins/export/ExportGedcom.py:370
 msgid "Filtering private data"
@@ -7691,7 +7690,7 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
-"GEDCOM 用于在genealogy 程序间传送数据。大多的族谱软件接受GEDCOM文件作为输入。"
+"GEDCOM 用于在genealogy 程序间传送数据.大多的族谱软件接受GEDCOM文件作为输入."
 
 #: ../src/plugins/export/ExportGedcom.py:1541
 msgid "GEDCOM export options"
@@ -7712,7 +7711,7 @@ msgstr "没有家庭符合选中的筛选要求"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/export/ExportGeneWeb.py:619
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb 是一个基于网页的家谱软件"
+msgstr "GeneWeb 是一个基于网页的家谱软件."
 
 #: ../src/plugins/export/ExportGeneWeb.py:620
 msgid "GeneWeb export options"
@@ -7731,7 +7730,7 @@ msgstr "GeneWeb(_G)"
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
-msgstr "GRAMPS文件包是一个资料性的XML数据库，配备媒介对象文件"
+msgstr "GRAMPS文件包是一个资料性的XML数据库，配备媒介对象文件."
 
 #: ../src/plugins/export/ExportPkg.py:237
 msgid "GRAMPS package export options"
@@ -7761,7 +7760,7 @@ msgstr "死于 %s"
 #: ../src/plugins/export/ExportVCalendar.py:332
 #, python-format
 msgid "Anniversary: %s"
-msgstr "周年纪念日： %s"
+msgstr "周年纪念日: %s"
 
 #. ------------------------------------------------------------------------
 #.
@@ -7770,7 +7769,7 @@ msgstr "周年纪念日： %s"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/export/ExportVCalendar.py:353
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "vCalendar 用于多种日历和 PIM 应用"
+msgstr "vCalendar 用于多种日历和 PIM 应用."
 
 #: ../src/plugins/export/ExportVCalendar.py:354
 msgid "vCalendar export options"
@@ -7787,7 +7786,7 @@ msgstr "vC_alendar (_A)"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/export/ExportVCard.py:268
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "vCard 用于许多地址簿和PIM应用程序。"
+msgstr "vCard 用于许多地址簿和PIM应用程序."
 
 #: ../src/plugins/export/ExportVCard.py:269
 msgid "vCard export options"
@@ -7808,8 +7807,8 @@ msgid ""
 "for everyone in your Family Tree on that date. You can then sort by the age "
 "column, and double-click the row to view or edit."
 msgstr ""
-"在以下输入框输入日期并点运行。 将会计算家族树中所有人的年龄。 你可以用条目排"
-"序年龄，并双击行查看并编辑。"
+"在以下输入框输入日期并点运行. 将会计算家族树中所有人的年龄. 你可以用条目排序"
+"年龄，并双击行查看并编辑."
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 msgid "Run"
@@ -7827,7 +7826,7 @@ msgstr "当前日期年龄"
 #: ../src/plugins/gramplet/AgeStats.py:39
 #: ../src/plugins/gramplet/AgeStats.py:49
 msgid "Max age"
-msgstr "最大年龄 "
+msgstr "最大年龄"
 
 #: ../src/plugins/gramplet/AgeStats.py:41
 #: ../src/plugins/gramplet/AgeStats.py:50
@@ -7929,7 +7928,7 @@ msgstr "移动鼠标到链接上选择"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:60
 msgid "No Active Person selected."
-msgstr "无激活人员被选中"
+msgstr "无激活人员被选中."
 
 #: ../src/plugins/gramplet/DescendGramplet.py:107
 #: ../src/plugins/textreport/DescendReport.py:118
@@ -7969,7 +7968,7 @@ msgstr "右键点击编辑"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:151
 msgid "   sp. "
-msgstr "   sp."
+msgstr "   sp. "
 
 #: ../src/plugins/gramplet/DescendGramplet.py:166
 msgid "Descendant Gramplet"
@@ -7999,7 +7998,7 @@ msgstr "双击“名”了解详细信息"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:129
 msgid "Total unique given names"
-msgstr "全部独有“姓” "
+msgstr "全部独有“姓”"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:131
 msgid "Total given names showing"
@@ -8009,7 +8008,7 @@ msgstr "全部独有“名”显示"
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:147
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:102
 msgid "Total people"
-msgstr "所有人 "
+msgstr "所有人"
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
 msgid "Given Name Cloud Gramplet"
@@ -8087,7 +8086,7 @@ msgid_plural ""
 " has %(count_person)d of %(max_count_person)d individuals (%(percent)s "
 "complete)\n"
 msgstr[0] ""
-" 有 %(count_person)d  of %(max_count_person)d 个人 (%(percent)s 完成)\n"
+" 有%(count_person)d 共 %(max_count_person)d 个体成员 (%(percent)s 完成)\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:262
 msgid "All generations"
@@ -8101,7 +8100,7 @@ msgstr "双击查看所有后代"
 #, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
-msgstr[0] " have %d 个人\n"
+msgstr[0] " 有 %d 个体成员\n"
 
 #: ../src/plugins/gramplet/PedigreeGramplet.py:281
 msgid "Pedigree Gramplet"
@@ -8119,7 +8118,7 @@ msgstr "查看类型"
 #: ../src/plugins/gramplet/QuickViewGramplet.py:103
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
 msgid "Quick Views"
-msgstr "快速浏览 "
+msgstr "快速浏览"
 
 #: ../src/plugins/gramplet/QuickViewGramplet.py:123
 msgid "Quick View Gramplet"
@@ -8141,28 +8140,28 @@ msgstr "激活人员:%s"
 #: ../src/plugins/gramplet/RelativeGramplet.py:86
 #, python-format
 msgid "%d. Partner: "
-msgstr "%d.位伴侣:"
+msgstr "%d.位伴侣: "
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:90
 #, python-format
 msgid "%d. Partner: Not known"
-msgstr "%d 位伴侣：未知"
+msgstr "%d 位伴侣:未知"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:105
 msgid "Parents:"
-msgstr "父母："
+msgstr "父母:"
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:117
 #: ../src/plugins/gramplet/RelativeGramplet.py:121
 #, python-format
 msgid "   %d.a Mother: "
-msgstr "   %d a 母亲："
+msgstr "   %d a 母亲: "
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:128
 #: ../src/plugins/gramplet/RelativeGramplet.py:132
 #, python-format
 msgid "   %d.b Father: "
-msgstr "   %d b 父亲："
+msgstr "   %d b 父亲: "
 
 #: ../src/plugins/gramplet/RelativeGramplet.py:143
 msgid "Relatives Gramplet"
@@ -8340,7 +8339,7 @@ msgstr "输入文本"
 
 #: ../src/plugins/gramplet/ToDoGramplet.py:39
 msgid "Enter your TODO list here."
-msgstr "本处输入你的TODO 列表"
+msgstr "本处输入你的TODO 列表."
 
 #: ../src/plugins/gramplet/ToDoGramplet.py:55
 msgid "TODO Gramplet"
@@ -8399,7 +8398,7 @@ msgstr "欢迎进入 GRAMPS 世界"
 
 #: ../src/plugins/gramplet/WhatsNext.py:79
 msgid "No Home Person set."
-msgstr "未设定家庭成员 "
+msgstr "未设定家庭成员."
 
 #: ../src/plugins/gramplet/WhatsNext.py:245
 msgid "first name unknown"
@@ -8429,7 +8428,7 @@ msgstr ": %(list)s\n"
 #: ../src/plugins/gramplet/WhatsNext.py:317
 #: ../src/plugins/gramplet/WhatsNext.py:338
 msgid ", "
-msgstr "，..(test001)"
+msgstr ", "
 
 #: ../src/plugins/gramplet/WhatsNext.py:285
 #: ../src/plugins/gramplet/WhatsNext.py:292
@@ -8493,7 +8492,7 @@ msgstr "Gramplet下一项"
 
 #: ../src/plugins/gramplet/WhatsNext.py:428
 msgid "What's Next?"
-msgstr "下一项？"
+msgstr "下一项?"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8528,7 +8527,7 @@ msgstr "有意想的人员"
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
-msgstr "关注的人员被用于作为起点，当制定家庭线时。"
+msgstr "关注的人员被用于作为起点，当制定家庭线时."
 
 #: ../src/plugins/graph/GVFamilyLines.py:113
 msgid "Follow parents to determine family lines"
@@ -8538,7 +8537,7 @@ msgstr "以父母确立家庭线"
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
-msgstr "父母和他们的祖先也将被作为确定家庭线的考虑。"
+msgstr "父母和他们的祖先也将被作为确定家庭线的考虑."
 
 #: ../src/plugins/graph/GVFamilyLines.py:118
 msgid "Follow children to determine \"family lines\""
@@ -8546,7 +8545,7 @@ msgstr "以子女确立家庭线"
 
 #: ../src/plugins/graph/GVFamilyLines.py:120
 msgid "Children will be considered when determining \"family lines\"."
-msgstr "在确定家庭线时，子女也将会被纳入考虑范围。"
+msgstr "在确定家庭线时，子女也将会被纳入考虑范围."
 
 #: ../src/plugins/graph/GVFamilyLines.py:125
 msgid "Try to remove extra people and families"
@@ -8556,7 +8555,7 @@ msgstr "尽可能移除额外的人员和家庭"
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
-msgstr "人员和家庭没有和被关注的人员有直接的联系，将会在确定家庭线时 被移除。"
+msgstr "人员和家庭没有和被关注的人员有直接的联系，将会在确定家庭线时 被移除."
 
 #. ----------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:133
@@ -8570,27 +8569,27 @@ msgstr "家庭颜色"
 
 #: ../src/plugins/graph/GVFamilyLines.py:137
 msgid "Colours to use for various family lines."
-msgstr "区分不同家庭线所使用的颜色。"
+msgstr "区分不同家庭线所使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:145
 #: ../src/plugins/graph/GVRelGraph.py:538
 msgid "The colour to use to display men."
-msgstr "显示男性使用的颜色"
+msgstr "显示男性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:149
 #: ../src/plugins/graph/GVRelGraph.py:542
 msgid "The colour to use to display women."
-msgstr "显示女性使用的颜色"
+msgstr "显示女性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:153
 #: ../src/plugins/graph/GVRelGraph.py:546
 msgid "The colour to use when the gender is unknown."
-msgstr "显示未知性别使用的颜色"
+msgstr "显示未知性别使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:158
 #: ../src/plugins/graph/GVRelGraph.py:551
 msgid "The colour to use to display families."
-msgstr "显示家庭使用的颜色"
+msgstr "显示家庭使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:161
 msgid "Limit the number of parents"
@@ -8599,7 +8598,7 @@ msgstr "限定父母的数量"
 #: ../src/plugins/graph/GVFamilyLines.py:164
 #: ../src/plugins/graph/GVFamilyLines.py:170
 msgid "The maximum number of ancestors to include."
-msgstr "能包含的最大祖先数量"
+msgstr "能包含的最大祖先数量."
 
 #: ../src/plugins/graph/GVFamilyLines.py:173
 msgid "Limit the number of children"
@@ -8609,7 +8608,7 @@ msgstr "限定子女数量"
 #: ../src/plugins/graph/GVFamilyLines.py:182
 #: ../src/plugins/graph/GVFamilyLines.py:192
 msgid "The maximum number of children to include."
-msgstr "能包含的最大子女数量"
+msgstr "能包含的最大子女数量."
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:186
@@ -8638,7 +8637,7 @@ msgstr "除了名字之外"
 #: ../src/plugins/graph/GVFamilyLines.py:200
 #: ../src/plugins/graph/GVRelGraph.py:521
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "缩略图应该出现在相关人员的什么位置."
+msgstr "缩略图应该出现在相关人员的什么位置"
 
 #. ---------------------
 #: ../src/plugins/graph/GVFamilyLines.py:204
@@ -8663,8 +8662,8 @@ msgid ""
 "for filled. If the sex of an individual is unknown it will be shown with "
 "gray."
 msgstr ""
-"男性将以蓝色显示，女性以红色显示，除非另有设定，否则按照以上填充。如果性别不"
-"确定将会以灰色显示。"
+"男性将以蓝色显示，女性以红色显示，除非另有设定，否则按照以上填充.如果性别不确"
+"定将会以灰色显示."
 
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
@@ -8677,7 +8676,7 @@ msgstr "使用圆角"
 #: ../src/plugins/graph/GVHourGlass.py:285
 #: ../src/plugins/graph/GVRelGraph.py:563
 msgid "Use rounded corners to differentiate between women and men."
-msgstr "使用圆角区分男性和女性"
+msgstr "使用圆角区分男性和女性."
 
 #: ../src/plugins/graph/GVFamilyLines.py:221
 msgid "Include dates"
@@ -8685,7 +8684,7 @@ msgstr "包含日期"
 
 #: ../src/plugins/graph/GVFamilyLines.py:222
 msgid "Whether to include dates for people and families."
-msgstr "是否为成员和家庭包含日期"
+msgstr "是否为成员和家庭包含日期."
 
 #: ../src/plugins/graph/GVFamilyLines.py:227
 #: ../src/plugins/graph/GVRelGraph.py:486
@@ -8697,7 +8696,7 @@ msgstr "Limit dates to years only"
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
-msgstr "仅仅打印出日期年，不要月和日 或者 近似的日期或者间隔 被显示出来"
+msgstr "仅仅打印出日期年，不要月和日 或者 近似的日期或者间隔 被显示出来."
 
 #: ../src/plugins/graph/GVFamilyLines.py:233
 msgid "Include places"
@@ -8705,7 +8704,7 @@ msgstr " 包括地点"
 
 #: ../src/plugins/graph/GVFamilyLines.py:234
 msgid "Whether to include placenames for people and families."
-msgstr "是否为成员"
+msgstr "是否为成员和家庭包含地点名."
 
 #: ../src/plugins/graph/GVFamilyLines.py:239
 msgid "Include the number of children"
@@ -8715,7 +8714,7 @@ msgstr "包含子女数量"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr "是否为多于一个孩子的家庭显示子女的数目。"
+msgstr "是否为多于一个孩子的家庭显示子女的数目."
 
 #: ../src/plugins/graph/GVFamilyLines.py:245
 msgid "Include private records"
@@ -8724,7 +8723,7 @@ msgstr "包含私人的记录"
 #: ../src/plugins/graph/GVFamilyLines.py:246
 msgid ""
 "Whether to include names, dates, and families that are marked as private."
-msgstr "是否包含标记为私有的家庭，姓名，日期"
+msgstr "是否包含标记为私有的家庭,姓名,日期."
 
 #: ../src/plugins/graph/GVFamilyLines.py:397
 msgid "Generating Family Lines"
@@ -8800,7 +8799,7 @@ msgstr "图表风格"
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
-msgstr "男性由蓝色显示，女性用红色显示。  如果个体性别未知，将会显示为灰色。"
+msgstr "男性由蓝色显示，女性用红色显示.  如果个体性别未知，将会显示为灰色."
 
 #: ../src/plugins/graph/GVHourGlass.py:303
 msgid "Hourglass Graph"
@@ -8838,7 +8837,7 @@ msgstr "包含出生，结婚和死亡日期"
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
-msgstr "在曲线图标签中包含个体出生，结婚 或者 死亡日期"
+msgstr "在曲线图标签中包含个体出生，结婚 或者 死亡日期."
 
 #: ../src/plugins/graph/GVRelGraph.py:492
 msgid "Use place when no date"
@@ -8848,7 +8847,7 @@ msgstr "当无日期时使用地点"
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
-msgstr "当没有出生，婚姻，死亡日期等有效数据时，相应的地点区域会被使用。"
+msgstr "当没有出生，婚姻，死亡日期等有效数据时，相应的地点区域会被使用."
 
 #: ../src/plugins/graph/GVRelGraph.py:498
 msgid "Include URLs"
@@ -8861,7 +8860,7 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "每个曲线节点包含一个URL，因此PDF 和 位图文件可以被生成包含动态链接到由  "
-"'Narrated Web Site'报告生成的文件 。"
+"'Narrated Web Site'报告生成的文件 ."
 
 #: ../src/plugins/graph/GVRelGraph.py:506
 msgid "Include IDs"
@@ -8869,11 +8868,11 @@ msgstr "包含ID"
 
 #: ../src/plugins/graph/GVRelGraph.py:507
 msgid "Include individual and family IDs."
-msgstr "包含个人和家庭的ID。"
+msgstr "包含个人和家庭的ID."
 
 #: ../src/plugins/graph/GVRelGraph.py:513
 msgid "Whether to include thumbnails of people."
-msgstr "是否包含人员的缩略图"
+msgstr "是否包含人员的缩略图."
 
 #: ../src/plugins/graph/GVRelGraph.py:517
 msgid "Thumbnail Location"
@@ -8885,7 +8884,7 @@ msgstr "箭头方向"
 
 #: ../src/plugins/graph/GVRelGraph.py:557
 msgid "Choose the direction that the arrows point."
-msgstr "选择箭头所指方向。"
+msgstr "选择箭头所指方向."
 
 #: ../src/plugins/graph/GVRelGraph.py:568
 msgid "Indicate non-birth relationships with dotted lines"
@@ -8893,7 +8892,7 @@ msgstr "使用点线标识非生育关系"
 
 #: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "非生育关系在曲线图中将会由点线来显示。"
+msgstr "非生育关系在曲线图中将会由点线来显示."
 
 #: ../src/plugins/graph/GVRelGraph.py:573
 msgid "Show family nodes"
@@ -8901,7 +8900,7 @@ msgstr "显示家庭节点"
 
 #: ../src/plugins/graph/GVRelGraph.py:574
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "家庭将会显示为椭圆，链接父母和子女。"
+msgstr "家庭将会显示为椭圆，链接父母和子女."
 
 #: ../src/plugins/graph/GVRelGraph.py:629
 msgid "Relationship Graph"
@@ -8929,11 +8928,11 @@ msgstr "Gramps ID 编号"
 
 #: ../src/plugins/import/ImportCsv.py:209
 msgid "Parent2"
-msgstr "父母2 "
+msgstr "父母 2"
 
 #: ../src/plugins/import/ImportCsv.py:213
 msgid "Parent1"
-msgstr "父母 1 "
+msgstr "父母 1"
 
 #: ../src/plugins/import/ImportCsv.py:226
 msgid "given name"
@@ -8941,12 +8940,12 @@ msgstr "名"
 
 #: ../src/plugins/import/ImportCsv.py:239
 msgid "gender"
-msgstr "性别 "
+msgstr "性别"
 
 #: ../src/plugins/import/ImportCsv.py:241
 #: ../src/plugins/import/ImportCsv.py:274
 msgid "source"
-msgstr "来源 "
+msgstr "来源"
 
 #: ../src/plugins/import/ImportCsv.py:243
 msgid "note"
@@ -8958,7 +8957,7 @@ msgstr "出生地点"
 
 #: ../src/plugins/import/ImportCsv.py:249
 msgid "birth date"
-msgstr "出生日期 "
+msgstr "出生日期"
 
 #: ../src/plugins/import/ImportCsv.py:252
 msgid "birth source"
@@ -8970,7 +8969,7 @@ msgstr "死亡地点"
 
 #: ../src/plugins/import/ImportCsv.py:258
 msgid "death date"
-msgstr "死亡日期 "
+msgstr "死亡日期"
 
 #: ../src/plugins/import/ImportCsv.py:261
 msgid "death source"
@@ -9008,19 +9007,19 @@ msgstr "父母 2"
 
 #: ../src/plugins/import/ImportCsv.py:283
 msgid "father"
-msgstr "父亲 "
+msgstr "父亲"
 
 #: ../src/plugins/import/ImportCsv.py:285
 msgid "parent1"
-msgstr "父母 "
+msgstr "父母 1"
 
 #: ../src/plugins/import/ImportCsv.py:287
 msgid "marriage"
-msgstr "婚姻 "
+msgstr "婚姻"
 
 #: ../src/plugins/import/ImportCsv.py:289
 msgid "date"
-msgstr "日期 "
+msgstr "日期"
 
 #: ../src/plugins/import/ImportCsv.py:291
 msgid "place"
@@ -9040,7 +9039,7 @@ msgstr "%s 无法打开 \n"
 #: ../src/plugins/import/ImportCsv.py:329
 #, python-format
 msgid "format error: file %s, line %d: %s"
-msgstr "格式错误： 文件 %s ， 行 %d ：%s"
+msgstr "格式错误: 文件 %s , 行 %d :%s"
 
 #: ../src/plugins/import/ImportCsv.py:380
 msgid "CSV Import"
@@ -9048,7 +9047,7 @@ msgstr "导入 CSV"
 
 #: ../src/plugins/import/ImportCsv.py:381
 msgid "Reading data..."
-msgstr "读取数据"
+msgstr "读取数据..."
 
 #: ../src/plugins/import/ImportCsv.py:695
 #: ../src/plugins/import/ImportGeneWeb.py:181
@@ -9056,7 +9055,7 @@ msgstr "读取数据"
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
-msgstr[0] "导入完成： %d 秒"
+msgstr[0] "导入完成: %d 秒"
 
 #: ../src/plugins/import/ImportCsv.py:696
 msgid "CSV import"
@@ -9110,12 +9109,12 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different database versions."
 msgstr ""
-"本版本的GRAMPS 不支持数据库的版本。请升级到相应的版本，或者使用 XML 连接两种"
-"不同版本的数据库。"
+"本版本的GRAMPS 不支持数据库的版本.请升级到相应的版本，或者使用 XML 连接两种不"
+"同版本的数据库."
 
 #: ../src/plugins/import/ImportGrdb.py:2789
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr "数据库版本无法被GRAMPS版本支持。"
+msgstr "数据库版本无法被GRAMPS版本支持."
 
 #: ../src/plugins/import/ImportGrdb.py:2940
 msgid "Import database"
@@ -9145,7 +9144,7 @@ msgstr "域 '%(fldname)s'无法找到"
 #: ../src/plugins/import/ImportProGen.py:449
 #, python-format
 msgid "Cannot find DEF file: %(deffname)s"
-msgstr "无法找到DEF 文件：%(deffname)s"
+msgstr "无法找到DEF 文件:%(deffname)s"
 
 #: ../src/plugins/import/ImportProGen.py:491
 msgid "Import from Pro-Gen"
@@ -9158,7 +9157,7 @@ msgstr "Pro-Gen 导入"
 #: ../src/plugins/import/ImportProGen.py:693
 #, python-format
 msgid "date did not match: '%s' (%s)"
-msgstr "日期不匹配：'%s'(%s)"
+msgstr "日期不匹配:'%s'(%s)"
 
 #. The records are numbered 1..N
 #: ../src/plugins/import/ImportProGen.py:772
@@ -9207,15 +9206,15 @@ msgstr "从vCard文件导入数据"
 
 #: ../src/plugins/lib/libholiday.py:387
 msgid "Provides holiday information for different countries."
-msgstr "为不同国家准备假日信息。"
+msgstr "为不同国家准备假日信息."
 
 #: ../src/plugins/lib/libmapservice.py:111
 msgid "Provides base functionality for map services."
-msgstr "为地图服务提供基本功能。"
+msgstr "为地图服务提供基本功能."
 
 #: ../src/plugins/lib/libgrampsxml.py:50
 msgid "Provides common functionality for Gramps XML import/export."
-msgstr "为Gramps XML 导入/导出 提供公共功能。"
+msgstr "为Gramps XML 导入/导出 提供公共功能."
 
 #. Make upper case of translaed country so string search works later
 #: ../src/plugins/mapservices/eniroswedenmap.py:44
@@ -9313,7 +9312,7 @@ msgid ""
 "%d matches.\n"
 msgstr ""
 "\n"
-"%d 匹配。\n"
+"%d 匹配.\n"
 
 #: ../src/plugins/quickview/AgeOnDate.py:105
 msgid "Display people and ages on a particular date"
@@ -9369,37 +9368,37 @@ msgstr "所有事件"
 
 #: ../src/plugins/quickview/all_events.py:148
 msgid "Display a person's events, both personal and family."
-msgstr "显示一个人的事件，包括个人和家庭"
+msgstr "显示一个人的事件，包括个人和家庭."
 
 #: ../src/plugins/quickview/all_events.py:159
 msgid "Display the family and family members events."
-msgstr "显示家庭和家庭成员事件"
+msgstr "显示家庭和家庭成员事件."
 
 #: ../src/plugins/quickview/all_relations.py:71
 msgid "Home person not set."
-msgstr "未设定家庭成员"
+msgstr "未设定家主."
 
 #: ../src/plugins/quickview/all_relations.py:80
 #: ../src/plugins/tool/RelCalc.py:187
 #, python-format
 msgid "%s and %s are the same person."
-msgstr "%s 和 %s 是同一个人。"
+msgstr "%s 和 %s 是同一个人."
 
 #: ../src/plugins/quickview/all_relations.py:89
 #: ../src/plugins/tool/RelCalc.py:195
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(person)s  是  %(active_person)s  的   %(relationship)s 。"
+msgstr "%(person)s  是  %(active_person)s  的   %(relationship)s ."
 
 #: ../src/plugins/quickview/all_relations.py:103
 #, python-format
 msgid "%(person)s and %(active_person)s are not directly related."
-msgstr "%(person)s 和 %(active_person)s 非直接相关联。"
+msgstr "%(person)s 和 %(active_person)s 非直接相关联."
 
 #: ../src/plugins/quickview/all_relations.py:152
 #, python-format
 msgid "%(person)s and %(active_person)s have following in-law relations:"
-msgstr "%(person)s 和 %(active_person)s有以下法定关系："
+msgstr "%(person)s 和 %(active_person)s有以下法定关系:"
 
 #: ../src/plugins/quickview/all_relations.py:206
 #, python-format
@@ -9417,7 +9416,7 @@ msgstr "命名通用祖先"
 
 #: ../src/plugins/quickview/all_relations.py:270
 msgid "Parent"
-msgstr "父母 "
+msgstr "父母"
 
 #: ../src/plugins/quickview/all_relations.py:313
 msgid "Partial"
@@ -9433,7 +9432,7 @@ msgstr "标记"
 
 #: ../src/plugins/quickview/all_relations.py:336
 msgid "The following problems were encountered:"
-msgstr "遇到以下问题："
+msgstr "遇到以下问题:"
 
 #: ../src/plugins/quickview/all_relations.py:354
 msgid "Relation to Home Person"
@@ -9441,7 +9440,7 @@ msgstr "与家庭成员的关系:"
 
 #: ../src/plugins/quickview/all_relations.py:356
 msgid "Display all relationships between person and home person."
-msgstr "显示所有个人和家庭成员的关系。"
+msgstr "显示所有个人和家主的关系."
 
 #: ../src/plugins/quickview/AttributeMatch.py:29
 #, python-format
@@ -9451,7 +9450,7 @@ msgstr "有 '%s' 属性的 人员"
 #: ../src/plugins/quickview/AttributeMatch.py:42
 #, python-format
 msgid "There are %d people with a matching attribute name.\n"
-msgstr "有%d 人符合属性名称。\n"
+msgstr "有%d 人符合属性名称.\n"
 
 #: ../src/plugins/quickview/AttributeMatch.py:50
 msgid "Attribute Match"
@@ -9459,7 +9458,7 @@ msgstr "属性比对"
 
 #: ../src/plugins/quickview/AttributeMatch.py:52
 msgid "Display people with same attribute."
-msgstr "显示相同属性的人员"
+msgstr "显示相同属性的人员."
 
 #. force translation
 #: ../src/plugins/quickview/FilterByName.py:38
@@ -9586,7 +9585,7 @@ msgstr "字节大小"
 #, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "筛选器比对%d记录。"
+msgstr[0] "筛选匹配 %d 记录."
 
 #: ../src/plugins/quickview/FilterByName.py:239
 msgid "Display filtered data"
@@ -9604,7 +9603,7 @@ msgid ""
 "line. People in this lineage all share the same Y-chromosone."
 msgstr ""
 "本报告显示父亲的后裔，即家族血统或者 Y－line.在本家族中的人都拥有Y-"
-"chromosone 染色体。"
+"chromosone 染色体."
 
 #: ../src/plugins/quickview/lineage.py:62
 msgid "Name Father"
@@ -9631,12 +9630,12 @@ msgid ""
 "This report shows the mother lineage, also called matronymic lineage or M-"
 "line. People in this lineage all share the same RNA."
 msgstr ""
-"本报告显示了母系后裔，即母性的族裔，或者M－line。 在本家族中的成员都拥有相同"
-"的RNA。"
+"本报告显示了母系后裔，即母性的族裔，或者M－line. 在本家族中的成员都拥有相同的"
+"RNA."
 
 #: ../src/plugins/quickview/lineage.py:93
 msgid "Name Mother"
-msgstr "母亲 "
+msgstr "母亲"
 
 #: ../src/plugins/quickview/lineage.py:101
 msgid "Direct line female descendants"
@@ -9645,7 +9644,7 @@ msgstr "女性直接后裔"
 #: ../src/plugins/quickview/lineage.py:125
 #: ../src/plugins/quickview/lineage.py:219
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
-msgstr "错误：家庭树包含太多的级别（可能是一个循环？）"
+msgstr "错误:家庭树包含太多的级别(可能是一个循环?)."
 
 #: ../src/plugins/quickview/lineage.py:154
 msgid "No birth relation with child"
@@ -9739,7 +9738,7 @@ msgstr "RepoRef"
 
 #: ../src/plugins/quickview/Reporef.py:90
 msgid "Display RepoRef for sources related to active repository"
-msgstr "为与激活的仓库相关的来源，显示 RepoRef."
+msgstr "为与激活的仓库相关的来源，显示 RepoRef"
 
 #: ../src/plugins/quickview/SameSurnames.py:38
 msgid "People with incomplete surnames"
@@ -9812,7 +9811,7 @@ msgstr "一般筛选器"
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
-msgstr "支线："
+msgstr "支线:"
 
 #: ../src/plugins/quickview/SameSurnames.py:50
 #: ../src/Filters/Rules/Person/_SearchName.py:47
@@ -9824,7 +9823,6 @@ msgid "Matches people with same lastname"
 msgstr "筛选拥有相同名的人"
 
 #: ../src/plugins/quickview/SameSurnames.py:63
-#, fuzzy
 msgid "People matching the <given>"
 msgstr "变更性别时出问题"
 
@@ -9851,7 +9849,7 @@ msgstr "姓'%s'的人"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
+msgstr[0] "有 %d 成员,匹配姓名,或者曾用名.\n"
 
 #. display the title
 #: ../src/plugins/quickview/SameSurnames.py:144
@@ -9865,7 +9863,7 @@ msgstr "同姓"
 
 #: ../src/plugins/quickview/SameSurnames.py:179
 msgid "Display people with the same surname as a person."
-msgstr "显示有同样姓的人。"
+msgstr "显示有同样姓的人."
 
 #: ../src/plugins/quickview/SameSurnames.py:188
 #: ../src/plugins/quickview/SameSurnames.py:199
@@ -9875,7 +9873,7 @@ msgstr "同名"
 #: ../src/plugins/quickview/SameSurnames.py:190
 #: ../src/plugins/quickview/SameSurnames.py:201
 msgid "Display people with the same given name as a person."
-msgstr "显示同名的人"
+msgstr "显示同名的人."
 
 #. display the title
 #: ../src/plugins/quickview/siblings.py:44
@@ -9893,7 +9891,7 @@ msgstr "自我"
 
 #: ../src/plugins/quickview/siblings.py:79
 msgid "Display a person's siblings."
-msgstr "显示人员的同胞兄弟"
+msgstr "显示人员的同胞兄弟."
 
 #: ../src/plugins/textreport/AncestorReport.py:161
 #, python-format
@@ -9910,7 +9908,7 @@ msgstr "代之间的分页"
 #: ../src/plugins/textreport/DetAncestralReport.py:727
 #: ../src/plugins/textreport/DetDescendantReport.py:709
 msgid "Whether to start a new page after each generation."
-msgstr "是否每一代打开一个新页面"
+msgstr "是否每一代打开一个新页面."
 
 #: ../src/plugins/textreport/AncestorReport.py:262
 msgid "Add linebreak after each name"
@@ -9918,14 +9916,14 @@ msgstr "为每个名字之间添加断线"
 
 #: ../src/plugins/textreport/AncestorReport.py:263
 msgid "Indicates if a line break should follow the name."
-msgstr "表明是否在名字后面显示断线。"
+msgstr "表明是否在名字后面显示断线."
 
 #: ../src/plugins/textreport/AncestorReport.py:320
 #: ../src/plugins/textreport/DetAncestralReport.py:823
 #: ../src/plugins/textreport/DetDescendantReport.py:817
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
-msgstr "后代页眉的样式"
+msgstr "后代页眉的样式."
 
 #: ../src/plugins/textreport/AncestorReport.py:347
 msgid "Ahnentafel Report"
@@ -9953,7 +9951,7 @@ msgstr "包含与中心人员的关系"
 
 #: ../src/plugins/textreport/BirthdayReport.py:394
 msgid "Include relationships to center person (slower)"
-msgstr "包含与中心人员的关系。(较慢 )"
+msgstr "包含与中心人员的关系.(较慢 )"
 
 #: ../src/plugins/textreport/BirthdayReport.py:399
 msgid "Title text"
@@ -9989,7 +9987,7 @@ msgstr "头文字"
 
 #: ../src/plugins/textreport/CustomBookText.py:118
 msgid "Text to display at the top."
-msgstr "顶端显示文本"
+msgstr "顶端显示文本."
 
 #: ../src/plugins/textreport/CustomBookText.py:121
 msgid "Middle Text"
@@ -10005,19 +10003,19 @@ msgstr "最终文本"
 
 #: ../src/plugins/textreport/CustomBookText.py:126
 msgid "Text to display last."
-msgstr "显示在最后的文字。"
+msgstr "显示在最后的文字."
 
 #: ../src/plugins/textreport/CustomBookText.py:137
 msgid "The style used for the first portion of the custom text."
-msgstr "第一部分自定义文本的应用风格。"
+msgstr "第一部分自定义文本的应用风格."
 
 #: ../src/plugins/textreport/CustomBookText.py:146
 msgid "The style used for the middle portion of the custom text."
-msgstr "中间部分自定义文本的应用风格。"
+msgstr "中间部分自定义文本的应用风格."
 
 #: ../src/plugins/textreport/CustomBookText.py:155
 msgid "The style used for the last portion of the custom text."
-msgstr "最后部分自定义文本的应用风格。"
+msgstr "最后部分自定义文本的应用风格."
 
 #: ../src/plugins/textreport/CustomBookText.py:170
 msgid "Custom Text"
@@ -10025,11 +10023,11 @@ msgstr "订制文本"
 
 #: ../src/plugins/textreport/DescendReport.py:46
 msgid "b."
-msgstr "生于"
+msgstr "生于."
 
 #: ../src/plugins/textreport/DescendReport.py:47
 msgid "d."
-msgstr "卒于"
+msgstr "卒于."
 
 #: ../src/plugins/textreport/DescendReport.py:171
 #, python-format
@@ -10039,12 +10037,12 @@ msgstr "sp. %(spouse)s"
 #: ../src/plugins/textreport/DescendReport.py:230
 #, python-format
 msgid "The style used for the level %d display."
-msgstr "第%d等级显示风格"
+msgstr "第%d等级显示风格."
 
 #: ../src/plugins/textreport/DescendReport.py:239
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "配偶第%d等级的显示风格"
+msgstr "配偶第%d等级的显示风格."
 
 #: ../src/plugins/textreport/DescendReport.py:257
 msgid "Descendant Report"
@@ -10063,7 +10061,7 @@ msgstr "%s 的祖先报告"
 #: ../src/plugins/textreport/DetDescendantReport.py:263
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "%(name)s 与 [%(id_str)s]为同一个人。"
+msgstr "%(name)s 与 [%(id_str)s]为同一个人."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:296
 #: ../src/plugins/textreport/DetDescendantReport.py:579
@@ -10092,7 +10090,7 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 #: ../src/plugins/textreport/DetAncestralReport.py:350
 #: ../src/plugins/textreport/DetDescendantReport.py:628
 msgid "Address: "
-msgstr "地址:"
+msgstr "地址: "
 
 #: ../src/plugins/textreport/DetAncestralReport.py:368
 #: ../src/plugins/textreport/DetAncestralReport.py:420
@@ -10142,7 +10140,7 @@ msgstr "更多关于 %(mother_name)s 和 %(father_name)s:"
 #: ../src/plugins/textreport/DetDescendantReport.py:413
 #, python-format
 msgid "Spouse: %s"
-msgstr "配偶：%s"
+msgstr "配偶:%s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:622
 #: ../src/plugins/textreport/DetDescendantReport.py:415
@@ -10163,7 +10161,7 @@ msgstr "使用昵称作为常用名"
 #: ../src/plugins/textreport/DetAncestralReport.py:733
 #: ../src/plugins/textreport/DetDescendantReport.py:722
 msgid "Whether to use the call name as the first name."
-msgstr "是否使用昵称作为主要名字"
+msgstr "是否使用昵称作为主要名字."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:737
 #: ../src/plugins/textreport/DetDescendantReport.py:725
@@ -10173,7 +10171,7 @@ msgstr "使用完整日期代替年份"
 #: ../src/plugins/textreport/DetAncestralReport.py:738
 #: ../src/plugins/textreport/DetDescendantReport.py:727
 msgid "Whether to use full dates instead of just year."
-msgstr "是否使用完整日期代替年代。"
+msgstr "是否使用完整日期代替年代."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:741
 #: ../src/plugins/textreport/DetDescendantReport.py:730
@@ -10183,7 +10181,7 @@ msgstr "子女名单"
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:731
 msgid "Whether to list children."
-msgstr "是否列出子女名单"
+msgstr "是否列出子女名单."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:745
 #: ../src/plugins/textreport/DetDescendantReport.py:734
@@ -10193,7 +10191,7 @@ msgstr "计算年龄"
 #: ../src/plugins/textreport/DetAncestralReport.py:746
 #: ../src/plugins/textreport/DetDescendantReport.py:735
 msgid "Whether to compute age."
-msgstr "是否计算年龄"
+msgstr "是否计算年龄."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:749
 #: ../src/plugins/textreport/DetDescendantReport.py:738
@@ -10203,7 +10201,7 @@ msgstr "忽略重复的祖先"
 #: ../src/plugins/textreport/DetAncestralReport.py:750
 #: ../src/plugins/textreport/DetDescendantReport.py:739
 msgid "Whether to omit duplicate ancestors."
-msgstr "是否忽略重复的祖先"
+msgstr "是否忽略重复的祖先."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:753
 #: ../src/plugins/textreport/DetDescendantReport.py:742
@@ -10213,7 +10211,7 @@ msgstr "使用完整句型"
 #: ../src/plugins/textreport/DetAncestralReport.py:755
 #: ../src/plugins/textreport/DetDescendantReport.py:744
 msgid "Whether to use complete sentences or succinct language."
-msgstr "是使用完整的句子或简洁的语言"
+msgstr "是使用完整的句子或简洁的语言."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:758
 #: ../src/plugins/textreport/DetDescendantReport.py:747
@@ -10223,7 +10221,7 @@ msgstr "在孩子列表中增加参考后代"
 #: ../src/plugins/textreport/DetAncestralReport.py:760
 #: ../src/plugins/textreport/DetDescendantReport.py:750
 msgid "Whether to add descendant references in child list."
-msgstr "是否添加参考后代到孩子列表"
+msgstr "是否添加参考后代到孩子列表."
 
 #. #########################
 #: ../src/plugins/textreport/DetAncestralReport.py:763
@@ -10241,7 +10239,7 @@ msgstr "包含注释"
 #: ../src/plugins/textreport/DetAncestralReport.py:766
 #: ../src/plugins/textreport/DetDescendantReport.py:756
 msgid "Whether to include notes."
-msgstr "是否包含注释"
+msgstr "是否包含注释."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:769
 #: ../src/plugins/textreport/DetDescendantReport.py:759
@@ -10252,7 +10250,7 @@ msgstr "包含属性"
 #: ../src/plugins/textreport/DetDescendantReport.py:760
 #: ../src/plugins/textreport/FamilyGroup.py:634
 msgid "Whether to include attributes."
-msgstr "是否包含属性"
+msgstr "是否包含属性."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:773
 #: ../src/plugins/textreport/DetDescendantReport.py:763
@@ -10262,7 +10260,7 @@ msgstr "包含 照片/图片"
 #: ../src/plugins/textreport/DetAncestralReport.py:774
 #: ../src/plugins/textreport/DetDescendantReport.py:764
 msgid "Whether to include images."
-msgstr "是否包含图像"
+msgstr "是否包含图像."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:777
 #: ../src/plugins/textreport/DetDescendantReport.py:767
@@ -10272,7 +10270,7 @@ msgstr "包含曾用名"
 #: ../src/plugins/textreport/DetAncestralReport.py:778
 #: ../src/plugins/textreport/DetDescendantReport.py:768
 msgid "Whether to include other names."
-msgstr "是否包含其他名字"
+msgstr "是否包含其他名字."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:781
 #: ../src/plugins/textreport/DetDescendantReport.py:771
@@ -10282,7 +10280,7 @@ msgstr "包含事件"
 #: ../src/plugins/textreport/DetAncestralReport.py:782
 #: ../src/plugins/textreport/DetDescendantReport.py:772
 msgid "Whether to include events."
-msgstr "是否包含事件"
+msgstr "是否包含事件."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:785
 #: ../src/plugins/textreport/DetDescendantReport.py:775
@@ -10292,7 +10290,7 @@ msgstr "包含地址"
 #: ../src/plugins/textreport/DetAncestralReport.py:786
 #: ../src/plugins/textreport/DetDescendantReport.py:776
 msgid "Whether to include addresses."
-msgstr "是否包含地址"
+msgstr "是否包含地址."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:789
 #: ../src/plugins/textreport/DetDescendantReport.py:779
@@ -10302,7 +10300,7 @@ msgstr "包含来源"
 #: ../src/plugins/textreport/DetAncestralReport.py:790
 #: ../src/plugins/textreport/DetDescendantReport.py:780
 msgid "Whether to include source references."
-msgstr "是否博爱喊参考来源"
+msgstr "是否博爱喊参考来源."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:793
 #: ../src/plugins/textreport/DetDescendantReport.py:787
@@ -10317,7 +10315,7 @@ msgstr "用___代替缺失的地点"
 #: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:790
 msgid "Whether to replace missing Places with blanks."
-msgstr "是否使用空格代替缺失的地点。"
+msgstr "是否使用空格代替缺失的地点."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:799
 #: ../src/plugins/textreport/DetDescendantReport.py:793
@@ -10327,32 +10325,32 @@ msgstr "使用 ___代替缺失的日期"
 #: ../src/plugins/textreport/DetAncestralReport.py:800
 #: ../src/plugins/textreport/DetDescendantReport.py:794
 msgid "Whether to replace missing Dates with blanks."
-msgstr "是否使用空格代替缺失的日期。"
+msgstr "是否使用空格代替缺失的日期."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:833
 #: ../src/plugins/textreport/DetDescendantReport.py:827
 msgid "The style used for the children list title."
-msgstr "孩童列表标题风格"
+msgstr "孩童列表标题风格."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:843
 #: ../src/plugins/textreport/DetDescendantReport.py:837
 msgid "The style used for the children list."
-msgstr "孩子列表风格"
+msgstr "孩子列表风格."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:866
 #: ../src/plugins/textreport/DetDescendantReport.py:860
 msgid "The style used for the first personal entry."
-msgstr "第一人称词条风格"
+msgstr "第一人称词条风格."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:876
 #: ../src/plugins/textreport/DetDescendantReport.py:870
 msgid "The style used for the More About header."
-msgstr "“关于”的抬头风格"
+msgstr "“关于”的抬头风格."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:886
 #: ../src/plugins/textreport/DetDescendantReport.py:880
 msgid "The style used for additional detail data."
-msgstr "附加详细数据的风格"
+msgstr "附加详细数据的风格."
 
 #: ../src/plugins/textreport/DetAncestralReport.py:905
 msgid "Detailed Ancestral Report"
@@ -10373,7 +10371,7 @@ msgstr "使用记录模式（修订注册）计数"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:715
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr "是否使用记录模式计数代替 亨利模式"
+msgstr "是否使用记录模式计数代替 亨利模式."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:783
 #: ../src/plugins/textreport/KinshipReport.py:350
@@ -10382,7 +10380,7 @@ msgstr "包含配偶"
 
 #: ../src/plugins/textreport/DetDescendantReport.py:784
 msgid "Whether to include detailed spouse information."
-msgstr "是否包含详细的配偶信息"
+msgstr "是否包含详细的配偶信息."
 
 #: ../src/plugins/textreport/DetDescendantReport.py:899
 msgid "Detailed Descendant Report"
@@ -10400,7 +10398,7 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:140
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "所有%s的祖先（缺失一个父母） "
+msgstr "所有%s的祖先(缺失一个父母)"
 
 #: ../src/plugins/textreport/EndOfLineReport.py:185
 #: ../src/plugins/textreport/KinshipReport.py:309
@@ -10411,11 +10409,11 @@ msgstr " (%(birth_date)s - %(death_date)s)"
 #: ../src/plugins/textreport/EndOfLineReport.py:264
 #: ../src/plugins/textreport/MarkerReport.py:476
 msgid "The style used for the section headers."
-msgstr "部分页眉应用风格"
+msgstr "部分页眉应用风格."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:282
 msgid "The basic style used for generation headings."
-msgstr "辈分标题应用基本风格。"
+msgstr "辈分标题应用基本风格."
 
 #: ../src/plugins/textreport/EndOfLineReport.py:323
 msgid "End of Line Report"
@@ -10432,7 +10430,7 @@ msgstr "%(type)s: %(value)s"
 
 #: ../src/plugins/textreport/FamilyGroup.py:349
 msgid "Marriage:"
-msgstr "婚姻："
+msgstr "婚姻:"
 
 #: ../src/plugins/textreport/FamilyGroup.py:430
 msgid "acronym for male|M"
@@ -10473,7 +10471,7 @@ msgstr "递归"
 
 #: ../src/plugins/textreport/FamilyGroup.py:607
 msgid "Create reports for all descendants of this family."
-msgstr "为这个家庭所有后代创建报告。"
+msgstr "为这个家庭所有后代创建报告."
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:615
@@ -10482,7 +10480,7 @@ msgstr "后代数量（递归）"
 
 #: ../src/plugins/textreport/FamilyGroup.py:617
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr "是否在每份报告中包含这代人（递归）"
+msgstr "是否在每份报告中包含这代人(递归)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:621
 msgid "Parent Events"
@@ -10490,7 +10488,7 @@ msgstr "父母事件"
 
 #: ../src/plugins/textreport/FamilyGroup.py:622
 msgid "Whether to include events for parents."
-msgstr "是否包含父母的事件"
+msgstr "是否包含父母的事件."
 
 #: ../src/plugins/textreport/FamilyGroup.py:625
 msgid "Parent Addresses"
@@ -10498,7 +10496,7 @@ msgstr "父母地址"
 
 #: ../src/plugins/textreport/FamilyGroup.py:626
 msgid "Whether to include addresses for parents."
-msgstr "是否包含父母地址"
+msgstr "是否包含父母地址."
 
 #: ../src/plugins/textreport/FamilyGroup.py:629
 msgid "Parent Notes"
@@ -10506,7 +10504,7 @@ msgstr "父母笔记"
 
 #: ../src/plugins/textreport/FamilyGroup.py:630
 msgid "Whether to include notes for parents."
-msgstr "是否包含为父母的注视"
+msgstr "是否包含为父母的注视."
 
 #: ../src/plugins/textreport/FamilyGroup.py:633
 msgid "Parent Attributes"
@@ -10526,7 +10524,7 @@ msgstr "父母婚姻"
 
 #: ../src/plugins/textreport/FamilyGroup.py:643
 msgid "Whether to include marriage information for parents."
-msgstr "是否包含父母的结婚信息。"
+msgstr "是否包含父母的结婚信息."
 
 #: ../src/plugins/textreport/FamilyGroup.py:647
 msgid "Dates of Relatives"
@@ -10534,7 +10532,7 @@ msgstr "亲属的年代"
 
 #: ../src/plugins/textreport/FamilyGroup.py:648
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr "是否包含亲属的年代(父亲，母亲，配偶)。"
+msgstr "是否包含亲属的年代(父亲，母亲，配偶)."
 
 #: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Children Marriages"
@@ -10542,7 +10540,7 @@ msgstr "子女婚姻"
 
 #: ../src/plugins/textreport/FamilyGroup.py:653
 msgid "Whether to include marriage information for children."
-msgstr "是否包含子女的婚姻信息。"
+msgstr "是否包含子女的婚姻信息."
 
 #. #########################
 #: ../src/plugins/textreport/FamilyGroup.py:658
@@ -10561,11 +10559,11 @@ msgstr ""
 #: ../src/plugins/textreport/FamilyGroup.py:704
 #: ../src/plugins/textreport/MarkerReport.py:504
 msgid "The basic style used for the note display."
-msgstr "笔记显示的基本风格。"
+msgstr "笔记显示的基本风格."
 
 #: ../src/plugins/textreport/FamilyGroup.py:713
 msgid "The style used for the text related to the children."
-msgstr "于子女有关的文本应用的风格。"
+msgstr "于子女有关的文本应用的风格."
 
 #: ../src/plugins/textreport/FamilyGroup.py:722
 msgid "The style used for the parent's name"
@@ -10626,15 +10624,15 @@ msgstr "包含来源信息"
 
 #: ../src/plugins/textreport/IndivComplete.py:530
 msgid "Whether to cite sources."
-msgstr "是否引用来源"
+msgstr "是否引用来源."
 
 #: ../src/plugins/textreport/IndivComplete.py:579
 msgid "The style used for category labels."
-msgstr "类别标签风格"
+msgstr "类别标签风格."
 
 #: ../src/plugins/textreport/IndivComplete.py:590
 msgid "The style used for the spouse's name."
-msgstr "配偶姓名风格"
+msgstr "配偶姓名风格."
 
 #: ../src/plugins/textreport/IndivComplete.py:645
 msgid "Complete Individual Report"
@@ -10685,7 +10683,7 @@ msgstr "是否包含 阿姨/叔叔/侄子/侄女"
 #: ../src/plugins/textreport/KinshipReport.py:383
 #: ../src/plugins/textreport/Summary.py:275
 msgid "The basic style used for sub-headings."
-msgstr "子标题应用的基本风格。"
+msgstr "子标题应用的基本风格."
 
 #: ../src/plugins/textreport/KinshipReport.py:408
 msgid "Kinship Report"
@@ -10713,7 +10711,7 @@ msgstr "报告中使用的标记"
 
 #: ../src/plugins/textreport/MarkerReport.py:497
 msgid "The basic style used for table headings."
-msgstr "表格标题的基本风格"
+msgstr "表格标题的基本风格."
 
 #: ../src/plugins/textreport/MarkerReport.py:534
 msgid "Marker Report"
@@ -10732,7 +10730,7 @@ msgstr "%s的祖先数目"
 #, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
-msgstr[0] ""
+msgstr[0] "第 %(generation)d 代 有 %(count)d 个体成员.占 %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -10766,7 +10764,7 @@ msgstr "Gramps ID: %s "
 #: ../src/plugins/textreport/PlaceReport.py:119
 #, python-format
 msgid "Street: %s "
-msgstr "街道：%s"
+msgstr "街道:%s "
 
 #: ../src/plugins/textreport/PlaceReport.py:120
 #, python-format
@@ -10776,12 +10774,12 @@ msgstr ""
 #: ../src/plugins/textreport/PlaceReport.py:121
 #, python-format
 msgid "City: %s "
-msgstr "城市: %s"
+msgstr "城市: %s "
 
 #: ../src/plugins/textreport/PlaceReport.py:122
 #, python-format
 msgid "County: %s "
-msgstr "县：%s"
+msgstr "县:%s "
 
 #: ../src/plugins/textreport/PlaceReport.py:123
 #, python-format
@@ -10791,7 +10789,7 @@ msgstr "州/省: %s"
 #: ../src/plugins/textreport/PlaceReport.py:124
 #, python-format
 msgid "Country: %s "
-msgstr "国家：%s"
+msgstr "国家:%s "
 
 #: ../src/plugins/textreport/PlaceReport.py:146
 msgid "Events that happened at this place"
@@ -10823,27 +10821,27 @@ msgstr ""
 
 #: ../src/plugins/textreport/PlaceReport.py:295
 msgid "The style used for the title of the report."
-msgstr "报告的标题应用的风格"
+msgstr "报告的标题应用的风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:309
 msgid "The style used for place title."
-msgstr "地点标题应用风格。"
+msgstr "地点标题应用风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:321
 msgid "The style used for place details."
-msgstr "地点详细信息应用的风格"
+msgstr "地点详细信息应用的风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:333
 msgid "The style used for a column title."
-msgstr "栏目标题应用风格。"
+msgstr "栏目标题应用风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:347
 msgid "The style used for each section."
-msgstr "每个区域的应用风格"
+msgstr "每个区域的应用风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:370
 msgid "The style used for event and person details."
-msgstr "事件和人员详细信息应用风格。"
+msgstr "事件和人员详细信息应用风格."
 
 #: ../src/plugins/textreport/PlaceReport.py:404
 msgid "Produces a textual place report"
@@ -10859,7 +10857,7 @@ msgstr "书的标题"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:121
 msgid "Title string for the book."
-msgstr "书的标题字符串"
+msgstr "书的标题字符串."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:124
 msgid "Subtitle"
@@ -10871,7 +10869,7 @@ msgstr "书的子标题"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:125
 msgid "Subtitle string for the book."
-msgstr "书的子标题字符串"
+msgstr "书的子标题字符串."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:130
 #, python-format
@@ -10884,7 +10882,7 @@ msgstr "脚注"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:132
 msgid "Footer string for the page."
-msgstr "页面的页脚字符串。"
+msgstr "页面的页脚字符串."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:135
 msgid "Image"
@@ -10892,7 +10890,7 @@ msgstr "图像"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:136
 msgid "Gramps ID of the media object to use as an image."
-msgstr "用作位图的媒介对象的Gramps ID。"
+msgstr "用作位图的媒介对象的Gramps ID."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:139
 msgid "Image Size"
@@ -10906,11 +10904,11 @@ msgstr ""
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:163
 msgid "The style used for the subtitle."
-msgstr "子目录应用风格"
+msgstr "子目录应用风格."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:173
 msgid "The style used for the footer."
-msgstr "页脚应用风格"
+msgstr "页脚应用风格."
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:188
 msgid "Title Page"
@@ -10918,7 +10916,7 @@ msgstr "标题页"
 
 #: ../src/plugins/textreport/SimpleBookTitle.py:190
 msgid "Produces a title page for book reports."
-msgstr "为书目报告生成一个标题页。"
+msgstr "为书目报告生成一个标题页."
 
 #: ../src/plugins/textreport/Summary.py:75
 #: ../src/plugins/textreport/Summary.py:302
@@ -10933,12 +10931,12 @@ msgstr "个体数量: %d"
 #: ../src/plugins/textreport/Summary.py:148
 #, python-format
 msgid "Males: %d"
-msgstr "男性：%d"
+msgstr "男性:%d"
 
 #: ../src/plugins/textreport/Summary.py:152
 #, python-format
 msgid "Females: %d"
-msgstr "女性：%d"
+msgstr "女性:%d"
 
 #: ../src/plugins/textreport/Summary.py:156
 #, python-format
@@ -10973,7 +10971,7 @@ msgstr "个人（有媒介对象）: %d"
 #: ../src/plugins/textreport/Summary.py:192
 #, python-format
 msgid "Number of families: %d"
-msgstr "家庭的数量：%d"
+msgstr "家庭的数量:%d"
 
 #: ../src/plugins/textreport/Summary.py:217
 #, python-format
@@ -11122,11 +11120,11 @@ msgstr "测试版"
 
 #: ../src/plugins/tool/CalculateEstimatedDates.py:497
 msgid "Calculates estimated dates for birth and death."
-msgstr "为出生和死亡的计算估计日期"
+msgstr "为出生和死亡的计算估计日期."
 
 #: ../src/plugins/tool/ChangeNames.py:70
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "修正家庭名称的大写"
+msgstr "修正家庭名称的大写..."
 
 #: ../src/plugins/tool/ChangeNames.py:80
 #: ../src/plugins/tool/ChangeNames.py:258
@@ -11150,7 +11148,7 @@ msgstr "未作修改"
 
 #: ../src/plugins/tool/ChangeNames.py:149
 msgid "No capitalization changes were detected."
-msgstr "未侦测到大写修改"
+msgstr "未侦测到大写修改."
 
 #: ../src/plugins/tool/ChangeNames.py:200
 #: ../src/plugins/tool/ExtractCity.py:544
@@ -11179,7 +11177,7 @@ msgstr "修正家庭名称的大写"
 #: ../src/plugins/tool/ChangeNames.py:296
 msgid ""
 "Searches the entire database and attempts to fix capitalization of the names."
-msgstr "搜索整个数据库，并尝试修正名字的大写"
+msgstr "搜索整个数据库，并尝试修正名字的大写."
 
 #: ../src/plugins/tool/ChangeTypes.py:70
 msgid "Change Event Types"
@@ -11196,13 +11194,13 @@ msgstr "修改形式"
 
 #: ../src/plugins/tool/ChangeTypes.py:143
 msgid "No event record was modified."
-msgstr "无事件记录被更改"
+msgstr "无事件记录被更改."
 
 #: ../src/plugins/tool/ChangeTypes.py:145
 #, python-format
 msgid "%d event record was modified."
 msgid_plural "%d event records were modified."
-msgstr[0] "%d 个事件记录被更改。"
+msgstr[0] "%d 事件记录被修改."
 
 #: ../src/plugins/tool/ChangeTypes.py:207
 msgid "Rename Event Types"
@@ -11210,7 +11208,7 @@ msgstr "重命名事件类型"
 
 #: ../src/plugins/tool/ChangeTypes.py:211
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "允许特定人的所有事件被重命名。"
+msgstr "允许特定人的所有事件被重命名."
 
 #: ../src/plugins/tool/Check.py:199
 msgid "Check Integrity"
@@ -11250,10 +11248,10 @@ msgid ""
 "the reference from the database, keep the reference to the missing file, or "
 "select a new file."
 msgstr ""
-"文件：\n"
+"文件:\n"
 " %(file_name)s\n"
-"在数据库中被索引，但是已不在存在。文件可能已经被删除或被移动到了不同的位置。"
-"你可以从数据库中移除索引，保存对遗失了文件的索引，或者选择一个新的文件。"
+"在数据库中被索引，但是已不在存在.文件可能已经被删除或被移动到了不同的位置.你"
+"可以从数据库中移除索引，保存对遗失了文件的索引，或者选择一个新的文件."
 
 #: ../src/plugins/tool/Check.py:596
 msgid "Looking for empty people records"
@@ -11343,7 +11341,7 @@ msgstr "数据已经通过内部检查"
 #, python-format
 msgid "%d broken child/family link was fixed\n"
 msgid_plural "%d broken child-family links were found\n"
-msgstr[0] "%d 个破坏的子女－家庭联系被发现\n"
+msgstr[0] "%d 破碎的子女－家庭联系被找到\n"
 
 #: ../src/plugins/tool/Check.py:1460
 msgid "Non existing child"
@@ -11358,7 +11356,7 @@ msgstr "%s 已被从家庭 %s 移除 \n"
 #, python-format
 msgid "%d broken spouse/family link was fixed\n"
 msgid_plural "%d broken spouse/family links were found\n"
-msgstr[0] "%d 个配偶－家庭破坏联系被找到\n"
+msgstr[0] "%d 破碎的配偶－家庭联系被找到\n"
 
 #: ../src/plugins/tool/Check.py:1477 ../src/plugins/tool/Check.py:1494
 msgid "Non existing person"
@@ -11370,116 +11368,116 @@ msgid "%s was restored to the family of %s\n"
 msgstr "%s 已被恢复到家庭%s中 \n"
 
 #: ../src/plugins/tool/Check.py:1487
-#, fuzzy, python-format
+#, python-format
 msgid "%d duplicate spouse/family link was found\n"
 msgid_plural "%d duplicate spouse/family links were found\n"
-msgstr[0] "一个完全一样的 配偶/家庭联系被找到\n"
+msgstr[0] "%d 复制的配偶－家庭联系被找到\n"
 
 #: ../src/plugins/tool/Check.py:1504
 #, python-format
 msgid "%d family with no parents or children found, removed.\n"
-msgstr "%d 家庭未包含父母和孩子的家庭被找到，已删除。  \n"
+msgstr "%d 家庭未包含父母和孩子的家庭被找到，已删除.  \n"
 
 #: ../src/plugins/tool/Check.py:1507
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
-msgstr "%d 家庭未包含父母和孩子，已被移除。\n"
+msgstr "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1510
-#, fuzzy, python-format
+#, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
-msgstr[0] "%d 崩溃的家庭关系已被修复\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1514
-#, fuzzy, python-format
+#, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] "一个人员被引用但是无法找到\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1518
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] "%d 日期被修正\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1522
-#, fuzzy, python-format
+#, python-format
 msgid "%d repository was referenced but not found\n"
 msgid_plural "%d repositories were referenced, but not found\n"
-msgstr[0] "一个仓库被引用但是未被找到\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1526
-#, fuzzy, python-format
+#, python-format
 msgid "%d media object was referenced, but not found\n"
 msgid_plural "%d media objects were referenced, but not found\n"
-msgstr[0] "一个媒介对象被引用，但是未找到\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1530
-#, fuzzy, python-format
+#, python-format
 msgid "Reference to %d missing media object was kept\n"
 msgid_plural "References to %d media objects were kept\n"
-msgstr[0] "对于一个缺失媒介对象的索引被保存\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1534
-#, fuzzy, python-format
+#, python-format
 msgid "%d missing media object was replaced\n"
 msgid_plural "%d missing media objects were replaced\n"
-msgstr[0] "一个遗失的媒介对象已经被替换\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1538
-#, fuzzy, python-format
+#, python-format
 msgid "%d missing media object was removed\n"
 msgid_plural "%d missing media objects were removed\n"
-msgstr[0] "一个遗失的媒介物被移除 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1542
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid event reference was removed\n"
 msgid_plural "%d invalid event references were removed\n"
-msgstr[0] "一个无效的事件引用被移除 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1546
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid birth event name was fixed\n"
 msgid_plural "%d invalid birth event names were fixed\n"
-msgstr[0] "一个无效的出生事件名称被修复 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1550
-#, fuzzy, python-format
+#, python-format
 msgid "%d invalid death event name was fixed\n"
 msgid_plural "%d invalid death event names were fixed\n"
-msgstr[0] "一个无效的死亡事件名称被修复 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1554
-#, fuzzy, python-format
+#, python-format
 msgid "%d place was referenced but not found\n"
 msgid_plural "%d places were referenced, but not found\n"
-msgstr[0] "一个地点被引用过但是未找到 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1558
-#, fuzzy, python-format
+#, python-format
 msgid "%d source was referenced but not found\n"
 msgid_plural "%d sources were referenced, but not found\n"
-msgstr[0] "一个来源被引用但是未找到 \n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1562
-#, fuzzy, python-format
+#, python-format
 msgid "%d media object was referenced but not found\n"
 msgid_plural "%d media objects were referenced but not found\n"
-msgstr[0] "一个媒介对象被引用过但是未找到\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1566
-#, fuzzy, python-format
+#, python-format
 msgid "%d note object was referenced but not found\n"
 msgid_plural "%d note objects were referenced but not found\n"
-msgstr[0] "一个笔记对象被索引但是未被发现\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1570
 #, python-format
 msgid "%d invalid name format reference was removed\n"
 msgid_plural "%d invalid name format references were removed\n"
-msgstr[0] "%d 无效的名字格式参考被移除\n"
+msgstr[0] "%d 家庭未包含父母和孩子，已被移除.\n"
 
 #: ../src/plugins/tool/Check.py:1574
 #, python-format
@@ -11494,7 +11492,7 @@ msgid ""
 "   %d repository objects\n"
 "   %d note objects\n"
 msgstr ""
-"%d 个空对象被移除：\n"
+"%d 个空对象被移除:\n"
 "   %d 个人员对象\n"
 "   %d 家庭对象\n"
 "   %d 事件对象\n"
@@ -11621,7 +11619,7 @@ msgstr[0] "%s 事件描述已经被添加"
 
 #: ../src/plugins/tool/EventNames.py:120
 msgid "No event description has been added."
-msgstr "无事件描述被添加"
+msgstr "无事件描述被添加."
 
 #: ../src/plugins/tool/EventNames.py:178
 msgid "Extract Event Descriptions from Event Data"
@@ -11716,11 +11714,11 @@ msgstr "寻找复制的人员"
 
 #: ../src/plugins/tool/FindDupes.py:204
 msgid "Pass 1: Building preliminary lists"
-msgstr "第一步： 建立基础列表"
+msgstr "第一步: 建立基础列表"
 
 #: ../src/plugins/tool/FindDupes.py:222
 msgid "Pass 2: Calculating potential matches"
-msgstr "第二步：计算潜在匹配"
+msgstr "第二步:计算潜在匹配"
 
 #: ../src/plugins/tool/FindDupes.py:569
 msgid "Potential Merges"
@@ -11784,17 +11782,17 @@ msgid ""
 "outside of GRAMPS. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"本工具允许将对媒介对象的批次处理操作保存到GRAMPS中。特别要区分GRAMPS 媒介对象"
-"和文件本身。\n"
+"本工具允许将对媒介对象的批次处理操作保存到GRAMPS中.特别要区分GRAMPS 媒介对象"
+"和文件本身.\n"
 "\n"
-"GRAMPS媒介对象是所有媒介文件的集合：它包含文件名和/或者路径，描述，ID，注释，"
-"参考来源等等。这些数据<b>不包括文件本身</b>.\n"
+"GRAMPS媒介对象是所有媒介文件的集合:它包含文件名和/或者路径，描述，ID，注释，"
+"参考来源等等.这些数据<b>不包括文件本身</b>.\n"
 "\n"
-"文件包含图像，声音，视频等等，分布于你的硬盘内。这些文件不受GRAMPS管理，也未"
-"被包含入GRAMPS得数据库。GRAMPS数据库仅仅保存路径和文件名。\n"
+"文件包含图像，声音，视频等等，分布于你的硬盘内.这些文件不受GRAMPS管理，也未被"
+"包含入GRAMPS得数据库.GRAMPS数据库仅仅保存路径和文件名.\n"
 "\n"
-"本工具允许你仅仅修改在GRAMPS数据库内的记录。如果你想移动或者重新命名文件，你"
-"不得不在GRAMPS之外曹组。然后用本工具调整媒介对象的路径来修正文件位置。"
+"本工具允许你仅仅修改在GRAMPS数据库内的记录.如果你想移动或者重新命名文件，你不"
+"得不在GRAMPS之外曹组.然后用本工具调整媒介对象的路径来修正文件位置."
 
 #: ../src/plugins/tool/MediaManager.py:257
 msgid "Affected path"
@@ -11802,17 +11800,17 @@ msgstr "受影响的路径"
 
 #: ../src/plugins/tool/MediaManager.py:266
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
-msgstr "按 \"确认\"继续， “取消”退出， 或者“后退”修改你的选择。"
+msgstr "按 \"确认\"继续, “取消”退出, 或者“后退”修改你的选择."
 
 #: ../src/plugins/tool/MediaManager.py:297
 msgid "Operation succesfully finished."
-msgstr "操作成功完成。"
+msgstr "操作成功完成."
 
 #: ../src/plugins/tool/MediaManager.py:299
 msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
-msgstr "你要求的操作已经成功完成。你可以按“确认”按钮接续。"
+msgstr "你要求的操作已经成功完成.你可以按“确认”按钮接续."
 
 #: ../src/plugins/tool/MediaManager.py:302
 msgid "Operation failed"
@@ -11822,7 +11820,7 @@ msgstr "操作失败"
 msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
-msgstr "执行请求的操作时出错。你可以尝试再次启动工具。"
+msgstr "执行请求的操作时出错.你可以尝试再次启动工具."
 
 #: ../src/plugins/tool/MediaManager.py:341
 #, python-format
@@ -11831,9 +11829,9 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr ""
-"即将采取以下操作：\n"
+"即将采取以下操作:\n"
 "\n"
-"操作： \t%s"
+"操作: \t%s"
 
 #: ../src/plugins/tool/MediaManager.py:414
 msgid "Replace _substrings in the path"
@@ -11845,8 +11843,8 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"本工具允许用另外一个子链接替换媒介对象路径子链接。 当你将媒介对象从一个目录移"
-"动到另外一个时有用。"
+"本工具允许用另外一个子链接替换媒介对象路径子链接. 当你将媒介对象从一个目录移"
+"动到另外一个时有用"
 
 #: ../src/plugins/tool/MediaManager.py:421
 msgid "Replace substring settings"
@@ -11869,11 +11867,11 @@ msgid ""
 "Replace:\t\t%s\n"
 "With:\t\t%s"
 msgstr ""
-"即将采取以下措施：\n"
+"即将采取以下措施:\n"
 "\n"
-"操作：\t %s \n"
-"替换：\t\t%s\n"
-"替换为： \t\t%s"
+"操作:\t %s \n"
+"替换:\t\t%s\n"
+"替换为: \t\t%s"
 
 #: ../src/plugins/tool/MediaManager.py:497
 msgid "Convert paths from relative to _absolute"
@@ -11885,8 +11883,8 @@ msgid ""
 "does this by prepending the base path as given in the Preferences, or if "
 "that is not set, it prepends user's directory."
 msgstr ""
-"本工具允许将绝对路径转换为相对路径。 它通过假设基本路径为参考值，如果未设定，"
-"将假设为用户的路径。"
+"本工具允许将绝对路径转换为相对路径. 它通过假设基本路径为参考值，如果未设定，"
+"将假设为用户的路径."
 
 #: ../src/plugins/tool/MediaManager.py:535
 msgid "Convert paths from absolute to r_elative"
@@ -11899,9 +11897,9 @@ msgid ""
 "Preferences, or if that is not set, user's directory. A relative path allows "
 "to tie the file location to a base path that can change to your needs."
 msgstr ""
-"本工具允许转换绝对媒体路径到相对路径。 相对路径类似于Viz-a-viz ,基础路径已经"
-"在属性中给出，或者未设定的前提下，是用户的目录。 一个相对路径允许将文件位置和"
-"基本路径绑定，依据你的要求改变。"
+"本工具允许转换绝对媒体路径到相对路径. 相对路径类似于Viz-a-viz ,基础路径已经在"
+"属性中给出，或者未设定的前提下，是用户的目录. 一个相对路径允许将文件位置和基"
+"本路径绑定，依据你的要求改变."
 
 #: ../src/plugins/tool/MediaManager.py:601
 msgid "Manages batch operations on media files"
@@ -11980,7 +11978,7 @@ msgstr "编辑数据库所有者信息"
 
 #: ../src/plugins/tool/OwnerEditor.py:206
 msgid "Allow editing database owner information."
-msgstr "允许编辑数据库拥有者信息。"
+msgstr "允许编辑数据库拥有者信息."
 
 #: ../src/plugins/tool/PatchNames.py:64
 msgid "manual|Extract_Information_from_Names"
@@ -12019,7 +12017,7 @@ msgid ""
 "Searches the entire database and attempts to extract titles, nicknames and "
 "surname prefixes that may be embedded in a person's given name field."
 msgstr ""
-"搜寻整个数据库，尝试释放称谓，乳名，姓前缀，所有隐含在人员姓名域的内容。"
+"搜寻整个数据库，尝试释放称谓，乳名，姓前缀，所有隐含在人员姓名域的内容."
 
 #: ../src/plugins/tool/Rebuild.py:77
 msgid "Rebuilding secondary indices..."
@@ -12051,7 +12049,7 @@ msgstr "索引地图重建"
 
 #: ../src/plugins/tool/RebuildRefMap.py:92
 msgid "All reference maps have been rebuilt."
-msgstr "所有的索引地图已经被建立。"
+msgstr "所有的索引地图已经被建立."
 
 #: ../src/plugins/tool/RebuildRefMap.py:122
 msgid "Rebuild Reference Maps"
@@ -12063,7 +12061,7 @@ msgstr "重建索引地图"
 
 #: ../src/plugins/tool/RelCalc.py:65
 msgid "Cause of Death"
-msgstr "死亡原因 "
+msgstr "死亡原因"
 
 #: ../src/plugins/tool/RelCalc.py:95
 #, python-format
@@ -12096,16 +12094,16 @@ msgstr "%(person)s  和  %(active_person)s  无直接血缘关系."
 #: ../src/plugins/tool/RelCalc.py:206
 #, python-format
 msgid "Their common ancestor is %s."
-msgstr "共同的先辈是%s。"
+msgstr "共同的先辈是%s."
 
 #: ../src/plugins/tool/RelCalc.py:212
 #, python-format
 msgid "Their common ancestors are %s and %s."
-msgstr "他们共同的先辈是 %s  和 %s"
+msgstr "他们共同的先辈是 %s  和 %s."
 
 #: ../src/plugins/tool/RelCalc.py:216
 msgid "Their common ancestors are: "
-msgstr "共同的先辈是： "
+msgstr "共同的先辈是: "
 
 #: ../src/plugins/tool/RelCalc.py:270
 msgid "Relationship Calculator"
@@ -12384,7 +12382,7 @@ msgstr "亡母"
 
 #: ../src/plugins/tool/Verify.py:1493
 msgid "Large year span for all children"
-msgstr "首尾两个孩子相隔的最大年数 "
+msgstr "首尾两个孩子相隔的最大年数"
 
 #: ../src/plugins/tool/Verify.py:1515
 msgid "Large age differences between children"
@@ -12470,7 +12468,6 @@ msgstr "标准版权"
 #. This must match _CC
 #: ../src/plugins/webreport/NarrativeWeb.py:190
 #: ../src/plugins/webreport/WebCal.py:161
-#, fuzzy
 msgid "Creative Commons - By attribution"
 msgstr "创建新属性"
 
@@ -12709,7 +12706,7 @@ msgstr "%s 和 %s 都不是目录"
 #: ../src/plugins/webreport/NarrativeWeb.py:2939
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "无法创建目录：%s"
+msgstr "无法创建目录:%s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2944
 msgid "Invalid file name"
@@ -12986,11 +12983,11 @@ msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3493
 msgid "Include link to home person on every page"
-msgstr ""
+msgstr "每页都包含与家主的连接"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3495
 msgid "Whether to include a link to the home person"
-msgstr ""
+msgstr "是否包含与家主的链接"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3498
 msgid "Include a column for birth dates on the index pages"
@@ -13095,7 +13092,7 @@ msgstr "创建年的第%d个日历"
 #. generate progress pass for "WebCal"
 #: ../src/plugins/webreport/WebCal.py:956
 msgid "Formatting months ..."
-msgstr "以月为格式"
+msgstr "以月为格式..."
 
 #: ../src/plugins/webreport/WebCal.py:1044
 #, python-format
@@ -13133,7 +13130,7 @@ msgstr "创建多个年历"
 
 #: ../src/plugins/webreport/WebCal.py:1176
 msgid "Whether to create Multiple year calendars or not."
-msgstr "是否创建多个年历。"
+msgstr "是否创建多个年历."
 
 #: ../src/plugins/webreport/WebCal.py:1181
 msgid "Start Year for the Calendar(s)"
@@ -13154,7 +13151,6 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/webreport/WebCal.py:1197
-#, fuzzy
 msgid "Create \"Year At A Glance\" Calendar"
 msgstr "创建年的隐藏日历"
 
@@ -13340,7 +13336,7 @@ msgstr ""
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
-msgstr[0] "%(couple)s, <em>%(years)d</em> 周年纪念"
+msgstr[0] ""
 
 #: ../src/plugins/webreport/WebCal.py:1588
 msgid "Web Calendar"
@@ -13348,7 +13344,7 @@ msgstr "网页日历"
 
 #: ../src/plugins/webreport/WebCal.py:1592
 msgid "Produces web (HTML) calendars."
-msgstr "生成网页日历。"
+msgstr "生成网页日历."
 
 #: ../src/PluginUtils/_GuiOptions.py:76
 msgid "Select surname"
@@ -13386,7 +13382,7 @@ msgstr "选择一个不同的家庭"
 #: ../src/PluginUtils/_GuiOptions.py:907
 #, python-format
 msgid "Also include %s?"
-msgstr "也包含 %s ？"
+msgstr "也包含 %s ?"
 
 #: ../src/PluginUtils/_GuiOptions.py:1073
 msgid "Colour"
@@ -13609,11 +13605,11 @@ msgstr "选择文件"
 
 #: ../src/ReportBase/_Endnotes.py:50
 msgid "The basic style used for the endnotes source display."
-msgstr "尾注来源显示基本风格"
+msgstr "尾注来源显示基本风格."
 
 #: ../src/ReportBase/_Endnotes.py:57
 msgid "The basic style used for the endnotes reference display."
-msgstr "尾注索引显示基本风格"
+msgstr "尾注索引显示基本风格."
 
 #: ../src/ReportBase/_Endnotes.py:98
 msgid "Endnotes"
@@ -13870,7 +13866,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1054
 msgid "This text will be added to the graph."
-msgstr "文本将被添加到曲线"
+msgstr "文本将被添加到曲线."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:1057
 msgid "Note location"
@@ -13953,7 +13949,7 @@ msgstr "文件已经存在"
 #: ../src/ReportBase/_ReportDialog.py:511
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
-msgstr "你可以选择覆盖文件，或者修改文件名。"
+msgstr "你可以选择覆盖文件，或者修改文件名."
 
 #: ../src/ReportBase/_ReportDialog.py:513
 msgid "_Overwrite"
@@ -13972,7 +13968,7 @@ msgid ""
 msgstr ""
 "你没有创建　%s　的权限\n"
 "\n"
-"请选择另外一个路径或者纠正权限。"
+"请选择另外一个路径或者纠正权限."
 
 #: ../src/ReportBase/_ReportDialog.py:599
 msgid "You must select an active person for this report to work properly."
@@ -14026,22 +14022,22 @@ msgstr "他生于 %(modified_date)s    %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:79
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "她于 %(modified_date)s 在 %(birth_place)s 出生"
+msgstr "她于 %(modified_date)s 在 %(birth_place)s 出生."
 
 #: ../src/ReportBase/_ReportUtils.py:82
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(unknown_gender_name)s 于 %(modified_date)s 在 %(birth_place)s出生。"
+msgstr "%(unknown_gender_name)s 于 %(modified_date)s 在 %(birth_place)s出生."
 
 #: ../src/ReportBase/_ReportUtils.py:83
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s 于 %(modified_date)s  在  %(birth_place)s 出生。"
+msgstr "%(male_name)s 于 %(modified_date)s  在  %(birth_place)s 出生."
 
 #: ../src/ReportBase/_ReportUtils.py:84
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s 于%(modified_date)s 在 %(birth_place)s出生"
+msgstr "%(female_name)s 于%(modified_date)s 在 %(birth_place)s出生."
 
 #: ../src/ReportBase/_ReportUtils.py:86
 #, python-format
@@ -14061,7 +14057,7 @@ msgstr "他出生于 %(birth_date)s."
 #: ../src/ReportBase/_ReportUtils.py:93
 #, python-format
 msgid "She was born on %(birth_date)s."
-msgstr "她生于%(birth_date)s。"
+msgstr "她生于%(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:96
 #, python-format
@@ -14121,17 +14117,17 @@ msgstr "出生于 %(modified_date)s."
 #: ../src/ReportBase/_ReportUtils.py:119
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr "此人出生于 %(month_year)s ， %(birth_place)s。"
+msgstr "此人出生于 %(month_year)s , %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:120
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr "他 %(month_year)s年在 %(birth_place)s出生。"
+msgstr "他 %(month_year)s年在 %(birth_place)s出生."
 
 #: ../src/ReportBase/_ReportUtils.py:121
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr "她 %(month_year)s年在 %(birth_place)s出生。"
+msgstr "她 %(month_year)s年在 %(birth_place)s出生."
 
 #: ../src/ReportBase/_ReportUtils.py:124
 #, python-format
@@ -14151,57 +14147,57 @@ msgstr "%(female_name)s 生于 %(month_year)s 的 %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:128
 #, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr " %(month_year)s 年生于 %(birth_place)s。"
+msgstr " %(month_year)s 年生于 %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:133
 #, python-format
 msgid "This person was born in %(month_year)s."
-msgstr "此人生于%(month_year)s。"
+msgstr "此人生于%(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:134
 #, python-format
 msgid "He was born in %(month_year)s."
-msgstr "他出生于%(month_year)s。"
+msgstr "他出生于%(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:135
 #, python-format
 msgid "She was born in %(month_year)s."
-msgstr "她出生于 %(month_year)s。"
+msgstr "她出生于 %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:138
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr "%(unknown_gender_name)s 出生于 %(month_year)s。"
+msgstr "%(unknown_gender_name)s 出生于 %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:139
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr "%(male_name)s 生于 %(month_year)s。"
+msgstr "%(male_name)s 生于 %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:140
 #, python-format
 msgid "%(female_name)s was born in %(month_year)s."
-msgstr "%(female_name)s 出生于 %(month_year)s。"
+msgstr "%(female_name)s 出生于 %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:142
 #, python-format
 msgid "Born %(month_year)s."
-msgstr " 出生于%(month_year)s年。"
+msgstr " 出生于%(month_year)s年."
 
 #: ../src/ReportBase/_ReportUtils.py:147
 #, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr "此人出生于 %(birth_place)s。"
+msgstr "此人出生于 %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:148
 #, python-format
 msgid "He was born in %(birth_place)s."
-msgstr "他出生于 %(birth_place)s。"
+msgstr "他出生于 %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:149
 #, python-format
 msgid "She was born in %(birth_place)s."
-msgstr "她出生于 %(birth_place)s。"
+msgstr "她出生于 %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:152
 #, python-format
@@ -14221,7 +14217,7 @@ msgstr "%(female_name)s 出生于 %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:156
 #, python-format
 msgid "Born in %(birth_place)s."
-msgstr "出生于 %(birth_place)s。"
+msgstr "出生于 %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:167
 #, python-format
@@ -14233,7 +14229,7 @@ msgstr "此人死于 %(death_date)s 的 %(death_place)s."
 msgid ""
 "This person died on %(death_date)s in %(death_place)s at the age of %(age)d "
 "years."
-msgstr "此人死于 %(death_date)s 的 %(death_place)s 享年 %(age)d 岁"
+msgstr "此人死于 %(death_date)s 的 %(death_place)s 享年 %(age)d 岁."
 
 #: ../src/ReportBase/_ReportUtils.py:169
 #, python-format
@@ -14376,7 +14372,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:205 ../src/ReportBase/_ReportUtils.py:252
 #, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "%(death_date)s 死于 %(death_place)s。"
+msgstr "%(death_date)s 死于 %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:206 ../src/ReportBase/_ReportUtils.py:253
 #, python-format
@@ -14664,7 +14660,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:299 ../src/ReportBase/_ReportUtils.py:346
 #, python-format
 msgid "Died %(death_date)s."
-msgstr "于%(death_date)s死亡。"
+msgstr "于%(death_date)s死亡."
 
 #: ../src/ReportBase/_ReportUtils.py:300 ../src/ReportBase/_ReportUtils.py:347
 #, python-format
@@ -14956,7 +14952,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:393
 #, python-format
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr " %(month_year)s 死于 %(death_place)s。"
+msgstr " %(month_year)s 死于 %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:394
 #, python-format
@@ -15242,7 +15238,7 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:488
 #, python-format
 msgid "Died in %(death_place)s."
-msgstr "逝世于%(death_place)s。"
+msgstr "逝世于%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:489
 #, python-format
@@ -15412,32 +15408,32 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:566
 #, python-format
 msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(burial_date)s%(endnotes)s 下葬。"
+msgstr "%(male_name)s 于 %(burial_date)s%(endnotes)s 下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:567
 #, python-format
 msgid "He was buried on %(burial_date)s%(endnotes)s."
-msgstr "他在%(burial_date)s%(endnotes)s 被安葬。"
+msgstr "他在%(burial_date)s%(endnotes)s 被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:570
 #, python-format
 msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(female_name)s 于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr "%(female_name)s 于 %(burial_date)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:571
 #, python-format
 msgid "She was buried on %(burial_date)s%(endnotes)s."
-msgstr "她于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr "她于 %(burial_date)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:574
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr "%(unknown_gender_name)s 于 %(burial_date)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:575
 #, python-format
 msgid "This person was buried on %(burial_date)s%(endnotes)s."
-msgstr "此人于%(burial_date)s%(endnotes)s被安葬。"
+msgstr "此人于%(burial_date)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:577
 #, python-format
@@ -15448,24 +15444,24 @@ msgstr ""
 #, python-format
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s  %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "%(male_name)s  %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "他于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "他于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s 于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+"%(female_name)s 于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "她于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "她于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:590
 #, python-format
@@ -15474,77 +15470,77 @@ msgid ""
 "(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s 于 %(month_year)s 被安葬于 %(burial_place)s%"
-"(endnotes)s。"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
 msgid ""
 "This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "此人于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "此人于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:593
 #, python-format
 msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr " %(month_year)s 在 %(burial_place)s%(endnotes)s被安葬。"
+msgstr " %(month_year)s 在 %(burial_place)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:598
 #, python-format
 msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(month_year)s%(endnotes)s被安葬。"
+msgstr "%(male_name)s 于 %(month_year)s%(endnotes)s被安葬."
 
 #: ../src/ReportBase/_ReportUtils.py:599
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "他于 %(month_year)s%(endnotes)s下葬"
+msgstr "他于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:602
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s 于 %(month_year)s%(endnotes)s下葬。"
+msgstr "%(female_name)s 于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:603
 #, python-format
 msgid "She was buried in %(month_year)s%(endnotes)s."
-msgstr "她于 %(month_year)s%(endnotes)s下葬。"
+msgstr "她于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:606
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(month_year)s%(endnotes)s下葬。"
+msgstr "%(unknown_gender_name)s 于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:607
 #, python-format
 msgid "This person was buried in %(month_year)s%(endnotes)s."
-msgstr "此人于 %(month_year)s%(endnotes)s下葬。"
+msgstr "此人于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:609
 #, python-format
 msgid "Buried %(month_year)s%(endnotes)s."
-msgstr "于 %(month_year)s%(endnotes)s下葬。"
+msgstr "于 %(month_year)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
 msgid ""
 "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+"%(male_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "他于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "他于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
 msgid ""
 "%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+"%(female_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "她于%(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "她于%(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:622
 #, python-format
@@ -15553,13 +15549,13 @@ msgid ""
 "(endnotes)s."
 msgstr ""
 "%(unknown_gender_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%"
-"(endnotes)s。"
+"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:623
 #, python-format
 msgid ""
 "This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "此人于 %(modified_date)s 被安葬 %(burial_place)s%(endnotes)s。"
+msgstr "此人于 %(modified_date)s 被安葬 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
@@ -15569,27 +15565,27 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:630
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(modified_date)s%(endnotes)s下葬。"
+msgstr "%(male_name)s 于 %(modified_date)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:631
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "他于 %(modified_date)s%(endnotes)s下葬。"
+msgstr "他于 %(modified_date)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:634
 #, python-format
 msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s 于%(modified_date)s%(endnotes)s下葬。"
+msgstr "%(female_name)s 于%(modified_date)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:635
 #, python-format
 msgid "She was buried %(modified_date)s%(endnotes)s."
-msgstr "她于 %(modified_date)s%(endnotes)s下葬。"
+msgstr "她于 %(modified_date)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:638
 #, python-format
 msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(modified_date)s%(endnotes)s下葬。"
+msgstr "%(unknown_gender_name)s 于 %(modified_date)s%(endnotes)s下葬."
 
 #: ../src/ReportBase/_ReportUtils.py:639
 #, python-format
@@ -15604,17 +15600,17 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:646
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "%(male_name)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:647
 #, python-format
 msgid "He was buried in %(burial_place)s%(endnotes)s."
-msgstr "他被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "他被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
 msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(female_name)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "%(female_name)s 被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:651
 #, python-format
@@ -15629,7 +15625,7 @@ msgstr "%(unknown_gender_name)s 被安葬于 %(burial_place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:655
 #, python-format
 msgid "This person was buried in %(burial_place)s%(endnotes)s."
-msgstr "此人被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr "此人被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:657
 #, python-format
@@ -15677,7 +15673,7 @@ msgid ""
 "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(male_name)s 于%(baptism_date)s 在 %(baptism_place)s%(endnotes)s接受洗礼。"
+"%(male_name)s 于%(baptism_date)s 在 %(baptism_place)s%(endnotes)s接受洗礼."
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
@@ -15742,7 +15738,7 @@ msgstr "她于 %(baptism_date)s接受了洗礼%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:708
 #, python-format
 msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(baptism_date)s接受了洗礼%(endnotes)s。"
+msgstr "%(unknown_gender_name)s 于 %(baptism_date)s接受了洗礼%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:709
 #, python-format
@@ -15983,329 +15979,318 @@ msgid "Baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:818
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened on %(christening_date)s in %(christening_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s 于 %(burial_date)s 年，安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:819
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)"
 "s."
-msgstr "他于 %(burial_date)s年被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:822
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s 于 %(burial_date)s年被安葬于 %(burial_place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:823
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "她于 %(burial_date)s 被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:826
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 在 %(burial_date)s 被安葬于%(burial_place)s%"
-"(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened on %(christening_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "此人于 %(burial_date)s 被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:829
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "她于%(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:834
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(burial_date)s%(endnotes)s 下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:835
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened on %(christening_date)s%(endnotes)s."
-msgstr "他在%(burial_date)s%(endnotes)s 被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:838
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(female_name)s 于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:839
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened on %(christening_date)s%(endnotes)s."
-msgstr "她于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:842
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened on %(christening_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(burial_date)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:843
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened on %(christening_date)s%(endnotes)s."
-msgstr "此人于%(burial_date)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:845
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(christening_date)s%(endnotes)s."
-msgstr "她于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:850
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "%(male_name)s  %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:851
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "他于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:854
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(female_name)s 于 %(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../src/ReportBase/_ReportUtils.py:855
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened in %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr "她于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:858
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 于 %(month_year)s 被安葬于 %(burial_place)s%"
-"(endnotes)s。"
 
 #: ../src/ReportBase/_ReportUtils.py:859
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened in %(month_year)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "此人于%(month_year)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:861
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s in %(christening_place)s%(endnotes)s."
-msgstr " %(month_year)s 在 %(burial_place)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:866
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(month_year)s%(endnotes)s被安葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:867
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(month_year)s%(endnotes)s."
-msgstr "他于 %(month_year)s%(endnotes)s下葬"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:870
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s 于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:871
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(month_year)s%(endnotes)s."
-msgstr "她于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:874
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:875
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(month_year)s%(endnotes)s."
-msgstr "此人于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:877
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(month_year)s%(endnotes)s."
-msgstr "于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:882
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(male_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../src/ReportBase/_ReportUtils.py:883
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "He was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "他于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:886
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(female_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
 
 #: ../src/ReportBase/_ReportUtils.py:887
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "She was christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "她于%(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:890
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened %(modified_date)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s 于 %(modified_date)s 被安葬于 %(burial_place)s%"
-"(endnotes)s。"
 
 #: ../src/ReportBase/_ReportUtils.py:891
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This person was christened %(modified_date)s in %(christening_place)s%"
 "(endnotes)s."
-msgstr "此人于 %(modified_date)s 被安葬 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:893
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s in %(christening_place)s%(endnotes)s."
-msgstr "她于%(modified_date)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:898
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s 于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:899
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened %(modified_date)s%(endnotes)s."
-msgstr "他于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:902
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(female_name)s 于%(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened %(modified_date)s%(endnotes)s."
-msgstr "她于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:906
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened %(modified_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:907
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened %(modified_date)s%(endnotes)s."
-msgstr "此人于 %(modified_date)s%(endnotes)s下葬."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:909
-#, fuzzy, python-format
+#, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "她于 %(modified_date)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:914
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:915
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened in %(christening_place)s%(endnotes)s."
-msgstr "他被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:918
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s 被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:919
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened in %(christening_place)s%(endnotes)s."
-msgstr "她被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:922
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(unknown_gender_name)s was christened in %(christening_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s 被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:923
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened in %(christening_place)s%(endnotes)s."
-msgstr "此人被安葬于 %(burial_place)s%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:925
-#, fuzzy, python-format
+#, python-format
 msgid "Christened in %(christening_place)s%(endnotes)s."
-msgstr "她被安葬于 %(burial_place)s%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:930
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s 被埋葬%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:931
-#, fuzzy, python-format
+#, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "%(male_name)s 被埋葬%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:934
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr "%(male_name)s 被埋葬%(endnotes)s."
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:935
-#, fuzzy, python-format
+#, python-format
 msgid "She was christened%(endnotes)s."
-msgstr "她于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:938
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was christened%(endnotes)s."
-msgstr "%(unknown_gender_name)s 于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "This person was christened%(endnotes)s."
-msgstr "此人于 %(month_year)s%(endnotes)s下葬。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:941
-#, fuzzy, python-format
+#, python-format
 msgid "Christened%(endnotes)s."
-msgstr "%(endnotes)s。"
+msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:952
 #, python-format
@@ -17410,227 +17395,227 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:1332
 #, python-format
 msgid "This person is the child of %(father)s and %(mother)s."
-msgstr "这个人是 %(father)s 和 %(mother)s的子女。"
+msgstr "这个人是 %(father)s 和 %(mother)s的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1333
 #, python-format
 msgid "This person was the child of %(father)s and %(mother)s."
-msgstr "这个人曾经是 %(father)s 和 %(mother)s的子女。"
+msgstr "这个人曾经是 %(father)s 和 %(mother)s的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1336
 #, python-format
 msgid "%(male_name)s is the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s  是 %(father)s 和 %(mother)s的子女。"
+msgstr "%(male_name)s  是 %(father)s 和 %(mother)s的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1337
 #, python-format
 msgid "%(male_name)s was the child of %(father)s and %(mother)s."
-msgstr "%(male_name)s曾经是 %(father)s 和 %(mother)s子女。"
+msgstr "%(male_name)s曾经是 %(father)s 和 %(mother)s子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1339
 #, python-format
 msgid "Child of %(father)s and %(mother)s."
-msgstr " %(father)s 和 %(mother)s的孩子"
+msgstr "%(father)s 和 %(mother)s的孩子."
 
 #: ../src/ReportBase/_ReportUtils.py:1343
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr "他是 %(father)s 和 %(mother)s的儿子。"
+msgstr "他是 %(father)s 和 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1344
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr "他曾是 %(father)s 和 %(mother)s的儿子。"
+msgstr "他曾是 %(father)s 和 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1347
 #, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子"
+msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1348
 #, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
-msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子。"
+msgstr "%(male_name)s 是 %(father)s 和 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1350
 #, python-format
 msgid "Son of %(father)s and %(mother)s."
-msgstr " %(father)s 和 %(mother)s的儿子"
+msgstr "%(father)s 和 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1354
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "她是 %(father)s 和 %(mother)s的女儿。"
+msgstr "她是 %(father)s 和 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1355
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "她曾是 %(father)s 和 %(mother)s的女儿。"
+msgstr "她曾是 %(father)s 和 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1358
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
-msgstr " %(female_name)s 是 %(father)s 和 %(mother)s的女儿。"
+msgstr " %(female_name)s 是 %(father)s 和 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1359
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
-msgstr "%(female_name)s  是 %(father)s 和 %(mother)s的女儿。"
+msgstr "%(female_name)s  是 %(father)s 和 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1361
 #, python-format
 msgid "Daughter of %(father)s and %(mother)s."
-msgstr "%(father)s 和 %(mother)s的女儿。"
+msgstr "%(father)s 和 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1368
 #, python-format
 msgid "This person is the child of %(father)s."
-msgstr "此人是 %(father)s 的子女。"
+msgstr "此人是 %(father)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1369
 #, python-format
 msgid "This person was the child of %(father)s."
-msgstr "此人曾是  %(father)s 的子女。"
+msgstr "此人曾是  %(father)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1372
 #, python-format
 msgid "%(male_name)s is the child of %(father)s."
-msgstr "%(male_name)s 是 %(father)s 的子女。"
+msgstr "%(male_name)s 是 %(father)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1373
 #, python-format
 msgid "%(male_name)s was the child of %(father)s."
-msgstr "%(male_name)s 曾是 %(father)s 的子女。"
+msgstr "%(male_name)s 曾是 %(father)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1375
 #, python-format
 msgid "Child of %(father)s."
-msgstr "%(father)s的孩子。"
+msgstr "%(father)s的孩子."
 
 #: ../src/ReportBase/_ReportUtils.py:1379
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr "他是 %(father)s 的儿子。"
+msgstr "他是 %(father)s 的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1380
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr "他曾是 %(father)s 的儿子。"
+msgstr "他曾是 %(father)s 的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1383
 #, python-format
 msgid "%(male_name)s is the son of %(father)s."
-msgstr "%(male_name)s 是 %(father)s的儿子。"
+msgstr "%(male_name)s 是 %(father)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1384
 #, python-format
 msgid "%(male_name)s was the son of %(father)s."
-msgstr "%(male_name)s 是 %(father)s的儿子。"
+msgstr "%(male_name)s 是 %(father)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1386
 #, python-format
 msgid "Son of %(father)s."
-msgstr " %(father)s 的儿子。"
+msgstr " %(father)s 的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1390
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr "她是 %(father)s 的女儿。"
+msgstr "她是 %(father)s 的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1391
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr "她曾是%(father)s的女儿。"
+msgstr "她曾是%(father)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1394
 #, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
-msgstr "%(female_name)s 是 %(father)s的女儿。"
+msgstr "%(female_name)s 是 %(father)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1395
 #, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
-msgstr "%(female_name)s  是 %(father)s的女儿。"
+msgstr "%(female_name)s  是 %(father)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1397
 #, python-format
 msgid "Daughter of %(father)s."
-msgstr "%(father)s的女儿。"
+msgstr "%(father)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1404
 #, python-format
 msgid "This person is the child of %(mother)s."
-msgstr "此人是%(mother)s 的子女。"
+msgstr "此人是%(mother)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1405
 #, python-format
 msgid "This person was the child of %(mother)s."
-msgstr "此人曾是%(mother)s 的子女。"
+msgstr "此人曾是%(mother)s 的子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1408
 #, python-format
 msgid "%(male_name)s is the child of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s  子女。"
+msgstr "%(male_name)s 是 %(mother)s  子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1409
 #, python-format
 msgid "%(male_name)s was the child of %(mother)s."
-msgstr "%(male_name)s  曾是 %(mother)s  子女。"
+msgstr "%(male_name)s  曾是 %(mother)s  子女."
 
 #: ../src/ReportBase/_ReportUtils.py:1411
 #, python-format
 msgid "Child of %(mother)s."
-msgstr "%(mother)s的孩子。"
+msgstr "%(mother)s的孩子."
 
 #: ../src/ReportBase/_ReportUtils.py:1415
 #, python-format
 msgid "He is the son of %(mother)s."
-msgstr "他是%(mother)s的儿子。"
+msgstr "他是%(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1416
 #, python-format
 msgid "He was the son of %(mother)s."
-msgstr "他曾是%(mother)s的儿子。"
+msgstr "他曾是%(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1419
 #, python-format
 msgid "%(male_name)s is the son of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s的儿子，"
+msgstr "%(male_name)s 是 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1420
 #, python-format
 msgid "%(male_name)s was the son of %(mother)s."
-msgstr "%(male_name)s 是 %(mother)s的儿子。"
+msgstr "%(male_name)s 是 %(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1422
 #, python-format
 msgid "Son of %(mother)s."
-msgstr "%(mother)s的儿子。"
+msgstr "%(mother)s的儿子."
 
 #: ../src/ReportBase/_ReportUtils.py:1426
 #, python-format
 msgid "She is the daughter of %(mother)s."
-msgstr "她是%(mother)s 的女儿。"
+msgstr "她是%(mother)s 的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1427
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr "她曾是%(mother)s 的女儿。"
+msgstr "她曾是%(mother)s 的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1430
 #, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
-msgstr "%(female_name)s 是%(mother)s的女儿。"
+msgstr "%(female_name)s 是%(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1431
 #, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
-msgstr "%(female_name)s 是 %(mother)s的女儿。"
+msgstr "%(female_name)s 是 %(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1433
 #, python-format
 msgid "Daughter of %(mother)s."
-msgstr "%(mother)s的女儿。"
+msgstr "%(mother)s的女儿."
 
 #: ../src/ReportBase/_ReportUtils.py:1443
 msgid "unmarried"
@@ -18009,7 +17994,7 @@ msgstr "处理笔记记录"
 #: ../src/gen/db/base.py:1794
 #, python-format
 msgid "_Undo %s"
-msgstr "撤销(_U) %s "
+msgstr "撤销(_U) %s"
 
 #: ../src/gen/db/base.py:1760 ../src/gen/db/base.py:1802
 #, python-format
@@ -18388,19 +18373,19 @@ msgstr ""
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
-msgstr[0] "%d 年"
+msgstr[0] ""
 
 #: ../src/gen/lib/date.py:494
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
-msgstr[0] "%d 月"
+msgstr[0] ""
 
 #: ../src/gen/lib/date.py:501
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d 天"
+msgstr[0] ""
 
 #: ../src/gen/lib/date.py:506
 msgid "0 days"
@@ -18732,7 +18717,6 @@ msgid "%s does not contain"
 msgstr "%s 不包含"
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:27
-#, fuzzy
 msgid "Changed after:"
 msgstr "修改形式"
 
@@ -18741,7 +18725,6 @@ msgid "but before:"
 msgstr ""
 
 #: ../src/Filters/Rules/_ChangedSinceBase.py:28
-#, fuzzy
 msgid "Objects changed after <date time>"
 msgstr "对象<attribute>"
 
@@ -18781,7 +18764,7 @@ msgstr "属性:"
 #: ../src/Filters/Rules/Event/_HasAttribute.py:45
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 msgid "Value:"
-msgstr "值："
+msgstr "值:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:49
 msgid "Objects with the <attribute>"
@@ -18819,7 +18802,7 @@ msgstr "日期"
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/FilterEditor/_EditRule.py:473
 msgid "Place:"
-msgstr "地点："
+msgstr "地点:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:51
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
@@ -18829,7 +18812,7 @@ msgstr "地点："
 #: ../src/Filters/Rules/Family/_HasEvent.py:48
 #: ../src/Filters/Rules/Event/_HasData.py:48
 msgid "Description:"
-msgstr "描述："
+msgstr "描述:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:52
 msgid "Events matching parameters"
@@ -18916,13 +18899,13 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
 #: ../src/FilterEditor/_EditRule.py:504
 msgid "Case sensitive:"
-msgstr "区分大小写："
+msgstr "区分大小写:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
 #: ../src/FilterEditor/_EditRule.py:506
 msgid "Regular-Expression matching:"
-msgstr "正则表达式匹配："
+msgstr "正则表达式匹配:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
 msgid "Objects with records containing <substring>"
@@ -18950,7 +18933,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
 #: ../src/FilterEditor/_EditRule.py:490
 msgid "Filter name:"
-msgstr "筛选名称："
+msgstr "筛选名称:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
 msgid "Objects matching the <filter>"
@@ -18979,7 +18962,7 @@ msgstr ""
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:89
 msgid "Marker type:"
-msgstr "标记类型："
+msgstr "标记类型:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
 msgid "Has marker of"
@@ -19035,10 +19018,9 @@ msgstr "例子的数量"
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
 #: ../src/FilterEditor/_EditRule.py:481
 msgid "Number must be:"
-msgstr "需要一定是："
+msgstr "需要一定是:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:47
-#, fuzzy
 msgid "People with <count> addresses"
 msgstr "不完整事件记录的人"
 
@@ -19047,9 +19029,8 @@ msgid "Matches people with a certain number of personal addresses"
 msgstr "匹配在来源中拥有特定数量地址的人"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:47
-#, fuzzy
 msgid "People with <count> associations"
-msgstr "相关人员 "
+msgstr "人员，与 <count> 相关"
 
 #: ../src/Filters/Rules/Person/_HasAssociation.py:48
 msgid "Matches people with a certain number of associations"
@@ -19058,7 +19039,7 @@ msgstr "匹配拥有特定相关性数量的人"
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:84
 msgid "Personal attribute:"
-msgstr "个人属性："
+msgstr "个人属性:"
 
 #: ../src/Filters/Rules/Person/_HasAttribute.py:46
 msgid "People with the personal <attribute>"
@@ -19123,7 +19104,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_HasEvent.py:46
 #: ../src/FilterEditor/_EditRule.py:81
 msgid "Personal event:"
-msgstr "个人事件："
+msgstr "个人事件:"
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
 msgid "People with the personal <event>"
@@ -19137,7 +19118,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:85
 msgid "Family attribute:"
-msgstr "家庭属性："
+msgstr "家庭属性:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:46
 msgid "People with the family <attribute>"
@@ -19151,7 +19132,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasEvent.py:45
 #: ../src/FilterEditor/_EditRule.py:82
 msgid "Family event:"
-msgstr "家庭事件："
+msgstr "家庭事件:"
 
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:52
 msgid "People with the family <event>"
@@ -19217,11 +19198,11 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Patronymic:"
-msgstr "以父姓的："
+msgstr "以父姓的:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Call Name:"
-msgstr "称呼："
+msgstr "称呼:"
 
 #: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "People with the <name>"
@@ -19264,7 +19245,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_HasRelType.py:46
 #: ../src/FilterEditor/_EditRule.py:88
 msgid "Relationship type:"
-msgstr "关系类型："
+msgstr "关系类型:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:48
 msgid "Number of children:"
@@ -19302,11 +19283,11 @@ msgstr "匹配在来源中拥有特定数量栏目的人"
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
 #: ../src/FilterEditor/_EditRule.py:488
 msgid "Source ID:"
-msgstr "来源 ID："
+msgstr "来源 ID:"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 msgid "People with the <source>"
-msgstr ""
+msgstr "成员，拥有来源 <source>"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:48
 msgid "Matches people who have a particular source"
@@ -19397,7 +19378,7 @@ msgstr "默认人"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
 msgid "Matches the default person"
-msgstr "选中默认人 "
+msgstr "选中默认人"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
 msgid "Descendant family members of <person>"
@@ -19546,7 +19527,7 @@ msgstr ""
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
 #: ../src/FilterEditor/_EditRule.py:496
 msgid "Event filter name:"
-msgstr "事件过滤条件："
+msgstr "事件过滤条件:"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 msgid "Persons with events matching the <event filter>"
@@ -19636,7 +19617,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
 msgid "Expression:"
-msgstr "表达式："
+msgstr "表达式:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
 msgid "People matching the <regex_name>"
@@ -19693,7 +19674,7 @@ msgstr ""
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 msgid "Person ID:"
-msgstr "人员ID："
+msgstr "人员ID:"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
@@ -20049,7 +20030,7 @@ msgstr "符合特定类型的事件"
 
 #: ../src/Filters/Rules/Event/_HasType.py:48
 msgid "Matches events with the particular type "
-msgstr "匹配符合特定类型的事件"
+msgstr "匹配符合特定类型的事件 "
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 msgid "Events matching the <filter>"
@@ -20063,12 +20044,12 @@ msgstr "匹配特定筛选名称的事件"
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 #: ../src/FilterEditor/_EditRule.py:494
 msgid "Person filter name:"
-msgstr "人员筛选名称："
+msgstr "人员筛选名称:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 #: ../src/FilterEditor/_EditRule.py:508
 msgid "Include Family events:"
-msgstr "包含家庭事件："
+msgstr "包含家庭事件:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:52
 msgid "Events of persons matching the <person filter>"
@@ -20081,7 +20062,7 @@ msgstr "匹配特定人员筛选名称的人员事件"
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
 #: ../src/FilterEditor/_EditRule.py:498
 msgid "Source filter name:"
-msgstr "来源筛选名称："
+msgstr "来源筛选名称:"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:48
 msgid "Events with source matching the <source filter>"
@@ -20168,20 +20149,20 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 msgid "Street:"
-msgstr "街道："
+msgstr "街道:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:49
 msgid "Church Parish:"
-msgstr "教区："
+msgstr "教区:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:10
 msgid "ZIP/Postal Code:"
-msgstr "邮编："
+msgstr "邮编:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
-msgstr "县/郡："
+msgstr "县/郡:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:53
 msgid "State:"
@@ -20205,19 +20186,19 @@ msgstr ""
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Latitude:"
-msgstr "经度："
+msgstr "经度:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:47
 msgid "Longitude:"
-msgstr "纬度："
+msgstr "纬度:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle height:"
-msgstr "矩形高度："
+msgstr "矩形高度:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle width:"
-msgstr "矩形宽度："
+msgstr "矩形宽度:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:49
 msgid "Places in neighborhood of given position"
@@ -20334,7 +20315,7 @@ msgstr ""
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
 #: ../src/glade/mergedata.glade.h:14
 msgid "Title:"
-msgstr "标题："
+msgstr "标题:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:47
 #: ../src/glade/mergedata.glade.h:5 ../src/glade/plugins.glade.h:2
@@ -20344,7 +20325,7 @@ msgstr "作者:"
 #: ../src/Filters/Rules/Source/_HasSource.py:48
 #: ../src/glade/mergedata.glade.h:11
 msgid "Publication:"
-msgstr "出版："
+msgstr "出版:"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:49
 msgid "Sources matching parameters"
@@ -20399,7 +20380,7 @@ msgstr ""
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:87
 msgid "Media attribute:"
-msgstr "媒介属性："
+msgstr "媒介属性:"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
 msgid "Media objects with the attribute <attribute>"
@@ -20445,16 +20426,16 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr ""
+msgstr "媒介对象，拥有包含<regular expression>的笔记的"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "匹配媒介对象，笔记含有匹配正则表达式文本的"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr ""
+msgstr "媒介对象，拥有一个参考统计 <count> 的"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
@@ -20462,7 +20443,7 @@ msgstr "匹配特定索引计算的媒介对象"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr ""
+msgstr "媒介对象，匹配<filter> 的"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
@@ -20470,23 +20451,23 @@ msgstr "匹配特定筛选名称的媒介对象"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr ""
+msgstr "媒介对象标识为私有的"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr ""
+msgstr "匹配媒介对象，显示为私有的"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr ""
+msgstr "媒介对象，<Id> 匹配正则表达式"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "匹配媒介对象，GRAMPS ID 匹配正则表达式"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr ""
+msgstr "每个仓库"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
@@ -20494,7 +20475,7 @@ msgstr "匹配数据库中每一个仓库"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:23
 msgid "Repositories changed after <date time>"
-msgstr ""
+msgstr "仓库，在<date time> 之后修订过的"
 
 #: ../src/Filters/Rules/Repository/_ChangedSince.py:24
 msgid ""
@@ -20504,36 +20485,36 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
-msgstr "仓库ID："
+msgstr "仓库ID:"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr ""
+msgstr "匹配一个仓库，拥有特定GRAMPS ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr ""
+msgstr "仓库，有笔记包含有 <substring>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr ""
+msgstr "匹配仓库，笔记含有一个子字串的文本"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositories having notes containing <regular expression>"
-msgstr ""
+msgstr "仓库，有笔记含有<regular expression>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
-msgstr ""
+msgstr "匹配仓库，笔记含有匹配正则表达式的文本"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr ""
+msgstr "仓库, 含有索引统计 <count>"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr ""
+msgstr "匹配仓库，含特定参考统计"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -20541,15 +20522,15 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "仓库，匹配的参数"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr ""
+msgstr "匹配仓库，含特定参数"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr ""
+msgstr "仓库，匹配 <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
@@ -20557,11 +20538,11 @@ msgstr "匹配特定筛选名称的仓库"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr ""
+msgstr "仓库 ,  <Id> 匹配正则表达式"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "匹配仓库，GRAMPS ID匹配正则表示式"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -20569,7 +20550,7 @@ msgstr "标记为私有的仓库"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr ""
+msgstr "匹配仓库，显示为私有的"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:45
 msgid "Every note"
@@ -20581,7 +20562,7 @@ msgstr "比对数据库中每一个笔记"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:23
 msgid "Notes changed after <date time>"
-msgstr ""
+msgstr "笔记，在<date time> 之后修改的"
 
 #: ../src/Filters/Rules/Note/_ChangedSince.py:24
 msgid ""
@@ -20591,7 +20572,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:45
 msgid "Note with <Id>"
-msgstr ""
+msgstr "笔记，属于<Id>"
 
 #: ../src/Filters/Rules/Note/_HasIdOf.py:46
 msgid "Matches a note with a specified GRAMPS ID"
@@ -20599,7 +20580,7 @@ msgstr "匹配符合特定GRAMPS ID的笔记"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:45
 msgid "Notes with <marker>"
-msgstr ""
+msgstr "笔记,带有标记 <marker>"
 
 #: ../src/Filters/Rules/Note/_HasMarkerOf.py:46
 msgid "Matches Notes with a marker of a particular value"
@@ -20607,15 +20588,15 @@ msgstr "匹配符合特定值的标记的笔记"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
 msgid "Notes containing <substring>"
-msgstr ""
+msgstr "笔记包含 <substring>"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
-msgstr ""
+msgstr "匹配笔记，包含匹配子字串的文本"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
-msgstr ""
+msgstr "笔记包含 <regular expression>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text matching a regular expression"
@@ -20632,7 +20613,7 @@ msgstr "笔记类型:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
-msgstr ""
+msgstr "笔记匹配参数"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:51
 msgid "Matches Notes with particular parameters"
@@ -20648,7 +20629,7 @@ msgstr "匹配符合特定索引计算的笔记"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
-msgstr ""
+msgstr "笔记匹配 <filter>"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:46
 msgid "Matches notes matched by the specified filter name"
@@ -20656,11 +20637,11 @@ msgstr "符合特定筛选名称的笔记"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
 msgid "Notes with <Id> matching regular expression"
-msgstr ""
+msgstr "笔记 <Id> 符合正则表达式"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "匹配笔记 ，GRAMPS ID 符合正则表达式"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:43
 msgid "Notes marked private"
@@ -20679,7 +20660,7 @@ msgstr "匹配显示为私有的笔记"
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:76
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:70
 msgid "Use regular expressions"
-msgstr ""
+msgstr "使用正则表达式"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:119
@@ -20694,17 +20675,17 @@ msgstr "定制筛选器"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "any"
-msgstr ""
+msgstr "任何"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
 #, python-format
 msgid "example: \"%s\" or \"%s\""
-msgstr ""
+msgstr "例子: \"%s\" 或 \"%s\""
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:54
 msgid "<b>Filter</b>"
-msgstr ""
+msgstr "<b>筛选</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:77
 msgid "Reset"
@@ -20764,7 +20745,7 @@ msgstr "定制筛选编辑器"
 
 #: ../src/FilterEditor/_FilterEditor.py:189
 msgid "Delete Filter?"
-msgstr "删除过滤器？"
+msgstr "删除过滤器?"
 
 #: ../src/FilterEditor/_FilterEditor.py:190
 msgid ""
@@ -20880,7 +20861,7 @@ msgstr "拼写"
 
 #: ../src/widgets/styledtexteditor.py:322
 msgid "_Send Mail To..."
-msgstr "发送邮件到...（_S)"
+msgstr "发送邮件到(_S)..."
 
 #: ../src/widgets/styledtexteditor.py:323
 msgid "Copy _E-mail Address"
@@ -20998,7 +20979,7 @@ msgstr "修改并关闭窗口"
 
 #: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:46
 msgid "Call _Name:"
-msgstr "称呼："
+msgstr "称呼:"
 
 #: ../src/glade/edit_person.glade.h:7
 msgid "Edit the preferred name"
@@ -21013,7 +20994,7 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:11
 msgid "Gi_ven:"
-msgstr "名(_V)"
+msgstr "名(_V):"
 
 #: ../src/glade/edit_person.glade.h:12 ../src/glade/gramps.glade.h:82
 msgid "Indicates if the record is private"
@@ -21021,7 +21002,7 @@ msgstr ""
 
 #: ../src/glade/edit_person.glade.h:13
 msgid "Part of the Given name that is the normally used name. "
-msgstr "通常使用的名字，是姓名的一部分。"
+msgstr "通常使用的名字是姓名的一部分. "
 
 #: ../src/glade/edit_person.glade.h:14
 msgid ""
@@ -21277,11 +21258,11 @@ msgstr "放弃修改并关闭窗口"
 
 #: ../src/glade/gramps.glade.h:54
 msgid "Co_unty:"
-msgstr "县城（郡）(_U)："
+msgstr "县城（郡）(_U):"
 
 #: ../src/glade/gramps.glade.h:55
 msgid "Con_fidence:"
-msgstr "隐私(_F)："
+msgstr "隐私(_F):"
 
 #: ../src/glade/gramps.glade.h:56
 msgid "Convert to a relative path"
@@ -21301,7 +21282,7 @@ msgstr "国家(_N):"
 
 #: ../src/glade/gramps.glade.h:60
 msgid "Count_ry:"
-msgstr "国家(_R)："
+msgstr "国家(_R):"
 
 #: ../src/glade/gramps.glade.h:61
 msgid "D_ay"
@@ -21317,7 +21298,7 @@ msgstr "描述(_S):"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Death:"
-msgstr "死亡："
+msgstr "死亡:"
 
 #: ../src/glade/gramps.glade.h:65
 msgid "Do not ask again"
@@ -21337,7 +21318,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:70
 msgid "Example:"
-msgstr "例子："
+msgstr "例子:"
 
 #: ../src/glade/gramps.glade.h:71
 msgid "Family Trees - GRAMPS"
@@ -21357,7 +21338,7 @@ msgstr "格式定义(_D):"
 
 #: ../src/glade/gramps.glade.h:75
 msgid "Format _name:"
-msgstr "格式名称(_N)："
+msgstr "格式名称(_N):"
 
 #: ../src/glade/gramps.glade.h:76
 msgid "Format definition details"
@@ -21386,7 +21367,6 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:83
-#, fuzzy
 msgid "Invoke date editor"
 msgstr "打开死亡事件编辑器"
 
@@ -21427,7 +21407,6 @@ msgid "Mo_nth"
 msgstr "月(_N)"
 
 #: ../src/glade/gramps.glade.h:96
-#, fuzzy
 msgid "Name Child:"
 msgstr "名字:"
 
@@ -21457,7 +21436,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:106
 msgid "Phon_e:"
-msgstr "电话(_E)："
+msgstr "电话(_E):"
 
 #: ../src/glade/gramps.glade.h:107
 msgid "R_ight:"
@@ -21598,7 +21577,6 @@ msgid "_Event type:"
 msgstr "事件类型(_E):"
 
 #: ../src/glade/gramps.glade.h:153
-#, fuzzy
 msgid "_Given:"
 msgstr "名"
 
@@ -21624,7 +21602,7 @@ msgstr "经度(_L):"
 
 #: ../src/glade/gramps.glade.h:161
 msgid "_Media Type:"
-msgstr "媒体类型 (_M)："
+msgstr "媒体类型 (_M):"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Month"
@@ -21656,7 +21634,7 @@ msgstr "地点(_P):"
 
 #: ../src/glade/gramps.glade.h:169
 msgid "_Prefix:"
-msgstr "家族前缀(_P): "
+msgstr "家族前缀(_P):"
 
 #: ../src/glade/gramps.glade.h:170
 msgid "_Preformatted"
@@ -21683,7 +21661,6 @@ msgid "_Right"
 msgstr ""
 
 #: ../src/glade/gramps.glade.h:176
-#, fuzzy
 msgid "_Role:"
 msgstr "文件(_F):"
 
@@ -21769,7 +21746,7 @@ msgstr "<b>标题选择</b>"
 
 #: ../src/glade/mergedata.glade.h:4
 msgid "Abbreviation:"
-msgstr "缩写："
+msgstr "缩写:"
 
 #: ../src/glade/mergedata.glade.h:6
 msgid "GRAMPS ID:"
@@ -21881,11 +21858,11 @@ msgstr ""
 
 #: ../src/glade/paper_settings.glade.h:1
 msgid "Bottom:"
-msgstr "底部："
+msgstr "底部:"
 
 #: ../src/glade/paper_settings.glade.h:2
 msgid "Height:"
-msgstr "身高："
+msgstr "身高:"
 
 #: ../src/glade/paper_settings.glade.h:3
 msgid "Left:"
@@ -21913,7 +21890,7 @@ msgstr ""
 
 #: ../src/glade/paper_settings.glade.h:9
 msgid "Size:"
-msgstr "尺寸："
+msgstr "尺寸:"
 
 #: ../src/glade/paper_settings.glade.h:10
 msgid "Top:"
@@ -21921,7 +21898,7 @@ msgstr ""
 
 #: ../src/glade/paper_settings.glade.h:11
 msgid "Width:"
-msgstr "宽度："
+msgstr "宽度:"
 
 #: ../src/plugins/tool/NotRelated.glade.h:1
 msgid ""
@@ -22172,7 +22149,7 @@ msgstr ""
 
 #: ../src/plugins/export/ExportCsv.glade.h:3
 msgid "Export:"
-msgstr "导出："
+msgstr "导出:"
 
 #: ../src/plugins/export/ExportCsv.glade.h:4
 #: ../src/plugins/export/ExportFtree.glade.h:2
@@ -22552,7 +22529,7 @@ msgstr ""
 msgid ""
 "An image can be added to any gallery or the Media View by dragging and "
 "dropping it from a file manager or a web browser."
-msgstr "图像可以通过从文件管理器或者网页浏览器拖和放，来添加到画廊和媒体查看。"
+msgstr "图像可以通过从文件管理器或者网页浏览器拖和放，来添加到画廊和媒体查看."
 
 #: ../src/data/tips.xml.in.h:31
 msgid ""
@@ -22560,6 +22537,8 @@ msgid ""
 "Home Person</b>. The home person is the person who is selected when the "
 "database is opened or when the home button is pressed."
 msgstr ""
+"在GRAMPS中任何人可以被选为 '家主 '. 使用<b>编辑 &gt; 设定家主</b>.家主是当打"
+"开数据库，家庭按钮被按下时，选中的人员."
 
 #: ../src/data/tips.xml.in.h:32
 msgid ""
@@ -22834,13 +22813,13 @@ msgstr ""
 msgid ""
 "To run GRAMPS, you need to have GTK installed. But you do not need to be "
 "running the GNOME desktop."
-msgstr ""
+msgstr "运行GRAMPS ，你需要安装GTK. 但是你不一定需要在GNOME桌面环境下运行."
 
 #: ../src/data/tips.xml.in.h:71
 msgid ""
 "Unsure what a button does? Simply hold the mouse over a button and a tooltip "
 "will appear."
-msgstr ""
+msgstr "不确定按钮是作什么的?很简单, 把鼠标悬停按钮上方，提示窗口就会出现."
 
 #: ../src/data/tips.xml.in.h:72
 msgid ""
@@ -22850,6 +22829,9 @@ msgid ""
 "backups or sharing with other GRAMPS users. This format has advantages over "
 "GEDCOM in that no information is ever lost in exporting and importing."
 msgstr ""
+"你可以转换你的数据到GRAMPS 包，这是一个压缩文件，包含你的家庭树以及所有数据库"
+"中使用的文件，比如图片等.这个文件是完全可移动的，因此适用于备份和与其他"
+"GRAMPS 用户共享.这个格式的优势在于基于GEDCOM且在导入和导出时没有信息丢失."
 
 #: ../src/data/tips.xml.in.h:73
 msgid ""
@@ -22857,15 +22839,15 @@ msgid ""
 "database, family lines or selected individuals to a collection of web pages "
 "ready for upload to the World Wide Web."
 msgstr ""
-"你可以很容易的导出你的家庭树到网页中。选择整个数据库，家庭线或者选中的个人，"
-"用于上传到网络中。"
+"你可以很容易的导出你的家庭树到网页中.选择整个数据库，家庭线或者选中的个人，用"
+"于上传到网络中."
 
 #: ../src/data/tips.xml.in.h:74
 msgid ""
 "You can link any electronic media (including non-text information) and other "
 "file types to your GRAMPS family tree."
 msgstr ""
-"你可以连接任何电子媒介（包括非文本信息）和其他文档形式到你的GRAMPS家庭树。"
+"你可以连接任何电子媒介（包括非文本信息）和其他文档形式到你的GRAMPS家庭树."
 
 #~ msgid "Danger: This is unstable code!"
 #~ msgstr "危险：这是一个不稳定的代码！"
