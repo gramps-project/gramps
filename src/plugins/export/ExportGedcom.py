@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
-# Copyright (C) 2008       Gary Burton
+# Copyright (C) 2008-2009  Gary Burton
 # Copyright (C) 2008       Robert Cheramy <robert@cheramy.net>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -1421,6 +1421,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         if conf != gen.lib.SourceRef.CONF_NORMAL and conf != -1:
             self.__writeln(level+1, "QUAY", QUALITY_MAP[conf])
 
+        if not ref.get_date_object().is_empty():
+            self.__writeln(level+1, 'DATA')
+            self.__date(level+2, ref.get_date_object())
+
         if len(ref.get_note_list()) > 0:
 
             note_list = [ self.dbase.get_note_from_handle(h) 
@@ -1433,11 +1437,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             else:
                 ref_text = ""
 
-            if ref_text != "" or not ref.get_date_object().is_empty():
+            if ref_text != "" and ref.get_date_object().is_empty():
                 self.__writeln(level+1, 'DATA')
-                if ref_text != "":
-                    self.__writeln(level+2, "TEXT", ref_text)
-                self.__date(level+2, ref.get_date_object())
+            if ref_text != "":
+                self.__writeln(level+2, "TEXT", ref_text)
 
             note_list = [ self.dbase.get_note_from_handle(h) 
                           for h in ref.get_note_list() ]
