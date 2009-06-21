@@ -13,7 +13,7 @@ pkgdata_PYTHON = \
 	dbloader.py \
 	dbman.py \
 	grampsgui.py \
-	utilsgui.py \
+	utils.py \
 	viewmanager.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui
