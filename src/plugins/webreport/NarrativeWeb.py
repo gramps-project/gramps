@@ -100,7 +100,8 @@ from gen.proxy import PrivateProxyDb, LivingProxyDb
 from gen.lib.eventroletype import EventRoleType
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
-# import HTML Class
+# import HTML Class from
+# src/plugins/lib/libhtml.py
 from libhtml import Html
 
 # import styled notes from
@@ -119,12 +120,7 @@ _NARRATIVESCREEN = 'narrative-screen.css'
 _NARRATIVEPRINT = 'narrative-print.css'
 
 # variables for alphabet_navigation()
-_PERSON = 0
-_PLACE = 1
-
-# sort_birth_order()
-_FAMILY = 0
-_PARENTS = 1
+_PERSON, _PLACE = 0, 1
 
 # Web page filename extensions
 _WEB_EXT = ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']
@@ -271,16 +267,19 @@ class BasePage(object):
 #
 # ---------------------------------------------------------------------------------------
 
-    def mywriter(self, page, of):
+    def mywriter(self, htmlinstance, of):
         """
-        This function is simply to make the web page look pretty and readable
-        It is not for the browser, but for us, humans
+        Will format, write, and close the file
+
+        of -- open file that is being written to
+        htmlinstance -- web page created with libhtml
+            src/plugins/lib/libhtml.py
         """
+ 
+        htmlinstance.write(lambda line: of.write(line + '\n')) 
 
-        page.write(lambda line: of.write(line + '\n')) 
-
+        # closes the file
         self.report.close_file(of)
-
 
     def get_copyright_license(self, copyright, up=False):
         """
@@ -332,13 +331,21 @@ class BasePage(object):
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
-    def write_footer(self):
+    def write_footer(self, counter, hyper=False):
         """
         Will create and display the footer section of each page...
         """
         db = self.report.database
 
         footer = Html('div', id='footer')
+
+        # add top of page link
+        if hyper and counter > 25:
+            footer += Html('p', id='top', inline=True) + (
+                Html('a', _('Top of Page'), id="top", href='#top'),
+                Html('a', name='bottom', title=_('Bottom'))
+                )
+
         footer_note = self.report.options['footernote']
         if footer_note:
             note = db.get_note_from_gramps_id(footer_note)
@@ -397,7 +404,7 @@ class BasePage(object):
         # return footer to its caller
         return footer
 
-    def write_header(self, title):
+    def write_header(self, title, hyper=False):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -454,9 +461,16 @@ class BasePage(object):
 
         # begin header section
         headerdiv = (Html('div', id='header') +
-                    Html('h1', html_escape(self.title_str), id='SiteTitle', inline=True)
-                    )
+            Html('h1', html_escape(self.title_str), id='SiteTitle', inline=True)
+            )
         body += headerdiv
+
+        # add bottom link
+        if hyper:
+            headerdiv += Html('p', id='bottom', inline=True) + (
+                Html('a', id="bottom", href='#bottom', inline=True),
+                Html('a', name='top')
+                )
 
         header_note = self.report.options['headernote']
         if header_note:
@@ -934,8 +948,11 @@ class IndividualListPage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
+        # add top of page link
+        counter = len(person_handle_list)
+
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_('Individuals'))
+        indlistpage, body = self.write_header(_('Individuals'), hyper=True)
 
         # begin Individuals division
         with Html('div', class_='content', id='Individuals') as section:
@@ -965,27 +982,22 @@ class IndividualListPage(BasePage):
                 trow += Html('th', _('Surname'), class_='ColumnSurname') + (
                     Html('th', _('Name'), class_='ColumnName', inline=True)
                    )
-                column_count = 2
 
                 # table header -- show birth column
                 if showbirth:
                     trow += Html('th', _('Birth'), class_='ColumnBirth', inline=True)
-                    column_count += 1
 
                 # table header -- show death column
                 if showdeath:
                     trow += Html('th', _('Death'), class_='ColumnDeath', inline=True)
-                    column_count += 1
 
                 # table header -- show partmer column
                 if showpartner:
                     trow += Html('th', _('Partner'), class_='ColumnPartner', inline=True)
-                    column_count += 1
 
                 # table header -- show parents column
                 if showparents:
                     trow += Html('th', _('Parents'), class_='ColumnParents', inline=True)
-                    column_count += 1
 
             # begin table body
             tbody = Html('tbody')
@@ -1113,11 +1125,10 @@ class IndividualListPage(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter, hyper=True)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(indlistpage, of)
 
 class SurnamePage(BasePage):
@@ -1271,13 +1282,11 @@ class SurnamePage(BasePage):
         # add surnames table
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(surnamepage, of)  
-
 
 class PlaceListPage(BasePage):
 
@@ -1286,8 +1295,11 @@ class PlaceListPage(BasePage):
         self.src_list = src_list        # TODO verify that this is correct
         db = report.database
 
+        # add top of page link
+        counter = len(place_handles)
+
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_('Places'))
+        placelistpage, body = self.write_header(_('Places'), hyper=True)
 
         # begin places division
         with Html('div', class_='content', id='Places') as section:
@@ -1357,11 +1369,10 @@ class PlaceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter, hyper=True)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(placelistpage, of)
 
 class PlacePage(BasePage):
@@ -1457,11 +1468,10 @@ class PlacePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(placepage, of)
 
 class MediaPage(BasePage):
@@ -1556,7 +1566,7 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        media, body = self.write_header("%s - %s" % (_('Gallery'), self.page_title))
+        mediapage, body = self.write_header("%s - %s" % (_('Gallery'), self.page_title))
 
         # begin GalleryDetail division
         gallerydetail = Html('div', class_='content', id='GalleryDetail')
@@ -1747,12 +1757,11 @@ class MediaPage(BasePage):
         body += (gallerydetail, fullclear)
 
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += footer
 
         # send page out for processing
-        # and close the file
-        self.mywriter(media, of)
+        self.mywriter(mediapage, of)
 
     def gallery_nav_link(self, handle, name, up=False):
 
@@ -1852,12 +1861,15 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # amount of surnames to be created
+        counter = len(person_handle_list)
+
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelist, body = self.write_header(_('Surnames'))
+            surnamelist, body = self.write_header(_('Surnames'), hyper=True)
         else:
             of = self.report.create_file("surnames_count")
-            surnamelist, body = self.write_header(_('Surnames by person count'))
+            surnamelist, body = self.write_header(_('Surnames by person count'), hyper=True)
 
         # begin surnames division
         with Html('div', class_='content', id='surnames') as section:
@@ -1960,11 +1972,10 @@ class SurnameListPage(BasePage):
         # create footer section
         # add clearline for proper styling
         # bring all body pieces together
-        footer = self.write_footer()
+        footer = self.write_footer(counter, hyper=True)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(surnamelist, of)  
 
     def surname_link(self, fname, name, opt_val=None, up=False):
@@ -2014,11 +2025,10 @@ class IntroductionPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(intropage, of)
 
 class HomePage(BasePage):
@@ -2058,11 +2068,10 @@ class HomePage(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(homepage, of)  
 
 class SourceListPage(BasePage):
@@ -2071,8 +2080,11 @@ class SourceListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # add bottom and top links
+        counter = len(handle_set)
+
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_('Sources'))
+        sourcelistpage, body = self.write_header(_('Sources'), hyper=True)
 
         # begin source list division
         with Html('div', class_='content', id='sources') as section:
@@ -2121,11 +2133,10 @@ class SourceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0, hyper=True)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(sourcelistpage, of)
 
 class SourcePage(BasePage):
@@ -2193,11 +2204,10 @@ class SourcePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(sourcepage, of)
 
 class MediaListPage(BasePage):
@@ -2206,8 +2216,11 @@ class MediaListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # add bottom and top links
+        counter = len(self.report.photo_list)
+
         of = self.report.create_file("gallery")
-        gallery, body = self.write_header(_('Gallery'))
+        medialistpage, body = self.write_header(_('Gallery'), hyper=True)
 
         # begin gallery division
         with Html('div', class_='content', id='Gallery') as section:
@@ -2221,49 +2234,50 @@ class MediaListPage(BasePage):
             # begin gallery table and table head
             with Html('table', class_='infolist gallerylist') as table:
                 section += table
-                with Html('thead') as thead:
-                    table += thead
-                    with Html('tr') as trow:
-                        thead += trow
-                        trow += Html('th', '&nbsp;', class_='ColumnRowLabel', inline=True)
-                        trow += Html('th', _('Name'), class_='ColumnName', inline=True)
-                        trow += Html('th', _('Date'), class_='ColumnDate', inline=True)
+
+                # begin table head
+                thead = Html('thead')
+                table += thead
+
+                trow = Html('tr') + (
+                    Html('th', '&nbsp;', class_='ColumnRowLabel', inline=True),
+                    Html('th', _('Name'), class_='ColumnName', inline=True),
+                    Html('th', _('Date'), class_='ColumnDate', inline=True)
+                    )
+                thead += trow
 
                 # begin table body
-                with Html('tbody') as tbody:
-                    table += tbody
+                tbody = Html('tbody')
+                table += tbody
 
-                    index = 1
-                    sort = Sort.Sort(db)
-                    mlist = sorted(self.report.photo_list, sort.by_media_title)
+                index = 1
+                sort = Sort.Sort(db)
+                mlist = sorted(self.report.photo_list, sort.by_media_title)
         
-                    for handle in mlist:
-                        media = db.get_object_from_handle(handle)
-                        date = _dd.display(media.get_date_object())
-                        title = media.get_description()
-                        if not title:
-                            title = "[untitled]"
-                        with Html('tr') as trow:
-                            tbody += trow
-                            with Html('td', index, class_='ColumnRowLabel', inline=True) as tcell:
-                                trow += tcell
-                            with Html('td', class_='ColumnName') as tcell:
-                                trow += tcell
-                                hyper = self.media_ref_link(handle, title)
-                                tcell += hyper
-                            with Html('td', date, class_='ColumnDate', inline=True) as tcell:
-                                trow += tcell
-                        index += 1
+                for handle in mlist:
+                    media = db.get_object_from_handle(handle)
+                    date = _dd.display(media.get_date_object())
+                    title = media.get_description()
+                    if not title:
+                        title = "[untitled]"
+
+                    trow = Html('tr') + (
+                        Html('td', index, class_='ColumnRowLabel', inline=True),
+                        )
+                    tbody += trow
+                    tcell = Html('td', class_='ColumnName') + \
+                        self.media_ref_link(handle, title)
+                    trow += tcell
+                    trow += Html('td', date, class_='ColumnDate', inline=True)
+                    index += 1
 
         # add footer section
         # add clearline for proper styling
-        # bring body pieces back together
-        footer = self.write_footer()
+        footer = self.write_footer(counter, hyper=True)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
-        self.mywriter(gallery, of)
+        self.mywriter(medialistpage, of)
 
     def media_ref_link(self, handle, name, up=False):
 
@@ -2416,11 +2430,10 @@ class DownloadPage(BasePage):
 
         # clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # close the file
         self.mywriter(downloadpage, of)
 
 class ContactPage(BasePage):
@@ -2488,11 +2501,10 @@ class ContactPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for porcessing
-        # and close the file
         self.mywriter(contactpage, of)
 
 class IndividualPage(BasePage):
@@ -2606,11 +2618,10 @@ class IndividualPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(counter=0)
         body += (fullclear, footer)
 
         # send page out for processing
-        # and close the file
         self.mywriter(indivdetpage, of)
 
     def display_attr_list(self, attrlist=None):
@@ -3221,215 +3232,231 @@ class IndividualPage(BasePage):
         db = self.report.database
 
         # begin parents division
-        sect_parents = Html('div', id='parents', class_='subsection')
-        sect_title = Html('h4', _('Parents'), inline=True)
-        sect_parents += sect_title
+        with Html('div', class_='subsection', id='parents') as section:
+            section += Html('h4', _('Parents'), inline=True)
 
-        # begin parents table
-        parent_table = Html('table', class_='infolist')
+            # begin parents table
+            with Html('table', class_='infolist') as table:
+                section += table
 
-        first = True
-        if parent_list:
-            for family_handle in parent_list:
-                family = db.get_family_from_handle(family_handle)
+                first = True
+                if parent_list:
+                    for family_handle in parent_list:
+                        family = db.get_family_from_handle(family_handle)
 
-                # Get the mother and father relationships
-                frel = None
-                mrel = None
-                sibling = set()
+                        # Get the mother and father relationships
+                        frel = None
+                        mrel = None
+                        sibling = set()
   
-                child_handle = self.person.get_handle()
-                child_ref_list = family.get_child_ref_list()
-                for child_ref in child_ref_list:
-                    if child_ref.ref == child_handle:
-                        frel = child_ref.get_father_relation()
-                        mrel = child_ref.get_mother_relation()
-                        break
+                        child_handle = self.person.get_handle()
+                        child_ref_list = family.get_child_ref_list()
+                        for child_ref in child_ref_list:
+                            if child_ref.ref == child_handle:
+                                frel = child_ref.get_father_relation()
+                                mrel = child_ref.get_mother_relation()
+                                break
 
-                if not first:
-                    trow = Html('tr')
-                    tabcol = Html('td', '&nbsp;', colspan=2, inline=True)
-                    trow += tabcol 
-                    parent_table += trow
-                else:
-                    first = False
+                        if not first:
+                            trow = Html('tr') +(
+                                Html('td', '&nbsp;', colspan=2, inline=True)
+                                )
+                            table += trow
+                        else:
+                            first = False
 
-                father_handle = family.get_father_handle()
-                if father_handle:
-                    trow = Html('tr')
+                        father_handle = family.get_father_handle()
+                        if father_handle:
+                            trow = Html('tr')
+                            table += trow
 
-                    tabcol1, tabcol2 = self.display_parent(father_handle, _('Father'), frel)
-                    trow += (tabcol1, tabcol2)
-                    parent_table += trow
-                mother_handle = family.get_mother_handle()
-                if mother_handle:
-                    trow = Html('tr')
-                    tabcol1, tabcol2  = self.display_parent(mother_handle, _('Mother'), mrel)
-                    trow += (tabcol1, tabcol2)
-                    parent_table += trow
+                            tabcol1, tabcol2 = self.display_parent(father_handle, _('Father'), frel)
+                            trow += (tabcol1, tabcol2)
+                        mother_handle = family.get_mother_handle()
+                        if mother_handle:
+                            trow = Html('tr')
+                            table += trow
+                            tabcol1, tabcol2  = self.display_parent(mother_handle, _('Mother'), mrel)
+                            trow += (tabcol1, tabcol2)
 
-                first = False
-                if len(child_ref_list) > 1:
-                    childlist = [child_ref.ref for child_ref in child_ref_list]
-                    for child_handle in childlist:
-                        sibling.add(child_handle)   # remember that we've already "seen" this child
+                        first = False
+                        if len(child_ref_list) > 1:
+                            childlist = [child_ref.ref for child_ref in child_ref_list]
+                            for child_handle in childlist:
+                                sibling.add(child_handle)   # remember that we've already "seen" this child
 
-            # now that we have all natural siblings, display them...    
-            if birthorder:
-                sibling = sort_birth_order(db, sibling, key=_PARENTS)
+                    # now that we have all natural siblings, display them...    
+                    if len(sibling):
+                        trow = Html('tr') + (
+                            Html('td', _('Siblings'), class_='ColumnAttribute', inline=True)
+                            )
+                        table += trow
+                        tcell = Html('td', class_='ColumnValue')
+                        trow += tcell
+                        ordered = Html('ol')
+                        tcell += ordered 
 
-                if len(sibling) > 0:
-                    trow = Html('tr')
-                    tabcol1 = Html('td', _('Siblings'), class_='ColumnAttribute', inline=True)
-                    tabcol2 = Html('td', class_='ColumnValue')
-                    ordered = Html('ol')
-                  
-                    for child_handle in sibling:
-                        if child_handle != self.person.handle:
-                            kid_link = self.display_child_link(child_handle)
-                            ordered += kid_link
-                    tabcol2 += ordered
-                    trow += (tabcol1, tabcol2)
-                    parent_table += trow
+                        if birthorder:
+                            kids = []
+                            kids = sorted(add_birthdate(db, sibling))
 
-                # Also try to identify half-siblings
-                half_siblings = set()
+                            for birth_date, child_handle in kids:
+                                if child_handle != self.person.handle:
+                                    ordered += self.display_child_link(child_handle)
 
-                # if we have a known father...
-                showallsiblings = self.report.options['showhalfsiblings']
-                if father_handle and showallsiblings:
-                    # 1) get all of the families in which this father is involved
-                    # 2) get all of the children from those families
-                    # 3) if the children are not already listed as siblings...
-                    # 4) then remember those children since we're going to list them
-                    father = db.get_person_from_handle(father_handle)
-                    for family_handle in father.get_family_handle_list():
-                        family = db.get_family_from_handle(family_handle)
-                        for half_child_ref in family.get_child_ref_list():
-                            half_child_handle = half_child_ref.ref
-                            if half_child_handle not in sibling:
-                                if half_child_handle != self.person.handle:
-                                    # we have a new step/half sibling
-                                    half_siblings.add(half_child_handle)
+                        else:
 
-                # do the same thing with the mother (see "father" just above):
-                if mother_handle and showallsiblings:
-                    mother = db.get_person_from_handle(mother_handle)
-                    for family_handle in mother.get_family_handle_list():
-                        family = db.get_family_from_handle(family_handle)
-                        for half_child_ref in family.get_child_ref_list():
-                            half_child_handle = half_child_ref.ref
-                            if half_child_handle not in sibling:
-                                if half_child_handle != self.person.handle:
-                                    # we have a new half sibling
-                                    half_siblings.add(half_child_handle)
+                            for child_handle in sibling:
+                                if child_handle != self.person.handle:
+                                    ordered += self.display_child_link(child_handle)
 
-                if birthorder:
-                    half_siblings = sort_birth_order(db, half_siblings, key=_PARENTS)  
+                    # Also try to identify half-siblings
+                    half_siblings = set()
 
-                # now that we have all of the half-siblings, print them out
-                if len(half_siblings) :
-                    trow = Html('tr')
-                    tabcol1 = Html('td', _('Half Siblings'), class_='ColumnAttribute', inline=True) 
-                    tabcol2 = Html('td', class_='ColumnValue')
-                    ordered = Html('ol')
-
-                    for child_handle in half_siblings:
-                        kid_link = self.display_child_link(child_handle)
-                        ordered += kid_link
-                    tabcol2 += ordered
-                    trow += (tabcol1, tabcol2)
-                    parent_table += trow 
-
-                # get step-siblings
-                step_siblings = set()
-                if showallsiblings:
-
-                    # to find the step-siblings, we need to identify
-                    # all of the families that can be linked back to
-                    # the current person, and then extract the children
-                    # from those families
-                    all_family_handles = set()
-                    all_parent_handles = set()
-                    tmp_parent_handles = set()
-
-                    # first we queue up the parents we know about
-                    if mother_handle:
-                        tmp_parent_handles.add(mother_handle)
-                    if father_handle:
-                        tmp_parent_handles.add(father_handle)
-
-                    while len(tmp_parent_handles) > 0:
-                        # pop the next parent from the set
-                        parent_handle = tmp_parent_handles.pop()
-
-                        # add this parent to our official list
-                        all_parent_handles.add(parent_handle)
-
-                        # get all families with this parent
-                        parent = db.get_person_from_handle(parent_handle)
-                        for family_handle in parent.get_family_handle_list():
-
-                            all_family_handles.add(family_handle)
-
-                            # we already have 1 parent from this family
-                            # (see "parent" above) so now see if we need
-                            # to queue up the other parent
+                    # if we have a known father...
+                    showallsiblings = self.report.options['showhalfsiblings']
+                    if father_handle and showallsiblings:
+                        # 1) get all of the families in which this father is involved
+                        # 2) get all of the children from those families
+                        # 3) if the children are not already listed as siblings...
+                        # 4) then remember those children since we're going to list them
+                        father = db.get_person_from_handle(father_handle)
+                        for family_handle in father.get_family_handle_list():
                             family = db.get_family_from_handle(family_handle)
-                            tmp_mother_handle = family.get_mother_handle()
-                            if  tmp_mother_handle and \
-                                tmp_mother_handle != parent and \
-                                tmp_mother_handle not in tmp_parent_handles and \
-                                tmp_mother_handle not in all_parent_handles:
-                                tmp_parent_handles.add(tmp_mother_handle)
-                            tmp_father_handle = family.get_father_handle()
-                            if  tmp_father_handle and \
-                                tmp_father_handle != parent and \
-                                tmp_father_handle not in tmp_parent_handles and \
-                                tmp_father_handle not in all_parent_handles:
-                                tmp_parent_handles.add(tmp_father_handle)
+                            for half_child_ref in family.get_child_ref_list():
+                                half_child_handle = half_child_ref.ref
+                                if half_child_handle not in sibling:
+                                    if half_child_handle != self.person.handle:
+                                        # we have a new step/half sibling
+                                        half_siblings.add(half_child_handle)
 
-                    # once we get here, we have all of the families
-                    # that could result in step-siblings; note that
-                    # we can only have step-siblings if the number
-                    # of families involved is > 1
-
-                    if len(all_family_handles) > 1:
-                        while len(all_family_handles) > 0:
-                            # pop the next family from the set
-                            family_handle = all_family_handles.pop()
-                            # look in this family for children we haven't yet seen
+                    # do the same thing with the mother (see "father" just above):
+                    if mother_handle and showallsiblings:
+                        mother = db.get_person_from_handle(mother_handle)
+                        for family_handle in mother.get_family_handle_list():
                             family = db.get_family_from_handle(family_handle)
-                            for step_child_ref in family.get_child_ref_list():
-                                step_child_handle = step_child_ref.ref
-                                if step_child_handle not in sibling and \
-                                       step_child_handle not in half_siblings and \
-                                       step_child_handle != self.person.handle:
-                                    # we have a new step sibling
-                                    step_siblings.add(step_child_handle)
+                            for half_child_ref in family.get_child_ref_list():
+                                half_child_handle = half_child_ref.ref
+                                if half_child_handle not in sibling:
+                                    if half_child_handle != self.person.handle:
+                                        # we have a new half sibling
+                                        half_siblings.add(half_child_handle)
 
-                if birthorder:
-                    step_iblings = sort_birth_order(db, step_siblings, key=_PARENTS)  
+                    # now that we have all half- siblings, display them...    
+                    if len(half_siblings):
+                        trow = Html('tr') + (
+                            Html('td', _('Half Siblings'), class_='ColumnAttribute', inline=True),
+                            )
+                        table += trow
+                        tcell = Html('td', class_='ColumnValue')
+                        trow += tcell
+                        ordered = Html('ol')
+                        tcell += ordered
 
-                # now that we have all of the step-siblings, print them out
-                if len(step_siblings) > 0:
-                    trow = Html('tr')
-                    tabcol1 = Html('td', _('Step Siblings'), class_='ColumnAttribute', inline=True)
-                    tabcol2 = Html('td', class_='ColumnValue')
-                    ordered = Html('ol')
+                        if birthorder:
+                            kids = []
+                            kids = sorted(add_birthdate(db, half_siblings))
 
-                    for child_handle in step_siblings:
-                        kid_link = self.display_child_link(child_handle)
-                        ordered += kid_link
-                    tabcol2 += ordered
-                    trow += (tabcol1, tabcol2)
-                    parent_table += trow
+                            for birth_date, child_handle in kids:
+                                ordered += self.display_child_link(child_handle)
 
-        # add table to parent division
-        sect_parents += parent_table     
+                        else:
 
-        # return division to its caller
-        return sect_parents
+                            for child_handle in half_siblings:
+                                ordered += self.display_child_link(child_handle)
+
+                    # get step-siblings
+                    if showallsiblings:
+                        step_siblings = set()
+
+                        # to find the step-siblings, we need to identify
+                        # all of the families that can be linked back to
+                        # the current person, and then extract the children
+                        # from those families
+                        all_family_handles = set()
+                        all_parent_handles = set()
+                        tmp_parent_handles = set()
+
+                        # first we queue up the parents we know about
+                        if mother_handle:
+                            tmp_parent_handles.add(mother_handle)
+                        if father_handle:
+                            tmp_parent_handles.add(father_handle)
+
+                        while len(tmp_parent_handles) > 0:
+                            # pop the next parent from the set
+                            parent_handle = tmp_parent_handles.pop()
+
+                            # add this parent to our official list
+                            all_parent_handles.add(parent_handle)
+
+                            # get all families with this parent
+                            parent = db.get_person_from_handle(parent_handle)
+                            for family_handle in parent.get_family_handle_list():
+
+                                all_family_handles.add(family_handle)
+
+                                # we already have 1 parent from this family
+                                # (see "parent" above) so now see if we need
+                                # to queue up the other parent
+                                family = db.get_family_from_handle(family_handle)
+                                tmp_mother_handle = family.get_mother_handle()
+                                if  tmp_mother_handle and \
+                                    tmp_mother_handle != parent and \
+                                    tmp_mother_handle not in tmp_parent_handles and \
+                                    tmp_mother_handle not in all_parent_handles:
+                                    tmp_parent_handles.add(tmp_mother_handle)
+                                tmp_father_handle = family.get_father_handle()
+                                if  tmp_father_handle and \
+                                    tmp_father_handle != parent and \
+                                    tmp_father_handle not in tmp_parent_handles and \
+                                    tmp_father_handle not in all_parent_handles:
+                                    tmp_parent_handles.add(tmp_father_handle)
+
+                        # once we get here, we have all of the families
+                        # that could result in step-siblings; note that
+                        # we can only have step-siblings if the number
+                        # of families involved is > 1
+
+                        if len(all_family_handles) > 1:
+                            while len(all_family_handles) > 0:
+                                # pop the next family from the set
+                                family_handle = all_family_handles.pop()
+                                # look in this family for children we haven't yet seen
+                                family = db.get_family_from_handle(family_handle)
+                                for step_child_ref in family.get_child_ref_list():
+                                    step_child_handle = step_child_ref.ref
+                                    if step_child_handle not in sibling and \
+                                           step_child_handle not in half_siblings and \
+                                           step_child_handle != self.person.handle:
+                                        # we have a new step sibling
+                                        step_siblings.add(step_child_handle)
+
+                    # now that we have all step- siblings, display them...    
+                    if len(step_siblings):
+                        trow = Html('tr') + (
+                            Html('td', _('Step Siblings'), class_='ColumnAttribute', inline=True)
+                            )
+                        table += trow
+                        tcell = Html('td', class_='ColumnValue')
+                        trow += tcell 
+                        ordered = Html('ol')
+                        tcell += ordered
+
+                        if birthorder:
+                            kids = []
+                            kids = sorted(add_birthdate(db, step_siblings))
+
+                            for birth_date, child_handle in kids:
+                                ordered += self.display_child_link(child_handle)
+
+                        else:
+ 
+                            for child_handle in step_siblings:
+                                ordered += self.display_child_link(child_handle)
+
+        # return parents division to its caller
+        return section
 
     def display_ind_families(self):
         """
@@ -3454,22 +3481,27 @@ class IndividualPage(BasePage):
                     self.display_partner(family, table)
                     childlist = family.get_child_ref_list()
                     if childlist:
-                        trow = Html('tr')
-                        table += trow 
-                        tcell1 = Html('td', '&nbsp;', class_='ColumnType', inline=True)
-                        tcell2 = Html('td', _('Children'), class_='ColumnAttribute', inline=True)
-                        tcell3 = Html('td', class_='ColumnValue')
-                        trow += (tcell1, tcell2, tcell3)
+                        trow = Html('tr') + (
+                            Html('td', '&nbsp;', class_='ColumnType', inline=True),
+                            Html('td', _('Children'), class_='ColumnAttribute', inline=True)
+                            )
+                        table += trow
+                        tcell = Html('td', class_='ColumnValue')
+                        trow += tcell
                         ordered = Html('ol')
-                        tcell3 += ordered
+                        tcell += ordered
                         childlist = [child_ref.ref for child_ref in childlist]
-                        # TODO. Optionally sort on birthdate
 
                         if self.report.options['birthorder']:
-                            childlist = sort_birth_order(db, childlist, key=_FAMILY)
+                            kids = []
+                            kids = sorted(add_birthdate(db, childlist))
 
-                        for child_handle in childlist:
-                            ordered += self.display_child_link(child_handle)
+                            for birth_date, child_handle in kids:
+                                ordered += self.display_child_link(child_handle)
+                        else:
+
+                            for child_handle in childlist:
+                                ordered += self.display_child_link(child_handle)
 
         # return section to its caller
         return section
@@ -4658,69 +4690,68 @@ def alphabet_navigation(db, handle_list, key):
     if not sorted_first_letter:
         return None
 
-    # begin alphabet division and set up table
-    alphabet = Html('div', id='alphabet')
-    alpha_table = Html('table', class_='alphabet')
+    # begin alphabet division
+    with Html('div', id='alphabet') as section:
 
-    num_ltrs = len(sorted_first_letter)
-    if num_ltrs <= 26:
-        trow = Html('tr')
-        unordered = Html('ul')
-        for ltr in sorted_first_letter:
-            title_str = _('Surnames')  if key == 0  else _('Places') 
-            if lang_country == "sv_SE" and ltr == u'V':
-                title_str += _(' starting with %s') % "V,W" 
-                unordered += Html('li', class_='letters', inline=True) + (
-                    Html('a', '%s' % ("V,W"), href='#%s' % ("V,W"), title=title_str)
-                    )
+        # begin alphabet table
+        with Html('table', class_='alphabet infolist') as table:
+            section += table
+
+            num_ltrs = len(sorted_first_letter)
+            if num_ltrs <= 26:
+                trow = Html('tr')
+                table += trow
+
+                unordered = Html('ul')
+                trow += unordered
+ 
+                for ltr in sorted_first_letter:
+                    title_str = _('Surnames')  if key == 0  else _('Places') 
+                    if lang_country == "sv_SE" and ltr == u'V':
+                        title_str += _(' starting with %s') % "V,W" 
+                        unordered += Html('li', class_='letters', inline=True) + (
+                            Html('a', '%s' % ("V,W"), href='#%s' % ("V,W"), title=title_str)
+                            )
+                    else:
+                        title_str += _(' starting with %s') % ltr 
+                        unordered += Html('li', class_='letters', inline=True) + (
+                            Html('a', ltr, href='#%s' % ltr, title=title_str)
+                            )
+
             else:
-                title_str += _(' starting with %s') % ltr 
-                unordered += Html('li', class_='letters', inline=True) + (
-                    Html('a', ltr, href='#%s' % ltr, title=title_str)
-                    )
+                nrows = (num_ltrs / 28) + 1
+                index = 0
+                for rows in range(0, nrows):
+                    trow = Html('tr')
+                    table += trow
 
-        # bring table pieces back together
-        trow += unordered
-        alpha_table += trow
-    else:
-        nrows = (num_ltrs / 26) + 1
-        index = 0
-        for rows in range(0, nrows):
-            trow = Html('tr')  
-            unordered = Html('ul') 
-            cols = 0
-            while (cols <= 26 and index < num_ltrs):
-                ltr = sorted_first_letter[index]
-                title_str = _('Surnames')  if key == 0 else _('Places')
-                if lang_country == "sv_SE" and letter == u'V':
-                    title_str += _(' starting with %s') % "V,W" 
-                    unordered += (Html('li', class_='letters', inline=True) +
-                                 Html('a', "V,W", href="#V,W", title=title_str)
-                                 )
-                else:
-                    title_str += _(' starting with %s') % ltr 
-                    unordered += Html('li', class_='letters', inline=True) + (
-                        Html('a', ltr, href='#%s' % ltr, title=title_str)
-                        )
-                cols += 1
-                index += 1
-
-            # bring table pieces to table row
-            trow += unordered
-
-            # attach table row to table
-            alpha_table += trow
-
-    # close the table
-    alphabet += alpha_table
+                    unordered = Html('ul') 
+                    trow += unordered
+                    cols = 0
+                    while (cols <= 28 and index < num_ltrs):
+                        ltr = sorted_first_letter[index]
+                        title_str = _('Surnames')  if key == 0 else _('Places')
+                        if lang_country == "sv_SE" and letter == u'V':
+                            title_str += _(' starting with %s') % "V,W" 
+                            unordered += (Html('li', class_='letters', inline=True) +
+                                         Html('a', "V,W", href="#V,W", title=title_str)
+                                         )
+                        else:
+                            title_str += _(' starting with %s') % ltr 
+                            unordered += Html('li', class_='letters', inline=True) + (
+                                Html('a', ltr, href='#%s' % ltr, title=title_str)
+                                )
+                        cols += 1
+                        index += 1
 
     # return alphabet navigation to its callers
-    return alphabet
+    return section
 
-def sort_birth_order(db, childlist, key):
+def add_birthdate(db, childlist):
     """
     This will sort a list of child handles in birth order
     """
+
     sorted_children = []
     for child_handle in childlist:
         child = db.get_person_from_handle(child_handle)
@@ -4731,36 +4762,33 @@ def sort_birth_order(db, childlist, key):
             birth_event = db.get_event_from_handle(birth_ref.ref)
             birth_date = birth_event.get_date_object()
         if birth_date is not None:
-            if 1423 < birth_date.get_year() <= 2100:
                 year = birth_date.get_year()
-            else:
-                year = 1423
-            if 0 < birth_date.get_month() <= 12:
+                if year:
+                    year = str(year)
+                else:
+                    year = str(1001) 
                 month = birth_date.get_month()
-            else:
-                month = 1
-            if 0 < birth_date.get_day() <= 31:
+                if month:
+                    if 0 < month < 10:
+                        month = '0' + str(month)
+                    else:
+                        month = str(month)
+                else:
+                    month = str(12)
                 day = birth_date.get_day()
-            else:
-                day = 1  
+                if day:
+                    if 0 < day < 10:
+                        day = '0' + str(day)
+                    else:
+                        day = str(day)
+                else:
+                    day = str(31)
         else:
-            year, month, day = 1423, 1, 1
-        date_obj = datetime.date(year, month, day)
+            year, month, day = str(1001), str(12), str(31)
+        date_obj = year + month + day
         sorted_children.append((date_obj, child_handle))
 
-    sorted_children.sort()
-    if key ==_FAMILY:
-        childlist = []
-    else:
-        childlist = set()
-
-    for birth_date, handle in sorted_children:
-        if key == _FAMILY:
-            childlist.append(handle)
-        else:
-            childlist.add(handle)
-
-    return childlist
+    return sorted_children
 
 # ------------------------------------------
 #

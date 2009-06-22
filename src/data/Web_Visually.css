@@ -206,7 +206,7 @@ span.preposition {
     margin:0;
     height:1.5cm;
     padding:0 0 .9em 0;
-    background-color:#542;
+    background-color:#453619;
     border-bottom:solid 2px #6AF364;
 }
 #SiteTitle {
@@ -235,8 +235,19 @@ p#user_header {
     color:#FFF;
     margin:0;
     padding:0;
-    background-color:#542;
+    background-color:#453619;
     border-top:solid 2px #6AF364;
+}
+#footer p#top {
+    float:right;
+    text-align:right;
+    margin-top:20px;
+    margin-right:20px;
+    display:block;
+}
+#footer p#top a {
+    width:60px;
+    text-decoration:underline;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
@@ -252,21 +263,19 @@ p#user_header {
 }
 #footer p#createdate {
     float:left;
-    width:45%;
+    width:230px;
     text-align:left;
     margin-left:10px;
     color:#FFF;
 }
 #footer p#copyright {
-    float:right;
-    width:40%;
-    text-align:right;
+    float:center;
+    text-align:center;
     color:#FFF;
-    margin-right:10px;
+    margin-top:10px;
 }
-#footer p#copyright img {
-    margin-right:10px;
-}
+#footer p#copyright img { }
+
 #user_footer {
     width:70%;
     float:left;
@@ -360,15 +369,13 @@ div#alphabet ul li.letters a:hover {
     margin-top:-6px;
     padding-top:11px;
     padding-bottom:8px;
-    border-right:solid 1px #6AF364;
-    border-left:solid 1px #6AF364;
-    border-bottom:solid 4px #000;
-    background-color:#000;
-    color:#FFF;
+    background-color:#CCC;
+    color:#000;
+    border-bottom:solid 4px #CCC;
 }
 #navigation ul li.CurrentSection a:hover {
-    background-color:#228A22;
-    border-bottom:solid 4px #228A22;
+    background-color:#000;
+    color:#FFF;
 }
 #subnavigation ul li.CurrentSection a {
     border-width:0 0 1px 0;
@@ -603,6 +610,7 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 #Sources {  }
 #Sources table.infolist tbody tr td.ColumnRowLabel {
     padding-bottom:0;
+    background-color:#FFF;
 }
 #Sources table.infolist tbody tr td.ColumnName {
     padding:0;
@@ -610,7 +618,6 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 #Sources table.infolist tbody tr td.ColumnName a {
     font-size:.9em;
     padding:.1em 10px .3em 10px;
-    background-color:#FFF;
 }
 #Sources table.infolist tbody tr td.ColumnName a:hover {
     background-color:#C1B398;
@@ -997,7 +1004,7 @@ div#narrative {
 /* Subsections : Source References
 ----------------------------------------------------- */
 div#sourcerefs {
-    height:2.5cm;
+    height:2.64cm;
     overflow:auto;
 }
 div#sourcerefs ol {
