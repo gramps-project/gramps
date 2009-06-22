@@ -171,6 +171,8 @@ def register_stock_icons ():
             icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
             pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
+        ## FIXME from gtk 2.17.3/2.15.2 change this to 
+        ## FIXME  pixbuf = pixbuf.add_alpha(True, 255, 255, 255)
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
         icon_set = gtk.IconSet (pixbuf)
         #add different sized icons, always png type!
