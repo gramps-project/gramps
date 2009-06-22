@@ -219,6 +219,13 @@ class PlaceView(PageView.ListView):
         """
         Run the map service 
         """
+        #First test if any map service is available
+        if not len(self.mapservicedata):
+            msg = _("No map service is available.")
+            msg2 = _("Check your installation.")
+            ErrorDialog(msg, msg2)
+            return
+        
         place_handles = self.selected_handles()
         try:
             place_handle = self.selected_handles()[0]
