@@ -10936,7 +10936,7 @@ msgstr "Ser etter tegnkodingsfeil"
 
 #: ../src/plugins/tool/Check.py:355
 msgid "Looking for broken family links"
-msgstr "Søker etter ødelagte familie lenker"
+msgstr "Søker etter ødelagte familielenker"
 
 #: ../src/plugins/tool/Check.py:478
 msgid "Looking for unused objects"
