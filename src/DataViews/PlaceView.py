@@ -173,15 +173,11 @@ class PlaceView(PageView.ListView):
                 widget.set_menu(mmenu)
                 if gtk.pygtk_version >= (2, 12, 0):
                     widget.set_arrow_tooltip_text(actionservices.arrowtooltip)
-                hbox=gtk.HBox()
-                img = gtk.Image()
-                img.set_from_stock(gtk.STOCK_JUMP_TO, 
-                                   gtk.ICON_SIZE_LARGE_TOOLBAR)
-                hbox.pack_start(img)
-                self.mapslistlabel.append(gtk.Label(self.mapservice_label()))
-                hbox.pack_start(self.mapslistlabel[-1])
-                hbox.show_all()
-                widget.set_icon_widget(hbox)
+                lbl = gtk.Label(self.mapservice_label())
+                lbl.show()
+                self.mapslistlabel.append(lbl)
+                widget.set_label_widget(self.mapslistlabel[-1])
+                widget.set_stock_id(gtk.STOCK_JUMP_TO)
 
     def __create_maps_menu_actions(self):
         """
