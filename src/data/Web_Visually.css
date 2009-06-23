@@ -150,16 +150,17 @@ h5, h6 {
     margin:1.3em 0 .5em 1em;
 }
 
-#description:first-letter {
-    color:#FF0000;
-    font:20px;
-}
 p#description {
+    text-indent:20px;
     color:#000;
     max-width:800px;
     margin:0;
     padding:1em 20px;
     background-color:#FFF;
+}
+p#description:first-letter {
+    color:#FF0000;
+    font:20px;
 }
 p a {
     color:#FFF;

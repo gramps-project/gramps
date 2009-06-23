@@ -507,7 +507,7 @@ class BasePage(object):
             (self.report.surname_fname, _('Surnames'), True),
             ('individuals', _('Individuals'), True),
             ('places', _('Places'), True),
-            ('gallery', _('Gallery'), self.use_gallery),
+            ('gallery', _('Media'), self.use_gallery),
             ('download', _('Download'), self.report.inc_download),
             ('contact', _('Contact'), self.report.use_contact),
             ('sources', _('Sources'), True),
@@ -1566,35 +1566,37 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_('Gallery'), self.page_title))
+        mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title))
 
         # begin GalleryDetail division
-        gallerydetail = Html('div', class_='content', id='GalleryDetail')
+        mediadetail = Html('div', class_='content', id='GalleryDetail')
+        body += mediadetail
 
         # gallery navigation
         gallerynav = Html('div', id='GalleryNav')
+        mediadetail += gallerynav
         if prev:
-            hyper = self.gallery_nav_link(prev, _('Previous'), True)
-            gallerynav += hyper
+            gallerynav += self.gallery_nav_link(prev, _('Previous'), True)
         data = _('<strong id="GalleryCurrent">%(page_number)d</strong> of '
             '<strong id="GalleryTotal">%(total_pages)d</strong>' ) % {
             'page_number' : page_number, 'total_pages' : total_pages }
-        mediacounter = Html('span', data, id='GalleryPages')
-        gallerynav += mediacounter
+        gallerynav += Html('span', data, id='GalleryPages')
         if next:
-            hyper = self.gallery_nav_link(next, _('Next'), True)
-            gallerynav += hyper 
-        gallerydetail += gallerynav
+            gallerynav += self.gallery_nav_link(next, _('Next'), True)
+
+        # missing media error msg
+        errormsg = _('The file has been moved or deleted.')
+        missingimage = Html('span', errormsg, class_='MissingImage')  
 
         # begin summaryarea division
         summaryarea = Html('div', id='summaryarea')
+        mediadetail += summaryarea
         if mime_type:
             if mime_type.startswith("image/"):
                 if not target_exists:
-                    gallerydisplay = Html('div', id='GalleryDisplay')
-                    errormsg = _('The file has been moved or deleted.')
-                    missingimage = Html('span', errormsg, class_='MissingImage')  
-                    gallerydisplay += missingimage
+                    mediadisplay = Html('div', id='GalleryDisplay') + \
+                        missingimage
+                    summaryarea += mediadisplay
                 else:
                     # Check how big the image is relative to the requested 'initial'
                     # image size. If it's significantly bigger, scale it down to
@@ -1631,41 +1633,38 @@ class MediaPage(BasePage):
                     # TODO. Convert disk path to URL.
                     url = self.report.build_url_fname(initial_image_path, None, self.up)
                     if initial_image_path != newpath:
-                        msg = _('Click on the image to see the full- sized version')
-                        scalemsg = Html('p', '%s (%d x %d).' % (msg, width, height), inline=True)
+                        scalemsg = Html('p', '(%d x %d).' % (width, height), inline=True)
                         summaryarea += scalemsg
-                    gallerydisplay = Html('div', style='width:%dpx; height:%dpx;' % (new_width, new_height))
+                    mediadisplay = Html('div', style='width:%dpx; height:%dpx;' % (new_width, new_height))
+                    summaryarea += mediadisplay
 
                     # Feature #2634; display the mouse-selectable regions.
                     # See the large block at the top of this function where
                     # the various regions are stored in _region_items
                     if len(_region_items):
                         ordered = Html('ol', class_='RegionBox')
+                        mediadisplay += ordered
                         while len(_region_items) > 0:
                             (name, x, y, w, h, linkurl) = _region_items.pop()
                             ordered += Html('li', style='left:%d%%; top:%d%%; width:%d%%; height:%d%%;'
                                 % (x, y, w, h)) +(
                                     Html('a', name, href=linkurl)
                                     )       
-                        gallerydisplay += ordered
 
                     # display the image
                     if initial_image_path != newpath:
                         url = self.report.build_url_fname(newpath, None, self.up)
-                        hyper = Html('a', href=url) + (
+                        mediadisplay += Html('a', href=url) + (
                             Html('img', width=new_width, height=new_height, src=url,
                                 alt=html_escape(self.page_title), type=media_type)
                                 )
-                        gallerydisplay += hyper
-
-                summaryarea += gallerydisplay 
             else:
                 dirname = tempfile.mkdtemp()
                 thmb_path = os.path.join(dirname, "temp.png")
                 if ThumbNails.run_thumbnailer(mime_type,
-                                              Utils.media_path_full(db,
-                                                            photo.get_path()),
-                                              thmb_path, 320):
+                                                                    Utils.media_path_full(db,
+                                                                    photo.get_path()),
+                                                                    thmb_path, 320):
                     try:
                         path = self.report.build_path('preview', photo.handle)
                         npath = os.path.join(path, photo.handle) + '.png'
@@ -1678,7 +1677,8 @@ class MediaPage(BasePage):
                     path = os.path.join('images', 'document.png')
                 os.rmdir(dirname)
 
-                gallerydisplay = Html('div', id='GalleryDisplay')
+                mediadisplay = Html('div', id='GalleryDisplay')
+                summaryarea += mediadisplay
                 if target_exists:
                     # TODO. Convert disk path to URL
                     url = self.report.build_url_fname(newpath, None, self.up)
@@ -1688,18 +1688,14 @@ class MediaPage(BasePage):
                 url = self.report.build_url_fname(path, None, self.up)
                 hyper += Html('img', src=url, alt=html_escape(self.page_title), type=media_type)  
                 if target_exists:
-                    gallerydisplay += hyper  
+                    mediadisplay += hyper  
                 else:
-                    errormsg = _('The file has been moved or deleted.')
-                    missingimage = Html('span', errormsg, class_='MissingImage')  
-                    gallerydisplay += missingimage
-                summaryarea += gallerydisplay 
+                    mediadisplay += missingimage
         else:
-            gallerydisplay = Html('div', id='GalleryDisplay')
+            mediadisplay = Html('div', id='GalleryDisplay')
+            summaryarea += mediadisplay
             url = self.report.build_url_image('document.png', 'images', self.up)
-            image = Html('img', src=url, alt=html_escape(self.page_title), type=media_type)
-            gallerydisplay += image
-            summaryarea += gallerydisplay
+            mediadisplay += Html('img', src=url, alt=html_escape(self.page_title), type=media_type)
 
         # media title
         title = Html('h3', html_escape(self.page_title.strip()), inline=True)
@@ -1707,9 +1703,11 @@ class MediaPage(BasePage):
 
         # begin media table
         with Html('table', class_='infolist gallery') as table: 
+            summaryarea += table
 
             if not self.noid:
                 with Html('tr') as trow:
+                    table += trow
                     trow += Html('td', _('GRAMPS ID'), class_='ColumnAttribute', inline=True)
                     trow += Html('td', photo.gramps_id, class_='ColumnValue', inline=True)
 
@@ -1726,39 +1724,30 @@ class MediaPage(BasePage):
                     trow += Html('td', _('Date'), class_='ColumnAttribute', inline=True)
                     trow += Html('td', date, class_='ColumnValue', inline=True)
 
-            # close the table
-            summaryarea += table
-
-        # close summaryarea division
-        gallerydetail += summaryarea
-
         # get media notes
         notes = self.display_note_list(photo.get_note_list())
         if notes is not None:
-            gallerydetail += notes
+            mediadetail += notes
 
         # get media attributes
         attrib = self.display_attr_list(photo.get_attribute_list())
         if attrib is not None:
-            gallerydetail += attrib
+            mediadetail += attrib
 
         # get media sources
         sources = self.display_media_sources(photo)
         if sources is not None:
-            gallerydetail += sources
+            mediadetail += sources
 
         # get media references 
         references = self.display_references(my_media_list)
         if references is not None:
-            gallerydetail += references
+            mediadetail += references
 
-        # close gallerydetail division and
         # add clearline for proper styling
-        body += (gallerydetail, fullclear)
-
         # add footer section
         footer = self.write_footer(counter=0)
-        body += footer
+        body += (fullclear, footer)
 
         # send page out for processing
         self.mywriter(mediapage, of)
@@ -1880,8 +1869,7 @@ class SurnameListPage(BasePage):
                            'surnames in the database. Selecting a link '
                            'will lead to a list of individuals in the '
                            'database with this same surname.')
-            descr = Html('p', msg, class_='description')
-            section += descr
+            section += Html('p', msg, id='description')
 
             # add alphabet navigation after page msg
             # only if surname list not surname count
@@ -2228,7 +2216,11 @@ class MediaListPage(BasePage):
 
             msg = _("This page contains an index of all the media objects "
                           "in the database, sorted by their title. Clicking on "
-                          "the title will take you to that media object&#8217;s page.")
+                          "the title will take you to that media object&#8217;s page.\n\n")
+            section += Html('p', msg, id='description')
+
+            msg = _("if you see media dimensions, Click on the image to see the "
+                          "full- sized version.\n")
             section += Html('p', msg, id='description')
 
             # begin gallery table and table head
@@ -4683,66 +4675,42 @@ def alphabet_navigation(db, handle_list, key):
             sorted_set[ltr] = 1
 
     # remove the number of each occurance of each letter
-    sorted_first_letter = sorted((l for l in sorted_set if l != ','), 
+    sorted_alphabet_index = sorted((l for l in sorted_set if l != ','), 
                                     key=locale.strxfrm)
 
     # if no letters, do not show?
-    if not sorted_first_letter:
+    if not sorted_alphabet_index:
         return None
 
     # begin alphabet division
     with Html('div', id='alphabet') as section:
 
-        # begin alphabet table
-        with Html('table', class_='alphabet infolist') as table:
-            section += table
+        num_ltrs = len(sorted_alphabet_index)
 
-            num_ltrs = len(sorted_first_letter)
-            if num_ltrs <= 26:
-                trow = Html('tr')
-                table += trow
+        # +1 because we are starting at 0 instead of 1
+        nrows = (num_ltrs / 30) + 1
+        index = 0
+        for rows in range(0, nrows):
+            trow = Html('tr', class_='infolist alphabet')
+            section += trow
 
-                unordered = Html('ul')
-                trow += unordered
- 
-                for ltr in sorted_first_letter:
-                    title_str = _('Surnames')  if key == 0  else _('Places') 
-                    if lang_country == "sv_SE" and ltr == u'V':
-                        title_str += _(' starting with %s') % "V,W" 
-                        unordered += Html('li', class_='letters', inline=True) + (
-                            Html('a', '%s' % ("V,W"), href='#%s' % ("V,W"), title=title_str)
-                            )
-                    else:
-                        title_str += _(' starting with %s') % ltr 
-                        unordered += Html('li', class_='letters', inline=True) + (
-                            Html('a', ltr, href='#%s' % ltr, title=title_str)
-                            )
+            unordered = Html('ul')
+            trow += unordered
 
-            else:
-                nrows = (num_ltrs / 28) + 1
-                index = 0
-                for rows in range(0, nrows):
-                    trow = Html('tr')
-                    table += trow
-
-                    unordered = Html('ul') 
-                    trow += unordered
-                    cols = 0
-                    while (cols <= 28 and index < num_ltrs):
-                        ltr = sorted_first_letter[index]
-                        title_str = _('Surnames')  if key == 0 else _('Places')
-                        if lang_country == "sv_SE" and letter == u'V':
-                            title_str += _(' starting with %s') % "V,W" 
-                            unordered += (Html('li', class_='letters', inline=True) +
-                                         Html('a', "V,W", href="#V,W", title=title_str)
-                                         )
-                        else:
-                            title_str += _(' starting with %s') % ltr 
-                            unordered += Html('li', class_='letters', inline=True) + (
-                                Html('a', ltr, href='#%s' % ltr, title=title_str)
-                                )
-                        cols += 1
-                        index += 1
+            cols = 0
+            while (cols <= 30 and index < num_ltrs):
+                ltr = sorted_alphabet_index[index]
+                title_str = _('Surnames')  if key == 0 else _('Places')
+                if lang_country == "sv_SE" and letter == u'V':
+                    title_str += _(' starting with %s') % "V,W" 
+                    unordered += Html('li', class_='letters', inline=True) + \
+                        Html('a', "V,W", href="#V,W", title=title_str)
+                else:
+                    title_str += _(' starting with %s') % ltr 
+                    unordered += Html('li', class_='letters', inline=True) + \
+                        Html('a', ltr, href="%s" % ltr, title=title_str)
+                cols += 1
+                index += 1
 
     # return alphabet navigation to its callers
     return section
