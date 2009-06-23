@@ -44,6 +44,7 @@ from xml.sax.saxutils import escape
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
                     FONT_SANS_SERIF, DASHED, PAPER_PORTRAIT,
@@ -435,7 +436,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self._write_mimetype_file()
         self._write_zip()
         if self.open_req:
-            Utils.open_file_with_default_application(self.filename)
+            open_file_with_default_application(self.filename)
 
     def add_media_object(self, file_name, pos, x_cm, y_cm, alt=''):
 

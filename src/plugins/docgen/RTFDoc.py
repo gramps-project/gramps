@@ -34,6 +34,7 @@ from gettext import gettext as _
 # Load the base BaseDoc class
 #
 #------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 from gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIGHT,
                              PARA_ALIGN_CENTER, PARA_ALIGN_JUSTIFY)
 from gen.plug import PluginManager, DocGenPlugin
@@ -129,7 +130,7 @@ class RTFDoc(BaseDoc,TextDoc):
         self.f.close()
 
         if self.open_req:
-            Utils.open_file_with_default_application(self.filename)
+            open_file_with_default_application(self.filename)
 
     #--------------------------------------------------------------------
     #

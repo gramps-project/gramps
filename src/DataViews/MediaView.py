@@ -46,7 +46,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import PageView
+from gui.utils import open_file_with_default_applicationimport PageView
 import DisplayModels
 import ThumbNails
 import const
@@ -226,7 +226,7 @@ class MediaView(PageView.ListView):
         for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
             mpath = Utils.media_path_full(self.dbstate.db, ref_obj.get_path())
-            Utils.open_file_with_default_application(mpath)
+            open_file_with_default_application(mpath)
 
     def _column_editor(self, obj):
         """

@@ -48,7 +48,7 @@ import gobject
 #
 #-------------------------------------------------------------------------------
 import Utils
-from gui.utils import ProgressMeter
+from gui.utils import ProgressMeter, open_file_with_default_application
 from gen.plug.docgen import BaseDoc, GVDoc 
 import Config
 from ReportBase import CATEGORY_GRAPHVIZ
@@ -380,7 +380,7 @@ class GVDotDoc(GVDocBase):
         dotfile.close()
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename) 
+            open_file_with_default_application(self._filename) 
 
 #-------------------------------------------------------------------------------
 #
@@ -441,7 +441,7 @@ class GVPsDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -487,7 +487,7 @@ class GVSvgDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)
+            open_file_with_default_application(self._filename)
             
 #-------------------------------------------------------------------------------
 #
@@ -533,7 +533,7 @@ class GVSvgzDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -579,7 +579,7 @@ class GVPngDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)     
+            open_file_with_default_application(self._filename)     
 
 #-------------------------------------------------------------------------------
 #
@@ -625,7 +625,7 @@ class GVJpegDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -671,7 +671,7 @@ class GVGifDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)     
+            open_file_with_default_application(self._filename)     
 
 #-------------------------------------------------------------------------------
 #
@@ -720,7 +720,7 @@ class GVPdfGvDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename)
+            open_file_with_default_application(self._filename)
 
 #-------------------------------------------------------------------------------
 #
@@ -782,7 +782,7 @@ class GVPdfGsDoc(GVDocBase):
         os.remove(tmp_dot)
         
         if self.open_req:
-            Utils.open_file_with_default_application(self._filename) 
+            open_file_with_default_application(self._filename) 
 
 #-------------------------------------------------------------------------------
 #

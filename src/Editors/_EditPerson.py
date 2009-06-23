@@ -48,7 +48,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Utils
-from gui.utils import add_menuitem
+from gui.utils import add_menuitem, open_file_with_default_application
 import Mime
 import gen.lib
 import widgets
@@ -512,7 +512,7 @@ class EditPerson(EditPrimary):
             object_handle = photo.get_reference_handle()
             ref_obj = self.db.get_object_from_handle(object_handle)
             photo_path = Utils.media_path_full(self.db, ref_obj.get_path())
-            Utils.open_file_with_default_application(photo_path)
+            open_file_with_default_application(photo_path)
 
     def _popup_change_description(self, obj):
         """

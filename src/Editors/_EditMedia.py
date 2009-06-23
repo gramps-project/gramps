@@ -40,6 +40,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 import const
 import Config
 import gen.lib
@@ -219,7 +220,7 @@ class EditMedia(EditPrimary):
         if ref_obj:
             media_path = Utils.media_path_full(self.dbstate.db,
                                                ref_obj.get_path())
-            Utils.open_file_with_default_application(media_path)
+            open_file_with_default_application(media_path)
 
     def select_file(self, val):
         self.determine_mime()

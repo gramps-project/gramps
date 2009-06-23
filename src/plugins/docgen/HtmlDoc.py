@@ -42,6 +42,7 @@ from gettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 from gen.plug import PluginManager, DocGenPlugin
 import ImgManip
 import const
@@ -240,7 +241,7 @@ class HtmlDoc(BaseDoc, TextDoc):
 
         if self.open_req:
             import Utils
-            Utils.open_file_with_default_application(self._backend.getf())
+            open_file_with_default_application(self._backend.getf())
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """

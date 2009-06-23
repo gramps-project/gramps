@@ -36,6 +36,7 @@ from gettext import gettext as _
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
 import Utils
@@ -125,7 +126,7 @@ class PdfDoc(libcairodoc.CairoDoc):
 
         # load the result into an external viewer
         if self.open_req:
-            Utils.open_file_with_default_application(self._backend.filename) 
+            open_file_with_default_application(self._backend.filename) 
 
 #------------------------------------------------------------------------
 #

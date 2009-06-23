@@ -45,6 +45,7 @@ import gobject
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 import gen.lib
 import Utils
 import ThumbNails
@@ -59,7 +60,7 @@ from DisplayTabs._ButtonTab import ButtonTab
 #
 #-------------------------------------------------------------------------
 def make_launcher(path):
-    return lambda x: Utils.open_file_with_default_application(path)
+    return lambda x: open_file_with_default_application(path)
 
 #-------------------------------------------------------------------------
 #

@@ -41,6 +41,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gui.utils import open_file_with_default_application
 import const
 import Config
 import Mime
@@ -370,7 +371,7 @@ class EditMediaRef(EditReference):
     def button_press_event(self, obj, event):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             photo_path = Utils.media_path_full(self.db, self.source.get_path())
-            Utils.open_file_with_default_application(photo_path)
+            open_file_with_default_application(photo_path)
 
     def button_press_event_ref(self, widget, event):
         """
