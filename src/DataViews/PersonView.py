@@ -532,8 +532,9 @@ class PersonView(PageView.PersonNavView):
                 self.tooltips = TreeTips.TreeTips(self.tree, 
                                                   self.model.tooltip_column, 
                                                   True)
-
+            self.tree.set_model(None)
             self.build_columns()
+            self.tree.set_model(self.model)
             self.dbstate.change_active_person(active)
             self._goto()
             self.dirty = False
@@ -758,7 +759,7 @@ class PersonView(PageView.PersonNavView):
     def person_updated(self, handle_list):
         if not self.model:
             return
-        
+
         self.model.clear_cache()
         for node in handle_list:
             person = self.dbstate.db.get_person_from_handle(node)
