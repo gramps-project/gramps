@@ -17751,7 +17751,7 @@ msgstr "Immigrasjon"
 
 #: ../src/gen/lib/eventtype.py:117
 msgid "Graduation"
-msgstr "Eksamen"
+msgstr "Uteksaminering"
 
 #: ../src/gen/lib/eventtype.py:118
 msgid "Medical Information"
