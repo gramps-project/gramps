@@ -45,8 +45,8 @@ class DateBase(object):
         """
         Create a new DateBase, copying from source if not None.
         
-        @param source: Object used to initialize the new object
-        @type source: DateBase
+        :param source: Object used to initialize the new object
+        :type source: DateBase
         """
         if source:
             self.date = Date(source.date)
@@ -73,10 +73,10 @@ class DateBase(object):
 
     def get_date_object(self):
         """
-        Return the L{Date} object associated with the DateBase.
+        Return the :class:`~gen.lib.date.Date` object associated with the DateBase.
 
-        @return: Returns a DateBase L{Date} instance.
-        @rtype: L{Date}
+        :returns: Returns a DateBase :class:`~gen.lib.date.Date` instance.
+        :rtype: :class:`~gen.lib.date.Date`
         """
         if not self.date:
             self.date = Date()
@@ -84,9 +84,9 @@ class DateBase(object):
 
     def set_date_object(self, date):
         """
-        Set the L{Date} object associated with the DateBase.
+        Set the :class:`~gen.lib.date.Date` object associated with the DateBase.
 
-        @param date: L{Date} instance to be assigned to the DateBase
-        @type date: L{Date}
+        :param date: :class:`~gen.lib.date.Date` instance to be assigned to the DateBase
+        :type date: :class:`~gen.lib.date.Date`
         """
         self.date = date

@@ -63,12 +63,12 @@ class BaseObject(object):
         Return True if any text data in the object or any of it's child
         objects matches a given pattern.
 
-        @param pattern: The pattern to match.
-        @type pattern: str
-        @param case_sensitive: Whether the match is case-sensitive.
-        @type case_sensitive: bool
-        @return: Returns whether any text data in the object or any of it's child objects matches a given pattern.
-        @rtype: bool
+        :param pattern: The pattern to match.
+        :type pattern: str
+        :param case_sensitive: Whether the match is case-sensitive.
+        :type case_sensitive: bool
+        :returns: Returns whether any text data in the object or any of it's child objects matches a given pattern.
+        :rtype: bool
         """
         # Run through its own items
         patern_upper = pattern.upper()
@@ -97,10 +97,10 @@ class BaseObject(object):
         Return True if any text data in the object or any of it's child
         objects matches a given regular expression.
 
-        @param pattern: The pattern to match.
-        @type pattern: str
-        @return: Returns whether any text data in the object or any of it's child objects matches a given regexp.
-        @rtype: bool
+        :param pattern: The pattern to match.
+        :type pattern: str
+        :returns: Returns whether any text data in the object or any of it's child objects matches a given regexp.
+        :rtype: bool
         """
 
         # Run through its own items
@@ -123,8 +123,8 @@ class BaseObject(object):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return []
 
@@ -132,8 +132,8 @@ class BaseObject(object):
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return []
 
@@ -142,8 +142,8 @@ class BaseObject(object):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: Returns the list of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return []
 
@@ -152,8 +152,8 @@ class BaseObject(object):
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return []
 
@@ -162,8 +162,8 @@ class BaseObject(object):
         Return the list of (classname, handle) tuples for all referenced
         primary objects, whether directly or through child objects.
         
-        @return: Returns the list of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: Returns the list of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         ret = self.get_referenced_handles()
         

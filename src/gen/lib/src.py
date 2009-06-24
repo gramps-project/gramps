@@ -89,13 +89,13 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle of 
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle of 
                 this object type.
-        @rtype: bool
+        :rtype: bool
         """
         if classname == 'Repository':
             return handle in [ref.ref for ref in self.reporef_list]
@@ -105,10 +105,10 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Remove all references in this object to object handles in the list.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
         """
         if classname == 'Repository':
             new_list = [ ref for ref in self.reporef_list \
@@ -119,12 +119,12 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Replace all references to old handle with those to the new handle.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
         if classname == 'Repository':
             handle_list = [ref.ref for ref in self.reporef_list]
@@ -137,8 +137,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.title, self.author, self.pubinfo, self.abbrev,
                 self.gramps_id] + self.datamap.keys() + self.datamap.values()
@@ -147,8 +147,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return self.media_list + self.reporef_list
 
@@ -156,9 +156,9 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return self.media_list
 
@@ -166,9 +166,9 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.media_list + self.reporef_list
 
@@ -177,8 +177,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.media_list + self.reporef_list
 
@@ -187,8 +187,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return self.get_referenced_note_handles()
 
@@ -197,11 +197,11 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Return True if any of the child objects has reference to this source 
         handle.
 
-        @param src_handle: The source handle to be checked.
-        @type src_handle: str
-        @return: Returns whether any of it's child objects has reference to 
+        :param src_handle: The source handle to be checked.
+        :type src_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
                 this source handle.
-        @rtype: bool
+        :rtype: bool
         """
         for item in self.get_sourcref_child_list():
             if item.has_source_reference(src_handle):
@@ -214,8 +214,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Remove references to all source handles in the list in all child 
         objects.
 
-        @param src_handle_list: The list of source handles to be removed.
-        @type src_handle_list: list
+        :param src_handle_list: The list of source handles to be removed.
+        :type src_handle_list: list
         """
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
@@ -225,10 +225,10 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         Replace references to source handles in the list in this object and 
         all child objects.
 
-        @param old_handle: The source handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The source handle to replace the old one with.
-        @type new_handle: str
+        :param old_handle: The source handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The source handle to replace the old one with.
+        :type new_handle: str
         """
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
@@ -249,8 +249,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Set the descriptive title of the Source object.
 
-        @param title: descriptive title to assign to the Source
-        @type title: str
+        :param title: descriptive title to assign to the Source
+        :type title: str
         """
         self.title = title
 
@@ -258,8 +258,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return the descriptive title of the Place object.
 
-        @returns: Returns the descriptive title of the Place
-        @rtype: str
+        :returns: Returns the descriptive title of the Place
+        :rtype: str
         """
         return self.title
 
@@ -289,31 +289,31 @@ class Source(MediaBase, NoteBase, PrimaryObject):
 
     def add_repo_reference(self, repo_ref):
         """
-        Add a L{RepoRef} instance to the Source's reporef list.
+        Add a :class:`~gen.lib.reporef,RepoRef` instance to the Source's reporef list.
 
-        @param repo_ref: L{RepoRef} instance to be added to the object's 
+        :param repo_ref: :class:`~gen.lib.reporef,RepoRef` instance to be added to the object's 
                 reporef list.
-        @type repo_ref: L{RepoRef}
+        :type repo_ref: :class:`~gen.lib.reporef,RepoRef`
         """
         self.reporef_list.append(repo_ref)
 
     def get_reporef_list(self):
         """
-        Return the list of L{RepoRef} instances associated with the Source.
+        Return the list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source.
 
-        @Return: list of L{RepoRef} instances associated with the Source
-        @rtype: list
+        @Return: list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source
+        :rtype: list
         """
         return self.reporef_list
 
     def set_reporef_list(self, reporef_list):
         """
-        Set the list of L{RepoRef} instances associated with the Source.
+        Set the list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source.
         It replaces the previous list.
 
-        @param reporef_list: list of L{RepoRef} instances to be assigned to 
+        :param reporef_list: list of :class:`~gen.lib.reporef,RepoRef` instances to be assigned to 
                 the Source.
-        @type reporef_list: list
+        :type reporef_list: list
         """
         self.reporef_list = reporef_list
 
@@ -321,11 +321,11 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Return True if the Source has reference to this Repository handle.
 
-        @param repo_handle: The Repository handle to be checked.
-        @type repo_handle: str
-        @return: Returns whether the Source has reference to this Repository 
+        :param repo_handle: The Repository handle to be checked.
+        :type repo_handle: str
+        :returns: Returns whether the Source has reference to this Repository 
                 handle.
-        @rtype: bool
+        :rtype: bool
         """
         return repo_handle in [repo_ref.ref for repo_ref in self.reporef_list]
 
@@ -333,8 +333,8 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Remove references to all Repository handles in the list.
 
-        @param repo_handle_list: The list of Repository handles to be removed.
-        @type repo_handle_list: list
+        :param repo_handle_list: The list of Repository handles to be removed.
+        :type repo_handle_list: list
         """
         new_reporef_list = [ repo_ref for repo_ref in self.reporef_list \
                                     if repo_ref.ref not in repo_handle_list ]
@@ -344,10 +344,10 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         Replace all references to old Repository handle with the new handle.
 
-        @param old_handle: The Repository handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The Repository handle to replace the old one with.
-        @type new_handle: str
+        :param old_handle: The Repository handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The Repository handle to replace the old one with.
+        :type new_handle: str
         """
         refs_list = [ repo_ref.ref for repo_ref in self.reporef_list ]
         n_replace = refs_list.count(old_handle)

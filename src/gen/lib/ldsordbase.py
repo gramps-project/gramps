@@ -48,8 +48,8 @@ class LdsOrdBase(object):
         If the source is not None, then object is initialized from values of 
         the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: LdsOrdBase
+        :param source: Object used to initialize the new object
+        :type source: LdsOrdBase
         """
         
         if source:
@@ -74,8 +74,8 @@ class LdsOrdBase(object):
         """
         Add the L{LdsOrd} instance to the object's list of lds_ordes.
 
-        @param lds_ord: L{LdsOrd} instance to add to the object's lds_ord list
-        @type lds_ord: list
+        :param lds_ord: L{LdsOrd} instance to add to the object's lds_ord list
+        :type lds_ord: list
         """
         self.lds_ord_list.append(lds_ord)
 
@@ -85,11 +85,11 @@ class LdsOrdBase(object):
         
         If the instance does not exist in the list, the operation has no effect.
 
-        @param lds_ord: L{LdsOrd} instance to remove from the list
-        @type lds_ord: L{LdsOrd}
+        :param lds_ord: L{LdsOrd} instance to remove from the list
+        :type lds_ord: L{LdsOrd}
 
-        @return: True if the lds_ord was removed, False if it was not in the list.
-        @rtype: bool
+        :returns: True if the lds_ord was removed, False if it was not in the list.
+        :rtype: bool
         """
         if lds_ord in self.lds_ord_list:
             self.lds_ord_list.remove(lds_ord)
@@ -101,8 +101,8 @@ class LdsOrdBase(object):
         """
         Return the list of L{LdsOrd} instances associated with the object.
 
-        @return: Returns the list of L{LdsOrd} instances
-        @rtype: list
+        :returns: Returns the list of L{LdsOrd} instances
+        :rtype: list
         """
         return self.lds_ord_list
 
@@ -110,8 +110,8 @@ class LdsOrdBase(object):
         """
         Assign the passed list to the object's list of L{LdsOrd} instances.
         
-        @param lds_ord_list: List of L{LdsOrd} instances to be associated
+        :param lds_ord_list: List of L{LdsOrd} instances to be associated
             with the object
-        @type lds_ord_list: list
+        :type lds_ord_list: list
         """
         self.lds_ord_list = lds_ord_list

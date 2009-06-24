@@ -48,8 +48,8 @@ class UrlBase(object):
         If the source is not None, then object is initialized from values of 
         the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: UrlBase
+        :param source: Object used to initialize the new object
+        :type source: UrlBase
         """
         
         if source:
@@ -71,43 +71,43 @@ class UrlBase(object):
 
     def get_url_list(self):
         """
-        Return the list of L{Url} instances associated with the object.
+        Return the list of :class:`~gen.lib.url.Url` instances associated with the object.
 
-        @returns: List of L{Url} instances
-        @rtype: list
+        :returns: List of :class:`~gen.lib.url.Url` instances
+        :rtype: list
         """
         return self.urls
 
     def set_url_list(self, url_list):
         """
-        Set the list of L{Url} instances to passed the list.
+        Set the list of :class:`~gen.lib.url.Url` instances to passed the list.
 
-        @param url_list: List of L{Url} instances
-        @type url_list: list
+        :param url_list: List of :class:`~gen.lib.url.Url` instances
+        :type url_list: list
         """
         self.urls = url_list
 
     def add_url(self, url):
         """
-        Add a L{Url} instance to the object's list of L{Url} instances.
+        Add a :class:`~gen.lib.url.Url` instance to the object's list of :class:`~gen.lib.url.Url` instances.
 
-        @param url: L{Url} instance to be added to the Person's list of
+        :param url: :class:`~gen.lib.url.Url` instance to be added to the Person's list of
             related web sites.
-        @type url: L{Url}
+        :type url: :class:`~gen.lib.url.Url`
         """
         self.urls.append(url)
     
     def remove_url(self, url):
         """
-        Remove the specified L{Url} instance from the url list.
+        Remove the specified :class:`~gen.lib.url.Url` instance from the url list.
         
         If the instance does not exist in the list, the operation has no effect.
 
-        @param url: L{Url} instance to remove from the list
-        @type url: L{Url}
+        :param url: :class:`~gen.lib.url.Url` instance to remove from the list
+        :type url: :class:`~gen.lib.url.Url`
 
-        @return: True if the url was removed, False if it was not in the list.
-        @rtype: bool
+        :returns: True if the url was removed, False if it was not in the list.
+        :rtype: bool
         """
         if url in self.urls:
             self.urls.remove(url)

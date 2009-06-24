@@ -74,8 +74,8 @@ class Location(SecondaryObject, LocationBase):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.parish] + LocationBase.get_text_data_list(self)
 

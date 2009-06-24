@@ -33,7 +33,7 @@ class RefBase(object):
     """
     Base reference class to manage references to other objects.
 
-    Any *Ref class should derive from this class.
+    Any *Ref* classes should derive from this class.
     """
 
     def __init__(self, source=None):
@@ -60,9 +60,9 @@ class RefBase(object):
         Returns the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname, handle) tuples for referenced 
+        :returns: Returns the list of (classname, handle) tuples for referenced 
                 objects.
-        @rtype: list
+        :rtype: list
         """
         assert False, "Must be overridden in the derived class"
 

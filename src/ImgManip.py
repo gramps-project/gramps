@@ -50,14 +50,14 @@ def resize_to_jpeg(source, destination, width, height):
     Create the destination, derived from the source, resizing it to the
     specified size, while converting to JPEG.
 
-    @param source: source image file, in any format that gtk recognizes
-    @type source: unicode
-    @param destination: destination image file, output written in jpeg format
-    @type destination: unicode
-    @param width: desired width of the destination image
-    @type width: int
-    @param height: desired height of the destination image
-    @type height: int
+    :param source: source image file, in any format that gtk recognizes
+    :type source: unicode
+    :param destination: destination image file, output written in jpeg format
+    :type destination: unicode
+    :param width: desired width of the destination image
+    :type width: int
+    :param height: desired height of the destination image
+    :type height: int
     """
     img = gtk.gdk.pixbuf_new_from_file(source)
     scaled = img.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
@@ -72,10 +72,10 @@ def image_size(source):
     """
     Return the width and size of the specified image.
 
-    @param source: source image file, in any format that gtk recongizes
-    @type source: unicode
-    @rtype: tuple(int, int)
-    @returns: a tuple consisting of the width and height
+    :param source: source image file, in any format that gtk recongizes
+    :type source: unicode
+    :rtype: tuple(int, int)
+    :returns: a tuple consisting of the width and height
     """
     try:
         img = gtk.gdk.pixbuf_new_from_file(source)
@@ -96,14 +96,14 @@ def resize_to_jpeg_buffer(source, width, height):
     Loads the image, converting the file to JPEG, and resizing it. Instead of
     saving the file, the data is returned in a buffer.
 
-    @param source: source image file, in any format that gtk recognizes
-    @type source: unicode
-    @param width: desired width of the destination image
-    @type width: int
-    @param height: desired height of the destination image
-    @type height: int
-    @rtype: buffer of data 
-    @returns: jpeg image as raw data
+    :param source: source image file, in any format that gtk recognizes
+    :type source: unicode
+    :param width: desired width of the destination image
+    :type width: int
+    :param height: desired height of the destination image
+    :type height: int
+    :rtype: buffer of data 
+    :returns: jpeg image as raw data
     """
     filed, dest = tempfile.mkstemp()
     img = gtk.gdk.pixbuf_new_from_file(source)

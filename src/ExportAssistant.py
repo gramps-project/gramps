@@ -392,7 +392,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         The "prepare" signal is emitted when a new page is set as the 
         assistant's current page, but before making the new page visible.
         
-        @param page:	the new page to prepare for display.
+        :param page:	the new page to prepare for display.
         
         """
         #determine if we go backward or forward

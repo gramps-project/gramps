@@ -45,8 +45,8 @@ class SourceBase(object):
         """
         Create a new SourceBase, copying from source if not None.
         
-        @param source: Object used to initialize the new object
-        @type source: SourceBase
+        :param source: Object used to initialize the new object
+        :type source: SourceBase
         """
         if source:
             self.source_list = [SourceRef(sref) for sref in source.source_list]
@@ -69,9 +69,9 @@ class SourceBase(object):
         """
         Add a source reference to this object.
 
-        @param src_ref: The source reference to be added to the
+        :param src_ref: The source reference to be added to the
             SourceNote's list of source references.
-        @type src_ref: L{SourceRef}
+        :type src_ref: :class:`~gen.lib.srcref.SourceRef`
         """
         self.source_list.append(src_ref)
 
@@ -79,9 +79,9 @@ class SourceBase(object):
         """
         Return the list of source references associated with the object.
 
-        @return: Returns the list of L{SourceRef} objects assocated with
+        :returns: Returns the list of :class:`~gen.lib.srcref.SourceRef` objects assocated with
             the object.
-        @rtype: list
+        :rtype: list
         """
         return self.source_list
 
@@ -89,9 +89,9 @@ class SourceBase(object):
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return []
 
@@ -100,11 +100,11 @@ class SourceBase(object):
         Return True if the object or any of it's child objects has reference
         to this source handle.
 
-        @param src_handle: The source handle to be checked.
-        @type src_handle: str
-        @return: Returns whether the object or any of it's child objects has 
+        :param src_handle: The source handle to be checked.
+        :type src_handle: str
+        :returns: Returns whether the object or any of it's child objects has 
                 reference to this source handle.
-        @rtype: bool
+        :rtype: bool
         """
         for src_ref in self.source_list:
             # Using direct access here, not the getter method -- efficiency!
@@ -122,8 +122,8 @@ class SourceBase(object):
         Remove references to all source handles in the list in this object 
         and all child objects.
 
-        @param src_handle_list: The list of source handles to be removed.
-        @type src_handle_list: list
+        :param src_handle_list: The list of source handles to be removed.
+        :type src_handle_list: list
         """
         new_source_list = [ src_ref for src_ref in self.source_list \
                                     if src_ref.ref not in src_handle_list ]
@@ -137,10 +137,10 @@ class SourceBase(object):
         Replace references to source handles in the list in this object and 
         all child objects.
 
-        @param old_handle: The source handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The source handle to replace the old one with.
-        @type new_handle: str
+        :param old_handle: The source handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The source handle to replace the old one with.
+        :type new_handle: str
         """
         refs_list = [ src_ref.ref for src_ref in self.source_list ]
         n_replace = refs_list.count(old_handle)
@@ -156,8 +156,8 @@ class SourceBase(object):
         """
         Assign the passed list to the object's list of source references.
 
-        @param src_ref_list: List of source references to ba associated
+        :param src_ref_list: List of source references to ba associated
             with the object
-        @type src_ref_list: list of L{SourceRef} instances
+        :type src_ref_list: list of :class:`~gen.lib.srcref.SourceRef` instances
         """
         self.source_list = src_ref_list

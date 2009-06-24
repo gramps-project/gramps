@@ -99,8 +99,8 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.page]
 
@@ -109,8 +109,8 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         ret = self.get_referenced_note_handles()
         if self.ref:

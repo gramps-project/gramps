@@ -22,6 +22,7 @@
 
 """
 Base type for all gramps types.
+
 """
 
 #------------------------------------------------------------------------
@@ -52,7 +53,7 @@ def _init_map(data, key_col, data_col, blacklist=None):
 #
 #-------------------------------------------------------------------------
 class GrampsTypeMeta(type):
-    """Metaclass for L{GrampsType}.
+    """Metaclass for :class:`~gen.lib.grampstype.GrampsType`.
     
     The only thing this metaclass does is calling __class_init__ class method,
     in order to create the class specific integer/string maps.
@@ -70,19 +71,24 @@ class GrampsTypeMeta(type):
 class GrampsType(object):
     """Base class for all Gramps object types.
         
-    @cvar _DATAMAP: 3-tuple like (index, localized_string, english_string).
-    @type _DATAMAP: list
-    @cvar _BLACKLIST: List of indices to ignore (obsolete/retired entries).
-    (gramps policy is never to delete type values, or reuse the name (TOKEN)
-    of any specific type value)
-    @type _BLACKLIST: list
-    @cvar POS_<x>: Position of <x> attribute in the serialized format of
-    an instance.
-    @type POS_<x>: int
+    :cvar _DATAMAP: (list) 3-tuple like (index, localized_string, english_string).
+    :cvar _BLACKLIST: 
+       List of indices to ignore (obsolete/retired entries).
+       (gramps policy is never to delete type values, or reuse the name (TOKEN)
+       of any specific type value)
+    :cvar POS_<x>: (int) 
+      Position of <x> attribute in the serialized format of
+      an instance.
 
-    @attention: The POS_<x> class variables reflect the serialized object, they
-    have to be updated in case the data structure or the L{serialize} method
-    changes!
+    :attention: The POS_<x> class variables reflect the serialized object, they
+      have to be updated in case the data structure or the L{serialize} method
+      changes!
+    
+    :cvar _CUSTOM:  (int) a custom type object
+    :cvar _DEFAULT: (int) the default type, used on creation
+    
+    :attribute value: (int) Returns or sets integer value
+    :attribute string: (str) Returns or sets string value
 
     """
     (POS_VALUE, POS_STRING) = range(2)

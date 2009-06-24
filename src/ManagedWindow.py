@@ -336,10 +336,10 @@ class ManagedWindow(object):
                 # Proceed with the class.
                 ...
                 
-        @param uistate  gramps uistate
-        @param track    {list of parent windows, [] if the main GRAMPS window 
+        :param uistate:  gramps uistate
+        :param track:    {list of parent windows, [] if the main GRAMPS window 
                             is the parent}
-        @param obj      The object that is used to id the managed window, 
+        :param obj:      The object that is used to id the managed window, 
                             The inheriting object needs a method build_menu_names(self, obj)
                             which works on this obj and creates menu labels
                             for use in the Gramps Window Menu.
@@ -389,11 +389,11 @@ class ManagedWindow(object):
         """
         Set the window that is managed.
         
-        @param window   if isWindow=False window must be a gtk.Window() object, otherwise None
-        @param title    a label widget in which to write the title, None if not needed
-        @param text     text to use as title of window and in title param
-        @param msg      if not None, use msg as title of window instead of text
-        @param isWindow {if isWindow than self is the window 
+        :param window:   if isWindow=False window must be a gtk.Window() object, otherwise None
+        :param title:    a label widget in which to write the title, None if not needed
+        :param text:     text to use as title of window and in title param
+        :param msg:      if not None, use msg as title of window instead of text
+        :param isWindow: {if isWindow than self is the window 
                             (so self inherits from gtk.Window and 
                             from ManagedWindow.ManagedWindow)
                          if not isWindow, than window is the Window to manage, 

@@ -730,21 +730,21 @@ class RelationshipCalculator(object):
         reached via a different branch too. Path (firstRel_str and 
         secondRel_str) will of course be different
         
-        @param db: database to work on
-        @param orig_person: first person 
-        @type orig_person:  Person Obj
-        @param other_person: second person, relation is sought between
+        :param db: database to work on
+        :param orig_person: first person 
+        :type orig_person:  Person Obj
+        :param other_person: second person, relation is sought between
                              first and second person
-        @type other_person:  Person Obj
-        @param all_families: if False only Main family is searched, otherwise
+        :type other_person:  Person Obj
+        :param all_families: if False only Main family is searched, otherwise
                              all families are used
-        @type all_families:  bool
-        @param all_dist: if False only the shortest distance is returned, 
+        :type all_families:  bool
+        :param all_dist: if False only the shortest distance is returned, 
                          otherwise all relationships
-        @type all_dist:  bool
-        @param only_birth: if True only parents with birth relation are 
+        :type all_dist:  bool
+        :param only_birth: if True only parents with birth relation are 
                            considered
-        @type only_birth:  bool
+        :type only_birth:  bool
         """
         #data storage to communicate with recursive functions
         self.__maxDepthReached = False
@@ -1376,15 +1376,15 @@ class RelationshipCalculator(object):
         See the Wikipedia entry for more information:
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
         
-        @param Ga: The number of generations between the main person and the 
+        :param Ga: The number of generations between the main person and the 
         common ancestor.
-        @type Ga: int
-        @param Gb: The number of generations between the group of people and the
+        :type Ga: int
+        :param Gb: The number of generations between the group of people and the
         common ancestor
-        @type Gb: int
-        @returns: A string describing the relationship between the person and
+        :type Gb: int
+        :returns: A string describing the relationship between the person and
         the group.
-        @rtype: str
+        :rtype: str
         """
         rel_str = "distant relatives"
         if Ga == 0:
@@ -1484,35 +1484,35 @@ class RelationshipCalculator(object):
         parents in that common family is by birth, then 'only_birth' is not
         set to False. The only_birth() method is normally used for this.
             
-        @param Ga: The number of generations between the main person and the 
+        :param Ga: The number of generations between the main person and the 
                    common ancestor.
-        @type Ga: int
-        @param Gb: The number of generations between the other person and the
+        :type Ga: int
+        :param Gb: The number of generations between the other person and the
                    common ancestor
-        @type Gb: int
-        @param gender_a : gender of person a
-        @type gender_a: int gender
-        @param gender_b : gender of person b
-        @type gender_b: int gender
-        @param reltocommon_a : relation path to common ancestor or common
+        :type Gb: int
+        :param gender_a : gender of person a
+        :type gender_a: int gender
+        :param gender_b : gender of person b
+        :type gender_b: int gender
+        :param reltocommon_a : relation path to common ancestor or common
                             Family for person a. 
                             Note that length = Ga
-        @type reltocommon_a: str 
-        @param reltocommon_b : relation path to common ancestor or common
+        :type reltocommon_a: str 
+        :param reltocommon_b : relation path to common ancestor or common
                             Family for person b. 
                             Note that length = Gb
-        @type reltocommon_b: str 
-        @param in_law_a : True if path to common ancestors is via the partner
+        :type reltocommon_b: str 
+        :param in_law_a : True if path to common ancestors is via the partner
                           of person a
-        @type in_law_a: bool
-        @param in_law_b : True if path to common ancestors is via the partner
+        :type in_law_a: bool
+        :param in_law_b : True if path to common ancestors is via the partner
                           of person b
-        @type in_law_b: bool
-        @param only_birth : True if relation between a and b is by birth only
+        :type in_law_b: bool
+        :param only_birth : True if relation between a and b is by birth only
                             False otherwise
-        @type only_birth: bool
-        @returns: A string describing the relationship between the two people
-        @rtype: str
+        :type only_birth: bool
+        :returns: A string describing the relationship between the two people
+        :rtype: str
         
         NOTE: 1/the self.REL_SIBLING should not be passed to this routine, 
                 so we should not check on it. All other self.

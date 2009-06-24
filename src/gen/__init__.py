@@ -18,4 +18,16 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+The gen module provides 5 packages. 
+  1. gen.lib gives access to all genealogy related objects, like family,
+     person, ...
+  2. gen.db provides access to the bsddb backend storing genea data
+  3. gen.proxy provides access to the data via a proxy that filters out 
+     specific data
+  4. gen.plug defines a plugin system so plugins can be written that can 
+     work on the data. This can be in CLI or GUI
+  5. gen.utils provides some generic utilities
+"""
+
 __all__ = [ "proxy", "db", "lib", "utils", "plug" ]

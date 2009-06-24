@@ -128,12 +128,12 @@ class Html(list):
         """
         Build and return an XML declaration statement
 
-        @type  version: decimal number
-        @param version: version of XML to be used. Defaults to 1.0
-        @type  encoding: string
-        @param encoding: encoding method to be used. Defaults to "UTF-8"
-        @type  standalone: string
-        @param standalone: "yes" or "no".  Defaults to "no"
+        :type  version: decimal number
+        :param version: version of XML to be used. Defaults to 1.0
+        :type  encoding: string
+        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  standalone: string
+        :param standalone: "yes" or "no".  Defaults to "no"
         """
         return '<?xml %s %s %s?>' % (
             'version="%s"' % version,
@@ -146,15 +146,15 @@ class Html(list):
         """
         Build and return a DOCTYPE statement
 
-        @type  name: string
-        @param name: name of this DOCTYPE. Defaults to "html"
-        @type  public: string
-        @param public: class of this DOCTYPE. Defaults to 'PUBLIC
-        @type  external_id: string
-        @param external_id: external identifier of this DOCTYPE. 
+        :type  name: string
+        :param name: name of this DOCTYPE. Defaults to "html"
+        :type  public: string
+        :param public: class of this DOCTYPE. Defaults to 'PUBLIC
+        :type  external_id: string
+        :param external_id: external identifier of this DOCTYPE. 
                             Defaults to XHTML 1.0 STRICT
-        @type  args: object
-        @param args: 0 or more positional parameters to be added to this    
+        :type  args: object
+        :param args: 0 or more positional parameters to be added to this    
                      DOCTYPE.
         """
         return '<!DOCTYPE %s %s %s>' % (
@@ -168,12 +168,12 @@ class Html(list):
         """
         Build and return a properly-formated <html> object
 
-        @type  xmlns: string
-        @param xmlns: XML namespace string. Default = 'http://www.w3.org/1999/xhtml'
-        @type  lang: string
-        @param lang: language to be used. Defaul = 'en'
-        @rtype:   reference to new Html instance
-        @return:  reference to the newly-created Html instances for <html> object
+        :type  xmlns: string
+        :param xmlns: XML namespace string. Default = 'http://www.w3.org/1999/xhtml'
+        :type  lang: string
+        :param lang: language to be used. Defaul = 'en'
+        :rtype:   reference to new Html instance
+        :returns:  reference to the newly-created Html instances for <html> object
         """      
         return Html('html',
             indent=False,
@@ -187,13 +187,13 @@ class Html(list):
         """
         Build and return a properly-formated <head> object
     
-        @type  title: string or None
-        @param title: title for HTML page. Default=None. If None no 
+        :type  title: string or None
+        :param title: title for HTML page. Default=None. If None no 
                     title tag is written
-        @type  encoding: string
-        @param encoding: encoding to be used. Default = 'utf-8'
-        @rtype  reference to new Html instance
-        @return reference to the newly-created Html instances for <head> object
+        :type  encoding: string
+        :param encoding: encoding to be used. Default = 'utf-8'
+        :rtype:  reference to new Html instance
+        :returns: reference to the newly-created Html instances for <head> object
         """ 
         meta1 = 'http-equiv="content-type" content="text/html;charset=%s"'
         meta2 = 'http-equiv="Content-Style-Type" content="text/css"'
@@ -209,14 +209,14 @@ class Html(list):
         """
         This function prepares a new Html class based page and returns
     
-        @type  title: string
-        @param title: title for HTML page. Default=None
-        @type  encoding: string
-        @param encoding: encoding to be used. Default = 'utf-8'
-        @type  lang: string
-        @param lang: language to be used. Defaul = 'en'
-        @rtype:   three object references
-        @return:  references to the newly-created Html instances for
+        :type  title: string
+        :param title: title for HTML page. Default=None
+        :type  encoding: string
+        :param encoding: encoding to be used. Default = 'utf-8'
+        :type  lang: string
+        :param lang: language to be used. Defaul = 'en'
+        :rtype:   three object references
+        :returns:  references to the newly-created Html instances for
                   page, head and body
         """
         page = Html.html(lang=lang, *args, **keywargs)
@@ -238,34 +238,34 @@ class Html(list):
         """
         Class Constructor: Returns a new instance of the Html class
         
-        @type  tag: string
-        @param tag: The HTML tag. Default is 'html'
-        @type  args: optional positional parameters
-        @param args: 0 more positional arguments to be inserted between
+        :type  tag: string
+        :param tag: The HTML tag. Default is 'html'
+        :type  args: optional positional parameters
+        :param args: 0 more positional arguments to be inserted between
                      opening and closing HTML tags.
-        @type  indent: boolean or None
-        @param indent: True  ==> indent this object with respect to its parent
+        :type  indent: boolean or None
+        :param indent: True  ==> indent this object with respect to its parent
                        False ==> do not indent this object
                        None  ==> no indent for this object (use eg for pre tag)
                        Defaults to True
-        @type  inline: boolean
-        @param inline: True  ==> instructs the write() method to output this
+        :type  inline: boolean
+        :param inline: True  ==> instructs the write() method to output this
                                  object and any child objects as a single string
                        False ==> output this object and its contents one string
                                  at a time
                        Defaults to False
-        @type  close: boolean or None
-        @param close: True  ==> this tag should be closed normally
+        :type  close: boolean or None
+        :param close: True  ==> this tag should be closed normally
                                 e.g. <tag>...</tag>
                       False ==> this tag should be automatically closed
                                 e.g. <tag />
                       None  ==> do not provide any closing for this tag
-        @type  keywargs: optional keyword parameters
-        @param keywargs: 0 or more keyword=argument pairs that should be
+        :type  keywargs: optional keyword parameters
+        :param keywargs: 0 or more keyword=argument pairs that should be
                          copied into the opening tag as keyword="argument"
                          attributes
-        @rtype:   object reference
-        @return:  reference to the newly-created Html instance
+        :rtype:   object reference
+        :returns:  reference to the newly-created Html instance
         
         For full usage of the Html class with examples, please see the wiki
         page at: http://www.gramps-project.org/wiki/index.php?title=Libhtml
@@ -314,11 +314,11 @@ class Html(list):
         Helper function for +, +=, operators and append() and extend()
         methods
 
-        @type  value: object
-        @param value: object to be added
+        :type  value: object
+        :param value: object to be added
 
-        @rtype:  object reference
-        @return: reference to object with new value added
+        :rtype:  object reference
+        :returns: reference to object with new value added
         """
         if isinstance(value, Html) or not hasattr(value, '__iter__'):
             value = [value]
@@ -344,24 +344,24 @@ class Html(list):
         """
         Replace current value with new value
 
-        @type  cur_value: object
-        @param cur_value: value of object to be replaced
-        @type  value: object
-        @param value: replacement value
+        :type  cur_value: object
+        :param cur_value: value of object to be replaced
+        :type  value: object
+        :param value: replacement value
 
-        @rtype:  object reference
-        @return: reference to object with new value added
+        :rtype:  object reference
+        :returns: reference to object with new value added
         """
         self[self.index(cur_value)] = value
 #
     def __sub__(self, value):
         """
         Overload function for - and -= operators
-        @type  value: object
-        @param value: object to be removed
+        :type  value: object
+        :param value: object to be removed
 
-        @rtype:  object reference
-        @return: reference to object with value removed
+        :rtype:  object reference
+        :returns: reference to object with value removed
         """
         del self[self.index(value)]
         return self
@@ -372,8 +372,8 @@ class Html(list):
         """
         Returns string representation
 
-        @rtype:  string
-        @return: string representation of object
+        :rtype:  string
+        :returns: string representation of object
         """
         return '%s'*len(self) % tuple(self[:])
 #
@@ -396,12 +396,12 @@ class Html(list):
         Output function: performs an insertion-order tree traversal
         and calls supplied method for each item found.
 
-        @type  method: function reference
-        @param method: function to call with each item found
-        @type  indent: string
-        @param indenf: string to use for indentation. Default = '\t' (tab)
-        @type  tabs: string
-        @param tabs: starting indentation
+        :type  method: function reference
+        :param method: function to call with each item found
+        :type  indent: string
+        :param indenf: string to use for indentation. Default = '\t' (tab)
+        :type  tabs: string
+        :param tabs: starting indentation
         """
         if self.indent is None:
             tabs = ''
@@ -421,12 +421,12 @@ class Html(list):
         """
         Add an XML statement to the start of the list for this object
 
-        @type  version: decimal number
-        @param version: version of XML to be used. Defaults to 1.0
-        @type  encoding: string
-        @param encoding: encoding method to be used. Defaults to "UTF-8"
-        @type  standalone: string
-        @param standalone: "yes" or "no".  Defaults to "no"
+        :type  version: decimal number
+        :param version: version of XML to be used. Defaults to 1.0
+        :type  encoding: string
+        :param encoding: encoding method to be used. Defaults to "UTF-8"
+        :type  standalone: string
+        :param standalone: "yes" or "no".  Defaults to "no"
         """
         xmldecl = Html.xmldecl(
             version=version,
@@ -439,13 +439,13 @@ class Html(list):
         """
         Add a DOCTYPE statement to the start of the list
 
-        @type  name: string
-        @param name: name of this DOCTYPE. Defaults to "html"
-        @type  external_id: string
-        @param external_id: external identifier of this DOCTYPE. 
+        :type  name: string
+        :param name: name of this DOCTYPE. Defaults to "html"
+        :type  external_id: string
+        :param external_id: external identifier of this DOCTYPE. 
                             Defaults to XHTML 1.0 STRICT
-        @type  args: object
-        @param args: 0 or more positional parameters to be added to this    
+        :type  args: object
+        :param args: 0 or more positional parameters to be added to this    
                      DOCTYPE.
         """
         doctype = '<!DOCTYPE %s %s%s>' % (
@@ -464,8 +464,8 @@ class Html(list):
         """
         Returns HTML tag for this object
 
-        @rtype:  string
-        @return: HTML tag
+        :rtype:  string
+        :returns: HTML tag
         """
         return self[0].split()[0].strip('< >')
 #
@@ -473,8 +473,8 @@ class Html(list):
         """
         Sets a new HTML tag for this object
 
-        @type  name: string
-        @param name: new HTML tag
+        :type  name: string
+        :param name: new HTML tag
         """
         curtag = self.tag
         if self[-1] == '</%s>' % curtag:
@@ -486,8 +486,8 @@ class Html(list):
         """
         Returns HTML attributes for this object
 
-        @rtype:  string
-        @return: HTML attributes
+        :rtype:  string
+        :returns: HTML attributes
         """
         attr = self[0].strip('<!?>').split(None, 1)
         return attr[1] if len(attr) > 1 else ''
@@ -496,8 +496,8 @@ class Html(list):
         """
         Sets new HTML attributes for this object
 
-        @type  name: string
-        @param name: new HTML attributes
+        :type  name: string
+        :param name: new HTML attributes
         """
         self[0] = self[0][:len(self.tag)+1] + ' ' + value + self[0][-1:]
 #
@@ -512,8 +512,8 @@ class Html(list):
         """
         Returns list of items between opening and closing tags
 
-        @rtype:  list
-        @return: list of items between opening and closing HTML tags 
+        :rtype:  list
+        :returns: list of items between opening and closing HTML tags 
         """
         return self[1:-1]
 #
@@ -521,8 +521,8 @@ class Html(list):
         """
         Sets new contents between opening and closing tags
 
-        @type  name: list
-        @param name: new HTML contents
+        :type  name: list
+        :param name: new HTML contents
         """
         if len(self) < 2:
             raise AttributeError, 'No closing tag. Cannot set inside value' 

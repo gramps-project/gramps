@@ -11,8 +11,8 @@ class _GtkProgressBar(gtk.VBox):
     """
     
     def __init__(self, long_op_status):
-        """@param long_op_status: the status of the operation.
-           @type long_op_status: L{gen.utils.LongOpStatus}
+        """:param long_op_status: the status of the operation.
+           :type long_op_status: L{gen.utils.LongOpStatus}
         """
         gtk.VBox.__init__(self)
         
@@ -75,8 +75,8 @@ class GtkProgressDialog(gtk.Dialog):
     process."""
     
     def __init__(self, window_params, title):
-        """@param title: The title to display on the top of the window.
-           @type title: string
+        """:param title: The title to display on the top of the window.
+           :type title: string
         """
         gtk.Dialog.__init__(self, *window_params)
         self.connect('delete_event', self._warn)
@@ -90,11 +90,11 @@ class GtkProgressDialog(gtk.Dialog):
     def add(self, long_op_status):
         """Add a new status object to the progress dialog.
         
-        @param long_op_status: the status object.        
-        @type long_op_status: L{gen.utils.LongOpStatus}
-        @return: a key that can be used as the L{pbar_idx} 
+        :param long_op_status: the status object.        
+        :type long_op_status: L{gen.utils.LongOpStatus}
+        :returns: a key that can be used as the L{pbar_idx} 
                  to the other methods.
-        @rtype: int
+        :rtype: int
         """
         pbar = _GtkProgressBar(long_op_status)
         
@@ -111,8 +111,8 @@ class GtkProgressDialog(gtk.Dialog):
     def remove(self, pbar_idx):
         """Remove the specified status object from the progress dialog.
         
-        @param pbar_idx: the index as returned from L{add}
-        @type pbar_idx: int
+        :param pbar_idx: the index as returned from L{add}
+        :type pbar_idx: int
         """
         pbar = self._progress_bars[pbar_idx]
         self.vbox.remove(pbar)
@@ -122,8 +122,8 @@ class GtkProgressDialog(gtk.Dialog):
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%.
                 
-        @param pbar_idx: the index as returned from L{add}
-        @type pbar_idx: int
+        :param pbar_idx: the index as returned from L{add}
+        :type pbar_idx: int
         """
         if pbar_idx < len(self._progress_bars):
             self._progress_bars[pbar_idx].step()            

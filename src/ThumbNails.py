@@ -72,10 +72,10 @@ def __get_gconf_string(key):
     Attempt to retrieve a value from the GNOME gconf database based of the
     passed key.
 
-    @param key: GCONF key
-    @type key: unicode
-    @returns: Value associated with the GCONF key
-    @rtype: unicode
+    :param key: GCONF key
+    :type key: unicode
+    :returns: Value associated with the GCONF key
+    :rtype: unicode
     """
     try:
         val =  CLIENT.get_string(key)
@@ -93,10 +93,10 @@ def __get_gconf_bool(key):
     Attempt to retrieve a value from the GNOME gconf database based of the
     passed key.
 
-    @param key: GCONF key
-    @type key: unicode
-    @returns: Value associated with the GCONF key
-    @rtype: bool
+    :param key: GCONF key
+    :type key: unicode
+    :returns: Value associated with the GCONF key
+    :rtype: bool
     """
     try:
         val = CLIENT.get_bool(key)
@@ -116,12 +116,12 @@ def __build_thumb_path(path, rectangle=None):
     (which should be unique), adding the '.png' extension, and prepending
     with the GRAMPS thumbnail directory.
 
-    @type path: unicode
-    @param path: filename of the source file
-    @type rectangle: tuple
-    @param rectangle: subsection rectangle
-    @rtype: unicode
-    @returns: full path name to the corresponding thumbnail file.
+    :type path: unicode
+    :param path: filename of the source file
+    :type rectangle: tuple
+    :param rectangle: subsection rectangle
+    :rtype: unicode
+    :returns: full path name to the corresponding thumbnail file.
     """
     extra = ""
     if rectangle is not None:
@@ -141,12 +141,12 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
     utility to create a thumbnail. For images, we simply create a smaller
     image, scaled to thumbnail size.
 
-    @param src_file: filename of the source file
-    @type src_file: unicode
-    @param mtype: mime type of the specified file (optional)
-    @type mtype: unicode
-    @param rectangle: subsection rectangle
-    @type rectangle: tuple
+    :param src_file: filename of the source file
+    :type src_file: unicode
+    :param mtype: mime type of the specified file (optional)
+    :type mtype: unicode
+    :param rectangle: subsection rectangle
+    :type rectangle: tuple
     """
     filename = __build_thumb_path(src_file, rectangle)
 
@@ -198,17 +198,17 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
     only succeed if the GNOME environment is installed, since at this point,
     only the GNOME environment has the ability to generate thumbnails.
 
-    @param mime_type: mime type of the source file
-    @type mime_type: unicode
-    @param src_file: filename of the source file
-    @type src_file: unicode
-    @param dest_file: destination file for the thumbnail image
-    @type dest_file: unicode
-    @param size: option parameters specifying the desired size of the 
+    :param mime_type: mime type of the source file
+    :type mime_type: unicode
+    :param src_file: filename of the source file
+    :type src_file: unicode
+    :param dest_file: destination file for the thumbnail image
+    :type dest_file: unicode
+    :param size: option parameters specifying the desired size of the 
       thumbnail
-    @type size: int
-    @rtype: bool
-    @returns: True if the thumbnail was successfully generated
+    :type size: int
+    :rtype: bool
+    :returns: True if the thumbnail was successfully generated
     """
 
     # only try this if GCONF is present, the thumbnailer has not been 
@@ -249,14 +249,14 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
     The image is not generated everytime, but only if the thumbnail does not
     exist, or if the source file is newer than the thumbnail.
 
-    @param src_file: Source media file
-    @type src_file: unicode
-    @param mime_type: mime type of the source file
-    @type mime_type: unicode
-    @param rectangle: subsection rectangle
-    @type rectangle: tuple
-    @returns: thumbnail representing the source file
-    @rtype: gtk.gdk.Pixbuf
+    :param src_file: Source media file
+    :type src_file: unicode
+    :param mime_type: mime type of the source file
+    :type mime_type: unicode
+    :param rectangle: subsection rectangle
+    :type rectangle: tuple
+    :returns: thumbnail representing the source file
+    :rtype: gtk.gdk.Pixbuf
     """
     try:
         filename = get_thumbnail_path(src_file, mtype, rectangle)
@@ -279,14 +279,14 @@ def get_thumbnail_path(src_file, mtype=None, rectangle=None):
     source file passed to the function. If the thumbnail does not exist, 
     or if it is older than the source file, we create a new thumbnail image.
 
-    @param src_file: Source media file
-    @type src_file: unicode
-    @param mime_type: mime type of the source file
-    @type mime_type: unicode
-    @param rectangle: subsection rectangle
-    @type rectangle: tuple
-    @returns: thumbnail representing the source file
-    @rtype: gtk.gdk.Pixbuf
+    :param src_file: Source media file
+    :type src_file: unicode
+    :param mime_type: mime type of the source file
+    :type mime_type: unicode
+    :param rectangle: subsection rectangle
+    :type rectangle: tuple
+    :returns: thumbnail representing the source file
+    :rtype: gtk.gdk.Pixbuf
     """
     filename = __build_thumb_path(src_file, rectangle)
     if not os.path.isfile(src_file):

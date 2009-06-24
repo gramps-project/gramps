@@ -48,8 +48,8 @@ class AddressBase(object):
         If the source is not None, then object is initialized from values of 
         the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: AddressBase
+        :param source: Object used to initialize the new object
+        :type source: AddressBase
         """
         if source:
             self.address_list = [Address(addr) for addr in source.address_list]
@@ -70,25 +70,25 @@ class AddressBase(object):
 
     def add_address(self, address):
         """
-        Add the L{Address} instance to the object's list of addresses.
+        Add the :class:`~gen.lib.address.Address` instance to the object's list of addresses.
 
-        @param address: L{Address} instance to add to the object's address list
-        @type address: list
+        :param address: :class:`~gen.lib.address.Address` instance to add to the object's address list
+        :type address: list
         """
         self.address_list.append(address)
 
     def remove_address(self, address):
         """
-        Remove the specified L{Address} instance from the address list.
+        Remove the specified :class:`~gen.lib.address.Address` instance from the address list.
         
         If the instance does not exist in the list, the operation has
         no effect.
 
-        @param address: L{Address} instance to remove from the list
-        @type address: L{Address}
+        :param address: :class:`~gen.lib.address.Address` instance to remove from the list
+        :type address: :class:`~gen.lib.address.Address`
 
-        @return: True if the address was removed, False if it was not in the list.
-        @rtype: bool
+        :returns: True if the address was removed, False if it was not in the list.
+        :rtype: bool
         """
         if address in self.address_list:
             self.address_list.remove(address)
@@ -98,19 +98,19 @@ class AddressBase(object):
 
     def get_address_list(self):
         """
-        Return the list of L{Address} instances associated with the object.
+        Return the list of :class:`~gen.lib.address.Address` instances associated with the object.
 
-        @return: Returns the list of L{Address} instances
-        @rtype: list
+        :returns: Returns the list of :class:`~gen.lib.address.Address` instances
+        :rtype: list
         """
         return self.address_list
 
     def set_address_list(self, address_list):
         """
-        Assign the passed list to the object's list of L{Address} instances.
+        Assign the passed list to the object's list of :class:`~gen.lib.address.Address` instances.
         
-        @param address_list: List of L{Address} instances to be associated
+        :param address_list: List of :class:`~gen.lib.address.Address` instances to be associated
             with the object
-        @type address_list: list
+        :type address_list: list
         """
         self.address_list = address_list

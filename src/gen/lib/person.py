@@ -52,14 +52,10 @@ from gen.lib.markertype import MarkerType
 class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
              AddressBase, UrlBase, LdsOrdBase, PrimaryObject):
     """
-    Introduction
-    ============
     The Person record is the GRAMPS in-memory representation of an
     individual person. It contains all the information related to
     an individual.
     
-    Usage
-    =====
     Person objects are usually created in one of two ways.
 
     1. Creating a new person object, which is then initialized and added to 
@@ -123,9 +119,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         lists), the database is responsible for converting the data into
         a form that it can use.
 
-        @returns: Returns a python tuple containing the data that should
+        :returns: Returns a python tuple containing the data that should
             be considered persistent.
-        @rtype: tuple
+        :rtype: tuple
         """
         return (
             self.handle,                                         #  0
@@ -156,9 +152,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in a Person object.
 
-        @param data: tuple containing the persistent data associated the
+        :param data: tuple containing the persistent data associated the
             Person object
-        @type data: tuple
+        :type data: tuple
         """
         (self.handle,             #  0
          self.gramps_id,          #  1
@@ -206,13 +202,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle of 
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle of 
                 this object type.
-        @rtype: bool
+        :rtype: bool
         """
         if classname == 'Event':
             return any(ref.ref == handle for ref in self.event_ref_list)
@@ -299,8 +295,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.gramps_id]
 
@@ -308,8 +304,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         check_list = self.lds_ord_list
         add_list = [item for item in check_list if item]
@@ -323,9 +319,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
@@ -336,9 +332,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
@@ -351,8 +347,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return [('Family', handle) for handle in
                 (self.family_list + self.parent_family_list)] \
@@ -363,36 +359,36 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         #don't count double, notes can be found in sourcref
         return self.get_sourcref_child_list() + self.source_list
 
     def set_primary_name(self, name):
         """
-        Set the primary name of the Person to the specified L{Name} instance.
+        Set the primary name of the Person to the specified :class:`~gen.lib.name.Name` instance.
 
-        @param name: L{Name} to be assigned to the person
-        @type name: L{Name}
+        :param name: :class:`~gen.lib.name.Name` to be assigned to the person
+        :type name: :class:`~gen.lib.name.Name`
         """
         self.primary_name = name
 
     def get_primary_name(self):
         """
-        Return the L{Name} instance marked as the Person's primary name.
+        Return the :class:`~gen.lib.name.Name` instance marked as the Person's primary name.
 
-        @return: Returns the primary name
-        @rtype: L{Name}
+        :returns: Returns the primary name
+        :rtype: :class:`~gen.lib.name.Name`
         """
         return self.primary_name
 
     def get_alternate_names(self):
         """
-        Return the list of alternate L{Name} instances.
+        Return the list of alternate :class:`~gen.lib.name.Name` instances.
 
-        @return: List of L{Name} instances
-        @rtype: list
+        :returns: List of :class:`~gen.lib.name.Name` instances
+        :rtype: list
         """
         return self.alternate_names
 
@@ -400,17 +396,17 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Change the list of alternate names to the passed list.
          
-        @param alt_name_list: List of L{Name} instances
-        @type alt_name_list: list
+        :param alt_name_list: List of :class:`~gen.lib.name.Name` instances
+        :type alt_name_list: list
         """
         self.alternate_names = alt_name_list
 
     def add_alternate_name(self, name):
         """
-        Add a L{Name} instance to the list of alternative names.
+        Add a :class:`~gen.lib.name.Name` instance to the list of alternative names.
 
-        @param name: L{Name} to add to the list
-        @type name: L{Name}
+        :param name: :class:`~gen.lib.name.Name` to add to the list
+        :type name: :class:`~gen.lib.name.Name`
         """
         self.alternate_names.append(name)
 
@@ -425,12 +421,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Set the gender of the Person.
 
-        @param gender: Assigns the Person's gender to one of the
+        :param gender: Assigns the Person's gender to one of the
             following constants::
                 Person.MALE
                 Person.FEMALE
                 Person.UNKNOWN
-        @type gender: int
+        :type gender: int
         """
         self.gender = gender
 
@@ -438,11 +434,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Return the gender of the Person.
 
-        @returns: Returns one of the following constants::
+        :returns: Returns one of the following constants::
             Person.MALE
             Person.FEMALE
             Person.UNKNOWN
-        @rtype: int
+        :rtype: int
         """
         return self.gender
 
@@ -450,12 +446,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Assign the birth event to the Person object. 
         
-        This is accomplished by assigning the L{EventRef} of the birth event 
+        This is accomplished by assigning the :class:`~gen.lib.eventref.EventRef` of the birth event 
         in the current database.
 
-        @param event_ref: the L{EventRef} object associated with
+        :param event_ref: the :class:`~gen.lib.eventref.EventRef` object associated with
             the Person's birth.
-        @type event_ref: EventRef
+        :type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -475,12 +471,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         Assign the death event to the Person object. 
         
-        This is accomplished by assigning the L{EventRef} of the death event 
+        This is accomplished by assigning the :class:`~gen.lib.eventref.EventRef` of the death event 
         in the current database.
 
-        @param event_ref: the L{EventRef} object associated with
+        :param event_ref: the :class:`~gen.lib.eventref.EventRef` object associated with
             the Person's death.
-        @type event_ref: EventRef
+        :type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -498,13 +494,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_birth_ref(self):
         """
-        Return the L{EventRef} for Person's birth event. 
+        Return the :class:`~gen.lib.eventref.EventRef` for Person's birth event. 
         
-        This should correspond to an L{Event} in the database's L{Event} list.
+        This should correspond to an :class:`~gen.lib.event.Event` in the database's :class:`~gen.lib.event.Event` list.
 
-        @returns: Returns the birth L{EventRef} or None if no birth
-            L{Event} has been assigned.
-        @rtype: EventRef
+        :returns: Returns the birth :class:`~gen.lib.eventref.EventRef` or None if no birth
+            :class:`~gen.lib.event.Event` has been assigned.
+        :rtype: EventRef
         """
         
         if 0 <= self.birth_ref_index < len(self.event_ref_list):
@@ -514,13 +510,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_death_ref(self):
         """
-        Return the L{EventRef} for the Person's death event. 
+        Return the :class:`~gen.lib.eventref.EventRef` for the Person's death event. 
         
-        This should correspond to an L{Event} in the database's L{Event} list.
+        This should correspond to an :class:`~gen.lib.event.Event` in the database's :class:`~gen.lib.event.Event` list.
 
-        @returns: Returns the death L{EventRef} or None if no death
-            L{Event} has been assigned.
-        @rtype: event_ref
+        :returns: Returns the death :class:`~gen.lib.eventref.EventRef` or None if no death
+            :class:`~gen.lib.event.Event` has been assigned.
+        :rtype: event_ref
         """
         
         if 0 <= self.death_ref_index < len(self.event_ref_list):
@@ -530,14 +526,14 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_event_ref(self, event_ref):
         """
-        Add the L{EventRef} to the Person instance's L{EventRef} list.
+        Add the :class:`~gen.lib.eventref.EventRef` to the Person instance's :class:`~gen.lib.eventref.EventRef` list.
         
-        This is accomplished by assigning the L{EventRef} of a valid
-        L{Event} in the current database.
+        This is accomplished by assigning the :class:`~gen.lib.eventref.EventRef` of a valid
+        :class:`~gen.lib.event.Event` in the current database.
         
-        @param event_ref: the L{EventRef} to be added to the
-            Person's L{EventRef} list.
-        @type event_ref: EventRef
+        :param event_ref: the :class:`~gen.lib.eventref.EventRef` to be added to the
+            Person's :class:`~gen.lib.eventref.EventRef` list.
+        :type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -548,23 +544,23 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_event_ref_list(self):
         """
-        Return the list of L{EventRef} objects associated with L{Event}
+        Return the list of :class:`~gen.lib.eventref.EventRef` objects associated with :class:`~gen.lib.event.Event`
         instances.
 
-        @returns: Returns the list of L{EventRef} objects associated with
+        :returns: Returns the list of :class:`~gen.lib.eventref.EventRef` objects associated with
             the Person instance.
-        @rtype: list
+        :rtype: list
         """
         return self.event_ref_list
 
     def get_primary_event_ref_list(self):
         """
-        Return the list of L{EventRef} objects associated with L{Event}
+        Return the list of :class:`~gen.lib.eventref.EventRef` objects associated with :class:`~gen.lib.event.Event`
         instances that have been marked as primary events.
 
-        @returns: Returns generator of L{EventRef} objects associated with
+        :returns: Returns generator of :class:`~gen.lib.eventref.EventRef` objects associated with
             the Person instance.
-        @rtype: generator
+        :rtype: generator
         """
         return (ref for ref in self.event_ref_list
                 if ref.get_role() == EventRoleType.PRIMARY
@@ -572,49 +568,49 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_event_ref_list(self, event_ref_list):
         """
-        Set the Person instance's L{EventRef} list to the passed list.
+        Set the Person instance's :class:`~gen.lib.eventref.EventRef` list to the passed list.
 
-        @param event_ref_list: List of valid L{EventRef} objects
-        @type event_ref_list: list
+        :param event_ref_list: List of valid :class:`~gen.lib.eventref.EventRef` objects
+        :type event_ref_list: list
         """
         self.event_ref_list = event_ref_list
 
     def add_family_handle(self, family_handle):
         """
-        Add the L{Family} handle to the Person instance's L{Family} list.
+        Add the :class:`~gen.lib.family.Family` handle to the Person instance's :class:`~gen.lib.family.Family` list.
         
-        This is accomplished by assigning the handle of a valid L{Family}
+        This is accomplished by assigning the handle of a valid :class:`~gen.lib.family.Family`
         in the current database.
 
-        Adding a L{Family} handle to a Person does not automatically update
-        the corresponding L{Family}. The developer is responsible to make
-        sure that when a L{Family} is added to Person, that the Person is
-        assigned to either the father or mother role in the L{Family}.
+        Adding a :class:`~gen.lib.family.Family` handle to a Person does not automatically update
+        the corresponding :class:`~gen.lib.family.Family`. The developer is responsible to make
+        sure that when a :class:`~gen.lib.family.Family` is added to Person, that the Person is
+        assigned to either the father or mother role in the :class:`~gen.lib.family.Family`.
         
-        @param family_handle: handle of the L{Family} to be added to the
-            Person's L{Family} list.
-        @type family_handle: str
+        :param family_handle: handle of the :class:`~gen.lib.family.Family` to be added to the
+            Person's :class:`~gen.lib.family.Family` list.
+        :type family_handle: str
         """
         if family_handle not in self.family_list:
             self.family_list.append(family_handle)
 
     def set_preferred_family_handle(self, family_handle):
         """
-        Set the family_handle specified to be the preferred L{Family}.
+        Set the family_handle specified to be the preferred :class:`~gen.lib.family.Family`.
         
-        The preferred L{Family} is determined by the first L{Family} in the
-        L{Family} list, and is typically used to indicate the preferred
-        L{Family} for navigation or reporting.
+        The preferred :class:`~gen.lib.family.Family` is determined by the first :class:`~gen.lib.family.Family` in the
+        :class:`~gen.lib.family.Family` list, and is typically used to indicate the preferred
+        :class:`~gen.lib.family.Family` for navigation or reporting.
         
         The family_handle must already be in the list, or the function
         call has no effect.
 
-        @param family_handle: Handle of the L{Family} to make the preferred
-            L{Family}.
-        @type family_handle: str
-        @returns: True if the call succeeded, False if the family_handle
-            was not already in the L{Family} list
-        @rtype: bool
+        :param family_handle: Handle of the :class:`~gen.lib.family.Family` to make the preferred
+            :class:`~gen.lib.family.Family`.
+        :type family_handle: str
+        :returns: True if the call succeeded, False if the family_handle
+            was not already in the :class:`~gen.lib.family.Family` list
+        :rtype: bool
         """
         if family_handle in self.family_list:
             self.family_list.remove(family_handle)
@@ -625,12 +621,13 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_family_handle_list(self) :
         """
-        Return the list of L{Family} handles in which the person is a parent 
+        Return the list of :class:`~gen.lib.family.Family` handles in which the person is a parent 
         or spouse.
 
-        @return: Returns the list of handles corresponding to the
-        L{Family} records with which the person is associated.
-        @rtype: list
+        :returns: Returns the list of handles corresponding to the
+              :class:`~gen.lib.family.Family` records with which the person 
+              is associated.
+        :rtype: list
         """
         return self.family_list
 
@@ -639,31 +636,31 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         Assign the passed list to the Person's list of families in which it is 
         a parent or spouse.
 
-        @param family_list: List of L{Family} handles to be associated
+        :param family_list: List of :class:`~gen.lib.family.Family` handles to be associated
             with the Person
-        @type family_list: list 
+        :type family_list: list 
         """
         self.family_list = family_list
 
     def clear_family_handle_list(self):
         """
-        Remove all L{Family} handles from the L{Family} list.
+        Remove all :class:`~gen.lib.family.Family` handles from the :class:`~gen.lib.family.Family` list.
         """
         self.family_list = []
 
     def remove_family_handle(self, family_handle):
         """
-        Remove the specified L{Family} handle from the list of 
+        Remove the specified :class:`~gen.lib.family.Family` handle from the list of 
         marriages/partnerships. 
         
         If the handle does not exist in the list, the operation has no effect.
 
-        @param family_handle: L{Family} handle to remove from the list
-        @type family_handle: str
+        :param family_handle: :class:`~gen.lib.family.Family` handle to remove from the list
+        :type family_handle: str
 
-        @return: True if the handle was removed, False if it was not
+        :returns: True if the handle was removed, False if it was not
             in the list.
-        @rtype: bool
+        :rtype: bool
         """
         if family_handle in self.family_list:
             self.family_list.remove(family_handle)
@@ -673,40 +670,40 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_parent_family_handle_list(self):
         """
-        Return the list of L{Family} handles in which the person is a child.
+        Return the list of :class:`~gen.lib.family.Family` handles in which the person is a child.
 
-        @return: Returns the list of handles corresponding to the
-        L{Family} records with which the person is a child.
-        @rtype: list
+        :returns: Returns the list of handles corresponding to the
+            :class:`~gen.lib.family.Family` records with which the person is a child.
+        :rtype: list
         """
         return self.parent_family_list
 
     def set_parent_family_handle_list(self, family_list):
         """
-        Return the list of L{Family} handles in which the person is a child.
+        Return the list of :class:`~gen.lib.family.Family` handles in which the person is a child.
 
-        @return: Returns the list of handles corresponding to the
-        L{Family} records with which the person is a child.
-        @rtype: list
+        :returns: Returns the list of handles corresponding to the
+            :class:`~gen.lib.family.Family` records with which the person is a child.
+        :rtype: list
         """
         self.parent_family_list = family_list
 
     def add_parent_family_handle(self, family_handle):
         """
-        Add the L{Family} handle to the Person instance's list of families in 
+        Add the :class:`~gen.lib.family.Family` handle to the Person instance's list of families in 
         which it is a child. 
         
-        This is accomplished by assigning the handle of a valid L{Family} in 
+        This is accomplished by assigning the handle of a valid :class:`~gen.lib.family.Family` in 
         the current database.
 
-        Adding a L{Family} handle to a Person does not automatically update
-        the corresponding L{Family}. The developer is responsible to make
-        sure that when a L{Family} is added to Person, that the Person is
-        added to the L{Family} instance's child list.
+        Adding a :class:`~gen.lib.family.Family` handle to a Person does not automatically update
+        the corresponding :class:`~gen.lib.family.Family`. The developer is responsible to make
+        sure that when a :class:`~gen.lib.family.Family` is added to Person, that the Person is
+        added to the :class:`~gen.lib.family.Family` instance's child list.
         
-        @param family_handle: handle of the L{Family} to be added to the
-            Person's L{Family} list.
-        @type family_handle: str
+        :param family_handle: handle of the :class:`~gen.lib.family.Family` to be added to the
+            Person's :class:`~gen.lib.family.Family` list.
+        :type family_handle: str
         """
         if not isinstance(family_handle, basestring):
             raise ValueError("expecting handle")
@@ -715,25 +712,25 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def clear_parent_family_handle_list(self):
         """
-        Remove all L{Family} handles from the parent L{Family} list.
+        Remove all :class:`~gen.lib.family.Family` handles from the parent :class:`~gen.lib.family.Family` list.
         """
         self.parent_family_list = []
 
     def remove_parent_family_handle(self, family_handle):
         """
-        Remove the specified L{Family} handle from the list of parent
+        Remove the specified :class:`~gen.lib.family.Family` handle from the list of parent
         families (families in which the parent is a child). 
         
         If the handle does not exist in the list, the operation has no effect.
 
-        @param family_handle: L{Family} handle to remove from the list
-        @type family_handle: str
+        :param family_handle: :class:`~gen.lib.family.Family` handle to remove from the list
+        :type family_handle: str
 
-        @return: Returns a tuple of three strings, consisting of the
+        :returns: Returns a tuple of three strings, consisting of the
             removed handle, relationship to mother, and relationship
             to father. None is returned if the handle is not in the
             list.
-        @rtype: tuple
+        :rtype: tuple
         """
         if family_handle in self.parent_family_list:
             self.parent_family_list.remove(family_handle)
@@ -743,18 +740,18 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_main_parent_family_handle(self, family_handle):
         """
-        Set the main L{Family} in which the Person is a child. 
+        Set the main :class:`~gen.lib.family.Family` in which the Person is a child. 
         
-        The main L{Family} is the L{Family} typically used for reports and
-        navigation. This is accomplished by moving the L{Family} to the 
+        The main :class:`~gen.lib.family.Family` is the :class:`~gen.lib.family.Family` typically used for reports and
+        navigation. This is accomplished by moving the :class:`~gen.lib.family.Family` to the 
         beginning of the list. The family_handle must be in the list for this 
         to have any effect.
 
-        @param family_handle: handle of the L{Family} to be marked
-            as the main L{Family}
-        @type family_handle: str
-        @return: Returns True if the assignment has successful
-        @rtype: bool
+        :param family_handle: handle of the :class:`~gen.lib.family.Family` to be marked
+            as the main :class:`~gen.lib.family.Family`
+        :type family_handle: str
+        :returns: Returns True if the assignment has successful
+        :rtype: bool
         """
         if family_handle in self.parent_family_list:
             self.parent_family_list.remove(family_handle)
@@ -765,12 +762,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         
     def get_main_parents_family_handle(self):
         """
-        Return the handle of the L{Family} considered to be the main L{Family} 
+        Return the handle of the :class:`~gen.lib.family.Family` considered to be the main :class:`~gen.lib.family.Family` 
         in which the Person is a child.
 
-        @return: Returns the family_handle if a family_handle exists, 
-            If no L{Family} is assigned, None is returned
-        @rtype: str
+        :returns: Returns the family_handle if a family_handle exists, 
+            If no :class:`~gen.lib.family.Family` is assigned, None is returned
+        :rtype: str
         """
         if self.parent_family_list:
             return self.parent_family_list[0]
@@ -779,11 +776,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_person_ref(self, person_ref):
         """
-        Add the L{PersonRef} to the Person instance's L{PersonRef} list.
+        Add the :class:`~gen.lib.personref.PersonRef` to the Person instance's :class:`~gen.lib.personref.PersonRef` list.
         
-        @param person_ref: the L{PersonRef} to be added to the
-            Person's L{PersonRef} list.
-        @type person_ref: PersonRef
+        :param person_ref: the :class:`~gen.lib.personref.PersonRef` to be added to the
+            Person's :class:`~gen.lib.personref.PersonRef` list.
+        :type person_ref: PersonRef
         """
         if person_ref and not isinstance(person_ref, PersonRef):
             raise ValueError("Expecting PersonRef instance")
@@ -791,18 +788,18 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_person_ref_list(self):
         """
-        Return the list of L{PersonRef} objects.
+        Return the list of :class:`~gen.lib.personref.PersonRef` objects.
 
-        @returns: Returns the list of L{PersonRef} objects.
-        @rtype: list
+        :returns: Returns the list of :class:`~gen.lib.personref.PersonRef` objects.
+        :rtype: list
         """
         return self.person_ref_list
 
     def set_person_ref_list(self, person_ref_list):
         """
-        Set the Person instance's L{PersonRef} list to the passed list.
+        Set the Person instance's :class:`~gen.lib.personref.PersonRef` list to the passed list.
 
-        @param person_ref_list: List of valid L{PersonRef} objects
-        @type person_ref_list: list
+        :param person_ref_list: List of valid :class:`~gen.lib.personref.PersonRef` objects
+        :type person_ref_list: list
         """
         self.person_ref_list = person_ref_list

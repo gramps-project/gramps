@@ -65,18 +65,18 @@ class Glade(gtk.Builder):
         """
         Class Constructor: Returns a new instance of the Glade class
         
-        @type  filename: string
-        @param filename: The name of the glade file to be used. Defaults to None
-        @type  dirname: string
-        @param dirname: The directory to search for the glade file. Defaults to 
+        :type  filename: string
+        :param filename: The name of the glade file to be used. Defaults to None
+        :type  dirname: string
+        :param dirname: The directory to search for the glade file. Defaults to 
                     None which will cause a search for the file in the default
                     directory followed by the directory of the calling module.
-        @type  toplevel: toplevel
-        @param toplevel: The toplevel object to search for in the glade file. 
+        :type  toplevel: toplevel
+        :param toplevel: The toplevel object to search for in the glade file. 
                      Defaults to None, which will cause a search for a toplevel
                      matching the file name.
-        @rtype:   object reference
-        @return:  reference to the newly-created Glade instance
+        :rtype:   object reference
+        :returns:  reference to the newly-created Glade instance
         """        
         gtk.Builder.__init__(self)
         
@@ -149,8 +149,8 @@ class Glade(gtk.Builder):
     def __get_filename(self):
         """
         __get_filename: return filename of glade file
-        @rtype:   string        
-        @return:  filename of glade file
+        :rtype:   string        
+        :returns:  filename of glade file
         """
         return self.__filename
         
@@ -159,8 +159,8 @@ class Glade(gtk.Builder):
     def __get_dirname(self):
         """
         __get_dirname: return directory where glade file found
-        @rtype:   string        
-        @return:  directory where glade file found
+        :rtype:   string        
+        :returns:  directory where glade file found
         """
         return self.__dirname
 
@@ -169,8 +169,8 @@ class Glade(gtk.Builder):
     def __get_toplevel(self):
         """
         __get_toplevel: return toplevel object
-        @rtype:   object        
-        @return:  toplevel object
+        :rtype:   object        
+        :returns:  toplevel object
         """
         return self.__toplevel
         
@@ -178,8 +178,8 @@ class Glade(gtk.Builder):
         """
         __set_toplevel: set toplevel object
         
-        @type  toplevel: string
-        @param toplevel: The name of the toplevel object to use
+        :type  toplevel: string
+        :param toplevel: The name of the toplevel object to use
         """
         self.__toplevel = self.get_object(toplevel)
         
@@ -190,12 +190,12 @@ class Glade(gtk.Builder):
         get_child_object: search for a child object, by name, within a given
                           toplevel.  If no toplevel argument is supplied, use
                           the toplevel attribute for this instance
-        @type  value: string
-        @param value: The name of the child object to find
-        @type  toplevel: string
-        @param toplevel: The name of the toplevel object to us
-        @rtype:   object
-        @return:  child object       
+        :type  value: string
+        :param value: The name of the child object to find
+        :type  toplevel: string
+        :param toplevel: The name of the toplevel object to us
+        :rtype:   object
+        :returns:  child object       
         """
         
         if not toplevel:

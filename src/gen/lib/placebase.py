@@ -40,8 +40,8 @@ class PlaceBase(object):
         If the source is not None, then object is initialized from values of 
         the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: PlaceBase
+        :param source: Object used to initialize the new object
+        :type source: PlaceBase
         """
         if source:
             self.place = source.place
@@ -50,18 +50,18 @@ class PlaceBase(object):
 
     def set_place_handle(self, place_handle):
         """
-        Set the database handle for L{Place} associated with the object.
+        Set the database handle for :class:`~gen.lib.place.Place` associated with the object.
 
-        @param place_handle: L{Place} database handle
-        @type place_handle: str
+        :param place_handle: :class:`~gen.lib.place.Place` database handle
+        :type place_handle: str
         """
         self.place = place_handle
 
     def get_place_handle(self):
         """
-        Return the database handle of the L{Place} assocated with the Event.
+        Return the database handle of the :class:`~gen.lib.place.Place` assocated with the Event.
 
-        @returns: L{Place} database handle
-        @rtype: str
+        :returns: :class:`~gen.lib.place.Place` database handle
+        :rtype: str
         """
         return self.place 

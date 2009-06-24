@@ -91,8 +91,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [str(self.frel), str(self.mrel)]
 
@@ -100,8 +100,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return self.source_list
 
@@ -109,9 +109,9 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.source_list
 
@@ -120,8 +120,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         ret = self.get_referenced_note_handles()
         if self.ref:
@@ -133,8 +133,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         Return the list of child objects which may, directly or through their 
         children, reference primary objects..
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.source_list
 

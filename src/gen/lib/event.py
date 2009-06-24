@@ -47,8 +47,6 @@ from gen.lib.markertype import MarkerType
 class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
             DateBase, PlaceBase, PrimaryObject):
     """
-    Introduction
-    ============
     The Event record is used to store information about some type of
     action that occurred at a particular place at a particular time,
     such as a birth, death, or marriage.
@@ -58,8 +56,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Create a new Event instance, copying from the source if present.
 
-        @param source: An event used to initialize the new event
-        @type source: Event
+        :param source: An event used to initialize the new event
+        :type source: Event
         """
 
         PrimaryObject.__init__(self, source)
@@ -91,9 +89,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         lists), the database is responsible for converting the data into
         a form that it can use.
 
-        @returns: Returns a python tuple containing the data that should
+        :returns: Returns a python tuple containing the data that should
             be considered persistent.
-        @rtype: tuple
+        :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.__type.serialize(),
                 DateBase.serialize(self, no_text_date),
@@ -109,9 +107,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
 
-        @param data: tuple containing the persistent data associated the
+        :param data: tuple containing the persistent data associated the
             Person object
-        @type data: tuple
+        :type data: tuple
         """
         (self.handle, self.gramps_id, the_type, date,
          self.__description, self.place, 
@@ -133,13 +131,13 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle of 
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle of 
                 this object type.
-        @rtype: bool
+        :rtype: bool
         """
         if classname == 'Place':
             return self.place == handle
@@ -149,10 +147,10 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Remove all references in this object to object handles in the list.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
         """
         if classname == 'Place' and self.place in handle_list:
             self.place = ""
@@ -161,12 +159,12 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Replace all references to old handle with those to the new handle.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
         if classname == 'Place' and self.place == old_handle:
             self.place = new_handle
@@ -175,8 +173,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.__description, str(self.__type), self.gramps_id]
 
@@ -184,8 +182,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return self.media_list + self.source_list + self.attribute_list
 
@@ -193,9 +191,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return self.media_list + self.attribute_list
 
@@ -203,9 +201,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.media_list + self.attribute_list + self.source_list
 
@@ -214,8 +212,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         ret = self.get_referenced_note_handles()
         if self.place:
@@ -227,8 +225,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.get_sourcref_child_list() + self.source_list
 
@@ -236,8 +234,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return True if the Event is an empty object (no values set).
 
-        @returns: True if the Event is empty
-        @rtype: bool
+        :returns: True if the Event is empty
+        :rtype: bool
         """
         date = self.get_date_object()
         place = self.get_place_handle()
@@ -250,10 +248,10 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return True if the passed Event is equivalent to the current Event.
 
-        @param other: Event to compare against
-        @type other: Event
-        @returns: True if the Events are equal
-        @rtype: bool
+        :param other: Event to compare against
+        :type other: Event
+        :returns: True if the Events are equal
+        :rtype: bool
         """
         if other is None:
             other = Event (None)
@@ -279,8 +277,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Set the type of the Event to the passed (int,str) tuple.
 
-        @param the_type: Type to assign to the Event
-        @type the_type: tuple
+        :param the_type: Type to assign to the Event
+        :type the_type: tuple
         """
         self.__type.set(the_type)
 
@@ -288,8 +286,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the type of the Event.
 
-        @return: Type of the Event
-        @rtype: tuple
+        :returns: Type of the Event
+        :rtype: tuple
         """
         return self.__type
     type = property(get_type, set_type, None, 'Returns or sets type of the event')
@@ -300,8 +298,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         
         The string may contain any information.
 
-        @param description: Description to assign to the Event
-        @type description: str
+        :param description: Description to assign to the Event
+        :type description: str
         """
         self.__description = description
 
@@ -309,8 +307,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         Return the description of the Event.
 
-        @return: Returns the description of the Event
-        @rtype: str
+        :returns: Returns the description of the Event
+        :rtype: str
         """
         return self.__description
     description = property(get_description, set_description, None, 'Returns or sets description of the event')

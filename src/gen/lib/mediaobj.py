@@ -62,8 +62,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         If source is not None, then object is initialized from values of the 
         source object.
 
-        @param source: Object used to initialize the new object
-        @type source: MediaObject
+        :param source: Object used to initialize the new object
+        :type source: MediaObject
         """
         PrimaryObject.__init__(self, source)
         SourceBase.__init__(self, source)
@@ -96,9 +96,9 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         lists), the database is responsible for converting the data into
         a form that it can use.
 
-        @returns: Returns a python tuple containing the data that should
+        :returns: Returns a python tuple containing the data that should
             be considered persistent.
-        @rtype: tuple
+        :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
                 AttributeBase.serialize(self),
@@ -114,8 +114,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
 
-        @param data: tuple containing the persistent data associated the object
-        @type data: tuple
+        :param data: tuple containing the persistent data associated the object
+        :type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          attribute_list, source_list, note_list, self.change,
@@ -132,8 +132,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.path, self.mime, self.desc, self.gramps_id]
 
@@ -141,8 +141,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return self.attribute_list + self.source_list
 
@@ -150,9 +150,9 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return self.attribute_list
 
@@ -160,9 +160,9 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.attribute_list + self.source_list
 
@@ -171,8 +171,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return self.get_referenced_note_handles()
 
@@ -181,8 +181,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.attribute_list + self.source_list
 
@@ -190,8 +190,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Set the MIME type associated with the MediaObject.
 
-        @param mime_type: MIME type to be assigned to the object
-        @type mime_type: str
+        :param mime_type: MIME type to be assigned to the object
+        :type mime_type: str
         """
         self.mime = mime_type
 
@@ -199,8 +199,8 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         """
         Return the MIME type associated with the MediaObject.
 
-        @returns: Returns the associated MIME type
-        @rtype: str
+        :returns: Returns the associated MIME type
+        :rtype: str
         """
         return self.mime
     

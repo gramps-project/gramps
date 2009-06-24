@@ -115,12 +115,12 @@ class NoteType(GrampsType):
         
         Exception is a sublist of types that may not be ignored
         
-        @param exception: list of integer values corresponding with types that
+        :param exception: list of integer values corresponding with types that
             have to be excluded from the ignore list
-        @type exception: list
-        @returns: list of integers corresponding with the types to ignore when 
+        :type exception: list
+        :returns: list of integers corresponding with the types to ignore when 
             showing a list of different NoteType's
-        @rtype: list
+        :rtype: list
         
         """
         ignlist = [x[0] for x in self._DATAMAPIGNORE]

@@ -77,8 +77,8 @@ class Url(SecondaryObject, PrivacyBase):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.path, self.desc]
 
@@ -100,15 +100,15 @@ class Url(SecondaryObject, PrivacyBase):
 
     def set_type(self, the_type):
         """
-        @param the_type: descriptive type of the Url
-        @type the_type: str
+        :param the_type: descriptive type of the Url
+        :type the_type: str
         """
         self.type.set(the_type)
 
     def get_type(self):
         """
-        @returns: the descriptive type of the Url
-        @rtype: str
+        :returns: the descriptive type of the Url
+        :rtype: str
         """
         return self.type
 

@@ -41,8 +41,8 @@ class NoteBase(object):
         """
         Create a new NoteBase, copying from source if not None.
         
-        @param source: Object used to initialize the new object
-        @type source: NoteBase
+        :param source: Object used to initialize the new object
+        :type source: NoteBase
         """
         
         if source:
@@ -64,13 +64,13 @@ class NoteBase(object):
 
     def add_note(self, handle):
         """
-        Add the L{Note} handle to the list of note handles.
+        Add the :class:`~gen.lib.note.Note` handle to the list of note handles.
 
-        @param handle: L{Note} handle to add the list of notes
-        @type handle: str
+        :param handle: :class:`~gen.lib.note.Note` handle to add the list of notes
+        :type handle: str
 
-        @return: True if handle was added, False if it already was in the list
-        @rtype: bool
+        :returns: True if handle was added, False if it already was in the list
+        :rtype: bool
         """
         if handle in self.note_list:
             return False
@@ -83,8 +83,8 @@ class NoteBase(object):
         Remove the specified handle from the list of note handles, and all
         secondary child objects.
 
-        @param handle: L{Note} handle to remove from the list of notes
-        @type handle: str
+        :param handle: :class:`~gen.lib.note.Note` handle to remove from the list of notes
+        :type handle: str
         """
         if handle in self.note_list:
             self.note_list.remove(handle)
@@ -99,27 +99,27 @@ class NoteBase(object):
         with notes, should return here a list of child objects which are 
         NoteBase
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return []
 
     def get_note_list(self):
         """
-        Return the list of L{Note} handles associated with the object.
+        Return the list of :class:`~gen.lib.note.Note` handles associated with the object.
 
-        @return: The list of L{Note} handles
-        @rtype: list
+        :returns: The list of :class:`~gen.lib.note.Note` handles
+        :rtype: list
         """
         return self.note_list
 
     def set_note_list(self, note_list):
         """
-        Assign the passed list to be object's list of L{Note} handles.
+        Assign the passed list to be object's list of :class:`~gen.lib.note.Note` handles.
 
-        @param note_list: List of L{Note} handles to be set on the object
-        @type note_list: list
+        :param note_list: List of :class:`~gen.lib.note.Note` handles to be set on the object
+        :type note_list: list
         """
         self.note_list = note_list
 
@@ -127,10 +127,10 @@ class NoteBase(object):
         """
         Return the list of (classname, handle) tuples for all referenced notes.
         
-        This method should be used to get the L{Note} portion of the list
+        This method should be used to get the :class:`~gen.lib.note.Note` portion of the list
         by objects that store note lists.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return [('Note', handle) for handle in self.note_list]

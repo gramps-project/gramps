@@ -41,8 +41,10 @@ class StyledText(object):
     formatting tags together.
     
     StyledText provides several string methods in order to manipulate
-    formatted strings, such as L{join}, L{replace}, L{split}, and also
-    supports the '+' operation (L{__add__}).
+    formatted strings, such as :meth:`~gen.lib.styledtext.StyledText.join`,
+    :meth:`~gen.lib.styledtext.StyledText.replace`, 
+    :meth:`~gen.lib.styledtext.StyledText.split`, and also
+    supports the '+' operation (:meth:`~gen.lib.styledtext.StyledText.__add__`).
     
     To get the clear text of the StyledText use the built-in str() function.
     To get the list of formatting tags use the L{get_tags} method.
@@ -51,31 +53,29 @@ class StyledText(object):
     is intended to replace (or extend) the current report interface.
     To be continued... FIXME
     
-    @ivar string: The clear text part.
-    @type string: str
-    @ivar tags: Text tags holding formatting information for the string.
-    @type tags: list of L{StyledTextTag}
+    :ivar string: (str) The clear text part.
+    :ivar tags: (list of :class:`~gen.lib.styledtexttag.StyledTextTag`) Text 
+      tags holding formatting information for the string.
 
-    @cvar POS_TEXT: Position of I{string} attribute in the serialized format of
-    an instance.
-    @type POS_TEXT: int
-    @cvar POS_TAGS: Position of I{tags} attribute in the serialized format of
-    an instance.
-    @type POS_TAGS: int
+    :cvar POS_TEXT: Position of *string* attribute in the serialized format of
+      an instance.
+    :cvar POS_TAGS: (int) Position of *tags* attribute in the serialized format of
+      an instance.
 
-    @attention: The POS_<x> class variables reflect the serialized object,
-    they have to be updated in case the data structure or the L{serialize}
-    method changes!
+    :attention: The POS_<x> class variables reflect the serialized object,
+      they have to be updated in case the data structure or the L{serialize}
+      method changes!
     
-    @note:
-    1. There is no sanity check of tags in L{__init__}, because when a
-    StyledText is displayed it is passed to a StyledTextBuffer, which
-    in turn will 'eat' all invalid tags (including out-of-range tags too).
-    
-    2. After string methods the tags can become fragmented. That means the
-    same tag may appear more than once in the tag list with different ranges.
-    There could be a 'merge_tags' functionality in L{__init__}, however
-    StyledTextBuffer will merge them automatically if the text is displayed.
+    :note:
+     1. There is no sanity check of tags in
+        :meth:`~gen.lib.styledtext.StyledText.__init__`, because when a
+        StyledText is displayed it is passed to a StyledTextBuffer, which
+        in turn will 'eat' all invalid tags (including out-of-range tags too).
+     2. After string methods the tags can become fragmented. That means the
+        same tag may appear more than once in the tag list with different ranges.
+        There could be a 'merge_tags' functionality in 
+        :meth:`~gen.lib.styledtext.StyledText.__init__`, however
+        StyledTextBuffer will merge them automatically if the text is displayed.
 
     """
     (POS_TEXT, POS_TAGS) = range(2)
@@ -97,10 +97,10 @@ class StyledText(object):
     def __add__(self, other):
         """Implement '+' operation on the class.
         
-        @param other: string to concatenate to self
-        @type other: basestring or StyledText
-        @returns: concatenated strings
-        @returntype: StyledText
+        :param other: string to concatenate to self
+        :type other: basestring or StyledText
+        :returns: concatenated strings
+        :returnstype: StyledText
         
         """
         offset = len(self._string)
@@ -128,10 +128,10 @@ class StyledText(object):
     def join(self, seq):
         """Emulate __builtin__.str.join method.
         
-        @param seq: list of strings to join
-        @type seq: basestring or StyledText
-        @returns: joined strings
-        @returntype: StyledText
+        :param seq: list of strings to join
+        :type seq: basestring or StyledText
+        :returns: joined strings
+        :returnstype: StyledText
         
         """
         new_string = self._string.join([str(string) for string in seq])
@@ -154,14 +154,14 @@ class StyledText(object):
     def replace(self, old, new, count=-1):
         """Emulate __builtin__.str.replace method.
         
-        @param old: substring to be replaced
-        @type old: basestring or StyledText
-        @param new: substring to replace by
-        @type new: StyledText
-        @param count: if given, only the first count occurrences are replaced
-        @type count: int
-        @returns: copy of the string with replaced substring(s)
-        @returntype: StyledText
+        :param old: substring to be replaced
+        :type old: basestring or StyledText
+        :param new: substring to replace by
+        :type new: StyledText
+        :param count: if given, only the first count occurrences are replaced
+        :type count: int
+        :returns: copy of the string with replaced substring(s)
+        :returnstype: StyledText
         
         @attention: by the correct implementation parameter I{new}
         should be StyledText or basestring, however only StyledText
@@ -173,12 +173,12 @@ class StyledText(object):
     def split(self, sep=None, maxsplit=-1):
         """Emulate __builtin__.str.split method.
         
-        @param sep: the delimiter string
-        @type seq: basestring or StyledText
-        @param maxsplit: if given, at most maxsplit splits are done
-        @type maxsplit: int
-        @returns: a list of the words in the string
-        @returntype: list of StyledText
+        :param sep: the delimiter string
+        :type seq: basestring or StyledText
+        :param maxsplit: if given, at most maxsplit splits are done
+        :type maxsplit: int
+        :returns: a list of the words in the string
+        :returnstype: list of StyledText
         
         """
         # split the clear text first
@@ -218,8 +218,8 @@ class StyledText(object):
     def serialize(self):
         """Convert the object to a serialized tuple of data.
         
-        @returns: Serialized format of the instance.
-        @returntype: tuple
+        :returns: Serialized format of the instance.
+        :returnstype: tuple
         
         """
         if self._tags:
@@ -232,8 +232,8 @@ class StyledText(object):
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         
-        @param data: Serialized format of instance variables.
-        @type data: tuple
+        :param data: Serialized format of instance variables.
+        :type data: tuple
         
         """
         (self._string, the_tags) = data
@@ -248,8 +248,8 @@ class StyledText(object):
     def get_tags(self):
         """Return the list of formatting tags.
         
-        @returns: The formatting tags applied on the text.
-        @returntype: list of 0 or more L{StyledTextTag} instances.
+        :returns: The formatting tags applied on the text.
+        :returnstype: list of 0 or more :class:`~gen.lib.styledtexttag.StyledTextTag` instances.
         
         """
         return self._tags

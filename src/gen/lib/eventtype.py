@@ -40,6 +40,53 @@ from gen.lib.grampstype import GrampsType
 class EventType(GrampsType):
     """
     Event types.
+    
+    .. attribute UNKNOWN:    Unknown
+    .. attribute CUSTOM:    Custom
+    .. attribute ADOPT:     Adopted
+    .. attribute BIRTH:     Birth
+    .. attribute DEATH:     Death
+    .. attribute ADULT_CHRISTEN: Adult Christening
+    .. attribute BAPTISM:      Baptism
+    .. attribute BAR_MITZVAH:  Bar Mitzvah
+    .. attribute BAS_MITZVAH:  Bas Mitzvah
+    .. attribute BLESS:        Blessing
+    .. attribute BURIAL:       Burial
+    .. attribute CAUSE_DEATH:   Cause Of Death
+    .. attribute CENSUS:        Census
+    .. attribute CHRISTEN:      Christening
+    .. attribute CONFIRMATION:   Confirmation
+    .. attribute CREMATION:      Cremation
+    .. attribute DEGREE:         Degree
+    .. attribute EDUCATION:     Education
+    .. attribute ELECTED:       Elected
+    .. attribute EMIGRATION:    Emigration
+    .. attribute FIRST_COMMUN:  First Communion
+    .. attribute IMMIGRATION:   Immigration
+    .. attribute GRADUATION:   Graduation
+    .. attribute MED_INFO:     Medical Information
+    .. attribute MILITARY_SERV:   Military Service
+    .. attribute NATURALIZATION: Naturalization
+    .. attribute NOB_TITLE:     Nobility Title
+    .. attribute NUM_MARRIAGES:   Number of Marriages
+    .. attribute OCCUPATION:      Occupation
+    .. attribute ORDINATION:     Ordination
+    .. attribute PROBATE:        Probate
+    .. attribute PROPERTY:      Property
+    .. attribute RELIGION:      Religion
+    .. attribute RESIDENCE:    Residence
+    .. attribute RETIREMENT:    Retirement
+    .. attribute WILL:           Will
+    .. attribute MARRIAGE:     Marriage
+    .. attribute MARR_SETTL:     Marriage Settlement
+    .. attribute MARR_LIC:       Marriage License
+    .. attribute MARR_CONTR:     Marriage Contract
+    .. attribute MARR_BANNS:     Marriage Banns
+    .. attribute ENGAGEMENT:     Engagement
+    .. attribute DIVORCE:        Divorce
+    .. attribute DIV_FILING:     Divorce Filing"
+    .. attribute ANNULMENT:      Annulment"
+    .. attribute MARR_ALT:        Alternate Marriage
     """
     UNKNOWN        = -1
     CUSTOM         = 0

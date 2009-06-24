@@ -48,8 +48,8 @@ class AttributeBase(object):
         If the source is not None, then object is initialized from values of 
         the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: AttributeBase
+        :param source: Object used to initialize the new object
+        :type source: AttributeBase
         """
         if source:
             self.attribute_list = [ Attribute(attribute) \
@@ -71,27 +71,27 @@ class AttributeBase(object):
 
     def add_attribute(self, attribute):
         """
-        Add the L{Attribute} instance to the object's list of attributes.
+        Add the :class:`~gen.lib.attribute.Attribute` instance to the object's list of attributes.
 
-        @param attribute: L{Attribute} instance to add.
-        @type attribute: L{Attribute}
+        :param attribute: :class:`~gen.lib.attribute.Attribute` instance to add.
+        :type attribute: :class:`~gen.lib.attribute.Attribute`
         """
         assert not isinstance(attribute, unicode)
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):
         """
-        Remove the specified L{Attribute} instance from the attribute list.
+        Remove the specified :class:`~gen.lib.attribute.Attribute` instance from the attribute list.
         
         If the instance does not exist in the list, the operation has
         no effect.
 
-        @param attribute: L{Attribute} instance to remove from the list
-        @type attribute: L{Attribute}
+        :param attribute: :class:`~gen.lib.attribute.Attribute` instance to remove from the list
+        :type attribute: :class:`~gen.lib.attribute.Attribute`
 
-        @return: True if the attribute was removed, False if it was not
+        :returns: True if the attribute was removed, False if it was not
             in the list.
-        @rtype: bool
+        :rtype: bool
         """
         if attribute in self.attribute_list:
             self.attribute_list.remove(attribute)
@@ -101,19 +101,19 @@ class AttributeBase(object):
 
     def get_attribute_list(self):
         """
-        Return the list of L{Attribute} instances associated with the object.
+        Return the list of :class:`~gen.lib.attribute.Attribute` instances associated with the object.
         
-        @returns: Returns the list of L{Attribute} instances.
-        @rtype: list
+        :returns: Returns the list of :class:`~gen.lib.attribute.Attribute` instances.
+        :rtype: list
         """
         return self.attribute_list
 
     def set_attribute_list(self, attribute_list):
         """
-        Assign the passed list to the Person's list of L{Attribute} instances.
+        Assign the passed list to the Person's list of :class:`~gen.lib.attribute.Attribute` instances.
 
-        @param attribute_list: List of L{Attribute} instances to ba associated
+        :param attribute_list: List of :class:`~gen.lib.attribute.Attribute` instances to ba associated
             with the Person
-        @type attribute_list: list
+        :type attribute_list: list
         """
         self.attribute_list = attribute_list

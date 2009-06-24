@@ -42,25 +42,27 @@ from gen.lib.styledtext import StyledText
 class Note(BasicPrimaryObject):
     """Define a text note.
     
-    Starting from GRAMPS 3.1 Note object stores the text in L{StyledText}
+    Starting from GRAMPS 3.1 Note object stores the text in :class:`gen.lib.styledtext.StyledText`
     instance, thus it can have text formatting information.
 
-    To get and set only the clear text of the note use the L{get} and L{set}
-    methods.
+    To get and set only the clear text of the note use the 
+    :meth:`~gen.lib.note.Note.get` and :meth:`~gen.lib.note.Note.set` methods.
     
     To get and set the formatted version of the Note's text use the
-    L{get_styledtext} and L{set_styledtext} methods.
+    :meth:`~gen.lib.note.Note.get_styledtext` and 
+    :meth:`~gen.lib.note.Note.set_styledtext` methods.
     
     The note may be 'preformatted' or 'flowed', which indicates that the
     text string is considered to be in paragraphs, separated by newlines.
     
-    @cvar POS_<x>: Position of <x> attribute in the serialized format of
-    an instance.
-    @type POS_<x>: int
+    :cvar FLOWED: indicates flowed format
+    :cvar FORMATTED: indicates formatted format (respecting whitespace needed)
+    :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
+        an instance.
 
-    @attention: The POS_<x> class variables reflect the serialized object, they
-    have to be updated in case the data structure or the L{serialize} method
-    changes!
+    :attention: The POS_<x> class variables reflect the serialized object, they
+        have to be updated in case the data structure or the 
+        :meth:`~gen.lib.note.Note.serialize` method changes!
     
     """
     (FLOWED, FORMATTED) = range(2)
@@ -84,8 +86,8 @@ class Note(BasicPrimaryObject):
     def serialize(self):
         """Convert the object to a serialized tuple of data.
         
-        @returns: The serialized format of the instance.
-        @rtype: tuple
+        :returns: The serialized format of the instance.
+        :rtype: tuple
         
         """
         return (self.handle, self.gramps_id, self.text.serialize(), self.format,
@@ -95,8 +97,8 @@ class Note(BasicPrimaryObject):
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         
-        @param data: The serialized format of a Note.
-        @type: data: tuple
+        :param data: The serialized format of a Note.
+        :type: data: tuple
         
         """
         (self.handle, self.gramps_id, the_text, self.format,
@@ -112,8 +114,8 @@ class Note(BasicPrimaryObject):
     def get_text_data_list(self):
         """Return the list of all textual attributes of the object.
 
-        @returns: The list of all textual attributes of the object.
-        @rtype: list
+        :returns: The list of all textual attributes of the object.
+        :rtype: list
         
         """
         return [str(self.text)]
@@ -121,8 +123,8 @@ class Note(BasicPrimaryObject):
     def set(self, text):
         """Set the text associated with the note to the passed string.
 
-        @param text: The I{clear} text defining the note contents.
-        @type text: str
+        :param text: The *clear* text defining the note contents.
+        :type text: str
         
         """
         self.text = StyledText(text)
@@ -130,8 +132,8 @@ class Note(BasicPrimaryObject):
     def get(self):
         """Return the text string associated with the note.
 
-        @returns: The I{clear} text of the note contents.
-        @rtype: str
+        :returns: The *clear* text of the note contents.
+        :rtype: str
         
         """
         return str(self.text)
@@ -139,8 +141,8 @@ class Note(BasicPrimaryObject):
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.
 
-        @param text: The I{formatted} text defining the note contents.
-        @type text: L{StyledText}
+        :param text: The *formatted* text defining the note contents.
+        :type text: :class:`gen.lib.styledtext.StyledText`
         
         """
         self.text = text
@@ -148,8 +150,8 @@ class Note(BasicPrimaryObject):
     def get_styledtext(self):
         """Return the text string associated with the note.
 
-        @returns: The I{formatted} text of the note contents.
-        @rtype: L{StyledText}
+        :returns: The *formatted* text of the note contents.
+        :rtype: :class:`gen.lib.styledtext.StyledText`
         
         """
         return self.text
@@ -157,8 +159,8 @@ class Note(BasicPrimaryObject):
     def append(self, text):
         """Append the specified text to the text associated with the note.
 
-        @param text: Text string to be appended to the note.
-        @type text: str or L{StyledText}
+        :param text: Text string to be appended to the note.
+        :type text: str or :class:`gen.lib.styledtext.StyledText`
         
         """
         self.text = self.text + text
@@ -166,8 +168,8 @@ class Note(BasicPrimaryObject):
     def set_format(self, format):
         """Set the format of the note to the passed value. 
         
-        @param: format: The value can either indicate Flowed or Preformatted.
-        @type format: int
+        :param format: The value can either indicate Flowed or Preformatted.
+        :type format: int
         
         """
         self.format = format
@@ -177,8 +179,8 @@ class Note(BasicPrimaryObject):
         
         The value can either indicate Flowed or Preformatted.
 
-        @returns: 0 indicates Flowed, 1 indicates Preformated
-        @rtype: int
+        :returns: 0 indicates Flowed, 1 indicates Preformated
+        :rtype: int
 
         """
         return self.format
@@ -186,8 +188,8 @@ class Note(BasicPrimaryObject):
     def set_type(self, the_type):
         """Set descriptive type of the Note.
         
-        @param the_type: descriptive type of the Note
-        @type the_type: str
+        :param the_type: descriptive type of the Note
+        :type the_type: str
 
         """
         self.type.set(the_type)
@@ -195,8 +197,8 @@ class Note(BasicPrimaryObject):
     def get_type(self):
         """Get descriptive type of the Note.
         
-        @returns: the descriptive type of the Note
-        @rtype: str
+        :returns: the descriptive type of the Note
+        :rtype: str
 
         """
         return self.type

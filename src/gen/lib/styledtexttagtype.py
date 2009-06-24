@@ -44,7 +44,7 @@ from gen.lib.grampstype import GrampsType
 class StyledTextTagType(GrampsType):
     """Text formatting tag type definition.
     
-    Here we only define new class variables. For details see L{GrampsType}.
+    Here we only define new class variables. For details see :class:`~gen.lib.grampstype.GrampsType`.
     
     """
     NONE_TYPE = -1

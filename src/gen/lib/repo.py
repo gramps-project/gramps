@@ -86,8 +86,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.name, str(self.type)]
 
@@ -95,8 +95,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         return self.address_list + self.urls
 
@@ -104,9 +104,9 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         return self.address_list
 
@@ -114,9 +114,9 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.address_list
 
@@ -125,8 +125,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.address_list
 
@@ -135,8 +135,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return self.get_referenced_note_handles()
 
@@ -145,11 +145,11 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Return True if any of the child objects has reference to this source 
         handle.
 
-        @param src_handle: The source handle to be checked.
-        @type src_handle: str
-        @return: Returns whether any of it's child objects has reference to 
+        :param src_handle: The source handle to be checked.
+        :type src_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
                 this source handle.
-        @rtype: bool
+        :rtype: bool
         """
         for item in self.get_sourcref_child_list():
             if item.has_source_reference(src_handle):
@@ -162,8 +162,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Remove references to all source handles in the list in all child 
         objects.
 
-        @param src_handle_list: The list of source handles to be removed.
-        @type src_handle_list: list
+        :param src_handle_list: The list of source handles to be removed.
+        :type src_handle_list: list
         """
         for item in self.get_sourcref_child_list():
             item.remove_source_references(src_handle_list)
@@ -173,38 +173,38 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         Replace references to source handles in the list in this object and 
         all child objects.
 
-        @param old_handle: The source handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The source handle to replace the old one with.
-        @type new_handle: str
+        :param old_handle: The source handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The source handle to replace the old one with.
+        :type new_handle: str
         """
         for item in self.get_sourcref_child_list():
             item.replace_source_references(old_handle, new_handle)
 
     def set_type(self, the_type):
         """
-        @param the_type: descriptive type of the Repository
-        @type the_type: str
+        :param the_type: descriptive type of the Repository
+        :type the_type: str
         """
         self.type.set(the_type)
 
     def get_type(self):
         """
-        @returns: the descriptive type of the Repository
-        @rtype: str
+        :returns: the descriptive type of the Repository
+        :rtype: str
         """
         return self.type
 
     def set_name(self, name):
         """
-        @param name: descriptive name of the Repository
-        @type name: str
+        :param name: descriptive name of the Repository
+        :type name: str
         """
         self.name = name
 
     def get_name(self):
         """
-        @returns: the descriptive name of the Repository
-        @rtype: str
+        :returns: the descriptive name of the Repository
+        :rtype: str
         """
         return self.name

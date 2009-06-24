@@ -35,12 +35,12 @@ def sgettext(msgid, sep='|'):
     the returned value is the portion of msgid following the last
     separator. Default separator is '|'.
 
-    @param msgid: The string to translated.
-    @type msgid: unicode
-    @param sep: The separator marking the context.
-    @type sep: unicode
-    @return: Translation or the original with context stripped.
-    @rtype: unicode
+    :param msgid: The string to translated.
+    :type msgid: unicode
+    :param sep: The separator marking the context.
+    :type sep: unicode
+    :returns: Translation or the original with context stripped.
+    :rtype: unicode
 
     """
     msgval = gettext(msgid)
@@ -58,17 +58,17 @@ def sngettext(singular, plural, n, sep='|'):
     the returned value is the portion of singular following the last
     separator. Default separator is '|'.
 
-    @param singular: The singular form of the string to be translated.
+    :param singular: The singular form of the string to be translated.
                       may contain a context seperator
-    @type singular: unicode
-    @param plural: The plural form of the string to be translated.
-    @type plural: unicode
-    @param n: the amount for which to decide the translation
-    @type n: int
-    @param sep: The separator marking the context.
-    @type sep: unicode
-    @return: Translation or the original with context stripped.
-    @rtype: unicode
+    :type singular: unicode
+    :param plural: The plural form of the string to be translated.
+    :type plural: unicode
+    :param n: the amount for which to decide the translation
+    :type n: int
+    :param sep: The separator marking the context.
+    :type sep: unicode
+    :returns: Translation or the original with context stripped.
+    :rtype: unicode
 
     """
     msgval = ngettext(singular, plural,n)

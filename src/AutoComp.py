@@ -111,14 +111,14 @@ class StandardCustomSelector(object):
         """
         Constructor for the StandardCustomSelector class.
 
-        @param cbe: Existing ComboBoxEntry widget to use.
-        @type cbe: gtk.ComboBoxEntry
-        @param mapping: The mapping between integer and string constants.
-        @type mapping:  dict
-        @param custom_key: The key corresponding to the custom string entry
-        @type custom_key:  int
-        @param active_key: The key for the entry to make active upon creation
-        @type active_key:  int
+        :param cbe: Existing ComboBoxEntry widget to use.
+        :type cbe: gtk.ComboBoxEntry
+        :param mapping: The mapping between integer and string constants.
+        :type mapping:  dict
+        :param custom_key: The key corresponding to the custom string entry
+        :type custom_key:  int
+        :param active_key: The key for the entry to make active upon creation
+        :type active_key:  int
         """
 
         # set variables
@@ -190,8 +190,8 @@ class StandardCustomSelector(object):
         """
         Get selected values.
 
-        @return: Returns (int,str) tuple corresponding to the selection.
-        @rtype: tuple
+        :returns: Returns (int,str) tuple corresponding to the selection.
+        :rtype: tuple
         """
         active_iter = self.selector.get_active_iter()
         if active_iter:
@@ -215,8 +215,8 @@ class StandardCustomSelector(object):
         """
         Set values according to given tuple.
 
-        @param val: (int,str) tuple with the values to set.
-        @type val: tuple
+        :param val: (int,str) tuple with the values to set.
+        :type val: tuple
         """
         key, text = val
         if key in self.mapping and key != self.custom_key:

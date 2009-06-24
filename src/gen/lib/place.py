@@ -55,8 +55,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Create a new Place object, copying from the source if present.
 
-        @param source: A Place object used to initialize the new Place
-        @type source: Place
+        :param source: A Place object used to initialize the new Place
+        :type source: Place
         """
         PrimaryObject.__init__(self, source)
         SourceBase.__init__(self, source)
@@ -90,9 +90,9 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         lists), the database is responsible for converting the data into
         a form that it can use.
 
-        @returns: Returns a python tuple containing the data that should
+        :returns: Returns a python tuple containing the data that should
             be considered persistent.
-        @rtype: tuple
+        :rtype: tuple
         """
 
         if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
@@ -113,9 +113,9 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Convert the data held in a tuple created by the serialize method
         back into the data in a Place object.
 
-        @param data: tuple containing the persistent data associated the
+        :param data: tuple containing the persistent data associated the
             Person object
-        @type data: tuple
+        :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
@@ -137,8 +137,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.long, self.lat, self.title, self.gramps_id]
 
@@ -146,8 +146,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
 
         ret = self.media_list + self.source_list + self.alt_loc + self.urls
@@ -159,8 +159,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: List of child secondary child objects that may refer sources.
-        @rtype: list
+        :returns: List of child secondary child objects that may refer sources.
+        :rtype: list
         """
         return self.media_list
 
@@ -168,9 +168,9 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         return self.media_list + self.source_list
 
@@ -179,8 +179,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.media_list + self.source_list
 
@@ -189,8 +189,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         return self.get_referenced_note_handles()
 
@@ -198,8 +198,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Set the descriptive title of the Place object.
 
-        @param title: descriptive title to assign to the Place
-        @type title: str
+        :param title: descriptive title to assign to the Place
+        :type title: str
         """
         self.title = title
 
@@ -207,8 +207,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the descriptive title of the Place object.
 
-        @returns: Returns the descriptive title of the Place
-        @rtype: str
+        :returns: Returns the descriptive title of the Place
+        :rtype: str
         """
         return self.title
 
@@ -216,8 +216,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Set the longitude of the Place object.
 
-        @param longitude: longitude to assign to the Place
-        @type longitude: str
+        :param longitude: longitude to assign to the Place
+        :type longitude: str
         """
         self.long = longitude
 
@@ -225,8 +225,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the longitude of the Place object.
 
-        @returns: Returns the longitude of the Place
-        @rtype: str
+        :returns: Returns the longitude of the Place
+        :rtype: str
         """
         return self.long
 
@@ -234,8 +234,8 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Set the latitude of the Place object.
 
-        @param latitude: latitude to assign to the Place
-        @type latitude: str
+        :param latitude: latitude to assign to the Place
+        :type latitude: str
         """
         self.lat = latitude
 
@@ -243,21 +243,21 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Return the latitude of the Place object.
 
-        @returns: Returns the latitude of the Place
-        @rtype: str
+        :returns: Returns the latitude of the Place
+        :rtype: str
         """
         return self.lat
 
     def get_main_location(self):
         """
-        Return the L{Location} object representing the primary information for 
+        Return the :class:`~gen.lib.location.Location` object representing the primary information for 
         the Place instance. 
         
-        If a L{Location} hasn't been assigned yet, an empty one is created.
+        If a :class:`~gen.lib.location.Location` hasn't been assigned yet, an empty one is created.
 
-        @returns: Returns the L{Location} instance representing the primary 
+        :returns: Returns the :class:`~gen.lib.location.Location` instance representing the primary 
                 location information about the Place.
-        @rtype: L{Location}
+        :rtype: :class:`~gen.lib.location.Location`
         """
         if not self.main_loc:
             self.main_loc = Location()
@@ -265,44 +265,44 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_main_location(self, location):
         """
-        Assign the main location information about the Place to the L{Location}
+        Assign the main location information about the Place to the :class:`~gen.lib.location.Location`
         object passed.
 
-        @param location: L{Location} instance to assign to as the main 
+        :param location: :class:`~gen.lib.location.Location` instance to assign to as the main 
                 information for the Place.
-        @type location: L{Location}
+        :type location: :class:`~gen.lib.location.Location`
         """
         self.main_loc = location
 
     def get_alternate_locations(self):
         """
-        Return a list of alternate L{Location} objects the present alternate 
+        Return a list of alternate :class:`~gen.lib.location.Location` objects the present alternate 
         information about the current Place. 
         
-        A Place can have more than one L{Location}, since names and 
+        A Place can have more than one :class:`~gen.lib.location.Location`, since names and 
         jurisdictions can change over time for the same place.
 
-        @returns: Returns the alternate L{Location}s for the Place
-        @rtype: list of L{Location} objects
+        :returns: Returns the alternate :class:`~gen.lib.location.Location`\ s for the Place
+        :rtype: list of :class:`~gen.lib.location.Location` objects
         """
         return self.alt_loc
 
     def set_alternate_locations(self, location_list):
         """
-        Replace the current alternate L{Location} object list with the new one.
+        Replace the current alternate :class:`~gen.lib.location.Location` object list with the new one.
 
-        @param location_list: The list of L{Location} objects to assign to the 
+        :param location_list: The list of :class:`~gen.lib.location.Location` objects to assign to the 
                 Place's internal list.
-        @type location_list: list of L{Location} objects
+        :type location_list: list of :class:`~gen.lib.location.Location` objects
         """
         self.alt_loc = location_list
 
     def add_alternate_locations(self, location):
         """
-        Add a L{Location} object to the alternate location list.
+        Add a :class:`~gen.lib.location.Location` object to the alternate location list.
 
-        @param location: L{Location} instance to add
-        @type location: L{Location}
+        :param location: :class:`~gen.lib.location.Location` instance to add
+        :type location: :class:`~gen.lib.location.Location`
         """
         if location not in self.alt_loc:
             self.alt_loc.append(location)

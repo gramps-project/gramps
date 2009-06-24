@@ -75,8 +75,8 @@ class LocationBase(object):
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.city, self.state, self.country, self.postal, self.phone]
 

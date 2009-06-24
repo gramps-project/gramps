@@ -282,10 +282,10 @@ def get_unicode_path(path):
     """
     Return the Unicode version of a path string.
 
-    @type  path: str
-    @param path: The path to be converted to Unicode
-    @rtype:      unicode
-    @return:     The Unicode version of path.
+    :type  path: str
+    :param path: The path to be converted to Unicode
+    :rtype:      unicode
+    :returns:     The Unicode version of path.
     """
     if os.sys.platform == "win32":
         return unicode(path)
@@ -380,9 +380,9 @@ def probably_alive(person, db, current_date=None, limit=0):
     reason to believe that someone is dead then we assume they must
     be alive.
 
-    current_date - a date object that is not estimated or modified
+    :param current_date: a date object that is not estimated or modified
                    (defaults to today)
-    limit        - number of years to check beyond death_date
+    :param limit:  number of years to check beyond death_date
     """
     if current_date is None:
         current_date = gen.lib.Date()

@@ -55,14 +55,10 @@ from gen.lib.markertype import MarkerType
 class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
              PrimaryObject):
     """
-    Introduction
-    ============
     The Family record is the GRAMPS in-memory representation of the
     relationships between people. It contains all the information
     related to the relationship.
     
-    Usage
-    =====
     Family objects are usually created in one of two ways.
 
     1. Creating a new Family object, which is then initialized and
@@ -109,9 +105,9 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         lists), the database is responsible for converting the data into
         a form that it can use.
 
-        @returns: Returns a python tuple containing the data that should
+        :returns: Returns a python tuple containing the data that should
             be considered persistent.
-        @rtype: tuple
+        :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.father_handle,
                 self.mother_handle,
@@ -154,13 +150,13 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle of 
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle of 
                 this object type.
-        @rtype: bool
+        :rtype: bool
         """
         if classname == 'Event':
             return handle in [ref.ref for ref in self.event_ref_list]
@@ -175,10 +171,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Remove all references in this object to object handles in the list.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
         """
         if classname == 'Event':
             new_list = [ ref for ref in self.event_ref_list \
@@ -201,12 +197,12 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Replace all references to old handle with those to the new handle.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
         if classname == 'Event':
             handle_list = [ref.ref for ref in self.event_ref_list]
@@ -233,8 +229,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of all textual attributes of the object.
 
-        @return: Returns the list of all textual attributes of the object.
-        @rtype: list
+        :returns: Returns the list of all textual attributes of the object.
+        :rtype: list
         """
         return [self.gramps_id]
 
@@ -242,8 +238,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of child objects that may carry textual data.
 
-        @return: Returns the list of child objects that may carry textual data.
-        @rtype: list
+        :returns: Returns the list of child objects that may carry textual data.
+        :rtype: list
         """
         add_list = [item for item in self.lds_ord_list if item]
         return self.media_list + self.attribute_list + \
@@ -253,9 +249,9 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer sources.
-        @rtype: list
+        :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
             self.lds_ord_list + self.child_ref_list + \
@@ -266,9 +262,9 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may 
+        :returns: Returns the list of child secondary child objects that may 
                 refer notes.
-        @rtype: list
+        :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
             self.lds_ord_list + self.child_ref_list + self.source_list + \
@@ -280,8 +276,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname, handle) tuples for referenced objects.
-        @rtype: list
+        :returns: List of (classname, handle) tuples for referenced objects.
+        :rtype: list
         """
         ret = self.get_referenced_note_handles()
         ret += [('Person', handle) for handle
@@ -295,8 +291,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of child objects which may, directly or through their 
         children, reference primary objects..
         
-        @return: Returns the list of objects refereincing primary objects.
-        @rtype: list
+        :returns: Returns the list of objects refereincing primary objects.
+        :rtype: list
         """
         return self.get_sourcref_child_list() + self.source_list 
 
@@ -322,9 +318,9 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 between the two individuals does not match any of the
                 other types.
 
-        @param relationship_type: (int,str) tuple of the relationship type
+        :param relationship_type: (int,str) tuple of the relationship type
             between the father and mother of the relationship.
-        @type relationship_type: tuple
+        :type relationship_type: tuple
         """
         self.type.set(relationship_type)
 
@@ -337,56 +333,56 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     
     def set_father_handle(self, person_handle):
         """
-        Set the database handle for L{Person} that corresponds to male of the 
+        Set the database handle for :class:`~gen.lib.person.Person` that corresponds to male of the 
         relationship. 
         
         For a same sex relationship, this can represent either of people 
         involved in the relationship.
 
-        @param person_handle: L{Person} database handle
-        @type person_handle: str
+        :param person_handle: :class:`~gen.lib.person.Person` database handle
+        :type person_handle: str
         """
         self.father_handle = person_handle
 
     def get_father_handle(self):
         """
-        Return the database handle of the L{Person} identified as the father 
+        Return the database handle of the :class:`~gen.lib.person.Person` identified as the father 
         of the Family.
 
-        @returns: L{Person} database handle
-        @rtype: str
+        :returns: :class:`~gen.lib.person.Person` database handle
+        :rtype: str
         """
         return self.father_handle
 
     def set_mother_handle(self, person_handle):
         """
-        Set the database handle for L{Person} that corresponds to male of the 
+        Set the database handle for :class:`~gen.lib.person.Person` that corresponds to male of the 
         relationship. 
         
         For a same sex relationship, this can represent either of people 
         involved in the relationship.
 
-        @param person_handle: L{Person} database handle
-        @type person_handle: str
+        :param person_handle: :class:`~gen.lib.person.Person` database handle
+        :type person_handle: str
         """
         self.mother_handle = person_handle
 
     def get_mother_handle(self):
         """
-        Return the database handle of the L{Person} identified as the mother 
+        Return the database handle of the :class:`~gen.lib.person.Person` identified as the mother 
         of the Family.
 
-        @returns: L{Person} database handle
-        @rtype: str
+        :returns: :class:`~gen.lib.person.Person` database handle
+        :rtype: str
         """
         return self.mother_handle
 
     def add_child_ref(self, child_ref):
         """
-        Add the database handle for L{Person} to the Family's list of children.
+        Add the database handle for :class:`~gen.lib.person.Person` to the Family's list of children.
 
-        @param child_ref: Child Reference instance
-        @type  child_ref: ChildRef
+        :param child_ref: Child Reference instance
+        :type  child_ref: ChildRef
         """
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
@@ -394,14 +390,14 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             
     def remove_child_ref(self, child_ref):
         """
-        Remove the database handle for L{Person} to the Family's list of 
-        children if the L{Person} is already in the list.
+        Remove the database handle for :class:`~gen.lib.person.Person` to the Family's list of 
+        children if the :class:`~gen.lib.person.Person` is already in the list.
 
-        @param child_ref: Child Reference instance
-        @type child_ref: ChildRef
-        @return: True if the handle was removed, False if it was not
+        :param child_ref: Child Reference instance
+        :type child_ref: ChildRef
+        :returns: True if the handle was removed, False if it was not
             in the list.
-        @rtype: bool
+        :rtype: bool
         """
         if not isinstance(child_ref, ChildRef):
             raise ValueError("expecting ChildRef instance")
@@ -411,14 +407,14 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def remove_child_handle(self, child_handle):
         """
-        Remove the database handle for L{Person} to the Family's list of 
-        children if the L{Person} is already in the list.
+        Remove the database handle for :class:`~gen.lib.person.Person` to the Family's list of 
+        children if the :class:`~gen.lib.person.Person` is already in the list.
 
-        @param child_handle: L{Person} database handle
-        @type  child_handle: str
-        @return: True if the handle was removed, False if it was not
+        :param child_handle: :class:`~gen.lib.person.Person` database handle
+        :type  child_handle: str
+        :returns: True if the handle was removed, False if it was not
             in the list.
-        @rtype: bool
+        :rtype: bool
         """
         new_list = [ref for ref in self.child_ref_list
                     if ref.ref != child_handle ]
@@ -426,12 +422,12 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_child_ref_list(self):
         """
-        Return the list of L{ChildRef} handles identifying the children of the 
+        Return the list of :class:`~gen.lib.childref.ChildRef` handles identifying the children of the 
         Family.
 
-        @return: Returns the list of L{ChildRef} handles assocated with
+        :returns: Returns the list of :class:`~gen.lib.childref.ChildRef` handles assocated with
             the Family.
-        @rtype: list
+        :rtype: list
         """
         return self.child_ref_list
 
@@ -439,22 +435,22 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         """
         Assign the passed list to the Family's list children.
 
-        @param child_ref_list: List of Child Reference instances to be
+        :param child_ref_list: List of Child Reference instances to be
                                associated as the Family's list of children.
-        @type child_ref_list: list of L{ChildRef} instances
+        :type child_ref_list: list of :class:`~gen.lib.childref.ChildRef` instances
         """
         self.child_ref_list = child_ref_list
 
     def add_event_ref(self, event_ref):
         """
-        Add the L{EventRef} to the Family instance's L{EventRef} list.
+        Add the :class:`~gen.lib.eventref.EventRef` to the Family instance's :class:`~gen.lib.eventref.EventRef` list.
         
-        This is accomplished by assigning the L{EventRef} for the valid
-        L{Event}in the current database.
+        This is accomplished by assigning the :class:`~gen.lib.eventref.EventRef` for the valid
+        :class:`~gen.lib.event.Event` in the current database.
         
-        @param event_ref: the L{EventRef} to be added to the
-            Person's L{EventRef} list.
-        @type event_ref: EventRef
+        :param event_ref: the :class:`~gen.lib.eventref.EventRef` to be added to the
+            Person's :class:`~gen.lib.eventref.EventRef` list.
+        :type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
@@ -472,20 +468,20 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_event_ref_list(self) :
         """
-        Return the list of L{EventRef} objects associated with L{Event}
+        Return the list of :class:`~gen.lib.eventref.EventRef` objects associated with :class:`~gen.lib.event.Event`
         instances.
 
-        @returns: Returns the list of L{EventRef} objects associated with
+        :returns: Returns the list of :class:`~gen.lib.eventref.EventRef` objects associated with
             the Family instance.
-        @rtype: list
+        :rtype: list
         """
         return self.event_ref_list
 
     def set_event_ref_list(self, event_ref_list) :
         """
-        Set the Family instance's L{EventRef} list to the passed list.
+        Set the Family instance's :class:`~gen.lib.eventref.EventRef` list to the passed list.
 
-        @param event_ref_list: List of valid L{EventRef} objects
-        @type event_ref_list: list
+        :param event_ref_list: List of valid :class:`~gen.lib.eventref.EventRef` objects
+        :type event_ref_list: list
         """
         self.event_ref_list = event_ref_list

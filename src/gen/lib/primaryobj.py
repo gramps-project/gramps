@@ -79,8 +79,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         strings. If source is not None, then object is initialized from values 
         of the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: PrimaryObject
+        :param source: Object used to initialize the new object
+        :type source: PrimaryObject
         """
         PrivacyBase.__init__(self, source)
         if source:
@@ -100,9 +100,9 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         
         The value in the format returned by the time.time() command.
            
-        @returns: Time that the data was last changed. The value in the format 
+        :returns: Time that the data was last changed. The value in the format 
                 returned by the time.time() command.
-        @rtype: int
+        :rtype: int
         """
         return self.change
 
@@ -110,8 +110,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Return the string representation of the last change time.
 
-        @returns: string representation of the last change time.
-        @rtype: str
+        :returns: string representation of the last change time.
+        :rtype: str
         
         """
         if self.change:
@@ -124,8 +124,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Set the database handle for the primary object.
 
-        @param handle: object database handle
-        @type handle: str
+        :param handle: object database handle
+        :type handle: str
         """
         self.handle = handle
 
@@ -133,8 +133,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Return the database handle for the primary object.
 
-        @returns: database handle associated with the object
-        @rtype: str
+        :returns: database handle associated with the object
+        :rtype: str
         """
         return self.handle
 
@@ -142,8 +142,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Set the GRAMPS ID for the primary object.
         
-        @param gramps_id: GRAMPS ID
-        @type gramps_id: str
+        :param gramps_id: GRAMPS ID
+        :type gramps_id: str
         """
         self.gramps_id = gramps_id
 
@@ -151,8 +151,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Return the GRAMPS ID for the primary object.
 
-        @returns: GRAMPS ID associated with the object
-        @rtype: str
+        :returns: GRAMPS ID associated with the object
+        :rtype: str
         """
         return self.gramps_id
 
@@ -161,13 +161,16 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle of 
-                this object type.
-        @rtype: bool
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+
+        :returns: 
+          Returns whether the object has reference to this handle of 
+          this object type.
+
+        :rtype: bool
         """
         return False
 
@@ -175,10 +178,10 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Remove all references in this object to object handles in the list.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
         """
         pass
 
@@ -186,12 +189,12 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Replace all references to old handle with those to the new handle.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
         pass
 
@@ -199,8 +202,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         """
         Set the marker for the object.
 
-        @param marker: marker assigned to the object
-        @type marker: MarkerType
+        :param marker: marker assigned to the object
+        :type marker: MarkerType
         """
         self.marker.set(marker)
     
@@ -210,8 +213,8 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
         
         The exact type depends on the derived class type.
 
-        @return: Returns the marker for the object.
-        @rtype: MarkerType
+        :returns: Returns the marker for the object.
+        :rtype: MarkerType
         """
         return self.marker
 
@@ -281,8 +284,8 @@ class PrimaryObject(BasicPrimaryObject):
         strings. If source is not None, then object is initialized from values 
         of the source object.
 
-        @param source: Object used to initialize the new object
-        @type source: PrimaryObject
+        :param source: Object used to initialize the new object
+        :type source: PrimaryObject
         """
         BasicPrimaryObject.__init__(self, source)
 
@@ -291,13 +294,13 @@ class PrimaryObject(BasicPrimaryObject):
         Return True if the object has reference to a given handle of given 
         primary object type.
         
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object has reference to this handle 
-        of this object type.
-        @rtype: bool
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle 
+          of this object type.
+        :rtype: bool
         """
         if classname == 'Source' and isinstance(self, SourceBase):
             return self.has_source_reference(handle)
@@ -310,10 +313,10 @@ class PrimaryObject(BasicPrimaryObject):
         """
         Remove all references in this object to object handles in the list.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle_list: The list of handles to be removed.
+        :type handle_list: str
         """
         if classname == 'Source' and isinstance(self, SourceBase):
             self.remove_source_references(handle_list)
@@ -326,12 +329,12 @@ class PrimaryObject(BasicPrimaryObject):
         """
         Replace all references to old handle with those to the new handle.
 
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
         if classname == 'Source' and isinstance(self, SourceBase):
             self.replace_source_references(old_handle, new_handle)

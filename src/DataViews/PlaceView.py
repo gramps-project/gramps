@@ -178,6 +178,10 @@ class PlaceView(PageView.ListView):
                 self.mapslistlabel.append(lbl)
                 widget.set_label_widget(self.mapslistlabel[-1])
                 widget.set_stock_id(gtk.STOCK_JUMP_TO)
+        if self.drag_info():
+                self.list.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
+                  [('text/plain', 0, 0), self.drag_info().target()],
+                  gtk.gdk.ACTION_COPY)
 
     def __create_maps_menu_actions(self):
         """
