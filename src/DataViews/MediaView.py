@@ -46,7 +46,8 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gui.utils import open_file_with_default_applicationimport PageView
+from gui.utils import open_file_with_default_application
+import PageView
 import DisplayModels
 import ThumbNails
 import const
