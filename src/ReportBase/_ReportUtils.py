@@ -1664,7 +1664,7 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
 
 
 _t = time.localtime(time.time())
-_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % (_t[0], _t[1], _t[2]))
+_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % _t[:3])
 
 def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     """

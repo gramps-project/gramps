@@ -223,7 +223,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.context.translate(3,3)
         self.context.new_path()
         self.context.append_path( path)
-        self.context.set_source_rgba( self.bordercolor[0], self.bordercolor[1], self.bordercolor[2],0.4)
+        self.context.set_source_rgba(*(self.bordercolor[:3] + (0.4,)))
         self.context.fill_preserve()
         self.context.set_line_width(0)
         self.context.stroke()
@@ -235,7 +235,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
 
         # background
         self.context.append_path( path)
-        self.context.set_source_rgb( self.bgcolor[0], self.bgcolor[1], self.bgcolor[2])
+        self.context.set_source_rgb(*self.bgcolor[:3])
         self.context.fill_preserve()
         self.context.stroke()
 
@@ -262,7 +262,7 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         else:
             self.context.set_line_width(2)
         self.context.append_path( path)
-        self.context.set_source_rgb( self.bordercolor[0], self.bordercolor[1], self.bordercolor[2])
+        self.context.set_source_rgb(*self.bordercolor[:3])
         self.context.stroke()
 
 

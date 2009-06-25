@@ -900,7 +900,7 @@ class Date(object):
             (year,month,day) in the Gregorian calendar.
             """
             new_date = Date()
-            new_date.set_yr_mon_day(dateval[0], dateval[1], dateval[2])
+            new_date.set_yr_mon_day(*dateval[:3])
             return new_date.offset(offset)
         
         datecopy = Date(self)

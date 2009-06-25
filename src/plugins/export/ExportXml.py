@@ -208,8 +208,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
                      % libgrampsxml.GRAMPS_XML_VERSION)
         self.g.write("  <header>\n")
-        self.g.write('    <created date="%04d-%02d-%02d\"' %
-                     (date[0],date[1],date[2]) )
+        self.g.write('    <created date="%04d-%02d-%02d\"' % date[:3])
         self.g.write(" version=\"" + self.version + "\"")
         self.g.write("/>\n")
         self.g.write("    <researcher>\n")
