@@ -91,11 +91,12 @@ class ShowResults(ManagedWindow.ManagedWindow):
 
         self.get_widget('close').connect('clicked', self.close)
 
-        new_list = [self.sort_val_from_handle(h) for h in handle_list]
-        new_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
-        handle_list = [ h[1] for h in new_list ]
+        new_list = sorted(
+                        (self.sort_val_from_handle(h) for h in handle_list),
+                        key=lambda x: locale.strxfrm(x[0])
+                        )
 
-        for handle in handle_list:
+        for s_, handle in new_list:
             name, gid = self.get_name_id(handle)
             model.append(row=[name, gid])
 

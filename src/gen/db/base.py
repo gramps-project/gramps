@@ -1911,7 +1911,7 @@ class GrampsDbBase(Callback):
         raise NotImplementedError
 
     def sort_surname_list(self):
-        self.surname_list.sort(locale.strcoll)
+        self.surname_list.sort(key=locale.strxfrm)
 
     def add_to_surname_list(self, person, batch_transaction):
         if batch_transaction:

@@ -77,8 +77,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         # Need to display localized event names
         etype = EventType()
-        event_names = etype.get_standard_names()
-        event_names.sort(locale.strcoll)
+        event_names = sorted(etype.get_standard_names(), key=locale.strxfrm)
         
         AutoComp.fill_combo(self.auto1,event_names)
         AutoComp.fill_combo(self.auto2,event_names)
