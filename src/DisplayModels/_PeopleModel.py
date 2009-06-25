@@ -102,9 +102,9 @@ class NodeTreeMap(object):
 
     def assign_sort_name(self, handle, sorted_name, group_name):
         self.sortnames[handle] = sorted_name
-        try:
-            self.temp_sname_sub[group_name].append(handle)
-        except:
+        if group_name in self.temp_sname_sub:
+            self.temp_sname_sub[group_name] += [handle]
+        else:
             self.temp_sname_sub[group_name] = [handle]
 
     def assign_data(self):
@@ -113,15 +113,13 @@ class NodeTreeMap(object):
         self.path2iter = self.temp_path2iter
         self.sname_sub = self.temp_sname_sub
         self.top_iter2path = {}
-        i = 0
-        for item in self.top_path2iter:
+        for i, item in enumerate(self.top_path2iter):
             self.top_iter2path[item] = i
-            i+=1
 
     def get_path(self, node):
-        try:
+        if node in self.top_iter2path:
             return (self.top_iter2path[node], )
-        except:
+        else:
             (surname, index) = self.iter2path[node]
             return (self.top_iter2path[surname], index)
 
@@ -160,28 +158,25 @@ class NodeTreeMap(object):
     def has_child(self, node):
         if node is None:
             return len(self.sname_sub)
-        if node in self.sname_sub and len(self.sname_sub[node]) > 0:
+        if node in self.sname_sub and self.sname_sub[node]:
             return True
         return False
 
     def number_of_children(self, node):
         if node is None:
             return len(self.sname_sub)
-        try:
+        if node in self.sname_sub:
             return len(self.sname_sub[node])
-        except:
-            return 0
+        return 0
 
     def get_nth_child(self, node, n):
-        try:
-            if node is None:
+        if node is None:
+            if n < len(self.top_path2iter):
                 return self.top_path2iter[n]
-            try:
-                return self.path2iter[(node, n)]
-            except:
+            else:
                 return None
-        except IndexError:
-            return None
+        else:
+            return self.path2iter.get((node, n))
 
     def get_parent_of(self, node):
         path = self.iter2path.get(node)
@@ -190,16 +185,14 @@ class NodeTreeMap(object):
         return None
 
     def build_sub_entry(self, name):
-        slist = [ (self.sortnames[x], x) \
-                  for x in self.temp_sname_sub[name] ]
-        slist.sort(lambda x, y: locale.strcoll(x[0], y[0]))
+        slist = sorted(( (self.sortnames[x], x) \
+                  for x in self.temp_sname_sub[name] ), 
+                  key=lambda x: locale.strxfrm(x[0]))
 
-        val = 0
-        for (junk, person_handle) in slist:
+        for val, (junk, person_handle) in enumerate(slist):
             tpl = (name, val)
             self.temp_iter2path[person_handle] = tpl
             self.temp_path2iter[tpl] = person_handle
-            val += 1
 
 #-------------------------------------------------------------------------
 #
@@ -271,9 +264,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 data_filter = filter_info[1]
                 self._build_data = self._build_filter_sub
             elif filter_info[0] == PeopleModel.SEARCH:
-                col = filter_info[1][0]
-                text = filter_info[1][1]
-                inv = filter_info[1][2]
+                col, text, inv = filter_info[1][:3]
                 func = lambda x: self.on_get_value(x, col) or u""
 
                 if col == self._GENDER_COL:
@@ -423,19 +414,22 @@ class PeopleModel(gtk.GenericTreeModel):
                 return u''
             # return values for 'header' row, calling a function
             # according to column_defs table
-            val = PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_HEADER](self, node)
-            return val
+            return (PeopleModel.COLUMN_DEFS[col]
+                    [PeopleModel.COLUMN_DEF_HEADER](self, node)
+                    )
         else:
             # return values for 'data' row, calling a function
             # according to column_defs table
             try:
-                try:
+                if node in self.lru_data:
                     data = self.lru_data[node]
-                except:
+                else:
                     data = self.db.get_raw_person_data(str(node))
                     if not self.in_build:
                         self.lru_data[node] = data
-                return PeopleModel.COLUMN_DEFS[col][PeopleModel.COLUMN_DEF_LIST](self, data, node)
+                return (PeopleModel.COLUMN_DEFS[col]
+                        [PeopleModel.COLUMN_DEF_LIST](self, data, node)
+                        )
             except:
                 return None
 
@@ -478,15 +472,15 @@ class PeopleModel(gtk.GenericTreeModel):
                 if spouse_id == handle:
                     continue
                 spouse = self.db.get_person_from_handle(spouse_id)
-                if len(spouses_names) > 0:
+                if spouses_names:
                     spouses_names += ", "
                 spouses_names += name_displayer.display(spouse)
         return spouses_names
 
     def column_name(self, data, node):
-        try:
+        if node in self.lru_name:
             name = self.lru_name[node]
-        except:
+        else:
             name = name_displayer.raw_sorted_name(data[PeopleModel._NAME_COL])
             if not self.in_build:
                 self.lru_name[node] = name
@@ -505,9 +499,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return PeopleModel._GENDER[data[PeopleModel._GENDER_COL]]
 
     def column_birth_day(self, data, node):
-        try:
+        if node in self.lru_bdate:
             value = self.lru_bdate[node]
-        except:
+        else:
             value = self._get_birth_data(data, node)
             if not self.in_build:
                 self.lru_bdate[node] = value
@@ -549,9 +543,9 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_day(self, data, node):
-        try:
+        if node in self.lru_ddate:
             value = self.lru_ddate[node]
-        except:
+        else:
             value = self._get_death_data(data, node)
             if not self.in_build:
                 self.lru_ddate[node] = value
@@ -614,8 +608,9 @@ class PeopleModel(gtk.GenericTreeModel):
             er.unserialize(event_ref)
             event = self.db.get_event_from_handle(er.ref)
             etype = event.get_type()
-            if etype in [EventType.BAPTISM, EventType.CHRISTEN]\
-               and er.get_role() == EventRoleType.PRIMARY:
+            if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
+                er.get_role() == EventRoleType.PRIMARY):
+
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
@@ -650,21 +645,18 @@ class PeopleModel(gtk.GenericTreeModel):
             etype = event.get_type()
             if (etype in [EventType.BURIAL, EventType.CREMATION, EventType.CAUSE_DEATH]
                 and er.get_role() == EventRoleType.PRIMARY):
+
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = self.db.get_place_from_handle(place_handle)
                     place_title = place.get_title()
                     if place_title != "":
                         return "<i>" + cgi.escape(place_title) + "</i>"
-        
         return u""
 
     def column_marker_text(self, data, node):
-        try:
-            if data[PeopleModel._MARKER_COL]:
-                return str(data[PeopleModel._MARKER_COL])
-        except IndexError:
-            return ""
+        if PeopleModel._MARKER_COL < len(data):
+            return str(data[PeopleModel._MARKER_COL])
         return ""
 
     def column_marker_color(self, data, node):
