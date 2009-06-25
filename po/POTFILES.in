@@ -699,6 +699,7 @@ src/Filters/Rules/Event/_HasNote.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Event/_HasNoteRegexp.py
 src/Filters/Rules/Event/_HasReferenceCountOf.py
+src/Filters/Rules/Event/_HasSource.py
 src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
