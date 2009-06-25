@@ -140,12 +140,13 @@ class NodeTreeMap(object):
         return node in self.sname_sub
 
     def find_next_node(self, node):
-        try:
+        if node in self.top_iter2path:
             path = self.top_iter2path[node]
-            if path+1 == len(self.top_path2iter):
+            if path+1 < len(self.top_path2iter):
+                return self.top_path2iter[path+1]
+            else:
                 return None
-            return self.top_path2iter[path+1]
-        except:
+        else:
             (surname, val) = self.iter2path[node]
             return self.path2iter.get((surname, val+1))
 
