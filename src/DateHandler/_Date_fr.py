@@ -58,8 +58,8 @@ class DateParserFR(DateParser):
 
     # Add common value
 
-    month_to_int[u"bluviose"] = 1
-    month_to_int[u"vendose"] = 2
+    month_to_int[u"bluviose"] = 5
+    month_to_int[u"vendose"] = 6
     month_to_int[u"7bre"] = 9
     month_to_int[u"8bre"] = 10
     month_to_int[u"9bre"] = 11
