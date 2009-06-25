@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	_HasIdOf.py\
 	_HasMarkerOf.py\
 	_HasNote.py \
+        _HasSource.py \
 	_HasType.py\
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\
