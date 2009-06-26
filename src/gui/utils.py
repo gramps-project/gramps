@@ -214,9 +214,13 @@ def open_file_with_default_application( file_path ):
         except WindowsError, msg:
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
+        if os.sys.platform='darwin':
+            utility = 'open'
+        else:
+            utility = 'xdg-open'
         search = os.environ['PATH'].split(':')
         for lpath in search:
-            prog = os.path.join(lpath, 'xdg-open')
+            prog = os.path.join(lpath, utility)
             if os.path.isfile(prog):
                 os.spawnvpe(os.P_NOWAIT, prog, [prog, norm_path], os.environ)
                 return
