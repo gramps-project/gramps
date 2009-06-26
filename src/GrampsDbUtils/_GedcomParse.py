@@ -314,6 +314,23 @@ class GedcomParser(UpdateCallback):
         self.nid2id = {}
 
         #
+        # Parse table for SUBM tag
+        #
+        self.subm_parse_tbl = {
+            # +1 NAME <SUBMITTER_NAME>
+            TOKEN_NAME  : self.__subm_name, 
+            # +1 <<ADDRESS_STRUCTURE>>
+            TOKEN_ADDR  : self.__subm_addr, 
+            TOKEN_PHON  : self.__subm_phon,
+            TOKEN_  : self.__subm_phon,
+            # +1 <<MULTIMEDIA_LINK>>
+            # +1 LANG <LANGUAGE_PREFERENCE>
+            # +1 RFN <SUBMITTER_REGISTERED_RFN>
+            # +1 RIN <AUTOMATED_RECORD_ID>
+            # +1 <<CHANGE_DATE>>
+            }
+
+        #
         # Parse table for INDI tag
         #
         self.indi_parse_tbl = {
@@ -803,7 +820,6 @@ class GedcomParser(UpdateCallback):
         self.want_parse_warnings = False
         self.__parse_header_source()
         self.want_parse_warnings = True
-        self.__parse_submitter()
         if self.use_def_src:
             self.dbase.add_source(self.def_src, self.trans)
         self.__parse_record()
@@ -1097,24 +1113,25 @@ class GedcomParser(UpdateCallback):
         except TypeError:
             return
         
-    def __parse_submitter(self):
+    def __parse_submitter(self, line):
         """
         Parses the submitter data
+
+        n @<XREF:SUBM>@ SUBM
+        +1 NAME <SUBMITTER_NAME>
+        +1 <<ADDRESS_STRUCTURE>>
+        +1 <<MULTIMEDIA_LINK>>
+        +1 LANG <LANGUAGE_PREFERENCE>
+        +1 RFN <SUBMITTER_REGISTERED_RFN>
+        +1 RIN <AUTOMATED_RECORD_ID>
+        +1 <<CHANGE_DATE>>
         """
-        line = self.__get_next_line()
-        if line.data != "SUBM":
-            self._backup()
-            return
-        else:
-            while True:
-                line = self.__get_next_line()
-                if self.__level_is_finished(line, 1):
-                    break
-                elif line.token == TOKEN_NAME:
-                    if self.use_def_src:
-                        self.def_src.set_author(line.data)
-                elif line.token == TOKEN_ADDR:
-                    self.__skip_subordinate_levels(2)
+        researcher = gen.lib.Researcher()
+        state = GedcomUtils.CurrentState()
+        state.res = researcher
+        state.level = 1
+        self.__parse_level(state, self.subm_parse_tbl, self.__undefined)
+        self.dbase.set_researcher(state.res)
 
     def __parse_record(self):
         """
@@ -1136,7 +1153,9 @@ class GedcomParser(UpdateCallback):
                 self.__parse_obje(line)
             elif key in ("REPO", "REPOSITORY"):
                 self.__parse_repo(line)
-            elif key in ("SUBM", "SUBN", "SUBMITTER"):
+            elif key in ("SUBM", "SUBMITTER"):
+                self.__parse_submitter(line)
+            elif key in ("SUBN"):
                 self.__skip_subordinate_levels(1)
             elif line.token in (TOKEN_SUBM, TOKEN_SUBN, TOKEN_IGNORE):
                 self.__skip_subordinate_levels(1)
@@ -4273,5 +4292,45 @@ class GedcomParser(UpdateCallback):
             sref = gen.lib.SourceRef()
             sref.set_reference_handle(self.def_src.handle)
             obj.add_source_reference(sref)
+
+    def __subm_name(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.res.set_name(line.data)
+
+    def __subm_addr(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        sub_state = GedcomUtils.CurrentState(level=state.level + 1)
+        sub_state.location = gen.lib.Location()
+        sub_state.location.set_street(line.data)
+
+        self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
+
+        location = sub_state.location
+        state.res.set_address(location.get_street())
+        state.res.set_city(location.get_city())
+        state.res.set_state(location.get_state())
+        state.res.set_country(location.get_country())
+        state.res.set_postal_code(location.get_postal_code())
+
+    def __subm_phon(self, line, state):
+        """
+        n PHON <PHONE_NUMBER> {0:3}
+
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
+        state.res.set_phone(line.data)
 
 #===eof===
