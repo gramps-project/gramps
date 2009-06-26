@@ -322,7 +322,6 @@ class GedcomParser(UpdateCallback):
             # +1 <<ADDRESS_STRUCTURE>>
             TOKEN_ADDR  : self.__subm_addr, 
             TOKEN_PHON  : self.__subm_phon,
-            TOKEN_  : self.__subm_phon,
             # +1 <<MULTIMEDIA_LINK>>
             # +1 LANG <LANGUAGE_PREFERENCE>
             # +1 RFN <SUBMITTER_REGISTERED_RFN>
