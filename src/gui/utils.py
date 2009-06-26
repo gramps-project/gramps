@@ -214,7 +214,7 @@ def open_file_with_default_application( file_path ):
         except WindowsError, msg:
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
-        if os.sys.platform='darwin':
+        if os.sys.platform == 'darwin':
             utility = 'open'
         else:
             utility = 'xdg-open'
