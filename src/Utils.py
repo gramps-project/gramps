@@ -1134,7 +1134,7 @@ def open_file_with_default_application( file_path ):
             ErrorDialog(_("Error Opening File"), str(msg))
     else:
         search = os.environ['PATH'].split(':')
-        if os.sys.platform='darwin':
+        if os.sys.platform == 'darwin':
             utility = 'open'
         else:
             utility = 'xdg-open'
