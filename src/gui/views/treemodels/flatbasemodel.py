@@ -20,13 +20,6 @@
 #
 # $Id: _BaseModel.py 12559 2009-05-21 17:19:50Z gbritton $
 
-#-------------------------------------------------------------------------
-#
-# python modules
-#
-#-------------------------------------------------------------------------
-from __future__ import with_statement
-
 """
 This module provides the flat treemodel that is used for all flat treeviews.
 
@@ -52,6 +45,14 @@ corresponds to the path.
 The class FlatBaseModel, is the base class for all flat treeview models. 
 It keeps a FlatNodeMap, and obtains data from database as needed
 """
+
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
+
+from __future__ import with_statement
 import locale
 import logging
 import bisect
@@ -305,7 +306,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         gtk.GenericTreeModel.__init__(self)
         self.prev_handle = None
         self.prev_data = None
-        self.set_property("leak_references",False)
+        self.set_property("leak_references", False)
         self.db = db
         if sort_map:
             self.sort_map = [ f for f in sort_map if f[0]]
@@ -344,11 +345,11 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.tooltip_column = tooltip_column
 
         Config.client.notify_add("/apps/gramps/preferences/todo-color",
-                                 self.update_todo)
+                                 self.__update_todo)
         Config.client.notify_add("/apps/gramps/preferences/custom-marker-color",
-                                 self.update_custom)
+                                 self.__update_custom)
         Config.client.notify_add("/apps/gramps/preferences/complete-color",
-                                 self.update_complete)
+                                 self.__update_complete)
 
         self.complete_color = Config.get(Config.COMPLETE_COLOR)
         self.todo_color = Config.get(Config.TODO_COLOR)
@@ -357,23 +358,43 @@ class FlatBaseModel(gtk.GenericTreeModel):
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
 
-    def update_todo(self,client,cnxn_id,entry,data):
+    def __update_todo(self, client, cnxn_id, entry, data):
+        """
+        Callback if preferences todo color changes
+        """
         self.todo_color = Config.get(Config.TODO_COLOR)
         
-    def update_custom(self,client,cnxn_id,entry,data):
+    def __update_custom(self, client, cnxn_id, entry, data):
+        """
+        Callback if preferences todo color changes
+        """
         self.custom_color = Config.get(Config.CUSTOM_MARKER_COLOR)
 
-    def update_complete(self,client,cnxn_id,entry,data):
+    def __update_complete(self, client, cnxn_id, entry, data):
+        """
+        Callback if preferences todo color changes
+        """
         self.complete_color = Config.get(Config.COMPLETE_COLOR)
 
     def set_sort_column(self, col):
+        """
+        set sort column to column with index col
+        """
         self.sort_func = self.smap[col]
 
     def reverse_order(self):
+        """
+        reverse the sort order of the sort column
+        """
         self._reverse = not self._reverse
         self.node_map.reverse_order()
 
     def sort_keys(self):
+        """
+        Return the (sort_key, handle) list of all data that can maximally 
+        be shown. 
+        This list is sorted ascending (via localized string sort)
+        """
         sort_data = []
         self.total = 0
         
@@ -431,6 +452,10 @@ class FlatBaseModel(gtk.GenericTreeModel):
             self.node_map.clear_map()
         
     def add_row_by_handle(self, handle):
+        """
+        Add a row. This is called after object with handle is created.
+        Row is only added if search/filter data is such that it must be shown
+        """
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
@@ -443,10 +468,16 @@ class FlatBaseModel(gtk.GenericTreeModel):
                 self.row_inserted(insert_path, node)
 
     def delete_row_by_handle(self, handle):
+        """
+        Delete a row, called after the object with handle is deleted
+        """
         delete_path = self.node_map.delete(handle)
         self.row_deleted(delete_path)
 
     def update_row_by_handle(self, handle):
+        """
+        Update a row, called after the object with handle is changed
+        """
         ## TODO: if sort key changes, this is not updated correctly ....
         path = self.node_map.get_path(handle)
         node = self.get_iter(path)
