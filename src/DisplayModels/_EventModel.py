@@ -44,7 +44,7 @@ import ToolTips
 import GrampsLocale
 import DateHandler
 import gen.lib
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,7 @@ COLUMN_CHANGE      = 10
 # EventModel
 #
 #-------------------------------------------------------------------------
-class EventModel(BaseModel):
+class EventModel(FlatBaseModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
@@ -91,7 +91,7 @@ class EventModel(BaseModel):
             self.column_handle,
             self.column_tooltip,
             ]
-        BaseModel.__init__(self, db, scol, order, tooltip_column=8,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=8,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

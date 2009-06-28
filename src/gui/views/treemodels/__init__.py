@@ -20,9 +20,5 @@
 # $Id: __init__.py 11943 2009-02-09 23:37:40Z acraphae $
 
 """
-Package init for the views package.
+Package init for the treemodels package.
 """
-
-# DO NOT IMPORT METHODS/CLASSES FROM src/gui/views HERE ! Only __all__ 
-
-__all__ = [ "treemodels" ]

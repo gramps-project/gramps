@@ -30,6 +30,10 @@ Provide the base classes for GRAMPS' DataView classes
 #
 #----------------------------------------------------------------
 import cPickle as pickle
+import time
+import logging
+
+_LOG = logging.getLogger('.pageview')
 
 #----------------------------------------------------------------
 #
@@ -835,9 +839,12 @@ class ListView(BookMarkView):
         self.inactive = False
 
     def column_clicked(self, obj, data):
+        cput = time.clock()
+        same_col = False
         if self.sort_col != data:
             order = gtk.SORT_ASCENDING
         else:
+            same_col = True
             if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
                 or not self.columns[data].get_sort_indicator()):
                 order = gtk.SORT_ASCENDING
@@ -852,16 +859,17 @@ class ListView(BookMarkView):
         else:
             search = (False, self.search_bar.get_value())
 
-        self.model = self.make_model(self.dbstate.db, self.sort_col, order, 
+        if same_col:
+            self.model.reverse_order()
+        else:
+            self.model = self.make_model(self.dbstate.db, self.sort_col, order, 
                                      search=search, 
                                      sort_map=self.column_order())
         
         self.list.set_model(self.model)
 
         if handle:
-            path = self.model.on_get_path(handle)
-            self.selection.select_path(path)
-            self.list.scroll_to_cell(path, None, 1, 0.5, 0)
+            self.goto_handle(handle)
         for i in xrange(len(self.columns)):
             enable_sort_flag = (i==self.sort_col)
             self.columns[i].set_sort_indicator(enable_sort_flag)
@@ -870,6 +878,8 @@ class ListView(BookMarkView):
         # set the search column to be the sorted column
         search_col = self.column_order()[data][1]
         self.list.set_search_column(search_col)
+        _LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
+                    str(time.clock() - cput) + ' sec')
 
     def build_columns(self):
         for column in self.columns:
@@ -899,6 +909,7 @@ class ListView(BookMarkView):
 
     def build_tree(self):
         if self.active:
+            cput = time.clock()
             if Config.get(Config.FILTER):
                 filter_info = (True, self.generic_filter)
             else:
@@ -916,6 +927,9 @@ class ListView(BookMarkView):
             self.uistate.show_filter_results(self.dbstate, 
                                              self.model.displayed, 
                                              self.model.total)
+            _LOG.debug(self.__class__.__name__ + ' build_tree ' +
+                    str(time.clock() - cput) + ' sec')
+            
         else:
             self.dirty = True
 
@@ -959,8 +973,11 @@ class ListView(BookMarkView):
 
     def row_add(self, handle_list):
         if self.active:
+            cput = time.clock()
             for handle in handle_list:
                 self.model.add_row_by_handle(handle)
+            _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
+                    str(time.clock() - cput) + ' sec')
         else:
             self.dirty = True
 
@@ -968,15 +985,21 @@ class ListView(BookMarkView):
         if self.model:
             self.model.prev_handle = None
         if self.active:
+            cput = time.clock()
             for handle in handle_list:
                 self.model.update_row_by_handle(handle)
+            _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
+                    str(time.clock() - cput) + ' sec')
         else:
             self.dirty = True
 
     def row_delete(self, handle_list):
         if self.active:
+            cput = time.clock()
             for handle in handle_list:
                 self.model.delete_row_by_handle(handle)
+            _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
+                    str(time.clock() - cput) + ' sec')
         else:
             self.dirty = True
 

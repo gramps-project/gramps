@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 from gen.lib import (Note, NoteType, MarkerType, StyledText)
 
 #-------------------------------------------------------------------------
@@ -47,7 +47,7 @@ from gen.lib import (Note, NoteType, MarkerType, StyledText)
 # NoteModel
 #
 #-------------------------------------------------------------------------
-class NoteModel(BaseModel):
+class NoteModel(FlatBaseModel):
     """
     """
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
@@ -72,7 +72,7 @@ class NoteModel(BaseModel):
             self.column_marker_color
         ]
         self.marker_color_column = 5
-        BaseModel.__init__(self, db, scol, order, search=search,
+        FlatBaseModel.__init__(self, db, scol, order, search=search,
                            skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

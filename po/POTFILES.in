@@ -190,6 +190,10 @@ src/gui/viewmanager.py
 # gui/views - the GUI views package
 src/gui/views/__init__.py
 
+# gui/views/treemodels - the GUI views package
+src/gui/views/treemodels/__init__.py
+src/gui/views/treemodels/flatbasemodel.py
+
 # Simple API
 src/Simple/_SimpleTable.py
 
@@ -250,7 +254,6 @@ src/docgen/SpreadSheetDoc.py
 src/docgen/TextBufDoc.py
 
 # DisplayModels package
-src/DisplayModels/_BaseModel.py
 src/DisplayModels/_EventModel.py
 src/DisplayModels/_FamilyModel.py
 src/DisplayModels/_MediaModel.py

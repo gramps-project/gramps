@@ -46,14 +46,14 @@ import ToolTips
 import GrampsLocale
 import DateHandler
 import gen.lib
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
 # MediaModel
 #
 #-------------------------------------------------------------------------
-class MediaModel(BaseModel):
+class MediaModel(FlatBaseModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
@@ -80,7 +80,7 @@ class MediaModel(BaseModel):
             self.sort_date,
             self.column_handle,
             ]
-        BaseModel.__init__(self, db, scol, order, tooltip_column=7,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=7,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

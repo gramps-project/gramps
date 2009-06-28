@@ -43,14 +43,14 @@ import gtk
 import const
 import ToolTips
 import GrampsLocale
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
 # SourceModel
 #
 #-------------------------------------------------------------------------
-class SourceModel(BaseModel):
+class SourceModel(FlatBaseModel):
 
     def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
@@ -74,7 +74,7 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.sort_change,
             ]
-        BaseModel.__init__(self,db,scol, order,tooltip_column=7,search=search,
+        FlatBaseModel.__init__(self,db,scol, order,tooltip_column=7,search=search,
                            skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

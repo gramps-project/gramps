@@ -42,14 +42,14 @@ import gtk
 #-------------------------------------------------------------------------
 import gen.lib
 import GrampsLocale
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
 # RepositoryModel
 #
 #-------------------------------------------------------------------------
-class RepositoryModel(BaseModel):
+class RepositoryModel(FlatBaseModel):
 
     def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
@@ -91,7 +91,7 @@ class RepositoryModel(BaseModel):
             self.column_handle,            
             ]
         
-        BaseModel.__init__(self, db, scol, order, tooltip_column=14,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=14,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

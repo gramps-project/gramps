@@ -48,14 +48,14 @@ from BasicUtils import name_displayer
 import gen.lib
 import gen.utils
 
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
 # FamilyModel
 #
 #-------------------------------------------------------------------------
-class FamilyModel(BaseModel):
+class FamilyModel(FlatBaseModel):
 
     _MARKER_COL = 13
 
@@ -88,7 +88,7 @@ class FamilyModel(BaseModel):
             self.column_marker_color, 
             ]
         self.marker_color_column = 9
-        BaseModel.__init__(self, db, scol, order, tooltip_column=6, 
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=6, 
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

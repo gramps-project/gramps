@@ -4,7 +4,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/DisplayModels
 
 pkgdata_PYTHON = \
 	__init__.py \
-	_BaseModel.py \
 	_EventModel.py \
 	_FamilyModel.py \
 	_MediaModel.py \

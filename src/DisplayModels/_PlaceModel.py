@@ -43,14 +43,14 @@ import gtk
 import const
 import ToolTips
 import GrampsLocale
-from _BaseModel import BaseModel
+from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
 #
 # PlaceModel
 #
 #-------------------------------------------------------------------------
-class PlaceModel(BaseModel):
+class PlaceModel(FlatBaseModel):
 
     HANDLE_COL = 12
 
@@ -89,7 +89,7 @@ class PlaceModel(BaseModel):
             self.column_street,
             self.column_handle,
             ]
-        BaseModel.__init__(self, db, scol, order, tooltip_column=13,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=13,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
