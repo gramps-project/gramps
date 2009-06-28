@@ -173,6 +173,7 @@ class ArgParser(object):
             return
 
         # Go over all given option and place them into appropriate lists
+        cleandbg = []
         for opt_ix in range(len(options)):
             option, value = options[opt_ix]
             if option in ( '-O', '--open'):
@@ -200,8 +201,10 @@ class ArgParser(object):
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
             elif option in ('-d', '--debug'):
+                print 'setup debugging', value
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
+                cleandbg += [opt_ix]
             elif option in ('-l',):
                 self.list = True
             elif option in ('-L',):
@@ -210,6 +213,11 @@ class ArgParser(object):
                 self.help = True
             elif option in ('-u', '--force-unlock'):
                 self.force_unlock = True
+        
+        #clean options list
+        cleandbg.reverse()
+        for ind in cleandbg:
+            del options[ind]
         
         if len(options) > 0 and self.open is None and self.imports == [] \
                 and not (self.list or self.list_more or self.help):
