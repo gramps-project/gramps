@@ -280,13 +280,14 @@ class FlatNodeMap(object):
         del self._index2hndl[index]
         del self._hndl2index[handle]
         #update self.__corr so it remains correct
+        delpath = self.real_path(index)
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         #update the handle2path map so it remains correct
         for key, val in self._hndl2index.iteritems():
             if val > index:
                 self._hndl2index[key] -= 1
-        return self.real_path(index)
+        return delpath
 
 #-------------------------------------------------------------------------
 #
