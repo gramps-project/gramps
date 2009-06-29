@@ -57,7 +57,6 @@ import locale
 import logging
 import bisect
 import time
-import copy
 
 _LOG = logging.getLogger(".gui.basetreemodel")
     
@@ -524,8 +523,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
             if self.search:
                 ident = False
                 if ignore is None:
-                    tmp = copy.copy(allkeys)
-                    dlist = self.search.apply(self.db, tmp, tupleind=1)
+                    dlist = self.search.apply(self.db, allkeys, tupleind=1)
                 else:
                     dlist = self.search.apply(self.db, 
                                 [ k for k in allkeys if k[1] != ignore],
@@ -616,7 +614,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         try:
             return self.node_map.get_handle(path[0])
-        except:
+        except IndexError:
             return None
 
     def on_get_value(self, handle, col):
