@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-29 17:52+0200\n"
-"PO-Revision-Date: 2009-06-29 18:00+0200\n"
+"PO-Revision-Date: 2009-06-29 23:03+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -13002,12 +13002,12 @@ msgstr "Stiefgeschwister"
 #: ../src/plugins/webreport/NarrativeWeb.py:2756
 #, python-format
 msgid "%(date)s <span class=\"preposition\">at</span> %(place)s"
-msgstr "%(date)s <span class=\"preposition\">am</span> %(place)s"
+msgstr "%(date)s <span class=\"preposition\">in</span> %(place)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2758
 #, python-format
 msgid "<span class=\"preposition\">at</span> %(place)s"
-msgstr "<span class=\"preposition\">am</span> %(place)s"
+msgstr "<span class=\"preposition\">in</span> %(place)s"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2775
 #, python-format
