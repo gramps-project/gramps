@@ -149,6 +149,12 @@ _html_replacement = {
     "<"  : "&#60;",
     }
 
+def conf_priv(obj):
+    if obj.get_privacy() != 0:
+        return ' priv="%d"' % obj.get_privacy()
+    else:
+        return ''
+
 # This command then defines the 'html_escape' option for escaping
 # special characters for presentation in HTML based on the above list.
 def html_escape(text):
@@ -216,7 +222,7 @@ class BasePage(object):
         self.ext = report.options['ext']
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
-        self.use_gallery = report.options['gallery']
+        self.create_media = report.options['gallery']
 
 #################################################
 #
@@ -280,6 +286,56 @@ class BasePage(object):
 
         # closes the file
         self.report.close_file(of)
+
+    def write_repository(self, repo, handle):
+        """
+        will write the repository information
+        """
+
+        # begin repositories table and table head
+        with Html('table', class_='infolist repolist') as table:
+
+            # begin table body
+            tbody = Html('tbody')
+            table += tbody
+
+            # repository Type   
+            rtype = repo.type.xml_str()
+            if rtype:
+                trow = Html('tr')
+                tbody += trow
+                tcell1 = Html('td', _('Type'), class_='ColumnAttribute',inline=True)
+                tcell2 = Html('td', rtype, class_='ColumnValue', inline=True)
+                trow += (tcell1, tcell2)
+
+            # begin summaryarea division
+            with Html('div', id='summaryarea') as summaryarea:
+                table += summaryarea
+
+                index = 0
+                # repository address division
+                addresses = self.write_address_list(repo, index+1)
+                if addresses is not None:
+                    summaryarea += addresses   
+
+                # repository: urllist
+                urllist = self.display_url_list(repo.get_url_list())
+                if urllist is not None:
+                    summaryarea += urllist
+
+                # reposity: notelist
+                notelist = self.display_note_list(repo.get_note_list()) 
+                if notelist is not None:
+                    summaryarea += notelist
+
+#                # repository: references
+#                # TODO: see if possible?
+#                references = self.display_references(repo.get_references())
+#                if references is not None:
+#                    summaryarea += references
+
+        # return table to its callers
+        return table
 
     def get_copyright_license(self, copyright, up=False):
         """
@@ -489,15 +545,16 @@ class BasePage(object):
         """
 
         navs = [
-            (self.report.index_fname, _('Home'), self.report.use_home),
-            (self.report.intro_fname, _('Introduction'), self.report.use_intro),
-            (self.report.surname_fname, _('Surnames'), True),
-            ('individuals', _('Individuals'), True),
-            ('places', _('Places'), True),
-            ('gallery', _('Media'), self.use_gallery),
-            ('download', _('Download'), self.report.inc_download),
-            ('contact', _('Contact'), self.report.use_contact),
-            ('sources', _('Sources'), True),
+            (self.report.index_fname,   _('Home'),         self.report.use_home),
+            (self.report.intro_fname,   _('Introduction'), self.report.use_intro),
+            (self.report.surname_fname, _('Surnames'),     True),
+            ('individuals',             _('Individuals'),  True),
+            ('places',                  _('Places'),       True),
+            ('media',                   _('Media'),        self.create_media),
+            ('download',                _('Download'),     self.report.inc_download),
+            ('contact',                 _('Contact'),      self.report.use_contact),
+            ('sources',                 _('Sources'),      True),
+            ('repositories',            _('Repositories'), self.report.inc_repository), 
                 ]
 
         navigation = Html('div', id='navigation')
@@ -551,7 +608,7 @@ class BasePage(object):
     def display_first_image_as_thumbnail( self, photolist=None):
         db = self.report.database 
 
-        if not photolist or not self.use_gallery:
+        if not photolist or not self.create_media:
             return None
 
         photo_handle = photolist[0].get_reference_handle()
@@ -598,7 +655,7 @@ class BasePage(object):
 
     def display_additional_images_as_gallery( self, photolist=None):
 
-        if not photolist or not self.use_gallery:
+        if not photolist or not self.create_media:
             return None
         db = self.report.database
 
@@ -731,69 +788,69 @@ class BasePage(object):
 
         if bibli.get_citation_count() == 0:
             return None
+
         db = self.report.database 
 
         # Source References division and title
-        sect_sourcerefs = Html('div', id='sourcerefs', class_='subsection')
-        sect_title = Html('h4', _('Source References'), inline=True)
-        sect_sourcerefs += sect_title
-        ordered1 = Html('ol')
-        list = Html('li')
+        with Html('div', class_='subsection', id='sourcerefs') as section:
+            section += Html('h4', _('Source References'), inline=True)
 
-        for cindex, citation in enumerate(bibli.get_citation_list()):
-            # Add this source to the global list of sources to be displayed
-            # on each source page.
-            lnk = (self.report.cur_fname, self.page_title, self.gid)
-            shandle = citation.get_source_handle()
-            if shandle in self.src_list:
-                if lnk not in self.src_list[shandle]:
-                    self.src_list[shandle].append(lnk)
-            else:
-                self.src_list[shandle] = [lnk]
+            ordered = Html('ol')
+            section += ordered
+            list = Html('li')
+            ordered += list
 
-            # Add this source and its references to the page
-            source = db.get_source_from_handle(shandle)
-            title = source.get_title()
+            for cindex, citation in enumerate(bibli.get_citation_list()):
+                # Add this source to the global list of sources to be displayed
+                # on each source page.
+                lnk = (self.report.cur_fname, self.page_title, self.gid)
+                shandle = citation.get_source_handle()
+                if shandle in self.src_list:
+                    if lnk not in self.src_list[shandle]:
+                        self.src_list[shandle].append(lnk)
+                else:
+                    self.src_list[shandle] = [lnk]
+
+                # Add this source and its references to the page
+                source = db.get_source_from_handle(shandle)
+                title = source.get_title()
             
-            list += self.source_link(source.handle, title, cindex+1, source.gramps_id, True)
+                list += self.source_link(source.handle, title, cindex+1, source.gramps_id, True)
 
-            ordered2 = Html('ol')
-            for key, sref in citation.get_ref_list():
+                ordered1 = Html('ol')
+                list += ordered1
+                for key, sref in citation.get_ref_list():
 
-                tmp = []
-                confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
-                if confidence == _('Normal'):
-                    confidence = None
-                for (label, data) in [(_('Date'), _dd.display(sref.date)),
-                                      (_('Page'), sref.page),
-                                      (_('Confidence'), confidence)]:
-                    if data:
-                        tmp.append("%s: %s" % (label, data))
-                notelist = sref.get_note_list()
-                for notehandle in notelist:
-                    note = db.get_note_from_handle(notehandle)
-                    note_text = note.get()
-                    if note_text:
+                    tmp = []
+                    confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
+                    if confidence == _('Normal'):
+                        confidence = None
+                    for (label, data) in [(_('Date'), _dd.display(sref.date)),
+                                          (_('Page'), sref.page),
+                                          (_('Confidence'), confidence)]:
+                        if data:
+                            tmp.append("%s: %s" % (label, data))
+                    notelist = sref.get_note_list()
+                    for notehandle in notelist:
+                        note = db.get_note_from_handle(notehandle)
+                        note_text = note.get()
+                        if note_text:
          
-                        # styled notes
-                        htmlnotetext = self.styled_note(note.get_styledtext(),
+                            # styled notes
+                            htmlnotetext = self.styled_note(note.get_styledtext(),
                                                                             note.get_format())
-                        if htmlnotetext:
-                            text = htmlnotetext
-                        else:
-                            text = Html('p', note_text) 
-                        tmp.append("%s: %s" % (_('Text'), text))
-                if len(tmp):
-                    ordered2 += Html('li') + (
-                        Html('a', '; &nbsp; '.join(tmp), name=" #sref%d%s " % (cindex+1, key))
-                        )
-            list += ordered2
+                            if htmlnotetext:
+                                text = htmlnotetext
+                            else:
+                                text = Html('p', note_text) 
+                            tmp.append("%s: %s" % (_('Text'), text))
+                    if len(tmp):
+                        ordered1 += Html('li') + (
+                            Html('a', tmp, name="sref%d%s" % (cindex+1, key))
+                            )
 
-        ordered1 += list
-        sect_sourcerefs += ordered1
-
-        # return division to its caller
-        return sect_sourcerefs    
+        # return sourcerefs division to its caller
+        return section
 
     def display_references(self, handlelist, up=False):
 
@@ -902,6 +959,17 @@ class BasePage(object):
     def source_link(self, handle, name, cindex, gid=None, up=False):
 
         url = self.report.build_url_fname_html(handle, 'src', up)
+        # begin hyperlink
+        hyper = Html('a', html_escape(name), href=url, title=name)
+        if not self.noid and gid:
+            hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
+
+        # return hyperlink to its callers
+        return hyper
+
+    def repository_link(self, handle, name, cindex, gid=None, up=False):
+
+        url = self.report.build_url_fname_html(handle, 'repo', up)
         # begin hyperlink
         hyper = Html('a', html_escape(name), href=url, title=name)
         if not self.noid and gid:
@@ -1429,7 +1497,7 @@ class PlacePage(BasePage):
                         table += trow
 
             # place gallery
-            if self.use_gallery:
+            if self.create_media:
                 placegallery = self.display_additional_images_as_gallery(media_list)
                 if placegallery is not None:
                     section += placegallery
@@ -1537,8 +1605,6 @@ class MediaPage(BasePage):
         # get media type to be used primarily with 'img' tags
         mime_type = photo.get_mime_type()
         mtype = Mime.get_description(mime_type)
-        temp, rest = mtype.split(' ', 1)
-        media_type = '/'.join([rest, temp])
 
         if mime_type:
             note_only = False
@@ -1640,7 +1706,7 @@ class MediaPage(BasePage):
                         url = self.report.build_url_fname(newpath, None, self.up)
                         mediadisplay += Html('a', href=url) + (
                             Html('img', width=new_width, height=new_height, src=url,
-                                alt=html_escape(self.page_title), type=media_type)
+                                alt=html_escape(self.page_title))
                                 )
             else:
                 dirname = tempfile.mkdtemp()
@@ -1670,7 +1736,7 @@ class MediaPage(BasePage):
                 # TODO. Mixup url and path
                 # path = convert_disk_path_to_url(path)
                 url = self.report.build_url_fname(path, None, self.up)
-                hyper += Html('img', src=url, alt=html_escape(self.page_title), type=media_type)  
+                hyper += Html('img', src=url, alt=html_escape(self.page_title) 
                 if target_exists:
                     mediadisplay += hyper  
                 else:
@@ -1679,7 +1745,7 @@ class MediaPage(BasePage):
             mediadisplay = Html('div', id='GalleryDisplay')
             summaryarea += mediadisplay
             url = self.report.build_url_image('document.png', 'images', self.up)
-            mediadisplay += Html('img', src=url, alt=html_escape(self.page_title), type=media_type)
+            mediadisplay += Html('img', src=url, alt=html_escape(self.page_title))
 
         # media title
         title = Html('h3', html_escape(self.page_title.strip()), inline=True)
@@ -1699,7 +1765,7 @@ class MediaPage(BasePage):
                 with Html('tr') as trow:
                     table += trow
                     trow += Html('td', _('File Type'), class_='ColumnAttribute', inline=True)
-                    trow += Html('td', media_type, class_='ColumnValue', unline=True)  
+                    trow += Html('td', mtype, class_='ColumnValue', unline=True)  
 
             date = _dd.display(photo.get_date_object())
             if date:
@@ -2075,7 +2141,7 @@ class SourceListPage(BasePage):
                          "title will take you to that source&#8217;s page.")
             section += Html('p', msg, id='description')
 
-            # begin source list table and table head
+            # begin sourcelist table and table head
             with Html('table', class_='infolist sourcelist') as table:
                 section += table 
                 thead = Html('thead')
@@ -2131,7 +2197,7 @@ class SourcePage(BasePage):
             if thumbnail is not None:
                 section += thumbnail
 
-            # begin section title
+            # add section title
             section += Html('h3', html_escape(self.page_title.strip()), inline=True)
  
             # begin summaryarea division
@@ -2166,6 +2232,14 @@ class SourcePage(BasePage):
             sourcenotes = self.display_note_list(source.get_note_list())
             if sourcenotes is not None:
                 section += sourcenotes
+
+#            # get source repositories
+#            # TODO: Figure if this is possible 
+#            for handle in source.get_repository_handles():
+#                repo = db.get_repository_from_handle(handle)
+#                sourcerepo = self.write_repositories(repo, handle)
+#                if sourcerepo is not None:
+#                    section += sourcerepo
 
             # references
             source_references = self.display_references(src_list[source.handle])
@@ -2279,7 +2353,7 @@ class DownloadPage(BasePage):
 
         # do NOT include a Download Page
         if not self.report.inc_download:
-            return
+            return None
 
         # menu options for class
         # download and description #1
@@ -2654,7 +2728,7 @@ class IndividualPage(BasePage):
         person_name = self.get_name(person)
         if person.handle in self.ind_list:
             thumbnailUrl = None
-            if self.use_gallery and col < 5:
+            if self.create_media and col < 5:
                 photolist = person.get_media_list()
                 if photolist:
                     photo_handle = photolist[0].get_reference_handle()
@@ -2878,7 +2952,7 @@ class IndividualPage(BasePage):
 
                     type_ = str( name.get_type() )
                     trow = Html('tr') + (
-                        Html('td', type_, class_='ColumnAttribute', inline=True),
+                        Html('td', type_, class_='ColumnAttribute', inline=True)
                         )
                     table += trow
                     tcell = Html('td', pname, class_='ColumnValue', inline=True)
@@ -3412,28 +3486,28 @@ class IndividualPage(BasePage):
                                         # we have a new step sibling
                                         step_siblings.add(step_child_handle)
 
-                    # now that we have all step- siblings, display them...    
-                    if len(step_siblings):
-                        trow = Html('tr') + (
-                            Html('td', _('Step Siblings'), class_='ColumnAttribute', inline=True)
-                            )
-                        table += trow
-                        tcell = Html('td', class_='ColumnValue')
-                        trow += tcell 
-                        ordered = Html('ol')
-                        tcell += ordered
+                        # now that we have all step- siblings, display them...    
+                        if len(step_siblings):
+                            trow = Html('tr') + (
+                                Html('td', _('Step Siblings'), class_='ColumnAttribute', inline=True)
+                                )
+                            table += trow
+                            tcell = Html('td', class_='ColumnValue')
+                            trow += tcell 
+                            ordered = Html('ol')
+                            tcell += ordered
 
-                        if birthorder:
-                            kids = []
-                            kids = sorted(add_birthdate(db, step_siblings))
+                            if birthorder:
+                                kids = []
+                                kids = sorted(add_birthdate(db, step_siblings))
 
-                            for birth_date, child_handle in kids:
-                                ordered += self.display_child_link(child_handle)
+                                for birth_date, child_handle in kids:
+                                    ordered += self.display_child_link(child_handle)
 
-                        else:
+                            else:
  
-                            for child_handle in step_siblings:
-                                ordered += self.display_child_link(child_handle)
+                                for child_handle in step_siblings:
+                                    ordered += self.display_child_link(child_handle)
 
         # return parents division to its caller
         return section
@@ -3678,6 +3752,251 @@ class IndividualPage(BasePage):
 
         return text
 
+class RepositoryListPage(BasePage):
+    """
+    Will create the repository list page
+    """
+
+    def __init__(self, report, title, repos_dict, keys):
+        BasePage.__init__(self, report, title)
+
+        db = report.database
+        of = self.report.create_file('repositories')
+        repolistpage, body = self.write_header(_('Repositories'))
+
+        # begin RepositoryList division
+        with Html('div', class_='content', id='RepositoryList') as section:
+            body += section
+
+            msg = _("This page contains an index of all the repositories in the "
+                    "database, sorted by their title. Clicking on a repositories&#8217;s "
+                    "title will take you to that repositories&#8217;s page.")
+            section += Html('p', msg, id='description')
+
+            # begin repositories table and table head
+            with Html('table', class_='infolist repolist') as table:
+                section += table 
+
+                thead = Html('thead')
+                table += thead
+                trow = Html('tr') + (
+                    Html('th', '&nbsp;', class_='ColumnRowLabel', inline=True),
+                    Html('th', _('Type'), class_='ColumnType', inline=True),
+                    Html('th', _('Name'), class_='ColumnName', inline=True)
+                    )
+                thead += trow
+
+                # begin table body
+                tbody = Html('tbody')
+                table += tbody 
+
+                index = 0
+                for index, key in enumerate(keys):
+                    (repo, handle) = repos_dict[key]
+
+                    trow = Html('tr')
+                    tbody += trow
+
+                    # index number
+                    tcell = Html('td', index+1, class_='ColumnRowLabel', inline=True)
+                    trow += tcell
+
+                    # repository type
+                    rtype = repo.type.xml_str()
+                    if rtype:
+                        tcell = Html('td', rtype, class_='ColumnType')
+                        trow += tcell
+
+                    # repository name and hyperlink
+                    repo_title = html_escape(repo.name)
+                    if repo_title:
+                        tcell = Html('td', class_='ColumnName') + \
+                           self.repository_link(handle, repo_title, repo.gramps_id)
+                        trow += tcell
+
+        # add clearline for proper styling
+        # add footer section
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.mywriter(repolistpage, of)
+
+class RepositoryPage(BasePage):
+    """
+    will create the individual Repository Pages
+    """
+
+    def __init__(self, report, title, repo, handle):
+        BasePage.__init__(self, report, title)
+        db = report.database
+
+        of = self.report.create_file(handle, 'repo')
+        self.up = True
+        repositorypage, body = self.write_header(name_to_md5(repo.name))
+
+        # begin RepositoryDetail division and page title
+        with Html('div', class_='content', id='RepositoryDetail') as section:
+            body += section
+            section += Html('h3', repo.name)
+
+            # write out repository
+            section += self.write_repository(repo, handle)
+
+        # add clearline for proper styling
+        # add footer section
+        footer = self.write_footer()
+        body += (fullclear, footer)
+
+        # send page out for processing
+        # and close the file
+        self.mywriter(repositorypage, of)
+
+    def write_address_list(self, obj,index=1):
+        if len(obj.get_address_list()) == 0:
+            return None
+
+        # begin addresses division
+        with Html('div', id='addresses') as section:
+
+            # begin address table
+            with Html('table', class_='infolist') as table:
+                section += table
+
+                tbody = Html('tbody')
+                table += tbody
+
+                for address in obj.get_address_list():
+                    trow = Html('tr')
+                    tbody += trow
+
+                    tcell1 = Html('td', _('Address'), class_='ColumnAttribute', inline=True)
+                    tcell2 = Html('td', '#%d %s' % (index, conf_priv(address)), 
+                        class_='ColumnValue', inline=True)
+                    trow += (tcell1, tcell2)
+
+                    # address: date
+                    date = _dd.display(address.get_date_object())
+                    if date:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('Date'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', date, class_='ColumnValue Date', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: street
+                    streetaddress = address.get_street()
+                    if streetaddress:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('Street'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', streetaddress, class_='ColumnValue')
+                        trow += (tcell1, tcell2)
+
+                    # address: city
+                    city = address.get_city()
+                    if city:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('City'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', city, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: county
+                    county = address.get_county()
+                    if county:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('County'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', county, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: state
+                    state = address.get_state()
+                    if state:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('State'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', state, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: country
+                    country = address.get_country()
+                    if country:
+                        trow = Html('tr')
+                        tbody += trow       
+                        tcell1 = Html('td', _('Country'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', country, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: ZIP/ Postalcode
+                    postalcode = address.get_postal_code()
+                    if postalcode:
+                        trow = Html('tr')
+                        tbody += trow 
+                        tcell1 = Html('td', _('Postal code'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', postalcode, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2) 
+
+                    # address: phone
+                    phone = address.get_phone()
+                    if phone:
+                        trow = Html('tr')
+                        tbody += trow
+                        tcell1 = Html('td', _('Phone'), class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', phone, class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
+
+                    # address: notes
+                    notelist = self.display_note_list(address.get_note_list())
+                    if notelist is not None:
+                        section += notelist
+
+                    # address: source references
+                    sourcerefs = self.write_source_refs(address.get_source_references())
+                    if sourcerefs is not None:
+                        section += sourcerefs
+
+                    # increase index value
+                    index += 1
+
+        # return addresses to its caller
+        return section
+
+    def write_source_refs(self, sourcelist):
+
+        if not sourcelist:
+            return None
+
+        db = self.report.database 
+
+        # Source References division and title
+        with Html('div', class_='subsection', id='sourcerefs') as section:
+            section += Html('h4', _('Source References'), inline=True)
+
+            ordered = Html('ol')
+            section += ordered
+            list = Html('li')
+            ordered += list
+
+            source_dict = {}
+            # Sort the sources
+            for handle in sourcelist:
+                source = db.get_source_from_handle(handle)
+                key = source.get_title() + str(source.get_gramps_id())
+                source_dict[key] = (source, handle)
+            keys = sorted(source_dict, key=locale.strxfrm)
+
+            for index, key in enumerate(keys):
+                (source, handle) = source_dict[key]
+                source_title = source.get_title()
+            
+                list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
+
+        # return division to its caller
+        return section   
+
 class NavWebReport(Report):
     
     def __init__(self, database, options):
@@ -3718,7 +4037,7 @@ class NavWebReport(Report):
         self.target_path = self.options['target']
         self.ext = self.options['ext']
         self.css = self.options['css']
-        self.encoding = self.options['encoding']
+
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
         self.inc_contact = self.options['contactnote'] or \
@@ -3727,6 +4046,9 @@ class NavWebReport(Report):
         # name format option
         self.name_format = self.options['name_format']
 
+        # include repository page or not?
+        self.inc_repository = self.options['inc_repository']
+
         # Download Options Tab
         self.inc_download = self.options['incdownload']
         self.dl_fname1 = self.options['down_fname1']
@@ -3734,6 +4056,8 @@ class NavWebReport(Report):
         self.dl_fname2 = self.options['down_fname2']
         self.dl_descr2 = self.options['dl_descr2']
         self.dl_copy = self.options['dl_cright']
+
+        self.encoding = self.options['encoding']
 
         self.use_archive = self.options['archive']
         self.use_intro = self.options['intronote'] or \
@@ -3842,9 +4166,14 @@ class NavWebReport(Report):
         self.source_pages(source_list)
         if self.inc_gallery:
             self.gallery_pages(source_list)
+
         # Build source pages a second time to pick up sources referenced
         # by galleries
         self.source_pages(source_list)
+
+        # repository pages
+        repolist = self.database.get_repository_handles()         
+        self.repository_pages(repolist)
 
         if self.archive:
             self.archive.close()
@@ -4005,6 +4334,34 @@ class NavWebReport(Report):
 
         if self.use_intro:
             IntroductionPage(self, self.title)
+
+    def repository_pages(self, repolist):
+
+        db = self.database
+        repos_dict = {}
+
+        # Sort the repositories
+        for handle in repolist:
+            repo = db.get_repository_from_handle(handle)
+            key = repo.name + str(repo.get_gramps_id())
+            repos_dict[key] = (repo, handle)
+            
+        keys = sorted(repos_dict, key=locale.strxfrm)
+
+        # set progress bar pass for Repositories
+        self.progress.set_pass(_('Creating repository pages'), len(repos_dict))
+
+        # RepositoryListPage Class
+        RepositoryListPage(self, self.title, repos_dict, keys)
+
+        index = 0
+        for index, key in enumerate(keys):
+            (repo, handle) = repos_dict[key]
+
+            # RepositoryPage Class
+            RepositoryPage(self, self.title, repo, handle)
+
+            self.progress.step()
 
     def add_image(self, option_name, height=0):
         pic_id = self.options[option_name]
@@ -4328,12 +4685,14 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'gallery', self.__gallery)
         self.__gallery.connect('value-changed', self.__gallery_changed)
 
-        self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
+        self.__maxinitialimagewidth = NumberOption(_("Max width of initial image"), 
+            _DEFAULT_MAX_IMG_WIDTH, 0, 2000)
         self.__maxinitialimagewidth.set_help(_("This allows you to set the maximum width "
                               "of the image shown on the media page. Set to 0 for no limit."))
         menu.add_option(category_name, 'maxinitialimagewidth', self.__maxinitialimagewidth)
 
-        self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
+        self.__maxinitialimageheight = NumberOption(_("Max height of initial image"), 
+            _DEFAULT_MAX_IMG_HEIGHT, 0, 2000)
         self.__maxinitialimageheight.set_help(_("This allows you to set the maximum height "
                               "of the image shown on the media page. Set to 0 for no limit."))
         menu.add_option(category_name, 'maxinitialimageheight', self.__maxinitialimageheight)
@@ -4343,6 +4702,10 @@ class NavWebOptions(MenuReportOptions):
         nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
         nogid.set_help(_('Whether to include the Gramps ID of objects'))
         menu.add_option(category_name, 'nogid', nogid)
+
+        inc_repository = BooleanOption(_('Include Repository Pages'), False)
+        inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
+        menu.add_option(category_name, 'inc_repository', inc_repository)
 
     def __add_privacy_options(self, menu):
         """
@@ -4383,7 +4746,7 @@ class NavWebOptions(MenuReportOptions):
         Options for the download tab ...
         """
 
-        category_name = _("Download Options")
+        category_name = _("Download")
 
         self.__incdownload = BooleanOption(_("Include download page"), False)
         self.__incdownload.set_help(_('Whether to include a database download option'))
@@ -4663,42 +5026,44 @@ def alphabet_navigation(db, handle_list, key):
             sorted_set[ltr] = 1
 
     # remove the number of each occurance of each letter
-    sorted_alphabet_index = sorted((l for l in sorted_set if l != ','), 
-                                    key=locale.strxfrm)
+    sorted_alpha_index = sorted((l for l in sorted_set if l != ','), 
+                                 key=locale.strxfrm)
 
-    # if no letters, do not show?
-    if not sorted_alphabet_index:
+    # if no letters, return None back to its callers
+    if not sorted_alpha_index:
         return None
 
     # begin alphabet division
     with Html('div', id='alphabet') as section:
 
-        num_ltrs = len(sorted_alphabet_index)
+        # set up table
+        with Html('table', class_='infolist alphabet') as table:
+            section += table
 
-        # +1 because we are starting at 0 instead of 1
-        nrows = (num_ltrs / 30) + 1
-        index = 0
-        for rows in range(0, nrows):
-            trow = Html('tr', class_='infolist alphabet')
-            section += trow
-
-            unordered = Html('ul')
-            trow += unordered
-
-            cols = 0
-            while (cols <= 30 and index < num_ltrs):
-                ltr = sorted_alphabet_index[index]
-                title_str = _('Surnames')  if key == 0 else _('Places')
-                if lang_country == "sv_SE" and letter == u'V':
-                    title_str += _(' starting with %s') % "V,W" 
-                    unordered += Html('li', class_='letters', inline=True) + \
-                        Html('a', "V,W", href="#V,W", title=title_str)
-                else:
-                    title_str += _(' starting with %s') % ltr 
-                    unordered += Html('li', class_='letters', inline=True) + \
-                        Html('a', ltr, href="%s" % ltr, title=title_str)
-                cols += 1
-                index += 1
+            num_ltrs = len(sorted_alpha_index)
+            nrows = (num_ltrs / 35) + 1
+            index = 0
+            for rows in xrange(nrows):
+                trow = Html('tr')  
+                table += trow
+                unordered = Html('ul') 
+                trow += unordered
+                cols = 0
+                while (cols <= 35 and index < num_ltrs):
+                    ltr = sorted_alpha_index[index]
+                    title_str = _('Surnames')  if key == 0 else _('Places')
+                    if lang_country == "sv_SE" and letter == u'V':
+                        title_str += _(' starting with %s') % "V,W" 
+                        unordered += (Html('li', class_='letters', inline=True) +
+                             Html('a', "V,W", href="#V,W", title=title_str)
+                             )
+                    else:
+                        title_str += _(' starting with %s') % ltr 
+                        unordered += Html('li', class_='letters', inline=True) + (
+                            Html('a', ltr, href='#%s' % ltr, title=title_str)
+                            )
+                    cols += 1
+                    index += 1
 
     # return alphabet navigation to its callers
     return section
