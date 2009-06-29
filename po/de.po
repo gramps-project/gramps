@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-01 22:17+0200\n"
-"PO-Revision-Date: 2009-06-01 22:19+0200\n"
+"POT-Creation-Date: 2009-06-29 17:52+0200\n"
+"PO-Revision-Date: 2009-06-29 18:00+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -519,7 +519,12 @@ msgstr "Konnte Datenbankverzeichnis nicht erstellen: "
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/DbManager.py:1082 ../src/ScratchPad.py:102
+#: ../src/DbManager.py:1081
+#, python-format
+msgid "Locked by %s"
+msgstr "Gesperrt durch %s"
+
+#: ../src/DbManager.py:1084 ../src/ScratchPad.py:102
 #: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
 #: ../src/DataViews/RelationView.py:984
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -551,11 +556,11 @@ msgstr "Nie"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../src/DbManager.py:1101
+#: ../src/DbManager.py:1103
 msgid "Retrieve failed"
 msgstr "Abfrage fehlgeschlagen"
 
-#: ../src/DbManager.py:1102
+#: ../src/DbManager.py:1104
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -566,11 +571,11 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1143 ../src/DbManager.py:1171
+#: ../src/DbManager.py:1145 ../src/DbManager.py:1173
 msgid "Archiving failed"
 msgstr "Archivierung ist fehlgeschlagen"
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1146
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -582,15 +587,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1149
+#: ../src/DbManager.py:1151
 msgid "Creating data to be archived..."
 msgstr "Erstelle zu archivierende Daten..."
 
-#: ../src/DbManager.py:1158
+#: ../src/DbManager.py:1160
 msgid "Saving archive..."
 msgstr "Speichere Archiv..."
 
-#: ../src/DbManager.py:1172
+#: ../src/DbManager.py:1174
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -1014,6 +1019,7 @@ msgstr "E-Mail"
 #. ------------------------------------------------------------------------
 #: ../src/GrampsCfg.py:223 ../src/gramps_main.py:119 ../src/ToolTips.py:198
 #: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/gramplet/QuickViewGramplet.py:92
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 #: ../src/plugins/gramplet/SessionLogGramplet.py:48
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
@@ -1218,7 +1224,7 @@ msgstr "_Details zum selbstdefinierten Format"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:423
 #: ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425 ../src/GrampsCfg.py:426
-#: ../src/GrampsCfg.py:427 ../src/Utils.py:1169
+#: ../src/GrampsCfg.py:427 ../src/Utils.py:1173
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
@@ -1235,7 +1241,7 @@ msgstr "Familienname"
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:427 ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:430 ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432
 #: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:589
-#: ../src/Utils.py:1167 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:1171 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
@@ -1243,19 +1249,19 @@ msgstr "Vorname"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
-#: ../src/ScratchPad.py:594 ../src/Utils.py:1170
+#: ../src/ScratchPad.py:594 ../src/Utils.py:1174
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
 msgid "Suffix"
 msgstr "Suffix"
 
 #: ../src/GrampsCfg.py:418 ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:429
-#: ../src/GrampsCfg.py:430 ../src/Utils.py:1173
+#: ../src/GrampsCfg.py:430 ../src/Utils.py:1177
 msgid "Common"
 msgstr "Üblich"
 
 #: ../src/GrampsCfg.py:420 ../src/GrampsCfg.py:422 ../src/GrampsCfg.py:424
-#: ../src/GrampsCfg.py:431 ../src/Utils.py:1172
+#: ../src/GrampsCfg.py:431 ../src/Utils.py:1176
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
@@ -1263,11 +1269,11 @@ msgstr "Rufname"
 
 #: ../src/GrampsCfg.py:421 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:430
 #: ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432 ../src/GrampsCfg.py:433
-#: ../src/GrampsCfg.py:434 ../src/Utils.py:1169
+#: ../src/GrampsCfg.py:434 ../src/Utils.py:1173
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1171
+#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1175
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "Patronymikon"
@@ -1513,7 +1519,7 @@ msgstr "Ereignisse"
 msgid "Font"
 msgstr "Schrift"
 
-#: ../src/gramps_main.py:108 ../src/widgets/styledtexteditor.py:352
+#: ../src/gramps_main.py:108 ../src/widgets/styledtexteditor.py:373
 msgid "Font Color"
 msgstr "Schriftfarbe"
 
@@ -2248,7 +2254,7 @@ msgstr "Ereignisreferenz"
 msgid "Call Name"
 msgstr "Rufname"
 
-#: ../src/ScratchPad.py:592 ../src/Utils.py:1168
+#: ../src/ScratchPad.py:592 ../src/Utils.py:1172
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:279 ../src/plugins/tool/PatchNames.py:291
@@ -2261,7 +2267,7 @@ msgstr "Präfix"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:593 ../src/Utils.py:1166
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1170
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:267
@@ -2832,39 +2838,39 @@ msgstr "Fehler beim Öffnen der Datei"
 msgid "File does not exist"
 msgstr "Datei existiert nicht"
 
-#: ../src/Utils.py:1166
+#: ../src/Utils.py:1170
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1167
+#: ../src/Utils.py:1171
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1168
+#: ../src/Utils.py:1172
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
-#: ../src/Utils.py:1170
+#: ../src/Utils.py:1174
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1171
+#: ../src/Utils.py:1175
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1176
 msgid "CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1177
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1178
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1178
 msgid "INITIALS"
 msgstr "INITIALEN"
 
@@ -4097,11 +4103,19 @@ msgstr ""
 msgid "Place Filter Editor"
 msgstr "Ortefiltereditor"
 
-#: ../src/DataViews/PlaceView.py:230
+#: ../src/DataViews/PlaceView.py:224
+msgid "No map service is available."
+msgstr "Kein Kartenservice verfügbar."
+
+#: ../src/DataViews/PlaceView.py:225
+msgid "Check your installation."
+msgstr "Überprüfe deine Installation."
+
+#: ../src/DataViews/PlaceView.py:233
 msgid "No place selected."
 msgstr "Kein Ort ausgewählt."
 
-#: ../src/DataViews/PlaceView.py:231
+#: ../src/DataViews/PlaceView.py:234
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
@@ -4109,15 +4123,15 @@ msgstr ""
 "Du musst einen Ort auswählen um ihn auf der Karte darstellen zu können. "
 "Einige Karten Services können mehrfach Auswahl unterstützen."
 
-#: ../src/DataViews/PlaceView.py:251
+#: ../src/DataViews/PlaceView.py:254
 msgid "Select Place Columns"
 msgstr "Ortespalten auswählen"
 
-#: ../src/DataViews/PlaceView.py:352
+#: ../src/DataViews/PlaceView.py:355
 msgid "Cannot merge places."
 msgstr "Kann Orte nicht zusammenfassen."
 
-#: ../src/DataViews/PlaceView.py:353
+#: ../src/DataViews/PlaceView.py:356
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -4428,8 +4442,8 @@ msgstr ""
 #: ../src/plugins/export/ExportCd.py:159 ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportCsv.py:308
-#: ../src/plugins/export/ExportGedcom.py:1526
-#: ../src/plugins/export/ExportGedcom.py:1531
+#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1534
 #: ../src/plugins/export/ExportGeneWeb.py:235
 #: ../src/plugins/export/ExportGeneWeb.py:239
 #: ../src/plugins/export/ExportVCalendar.py:207
@@ -5693,49 +5707,49 @@ msgstr "Deine GEDCOM-Datei ist leer."
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:133
+#: ../src/GrampsDbUtils/_GedcomParse.py:134
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Deine GEDCOM-Datei ist defekt. Vermutlich ist die Datei unvollständig."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:276
+#: ../src/GrampsDbUtils/_GedcomParse.py:277
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:818
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1072
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:2918
+#: ../src/GrampsDbUtils/_GedcomParse.py:2937
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3601
-#: ../src/GrampsDbUtils/_GedcomParse.py:4169
+#: ../src/GrampsDbUtils/_GedcomParse.py:3620
+#: ../src/GrampsDbUtils/_GedcomParse.py:4188
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3945
+#: ../src/GrampsDbUtils/_GedcomParse.py:3964
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4035
-#: ../src/GrampsDbUtils/_GedcomParse.py:4047
+#: ../src/GrampsDbUtils/_GedcomParse.py:4054
+#: ../src/GrampsDbUtils/_GedcomParse.py:4066
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4086
+#: ../src/GrampsDbUtils/_GedcomParse.py:4105
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "übersprungen %d untergeornet(e) in Zeile %d"
@@ -7844,7 +7858,7 @@ msgstr "Schreibe Notizen"
 msgid "Writing repositories"
 msgstr "Schreibe Aufbewahrungsorte"
 
-#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1532
 msgid "Export failed"
 msgstr "Export fehlgeschlagen"
 
@@ -7853,7 +7867,7 @@ msgstr "Export fehlgeschlagen"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportGedcom.py:1539
+#: ../src/plugins/export/ExportGedcom.py:1542
 #: ../src/plugins/import/ImportGedcom.py:142
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -7863,11 +7877,11 @@ msgstr ""
 "transferieren. Die meisten Genealogieprogramme können GEDCOM-Dateien "
 "importieren."
 
-#: ../src/plugins/export/ExportGedcom.py:1541
+#: ../src/plugins/export/ExportGedcom.py:1544
 msgid "GEDCOM export options"
 msgstr "GEDCOM-Exportoptionen"
 
-#: ../src/plugins/export/ExportGedcom.py:1544
+#: ../src/plugins/export/ExportGedcom.py:1547
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
@@ -14068,7 +14082,7 @@ msgstr "GraphViz Layout"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:943
-#: ../src/widgets/styledtexteditor.py:364
+#: ../src/widgets/styledtexteditor.py:385
 msgid "Font family"
 msgstr "Schriftfamilie"
 
@@ -14082,7 +14096,7 @@ msgstr ""
 "www.nongnu.org/freefont/"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:954
-#: ../src/widgets/styledtexteditor.py:376
+#: ../src/widgets/styledtexteditor.py:397
 msgid "Font size"
 msgstr "Schriftgröße"
 
@@ -14203,9 +14217,9 @@ msgid ""
 "Subgraphs can help GraphViz position spouses together, but with non-trivial "
 "graphs will result in longer lines and larger graphs."
 msgstr ""
-"Unterdiagramme können GraphViz helfen Partner näher "
-"zusammen zu positionieren, können aber bei komplexeren Diagrammen zu "
-"längeren Linien und größeren Diagrammen führen."
+"Unterdiagramme können GraphViz helfen Partner näher zusammen zu "
+"positionieren, können aber bei komplexeren Diagrammen zu längeren Linien und "
+"größeren Diagrammen führen."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:1052
@@ -18627,11 +18641,6 @@ msgstr ""
 msgid "Upgrade now"
 msgstr "Jetzt aktualisieren"
 
-#: ../src/gen/db/dbdir.py:2116
-#, python-format
-msgid "Locked by %s"
-msgstr "Gesperrt durch %s"
-
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
 msgstr "E-Mail"
@@ -21598,51 +21607,51 @@ msgid "Edit icons can be enabled in the Preferences dialog"
 msgstr "Bearbeiten-Schaltflächen können in den Einstellungen aktiviert werden"
 
 #. spell checker submenu
-#: ../src/widgets/styledtexteditor.py:291
+#: ../src/widgets/styledtexteditor.py:311
 msgid "Spell"
 msgstr "Buchstabieren"
 
-#: ../src/widgets/styledtexteditor.py:302
+#: ../src/widgets/styledtexteditor.py:322
 msgid "_Send Mail To..."
 msgstr "E-Mail _senden an..."
 
-#: ../src/widgets/styledtexteditor.py:303
+#: ../src/widgets/styledtexteditor.py:323
 msgid "Copy _E-mail Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../src/widgets/styledtexteditor.py:305
+#: ../src/widgets/styledtexteditor.py:325
 msgid "_Open Link"
 msgstr "Link _öffnen"
 
-#: ../src/widgets/styledtexteditor.py:306
+#: ../src/widgets/styledtexteditor.py:326
 msgid "Copy _Link Address"
 msgstr "_Linkadresse kopieren"
 
-#: ../src/widgets/styledtexteditor.py:340
+#: ../src/widgets/styledtexteditor.py:361
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/widgets/styledtexteditor.py:342
+#: ../src/widgets/styledtexteditor.py:363
 msgid "Bold"
 msgstr "Fett"
 
-#: ../src/widgets/styledtexteditor.py:344
+#: ../src/widgets/styledtexteditor.py:365
 msgid "Underline"
 msgstr "Unterstrichen"
 
-#: ../src/widgets/styledtexteditor.py:354
+#: ../src/widgets/styledtexteditor.py:375
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: ../src/widgets/styledtexteditor.py:356
+#: ../src/widgets/styledtexteditor.py:377
 msgid "Clear Markup"
 msgstr "Markierungen löschen"
 
-#: ../src/widgets/styledtexteditor.py:475
+#: ../src/widgets/styledtexteditor.py:496
 msgid "Select font color"
 msgstr "Wähle Schriftfarbe"
 
-#: ../src/widgets/styledtexteditor.py:477
+#: ../src/widgets/styledtexteditor.py:498
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
