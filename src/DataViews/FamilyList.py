@@ -93,9 +93,12 @@ class FamilyListView(PageView.ListView):
             DisplayModels.FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
-        
+
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
+
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.self.dbstate.db.set_family_list_column_order(clist)
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
@@ -109,10 +112,6 @@ class FamilyListView(PageView.ListView):
             self.dbstate.db.get_family_list_column_order(),
             FamilyListView.COLUMN_NAMES,
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_family_list_column_order(clist)
-        self.build_columns()
 
     def get_stock(self):
         return 'gramps-family'

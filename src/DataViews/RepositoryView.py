@@ -110,6 +110,9 @@ class RepositoryView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.self.dbstate.db.set_repository_column_order(clist)
+
     def get_bookmarks(self):
         return self.dbstate.db.get_repo_bookmarks()
 
@@ -136,10 +139,6 @@ class RepositoryView(PageView.ListView):
             self.dbstate.db.get_repository_column_order(),
             RepositoryView.COLUMN_NAMES,
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_repository_column_order(clist)
-        self.build_columns()
 
     def column_order(self):
         return self.dbstate.db.get_repository_column_order()

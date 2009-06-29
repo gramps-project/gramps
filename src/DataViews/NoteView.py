@@ -100,6 +100,9 @@ class NoteView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.self.dbstate.db.set_note_column_order(clist)
+
     def get_bookmarks(self):
         """
         Return the bookmark object
@@ -189,10 +192,6 @@ class NoteView(PageView.ListView):
             self.dbstate.db.get_note_column_order(),
             NoteView.COLUMN_NAMES,
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_note_column_order(clist)
-        self.build_columns()
 
     def add(self, obj):
         try:

@@ -112,7 +112,7 @@ class GenericFilter(object):
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
 
-    def check_func(self, db, id_list, task, progress=None):
+    def check_func(self, db, id_list, task, progress=None, tupleind=None):
         final_list = []
         
         if id_list is None:
@@ -125,15 +125,19 @@ class GenericFilter(object):
                     if task(db, person) != self.invert:
                         final_list.append(handle)
         else:
-            for handle in id_list:
+            for data in id_list:
+                if tupleind is None:
+                    handle = data
+                else:
+                    handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
                 if progress:
                     progress.step()
                 if task(db, person) != self.invert:
-                    final_list.append(handle)
+                    final_list.append(data)
         return final_list
 
-    def check_and(self, db, id_list, progress=None):
+    def check_and(self, db, id_list, progress=None, tupleind=None):
         final_list = []
         flist = self.flist
 
@@ -148,23 +152,30 @@ class GenericFilter(object):
                     if val != self.invert:
                         final_list.append(handle)
         else:
-            for handle in id_list:
+            for data in id_list:
+                if tupleind is None:
+                    handle = data
+                else:
+                    handle = data[tupleind]
                 person = self.find_from_handle(db, handle)
                 if progress:
                     progress.step()
                 val = all(rule.apply(db, person) for rule in flist)
                 if val != self.invert:
-                    final_list.append(handle)
+                    final_list.append(data)
         return final_list
 
-    def check_or(self, db, id_list, progress=None):
-        return self.check_func(db, id_list, self.or_test, progress)
+    def check_or(self, db, id_list, progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.or_test, progress,
+                                tupleind)
 
-    def check_one(self, db, id_list, progress=None):
-        return self.check_func(db, id_list, self.one_test, progress)
+    def check_one(self, db, id_list, progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.one_test, progress,
+                                tupleind)
 
-    def check_xor(self, db, id_list, progress=None):
-        return self.check_func(db, id_list, self.xor_test, progress)
+    def check_xor(self, db, id_list, progress=None, tupleind=None):
+        return self.check_func(db, id_list, self.xor_test, progress,
+                                tupleind)
 
     def xor_test(self, db, person):
         test = False
@@ -199,11 +210,28 @@ class GenericFilter(object):
 
     # progress is optional. If present it must be an instance of 
     #  gui.utils.ProgressMeter
-    def apply(self, db, id_list=None, progress=None):
+    def apply(self, db, id_list=None, progress=None, tupleind=None):
+        """
+        Apply the filter using db.
+        If id_list given, the handles in id_list are used. If not given
+        a database cursor will be used over all entries.
+        
+        If progress given, it will be used to indicate progress of the
+        Filtering
+        
+        If typleind is given, id_list is supposed to consist of a list of 
+        tuples, with the handle being index tupleind. So 
+        handle_0 = id_list[0][tupleind]
+        
+        :Returns: if id_list given, it is returned with the items that 
+                do not match the filter, filtered out.
+                if id_list not given, all items in the database that 
+                match the filter are returned as a list of handles
+        """
         m = self.get_check_func()
         for rule in self.flist:
             rule.prepare(db)
-        res = m(db, id_list, progress)
+        res = m(db, id_list, progress, tupleind)
         for rule in self.flist:
             rule.reset()
         return res

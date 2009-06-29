@@ -640,10 +640,12 @@ class ListView(BookMarkView):
         self.renderer = gtk.CellRendererText()
         self.renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
         self.sort_col = 0
+        self.sort_order = gtk.SORT_ASCENDING
         self.columns = []
         self.colinfo = columns
         self.handle_col = handle_col
         self.make_model = make_model
+        self.model = None
         self.signal_map = signal_map
         self.multiple_selection = multiple
         self.generic_filter = None
@@ -734,7 +736,31 @@ class ListView(BookMarkView):
         return True
 
     def column_order(self):
-        assert False
+        """
+        Must be set by children. The method that obtains the column order
+        to be used. Format: see ColumnOrder.
+        """
+        raise NotImplementedError
+
+    def column_ord_setfunc(self, clist):
+        """
+        Must be set by children. The method that stores the column order
+        given by clist (result of ColumnOrder class).
+        """
+        raise NotImplementedError
+
+    def set_column_order(self, clist):
+        """
+        change the order of the columns to that given in clist
+        """
+        self.column_ord_setfunc(clist)
+        #now we need to rebuild the model so it contains correct column info
+        self.dirty = True
+        #make sure we sort on first column. We have no idea where the 
+        # column that was sorted on before is situated now. 
+        self.sort_col = 0
+        self.sort_order = gtk.SORT_ASCENDING
+        self.build_tree()
  
     def build_widget(self):
         """
@@ -838,6 +864,12 @@ class ListView(BookMarkView):
         # disable the inactive flag
         self.inactive = False
 
+    def __display_column_sort(self):
+        for i in xrange(len(self.columns)):
+            enable_sort_flag = (i==self.sort_col)
+            self.columns[i].set_sort_indicator(enable_sort_flag)
+        self.columns[self.sort_col].set_sort_order(self.sort_order)
+
     def column_clicked(self, obj, data):
         cput = time.clock()
         same_col = False
@@ -852,6 +884,7 @@ class ListView(BookMarkView):
                 order = gtk.SORT_DESCENDING
 
         self.sort_col = data
+        self.sort_order = order
         handle = self.first_selected()
 
         if Config.get(Config.FILTER):
@@ -862,18 +895,16 @@ class ListView(BookMarkView):
         if same_col:
             self.model.reverse_order()
         else:
-            self.model = self.make_model(self.dbstate.db, self.sort_col, order, 
-                                     search=search, 
-                                     sort_map=self.column_order())
+            self.model = self.make_model(self.dbstate.db, self.sort_col, 
+                                         self.sort_order, 
+                                         search=search, 
+                                         sort_map=self.column_order())
         
         self.list.set_model(self.model)
+        self.__display_column_sort()
 
         if handle:
             self.goto_handle(handle)
-        for i in xrange(len(self.columns)):
-            enable_sort_flag = (i==self.sort_col)
-            self.columns[i].set_sort_indicator(enable_sort_flag)
-        self.columns[self.sort_col].set_sort_order(order)
 
         # set the search column to be the sorted column
         search_col = self.column_order()[data][1]
@@ -915,18 +946,29 @@ class ListView(BookMarkView):
             else:
                 filter_info = (False, self.search_bar.get_value())
 
-            self.model = self.make_model(self.dbstate.db, self.sort_col, 
-                                         search=filter_info)
-            self.list.set_model(self.model)
+            if self.dirty or self.model is None \
+                    or not self.model.node_map.full_srtkey_hndl_map():
+                self.model = self.make_model(self.dbstate.db, self.sort_col, 
+                                             search=filter_info,
+                                             sort_map=self.column_order())
+            else:
+                #the entire data to show is already in memory.
+                #run only the part that determines what to show
+                self.list.set_model(None)
+                self.model.set_search(filter_info)
+                self.model.rebuild_data()
+            
             self.build_columns()
+            self.list.set_model(self.model)
+            self.__display_column_sort()
 
             if const.USE_TIPS and self.model.tooltip_column is not None:
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False
             self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed, 
-                                             self.model.total)
+                                             self.model.displayed(), 
+                                             self.model.total())
             _LOG.debug(self.__class__.__name__ + ' build_tree ' +
                     str(time.clock() - cput) + ' sec')
             
@@ -936,6 +978,7 @@ class ListView(BookMarkView):
     def object_build(self):
         """callback, for if tree must be rebuilt and bookmarks redrawn
         """
+        self.dirty = True
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()
@@ -966,6 +1009,8 @@ class ListView(BookMarkView):
             db.connect(sig, self.signal_map[sig])
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
+            #force rebuild of the model on build of tree
+            self.dirty = True
             self.build_tree()
             self.bookmarks.redraw()
         else:
@@ -978,6 +1023,9 @@ class ListView(BookMarkView):
                 self.model.add_row_by_handle(handle)
             _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
+            self.uistate.show_filter_results(self.dbstate, 
+                                             self.model.displayed(), 
+                                             self.model.total())
         else:
             self.dirty = True
 
@@ -1000,6 +1048,9 @@ class ListView(BookMarkView):
                 self.model.delete_row_by_handle(handle)
             _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
+            self.uistate.show_filter_results(self.dbstate, 
+                                             self.model.displayed(), 
+                                             self.model.total())
         else:
             self.dirty = True
 
@@ -1086,8 +1137,8 @@ class ListView(BookMarkView):
     def change_page(self):
         if self.model:
             self.uistate.show_filter_results(self.dbstate, 
-                                             self.model.displayed, 
-                                             self.model.total)
+                                             self.model.displayed(), 
+                                             self.model.total())
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
 
     def key_delete(self):

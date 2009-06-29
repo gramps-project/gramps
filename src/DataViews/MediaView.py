@@ -118,6 +118,9 @@ class MediaView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter", 
                                  self.filter_toggle)
 
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.set_media_column_order(clist)
+
     def _set_dnd(self):
         """
         Set up drag-n-drop. The source and destionation are set by calling .target()
@@ -241,13 +244,6 @@ class MediaView(PageView.ListView):
             self.dbstate.db.get_media_column_order(), 
             MediaView.COLUMN_NAMES, 
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        """
-        Saves the column order to the database
-        """
-        self.dbstate.db.set_media_column_order(clist)
-        self.build_columns()
 
     def column_order(self):
         """

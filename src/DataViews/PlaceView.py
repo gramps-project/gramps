@@ -120,6 +120,9 @@ class PlaceView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.set_place_column_order(clist)
+    
     def get_bookmarks(self):
         return self.dbstate.db.get_place_bookmarks()
 
@@ -260,10 +263,6 @@ class PlaceView(PageView.ListView):
             self.dbstate.db.get_place_column_order(),
             PlaceView.COLUMN_NAMES,
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_place_column_order(clist)
-        self.build_columns()
 
     def column_order(self):
         return self.dbstate.db.get_place_column_order()

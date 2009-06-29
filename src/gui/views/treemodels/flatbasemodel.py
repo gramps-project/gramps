@@ -56,6 +56,8 @@ from __future__ import with_statement
 import locale
 import logging
 import bisect
+import time
+import copy
 
 _LOG = logging.getLogger(".gui.basetreemodel")
     
@@ -73,7 +75,6 @@ import gtk
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
 import Config
-import time
 
 #-------------------------------------------------------------------------
 #
@@ -98,7 +99,8 @@ class FlatNodeMap(object):
                     ascending, but will begin at back of list if view shows
                     the entries in reverse.
         * index2hndl : list of (srtkey, hndl) tuples. The index gives the 
-                        (srtkey, hndl) it belongs to
+                        (srtkey, hndl) it belongs to. 
+                       This normally is only a part of all possible data 
         * hndl2index : dictionary of *hndl: index* values
         
     The implementation provides a list of (srtkey, hndl) of which the index is
@@ -114,25 +116,55 @@ class FlatNodeMap(object):
         Create a new instance.
         """
         self._index2hndl = []
+        self._fullhndl = self._index2hndl
+        self._identical = True
         self._hndl2index = {}
         self._reverse = False
         self.__corr = (0, 1)
 
-    def set_path_map(self, index2hndllist, reverse=False):
+    def set_path_map(self, index2hndllist, fullhndllist, identical=True,
+                     reverse=False):
         """
         This is the core method to set up the FlatNodeMap
         Input is a list of (srtkey, handle), of which the index is the path
         Calling this method sets the index2hndllist, and creates the hndl2index
-        map.
+        map. 
+        fullhndllist is the entire list of (srtkey, handle) that is possible, 
+        normally index2hndllist is only part of this list as determined by
+        filtering. To avoid memory, if both lists are the same, pass only one
+        list twice and set identical to True.
+        Reverse sets up how the path is determined from the index. If True the
+        first index is the last path
         
         :param index2hndllist: the ascending sorted (sortkey, handle) values 
-                    as they will appear in the flat treeview. 
+                    as they will appear in the flat treeview. This often is 
+                    a subset of all possible data
         :type index2hndllist: a list of (sortkey, handle) tuples
+        :param fullhndllist: the list of all possilbe ascending sorted 
+                    (sortkey, handle) values as they will appear in the flat 
+                     treeview if all data is shown.
+        :type fullhndllist: a list of (sortkey, handle) tuples
+        :param identical: identify if index2hndllist and fullhndllist are the
+                        same list, so only one is kept in memory.
+        :type identical: bool
         """
         self._index2hndl = index2hndllist
         self._hndl2index = {}
+        self._identical = identical
+        if identical:
+            self._fullhndl = self._index2hndl
+        else:
+            self._fullhndl = fullhndllist
         self._reverse = reverse
         self.reverse_order()
+    
+    def full_srtkey_hndl_map(self):
+        """
+        The list of all possible (sortkey, handle) tuples. 
+        This is stored in FlatNodeMap so that it would not be needed to 
+        reiterate over the database to obtain all posibilities.
+        """
+        return self._fullhndl
 
     def reverse_order(self):
         """
@@ -177,6 +209,8 @@ class FlatNodeMap(object):
         """
         self._index2hndl = []
         self._hndl2index = {}
+        self._fullhndl = self._index2hndl
+        self._identical = True
 
     def get_path(self, handle):
         """
@@ -241,7 +275,14 @@ class FlatNodeMap(object):
         """
         return len(self._index2hndl)
     
-    def insert(self, srtkey_hndl):
+    def max_rows(self):
+        """
+        Return maximum number of entries that might be present in the 
+        map
+        """
+        return len(self._fullhndl)
+    
+    def insert(self, srtkey_hndl, allkeyonly=False):
         """
         Insert a node. Given is a tuple (sortkey, handle), and this is added
         in the correct place, while the hndl2index map is updated.
@@ -250,8 +291,13 @@ class FlatNodeMap(object):
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
         
         :Returns: path of the row inserted in the treeview
-        :Returns type: integer
+        :Returns type: integer or None
         """
+        if not self._identical:
+            bisect.insort_left(self._fullhndl, srtkey_hndl)
+            if allkeyonly:
+                #key is not part of the view
+                return None
         insert_pos = bisect.bisect_left(self._index2hndl, srtkey_hndl)
         self._index2hndl.insert(insert_pos, srtkey_hndl)
         #make sure the index map is updated
@@ -264,19 +310,34 @@ class FlatNodeMap(object):
             self.__corr = (len(self._index2hndl) - 1, -1)
         return self.real_path(insert_pos)
     
-    def delete(self, handle):
+    def delete(self, srtkey_hndl):
         """
-        Delete the row with handle.
+        Delete the row with the given (sortkey, handle).
         This then rebuilds the hndl2index, subtracting one from each item
         greater than the deleted index.
+        path of deleted row is returned
+        If handle is not present, None is returned
         
-        :param handle: the handle that must be removed
-        :type handle: an object handle
+        :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
         
         :Returns: path of the row deleted from the treeview
-        :Returns type: integer
+        :Returns type: integer or None
         """
-        index = self._hndl2index[handle]
+        #remove it from the full list first
+        if not self._identical:
+            del_pos = bisect.bisect_left(self._fullhndl, srtkey_hndl)
+            #check that indeed this is correct:
+            if not self._fullhndl[del_pos][1] == srtkey_hndl[1]:
+                raise KeyError, 'Handle %s not in list of all handles' %  \
+                                                srtkey_hndl[1]
+            del self._fullhndl[del_pos]
+        #now remove it from the index maps
+        handle = srtkey_hndl[1]
+        try:
+            index = self._hndl2index[handle]
+        except KeyError:
+            # key not present in the treeview
+            return None
         del self._index2hndl[index]
         del self._hndl2index[handle]
         #update self.__corr so it remains correct
@@ -318,29 +379,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.sort_col = scol
         self.skip = skip
 
-        self.total = 0
-        self.displayed = 0
-
         self.node_map = FlatNodeMap()
-
-        if search:
-            if search[0]:
-                self.search = search[1]
-                self.rebuild_data = self._rebuild_filter
-            else:
-                if search[1]:
-                    # we have search[1] = (index, text_unicode, inversion)
-                    col = search[1][0]
-                    text = search[1][1]
-                    inv = search[1][2]
-                    func = lambda x: self.on_get_value(x, col) or u""
-                    self.search = SearchFilter(func, text, inv)
-                else:
-                    self.search = None
-                self.rebuild_data = self._rebuild_search
-        else:
-            self.search = None
-            self.rebuild_data = self._rebuild_search
+        self.set_search(search)
             
         self._reverse = (order == gtk.SORT_DESCENDING)
         self.tooltip_column = tooltip_column
@@ -358,6 +398,35 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.rebuild_data()
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
+
+    def set_search(self, search):
+        """
+        Change the search function that filters the data in the model. 
+        When this method is called, make sure:
+        # you call self.rebuild_data() to recalculate what should be seen 
+          in the model
+        # you reattach the model to the treeview so that the treeview updates
+          with the new entries
+        """
+        if search:
+            if search[0]:
+                #following is None if no data given in filter sidebar
+                self.search = search[1]
+                self.rebuild_data = self._rebuild_filter
+            else:
+                if search[1]:
+                    # we have search[1] = (index, text_unicode, inversion)
+                    col = search[1][0]
+                    text = search[1][1]
+                    inv = search[1][2]
+                    func = lambda x: self.on_get_value(x, col) or u""
+                    self.search = SearchFilter(func, text, inv)
+                else:
+                    self.search = None
+                self.rebuild_data = self._rebuild_search
+        else:
+            self.search = None
+            self.rebuild_data = self._rebuild_search
 
     def __update_todo(self, client, cnxn_id, entry, data):
         """
@@ -377,11 +446,17 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         self.complete_color = Config.get(Config.COMPLETE_COLOR)
 
-    def set_sort_column(self, col):
+    def total(self):
         """
-        set sort column to column with index col
+        Total number of items that maximally can be shown
         """
-        self.sort_func = self.smap[col]
+        return self.node_map.max_rows()
+
+    def displayed(self):
+        """
+        Number of items that are currently displayed
+        """
+        return len(self.node_map)
 
     def reverse_order(self):
         """
@@ -397,7 +472,6 @@ class FlatBaseModel(gtk.GenericTreeModel):
         This list is sorted ascending (via localized string sort)
         """
         sort_data = []
-        self.total = 0
         
         with self.gen_cursor() as cursor:    # use cursor as a context manager
             #loop over database and store the sort field, and the handle
@@ -411,45 +485,60 @@ class FlatBaseModel(gtk.GenericTreeModel):
                 #bisect.insort_left(sort_data,
                 #                   (locale.strxfrm(self.sort_func(data)), key))
         sort_data.sort()
-        self.total = len(sort_data)
         return sort_data
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
             in the top search bar
         """
-        self.total = 0
         if self.db.is_open():
+            allkeys = self.node_map.full_srtkey_hndl_map()
+            if not allkeys:
+                allkeys = self.sort_keys()
             if self.search and self.search.text:
-                dlist = [h for h  in self.sort_keys()\
-                             if self.search.match(h[1],self.db) and \
+                dlist = [h for h  in allkeys \
+                             if self.search.match(h[1], self.db) and \
                              h[1] not in self.skip and h[1] != ignore]
+                ident = False
+            elif ignore is None and not self.skip:
+                #nothing to remove from the keys present
+                ident = True
+                dlist = allkeys
             else:
-                dlist = [h for h in self.sort_keys() \
+                ident = False
+                dlist = [h for h in allkeys \
                              if h[1] not in self.skip and h[1] != ignore]
-            self.displayed = len(dlist)
-            self.node_map.set_path_map(dlist, reverse=self._reverse)
+            self.node_map.set_path_map(dlist, allkeys, identical=ident, 
+                                       reverse=self._reverse)
         else:
-            self.displayed = 0
             self.node_map.clear_map()
 
     def _rebuild_filter(self, ignore=None):
         """ function called when view must be build, given filter options
             in the filter sidebar
         """
-        self.total = 0
         if self.db.is_open():
+            allkeys = self.node_map.full_srtkey_hndl_map()
+            if not allkeys:
+                allkeys = self.sort_keys()
             if self.search:
-                dlist = self.search.apply(self.db, 
-                    [ k for k in self.sort_keys()\
-                        if k[1] != ignore])
+                ident = False
+                if ignore is None:
+                    tmp = copy.copy(allkeys)
+                    dlist = self.search.apply(self.db, tmp, tupleind=1)
+                else:
+                    dlist = self.search.apply(self.db, 
+                                [ k for k in allkeys if k[1] != ignore],
+                                tupleind=1)
+            elif ignore is None :
+                ident = True
+                dlist = allkeys
             else:
-                dlist = [ k for k in self.sort_keys() \
-                              if k[1] != ignore ]
-            self.displayed = len(dlist)
-            self.node_map.set_path_map(dlist, reverse=self._reverse)
+                ident = False
+                dlist = [ k for k in allkeys if k[1] != ignore ]
+            self.node_map.set_path_map(dlist, allkeys, identical=ident, 
+                                       reverse=self._reverse)
         else:
-            self.displayed = 0
             self.node_map.clear_map()
         
     def add_row_by_handle(self, handle):
@@ -457,23 +546,29 @@ class FlatBaseModel(gtk.GenericTreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
+        data = self.map(handle)
+        insert_val = (locale.strxfrm(self.sort_func(data)), handle)
         if not self.search or \
                 (self.search and self.search.match(handle, self.db)):
             #row needs to be added to the model
-            data = self.map(handle)
-            insert_val = (locale.strxfrm(self.sort_func(data)), handle)
             insert_path = self.node_map.insert(insert_val)
 
             if insert_path is not None:
                 node = self.get_iter(insert_path)
                 self.row_inserted(insert_path, node)
+        else:
+            self.node_map.insert(insert_val, allkeyonly=True)
 
     def delete_row_by_handle(self, handle):
         """
         Delete a row, called after the object with handle is deleted
         """
-        delete_path = self.node_map.delete(handle)
-        self.row_deleted(delete_path)
+        data = self.map(handle)
+        delete_val = (locale.strxfrm(self.sort_func(data)), handle)
+        delete_path = self.node_map.delete(delete_val)
+        #delete_path is an integer from 0 to n-1
+        if delete_path is not None: 
+            self.row_deleted(delete_path)
 
     def update_row_by_handle(self, handle):
         """
@@ -481,8 +576,9 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         ## TODO: if sort key changes, this is not updated correctly ....
         path = self.node_map.get_path(handle)
-        node = self.get_iter(path)
-        self.row_changed(path, node)
+        if path is not None:
+            node = self.get_iter(path)
+            self.row_changed(path, node)
 
     def on_get_flags(self):
         """

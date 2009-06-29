@@ -109,6 +109,9 @@ class EventView(PageView.ListView):
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
 
+    def column_ord_setfunc(self, clist):
+        self.dbstate.db.set_event_column_order(clist)
+
     def get_bookmarks(self):
         """
         Return the bookmark object
@@ -208,10 +211,6 @@ class EventView(PageView.ListView):
             self.dbstate.db.get_event_column_order(),
             EventView.COLUMN_NAMES,
             self.set_column_order)
-
-    def set_column_order(self, clist):
-        self.dbstate.db.set_event_column_order(clist)
-        self.build_columns()
 
     def add(self, obj):
         try:
