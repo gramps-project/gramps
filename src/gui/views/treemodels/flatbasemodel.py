@@ -468,23 +468,15 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Return the (sort_key, handle) list of all data that can maximally 
         be shown. 
-        This list is sorted ascending (via localized string sort)
+        This list is sorted ascending, via localized string sort. strxfrm 
+        is used, which is apparently broken in Win ?? --> they should fix 
+        base lib, we need strxfrm
         """
-        sort_data = []
-        
-        with self.gen_cursor() as cursor:    # use cursor as a context manager
+        # use cursor as a context manager
+        with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            for key, data in cursor:
-                ## as per locale doc, use strxfrm for frequent compare.
-                ##  apparently broken in Win --> they should fix base lib !!
-                #add to sort_data in such a way that bisect module can be
-                #  used on the result later on.
-                sort_data.append((locale.strxfrm(self.sort_func(data)), 
-                                        key))
-                #bisect.insort_left(sort_data,
-                #                   (locale.strxfrm(self.sort_func(data)), key))
-        sort_data.sort()
-        return sort_data
+            return sorted( (locale.strxfrm(self.sort_func(data)),  key)
+                                        for key, data in cursor )
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
