@@ -760,6 +760,7 @@ class ListView(BookMarkView):
         # column that was sorted on before is situated now. 
         self.sort_col = 0
         self.sort_order = gtk.SORT_ASCENDING
+        self.setup_filter()
         self.build_tree()
  
     def build_widget(self):
