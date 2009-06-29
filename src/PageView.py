@@ -895,6 +895,7 @@ class ListView(BookMarkView):
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
+        self.setup_filter()
 
     def build_tree(self):
         if self.active:
