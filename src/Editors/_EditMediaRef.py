@@ -235,7 +235,7 @@ class EditMediaRef(EditReference):
         if self.rectangle is None:
             self.rectangle = (0,0,100,100)
         self.rectangle = self.rectangle[:1] + (value,) + self.rectangle[2:]
-                          
+        self.update_subpixmap()
 
     def set_corner2_x(self, value):
         """
