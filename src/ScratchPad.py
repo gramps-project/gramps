@@ -74,13 +74,6 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 #-------------------------------------------------------------------------
 #
-# The file used to store the state of the Clipboard (was scratchpad) between sessions
-#
-#-------------------------------------------------------------------------
-SCRATCHPAD_FILE = os.path.join(const.HOME_DIR,"scratchpad.dat")
-
-#-------------------------------------------------------------------------
-#
 # wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
