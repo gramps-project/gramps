@@ -184,7 +184,7 @@ src/gui/__init__.py
 src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/grampsgui.py
-src/gui/utilsgui.py
+src/gui/utils.py
 src/gui/viewmanager.py
 
 # gui/views - the GUI views package
