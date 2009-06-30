@@ -20474,7 +20474,7 @@ msgstr "Paroisse :"
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:10
 msgid "ZIP/Postal Code:"
-msgstr "Code postal / INSEE :"
+msgstr "Code lieu (INSEE/postal) :"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
