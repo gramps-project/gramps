@@ -531,7 +531,7 @@ class MonitoredComboSelectedEntry(object):
         Fill combo with data
         """
         self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
-        keys = sorted(self.mapping.keys(), self.__by_value)
+        keys = sorted(self.mapping.keys(), key=self.__by_value_key)
 
         for index, key in enumerate(keys):
             self.store.append(row=[key, self.mapping[key]])
@@ -545,6 +545,12 @@ class MonitoredComboSelectedEntry(object):
         fvalue = self.mapping[first]
         svalue = self.mapping[second]
         return locale.strcoll(fvalue, svalue)
+
+    def __by_value_key(self, first):
+        """
+        Method for sorting keys based on the values.
+        """
+        return locale.strxfrm(self.mapping[first])
 
     def on_combochange(self, obj):
         """

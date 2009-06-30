@@ -57,8 +57,8 @@ import gen.lib
 #------------------------------------------------------------------------
 def _get_sort_functions(sort):
     return [
-        (_("Birth Date"),sort.by_birthdate),
-        (_("Name"),sort.by_last_name), 
+        (_("Birth Date"),sort.by_birthdate_key),
+        (_("Name"),sort.by_last_name_key), 
 ]
 
 #------------------------------------------------------------------------
@@ -134,7 +134,7 @@ class TimeLine(Report):
         length = len(self.plist)
 
         self.progress.set_pass(_('Sorting dates...'), 1)
-        self.plist.sort(self.sort_func)
+        self.plist.sort(key=self.sort_func)
         self.progress.set_pass(_('Calculating timeline...'), len(self.plist))
         
         for p_id in self.plist:

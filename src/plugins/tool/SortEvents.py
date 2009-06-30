@@ -53,11 +53,11 @@ def _get_sort_functions(sort):
     Define the types of sorting that is available
     """
     return [
-        (_("Date"), sort.by_date),
-        (_("Type"), sort.by_event_type),
-        (_("ID"), sort.by_event_id),
-        (_("Description"), sort.by_event_description),
-        (_("Place"), sort.by_event_place),]
+        (_("Date"), sort.by_date_key),
+        (_("Type"), sort.by_event_type_key),
+        (_("ID"), sort.by_event_id_key),
+        (_("Description"), sort.by_event_description_key),
+        (_("Place"), sort.by_event_place_key),]
 
 #-------------------------------------------------------------------------
 #
@@ -118,7 +118,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
             person = self.db.get_person_from_handle(handle)
             self.progress.step()
             event_ref_list = person.get_event_ref_list()
-            event_ref_list.sort(lambda x, y: self.sort_func(x.ref, y.ref))
+            event_ref_list.sort(key=lambda x: self.sort_func(x.ref))
             if self.sort_desc:
                 event_ref_list.reverse()
             if self.fam_events:
@@ -139,7 +139,7 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
             family = self.db.get_family_from_handle(handle)
             self.progress.step()
             event_ref_list = family.get_event_ref_list()
-            event_ref_list.sort(lambda x, y: self.sort_func(x.ref, y.ref))
+            event_ref_list.sort(key=lambda x: self.sort_func(x.ref))
             if self.sort_desc:
                 event_ref_list.reverse()
             family.set_event_ref_list(event_ref_list)

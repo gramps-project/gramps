@@ -81,7 +81,7 @@ class PlaceReport(Report):
             # Use the place handles selected without a filter
             self.place_handles = self.__get_place_handles(places)
 
-        self.place_handles.sort(self.sort.by_place_title)
+        self.place_handles.sort(key=self.sort.by_place_title_key)
 
     def write_report(self):
         """

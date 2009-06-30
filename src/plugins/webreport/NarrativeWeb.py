@@ -1380,7 +1380,7 @@ class PlaceListPage(BasePage):
                 thead += trow
 
                 sort = Sort.Sort(db)
-                handle_list = sorted(place_handles, sort.by_place_title)
+                handle_list = sorted(place_handles, key=sort.by_place_title_key)
                 last_letter = ''
 
                 # begin table body
@@ -2301,7 +2301,7 @@ class MediaListPage(BasePage):
 
                 index = 1
                 sort = Sort.Sort(db)
-                mlist = sorted(self.report.photo_list, sort.by_media_title)
+                mlist = sorted(self.report.photo_list, key=sort.by_media_title_key)
         
                 for handle in mlist:
                     media = db.get_object_from_handle(handle)
@@ -4305,7 +4305,7 @@ class NavWebReport(Report):
         prev = None
         total = len(self.photo_list)
         sort = Sort.Sort(self.database)
-        photo_keys = sorted(self.photo_list, sort.by_media_title)
+        photo_keys = sorted(self.photo_list, key=sort.by_media_title_key)
 
         index = 1
         for photo_handle in photo_keys:
