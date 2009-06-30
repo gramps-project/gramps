@@ -30,12 +30,6 @@ import os
 from xml.sax.saxutils import escape
 from time import strftime as strftime
 
-try:
-    import fcntl
-    use_lock = True
-except:
-    use_lock = False
-
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
