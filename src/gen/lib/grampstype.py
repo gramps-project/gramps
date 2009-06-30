@@ -31,21 +31,7 @@ Base type for all gramps types.
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
-# _init_map function
-#
-#-------------------------------------------------------------------------
-def _init_map(data, key_col, data_col, blacklist=None):
-    """Initialize the map, building a new map from the specified columns."""
-    if blacklist:
-        new_data = dict([(item[key_col], item[data_col]) 
-                        for item in data if not item[0] in blacklist])
-    else:
-        new_data = dict([(item[key_col], item[data_col]) for item in data])
-        
-    return new_data
+_UNKNOWN = _('Unknown')
 
 #-------------------------------------------------------------------------
 #
@@ -55,13 +41,29 @@ def _init_map(data, key_col, data_col, blacklist=None):
 class GrampsTypeMeta(type):
     """Metaclass for :class:`~gen.lib.grampstype.GrampsType`.
     
-    The only thing this metaclass does is calling __class_init__ class method,
-    in order to create the class specific integer/string maps.
+    Create the class-specific integer/string maps.
     
     """
-    def __init__(mcs, name, bases, namespace):
-        type.__init__(mcs, name, bases, namespace)
-        mcs.__class_init__(namespace)
+    def __init__(cls, name, bases, namespace):
+
+        # Helper function to create the maps        
+        def init_map(data, key_col, data_col, blacklist=None):
+            """Initialize the map, building a new map from the specified columns."""
+            if blacklist:
+                return dict([(item[key_col], item[data_col]) 
+                                for item in data if not item[0] in blacklist])
+            else:
+                return dict([(item[key_col], item[data_col]) for item in data])
+                
+        # Call superclass initialization        
+        type.__init__(cls, name, bases, namespace)
+        
+        # Build the integer/string maps
+        cls._I2SMAP = init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
+        cls._S2IMAP = init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
+        cls._I2EMAP = init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
+        cls._E2IMAP = init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)        
+      
         
 #-------------------------------------------------------------------------
 #
@@ -107,13 +109,6 @@ class GrampsType(object):
     def __setstate__(self,dict_):
         self.__value = dict_['__value']
         self.__string = dict_['__string']
-    
-    @classmethod
-    def __class_init__(cls, namespace):
-        cls._I2SMAP = _init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
-        cls._S2IMAP = _init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
-        cls._I2EMAP = _init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
-        cls._E2IMAP = _init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
     
     def __init__(self, value=None):
         """
@@ -193,7 +188,7 @@ class GrampsType(object):
         if self.__value == self._CUSTOM:
             return self.__string
         else:
-            return self._I2SMAP.get(self.__value, _('Unknown'))
+            return self._I2SMAP.get(self.__value, _UNKNOWN)
 
     def __int__(self):
         return self.__value
@@ -235,5 +230,6 @@ class GrampsType(object):
                 return cmp(self.__string, value.string)
             else:
                 return cmp(self.__value, value.value)
+
     value = property(__int__, __set_int, None, "Returns or sets integer value")
     string = property(__str__, __set_str, None, "Returns or sets string value")
