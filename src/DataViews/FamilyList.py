@@ -98,7 +98,7 @@ class FamilyListView(PageView.ListView):
                                  self.filter_toggle)
 
     def column_ord_setfunc(self, clist):
-        self.dbstate.db.self.dbstate.db.set_family_list_column_order(clist)
+        self.dbstate.db.set_family_list_column_order(clist)
 
     def column_order(self):
         return self.dbstate.db.get_family_list_column_order()
