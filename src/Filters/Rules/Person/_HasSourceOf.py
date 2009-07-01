@@ -48,12 +48,21 @@ class HasSourceOf(Rule):
     description = _('Matches people who have a particular source')
     
     def prepare(self,db):
+        if self.list[0] == '':
+            self.source_handle = None
+            self.nosource = True
+            return
+
+        self.nosource = False
         try:
             self.source_handle = db.get_source_from_gramps_id(self.list[0]).get_handle()
         except:
             self.source_handle = None
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         if not self.source_handle:
-            return False
-        return person.has_source_reference( self.source_handle)
+            if self.nosource:
+                return len(person.get_source_references()) == 0
+            else:
+                return False
+        return person.has_source_reference(self.source_handle)

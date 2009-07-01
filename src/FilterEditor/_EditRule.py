@@ -216,44 +216,6 @@ class MyLesserEqualGreater(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
-# MySource - Combo box with list of sources with a standard interface
-#
-#-------------------------------------------------------------------------
-class MySource(gtk.ComboBox):
-    
-    def __init__(self, db):
-        gtk.ComboBox.__init__(self)
-        self.db = db
-        store = gtk.ListStore(gobject.TYPE_STRING)
-        self.set_model(store)
-        cell = gtk.CellRendererText()
-        self.pack_start(cell, True)
-        self.add_attribute(cell, 'text', 0)
-
-        self.slist = []
-        for src_handle in self.db.get_source_handles(sort_handles=True):
-            src = self.db.get_source_from_handle(src_handle)
-            self.slist.append(src.get_gramps_id())
-            title = src.get_title()
-            if len(title) > 44:
-                title = title[:40] + "..."
-            store.append(row=["%s [%s]" % (title, src.get_gramps_id())])
-
-        self.set_active(0)
-        self.show()
-        
-    def get_text(self):
-        active = self.get_active()
-        if active < 0:
-            return ""
-        return self.slist[active]
-
-    def set_text(self, val):
-        if val in self.slist:
-            self.set_active(self.slist.index(val))
-
-#-------------------------------------------------------------------------
-#
 # MyPlaces - AutoCombo text entry with list of places attached. Provides
 #            a standard interface
 #
@@ -272,6 +234,8 @@ class MyPlaces(gtk.Entry):
 #
 #-------------------------------------------------------------------------
 class MyID(gtk.HBox):
+    _invalid_id_txt = _('Not a valid ID')
+    _empty_id_txt  = _invalid_id_txt
 
     obj_name = {
         'Person' : _('Person'),
@@ -348,12 +312,29 @@ class MyID(gtk.HBox):
         return name
 
     def set_text(self, val):
-        try:
-            name = self.name_from_gramps_id(val)
-            self.tooltips.set_tip(self.entry, name)
-        except AttributeError:
-            self.tooltips.set_tip(self.entry, _('Not a valid ID'))
+        if not val:
+            self.tooltips.set_tip(self.entry, self._empty_id_txt)
+        else:
+            try:
+                name = self.name_from_gramps_id(val)
+                self.tooltips.set_tip(self.entry, name)
+            except AttributeError:
+                self.tooltips.set_tip(self.entry, self._invalid_id_txt)
         self.entry.set_text(val)
+
+
+#-------------------------------------------------------------------------
+#
+# MySource - select ID of sources with a standard interface
+#
+#-------------------------------------------------------------------------
+class MySource(MyID):
+    
+    _empty_id_txt = _('Give or select a source ID, leave empty to find objects'
+              ' with no source.')
+    def __init__(self, dbstate, uistate, track):
+        MyID.__init__(self, dbstate, uistate, track, namespace='Source')
+        self.tooltips.set_tip(self.entry, self._empty_id_txt)
 
 #-------------------------------------------------------------------------
 #
@@ -486,7 +467,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyID(self.dbstate, self.uistate, self.track, 
                              self.namespace)
                 elif v == _('Source ID:'):
-                    t = MySource(self.db)
+                    t = MySource(self.dbstate, self.uistate, self.track)
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters(self.namespace),
                                   self.filter_name)
