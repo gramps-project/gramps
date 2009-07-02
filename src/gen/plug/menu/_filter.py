@@ -62,14 +62,10 @@ class FilterOption(EnumeratedListOption):
         @type filter_list: array
         @return: nothing
         """
-        items = []
         curval = self.get_value()
+        items = [(value, filt.get_name()) 
+                    for value, filt in enumerate(filter_list)]
         
-        value = 0
-        for filt in filter_list:
-            items.append((value, filt.get_name()))
-            value += 1
-            
         self.__filters = filter_list
         self.clear()
         self.set_items( items )
