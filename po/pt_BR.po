@@ -3638,7 +3638,7 @@ msgstr ""
 #: ../src/DataViews/GeoView.py:1714
 #, python-format
 msgid "%(eventtype)s : %(name)s"
-msgstr "%(event_type)s : %(name)s"
+msgstr "%(eventtype)s : %(name)s"
 
 #: ../src/DataViews/GeoView.py:1734
 msgid "The active person has no places with coordinates."
