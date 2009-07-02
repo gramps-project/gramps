@@ -72,21 +72,21 @@ class LdsOrdBase(object):
 
     def add_lds_ord(self, lds_ord):
         """
-        Add the L{LdsOrd} instance to the object's list of lds_ordes.
+        Add the :class:`~gen.lib.ldsord.LdsOrd` instance to the object's list of lds_ordes.
 
-        :param lds_ord: L{LdsOrd} instance to add to the object's lds_ord list
+        :param lds_ord: :class:`~gen.lib.ldsord.LdsOrd` instance to add to the object's lds_ord list
         :type lds_ord: list
         """
         self.lds_ord_list.append(lds_ord)
 
     def remove_lds_ord(self, lds_ord):
         """
-        Remove the specified L{LdsOrd} instance from the lds_ord list.
+        Remove the specified :class:`~gen.lib.ldsord.LdsOrd` instance from the lds_ord list.
         
         If the instance does not exist in the list, the operation has no effect.
 
-        :param lds_ord: L{LdsOrd} instance to remove from the list
-        :type lds_ord: L{LdsOrd}
+        :param lds_ord: :class:`~gen.lib.ldsord.LdsOrd` instance to remove from the list
+        :type lds_ord: :class:`~gen.lib.ldsord.LdsOrd`
 
         :returns: True if the lds_ord was removed, False if it was not in the list.
         :rtype: bool
@@ -99,18 +99,18 @@ class LdsOrdBase(object):
 
     def get_lds_ord_list(self):
         """
-        Return the list of L{LdsOrd} instances associated with the object.
+        Return the list of :class:`~gen.lib.ldsord.LdsOrd` instances associated with the object.
 
-        :returns: Returns the list of L{LdsOrd} instances
+        :returns: Returns the list of :class:`~gen.lib.ldsord.LdsOrd` instances
         :rtype: list
         """
         return self.lds_ord_list
 
     def set_lds_ord_list(self, lds_ord_list):
         """
-        Assign the passed list to the object's list of L{LdsOrd} instances.
+        Assign the passed list to the object's list of :class:`~gen.lib.ldsord.LdsOrd` instances.
         
-        :param lds_ord_list: List of L{LdsOrd} instances to be associated
+        :param lds_ord_list: List of :class:`~gen.lib.ldsord.LdsOrd` instances to be associated
             with the object
         :type lds_ord_list: list
         """

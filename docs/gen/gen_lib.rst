@@ -103,12 +103,18 @@ DateBase
    :undoc-members:
    :show-inheritance:
 
-
-
 UrlBase
 ====================================
 .. automodule:: gen.lib.urlbase
 .. autoclass:: UrlBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+LdsOrdBase
+====================================
+.. automodule:: gen.lib.ldsordbase
+.. autoclass:: LdsOrdBase
    :members:
    :undoc-members:
    :show-inheritance:
