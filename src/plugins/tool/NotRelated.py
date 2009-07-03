@@ -333,7 +333,7 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
                     self.numberOfUnrelatedPeople, self.numberOfPeopleInDatabase)
 
             # loop through everyone in the database
-            for handle in self.db.get_person_handles(False):
+            for handle in self.db.iter_person_handles():
 
                 self.progress.step()
 

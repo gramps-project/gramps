@@ -174,7 +174,7 @@ class GeneWebWriter(object):
             if not option_box.cfilter.is_empty():
                 self.db = gen.proxy.FilterProxyDb(self.db, option_box.cfilter)
 
-        for p in self.db.get_person_handles(sort_handles=False):
+        for p in self.db.iter_person_handles():
             self.plist[p] = 1
             
         self.flist = {}

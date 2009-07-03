@@ -29,6 +29,14 @@ import Config
 
 #------------------------------------------------------------------------
 #
+# Constants
+#
+#------------------------------------------------------------------------
+
+_YIELD_INTERVAL = 350
+
+#------------------------------------------------------------------------
+#
 # Gramplet class
 #
 #------------------------------------------------------------------------
@@ -54,11 +62,11 @@ class TopSurnamesGramplet(Gramplet):
 
     def main(self):
         self.set_text(_("Processing...") + "\n")
-        people = self.dbstate.db.get_person_handles(sort_handles=False)
+        people = self.dbstate.db.iter_person_handles()
         surnames = {}
         representative_handle = {}
-        cnt = 0
-        for person_handle in people:
+
+        for cnt, person_handle in enumerate(people):
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
@@ -66,32 +74,28 @@ class TopSurnamesGramplet(Gramplet):
                 for surname in allnames:
                     surnames[surname] = surnames.get(surname, 0) + 1
                     representative_handle[surname] = person_handle
-            if cnt % 350 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_people = cnt
         surname_sort = []
         total = 0
-        cnt = 0
-        for surname in surnames:
+
+        for cnt, surname in enumerate(surnames):
             surname_sort.append( (surnames[surname], surname) )
             total += surnames[surname]
-            if cnt % 350 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_surnames = cnt
-        surname_sort.sort(lambda a,b: -cmp(a,b))
+        surname_sort.sort(reverse=True)
         line = 0
         ### All done!
         self.set_text("")
+        nosurname = Config.get(Config.NO_SURNAME_TEXT)
         for (count, surname) in surname_sort:
-            if len(surname) == 0:
-                text = "%s, %d%% (%d)\n" %  (Config.get(Config.NO_SURNAME_TEXT),
-                                             int((float(count)/total) * 100),
-                                             count)
-            else:
-                text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), 
-                                             count)
+            text = "%s, " % (surname if surname else nosurname)
+            text += "%d%% (%d)\n" % (int((float(count)/total) * 100), count)
             self.append_text(" %d. " % (line + 1))
             self.link(text, 'Surname', representative_handle[surname])
             line += 1

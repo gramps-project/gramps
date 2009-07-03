@@ -34,7 +34,7 @@ def run(database, document, attribute, value=None):
     sdoc.paragraph("")
     stab.columns(_("Person"), str(attribute))
     matches = 0
-    for person_handle in database.get_person_handles(sort_handles=False):
+    for person_handle in database.iter_person_handles():
         person = database.get_person_from_handle(person_handle)
         matched = False
         for attr in person.attribute_list:

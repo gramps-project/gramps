@@ -38,6 +38,14 @@ import gen
 
 #------------------------------------------------------------------------
 #
+# Constants
+#
+#------------------------------------------------------------------------
+
+_YIELD_INTERVAL = 200
+
+#------------------------------------------------------------------------
+#
 # Gramplet class
 #
 #------------------------------------------------------------------------
@@ -58,7 +66,7 @@ class StatsGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing..."))
         database = self.dbstate.db
-        personList = database.get_person_handles(sort_handles=False)
+        personList = database.iter_person_handles()
         familyList = database.get_family_handles()
 
         with_photos = 0
@@ -73,7 +81,7 @@ class StatsGramplet(Gramplet):
         namelist = []
         notfound = []
 
-        pobjects = len(database.get_media_object_handles())
+        pobjects = database.get_number_of_media_objects()
         for photo_id in database.get_media_object_handles():
             photo = database.get_object_from_handle(photo_id)
             fullname = media_path_full(database, photo.get_path())
@@ -82,8 +90,7 @@ class StatsGramplet(Gramplet):
             except:
                 notfound.append(photo.get_path())
 
-        cnt = 0
-        for person_handle in personList:
+        for cnt, person_handle in enumerate(personList):
             person = database.get_person_from_handle(person_handle)
             if not person:
                 continue
@@ -92,16 +99,17 @@ class StatsGramplet(Gramplet):
                 with_photos = with_photos + 1
                 total_photos = total_photos + length
 
-            person = database.get_person_from_handle(person_handle)
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
                 if name.get_first_name() == "" or name.get_group_name() == "":
                     incomp_names = incomp_names + 1
                 if name.get_group_name() not in namelist:
                     namelist.append(name.get_group_name())
+                    
             if ((not person.get_main_parents_family_handle()) and 
                 (not len(person.get_family_handle_list()))):
                 disconnected = disconnected + 1
+                
             birth_ref = person.get_birth_ref()
             if birth_ref:
                 birth = database.get_event_from_handle(birth_ref.ref)
@@ -109,22 +117,22 @@ class StatsGramplet(Gramplet):
                     missing_bday = missing_bday + 1
             else:
                 missing_bday = missing_bday + 1
+                
             if person.get_gender() == gen.lib.Person.FEMALE:
                 females = females + 1
             elif person.get_gender() == gen.lib.Person.MALE:
                 males = males + 1
             else:
                 unknowns += 1
-            if cnt % 200 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
 
         self.clear_text()
         self.append_text(_("Individuals") + "\n")
         self.append_text("----------------------------\n")
         self.link(_("Number of individuals") + ":",
                   'Filter', 'all people')
-        self.append_text(" %s" % len(personList))
+        self.append_text(" %s" % database.get_number_of_people())
         self.append_text("\n")
         self.link("%s:" % _("Males"), 'Filter', 'males')
         self.append_text(" %s" % males)

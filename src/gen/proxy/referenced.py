@@ -172,6 +172,13 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         return self.db.get_person_handles(sort_handles)
 
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. If sort_handles is True, the list is sorted by surnames
+        """
+        return self.db.iter_person_handles()
+
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place still
@@ -310,7 +317,7 @@ class ReferencedProxyDb(ProxyDbBase):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-        >    result_list = [i for i in find_backlink_handles(handle)]
+        >    result_list = list(find_backlink_handles(handle))
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
@@ -366,22 +373,17 @@ class ReferencedProxyDb(ProxyDbBase):
                       'handle_list': self.get_note_handles}
             }
 
-        has_unreferenced_handles = True
-
         last_count = 0
-        while has_unreferenced_handles:
+        while True:
             current_count = 0
             for object_type, object_dict in object_types.iteritems():
                 unref_list = object_dict['unref_list']
                 handle_list = object_dict['handle_list']()
                 for handle in handle_list:
-                    ref_handles = [i for i in \
-                        self.find_backlink_handles(handle)]
-                    if len(ref_handles) == 0:
+                    if not any(self.find_backlink_handles(handle)):
                         unref_list.append(handle)
                 current_count += len(unref_list)
 
             if current_count == last_count:
-                has_unreferenced_handles = False
-            else:
-                last_count = current_count
+                break
+            last_count = current_count

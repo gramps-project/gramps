@@ -379,18 +379,16 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
 
     def write_report(self):
-        plist = self.database.get_person_handles(sort_handles=False)
+        plist = self.database.iter_person_handles()
         if self.filter:
             ind_list = self.filter.apply(self.database,plist)
         else:
             ind_list = plist
             
-        count = 0
-        for person_handle in ind_list:
+        for count, person_handle in enumerate(ind_list):
             self.person = self.database.get_person_from_handle(
                 person_handle)
             self.write_person(count)
-            count = count + 1
 
     def write_person(self,count):
         if count != 0:

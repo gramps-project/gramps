@@ -185,7 +185,7 @@ class PackageWriter(object):
                 p.set_media_list(nl)
                 self.db.commit_family(p, None)
                 
-            for key in self.db.get_person_handles(sort_handles=False):
+            for key in self.db.iter_person_handles():
                 p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:

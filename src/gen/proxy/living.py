@@ -227,6 +227,19 @@ class LivingProxyDb(ProxyDbBase):
             handles = self.db.get_person_handles(sort_handles)
         return handles
 
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. If sort_handles is True, the list is sorted by surnames
+        """
+        if self.mode == self.MODE_EXCLUDE_ALL:
+            for handle in self.db.iter_person_handles():
+                person = self.db.get_person_from_handle(handle)
+                if not self.__is_living(person):
+                    yield handle
+        else:
+            handles = self.db.iter_person_handles()
+
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
@@ -364,7 +377,7 @@ class LivingProxyDb(ProxyDbBase):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-        >    result_list = [i for i in find_backlink_handles(handle)]
+        >    result_list = list(find_backlink_handles(handle))
         """
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:

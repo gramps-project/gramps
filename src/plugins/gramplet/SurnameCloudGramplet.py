@@ -29,6 +29,14 @@ import Config
 
 #------------------------------------------------------------------------
 #
+# Constants
+#
+#------------------------------------------------------------------------
+
+_YIELD_INTERVAL = 350
+
+#------------------------------------------------------------------------
+#
 # Local functions
 #
 #------------------------------------------------------------------------
@@ -70,11 +78,10 @@ class SurnameCloudGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        people = self.dbstate.db.get_person_handles(sort_handles=False)
+        people = self.dbstate.db.iter_person_handles()
         surnames = {}
         representative_handle = {}
-        cnt = 0
-        for person_handle in people:
+        for cnt, person_handle in enumerate(people):
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
@@ -82,32 +89,29 @@ class SurnameCloudGramplet(Gramplet):
                 for surname in allnames:
                     surnames[surname] = surnames.get(surname, 0) + 1
                     representative_handle[surname] = person_handle
-            if cnt % 350 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_people = cnt
         surname_sort = []
         total = 0
-        cnt = 0
-        for surname in surnames:
+        for cnt, surname in enumerate(surnames):
             surname_sort.append( (surnames[surname], surname) )
             total += surnames[surname]
-            if cnt % 350 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_surnames = cnt
-        surname_sort.sort(lambda a,b: -cmp(a,b))
+        surname_sort.sort(reverse=True)
         cloud_names = []
         cloud_values = []
-        cnt = 0
-        for (count, surname) in surname_sort:
+        for cnt, (count, surname) in enumerate(surname_sort):
             cloud_names.append( (count, surname) )
             cloud_values.append( count )
-            cnt += 1
-        cloud_names.sort(lambda a,b: cmp(a[1], b[1]))
+
+        cloud_names.sort(key=lambda k:k[1])
         counts = list(set(cloud_values))
-        counts.sort()
-        counts.reverse()
+        counts.sort(reverse=True)
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:

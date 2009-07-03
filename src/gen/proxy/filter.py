@@ -281,6 +281,14 @@ class FilterProxyDb(ProxyDbBase):
         # FIXME: plist is not a sorted list of handles
         return list(self.plist)
 
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. If sort_handles is True, the list is sorted by surnames
+        """
+        # FIXME: plist is not a sorted list of handles
+        return (h for h in self.plist)
+
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
@@ -420,7 +428,7 @@ class FilterProxyDb(ProxyDbBase):
         Note that this is a generator function, it returns a iterator for
         use in loops. If you want a list of the results use:
 
-        >    result_list = [i for i in find_backlink_handles(handle)]
+        >    result_list = list(find_backlink_handles(handle))
         """
         #FIXME: add a filter for returned handles (see private.py as an example)
         return self.db.find_backlink_handles(handle, include_classes)

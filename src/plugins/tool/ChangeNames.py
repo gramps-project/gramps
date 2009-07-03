@@ -107,7 +107,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 s1 = 0
                 if namesplitSP[0].lower() in prefix_list:
                     s1 = 1
-                for x in range(len(namesplitSP)-s1):
+                for x in xrange(len(namesplitSP)-s1):
                     # check if any subsurname is not cap
                     notcap = False
                     if namesplitSP[s1+x] != namesplitSP[s1+x].capitalize():
@@ -121,7 +121,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 # check if first string is in prefix_list, if so test for cap
                 if namesplitSP[0].lower() in prefix_list:
                     namesplitHY[0] = namesplitHY[0].replace(namesplitSP[0],'').strip()
-                for x in range(len(namesplitHY)):
+                for x in xrange(len(namesplitHY)):
                     # check if any subsurname is not cap
                     notcap = False
                     if namesplitHY[x] != namesplitHY[x].capitalize():
@@ -234,7 +234,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                       for node in self.iter_list
                       if self.model.get_value(node,0)]
 
-        for handle in self.db.get_person_handles():
+        for handle in self.db.iter_person_handles():
             change = False
             person = self.db.get_person_from_handle(handle)
             for name in [person.get_primary_name()] + person.get_alternate_names():

@@ -417,7 +417,7 @@ class Extract(object):
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
         
         # go through the people and collect data
-        for person_handle in filter_func.apply(db, db.get_person_handles(sort_handles=False)):
+        for person_handle in filter_func.apply(db, db.iter_person_handles()):
 
             person = db.get_person_from_handle(person_handle)
             # check whether person has suitable gender

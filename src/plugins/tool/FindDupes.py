@@ -187,13 +187,12 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         males = {}
         females = {}
 
-        self.person_list = self.db.get_person_handles(sort_handles=False)
-        length = len(self.person_list)
+        length = self.db.get_number_of_people()
 
         self.progress.set_pass(_('Pass 1: Building preliminary lists'),
                                length)
         
-        for p1_id in self.person_list:
+        for p1_id in self.db.iter_person_handles():
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
@@ -211,7 +210,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.progress.set_pass(_('Pass 2: Calculating potential matches'),
                                length)
 
-        for p1key in self.person_list:
+        for p1key in self.db.iter_person_handles():
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1key)
 
@@ -221,9 +220,9 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             else:
                 remaining = females[key]
 
-            index = 0
+            #index = 0
             for p2key in remaining:
-                index += 1
+                #index += 1
                 if p1key == p2key:
                     continue
                 p2 = self.db.get_person_from_handle(p2key)

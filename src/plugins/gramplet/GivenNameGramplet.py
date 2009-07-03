@@ -25,6 +25,8 @@ from gettext import gettext as _
 from DataViews import Gramplet, register
 import Config
 
+_YIELD_INTERVAL = 350
+
 def make_tag_size(n, counts, mins=8, maxs=20):
     # return font sizes mins to maxs
     diff = maxs - mins
@@ -56,11 +58,11 @@ class GivenNameCloudGramplet(Gramplet):
     def main(self):
         self.set_text(_("Processing...") + "\n")
         yield True
-        people = self.dbstate.db.get_person_handles(sort_handles=False)
+        people = self.dbstate.db.iter_person_handles()
         givensubnames = {}
         representative_handle = {}
-        cnt = 0
-        for person_handle in people:
+
+        for cnt, person_handle in enumerate(people):
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
@@ -69,32 +71,31 @@ class GivenNameCloudGramplet(Gramplet):
                     for givensubname in givenname.split():
                         givensubnames[givensubname] = givensubnames.get(givensubname, 0) + 1
                         representative_handle[givensubname] = person_handle
-            if cnt % 350 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_people = cnt
         givensubname_sort = []
         total = 0
-        cnt = 0
-        for givensubname in givensubnames:
+
+        for cnt, givensubname in enumerate(givensubnames):
             givensubname_sort.append( (givensubnames[givensubname], givensubname) )
             total += givensubnames[givensubname]
-            if cnt % 100 == 0:
+            if not cnt % _YIELD_INTERVAL:
                 yield True
-            cnt += 1
+
         total_givensubnames = cnt
-        givensubname_sort.sort(lambda a,b: -cmp(a,b))
+        givensubname_sort.sort(reverse=True)
         cloud_names = []
         cloud_values = []
-        cnt = 0
-        for (count, givensubname) in givensubname_sort:
+
+        for cnt, (count, givensubname) in enumerate(givensubname_sort):
             cloud_names.append( (count, givensubname) )
             cloud_values.append( count )
-            cnt += 1
-        cloud_names.sort(lambda a,b: cmp(a[1], b[1]))
+
+        cloud_names.sort(key=lambda k: k[1])
         counts = list(set(cloud_values))
-        counts.sort()
-        counts.reverse()
+        counts.sort(reverse=True)
         line = 0
         ### All done!
         # Now, find out how many we can display without going over top_size:
@@ -111,9 +112,9 @@ class GivenNameCloudGramplet(Gramplet):
                 include_greater_than = s
                 break
         # Ok, now we can show those counts > include_greater_than:
-        showing = 0
+
         self.set_text("")
-        for (count, givensubname) in cloud_names: # givensubname_sort:
+        for showing, (count, givensubname) in enumerate(cloud_names): # givensubname_sort:
             if count > include_greater_than:
                 if len(givensubname) == 0:
                     text = Config.get(Config.NO_SURNAME_TEXT)
@@ -126,7 +127,7 @@ class GivenNameCloudGramplet(Gramplet):
                            (float(count)/total_people) * 100, 
                            count))
                 self.append_text(" ")
-                showing += 1
+
         self.append_text(("\n\n" + _("Total unique given names") + ": %d\n") % 
                          total_givensubnames)
         self.append_text((_("Total given names showing") + ": %d\n") % showing)

@@ -76,7 +76,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
         names = []
         person = None
-        for person_handle in self.db.get_person_handles(sort_handles=False):
+        for person_handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(person_handle)
             lastname = person.get_primary_name().get_surname()
             if lastname not in names:

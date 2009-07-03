@@ -144,14 +144,15 @@ class FtreeWriter(object):
 
             self.restrict = self.option_box.restrict
             if self.option_box.cfilter is None:
-                for p in self.db.get_person_handles(sort_handles=False):
-                    self.plist[p] = 1
+                self.plist.update((p,1) 
+                    for p in self.db.iter_person_handles())
+
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(
-                      self.db, self.db.get_person_handles(sort_handles=False)
-                      ):
-                        self.plist[p] = 1
+                    self.plist.update((p,1) 
+                        for p in self.option_box.cfilter.apply(
+                            self.db, self.db.iter_person_handles()))
+
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
                     ErrorDialog(m1, m2)
@@ -169,8 +170,8 @@ class FtreeWriter(object):
 
     def cl_setup(self):
         self.restrict = True
-        for p in self.db.get_person_handles(sort_handles=False):
-            self.plist[p] = 1
+        self.plist.update((p,1) 
+            for p in self.db.iter_person_handles())        
 
     def export_data(self):
         name_map = {}

@@ -91,7 +91,7 @@ class MarkerReport(Report):
         self.write_notes()
             
     def write_people(self):
-        plist = self.database.get_person_handles(sort_handles=False)
+        plist = self.database.iter_person_handles()
         FilterClass = GenericFilterFactory('Person')
         filter = FilterClass()
         filter.add_rule(Rules.Person.HasMarkerOf([self.marker]))

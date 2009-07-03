@@ -316,7 +316,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def run_tool(self,cli=False):
 
-        person_handles = self.db.get_person_handles(sort_handles=False)
+        person_handles = self.db.iter_person_handles()
         
         for option, value in \
           self.options.handler.options_dict.iteritems():

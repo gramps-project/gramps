@@ -83,7 +83,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.change = False
         counter = 0
         
-        for handle in self.db.get_person_handles():
+        for handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(handle)
             for event_ref in person.get_event_ref_list():
                 if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:

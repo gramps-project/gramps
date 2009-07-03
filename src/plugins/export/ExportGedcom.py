@@ -413,7 +413,6 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
         self.dirname = os.path.dirname (filename)
         self.gedcom_file = open(filename, "w")
-
         self.__header(filename)
         self.__submitter()
         self.__individuals()
@@ -574,8 +573,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.reset(_("Writing individuals"))
         self.progress_cnt += 1
         self.update(self.progress_cnt)
-        phandles = self.dbase.get_person_handles()
-
+        phandles = self.dbase.iter_person_handles()
+        
         sorted_list = []
         for handle in phandles:
             person = self.dbase.get_person_from_handle(handle)

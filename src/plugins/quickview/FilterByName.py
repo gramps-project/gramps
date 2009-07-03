@@ -60,7 +60,7 @@ def run(database, document, filter_name, *args, **kwargs):
     matches = 0
     if (filter_name == 'all people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             stab.row(person, sdb.birth_date_obj(person),
@@ -68,7 +68,7 @@ def run(database, document, filter_name, *args, **kwargs):
             matches += 1
     elif (filter_name == 'males'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person.gender == Person.MALE:
@@ -77,7 +77,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'females'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person.gender == Person.FEMALE:
@@ -86,7 +86,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'people with unknown gender'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person.gender not in [Person.FEMALE, Person.MALE]:
@@ -95,7 +95,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'people with incomplete names'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             for name in [person.get_primary_name()] + person.get_alternate_names():
@@ -105,7 +105,7 @@ def run(database, document, filter_name, *args, **kwargs):
                     matches += 1
     elif (filter_name == 'people with missing birth dates'):
         stab.columns(_("Person"), _("Type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person:
@@ -120,7 +120,7 @@ def run(database, document, filter_name, *args, **kwargs):
                     matches += 1
     elif (filter_name == 'disconnected people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person:
@@ -139,7 +139,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'unique surnames'):
         namelist = {}
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person:
@@ -158,7 +158,7 @@ def run(database, document, filter_name, *args, **kwargs):
                                                          name))
     elif (filter_name == 'people with media'):
         stab.columns(_("Person"), _("Media count"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if not person:
@@ -169,7 +169,7 @@ def run(database, document, filter_name, *args, **kwargs):
                 matches += 1
     elif (filter_name == 'media references'):
         stab.columns(_("Person"), _("Reference"))
-        people = database.get_person_handles(sort_handles=False)
+        people = database.iter_person_handles()
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if not person:

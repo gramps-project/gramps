@@ -83,7 +83,7 @@ class AgeStatsGramplet(Gramplet):
         mother_handles = [[] for age in range(self.max_mother_diff)]
         father_handles = [[] for age in range(self.max_father_diff)]
         text = ""
-        handles = self.dbstate.db.get_person_handles(sort_handles=False)
+        handles = self.dbstate.db.iter_person_handles()
         for h in handles:
             yield True
             p = self.dbstate.db.get_person_from_handle(h)
@@ -203,7 +203,7 @@ class AgeStatsGramplet(Gramplet):
         print "compute_stats", hash
         hashkeys = sorted(hash)
         count = sum(hash.itervalues())
-        sumval = sum([k * hash[k] for k in hash])
+        sumval = sum(k * hash[k] for k in hash)
         minval = min(hashkeys)
         maxval = max(hashkeys)
         median = 0

@@ -99,11 +99,12 @@ class SummaryReport(Report):
         self.doc.write_text(_("Individuals"))
         self.doc.end_paragraph()
         
-        person_list = self.__db.get_person_handles(sort_handles=False)
-        for person_handle in person_list:
+        person_list = self.__db.iter_person_handles()
+        for num_people, person_handle in enumerate(person_list):
             person = self.__db.get_person_from_handle(person_handle)
             if not person:
                 continue
+            num_people += 1
             
             # Count people with media.
             length = len(person.get_media_list())
@@ -142,7 +143,7 @@ class SummaryReport(Report):
                 namelist.append(name.get_surname())
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Number of individuals: %d") % len(person_list))
+        self.doc.write_text(_("Number of individuals: %d") % num_people)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")

@@ -100,7 +100,7 @@ def _find_records(db, filter, callname):
     person_oldestfather = []
     person_oldestmother = []
 
-    person_handle_list = db.get_person_handles(sort_handles=False)
+    person_handle_list = db.iter_person_handles()
 
     if filter:
         person_handle_list = filter.apply(db, person_handle_list)

@@ -160,7 +160,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.filter_option =  self.options.menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter() # the actual filter
         people = self.filter.apply(self.db,
-                                   self.db.get_person_handles(sort_handles=False))
+                                   self.db.iter_person_handles())
+        num_people = self.db.get_number_of_people()
         source_text = self.options.handler.options_dict['source_text']
         add_birth = self.options.handler.options_dict['add_birth']
         add_death = self.options.handler.options_dict['add_death']
@@ -174,7 +175,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         if remove_old:
             self.results_write(_("Replacing...\n"))
             self.progress.set_pass((_("Removing '%s'...") % source_text), 
-                                   len(people))
+                                   num_people)
             for person_handle in people:
                 self.progress.step()
                 pupdate = 0
@@ -216,7 +217,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         if add_birth or add_death:
             self.results_write(_("Calculating...\n"))
             self.progress.set_pass(_('Calculating estimated dates...'), 
-                                   len(people))
+                                   num_people)
             source = self.get_or_create_source(source_text)
             for person_handle in people:
                 self.progress.step()

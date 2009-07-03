@@ -218,6 +218,16 @@ class PrivateProxyDb(ProxyDbBase):
                 handles.append(handle)
         return handles
 
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. If sort_handles is True, the list is sorted by surnames
+        """
+        for handle in self.db.iter_person_handles():
+            person = self.db.get_person_from_handle(handle)
+            if not person.get_privacy():
+                yield handle
+
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in

@@ -176,7 +176,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         progress_bar.set_pass(_('Selecting people'),1)
 
         plist = cfilter.apply(self.db,
-                              self.db.get_person_handles(sort_handles=False))
+                              self.db.iter_person_handles())
 
         progress_bar.step()
         progress_bar.close()

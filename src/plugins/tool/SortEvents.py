@@ -110,9 +110,9 @@ class SortEvents(PluginWindows.ToolManagedWindowBatch):
         Sort the personal events associated with the selected people.
         """
         people_handles = self.filter.apply(self.db,
-                                 self.db.get_person_handles(sort_handles=False))
+                                 self.db.iter_person_handles())
         self.progress.set_pass(_("Sorting personal events..."),
-                                    len(people_handles))
+                                    self.db.get_number_of_people())
         family_handles = []
         for handle in people_handles:
             person = self.db.get_person_from_handle(handle)

@@ -1078,8 +1078,8 @@ class WebCalReport(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
-        people = self.database.get_person_handles(sort_handles=False)
-        self.progress.set_pass(_('Applying Filter...'), len(people))
+        people = self.database.iter_person_handles()
+        self.progress.set_pass(_('Applying Filter...'), self.database.get_number_of_people())
         people = self.filter.apply(self.database, people, self.progress)
 
         self.progress.set_pass(_("Reading database..."), len(people))

@@ -136,12 +136,12 @@ class CardWriter(object):
             self.option_box.parse_options()
 
             if self.option_box.cfilter is None:
-                for p in self.db.get_person_handles(sort_handles=False):
+                for p in self.db.iter_person_handles():
                     self.plist[p] = 1
             else:
                 try:
                     for p in self.option_box.cfilter.apply(self.db, 
-                               self.db.get_person_handles(sort_handles=False)):
+                               self.db.iter_person_handles()):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1, m2) = msg.messages()
@@ -159,7 +159,7 @@ class CardWriter(object):
             self.oldval = newval
 
     def cl_setup(self):
-        for p in self.db.get_person_handles(sort_handles=False):
+        for p in self.db.iter_person_handles():
             self.plist[p] = 1
 
     def writeln(self, text):

@@ -239,7 +239,7 @@ class TimeLine(Report):
         high = -999999
         
         self.plist = self.filter.apply(self.database,
-                                       self.database.get_person_handles(sort_handles=False))
+                                       self.database.iter_person_handles())
 
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
@@ -280,7 +280,7 @@ class TimeLine(Report):
 
     def name_size(self):
         self.plist = self.filter.apply(self.database,
-                                       self.database.get_person_handles(sort_handles=False))
+                                       self.database.iter_person_handles())
 
         style_sheet = self.doc.get_style_sheet()
         gstyle = style_sheet.get_draw_style('TLG-text')

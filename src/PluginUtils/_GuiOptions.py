@@ -111,7 +111,7 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
             progress = ProgressMeter(_('Finding Surnames'))
             progress.set_pass(_('Finding surnames'), 
                               database.get_number_of_people())
-            for person_handle in database.get_person_handles(False):
+            for person_handle in database.iter_person_handles():
                 progress.step()
                 person = database.get_person_from_handle(person_handle)
                 key = person.get_primary_name().get_surname()

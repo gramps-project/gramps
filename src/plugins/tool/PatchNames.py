@@ -122,7 +122,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.progress.set_pass(_('Analyzing names'),
                                self.db.get_number_of_people())
 
-        for key in self.db.get_person_handles(sort_handles=False):
+        for key in self.db.iter_person_handles():
 
             person = self.db.get_person_from_handle(key)
             name = person.get_primary_name()

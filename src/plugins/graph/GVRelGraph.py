@@ -153,7 +153,7 @@ class RelGraphReport(Report):
 
     def write_report(self):
         self.person_handles = self._filter.apply(self.database,
-                    self.database.get_person_handles(sort_handles=False))
+                    self.database.iter_person_handles())
         
         if len(self.person_handles) > 1:
             self.add_persons_and_families()
@@ -164,9 +164,9 @@ class RelGraphReport(Report):
          children"
         person_dict = {}
         # Hash people in a dictionary for faster inclusion checking
+            
         for person_handle in self.person_handles:
             person_dict[person_handle] = 1
-        for person_handle in self.person_handles:
             person = self.database.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             for fam_handle in person.get_parent_family_handle_list():
