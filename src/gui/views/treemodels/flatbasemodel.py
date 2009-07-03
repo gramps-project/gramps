@@ -74,6 +74,7 @@ import gtk
 #-------------------------------------------------------------------------
 from Filters import SearchFilter
 import Config
+from Utils import conv_unicode_tosrtkey_ongtk
 
 #-------------------------------------------------------------------------
 #
@@ -449,6 +450,7 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Total number of items that maximally can be shown
         """
+        print 'total asked', self.node_map.max_rows()
         return self.node_map.max_rows()
 
     def displayed(self):
@@ -475,8 +477,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted( (locale.strxfrm(self.sort_func(data)),  key)
-                                        for key, data in cursor )
+            return sorted( (conv_unicode_tosrtkey_ongtk(self.sort_func(data)),  
+                            key) for key, data in cursor )
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text

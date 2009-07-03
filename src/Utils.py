@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Non GUI/GTK related utility functions
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -30,15 +34,8 @@ import sys
 import locale
 import random
 import time
-
-from TransUtils import sgettext as _
-
-#-------------------------------------------------------------------------
-#
-# GNOME/GTK
-#
-#-------------------------------------------------------------------------
-import gtk
+import shutil
+import platform
 
 #-------------------------------------------------------------------------
 #
@@ -48,10 +45,10 @@ import gtk
 from BasicUtils import name_displayer
 import gen.lib
 import Errors
-from QuestionDialog import WarningDialog, ErrorDialog
+from GrampsLocale import codeset
 
-from const import TEMP_DIR, USER_HOME
-import shutil
+from const import TEMP_DIR, USER_HOME, WINDOWS
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -212,7 +209,54 @@ def family_upper_name(family, db):
     else:
         name = mother.get_primary_name().get_upper_name()
     return name
-        
+
+#-------------------------------------------------------------------------
+#
+# String Encoding functions
+#
+#-------------------------------------------------------------------------
+
+def encodingdefs():
+    """
+    4 functions are defined to obtain a byte string that can be used as 
+    sort key and is locale aware. Do not print the sortkey, it is a sortable
+    string, but is not a human readable correct string!
+    When gtk is defined, one can avoid some function calls as then the default
+    python encoding is not ascii but utf-8, so use the gtk functions in those
+    cases.
+    
+    conv_utf8_tosrtkey: convert a utf8 encoded string to sortkey usable string
+    
+    conv_unicode_tosrtkey:  convert a unicode object to sortkey usable string
+    
+    conv_utf8_tosrtkey_ongtk: convert a utf8 encoded string to sortkey usable 
+    string when gtk is loaded or utf-8 is default python encoding
+    
+    conv_unicode_tosrtkey_ongtk:  convert a unicode object to sortkey usable 
+    string when gtk is loaded or utf-8 is default python encoding
+    """
+    pass
+
+if platform in WINDOWS:
+    # python encoding is ascii, but C functions need to recieve the 
+    # windows codeset, so convert over to it
+    conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(
+                                                        codeset))
+    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode(codeset))
+    #when gtk is imported the python defaultencoding is utf-8, 
+    #so no need to specify it
+    conv_utf8_tosrtkey_ongtk = lambda x: locale.strxfrm(unicode(x).encode(
+                                                                    codeset))
+    conv_unicode_tosrtkey_ongtk = lambda x: locale.strxfrm(x.encode(codeset))
+else:
+    # on unix C functions need to recieve utf-8. Default conversion would
+    # use ascii, so it is needed to be explicit about the resulting encoding 
+    conv_utf8_tosrtkey = lambda x: locale.strxfrm(x)
+    conv_unicode_tosrtkey = lambda x: locale.strxfrm(x.encode("utf-8"))
+    # when gtk loaded, default encoding (sys.getdefaultencoding ) is utf-8,
+    # so default conversion happens with utf-8 
+    conv_utf8_tosrtkey_ongtk = lambda x:  locale.strxfrm(x)
+    conv_unicode_tosrtkey_ongtk = lambda x:  locale.strxfrm(x)
 
 #-------------------------------------------------------------------------
 #
