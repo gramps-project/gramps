@@ -555,9 +555,9 @@ class StatisticsChart(Report):
         for data in self.data:
             self.doc.start_page()
             if len(data[2]) < self.bar_items:
-                self.output_piechart(data[:4])
+                self.output_piechart(*data[:4])
             else:
-                self.output_barchart(data[:4])
+                self.output_barchart(*data[:4])
             self.doc.end_page()
         self.progress.step()
         self.progress.close()
