@@ -43,8 +43,17 @@ from gen.lib.attrtype import AttributeType
 class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
     """
     Provide a simple key/value pair for describing properties. 
+    Used to store descriptive information.
     
-    Used by the Person and Family objects to store descriptive information.
+    In GEDCOM only used for Persons:
+    Individual attributes should describe situations that may be permanent or 
+    temporary (start at some date, end at some date, etc.), may be associated
+    to a place (a position held, residence, etc.) or may not (eye colour, 
+    height, caste, profession, etc.).  They may have sources and notes and 
+    media. 
+    Compare with :class:`~gen.lib.event.Event`
+    
+    GRAMPS at the moment does not support this GEDCOM Attribute structure.
     """
     
     def __init__(self, source=None):

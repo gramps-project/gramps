@@ -50,6 +50,12 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
     The Event record is used to store information about some type of
     action that occurred at a particular place at a particular time,
     such as a birth, death, or marriage.
+    
+    A possible definition: Events are things that happen at some point in time
+    (that we may not know precisely, though), at some place, may involve 
+    several people (witnesses, officers, notaries, priests, etc.) and may 
+    of course have sources, notes, media, etc.
+    Compare this with attribute: :class:`~gen.lib.attribute.Attribute`
     """
 
     def __init__(self, source=None):
