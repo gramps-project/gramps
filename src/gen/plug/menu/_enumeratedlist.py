@@ -110,7 +110,7 @@ class EnumeratedListOption(Option):
         @type value: The type will depend on the type of option.
         @return: nothing
         """
-        if any(value == v for v, d in self.__items):
+        if value in (v for v, d in self.__items):
             Option.set_value(self, value)
         else:
             print "Value %s not found for option %s" % ( str(value), 
