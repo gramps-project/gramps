@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: DbManager.py 12621 2009-06-03 18:39:24Z ldnp $
+# $Id$
 
 """
 Provide the management of databases from CLI. This includes opening, renaming,

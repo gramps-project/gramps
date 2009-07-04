@@ -322,6 +322,7 @@ class PeopleModel(gtk.GenericTreeModel):
         ngn = name_displayer.name_grouping_data
         nsn = name_displayer.raw_sorted_name
         handle_list = self.db.iter_person_handles()
+        self.total = self.db.get_number_of_people()
             
         if dfilter:
             handle_list = dfilter.apply(self.db, handle_list)

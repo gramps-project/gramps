@@ -17,7 +17,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 11943 2009-02-09 23:37:40Z acraphae $
+# $Id$
 
 """
 Package init for the treemodels package.

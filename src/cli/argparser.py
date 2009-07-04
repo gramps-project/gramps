@@ -22,7 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: ArgHandler.py 12559 2009-05-21 17:19:50Z gbritton $
+# $Id$
 
 """
 Module responsible for handling the command line arguments for GRAMPS.
