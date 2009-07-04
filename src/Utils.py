@@ -237,7 +237,7 @@ def encodingdefs():
     """
     pass
 
-if platform in WINDOWS:
+if platform.system() in WINDOWS:
     # python encoding is ascii, but C functions need to recieve the 
     # windows codeset, so convert over to it
     conv_utf8_tosrtkey = lambda x: locale.strxfrm(x.decode("utf-8").encode(

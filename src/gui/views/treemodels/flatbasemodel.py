@@ -450,7 +450,6 @@ class FlatBaseModel(gtk.GenericTreeModel):
         """
         Total number of items that maximally can be shown
         """
-        print 'total asked', self.node_map.max_rows()
         return self.node_map.max_rows()
 
     def displayed(self):
