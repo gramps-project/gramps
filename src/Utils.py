@@ -47,7 +47,7 @@ import gen.lib
 import Errors
 from GrampsLocale import codeset
 
-from const import TEMP_DIR, USER_HOME, WINDOWS
+from const import TEMP_DIR, USER_HOME, WINDOWS, MACOS, LINUX
 from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
@@ -209,6 +209,37 @@ def family_upper_name(family, db):
     else:
         name = mother.get_primary_name().get_upper_name()
     return name
+
+#-------------------------------------------------------------------------
+#
+# Platform determination functions
+#
+#-------------------------------------------------------------------------
+
+def lin():
+    """
+    Return True if a linux system
+    Note: Normally do as linux in else statement of a check !
+    """
+    if platform.system() in LINUX:
+        return True
+    return False
+    
+def mac():
+    """
+    Return True if a Macintosh system
+    """
+    if platform.system() in MACOS:
+        return True
+    return False
+
+def win():
+    """
+    Return True if a windows system
+    """
+    if platform.system() in WINDOWS:
+        return True
+    return False
 
 #-------------------------------------------------------------------------
 #
