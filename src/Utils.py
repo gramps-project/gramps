@@ -50,7 +50,7 @@ import gen.lib
 import Errors
 from QuestionDialog import WarningDialog, ErrorDialog
 
-from const import TEMP_DIR, USER_HOME
+from const import TEMP_DIR, USER_HOME, WINDOWS, MACOS, LINUX
 import shutil
 
 #-------------------------------------------------------------------------
@@ -255,6 +255,37 @@ def add_menuitem(menu, msg, obj, func):
     item.connect("activate", func)
     item.show()
     menu.append(item)
+
+#-------------------------------------------------------------------------
+#
+# Platform determination functions
+#
+#-------------------------------------------------------------------------
+
+def lin():
+    """
+    Return True if a linux system
+    Note: Normally do as linux in else statement of a check !
+    """
+    if platform.system() in LINUX:
+        return True
+    return False
+    
+def mac():
+    """
+    Return True if a Macintosh system
+    """
+    if platform.system() in MACOS:
+        return True
+    return False
+
+def win():
+    """
+    Return True if a windows system
+    """
+    if platform.system() in WINDOWS:
+        return True
+    return False
 
 #-------------------------------------------------------------------------
 #
