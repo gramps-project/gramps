@@ -200,7 +200,8 @@ class DateParserFR(DateParser):
                                  re.IGNORECASE)
 
     # This self._text are different from the base
-        # by adding ".?" after the first date and removing "\s*$" at the end
+    # by adding ".?" after the first date and removing "\s*$" at the end
+
     #gregorian and julian
 
         self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' %
@@ -254,7 +255,8 @@ class DateDisplayFR(DateDisplay):
     _bce_str = u"%s avant le calendrier"
 
     formats = ("AAAA-MM-JJ (ISO)", "Numérique", "Mois Jour, Année",
-               "MOI Jour, Année", "Jour. Mois Année", "Jour. MOI Année")
+               "MOI Jour, Année", "Jour. Mois Année", "Jour. MOI Année",
+               "Jour Mois Année", "Jour MOI Année")
 
     def _display_gregorian(self, date_val):
         """
@@ -273,8 +275,8 @@ class DateDisplayFR(DateDisplay):
                     value = self._tformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
 
-            # base_display :
-            # value = value.replace('%Y', str(abs(date_val[2])))
+                    # base_display :
+                    # value = value.replace('%Y', str(abs(date_val[2])))
                     # value = value.replace('-', '/')
 
                     value = value.replace('%Y', str(date_val[2]))
@@ -313,12 +315,12 @@ class DateDisplayFR(DateDisplay):
                     value = "%s %s" % ((self._months)[date_val[1]], year)
             else:
 
-        # base_display :
-        # value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
+                # base_display :
+                # value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
 
                 value = "%d. %s %s" % (date_val[0], (self._months)[date_val[1]],
                         year)
-        else:
+        elif self.format == 5:
 
             # Day. MON Year
 
@@ -329,11 +331,39 @@ class DateDisplayFR(DateDisplay):
                     value = "%s %s" % ((self.MONS)[date_val[1]], year)
             else:
 
-        # base_display :
-        # value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
+                # base_display :
+                # value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
 
-                value = "%d. %s %s" % (date_val[0], (self.MONS)[date_val[1]],
+                value = "%d.%s %s" % (date_val[0], (self.MONS)[date_val[1]],
                         year)
+
+        elif self.format == 6:
+
+            # Day Month Year
+
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % ((self._months)[date_val[1]], year)
+            else:
+
+                value = "%d %s %s" % (date_val[0], (self._months)[date_val[1]],
+                        year)
+        else:
+
+            # Day MON Year
+
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % ((self.MONS)[date_val[1]], year)
+            else:
+
+                value = "%d %s %s" % (date_val[0], (self.MONS)[date_val[1]],
+                        year)
+                        
         if date_val[2] < 0:
             return self._bce_str % value
         else:
