@@ -432,7 +432,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             if start_date_2 <= start_date_1 <= stop_date_2 or \
                start_date_1 <= start_date_2 <= stop_date_1 or \
                start_date_2 <= stop_date_1 <= stop_date_2 or \
-               start-date_1 <= stop_date_2 <= stop_date_1:
+               start_date_1 <= stop_date_2 <= stop_date_1:
                 return 0.5
             else:
                 return -1
