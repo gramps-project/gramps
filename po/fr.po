@@ -85,7 +85,7 @@ msgstr "Pays :"
 
 #: ../src/Assistant.py:342
 msgid "ZIP/Postal code:"
-msgstr "Code postal / INSEE :"
+msgstr "Code lieu INSEE/postal :"
 
 #: ../src/Assistant.py:343
 #: ../src/plugins/tool/ownereditor.glade.h:8
@@ -1077,7 +1077,7 @@ msgstr "Pays"
 #: ../src/plugins/tool/ExtractCity.py:388
 #: ../src/plugins/webreport/NarrativeWeb.py:1170
 msgid "ZIP/Postal Code"
-msgstr "Code postal / INSEE"
+msgstr "Code lieu INSEE/postal"
 
 #: ../src/GrampsCfg.py:211
 msgid "Phone"
@@ -21064,7 +21064,7 @@ msgstr "Paroisse"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "Zip/Postal code"
-msgstr "Code postal / INSEE"
+msgstr "Code lieu (INSEE/postal)"
 
 #: ../src/FilterEditor/_FilterEditor.py:65
 msgid "Person Filters"
@@ -22119,11 +22119,11 @@ msgstr "_Année"
 
 #: ../src/glade/gramps.glade.h:193
 msgid "_ZIP/Postal code:"
-msgstr "_Code postal / INSEE :"
+msgstr "_Code lieu INSEE/postal :"
 
 #: ../src/glade/gramps.glade.h:194
 msgid "_Zip/Postal code:"
-msgstr "_Code postal / INSEE :"
+msgstr "_Code lieu INSEE/postal :"
 
 #: ../src/glade/mergedata.glade.h:1
 msgid "<b>Source 1</b>"
@@ -23876,7 +23876,7 @@ msgid "state"
 msgstr "région"
 
 msgid "zip"
-msgstr "Code postal / INSEE"
+msgstr "Code lieu"
 
 msgid "latitude"
 msgstr "latitude"
