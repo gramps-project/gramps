@@ -165,7 +165,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
         # replace handles
 
         # people
-        for handle in self.db.get_person_handles(sort_handles=False):
+        for handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(handle)
             if person.has_source_reference(self.old_handle):
                 person.replace_source_references(self.old_handle,

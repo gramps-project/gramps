@@ -236,7 +236,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
     def get_all_handles(self):
         if self.namespace == 'Person':
-            return self.db.get_person_handles(sort_handles=False)
+            return self.db.iter_person_handles()
         elif self.namespace == 'Family':
             return self.db.get_family_handles()
         elif self.namespace == 'Event':

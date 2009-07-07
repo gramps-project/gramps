@@ -161,7 +161,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
 
         # replace references in other objetcs
         # people
-        for handle in self.db.get_person_handles(sort_handles=False):
+        for handle in self.db.iter_person_handles():
             person = self.db.get_person_from_handle(handle)
             if person.has_handle_reference('Place',self.old_handle):
                 person.replace_handle_reference('Place',

@@ -193,11 +193,8 @@ class GenericFilter(object):
         return count == 1
 
     def or_test(self, db, person):
-        for rule in self.flist:
-            if rule.apply(db, person):
-                return True
-        return False
-    
+        return any(rule.apply(db, person) for rule in self.flist) 
+
     def get_check_func(self):
         try:
             m = getattr(self, 'check_' + self.logical_op)

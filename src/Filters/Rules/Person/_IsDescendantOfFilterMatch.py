@@ -67,7 +67,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf,MatchesFilter):
 
         filt = MatchesFilter(self.list[0:1])
         filt.prepare(db)
-        for person_handle in db.get_person_handles(sort_handles=False):
+        for person_handle in db.iter_person_handles(sort_handles=False):
             person = db.get_person_from_handle( person_handle)
             if filt.apply (db, person):
                 self.init_list (person,first)
