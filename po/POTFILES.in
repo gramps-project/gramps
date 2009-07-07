@@ -815,10 +815,6 @@ src/widgets/validatedmaskedentry.py
 src/plugins/docgen/gtkprint.glade
 src/glade/editperson.glade
 src/glade/gramps.glade
-
-# widgets split off from gramps.glade 
-# as part of libglade to GtkBuilder migration
-
 src/glade/grampletview.glade
 src/glade/baseselector.glade
 src/glade/reorder.glade
@@ -850,9 +846,6 @@ src/glade/editplace.glade
 src/glade/editsourceref.glade
 src/glade/editname.glade
 src/glade/editevent.glade
-
-# end of widgets split off from gramps.glade
-
 src/glade/mergedata.glade
 src/glade/plugins.glade
 src/glade/rule.glade
