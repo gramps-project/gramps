@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-29 17:52+0200\n"
-"PO-Revision-Date: 2009-06-29 23:03+0200\n"
+"POT-Creation-Date: 2009-07-08 18:18+0200\n"
+"PO-Revision-Date: 2009-07-08 18:32+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1042,7 +1042,7 @@ msgstr "E-Mail"
 #: ../src/plugins/quickview/References.py:87
 #: ../src/plugins/quickview/SameSurnames.py:107
 #: ../src/plugins/quickview/SameSurnames.py:146
-#: ../src/plugins/tool/EventCmp.py:249 ../src/FilterEditor/_EditRule.py:277
+#: ../src/plugins/tool/EventCmp.py:249 ../src/FilterEditor/_EditRule.py:241
 msgid "Person"
 msgstr "Person"
 
@@ -1063,7 +1063,7 @@ msgstr "Person"
 #: ../src/plugins/quickview/FilterByName.py:130
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:88
-#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:278
+#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:242
 msgid "Family"
 msgstr "Familie"
 
@@ -1084,7 +1084,7 @@ msgstr "Familie"
 #: ../src/plugins/webreport/NarrativeWeb.py:2264
 #: ../src/PluginUtils/_GuiOptions.py:955
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/FilterEditor/_EditRule.py:280
+#: ../src/FilterEditor/_EditRule.py:244
 msgid "Place"
 msgstr "Ort"
 
@@ -1094,25 +1094,25 @@ msgstr "Ort"
 #: ../src/plugins/import/ImportCsv.py:202
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:90
-#: ../src/FilterEditor/_EditRule.py:281
+#: ../src/FilterEditor/_EditRule.py:245
 msgid "Source"
 msgstr "Quelle"
 
 #: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:640 ../src/ScratchPad.py:653
-#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:282
+#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:246
 msgid "Media Object"
 msgstr "Medienobjekt"
 
 #: ../src/GrampsCfg.py:233 ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:89
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/FilterEditor/_EditRule.py:279
+#: ../src/FilterEditor/_EditRule.py:243
 msgid "Event"
 msgstr "Ereignis"
 
 #: ../src/GrampsCfg.py:235 ../src/ToolTips.py:141
 #: ../src/Simple/_SimpleTable.py:236 ../src/Editors/_EditRepository.py:68
-#: ../src/Editors/_EditRepository.py:70 ../src/FilterEditor/_EditRule.py:283
+#: ../src/Editors/_EditRepository.py:70 ../src/FilterEditor/_EditRule.py:247
 msgid "Repository"
 msgstr "Aufbewahrungsort"
 
@@ -1131,7 +1131,7 @@ msgstr "Aufbewahrungsort"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/FilterEditor/_EditRule.py:284
+#: ../src/FilterEditor/_EditRule.py:248
 msgid "Note"
 msgstr "Notiz"
 
@@ -1224,7 +1224,7 @@ msgstr "_Details zum selbstdefinierten Format"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:423
 #: ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425 ../src/GrampsCfg.py:426
-#: ../src/GrampsCfg.py:427 ../src/Utils.py:1173
+#: ../src/GrampsCfg.py:427 ../src/Utils.py:1204
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
@@ -1241,7 +1241,7 @@ msgstr "Familienname"
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:427 ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:430 ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432
 #: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:589
-#: ../src/Utils.py:1171 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:1202 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
@@ -1249,19 +1249,19 @@ msgstr "Vorname"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
-#: ../src/ScratchPad.py:594 ../src/Utils.py:1174
+#: ../src/ScratchPad.py:594 ../src/Utils.py:1205
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
 msgid "Suffix"
 msgstr "Suffix"
 
 #: ../src/GrampsCfg.py:418 ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:429
-#: ../src/GrampsCfg.py:430 ../src/Utils.py:1177
+#: ../src/GrampsCfg.py:430 ../src/Utils.py:1208
 msgid "Common"
 msgstr "Üblich"
 
 #: ../src/GrampsCfg.py:420 ../src/GrampsCfg.py:422 ../src/GrampsCfg.py:424
-#: ../src/GrampsCfg.py:431 ../src/Utils.py:1176
+#: ../src/GrampsCfg.py:431 ../src/Utils.py:1207
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
@@ -1269,11 +1269,11 @@ msgstr "Rufname"
 
 #: ../src/GrampsCfg.py:421 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:430
 #: ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432 ../src/GrampsCfg.py:433
-#: ../src/GrampsCfg.py:434 ../src/Utils.py:1173
+#: ../src/GrampsCfg.py:434 ../src/Utils.py:1204
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1175
+#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1206
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "Patronymikon"
@@ -1818,39 +1818,39 @@ msgstr "Fehler: %s ist keine gültige GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Das Lesezeichen konnte nicht gesetzt werden, da nichts ausgewählt war."
 
-#: ../src/PageView.py:994 ../src/DataViews/PersonView.py:157
+#: ../src/PageView.py:995 ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "_Hinzufügen..."
 
-#: ../src/PageView.py:996 ../src/DataViews/PersonView.py:159
+#: ../src/PageView.py:997 ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "_Entfernen"
 
-#: ../src/PageView.py:998 ../src/DataViews/PersonView.py:167
+#: ../src/PageView.py:999 ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "Exportansicht..."
 
-#: ../src/PageView.py:1003 ../src/DataViews/PersonView.py:147
+#: ../src/PageView.py:1004 ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "_Bearbeiten..."
 
-#: ../src/PageView.py:1008
+#: ../src/PageView.py:1009
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1074 ../src/DataViews/PersonView.py:911
+#: ../src/PageView.py:1075 ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr "Ansicht als Tabelle exportieren"
 
-#: ../src/PageView.py:1082 ../src/DataViews/PersonView.py:919
+#: ../src/PageView.py:1083 ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr "Format:"
 
-#: ../src/PageView.py:1087 ../src/DataViews/PersonView.py:924
+#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1089 ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr "Open Document Tabelle"
 
@@ -1908,7 +1908,7 @@ msgstr ""
 "festgestellt. Dies kann mit dem Stammbaum-Manager repariert werden. Die "
 "Datenbank wählen und auf die Reparatur-Schaltfläche klicken"
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1102
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1133
 msgid "Attempt to force closing the dialog"
 msgstr "Versuch, das Schließen des Dialogs zu erzwingen"
 
@@ -2254,7 +2254,7 @@ msgstr "Ereignisreferenz"
 msgid "Call Name"
 msgstr "Rufname"
 
-#: ../src/ScratchPad.py:592 ../src/Utils.py:1172
+#: ../src/ScratchPad.py:592 ../src/Utils.py:1203
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:279 ../src/plugins/tool/PatchNames.py:291
@@ -2267,7 +2267,7 @@ msgstr "Präfix"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:593 ../src/Utils.py:1170
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1201
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:267
@@ -2815,62 +2815,62 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: ../src/Utils.py:351 ../src/ReportBase/_StyleComboBox.py:68
+#: ../src/Utils.py:382 ../src/ReportBase/_StyleComboBox.py:68
 #: ../src/ReportBase/_StyleComboBox.py:88
 msgid "default"
 msgstr "Standardwert"
 
-#: ../src/Utils.py:703 ../src/plugins/tool/CalculateEstimatedDates.py:416
+#: ../src/Utils.py:734 ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Datenbankfehler: %s wurde als Ihr oder sein eigene(r) Vorfahre festgelegt"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1134
 msgid "Please do not force closing this important dialog."
 msgstr "Bitte versuche nicht diesen wichtigen Dialog zu Umgehen."
 
-#: ../src/Utils.py:1127 ../src/Utils.py:1134
+#: ../src/Utils.py:1158 ../src/Utils.py:1165
 msgid "Error Opening File"
 msgstr "Fehler beim Öffnen der Datei"
 
-#: ../src/Utils.py:1127 ../src/plugins/textreport/IndivComplete.py:421
+#: ../src/Utils.py:1158 ../src/plugins/textreport/IndivComplete.py:421
 #: ../src/ReportBase/_ReportUtils.py:1856
 msgid "File does not exist"
 msgstr "Datei existiert nicht"
 
-#: ../src/Utils.py:1170
+#: ../src/Utils.py:1201
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1171
+#: ../src/Utils.py:1202
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1203
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1205
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1175
+#: ../src/Utils.py:1206
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1176
+#: ../src/Utils.py:1207
 msgid "CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1177
+#: ../src/Utils.py:1208
 msgid "COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1178
+#: ../src/Utils.py:1209
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1178
+#: ../src/Utils.py:1209
 msgid "INITIALS"
 msgstr "INITIALEN"
 
@@ -13655,6 +13655,11 @@ msgstr "Dies wird im Dezember gedruckt"
 msgid "The note for the month of December"
 msgstr "Die Notiz für den Monat Dezember"
 
+#: ../src/plugins/webreport/WebCal.py:1453
+#, python-format
+msgid "%s old"
+msgstr "%s alt"
+
 #: ../src/plugins/webreport/WebCal.py:1452
 msgid ", <em>"
 msgstr ", <em>"
@@ -19438,7 +19443,7 @@ msgstr "Datum:"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:473
+#: ../src/FilterEditor/_EditRule.py:454
 msgid "Place:"
 msgstr "Ort:"
 
@@ -19481,7 +19486,7 @@ msgstr "Ereignisfilter"
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:485
+#: ../src/FilterEditor/_EditRule.py:466
 msgid "ID:"
 msgstr "ID:"
 
@@ -19520,12 +19525,12 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:479
+#: ../src/FilterEditor/_EditRule.py:460
 msgid "Reference count must be:"
 msgstr "Referenzenanzahl muß sein:"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:475
+#: ../src/FilterEditor/_EditRule.py:456
 msgid "Reference count:"
 msgstr "Anzahl Referenzen:"
 
@@ -19539,13 +19544,13 @@ msgstr "Passt auf Objekte mit einer bestimmten Anzahl von Referenzen"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:504
+#: ../src/FilterEditor/_EditRule.py:485
 msgid "Case sensitive:"
 msgstr "Groß-/Kleinschreibung:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:506
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck entsprechend:"
 
@@ -19575,7 +19580,7 @@ msgstr "Liefert Objekte, die als privat markiert sind"
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:490
+#: ../src/FilterEditor/_EditRule.py:471
 msgid "Filter name:"
 msgstr "Filtername:"
 
@@ -19659,13 +19664,13 @@ msgstr "Enthält Personen mit fehlendem Datum oder Ort in einem Ereignis der Fam
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:476
+#: ../src/FilterEditor/_EditRule.py:457
 msgid "Number of instances:"
 msgstr "Anzahl der Instanzen:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:481
+#: ../src/FilterEditor/_EditRule.py:462
 msgid "Number must be:"
 msgstr "Die Anzahl muß sein:"
 
@@ -19937,7 +19942,7 @@ msgid "Matches people with a certain number of items in the source"
 msgstr "Entspricht Personen mit einer bestimten Anzahl von Quellen"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:488
+#: ../src/FilterEditor/_EditRule.py:469
 msgid "Source ID:"
 msgstr "Ereignis-ID:"
 
@@ -20004,7 +20009,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:502
+#: ../src/FilterEditor/_EditRule.py:483
 msgid "Inclusive:"
 msgstr "Einschließlich:"
 
@@ -20088,7 +20093,7 @@ msgstr "Entspricht allen Frauen"
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:464
 msgid "Number of generations:"
 msgstr "Anzahl der Generationen:"
 
@@ -20204,7 +20209,7 @@ msgstr "Enthält Personen, die bei einem Ereignis Zeuge sind"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:496
+#: ../src/FilterEditor/_EditRule.py:477
 msgid "Event filter name:"
 msgstr "Ereignisfiltername:"
 
@@ -20753,12 +20758,12 @@ msgstr "Liefert Ereignisse, die dem gegebenen Filter entsprechen"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:494
+#: ../src/FilterEditor/_EditRule.py:475
 msgid "Person filter name:"
 msgstr "Personenfiltername:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:508
+#: ../src/FilterEditor/_EditRule.py:489
 msgid "Include Family events:"
 msgstr "Familienereignisse aufnehmen:"
 
@@ -20771,7 +20776,7 @@ msgid "Matches events of persons matched by the specified person filter name"
 msgstr "Passt auf Ereignisse von Personen die dem gegeben Personenfilter entsprechen"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:498
+#: ../src/FilterEditor/_EditRule.py:479
 msgid "Source filter name:"
 msgstr "Quellenfiltername:"
 
@@ -20798,6 +20803,10 @@ msgstr "Alle Orte"
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
 msgstr "Liefert alle Orte in der Datenbank"
+
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+msgid "Places changed after <date time>"
+msgstr "Ort geändert nach <Datum Zeit>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid ""
@@ -21536,40 +21545,44 @@ msgstr "identisch mit"
 msgid "greater than"
 msgstr "größer als"
 
-#: ../src/FilterEditor/_EditRule.py:298
+#: ../src/FilterEditor/_EditRule.py:237
+msgid "Not a valid ID"
+msgstr "Keine gültige ID"
+
+#: ../src/FilterEditor/_EditRule.py:262
 msgid "Select..."
 msgstr "Auswählen..."
 
-#: ../src/FilterEditor/_EditRule.py:304
+#: ../src/FilterEditor/_EditRule.py:268
 #, python-format
 msgid "Select %s from a list"
 msgstr "Wähle %s von einer Liste"
 
-#: ../src/FilterEditor/_EditRule.py:355
-msgid "Not a valid ID"
-msgstr "Keine gültige ID"
+#: ../src/FilterEditor/_EditRule.py:333
+msgid "Give or select a source ID, leave empty to find objects with no source."
+msgstr "Gib oder wähle eine Quellen ID, lass es leer um Objekte ohne Quelle zu finden."
 
-#: ../src/FilterEditor/_EditRule.py:503
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "Include original person"
 msgstr "Ursprüngliche Person aufnehmen"
 
-#: ../src/FilterEditor/_EditRule.py:505
+#: ../src/FilterEditor/_EditRule.py:486
 msgid "Use exact case of letters"
 msgstr "Exakte Schreibweise der Buchstaben verwenden"
 
-#: ../src/FilterEditor/_EditRule.py:507
+#: ../src/FilterEditor/_EditRule.py:488
 msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/FilterEditor/_EditRule.py:509
+#: ../src/FilterEditor/_EditRule.py:490
 msgid "Also family events where person is wife/husband"
 msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
 
-#: ../src/FilterEditor/_EditRule.py:523
+#: ../src/FilterEditor/_EditRule.py:504
 msgid "Rule Name"
 msgstr "Regelname"
 
-#: ../src/FilterEditor/_EditRule.py:635 ../src/FilterEditor/_EditRule.py:646
+#: ../src/FilterEditor/_EditRule.py:616 ../src/FilterEditor/_EditRule.py:627
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
