@@ -430,11 +430,11 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
         self.progress = ProgressMeter(_('Checking Place Titles'), '')
         self.progress.set_pass(_('Looking for place fields'), 
-                               len(self.db.get_place_handles()))
+                               self.db.get_number_of_places())
 
         self.name_list = []
 
-        for handle in db.get_place_handles():
+        for handle in db.iter_place_handles():
             place = db.get_place_from_handle(handle)
             descr = place.get_title()
             loc = place.get_main_location()

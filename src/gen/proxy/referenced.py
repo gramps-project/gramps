@@ -188,6 +188,15 @@ class ReferencedProxyDb(ProxyDbBase):
         return list(set(self.db.get_place_handles(sort_handles)) -
                     set(self.unreferenced_places))
 
+    def iter_place_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Place still
+        referenced in the database.
+        """
+        for handle in self.db.iter_place_handles():
+            if handle not in self.unreferenced_places:
+                yield handle
+
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source still

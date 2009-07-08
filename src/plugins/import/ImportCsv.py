@@ -808,8 +808,8 @@ class CSVParser(object):
         return person
 
     def get_or_create_place(self,place_name):
-        place_list = self.db.get_place_handles()
-        if self.debug: print "get_or_create_place: list:", place_list
+        place_list = self.db.iter_place_handles()
+        if self.debug: print "get_or_create_place: list:", list(place_list)
         if self.debug: print "get_or_create_place: looking for:", place_name
         for place_handle in place_list:
             place = self.db.get_place_from_handle(place_handle)

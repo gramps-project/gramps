@@ -75,7 +75,7 @@ class PlaceReport(Report):
 
         if self.filter.get_name() != '':
             # Use the selected filter to provide a list of place handles
-            plist = self.database.get_place_handles(sort_handles=False)
+            plist = self.database.iter_place_handles()
             self.place_handles = self.filter.apply(self.database, plist)
         else:
             # Use the place handles selected without a filter

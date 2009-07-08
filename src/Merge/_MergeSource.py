@@ -197,7 +197,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
                 self.db.commit_source(source,trans)
 
         # places
-        for handle in self.db.get_place_handles():
+        for handle in self.iter.get_place_handles():
             place = self.db.get_place_from_handle(handle) 
             if place.has_source_reference(self.old_handle):
                 place.replace_source_references(self.old_handle,

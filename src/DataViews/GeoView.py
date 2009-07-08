@@ -1515,7 +1515,7 @@ class GeoView(HtmlView):
         latitude = ""
         longitude = ""
         self.center = True
-        for place_handle in dbstate.db.get_place_handles():
+        for place_handle in dbstate.iter.get_place_handles():
             place = dbstate.db.get_place_from_handle( place_handle)
             if place:
                 descr = place.get_title()

@@ -235,16 +235,24 @@ class LivingProxyDb(ProxyDbBase):
         if self.mode == self.MODE_EXCLUDE_ALL:
             for handle in self.db.iter_person_handles():
                 person = self.db.get_person_from_handle(handle)
-                if not self.__is_living(person):
+                if self.mode == self.MODE_EXCLUDE_ALL:
+                    if not self.__is_living(person):
+                        yield handle
+                else:
                     yield handle
-        else:
-            return self.db.iter_person_handles()
 
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
         the database. If sort_handles is True, the list is sorted by
         Place title.
+        """
+        return self.db.get_place_handles(sort_handles)
+
+    def iter_place_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Place in
+        the database.
         """
         return self.db.get_place_handles(sort_handles)
 

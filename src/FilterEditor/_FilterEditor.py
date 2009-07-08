@@ -244,7 +244,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         elif self.namespace == 'Source':
             return self.db.get_source_handles()
         elif self.namespace == 'Place':
-            return self.db.get_place_handles()
+            return self.db.iter_place_handles()
         elif self.namespace == 'MediaObject':
             return self.db.get_media_object_handles()
         elif self.namespace == 'Repository':

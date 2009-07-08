@@ -241,6 +241,16 @@ class PrivateProxyDb(ProxyDbBase):
                 handles.append(handle)
         return handles
 
+    def iter_place_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Place in
+        the database. 
+        """
+        for handle in self.db.get_place_handles(sort_handles):
+            place = self.db.get_place_from_handle(handle)
+            if not place.get_privacy():
+                yield handle
+
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in

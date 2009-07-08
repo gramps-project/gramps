@@ -297,6 +297,13 @@ class FilterProxyDb(ProxyDbBase):
         """
         return self.db.get_place_handles(sort_handles)
 
+    def iter_place_handles(self):
+        """
+        Return an iterator database handles, one handle for each Place in
+        the database.
+        """
+        return self.db.iter_place_handles(sort_handles)
+
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in
