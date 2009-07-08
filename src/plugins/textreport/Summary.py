@@ -189,9 +189,9 @@ class SummaryReport(Report):
         self.doc.write_text(_("Family Information"))
         self.doc.end_paragraph()
         
-        family_list = self.__db.get_family_handles()
+        family_list = self.__db.iter_family_handles()
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Number of families: %d") % len(family_list))
+        self.doc.write_text(_("Number of families: %d") % self.__db.get_number_of_families())
         self.doc.end_paragraph()
 
     def summarize_media(self):

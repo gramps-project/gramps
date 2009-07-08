@@ -130,7 +130,7 @@ def run(database, document, filter_name, *args, **kwargs):
                              str(person.get_primary_name().get_type()))
                     matches += 1
     elif (filter_name == 'all families'):
-        familyList = database.get_family_handles()
+        familyList = database.iter_family_handles()
         stab.columns(_("Family"))
         for family_handle in familyList:
             family = database.get_family_from_handle(family_handle)

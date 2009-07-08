@@ -93,7 +93,8 @@ def _validate_options(options, dbase):
                 if family_list:
                     family_handle = family_list[0]
                 else:
-                    family_handle = dbase.get_family_handles()[0]
+                    for family_handle in dbase.iter_family_handles():
+                        break
                 family = dbase.get_family_from_handle(family_handle)
                 option.set_value(family.get_gramps_id())
 
@@ -224,7 +225,7 @@ class CommandLineReport(object):
                 self.options_help[name].append(id_list)
             elif isinstance(option, gen.plug.menu.FamilyOption):
                 id_list = []
-                for fhandle in self.database.get_family_handles():
+                for fhandle in self.database.iter_family_handles():
                     family = self.database.get_family_from_handle(fhandle)
                     mname = ""
                     fname = ""

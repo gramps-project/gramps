@@ -357,7 +357,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 self.update()
 
         # Family-based rules
-        for family_handle in self.db.get_family_handles():
+        for family_handle in self.db.iter_family_handles():
             family = find_family(self.db,family_handle)
 
             rule_list = [

@@ -284,11 +284,21 @@ class PrivateProxyDb(ProxyDbBase):
         the database.
         """
         handles = []
-        for handle in self.db.get_family_handles():
+        for handle in self.db.iter_family_handles():
             family = self.db.get_family_from_handle(handle)
             if not family.get_privacy():
                 handles.append(handle)
         return handles
+
+    def iter_family_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Family in
+        the database.
+        """
+        for handle in self.db.iter_family_handles():
+            family = self.db.get_family_from_handle(handle)
+            if not family.get_privacy():
+                yield handle
 
     def get_repository_handles(self):
         """

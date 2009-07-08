@@ -173,7 +173,7 @@ class MergeSources(ManagedWindow.ManagedWindow):
                 self.db.commit_person(person,trans)
 
         # family
-        for handle in self.db.get_family_handles():
+        for handle in self.db.iter_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_source_reference(self.old_handle):
                 family.replace_source_references(self.old_handle,

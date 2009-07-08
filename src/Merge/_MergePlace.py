@@ -168,7 +168,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
                                         self.old_handle,self.new_handle)
                 self.db.commit_person(person,trans)
         # families
-        for handle in self.db.get_family_handles():
+        for handle in self.db.iter_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_handle_reference('Place',self.old_handle):
                 family.replace_handle_reference('Place',

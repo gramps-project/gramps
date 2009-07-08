@@ -221,6 +221,13 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         return self.db.get_family_handles()
 
+    def iter_family_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Family in
+        the database..
+        """
+        return self.db.iter_family_handles()
+
     def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository still
@@ -254,7 +261,7 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         returns True if the handle exists in the current Person database.
         """
-        return handle in self.get_person_handles()
+        return handle in self.iter_person_handles()
 
     def has_event_handle(self, handle):
         """
@@ -278,7 +285,7 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         returns True if the handle exists in the current Family database.
         """
-        return handle in self.get_family_handles()
+        return handle in self.iter_family_handles()
 
     def has_object_handle(self, handle):
         """

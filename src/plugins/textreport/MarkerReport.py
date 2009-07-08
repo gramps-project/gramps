@@ -178,7 +178,7 @@ class MarkerReport(Report):
         self.doc.end_table()
             
     def write_families(self):
-        flist = self.database.get_family_handles()
+        flist = self.database.iter_family_handles()
         FilterClass = GenericFilterFactory('Family')
         filter = FilterClass()
         filter.add_rule(Rules.Family.HasMarkerOf([self.marker]))

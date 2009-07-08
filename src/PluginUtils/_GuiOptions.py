@@ -551,10 +551,8 @@ class GuiFamilyOption(gtk.HBox):
                 
         if not family_list:
             # Finally, take any family you can find.
-            family_list = self.__db.get_family_handles()
-            
-        if family_list:
-            family = self.__db.get_family_from_handle(family_list[0])
+            for family in self.__db.iter_family_handles():
+                break
             self.__update_family(family)
 
     def __get_family_clicked(self, obj): # IGNORE:W0613 - obj is unused

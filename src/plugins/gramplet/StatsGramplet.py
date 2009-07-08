@@ -67,7 +67,7 @@ class StatsGramplet(Gramplet):
         self.set_text(_("Processing..."))
         database = self.dbstate.db
         personList = database.iter_person_handles()
-        familyList = database.get_family_handles()
+        familyList = database.iter_family_handles()
 
         with_photos = 0
         total_photos = 0
@@ -160,7 +160,7 @@ class StatsGramplet(Gramplet):
         self.append_text("----------------------------\n")
         self.link("%s:" % _("Number of families"),
                   'Filter', 'all families')
-        self.append_text(" %s" % len(familyList))
+        self.append_text(" %s" % database.get_number_of_families())
         self.append_text("\n")
         self.link("%s:" % _("Unique surnames"), 
                   'Filter', 'unique surnames')

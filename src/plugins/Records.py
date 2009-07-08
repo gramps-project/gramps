@@ -196,7 +196,7 @@ def _find_records(db, filter, callname):
     family_shortest = []
     family_longest = []
 
-    for family_handle in db.get_family_handles():
+    for family_handle in db.iter_family_handles():
         family = db.get_family_from_handle(family_handle)
 
         father_handle = family.get_father_handle()

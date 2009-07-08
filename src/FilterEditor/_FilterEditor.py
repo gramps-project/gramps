@@ -238,7 +238,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         if self.namespace == 'Person':
             return self.db.iter_person_handles()
         elif self.namespace == 'Family':
-            return self.db.get_family_handles()
+            return self.db.iter_family_handles()
         elif self.namespace == 'Event':
             return self.db.get_event_handles()
         elif self.namespace == 'Source':

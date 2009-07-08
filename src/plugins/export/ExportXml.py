@@ -251,7 +251,7 @@ class GrampsDbXmlWriter(UpdateCallback):
 
         if family_len > 0:
             self.g.write("  <families>\n")
-            for handle in self.db.get_family_handles():
+            for handle in self.db.iter_family_handles():
                 family = self.db.get_family_from_handle(handle)
                 self.write_family(family,2)
                 self.update()

@@ -95,7 +95,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                         self.change = True
                         counter += 1
 
-        for handle in self.db.get_family_handles():
+        for handle in self.db.iter_family_handles():
             family = self.db.get_family_from_handle(handle)
             for event_ref in family.get_event_ref_list():
                 if event_ref.get_role() == gen.lib.EventRoleType.FAMILY:

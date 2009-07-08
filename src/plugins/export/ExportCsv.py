@@ -263,7 +263,7 @@ class CSVWriter(object):
             for family_handle in p.get_family_handle_list():
                 self.flist[family_handle] = 1
         # now add the families for which these people are a child:
-        family_handles = self.db.get_family_handles()
+        family_handles = self.db.iter_family_handles()
         for family_handle in family_handles:
             family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
