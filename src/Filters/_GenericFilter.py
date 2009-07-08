@@ -184,13 +184,13 @@ class GenericFilter(object):
         return test
 
     def one_test(self, db, person):
-        count = 0
+        found_one = False
         for rule in self.flist:
             if rule.apply(db, person):
-                if count:
-                    return False
-                count += 1
-        return count == 1
+                if found_one:
+                    return False    # There can be only one!
+                found_one = True
+        return found_one
 
     def or_test(self, db, person):
         return any(rule.apply(db, person) for rule in self.flist) 

@@ -1374,8 +1374,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Persons in the database
         """
         with self.get_person_cursor() as cursor:
-            for data in cursor:
-                yield data[0]
+            for key, data in cursor:
+                yield key
 
     def get_place_handles(self, sort_handles=True):
         """
@@ -1398,8 +1398,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Places in the database
         """
         with self.get_place_cursor() as cursor:
-            for data in cursor:
-                yield data[0]
+            for key, data in cursor:
+                yield key
                 
     def get_source_handles(self, sort_handles=True):
         """
@@ -1420,8 +1420,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Sources in the database
         """
         with self.get_source_cursor() as cursor:
-            for data in cursor:
-                yield data[0]
+            for key, data in cursor:
+                yield key
                 
     def get_media_object_handles(self, sort_handles=True):
         """
@@ -1442,8 +1442,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Media in the database
         """
         with self.get_media_cursor() as cursor:
-            for data in cursor:
-                yield data[0]
+            for key, data in cursor:
+                yield key
 
     def get_event_handles(self):
         """
@@ -1459,8 +1459,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Events in the database
         """
         with self.get_event_cursor() as cursor:
-            for data in cursor:
-                yield data[0]        
+            for key, data in cursor:
+                yield key
 
     def get_family_handles(self):
         """
@@ -1476,8 +1476,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Families in the database
         """
         with self.get_family_cursor() as cursor:
-            for data in cursor:
-                yield data[0]        
+            for key, data in cursor:
+                yield key        
 
     def get_repository_handles(self):
         """
@@ -1493,8 +1493,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Repositories in the database
         """
         with self.get_repository_cursor() as cursor:
-            for data in cursor:
-                yield data[0]        
+            for key, data in cursor:
+                yield key 
 
     def get_note_handles(self):
         """
@@ -1510,8 +1510,8 @@ class GrampsDbBase(Callback):
         Return an iterator over handles for Notes in the database
         """
         with self.get_note_cursor() as cursor:
-            for data in cursor:
-                yield data[0]
+            for key, data in cursor:
+                yield key
 
     def get_gramps_ids(self, obj_key):
         key2table = {
