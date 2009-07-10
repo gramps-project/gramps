@@ -51,21 +51,21 @@ class FilterProxyDb(ProxyDbBase):
 
         if person_filter:
             self.plist = set(person_filter.apply(
-                    self.db, self.db.get_person_handles(sort_handles=False)))
+                    self.db, self.db.iter_person_handles()))
         else:
-            self.plist = self.db.get_person_handles(sort_handles=False)
+            self.plist = self.db.iter_person_handles()
 
         if event_filter:
             self.elist = set(event_filter.apply(
-                    self.db, self.db.get_event_handles()))
+                    self.db, self.db.iter_event_handles()))
         else:
-            self.elist = self.db.get_event_handles()
+            self.elist = self.db.iter_event_handles()
         
         if note_filter:
             self.nlist = set(note_filter.apply(
-                    self.db, self.db.get_note_handles()))
+                    self.db, self.db.iter_note_handles()))
         else:
-            self.nlist = self.db.get_note_handles()
+            self.nlist = self.db.iter_note_handles()
 
         self.flist = set()
         for handle in list(self.plist):
@@ -284,40 +284,10 @@ class FilterProxyDb(ProxyDbBase):
     def iter_person_handles(self):
         """
         Return an iterator over database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        the database. 
         """
         # FIXME: plist is not a sorted list of handles
-        return (h for h in self.plist)
-
-    def get_place_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
-        """
-        return self.db.get_place_handles(sort_handles)
-
-    def iter_place_handles(self):
-        """
-        Return an iterator database handles, one handle for each Place in
-        the database.
-        """
-        return self.db.iter_place_handles(sort_handles)
-
-    def get_source_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
-        """
-        return self.db.get_source_handles(sort_handles)
-
-    def get_media_object_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
-        """
-        return self.db.get_media_object_handles(sort_handles)
+        return self.plist
 
     def get_event_handles(self):
         """
@@ -333,24 +303,12 @@ class FilterProxyDb(ProxyDbBase):
         """
         return list(self.flist)
 
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository in
-        the database.
-        """
-        return self.db.get_repository_handles()
-
     def get_note_handles(self):
         """
         Return a list of database handles, one handle for each Note in
         the database.
         """
         return list(self.nlist)
-
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
 
     def get_default_person(self):
         """returns the default Person of the database"""

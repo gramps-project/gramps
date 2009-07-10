@@ -165,99 +165,21 @@ class ReferencedProxyDb(ProxyDbBase):
         """
         return self.db.get_note_from_gramps_id(val)
 
-    def get_person_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
-        """
-        return self.db.get_person_handles(sort_handles)
-
-    def iter_person_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
-        """
-        return self.db.iter_person_handles()
-
-    def get_place_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Place still
-        referenced in the database. If sort_handles is True, the list is
-        sorted by Place title.
-        """
-        return list(set(self.db.get_place_handles(sort_handles)) -
-                    set(self.unreferenced_places))
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Place still
-        referenced in the database.
-        """
-        for handle in self.db.iter_place_handles():
-            if handle not in self.unreferenced_places:
-                yield handle
-
-    def get_source_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Source still
-        referenced in the database. If sort_handles is True, the list is
-        sorted by Source title.
-        """
-        return list(set(self.db.get_source_handles(sort_handles)) -
-                    set(self.unreferenced_sources))
-
-    def get_media_object_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each MediaObject
-        still referenced in the database. If sort_handles is True, the list
-        is sorted by title.
-        """
-        return list(set(self.db.get_media_object_handles(sort_handles)) -
-                    set(self.unreferenced_media_objects))
-
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event
-        still referenced in the database.
-        """
-        return list(set(self.db.get_event_handles()) -
-                    set(self.unreferenced_events))
-
-    def get_family_handles(self):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-        """
-        return self.db.get_family_handles()
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Family in
-        the database..
-        """
-        return self.db.iter_family_handles()
-
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository still
-        referenced in the database.
-        """
-        return list(set(self.db.get_repository_handles()) -
-                    set(self.unreferenced_repositories))
-
-    def get_note_handles(self):
-        """
-        Return a list of database handles, one handle for each Note still
-        referenced in the database.
-        """
-        return list(set(self.db.get_note_handles()) -
-                    set(self.unreferenced_notes))
-
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
-
+    def place_predicate(self, handle):
+        return handle not in self.unreferenced_places
+        
+    def object_predicate(self, handle):
+        return handle not in self.unreferenced_media_objects
+        
+    def event_predicate(self, handle):
+        return handle not in self.unreferenced_events
+    
+    def repository_predicate(self, handle):
+        return handle not in self.unreferenced_repositories
+        
+    def note_predicate(self, handle):
+        return handle not in self.unreferenced_notes
+            
     def get_default_person(self):
         """returns the default Person of the database"""
         return self.db.get_default_person()

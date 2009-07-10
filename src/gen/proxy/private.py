@@ -206,138 +206,63 @@ class PrivateProxyDb(ProxyDbBase):
             return note
         return None
 
-    def get_person_handles(self, sort_handles=True):
+    # Define predicate functions for use by default iterator methods
+    
+    def person_predicate(self, handle):
         """
-        Return a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        Predicate returning True if object is to be included, else False
         """
-        handles = []
-        for handle in self.db.get_person_handles(sort_handles):
-            person = self.db.get_person_from_handle(handle)
-            if not person.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def iter_person_handles(self):
+        obj = self.db.get_person_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def family_predicate(self, handle):
         """
-        Return an iterator over database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_family_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def event_predicate(self, handle):
         """
-        for handle in self.db.iter_person_handles():
-            person = self.db.get_person_from_handle(handle)
-            if not person.get_privacy():
-                yield handle
-
-    def get_place_handles(self, sort_handles=True):
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_event_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def source_predicate(self, handle):
         """
-        Return a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_source_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def place_predicate(self, handle):
         """
-        handles = []
-        for handle in self.db.get_place_handles(sort_handles):
-            place = self.db.get_place_from_handle(handle)
-            if not place.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def iter_place_handles(self):
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_place_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def object_predicate(self, handle):
         """
-        Return an iterator over database handles, one handle for each Place in
-        the database. 
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_object_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def repository_predicate(self, handle):
         """
-        for handle in self.db.get_place_handles(sort_handles):
-            place = self.db.get_place_from_handle(handle)
-            if not place.get_privacy():
-                yield handle
-
-    def get_source_handles(self, sort_handles=True):
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_repository_from_handle(handle)
+        return not obj.get_privacy()
+    
+    def note_predicate(self, handle):
         """
-        Return a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
-        """
-        handles = []
-        for handle in self.db.get_source_handles(sort_handles):
-            source = self.db.get_source_from_handle(handle)
-            if not source.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def get_media_object_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
-        """
-        handles = []
-        for handle in self.db.get_media_object_handles(sort_handles):
-            object = self.db.get_object_from_handle(handle)
-            if not object.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event in
-        the database. 
-        """
-        handles = []
-        for handle in self.db.get_event_handles():
-            event = self.db.get_event_from_handle(handle)
-            if not event.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def get_family_handles(self):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-        """
-        handles = []
-        for handle in self.db.iter_family_handles():
-            family = self.db.get_family_from_handle(handle)
-            if not family.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Family in
-        the database.
-        """
-        for handle in self.db.iter_family_handles():
-            family = self.db.get_family_from_handle(handle)
-            if not family.get_privacy():
-                yield handle
-
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository in
-        the database.
-        """
-        handles = []
-        for handle in self.db.get_repository_handles():
-            repository = self.db.get_repository_from_handle(handle)
-            if not repository.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def get_note_handles(self):
-        """
-        Return a list of database handles, one handle for each Note in
-        the database.
-        """
-        handles = []
-        for handle in self.db.get_note_handles():
-            note = self.db.get_note_from_handle(handle)
-            if not note.get_privacy():
-                handles.append(handle)
-        return handles
-
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
+        Predicate returning True if object is to be included, else False
+        """        
+        obj = self.db.get_note_from_handle(handle)
+        return not obj.get_privacy()
 
     def get_default_person(self):
         """returns the default Person of the database"""

@@ -608,13 +608,20 @@ class DbBase(object):
         """
         raise NotImplementedError
 
-    def iter_person_handles(self):
+    def get_family_handles(self):
         """
-        Return an iterator over database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        Return a list of database handles, one handle for each Family in
+        the database.
         """
         raise NotImplementedError
 
+    def get_event_handles(self):
+        """
+        Return a list of database handles, one handle for each Event in
+        the database. 
+        """
+        raise NotImplementedError
+        
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
@@ -638,20 +645,6 @@ class DbBase(object):
         """
         raise NotImplementedError
 
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event in
-        the database. 
-        """
-        raise NotImplementedError
-
-    def get_family_handles(self):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-        """
-        raise NotImplementedError
-
     def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository in
@@ -662,6 +655,62 @@ class DbBase(object):
     def get_note_handles(self):
         """
         Return a list of database handles, one handle for each Note in
+        the database.
+        """
+        raise NotImplementedError
+
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database.
+        """
+        raise NotImplementedError
+
+    def iter_family_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Family in
+        the database.
+        """
+        raise NotImplementedError
+
+    def iter_event_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Event in
+        the database.
+        """
+        raise NotImplementedError
+
+    def iter_source_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Source in
+        the database.
+        """
+        raise NotImplementedError        
+
+    def iter_place_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Place in
+        the database.
+        """
+        raise NotImplementedError
+     
+    def iter_media_object_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Media
+        Object in the database.
+        """
+        raise NotImplementedError
+
+    def iter_repository_handles(self):
+        """
+        Return an iterator over database handles, one handle for each 
+        Repository in the database.
+        """
+        raise NotImplementedError
+
+    def iter_note_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Note in
         the database.
         """
         raise NotImplementedError

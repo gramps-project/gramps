@@ -212,105 +212,13 @@ class LivingProxyDb(ProxyDbBase):
         """
         return self.db.get_note_from_gramps_id(val)
 
-    def get_person_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
-        """
-        handles = []
+    def person_predicate(self, handle):
         if self.mode == self.MODE_EXCLUDE_ALL:
-            for handle in self.db.get_person_handles(sort_handles):
-                person = self.db.get_person_from_handle(handle)
-                if not self.__is_living(person):
-                    handles.append(handle)
-        else:
-            handles = self.db.get_person_handles(sort_handles)
-        return handles
-
-    def iter_person_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Person in
-        the database.
-        """
-        if self.mode == self.MODE_EXCLUDE_ALL:
-            for handle in self.db.iter_person_handles():
-                person = self.db.get_person_from_handle(handle)
-                if self.mode == self.MODE_EXCLUDE_ALL:
-                    if not self.__is_living(person):
-                        yield handle
-                else:
-                    yield handle
-
-    def get_place_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
-        """
-        return self.db.get_place_handles(sort_handles)
-
-    def iter_place_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Place in
-        the database.
-        """
-        return self.db.get_place_handles(sort_handles)
-
-    def get_source_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
-        """
-        return self.db.get_source_handles(sort_handles)
-
-    def get_media_object_handles(self, sort_handles=True):
-        """
-        Return a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
-        """
-        return self.db.get_media_object_handles(sort_handles)
-
-    def get_event_handles(self):
-        """
-        Return a list of database handles, one handle for each Event in
-        the database. 
-        """
-        return self.db.get_event_handles()
-
-    def get_family_handles(self):
-        """
-        Return a list of database handles, one handle for each Family in
-        the database.
-        """
-        return self.db.get_family_handles()
-
-    def iter_family_handles(self):
-        """
-        Return an iterator over database handles, one handle for each Family in
-        the database..
-        """
-        return self.db.iter_family_handles()
-
-    def get_repository_handles(self):
-        """
-        Return a list of database handles, one handle for each Repository in
-        the database.
-        """
-        return self.db.get_repository_handles()
-
-    def get_note_handles(self):
-        """
-        Return a list of database handles, one handle for each Note in
-        the database.
-        """
-        return self.db.get_note_handles()
-
-    def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
-        return self.db.get_researcher()
-
+            person = self.db.get_person_from_handle(handle)
+            if self.__is_living(person):
+                return False
+        return True        
+        
     def get_default_person(self):
         """returns the default Person of the database"""
         person_handle = self.db.get_default_handle()

@@ -26,6 +26,13 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from itertools import ifilter
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
@@ -62,6 +69,165 @@ class ProxyDbBase(DbBase):
         Return 1 if the database has been opened.
         """
         return self.db.is_open
+        
+    def get_researcher(self):
+        """returns the Researcher instance, providing information about
+        the owner of the database"""
+        return self.db.get_researcher()        
+        
+    def predicate(self, handle):
+        """
+        Default predicate. Returns True
+        """
+        return True    
+        
+    # Define default predicates for each object type
+    
+    person_predicate = \
+    family_predicate = \
+    event_predicate = \
+    source_predicate = \
+    place_predicate = \
+    object_predicate = \
+    repository_predicate = \
+    note_predicate = \
+        predicate
+        
+    def get_person_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Person in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_person_handles())
+        else:
+            return []
+        
+    def get_family_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Family in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_family_handles())
+        else:
+            return []
+        
+    def get_event_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Event in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_event_handles())
+        else:
+            return []
+
+    def get_source_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Source in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_source_handles())
+        else:
+            return []
+        
+    def get_place_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Place in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_place_handles())
+        else:
+            return []
+        
+    def get_media_object_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each MediaObject in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_media_object_handles())
+        else:
+            return []
+
+    def get_repository_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Repository in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_repository_handles())
+        else:
+            return []
+        
+    def get_note_handles(self, sort_handles=True):
+        """
+        Return a list of database handles, one handle for each Note in
+        the database. 
+        """
+        if self.db.is_open:
+            return list(self.iter_note_handles())
+        else:
+            return []
+            
+    def iter_person_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database.
+        """
+        return ifilter(self.person_predicate, self.db.iter_person_handles())
+
+    def iter_family_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Family in
+        the database.
+        """
+        return ifilter(self.family_predicate, self.db.iter_family_handles())
+
+    def iter_event_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Event in
+        the database.
+        """
+        return ifilter(self.event_predicate, self.db.iter_event_handles())
+
+    def iter_source_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Source in
+        the database.
+        """
+        return ifilter(self.source_predicate, self.db.iter_source_handles())       
+
+    def iter_place_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Place in
+        the database.
+        """
+        return ifilter(self.place_predicate, self.db.iter_place_handles())
+     
+    def iter_media_object_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Media
+        Object in the database.
+        """
+        return ifilter(self.object_predicate, self.db.iter_media_object_handles())
+
+    def iter_repository_handles(self):
+        """
+        Return an iterator over database handles, one handle for each 
+        Repository in the database.
+        """
+        return ifilter(self.repository_predicate, self.db.iter_repository_handles())
+
+    def iter_note_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Note in
+        the database.
+        """
+        return ifilter(self.note_predicate, self.db.iter_note_handles())
 
     def get_name_group_mapping(self, name):
         """
@@ -85,43 +251,43 @@ class ProxyDbBase(DbBase):
         """
         Return the number of people currently in the databse.
         """
-        return len(self.get_person_handles())
+        return self.db.get_number_of_people()
 
     def get_number_of_families(self):
         """
         Return the number of families currently in the databse.
         """
-        return len(self.get_family_handles())
+        return self.db.get_number_of_families()
 
     def get_number_of_events(self):
         """
         Return the number of events currently in the databse.
         """
-        return len(self.get_event_handles())
+        return self.db.get_number_of_events()
 
     def get_number_of_places(self):
         """
         Return the number of places currently in the databse.
         """
-        return len(self.get_place_handles())
+        return self.db.get_number_of_places()
 
     def get_number_of_sources(self):
         """
         Return the number of sources currently in the databse.
         """
-        return len(self.get_source_handles())
+        return self.db.get_number_of_sources()
 
     def get_number_of_media_objects(self):
         """
         Return the number of media objects currently in the databse.
         """
-        return len(self.get_media_object_handles())
+        return self.db.get_number_of_media_objects()
 
     def get_number_of_repositories(self):
         """
         Return the number of source repositories currently in the databse.
         """
-        return len(self.get_repository_handles())
+        return self.db.get_number_of_repositories()
 
     def get_number_of_notes(self):
         """
