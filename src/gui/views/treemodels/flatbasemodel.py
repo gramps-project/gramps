@@ -370,8 +370,12 @@ class FlatBaseModel(gtk.GenericTreeModel):
         self.prev_data = None
         self.set_property("leak_references", False)
         self.db = db
+        #normally sort on first column, so scol=0
         if sort_map:
+            #sort_map is the stored order of the columns and if they are
+            #enabled or not. We need to store on scol of that map
             self.sort_map = [ f for f in sort_map if f[0]]
+            #we need the model col, that corresponds with scol
             col = self.sort_map[scol][1]
             self.sort_func = self.smap[col]
         else:
@@ -612,7 +616,8 @@ class FlatBaseModel(gtk.GenericTreeModel):
 
     def on_get_value(self, handle, col):
         """
-        See gtk.TreeModel
+        See gtk.TreeModel. 
+        col is the model column that is needed, not the visible column!
         """
         try:
             if handle != self.prev_handle:
