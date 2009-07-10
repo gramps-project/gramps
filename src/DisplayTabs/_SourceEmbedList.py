@@ -58,11 +58,13 @@ class SourceEmbedList(EmbeddedList):
         'down'  : _('Move the selected source downwards'),
         }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),     0, 75), 
-        (_('Title'),  1, 200), 
-        (_('Author'), 2, 125), 
-        (_('Page'),   3, 100), 
+        (_('ID'),     0, 75, 0, -1), 
+        (_('Title'),  1, 200, 0, -1), 
+        (_('Author'), 2, 125, 0, -1), 
+        (_('Page'),   3, 100, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, obj):

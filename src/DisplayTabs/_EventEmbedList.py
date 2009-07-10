@@ -58,13 +58,15 @@ class EventEmbedList(EmbeddedList):
         'down'  : _('Move the selected event downwards'),
         }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100), 
-        (_('Description'), 1, 175), 
-        (_('ID'), 2, 60), 
-        (_('Date'), 6, 150), 
-        (_('Place'), 4, 140), 
-        (_('Role'), 5, 80),
+        (_('Type'), 0, 100, 0, -1), 
+        (_('Description'), 1, 175, 0, -1), 
+        (_('ID'), 2, 60, 0, -1), 
+        (_('Date'), 6, 150, 1, -1), 
+        (_('Place'), 4, 140, 0, -1), 
+        (_('Role'), 5, 80, 0, -1),
         ]
     
     def __init__(self, dbstate, uistate, track, obj):

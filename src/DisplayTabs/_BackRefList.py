@@ -53,10 +53,12 @@ class BackRefList(EmbeddedList):
 
     _HANDLE_COL = 3
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100),
-        (_('ID'),  1,  75),
-        (_('Name'), 2, 250),
+        (_('Type'), 0, 100, 0, -1),
+        (_('ID'),  1,  75, 0, -1),
+        (_('Name'), 2, 250, 0, -1),
         ]
     
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):

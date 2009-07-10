@@ -48,12 +48,14 @@ class LocationEmbedList(EmbeddedList):
     _HANDLE_COL = 5
     _DND_TYPE   = DdTargets.LOCATION
     
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Street'),         0, 150), 
-        (_('City'),           1, 100), 
-        (_('County'),         2, 100), 
-        (_('State/Province'), 3, 100), 
-        (_('Country'),        4, 75), 
+        (_('Street'),         0, 150, 0, -1), 
+        (_('City'),           1, 100, 0, -1), 
+        (_('County'),         2, 100, 0, -1), 
+        (_('State/Province'), 3, 100, 0, -1), 
+        (_('Country'),        4, 75, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

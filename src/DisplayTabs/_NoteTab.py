@@ -68,9 +68,11 @@ class NoteTab(EmbeddedList):
         'down'  : _('Move the selected note downwards'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 100), 
-        (_('Preview'), 1, 200), 
+        (_('Type'), 0, 100, 0, -1), 
+        (_('Preview'), 1, 200, 0, -1), 
     ]
 
     def __init__(self, dbstate, uistate, track, data, callertitle=None, 

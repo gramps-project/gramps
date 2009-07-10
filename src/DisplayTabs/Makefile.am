@@ -21,6 +21,7 @@ pkgdata_PYTHON = \
 	_FamilyLdsEmbedList.py \
 	_GalleryTab.py \
 	_GrampsTab.py \
+	_GroupEmbeddedList.py \
 	_LdsEmbedList.py \
 	_LdsModel.py \
 	_LocationEmbedList.py \

@@ -288,7 +288,7 @@ class ChildEmbedList(EmbeddedList):
                     pass
                 break
 
-    def edit_child_button_clicked(self, obj):
+    def edit_child_button_clicked(self):
         handle = self.get_selected()
         if handle:
             from Editors import EditPerson

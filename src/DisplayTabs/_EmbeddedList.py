@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+#               2009       Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -100,7 +101,7 @@ class EmbeddedList(ButtonTab):
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
                 fun = self.get_middle_click()
                 if fun:
-                    fun(obj)
+                    fun()
 
     def get_popup_menu_items(self):
         """
@@ -182,6 +183,7 @@ class EmbeddedList(ButtonTab):
         self.tree.connect('drag_data_get', self.drag_data_get)
         if not self.dbstate.db.readonly:
             self.tree.connect('drag_data_received', self.drag_data_received)
+            self.tree.connect('drag_motion', self.tree_drag_motion)
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         """
@@ -236,6 +238,13 @@ class EmbeddedList(ButtonTab):
                 self.rebuild()
             elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                 self.handle_extra_type(mytype, obj)
+
+    def tree_drag_motion(self, *args):
+        """
+        On drag motion one wants the list to show as the database 
+        representation so it is clear how save will change the data
+        """
+        pass
 
     def handle_extra_type(self, objtype, obj):
         pass
@@ -419,13 +428,18 @@ class EmbeddedList(ButtonTab):
             name = self._column_names[pair[1]][0]
             renderer = gtk.CellRendererText()
             renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-            if name == _("Date"):
-                column = gtk.TreeViewColumn(name, renderer, markup=pair[1])
-            else:
+            if self._column_names[pair[1]][3] == 0:
                 column = gtk.TreeViewColumn(name, renderer, text=pair[1])
+            else:
+                column = gtk.TreeViewColumn(name, renderer, markup=pair[1])
+            if not self._column_names[pair[1]][4] == -1:
+                #apply weight attribute
+                column.add_attribute(renderer, "weight", 
+                                     self._column_names[pair[1]][4])
 
             # insert the colum into the tree
             column.set_resizable(True)
+            column.set_clickable(True)
             column.set_min_width(self._column_names[pair[1]][2])
             column.set_sort_column_id(self._column_names[pair[1]][1])
             self.columns.append(column)
@@ -453,3 +467,7 @@ class EmbeddedList(ButtonTab):
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
+        self.post_rebuild()
+    
+    def post_rebuild(self):
+        pass

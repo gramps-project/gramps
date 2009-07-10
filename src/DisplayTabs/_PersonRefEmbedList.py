@@ -56,10 +56,12 @@ class PersonRefEmbedList(EmbeddedList):
         'down'  : _('Move the selected association downwards'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Name'),    0, 250), 
-        (_('ID'),  1, 100), 
-        (_('Association'),   2, 100), 
+        (_('Name'), 0, 250, 0, -1), 
+        (_('ID'), 1, 100, 0, -1), 
+        (_('Association'), 2, 100, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

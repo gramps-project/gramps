@@ -58,10 +58,12 @@ class WebEmbedList(EmbeddedList):
         'jump'  : _('Jump to the selected web address'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type')       , 0, 100), 
-        (_('Path')       , 1, 200), 
-        (_('Description'), 2, 150), 
+        (_('Type')       , 0, 100, 0, -1), 
+        (_('Path')       , 1, 200, 0, -1), 
+        (_('Description'), 2, 150, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

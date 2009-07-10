@@ -56,9 +56,11 @@ class AttrEmbedList(EmbeddedList):
         'down'  : _('Move the selected attribute downwards'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'), 0, 250), 
-        (_('Value'), 1, 200), 
+        (_('Type'), 0, 250, 0, -1), 
+        (_('Value'), 1, 200, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

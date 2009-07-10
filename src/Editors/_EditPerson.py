@@ -304,7 +304,7 @@ class EditPerson(EditPrimary):
                     self.top.get_object("call"),
                     self.top.get_object("prefixentry"),
                     ]:
-            obj.connect('changed', self._changed_title)
+            obj.connect('changed', self._changed_name)
 
     def _create_tabbed_pages(self):
         """
@@ -399,18 +399,18 @@ class EditPerson(EditPrimary):
         self.top.get_object('vbox').pack_start(notebook, True)
 
 
-    def _changed_title(self, obj):
+    def _changed_name(self, obj):
         """
         callback to changes typed by user to the person name.
-        Update the window title
+        Update the window title, and default name in name tab
         """
         self.update_title(self.get_menu_title())
+        self.name_list.update_defname()
 
     def name_callback(self):
         """
-        Callback if changes happen in the name tab.
-        The Preferred Name is _NOT_ part of the name tab, but name tab allows
-        reorder and hence setting of new primary name.
+        Callback if changes happen in the name tab that impact the preferred
+        name.
         """
         self.pname = self.obj.get_primary_name()
 

@@ -65,12 +65,14 @@ class AddrEmbedList(EmbeddedList):
         'down'  : _('Move the selected address downwards'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Date'),    0, 150), 
-        (_('Address'), 1, 225), 
-        (_('City'),    2, 100), 
-        (_('State'),   3, 100), 
-        (_('Country'), 4, 75), 
+        (_('Date'),    0, 150, 1, -1), 
+        (_('Address'), 1, 225, 0, -1), 
+        (_('City'),    2, 100, 0, -1), 
+        (_('State'),   3, 100, 0, -1), 
+        (_('Country'), 4, 75, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

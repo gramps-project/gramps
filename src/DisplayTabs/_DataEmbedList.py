@@ -53,9 +53,11 @@ class DataEmbedList(EmbeddedList):
         'down'  : _('Move the selected data entry downwards'),
     }
     
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text
     _column_names = [
-        (_('Key'), 0, 150), 
-        (_('Value'), 1, 250), 
+        (_('Key'), 0, 150, 0, -1), 
+        (_('Value'), 1, 250, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, obj):

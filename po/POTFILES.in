@@ -282,6 +282,7 @@ src/DisplayTabs/_FamilyAttrEmbedList.py
 src/DisplayTabs/_FamilyLdsEmbedList.py
 src/DisplayTabs/_GalleryTab.py
 src/DisplayTabs/_GrampsTab.py
+src/DisplayTabs/_GroupEmbeddedList.py
 src/DisplayTabs/_LdsEmbedList.py
 src/DisplayTabs/_LdsModel.py
 src/DisplayTabs/_LocationEmbedList.py

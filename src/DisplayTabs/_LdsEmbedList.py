@@ -55,12 +55,14 @@ class LdsEmbedList(EmbeddedList):
         'down'  : _('Move the selected LDS ordinance downwards'),
     }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Type'),    0, 150), 
-        (_('Date'),    1, 150), 
-        (_('Status'),  3, 75), 
-        (_('Temple'),  2, 200), 
-        (_('Place'),   3, 100), 
+        (_('Type'),    0, 150, 0, -1), 
+        (_('Date'),    1, 150, 1, -1), 
+        (_('Status'),  3, 75, 0, -1), 
+        (_('Temple'),  2, 200, 0, -1), 
+        (_('Place'),   3, 100, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, data):

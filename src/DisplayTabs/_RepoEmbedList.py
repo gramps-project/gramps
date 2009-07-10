@@ -58,11 +58,13 @@ class RepoEmbedList(EmbeddedList):
         'down'  : _('Move the selected repository downwards'),
         }
 
+    #index = column in model. Value =
+    #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('ID'),     0, 75), 
-        (_('Title'),  1, 200), 
-        (_('Call Number'), 2, 125), 
-        (_('Type'),   3, 100), 
+        (_('ID'),     0, 75, 0, -1), 
+        (_('Title'),  1, 200, 0, -1), 
+        (_('Call Number'), 2, 125, 0, -1), 
+        (_('Type'),   3, 100, 0, -1), 
         ]
     
     def __init__(self, dbstate, uistate, track, obj):
