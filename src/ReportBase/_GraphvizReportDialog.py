@@ -153,7 +153,7 @@ class GVDocBase(BaseDoc, GVDoc):
     The close function will generate the actual file of the appropriate type.
     """
     def __init__(self, options, paper_style):
-        BaseDoc.__init__(self, None, paper_style, None)
+        BaseDoc.__init__(self, None, paper_style)
 
         self._filename      = None
         self._dot           = StringIO()
