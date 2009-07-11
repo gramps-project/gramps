@@ -91,7 +91,7 @@ class ProxyDbBase(DbBase):
     object_predicate = \
     repository_predicate = \
     note_predicate = \
-        predicate
+        None
         
     def get_person_handles(self, sort_handles=True):
         """
