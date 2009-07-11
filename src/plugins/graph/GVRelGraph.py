@@ -162,11 +162,10 @@ class RelGraphReport(Report):
     def add_child_links_to_families(self):
         "returns string of GraphViz edges linking parents to families or \
          children"
-        person_dict = {}
         # Hash people in a dictionary for faster inclusion checking
+        person_dict = dict([handle, 1] for handle in self.person_handles)
             
         for person_handle in self.person_handles:
-            person_dict[person_handle] = 1
             person = self.database.get_person_from_handle(person_handle)
             p_id = person.get_gramps_id()
             for fam_handle in person.get_parent_family_handle_list():
