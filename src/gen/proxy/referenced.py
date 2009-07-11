@@ -166,18 +166,39 @@ class ReferencedProxyDb(ProxyDbBase):
         return self.db.get_note_from_gramps_id(val)
 
     def place_predicate(self, handle):
+        """
+        Filter for places
+        """
         return handle not in self.unreferenced_places
         
     def object_predicate(self, handle):
+        """
+        Filter for media objects
+        """
         return handle not in self.unreferenced_media_objects
         
     def event_predicate(self, handle):
+        """
+        Filter for events
+        """
         return handle not in self.unreferenced_events
+
+    def source_predicate(self, handle):
+        """
+        Filter for sources
+        """
+        return handle not in self.unreferenced_sources
     
     def repository_predicate(self, handle):
+        """
+        Filter for repositories
+        """
         return handle not in self.unreferenced_repositories
         
     def note_predicate(self, handle):
+        """
+        Filter for notes
+        """
         return handle not in self.unreferenced_notes
             
     def get_default_person(self):
