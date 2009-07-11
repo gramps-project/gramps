@@ -1437,7 +1437,7 @@ class GrampsDbBase(Callback):
             return handle_list
         return []
         
-    def iter_media_handles(self):
+    def iter_media_object_handles(self):
         """
         Return an iterator over handles for Media in the database
         """
