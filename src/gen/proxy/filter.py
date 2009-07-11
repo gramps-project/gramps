@@ -53,19 +53,19 @@ class FilterProxyDb(ProxyDbBase):
             self.plist = set(person_filter.apply(
                     self.db, self.db.iter_person_handles()))
         else:
-            self.plist = self.db.iter_person_handles()
+            self.plist = self.db.get_person_handles()
 
         if event_filter:
             self.elist = set(event_filter.apply(
                     self.db, self.db.iter_event_handles()))
         else:
-            self.elist = self.db.iter_event_handles()
+            self.elist = self.db.get_event_handles()
         
         if note_filter:
             self.nlist = set(note_filter.apply(
                     self.db, self.db.iter_note_handles()))
         else:
-            self.nlist = self.db.iter_note_handles()
+            self.nlist = self.db.get_note_handles()
 
         self.flist = set()
         for handle in list(self.plist):
@@ -295,6 +295,13 @@ class FilterProxyDb(ProxyDbBase):
         the database. 
         """
         return list(self.elist)
+        
+    def iter_event_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. 
+        """
+        return self.elist        
 
     def get_family_handles(self):
         """
@@ -302,6 +309,13 @@ class FilterProxyDb(ProxyDbBase):
         the database.
         """
         return list(self.flist)
+        
+    def iter_family_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. 
+        """
+        return self.flist
 
     def get_note_handles(self):
         """
@@ -309,6 +323,13 @@ class FilterProxyDb(ProxyDbBase):
         the database.
         """
         return list(self.nlist)
+
+    def iter_note_handles(self):
+        """
+        Return an iterator over database handles, one handle for each Person in
+        the database. 
+        """
+        return self.nlist
 
     def get_default_person(self):
         """returns the default Person of the database"""

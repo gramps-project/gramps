@@ -918,7 +918,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
         # can then be sorted by the sort routine, which will use the
         # first value of the tuple as the sort key. 
-        sorted_list = sort_handles_by_id(self.dbase.iter_family_handles(),
+        sorted_list = sort_handles_by_id(self.dbase.get_family_handles(),
                                          self.dbase.get_family_from_handle)
 
         # loop through the sorted list, pulling of the handle. This list
