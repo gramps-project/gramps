@@ -89,9 +89,6 @@ class NodeTreeMap(object):
         self.sortnames = {}
 
     def clear_temp_data(self):
-        del self.temp_iter2path
-        del self.temp_path2iter
-        del self.temp_sname_sub
         self.temp_iter2path = {}
         self.temp_path2iter = {}
         self.temp_sname_sub = {}
