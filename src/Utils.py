@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -590,7 +591,11 @@ def probably_alive(person, db, current_date=None, limit=0):
     # been alive in the current year then they must be dead.
 
     try:
-        if descendants_too_old(person, _MIN_GENERATION_YEARS):
+        age_too_old = descendants_too_old(person, _MIN_GENERATION_YEARS)
+        # Set to None otherwise there is a memory leak as this function
+        # is recursive
+        descendants_too_old = None
+        if age_too_old:
             return False
     except RuntimeError:
         raise Errors.DatabaseError(
@@ -653,7 +658,11 @@ def probably_alive(person, db, current_date=None, limit=0):
 
     # If there are ancestors that would be too old in the current year
     # then assume our person must be dead too.
-    if ancestors_too_old (person, current_date.get_year()):
+    # Set to None otherwise there is a memory leak as this function
+    # is recursive
+    age_too_old = ancestors_too_old (person, current_date.get_year())
+    ancestors_too_old = None
+    if age_too_old:
         return False
 
     # If we can't find any reason to believe that they are dead we

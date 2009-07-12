@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -258,6 +259,8 @@ class Callback(object):
                     # signal name clash
                     sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
                 self.__signal_map[k] = v
+        # Set to None to prevent a memory leak in this recursive function
+        trav = None
 
         # self.__signal_map now contains the connonical list
         # of signals that this instance can emit.

@@ -1,6 +1,7 @@
 # This file is derived from the GPL program "PyPE"
 #
 # Copyright (C) 2003-2006  Josiah Carlson
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -144,3 +145,9 @@ class LRU(object):
         Return all items
         """
         return [data[0] for data in self.iteritems()]
+
+    def clear(self):
+        """
+        Empties LRU
+        """
+        self.data.clear()

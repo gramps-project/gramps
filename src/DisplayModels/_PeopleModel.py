@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2009       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,6 +89,9 @@ class NodeTreeMap(object):
         self.sortnames = {}
 
     def clear_temp_data(self):
+        del self.temp_iter2path
+        del self.temp_path2iter
+        del self.temp_sname_sub
         self.temp_iter2path = {}
         self.temp_path2iter = {}
         self.temp_sname_sub = {}
@@ -240,6 +244,10 @@ class PeopleModel(gtk.GenericTreeModel):
 
         self.db = db
         self.in_build = False
+        self.lru_data  = LRU(_CACHE_SIZE)
+        self.lru_name  = LRU(_CACHE_SIZE)
+        self.lru_bdate = LRU(_CACHE_SIZE)
+        self.lru_ddate = LRU(_CACHE_SIZE)
 
         Config.client.notify_add("/apps/gramps/preferences/todo-color",
                                  self.update_todo)
@@ -350,11 +358,8 @@ class PeopleModel(gtk.GenericTreeModel):
         """
         Calculate the new path to node values for the model.
         """
+        self.clear_cache()
         self.in_build  = True
-        self.lru_data  = LRU(_CACHE_SIZE)
-        self.lru_name  = LRU(_CACHE_SIZE)
-        self.lru_bdate = LRU(_CACHE_SIZE)
-        self.lru_ddate = LRU(_CACHE_SIZE)
 
         self.total = 0
         self.displayed = 0
@@ -373,10 +378,10 @@ class PeopleModel(gtk.GenericTreeModel):
         self.in_build  = False
 
     def clear_cache(self):
-        self.lru_data  = LRU(_CACHE_SIZE)
-        self.lru_name  = LRU(_CACHE_SIZE)
-        self.lru_bdate = LRU(_CACHE_SIZE)
-        self.lru_ddate = LRU(_CACHE_SIZE)
+        self.lru_name.clear()
+        self.lru_data.clear()
+        self.lru_bdate.clear()
+        self.lru_ddate.clear()
 
     def build_sub_entry(self, name):
         self.mapper.build_sub_entry(name)
