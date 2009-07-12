@@ -162,43 +162,60 @@ class EditEventRef(EditReference):
 
         self._add_tab(notebook, self.primtab)
         self._add_tab(notebook_ref, self.reftab)
+        self.track_ref_for_deletion("primtab")
+        self.track_ref_for_deletion("reftab")
 
-        self.srcref_list = self._add_tab(
-            notebook,
-            SourceEmbedList(self.dbstate,self.uistate,self.track,self.source))
+        self.srcref_list = SourceEmbedList(self.dbstate,
+                                           self.uistate,
+                                           self.track,
+                                           self.source)
+        self._add_tab(notebook, self.srcref_list)
+        self.track_ref_for_deletion("srcref_list")
 
-        self.attr_list = self._add_tab(
-            notebook,
-            AttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.source.get_attribute_list()))
+        self.attr_list = AttrEmbedList(self.dbstate,
+                                       self.uistate,
+                                       self.track,
+                                       self.source.get_attribute_list())
+        self._add_tab(notebook, self.attr_list)
+        self.track_ref_for_deletion("attr_list")
 
-        self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source.get_note_list(),
-                    notetype=gen.lib.NoteType.EVENT))
+        self.note_tab = NoteTab(self.dbstate,
+                                self.uistate,
+                                self.track,
+                                self.source.get_note_list(),
+                                notetype=gen.lib.NoteType.EVENT)
+        self._add_tab(notebook, self.note_tab)
+        self.track_ref_for_deletion("note_tab")
         
-        self.note_ref_tab = self._add_tab(
-            notebook_ref,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.source_ref.get_note_list(),
-                    notetype=gen.lib.NoteType.EVENTREF))
+        self.note_ref_tab = NoteTab(self.dbstate,
+                                    self.uistate,
+                                    self.track,
+                                    self.source_ref.get_note_list(),
+                                    notetype=gen.lib.NoteType.EVENTREF)
+        self._add_tab(notebook_ref, self.note_ref_tab)
+        self.track_ref_for_deletion("note_ref_tab")
         
-        self.gallery_tab = self._add_tab(
-            notebook,
-            GalleryTab(self.dbstate, self.uistate, self.track,
-                       self.source.get_media_list()))
+        self.gallery_tab = GalleryTab(self.dbstate,
+                                      self.uistate,
+                                      self.track,
+                                      self.source.get_media_list())
+        self._add_tab(notebook, self.gallery_tab)
+        self.track_ref_for_deletion("gallery_tab")
 
-        self.backref_tab = self._add_tab(
-            notebook,
-            EventBackRefList(self.dbstate, self.uistate, self.track,
+        self.backref_tab = EventBackRefList(self.dbstate,
+                             self.uistate,
+                             self.track,
                              self.db.find_backlink_handles(self.source.handle),
-                             self.enable_warnbox))
+                             self.enable_warnbox)
+        self._add_tab(notebook, self.backref_tab)
+        self.track_ref_for_deletion("backref_tab")
 
-        self.attr_ref_list = self._add_tab(
-            notebook_ref,
-            AttrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.source_ref.get_attribute_list()))
+        self.attr_ref_list = AttrEmbedList(self.dbstate,
+                                           self.uistate,
+                                           self.track,
+                                           self.source_ref.get_attribute_list())
+        self._add_tab(notebook_ref, self.attr_ref_list)
+        self.track_ref_for_deletion("attr_ref_list")
 
         self._setup_notebook_tabs( notebook)
         self._setup_notebook_tabs( notebook_ref)
