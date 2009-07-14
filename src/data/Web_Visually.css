@@ -15,7 +15,7 @@ and a wiki open to all. It is a community project, created, developed and govern
 Go to http://gramps-project.org to learn more!
 
 --------------------------------------------------------------------------------------------------
-Copyright 2008 Rob G. Healey
+Copyright 2008-2009 Rob G. Healey <robhealey1@gmail.com>
 Copyright 2009 Stephane Charette
 
 This file is part of the GRAMPS program.
@@ -71,7 +71,6 @@ table {
     border-collapse:collapse;
 }
 th {
-    color:#000;
     font-weight:bold;
     text-align:left;
     padding:1px 3em 1px 0.5em;
@@ -87,16 +86,10 @@ img {
 .thumbnail a:hover {
     background:none;
 }
-.content:first-letter {
-    color:#FF0000;
-    font:xx-large;
-}
 .content {
     width:965px;
     margin:0 auto;
     padding-bottom:.5em;
-    background-color:#FFF;
-    color:#000;
 }
 .content div.snapshot {
     margin:0;
@@ -127,7 +120,7 @@ h1 {
     font:normal 2em/1.2em serif;
 }
 h2 {
-    display:none;
+    font:bold 2em/1.2em sans;
 }
 h3 {
     font:normal 2em/1.2em serif;
@@ -151,16 +144,13 @@ h5, h6 {
 }
 
 p#description {
-    text-indent:20px;
-    color:#000;
     max-width:800px;
     margin:0;
     padding:1em 20px;
-    background-color:#FFF;
 }
 p#description:first-letter {
-    color:#FF0000;
-    font:20px;
+    color:#228A22;
+    font-size:xx-large;
 }
 p a {
     color:#FFF;
@@ -189,7 +179,8 @@ a:visited {
     color:#542;
 }
 a:hover {
-    color:#542;
+    color:#000;
+    background-color:#C1B398;
     text-decoration:underline;
 }
 span.preposition {
@@ -198,7 +189,7 @@ span.preposition {
 }
 .grampsid {
     font:normal .8em/1.2em monospace;
-    color:#696969;
+    color:#000;
 }
 
 /* Header
@@ -233,28 +224,17 @@ p#user_header {
     font-size:12px;
     line-height:130%;
     font-family:sans-serif;
-    color:#FFF;
     margin:0;
     padding:0;
     background-color:#453619;
     border-top:solid 2px #6AF364;
-}
-#footer p#top {
-    float:right;
-    text-align:right;
-    margin-top:20px;
-    margin-right:20px;
-    display:block;
-}
-#footer p#top a {
-    width:60px;
-    text-decoration:underline;
 }
 #footer a, #footer a:visited {
     text-decoration:none;
     color:#FFF;
 }
 #footer a:hover {
+    color:#000;
     text-decoration:underline;
 }
 #footer img {
@@ -264,27 +244,28 @@ p#user_header {
 }
 #footer p#createdate {
     float:left;
-    width:230px;
+    width:60%;
     text-align:left;
     margin-left:10px;
     color:#FFF;
 }
 #footer p#copyright {
-    float:center;
-    text-align:center;
+    float:right;
+    text-align:right;
     color:#FFF;
     margin-top:10px;
 }
-#footer p#copyright img { }
-
+#footer p#copyright img {
+    float:right;
+}
 #user_footer {
     width:70%;
     float:left;
     margin:1em;
+     color:#6AF364;
 }
 #user_footer p {
     font:normal 1em/1.2em serif;
-    color:#6AF364;
     margin:0;
     padding:0;
 }
@@ -307,9 +288,6 @@ div#alphabet ul {
 }
 div#alphabet ul li:after {
     content:"  |";
-}
-div#alphabet ul li:before {
-    content:" ";
 }
 div#alphabet ul li.letters {
     margin:0;
@@ -414,6 +392,7 @@ table.infolist tr td {
 table.infolist tr td a {
     display:block;
     text-decoration:none;
+    color:#000;
 }
 table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
     border-top:solid 1px #453619;
@@ -424,7 +403,6 @@ table.infolist tr td.ColumnLetter {
 }
 table.infolist tbody tr td.ColumnBirth {
     font-size:.9em;
-    color:#000;
     width:10%;
 }
 table.infolist tbody tr td.ColumnDeath {
@@ -433,7 +411,6 @@ table.infolist tbody tr td.ColumnDeath {
 }
 table.infolist tbody tr td.ColumnRowLabel {
     width:2%;
-    color:#000;
     padding-left:20px;
 }
 table.infolist tbody tr td.ColumnType {
@@ -449,9 +426,8 @@ table.infolist tbody tr td.ColumnPartner a {
     padding:.6em 10px;
     vertical-align:middle;
 }
-table.infolist tbody tr td.ColumnPartner a:hover {
-    background-color:#C1B398;
-}
+table.infolist tbody tr td.ColumnPartner a:hover { }
+
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
 }
@@ -466,8 +442,12 @@ table.infolist tbody tr td.ColumnParents span.mother:before {
 /* Surnames
 ----------------------------------------------------- */
 #Surnames {  }
-#SurnameDetail p#description { padding-top:0; }
-table.surnamelist thead tr th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
+
+#SurnameDetail p#description {
+    padding-top:0;
+}
+table.surnamelist thead tr th.ColumnSurname, 
+#Surnames table.surnamelist tbody tr td.ColumnSurname {
     width:50%;
 }
 table.surnamelist thead tr th {
@@ -479,31 +459,34 @@ table.surnamelist thead tr th a, table.surnamelist thead tr th a:visited {
     text-decoration:none;
     padding:.2em 10px;
 }
-table.surnamelist tr th:hover {
-    background-color:#C1B398;
-}
+table.surnamelist tr th:hover { }
+
 table.surnamelist thead tr th.ColumnLetter {
     padding-left:20px;
     padding-right:10px;
 }
-table#SortByName thead tr th.ColumnSurname, table#SortByCount thead tr th.ColumnQuantity {
+table.surnamelist tbody tr td.ColumnSurname {
+    background-color:#FFF;
+}
+table#SortByName thead tr th.ColumnSurname, 
+table#SortByCount thead tr th.ColumnQuantity {
     background-color:#C1B398;
 }
-table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
+table#SortByName thead tr th.ColumnSurname a:after, 
+table#SortByCount thead tr th.ColumnQuantity a:after {
     content:" ↓";
 }
 table#SortByName tbody tr td.ColumnSurname {
     padding:0;
-    background-color:#FFF;
 }
 table#SortByName tbody tr td.ColumnSurname a {
     display:block;
     padding:.1em 10px .3em 10px;
 }
-table#SortByCount tbody tr td.ColumnQuantity {
-    background-color:#FFF;
-}
-table.surnamelist tbody tr td.ColumnSurname:hover, table#SortByName tbody tr td.ColumnSurname:hover {
+table#SortByCount tbody tr td.ColumnQuantity { }
+
+table.surnamelist tbody tr td.ColumnSurname:hover,
+ table#SortByName tbody tr td.ColumnSurname:hover {
     background-color:#C1B398;
 }
 table.surname {
@@ -519,7 +502,6 @@ table.surname thead tr th.ColumnName {
 table.surname tbody tr td.ColumnName {
     width:20%;
     padding:0;
-    background-color:#FFF;
 }
 table.surname tbody tr td.ColumnName a {
     display:block;
@@ -530,13 +512,15 @@ table.surname tbody tr td.ColumnName a span.grampsid { }
 table.surname tbody tr td.ColumnName:hover {
     background-color:#C1B398;
 }
-table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
+table.surname thead tr th.ColumnParents, 
+table.surname tbody tr td.ColumnParents {
     width:25%;
 }
 
 /* Individuals
 ----------------------------------------------------- */
 #Individuals {  }
+
 #Individuals table.individuallist {
     border-bottom:solid 1px #453619;
 }
@@ -546,7 +530,8 @@ table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents
 #Individuals table.individuallist tbody tr td a:hover {
     text-decoration:none;
 }
-table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
+table.individuallist tbody tr td.ColumnSurname a:hover, 
+table.individuallist tbody tr td.ColumnSurname a:active {
     cursor:default;
     color:black;
     background:none;
@@ -560,9 +545,8 @@ table.individuallist tbody tr td.ColumnName a {
     padding:.6em 10px;
     vertical-align:middle;
 }
-table.individuallist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
+table.individuallist tbody tr td.ColumnName a:hover { }
+
 table.individuallist tbody tr td.ColumnPartner {
     padding:0;
     background-color:#FFF;
@@ -573,7 +557,6 @@ table.individuallist tbody tr td.ColumnPartner a {
     vertical-align:middle;
 }
 table.individuallist tbody tr td.ColumnPartner a:hover {
-    background-color:#C1B398;
 }
 #Individuals div table.infolist tr td p {
     font:normal .9em/1.2em sans-serif;
@@ -585,9 +568,8 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 
 /* IndividualDetail
 ------------------------------------------------------ */
-#IndividualDetail {
-    background-color:#FFF;
-}
+#IndividualDetail { }
+
 #IndividualDetail div table.infolist tr td {
     font:normal .9em/1.2em sans-serif;
     vertical-align:top;
@@ -600,63 +582,41 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 }
 #IndividualDetail table.infolist tbody tr td.ColumnAttribute {
     width:10%;
-    color:#696969;
 }
 #IndividualDetail div.subsection table tr td:first-child {
     padding-left:20px;
 }
 
-/* Sources
------------------------------------------------------ */
-#Sources {  }
-#Sources table.infolist tbody tr td.ColumnRowLabel {
-    padding-bottom:0;
-    background-color:#FFF;
-}
-#Sources table.infolist tbody tr td.ColumnName {
-    padding:0;
-}
-#Sources table.infolist tbody tr td.ColumnName a {
-    font-size:.9em;
-    padding:.1em 10px .3em 10px;
-}
-#Sources table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
-#SourceDetail div#references ol li {
-    padding-bottom:.5em;
-}
-
 /* Places
 ----------------------------------------------------- */
 #Places {  }
+
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
+    background-color:#FFF;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
-    background-color:#FFF;
 }
-#Places table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
+#Places table.infolist tbody tr td.ColumnName a:hover { }
 
 /* Gallery
 ----------------------------------------------------- */
 #Gallery {  }
-#Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
+
+#Gallery table.infolist tbody tr td.ColumnRowLabel, 
+#Gallery table.infolist tbody tr td.ColumnDate {
     padding-bottom:0;
 }
 #Gallery table.infolist tbody tr td.ColumnName {
     padding:0;
+    background-color:#FFF;
 }
 #Gallery table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
-    background-color:#FFF;
 }
-#Gallery table.infolist tbody tr td.ColumnName a:hover {
-    background-color:#C1B398;
-}
+#Gallery table.infolist tbody tr td.ColumnName a:hover { }
+
 #GalleryNav {
     font:normal 1em/1em sans-serif;
     margin:1em 0 0 0;
@@ -668,9 +628,8 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
     text-decoration:none;
     border:solid 1px #453619;
 }
-#GalleryNav a:hover {
-    background-color:#C1B398;
-}
+#GalleryNav a:hover { }
+
 #GalleryNav a#Previous {
     padding:.5em .7em .3em .7em;
 }
@@ -712,7 +671,6 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
     padding-bottom:0;
     margin-top:1.5em;
     margin-bottom:0;
-    background-color:#FFF;
     border-style:solid;
     border-width:8px 0 0 0;
     border-color:#453619;
@@ -724,7 +682,7 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
     width:500px;
     margin:0 auto;
     padding:3em;
-    background-color:#F1ECE2;
+    border:double 4px #453619;
 }
 #Contact #summaryarea img {
     float:right;
@@ -767,15 +725,16 @@ table.individuallist tbody tr td.ColumnPartner a:hover {
 /* Download 
 ----------------------------------------------------- */
 #Download { 
-    padding-top:2cm;
     padding-bottom:2cm;
     padding-left:.5cm;
     padding-right:.5cm;
     height:390px;
 }
 table.download {
+    padding-top:2cm;
     border:solid 2px #000;
     width:100%;
+    nackground-color:#D8F3D6;
 }
 table.download img {
     float:center;
@@ -811,8 +770,11 @@ table.download td.License {
 }
 table.download td.Filename {
     width:30%;
+    background-color:#FFF;
 }
 table.download td.Filename a {
+    display:block;
+    padding:10px;
     font-weight:bold;
     font-style: italic;
     text-decoration:none;
@@ -823,6 +785,33 @@ table.download td.Filename a:hover {
 table.download td.Modified {
     width:17%;
     font-weight:bold;
+}
+
+/* Sources
+----------------------------------------------------- */
+#Sources {  }
+
+#Sources table.infolist tbody tr td.ColumnRowLabel {
+    padding-bottom:0;
+}
+#Sources table.infolist tbody tr td.ColumnName {
+    padding:0;
+    background-color:#FFF;
+}
+#Sources table.infolist tbody tr td.ColumnName a {
+    font-size:.9em;
+    padding:.1em 10px .3em 10px;
+}
+#Sources table.infolist tbody tr td.ColumnName a:hover { }
+
+#SourceDetail div#references ol li {
+    padding-bottom:.5em;
+}
+
+/* Repositories
+------------------------------------------------------ */
+#RepositoryList table.repolist tbody tr td.ColumnName {
+    background-color:#FFF;
 }
 
 /* Subsections
@@ -840,7 +829,6 @@ table.download td.Modified {
 }
 div.subsection{
     padding-bottom:.5em;
-    background-color:#FFF;
 }
 div.subsection h4 {
     margin-bottom:.5em;
@@ -863,8 +851,6 @@ div.subsection table.infolist {
 ----------------------------------------------------- */
 div#events {
     padding-bottom:0;
-    height:2.5cm;
-    overflow:auto;
 }
 div#events h4 {
     margin-bottom:0;
@@ -1018,7 +1004,7 @@ div#sourcerefs ol li ol {
 /* Subsections : Summary Area
 ----------------------------------------------------- */
 div#summaryarea {
-    background:none;
+    background-color:#FFF;
 }
 div#summaryarea table.infolist {
     margin:0;
