@@ -66,9 +66,11 @@ class TopSurnamesGramplet(Gramplet):
         surnames = {}
         representative_handle = {}
 
-        for cnt, person_handle in enumerate(people):
+        cnt = 0
+        for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
+                cnt += 1
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
                 allnames = set([name.get_group_name().strip() for name in allnames])
                 for surname in allnames:

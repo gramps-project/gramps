@@ -117,10 +117,12 @@ def run(database, document, person):
     people = filter.apply(database, 
                           database.iter_person_handles())
 
-    for matches, person_handle in enumerate(people):
+    matches = 0
+    for person_handle in people:
         person = database.get_person_from_handle(person_handle)
         stab.row(person, sdb.birth_date_obj(person),
                  str(person.get_primary_name().get_type()))
+        matches += 1
 
     sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,
@@ -155,10 +157,13 @@ def run_given(database, document, person):
     filter.add_rule(rule)
     people = filter.apply(database, 
                           database.iter_person_handles())
-    for matches, person_handle in enumerate(people):
+    
+    matches = 0
+    for person_handle in people:
         person = database.get_person_from_handle(person_handle)
         stab.row(person, sdb.birth_date_obj(person),
                  str(person.get_primary_name().get_type()))
+        matches += 1
 
     sdoc.paragraph(ngettext("There is %d person with a matching name, or alternate name.\n"
                    ,

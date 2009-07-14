@@ -62,9 +62,11 @@ class GivenNameCloudGramplet(Gramplet):
         givensubnames = {}
         representative_handle = {}
 
-        for cnt, person_handle in enumerate(people):
+        cnt = 0   
+        for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
+                cnt += 1
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
                 allnames = set([name.get_first_name().strip() for name in allnames])
                 for givenname in allnames:
@@ -76,13 +78,14 @@ class GivenNameCloudGramplet(Gramplet):
 
         total_people = cnt
         givensubname_sort = []
-        total = 0
-
-        for cnt, givensubname in enumerate(givensubnames):
+		
+        total = cnt = 0
+        for givensubname in givensubnames:
             givensubname_sort.append( (givensubnames[givensubname], givensubname) )
             total += givensubnames[givensubname]
             if not cnt % _YIELD_INTERVAL:
                 yield True
+            cnt += 1
 
         total_givensubnames = cnt
         givensubname_sort.sort(reverse=True)
@@ -114,7 +117,8 @@ class GivenNameCloudGramplet(Gramplet):
         # Ok, now we can show those counts > include_greater_than:
 
         self.set_text("")
-        for showing, (count, givensubname) in enumerate(cloud_names): # givensubname_sort:
+        showing = 0
+        for (count, givensubname) in cloud_names: # givensubname_sort:
             if count > include_greater_than:
                 if len(givensubname) == 0:
                     text = Config.get(Config.NO_SURNAME_TEXT)
@@ -127,6 +131,7 @@ class GivenNameCloudGramplet(Gramplet):
                            (float(count)/total_people) * 100, 
                            count))
                 self.append_text(" ")
+                showing += 1
 
         self.append_text(("\n\n" + _("Total unique given names") + ": %d\n") % 
                          total_givensubnames)

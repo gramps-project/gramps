@@ -81,7 +81,9 @@ class SurnameCloudGramplet(Gramplet):
         people = self.dbstate.db.iter_person_handles()
         surnames = {}
         representative_handle = {}
-        for cnt, person_handle in enumerate(people):
+
+        cnt = 0
+        for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
@@ -91,21 +93,23 @@ class SurnameCloudGramplet(Gramplet):
                     representative_handle[surname] = person_handle
             if not cnt % _YIELD_INTERVAL:
                 yield True
+            cnt += 1
 
         total_people = cnt
         surname_sort = []
-        total = 0
-        for cnt, surname in enumerate(surnames):
+        total = cnt = 0
+        for surname in surnames:
             surname_sort.append( (surnames[surname], surname) )
             total += surnames[surname]
             if not cnt % _YIELD_INTERVAL:
                 yield True
+            cnt += 1
 
         total_surnames = cnt
         surname_sort.sort(reverse=True)
         cloud_names = []
         cloud_values = []
-        for cnt, (count, surname) in enumerate(surname_sort):
+        for (count, surname) in surname_sort:
             cloud_names.append( (count, surname) )
             cloud_values.append( count )
 

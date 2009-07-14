@@ -100,7 +100,8 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
         
         person_list = self.__db.iter_person_handles()
-        for num_people, person_handle in enumerate(person_list):
+        num_people = 0
+        for person_handle in person_list:
             person = self.__db.get_person_from_handle(person_handle)
             if not person:
                 continue
