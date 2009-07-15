@@ -16,6 +16,7 @@ src/DisplayState.py
 src/Errors.py
 src/ExportAssistant.py
 src/ExportOptions.py
+src/glade.py
 src/GrampsAboutDialog.py
 src/GrampsCfg.py
 src/GrampsDisplay.py
