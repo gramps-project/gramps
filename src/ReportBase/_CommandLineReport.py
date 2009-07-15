@@ -149,7 +149,7 @@ class CommandLineReport(object):
                     self.option_class.handler.get_default_stylesheet_name(),
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
-            'template'  : self.option_class.handler.get_template_name(),
+            'css'       : self.option_class.handler.get_css_filename(),
             }
 
         self.options_help = {
@@ -158,7 +158,8 @@ class CommandLineReport(object):
             'style'     : ["=name", "Style name.", ""],
             'papers'    : ["=name", "Paper size name.", ""],
             'papero'    : ["=num", "Paper orientation number.", ""],
-            'template'  : ["=name", "Template name (HTML only).", ""],
+            'css'       : ["=css filename", "CSS filename to use, html format"
+                            " only", ""],
             }
 
         if noopt:
@@ -190,8 +191,8 @@ class CommandLineReport(object):
             "%d\tPortrait" % PAPER_PORTRAIT,
             "%d\tLandscape" % PAPER_LANDSCAPE ]
 
-        self.options_help['template'][2] = os.path.join(const.USER_HOME,
-                                                          "whatever_name")
+        self.options_help['css'][2] = os.path.join(const.USER_HOME,
+                                                   "whatever_name.css")
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = StyleSheet()
@@ -299,10 +300,12 @@ class CommandLineReport(object):
         
         self.option_class.handler.output = self.options_dict['of']
 
+        self.css_filename = None
         if self.category == CATEGORY_TEXT:
             for plugin in self.__textdoc_plugins:
                 if plugin.get_extension() == self.options_dict['off']:
                     self.format = plugin.get_basedoc()
+            self.css_filename = self.options_dict['css']
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = self.__textdoc_plugins[0].get_basedoc()
@@ -402,8 +405,9 @@ def cl_report(database, name, category, report_class, options_class,
                         CATEGORY_GRAPHVIZ]:
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
-                        PaperStyle(clr.paper,clr.orien),
-                        clr.template_name)
+                        PaperStyle(clr.paper,clr.orien))
+            if clr.css_filename is not None:
+                clr.option_class.handler.doc.set_css_filename(clr.css_filename)
         MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()
         MyReport.begin_report()
