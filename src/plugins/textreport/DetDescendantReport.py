@@ -237,6 +237,7 @@ class DetDescendantReport(Report):
     def write_path(self, person):
         path = []
         while True:
+            #person changes in the loop
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
                 family = self.database.get_family_from_handle(family_handle)
@@ -252,6 +253,8 @@ class DetDescendantReport(Report):
                     path.append(person_name)
                 else:
                     break
+            else:
+                break
 
         index = len(path)
 
