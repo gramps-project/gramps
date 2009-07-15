@@ -84,8 +84,8 @@ class EventType(GrampsType):
     .. attribute MARR_BANNS:     Marriage Banns
     .. attribute ENGAGEMENT:     Engagement
     .. attribute DIVORCE:        Divorce
-    .. attribute DIV_FILING:     Divorce Filing"
-    .. attribute ANNULMENT:      Annulment"
+    .. attribute DIV_FILING:     Divorce Filing
+    .. attribute ANNULMENT:      Annulment
     .. attribute MARR_ALT:        Alternate Marriage
     """
     UNKNOWN        = -1

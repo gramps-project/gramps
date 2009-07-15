@@ -40,6 +40,21 @@ from gen.lib.grampstype import GrampsType
 class ChildRefType(GrampsType):
     """
     Provide the different ChildRef types.
+    
+    .. attribute NONE : None - no relationship
+    .. attribute BIRTH : Birth - relation by birth. Implicates genetic
+            relationship if no other families with other types are present
+    .. attribute ADOPTED : Adopted - adopted child. The real parents have
+            given up the child for adoption
+    .. attribute STEPCHILD : Stepchild - stepchild, the child is from the other
+            partner, relationship is due to the forming of the marriage
+    .. attribute SPONSORED : Sponsored - parent is sponsoring the child
+    .. attribute FOSTER : Foster - taking care of the child while the real
+            parents are around and know of it. This can be due to the parents
+            not being able to care for the child, or because government has 
+            ordered this
+    .. attribute UNKNOWN : Unknown - unknown relationship
+    .. attribute CUSTOM : Custom - a relationship given by the user
     """
 
     NONE      = 0
