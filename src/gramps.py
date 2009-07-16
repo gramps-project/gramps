@@ -42,6 +42,7 @@ LOG = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 from Mime import mime_type_is_defined
+from TransUtils import set_localedir, set_localedomain, setup_gettext
 
 #-------------------------------------------------------------------------
 #
@@ -63,9 +64,10 @@ except locale.Error:
 except ValueError:
     pass
 
-gettext.bindtextdomain("gramps",loc)
-gettext.textdomain("gramps")
-gettext.install("gramps",loc,unicode=1)
+LOG.debug('Using locale:', locale.getlocale())
+set_localedir(loc)
+set_localedomain("gramps")
+setup_gettext()
 
 #-------------------------------------------------------------------------
 #

@@ -24,7 +24,33 @@
 Provide translation assistance
 """
 
-from gettext import (gettext, ngettext)
+import gettext
+
+localedir = ''
+localedomain = 'gramps'
+
+def set_localedir(dir):
+    """
+    Set the directory where locale/gettext obtains translation files
+    """
+    global localedir
+    localedir = dir
+
+def set_localedomain(name):
+    """
+    Set the domain that locale/gettext should use
+    """
+    global localedomain
+    localedomain = name
+
+def setup_gettext():
+    global localedir, localedomain
+    gettext.bindtextdomain(localedomain, localedir)
+    gettext.textdomain(localedomain)
+    
+    #following installs _ as a python function, we avoid this as TransUtils is
+    #used sometimes:
+    #gettext.install(localedomain, localedir, unicode=1)
 
 def sgettext(msgid, sep='|'):
     """
@@ -43,7 +69,7 @@ def sgettext(msgid, sep='|'):
     :rtype: unicode
 
     """
-    msgval = gettext(msgid)
+    msgval = gettext.gettext(msgid)
     if msgval == msgid:
         sep_idx = msgid.rfind(sep)
         msgval = msgid[sep_idx+1:]
@@ -71,7 +97,7 @@ def sngettext(singular, plural, n, sep='|'):
     :rtype: unicode
 
     """
-    msgval = ngettext(singular, plural,n)
+    msgval = gettext.ngettext(singular, plural,n)
     if msgval == singular:
         sep_idx = singular.rfind(sep)
         msgval = singular[sep_idx+1:]

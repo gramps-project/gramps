@@ -48,6 +48,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import const
+import TransUtils
 
 #------------------------------------------------------------------------
 #
@@ -77,9 +78,10 @@ class Glade(gtk.Builder):
                      matching the file name.
         :rtype:   object reference
         :returns:  reference to the newly-created Glade instance
-        """        
+        """
         gtk.Builder.__init__(self)
-        
+        self.set_translation_domain(TransUtils.localedomain)
+
         filename_given = filename is not None
         dirname_given = dirname is not None
 
@@ -197,7 +199,6 @@ class Glade(gtk.Builder):
         :rtype:   object
         :returns:  child object       
         """
-        
         if not toplevel:
             toplevel = self.__toplevel
             if not toplevel:
