@@ -219,8 +219,13 @@ class FlatNodeMap(object):
         :param handle: the key of the object for which the path in the treeview
                         is needed
         :param type: an object handle
+        :Returns: the path, or None if handle does not link to a path
         """
-        return self.real_path(self._hndl2index.get(handle))
+        index = self._hndl2index.get(handle)
+        if index is None:
+            return None
+        else:
+            return self.real_path(index)
 
     def get_handle(self, path):
         """
