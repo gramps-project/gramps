@@ -80,7 +80,7 @@ def _validate_options(options, dbase):
                     phandle = dbase.get_person_handles()[0]
                     person = dbase.get_person_from_handle(phandle)
                     if not person:
-                        print "Please specify a person"
+                        print "ERROR: Please specify a person"
             if person:
                 option.set_value(person.get_gramps_id())
             
@@ -89,14 +89,20 @@ def _validate_options(options, dbase):
             family = dbase.get_family_from_gramps_id(fid)
             if not family:
                 person = dbase.get_default_person()
-                family_list = person.get_family_handle_list()
+                family_list = []
+                family_handle = None
+                if person:
+                    family_list = person.get_family_handle_list()
                 if family_list:
                     family_handle = family_list[0]
                 else:
                     for family_handle in dbase.iter_family_handles():
                         break
-                family = dbase.get_family_from_handle(family_handle)
-                option.set_value(family.get_gramps_id())
+                if family_handle:
+                    family = dbase.get_family_from_handle(family_handle)
+                    option.set_value(family.get_gramps_id())
+                else:
+                    print "ERROR: Please specify a family"
 
 #------------------------------------------------------------------------
 #
