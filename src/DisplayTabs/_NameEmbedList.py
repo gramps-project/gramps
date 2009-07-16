@@ -55,8 +55,7 @@ class NameEmbedList(GroupEmbeddedList):
 
     _HANDLE_COL = 2
     _DND_TYPE   = DdTargets.NAME
-    _CANDRAGGROUP = [NameModel._DEFINDEX, NameModel._ALTINDEX]
-    _WORKGROUP = NameModel._ALTINDEX
+    _WORKGROUP = NameModel.ALTINDEX
 
     _MSG = {
         'add'   : _('Create and add a new name'),
@@ -90,6 +89,12 @@ class NameEmbedList(GroupEmbeddedList):
     def get_data(self):
         return ([self.person.get_primary_name()], 
                  self.data)
+
+    def groups(self):
+        """
+        Return the (group key, group name)s in the order as given by get_data()
+        """
+        return ((None, NameModel.DEFNAME), (None, NameModel.ALTNAME))
 
     def column_order(self):
         """
@@ -158,10 +163,10 @@ class NameEmbedList(GroupEmbeddedList):
         if name and name[1] is not None:
             try:
                 from Editors import EditName
-                if name[0] == NameModel._ALTINDEX:
+                if name[0] == NameModel.ALTINDEX:
                     EditName(self.dbstate, self.uistate, self.track, 
                              name[1], self.edit_callback)
-                elif name[0] == NameModel._DEFINDEX:
+                elif name[0] == NameModel.DEFINDEX:
                     EditName(self.dbstate, self.uistate, self.track, 
                              name[1], self.editdef_callback)
             except Errors.WindowActiveError:
@@ -181,7 +186,7 @@ class NameEmbedList(GroupEmbeddedList):
         """
         Drop of obj on row that is not WORKGROUP
         """
-        if row[0] == NameModel._DEFINDEX:
+        if row[0] == NameModel.DEFINDEX:
             #drop on default name
             self.set_default_name(obj)
 
@@ -190,7 +195,7 @@ class NameEmbedList(GroupEmbeddedList):
         move from the workgroup to a not workgroup
         we allow to change the default name like this
         """
-        if row_from[0] == self._WORKGROUP and row_to[0] == NameModel._DEFINDEX:
+        if row_from[0] == self._WORKGROUP and row_to[0] == NameModel.DEFINDEX:
             self.set_default_name(obj)
 
     def post_rebuild(self):

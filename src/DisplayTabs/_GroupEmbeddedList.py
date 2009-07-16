@@ -57,7 +57,6 @@ class GroupEmbeddedList(EmbeddedList):
     It maintains a gtk.TreeView, including the selection and button sensitivity.
     """
     
-    _CANDRAGGROUP = []
     _WORKGROUP = 0
     
     def __init__(self, dbstate, uistate, track, name, build_model,
@@ -72,6 +71,21 @@ class GroupEmbeddedList(EmbeddedList):
         for col in self.columns[1:]:
             col.connect('clicked', self.col_click)
         self.dbsort = True
+    
+    def construct_model(self):
+        """
+        Method that creates the model using the passed build_model parameter
+        Overwrites the EmbeddedList calling sequence by adding the different
+        groups
+        """
+        return self.build_model(self.get_data(), self.dbstate.db, 
+                                self.groups())
+
+    def groups(self):
+        """
+        Return the (group key, group name)s in the order as given by get_data()
+        """
+        raise NotImplementedError
 
     def groupcol_click(self, obj):
         """
@@ -124,8 +138,6 @@ class GroupEmbeddedList(EmbeddedList):
         obj = self.get_selected()
         if not obj or obj[1] is None:
             #nothing selected or a grouping selected
-            return
-        if not obj[0] in self._CANDRAGGROUP:
             return
 
         # pickle the data, and build the tuple to be passed
@@ -280,6 +292,12 @@ class GroupEmbeddedList(EmbeddedList):
         move up outside of workgroup
         """
         pass
+    
+    def _move_up_group(self, groupindex):
+        """
+        move up pressed on the group
+        """
+        pass
         
     def _move_down(self, row_from, obj, selmethod=None):
         """ 
@@ -304,6 +322,12 @@ class GroupEmbeddedList(EmbeddedList):
     def _move_down_notwork(self, row_from, obj, selmethod=None):
         """
         move down outside of workgroup
+        """
+        pass
+
+    def _move_down_group(self, groupindex):
+        """
+        move down pressed on the group
         """
         pass
 
@@ -339,6 +363,8 @@ class GroupEmbeddedList(EmbeddedList):
             pos = self.find_index(ref)
             if pos[1] > 0 :
                 self._move_up(pos, ref[1])
+        elif ref and ref[1] is None:
+            self._move_up_group(ref[0])
                 
     def down_button_clicked(self, obj):
         ref = self.get_selected()
@@ -346,3 +372,5 @@ class GroupEmbeddedList(EmbeddedList):
             pos = self.find_index(ref)
             if pos[1] >=0 and pos[1] < len(self.get_data()[pos[0]])-1:
                 self._move_down(pos, ref[1])
+        elif ref and ref[1] is None:
+            self._move_down_group(ref[0])

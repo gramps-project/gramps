@@ -54,10 +54,10 @@ NO = _('No')
 
 class NameModel(gtk.TreeStore):
     #tree groups defined
-    _DEFINDEX = 0
-    _DEFNAME = _('Default Name')
-    _ALTINDEX = 1
-    _ALTNAME = _('Alternative Names')
+    DEFINDEX = 0
+    DEFNAME = _('Preferred name')
+    ALTINDEX = 1
+    ALTNAME = _('Alternative names')
     
     _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
     
@@ -72,12 +72,20 @@ class NameModel(gtk.TreeStore):
     COLS = (COL_NAME, COL_TYPE, COL_DATA, COL_FONTWEIGHT, COL_GROUPAS,
             COL_HASSOURCE, COL_NOTEPREVIEW)
 
-    def __init__(self, obj_list, db):
+    def __init__(self, obj_list, db, groups):
+        """
+        @param obj_list: A list of lists, every entry is a group, the entries
+            in a group are the data that needs to be shown subordinate to the 
+            group
+        @param db: a database objects that can be used to obtain info
+        @param groups: a list of (key, name) tuples. key is a key for the group
+            that might be used. name is the name for the group.
+        """
         typeobjs = (x[1] for x in self.COLS)
         gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
+        self.groups = groups
         for index, group in enumerate(obj_list):
-            
             parentiter = self.append(None, row=self.row_group(index, group))
             for obj in group:
                 self.append(parentiter, row = self.row(index, obj))
@@ -100,15 +108,15 @@ class NameModel(gtk.TreeStore):
                 self.notepreview(name)
                ]
     def colweight(self, index):
-        if index == self._DEFINDEX:
+        if index == self.DEFINDEX:
             return WEIGHT_BOLD
         else:
             return WEIGHT_NORMAL
 
     def namegroup(self, groupindex, length):
-        if groupindex == self._DEFINDEX:
-            return self._DEFNAME
-        return self._GROUPSTRING % {'groupname': self._ALTNAME,
+        if groupindex == self.DEFINDEX:
+            return self.DEFNAME
+        return self._GROUPSTRING % {'groupname': self.ALTNAME,
                                     'groupnumber': length}
     
     def update_defname(self, defname):
@@ -116,9 +124,9 @@ class NameModel(gtk.TreeStore):
         callback if change to the preferred name happens
         """
         #default name is path (0,0)
-        self.remove(self.get_iter((self._DEFINDEX, 0)))
-        self.insert(self.get_iter(self._DEFINDEX), 0, 
-                    row=self.row(self._DEFINDEX, defname))
+        self.remove(self.get_iter((self.DEFINDEX, 0)))
+        self.insert(self.get_iter(self.DEFINDEX), 0, 
+                    row=self.row(self.DEFINDEX, defname))
 
     def hassource(self, name):
         if len(name.get_source_references()):

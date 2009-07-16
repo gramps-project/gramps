@@ -387,7 +387,7 @@ class EmbeddedList(ButtonTab):
 
         This should be overridden in the derrived classes.
         """
-        return []
+        raise NotImplementedError
 
     def column_order(self):
         """
@@ -398,7 +398,7 @@ class EmbeddedList(ButtonTab):
 
         This should be overridden in the derrived classes.
         """
-        return []
+        raise NotImplementedError
 
     def build_columns(self):
         """
@@ -446,6 +446,12 @@ class EmbeddedList(ButtonTab):
             self.tree.append_column(column)
         self.track_ref_for_deletion("columns")
 
+    def construct_model(self):
+        """
+        Method that creates the model using the passed build_model parameter
+        """
+        return self.build_model(self.get_data(), self.dbstate.db)
+        
     def rebuild(self):
         """
         Rebuilds the data in the database by creating a new model,
@@ -454,7 +460,7 @@ class EmbeddedList(ButtonTab):
         #during rebuild, don't do _selection_changed
         self.dirty_selection = True
         try:
-            self.model = self.build_model(self.get_data(), self.dbstate.db)
+            self.model = self.construct_model()
         except AttributeError, msg:
             from QuestionDialog import RunDatabaseRepair
             import traceback
