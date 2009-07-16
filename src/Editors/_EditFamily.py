@@ -484,6 +484,8 @@ class EditFamily(EditPrimary):
 
     def event_updated(self, obj):
         self.load_data()
+        #place in event might have changed, or person event shown in the list
+        self.event_list.rebuild_callback()
 
     def show_buttons(self):
         """

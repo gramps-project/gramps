@@ -186,6 +186,9 @@ class EditPerson(EditPrimary):
         self._add_db_signal('family-delete', self.family_change)
         self._add_db_signal('family-update', self.family_change)
         self._add_db_signal('family-add', self.family_change)
+        self._add_db_signal('event-update', self.event_updated)
+        self._add_db_signal('event-rebuild', self.event_updated)
+        self._add_db_signal('event-delete', self.event_updated)
 
     def family_change(self, handle_list=[]):
         """
@@ -213,6 +216,14 @@ class EditPerson(EditPrimary):
             self.obj.set_family_handle_list(person.get_family_handle_list())
             self.obj.set_parent_family_handle_list(
                                         person.get_parent_family_handle_list())
+            #a family groupname in event_list might need to be changed
+            # we just rebuild the view always
+            self.event_list.rebuild_callback()
+
+    def event_updated(self, obj):
+        #place in event might have changed, or person event shown in the list
+        # we just rebuild the view always
+        self.event_list.rebuild_callback()
 
     def _setup_fields(self):
         """

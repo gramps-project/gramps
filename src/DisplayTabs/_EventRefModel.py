@@ -22,10 +22,18 @@
 
 #-------------------------------------------------------------------------
 #
+# python
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK libraries
 #
 #-------------------------------------------------------------------------
 import gtk
+from pango import WEIGHT_NORMAL, WEIGHT_BOLD
 import cgi
 
 #-------------------------------------------------------------------------
@@ -48,22 +56,65 @@ invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
 # EventRefModel
 #
 #-------------------------------------------------------------------------
-class EventRefModel(gtk.ListStore):
+class EventRefModel(gtk.TreeStore):
+    #index of the working group
+    _ROOTINDEX = 0 
+    _GROUPSTRING = _('%(groupname)s - %(groupnumber)d')
+    
+    COL_DESCR = (0, str)
+    COL_TYPE = (1, str)
+    COL_GID = (2, str)
+    COL_DATE = (3, str)
+    COL_PLACE = (4, str)
+    COL_ROLE = (5, str)
+    COL_SORTDATE = (6, str)
+    COL_EVENTREF = (7, object)
+    COL_FONTWEIGHT = (8, int)
+    
+    COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
+            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT)
 
-    def __init__(self, event_list, db):
-        gtk.ListStore.__init__(self, str, str, str, str, str, str, str, object)
+    def __init__(self, event_list, db, groups):
+        """
+        @param event_list: A list of lists, every entry is a group, the entries
+            in a group are the data that needs to be shown subordinate to the 
+            group
+        @param db: a database objects that can be used to obtain info
+        @param groups: a list of (key, name) tuples. key is a key for the group
+            that might be used. name is the name for the group.
+        """
+        typeobjs = (x[1] for x in self.COLS)
+        gtk.TreeStore.__init__(self, *typeobjs)
         self.db = db
-        for event_ref in event_list:
-            event = db.get_event_from_handle(event_ref.ref)
-            self.append(row=[str(event.get_type()), 
-                             event.get_description(), 
-                             event.get_gramps_id(), 
-                             self.column_date(event_ref), 
-                             self.column_place(event_ref), 
-                             self.column_role(event_ref), 
-                             self.column_sort_date(event_ref),
-                             event_ref
-                             ])
+        self.groups = groups
+        for index, group in enumerate(event_list):
+            parentiter = self.append(None, row=self.row_group(index, group))
+            for eventref in group:
+                event = db.get_event_from_handle(eventref.ref)
+                self.append(parentiter, row = self.row(index, eventref, event))
+
+    def row_group(self, index, group):
+        name = self.namegroup(index, len(group))
+        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD]
+
+    def namegroup(self, groupindex, length):
+        return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
+                                    'groupnumber': length}
+
+    def row(self, index, eventref, event):
+        return [event.get_description(),
+                str(event.get_type()),
+                event.get_gramps_id(), 
+                self.column_date(eventref), 
+                self.column_place(eventref), 
+                self.column_role(eventref), 
+                self.column_sort_date(eventref),
+                (index, eventref),
+                self.colweight(index),
+               ]
+    
+    def colweight(self, index):
+        return WEIGHT_NORMAL
 
     def column_role(self, event_ref):
         return str(event_ref.get_role())
