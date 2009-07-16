@@ -1681,6 +1681,29 @@ class MediaPage(BasePage):
             note_only = True
             target_exists = False
 
+        ##################################################
+        #                                           Exif Tags/ Keys                                      #
+        #                                                                                                        #
+        # Determine if the python exif lib is installed on the system?            #
+        # yes, then use it and determine if the photo has anything written  #
+        # inside of it?  No, if not?, then do not show it on the media page  # 
+        #################################################
+        exifimagedata = []
+        try:
+            import pyexiv2
+            pylib = True
+        except ImportError:
+            pylib = False
+
+        if pylib:
+            image = pyexiv2.Image.photo
+            image.readMetadata()
+
+            if image.exifKeys():
+                for x in xrange(len(image.exifKeys()) - 1):
+                    exifimagedata.append(image.exifKeys()[x])
+        #################################################
+
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
         mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title))
@@ -1822,24 +1845,47 @@ class MediaPage(BasePage):
         with Html('table', class_='infolist gallery') as table: 
             summaryarea += table
 
+            # GRAMPS id
             if not self.noid:
-                with Html('tr') as trow:
+                    trow = Html('tr') + (
+                        Html('td', _('GRAMPS ID'), class_='ColumnAttribute', inline=True),
+                        Html('td', photo.gramps_id, class_='ColumnValue', inline=True)
+                        )
                     table += trow
-                    trow += Html('td', _('GRAMPS ID'), class_='ColumnAttribute', inline=True)
-                    trow += Html('td', photo.gramps_id, class_='ColumnValue', inline=True)
 
-            if not note_only and not mime_type.startswith("image/"):
-                with Html('tr') as trow:
-                    table += trow
-                    trow += Html('td', _('File Type'), class_='ColumnAttribute', inline=True)
-                    trow += Html('td', mtype, class_='ColumnValue', unline=True)  
+            # mime type
+            if mime_type:   
+                trow = Html('tr') + (  
+                        Html('td', _('File Type'), class_='ColumnAttribute', inline=True),
+                        Html('td', mime_type, class_='ColumnValue', unline=True)
+                        )
+                table += trow
 
+            # media date
             date = _dd.display(photo.get_date_object())
             if date:
-                with Html('tr') as trow:
-                    table += trow
-                    trow += Html('td', _('Date'), class_='ColumnAttribute', inline=True)
-                    trow += Html('td', date, class_='ColumnValue', inline=True)
+                trow = Html('tr') + (
+                    Html('td', _('Date'), class_='ColumnAttribute', inline=True),
+                    Html('td', date, class_='ColumnValue', inline=True)
+                    )
+                table += trow
+
+        # display image Exif tags/ keys if any?
+        if len(exifimagedata) and pylib:
+            with Html('div', class_='infolist', id='ExifList') as exif:
+                mediadetail += exif
+
+                # begin exif table
+                with Html('table', class_='exifdata') as table:
+                    exif += table
+
+                    for xdata in exifimagedata:
+                        trow = Html('tr')
+                        table += trow
+
+                        tcell1 = Html('td', xdata, class_='ColumnAttribute', inline=True)
+                        tcell2 = Html('td', image[x], class_='ColumnValue', inline=True)
+                        trow += (tcell1, tcell2)
 
         # get media notes
         notes = self.display_note_list(photo.get_note_list())
