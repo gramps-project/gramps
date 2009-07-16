@@ -1,0 +1,18 @@
+<glade-catalog name="grampswidgets" library="gladepython" 
+                            domain="glade-3" depends="gtk+">
+  <init-function>glade_python_init</init-function>
+  <glade-widget-classes>
+    <glade-widget-class 
+        name="ValidatableMaskedEntry" 
+        title="Validatable Masked Entry"
+        generic-name="valid_mask"/>
+    <glade-widget-class 
+        name="StyledTextEditor" 
+        title="Styled Text Editor"
+        generic-name="styled_text"/>
+  </glade-widget-classes>
+  <glade-widget-group name="GrampsWidgets" title="Gramps Widgets">
+    <glade-widget-class-ref name="ValidatableMaskedEntry"/>
+    <glade-widget-class-ref name="StyledTextEditor"/>
+  </glade-widget-group>
+</glade-catalog>
