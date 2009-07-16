@@ -284,8 +284,10 @@ class HtmlDoc(BaseDoc, TextDoc):
         tdfile.close()
         #css file
         if self.css_filename:
-            self.copy_file(os.path.join(const.DATA_DIR, self.css_filename), 
-                        _HTMLSCREEN)
+            #we do an extra check in case file does not exist, eg cli call
+            fullpath = os.path.join(const.DATA_DIR, self.css_filename)
+            if os.path.exists(fullpath):
+                self.copy_file(fullpath, _HTMLSCREEN)
         #favicon
         self.copy_file(os.path.join(const.IMAGE_DIR, 'favicon.ico'), 
                         'favicon.ico')
