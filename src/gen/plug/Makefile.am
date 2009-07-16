@@ -16,7 +16,8 @@ pkgdata_PYTHON = \
 	_export.py \
 	_import.py \
 	_manager.py \
-	_plugin.py
+	_plugin.py \
+	utils.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/plug
 pkgpythondir = @pkgpythondir@/gen/plug

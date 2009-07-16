@@ -6,13 +6,13 @@
 SUBDIRS = \
 	treemodels
 
-pkgdatadir = $(datadir)/@PACKAGE@/views
+pkgdatadir = $(datadir)/@PACKAGE@/gui/views
 
 pkgdata_PYTHON = \
 	__init__.py
 
-pkgpyexecdir = @pkgpyexecdir@/views
-pkgpythondir = @pkgpythondir@/views
+pkgpyexecdir = @pkgpyexecdir@/gui/views
+pkgpythondir = @pkgpythondir@/gui/views
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

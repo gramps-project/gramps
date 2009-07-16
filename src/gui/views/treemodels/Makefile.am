@@ -3,14 +3,14 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/treemodels
+pkgdatadir = $(datadir)/@PACKAGE@/gui/views/treemodels
 
 pkgdata_PYTHON = \
 	__init__.py \
 	flatbasemodel.py
 
-pkgpyexecdir = @pkgpyexecdir@/treemodels
-pkgpythondir = @pkgpythondir@/treemodels
+pkgpyexecdir = @pkgpyexecdir@/gui/views/treemodels
+pkgpythondir = @pkgpythondir@/gui/views/treemodels
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
