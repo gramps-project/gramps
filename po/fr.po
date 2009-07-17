@@ -72,10 +72,11 @@ msgstr "Adresse :"
 msgid "City:"
 msgstr "Ville :"
 
+# province (Canada, Belgique)
 #: ../src/Assistant.py:340
 #: ../src/plugins/tool/ownereditor.glade.h:9
 msgid "State/Province:"
-msgstr "Région :"
+msgstr "Région/Province :"
 
 #: ../src/Assistant.py:341
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
@@ -1054,11 +1055,12 @@ msgstr "Adresse"
 msgid "City"
 msgstr "Ville"
 
+# province (Canada, Belgique)
 #: ../src/GrampsCfg.py:208
 #: ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/webreport/NarrativeWeb.py:1169
 msgid "State/Province"
-msgstr "Région"
+msgstr "Région/Province"
 
 #: ../src/GrampsCfg.py:209
 #: ../src/DataViews/PlaceView.py:82
@@ -2445,7 +2447,7 @@ msgstr "Non-disponible"
 #: ../src/ScratchPad.py:499
 #, python-format
 msgid "Volume/Page: %(pag)s -- %(sourcetext)s"
-msgstr "Volume / Page: %(pag)s -- %(sourcetext)s"
+msgstr "Volume/Page: %(pag)s -- %(sourcetext)s"
 
 #: ../src/ScratchPad.py:511
 #: ../src/ScratchPad.py:654
@@ -4371,21 +4373,23 @@ msgstr "Nom du lieu"
 msgid "Church Parish"
 msgstr "Paroisse"
 
+# comté (Canada)
 #: ../src/DataViews/PlaceView.py:80
 #: ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/webreport/NarrativeWeb.py:1168
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
-msgstr "Département"
+msgstr "Département/Comté"
 
+# province (Canada, Belgique)
 #: ../src/DataViews/PlaceView.py:81
 #: ../src/DataViews/RepositoryView.py:75
 #: ../src/DisplayTabs/_AddrEmbedList.py:72
 #: ../src/plugins/tool/ExtractCity.py:387
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
-msgstr "Région"
+msgstr "Région/Province"
 
 #: ../src/DataViews/PlaceView.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:1180
@@ -9635,9 +9639,10 @@ msgstr "Danemark"
 msgid " parish"
 msgstr " paroisse"
 
+# province (Canada, Belgique)
 #: ../src/plugins/mapservices/eniroswedenmap.py:80
 msgid " state"
-msgstr " région"
+msgstr " région/province"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:127
 #, python-format
@@ -11194,15 +11199,17 @@ msgstr "Paroisse : %s "
 msgid "City: %s "
 msgstr "Ville : %s "
 
+# comté (Canada)
 #: ../src/plugins/textreport/PlaceReport.py:122
 #, python-format
 msgid "County: %s "
-msgstr "Département : %s "
+msgstr "Département/Comté : %s "
 
+# province (Canada, Belgique)
 #: ../src/plugins/textreport/PlaceReport.py:123
 #, python-format
 msgid "State: %s"
-msgstr "Région : %s"
+msgstr "Région/Province : %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:124
 #, python-format
@@ -12164,9 +12171,10 @@ msgstr "Voici une liste de lieux dont les données peuvent être extraites depui
 msgid "Extract Place Data from a Place Title"
 msgstr "Extraire les données du lieu depuis son titre"
 
+# province (Canada, Belgique)
 #: ../src/plugins/tool/ExtractCity.py:652
 msgid "Attempts to extract city and state/province from a place title"
-msgstr "Tentative d'extraction de la ville et de la région depuis le titre du lieu"
+msgstr "Tentative d'extraction de la ville et de la région (province) depuis le titre du lieu"
 
 #: ../src/plugins/tool/FindDupes.py:68
 msgid "Medium"
@@ -19765,7 +19773,7 @@ msgstr "Correspond aux frères et sœurs des individus résultant d'un filtre"
 
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:47
 msgid "Spouses of <filter> match"
-msgstr "Conjoints d'individus résultants du <filtre>"
+msgstr "Conjoints du <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:48
@@ -20476,13 +20484,15 @@ msgstr "Paroisse :"
 msgid "ZIP/Postal Code:"
 msgstr "Code lieu (INSEE/postal) :"
 
+# comté (Canada)
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
-msgstr "Département :"
+msgstr "Département/Comté :"
 
+# province (Belgique, Canada)
 #: ../src/Filters/Rules/Place/_HasPlace.py:53
 msgid "State:"
-msgstr "Région :"
+msgstr "Région/Province :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasPlace.py:56
@@ -21591,9 +21601,10 @@ msgstr "En dess_ous :"
 msgid "Birth:"
 msgstr "Naissance :"
 
+# comté (Canada)
 #: ../src/glade/gramps.glade.h:43
 msgid "C_ity/County:"
-msgstr "_Ville / département :"
+msgstr "_Ville/Département (Comté) :"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "C_ity:"
@@ -21631,9 +21642,10 @@ msgstr "Fermer _sans enregistrer"
 msgid "Close window without changes"
 msgstr "Fermer la fenêtre sans modification"
 
+# comté (Canada)
 #: ../src/glade/gramps.glade.h:54
 msgid "Co_unty:"
-msgstr "_Département :"
+msgstr "_Département/Comté :"
 
 #: ../src/glade/gramps.glade.h:55
 msgid "Con_fidence:"
@@ -21793,7 +21805,7 @@ msgstr "Imp_oser"
 
 #: ../src/glade/gramps.glade.h:100
 msgid "Old Style/New Style"
-msgstr "Ancien style / Nouveau style"
+msgstr "Ancien style/Nouveau style"
 
 #: ../src/glade/gramps.glade.h:101
 msgid "Open person editor of this child"
@@ -22068,14 +22080,16 @@ msgstr "_Choisir un fichier"
 msgid "_Sort as:"
 msgstr "Trier _comme :"
 
+# province (Canada, Belgique)
 # éviter le raccourci sur le g
 #: ../src/glade/gramps.glade.h:180
 msgid "_State/Province:"
-msgstr "_Région :"
+msgstr "_Région/Province :"
 
+# province (Canada, Belgique)
 #: ../src/glade/gramps.glade.h:181
 msgid "_State:"
-msgstr "_Région :"
+msgstr "_Région/Province :"
 
 #: ../src/glade/gramps.glade.h:182
 msgid "_Status:"
@@ -22963,9 +22977,10 @@ msgstr "La vue des media affiche une liste de tous les media. Ces media peuvent 
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
 msgstr "L'arbre généalogique affiche un arbre traditionnel. Gardez la souris au-dessus d'un individu pour afficher plus d'informations le concernant. Faites un clic droit sur un individu pour afficher un menu contextuel qui vous permettra d'accéder rapidement au conjoint, aux enfants ou aux parents."
 
+# comté, province (Canada, Belgique)
 #: ../src/data/tips.xml.in.h:65
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr "La vue des lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le département ou la région."
+msgstr "La vue des lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le département (comté) ou la région (province)."
 
 #: ../src/data/tips.xml.in.h:66
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
@@ -23870,10 +23885,10 @@ msgid "country"
 msgstr "pays"
 
 msgid "county"
-msgstr "département"
+msgstr "département/comté"
 
 msgid "state"
-msgstr "région"
+msgstr "région/province"
 
 msgid "zip"
 msgstr "Code lieu"
@@ -23970,7 +23985,7 @@ msgid "TITLE"
 msgstr "TITRE"
 
 msgid "STATE"
-msgstr "RÉGION"
+msgstr "RÉGION/PROVINCE"
 
 msgid "PARISH"
 msgstr "PAROISSE"
@@ -23994,13 +24009,13 @@ msgid "No changes"
 msgstr "Aucun changement"
 
 msgid "City[, State]"
-msgstr "Ville[, Région]"
+msgstr "Ville[, Région/Province]"
 
 msgid "TitleStart [, City] [, State]"
-msgstr "Début du titre [, Ville] [, Région]"
+msgstr "Début du titre [, Ville] [, Région/Province]"
 
 msgid "City [,|.] State"
-msgstr "Ville [,|.] Région"
+msgstr "Ville [,|.] Région/Province"
 
 msgid "City [,|.] Country"
 msgstr "Ville [,|.] Pays"
@@ -24021,7 +24036,7 @@ msgid "GeoNames country file, title begin, general search"
 msgstr "GeoNames fichier pays, début du titre, recherche générale"
 
 msgid "GeoNames USA state file, city search"
-msgstr "GeoNames USA fichier région, recherche ville"
+msgstr "GeoNames USA fichier région/province, recherche ville"
 
 msgid "GNS Geonet country file, city search"
 msgstr "GNS Geonet fichier pays, recherche ville"
