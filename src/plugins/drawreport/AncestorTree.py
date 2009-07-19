@@ -464,7 +464,7 @@ class AncestorTreeOptions(MenuReportOptions):
         pid.set_help(_("The center person for the tree"))
         menu.add_option(category_name, "pid", pid)
         
-        max_gen = NumberOption(_("Generations"), 10, 1, 15)
+        max_gen = NumberOption(_("Generations"), 10, 1, 50)
         max_gen.set_help(_("The number of generations to include in the tree"))
         menu.add_option(category_name, "maxgen", max_gen)
         
