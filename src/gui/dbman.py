@@ -815,9 +815,9 @@ def check_in(dbase, filename, callback, cursor_func = None):
     ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
     archive_name = filename + ",v"
     
-    self.glade = Glade(toplevel='comment')
-    self.top = self.glade.toplevel
-    text = self.glade.get_object('description')
+    glade = Glade(toplevel='comment')
+    top = glade.toplevel
+    text = glade.get_object('description')
     top.run()
     comment = text.get_text()
     top.destroy()
