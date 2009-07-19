@@ -21,6 +21,7 @@
 
 from DataViews import Gramplet, register
 from BasicUtils import name_displayer
+from gettext import gettext as _
 
 class AttributesGramplet(Gramplet):
     """

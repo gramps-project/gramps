@@ -29,6 +29,7 @@ from ReportBase import ReportUtils
 import DateHandler
 import Errors
 import gen.lib
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

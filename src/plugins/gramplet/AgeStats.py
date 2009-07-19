@@ -27,6 +27,7 @@ This Gramplet shows textual distributions of age breakdowns of various types.
 import locale
 
 from DataViews import register, Gramplet
+from gettext import gettext as _
 import gen.lib
 
 class AgeStatsGramplet(Gramplet):
