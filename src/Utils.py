@@ -56,7 +56,7 @@ from TransUtils import sgettext as _
 # Constants from config .ini keys
 #
 #-------------------------------------------------------------------------
-#obtain the values once, they do not change!
+# cache values; use refresh_constants() if they change
 try:
     import Config
     _MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
@@ -962,7 +962,7 @@ def get_translations():
 
 #-------------------------------------------------------------------------
 #
-#
+# Config-based functions
 #
 #-------------------------------------------------------------------------
 def get_researcher():
@@ -989,3 +989,17 @@ def get_researcher():
     owner.set_email(e)
 
     return owner
+
+def update_constants():
+    """
+    Used to update the constants that are cached in this module.
+    """
+    import Config
+    global _MAX_AGE_PROB_ALIVE, _MAX_SIB_AGE_DIFF, _MIN_GENERATION_YEARS, \
+        _AVG_GENERATION_GAP
+    _MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
+    _MAX_SIB_AGE_DIFF     = Config.get(Config.MAX_SIB_AGE_DIFF)
+    _MIN_GENERATION_YEARS = Config.get(Config.MIN_GENERATION_YEARS)
+    _AVG_GENERATION_GAP   = Config.get(Config.AVG_GENERATION_GAP)
+
+

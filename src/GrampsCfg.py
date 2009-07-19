@@ -159,6 +159,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.show()
 
     def done(self, obj, value):
+        Utils.update_constants()
         self.close()
 
     def add_researcher_panel(self):
