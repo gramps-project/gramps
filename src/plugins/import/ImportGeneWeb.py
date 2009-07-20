@@ -821,7 +821,7 @@ class GeneWebParser(object):
             cal1 = _cal_map.get(groups[2],gen.lib.Date.CAL_GREGORIAN)
             sub1 = self.sub_date(groups[1])
             date.set(gen.lib.Date.QUAL_NONE,mod, cal1,
-                     (sub1[0],sub1[1],sub1[2],None,sub2[0],sub2[1],sub2[2],None))
+                     (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
             return date
         else:
             return None
