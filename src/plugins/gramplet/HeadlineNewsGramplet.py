@@ -89,7 +89,7 @@ class HeadlineNewsGramplet(Gramplet):
         # Description, Type, URL, Pretty URL for User
         self.feeds = [
             ("GRAMPS Wiki Headline News", "wiki", (self.RAW % "HeadlineNews"), (self.URL % "HeadlineNews")),
-            ("GRAMPS Blog Comments", "rss", "http://blog.gramps-project.org/?feed=comments-rss", None),
+            ("GRAMPS Blog Comments", "rss", "http://blog.gramps-project.org/?feed=comments-rss2", None),
             ("GRAMPS Blog Posts",    "rss", "http://blog.gramps-project.org/?feed=rss", None),
             ("GRAMPS Wiki Changes",  "rss", "http://www.gramps-project.org/wiki/index.php?title=Special:RecentChanges&feed=rss", None),
             ("GRAMPS Bugtracker Issues", "rss", "http://www.gramps-project.org/bugs/issues_rss.php?key=ece7d21451d76337acf776c9a4384773", None),
@@ -279,5 +279,5 @@ register(type="gramplet",
          content = HeadlineNewsGramplet,
          title=_("Headline News"),
          gramps="3.1.0",
-         version="1.0.1",
+         version="1.0.2",
          )
