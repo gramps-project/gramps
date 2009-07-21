@@ -204,7 +204,7 @@ class EventEmbedList(GroupEmbeddedList):
 
     def get_popup_menu_items(self):
         if self._tmpgroup == self._WORKGROUP:
-            GroupEmbeddedList.get_popup_menu_items(self)
+            return GroupEmbeddedList.get_popup_menu_items(self)
         else:
             return [
                 (True, True, gtk.STOCK_ADD, self.add_button_clicked),
