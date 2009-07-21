@@ -74,14 +74,14 @@ class Citation(object):
         @return: The key of the added reference among all the references.
         @rtype: char
         """
-        letter_count = len(string.lowercase)
+        letter_count = len(string.ascii_lowercase)
         ref_count = len(self.__ref_list)
         x_ref_count = ref_count
         # Return "a" for ref_count = 0, otherwise log(0) does not work
         if ref_count == 0:
             self.__ref_list.append(("a", source_ref))
             return "a"
-        last_letter = string.lowercase[ ref_count % letter_count ]
+        last_letter = string.ascii_lowercase[ ref_count % letter_count ]
         key = ""
         # Calculate prek number of digits.
         number_of_letters = int(math.log(float(ref_count),float(letter_count)))+1
@@ -94,7 +94,7 @@ class Citation(object):
             x_ref_count = x_ref_count - pow(letter_count, n) 
         for letter in range(1, number_of_letters):
             index = x_ref_count  / pow(letter_count, letter)  % letter_count
-            key += string.lowercase[ index ]
+            key += string.ascii_lowercase[ index ]
         key = key + last_letter
         self.__ref_list.append((key, source_ref))
         return key
