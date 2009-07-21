@@ -524,9 +524,6 @@ class BasePage(object):
                 text = _CC[copy_nr] % {'gif_fname' : url}
             section += Html('p', text, id='copyright')
 
-            # add clear line for proper styling
-            section += fullclear
-
         # return footer to its caller
         return section
 
@@ -603,8 +600,7 @@ class BasePage(object):
             user_header += note_text
 
         # Begin Navigation Menu
-        navigation = self.display_nav_links(title)
-        body += navigation
+        body += self.display_nav_links(title)
 
         # return to its caller, page and body
         return page, body
@@ -1695,12 +1691,12 @@ class MediaPage(BasePage):
         except ImportError:
             pylib = False
 
-        if pylib:
-            image = pyexiv2.Image.photo
+        if (pylib and mime_type.startswith('image/')):
+            image = pyexiv2.Image('%s' % Utils.media_path_full(db, photo.get_path()))
             image.readMetadata()
 
             if image.exifKeys():
-                for x in xrange(len(image.exifKeys()) - 1):
+                for x in xrange(len(image.exifKeys())):
                     exifimagedata.append(image.exifKeys()[x])
         #################################################
 
@@ -1857,7 +1853,7 @@ class MediaPage(BasePage):
             if mime_type:   
                 trow = Html('tr') + (  
                         Html('td', _('File Type'), class_='ColumnAttribute', inline=True),
-                        Html('td', mime_type, class_='ColumnValue', unline=True)
+                        Html('td', mime_type, class_='ColumnValue', inline=True)
                         )
                 table += trow
 
@@ -1871,21 +1867,27 @@ class MediaPage(BasePage):
                 table += trow
 
         # display image Exif tags/ keys if any?
-        if len(exifimagedata) and pylib:
-            with Html('div', class_='infolist', id='ExifList') as exif:
-                mediadetail += exif
+        if ((pylib and mime_type.startswith('image/')) and len(exifimagedata)):
+
+            # add clearline for increased styling
+            mediadetail += fullclear
+
+            with Html('div', class_='infolist', id='ExifList') as exifdetail:
+                mediadetail += exifdetail
+
+                # add exif title header
+                exifdetail += Html('h4', _('Image Exif Tags'), inline=True)
 
                 # begin exif table
                 with Html('table', class_='exifdata') as table:
-                    exif += table
+                    exifdetail += table
 
                     for xdata in exifimagedata:
-                        trow = Html('tr')
+                        trow = Html('tr') + (
+                            Html('td', xdata, class_='ColumnAttribute', inline=True),
+                            Html('td', image[xdata], class_='ColumnValue', inline=True)
+                            )
                         table += trow
-
-                        tcell1 = Html('td', xdata, class_='ColumnAttribute', inline=True)
-                        tcell2 = Html('td', image[x], class_='ColumnValue', inline=True)
-                        trow += (tcell1, tcell2)
 
         # get media notes
         notes = self.display_note_list(photo.get_note_list())
@@ -2192,12 +2194,12 @@ class HomePage(BasePage):
         homepage, body = self.write_header(_('Home'))
 
         # begin home division
-        with Html('div', class_='content', id='Home') as home:
-            body += home
+        with Html('div', class_='content', id='Home') as section:
+            body += section
 
             homeimg = report.add_image('homeimg')
             if homeimg is not None:
-                home += homeimg
+                section += homeimg
 
             note_id = report.options['homenote']
             if note_id:
@@ -2205,7 +2207,7 @@ class HomePage(BasePage):
                 note_text = self.get_note_format(note)
 
                 # attach note
-                home += note_text
+                section += note_text
 
          # create clear line for proper styling
         # create footer section
