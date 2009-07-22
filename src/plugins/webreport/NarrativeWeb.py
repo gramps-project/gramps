@@ -63,6 +63,13 @@ from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
 
+# attempt to import the python exif library?
+try:
+    import pyexiv2
+    pyexiflib = True
+except ImportError:
+    pyexiflib = False
+
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -1594,6 +1601,7 @@ class MediaPage(BasePage):
     def __init__(self, report, title, handle, src_list, my_media_list, info):
         (prev, next, page_number, total_pages) = info
         db = report.database
+
         photo = db.get_object_from_handle(handle)
         # TODO. How do we pass my_media_list down for use in BasePage?
         BasePage.__init__(self, report, title, photo.gramps_id)
@@ -1626,11 +1634,11 @@ class MediaPage(BasePage):
                 if not _name or _name == "":
                     _name = _obj.get_primary_name().get_first_name()
                 _linkurl = report.build_url_fname_html(_obj.handle, 'ppl', True)
-            if classname == "Event":
+            elif classname == "Event":
                 _obj = db.get_event_from_handle( newhandle )
                 _name = _obj.get_description()
 
-            # keep looking if we don't have an object
+            # continue looking through the loop for an object...
             if _obj is None:
                 continue
 
@@ -1676,29 +1684,6 @@ class MediaPage(BasePage):
         else:
             note_only = True
             target_exists = False
-
-        ##################################################
-        #                                           Exif Tags/ Keys                                      #
-        #                                                                                                        #
-        # Determine if the python exif lib is installed on the system?            #
-        # yes, then use it and determine if the photo has anything written  #
-        # inside of it?  No, if not?, then do not show it on the media page  # 
-        #################################################
-        exifimagedata = []
-        try:
-            import pyexiv2
-            pylib = True
-        except ImportError:
-            pylib = False
-
-        if (pylib and mime_type.startswith('image/')):
-            image = pyexiv2.Image('%s' % Utils.media_path_full(db, photo.get_path()))
-            image.readMetadata()
-
-            if image.exifKeys():
-                for x in xrange(len(image.exifKeys())):
-                    exifimagedata.append(image.exifKeys()[x])
-        #################################################
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
@@ -1867,27 +1852,42 @@ class MediaPage(BasePage):
                 table += trow
 
         # display image Exif tags/ keys if any?
-        if ((pylib and mime_type.startswith('image/')) and len(exifimagedata)):
+        if (pyexiflib and mime_type.startswith('image/')):
+             #################################################
+            #                                           Exif Tags/ Keys                                              #
+            #                                                                                                                  #
+            # Determine if the python exif lib is installed on the system?               #
+            # yes, then use it and determine if the photo has anything written     #
+            # inside of it?  No, if not?, then do not show on the media page          # 
+            #################################################
 
-            # add clearline for increased styling
-            mediadetail += fullclear
+            image = pyexiv2.Image('%s' % Utils.media_path_full(db, photo.get_path()))
+            image.readMetadata()
 
-            with Html('div', class_='infolist', id='ExifList') as exifdetail:
-                mediadetail += exifdetail
+            # exif data does exists
+            if len(image.exifKeys()):
 
-                # add exif title header
-                exifdetail += Html('h4', _('Image Exif Tags'), inline=True)
+                # add clearline for increased styling
+                mediadetail += fullclear
 
-                # begin exif table
-                with Html('table', class_='exifdata') as table:
-                    exifdetail += table
+                with Html('div', class_='infolist', id='ExifList') as exifdetail:
+                    mediadetail += exifdetail
 
-                    for xdata in exifimagedata:
-                        trow = Html('tr') + (
-                            Html('td', xdata, class_='ColumnAttribute', inline=True),
-                            Html('td', image[xdata], class_='ColumnValue', inline=True)
-                            )
-                        table += trow
+                    # add exif title header
+                    exifdetail += Html('h4', _('Image Exif Tags'), inline=True)
+
+                    # begin exif table
+                    with Html('table', class_='exifdata') as table:
+                        exifdetail += table
+
+                        for line in image.exifKeys():
+                            trow = Html('tr') + (
+                                Html('td', line, class_='ColumnAttribute', inline=True),
+                                Html('td', image[line], class_='ColumnValue', inline=True)
+                                )
+                            table += trow
+
+            #################################################
 
         # get media notes
         notes = self.display_note_list(photo.get_note_list())
@@ -2018,10 +2018,10 @@ class SurnameListPage(BasePage):
 
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelist, body = self.write_header(_('Surnames'))
+            surnamelistpage, body = self.write_header(_('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            surnamelist, body = self.write_header(_('Surnames by person count'))
+            surnamelistpage, body = self.write_header(_('Surnames by person count'))
 
         # begin surnames division
         with Html('div', class_='content', id='surnames') as surnamelist:
@@ -2053,22 +2053,22 @@ class SurnameListPage(BasePage):
                 thead = Html('thead')
                 table += thead
 
-
                 trow = Html('tr') + (
                     Html('th', _('Letter'), class_='ColumnLetter', inline=True)
                     )
                 thead += trow
 
                 fname = self.report.surname_fname + self.ext
-                with Html('th', class_='ColumnSurname', inline=True) as tcell:
-                    trow += tcell
-                    hyper = Html('a', _('Surname'), href=fname)
-                    tcell += hyper
+                tcell = Html('th', class_='ColumnSurname', inline=True)
+                trow += tcell
+                hyper = Html('a', _('Surname'), href=fname)
+                tcell += hyper
+
                 fname = "surnames_count" + self.ext
-                with Html('th', class_='ColumnQuantity', inline=True) as tcell:
-                    trow += tcell
-                    hyper = Html('a', _('Number of People'), href=fname)
-                    tcell += hyper
+                tcell = Html('th', class_='ColumnQuantity', inline=True)
+                trow += tcell
+                hyper = Html('a', _('Number of People'), href=fname)
+                tcell += hyper
 
                 # begin table body
                 with Html('tbody') as tbody:
@@ -2103,27 +2103,29 @@ class SurnameListPage(BasePage):
                         if lang_country == "sv_SE" and ( letter == u'W' or letter == u'V' ):
                             letter = u'V,W'
 
+                        trow = Html('tr')
+                        tbody += trow
                         if letter != last_letter:
                             last_letter = letter
-                            with Html('tr', class_='BeginLetter') as trow:
-                                tbody += trow
-                                with Html('td', class_='ColumnLetter', inline=True) as tcell:
-                                    trow += tcell
-                                    tcell += Html('a', last_letter, name=last_letter)
-                                with Html('td', class_='ColumnSurname') as tcell:
-                                    trow += tcell
-                                    tcell += self.surname_link(name_to_md5(surname), surname)
-                        elif surname != last_surname:
-                            with Html('tr') as trow:
-                                tbody += trow
-                                with Html('td', '&nbsp;', class_='ColumnLetter', inline=True) as tcell:
-                                    trow += tcell
-                                with Html('td', class_='ColumnSurname') as tcell:
-                                    trow += tcell
-                                    tcell += self.surname_link(name_to_md5(surname), surname)
-                                last_surname = surname
-                        with Html('td', len(data_list), class_='ColumnQuantity', inline=True) as tcell:
+                            trow.attr = ' class="BeginLetter" '
+
+                            tcell = Html('td', class_='ColumnLetter', inline=True) + (
+                                Html('a', last_letter, name=last_letter)
+                                )
                             trow += tcell
+
+                            tcell = Html('td', class_='ColumnSurname') + \
+                                self.surname_link(name_to_md5(surname), surname)
+                            trow += tcell 
+                        elif surname != last_surname:
+                            tcell = Html('td', '&nbsp;', class_='ColumnLetter', inline=True)
+                            trow += tcell
+                            tcell = Html('td', class_='ColumnSurname') + \
+                                self.surname_link(name_to_md5(surname), surname)
+                            trow += tcell 
+                            last_surname = surname
+                        tcell = Html('td', len(data_list), class_='ColumnQuantity', inline=True)
+                        trow += tcell
 
         # create footer section
         # add clearline for proper styling
@@ -2132,7 +2134,7 @@ class SurnameListPage(BasePage):
 
         # send page out for processing
         # and close the file
-        self.mywriter(surnamelist, of)  
+        self.mywriter(surnamelistpage, of)  
 
     def surname_link(self, fname, name, opt_val=None, up=False):
         url = self.report.build_url_fname_html(fname, 'srn', up)
