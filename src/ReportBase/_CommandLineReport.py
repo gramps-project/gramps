@@ -65,6 +65,7 @@ def _validate_options(options, dbase):
     dbase: the database the options will be applied to
     """
     if not hasattr(options, "menu"):
+        print 'no menu'
         return
     menu = options.menu
     
@@ -360,30 +361,25 @@ class CommandLineReport(object):
         elif self.show == 'all':
             print "   Available options:"
             for key in self.options_dict:
-                if key in self.options_dict:
+                if key in self.options_help:
+                    opt = self.options_help[key]
                 # Make the output nicer to read, assume that tab has 8 spaces
-                    if len(key) < 10:
-                        print "      %s\t\t%s (%s)" % (key, 
-                                                    self.options_help[key][1], 
-                                                    self.options_help[key][0])
-                    else:
-                        print "      %s\t%s (%s)" % (key, 
-                                                     self.options_help[key][1], 
-                                                     self.options_help[key][0])
+                    tabs = '\t' if len(key) < 10 else '\t'*2
+                    print "      %s%s%s (%s)" % (key, tabs, opt[1], opt[0])
                 else:
                     print " %s" % key
             print "   Use 'show=option' to see description and acceptable values"
-        elif self.show in self.options_dict:
-            print '   %s%s\t%s' % (self.show,
-                                    self.options_help[self.show][0],
-                                    self.options_help[self.show][1])
+        elif self.show in self.options_help:
+            opt = self.options_help[self.show]
+            tabs = '\t' if len(self.show) < 10 else '\t'*2
+            print '   %s%s%s%s' % (self.show, tabs, opt[0], opt[1])
             print "   Available values are:"
-            vals = self.options_help[self.show][2]
+            vals = opt[2]
             if isinstance(vals, (list, tuple)):
                 for val in vals:
                     print "      %s" % val
             else:
-                print "      %s" % self.options_help[self.show][2]
+                print "      %s" % opt[2]
 
         else:
             #there was a show option given, but the option is invalid
