@@ -198,5 +198,12 @@ class NameEmbedList(GroupEmbeddedList):
         if row_from[0] == self._WORKGROUP and row_to[0] == NameModel.DEFINDEX:
             self.set_default_name(obj)
 
-    def post_rebuild(self):
+    def post_rebuild(self, prebuildpath):
+        """
+        Allow post rebuild specific handling. 
+        @param prebuildpath: path selected before rebuild, None if none
+        @type prebuildpath: tree path
+        """
         self.tree.expand_all()
+        if not prebuildpath is None:
+            self.selection.select_path(prebuildpath)

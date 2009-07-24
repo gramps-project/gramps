@@ -459,6 +459,10 @@ class EmbeddedList(ButtonTab):
         """
         #during rebuild, don't do _selection_changed
         self.dirty_selection = True
+        (model, node) = self.selection.get_selected()
+        selectedpath = None
+        if node:
+            selectedpath = model.get_path(node)
         try:
             self.model = self.construct_model()
         except AttributeError, msg:
@@ -469,13 +473,22 @@ class EmbeddedList(ButtonTab):
             return
 
         self.tree.set_model(self.model)
+        #reset previous select
+        if not selectedpath is None:
+            self.selection.select_path(selectedpath)
+        #self.selection.select_path(node)
         self._set_label()
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
-        self.post_rebuild()
+        self.post_rebuild(selectedpath)
     
-    def post_rebuild(self):
+    def post_rebuild(self, prebuildpath):
+        """
+        Allow post rebuild embeddedlist specific handling. 
+        @param prebuildpath: path selected before rebuild, None if none
+        @type prebuildpath: tree path
+        """
         pass
     
     def rebuild_callback(self):
