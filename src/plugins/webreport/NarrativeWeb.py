@@ -5036,7 +5036,7 @@ def alphabet_navigation(db, handle_list, key):
                 while (cols <= 35 and index < num_ltrs):
                     ltr = sorted_alpha_index[index]
                     title_str = _('Surnames')  if key == 0 else _('Places')
-                    if lang_country == "sv_SE" and letter == u'V':
+                    if lang_country == "sv_SE" and ltr == u'V':
                         title_str += _(' starting with %s') % "V,W" 
                         unordered += (Html('li', class_='letters', inline=True) +
                              Html('a', "V,W", href="#V,W", title=title_str)
