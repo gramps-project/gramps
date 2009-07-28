@@ -106,27 +106,30 @@ def _initialize_options(options, dbstate):
     menu: The Menu class
     dbase: the database the options will be applied to
     """
-    dbase = dbstate.get_database()
     if not hasattr(options, "menu"):
         return
+    dbase = dbstate.get_database()
     menu = options.menu
     
     for name in menu.get_all_option_names():
         option = menu.get_option_by_name(name)
+        value = option.get_value()
 
         if isinstance(option, PersonOption):
-            person = dbstate.get_active_person()
-            option.set_value(person.get_gramps_id())
+            if not dbase.get_person_from_gramps_id(value):
+                person = dbstate.get_active_person()
+                option.set_value(person.get_gramps_id())
         
         elif isinstance(option, FamilyOption):
-            person = dbstate.get_active_person()
-            family_list = person.get_family_handle_list()
-            if family_list:
-                family_handle = family_list[0]
-            else:
-                family_handle = dbase.get_family_handles()[0]
-            family = dbase.get_family_from_handle(family_handle)
-            option.set_value(family.get_gramps_id())
+            if not dbase.get_family_from_gramps_id(value):
+                person = dbstate.get_active_person()
+                family_list = person.get_family_handle_list()
+                if family_list:
+                    family_handle = family_list[0]
+                else:
+                    family_handle = dbase.get_family_handles()[0]
+                family = dbase.get_family_from_handle(family_handle)
+                option.set_value(family.get_gramps_id())
 
 def _get_subject(options, dbase):
     """
@@ -794,6 +797,16 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             name = saved_item.get_name()
             item = BookItem(self.db, name)
             item.option_class = saved_item.option_class
+
+            # The option values were loaded magically by the book parser.
+            # But they still need to be applied to the menu options.
+            opt_dict = item.option_class.handler.options_dict
+            menu = item.option_class.menu
+            for optname in opt_dict:
+                menu_option = menu.get_option_by_name(optname)
+                if menu_option:
+                    menu_option.set_value(opt_dict[optname])
+            
             _initialize_options(item.option_class, self.dbstate)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
