@@ -897,6 +897,9 @@ table.infolist tbody tr td.ColumnValue p {
     color:#696969;
     margin:.2em 0 0 2em;
 }
+table.eventtable tbody tr {
+    border-bottom:solid 1px #000;
+}
 
 /* Subsections : Attributes
 ----------------------------------------------------- */

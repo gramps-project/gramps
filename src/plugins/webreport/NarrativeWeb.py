@@ -66,9 +66,9 @@ from unicodedata import normalize
 # attempt to import the python exif library?
 try:
     import pyexiv2
-    pyexiflib = True
+    pyexiftaglib = True
 except ImportError:
-    pyexiflib = False
+    pyexiftaglib = False
 
 #------------------------------------------------------------------------
 #
@@ -334,20 +334,17 @@ class BasePage(object):
                 trow = Html('tr')
                 thead += trow
 
-                address_fields = [
-                                             (_('Date'),                        'date'),
-                                             (_('Street'),                     'streetaddress'),    
-                                             (_('City'),                        'city'),
-                                             (_('County'),                   'county'),
-                                             (_('State/ Province'),     'state'),
-                                             (_('Country'),                 'country') ,
-                                             (_('Zip/ Postal Code'),   'zip/ postal'),
-                                             (_('Phone'),                    'phone') ] 
+                for (label, colclass) in [
+                                          (_('Date'),             'date'),
+                                          (_('Street'),           'streetaddress'),    
+                                          (_('City'),             'city'),
+                                          (_('County'),           'county'),
+                                          (_('State/ Province'),  'state'),
+                                          (_('Country'),          'country') ,
+                                          (_('Postal Code'),      'postalcode'),
+                                          (_('Phone'),            'phone') ]:
 
-                for (label, colclass) in address_fields:
-
-                    tcell = Html('th', label, class_='ColumnAttribute %s' % colclass, inline=True)
-                    trow += tcell
+                    trow += Html('th', label, class_='ColumnAttribute %s' % colclass, inline=True)
                     
                 # begin table body
                 tbody = Html('tbody')
@@ -361,19 +358,19 @@ class BasePage(object):
 
                     date = _dd.display(address.get_date_object())
 
-                    address_data = [
-                                                 (_('Date'),                      date),
-                                                 (_('Street'),                  address.get_street()),
-                                                 (_('City'),                      address.get_city()),
-                                                 (_('County'),                 address.get_county()),
-                                                 (_('State/Province'),     address.get_state()),
-                                                 (_('Country'),                 address.get_country()),
-                                                 (_('Zip/ Postal Code'),   address.get_postal_code()),
-                                                 (_('Phone'),                    address.get_phone()) ]
-                    for (label, value ) in address_data:
+                    for (label, value) in [
+                                           (_('date'),            date),
+                                           (_('streetaddress'),   address.get_street()),
+                                           (_('city'),            address.get_city()),
+                                           (_('county'),          address.get_county()),
+                                           (_('State'),           address.get_state()),
+                                           (_('country'),         address.get_country()),
+                                           (_('postalcode'),      address.get_postal_code()),
+                                           (_('phone'),           address.get_phone()) ]:
 
                         tcell = Html('td', class_='ColumnValue %s' % label, inline=True)
                         trow += tcell
+
                         if value:
                             tcell += value
                         else:
@@ -385,7 +382,9 @@ class BasePage(object):
                         summaryarea += notelist
                    
                     # address: source references
-                    if spec: 
+                    # if True, then an individual's address
+                    # if False, then a repositories address
+                    if spec:
                         sourcerefs = self.write_source_refs(address.get_source_references())
                         if sourcerefs is not None:
                             summaryarea += sourcerefs
@@ -412,9 +411,13 @@ class BasePage(object):
             source_dict = {}
             # Sort the sources
             for handle in sourcelist:
+
+                # if source is not None, then add it?
                 source = db.get_source_from_handle(handle)
-                key = source.get_title() + str(source.get_gramps_id())
-                source_dict[key] = (source, handle)
+                if source is not None:
+                    key = source.get_title() + str(source.get_gramps_id())
+                    print key
+                    source_dict[key] = (source, handle)
             keys = sorted(source_dict, key=locale.strxfrm)
 
             for index, key in enumerate(keys):
@@ -971,7 +974,6 @@ class BasePage(object):
                       Html('img', src= thumbnailUrl, alt = "Image of " + person_name)
                     )
         else:
-            # for proper spacing, force a new line after hyperlink url
             hyper.attr += ' class= "noThumb"'
 
         # 3. insert the person's name
@@ -1728,7 +1730,9 @@ class MediaPage(BasePage):
                     (width, height) = ImgManip.image_size(orig_image_path)
                     max_width = self.report.options['maxinitialimagewidth']
                     max_height = self.report.options['maxinitialimageheight']
-                    scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that a max of zero is ignored
+                    scale_w = (float(max_width)/width) or 1    # the 'or 1' is so that
+                                                               # a max of zero is ignored
+
                     scale_h = (float(max_height)/height) or 1
                     scale = min(scale_w, scale_h)
                     new_width = int(width*scale)
@@ -1852,14 +1856,14 @@ class MediaPage(BasePage):
                 table += trow
 
         # display image Exif tags/ keys if any?
-        if (pyexiflib and mime_type.startswith('image/')):
-             #################################################
-            #                                           Exif Tags/ Keys                                              #
-            #                                                                                                                  #
-            # Determine if the python exif lib is installed on the system?               #
-            # yes, then use it and determine if the photo has anything written     #
-            # inside of it?  No, if not?, then do not show on the media page          # 
-            #################################################
+        if (pyexiftaglib and mime_type.startswith('image/')):
+            """
+            # Exif Tags/ Keys                               
+            #                     
+            # Determine if the python exif lib is installed on the system?
+            # yes, then use it and determine if the photo has anything written
+            # inside of it?  No, if not?, then do not show on the media page
+            """ 
 
             image = pyexiv2.Image('%s' % Utils.media_path_full(db, photo.get_path()))
             image.readMetadata()
@@ -1867,25 +1871,22 @@ class MediaPage(BasePage):
             # exif data does exists
             if len(image.exifKeys()):
 
-                # add clearline for increased styling
+                # add clearline for better page layout
                 mediadetail += fullclear
 
-                with Html('div', class_='infolist', id='ExifList') as exifdetail:
-                    mediadetail += exifdetail
+                # add exif title header
+                mediadetail += Html('h4', _('Image Exif Tags'), inline=True)
 
-                    # add exif title header
-                    exifdetail += Html('h4', _('Image Exif Tags'), inline=True)
+                # begin exif table
+                with Html('table', class_='exifdata') as table:
+                    mediadetail += table
 
-                    # begin exif table
-                    with Html('table', class_='exifdata') as table:
-                        exifdetail += table
-
-                        for line in image.exifKeys():
-                            trow = Html('tr') + (
-                                Html('td', line, class_='ColumnAttribute', inline=True),
-                                Html('td', image[line], class_='ColumnValue', inline=True)
-                                )
-                            table += trow
+                    for keytag in image.exifKeys():
+                        trow = Html('tr') + (
+                            Html('td', keytag, class_='ColumnAttribute', inline=True),
+                            Html('td', image[keytag], class_='ColumnValue', inline=True)
+                            )
+                        table += trow
 
             #################################################
 
@@ -3293,7 +3294,7 @@ class IndividualPage(BasePage):
             section += Html('h4', _('Addresses'), inline=True)
 
             # write out addresses()
-            addresses = self.write_out_addresses(self.person)
+            addresses = self.write_out_addresses(self.person, spec=True)
             section += addresses
 
         # return address division to its caller
@@ -3589,8 +3590,8 @@ class IndividualPage(BasePage):
         family_list = self.person.get_family_handle_list()
         if not family_list:
             return None
-
         db = self.report.database
+
         # begin families division and section title
         with Html('div', class_='subsection', id='families') as section:
             section += Html('h4', _('Families'), inline=True)
@@ -3661,22 +3662,30 @@ class IndividualPage(BasePage):
             Html('td', rtype, class_='ColumnType', inline=True),
             Html('td', relstr, class_='ColumnAttribute', inline=True)  
             )
-        table += trow  
+        table += trow
         tcell = Html('td', class_='ColumnValue')
         trow += tcell
 
         if partner_handle:
-            gid = partner.gramps_id
             if partner_handle in self.ind_list:
                 url = self.report.build_url_fname_html(partner_handle, 'ppl', True)
-                tcell += self.person_link(url, partner, True, gid)
+                tcell += self.person_link(url, partner, True, partner.gramps_id)
             else:
                 tcell += partner_name
 
+        # TODO: Fix this section of code
+        # there is a table started underneath a table cell???
         family_events = family.get_event_ref_list()
 
+        trow = Html('tr') + (
+            Html('td', '&nbsp;', class_='ColumnType', inline=True),
+            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True)
+            )
+        table += trow
+        tcell = Html('td', class_='ColumnValue')
+        trow += tcell
         formatted_event = self.format_event(family_events)
-        table += formatted_event
+        tcell += formatted_event
 
         # get attributes
         for attr in family.get_attribute_list():
@@ -3771,6 +3780,9 @@ class IndividualPage(BasePage):
         return trow
 
     def format_event(self, eventlist):
+        if not eventlist:
+            return None
+
         db = self.report.database
 
         # begin eventlist table and table header
@@ -3932,7 +3944,7 @@ class RepositoryPage(BasePage):
                 table += trow
 
             # repository: addresses
-            addresses = self.write_out_addresses(repo, spec=True)
+            addresses = self.write_out_addresses(repo)
             if addresses is not None:
                 repositorydetail += addresses
 
@@ -4718,21 +4730,21 @@ class NavWebOptions(MenuReportOptions):
         self.__downloadnote.set_help( _("A note to be used on the download page"))
         menu.add_option(category_name, "downloadnote", self.__downloadnote)
 
-        self.__down_fname1 = DestinationOption(_("Download Filename #1"),
+        self.__down_fname1 = DestinationOption(_("Download Filename"),
             os.path.join(const.USER_HOME, ""))
         self.__down_fname1.set_help(_("File to be used for downloading of database"))
         menu.add_option(category_name, "down_fname1", self.__down_fname1)
 
-        self.__dl_descr1 = StringOption(_("Description for this Download"), _('Smith Family Tree'))
+        self.__dl_descr1 = StringOption(_("Description for download"), _('Smith Family Tree'))
         self.__dl_descr1.set_help(_('Give a description for this file.'))
         menu.add_option(category_name, 'dl_descr1', self.__dl_descr1)
 
-        self.__down_fname2 = DestinationOption(_("Download Filename #2"),
+        self.__down_fname2 = DestinationOption(_("Download Filename"),
             os.path.join(const.USER_HOME, ""))
         self.__down_fname2.set_help(_("File to be used for downloading of database"))
         menu.add_option(category_name, "down_fname2", self.__down_fname2)
 
-        self.__dl_descr2 = StringOption(_("Description for this Download"), _('Johnson Family Tree'))
+        self.__dl_descr2 = StringOption(_("Description for download"), _('Johnson Family Tree'))
         self.__dl_descr2.set_help(_('Give a description for this file.'))
         menu.add_option(category_name, 'dl_descr2', self.__dl_descr2)
 
@@ -4781,19 +4793,16 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         menu.add_option(category_name, 'showparents', showparents)
 
-        self.__showallsiblings = BooleanOption(_("Include half and/ or "
+        showallsiblings = BooleanOption(_("Include half and/ or "
                                            "step-siblings on the individual pages"), False)
-        self.__showallsiblings.set_help(_( "Whether to include half and/ or "
+        showallsiblings.set_help(_( "Whether to include half and/ or "
                                     "step-siblings with the parents and siblings"))
-        menu.add_option(category_name, 'showhalfsiblings', self.__showallsiblings)
-        self.__showallsiblings.connect('value-changed', self.__siblings_changed)
+        menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 
-        self.__birthorder = BooleanOption(_('Sort children in birth order'), False)
-        self.__birthorder.set_help(_('Whether to display children in birth order'
-                                            ' or in entry order?'))
-        menu.add_option(category_name, 'birthorder', self.__birthorder)
-
-        self.__siblings_changed()
+        birthorder = BooleanOption(_('Sort children in birth order'), False)
+        birthorder.set_help(_('Whether to display children in birth order'
+                              ' or in entry order?'))
+        menu.add_option(category_name, 'birthorder', birthorder)
 
         inc_repository = BooleanOption(_('Include Repository Pages'), False)
         inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
@@ -4877,16 +4886,6 @@ class NavWebOptions(MenuReportOptions):
             self.__down_fname2.set_available(False)
             self.__dl_descr2.set_available(False)
             self.__dl_cright.set_available(False)
-
-    def __siblings_changed(self):
-        """
-        handles the changing nature of showallsiblings
-        """
-
-        if self.__showallsiblings.get_value():
-            self.__birthorder.set_available(True)
-        else:
-            self.__birthorder.set_available(False)
 
 # FIXME. Why do we need our own sorting? Why not use Sort.Sort?
 def sort_people(db, handle_list):
