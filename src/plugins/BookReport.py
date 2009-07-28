@@ -799,7 +799,8 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             menu = item.option_class.menu
             for optname in opt_dict:
                 menu_option = menu.get_option_by_name(optname)
-                menu_option.set_value(opt_dict[optname])
+                if menu_option:
+                    menu_option.set_value(opt_dict[optname])
             
             _initialize_options(item.option_class, self.dbstate)
             item.set_style_name(saved_item.get_style_name())
