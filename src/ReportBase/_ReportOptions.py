@@ -813,5 +813,6 @@ class MenuReportOptions(GuiMenuOptions,ReportOptions):
         # properly.
         for optname in self.options_dict:
             menu_option = self.menu.get_option_by_name(optname)
-            menu_option.set_value(self.options_dict[optname])
+            if menu_option:
+                menu_option.set_value(self.options_dict[optname])
 
