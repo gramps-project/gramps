@@ -357,7 +357,8 @@ class ListModel(object):
             self.model.set_value(node, col, obj)
             col += 1
         self.model.set_value(node, col, info)
-        if info:
+
+        if info is not None:
             self.idmap[str(info)] = node
         if select:
             self.sel_iter = node
