@@ -69,9 +69,8 @@ class Rule(object):
     def apply(self, db, person):
         return True
 
-    #def __nonzero__(self, db, person):
-    #    return self.apply(db, person)
-
+    __nonzero__ = apply
+        
     def display_values(self):
         v = ( '%s="%s"' % ((_(self.labels[ix]),)*2)
               for ix in xrange(len(self.list)) if self.list[ix] )
