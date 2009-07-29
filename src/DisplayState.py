@@ -286,7 +286,7 @@ class WarnHandler(RotateHandler):
     def display(self, obj):
         obj.hide()
         self.glade = Glade()
-        top = self.toplevel
+        top = self.glade.toplevel
         msg = self.glade.get_object('msg')
         buf = msg.get_buffer()
         for i in self.get_formatted_log():
