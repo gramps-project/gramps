@@ -347,7 +347,8 @@ class RelGraphReport(Report):
                 if mediaMimeType[0:5] == "image":
                     imagePath = ThumbNails.get_thumbnail_path(
                                     Utils.media_path_full(self.database, 
-                                                          media.get_path()))
+                                                          media.get_path()),
+                                        rectangle=mediaList[0].get_rectangle())
                     # test if thumbnail actually exists in thumbs
                     # (import of data means media files might not be present
                     imagePath = Utils.find_file(imagePath)

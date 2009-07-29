@@ -846,8 +846,8 @@ class FamilyLinesReport(Report):
                     if mediaMimeType[0:5] == "image":
                         imagePath = ThumbNails.get_thumbnail_path(
                                         Utils.media_path_full(self._db, 
-                                                              media.get_path())
-                                                                 )
+                                                              media.get_path()),
+                                        rectangle=mediaList[0].get_rectangle())
 
             # put the label together and ouput this person
             label = u""
