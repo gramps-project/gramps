@@ -1164,7 +1164,7 @@ class GedcomParser(UpdateCallback):
                     line.data.startswith("SOURCE "):
                 # A source formatted in a single line, for example:
                 # 0 @S62@ SOUR This is the title of the source
-                source = self.__find_or_create_source(self.sid_map[line[3]])
+                source = self.__find_or_create_source(self.sid_map[line.data])
                 source.set_title(line.data[5:])
                 self.dbase.commit_source(source, self.trans)
             elif key[0:4] == "NOTE":
@@ -2727,7 +2727,7 @@ class GedcomParser(UpdateCallback):
                 else:
                     try:
                         name = gen.lib.EventType((gen.lib.EventType.CUSTOM, 
-                                                 line[3]))
+                                                 line.data))
                     except AttributeError:
                         name = gen.lib.EventType(gen.lib.EventType.UNKNOWN)
             state.event.set_type(name)
