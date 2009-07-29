@@ -330,8 +330,8 @@ class EditFamilyLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
-        self.set_window(self.top.get_object("lds_person_edit"),
+        self.top = Glade() 
+        self.set_window(self.top.toplevel, 
                         self.top.get_object('title'),
                         _('LDS Ordinance Editor'))
         self.share_btn = self.top.get_object('share_place')
