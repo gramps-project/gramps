@@ -568,21 +568,21 @@ class BasePage(object):
 
         # Link to _NARRATIVESCREEN  stylesheet
         fname = '/'.join(["styles", _NARRATIVESCREEN])
-        url2 = self.report.build_url_fname(fname, None, self.up)
+        url3 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to _NARRATIVEPRINT stylesheet
         fname = '/'.join(["styles", _NARRATIVEPRINT])
-        url3 = self.report.build_url_fname(fname, None, self.up)
+        url4 = self.report.build_url_fname(fname, None, self.up)
 
         # Link to GRAMPS favicon
         fname = '/'.join(['images', 'favicon.ico'])
-        url4 = self.report.build_url_image('favicon.ico', 'images', self.up)
+        url5 = self.report.build_url_image('favicon.ico', 'images', self.up)
 
         # create stylesheet and favicon links
-        links = [Html('link', href=url4, type='image/x-icon', rel='shortcut icon'),
+        links = [Html('link', href=url5, type='image/x-icon', rel='shortcut icon'),
              Html('link', href=url1, type='text/css', media='screen', rel='stylesheet'),
-             Html('link', href=url2, type='text/css', media='screen', rel='stylesheet'),
-             Html('link', href=url3, type='text/css', media='print', rel='stylesheet')
+             Html('link', href=url3, type='text/css', media='screen', rel='stylesheet'),
+             Html('link', href=url4, type='text/css', media='print', rel='stylesheet')
              ]
 
         # add additional meta and link tags
@@ -3252,12 +3252,14 @@ class IndividualPage(BasePage):
             sref_links = self.get_citation_links(event.get_source_references())
             txt = ''.join(wrapper.wrap(event.get_description()))
             txt = txt or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Description')
+            trow += Html('td', txt, class_='ColumnValue Description', inline=True \
+                if txt == '&nbsp;' else False)
 
             # Sources
             citation = self.get_citation_links(event.get_source_references())
             txt = citation or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Source')
+            trow += Html('td', txt, class_='ColumnValue Source', inline=True \
+                if txt == '&nbsp;' else False)
 
             # Notes
             # if the event or event reference has a note attached to it,
@@ -3666,6 +3668,7 @@ class IndividualPage(BasePage):
         tcell = Html('td', class_='ColumnValue')
         trow += tcell
 
+        # display partner's name
         if partner_handle:
             if partner_handle in self.ind_list:
                 url = self.report.build_url_fname_html(partner_handle, 'ppl', True)
@@ -3679,9 +3682,11 @@ class IndividualPage(BasePage):
 
         trow = Html('tr') + (
             Html('td', '&nbsp;', class_='ColumnType', inline=True),
-            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True)
+            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True) 
             )
         table += trow
+
+        # here is where the mess happens...
         tcell = Html('td', class_='ColumnValue')
         trow += tcell
         formatted_event = self.format_event(family_events)

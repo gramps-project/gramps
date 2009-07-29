@@ -251,7 +251,7 @@ p#user_header {
     min-width:770px;
     height:32px;
     margin:0;
-    padding:0 0 0 9px;
+    padding:0 0 0 5px;
     background-color:#A97;
     border-bottom:solid 1px #542;
 }
@@ -266,7 +266,7 @@ p#user_header {
     color:#542;
     text-decoration:none;
     margin:0;
-    padding:8px 13px;
+    padding:6px 10px;
 
 }
 #navigation ul li a:hover, #subnavigation ul li a:hover {
@@ -345,6 +345,12 @@ table.infolist tbody tr td.ColumnType {
 }
 table.infolist tbody tr td.ColumnPartner {
     font-size:.9em;
+    background-color:#FFF;
+}
+table.infolist tbody tr td.ColumnPartner a:hover {
+    display:block;
+    padding:15px;
+    background-color:#C1B398;
 }
 table.infolist tbody tr td.ColumnParents {
     font-size:.9em;
@@ -497,6 +503,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #Sources table.infolist tbody tr td.ColumnName {
     padding:0;
+    background-color:#FFF;
 }
 #Sources table.infolist tbody tr td.ColumnName a {
     font-size:.9em;
@@ -514,6 +521,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 #Places {  }
 #Places table.infolist tbody tr td.ColumnName {
     padding:0;
+    background-color:#FFF;
 }
 #Places table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
@@ -530,6 +538,7 @@ table.individuallist tbody tr td.ColumnName a:hover {
 }
 #Gallery table.infolist tbody tr td.ColumnName {
     padding:0;
+    background-color:#FFF;
 }
 #Gallery table.infolist tbody tr td.ColumnName a {
     padding:.1em 10px .3em 10px;
