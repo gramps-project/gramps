@@ -39,6 +39,7 @@ from gettext import gettext as _
 from proxybase import ProxyDbBase
 from gen.lib import Date, Person, Name
 from Utils import probably_alive
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +64,8 @@ class LivingProxyDb(ProxyDbBase):
         @param mode: The method for handling living people. 
          LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether. 
          LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all information 
-         and change their given name to "Living".
+         and change their given name to "[Living]" or what has been set in 
+         Preferences -> Text.
          LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all information
          but leave the entire name intact.
         @type mode: int
@@ -364,7 +366,7 @@ class LivingProxyDb(ProxyDbBase):
     def __restrict_person(self, person):
         """
         Remove information from a person and replace the first name with 
-        "Living".
+        "[Living]" or what has been set in Preferences -> Text.
         """
         new_person = Person()
         new_name = Name()
@@ -376,7 +378,7 @@ class LivingProxyDb(ProxyDbBase):
         new_name.set_surname_prefix(old_name.get_surname_prefix())
         new_name.set_type(old_name.get_type())
         if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
-            new_name.set_first_name(_(u'Living'))
+            new_name.set_first_name(Config.get(Config.PRIVATE_GIVEN_TEXT))
         else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
             new_name.set_first_name(old_name.get_first_name())
             new_name.set_suffix(old_name.get_suffix())

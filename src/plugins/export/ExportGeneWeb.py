@@ -52,6 +52,7 @@ import Utils
 from QuestionDialog import ErrorDialog
 from gen.plug import PluginManager, ExportPlugin
 from glade import Glade
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -452,7 +453,7 @@ class GeneWebWriter(object):
     
     def get_ref_name(self,person):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = _("Living")
+        firstname = Config.get(Config.PRIVATE_GIVEN_TEXT)) 
         if not (Utils.probably_alive(person,self.db) and \
           self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
@@ -463,7 +464,7 @@ class GeneWebWriter(object):
 
     def get_child_ref_name(self,person,father_lastname):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = _("Living")
+        firstname = Config.get(Config.PRIVATE_GIVEN_TEXT))
         if not (Utils.probably_alive(person,self.db) and \
           self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
