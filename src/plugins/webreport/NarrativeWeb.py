@@ -189,6 +189,12 @@ def name_to_md5(text):
     """This creates an MD5 hex string to be used as filename."""
     return md5(text).hexdigest()
 
+def conf_priv(obj):
+    if obj.get_privacy() != 0:
+        return ' priv="%d"' % obj.get_privacy()
+    else:
+        return ''
+
 class BasePage(object):
     """
     This is the base class to write certain HTML pages.
@@ -224,6 +230,44 @@ class BasePage(object):
         self.noid = report.options['nogid']
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
+
+    def dump_source_references(self, db, sourcelist):
+        """ Dump a list of source references """
+
+        ordered = Html('ol')
+        list = Html('li')
+        ordered += list
+
+        source_dict = {}
+        # Sort the sources
+        for handle in sourcelist:
+
+            # if source is not None, then add it?
+            source = db.get_source_from_handle(handle)
+            if source is not None:
+                key = source.get_title() + str(source.get_gramps_id())
+                source_dict[key] = (source, handle)
+        keys = sorted(source_dict, key=locale.strxfrm)
+
+        for cindex, key in enumerate(keys):
+            (source, handle) = source_dict[key]
+            source_title = source.get_title()
+            
+            list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
+
+        # return ordered list to its callers
+        return ordered
+
+    def source_link(self, handle, name, cindex, gid=None, up=False):
+
+        url = self.report.build_url_fname_html(handle, 'src', up)
+        # begin hyperlink
+        hyper = Html('a', html_escape(name), href=url, title=name)
+        if not self.noid and gid:
+            hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
+
+        # return hyperlink to its callers
+        return hyper
 
     def get_note_format(self, note):
         """
@@ -403,28 +447,7 @@ class BasePage(object):
         with Html('div', class_='subsection', id='sourcerefs') as section:
             section += Html('h4', _('Source References'), inline=True)
 
-            ordered = Html('ol')
-            section += ordered
-            list = Html('li')
-            ordered += list
-
-            source_dict = {}
-            # Sort the sources
-            for handle in sourcelist:
-
-                # if source is not None, then add it?
-                source = db.get_source_from_handle(handle)
-                if source is not None:
-                    key = source.get_title() + str(source.get_gramps_id())
-                    print key
-                    source_dict[key] = (source, handle)
-            keys = sorted(source_dict, key=locale.strxfrm)
-
-            for index, key in enumerate(keys):
-                (source, handle) = source_dict[key]
-                source_title = source.get_title()
-            
-                list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
+            section += self.dump_source_references(db, sourcelist)
 
         # return division to its caller
         return section   
@@ -1027,17 +1050,6 @@ class BasePage(object):
 
         # return thumbnail division to its callers
         return thumbnail
-
-    def source_link(self, handle, name, cindex, gid=None, up=False):
-
-        url = self.report.build_url_fname_html(handle, 'src', up)
-        # begin hyperlink
-        hyper = Html('a', html_escape(name), href=url, title=name)
-        if not self.noid and gid:
-            hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
-
-        # return hyperlink to its callers
-        return hyper
 
     def repository_link(self, handle, name, cindex, gid=None, up=False):
 
@@ -2731,10 +2743,15 @@ class IndividualPage(BasePage):
             if sect5 is not None:
                 individualdetail += sect5
 
-            # display address(es)
-            sect6 = self.display_addresses()
+            # display LDS ordinance
+            sect6 = self.display_lds_ordinance(self.person)
             if sect6 is not None:
-                individualdetail += sect6 
+                individualdetail += sect6
+
+            # display address(es)
+            sect7 = self.display_addresses()
+            if sect7 is not None:
+                individualdetail += sect7 
 
             media_list = []
             photo_list = self.person.get_media_list()
@@ -2752,35 +2769,35 @@ class IndividualPage(BasePage):
                     media_list += event.get_media_list()
 
             # display additional images as gallery
-            sect7 = self.display_additional_images_as_gallery(media_list)
-            if sect7 is not None:
-                individualdetail += sect7
-
-            # display notes
-            sect8 = self.display_note_list(self.person.get_note_list())
+            sect8 = self.display_additional_images_as_gallery(media_list)
             if sect8 is not None:
                 individualdetail += sect8
 
-            # display web links
-            sect9 = self.display_url_list(self.person.get_url_list())
+            # display notes
+            sect9 = self.display_note_list(self.person.get_note_list())
             if sect9 is not None:
                 individualdetail += sect9
 
-            # display sources
-            sect10 = self.display_ind_sources()
+            # display web links
+            sect10 = self.display_url_list(self.person.get_url_list())
             if sect10 is not None:
                 individualdetail += sect10
 
-            # display pedigree
-            sect11 = self.display_ind_pedigree()
+            # display sources
+            sect11 = self.display_ind_sources()
             if sect11 is not None:
                 individualdetail += sect11
 
+            # display pedigree
+            sect12 = self.display_ind_pedigree()
+            if sect12 is not None:
+                individualdetail += sect12
+
             # display ancestor tree   
             if report.options['graph']:
-                sect12 = self.display_tree()
-                if sect12 is not None:
-                    individualdetail += sect12
+                sect13 = self.display_tree()
+                if sect13 is not None:
+                    individualdetail += sect13
 
         # add clearline for proper styling
         # create footer section
@@ -3302,6 +3319,60 @@ class IndividualPage(BasePage):
         # return address division to its caller
         return section
 
+    def display_lds_ordinance(self, obj, sealed=True):
+        """
+        display LDS information for a person or family
+
+        @param: obj -- an individual
+                    -- a family
+
+        @param: sealed -- True = Parents
+                       -- False = Spouse  
+        """
+
+        ldsordlist = obj.get_lds_ord_list()
+        if not ldsordlist:
+            return None
+
+        db = self.report.database
+
+        # begin LDS Ordinance division and section title
+        with Html('div', class_='subsection', id='LDSOrdinance') as section:
+            section += Html('h4', _('Latter-Day Saints (LDS) Ordinance'), inline=True)
+
+            # begin LDS table
+            with Html('table', class_='infolist ldsinfo') as table: 
+                section += table
+
+                # begin table head
+                thead = Html('thead')
+                table += thead
+
+                # get ordinance header row
+                trow = write_ord_header(sealed)
+                thead += trow
+
+                # begin table body
+                tbody = Html('tbody')
+                table += tbody
+
+                for ord in ldsordlist:
+                    trow = write_ord_data_row(db, ord)
+                    tbody += trow
+
+            # notes
+            notelist = self.display_note_list(ord.get_note_list())
+            if notelist is not None:
+                section += notelist                    
+
+            # source references
+            sourcerefs = self.write_source_refs(ord.get_source_references())
+            if sourcerefs is not None:
+                section += sourcerefs 
+
+        # return section to its caller
+        return section
+
     def display_child_link(self, child_handle):
         """
         display child link ...
@@ -3680,42 +3751,94 @@ class IndividualPage(BasePage):
         # there is a table started underneath a table cell???
         family_events = family.get_event_ref_list()
 
-        trow = Html('tr') + (
-            Html('td', '&nbsp;', class_='ColumnType', inline=True),
-            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True) 
-            )
-        table += trow
-
         # here is where the mess happens...
-        tcell = Html('td', class_='ColumnValue')
-        trow += tcell
         formatted_event = self.format_event(family_events)
-        tcell += formatted_event
+        if formatted_event is not None:
+            trow = Html('tr') + (
+                Html('td', '&nbsp;', class_='ColumnType', inline=True),
+                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True) 
+                Html('td', formatted_event, class_='ColumnValue')
+                )
+            table += trow
 
-        # get attributes
-        for attr in family.get_attribute_list():
-            attrType = str(attr.get_type())
-            if attrType:
+        # family LDS ordiannce list
+        trow = write_ord_header(False) 
+        table += trow
+        
+        for ord in family.get_lds_ord_list():
+            trow = write_ord_data_row(db, ord)
+            table += trow
+
+            # get ordinance notes
+            notelist = ord.get_note_list()
+            if notelist:
                 trow = Html('tr') + (
-                    Html('td', '&nbsp;', class_='ColumnType', inline=True),
-                    Html('td', attrType, class_='ColumnAttribute', inline=True),
-                    Html('td', attr.get_value(), class_='ColumnValue', inline=True)
+                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                    Html('td', _('Narrative'), class_='ColumnAttribute', inline=True)
                     )
                 table += trow
+
+                for notehandle in notelist:
+                    note = db.get_note_from_handle(notehandle)
+                    if note:
+                        note_text = self.get_note_format(note)
+                        trow = Html('tr') + (
+                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                            Html('td', note_text, class_='ColumnValue Note', inline=True)
+                            )
+                        table += trow
+
+            # get ordinance source references
+            sourcerefs = ord.get_source_references()
+            if sourcerefs:
+                trow = Html('tr') + (
+                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                    Html('td', _('Source references'), class_='columnAttribute', inline=True)
+                    )
+                table += trow
+
+                srcrefs = self.dump_source_references(db, sourcelist)
+                trow += srcrefs 
+
+        # get attributes
+        attrlist = family.get_attribute_list()
+        if attrlist:
+            trow = Html('tr') + (
+                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                Html('td', _('Attributes'), class_='ColumnAttribute', inline=True)
+                )
+            table += trow
+
+            for attr in family.get_attribute_list():
+                attrType = str(attr.get_type())
+                if attrType:
+                    trow = Html('tr') + (
+                        Html('td', '&nbsp;', class_='ColumnValue', inline=True),
+                        Html('td', attrType, class_='ColumnValue', inline=True),
+                        Html('td', attr.get_value(), class_='ColumnValue', inline=True)
+                        )
+                    table += trow
 
         # get family notes
         notelist = family.get_note_list()
-        for notehandle in notelist:
-            note = db.get_note_from_handle(notehandle)
-            if note:
-                note_text = self.get_note_format(note)
+        if notelist:
 
-                trow = Html('tr') + (
-                    Html('td', '&nbsp;', class_='ColumnType', inline=True),
-                    Html('td', _('Narrative'), class_='ColumnAttribute', inline=True),
-                    Html('td', note_text, class_='ColumnValue')
-                    )
+            trow = Html('tr') + (
+                Html('td', _('Narrative'), class_='ColumnAttribute', inline=True)
+                )
+            table += trow
+
+            for notehandle in notelist:
+                trow = Html('tr')
                 table += trow
+
+                note = db.get_note_from_handle(notehandle)
+                if note:
+                    note_text = self.get_note_format(note)
+
+                    trow += Html('td', note_text, class_='ColumnValue')
 
         # return table to its caller
         return table
@@ -5099,7 +5222,42 @@ def add_birthdate(db, childlist):
 
     return sorted_children
 
-# ------------------------------------------
+def write_ord_header(sealed):
+
+    ord_row = [_('Type'), _('Date'), _('Temple'), _('Place'), _('Status'),
+        _('Sealed to ') ]
+
+    # if True, then Parents else Spouse
+    ord_row[5] += 'Parents' if sealed else 'Spouse'
+
+    trow = Html('tr')
+    for column in ord_row:
+        trow += Html('th', column, class_='ColumnAttribute', inline=True)
+
+    # return table row to its callers
+    return trow
+
+def write_ord_data_row(db, ord):
+    """ will dump the ordinance information either person or family """
+
+    # begin table row
+    trow = Html('tr')
+
+    for val in [
+                ('Type',        ord.type2xml()),
+                ('Date',        _dd.display(ord.get_date_object())),
+                ('Temple',      ord.get_temple()),
+                ('Place',       ReportUtils.place_name(db, ord.get_place_handle())),
+                ('Status',      ord.get_status()),
+                ('Sealed',      ord.get_family_handle()) ]:
+
+        value = val[1] or '&nbsp;'
+        trow += Html('td', value, class_='ColumnValue %s' % val[0], inline=True)
+ 
+    # return table row to its callers
+    return trow
+
+# -------------------------------------------
 #
 #            Register Plugin
 #
