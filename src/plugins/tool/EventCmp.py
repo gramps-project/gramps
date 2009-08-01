@@ -139,20 +139,20 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         self.set_window(window,self.filterDialog.get_object('title'),
                         self.label)
 
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
-
-        the_filters = [all]
-        from Filters import CustomFilters
-        the_filters.extend(CustomFilters.get_filters('Person'))
-
-        self.filter_menu = build_filter_model(the_filters)
-        filter_num = self.options.handler.options_dict['filter']
-        self.filters.set_model(self.filter_menu)
-        self.filters.set_active(0)
+        self.on_filters_changed('Person')
+        uistate.connect('filters-changed', self.on_filters_changed)
 
         self.show()
+        
+        
+    def on_filters_changed(self, name_space):
+        if name_space == 'Person':
+            all_filter = GenericFilter()
+            all_filter.set_name(_("Entire Database"))
+            all_filter.add_rule(Rules.Person.Everyone([]))
+            self.filter_model = build_filter_model('Person', [all_filter])
+            self.filters.set_model(self.filter_model)
+            self.filters.set_active(0)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -170,7 +170,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
             pass
 
     def on_apply_clicked(self, obj):
-        cfilter = self.filter_menu[self.filters.get_active()][1]
+        cfilter = self.filter_model[self.filters.get_active()][1]
 
         progress_bar = ProgressMeter(_('Comparing events'),'')
         progress_bar.set_pass(_('Selecting people'),1)

@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import gtk
-from gettext import gettext as _
 import gobject
 
 #-------------------------------------------------------------------------
@@ -34,36 +33,7 @@ import gobject
 # This is used by plugins to create a menu of available filters
 #
 #-------------------------------------------------------------------------
-def build_filter_menu(local_filters = [], default=""):
-    from Filters import SystemFilters, CustomFilters
-    menu = gtk.Menu()
-
-    for filt in local_filters:
-        menuitem = gtk.MenuItem(filt.get_name())
-        menuitem.show()
-        menu.append(menuitem)
-        menuitem.set_data("filter", filt)
-        
-    for filt in SystemFilters.get_filters():
-        menuitem = gtk.MenuItem(_(filt.get_name()))
-        menuitem.show()
-        menu.append(menuitem)
-        menuitem.set_data("filter", filt)
-
-    for filt in CustomFilters.get_filters():
-        menuitem = gtk.MenuItem(_(filt.get_name()))
-        menuitem.show()
-        menu.append(menuitem)
-        menuitem.set_data("filter", filt)
-
-    return menu
-
-#-------------------------------------------------------------------------
-#
-# This is used by plugins to create a menu of available filters
-#
-#-------------------------------------------------------------------------
-def build_filter_model(space, local = [], default=""):
+def build_filter_model(space, local = []):
     from Filters import SystemFilters, CustomFilters
 
     model = gtk.ListStore(gobject.TYPE_STRING, object)
