@@ -170,6 +170,11 @@ class ProgressMeter(object):
         while gtk.events_pending():
             gtk.main_iteration()
 
+    def set_header(self, text):
+        self.__lbl.set_text(text)
+        while gtk.events_pending():
+	    gtk.main_iteration()
+	
     def __warn(self, *obj):
         """
         Don't let the user close the progress dialog.

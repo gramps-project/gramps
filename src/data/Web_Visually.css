@@ -924,6 +924,16 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 ----------------------------------------------------- */
 div#families table.infolist {
     margin-top:.5em;
+    background-color:#FFF;
+    width:100%;
+}
+div#Families table.infolist tr.TableTitle {
+    border-top:solid 2px #000;
+    border-bottom:solid 1px #000;
+}
+div#Families table.infolist tr.TableTitle td {
+    width:100%;
+    text-align:center;
 }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
