@@ -3828,9 +3828,14 @@ class IndividualPage(BasePage):
         if formatted_event is not None:
             trow = Html('tr') + (
                 Html('td', '&nbsp;', class_='ColumnType', inline=True),
-                Html('td', formatted_event, class_='ColumnValue')
+                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
                 )
             table += trow
+
+            tcell = Html('td', class_='ColumnValue')
+            trow += tcell
+
+            tcell += formatted_event
 
         # return table to its caller
         return table
