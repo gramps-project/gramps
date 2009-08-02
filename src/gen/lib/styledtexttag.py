@@ -34,7 +34,7 @@ from gen.lib.styledtexttagtype import StyledTextTagType
 # StyledTextTag class
 #
 #-------------------------------------------------------------------------
-class StyledTextTag():
+class StyledTextTag(object):
     """Hold formatting information for StyledText.
     
     StyledTextTag is a container class, it's attributes are directly accessed.
