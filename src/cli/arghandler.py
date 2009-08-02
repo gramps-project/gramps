@@ -275,7 +275,7 @@ class ArgHandler(object):
         self.__import_action()
         return None
     
-    def handle_args_cli(self):
+    def handle_args_cli(self, cleanup=True):
         """
         Depending on the given arguments, import or open data, launch
         session, write files, and/or perform actions.
@@ -313,13 +313,17 @@ class ArgHandler(object):
             print "Exporting: file %s, format %s." % expt
             self.cl_export(expt[0], expt[1])
 
+        if cleanup:
+            self.cleanup()
+            print "Exiting."
+            sys.exit(0)
+
+    def cleanup(self):
         print "Cleaning up."
         # remove files in import db subdir after use
         self.dbstate.db.close()
         if self.imp_db_path:
             Utils.rm_tempdir(self.imp_db_path)
-        print "Exiting."
-        sys.exit(0)
 
     def __import_action(self):
         """

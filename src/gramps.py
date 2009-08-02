@@ -168,10 +168,13 @@ def run():
         #A GUI is needed, set it up 
         from gui.grampsgui import startgtkloop
         startgtkloop(error, argpars)
+    elif argpars.server is not None:
+        # Server, no CLI
+        from cli.server import start_server
+        start_server(error, argpars)
     else:
         #CLI use of GRAMPS
         argpars.print_help()
-        
         from cli.grampscli import startcli
         startcli(error, argpars)
 
