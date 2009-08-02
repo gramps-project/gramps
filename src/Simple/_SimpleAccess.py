@@ -92,6 +92,8 @@ class SimpleAccess(object):
          Child         :  Garner, Bertha P.
          Child         :  Garner, Elizabeth
          Event         :  Burial 7/1/1911 Twin Falls, ID
+
+    One can also alternatively supply a handle rather than a person.
     """
 
     def __init__(self, dbase):
@@ -112,6 +114,8 @@ class SimpleAccess(object):
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return name_displayer.display(person)
@@ -127,6 +131,8 @@ class SimpleAccess(object):
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             surname = person.get_primary_name().get_surname()
@@ -143,6 +149,8 @@ class SimpleAccess(object):
         @return: Returns the first name of the person based of the program preferences
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return person.get_primary_name().get_first_name()
@@ -173,6 +181,8 @@ class SimpleAccess(object):
         @return: Returns a string indentifying the person's gender
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return Utils.gender[person.get_gender()]
@@ -300,6 +310,8 @@ class SimpleAccess(object):
         @return: The spouse identified as the person's primary spouse
         @rtype: L{gen.lib.Person}
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
@@ -326,6 +338,8 @@ class SimpleAccess(object):
         his/per primary spouse.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
@@ -348,6 +362,8 @@ class SimpleAccess(object):
         where married.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
@@ -378,6 +394,8 @@ class SimpleAccess(object):
         where married.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
@@ -467,6 +485,8 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date when the person's birth.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, gen.lib.Person.get_birth_ref)
 
     def birth_date_obj(self, person):
@@ -478,6 +498,8 @@ class SimpleAccess(object):
         @return: Returns the date when the person's birth.
         @rtype: L{gen.lib.Date}
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, gen.lib.Person.get_birth_ref)
 
     def birth_place(self, person):
@@ -489,6 +511,8 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the person's birth.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, gen.lib.Person.get_birth_ref)
 
     def death_date(self, person):
@@ -500,6 +524,8 @@ class SimpleAccess(object):
         @return: Returns a string indicating the date when the person's death.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, gen.lib.Person.get_death_ref)
 
     def death_date_obj(self, person):
@@ -511,6 +537,8 @@ class SimpleAccess(object):
         @return: Returns the date when the person's death.
         @rtype: L{gen.lib.Date}
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, gen.lib.Person.get_death_ref)
 
     def death_place(self, person):
@@ -522,6 +550,8 @@ class SimpleAccess(object):
         @return: Returns a string indicating the place of the person's death.
         @rtype: unicode
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, gen.lib.Person.get_death_ref)
 
     def event_place(self, event):
@@ -654,6 +684,8 @@ class SimpleAccess(object):
            as a parent.
         @rtype: list
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         
         if person:
@@ -671,6 +703,8 @@ class SimpleAccess(object):
            as a child.
         @rtype: list
         """
+        if type(person) in [str, unicode]: 
+            person = self.dbase.get_person_from_handle(person)
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         
         if person:
@@ -776,6 +810,18 @@ class SimpleAccess(object):
         if source:
             return source.get_author()
         return u''
+
+    def person(self, handle):
+        assert(type(handle) in [str, unicode])
+        return self.dbase.get_person_from_handle(handle)
+
+    def event(self, handle):
+        assert(type(handle) in [str, unicode])
+        return self.dbase.get_event_from_handle(handle)
+
+    def family(self, handle):
+        assert(type(handle) in [str, unicode])
+        return self.dbase.get_family_from_handle(handle)
 
 def by_date(event1, event2):
     """
