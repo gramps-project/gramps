@@ -231,6 +231,77 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
 
+    def dump_LDS_ordinance(self, db, objt, table, title, ord_sealed):
+        """
+        will dump the LDS Ordinance information for either
+        a person or a family ...
+
+        @param: db -- report database
+        @param: objt -- an individual or a family
+        @param: ird_sealed:
+                           True -- Parents
+                           False -- Spouse
+        """
+
+        # object LDS ordiannce list
+        objectldsord = objt.lds_ord_list
+        if objectldsord:
+            numberofords = len(objectldsord)
+
+            # if True, show Table Title for display_ind_families()?
+            if title:
+                trow = Html('tr', class_='TableTitle') + (
+                    Html('th', _('Family LDS Ordinance'), inline=True)
+                    )
+                table += trow
+
+            # begin LDS ordinance data rows
+            first = True
+
+            for row in range(1, (numberofords + 1)):
+
+                # get ordinance for this row
+                index = (row - 1) 
+                ord = objectldsord[index]
+
+                lds_ord_data = [
+                    (_('Type'),        ord.type2xml()),
+                    (_('Date'),        _dd.display(ord.get_date_object())),
+                    (_('Temple'),      ord.get_temple()),
+                    (_('Place'),       ReportUtils.place_name(db, ord.get_place_handle())),
+                    (_('Status'),      ord.get_status()),
+                    (_('Sealed to'),   ord.get_family_handle()) ]
+
+                # begin ordinance rows
+                trow = Html('tr')
+                table += trow
+
+                for col in range(1, (len(lds_ord_data) + 1)):
+
+                    # label is translatable for internationalism
+                    index = (col - 1)
+                    label = lds_ord_data[index][0]
+
+                    if col == len(lds_ord_data):
+                        label += _(' to Parents') if ord_sealed else _(' to Spouse')
+
+                    # actual column data
+                    value = lds_ord_data[index][1]
+                    value = value or '&nbsp;'
+
+                    # if first, create header row?
+                    if first:
+                        tcell = Html('th', label, class_='ColumnAttribute', inline=True)
+
+                    # table body row
+                    else:
+                        tcell = Html('td', value, class_='ColumnValue', inline=True)
+                    trow += tcell
+                first = False
+
+        # return table to its callers
+        return table
+
     def dump_source_references(self, db, sourcelist):
         """ Dump a list of source references """
 
@@ -1186,7 +1257,7 @@ class IndividualListPage(BasePage):
                             if birth.get_type() == EventType.BIRTH:
                                 tcell += birth_date
                             else:
-                                tcell += Html('em', birthdate)
+                                tcell += Html('em', birth_date)
                         else:
                             tcell += '&nbsp;'
                         trow += tcell
@@ -3234,7 +3305,7 @@ class IndividualPage(BasePage):
                 evt_role = event_ref.get_role()
                 txt = u"%(evt_name)s (%(evt_role)s)" % locals()
             txt = txt or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue EventType', inline=True)
+            trow += Html('td', txt, class_='ColumnValue', inline=True)
 
             # Date
             event_date = event.get_date_object()
@@ -3242,7 +3313,7 @@ class IndividualPage(BasePage):
                 txt = _dd.display(event_date)
             else:
                 txt = '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Date', inline=True)
+            trow += Html('td', txt, class_='ColumnValue', inline=True)
 
             # Place
             place_handle = event.get_place_handle()
@@ -3262,20 +3333,20 @@ class IndividualPage(BasePage):
             else:
                 place = None
             txt = place or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Place') 
+            trow += Html('td', txt, class_='ColumnValue') 
 
             # Description
             # Get the links in super script to the Source References section in the same page
             sref_links = self.get_citation_links(event.get_source_references())
             txt = ''.join(wrapper.wrap(event.get_description()))
             txt = txt or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Description', inline=True \
+            trow += Html('td', txt, class_='ColumnValue', inline=True \
                 if txt == '&nbsp;' else False)
 
             # Sources
             citation = self.get_citation_links(event.get_source_references())
             txt = citation or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue Source', inline=True \
+            trow += Html('td', txt, class_='ColumnValue', inline=True \
                 if txt == '&nbsp;' else False)
 
             # Notes
@@ -3283,7 +3354,7 @@ class IndividualPage(BasePage):
             # get the text and format it correctly
             notelist = event.get_note_list()
             notelist.extend(event_ref.get_note_list())
-            tcell = Html('td', class_='ColumnValue Notes')
+            tcell = Html('td', class_='ColumnValue')
             trow += tcell
             if not notelist:
                 tcell += '&nbsp;'
@@ -3319,7 +3390,7 @@ class IndividualPage(BasePage):
         # return address division to its caller
         return section
 
-    def display_lds_ordinance(self, obj, sealed=True):
+    def display_lds_ordinance(self, person, sealed=True):
         """
         display LDS information for a person or family
 
@@ -3330,7 +3401,7 @@ class IndividualPage(BasePage):
                        -- False = Spouse  
         """
 
-        ldsordlist = obj.get_lds_ord_list()
+        ldsordlist = person.get_lds_ord_list()
         if not ldsordlist:
             return None
 
@@ -3344,31 +3415,8 @@ class IndividualPage(BasePage):
             with Html('table', class_='infolist ldsinfo') as table: 
                 section += table
 
-                # begin table head
-                thead = Html('thead')
-                table += thead
-
-                # get ordinance header row
-                trow = write_ord_header(sealed)
-                thead += trow
-
-                # begin table body
-                tbody = Html('tbody')
-                table += tbody
-
-                for ord in ldsordlist:
-                    trow = write_ord_data_row(db, ord)
-                    tbody += trow
-
-            # notes
-            notelist = self.display_note_list(ord.get_note_list())
-            if notelist is not None:
-                section += notelist                    
-
-            # source references
-            sourcerefs = self.write_source_refs(ord.get_source_references())
-            if sourcerefs is not None:
-                section += sourcerefs 
+                # ump individual LDS ordinance list
+                self.dump_LDS_ordinance(db, self.person, table, False, True)
 
         # return section to its caller
         return section
@@ -3700,6 +3748,30 @@ class IndividualPage(BasePage):
                             for child_handle in childlist:
                                 ordered += self.display_child_link(child_handle)
 
+                    # family LDS ordinance list
+                    # table is passed in as a variable and returned back to it
+#                   self.dump_LDS_ordinance(db, family, table, True, False)
+
+                    # get family attributes
+                    attrlist = family.get_attribute_list()
+                    if attrlist:
+                        trow = Html('tr') + (
+                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                            Html('td', _('Attributes'), class_='ColumnAttribute', inline=True)
+                            )
+                        table += trow
+
+                        for attr in family.get_attribute_list():
+                            attrType = str(attr.get_type())
+                            if attrType:
+                                trow = Html('tr') + (
+                                    Html('td', '&nbsp;', class_='ColumnValue', inline=True),
+                                    Html('td', attrType, class_='ColumnValue', inline=True),
+                                    Html('td', attr.get_value(), class_='ColumnValue', inline=True)
+                                    )
+                                table += trow
+
         # return section to its caller
         return section
 
@@ -3756,89 +3828,9 @@ class IndividualPage(BasePage):
         if formatted_event is not None:
             trow = Html('tr') + (
                 Html('td', '&nbsp;', class_='ColumnType', inline=True),
-                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True) 
                 Html('td', formatted_event, class_='ColumnValue')
                 )
             table += trow
-
-        # family LDS ordiannce list
-        trow = write_ord_header(False) 
-        table += trow
-        
-        for ord in family.get_lds_ord_list():
-            trow = write_ord_data_row(db, ord)
-            table += trow
-
-            # get ordinance notes
-            notelist = ord.get_note_list()
-            if notelist:
-                trow = Html('tr') + (
-                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                    Html('td', _('Narrative'), class_='ColumnAttribute', inline=True)
-                    )
-                table += trow
-
-                for notehandle in notelist:
-                    note = db.get_note_from_handle(notehandle)
-                    if note:
-                        note_text = self.get_note_format(note)
-                        trow = Html('tr') + (
-                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                            Html('td', note_text, class_='ColumnValue Note', inline=True)
-                            )
-                        table += trow
-
-            # get ordinance source references
-            sourcerefs = ord.get_source_references()
-            if sourcerefs:
-                trow = Html('tr') + (
-                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                    Html('td', _('Source references'), class_='columnAttribute', inline=True)
-                    )
-                table += trow
-
-                srcrefs = self.dump_source_references(db, sourcelist)
-                trow += srcrefs 
-
-        # get attributes
-        attrlist = family.get_attribute_list()
-        if attrlist:
-            trow = Html('tr') + (
-                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                Html('td', _('Attributes'), class_='ColumnAttribute', inline=True)
-                )
-            table += trow
-
-            for attr in family.get_attribute_list():
-                attrType = str(attr.get_type())
-                if attrType:
-                    trow = Html('tr') + (
-                        Html('td', '&nbsp;', class_='ColumnValue', inline=True),
-                        Html('td', attrType, class_='ColumnValue', inline=True),
-                        Html('td', attr.get_value(), class_='ColumnValue', inline=True)
-                        )
-                    table += trow
-
-        # get family notes
-        notelist = family.get_note_list()
-        if notelist:
-
-            trow = Html('tr') + (
-                Html('td', _('Narrative'), class_='ColumnAttribute', inline=True)
-                )
-            table += trow
-
-            for notehandle in notelist:
-                trow = Html('tr')
-                table += trow
-
-                note = db.get_note_from_handle(notehandle)
-                if note:
-                    note_text = self.get_note_format(note)
-
-                    trow += Html('td', note_text, class_='ColumnValue')
 
         # return table to its caller
         return table
@@ -3901,8 +3893,7 @@ class IndividualPage(BasePage):
         trow = Html('tr')
 
         for section in header_row:
-            trow += Html('th', section, class_ = 'ColumnAttribute %s' 
-                % section, inline = True)
+            trow += Html('th', section, class_ = 'ColumnAttribute', inline = True)
 
         # return header row to its caller
         return trow
@@ -5221,41 +5212,6 @@ def add_birthdate(db, childlist):
         sorted_children.append((date_obj, child_handle))
 
     return sorted_children
-
-def write_ord_header(sealed):
-
-    ord_row = [_('Type'), _('Date'), _('Temple'), _('Place'), _('Status'),
-        _('Sealed to ') ]
-
-    # if True, then Parents else Spouse
-    ord_row[5] += 'Parents' if sealed else 'Spouse'
-
-    trow = Html('tr')
-    for column in ord_row:
-        trow += Html('th', column, class_='ColumnAttribute', inline=True)
-
-    # return table row to its callers
-    return trow
-
-def write_ord_data_row(db, ord):
-    """ will dump the ordinance information either person or family """
-
-    # begin table row
-    trow = Html('tr')
-
-    for val in [
-                ('Type',        ord.type2xml()),
-                ('Date',        _dd.display(ord.get_date_object())),
-                ('Temple',      ord.get_temple()),
-                ('Place',       ReportUtils.place_name(db, ord.get_place_handle())),
-                ('Status',      ord.get_status()),
-                ('Sealed',      ord.get_family_handle()) ]:
-
-        value = val[1] or '&nbsp;'
-        trow += Html('td', value, class_='ColumnValue %s' % val[0], inline=True)
- 
-    # return table row to its callers
-    return trow
 
 # -------------------------------------------
 #
