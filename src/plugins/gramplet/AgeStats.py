@@ -201,7 +201,7 @@ class AgeStatsGramplet(Gramplet):
     
     def compute_stats(self, hash):
         """ Returns the statistics of a dictionary of data """
-        print "compute_stats", hash
+        #print "compute_stats", hash
         hashkeys = sorted(hash)
         count = sum(hash.itervalues())
         sumval = sum(k * hash[k] for k in hash)
@@ -241,7 +241,7 @@ class AgeStatsGramplet(Gramplet):
         where the key is the age, and the value stored is the count.
         """
         # first, binify:
-        print "create_bargraph", hash
+        #print "create_bargraph", hash
         bin = [0] * (max_val/bin_size)
         for value, hash_value in hash.iteritems():
             bin[value/bin_size] += hash_value
