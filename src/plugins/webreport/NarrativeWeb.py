@@ -1699,7 +1699,7 @@ class PlacePage(BasePage):
             if self.create_media:
                 placegallery = self.display_additional_images_as_gallery(media_list)
                 if placegallery is not None:
-                    section += placegallery
+                    placedetail += placegallery
 
             # place notes
             notelist = self.display_note_list(place.get_note_list())
