@@ -231,73 +231,86 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
 
-    def dump_LDS_ordinance(self, db, objt, table, title, ord_sealed):
+    def dump_ordinance(self, db, ldsobj):
         """
         will dump the LDS Ordinance information for either
         a person or a family ...
 
-        @param: db -- report database
-        @param: objt -- an individual or a family
-        @param: ird_sealed:
-                           True -- Parents
-                           False -- Spouse
+        @param: db -- the database in use
+        @param: ldsobject -- LDS object -- either person or family
         """
+        objectldsord = ldsobj.lds_ord_list
+        if not objectldsord:
+            return None
+        numberofords = len(objectldsord)
 
-        # object LDS ordiannce list
-        objectldsord = objt.lds_ord_list
-        if objectldsord:
-            numberofords = len(objectldsord)
+        def create_LDS_header_row():
+            """ create the header row for this section """
+ 
+            # begin HTML row
+            trow = Html('tr')
 
-            # if True, show Table Title for display_ind_families()?
-            if title:
-                trow = Html('tr', class_='TableTitle') + (
-                    Html('th', _('Family LDS Ordinance'), inline=True)
-                    )
-                table += trow
+            for label, colclass in [
+                [_('Type'),         'LDSType' ],
+                [_('Date'),         'LDSDate' ],
+                [_('Temple'),       'LDSTemple' ],
+                [_('Place'),        'LDSPlace' ],
+                [_('Status'),       'LDSStatus' ],
+                [_('Sealed to '),   'LDSSealed'] ]:
 
-            # begin LDS ordinance data rows
-            first = True
+                trow += Html('th', label, class_='Column%s' % colclass, inline=True)
+
+            # return row back to module
+            return trow 
+ 
+        # begin LDS ordinance table and table head
+        with Html('table', class_='infolist ldsordlist') as table:
+            thead = Html('thead')
+            table += thead
+
+            # get LDS ord header row
+            thead += create_LDS_header_row()
+
+            # start table body
+            tbody = Html('tbody')
+            table += tbody
 
             for row in range(1, (numberofords + 1)):
 
                 # get ordinance for this row
-                index = (row - 1) 
-                ord = objectldsord[index]
+                ord = objectldsord[(row - 1)]
 
+                # 0 = column class, 1 = ordinance data
                 lds_ord_data = [
-                    (_('Type'),        ord.type2xml()),
-                    (_('Date'),        _dd.display(ord.get_date_object())),
-                    (_('Temple'),      ord.get_temple()),
-                    (_('Place'),       ReportUtils.place_name(db, ord.get_place_handle())),
-                    (_('Status'),      ord.get_status()),
-                    (_('Sealed to'),   ord.get_family_handle()) ]
+                    ['LDSType',    ord.type2xml()],
+                    ['LDSDate',    ord.get_date_object()],
+                    ['LDSTemple',  ord.get_temple()],
+                    ['LDSPlace',   ord.get_place_handle()],
+                    ['LDSStatus',  ord.get_status()],
+                    ['LDSSealed',  ord.get_family_handle()]
+                    ]
+
+                # format date as in user preferences
+                lds_ord_data[1][1] = _dd.display(lds_ord_data[1][1])
+
+                # get place name from database
+                lds_ord_data[3][1] = ReportUtils.place_name(db, lds_ord_data[3][1])
 
                 # begin ordinance rows
                 trow = Html('tr')
-                table += trow
+                tbody += trow
 
                 for col in range(1, (len(lds_ord_data) + 1)):
 
-                    # label is translatable for internationalism
-                    index = (col - 1)
-                    label = lds_ord_data[index][0]
-
-                    if col == len(lds_ord_data):
-                        label += _(' to Parents') if ord_sealed else _(' to Spouse')
+                    # column class for styling
+                    colclass = lds_ord_data[(col - 1)][0]
 
                     # actual column data
-                    value = lds_ord_data[index][1]
+                    value = lds_ord_data[(col - 1)][1]
                     value = value or '&nbsp;'
 
-                    # if first, create header row?
-                    if first:
-                        tcell = Html('th', label, class_='ColumnAttribute', inline=True)
-
-                    # table body row
-                    else:
-                        tcell = Html('td', value, class_='ColumnValue', inline=True)
-                    trow += tcell
-                first = False
+                    trow += Html('td', value, class_='Column%s' % colclass,
+                        inline=True if value == '&nbsp;' else False)
 
         # return table to its callers
         return table
@@ -3416,7 +3429,7 @@ class IndividualPage(BasePage):
                 section += table
 
                 # ump individual LDS ordinance list
-                self.dump_LDS_ordinance(db, self.person, table, False, True)
+#                self.dump_LDS_ordinance(db, self.person, table, False, True)
 
         # return section to its caller
         return section
@@ -3749,14 +3762,20 @@ class IndividualPage(BasePage):
                                 ordered += self.display_child_link(child_handle)
 
                     # family LDS ordinance list
-                    # table is passed in as a variable and returned back to it
-#                   self.dump_LDS_ordinance(db, family, table, True, False)
+                    famldslist = family.lds_ord_list
+                    if famldslist:
+                        trow = Html('tr') + (
+                            Html('td', '&nbsp;', class_='ColumnType', inline=True),
+                            Html('td', '&nbsp', class_='ColumnAttribute', inline=True),
+                            Html('td', self.dump_ordinance(db, family), class_='ColumnValue')
+                            )
+                        table += trow
 
                     # get family attributes
                     attrlist = family.get_attribute_list()
                     if attrlist:
                         trow = Html('tr') + (
-                            Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                            Html('td', '&nbsp;', class_='ColumnType', inline=True),
                             Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
                             Html('td', _('Attributes'), class_='ColumnAttribute', inline=True)
                             )
@@ -3819,23 +3838,15 @@ class IndividualPage(BasePage):
             else:
                 tcell += partner_name
 
-        # TODO: Fix this section of code
-        # there is a table started underneath a table cell???
+        # display family events; such as marriage and divorce events
         family_events = family.get_event_ref_list()
-
-        # here is where the mess happens...
-        formatted_event = self.format_event(family_events)
-        if formatted_event is not None:
+        if family_events: 
             trow = Html('tr') + (
                 Html('td', '&nbsp;', class_='ColumnType', inline=True),
                 Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                Html('td', self.format_event(family_events), class_='ColumnValue')
                 )
             table += trow
-
-            tcell = Html('td', class_='ColumnValue')
-            trow += tcell
-
-            tcell += formatted_event
 
         # return table to its caller
         return table
@@ -3904,9 +3915,6 @@ class IndividualPage(BasePage):
         return trow
 
     def format_event(self, eventlist):
-        if not eventlist:
-            return None
-
         db = self.report.database
 
         # begin eventlist table and table header
