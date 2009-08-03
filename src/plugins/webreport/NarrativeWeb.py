@@ -256,7 +256,8 @@ class BasePage(object):
                 [_('Temple'),       'LDSTemple' ],
                 [_('Place'),        'LDSPlace' ],
                 [_('Status'),       'LDSStatus' ],
-                [_('Sealed to '),   'LDSSealed'] ]:
+                [_('Sealed to '),   'LDSSealed'],
+                [_('Sources'),      'LDSSources'] ]:
 
                 trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
@@ -282,12 +283,13 @@ class BasePage(object):
 
                 # 0 = column class, 1 = ordinance data
                 lds_ord_data = [
-                    ['LDSType',    ord.type2xml()],
-                    ['LDSDate',    ord.get_date_object()],
-                    ['LDSTemple',  ord.get_temple()],
-                    ['LDSPlace',   ord.get_place_handle()],
-                    ['LDSStatus',  ord.get_status()],
-                    ['LDSSealed',  ord.get_family_handle()]
+                    ['LDSType',     ord.type2xml()],
+                    ['LDSDate',     ord.get_date_object()],
+                    ['LDSTemple',   ord.get_temple()],
+                    ['LDSPlace',    ord.get_place_handle()],
+                    ['LDSStatus',   ord.get_status()],
+                    ['LDSSealed',   ord.get_family_handle()],
+                    ['LDSSources',  ord.get_source_references()],
                     ]
 
                 # format date as in user preferences
@@ -295,6 +297,9 @@ class BasePage(object):
 
                 # get place name from database
                 lds_ord_data[3][1] = ReportUtils.place_name(db, lds_ord_data[3][1])
+
+                # get Source references
+                lds_ord_data[6][1] = self.get_citation_links(lds_ord_data[6][1])
 
                 # begin ordinance rows
                 trow = Html('tr')
@@ -314,6 +319,32 @@ class BasePage(object):
 
         # return table to its callers
         return table
+
+    def get_citation_links(self, source_ref_list):
+        gid_list = []
+        lnk = (self.report.cur_fname, self.page_title, self.gid)
+
+        for sref in source_ref_list:
+            handle = sref.get_reference_handle()
+            gid_list.append(sref)
+
+            if handle in self.src_list:
+                if lnk not in self.src_list[handle]:
+                    self.src_list[handle].append(lnk)
+            else:
+                self.src_list[handle] = [lnk]
+
+        text = ""
+        if len(gid_list):
+            text = text + " <sup>"
+            for ref in gid_list:
+                index, key = self.bibli.add_reference(ref)
+                id_ = "%d%s" % (index+1, key)
+                text = text + '<a href="#sref%s">%s</a>' % (id_, id_)
+            text = text + "</sup>"
+
+        # return citation list text to its callers
+        return text
 
     def dump_source_references(self, db, sourcelist):
         """ Dump a list of source references """
@@ -3928,31 +3959,6 @@ class IndividualPage(BasePage):
 
         # return table to its callers
         return table
-
-    def get_citation_links(self, source_ref_list):
-        gid_list = []
-        lnk = (self.report.cur_fname, self.page_title, self.gid)
-
-        for sref in source_ref_list:
-            handle = sref.get_reference_handle()
-            gid_list.append(sref)
-
-            if handle in self.src_list:
-                if lnk not in self.src_list[handle]:
-                    self.src_list[handle].append(lnk)
-            else:
-                self.src_list[handle] = [lnk]
-
-        text = ""
-        if len(gid_list):
-            text = text + " <sup>"
-            for ref in gid_list:
-                index, key = self.bibli.add_reference(ref)
-                id_ = "%d%s" % (index+1, key)
-                text = text + '<a href="#sref%s">%s</a>' % (id_, id_)
-            text = text + "</sup>"
-
-        return text
 
 class RepositoryListPage(BasePage):
     """

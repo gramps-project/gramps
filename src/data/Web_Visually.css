@@ -924,16 +924,9 @@ div#parents table.infolist tbody tr td.ColumnValue ol li {
 ----------------------------------------------------- */
 div#families table.infolist {
     margin-top:.5em;
+}
+div#Families table.infolist tbody tr td {
     background-color:#FFF;
-    width:100%;
-}
-div#Families table.infolist tr.TableTitle {
-    border-top:solid 2px #000;
-    border-bottom:solid 1px #000;
-}
-div#Families table.infolist tr.TableTitle td {
-    width:100%;
-    text-align:center;
 }
 div#families table.infolist tbody tr td.ColumnValue p {
     margin-top:0;
@@ -944,6 +937,42 @@ div#families table.infolist tbody tr td.ColumnValue ol {
 }
 div#families table.infolist tbody tr td.ColumnValue ol li {
     padding-bottom:.2em;
+}
+
+/* Subsection: LDS Ordinance
+------------------------------------------------------ */
+div#LDSOrdinance { }
+
+div#LDSOrdinance table.ldsordlist {
+    font-size:.35cm;
+}
+table.ldsordlist {
+    margin-bottom:.5em;
+}
+table.ldsordlist tbody tr td {
+    border-bottom:solid 1px #000;
+}
+table.ldsordlist tbody tr td.ColumnLDSType {
+    width:12%;
+}
+table.ldsordlist tbody tr td.ColumnLDSDate {
+    width:15%;
+}
+table.ldsordlist tbody tr td.ColumnLDSTemple {
+    width:10%;
+}
+table.ldsordlist tbody tr td.ColumnLDSPlace {
+    width:35%;
+}
+table.ldsordlist tbody tr td.ColumnLDSStatus {
+    width:8;
+}
+table.ldsordlist tbody tr td.ColumnLDSSealed {
+    width:25%;
+}
+table.ldsordlist tbody tr td.ColumnLDSSources {
+    width:7%;
+    margin-top:.2cm;
 }
 
 /* Subsections : Addresses
