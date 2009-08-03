@@ -66,7 +66,6 @@ Application options
   -l                                     List Family Trees
   -L                                     List Family Trees in Detail
   -u, --force-unlock                     Force unlock of family tree
-  -s, --server                           Start server in background
 """)
 
 #-------------------------------------------------------------------------
@@ -123,7 +122,6 @@ class ArgParser(object):
         self.list_more = False
         self.help = False
         self.force_unlock = False
-        self.server = None
 
         self.errors = []
         self.parse_args()
@@ -215,8 +213,6 @@ class ArgParser(object):
                 self.help = True
             elif option in ('-u', '--force-unlock'):
                 self.force_unlock = True
-            elif option in ('-s', '--server'):
-                self.server = value
         
         #clean options list
         cleandbg.reverse()
@@ -224,8 +220,7 @@ class ArgParser(object):
             del options[ind]
         
         if len(options) > 0 and self.open is None and self.imports == [] \
-                and not (self.list or self.list_more or self.help) \
-                and self.server is None:
+                and not (self.list or self.list_more or self.help):
             self.errors += [(_('Error parsing the arguments'), 
                         _("Error parsing the arguments: %s \n" 
                         "To use in the command-line mode," \
@@ -238,10 +233,6 @@ class ArgParser(object):
         """
         Determine whether we need a GUI session for the given tasks.
         """
-        # If we have explicitly put gramps in server mode:
-        if self.server is not None:
-            return False # we do not want the gui
-
         if self.errors: 
             #errors in argument parsing ==> give cli error, no gui needed
             return False

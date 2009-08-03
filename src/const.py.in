@@ -220,7 +220,6 @@ POPT_TABLE = [
     ("",        'l', None, None, 0, 'List Family Trees', ""),
     ("",        'L', None, None, 0, 'List Family Tree Details', ""),
     ("force-unlock", 'u', None, None, 0, 'Force unlock of family tree', ""),
-    ("server",  's', str, None, 0, 'Start GRAMPS server', "SERVER"),
 ]
 
 LONGOPTS = [
@@ -251,7 +250,6 @@ LONGOPTS = [
     "oaf-private",
     "open=",
     "options=",
-    "server=",
     "screen=", 
     "sm-client-id=", 
     "sm-config-prefix=", 
