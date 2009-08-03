@@ -3403,33 +3403,22 @@ class IndividualPage(BasePage):
         # return address division to its caller
         return section
 
-    def display_lds_ordinance(self, person, sealed=True):
+    def display_lds_ordinance(self, person):
         """
         display LDS information for a person or family
-
-        @param: obj -- an individual
-                    -- a family
-
-        @param: sealed -- True = Parents
-                       -- False = Spouse  
         """
 
-        ldsordlist = person.get_lds_ord_list()
+        ldsordlist = person.lds_ord_list
         if not ldsordlist:
             return None
-
         db = self.report.database
 
         # begin LDS Ordinance division and section title
         with Html('div', class_='subsection', id='LDSOrdinance') as section:
             section += Html('h4', _('Latter-Day Saints (LDS) Ordinance'), inline=True)
 
-            # begin LDS table
-            with Html('table', class_='infolist ldsinfo') as table: 
-                section += table
-
-                # ump individual LDS ordinance list
-#                self.dump_LDS_ordinance(db, self.person, table, False, True)
+            # ump individual LDS ordinance list
+            section += self.dump_ordinance(db, self.person)
 
         # return section to its caller
         return section
