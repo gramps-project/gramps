@@ -1,0 +1,6 @@
+This directory contains the catalog needed to use the GRAMPS glade files 
+in glade-3.
+
+Assuming you are in the root svn directory do:
+
+GLADE_CATALOG_PATH=src/glade/catalog glade-3
