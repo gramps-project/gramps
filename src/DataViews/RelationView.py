@@ -130,6 +130,7 @@ class RelationshipView(PageView.PersonNavView):
 
         self.color = gtk.TextView().style.white
         self.child = None
+        self.old_handle = None
 
         Config.client.notify_add("/apps/gramps/preferences/relation-shade",
                                  self.shade_update)
@@ -417,6 +418,14 @@ class RelationshipView(PageView.PersonNavView):
             return True
 
     def _change_person(self, obj):
+        if obj == self.old_handle:
+            #same object, keep present scroll position
+            old_vadjust = self.scroll.get_vadjustment().value
+            self.old_handle = obj
+        else:
+            #different object, scroll to top
+            old_vadjust = self.scroll.get_vadjustment().lower
+            self.old_handle = obj
         self.scroll.get_vadjustment().value = \
                             self.scroll.get_vadjustment().lower
         if self.redrawing:
@@ -503,6 +512,8 @@ class RelationshipView(PageView.PersonNavView):
         self.child.show_all()
 
         self.vbox.pack_start(self.child, False)
+        #reset scroll position as it was before
+        self.scroll.get_vadjustment().value = old_vadjust
         self.redrawing = False
         self.uistate.modify_statusbar(self.dbstate)
 
