@@ -977,19 +977,41 @@ table.ldsordlist tbody tr td.ColumnLDSSources {
 
 /* Subsections : Addresses
 ----------------------------------------------------- */
-div#addresses {
+div#Addresses {
     padding-bottom:0;
 }
-div#addresses table.infolist tbody tr td {
+div#Addresses table.infolist {
+    font-size:.35cm;
+    background-color:#FFF;
+}
+div#Addresses table.infolist tbody tr td {
+    border-bottom:solid 1px #000;
     padding-top:.4em;
     padding-bottom:.4em;
 }
-div#addresses table.infolist tbody tr td.ColumnAttribute {
-    width:30%;
-    border-bottom:solid 1px #453619;
+div#Addresses table.infolist tbody tr td.ColumnDate {
+    width:15%;
 }
-div#addresses table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #453619;
+div#Addresses table.infolist tbody tr td.ColumnStreetAddress {
+    width:30%;
+}
+div#Addresses table.infolist tbody tr td.ColumnCity {
+    width:8%;
+}
+div#Addresses table.infolist tbody tr td.ColumnCounty {
+    with:8%;
+}
+div#Addresses table.infolist tbody tr td.ColumnState {
+    width:12%;
+}
+div#Addresses table.infolist tbody tr td.ColumnCntry {
+    width:5%;
+}
+div#Addresses table.infolist tbody tr td.ColumnPostalcode {
+    width:10%;
+}
+div#Addresses table.infolist tbody tr td.ColumnPhone {
+    width:15%;
 }
 
 /* Subsections : Gallery

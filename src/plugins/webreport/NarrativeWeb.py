@@ -237,7 +237,7 @@ class BasePage(object):
         a person or a family ...
 
         @param: db -- the database in use
-        @param: ldsobject -- LDS object -- either person or family
+        @param: ldsobject -- either person or family
         """
         objectldsord = ldsobj.lds_ord_list
         if not objectldsord:
@@ -476,11 +476,32 @@ class BasePage(object):
                                  False -- person
         """
 
-        if len(obj.get_address_list()) == 0:
-            return None
+        def create_address_header(spec):
+            """ create header row for address """
+
+            trow = Html('tr')
+            addr_header = [
+                          [_('Date'),             'Date'],
+                          [_('Street'),           'StreetAddress'],    
+                          [_('City'),             'City'],
+                          [_('County'),           'County'],
+                          [_('State/ Province'),  'State'],
+                          [_('Cntry'),            'Cntry'],
+                          [_('Postal Code'),      'Postalcode'],
+                          [_('Phone'),            'Phone'] ]
+
+            # if spec = True -- an individual's address else repository
+            if spec:
+                addr_header.append([_('Sources'),      'Sources'])
+
+            for (label, colclass) in addr_header:  
+                trow += Html('th', label, class_='Column%s' % colclass, inline=True)
+
+            # return table header row back to module
+            return trow 
 
         # begin summaryarea division
-        with Html('div', id='summaryarea') as summaryarea:
+        with Html('div', id='summaryarea') as summaryarea: 
 
             # begin address table
             with Html('table', class_='infolist repolist') as table:
@@ -490,20 +511,8 @@ class BasePage(object):
                 thead = Html('thead')
                 table += thead
 
-                trow = Html('tr')
-                thead += trow
-
-                for (label, colclass) in [
-                                          (_('Date'),             'date'),
-                                          (_('Street'),           'streetaddress'),    
-                                          (_('City'),             'city'),
-                                          (_('County'),           'county'),
-                                          (_('State/ Province'),  'state'),
-                                          (_('Country'),          'country') ,
-                                          (_('Postal Code'),      'postalcode'),
-                                          (_('Phone'),            'phone') ]:
-
-                    trow += Html('th', label, class_='ColumnAttribute %s' % colclass, inline=True)
+                # add header row
+                thead += create_address_header(spec)  
                     
                 # begin table body
                 tbody = Html('tbody')
@@ -515,39 +524,35 @@ class BasePage(object):
                     trow = Html('tr')
                     tbody += trow
 
-                    date = _dd.display(address.get_date_object())
+                    addrcollist = [
+                        ['Date',    address.get_date_object()],
+                        ['Street',  address.get_street()],
+                        ['City',    address.get_city()],
+                        ['County',  address.get_county()],
+                        ['State',   address.get_state()],
+                        ['Cntry',   address.get_country()],
+                        ['Postal',  address.get_postal_code()],
+                        ['Phone',   address.get_phone()] ]
 
-                    for (label, value) in [
-                                           (_('date'),            date),
-                                           (_('streetaddress'),   address.get_street()),
-                                           (_('city'),            address.get_city()),
-                                           (_('county'),          address.get_county()),
-                                           (_('State'),           address.get_state()),
-                                           (_('country'),         address.get_country()),
-                                           (_('postalcode'),      address.get_postal_code()),
-                                           (_('phone'),           address.get_phone()) ]:
+                    # date as listed in preferences
+                    addrcollist[0][1] = _dd.display(addrcollist[0][1])
 
-                        tcell = Html('td', class_='ColumnValue %s' % label, inline=True)
-                        trow += tcell
+                    # get source citation list
+                    if spec:
+                        addrcollist.append([_('Sources'),  address.get_source_references()])
+                        addrcollist[8][1] = self.get_citation_links(addrcollist[8][1])
 
-                        if value:
-                            tcell += value
-                        else:
-                            tcell += '&nbsp;' 
+                    for (colclass, data) in addrcollist:  
+
+                        data = data or '&nbsp;' 
+                        trow += Html('td', data, class_='Column%s' % colclass, 
+                            inline=True if data == '&nbsp;' else False)
 
                     # address: note list
                     notelist = self.display_note_list(address.get_note_list())
                     if notelist is not None:
                         summaryarea += notelist
                    
-                    # address: source references
-                    # if True, then an individual's address
-                    # if False, then a repositories address
-                    if spec:
-                        sourcerefs = self.write_source_refs(address.get_source_references())
-                        if sourcerefs is not None:
-                            summaryarea += sourcerefs
-
         # return summaryarea division to its callers
         return summaryarea
 
