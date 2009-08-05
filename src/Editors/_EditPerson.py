@@ -167,9 +167,7 @@ class EditPerson(EditPrimary):
     def _connect_signals(self):
         """
         Connect any signals that need to be connected. 
-        
         Called by the init routine of the base class (_EditPrimary).
-        
         """
         self.define_cancel_button(self.top.get_object("button15"))
         self.define_ok_button(self.top.get_object("ok"), self.save)
@@ -182,6 +180,13 @@ class EditPerson(EditPrimary):
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('person-rebuild', self._do_close)
+        self._add_db_signal('person-delete', self.check_for_close)
         self._add_db_signal('family-rebuild', self.family_change)
         self._add_db_signal('family-delete', self.family_change)
         self._add_db_signal('family-update', self.family_change)
@@ -408,7 +413,6 @@ class EditPerson(EditPrimary):
         self._setup_notebook_tabs(notebook)
         notebook.show_all()
         self.top.get_object('vbox').pack_start(notebook, True)
-
 
     def _changed_name(self, obj):
         """

@@ -92,6 +92,14 @@ class EditSource(EditPrimary):
         self.define_cancel_button(self.glade.get_object('cancel'))
         self.define_help_button(self.glade.get_object('help'))
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('source-rebuild', self._do_close)
+        self._add_db_signal('source-delete', self.check_for_close)
+
     def _setup_fields(self):
         self.author = MonitoredEntry(self.glade.get_object("author"),
                                      self.obj.set_author, self.obj.get_author,

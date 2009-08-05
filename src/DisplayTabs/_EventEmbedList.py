@@ -39,13 +39,14 @@ import Errors
 from DdTargets import DdTargets
 from _GroupEmbeddedList import GroupEmbeddedList
 from _EventRefModel import EventRefModel
+from gui.dbguielement import DbGUIElement
 
 #-------------------------------------------------------------------------
 #
 # EventEmbedList
 #
 #-------------------------------------------------------------------------
-class EventEmbedList(GroupEmbeddedList):
+class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
     _HANDLE_COL = 7
     _DND_TYPE   = DdTargets.EVENTREF
@@ -86,9 +87,55 @@ class EventEmbedList(GroupEmbeddedList):
         self.obj = obj
         self._groups = []
         self._data = []
+        DbGUIElement.__init__(self, dbstate.db)
         GroupEmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'), 
                               build_model, share_button=True, 
                               move_buttons=True)
+    
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        #note: event-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+           {'event-update': self.event_change,  #change to an event we track
+            'event-delete': self.event_delete,  #delete of event we track
+           })
+        self.callman.connect_all(keys=['event'])
+
+    def event_change(self, *obj):
+        """
+        Callback method called when a tracked event changes (description
+        changes, source added, ...)
+        Note that adding an event 
+        """
+        self.rebuild_callback()
+    
+    def event_delete(self, obj):
+        """
+        Callback method called when a tracked event is deleted. 
+        There are two possibilities: 
+        * a tracked non-workgroup event is deleted, just rebuilding the view  
+            will correct this.
+        * a workgroup event is deleted. The event must be removed from the obj
+            so that no inconsistent data is shown.
+        """
+        for handle in obj:
+            refs = self.get_data()[self._WORKGROUP]
+            ref_list = [eref.ref for eref in refs]
+            indexlist = []
+            last = 0
+            while True:
+                try:
+                    last = ref_list.index(handle)
+                    indexlist.append(last)
+                except ValueError:
+                    break
+            #remove the deleted workgroup events from the object
+            for index in indexlist.reverse():
+                del refs[index]
+        #now rebuild the display tab
+        self.rebuild_callback()
 
     def get_ref_editor(self):
         from Editors import EditFamilyEventRef
@@ -118,6 +165,10 @@ class EventEmbedList(GroupEmbeddedList):
                 if mdata:
                     self._groups.append((mhandle, self._MOTHNAME))
                     self._data.append(mdata)
+            #we register all events that need to be tracked
+            for group in self._data:
+                self.callman.register_handles(
+                                    {'event': [eref.ref for eref in group]})
             self.changed = False
 
         return self._data
@@ -195,10 +246,17 @@ class EventEmbedList(GroupEmbeddedList):
     def object_added(self, reference, primary):
         reference.ref = primary.handle
         self.get_data()[self._WORKGROUP].append(reference)
+        self.callman.register_handles({'event': [primary.handle]}) 
         self.changed = True
         self.rebuild()
 
     def object_edited(self, ref, event):
+        """
+        Called as callback after eventref has been edited. 
+        Note that if the event changes too (so not only the ref data), then 
+        an event-update signal from the database will also be raised, and the
+        rebuild done here will not be needed. There is no way to avoid this ...
+        """
         self.changed = True
         self.rebuild()
 

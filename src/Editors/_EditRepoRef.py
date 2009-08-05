@@ -83,7 +83,15 @@ class EditRepoRef(EditReference):
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_object('cancel'))
-        
+
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('repository-rebuild', self.close)
+        self._add_db_signal('repository-delete', self.check_for_close)
+
     def _setup_fields(self):
         self.callno = MonitoredEntry(
             self.top.get_object("call_number"),

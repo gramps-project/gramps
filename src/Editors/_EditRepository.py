@@ -148,6 +148,14 @@ class EditRepository(EditPrimary):
         self.define_cancel_button(self.glade.get_object('cancel'))
         self.define_ok_button(self.glade.get_object('ok'), self.save)
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('repository-rebuild', self._do_close)
+        self._add_db_signal('repository-delete', self.check_for_close)
+
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():

@@ -495,7 +495,8 @@ class EmbeddedList(ButtonTab):
         """
         The view must be remade when data changes outside this tab.
         Use this method to connect to after a db change. It makes sure the 
-        data is obtained again from db and the view rebuild
+        data is obtained again from the present object and the db what is not
+        present in the obj, and the view rebuild
         """
         self.changed = True
         self.rebuild()

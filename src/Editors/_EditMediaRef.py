@@ -475,6 +475,14 @@ class EditMediaRef(EditReference):
         self.define_cancel_button(self.top.get_object('button84'))
         self.define_ok_button(self.top.get_object('button82'),self.save)
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('media-rebuild', self.close)
+        self._add_db_signal('media-delete', self.check_for_close)
+
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and inserts them into the main

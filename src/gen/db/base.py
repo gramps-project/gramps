@@ -417,6 +417,10 @@ class GrampsDbBase(Callback):
         """
         Notify clients that the data has changed significantly, and that all
         internal data dependent on the database should be rebuilt.
+        Note that all rebuild signals on all objects are emitted at the same
+        time. It is correct to assume that this is always the case.
+        TODO: it might be better to replace these rebuild signals by one single
+                database-rebuild signal.
         """
         self.emit('person-rebuild')
         self.emit('family-rebuild')

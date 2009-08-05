@@ -226,7 +226,15 @@ class EditNote(EditPrimary):
         self.define_ok_button(self.top.get_object('ok'), self.save)
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_help_button(self.top.get_object('help'))
-    
+
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('note-rebuild', self._do_close)
+        self._add_db_signal('note-delete', self.check_for_close)
+
     def _create_tabbed_pages(self):
         """Create the notebook tabs and inserts them into the main window."""
         notebook = self.top.get_object("note_notebook")

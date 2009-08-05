@@ -129,7 +129,15 @@ class EditChildRef(EditSecondary):
         self.define_ok_button(self.ok_button, self.save)
         self.edit_button.connect('button-press-event', self.edit_child)
         self.edit_button.connect('key-press-event', self.edit_child)
+    
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
         self._add_db_signal('person-update', self.person_change)
+        self._add_db_signal('person-rebuild', self.close)
+        self._add_db_signal('person-delete', self.check_for_close)
 
     def _create_tabbed_pages(self):
         """
@@ -184,6 +192,15 @@ class EditChildRef(EditSecondary):
         if self.callback:
             self.callback(self.obj)
         self.close()
+
+    def check_for_close(self, handles):
+        """
+        Callback method for delete signals. 
+        If there is a delete signal of the primary object we are editing, the
+        editor (and all child windows spawned) should be closed
+        """
+        if self.obj.ref in handles:
+            self.close()
 
 def button_activated(event, mouse_button):
     if (event.type == gtk.gdk.BUTTON_PRESS and \

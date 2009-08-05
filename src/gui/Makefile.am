@@ -10,6 +10,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/gui
 
 pkgdata_PYTHON = \
 	__init__.py \
+	dbguielement.py \
 	dbloader.py \
 	dbman.py \
 	grampsgui.py \

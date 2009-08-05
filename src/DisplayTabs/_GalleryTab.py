@@ -46,6 +46,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 from gui.utils import open_file_with_default_application
+from gui.dbguielement import DbGUIElement
 import gen.lib
 import Utils
 import ThumbNails
@@ -67,7 +68,7 @@ def make_launcher(path):
 # GalleryTab
 #
 #-------------------------------------------------------------------------
-class GalleryTab(ButtonTab):
+class GalleryTab(ButtonTab, DbGUIElement):
 
     _DND_TYPE   = DdTargets.MEDIAREF
     _DND_EXTRA  = DdTargets.URI_LIST
@@ -75,8 +76,11 @@ class GalleryTab(ButtonTab):
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
         self.iconlist = gtk.IconView()
         ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True)
+        DbGUIElement.__init__(self, dbstate.db)
         self.track_ref_for_deletion("iconlist")
         self.media_list = media_list
+        self.callman.register_handles({'media': [mref.ref for mref 
+                                                          in self.media_list]})
         self.update = update
 
         self._set_dnd()
@@ -84,11 +88,16 @@ class GalleryTab(ButtonTab):
         self.rebuild()
         self.show_all()
     
-    def connect_db_signals(self):
-        #connect external remove/change of object to rebuild of grampstab
-        self._add_db_signal('media-delete', self.media_delete)
-        self._add_db_signal('media-rebuild', self.rebuild)
-        self._add_db_signal('media-update', self.media_update)
+    def _connect_db_signals(self):
+        """
+        Implement base class DbGUIElement method
+        """
+        #note: media-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+           {'media-delete': self.media_delete,  # delete a mediaobj we track
+            'media-update': self.media_update,  # change a mediaobj we track
+           })
+        self.callman.connect_all(keys=['media'])
 
     def double_click(self, obj, event):
         """
@@ -259,12 +268,13 @@ class GalleryTab(ButtonTab):
     def add_callback(self, media_ref, media):
         media_ref.ref = media.handle
         self.get_data().append(media_ref)
+        self.callman.register_handles({'media': [media.handle]})
         self.changed = True
         self.rebuild()
 
     def share_button_clicked(self, obj):
         """
-        Function called when the Add button is clicked. 
+        Function called when the Share button is clicked. 
         
         This function should be overridden by the derived class.
         

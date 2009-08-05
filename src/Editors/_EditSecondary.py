@@ -24,8 +24,9 @@
 import ManagedWindow
 import GrampsDisplay
 import Config
+from gui.dbguielement import DbGUIElement
 
-class EditSecondary(ManagedWindow.ManagedWindow):
+class EditSecondary(ManagedWindow.ManagedWindow, DbGUIElement):
 
     def __init__(self, state, uistate, track, obj, callback=None):
         """Create an edit window.  Associates a person with the window."""
@@ -35,9 +36,10 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         self.uistate = uistate
         self.db = state.db
         self.callback = callback
-        self.signal_keys = []
+        self.__tabs = []
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)
+        DbGUIElement.__init__(self, self.db)
 
         self._local_init()
         self._set_size()
@@ -60,9 +62,6 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         """
         pass
 
-    def _add_db_signal(self, name, callback):
-        self.signal_keys.append(self.db.connect(name,callback))
-        
     def _connect_signals(self):
         pass
 
@@ -101,8 +100,8 @@ class EditSecondary(ManagedWindow.ManagedWindow):
             notebook.set_current_page(page_no)
 
     def _add_tab(self, notebook,page):
+        self.__tabs.append(page)
         notebook.insert_page(page, page.get_tab_widget())
-        page.add_db_signal_callback(self._add_db_signal)
         page.label.set_use_underline(True)
         return page
 
@@ -121,7 +120,18 @@ class EditSecondary(ManagedWindow.ManagedWindow):
                                                                section))
 
     def close(self,*obj):
-        for key in self.signal_keys:
-            self.db.disconnect(key)
+        self._cleanup_db_connects()
         self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)
+
+    def _cleanup_db_connects(self):
+        """
+        All connects that happened to signals of the db must be removed on 
+        closed. This implies two things:
+        1. The connects on the main view must be disconnected
+        2. Connects done in subelements must be disconnected
+        """
+        #cleanup callbackmanager of this editor
+        self._cleanup_callbacks()
+        for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
+            tab._cleanup_callbacks()

@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.dbguielement import DbGUIElement
 import Errors
 from DdTargets import DdTargets
 from _RepoRefModel import RepoRefModel
@@ -43,7 +44,7 @@ from _EmbeddedList import EmbeddedList
 # RepoEmbedList
 #
 #-------------------------------------------------------------------------
-class RepoEmbedList(EmbeddedList):
+class RepoEmbedList(EmbeddedList, DbGUIElement):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.REPOREF
@@ -72,6 +73,20 @@ class RepoEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('_Repositories'), RepoRefModel, 
                               share_button=True, move_buttons=True)
+        DbGUIElement.__init__(self, dbstate.db)
+        self.callman.register_handles({'repository': [rref.ref for rref 
+                                                          in self.obj]})
+ 
+    def _connect_db_signals(self):
+        """
+        Implement base class DbGUIElement method
+        """
+        #note: repository-rebuild closes the editors, so no need to connect
+        self.callman.register_callbacks(
+           {'repository-delete': self.repo_delete,  # delete a repo we track
+            'repository-update': self.repo_update,  # change a repo we track
+           })
+        self.callman.connect_all(keys=['repository'])
 
     def get_icon_name(self):
         return 'gramps-repository'
@@ -135,6 +150,7 @@ class RepoEmbedList(EmbeddedList):
     def add_callback(self, value):
         value[0].ref = value[1].handle
         self.get_data().append(value[0])
+        self.callman.register_handles({'repository': [value[1].handle]})
         self.changed = True
         self.rebuild()
 
@@ -164,3 +180,39 @@ class RepoEmbedList(EmbeddedList):
     def edit_callback(self, name):
         self.changed = True
         self.rebuild()
+
+    def repo_delete(self, del_repo_handle_list):
+        """
+        Outside of this tab repo objects have been deleted. Check if tab
+        and object must be changed.
+        Note: delete of object will cause reference on database to be removed,
+              so this method need not do this
+        """
+        rebuild = False
+        ref_handles = [rref.ref for rref in self.obj]
+        for handle in del_repo_handle_list :
+            while 1:
+                pos = None
+                try :
+                    pos = ref_handles.index(handle)
+                except ValueError :
+                    break
+            
+                if pos is not None:
+                    #oeps, we need to remove this reference, and rebuild tab
+                    del self.obj[pos]
+                    del ref_handles[pos]
+                    rebuild = True
+        if rebuild:
+            self.rebuild()
+
+    def repo_update(self, upd_repo_handle_list):
+        """
+        Outside of this tab repo objects have been changed. Check if tab
+        and object must be changed.
+        """
+        ref_handles = [rref.ref for rref in self.obj]
+        for handle in upd_repo_handle_list :
+            if handle in ref_handles:
+                self.rebuild()
+                break

@@ -107,6 +107,23 @@ class EditPersonRef(EditSecondary):
         self.define_ok_button(self.top.get_object('ok'),self.save)
         self.top.get_object('select').connect('clicked',self._select_person)
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('person-rebuild', self.close)
+        self._add_db_signal('person-delete', self.check_for_close)
+
+    def check_for_close(self, handles):
+        """
+        Callback method for delete signals. 
+        If there is a delete signal of the primary object we are editing, the
+        editor (and all child windows spawned) should be closed
+        """
+        if self.obj.ref in handles:
+            self.close()
+
     def _select_person(self, obj):
         from Selectors import selector_factory
         SelectPerson = selector_factory('Person')

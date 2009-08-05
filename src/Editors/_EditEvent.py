@@ -116,6 +116,14 @@ class EditEvent(EditPrimary):
         self.ok_button.set_sensitive(not self.db.readonly)
         self.ok_button.connect('clicked', self.save)
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('event-rebuild', self._do_close)
+        self._add_db_signal('event-delete', self.check_for_close)
+
     def _setup_fields(self):
 
         # place, select_place, add_del_place

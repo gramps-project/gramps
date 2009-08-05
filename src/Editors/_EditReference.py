@@ -36,6 +36,7 @@ import gtk
 import ManagedWindow
 from DisplayTabs import GrampsTab
 import Config
+from gui.dbguielement import DbGUIElement
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +86,7 @@ class RefTab(GrampsTab):
 # EditReference class
 #
 #-------------------------------------------------------------------------
-class EditReference(ManagedWindow.ManagedWindow):
+class EditReference(ManagedWindow.ManagedWindow, DbGUIElement):
 
     def __init__(self, state, uistate, track, source, source_ref, update):
         self.db = state.db
@@ -95,10 +96,11 @@ class EditReference(ManagedWindow.ManagedWindow):
         self.source = source
         self.source_added = False
         self.update = update
-        self.signal_keys = []
         self.warn_box = None
+        self.__tabs = []
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, source_ref)
+        DbGUIElement.__init__(self, self.db)
 
         self._local_init()
         self._set_size()
@@ -155,14 +157,11 @@ class EditReference(ManagedWindow.ManagedWindow):
             notebook.set_current_page(page_no)
 
     def _add_tab(self, notebook,page):
+        self.__tabs.append(page)
         notebook.insert_page(page, page.get_tab_widget())
-        page.add_db_signal_callback(self._add_db_signal)
         page.label.set_use_underline(True)
         return page
 
-    def _add_db_signal(self, name, callback):
-        self.signal_keys.append(self.db.connect(name,callback))
-        
     def _connect_signals(self):
         pass
 
@@ -190,6 +189,15 @@ class EditReference(ManagedWindow.ManagedWindow):
         self._cleanup_on_exit()
         self.close(obj)
 
+    def check_for_close(self, handles):
+        """
+        Callback method for delete signals. 
+        If there is a delete signal of the primary object we are editing, the
+        editor (and all child windows spawned) should be closed
+        """
+        if self.source.get_handle() in handles:
+            self.close()
+
     def define_help_button(self, button, webpage='', section=''):
         import GrampsDisplay
         button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
@@ -200,6 +208,17 @@ class EditReference(ManagedWindow.ManagedWindow):
         pass
 
     def close(self,*obj):
-        for key in self.signal_keys:
-            self.db.disconnect(key)
+        self._cleanup_db_connects()
         ManagedWindow.ManagedWindow.close(self)
+
+    def _cleanup_db_connects(self):
+        """
+        All connects that happened to signals of the db must be removed on 
+        closed. This implies two things:
+        1. The connects on the main view must be disconnected
+        2. Connects done in subelements must be disconnected
+        """
+        #cleanup callbackmanager of this editor
+        self._cleanup_callbacks()
+        for tab in [tab for tab in self.__tabs if hasattr(tab, 'callman')]:
+            tab._cleanup_callbacks()

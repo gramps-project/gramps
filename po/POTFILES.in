@@ -56,11 +56,10 @@ src/cli/grampscli.py
 src/gen/__init__.py
 
 # gen utils API
-src/gen/utils/dbutils.py
-src/gen/utils/progressmon.py
 src/gen/utils/__init__.py
-src/gen/utils/dbutils.py
 src/gen/utils/callback.py
+src/gen/utils/callman.py
+src/gen/utils/dbutils.py
 src/gen/utils/longop.py
 src/gen/utils/progressmon.py
 
@@ -182,6 +181,7 @@ src/gen/plug/docbackend/docbackend.py
 
 # gui - GUI code
 src/gui/__init__.py
+src/gui/dbguielement.py
 src/gui/dbloader.py
 src/gui/dbman.py
 src/gui/grampsgui.py

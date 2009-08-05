@@ -86,6 +86,16 @@ class EditSourceRef(EditReference):
         self.define_cancel_button(self.top.get_object('cancel'))
         self.define_help_button(self.top.get_object("help"))
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('source-rebuild', self.close)
+        self._add_db_signal('source-delete', self.check_for_close)
+        #note: at the moment, a source cannot be updated while an editor with
+        #   that source shown is open. So no need to connect to source-update
+
     def _setup_fields(self):
         self.ref_privacy = PrivacyButton(
             self.top.get_object('privacy'), self.source_ref, self.db.readonly)

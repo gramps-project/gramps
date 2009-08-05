@@ -445,47 +445,92 @@ class EditFamily(EditPrimary):
 
     def _local_init(self):
         self.build_interface()
-
-        self._add_db_signal('family-update', self.check_for_family_change)
-        self._add_db_signal('family-delete', self.check_for_close)
-
-        # Add a signal pick up changes to events, bug #1329
-        self._add_db_signal('event-update', self.event_updated)
         
         self.added = self.obj.handle is None
         if self.added:
             self.obj.handle = Utils.create_id()
             
         self.load_data()
-
-    def check_for_close(self, handles):
-        if self.obj.get_handle() in handles:
-            self._do_close()
+    
+    def _connect_db_signals(self):
+        """
+        implement from base class DbGUIElement
+        Register the callbacks we need.
+        Note:
+            * we do not connect to person-delete, as a delete of a person in
+                the family outside of this editor will cause a family-update
+                signal of this family
+        """
+        self.callman.register_handles({'family': [self.obj.get_handle()]})
+        self.callman.register_callbacks(
+           {'family-update': self.check_for_family_change,
+            'family-delete': self.check_for_close,
+            'family-rebuild': self._do_close,
+            'event-update': self.topdata_updated,  # change eg birth event fath
+            'event-rebuild': self.topdata_updated,
+            'event-delete': self.topdata_updated,  # delete eg birth event fath
+            'person-update': self.topdata_updated, # change eg name of father
+            'person-rebuild': self._do_close,
+           })
+        self.callman.connect_all(keys=['family', 'event', 'person'])
 
     def check_for_family_change(self, handles):
-
-        # check to see if the handle matches the current object
+        """
+        Callback for family-update signal
+        1. This method checks to see if the family shown has been changed. This 
+            is possible eg in the relationship view. If the family was changed, 
+            the view is refreshed and a warning dialog shown to indicate all 
+            changes have been lost.
+            If a source/note/event is deleted, this method is called too. This
+            is unfortunate as the displaytabs can track themself a delete and
+            correct the view for this. Therefore, these tabs are not rebuild.
+            Conclusion: this method updates so that remove/change of parent or
+            remove/change of children in relationship view reloads the family
+            from db.
+        2. Changes in other families are of no consequence to the family shown
+        """ 
         if self.obj.get_handle() in handles:
+            #rebuild data
+            ## Todo: Gallery and note tab are not rebuild ??
+            objreal = self.dbstate.db.get_family_from_handle(
+                                                        self.obj.get_handle())
+            #update selection of data that we obtain from database change:
+            maindatachanged = (self.obj.gramps_id != objreal.gramps_id or
+                self.obj.father_handle != objreal.father_handle or
+                self.obj.mother_handle != objreal.mother_handle or
+                self.obj.private != objreal.private or
+                self.obj.type != objreal.type or
+                self.obj.marker != objreal.marker or
+                self.obj.child_ref_list != objreal.child_ref_list)
+            if maindatachanged:
+                self.obj.gramps_id = objreal.gramps_id
+                self.obj.father_handle = objreal.father_handle
+                self.obj.mother_handle = objreal.mother_handle
+                self.obj.private = objreal.private
+                self.obj.type = objreal.type
+                self.obj.marker = objreal.marker
+                self.obj.child_ref_list = objreal.child_ref_list
+                self.reload_people()
 
-            self.obj = self.dbstate.db.get_family_from_handle(self.obj.get_handle())
-            self.reload_people()
-            self.event_list.rebuild()
-            self.source_list.rebuild()
-            self.attr_list.data = self.obj.get_attribute_list()
-            self.attr_list.rebuild()
-            self.lds_embed.data = self.obj.get_lds_ord_list()
-            self.lds_embed.rebuild()
-
+            # No matter why the family changed (eg delete of a source), we notify
+            # the user
             WarningDialog(
-                _("Family has changed"),
-                _("The family you are editing has changed. To make sure that the "
-                  "database is not corrupted, GRAMPS has updated the family to "
-                  "reflect these changes. Any edits you have made may have been lost."))
+            _("Family has changed"),
+            _("The %(object)s you are editing has changed outside this editor." 
+              " This can be due to a change in one of the main views, for "
+              "example a source used here is deleted in the source view.\n"
+              "To make sure the information shown is still correct, the "
+              "data shown has been updated. Some edits you have made may have"
+              " been lost.") % {'object': _('family')}, parent=self.window)
 
-    def event_updated(self, obj):
+    def topdata_updated(self, *obj):
+        """
+        Callback method called if data shown in top part of family editor 
+        (a parent, birth/death event of parent) changes
+        Note: person events shown in the event list are not tracked, the 
+              tabpage itself tracks it
+        """
         self.load_data()
-        #place in event might have changed, or person event shown in the list
-        self.event_list.rebuild_callback()
 
     def show_buttons(self):
         """
@@ -617,6 +662,10 @@ class EditFamily(EditPrimary):
             )
 
     def load_data(self):
+        """
+        Show top data of family editor: father and mother info
+        and set self.phandles with all person handles in the family
+        """
         fhandle = self.obj.get_father_handle()
         self.update_father(fhandle)
 
@@ -839,7 +888,8 @@ class EditFamily(EditPrimary):
                               'in the database. If you save, you will create '
                               'a duplicate family. It is recommended that '
                               'you cancel the editing of this window, and '
-                              'select the existing family'))
+                              'select the existing family'),
+                            parent=self.window)
 
     def edit_father(self, obj, event):
         handle = self.obj.get_father_handle()
@@ -871,10 +921,17 @@ class EditFamily(EditPrimary):
             name = "%s [%s]" % (name_displayer.display(person),
                                 person.gramps_id)
             birth = ReportUtils.get_birth_or_fallback(db, person)
+            self.callman.register_handles({'person': [handle]})
+            if birth:
+                #if event changes it view needs to update
+                self.callman.register_handles({'event': [birth.get_handle()]})
             if birth and birth.get_type() == gen.lib.EventType.BAPTISM:
                 birth_label.set_label(_("Baptism:"))
 
             death = ReportUtils.get_death_or_fallback(db, person)
+            if death:
+                #if event changes it view needs to update
+                self.callman.register_handles({'event': [death.get_handle()]})
             if death and death.get_type() == gen.lib.EventType.BURIAL:
                 death_label.set_label(_("Burial:"))
 
@@ -985,9 +1042,7 @@ class EditFamily(EditPrimary):
         # We disconnect the callbacks to all signals we connected earlier.
         # This prevents the signals originating in any of the following
         # commits from being caught by us again.
-        for key in self.signal_keys:
-            self.db.disconnect(key)
-        self.signal_keys = []
+        self._cleanup_callbacks()
             
         if not original and not self.object_is_empty():
             trans = self.db.transaction_begin()

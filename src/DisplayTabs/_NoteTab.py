@@ -40,6 +40,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import Errors
 import gen.lib
+from gui.dbguielement import DbGUIElement
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
 from DdTargets import DdTargets
@@ -49,7 +50,7 @@ from DdTargets import DdTargets
 # NoteTab
 #
 #-------------------------------------------------------------------------
-class NoteTab(EmbeddedList):
+class NoteTab(EmbeddedList, DbGUIElement):
     """
     Note List display tab for edit dialogs. 
     
@@ -83,12 +84,19 @@ class NoteTab(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _("_Notes"), NoteModel, share_button=True, 
                               move_buttons=True)
+        DbGUIElement.__init__(self, dbstate.db)
+        self.callman.register_handles({'note': self.data})
 
-    def connect_db_signals(self):
-        #connect external remove/change of object to rebuild of grampstab
-        self._add_db_signal('note-delete', self.note_delete)
-        self._add_db_signal('note-rebuild', self.rebuild)
-        self._add_db_signal('note-update',self.note_update)
+    def _connect_db_signals(self):
+        """
+        Implement base class DbGUIElement method
+        """
+        #note: note-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+           {'note-delete': self.note_delete,  # delete a note we track
+            'note-update': self.note_update,  # change a note we track
+           })
+        self.callman.connect_all(keys=['note'])
 
     def get_editor(self):
         pass
@@ -133,6 +141,7 @@ class NoteTab(EmbeddedList):
         Called to update the screen when a new note is added
         """
         self.get_data().append(name)
+        self.callman.register_handles({'note': [name]})
         self.changed = True
         self.rebuild()
 

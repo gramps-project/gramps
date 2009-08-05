@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gen.lib
+from gui.dbguielement import DbGUIElement
 import Errors
 from DdTargets import DdTargets
 from _SourceRefModel import SourceRefModel
@@ -43,7 +44,7 @@ from _EmbeddedList import EmbeddedList
 # SourceEmbedList
 #
 #-------------------------------------------------------------------------
-class SourceEmbedList(EmbeddedList):
+class SourceEmbedList(EmbeddedList, DbGUIElement):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.SOURCEREF
@@ -72,6 +73,20 @@ class SourceEmbedList(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, _('_Sources'), 
                               SourceRefModel, share_button=True, 
                               move_buttons=True)
+        DbGUIElement.__init__(self, dbstate.db)
+        self.callman.register_handles({'source': [sref.ref for sref 
+                                        in self.obj.get_source_references()]})
+
+    def _connect_db_signals(self):
+        """
+        Implement base class DbGUIElement method
+        """
+        #note: source-rebuild closes the editors, so no need to connect to it
+        self.callman.register_callbacks(
+           {'source-delete': self.source_delete,  # delete a source we track
+            'source-update': self.source_update,  # change a source we track
+           })
+        self.callman.connect_all(keys=['source'])
 
     def get_icon_name(self):
         return 'gramps-source'
@@ -141,12 +156,26 @@ class SourceEmbedList(EmbeddedList):
                     )
 
     def object_added(self, reference, primary):
+        """
+        Callback from sourceref editor after adding a new reference (to a new
+        or an existing source).
+        Note that if it was to an existing source already present in the 
+        sourcelist, then the source-update signal will also cause a rebuild 
+        at that time.
+        """
         reference.ref = primary.handle
         self.get_data().append(reference)
+        self.callman.register_handles({'source': [primary.handle]})
         self.changed = True
         self.rebuild()
 
     def object_edited(self, refererence, primary):
+        """
+        Callback from sourceref editor. If the source changes itself, also
+        the source-change signal will cause a rebuild. 
+        This could be solved in the source editor if it only calls this 
+        method in the case the sourceref part only changes.
+        """
         self.changed = True
         self.rebuild()
 
@@ -160,3 +189,40 @@ class SourceEmbedList(EmbeddedList):
                           src, sref, self.object_added)
         except Errors.WindowActiveError:
             pass
+
+    def source_delete(self, del_src_handle_list):
+        """
+        Outside of this tab source objects have been deleted. Check if tab
+        and object must be changed.
+        Note: delete of object will cause reference on database to be removed,
+              so this method need not do this
+        """
+        rebuild = False
+        sourceref_list = self.get_data()
+        ref_handles = [sref.ref for sref in sourceref_list]
+        for handle in del_src_handle_list :
+            while 1:
+                pos = None
+                try :
+                    pos = ref_handles.index(handle)
+                except ValueError :
+                    break
+            
+                if pos is not None:
+                    #oeps, we need to remove this reference, and rebuild tab
+                    del sourceref_list[pos]
+                    del ref_handles[pos]
+                    rebuild = True
+        if rebuild:
+            self.rebuild()
+
+    def source_update(self, upd_src_handle_list):
+        """
+        Outside of this tab media objects have been changed. Check if tab
+        and object must be changed.
+        """
+        ref_handles = [sref.ref for sref in self.get_data()]
+        for handle in upd_src_handle_list :
+            if handle in ref_handles:
+                self.rebuild()
+                break

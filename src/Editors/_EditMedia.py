@@ -103,6 +103,14 @@ class EditMedia(EditPrimary):
         self.define_ok_button(self.glade.get_object('ok'), self.save)
         self.define_help_button(self.glade.get_object('button102'))
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('media-rebuild', self._do_close)
+        self._add_db_signal('media-delete', self.check_for_close)
+
     def _setup_fields(self):
         self.date_field = MonitoredDate(self.glade.get_object("date_entry"),
                                         self.glade.get_object("date_edit"),

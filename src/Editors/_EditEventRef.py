@@ -96,6 +96,14 @@ class EditEventRef(EditReference):
         # FIXME: activate when help page is available
         #self.define_help_button(self.top.get_object('help'))
 
+    def _connect_db_signals(self):
+        """
+        Connect any signals that need to be connected. 
+        Called by the init routine of the base class (_EditPrimary).
+        """
+        self._add_db_signal('event-rebuild', self.close)
+        self._add_db_signal('event-delete', self.check_for_close)
+
     def _setup_fields(self):
         
         self.ref_privacy = PrivacyButton(
