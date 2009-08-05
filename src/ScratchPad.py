@@ -51,6 +51,7 @@ import DateHandler
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
+from Utils import mac
 from glade import Glade
 from DdTargets import DdTargets
 
@@ -1086,15 +1087,35 @@ class ScratchPadListView(object):
             return 
 
         # Find a wrapper class
-        possible_wrappers = [target for target in context.targets \
-                             if target in self._target_type_to_wrapper_class_map]
+        possible_wrappers = []
+        if mac():
+            # context is empty on mac due to a bug, work around this
+            # Note that this workaround code works fine in linux too as 
+            # we know very well inside of GRAMPS what sel_data can be, so 
+            # we can anticipate on it, instead of letting the wrapper handle
+            # it. This is less clean however !
+            # See http://www.gramps-project.org/bugs/view.php?id=3089 for 
+            # an explaination of why this is required.
+            dragtype = None
+            try:
+                dragtype = pickle.loads(sel_data)[0]
+            except pickle.UnpicklingError, msg :
+                # not a pickled object, probably text
+                if isinstance(sel_data, basestring):
+                    dragtype = DdTargets.TEXT.drag_type
+            if dragtype in self._target_type_to_wrapper_class_map:
+                possible_wrappers = [dragtype]
+        else:
+            possible_wrappers = [target for target in context.targets \
+                        if target in self._target_type_to_wrapper_class_map]
 
         if len(possible_wrappers) == 0:
             # No wrapper for this class
             return
 
         # Just select the first match.
-        wrapper_class = self._target_type_to_wrapper_class_map[str(possible_wrappers[0])]
+        wrapper_class = self._target_type_to_wrapper_class_map[
+                                                    str(possible_wrappers[0])]
 
         o = wrapper_class(self.dbstate,sel_data)
 #         try:
