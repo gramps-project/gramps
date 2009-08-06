@@ -476,7 +476,7 @@ class BasePage(object):
                                  False -- person
         """
 
-        def create_address_header(spec):
+        def write_address_header(spec):
             """ create header row for address """
 
             trow = Html('tr')
@@ -494,7 +494,7 @@ class BasePage(object):
             if spec:
                 addr_header.append([_('Sources'),      'Sources'])
 
-            for (label, colclass) in addr_header:  
+            for label, colclass in addr_header:  
                 trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
             # return table header row back to module
@@ -512,7 +512,7 @@ class BasePage(object):
                 table += thead
 
                 # add header row
-                thead += create_address_header(spec)  
+                thead += write_address_header(spec)  
                     
                 # begin table body
                 tbody = Html('tbody')
@@ -539,14 +539,13 @@ class BasePage(object):
 
                     # get source citation list
                     if spec:
-                        addrcollist.append([_('Sources'),  address.get_source_references()])
-                        addrcollist[8][1] = self.get_citation_links(addrcollist[8][1])
+                        addrcollist.append([_('Sources'),    address.get_source_references()])
+                        addrcollist[8][1]  = self.get_citation_links(addrcollist[8][1])   
 
-                    for (colclass, data) in addrcollist:  
+                    for (colclass, value) in addrcollist:
 
-                        data = data or '&nbsp;' 
-                        trow += Html('td', data, class_='Column%s' % colclass, 
-                            inline=True if data == '&nbsp;' else False)
+                        value = value or '&nbsp;'
+                        trow += Html('td', value, class_='Column%s' % colclass, inline=True)
 
                     # address: note list
                     notelist = self.display_note_list(address.get_note_list())
@@ -2403,9 +2402,8 @@ class SourceListPage(BasePage):
                         Html('td', index+1, class_='ColumnRowLabel', inline=True)
                         )
                     tbody += trow 
-                    tcell = Html('td', class_='ColumnName') + \
+                    trow += Html('td', class_='ColumnName') + \
                        self.source_link(handle, source.get_title(), source.gramps_id)
-                    trow += tcell
 
         # add clearline for proper styling
         # add footer section
