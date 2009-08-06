@@ -1019,23 +1019,23 @@ div#Addresses table.infolist tbody tr td.ColumnPhone {
 #indivgallery h4 {
     margin-bottom:1em;
 }
-#indivgallery .thumbnail tr {
+#indivgallery .thumbnail {
     margin:0;
     float:left;
     width:130px;
     height:150px;
     text-align:center;
 }
-#indivgallery .thumbnail tr a {
+#indivgallery div.thumbnail a {
     display:block;
     margin:0;
     padding:0;
     background:none;
 }
-#indivgallery .thumbnail tr a img {
-    margin:0;
+#indivgallery div.thumbnail a img {
+    margin-bottom:.5cm;
     padding:0;
-    border:solid 1px #453619;
+    border:solid 1px #000;
 }
 #indivgallery div.thumbnail p {
     font:normal .7em/1.4em sans-serif;

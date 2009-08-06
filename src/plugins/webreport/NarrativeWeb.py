@@ -891,10 +891,6 @@ class BasePage(object):
             # begin section title
             section += Html('h4', _('Gallery'), inline=True)
 
-            # begin table row
-            trow = Html('tr')
-            section += trow
-
             displayed = []
             for mediaref in photolist:
 
@@ -914,9 +910,9 @@ class BasePage(object):
                         real_path, newpath = self.report.prepare_copy_media(photo)
                         # TODO. Check if build_url_fname can be used.
                         newpath = '/'.join(['..']*3 + [newpath])
-     
+ 
                         # begin hyperlink
-                        trow += self.media_link(photo_handle, newpath, descr, up=True)
+                        section += self.media_link(photo_handle, newpath, descr, True, False)
 
                     except (IOError, OSError), msg:
                         WarningDialog(_("Could not add photo to page"), str(msg))
@@ -924,7 +920,7 @@ class BasePage(object):
                     try:
 
                         # begin hyperlink
-                        trow += self.doc_link(photo_handle, descr, up=True)
+                        section += self.doc_link(photo_handle, descr, up=True)
 
                         lnk = (self.report.cur_fname, self.page_title, self.gid)
                         # FIXME. Is it OK to add to the photo_list of report?
@@ -1139,8 +1135,7 @@ class BasePage(object):
             hyper = (Html('a', href=url, title=name) +
                      Html('img', src=img_url, alt=name) +
                      (Html('p', inline=True) + 
-                          html_escape(name) if usedescr else ' [Untitled] '
-                     )
+                          html_escape(name) if usedescr else '')
                     )
             # add hyperlink and description to thumbnail division
             thumbnail += hyper
