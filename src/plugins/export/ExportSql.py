@@ -73,6 +73,7 @@ def makeDB(db):
                   private BOOLEAN);""")
 
     db.query("""CREATE TABLE name (
+                  handle CHARACTER(25),
                   private BOOLEAN, 
                   first_name TEXT, 
                   surname TEXT, 
@@ -447,6 +448,7 @@ def export_name(db, handle, data):
          group_as, sort_as, display_as, call) = data
 
         db.query("""INSERT into name (
+                  handle,
                   private, 
                   first_name, 
                   surname, 
@@ -460,9 +462,9 @@ def export_name(db, handle, data):
                   sort_as,
                   display_as, 
                   call
-                    ) values (?, ?, ?, ?, ?, ?, 
+                    ) values (?, ?, ?, ?, ?, ?, ?, 
                               ?, ?, ?, ?, ?, ?, ?);""",
-                 private, first_name, surname, suffix, title,
+                 handle, private, first_name, surname, suffix, title,
                  name_type[0], name_type[1], prefix, patronymic, group_as, 
                  sort_as, display_as, call)
 
