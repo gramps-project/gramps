@@ -373,11 +373,11 @@ class BasePage(object):
         # return ordered list to its callers
         return ordered
 
-    def source_link(self, handle, name, cindex, gid=None, up=False):
+    def source_link(self, handle, name, gid=None, up=False):
 
         url = self.report.build_url_fname_html(handle, 'src', up)
         # begin hyperlink
-        hyper = Html('a', html_escape(name), href=url, title=name)
+        hyper = Html('a', html_escape(name), href=url, title=html_escape(name))
         if not self.noid and gid:
             hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
 
@@ -1004,22 +1004,20 @@ class BasePage(object):
         return section
 
     def display_source_refs(self, bibli):
-
         if bibli.get_citation_count() == 0:
             return None
+        db = self.report.database
 
-        db = self.report.database 
-
-        # Source References division and title
+        # source references division and title
         with Html('div', class_='subsection', id='sourcerefs') as section:
-            section += Html('h4', _('Source References'), inline=True)
+            section += Html('h4', _('Source References'), inline=True) 
 
-            ordered = Html('ol')
-            section += ordered
-            list = Html('li')
-            ordered += list
+            ordered=Html('ol')
+            section += ordered 
 
-            for cindex, citation in enumerate(bibli.get_citation_list()):
+            cindex = 0
+            for citation in bibli.get_citation_list():
+                cindex += 1
                 # Add this source to the global list of sources to be displayed
                 # on each source page.
                 lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -1033,34 +1031,48 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = db.get_source_from_handle(shandle)
                 title = source.get_title()
-            
-                list += self.source_link(source.handle, title, cindex+1, source.gramps_id, True)
+                list = Html('li')
+                ordered += list
+
+                hyper = Html('a', name='sref%d' % cindex) + \
+                    self.source_link(source.handle, title, source.gramps_id, True)
+                list += hyper
 
                 ordered1 = Html('ol')
                 list += ordered1
+
                 for key, sref in citation.get_ref_list():
 
                     tmp = []
                     confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                     if confidence == _('Normal'):
                         confidence = None
-                    for (label, data) in [(_('Date'), _dd.display(sref.date)),
-                                          (_('Page'), sref.page),
-                                          (_('Confidence'), confidence)]:
+
+                    source_data = [
+                                            [_('Date'), _dd.display(sref.date)],
+                                            [_('Page'), sref.page],
+                                            [_('Confidence'), confidence]
+                                            ]
+                    for (label, data) in source_data:
                         if data:
                             tmp.append("%s: %s" % (label, data))
+
+                    # get citation note list
                     notelist = sref.get_note_list()
                     for notehandle in notelist:
                         note = db.get_note_from_handle(notehandle)
-                        note_text = self.get_note_format(note)
-         
-                        tmp.append("%s: %s" % (_('Text'), note_text))
-                    if len(tmp):
-                        ordered1 += Html('li') + (
-                            Html('a', tmp, name="sref%d%s" % (cindex+1, key))
-                            )
 
-        # return sourcerefs division to its caller
+                        # check if note is styled text or not?
+                        note_text = self.get_note_format(note)
+                        tmp.append("%s: %s" % (_('Text'), note_text))
+
+                    if len(tmp):
+                        list1 = Html('li') + (
+                            Html('a', '; &nbsp;'.join(tmp), name='sref%d%s' % (cindex, key))
+                            )
+                        ordered1 += list1
+
+        # return section to its callers
         return section
 
     def display_references(self, handlelist, up=False):
@@ -1120,6 +1132,23 @@ class BasePage(object):
         # 3. insert gramps id if requested and available
         if not self.noid and gid:
             hyper += Html('span', '[%s]' % gid, class_="grampsid", inline=True)
+
+        # return hyperlink to its caller
+        return hyper
+
+    def individual_link(self, url, person):
+        """
+        creates a hyperlink for a partner in IndividualListPage, and SurnameListPage
+        with no image class attached to it.
+
+        @param: url = hyperlink to person
+       @param: person = person to be hyperlinked 
+        """
+
+        person_name = self.get_name(person)
+
+        # 1. start building link to image or person
+        hyper = Html('a', person_name, href=url, title=html_escape(person_name))
 
         # return hyperlink to its caller
         return hyper
@@ -1336,7 +1365,7 @@ class IndividualListPage(BasePage):
                                         tcell += ', '  
                                     if partner_handle in report_handle_list:
                                         url = self.report.build_url_fname_html(partner_handle, 'ppl')
-                                        tcell += self.person_link(url, partner, name_style=True)
+                                        tcell += self.individual_link(url, partner)
                                     else:
                                         tcell += partner_name
                                     first_family = False
@@ -1490,9 +1519,8 @@ class SurnamePage(BasePage):
                                         if not first_family:
                                             tcell += ','
                                         if partner_handle in report_handle_list:
-                                            url = self.report.build_url_fname_html(
-                                                partner_handle, 'ppl', True) 
-                                            tcell += self.person_link(url, partner, name_style=True)
+                                            url = self.report.build_url_fname_html(partner_handle, 'ppl', True) 
+                                            tcell += self.individual_link(url, partner)
                                         else:
                                             tcell += partner_name
                                     else:
