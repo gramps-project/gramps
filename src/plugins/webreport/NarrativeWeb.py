@@ -24,7 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id:  $
 
 """
 Narrative Web Page generator.
@@ -1519,8 +1519,14 @@ class SurnamePage(BasePage):
                                         if not first_family:
                                             tcell += ','
                                         if partner_handle in report_handle_list:
+<<<<<<< .mine
+                                            url = self.report.build_url_fname_html(
+                                                partner_handle, 'ppl', True) 
+                                            tcell += self.individual_link(url, partner)
+=======
                                             url = self.report.build_url_fname_html(partner_handle, 'ppl', True) 
                                             tcell += self.individual_link(url, partner)
+>>>>>>> .r12915
                                         else:
                                             tcell += partner_name
                                     else:
@@ -2097,26 +2103,52 @@ class MediaPage(BasePage):
             return None
 
         # begin attributes division
-        with Html('div', id='attributes') as section:
+        with Html('div', class_='subsection', id='attributes') as section:
 
-            # section section title
+            # section title
             section += Html('h4', _('Attributes'), inline=True)
 
             # begin attrib table
             with Html('table', class_='infolist') as table:
                 section += table
 
+                # begin table head
+                thead = Html('thead')
+                table += thead
+
+                trow = Html('tr')
+                thead += trow
+                for label, colclass in [
+                                                     [_('Type'),         'Type'],
+                                                     [_('Value'),       'Value'], 
+                                                     [_('Sources'),   'Sources'] ]:
+                    trow += Html('th',  label, class_='Column%s' % colclass, inline=True)
+
                 # begin table body
                 tbody = Html('tbody')
+                table += tbody
 
                 for attr in attrlist:
-                    atType = str( attr.get_type() )
-                    trow = Html('tr') + (
-                        Html('td', atType, class_='ColumnAttribute', inline=True),
-                        Html('td', attr.get_value(), class_='ColumnValue', inline=True)
-                        )
+                    trow = Html('tr')
                     tbody += trow
-                table += tbody
+
+                    attr_data_list = [
+                                                ['Type',          attr.get_type.xml_str()],
+                                                ['Value',        attr.get_value()],
+                                                ['Sources',    attr.get_source_references()]
+                                                ]
+
+                    # get source references
+                    attr_data_list[2][1] = self.display_source_refs(attr_data_list[2][1])
+
+                    for colclass, value in attr_data_list: 
+
+                        trow += Html('td', value, class_='Column%s' % colclass, inline=True)
+
+                    # attach notes to section
+                    notelist = self.display_note_list(attr.get_note_list())
+                    if notelist is not None:
+                        section += notelist 
 
         # return attributes division to its caller
         return section
@@ -3364,78 +3396,76 @@ class IndividualPage(BasePage):
             place = ''
 
         # begin table row for either: display_event_row() or format_event()
-        with Html('tr') as trow:
+        trow = Html('tr') 
 
-            # Event/  Type
-            evt_name = str(event.get_type())
+        # Event/  Type
+        evt_name = str(event.get_type())
 
-            if event_ref.get_role() == EventRoleType.PRIMARY:
-                txt = u"%(evt_name)s" % locals()
+        if event_ref.get_role() == EventRoleType.PRIMARY:
+            txt = u"%(evt_name)s" % locals()
+        else:
+            evt_role = event_ref.get_role()
+            txt = u"%(evt_name)s (%(evt_role)s)" % locals()
+        txt = txt or '&nbsp;'
+        trow += Html('td', txt, class_='ColumnValue', inline=True)
+
+        # Date
+        event_date = event.get_date_object()
+        if event_date:
+            txt = _dd.display(event_date)
+        else:
+            txt = '&nbsp;'
+        trow += Html('td', txt, class_='ColumnValue', inline=True)
+
+        # Place
+        place_handle = event.get_place_handle()
+        if place_handle:
+
+            lnk = (self.report.cur_fname, self.page_title, self.gid)
+            if place_handle in self.place_list:
+                if lnk not in self.place_list[place_handle]:
+                    self.place_list[place_handle].append(lnk)
             else:
-                evt_role = event_ref.get_role()
-                txt = u"%(evt_name)s (%(evt_role)s)" % locals()
-            txt = txt or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue', inline=True)
+                self.place_list[place_handle] = [lnk]
 
-            # Date
-            event_date = event.get_date_object()
-            if event_date:
-                txt = _dd.display(event_date)
-            else:
-                txt = '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue', inline=True)
+            place = self.place_link(place_handle,
+                                                   ReportUtils.place_name(db, place_handle), up=True)
+        else:
+            place = None
+        txt = place or '&nbsp;'
+        trow += Html('td', txt, class_='ColumnValue') 
 
-            # Place
-            place_handle = event.get_place_handle()
-            if place_handle:
+        # Description
+        # Get the links in super script to the Source References section in the same page
+        sref_links = self.get_citation_links(event.get_source_references())
+        txt = ''.join(wrapper.wrap(event.get_description()))
+        txt = txt or '&nbsp;'
+        trow += Html('td', txt, class_='ColumnValue', inline=True \
+            if txt == '&nbsp;' else False)
 
-                lnk = (self.report.cur_fname, self.page_title, self.gid)
-                if place_handle in self.place_list:
-                    if lnk not in self.place_list[place_handle]:
-                        self.place_list[place_handle].append(lnk)
-                else:
-                    self.place_list[place_handle] = [lnk]
+        # Sources
+        citation = self.get_citation_links(event.get_source_references())
+        txt = citation or '&nbsp;'
+        trow += Html('td', txt, class_='ColumnValue', inline=True \
+            if txt == '&nbsp;' else False)
 
-                place = self.place_link(place_handle,
-                                                   ReportUtils.place_name(db, 
-                                                   place_handle),
-                                                   up=True)
-            else:
-                place = None
-            txt = place or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue') 
-
-            # Description
-            # Get the links in super script to the Source References section in the same page
-            sref_links = self.get_citation_links(event.get_source_references())
-            txt = ''.join(wrapper.wrap(event.get_description()))
-            txt = txt or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue', inline=True \
-                if txt == '&nbsp;' else False)
-
-            # Sources
-            citation = self.get_citation_links(event.get_source_references())
-            txt = citation or '&nbsp;'
-            trow += Html('td', txt, class_='ColumnValue', inline=True \
-                if txt == '&nbsp;' else False)
-
-            # Notes
-            # if the event or event reference has a note attached to it,
-            # get the text and format it correctly
-            notelist = event.get_note_list()
-            notelist.extend(event_ref.get_note_list())
-            tcell = Html('td', class_='ColumnValue')
-            trow += tcell
-            if not notelist:
-                tcell += '&nbsp;'
-            else:
-                for notehandle in notelist:
-                    note = db.get_note_from_handle(notehandle)
-                    if note:
-                        note_text = self.get_note_format(note)
+        # Notes
+        # if the event or event reference has a note attached to it,
+        # get the text and format it correctly
+        notelist = event.get_note_list()
+        notelist.extend(event_ref.get_note_list())
+        tcell = Html('td', class_='ColumnValue')
+        trow += tcell
+        if not notelist:
+            tcell += '&nbsp;'
+        else:
+            for notehandle in notelist:
+                note = db.get_note_from_handle(notehandle)
+                if note:
+                    note_text = self.get_note_format(note)
  
-                        # attach note
-                        tcell += note_text
+                    # attach note
+                    tcell += note_text
 
         # return events table row to its caller
         return trow 
