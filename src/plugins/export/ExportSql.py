@@ -39,6 +39,18 @@ from gui.utils import ProgressMeter
 import ExportOptions
 from Utils import create_id
 
+def lookup(index, event_ref_list):
+    if index < 0:
+        return None
+    else:
+        count = 0
+        for event_ref in event_ref_list:
+            (private, note_list, attribute_list, ref, role) = event_ref
+            if index == count:
+                return ref
+            count += 1
+        return None
+
 def makeDB(db):
     db.query("""drop table note;""")
     db.query("""drop table person;""")
@@ -59,37 +71,40 @@ def makeDB(db):
     db.query("""drop table media_ref;""")
     db.query("""drop table address;""")
     db.query("""drop table attribute;""")
-
+    # Completed
     db.query("""CREATE TABLE note (
                   handle CHARACTER(25),
                   gid    CHARACTER(25),
                   text   TEXT,
-                  format TEXT,
+                  format INTEGER,
                   note_type1   INTEGER,
                   note_type2   TEXT,
-                  change TEXT,
-                  marker0 TEXT,
+                  change INTEGER,
+                  marker0 INTEGER,
                   marker1 TEXT,
                   private BOOLEAN);""")
-
+    
     db.query("""CREATE TABLE name (
+                  from_handle CHARACTER(25),
                   handle CHARACTER(25),
+                  primary_name BOOLEAN,
                   private BOOLEAN, 
                   first_name TEXT, 
                   surname TEXT, 
                   suffix TEXT, 
                   title TEXT, 
-                  name_type0 TEXT, 
+                  name_type0 INTEGER, 
                   name_type1 TEXT, 
                   prefix TEXT, 
                   patronymic TEXT, 
                   group_as TEXT, 
-                  sort_as TEXT,
-                  display_as TEXT, 
+                  sort_as INTEGER,
+                  display_as INTEGER, 
                   call TEXT);""")
 
     db.query("""CREATE TABLE date (
-                  type CHARACTER(10),
+                  from_type CHARACTER(25),
+                  from_handle CHARACTER(25),
                   calendar INTEGER, 
                   modifier INTEGER, 
                   quality INTEGER,
@@ -108,11 +123,11 @@ def makeDB(db):
     db.query("""CREATE TABLE person (
                   handle CHARACTER(25), 
                   gid CHARACTER(25), 
-                  gender CHAR(1), 
-                  death_ref_index TEXT, 
-                  birth_ref_index TEXT, 
-                  change TEXT, 
-                  marker0 TEXT, 
+                  gender INTEGER, 
+                  death_ref_handle TEXT, 
+                  birth_ref_handle TEXT, 
+                  change INTEGER, 
+                  marker0 INTEGER, 
                   marker1 TEXT, 
                   private BOOLEAN);""")
 
@@ -121,10 +136,10 @@ def makeDB(db):
                  gid CHARACTER(25), 
                  father_handle CHARACTER(25), 
                  mother_handle CHARACTER(25), 
-                 the_type0 TEXT, 
+                 the_type0 INTEGER, 
                  the_type1 TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
+                 change INTEGER, 
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
@@ -134,19 +149,19 @@ def makeDB(db):
                  title TEXT, 
                  long FLOAT, 
                  lat FLOAT, 
-                 change TEXT, 
-                 marker0 TEXT, 
+                 change INTEGER, 
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE event (
                  handle CHARACTER(25), 
                  gid CHARACTER(25), 
-                 the_type0 TEXT, 
+                 the_type0 INTEGER, 
                  the_type1 TEXT, 
                  description TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
+                 change INTEGER, 
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
@@ -157,8 +172,8 @@ def makeDB(db):
                  author TEXT, 
                  pubinfo TEXT, 
                  abbrev TEXT, 
-                 change TEXT,
-                 marker0 TEXT, 
+                 change INTEGER,
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
@@ -168,26 +183,26 @@ def makeDB(db):
                  path TEXT, 
                  mime TEXT, 
                  desc TEXT,
-                 change TEXT, 
-                 marker0 TEXT, 
+                 change INTEGER, 
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE repository (
                  handle CHARACTER(25), 
                  gid CHARACTER(25), 
-                 the_type0 TEXT, 
+                 the_type0 INTEGER, 
                  the_type1 TEXT,
                  name TEXT, 
-                 change TEXT, 
-                 marker0 TEXT, 
+                 change INTEGER, 
+                 marker0 INTEGER, 
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE link (
-                 from_type CHARACTER(10), 
+                 from_type CHARACTER(25), 
                  from_handle CHARACTER(25), 
-                 to_type CHARACTER(10), 
+                 to_type CHARACTER(25), 
                  to_handle CHARACTER(25));""")
 
     db.query("""CREATE TABLE markup (
@@ -232,7 +247,7 @@ def makeDB(db):
                  from_type CHARACTER(25), 
                  from_handle CHARACTER(25), 
                  handle CHARACTER(25), 
-                 type CHARACTER(10), 
+                 type CHARACTER(25), 
                  place TEXT, 
                  famc CHARACTER(25), 
                  temple TEXT, 
@@ -261,7 +276,7 @@ def makeDB(db):
 
     db.query("""CREATE TABLE attribute (
                  handle CHARACTER(25),
-                 from_type CHARACTER(10),
+                 from_type CHARACTER(25),
                  from_handle CHARACTER(25),
                  the_type0 INTEGER, 
                  the_type1 TEXT, 
@@ -440,7 +455,7 @@ def export_note(db, handle, gid, text, format, note_type0,
              handle, gid, text, format, note_type0,
              note_type1, change, marker0, marker1, private)
 
-def export_name(db, handle, data):
+def export_name(db, from_handle, handle, primary, data):
     if data:
         (private, source_list, note_list, date,
          first_name, surname, suffix, title,
@@ -448,7 +463,9 @@ def export_name(db, handle, data):
          group_as, sort_as, display_as, call) = data
 
         db.query("""INSERT into name (
+                  from_handle,
                   handle,
+                  primary_name,
                   private, 
                   first_name, 
                   surname, 
@@ -462,19 +479,20 @@ def export_name(db, handle, data):
                   sort_as,
                   display_as, 
                   call
-                    ) values (?, ?, ?, ?, ?, ?, ?, 
+                    ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, 
                               ?, ?, ?, ?, ?, ?, ?);""",
-                 handle, private, first_name, surname, suffix, title,
+                 from_handle, handle, primary, private, first_name, surname, suffix, title,
                  name_type[0], name_type[1], prefix, patronymic, group_as, 
                  sort_as, display_as, call)
 
-        export_date(db, "name", handle, date) 
+        if date:
+            export_date(db, "name", handle, date) 
         export_list(db, "name", handle, "note", note_list)
         export_source_list(db, "name", handle, source_list)
 
-def export_date(db, date_type, handle, data):
-    if data:
-        (calendar, modifier, quality, dateval, text, sortval, newyear) = data
+def export_date(db, date_type, handle, date):
+    if True:
+        (calendar, modifier, quality, dateval, text, sortval, newyear) = date
         if len(dateval) == 4:
             day1, month1, year1, slash1 = dateval
             day2, month2, year2, slash2 = 0, 0, 0, 0
@@ -483,7 +501,8 @@ def export_date(db, date_type, handle, data):
         else:
             raise ("ERROR:", dateval)
         db.query("""INSERT INTO date (
-                  type,
+                  from_type,
+                  from_handle,
                   calendar, 
                   modifier, 
                   quality,
@@ -497,9 +516,9 @@ def export_date(db, date_type, handle, data):
                   slash2,
                   text, 
                   sortval, 
-                  newyear) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 
+                  newyear) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 
                                    ?, ?, ?, ?, ?, ?, ?);""",
-                 date_type, calendar, modifier, quality, 
+                 date_type, handle, calendar, modifier, quality, 
                  day1, month1, year1, slash1, 
                  day2, month2, year2, slash2,
                  text, sortval, newyear)
@@ -520,7 +539,8 @@ def export_source_list(db, from_type, handle, source_list):
     for source in source_list:
         (date, private, note_list, confidence, ref, page) = source
         export_source_ref(db, from_type, handle, ref, private, confidence, page)
-        export_date(db, "source", ref, date)
+        if date:
+            export_date(db, "source", ref, date)
         export_list(db, "source", ref, "note", note_list) 
 
 def export_media_list(db, from_type, from_handle, media_list):
@@ -588,11 +608,9 @@ def exportData(database, filename, option_box=None, callback=None):
              len(database.family_map) +
              len(database.repository_map) +
              len(database.place_map) +
-             len(database.source_map) +
              len(database.media_map) +
-             len(database.place_map) + 
              len(database.source_map))
-    count = 0
+    count = 0.0
 
     db = Database(filename)
     makeDB(db)
@@ -622,7 +640,8 @@ def exportData(database, filename, option_box=None, callback=None):
         (handle, gid, the_type, date, description, place, 
          source_list, note_list, media_list, attribute_list,
          change, marker, private) = event
-        export_date(db, "event", event_handle, date)
+        if date:
+            export_date(db, "event", event_handle, date)
         db.query("""INSERT INTO event (
                  handle, 
                  gid, 
@@ -680,13 +699,12 @@ def exportData(database, filename, option_box=None, callback=None):
          private,           # 19
          person_ref_list,    # 20
          ) = person
-
         db.query("""INSERT INTO person (
                   handle, 
                   gid, 
                   gender, 
-                  death_ref_index, 
-                  birth_ref_index, 
+                  death_ref_handle, 
+                  birth_ref_handle, 
                   change, 
                   marker0, 
                   marker1, 
@@ -694,8 +712,8 @@ def exportData(database, filename, option_box=None, callback=None):
                   handle, 
                   gid, 
                   gender, 
-                  death_ref_index, 
-                  birth_ref_index, 
+                  lookup(death_ref_index, event_ref_list),
+                  lookup(birth_ref_index, event_ref_list),
                   change, 
                   marker[0], 
                   marker[1], 
@@ -724,7 +742,8 @@ def exportData(database, filename, option_box=None, callback=None):
             (street, city, county, state, country, postal, phone) = location
             addr_handle = create_id()
             export_address(db, "person", handle, addr_handle, street, city, county, state, country, postal, phone, private)
-            export_date(db, "address", addr_handle, date)
+            if date:
+                export_date(db, "address", addr_handle, date)
             export_list(db, "address", addr_handle, "note", anote_list) 
             export_source_list(db, "address", addr_handle, source_list)
 
@@ -736,15 +755,17 @@ def exportData(database, filename, option_box=None, callback=None):
              famc, temple, status, lprivate) = ldsord
             lds_handle = create_id()
             export_lds(db, "person", handle, lds_handle, type, place, famc, temple, status, lprivate)
-            export_date(db, "lds", lds_handle, date)
+            if date:
+                export_date(db, "lds", lds_handle, date)
             export_list(db, "lds", lds_handle, "note", lnote_list)
             export_source_list(db, "lds", lds_handle, lsource_list)
 
         # -------------------------------------
         # Names
         # -------------------------------------
-        export_name(db, handle, primary_name)
-        map(lambda name: export_name(db, handle, name), alternate_names)
+        export_name(db, handle, create_id(), True, primary_name)
+        map(lambda name: export_name(db, handle, create_id(), False, name), 
+            alternate_names)
         count += 1
         callback(100 * count/total)
 
@@ -794,7 +815,8 @@ def exportData(database, filename, option_box=None, callback=None):
              famc, temple, status, lprivate) = ldsord
             lds_handle = create_id()
             export_lds(db, "family", handle, lds_handle, type, place, famc, temple, status, lprivate)
-            export_date(db, "lds", lds_handle, date)
+            if date:
+                export_date(db, "lds", lds_handle, date)
             export_list(db, "lds", lds_handle, "note", lnote_list)
             export_source_list(db, "lds", lds_handle, lsource_list)
 
@@ -830,7 +852,8 @@ def exportData(database, filename, option_box=None, callback=None):
             addr_handle = create_id()
             export_address(db, "repository", handle, addr_handle, street, city, county, state, 
                            country, postal, phone, private)
-            export_date(db, "address", addr_handle, date)
+            if date:
+                export_date(db, "address", addr_handle, date)
             export_list(db, "address", addr_handle, "note", anote_list) 
             export_source_list(db, "address", addr_handle, asource_list)
 
@@ -896,6 +919,12 @@ def exportData(database, filename, option_box=None, callback=None):
         export_list(db, "source", handle, "note", note_list) 
         export_media_list(db, "source", handle, media_list)
         # FIXME: reporef_list, datamap
+        #print "FIXME: reporef_list", reporef_list
+        #print "FIXME: datamap", datamap
+#FIXME: reporef_list []
+#FIXME: datamap {}
+#FIXME: reporef_list [([], u'b2cfa6e37654b308559', '', (2, u''), False)]
+#FIXME: datamap {}
         
         count += 1
         callback(100 * count/total)
@@ -926,8 +955,8 @@ def exportData(database, filename, option_box=None, callback=None):
             private) VALUES (?,?,?,?,?,?,?,?,?);""",
                  handle, gid, path, mime, desc, 
                  change, marker[0], marker[1], private)
-
-        export_date(db, "media", handle, date)
+        if date:
+            export_date(db, "media", handle, date)
         export_list(db, "media", handle, "note", note_list) 
         export_source_list(db, "media", handle, source_list)
         export_attribute_list(db, "media", handle, attribute_list)
