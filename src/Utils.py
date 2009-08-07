@@ -30,6 +30,7 @@ import sys
 import locale
 import random
 import time
+import platform
 
 from TransUtils import sgettext as _
 
