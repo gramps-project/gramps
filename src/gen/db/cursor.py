@@ -105,6 +105,12 @@ class GrampsCursor(object):
         Return the number of records in the table referenced by the cursor.
         """
         return self.source.stat()['ndata']
+
+    def __len__(self):
+        """
+        Convienence method to work with len(cursor).
+        """
+        return self.get_length()
         
     def __iter__(self):
         """
