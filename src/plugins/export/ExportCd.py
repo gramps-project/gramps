@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Contributions 2009 by    Brad Crittenden <brad [AT] bradcrittenden.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,6 +69,14 @@ try:
 except:
     from gnome.vfs import (URI, create, OPEN_WRITE, make_directory, 
                            FileExistsError)
+    
+#This plugin only works if the 'burn://' scheme is supported.
+try:
+    uri = URI('burn:///test.txt')
+except TypeError:
+    raise Errors.UnavailableError(
+        _("Cannot be loaded because the 'burn://' scheme "
+          "is not supported."))
 
 #-------------------------------------------------------------------------
 #
