@@ -39,7 +39,6 @@ from gettext import gettext as _
 from gui.utils import open_file_with_default_application
 import libcairodoc
 from gen.plug import PluginManager, DocGenPlugin
-import Utils
 
 #------------------------------------------------------------------------
 #
