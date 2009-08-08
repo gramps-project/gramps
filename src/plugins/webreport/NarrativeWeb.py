@@ -1519,14 +1519,8 @@ class SurnamePage(BasePage):
                                         if not first_family:
                                             tcell += ','
                                         if partner_handle in report_handle_list:
-<<<<<<< .mine
-                                            url = self.report.build_url_fname_html(
-                                                partner_handle, 'ppl', True) 
-                                            tcell += self.individual_link(url, partner)
-=======
                                             url = self.report.build_url_fname_html(partner_handle, 'ppl', True) 
                                             tcell += self.individual_link(url, partner)
->>>>>>> .r12915
                                         else:
                                             tcell += partner_name
                                     else:
