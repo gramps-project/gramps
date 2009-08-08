@@ -110,12 +110,12 @@ class BaseDoc(object):
 
     def open(self, filename):
         """
-        Opens the document.
+        Opens the file so that it can be generated.
 
         @param filename: path name of the file to create
         """
         raise NotImplementedError
 
     def close(self):
-        "Closes the document"
+        "Closes the generated file."
         raise NotImplementedError

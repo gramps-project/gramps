@@ -48,7 +48,7 @@ log = logging.getLogger(".graphdoc")
 class GVDoc(object):
     """
     Abstract Interface for Graphviz document generators. Output formats
-    for Graphviz reports must implment this interface to be used by the
+    for Graphviz reports must implement this interface to be used by the
     report system.
     """
     def add_node(self, node_id, label, shape="", color="", 

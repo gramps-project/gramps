@@ -81,11 +81,13 @@ class IndexMark(object):
 class TextDoc(object):
     """
     Abstract Interface for text document generators. Output formats for
-    text reports must implment this interface to be used by the report 
+    text reports must implement this interface to be used by the report 
     system.
     """
     def page_break(self):
-        "Forces a page break, creating a new page"
+        """
+        Forces a page break, creating a new page.
+        """
         raise NotImplementedError
 
     def start_bold(self):
@@ -112,7 +114,9 @@ class TextDoc(object):
         raise NotImplementedError
 
     def end_paragraph(self):
-        "Ends the current parsgraph"
+        """
+        Ends the current paragraph.
+        """
         raise NotImplementedError
 
     def start_table(self, name, style_name):
@@ -129,11 +133,15 @@ class TextDoc(object):
         raise NotImplementedError
 
     def start_row(self):
-        "Starts a new row on the current table"
+        """
+        Starts a new row on the current table.
+        """
         raise NotImplementedError
 
     def end_row(self):
-        "Ends the current row on the current table"
+        """
+        Ends the current row on the current table.
+        """
         raise NotImplementedError
 
     def start_cell(self, style_name, span=1):
@@ -146,7 +154,9 @@ class TextDoc(object):
         raise NotImplementedError
 
     def end_cell(self):
-        "Ends the current table cell"
+        """
+        Ends the current table cell.
+        """
         raise NotImplementedError
 
     def write_text(self, text, mark=None):
@@ -196,7 +206,9 @@ class TextDoc(object):
         self.write_note(text, format, style_name)
     
     def write_text_citation(self, text, mark=None):
-        """Method to write text with GRAMPS <super> citation marks"""
+        """
+        Method to write text with GRAMPS <super> citation marks.
+        """
         if not text:
             return
         parts = text.split("<super>")
@@ -227,13 +239,13 @@ class TextDoc(object):
 
     def add_media_object(self, name, align, w_cm, h_cm, alt=''):
         """
-        Add a photo of the specified width (in centimeters)
+        Add a photo of the specified width (in centimeters).
 
         @param name: filename of the image to add
         @param align: alignment of the image. Valid values are 'left',
             'right', 'center', and 'single'
         @param w_cm: width in centimeters
         @param h_cm: height in centimeters
-        @param alt: an alternative text to use. Usefull for eg html reports
+        @param alt: an alternative text to use. Useful for eg html reports
         """
         raise NotImplementedError
