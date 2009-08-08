@@ -398,7 +398,6 @@ src/plugins/drawreport/StatisticsChart.py
 src/plugins/drawreport/TimeLine.py
 
 # plugins/export directory
-src/plugins/export/ExportCd.py
 src/plugins/export/ExportCsv.py
 src/plugins/export/ExportFtree.py
 src/plugins/export/ExportGedcom.py
