@@ -67,10 +67,12 @@ def makeDB(db):
     db.query("""drop table event_ref;""")
     db.query("""drop table source_ref;""")
     db.query("""drop table child_ref;""")
+    db.query("""drop table person_ref;""")
     db.query("""drop table lds;""")
     db.query("""drop table media_ref;""")
     db.query("""drop table address;""")
     db.query("""drop table attribute;""")
+    db.query("""drop table url;""")
     # Completed
     db.query("""CREATE TABLE note (
                   handle CHARACTER(25),
@@ -166,6 +168,7 @@ def makeDB(db):
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE source (
+                 from_type CHARACTER(25),
                  handle CHARACTER(25), 
                  gid CHARACTER(25), 
                  title TEXT, 
@@ -224,7 +227,7 @@ def makeDB(db):
                  from_type CHARACTER(25), 
                  from_handle CHARACTER(25), 
                  handle CHARACTER(25), 
-                 desc TEXT,
+                 description TEXT,
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE source_ref (
@@ -239,8 +242,10 @@ def makeDB(db):
                  from_type CHARACTER(25), 
                  from_handle CHARACTER(25), 
                  ref CHARACTER(25), 
-                 frel INTEGER,
-                 mrel INTEGER,
+                 frel0 INTEGER,
+                 frel1 CHARACTER(25),
+                 mrel0 INTEGER,
+                 mrel1 CHARACTER(25),
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE lds (
@@ -321,6 +326,9 @@ class Database(object):
         self.cursor.close()
         self.db.close()
 
+def export_place(db, from_type, from_handle, place_handle):
+    export_link(db, from_type, from_handle, "place", place_handle)
+
 def export_url_list(db, from_type, handle, urls):
     for url in urls:
         # (False, u'http://www.gramps-project.org/', u'loleach', (0, u'kaabgo'))
@@ -346,8 +354,8 @@ def export_person_ref_list(db, from_type, from_handle, person_ref_list):
         db.query("""INSERT INTO person_ref (
                     from_type,
                     from_handle, 
-                    handle
-                    desc,
+                    handle,
+                    description,
                     private) VALUES (?, ?, ?, ?, ?);""",
                  from_type,
                  from_handle,
@@ -389,6 +397,7 @@ def export_lds(db, from_type, from_handle, handle, type, place, famc, temple, st
     db.query("""INSERT into lds (from_type, from_handle, handle, type, place, famc, temple, status, private) 
              VALUES (?,?,?,?,?,?,?,?,?);""",
              from_type, from_handle, handle, type, place, famc, temple, status, private)
+    # FIXME: remove place from here?
     
 def export_media_ref(db, handle, ref, role, private):
     db.query("""INSERT into media_ref (
@@ -559,18 +568,22 @@ def export_attribute_list(db, from_type, from_handle, attribute_list):
         export_list(db, "attribute", attr_handle, "note", note_list)
         export_source_list(db, "atribute", attr_handle, source_list)
 
+def export_child_ref_list(db, from_type, from_handle, to_type, ref_list):
+    for child_ref in ref_list:
+        # family -> child_ref
+        # (False, [], [], u'b305e96e39652d8f08c', (1, u''), (1, u''))
+        (private, source_list, note_list, ref, frel, mrel) = child_ref
+        db.query("""INSERT INTO child_ref (from_type, from_handle, 
+                     ref, frel0, frel1, mrel0, mrel1, private)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?);""",
+                 from_type, from_handle, ref, frel[0], frel[1], 
+                 mrel[0], mrel[1], private)
+        export_source_list(db, from_type, ref, source_list)
+        export_list(db, from_type, ref, "note", note_list)
+
 def export_list(db, from_type, from_handle, to_type, handle_list):
     for to_handle in handle_list:
-        if type(to_handle) in [str, unicode]:
-            export_link(db, from_type, from_handle, to_type, to_handle)
-        else:# family -> child_ref
-            # (False, [], [], u'b305e96e39652d8f08c', (1, u''), (1, u''))
-            (private, source_list, note_list, ref, frel, mrel) = to_handle
-            db.query("""INSERT INTO child_ref (from_type, from_handle, ref, frel, mrel, private)
-                        VALUES (?, ?, ?, ?, ?, ?);""",
-                     from_type, from_handle, ref, frel[0], mrel[0], private)
-            export_source_list(db, "child_ref", ref, source_list)
-            export_list(db, "child_ref", ref, "note", note_list)
+        export_link(db, from_type, from_handle, to_type, to_handle)
             
 def export_link(db, from_type, from_handle, to_type, to_handle):
     db.query("""insert into link (
@@ -663,7 +676,7 @@ def exportData(database, filename, option_box=None, callback=None):
                  private)
 
         if place:
-            export_link(db, "event", handle, "place", place)
+            export_place(db, "event", handle, place)
         export_list(db, "event", handle, "note", note_list)
         export_attribute_list(db, "event", handle, attribute_list)
         export_media_list(db, "event", handle, media_list)
@@ -754,6 +767,7 @@ def exportData(database, filename, option_box=None, callback=None):
             (lsource_list, lnote_list, date, type, place,
              famc, temple, status, lprivate) = ldsord
             lds_handle = create_id()
+            # FIXME: place?
             export_lds(db, "person", handle, lds_handle, type, place, famc, temple, status, lprivate)
             if date:
                 export_date(db, "lds", lds_handle, date)
@@ -794,7 +808,7 @@ def exportData(database, filename, option_box=None, callback=None):
                  the_type[0], the_type[1], change, marker[0], marker[1], 
                  private)
 
-        export_list(db, "family", handle, "child_ref", child_ref_list)
+        export_child_ref_list(db, "family", handle, "child_ref", child_ref_list)
         export_list(db, "family", handle, "note", pnote_list)
         export_attribute_list(db, "family", handle, attribute_list)
         export_source_list(db, "family", handle, source_list)
@@ -814,6 +828,7 @@ def exportData(database, filename, option_box=None, callback=None):
             (lsource_list, lnote_list, date, type, place,
              famc, temple, status, lprivate) = ldsord
             lds_handle = create_id()
+            # FIXME: place?
             export_lds(db, "family", handle, lds_handle, type, place, famc, temple, status, lprivate)
             if date:
                 export_date(db, "lds", lds_handle, date)
@@ -864,14 +879,14 @@ def exportData(database, filename, option_box=None, callback=None):
     # Place
     # ---------------------------------
     for place_handle in database.place_map.keys():
-        repository = database.place_map[place_handle]
+        place = database.place_map[place_handle]
         (handle, gid, title, long, lat,
          main_loc, alt_location_list,
          urls,
          media_list,
          source_list,
          note_list,
-         change, marker, private) = repository
+         change, marker, private) = place
 
         db.query("""INSERT INTO place (
                  handle, 
@@ -891,12 +906,18 @@ def exportData(database, filename, option_box=None, callback=None):
         export_source_list(db, "place", handle, source_list)
         export_list(db, "place", handle, "note", note_list) 
 
+        # FIX: losing link to places?
         for location in alt_location_list:
             ((street, city, county, state, country, postal, phone), parish) = location
             addr_handle = create_id()
             export_address(db, "place", handle, addr_handle, street, city, county, state, 
                            country, postal, phone, private, parish)
-        # main_loc
+
+        (street, city, county, state, country, postal, phone, 
+         private, parish) =  main_loc
+        export_address(db, "place", handle, create_id(), street, city, 
+                       county, state, country, postal, phone, private, 
+                       parish)
         count += 1
         callback(100 * count/total)
 
