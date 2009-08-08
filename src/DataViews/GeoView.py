@@ -692,21 +692,27 @@ class GeoView(HtmlView):
         Ask to the browser to change the current map.
         """
         self.renderer.execute_script(
-            "javascript:mapstraction.swap(map,'"+usedmap+"')")
+            "javascript:mapstraction.swap('"+usedmap+"','"+usedmap+"')")
+
+    def _alternate_map(self):
+        """
+        return the alternate name of the map provider.
+        """
+        if Config.get(Config.GEOVIEW_GOOGLEMAPS):
+            alternate_map = "google"
+        elif Config.get(Config.GEOVIEW_OPENLAYERS):
+            alternate_map = "openlayers"
+        elif Config.get(Config.GEOVIEW_YAHOO):
+            alternate_map = "yahoo"
+        elif Config.get(Config.GEOVIEW_MICROSOFT):
+            alternate_map = "microsoft"
+        return alternate_map
 
     def ui_definition(self):
         """
         Specifies the UIManager XML code that defines the menus and buttons
         associated with the interface.
         """
-        if Config.get(Config.GEOVIEW_GOOGLEMAPS):
-            alternate_map = "GoogleMaps"
-        elif Config.get(Config.GEOVIEW_OPENLAYERS):
-            alternate_map = "OpenLayersMaps"
-        elif Config.get(Config.GEOVIEW_YAHOO):
-            alternate_map = "YahooMaps"
-        elif Config.get(Config.GEOVIEW_MICROSOFT):
-            alternate_map = "MicrosoftMaps"
         return '''<ui>
           <toolbar name="ToolBar">
             <placeholder name="CommonNavigation">
@@ -724,7 +730,7 @@ class GeoView(HtmlView):
               <toolitem action="AllPlacesMaps"/>
             </placeholder>
           </toolbar>
-        </ui>'''  % alternate_map
+        </ui>'''  % self._alternate_map()
 
     def define_actions(self):
         """
@@ -739,28 +745,28 @@ class GeoView(HtmlView):
                          callback=self.select_openstreetmap_map,
                          tip=_("Select OpenStreetMap Maps"))
         if Config.get(Config.GEOVIEW_GOOGLEMAPS):
-            self._add_action('GoogleMaps', 'gramps-alternate-map',
+            self._add_action('google', 'gramps-alternate-map',
                              _('_Google Maps'),
                              callback=self.select_google_map,
                              tip=_("Select Google Maps."))
         elif Config.get(Config.GEOVIEW_OPENLAYERS):
-            self._add_action('OpenLayersMaps', 'gramps-alternate-map',
+            self._add_action('openlayers', 'gramps-alternate-map',
                              _('_OpenLayers Maps'),
                              callback=self.select_openlayers_map,
                              tip=_("Select OpenLayers Maps."))
         elif Config.get(Config.GEOVIEW_YAHOO):
-            self._add_action('YahooMaps', 'gramps-alternate-map', 
+            self._add_action('yahoo', 'gramps-alternate-map', 
                              _('_Yahoo! Maps'),
                              callback=self.select_yahoo_map,
                              tip=_("Select Yahoo Maps."))
         elif Config.get(Config.GEOVIEW_MICROSOFT):
-            self._add_action('MicrosoftMaps', 'gramps-alternate-map',
+            self._add_action('microsoft', 'gramps-alternate-map',
                              _('_Microsoft Maps'),
                              callback=self.select_microsoft_map,
                              tip=_("Select Microsoft Maps"))
         self._add_action('AllPlacesMaps', gtk.STOCK_HOME, _('_All Places'),
-	    callback=self.all_places,
-	    tip=_("Attempt to view all places in the family tree."))
+            callback=self.all_places,
+            tip=_("Attempt to view all places in the family tree."))
         self._add_action('PersonMaps', 'gramps-person', _('_Person'),
             callback=self.person_places,
             tip=_("Attempt to view all the places where the selected people lived."))
@@ -988,27 +994,27 @@ class GeoView(HtmlView):
         self.mapview.write("          src=\"file://"+const.ROOT_DIR+"/")
         self.mapview.write("mapstraction/mapstraction.js\">\n")
         self.mapview.write("  </script>\n")
-        if self.usedmap == "microsoft":
+        self.mapview.write("  <script id=\"googleapiimport\" \n")
+        self.mapview.write("          src=\"http://maps.google.com/")
+        self.mapview.write("maps?file=api&v=2\"\n")
+        self.mapview.write("          type=\"text/javascript\">\n")
+        self.mapview.write("  </script>\n")
+        alternatemap = self._alternate_map()
+        if alternatemap == "microsoft":
             self.mapview.write("  <script type=\"text/javascript\"\n")
             self.mapview.write("          src=\"http://dev.virtualearth.net/")
             self.mapview.write("mapcontrol/mapcontrol.ashx?v=6\">\n")
             self.mapview.write("  </script>\n")
-        elif self.usedmap == "yahoo":
+        elif alternatemap == "yahoo":
             self.mapview.write("  <script type=\"text/javascript\"\n")
             self.mapview.write("          src=\"http://api.maps.yahoo.com/")
             self.mapview.write("ajaxymap?v=3.0&appid=MapstractionDemo\" ")
             self.mapview.write("type=\"text/javascript\">\n")
             self.mapview.write("  </script>\n")
-        elif self.usedmap == "openlayers":
+        elif alternatemap == "openlayers":
             self.mapview.write("  <script type=\"text/javascript\"\n")
             self.mapview.write("          src=\"http://openlayers.org/")
             self.mapview.write("api/OpenLayers.js\">\n")
-            self.mapview.write("  </script>\n")
-        else: # openstreetmap and google
-            self.mapview.write("  <script id=\"googleapiimport\" \n")
-            self.mapview.write("          src=\"http://maps.google.com/")
-            self.mapview.write("maps?file=api&v=2\"\n")
-            self.mapview.write("          type=\"text/javascript\">\n")
             self.mapview.write("  </script>\n")
         self.mapview.write("  <script>\n")
         self.mapview.write("       var gmarkers = [];\n")
@@ -1307,13 +1313,17 @@ class GeoView(HtmlView):
         This function create all markers for the specified person.
         """
         margin = 10
-        self.mapview.write("  <div id=\"map\" style=\"width: %dpx; " % \
-                           ( self.width - margin*4 ))
-        self.mapview.write("height: %dpx\"></div>\n" % ( self.height * 0.74 ))
-        self.mapview.write("  <script type=\"text/javascript\">\n")
-        self.mapview.write("   var mapstraction = new Mapstraction")
-        self.mapview.write("('map','%s');\n" % self.usedmap)
-        self.mapview.write("   mapstraction.addControls(")
+        self.mapview.write("\n<div id=\"openstreetmap\" class=\"Mapstraction\"")
+        self.mapview.write(" style=\"width: %dpx; " % (self.width - margin*4))
+        self.mapview.write("height: %dpx\"></div>\n" % (self.height * 0.74))
+        self.mapview.write("<div id=\"%s\" class=\"Mapstraction\"" % self._alternate_map())
+        self.mapview.write(" style=\"display: none; ")
+        self.mapview.write("width: %dpx; height: %dpx\"></div>\n" % \
+                           ((self.width - margin*4), (self.height * 0.74 )))
+        self.mapview.write("<script type=\"text/javascript\">\n")
+        self.mapview.write(" var mapstraction = new Mapstraction")
+        self.mapview.write("('openstreetmap','openstreetmap');\n")
+        self.mapview.write(" mapstraction.addControls(")
         self.mapview.write("{ pan: true, zoom: 'large', ")
         self.mapview.write("overview: true, scale: true, map_type: true });\n")
         last = ""

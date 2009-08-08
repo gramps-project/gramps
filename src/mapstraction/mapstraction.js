@@ -2194,12 +2194,13 @@ Mapstraction.prototype.getCenter = function() {
 /**
  * setCenter sets the central point of the map
  * @param {LatLonPoint} point The point at which to center the map
+ * @options {hash} optional parameters, such as {pan:true}
  */
-Mapstraction.prototype.setCenter = function(point) {
+Mapstraction.prototype.setCenter = function(point, options) {
     if(this.loaded[this.api] === false) {
         var me = this;
         this.onload[this.api].push( function() {
-            me.setCenter(point);
+            me.setCenter(point, options);
         } );
         return;
     }
@@ -2215,14 +2216,16 @@ Mapstraction.prototype.setCenter = function(point) {
             break;
         case 'google':
         case 'openstreetmap':
-            map.setCenter(point.toGoogle());
-            break;
+          if(options != null && options['pan']) { map.panTo(point.toGoogle()); }
+          else { map.setCenter(point.toGoogle()); }
+          break;
         case 'openlayers':
             map.setCenter(point.toOpenLayers());
             break;
         case 'microsoft':
-            map.SetCenter(point.toMicrosoft());
-            break;
+          if(options != null && options['pan']) { map.PanToLatLong(point.toMicrosoft()); }
+          else { map.SetCenter(point.toMicrosoft()); }
+          break;
         case 'multimap':
             map.goToPosition(point.toMultiMap());
             break;
@@ -2463,7 +2466,7 @@ Mapstraction.prototype.visibleCenterAndZoom = function()
 
 /**
  * Automatically sets center and zoom level to show all polylines
- * Takes into account radious of polyline
+ * Takes into account radius of polyline
  * @param {Int} radius
  */
 Mapstraction.prototype.polylineCenterAndZoom = function(radius)
@@ -2478,6 +2481,8 @@ Mapstraction.prototype.polylineCenterAndZoom = function(radius)
 		return;
 	}
 
+	radius = (radius == null) ? 0 : radius;
+	
 	var lat_max = -90;
 	var lat_min = 90;
 	var lon_max = -180;
@@ -4547,6 +4552,48 @@ Marker.prototype.openBubble = function() {
 };
 
 /**
+ * closeBubble closes the infoBubble
+ */
+Marker.prototype.closeBubble = function() {
+   if(this.mapstraction.loaded[this.api] === false) {
+       var my_marker = this;
+       this.mapstraction.onload[this.api].push( function() {
+           my_marker.closeBubble();
+       } );
+       return;
+   }
+
+   if( this.api) {
+       switch (this.api) {
+           case 'yahoo':
+               var ypin = this.proprietary_marker;
+               ypin.closeSmartWindow();
+               break;
+           case 'google':
+           case 'openstreetmap':
+               var gpin = this.proprietary_marker;
+               gpin.closeInfoWindow();
+               break;
+           case 'microsoft':
+               // The following works with v6.2, but need to first update way Mapstraction adds MS markers
+               var pin = this.proprietary_marker;
+                               this.map.HideInfoBox();
+                               break;
+           case 'multimap':
+               //closeInfoBox?
+               break;
+           case 'mapquest':
+               // ???
+               break;
+       }
+   } else {
+       if(this.debug) {
+
+       }
+   }
+};
+
+/**
  * hide the marker
  */
 Marker.prototype.hide = function() {
@@ -4866,7 +4913,7 @@ Polyline.prototype.toMap24 = function() {
     var m24poly;
     var m24longs = "";
     var m24lats = "";
-    for (var i=0; i<this.points.length; i++) {
+    for (var i=0, length = this.points.length; i<length; i++) {
         if(i) {
             m24longs += "|";
             m24lats += "|";
@@ -4874,7 +4921,7 @@ Polyline.prototype.toMap24 = function() {
         m24longs += (this.points[i].lon*60);
         m24lats += (this.points[i].lat*60);
     }
-    if (this.closed	|| this.gpoints[0].equals(this.gpoints[length-1])) {
+    if (this.closed	|| this.points[0].equals(this.points[length-1])) {
         m24poly = new Map24.Polygon({
             Longitudes: m24longs,
             Latitudes: m24lats,
@@ -4934,7 +4981,7 @@ Polyline.prototype.toMultiMap = function() {
  * @returns a LineOverlay/PolygonOverlay
  */
 Polyline.prototype.toMapQuest = function() {
-    if (this.closed	|| this.points[0].equals(this.points[length-1])) {
+    if (this.closed	|| this.points[0].equals(this.points[this.points.length-1])) {
         var mqpoly = new MQA.PolygonOverlay();
         mqpoly.setFillColor(this.color || "#E90000");
         mqpoly.setFillColorAlpha(this.opacity || 0.3);
@@ -5091,8 +5138,8 @@ Polyline.prototype.simplify = function(tolerance) {
 	reduced[0] = this.points[0];
 
 	var markerPoint = 0;
-
-	for (var i = 1; i < this.points.length-1; i++)
+  var length = this.points.length;
+	for (var i = 1; i < length-1; i++)
         if (this.points[i].distance(this.points[markerPoint]) >= tolerance)
 		{
 			reduced[reduced.length] = this.points[i];
@@ -5211,40 +5258,40 @@ Mapstraction.prototype.enableScrollWheelZoom = function() {
  * Currently only implemented in Google
  * @param {object} polygon
  */
-Mapstraction.prototype.addPolygon = function(polygon) {
-	if(this.loaded[this.api] == false)
-	{
-		myself = this;
-		this.onload[this.api].push(function()
-		{
-			myself.addPolygon(polygon);
-		});
-		return;
-	}
+ Mapstraction.prototype.addPolygon = function(polygon) {
+   if(this.loaded[this.api] == false)
+   {
+     myself = this;
+     this.onload[this.api].push(function()
+     {
+       myself.addPolygon(polygon);
+     });
+     return;
+   }
 
-	var map = this.maps[this.api];
+   var map = this.maps[this.api];
 
-	switch (this.api)
-	{
-		case 'google':
-		case 'openstreetmap':
-			var gpoints = [];
+   switch (this.api)
+   {
+     case 'google':
+     case 'openstreetmap':
+     var gpoints = [];
 
-			for (var i = 0; i < polygon.points.length; i++)
-				gpoints.push(polygon.points[i].toGoogle());
+     for (var i = 0; i < polygon.points.length; i++)
+     gpoints.push(polygon.points[i].toGoogle());
 
-			gpolygon = new GPolygon(gpoints, polygon.color, 0, polygon.opacity, polygon.color, polygon.opacity);
-			polygon.setChild(gpolygon);
-			map.addOverlay(gpolygon);
-			this.polylines.push(polygon);
-			break;
-		default:
-			if(this.debug) {
-				alert(api + ' not supported by Mapstration.addPolygon');
-			}
-			break;
-	}
-};
+     gpolygon = new GPolygon(gpoints, polygon.color, 0, polygon.opacity, polygon.color, polygon.opacity);
+     polygon.setChild(gpolygon);
+     map.addOverlay(gpolygon);
+     this.polylines.push(polygon);
+     break;
+     default:
+     if(this.debug) {
+       alert(api + ' not supported by Mapstration.addPolygon');
+     }
+     break;
+   }
+ };
 
 ///////////////
 // Radius    //
