@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
 # Copyright (C) 2008      Brian G. Matherly
+# Contribution  2009 by   Brad Crittenden <brad [AT] bradcrittenden.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -107,7 +108,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         self.writestarted = False
         
-        #set up Assisant
+        #set up Assistant
         gtk.Assistant.__init__(self)
         ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
         self.forward_button = None
@@ -145,6 +146,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #no progress page, looks ugly, and user needs to hit forward at end!
         self.create_page_summary()
         
+        self.option_box_instance = None
         #we need our own forward function as options page must not always be shown
         self.set_forward_page_func(self.forward_func, None)
         
@@ -268,10 +270,10 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         # add new content
         if config_box_class:
             self.option_box_instance = config_box_class(self.person)
+            box = self.option_box_instance.get_option_box()
+            vbox.add(box)
         else: 
             self.option_box_instance = None
-        box = self.option_box_instance.get_option_box()
-        vbox.add(box)
         vbox.show_all()
         
         # We silently assume all options lead to accepted behavior
@@ -574,7 +576,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         return success
     
     def pre_save(self,page):
-        #as all is locked, show the page, which assistent normally only does
+        #as all is locked, show the page, which assistant normally only does
         # after prepare signal!
         self.writestarted = True
         page.set_child_visible(True)
