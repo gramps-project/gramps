@@ -21,7 +21,7 @@
 # $Id: __init__.py 10055 2008-02-18 20:07:09Z acraphae $
 
 """
-General utility functions usefull for the generic plugin system
+General utility functions useful for the generic plugin system
 """
 
 #-------------------------------------------------------------------------

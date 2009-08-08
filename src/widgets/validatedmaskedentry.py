@@ -548,7 +548,7 @@ INPUT_FORMATS = {
     '&': INPUT_ALPHA, 
     }
 
-# Todo list: Other usefull Masks
+# Todo list: Other useful Masks
 #  9 - Digit, optional
 #  ? - Ascii letter, optional
 #  C - Alpha, optional

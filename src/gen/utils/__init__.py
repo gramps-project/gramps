@@ -19,7 +19,7 @@
 #
 
 """
-Generic utilities usefull for users of the gen package
+Generic utilities useful for users of the gen package
 """
 
 from dbutils import *

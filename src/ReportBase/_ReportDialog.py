@@ -627,7 +627,7 @@ def report(dbstate, uistate, person, report_class, options_class,
 #           The following except statement will catch all "NoneType" exceptions.
 #           This is useful for released code where the exception is most likely
 #           a corrupt database. But it is less useful for developing new reports
-#           where the execption is most likely a report bug.                
+#           where the exception is most likely a report bug.                
 #            except AttributeError,msg:
 #                if str(msg).startswith("'NoneType' object has no attribute"):
 #                    # "'NoneType' object has no attribute ..." usually means
