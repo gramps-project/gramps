@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2007-2009  Stephane Charette
 # Copyright (C) 2009       Gary Burton
+# Contribution 2009 by     Bob Ham <rah@bash.sh>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +60,7 @@ from gen.plug.menu import NumberOption, TextOption, EnumeratedListOption, \
 
 #-------------------------------------------------------------------------------
 #
-# Private Contstants
+# Private Constants
 #
 #-------------------------------------------------------------------------------
 _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
@@ -148,7 +149,7 @@ def _run_long_process_in_thread(func, header):
 #-------------------------------------------------------------------------------
 class GVDocBase(BaseDoc, GVDoc):
     """
-    Base document generator for all Graphiz document generators. Classes that
+    Base document generator for all Graphviz document generators. Classes that
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
@@ -220,8 +221,7 @@ class GVDocBase(BaseDoc, GVDoc):
         self.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
         self.write( '  splines="true";\n'           )
         self.write( '\n'                            )
-        self.write( '  edge [len=0.5 style=solid arrowhead=none '
-                            'arrowtail=normal fontsize=%d];\n' % self.fontsize )
+        self.write( '  edge [len=0.5 style=solid fontsize=%d];\n' % self.fontsize )
         if self.fontfamily:
             self.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
                             % ( self.fontfamily, self.fontsize ) )
@@ -302,7 +302,7 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         Add a link between two nodes.
         
-        Implementes GVDoc.add_link().
+        Implements GVDoc.add_link().
         """
         self.write('  %s -> %s' % (id1, id2))
         
@@ -329,7 +329,7 @@ class GVDocBase(BaseDoc, GVDoc):
         """
         Add a comment.
         
-        Implementes GVDoc.add_comment().
+        Implements GVDoc.add_comment().
         """
         tmp = comment.split('\n')
         for line in tmp:
@@ -907,7 +907,7 @@ class GraphvizReportDialog(ReportDialog):
     """A class of ReportDialog customized for graphviz based reports."""
     def __init__(self, dbstate, uistate, opt, name, translated_name):
         """Initialize a dialog to request that the user select options
-        for a graphiz report.  See the ReportDialog class for
+        for a graphviz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
         ReportDialog.__init__(self, dbstate, uistate, opt,

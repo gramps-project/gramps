@@ -10,6 +10,7 @@
 #    Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #    Copyright (C) 2008       Stephane Charette <stephanecharette@gmail.com>
 #    Copyright (C) 2009       Gary Burton
+#    Contribution 2009 by     Bob Ham <rah@bash.sh>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -140,14 +141,14 @@ class RelGraphReport(Report):
         }
 
         arrow_str = menu.get_option_by_name('arrow').get_value()
-        if arrow_str.find('a') + 1:
-            self.arrowheadstyle = 'normal'
-        else:
+        if arrow_str.find('d') == -1:
             self.arrowheadstyle = 'none'
-        if arrow_str.find('d') + 1:
+        else:
+            self.arrowheadstyle = None
+        if arrow_str.find('a') != -1:
             self.arrowtailstyle = 'normal'
         else:
-            self.arrowtailstyle = 'none'
+            self.arrowtailstyle = None
         filter_option = options_class.menu.get_option_by_name('filter')
         self._filter = filter_option.get_filter()
 
@@ -194,14 +195,14 @@ class RelGraphReport(Report):
         style = 'solid'
         adopted = ((int(frel) != gen.lib.ChildRefType.BIRTH) or
                    (int(mrel) != gen.lib.ChildRefType.BIRTH))
-        # If birth relation to father is NONE, mening there is no father and
+        # If birth relation to father is NONE, meaning there is no father and
         # if birth relation to mother is BIRTH then solid line
         if ((int(frel) == gen.lib.ChildRefType.NONE) and
            (int(mrel) == gen.lib.ChildRefType.BIRTH)):
             adopted = False
         if adopted and self.adoptionsdashed:
             style = 'dotted'
-        self.doc.add_link( p_id, family.get_gramps_id(), style, 
+        self.doc.add_link( family.get_gramps_id(), p_id, style,  
                            self.arrowheadstyle, self.arrowtailstyle )
         
     def add_parent_link(self, p_id, parent_handle, rel):
@@ -210,7 +211,7 @@ class RelGraphReport(Report):
         if (int(rel) != gen.lib.ChildRefType.BIRTH) and self.adoptionsdashed:
             style = 'dotted'
         parent = self.database.get_person_from_handle(parent_handle)
-        self.doc.add_link( p_id, parent.get_gramps_id(), style, 
+        self.doc.add_link( parent.get_gramps_id(), p_id, style,
                            self.arrowheadstyle, self.arrowtailstyle )
         
     def add_persons_and_families(self):
@@ -244,7 +245,6 @@ class RelGraphReport(Report):
                 family_list = person.get_family_handle_list()
                 for fam_handle in family_list:
                     family = self.database.get_family_from_handle(fam_handle)
-                    fam_id = family.get_gramps_id()
                     if fam_handle not in families_done:
                         families_done[fam_handle] = 1
                         self.__add_family(fam_handle)
@@ -253,7 +253,7 @@ class RelGraphReport(Report):
                     # control over the layout of the whole graph but
                     # may leave spouses not positioned together.
                     if not self.use_subgraphs:
-                        self.doc.add_link(fam_id, p_id, "",
+                        self.doc.add_link(p_id, family.get_gramps_id(), "",
                                           self.arrowheadstyle,
                                           self.arrowtailstyle)
                         
@@ -291,14 +291,14 @@ class RelGraphReport(Report):
             m_handle = fam.get_mother_handle()
             if f_handle:
                 father = self.database.get_person_from_handle(f_handle)
-                self.doc.add_link(fam_id,
-                                  father.get_gramps_id(), "", 
+                self.doc.add_link(father.get_gramps_id(),
+                                  fam_id, "", 
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
             if m_handle:
                 mother = self.database.get_person_from_handle(m_handle)
-                self.doc.add_link(fam_id,
-                                  mother.get_gramps_id(), "", 
+                self.doc.add_link(mother.get_gramps_id(),
+                                  fam_id, "", 
                                   self.arrowheadstyle,
                                   self.arrowtailstyle)
             self.doc.end_subgraph()
@@ -360,7 +360,7 @@ class RelGraphReport(Report):
         #
         # This isn't a free-form HTML format here...just a few keywords that
         # happen to be
-        # simillar to keywords commonly seen in HTML.  For additional
+        # similar to keywords commonly seen in HTML.  For additional
         # information on what
         # is allowed, see:
         #
@@ -397,7 +397,7 @@ class RelGraphReport(Report):
             label += '</TD></TR></TABLE>'
             return label
         else :
-            # non html label is enclosed by "" so excape other "
+            # non html label is enclosed by "" so escape other "
             return label.replace('"', '\\\"')
     
     def get_date_strings(self, person):

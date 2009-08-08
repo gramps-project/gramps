@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Stephane Charette <stephanecharette@gmail.com>
+# Contribution 2009 by    Bob Ham <rah@bash.sh>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -110,15 +111,14 @@ class HourGlassReport(Report):
         
     def traverse_down(self, person, gen):
         """
-        Resursively find the descendants of the given person.
+        Recursively find the descendants of the given person.
         """
         if gen > self.max_descend:
             return
         for family_handle in person.get_family_handle_list():
             family = self.__db.get_family_from_handle(family_handle)
             self.add_family(family)
-            self.doc.add_link( person.get_gramps_id(), family.get_gramps_id(), 
-                               head='normal', tail='none' )
+            self.doc.add_link( person.get_gramps_id(), family.get_gramps_id() )
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 if child_handle not in self.__used_people:
@@ -127,13 +127,12 @@ class HourGlassReport(Report):
                     child = self.__db.get_person_from_handle(child_handle)
                     self.add_person(child)
                     self.doc.add_link(family.get_gramps_id(), 
-                                      child.get_gramps_id(), 
-                                      head='normal', tail='none' )
+                                      child.get_gramps_id() )
                     self.traverse_down(child, gen+1)
                 
     def traverse_up(self, person, gen):
         """
-        Resursively find the ancestors of the given person.
+        Recursively find the ancestors of the given person.
         """
         if gen > self.max_ascend:
             return

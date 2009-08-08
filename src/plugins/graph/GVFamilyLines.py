@@ -4,9 +4,10 @@
 # Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2009       Gary Burton 
+# Contribution 2009 by     Bob Ham <rah@bash.sh>
 #
 # This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Pubilc License as published by
+# it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
@@ -850,7 +851,7 @@ class FamilyLinesReport(Report):
                                                               media.get_path()),
                                         rectangle=mediaList[0].get_rectangle())
 
-            # put the label together and ouput this person
+            # put the label together and output this person
             label = u""
             lineDelimiter = '\\n'
             if bUseHtmlOutput:
@@ -1017,14 +1018,14 @@ class FamilyLinesReport(Report):
                 if father_handle in self._people:
                     father = self._db.get_person_from_handle(father_handle)
                     comment = "father: %s" % father.get_primary_name().get_regular_name()
-                    self.doc.add_link(fgid, father.get_gramps_id(), comment=comment)
+                    self.doc.add_link(father.get_gramps_id(), fgid, comment=comment)
 
             # see if we have a mother to link to this family
             if mother_handle:
                 if mother_handle in self._people:
                     mother = self._db.get_person_from_handle(mother_handle)
                     comment = "mother: %s" % mother.get_primary_name().get_regular_name()
-                    self.doc.add_link(fgid, mother.get_gramps_id(), comment=comment)
+                    self.doc.add_link(mother.get_gramps_id(), fgid, comment=comment)
 
             if self._usesubgraphs and father_handle and mother_handle:
                 self.doc.end_subgraph()
@@ -1034,7 +1035,7 @@ class FamilyLinesReport(Report):
                 if childRef.ref in self._people:
                     child = self._db.get_person_from_handle(childRef.ref)
                     comment = "child:  %s" % child.get_primary_name().get_regular_name()
-                    self.doc.add_link(child.get_gramps_id(), fgid, comment=comment)
+                    self.doc.add_link(fgid, child.get_gramps_id(), comment=comment)
 
 
 #------------------------------------------------------------------------
