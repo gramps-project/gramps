@@ -1,4 +1,4 @@
- #
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2009 Gerald Britton <gerald.britton@gmail.com>

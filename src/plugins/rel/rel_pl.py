@@ -518,7 +518,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return tmp                         
                 # +  self.get_sword_distaff(level, reltocommon, ' ') 
             else:
-               return t_inlaw + \
+                return t_inlaw + \
                    "przodek %s pokolenia" % (_level_name[level - 1])
         else:
             return t_inlaw +"przodek w %d pokoleniu" % level

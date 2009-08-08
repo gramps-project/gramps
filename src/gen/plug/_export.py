@@ -62,9 +62,9 @@ class ExportPlugin(Plugin):
     
     def get_export_function(self):
         """
-        Get the import function for this plugins.
+        Get the export function for this plugin.
         
-        @return: the callable import_function passed into __init__ 
+        @return: the callable export_function passed into __init__ 
         """
         return self.__export_func
     
