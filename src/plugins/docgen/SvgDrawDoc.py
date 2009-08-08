@@ -21,6 +21,10 @@
 
 # $Id$
 
+"""
+SVG document generator.
+"""
+
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -35,7 +39,7 @@ import StringIO
 #
 #-------------------------------------------------------------------------
 from gen.plug import PluginManager, DocGenPlugin
-from gen.plug.docgen import BaseDoc, DrawDoc,FONT_SANS_SERIF
+from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SANS_SERIF
 import Errors
 
 #-------------------------------------------------------------------------
@@ -45,15 +49,15 @@ import Errors
 #-------------------------------------------------------------------------
 class SvgDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self,styles,type,template):
-        BaseDoc.__init__(self,styles,type,template)
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
         self.f = None
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
         self.page = 0
 
-    def open(self,filename):
+    def open(self, filename):
         if filename[-4:] != ".svg":
             self.root = filename
         else:
@@ -65,7 +69,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
     def start_page(self):
         self.page = self.page + 1
         if self.page != 1:
-            name = "%s-%d.svg" % (self.root,self.page)
+            name = "%s-%d.svg" % (self.root, self.page)
         else:
             name = "%s.svg" % self.root
 
@@ -81,10 +85,10 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
         self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ')
         self.f.write('"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
-        self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.paper.get_size().get_width(),self.paper.get_size().get_height()))
+        self.f.write('<svg width="%5.2fcm" height="%5.2fcm" ' % (self.paper.get_size().get_width(), self.paper.get_size().get_height()))
         self.f.write('xmlns="http://www.w3.org/2000/svg">\n')
 
-    def rotate_text(self,style,text,x,y,angle):
+    def rotate_text(self, style, text, x, y, angle):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -95,17 +99,17 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         width = 0
         height = 0
         for line in text:
-            width = max(width,self.string_width(font,line))
+            width = max(width, self.string_width(font, line))
             height += size
 
-        centerx,centery = units(( x+self.paper.get_left_margin(),
+        centerx, centery = units(( x+self.paper.get_left_margin(),
                                   y+self.paper.get_top_margin() ))
         xpos = (centerx - (width/2.0)) 
         ypos = (centery - (height/2.0)) 
 
         self.t.write('<text ')
-        self.t.write('x="%4.2f" y="%4.2f" ' % (xpos,ypos))
-        self.t.write('transform="rotate(%d %4.2f %4.2f)" ' % (angle,centerx,centery))
+        self.t.write('x="%4.2f" y="%4.2f" ' % (xpos, ypos))
+        self.t.write('transform="rotate(%d %4.2f %4.2f)" ' % (angle, centerx, centery))
         self.t.write('style="fill:#%02x%02x%02x; '% font.get_color())
         if font.get_bold():
             self.t.write('font-weight:bold;')
@@ -120,8 +124,8 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
     
         for line in text:
             # Center this line relative to the rest of the text
-            linex = xpos + (width - self.string_width(font,line) ) / 2
-            self.t.write('<tspan x="%4.2f" dy="%d">' % (linex,size))
+            linex = xpos + (width - self.string_width(font, line) ) / 2
+            self.t.write('<tspan x="%4.2f" dy="%d">' % (linex, size))
             self.t.write(line)
             self.t.write('</tspan>')
         self.t.write('</text>\n')
@@ -134,7 +138,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.f.write('</svg>\n')
         self.f.close()
     
-    def draw_line(self,style,x1,y1,x2,y2):
+    def draw_line(self, style, x1, y1, x2, y2):
         x1 = x1 + self.paper.get_left_margin()
         x2 = x2 + self.paper.get_left_margin()
         y1 = y1 + self.paper.get_top_margin()
@@ -143,12 +147,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         style_sheet = self.get_style_sheet()
         s = style_sheet.get_draw_style(style)
 
-        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1,y1))
-        self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2,y2))
+        self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1, y1))
+        self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2, y2))
         self.f.write('style="stroke:#%02x%02x%02x; ' % s.get_color())
         self.f.write('stroke-width:%.2fpt;"/>\n' % s.get_line_width())
 
-    def draw_path(self,style,path):
+    def draw_path(self, style, path):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
 
@@ -156,12 +160,12 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         self.f.write('<polygon fill="#%02x%02x%02x"' % stype.get_fill_color())
         self.f.write(' style="stroke:#%02x%02x%02x; ' % stype.get_color())
         self.f.write(' stroke-width:%.2fpt;"' % stype.get_line_width())
-        self.f.write(' points="%.2f,%.2f' % units((point[0]+self.paper.get_left_margin(),point[1]+self.paper.get_top_margin())))
+        self.f.write(' points="%.2f,%.2f' % units((point[0]+self.paper.get_left_margin(), point[1]+self.paper.get_top_margin())))
         for point in path[1:]:
-            self.f.write(' %.2f,%.2f' % units((point[0]+self.paper.get_left_margin(),point[1]+self.paper.get_top_margin())))
+            self.f.write(' %.2f,%.2f' % units((point[0]+self.paper.get_left_margin(), point[1]+self.paper.get_top_margin())))
         self.f.write('"/>\n')
 
-    def draw_box(self,style,text,x,y, w, h):
+    def draw_box(self, style, text, x, y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
 
@@ -214,7 +218,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                 self.t.write(lines[i])
                 self.t.write('</text>\n')
 
-    def draw_text(self,style,text,x,y):
+    def draw_text(self, style, text, x, y):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
         
@@ -249,10 +253,9 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
         para_name = box_style.get_paragraph_style()
         p = style_sheet.get_paragraph_style(para_name)
         font = p.get_font()
-        font_size = font.get_size()
-        width = self.string_width(font,text) / 72
+        width = self.string_width(font, text) / 72
         x = x - width
-        self.draw_text(style,text,x,y)
+        self.draw_text(style, text, x, y)
 
 def units(val):
     return (val[0]*35.433, val[1]*35.433)

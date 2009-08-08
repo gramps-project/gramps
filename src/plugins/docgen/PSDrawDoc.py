@@ -21,6 +21,10 @@
 
 # $Id$
 
+"""
+PostScript document generator.
+"""
+
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -37,30 +41,29 @@ from gen.plug import PluginManager, DocGenPlugin
 from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
 from gen.plug.utils import gformat
 import Errors
-import Utils
 
 def lrgb(grp):
     grp = ReportUtils.rgb_color(grp)
-    return (gformat(grp[0]),gformat(grp[1]),gformat(grp[2]))
+    return (gformat(grp[0]), gformat(grp[1]), gformat(grp[2]))
 
 def coords(grp):
-    return (gformat(grp[0]),gformat(grp[1]))
+    return (gformat(grp[0]), gformat(grp[1]))
 
 #-------------------------------------------------------------------------
 #
 # PSDrawDoc
 #
 #-------------------------------------------------------------------------
-class PSDrawDoc(BaseDoc,DrawDoc):
+class PSDrawDoc(BaseDoc, DrawDoc):
 
-    def __init__(self,styles,type,template):
-        BaseDoc.__init__(self,styles,type,template)
-        self.f = None
+    def __init__(self, styles, type):
+        BaseDoc.__init__(self, styles, type)
+        self.file = None
         self.filename = None
         self.level = 0
         self.page = 0
 
-    def fontdef(self,para):
+    def fontdef(self, para):
         font = para.get_font()
         if font.get_type_face() == FONT_SERIF:
             if font.get_bold():
@@ -85,75 +88,80 @@ class PSDrawDoc(BaseDoc,DrawDoc):
                 else:
                     font_name = "/Helvetica"
         
-        return "%s find-latin-font %d scalefont setfont\n" % (font_name,font.get_size())
+        return "%s find-latin-font %d scalefont setfont\n" % (font_name, font.get_size())
 
-    def translate(self,x,y):
-        return (x,self.paper.get_size().get_height()-y)
+    def translate(self, x, y):
+        return (x, self.paper.get_size().get_height()-y)
 
-    def open(self,filename):
+    def open(self, filename):
+        """
+        Opens the file so that it can be generated.
+
+        @param filename: path name of the file to create
+        """
         if filename[-3:] != ".ps":
             self.filename = filename + ".ps"
         else:
             self.filename = filename
 
         try:
-            self.f = open(self.filename,"w")
+            self.file = open(self.filename,"w")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise Errors.ReportError(errmsg)
         except:
             raise Errors.ReportError(_("Could not create %s") % self.filename)
         
-        self.f.write('%!PS-Adobe-3.0\n')
-        self.f.write('%%LanguageLevel: 2\n')
-        self.f.write('%%Pages: (atend)\n')
-        self.f.write('%%PageOrder: Ascend\n')
+        self.file.write('%!PS-Adobe-3.0\n')
+        self.file.write('%%LanguageLevel: 2\n')
+        self.file.write('%%Pages: (atend)\n')
+        self.file.write('%%PageOrder: Ascend\n')
         if self.paper.get_orientation() != PAPER_PORTRAIT:
-            self.f.write('%%Orientation: Landscape\n')
+            self.file.write('%%Orientation: Landscape\n')
         else:
-            self.f.write('%%Orientation: Portrait\n')
-        self.f.write('%%EndComments\n')
-        self.f.write('/cm { 28.34 mul } def\n')
-        self.f.write('% build iso-latin-1 version of a font\n')
-        self.f.write('/font-to-iso-latin-1 {	% <font> font-to-iso-latin-1 <font>\n')
-        self.f.write('%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n')
-        self.f.write('dup length dict begin {1 index /FID ne {def} {pop pop} ifelse} forall\n')
-        self.f.write('/Encoding ISOLatin1Encoding def currentdict end\n')
-        self.f.write('dup /FontName get 80 string cvs (-ISOLatin1) concatstrings cvn \n')
-        self.f.write('exch definefont\n')
-        self.f.write('} def\n')
-        self.f.write('\n')
-        self.f.write('/find-latin-font {	% <name> find-latin-font <font>\n')
-        self.f.write('findfont font-to-iso-latin-1\n')
-        self.f.write('} def\n')
+            self.file.write('%%Orientation: Portrait\n')
+        self.file.write('%%EndComments\n')
+        self.file.write('/cm { 28.34 mul } def\n')
+        self.file.write('% build iso-latin-1 version of a font\n')
+        self.file.write('/font-to-iso-latin-1 {	% <font> font-to-iso-latin-1 <font>\n')
+        self.file.write('%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n')
+        self.file.write('dup length dict begin {1 index /FID ne {def} {pop pop} ifelse} forall\n')
+        self.file.write('/Encoding ISOLatin1Encoding def currentdict end\n')
+        self.file.write('dup /FontName get 80 string cvs (-ISOLatin1) concatstrings cvn \n')
+        self.file.write('exch definefont\n')
+        self.file.write('} def\n')
+        self.file.write('\n')
+        self.file.write('/find-latin-font {	% <name> find-latin-font <font>\n')
+        self.file.write('findfont font-to-iso-latin-1\n')
+        self.file.write('} def\n')
         
         self.filename = filename
 
     def close(self):
-        self.f.write('%%Trailer\n')
-        self.f.write('%%Pages: ')
-        self.f.write('%d\n' % self.page)
-        self.f.write('%%EOF\n')
-        self.f.close()
+        self.file.write('%%Trailer\n')
+        self.file.write('%%Pages: ')
+        self.file.write('%d\n' % self.page)
+        self.file.write('%%EOF\n')
+        self.file.close()
         if self.open_req:
             open_file_with_default_application(self.filename)
         
-    def write_text(self,text,mark=None):
+    def write_text(self, text, mark=None):
         pass
 
     def start_page(self):
         self.page = self.page + 1
-        self.f.write("%%Page:")
-        self.f.write("%d %d\n" % (self.page,self.page))
+        self.file.write("%%Page:")
+        self.file.write("%d %d\n" % (self.page, self.page))
         if self.paper.get_orientation() != PAPER_PORTRAIT:
-            self.f.write('90 rotate %s cm %s cm translate\n' % (
+            self.file.write('90 rotate %s cm %s cm translate\n' % (
                 gformat(0),gformat(-1*self.paper.get_size().get_height())))
 
     def end_page(self):
-        self.f.write('showpage\n')
-        self.f.write('%%PageTrailer\n')
+        self.file.write('showpage\n')
+        self.file.write('%%PageTrailer\n')
 
-    def encode(self,text):
+    def encode(self, text):
         try:
             orig = unicode(text)
             new_text = orig.encode('iso-8859-1')
@@ -161,12 +169,12 @@ class PSDrawDoc(BaseDoc,DrawDoc):
             new_text = "?"*len(text)
         return new_text
 
-    def encode_text(self,p,text):
+    def encode_text(self, p, text):
         fdef = self.fontdef(p)
         new_text = self.encode(text)
-        return (new_text,fdef)
+        return (new_text, fdef)
 
-    def center_text(self,style,text,x,y):
+    def center_text(self, style, text, x, y):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -175,17 +183,17 @@ class PSDrawDoc(BaseDoc,DrawDoc):
         x += self.paper.get_left_margin()
         y = y + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
 
-        (text,fdef) = self.encode_text(p,text)
+        (text, fdef) = self.encode_text(p, text)
 
-        self.f.write('gsave\n')
-        self.f.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
-        self.f.write(fdef)
-        self.f.write('(%s) dup stringwidth pop -2 div ' % text)
-        self.f.write('%s cm add %s cm moveto ' % coords(self.translate(x,y)))
-        self.f.write('show\n')
-        self.f.write('grestore\n')
+        self.file.write('gsave\n')
+        self.file.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
+        self.file.write(fdef)
+        self.file.write('(%s) dup stringwidth pop -2 div ' % text)
+        self.file.write('%s cm add %s cm moveto ' % coords(self.translate(x, y)))
+        self.file.write('show\n')
+        self.file.write('grestore\n')
 
-    def draw_text(self,style,text,x1,y1):
+    def draw_text(self, style, text, x1, y1):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -194,14 +202,14 @@ class PSDrawDoc(BaseDoc,DrawDoc):
         x1 = x1 + self.paper.get_left_margin()
         y1 = y1 + self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
 
-        (text,fdef) = self.encode_text(p,text)
+        (text, fdef) = self.encode_text(p, text)
 
-        self.f.write('gsave\n')
-        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
-        self.f.write(fdef)
-        self.f.write('(%s) show grestore\n' % text)
+        self.file.write('gsave\n')
+        self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x1, y1)))
+        self.file.write(fdef)
+        self.file.write('(%s) show grestore\n' % text)
 
-    def rotate_text(self,style,text,x,y,angle):
+    def rotate_text(self, style, text, x, y, angle):
 
         x += self.paper.get_left_margin()
         y += self.paper.get_top_margin()
@@ -214,121 +222,121 @@ class PSDrawDoc(BaseDoc,DrawDoc):
 
         size = font.get_size()
 
-        (new_text,fdef) = self.encode_text(p,text[0])
+        (new_text, fdef) = self.encode_text(p, text[0])
 
-        self.f.write('gsave\n')
-        self.f.write(fdef)
-        coords = self.translate(x,y)
-        self.f.write('%s cm %s cm translate\n' % (
+        self.file.write('gsave\n')
+        self.file.write(fdef)
+        coords = self.translate(x, y)
+        self.file.write('%s cm %s cm translate\n' % (
             gformat(coords[0]),gformat(coords[1])))
-        self.f.write('%s rotate\n' % gformat(-angle))
+        self.file.write('%s rotate\n' % gformat(-angle))
 
-        self.f.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
+        self.file.write('%s %s %s setrgbcolor\n' % lrgb(stype.get_color()))
 
         val = len(text)
         y = ((size * val)/2.0) - size
 
         for line in text:
-            self.f.write('(%s) dup stringwidth pop -2 div  '
+            self.file.write('(%s) dup stringwidth pop -2 div  '
                          % self.encode(line))
-            self.f.write("%s moveto show\n" % gformat(y))
+            self.file.write("%s moveto show\n" % gformat(y))
             y -= size
  
-        self.f.write('grestore\n')
+        self.file.write('grestore\n')
 
-    def draw_path(self,style,path):
+    def draw_path(self, style, path):
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
-        self.f.write('gsave\n')
-        self.f.write('newpath\n')
-        self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
+        self.file.write('gsave\n')
+        self.file.write('newpath\n')
+        self.file.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
         if stype.get_line_style() == SOLID:
-            self.f.write('[] 0 setdash\n')
+            self.file.write('[] 0 setdash\n')
         else:
-            self.f.write('[2 4] 0 setdash\n')
+            self.file.write('[2 4] 0 setdash\n')
 
         point = path[0]
         x1 = point[0]+self.paper.get_left_margin()
         y1 = point[1]+self.paper.get_top_margin()
-        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
+        self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x1, y1)))
 
         for point in path[1:]:
             x1 = point[0]+self.paper.get_left_margin()
             y1 = point[1]+self.paper.get_top_margin()
-            self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x1,y1)))
-        self.f.write('closepath\n')
+            self.file.write('%s cm %s cm lineto\n' % coords(self.translate(x1, y1)))
+        self.file.write('closepath\n')
 
         color = stype.get_fill_color()
-        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(color))
-        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
-        self.f.write('grestore\n')
+        self.file.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(color))
+        self.file.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
+        self.file.write('grestore\n')
 
-    def draw_line(self,style,x1,y1,x2,y2):
+    def draw_line(self, style, x1, y1, x2, y2):
         x1 = x1 + self.paper.get_left_margin()
         x2 = x2 + self.paper.get_left_margin()
         y1 = y1 + self.paper.get_top_margin()
         y2 = y2 + self.paper.get_top_margin()
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
-        self.f.write('gsave newpath\n')
-        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x1,y1)))
-        self.f.write('%s cm %s cm lineto\n' % coords(self.translate(x2,y2)))
-        self.f.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
+        self.file.write('gsave newpath\n')
+        self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x1, y1)))
+        self.file.write('%s cm %s cm lineto\n' % coords(self.translate(x2, y2)))
+        self.file.write('%s setlinewidth\n' % gformat(stype.get_line_width()))
         if stype.get_line_style() == SOLID:
-            self.f.write('[] 0 setdash\n')
+            self.file.write('[] 0 setdash\n')
         else:
-            self.f.write('[2 4] 0 setdash\n')
+            self.file.write('[2 4] 0 setdash\n')
             
-        self.f.write('2 setlinecap\n')
-        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
-        self.f.write('grestore\n')
+        self.file.write('2 setlinecap\n')
+        self.file.write('%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()))
+        self.file.write('grestore\n')
 
-    def draw_box(self,style,text,x,y, w, h):
+    def draw_box(self, style, text, x, y, w, h):
         x = x + self.paper.get_left_margin()
         y = y + self.paper.get_top_margin()
         
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
 
-        self.f.write('gsave\n')
+        self.file.write('gsave\n')
 
         shadsize = box_style.get_shadow_space()
         if box_style.get_shadow():
-            self.f.write('newpath\n')
-            self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x+shadsize,y+shadsize)))
-            self.f.write('0 -%s cm rlineto\n' % gformat(h))
-            self.f.write('%s cm 0 rlineto\n' % gformat(w))
-            self.f.write('0 %s cm rlineto\n' % gformat(h))
-            self.f.write('closepath\n')
-            self.f.write('.5 setgray\n')
-            self.f.write('fill\n')
-        self.f.write('newpath\n')
-        self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
-        self.f.write('0 -%s cm rlineto\n' % gformat(h))
-        self.f.write('%s cm 0 rlineto\n' % gformat(w))
-        self.f.write('0 %s cm rlineto\n' % gformat(h))
-        self.f.write('closepath\n')
+            self.file.write('newpath\n')
+            self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x+shadsize, y+shadsize)))
+            self.file.write('0 -%s cm rlineto\n' % gformat(h))
+            self.file.write('%s cm 0 rlineto\n' % gformat(w))
+            self.file.write('0 %s cm rlineto\n' % gformat(h))
+            self.file.write('closepath\n')
+            self.file.write('.5 setgray\n')
+            self.file.write('fill\n')
+        self.file.write('newpath\n')
+        self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x, y)))
+        self.file.write('0 -%s cm rlineto\n' % gformat(h))
+        self.file.write('%s cm 0 rlineto\n' % gformat(w))
+        self.file.write('0 %s cm rlineto\n' % gformat(h))
+        self.file.write('closepath\n')
         
         fill_color = box_style.get_fill_color()
         color = box_style.get_color()
-        self.f.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
-        self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
+        self.file.write('gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color))
+        self.file.write('%s %s %s setrgbcolor stroke\n' % lrgb(color))
 
-        self.f.write('newpath\n')
+        self.file.write('newpath\n')
         if box_style.get_line_width():
-            self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x,y)))
-            self.f.write('0 -%s cm rlineto\n' % gformat(h))
-            self.f.write('%s cm 0 rlineto\n' % gformat(w))
-            self.f.write('0 %s cm rlineto\n' % gformat(h))
-            self.f.write('closepath\n')
-            self.f.write('%s setlinewidth\n' % gformat(box_style.get_line_width()))
-            self.f.write('%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color()))
+            self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x, y)))
+            self.file.write('0 -%s cm rlineto\n' % gformat(h))
+            self.file.write('%s cm 0 rlineto\n' % gformat(w))
+            self.file.write('0 %s cm rlineto\n' % gformat(h))
+            self.file.write('closepath\n')
+            self.file.write('%s setlinewidth\n' % gformat(box_style.get_line_width()))
+            self.file.write('%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color()))
         if text != "":
             para_name = box_style.get_paragraph_style()
             assert( para_name != '' )
             p = style_sheet.get_paragraph_style(para_name)
-            (text,fdef) = self.encode_text(p,text)
-            self.f.write(fdef)
+            (text, fdef) = self.encode_text(p, text)
+            self.file.write(fdef)
             lines = text.split('\n')
 
             nlines = len(lines)
@@ -339,9 +347,9 @@ class PSDrawDoc(BaseDoc,DrawDoc):
             ystart = center - (fs/2.0) * nlines
             for i in range(nlines):
                 ypos = ystart + (i * fs)
-                self.f.write('%s cm %s cm moveto\n' % coords(self.translate(x+mar,ypos)))
-                self.f.write("(%s) show\n" % lines[i])
-        self.f.write('grestore\n')
+                self.file.write('%s cm %s cm moveto\n' % coords(self.translate(x+mar, ypos)))
+                self.file.write("(%s) show\n" % lines[i])
+        self.file.write('grestore\n')
 
 #------------------------------------------------------------------------
 #
