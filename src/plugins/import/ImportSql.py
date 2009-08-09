@@ -53,6 +53,11 @@ from Utils import gender as gender_map
 from gui.utils import ProgressMeter
 from Utils import create_id
 
+#-------------------------------------------------------------------------
+#
+# Import function
+#
+#-------------------------------------------------------------------------
 def lookup(handle, event_ref_list):
     """
     Find the handle in a unserialized event_ref_list and return code.
@@ -127,13 +132,13 @@ class SQLReader(object):
     # Get methods to retrieve data from the tables
     # -----------------------------------------------
 
-    def get_address_list(self, sql, from_type, from_handle):
+    def get_address_list(self, sql, from_type, from_handle, with_parish):
         results = self.get_links(sql, from_type, from_handle, "address")
         retval = []
         for handle in results:
             result = sql.query("select * from address where handle = ?;",
                                handle)
-            retval.append(self.pack_address(sql, result[0]))
+            retval.append(self.pack_address(sql, result[0], with_parish))
         return retval
 
     def get_attribute_list(self, sql, from_type, from_handle):
@@ -206,13 +211,13 @@ class SQLReader(object):
                                description))
         return retval
 
-    def get_location_list(self, sql, from_type, from_handle):
+    def get_location_list(self, sql, from_type, from_handle, with_parish):
         handles = self.get_links(sql, from_type, from_handle, "location")
         results = []
         for handle in handles:
             results += sql.query("""select * from location where handle = ?;""",
                                  handle)
-        return [self.pack_location(sql, result, with_parish=True) for result in results]
+        return [self.pack_location(sql, result, with_parish) for result in results]
 
     def get_lds_list(self, sql, from_type, from_handle):
         handles = self.get_links(sql, from_type, from_handle, "lds")
@@ -261,13 +266,13 @@ class SQLReader(object):
     # Helpers
     # ---------------------------------
 
-    def pack_address(self, sql, data):
+    def pack_address(self, sql, data, with_parish):
         (handle, private) = data 
         source_list = self.get_source_ref_list(sql, "address", handle)
         date_handle = self.get_link(sql, "address", handle, "date")
         date = self.get_date(sql, date_handle)
         note_list = self.get_note_list(sql, "address", handle)
-        location = self.get_location(sql, "address", handle)
+        location = self.get_location(sql, "address", handle, with_parish)
         return (private, source_list, note_list, date, location)
 
     def pack_lds(self, sql, data):
@@ -284,11 +289,17 @@ class SQLReader(object):
          ref,
          role0,
          role1,
+         role2,
+         role3,
          private) = data
         source_list = self.get_source_ref_list(sql, "media_ref", handle)
         note_list = self.get_note_list(sql, "media_ref", handle)
-        attribute_list = self.get_attribute_list(sql, "event_ref", handle)
-        return (private, source_list, note_list, attribute_list, ref, (role0, role1))
+        attribute_list = self.get_attribute_list(sql, "media_ref", handle)
+        if role0 == role1 == role2 == role3 == -1:
+            role = None
+        else:
+            role = (role0, role1, role2, role3)
+        return (private, source_list, note_list, attribute_list, ref, role)
 
     def pack_repository(self, sql, data):
         (handle, 
@@ -301,7 +312,7 @@ class SQLReader(object):
          marker1, 
          private) = data
         note_list = self.get_note_list(sql, "repository", handle)
-        address_list = self.get_address_list(sql, "repository", handle)
+        address_list = self.get_address_list(sql, "repository", handle, with_parish=False)
         urls = self.get_url_list(sql, "repository", handle)
         return (handle, gid, (the_type0, the_type1), name, note_list,
                 address_list, urls, change, (marker0, marker1), private)
@@ -323,7 +334,8 @@ class SQLReader(object):
          private) = data
         note_list = self.get_note_list(sql, "event_ref", handle)
         attribute_list = self.get_attribute_list(sql, "event_ref", handle)
-        return (private, note_list, attribute_list, ref, (role0, role1))
+        role = (role0, role1)
+        return (private, note_list, attribute_list, ref, role)
 
     def pack_source_ref(self, sql, data):
         (handle, 
@@ -360,13 +372,13 @@ class SQLReader(object):
                 reporef_list,
                 (marker0, marker1), private)
 
-    def get_location(self, sql, from_type, from_handle):
+    def get_location(self, sql, from_type, from_handle, with_parish):
         handle = self.get_link(sql, from_type, from_handle, "location")
         if handle:
             results = sql.query("""select * from location where handle = ?;""",
                                 handle)
             if len(results) == 1:
-                return self.pack_location(sql, results[0], with_parish=True)
+                return self.pack_location(sql, results[0], with_parish)
 
     def get_names(self, sql, from_type, from_handle, primary):
         handles = self.get_links(sql, from_type, from_handle, "name")
@@ -404,7 +416,7 @@ class SQLReader(object):
         sort_as,
         display_as, 
         call) = data
-
+        # build up a GRAMPS object:
         source_list = self.get_source_ref_list(sql, "name", handle)
         note_list = self.get_note_list(sql, "name", handle)
         date_handle = self.get_link(sql, "name", handle, "date")
@@ -434,30 +446,32 @@ class SQLReader(object):
             place_row = sql.query("select * from place where handle = ?;",
                                   ref_handle)
             if len(place_row) == 1:
-                # return raw DB data here:
-                return place_row[0]
+                # return just the handle here:
+                return place_row[0][0]
             elif len(place_row) == 0:
                 print "ERROR: get_place_from_handle('%s'), no such handle." % (ref_handle, )
             else:
                 print "ERROR: get_place_from_handle('%s') should be unique; returned %d records." % (ref_handle, len(place_row))
-        return None
+        return ''
 
-    def get_location_from_handle(self, sql, ref_handle, with_parish=False):
+    def get_main_location(self, sql, from_handle, with_parish):
+        ref_handle = self.get_link(sql, "place_main", from_handle, "location")
         if ref_handle: 
             place_row = sql.query("select * from location where handle = ?;",
                                   ref_handle)
             if len(place_row) == 1:
                 return self.pack_location(sql, place_row[0], with_parish)
             elif len(place_row) == 0:
-                print "ERROR: get_location_from_handle('%s'), no such handle." % (ref_handle, )
+                print "ERROR: get_main_location('%s'), no such handle." % (ref_handle, )
             else:
-                print "ERROR: get_location_from_handle('%s') should be unique; returned %d records." % (ref_handle, len(place_row))
+                print "ERROR: get_main_location('%s') should be unique; returned %d records." % (ref_handle, len(place_row))
         return gen.lib.Location().serialize()
 
     def get_link(self, sql, from_type, from_handle, to_link):
         """
         Return a link, and return handle.
         """
+        if from_handle is None: return
         assert type(from_handle) in [unicode, str], "from_handle is wrong type: %s is %s" % (from_handle, type(from_handle))
         rows = self.get_links(sql, from_type, from_handle, to_link)
         if len(rows) == 1:
@@ -495,6 +509,8 @@ class SQLReader(object):
                  sortval, 
                  newyear) = rows[0]
                 dateval = day1, month1, year1, slash1, day2, month2, year2, slash2
+                if slash1 == day2 == month2 == year2 == slash2 == 0:
+                    dateval = day1, month1, year1, slash1
                 return (calendar, modifier, quality, dateval, text, sortval, newyear)
             elif len(rows) == 0:
                 return None
@@ -605,7 +621,7 @@ class SQLReader(object):
             family_list = self.get_family_list(sql, "person", handle)
             parent_family_list = self.get_parent_family_list(sql, "person", handle)
             media_list = self.get_media_list(sql, "person", handle)
-            address_list = self.get_address_list(sql, "person", handle)
+            address_list = self.get_address_list(sql, "person", handle, with_parish=False)
             attribute_list = self.get_attribute_list(sql, "person", handle)
             urls = self.get_url_list(sql, "person", handle)
             lds_ord_list = self.get_lds_list(sql, "person", handle)
@@ -688,7 +704,7 @@ class SQLReader(object):
              private) = repo
 
             note_list = self.get_note_list(sql, "repository", handle)
-            address_list = self.get_address_list(sql, "repository", handle)
+            address_list = self.get_address_list(sql, "repository", handle, with_parish=False)
             urls = self.get_url_list(sql, "repository", handle)
 
             self.db.repository_map[str(handle)] = (str(handle), gid, 
@@ -716,9 +732,10 @@ class SQLReader(object):
              private) = place
 
             # We could look this up by "place_main", but we have the handle:
-            main_loc = self.get_location_from_handle(sql, main_loc, 
-                                                     with_parish=True)
-            alt_location_list = self.get_location_list(sql, "place_alt", handle)
+            main_loc = self.get_main_location(sql, main_loc, 
+                                              with_parish=True)
+            alt_location_list = self.get_location_list(sql, "place_alt", handle, 
+                                                       with_parish=True)
             urls = self.get_url_list(sql, "place", handle)
             media_list = self.get_media_list(sql, "place", handle)
             source_list = self.get_source_ref_list(sql, "place", handle)

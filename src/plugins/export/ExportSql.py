@@ -248,7 +248,7 @@ def makeDB(db):
 
     db.query("""CREATE TABLE lds (
                  handle CHARACTER(25), 
-                 type CHARACTER(25), 
+                 type INTEGER, 
                  place CHARACTER(25), 
                  famc CHARACTER(25), 
                  temple TEXT, 
@@ -259,7 +259,9 @@ def makeDB(db):
                  handle CHARACTER(25),
                  ref CHARACTER(25),
                  role0 INTEGER,
-                 role1 TEXT,
+                 role1 INTEGER,
+                 role2 INTEGER,
+                 role3 INTEGER,
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE address (
@@ -689,16 +691,19 @@ def export_media_ref(db, from_type, from_handle, media):
     # ref is the media handle
     handle = create_id()
     if role is None:
-        role = (-1, '')
+        role = (-1, -1, -1, -1)
     db.query("""INSERT into media_ref (
                  handle,
                  ref,
                  role0,
                  role1,
-                 private) VALUES (?,?,?,?,?);""",
-             handle, ref, role[0], role[1] ,private) 
+                 role2,
+                 role3,
+                 private) VALUES (?,?,?,?,?,?,?);""",
+             handle, ref, role[0], role[1], role[2], role[3], private) 
     export_list(db, "media_ref", handle, "note", note_list)
     export_attribute_list(db, "media_ref", handle, attribute_list)
+    export_source_ref_list(db, "media_ref", handle, source_list)
     # And finally, make a link from parent to new object
     export_link(db, from_type, from_handle, "media_ref", handle)
 
@@ -727,13 +732,13 @@ def export_list(db, from_type, from_handle, to_type, handle_list):
         export_link(db, from_type, from_handle, to_type, to_handle)
             
 def export_link(db, from_type, from_handle, to_type, to_handle):
-    db.query("""insert into link (
+    if to_handle:
+        db.query("""insert into link (
                    from_type, 
                    from_handle, 
                    to_type, 
                    to_handle) values (?, ?, ?, ?)""",
-             from_type, from_handle, to_type, to_handle)
-
+                 from_type, from_handle, to_type, to_handle)
 
 def export_address(db, from_type, from_handle, address):
     (private, asource_list, anote_list, date, location) = address
