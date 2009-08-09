@@ -408,7 +408,7 @@ def cl_report(database, name, category, report_class, options_class,
             clr.option_class.handler.doc = clr.format(
                         clr.selected_style,
                         PaperStyle(clr.paper,clr.orien))
-            if clr.css_filename is not None:
+            if clr.css_filename is not None and hasattr(clr.option_class.handler.doc, 'set_css_filename'):
                 clr.option_class.handler.doc.set_css_filename(clr.css_filename)
         MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()
