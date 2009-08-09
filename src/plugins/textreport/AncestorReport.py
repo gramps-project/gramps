@@ -106,7 +106,7 @@ class AncestorReport(Report):
         # which is passed to the routine.
         self.map[index] = person_handle
 
-        # retreive the Person instance from the database from the
+        # retrieve the Person instance from the database from the
         # passed person_handle and find the parents from the list.
         # Since this report is for natural parents (birth parents),
         # we have to handle that parents may not

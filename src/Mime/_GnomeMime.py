@@ -60,7 +60,7 @@ def _is_good_command(cmd):
     return True
 
 def get_description(type):
-    """Return the description of the specfied mime type"""
+    """Return the description of the specified mime type"""
     try:
         return mime_get_description(type)
     except:

@@ -2753,7 +2753,7 @@ class GedcomParser(UpdateCallback):
         """
         Parse the place portion of a event. A special case has to be made for
         Family Tree Maker, which violates the GEDCOM spec. It uses the PLAC 
-        field to store the description or value assocated with the event.
+        field to store the description or value associated with the event.
 
          n  PLAC <PLACE_VALUE> {1:1}
          +1 FORM <PLACE_HIERARCHY> {0:1}

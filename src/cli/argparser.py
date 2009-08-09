@@ -59,7 +59,7 @@ Application options
   -O, --open=FAMILY_TREE                 Open family tree
   -i, --import=FILENAME                  Import file
   -e, --export=FILENAME                  Export file
-  -f, --format=FORMAT                    Specify format
+  -f, --format=FORMAT                    Specify family tree format
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
@@ -80,14 +80,14 @@ class ArgParser(object):
     Possible: 
         1/ FAMTREE : Just the family tree (name or database dir)
         2/ -O, --open=FAMTREE, Open of a family tree
-        3/ -i, --import=FILE, Import of any format understood by an importer, optionally
-                 provide- f to indicate format
-        4/ -e, --export=FILE, export a family tree in required format, optionally provide
-                 -f to indicate format
+        3/ -i, --import=FILE, Import a family tree of any format understood by an 
+                 importer, optionally provide- f to indicate format
+        4/ -e, --export=FILE, export a family tree in required format, optionally 
+                 provide -f to indicate format
         5/ -f, --format=FORMAT : format after a -i or -e option
-        5/ -a, --action: An action (possible: 'check', 'summary', 'report', 
+        6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
                             'tool')
-        6/ -u, --force-unlock: A locked database can be unlocked by giving this
+        7/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
     
     If the filename (no flags) is specified, the interactive session is 
@@ -108,7 +108,7 @@ class ArgParser(object):
 
     def __init__(self, args):
         """
-        pass the command line arguments on creation
+        Pass the command line arguments on creation.
         """
         self.args = args
 
@@ -137,14 +137,15 @@ class ArgParser(object):
         
         Possible: 
         1/ Just the family tree (name or database dir)
-        2/ -O, Open of a family tree
-        3/ -i, Import of any format understood by an importer, optionally
-                 provide-f to indicate format
-        4/ -e, export a family tree in required format, optionally provide
+        2/ -O, --open:   Open of a family tree
+        3/ -i, --import: Import a family tree of any format understood by an importer, 
+                 optionally provide-f to indicate format
+        4/ -e, --export: export a family tree in required format, optionally provide
                  -f to indicate format
-        5/ -a, --action: An action (possible: 'check', 'summary', 'report', 
+        5/ -f, --format=FORMAT : format after a -i or -e option
+        6/ -a, --action: An action (possible: 'check', 'summary', 'report', 
                             'tool')
-        6/ -u, --force-unlock: A locked database can be unlocked by giving this
+        7/ -u, --force-unlock: A locked database can be unlocked by giving this
                 argument when opening it
                             
         """
@@ -179,17 +180,17 @@ class ArgParser(object):
             if option in ( '-O', '--open'):
                 self.open = value
             elif option in ( '-i', '--import'):
-                format = None
+                family_tree_format = None
                 if opt_ix < len(options) - 1 \
                    and options[opt_ix + 1][0] in ( '-f', '--format'): 
-                    format = options[opt_ix + 1][1]
-                self.imports.append((value, format))
+                    family_tree_format = options[opt_ix + 1][1]
+                self.imports.append((value, family_tree_format))
             elif option in ( '-e', '--export' ):
-                format = None
+                family_tree_format = None
                 if opt_ix < len(options) - 1 \
                    and options[opt_ix + 1][0] in ( '-f', '--format'): 
-                    format = options[opt_ix + 1][1]
-                self.exports.append((value, format))
+                    family_tree_format = options[opt_ix + 1][1]
+                self.exports.append((value, family_tree_format))
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ( 'check', 'summary', 'report', 'tool' ):
@@ -258,7 +259,7 @@ class ArgParser(object):
     
     def print_help(self):
         """
-        If the user gives the --help or -h option, print the output to terminal
+        If the user gives the --help or -h option, print the output to terminal.
         """
         if self.help:
             print _HELP

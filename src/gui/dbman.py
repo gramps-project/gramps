@@ -550,7 +550,7 @@ class DbManager(CLIDbManager):
 
     def __really_delete_db(self):
         """
-        Delete the selected database. If the databse is open, close it first.
+        Delete the selected database. If the database is open, close it first.
         Then scan the database directory, deleting the files, and finally
         removing the directory.
         """
@@ -581,7 +581,7 @@ class DbManager(CLIDbManager):
             
     def __really_delete_version(self):
         """
-        Delete the selected database. If the databse is open, close it first.
+        Delete the selected database. If the database is open, close it first.
         Then scan the database directory, deleting the files, and finally
         removing the directory.
         """
@@ -732,7 +732,7 @@ def drop_cb(wid, context, xpos, ypos, time_stamp):
 
 def find_revisions(name):
     """
-    Finds all the revisions of the specfied RCS archive.
+    Finds all the revisions of the specified RCS archive.
     """
     import re
 

@@ -243,11 +243,11 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         return self.status
 
     def set_temple(self, temple):
-        """Set the temple assocated with the ordinance."""
+        """Set the temple associated with the ordinance."""
         self.temple = temple
 
     def get_temple(self):
-        """Get the temple assocated with the ordinance."""
+        """Get the temple associated with the ordinance."""
         return self.temple
 
     def is_empty(self):

@@ -80,10 +80,10 @@ LANG_TO_DISPLAY = {
 def register_datehandler(locales,parse_class,display_class):
     """
     Registers the passed date parser class and date displayer
-    classes with the specfied language locales.
+    classes with the specified language locales.
 
     @param locales: tuple of strings containing language codes.
-        The character encoding is not included, so the langauge
+        The character encoding is not included, so the language
         should be in the form of fr_FR, not fr_FR.utf8
     @type locales: tuple
     @param parse_class: Class to be associated with parsing

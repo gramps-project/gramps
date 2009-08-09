@@ -189,7 +189,7 @@ class EmbeddedList(ButtonTab):
         """
         Provide the drag_data_get function, which passes a tuple consisting of:
 
-           1) Drag type defined by the .drag_type field specfied by the value
+           1) Drag type defined by the .drag_type field specified by the value
               assigned to _DND_TYPE
            2) The id value of this object, used for the purpose of determining
               the source of the object. If the source of the object is the same

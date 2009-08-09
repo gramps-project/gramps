@@ -21,7 +21,9 @@
 
 # $Id$
 
-"""Reports/Text Reports/Summary of the Database"""
+"""
+Reports/Text Reports/Database Summary Report.
+"""
 
 #------------------------------------------------------------------------
 #
@@ -61,7 +63,6 @@ class SummaryReport(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options_class   - instance of the Options class for this report
 
         """
@@ -200,7 +201,7 @@ class SummaryReport(Report):
         Write a summary of all the media in the database.
         """
         total_media = 0
-        bytes = 0
+        size_in_bytes = 0
         notfound = []
         
         self.doc.start_paragraph("SR-Heading")
@@ -211,8 +212,9 @@ class SummaryReport(Report):
         for media_id in self.__db.get_media_object_handles():
             media = self.__db.get_object_from_handle(media_id)
             try:
-                bytes = bytes + posixpath.getsize(media_path_full(self.__db, 
-                                                            media.get_path()))
+                size_in_bytes = size_in_bytes + posixpath.getsize(
+                                                    media_path_full(self.__db, 
+                                                    media.get_path()))
             except:
                 notfound.append(media.get_path())
                 
@@ -222,7 +224,7 @@ class SummaryReport(Report):
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("SR-Normal")
-        self.doc.write_text(_("Total size of media objects: %d bytes") % bytes)
+        self.doc.write_text(_("Total size of media objects: %d bytes") % size_in_bytes)
         self.doc.end_paragraph()
     
         if len(notfound) > 0:

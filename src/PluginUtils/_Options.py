@@ -165,7 +165,7 @@ class OptionListCollection(object):
     def set_option_list(self, name, option_list):
         """
         Add or replaces an option_list in the OptionListCollection. 
-        @param name: name assocated with the module to add or replace.
+        @param name: name associated with the module to add or replace.
         @type name: str
         @param option_list: list of options
         @type option_list: str

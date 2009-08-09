@@ -22,7 +22,7 @@
 
 """
 The core of the GRAMPS plugin system. This module provides capability to load
-plugins from specfied directories and provide information about the loaded
+plugins from specified directories and provide information about the loaded
 plugins.
 
 Plugins are divided into several categories. These are: reports, tools,
@@ -567,6 +567,6 @@ class PluginManager(gen.utils.Callback):
     
     def get_relationship_calculator(self):
         """ 
-        Return the relationship calculator for the current language 
+        Return the relationship calculator for the current language.
         """
         return self.__relcalc_class()

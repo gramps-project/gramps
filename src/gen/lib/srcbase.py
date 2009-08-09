@@ -79,7 +79,7 @@ class SourceBase(object):
         """
         Return the list of source references associated with the object.
 
-        :returns: Returns the list of :class:`~gen.lib.srcref.SourceRef` objects assocated with
+        :returns: Returns the list of :class:`~gen.lib.srcref.SourceRef` objects associated with
             the object.
         :rtype: list
         """

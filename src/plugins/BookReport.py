@@ -194,7 +194,7 @@ class BookItem(object):
         """
         Create a new empty BookItem.
         
-        name:   the book item is retreived 
+        name:   the book item is retrieved 
                 from the book item registry using name for lookup
         """
         self.dbase = dbase
@@ -413,7 +413,7 @@ class BookList(object):
         """
         Add or replaces a Book in the BookList. 
 
-        name:   name assocated with the Book to add or replace.
+        name:   name associated with the Book to add or replace.
         book:   definition of the Book
         """
         self.bookmap[name] = book

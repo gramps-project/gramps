@@ -178,7 +178,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
                      name, require_active)
 
     def build_plugin_tree(self, item_list, categories):
-        """Populates a GtkTree with each menu item assocated with a entry
+        """Populates a GtkTree with each menu item associated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
         

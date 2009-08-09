@@ -49,7 +49,7 @@ def get_application(mime_type):
     return None
 
 def get_description(mime_type):
-    """Return the description of the specfied mime type"""
+    """Return the description of the specified mime type"""
     return _type_map.get(mime_type,_("unknown"))
 
 def get_type(filename):

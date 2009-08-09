@@ -31,7 +31,7 @@ import _PluginWindows as PluginWindows
 # This needs to go above Tool and MenuOption as it needs both
 class MenuToolOptions(GuiMenuOptions,Tool.ToolOptions):
     """
-    The MenuToolOptions class implementes the ToolOptions
+    The MenuToolOptions class implements the ToolOptions
     functionality in a generic way so that the user does not need to
     be concerned with the graphical representation of the options.
     

@@ -408,7 +408,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def write_gedcom_file(self, filename):
         """
-        Write the actual GEDCOM file to the specfied filename.
+        Write the actual GEDCOM file to the specified filename.
         """
 
         self.dirname = os.path.dirname (filename)
@@ -1021,7 +1021,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_event_attrs(self, attr_list, level):
         """
-        Write the attributes assocated with the family event. 
+        Write the attributes associated with the family event. 
         
         The only ones we really care about are FATHER_AGE and MOTHER_AGE which 
         we translate to WIFE/HUSB AGE attributes.

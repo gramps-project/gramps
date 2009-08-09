@@ -249,49 +249,49 @@ class ProxyDbBase(DbBase):
 
     def get_number_of_people(self):
         """
-        Return the number of people currently in the databse.
+        Return the number of people currently in the database.
         """
         return self.db.get_number_of_people()
 
     def get_number_of_families(self):
         """
-        Return the number of families currently in the databse.
+        Return the number of families currently in the database.
         """
         return self.db.get_number_of_families()
 
     def get_number_of_events(self):
         """
-        Return the number of events currently in the databse.
+        Return the number of events currently in the database.
         """
         return self.db.get_number_of_events()
 
     def get_number_of_places(self):
         """
-        Return the number of places currently in the databse.
+        Return the number of places currently in the database.
         """
         return self.db.get_number_of_places()
 
     def get_number_of_sources(self):
         """
-        Return the number of sources currently in the databse.
+        Return the number of sources currently in the database.
         """
         return self.db.get_number_of_sources()
 
     def get_number_of_media_objects(self):
         """
-        Return the number of media objects currently in the databse.
+        Return the number of media objects currently in the database.
         """
         return self.db.get_number_of_media_objects()
 
     def get_number_of_repositories(self):
         """
-        Return the number of source repositories currently in the databse.
+        Return the number of source repositories currently in the database.
         """
         return self.db.get_number_of_repositories()
 
     def get_number_of_notes(self):
         """
-        Return the number of notes currently in the databse.
+        Return the number of notes currently in the database.
         """
         return self.db.get_number_of_notes()
 
@@ -300,22 +300,22 @@ class ProxyDbBase(DbBase):
         return self.db.get_save_path()
 
     def get_person_event_types(self):
-        """returns a list of all Event types assocated with Person
+        """returns a list of all Event types associated with Person
         instances in the database"""
         return self.db.get_person_event_types()
 
     def get_person_attribute_types(self):
-        """returns a list of all Attribute types assocated with Person
+        """returns a list of all Attribute types associated with Person
         instances in the database"""
         return self.db.get_person_attribute_types()
 
     def get_family_attribute_types(self):
-        """returns a list of all Attribute types assocated with Family
+        """returns a list of all Attribute types associated with Family
         instances in the database"""
         return self.db.get_family_attribute_types()
 
     def get_family_event_types(self):
-        """returns a list of all Event types assocated with Family
+        """returns a list of all Event types associated with Family
         instances in the database"""
         return self.db.get_family_event_types()
 
@@ -324,47 +324,47 @@ class ProxyDbBase(DbBase):
         return self.db.get_marker_types()
         
     def get_media_attribute_types(self):
-        """returns a list of all Attribute types assocated with Media
+        """returns a list of all Attribute types associated with Media
         and MediaRef instances in the database"""
         return self.db.get_media_attribute_types()
 
     def get_family_relation_types(self):
-        """returns a list of all relationship types assocated with Family
+        """returns a list of all relationship types associated with Family
         instances in the database"""
         return self.db.get_family_relation_types()
 
     def get_child_reference_types(self):
-        """returns a list of all child reference types assocated with Family
+        """returns a list of all child reference types associated with Family
         instances in the database"""
         return self.db.get_child_reference_types()
 
     def get_event_roles(self):
-        """returns a list of all custom event role names assocated with Event
+        """returns a list of all custom event role names associated with Event
         instances in the database"""
         return self.db.get_event_roles()
 
     def get_name_types(self):
-        """returns a list of all custom names types assocated with Person
+        """returns a list of all custom names types associated with Person
         instances in the database"""
         return self.db.get_name_types()
 
     def get_repository_types(self):
-        """returns a list of all custom repository types assocated with
+        """returns a list of all custom repository types associated with
         Repository instances in the database"""
         return self.db.get_repository_types()
 
     def get_note_types(self):
-        """returns a list of all custom note types assocated with
+        """returns a list of all custom note types associated with
         Note instances in the database"""
         return self.db.get_note_types()
 
     def get_source_media_types(self):
-        """returns a list of all custom source media types assocated with
+        """returns a list of all custom source media types associated with
         Source instances in the database"""
         return self.db.get_source_media_types()
 
     def get_url_types(self):
-        """returns a list of all custom names types assocated with Url
+        """returns a list of all custom names types associated with Url
         instances in the database"""
         return self.db.get_url_types()
 

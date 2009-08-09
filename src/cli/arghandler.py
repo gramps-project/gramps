@@ -56,9 +56,9 @@ from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, cl_report
 #-------------------------------------------------------------------------
 class ArgHandler(object):
     """
-    This class is responsible for the non GUI handling of commands
+    This class is responsible for the non GUI handling of commands.
     The handler is passed a parser object, sanitizes it, and can execute the 
-    actions requested working on a DbState
+    actions requested working on a DbState.
     """
 
     def __init__(self, dbstate, parser, sessionmanager, 
@@ -89,7 +89,7 @@ class ArgHandler(object):
     
     def __error(self, string):
         """
-        Output an error. Uses errorfunc if given, otherwise a simple print
+        Output an error. Uses errorfunc if given, otherwise a simple print.
         """
         if self.errorfunc:
             self.errorfunc(string)
@@ -101,12 +101,12 @@ class ArgHandler(object):
     #-------------------------------------------------------------------------
     def sanitize_args(self, importlist, exportlist):
         """
-        check the lists with open, exports, imports, and actions options.
+        Check the lists with open, exports, imports, and actions options.
         """
-        for (value, format) in importlist:
-            self.__handle_import_option(value, format)
-        for (value, format) in exportlist:
-            self.__handle_export_option(value, format)
+        for (value, family_tree_format) in importlist:
+            self.__handle_import_option(value, family_tree_format)
+        for (value, family_tree_format) in exportlist:
+            self.__handle_export_option(value, family_tree_format)
 
     def __handle_open_option(self, value):
         """
@@ -129,10 +129,10 @@ class ArgHandler(object):
                     "import into a family tree instead.") % value)
             sys.exit(0)
 
-    def __handle_import_option(self, value, format):
+    def __handle_import_option(self, value, family_tree_format):
         """
         Handle the "-i" or "--import" option.
-        Only Files supported by a plugin can be imported, so not Family Trees
+        Only Files supported by a plugin can be imported, so not Family Trees.
         """
         fname = value
         fullpath = os.path.abspath(os.path.expanduser(fname))
@@ -140,31 +140,31 @@ class ArgHandler(object):
             self.__error(_('Error: Import file %s not found.') % fname)
             sys.exit(0)
         
-        if format is None:
+        if family_tree_format is None:
             # Guess the file format based on the file extension.
             # This will get the lower case extension without a period, 
             # or an empty string.
-            format = os.path.splitext(fname)[-1][1:].lower()
+            family_tree_format = os.path.splitext(fname)[-1][1:].lower()
 
         pmgr = PluginManager.get_instance()
         plugin_found = False
         for plugin in pmgr.get_import_plugins():
-            if format == plugin.get_extension():
+            if family_tree_format == plugin.get_extension():
                 plugin_found = True
                 
         if plugin_found:
-            self.imports.append((fname, format))
+            self.imports.append((fname, family_tree_format))
         else:
             self.__error(_('Error: Unrecognized type: "%(format)s" for '
                     'import file: %(filename)s') \
-                  % {'format' : format, 
+                  % {'format' : family_tree_format, 
                      'filename' : fname})
             sys.exit(0)
             
-    def __handle_export_option(self, value, format):
+    def __handle_export_option(self, value, family_tree_format):
         """
         Handle the "-e" or "--export" option.  
-        Note: this can only happen in the CLI version                          
+        Note: this can only happen in the CLI version.                    
         """
         if self.gui:
             return
@@ -183,20 +183,20 @@ class ArgHandler(object):
             else:
                 sys.exit(0)
 
-        if format is None:
+        if family_tree_format is None:
             # Guess the file format based on the file extension.
             # This will get the lower case extension without a period, 
             # or an empty string.
-            format = os.path.splitext(fname)[-1][1:].lower()
+            family_tree_format = os.path.splitext(fname)[-1][1:].lower()
 
         pmgr = PluginManager.get_instance()
         plugin_found = False
         for plugin in pmgr.get_export_plugins():
-            if format == plugin.get_extension():
+            if family_tree_format == plugin.get_extension():
                 plugin_found = True
                 
         if plugin_found:
-            self.exports.append((fullpath, format))
+            self.exports.append((fullpath, family_tree_format))
         else:
             self.__error(_("ERROR: Unrecognized format for export file %s") 
                             % fname)
@@ -231,7 +231,7 @@ class ArgHandler(object):
     def handle_args_gui(self):
         """
         method to handle the arguments that can be given for a GUI session.
-        Returns the filename of the family tree that should be openend if 
+        Returns the filename of the family tree that should be opened if 
         user just passed a famtree or a filename
             1/no options: a family tree can be given, if so, this name is tested
                         and returned. If a filename, it is imported in a new db
@@ -399,13 +399,13 @@ class ArgHandler(object):
     # Import handler
     #
     #-------------------------------------------------------------------------
-    def cl_import(self, filename, format):
+    def cl_import(self, filename, family_tree_format):
         """
-        Command-line import routine. Try to import filename using the format.
+        Command-line import routine. Try to import filename using the family_tree_format.
         """
         pmgr = PluginManager.get_instance()
         for plugin in pmgr.get_import_plugins():
-            if format == plugin.get_extension():
+            if family_tree_format == plugin.get_extension():
                 import_function = plugin.get_import_function()
                 import_function(self.dbstate.db, filename, None)
         
@@ -420,14 +420,14 @@ class ArgHandler(object):
     # Export handler
     #
     #-------------------------------------------------------------------------
-    def cl_export(self, filename, format):
+    def cl_export(self, filename, family_tree_format):
         """
         Command-line export routine. 
-        Try to write into filename using the format.
+        Try to write into filename using the family_tree_format.
         """
         pmgr = PluginManager.get_instance()
         for plugin in pmgr.get_export_plugins():
-            if format == plugin.get_extension():
+            if family_tree_format == plugin.get_extension():
                 export_function = plugin.get_export_function()
                 export_function(self.dbstate.db, filename)
 

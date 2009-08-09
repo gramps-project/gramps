@@ -1669,7 +1669,7 @@ class GrampsDbBase(Callback):
 
     def transaction_commit(self, transaction, msg):
         """
-        Commit the transaction to the assocated UNDO database.
+        Commit the transaction to the associated UNDO database.
         """
         if self._LOG_ALL:
             LOG.debug("%s: Transaction commit '%s'\n"
@@ -2009,28 +2009,28 @@ class GrampsDbBase(Callback):
 
     def get_person_event_types(self):
         """
-        Return a list of all Event types assocated with Person instances in 
+        Return a list of all Event types associated with Person instances in 
         the database.
         """
         return list(self.individual_event_names)
 
     def get_person_attribute_types(self):
         """
-        Return a list of all Attribute types assocated with Person instances 
+        Return a list of all Attribute types associated with Person instances 
         in the database.
         """
         return list(self.individual_attributes)
 
     def get_family_attribute_types(self):
         """
-        Return a list of all Attribute types assocated with Family instances 
+        Return a list of all Attribute types associated with Family instances 
         in the database.
         """
         return list(self.family_attributes)
 
     def get_family_event_types(self):
         """
-        Return a list of all Event types assocated with Family instances in 
+        Return a list of all Event types associated with Family instances in 
         the database.
         """
         return list(self.family_event_names)
@@ -2043,63 +2043,63 @@ class GrampsDbBase(Callback):
         
     def get_media_attribute_types(self):
         """
-        Return a list of all Attribute types assocated with Media and MediaRef 
+        Return a list of all Attribute types associated with Media and MediaRef 
         instances in the database.
         """
         return list(self.media_attributes)
 
     def get_family_relation_types(self):
         """
-        Return a list of all relationship types assocated with Family
+        Return a list of all relationship types associated with Family
         instances in the database.
         """
         return list(self.family_rel_types)
 
     def get_child_reference_types(self):
         """
-        Return a list of all child reference types assocated with Family
+        Return a list of all child reference types associated with Family
         instances in the database.
         """
         return list(self.child_ref_types)
 
     def get_event_roles(self):
         """
-        Return a list of all custom event role names assocated with Event
+        Return a list of all custom event role names associated with Event
         instances in the database.
         """
         return list(self.event_role_names)
 
     def get_name_types(self):
         """
-        Return a list of all custom names types assocated with Person
+        Return a list of all custom names types associated with Person
         instances in the database.
         """
         return list(self.name_types)
 
     def get_repository_types(self):
         """
-        Return a list of all custom repository types assocated with Repository 
+        Return a list of all custom repository types associated with Repository 
         instances in the database.
         """
         return list(self.repository_types)
 
     def get_note_types(self):
         """
-        Return a list of all custom note types assocated with Note instances 
+        Return a list of all custom note types associated with Note instances 
         in the database.
         """
         return list(self.note_types)
 
     def get_source_media_types(self):
         """
-        Return a list of all custom source media types assocated with Source 
+        Return a list of all custom source media types associated with Source 
         instances in the database.
         """
         return list(self.source_media_types)
 
     def get_url_types(self):
         """
-        Return a list of all custom names types assocated with Url instances 
+        Return a list of all custom names types associated with Url instances 
         in the database.
         """
         return list(self.url_types)

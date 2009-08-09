@@ -137,7 +137,7 @@ class StyleSheetList(object):
         Add or replaces a StyleSheet in the StyleSheetList. The
         default style may not be replaced.
 
-        name - name assocated with the StyleSheet to add or replace.
+        name - name associated with the StyleSheet to add or replace.
         style - definition of the StyleSheet
         """
         style.set_name(name)

@@ -49,7 +49,7 @@ class LRU(object):
 
     def __getitem__(self, obj):
         """
-        Return item assocated with Obj
+        Return item associated with Obj
         """
         return self.data[obj].value[1]
 

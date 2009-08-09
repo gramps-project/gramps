@@ -636,9 +636,9 @@ class SimpleAccess(object):
         @param obj: Person or Family
         @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @param restrict: Optional list of strings that will limit the types
-        of events to those of the specfied types.
+        of events to those of the specified types.
         @type restrict: list
-        @return: list of events assocated with the object
+        @return: list of events associated with the object
         @rtype: list
         """
         assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
@@ -663,7 +663,7 @@ class SimpleAccess(object):
 
         @param obj: Person or Family
         @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: list of events assocated with the object
+        @return: list of events associated with the object
         @rtype: list
         """
         assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, gen.lib.Event, NoneType)))

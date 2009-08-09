@@ -22,7 +22,9 @@
 
 # $Id$
 
-"""Reports/Text Reports/Descendant Report"""
+"""
+Reports/Text Reports/Descendant Report
+"""
 
 #------------------------------------------------------------------------
 #
@@ -63,7 +65,6 @@ class DescendantReport(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options_class   - instance of the Options class for this report
 
         This report needs the following parameters (class variables)

@@ -425,7 +425,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of :class:`~gen.lib.childref.ChildRef` handles identifying the children of the 
         Family.
 
-        :returns: Returns the list of :class:`~gen.lib.childref.ChildRef` handles assocated with
+        :returns: Returns the list of :class:`~gen.lib.childref.ChildRef` handles associated with
             the Family.
         :rtype: list
         """

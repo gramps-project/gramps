@@ -577,7 +577,7 @@ class OptionHandler(_Options.OptionHandler):
         Specific initialization for reports.
         """
         # These are needed for running reports.
-        # We will not need to save/retreive them, just keep around.
+        # We will not need to save/retrieve them, just keep around.
         self.doc = EmptyDoc() # Nasty hack. Text reports replace this
         self.output = None
 
@@ -795,7 +795,7 @@ class ReportOptions(_Options.Options):
 class MenuReportOptions(GuiMenuOptions, ReportOptions):
     """
 
-    The MenuReportOptions class implementes the ReportOptions
+    The MenuReportOptions class implements the ReportOptions
     functionality in a generic way so that the user does not need to
     be concerned with the graphical representation of the options.
     

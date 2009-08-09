@@ -59,7 +59,7 @@ class PlaceBase(object):
 
     def get_place_handle(self):
         """
-        Return the database handle of the :class:`~gen.lib.place.Place` assocated with the Event.
+        Return the database handle of the :class:`~gen.lib.place.Place` associated with the Event.
 
         :returns: :class:`~gen.lib.place.Place` database handle
         :rtype: str
