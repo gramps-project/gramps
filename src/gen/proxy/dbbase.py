@@ -1307,7 +1307,7 @@ class DbBase(object):
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
-        Returns an interator over alist of (class_name, handle) tuples.
+        Returns an iterator over a list of (class_name, handle) tuples.
 
         @param handle: handle of the object to search for.
         @type handle: database handle
@@ -1315,7 +1315,7 @@ class DbBase(object):
                                 Default: None means include all classes.
         @type include_classes: list of class names
         
-        This default implementation does a sequencial scan through all
+        This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
         override this method to provide much faster implementations that
         make use of additional capabilities of the backend.
