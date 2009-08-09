@@ -621,6 +621,83 @@ class BasePage(object):
         name.set_display_as(name_format)
         return _nd.display_name(name)
 
+    def display_attr_list(self, attrobj):
+        """
+        will display an object's attributes
+
+        @param: attrobj -- object to display it's attributes
+        """
+        attrlist = attrobj.get_attribute_list()
+        if not attrlist:
+            return None
+
+        # begin attributes division and section title
+        with Html('div', class_='subsection', id='attributes') as section:
+            section += Html('h4', _('Attributes'),  inline=True)
+
+            # begin section table
+            with Html('table', class_='infolist attrlist') as table:
+                section += table 
+
+                # begin table head
+                thead = Html('thead')
+                table += thead
+
+                trow = Html('tr')
+                thead += trow
+                attr_header_row = ['Type', 'Value', 'Sources']
+                for data in attr_header_row:
+
+                    trow += Html('th', _('%s' % data), class_='Column%s' % data, inline=True)
+
+                # begin table body
+                tbody = Html('tbody')
+                table += tbody
+
+                for attr in attrlist:
+                    trow = Html('tr')
+                    tbody += trow
+
+                    attr_data_row = [
+                                                ['Type',                     attr.get_type().xml_str()],
+                                                ['Value',                   attr.get_value()],
+                                                ['Sources',               attr.get_source_references()]
+                                               ]
+
+                    # get attribute source references
+                    attr_data_row[2][1] = self.get_citation_links(attr_data_row[2][1]) 
+
+                    for (colclass, value) in attr_data_row:
+
+                        trow += Html('td', value, class_='Column%s' % colclass, inline=True)
+
+                    # get attrivute note list
+                    notelist = attr.get_note_list()
+                    if notelist:
+                        first = True
+                        for notehandle in notelist:
+                            note = db.get_note_from_handle(notehandle)
+                            note_text = self.get_note_format(note)
+
+                            if first:
+                                trow = Html('tr') + (
+                                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                                    Html('td', _('Notes'), class_='ColumnValue', inline=True),
+                                    Html('td', note_text, class_='ColumnName', inline=True)
+                                    )
+                                table += trow
+                            else:
+                                trow = Html('tr') + (
+                                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
+                                    Html('td', '&nbsp;', class_='ColumnValue', inline=True),
+                                    Html('td', note_text, class_='ColumnName', inline=True)
+                                    )
+                                table += trow
+                            first = False 
+
+        # return section to its caller
+        return section
+
     def write_footer(self):
         """
         Will create and display the footer section of each page...
@@ -2050,7 +2127,7 @@ class MediaPage(BasePage):
             mediadetail += notes
 
         # get media attributes
-        attrib = self.display_attr_list(photo.get_attribute_list())
+        attrib = self.display_attr_list(photo)
         if attrib is not None:
             mediadetail += attrib
 
@@ -2090,62 +2167,6 @@ class MediaPage(BasePage):
 
         # return source references to its callers
         return sourcerefs
-
-    def display_attr_list(self, attrlist=None):
-
-        if not attrlist:
-            return None
-
-        # begin attributes division
-        with Html('div', class_='subsection', id='attributes') as section:
-
-            # section title
-            section += Html('h4', _('Attributes'), inline=True)
-
-            # begin attrib table
-            with Html('table', class_='infolist') as table:
-                section += table
-
-                # begin table head
-                thead = Html('thead')
-                table += thead
-
-                trow = Html('tr')
-                thead += trow
-                for label, colclass in [
-                                                     [_('Type'),         'Type'],
-                                                     [_('Value'),       'Value'], 
-                                                     [_('Sources'),   'Sources'] ]:
-                    trow += Html('th',  label, class_='Column%s' % colclass, inline=True)
-
-                # begin table body
-                tbody = Html('tbody')
-                table += tbody
-
-                for attr in attrlist:
-                    trow = Html('tr')
-                    tbody += trow
-
-                    attr_data_list = [
-                                                ['Type',          attr.get_type.xml_str()],
-                                                ['Value',        attr.get_value()],
-                                                ['Sources',    attr.get_source_references()]
-                                                ]
-
-                    # get source references
-                    attr_data_list[2][1] = self.display_source_refs(attr_data_list[2][1])
-
-                    for colclass, value in attr_data_list: 
-
-                        trow += Html('td', value, class_='Column%s' % colclass, inline=True)
-
-                    # attach notes to section
-                    notelist = self.display_note_list(attr.get_note_list())
-                    if notelist is not None:
-                        section += notelist 
-
-        # return attributes division to its caller
-        return section
 
     def copy_source_file(self, handle, photo):
         db = self.report.database   
@@ -2896,7 +2917,7 @@ class IndividualPage(BasePage):
                 individualdetail += sect2
 
             # display attributes
-            sect3 = self.display_attr_list(self.person.get_attribute_list())
+            sect3 = self.display_attr_list(self.person)
             if sect3 is not None:
                 individualdetail += sect3
 
@@ -2974,36 +2995,6 @@ class IndividualPage(BasePage):
         # send page out for processing
         # and close the file
         self.mywriter(indivdetpage, of)
-
-    def display_attr_list(self, attrlist=None):
-        """
-        display a person's attributes
-        """
-
-        if not attrlist:
-            return
-
-        # begin attributes division
-        with Html('div', class_='subsection', id='attributes') as section:
-            section += Html('h4', _('Attributes'), inline=True)
-
-            #begin attributes table
-            with Html('table', class_='infolist') as table:
-                section += table
-
-                for attr in attrlist:
-                    atType = str( attr.get_type() )
-                    trow = Html('tr')
-                    table += trow
-                    tcell = Html('td', atType, class_='ColumnAttribute', inline=True)
-                    trow += tcell
-                    value = attr.get_value()
-                    value += self.get_citation_links( attr.get_source_references() )
-                    tcell = Html('td', value, class_='ColumnValue')
-                    trow += tcell
-
-        # return aatributes division to its caller
-        return section
 
     def draw_box(self, center, col, person):
         db = self.report.database
@@ -3389,27 +3380,15 @@ class IndividualPage(BasePage):
         else:
             place = ''
 
-        # begin table row for either: display_event_row() or format_event()
-        trow = Html('tr') 
-
         # Event/  Type
         evt_name = str(event.get_type())
 
         if event_ref.get_role() == EventRoleType.PRIMARY:
-            txt = u"%(evt_name)s" % locals()
+            eventtype = u"%(evt_name)s" % locals()
         else:
             evt_role = event_ref.get_role()
-            txt = u"%(evt_name)s (%(evt_role)s)" % locals()
-        txt = txt or '&nbsp;'
-        trow += Html('td', txt, class_='ColumnValue', inline=True)
-
-        # Date
-        event_date = event.get_date_object()
-        if event_date:
-            txt = _dd.display(event_date)
-        else:
-            txt = '&nbsp;'
-        trow += Html('td', txt, class_='ColumnValue', inline=True)
+            eventtype = u"%(evt_name)s (%(evt_role)s)" % locals()
+        eventtype = eventtype or '&nbsp;'
 
         # Place
         place_handle = event.get_place_handle()
@@ -3426,29 +3405,36 @@ class IndividualPage(BasePage):
                                                    ReportUtils.place_name(db, place_handle), up=True)
         else:
             place = None
-        txt = place or '&nbsp;'
-        trow += Html('td', txt, class_='ColumnValue') 
+        place = place or '&nbsp;'
 
-        # Description
-        # Get the links in super script to the Source References section in the same page
-        sref_links = self.get_citation_links(event.get_source_references())
-        txt = ''.join(wrapper.wrap(event.get_description()))
-        txt = txt or '&nbsp;'
-        trow += Html('td', txt, class_='ColumnValue', inline=True \
-            if txt == '&nbsp;' else False)
+        # begin event table row
+        event_data_row = [
+                                       ['EventType',           eventtype],
+                                       ['Date',                    event.get_date_object()],
+                                       ['Place',                   place],
+                                       ['Description',         event.get_description()],
+                                       ['Source',               event.get_source_references()]
+                                       ]
 
-        # Sources
-        citation = self.get_citation_links(event.get_source_references())
-        txt = citation or '&nbsp;'
-        trow += Html('td', txt, class_='ColumnValue', inline=True \
-            if txt == '&nbsp;' else False)
+        # Format date
+        event_data_row[1][1] = _dd.display(event_data_row[1][1])
+
+        # get citation links
+        event_data_row[4][1] = self.get_citation_links(event_data_row[4][1])
+
+        trow = Html('tr')
+        for (colclass, data) in event_data_row:
+
+            data = data or '&nbsp;'
+            trow += Html('td', data, class_='Column%s' % colclass, 
+                inline=True if data == '&nbsp;' else False)
 
         # Notes
         # if the event or event reference has a note attached to it,
         # get the text and format it correctly
         notelist = event.get_note_list()
         notelist.extend(event_ref.get_note_list())
-        tcell = Html('td', class_='ColumnValue')
+        tcell = Html('td', class_='ColumnNote')
         trow += tcell
         if not notelist:
             tcell += '&nbsp;'
@@ -3972,14 +3958,13 @@ class IndividualPage(BasePage):
         format_event()
         """
 
-        header_row = [_('EventType'), _('Date'), _('Place'), _('Description'), 
-            _('Sources'), _('Notes')]
+        header_row = ['EventType', 'Date', 'Place', 'Description', 'Source', 'Note']
 
         # begin table header row
         trow = Html('tr')
 
         for section in header_row:
-            trow += Html('th', section, class_ = 'ColumnAttribute', inline = True)
+            trow += Html('th', _('%s' % section), class_ = 'Column%s' % section, inline = True)
 
         # return header row to its caller
         return trow

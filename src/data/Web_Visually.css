@@ -500,6 +500,7 @@ table.surname thead tr th.ColumnName {
     padding-left:20px;
 }
 table.surname tbody tr td.ColumnName {
+    background-color:#FFF;
     width:20%;
     padding:0;
 }
@@ -897,12 +898,26 @@ table.infolist tbody tr td.ColumnValue p {
     color:#696969;
     margin:.2em 0 0 2em;
 }
-table.eventtable tbody tr {
+table.eventtable tbody tr td {
     border-bottom:solid 1px #000;
 }
 
 /* Subsections : Attributes
 ----------------------------------------------------- */
+div#attributes { }
+
+div#attributes table.attrlist tbody tr td {
+    border-bottom:solid 1px #000;
+}
+div#attributes table.attrlist tbody tr td.ColumnType {
+    width:20%;
+}
+div#attributes table.attrlist tbody tr td.ColumnValue {
+    width:60%;
+}
+div#attributes table.attrlist tbody tr td.ColumnSources {
+    width:20%;
+}
 
 /* Subsections : Parents
 ----------------------------------------------------- */
