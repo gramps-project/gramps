@@ -19,7 +19,7 @@
 #
 # $Id$
 
-"Import from SQL Database"
+"Import from SQLite Database"
 
 #-------------------------------------------------------------------------
 #
@@ -29,7 +29,6 @@
 from gettext import gettext as _
 from gettext import ngettext
 import sqlite3 as sqlite
-import re
 import time
 
 #------------------------------------------------------------------------
@@ -47,15 +46,12 @@ log = logging.getLogger(".ImportSql")
 #-------------------------------------------------------------------------
 import gen.lib
 from QuestionDialog import ErrorDialog
-from DateHandler import parser as _dp
 from gen.plug import PluginManager, ImportPlugin
-from Utils import gender as gender_map
-from gui.utils import ProgressMeter
 from Utils import create_id
 
 #-------------------------------------------------------------------------
 #
-# Import function
+# Import functions
 #
 #-------------------------------------------------------------------------
 def lookup(handle, event_ref_list):
@@ -75,7 +71,7 @@ def lookup(handle, event_ref_list):
 
 #-------------------------------------------------------------------------
 #
-# SQL Reader
+# SQLite DB Class
 #
 #-------------------------------------------------------------------------
 class Database(object):
@@ -109,6 +105,11 @@ class Database(object):
         self.cursor.close()
         self.db.close()
 
+#-------------------------------------------------------------------------
+#
+# SQL Reader
+#
+#-------------------------------------------------------------------------
 class SQLReader(object):
     def __init__(self, db, filename, callback):
         if not callable(callback): 
@@ -174,8 +175,17 @@ class SQLReader(object):
         return retval
 
     def get_datamap(self, sql, from_type, from_handle):
-        # FIXME:
-        return {}
+        handles = self.get_links(sql, from_type, from_handle, "datamap")
+        datamap = {}
+        for handle in handles:
+            row = sql.query("select * from datamap where handle = ?;",
+                            handle)
+            if len(row) == 1:
+                (handle, key_field, value_field) = row[0]
+                datamap[key_field] = value_field
+            else:
+                print "ERROR: invalid datamap item '%s'" % handle
+        return datamap
 
     def get_event_ref_list(self, sql, from_type, from_handle):
         results = self.get_links(sql, from_type, from_handle, "event_ref")
@@ -238,13 +248,13 @@ class SQLReader(object):
     def get_note_list(self, sql, from_type, from_handle):
         return self.get_links(sql, from_type, from_handle, "note")
 
-    def get_repository_list(self, sql, from_type, from_handle):
-        handles = self.get_links(sql, from_type, from_handle, "repository")
+    def get_repository_ref_list(self, sql, from_type, from_handle):
+        handles = self.get_links(sql, from_type, from_handle, "repository_ref")
         results = []
         for handle in handles:
-            results += sql.query("""select * from repository where handle = ?;""",
+            results += sql.query("""select * from repository_ref where handle = ?;""",
                                  handle)
-        return [self.pack_repository(sql, result) for result in results]
+        return [self.pack_repository_ref(sql, result) for result in results]
 
     def get_source_ref_list(self, sql, from_type, from_handle):
         handles = self.get_links(sql, from_type, from_handle, "source_ref")
@@ -301,21 +311,19 @@ class SQLReader(object):
             role = (role0, role1, role2, role3)
         return (private, source_list, note_list, attribute_list, ref, role)
 
-    def pack_repository(self, sql, data):
+    def pack_repository_ref(self, sql, data):
         (handle, 
-         gid, 
-         the_type0, 
-         the_type1,
-         name, 
-         change, 
-         marker0, 
-         marker1, 
+         ref, 
+         call_number, 
+         source_media_type0,
+         source_media_type1,
          private) = data
-        note_list = self.get_note_list(sql, "repository", handle)
-        address_list = self.get_address_list(sql, "repository", handle, with_parish=False)
-        urls = self.get_url_list(sql, "repository", handle)
-        return (handle, gid, (the_type0, the_type1), name, note_list,
-                address_list, urls, change, (marker0, marker1), private)
+        note_list = self.get_note_list(sql, "repository_ref", handle)
+        return (note_list, 
+                ref,
+                call_number, 
+                (source_media_type0, source_media_type1),
+                private)
 
     def pack_url(self, sql, data):
         (handle, 
@@ -361,7 +369,7 @@ class SQLReader(object):
          private) = data
         note_list = self.get_note_list(sql, "source", handle)
         media_list = self.get_media_list(sql, "source", handle)
-        reporef_list = self.get_repository_list(sql, "source", handle)
+        reporef_list = self.get_repository_ref_list(sql, "source", handle)
         datamap = {}
         return (handle, gid, title,
                 author, pubinfo,
@@ -768,7 +776,7 @@ class SQLReader(object):
             note_list = self.get_note_list(sql, "source", handle)
             media_list = self.get_media_list(sql, "source", handle)
             datamap = self.get_datamap(sql, "source", handle)
-            reporef_list = self.get_repository_list(sql, "source", handle)
+            reporef_list = self.get_repository_ref_list(sql, "source", handle)
 
             self.db.source_map[str(handle)] = (str(handle), gid, title,
                                                author, pubinfo,

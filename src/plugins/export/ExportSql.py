@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008       Douglas S. Blank
+# Copyright (C) 2008 Douglas S. Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,27 +18,41 @@
 #
 # $Id$
 #
+
+"Export to SQLite Database"
+
 #------------------------------------------------------------------------
 #
-# python modules
+# Standard Python Modules
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+from gettext import ngettext
 import sqlite3 as sqlite
-import re
+import time
+
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+log = logging.getLogger(".ExportSql")
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.lib
 from gen.plug import PluginManager, ExportPlugin
-import DateHandler
-from gui.utils import ProgressMeter
 import ExportOptions
 from Utils import create_id
 
+#-------------------------------------------------------------------------
+#
+# Export functions
+#
+#-------------------------------------------------------------------------
 def lookup(index, event_ref_list):
     """
     Get the unserialized event_ref in an list of them and return it.
@@ -60,6 +74,7 @@ def makeDB(db):
     db.query("""drop table event;""")
     db.query("""drop table family;""")
     db.query("""drop table repository;""")
+    db.query("""drop table repository_ref;""")
     db.query("""drop table date;""")
     db.query("""drop table place;""") 
     db.query("""drop table source;""") 
@@ -77,6 +92,7 @@ def makeDB(db):
     db.query("""drop table location;""")
     db.query("""drop table attribute;""")
     db.query("""drop table url;""")
+    db.query("""drop table datamap;""")
 
     db.query("""CREATE TABLE note (
                   handle CHARACTER(25),
@@ -193,6 +209,14 @@ def makeDB(db):
                  marker1 TEXT, 
                  private BOOLEAN);""")
 
+    db.query("""CREATE TABLE repository_ref (
+                 handle CHARACTER(25), 
+                 ref CHARACTER(25), 
+                 call_number TEXT, 
+                 source_media_type0 INTEGER,
+                 source_media_type1 TEXT,
+                 private BOOLEAN);""")
+
     db.query("""CREATE TABLE repository (
                  handle CHARACTER(25), 
                  gid CHARACTER(25), 
@@ -252,7 +276,7 @@ def makeDB(db):
                  place CHARACTER(25), 
                  famc CHARACTER(25), 
                  temple TEXT, 
-                 status TEXT, 
+                 status INTEGER, 
                  private BOOLEAN);""")
 
     db.query("""CREATE TABLE media_ref (
@@ -293,6 +317,12 @@ def makeDB(db):
                  type0 INTEGER,
                  type1 TEXT,                  
                  private BOOLEAN);
+                 """)
+
+    db.query("""CREATE TABLE datamap (
+                 handle CHARACTER(25),
+                 key_field   TEXT, 
+                 value_field TXT);
                  """)
 
 class Database(object):
@@ -740,6 +770,17 @@ def export_link(db, from_type, from_handle, to_type, to_handle):
                    to_handle) values (?, ?, ?, ?)""",
                  from_type, from_handle, to_type, to_handle)
 
+def export_datamap_dict(db, from_type, from_handle, datamap):
+    for key_field in datamap:
+        handle = create_id()
+        value_field = datamap[key_field]
+        db.query("""INSERT INTO datamap (
+                      handle,
+                      key_field, 
+                      value_field) values (?, ?, ?)""",
+                 handle, key_field, value_field)
+        export_link(db, from_type, from_handle, "datamap", handle)
+
 def export_address(db, from_type, from_handle, address):
     (private, asource_list, anote_list, date, location) = address
     addr_handle = create_id()
@@ -776,10 +817,36 @@ def export_location(db, from_type, from_handle, location):
     # finally, link the parent to the address
     export_link(db, from_type, from_handle, "location", handle)
 
+def export_repository_ref_list(db, from_type, from_handle, reporef_list):
+    for repo in reporef_list:
+        (note_list, 
+         ref,
+         call_number, 
+         source_media_type,
+         private) = repo
+        handle = create_id()
+        db.query("""insert INTO repository_ref (
+                     handle, 
+                     ref, 
+                     call_number, 
+                     source_media_type0,
+                     source_media_type1,
+                     private) VALUES (?,?,?,?,?,?);""",
+                 handle, 
+                 ref, 
+                 call_number, 
+                 source_media_type[0],
+                 source_media_type[1],
+                 private) 
+        export_list(db, "repository_ref", handle, "note", note_list)
+        # finally, link this to parent
+        export_link(db, from_type, from_handle, "repository_ref", handle)
+
 def exportData(database, filename, option_box=None, callback=None):
     if not callable(callback): 
         callback = lambda (percent): None # dummy
 
+    start = time.time()
     total = (len(database.note_map) + 
              len(database.person_map) +
              len(database.event_map) + 
@@ -952,14 +1019,8 @@ def exportData(database, filename, option_box=None, callback=None):
                       marker[0], marker[1], private)
         export_list(db, "source", handle, "note", note_list) 
         export_media_ref_list(db, "source", handle, media_list)
-        # FIXME: reporef_list, datamap
-        #print "FIXME: reporef_list", reporef_list
-        #print "FIXME: datamap", datamap
-#FIXME: reporef_list []
-#FIXME: datamap {}
-#FIXME: reporef_list [([], u'b2cfa6e37654b308559', '', (2, u''), False)]
-#FIXME: datamap {}
-        
+        export_datamap_dict(db, "source", handle, datamap)
+        export_repository_ref_list(db, "source", handle, reporef_list)
         count += 1
         callback(100 * count/total)
 
@@ -996,12 +1057,18 @@ def exportData(database, filename, option_box=None, callback=None):
         count += 1
         callback(100 * count/total)
 
+    total_time = time.time() - start
+    msg = ngettext('Export Complete: %d second','Export Complete: %d seconds', total_time ) % total_time
+    print msg
     return True
 
-    # Bookmarks
-    # Header - researcher info
-    # Name formats
-    # Namemaps?
+# Future ideas
+# Also include meta:
+#   Bookmarks
+#   Header - researcher info
+#   Name formats
+#   Namemaps?
+#   GRAMPS Version #, date, exporter
 
 #-------------------------------------------------------------------------
 #
