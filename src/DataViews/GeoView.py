@@ -667,21 +667,21 @@ class GeoView(HtmlView):
 
     def set_active(self):
         """
-        Here when we enter in this view.
+        Set view active when we enter into this view.
         """
         self.key_active_changed = self.dbstate.connect('active-changed',
                                                        self.goto_active_person)
 
     def set_inactive(self):
         """
-        Here when we go to another view.
+        Set view inactive when switching to another view.
         """
         HtmlView.set_inactive(self)
         self.dbstate.disconnect(self.key_active_changed)
 
     def get_stock(self):
         """
-        Returns the name of the stock icon to use for the display.
+        Return the name of the stock icon to use for the display.
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
@@ -689,7 +689,7 @@ class GeoView(HtmlView):
 
     def change_map(self, usedmap):
         """
-        Ask to the browser to change the current map.
+        Tell the browser to change the current map.
         """
         self.renderer.execute_script(
             "javascript:mapstraction.swap(map,'"+usedmap+"')")
@@ -817,14 +817,14 @@ class GeoView(HtmlView):
 
     def select_openstreetmap_map(self,handle):
         """
-        Specifies openstreetmap is the default map
+        Make openstreetmap the default map.
         """
         self.usedmap = "openstreetmap"        
         self.change_map("openstreetmap")
 
     def select_openlayers_map(self,handle):
         """
-        Specifies openstreetmap is the default map
+        Make openstreetmap the default map.
         """
         self.usedmap = "openlayers"        
         self.change_map("openlayers")
@@ -838,21 +838,21 @@ class GeoView(HtmlView):
 
     def select_yahoo_map(self,handle):
         """
-        Specifies yahoo map is the default map
+        Make yahoo map the default map.
         """
         self.usedmap = "yahoo"        
         self.change_map("yahoo")
 
     def select_microsoft_map(self,handle):
         """
-        Specifies microsoft is the default map
+        Make microsoft the default map.
         """
         self.usedmap = "microsoft"        
         self.change_map("microsoft")
 
     def createpageforplaceswithoutcoord(self):
         """
-        This command creates a page with the list of all places without coordinates
+        Create a page with the list of all places without coordinates
         page.
         """
         data = """
@@ -1048,7 +1048,7 @@ class GeoView(HtmlView):
 
     def createmapstractiontrailer(self):
         """
-        Add the last directives for the html page
+        Add the last directives for the html page.
         """
         self.mapview.write(" </body>\n")
         self.mapview.write("</html>\n")
@@ -1235,7 +1235,7 @@ class GeoView(HtmlView):
 
     def append_to_places_without_coord(self, gid, place):
         """
-        Create a list of places without coordinates
+        Create a list of places without coordinates.
         """
         self.place_without_coordinates.append([gid, place])
         self.without += 1
@@ -1243,7 +1243,7 @@ class GeoView(HtmlView):
     def append_to_places_list(self, place, evttype, name, lat, 
                               longit, descr, center, year):
         """
-        Create a list of places with coordinates
+        Create a list of places with coordinates.
         """
         self.place_list.append([place, name, evttype, lat,
                                 longit, descr, int(center), year])
@@ -1294,7 +1294,7 @@ class GeoView(HtmlView):
 
     def isyearnotinmarker(self, allyears, yeartosearch):
         """
-        This function is used to find if a year is in a list
+        Find if a year is in a list.
         """
         ret = 1
         for year in allyears:
@@ -1304,7 +1304,7 @@ class GeoView(HtmlView):
 
     def create_markers(self, format, firstm, lastm):
         """
-        This function create all markers for the specified person.
+        Create all markers for the specified person.
         """
         margin = 10
         self.mapview.write("  <div id=\"map\" style=\"width: %dpx; " % \
@@ -1427,7 +1427,7 @@ class GeoView(HtmlView):
 
     def createpersonmarkers(self, dbstate, person, comment):
         """
-        This function create all markers for the specified person.
+        Create all markers for the specified person.
         """
         latitude = ""
         longitude = ""
@@ -1440,30 +1440,31 @@ class GeoView(HtmlView):
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
                     place = dbstate.db.get_place_from_handle(bplace_handle)
-                    longitude = place.get_longitude()
-                    latitude = place.get_latitude()
-                    latitude, longitude = conv_lat_lon(latitude,
-                                                       longitude, "D.D8")
-                    if comment:
-                        descr1 = _("%(comment)s : birth place.") % {
-                                            'comment': comment}
-                    else:
-                        descr1 = _("birth place.")
-                    descr = place.get_title()
-                    # place.get_longitude and place.get_latitude return
-                    # one string. We have coordinates when the two values
-                    # contains non null string.
-                    if ( longitude and latitude ):
-                        self.append_to_places_list(descr,
-                                                   gen.lib.EventType.BIRTH, 
-                                                   _nd.display(person),
-                                                   latitude, longitude,
-                                                   descr1, int(self.center),
-                                                   birthyear)
-                        self.center = False
-                    else:
-                        self.append_to_places_without_coord(place.gramps_id,
-                                                            descr)
+                    if place:
+                        longitude = place.get_longitude()
+                        latitude = place.get_latitude()
+                        latitude, longitude = conv_lat_lon(latitude,
+                                                           longitude, "D.D8")
+                        if comment:
+                            descr1 = _("%(comment)s : birth place.") % {
+                                                'comment': comment}
+                        else:
+                            descr1 = _("birth place.")
+                        descr = place.get_title()
+                        # place.get_longitude and place.get_latitude return
+                        # one string. We have coordinates when the two values
+                        # contains non null string.
+                        if ( longitude and latitude ):
+                            self.append_to_places_list(descr,
+                                                       gen.lib.EventType.BIRTH, 
+                                                       _nd.display(person),
+                                                       latitude, longitude,
+                                                       descr1, int(self.center),
+                                                       birthyear)
+                            self.center = False
+                        else:
+                            self.append_to_places_without_coord(place.gramps_id,
+                                                                descr)
             latitude = ""
             longitude = ""
             death_ref = person.get_death_ref()
@@ -1474,35 +1475,35 @@ class GeoView(HtmlView):
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
                     place = dbstate.db.get_place_from_handle(dplace_handle)
-                    longitude = place.get_longitude()
-                    latitude = place.get_latitude()
-                    latitude, longitude = conv_lat_lon(latitude,
-                                                       longitude, "D.D8")
-                    descr = place.get_title()
-                    if comment:
-                        descr1 = _("%(comment)s : death place.") % {
-                                            'comment': comment} 
-                    else:
-                        descr1 = _("death place.")
-                    # place.get_longitude and place.get_latitude return
-                    # one string. We have coordinates when the two values
-                    # contains non null string.
-                    if ( longitude and latitude ):
-                        self.append_to_places_list(descr,
-                                                   gen.lib.EventType.DEATH,
-                                                   _nd.display(person),
-                                                   latitude, longitude,
-                                                   descr1, int(self.center),
-                                                   deathyear)
-                        self.center = False
-                    else:
-                        self.append_to_places_without_coord(place.gramps_id,
-                                                            descr)
+                    if place:
+                        longitude = place.get_longitude()
+                        latitude = place.get_latitude()
+                        latitude, longitude = conv_lat_lon(latitude,
+                                                           longitude, "D.D8")
+                        descr = place.get_title()
+                        if comment:
+                            descr1 = _("%(comment)s : death place.") % {
+                                                'comment': comment} 
+                        else:
+                            descr1 = _("death place.")
+                        # place.get_longitude and place.get_latitude return
+                        # one string. We have coordinates when the two values
+                        # contains non null string.
+                        if ( longitude and latitude ):
+                            self.append_to_places_list(descr,
+                                                       gen.lib.EventType.DEATH,
+                                                       _nd.display(person),
+                                                       latitude, longitude,
+                                                       descr1, int(self.center),
+                                                       deathyear)
+                            self.center = False
+                        else:
+                            self.append_to_places_without_coord(place.gramps_id,
+                                                                descr)
 
     def createmapstractionplaces(self, dbstate):
         """
-        This function create the marker for each place in the database
-        which has a lat/lon.
+        Create the marker for each place in the database which has a lat/lon.
         """
         self.place_list = []
         self.place_without_coordinates = []
@@ -1545,7 +1546,7 @@ class GeoView(HtmlView):
 
     def createmapstractionevents(self, dbstate):
         """
-        This function create one marker for each place associated with an event in the database
+        Create one marker for each place associated with an event in the database
         which has a lat/lon.
         """
         self.place_list = []
@@ -1562,56 +1563,57 @@ class GeoView(HtmlView):
         for event_handle in dbstate.db.get_event_handles():
             event = dbstate.db.get_event_from_handle( event_handle)
             if event:
-                pl_id = event.get_place_handle()
+                place_handle = event.get_place_handle()
                 eventdate = event.get_date_object()
                 eventyear = eventdate.get_year()
                 descr1 = _("Id : %(id)s (%(year)s)") % {
                                 'id' : event.gramps_id,
                                 'year' : eventyear}
-                if pl_id:
-                    place = dbstate.db.get_place_from_handle(pl_id)
-                    longitude = place.get_longitude()
-                    latitude = place.get_latitude()
-                    latitude, longitude = conv_lat_lon(latitude, longitude, 
-                                                       "D.D8")
-                    city = place.get_main_location().get_city()
-                    country = place.get_main_location().get_country()
-                    descr2 = "%s; %s" % (city, country)
-                    # place.get_longitude and place.get_latitude return
-                    # one string. We have coordinates when the two values
-                    # contains non null string.
-                    if ( longitude and latitude ):
-                        person_list = [dbstate.db.get_person_from_handle(ref_handle)
-                            for (ref_type, ref_handle) in \
-                                dbstate.db.find_backlink_handles(event_handle)
-                                    if ref_type == 'Person' 
-                                      ]
-                        if person_list:
-                            descr = "<br>"
-                            for person in person_list:
-                                descr = ("%(description)s%(name)s<br>") % {
-                                            'description' : descr, 
-                                            'name' : _nd.display(person)}
-                            descr = ("%(eventtype)s; %(place)s%(description)s"
-                                     ) % { 'eventtype': gen.lib.EventType(
-                                                            event.get_type()),
-                                            'place': place.get_title(), 
-                                            'description': descr}
+                if place_handle:
+                    place = dbstate.db.get_place_from_handle(place_handle)
+                    if place:
+                        longitude = place.get_longitude()
+                        latitude = place.get_latitude()
+                        latitude, longitude = conv_lat_lon(latitude, longitude, 
+                                                           "D.D8")
+                        city = place.get_main_location().get_city()
+                        country = place.get_main_location().get_country()
+                        descr2 = "%s; %s" % (city, country)
+                        # place.get_longitude and place.get_latitude return
+                        # one string. We have coordinates when the two values
+                        # contains non null string.
+                        if ( longitude and latitude ):
+                            person_list = [dbstate.db.get_person_from_handle(ref_handle)
+                                for (ref_type, ref_handle) in \
+                                    dbstate.db.find_backlink_handles(event_handle)
+                                        if ref_type == 'Person' 
+                                          ]
+                            if person_list:
+                                descr = "<br>"
+                                for person in person_list:
+                                    descr = ("%(description)s%(name)s<br>") % {
+                                                'description' : descr, 
+                                                'name' : _nd.display(person)}
+                                descr = ("%(eventtype)s; %(place)s%(description)s"
+                                         ) % { 'eventtype': gen.lib.EventType(
+                                                                event.get_type()),
+                                                'place': place.get_title(), 
+                                                'description': descr}
+                            else:
+                                descr = ("%(eventtype)s; %(place)s<br>") % {
+                                                'eventtype': gen.lib.EventType(
+                                                                event.get_type()),
+                                                'place': place.get_title()}
+                            self.append_to_places_list(descr1, descr,
+                                                       descr,
+                                                       latitude, longitude,
+                                                       descr2, self.center,
+                                                       eventyear)
+                            self.center = False
                         else:
-                            descr = ("%(eventtype)s; %(place)s<br>") % {
-                                            'eventtype': gen.lib.EventType(
-                                                            event.get_type()),
-                                            'place': place.get_title()}
-                        self.append_to_places_list(descr1, descr,
-                                                   descr,
-                                                   latitude, longitude,
-                                                   descr2, self.center,
-                                                   eventyear)
-                        self.center = False
-                    else:
-                        descr = place.get_title()
-                        self.append_to_places_without_coord(place.gramps_id,
-                                                            descr)
+                            descr = place.get_title()
+                            self.append_to_places_without_coord(place.gramps_id,
+                                                                descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
         else:
@@ -1621,7 +1623,7 @@ class GeoView(HtmlView):
 
     def createmapstractionfamily(self, dbstate):
         """
-        This function create all markers for each people of a family
+        Create all markers for each people of a family
         in the database which has a lat/lon.
         """
         self.place_list = []
@@ -1680,8 +1682,8 @@ class GeoView(HtmlView):
 
     def createmapstractionperson(self, dbstate):
         """
-        This function create all markers for each people's event
-        in the database which has a lat/lon.
+        Create all markers for each people's event in the database which has 
+        a lat/lon.
         """
         self.place_list = []
         self.place_without_coordinates = []
@@ -1711,28 +1713,29 @@ class GeoView(HtmlView):
                 place_handle = event.get_place_handle()
                 if place_handle:
                     place = dbstate.db.get_place_from_handle(place_handle)
-                    longitude = place.get_longitude()
-                    latitude = place.get_latitude()
-                    latitude, longitude = conv_lat_lon(latitude,
-                                                       longitude, "D.D8")
-                    descr = place.get_title()
-                    evt = gen.lib.EventType(event.get_type())
-                    descr1 = _("%(eventtype)s : %(name)s") % {
-                                    'eventtype': evt,
-                                    'name': _nd.display(person)}
-                    # place.get_longitude and place.get_latitude return
-                    # one string. We have coordinates when the two values
-                    # contains non null string.
-                    if ( longitude and latitude ):
-                        self.append_to_places_list(descr, evt,
-                                                   _nd.display(person),
-                                                   latitude, longitude,
-                                                   descr1, self.center, 
-                                                   eventyear)
-                        self.center = False
-                    else:
-                        self.append_to_places_without_coord(
-                                                        place.gramps_id, descr)
+                    if place:
+                        longitude = place.get_longitude()
+                        latitude = place.get_latitude()
+                        latitude, longitude = conv_lat_lon(latitude,
+                                                           longitude, "D.D8")
+                        descr = place.get_title()
+                        evt = gen.lib.EventType(event.get_type())
+                        descr1 = _("%(eventtype)s : %(name)s") % {
+                                        'eventtype': evt,
+                                        'name': _nd.display(person)}
+                        # place.get_longitude and place.get_latitude return
+                        # one string. We have coordinates when the two values
+                        # contains non null string.
+                        if ( longitude and latitude ):
+                            self.append_to_places_list(descr, evt,
+                                                       _nd.display(person),
+                                                       latitude, longitude,
+                                                       descr1, self.center, 
+                                                       eventyear)
+                            self.center = False
+                        else:
+                            self.append_to_places_without_coord(
+                                                            place.gramps_id, descr)
         if self.center:
             mess = _("Cannot center the map. No location with coordinates.")
             if person is not None:
@@ -1747,7 +1750,7 @@ class GeoView(HtmlView):
 
     def createmapnotimplemented(self):
         """
-        This function is used to inform the user this work is not implemented.
+        Inform the user this work is not implemented.
         """
         self.mapview.write("  <H1>%s </H1>" % _("Not yet implemented ..."))
 
