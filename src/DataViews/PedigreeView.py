@@ -387,7 +387,7 @@ class FormattingHelper(object):
         text = ""
         place = self.dbstate.db.get_place_from_handle(place_handle)
         if place:
-            place_title = self.dbstate.db.get_place_from_handle(place_handle).get_title()
+            place_title = place.get_title()
             if place_title != "":
                 if len(place_title) > 25:
                     text = place_title[:24]+"..."
