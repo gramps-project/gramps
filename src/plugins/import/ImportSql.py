@@ -740,15 +740,13 @@ class SQLReader(object):
              private) = place
 
             # We could look this up by "place_main", but we have the handle:
-            main_loc = self.get_main_location(sql, main_loc, 
-                                              with_parish=True)
+            main_loc = self.get_main_location(sql, handle, with_parish=True)
             alt_location_list = self.get_location_list(sql, "place_alt", handle, 
                                                        with_parish=True)
             urls = self.get_url_list(sql, "place", handle)
             media_list = self.get_media_list(sql, "place", handle)
             source_list = self.get_source_ref_list(sql, "place", handle)
             note_list = self.get_note_list(sql, "place", handle)
-
             self.db.place_map[str(handle)] = (str(handle), gid, title, long, lat,
                                               main_loc, alt_location_list,
                                               urls,

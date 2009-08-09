@@ -168,8 +168,8 @@ def makeDB(db):
                  gid CHARACTER(25), 
                  title TEXT, 
                  main_location CHARACTER(25),
-                 long FLOAT, 
-                 lat FLOAT, 
+                 long TEXT, 
+                 lat TEXT, 
                  change INTEGER, 
                  marker0 INTEGER, 
                  marker1 TEXT, 
@@ -752,8 +752,8 @@ def export_child_ref_list(db, from_type, from_handle, to_type, ref_list):
                         VALUES (?, ?, ?, ?, ?, ?, ?);""",
                  handle, ref, frel[0], frel[1], 
                  mrel[0], mrel[1], private)
-        export_source_ref_list(db, from_type, handle, source_list)
-        export_list(db, from_type, handle, "note", note_list)
+        export_source_ref_list(db, "child_ref", handle, source_list)
+        export_list(db, "child_ref", handle, "note", note_list)
         # And finally, make a link from parent to new object
         export_link(db, from_type, from_handle, "child_ref", handle)
 
