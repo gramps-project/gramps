@@ -246,7 +246,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
     the associated icon for the mime type is returned, or if that cannot be
     found, a generic document icon is returned.
 
-    The image is not generated everytime, but only if the thumbnail does not
+    The image is not generated every time, but only if the thumbnail does not
     exist, or if the source file is newer than the thumbnail.
 
     :param src_file: Source media file

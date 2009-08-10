@@ -22,7 +22,7 @@
 
 # $Id$
 
-"Find unused objects and remove with the user's permission"
+"Find unused objects and remove with the user's permission."
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +47,6 @@ log = logging.getLogger(".RemoveUnused")
 #-------------------------------------------------------------------------
 import gtk
 import gobject
-from gen.lib import StyledText
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +66,7 @@ from glade import Glade
 # runTool
 #
 #-------------------------------------------------------------------------
-class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
+class RemoveUnused(Tool.Tool, ManagedWindow.ManagedWindow, UpdateCallback):
     MARK_COL       = 0
     OBJ_ID_COL     = 1
     OBJ_NAME_COL   = 2
@@ -82,8 +81,8 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         if self.db.readonly:
             return
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate,[],self.__class__)
-        UpdateCallback.__init__(self,self.uistate.pulse_progressbar)
+        ManagedWindow.ManagedWindow.__init__(self, uistate,[], self.__class__)
+        UpdateCallback.__init__(self, self.uistate.pulse_progressbar)
 
         self.dbstate = dbstate
         self.uistate = uistate
@@ -132,7 +131,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
     def init_gui(self):
         self.top = Glade()
         window = self.top.toplevel
-        self.set_window(window,self.top.get_object('title'),self.title)
+        self.set_window(window, self.top.get_object('title'), self.title)
 
         self.events_box = self.top.get_object('events_box')
         self.sources_box = self.top.get_object('sources_box')
@@ -158,13 +157,13 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.selection = self.warn_tree.get_selection()
         
         self.mark_button = self.top.get_object('mark_button')
-        self.mark_button.connect('clicked',self.mark_clicked)
+        self.mark_button.connect('clicked', self.mark_clicked)
 
         self.unmark_button = self.top.get_object('unmark_button')
-        self.unmark_button.connect('clicked',self.unmark_clicked)
+        self.unmark_button.connect('clicked', self.unmark_clicked)
 
         self.invert_button = self.top.get_object('invert_button')
-        self.invert_button.connect('clicked',self.invert_clicked)
+        self.invert_button.connect('clicked', self.invert_clicked)
 
         self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
                                         gobject.TYPE_STRING, 
@@ -177,17 +176,17 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.renderer = gtk.CellRendererText()
         self.img_renderer = gtk.CellRendererPixbuf()
         self.bool_renderer = gtk.CellRendererToggle()
-        self.bool_renderer.connect('toggled',self.selection_toggled)
+        self.bool_renderer.connect('toggled', self.selection_toggled)
 
         # Add mark column
-        mark_column = gtk.TreeViewColumn(_('Mark'),self.bool_renderer,
+        mark_column = gtk.TreeViewColumn(_('Mark'), self.bool_renderer,
                                            active=RemoveUnused.MARK_COL)
         mark_column.set_sort_column_id(RemoveUnused.MARK_COL)
         self.warn_tree.append_column(mark_column)
         
         # Add image column
         img_column = gtk.TreeViewColumn(None, self.img_renderer )
-        img_column.set_cell_data_func(self.img_renderer,self.get_image)
+        img_column.set_cell_data_func(self.img_renderer, self.get_image)
         self.warn_tree.append_column(img_column)        
 
         # Add column with object gramps_id
@@ -210,9 +209,9 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
         self.dc_label = self.top.get_object('dc_label')
 
-        self.sensitive_list = [self.warn_tree,self.mark_button,
-                               self.unmark_button,self.invert_button,
-                               self.dc_label,self.remove_button]
+        self.sensitive_list = [self.warn_tree, self.mark_button,
+                               self.unmark_button, self.invert_button,
+                               self.dc_label, self.remove_button]
 
         for item in self.sensitive_list:
             item.set_sensitive(False)
@@ -220,7 +219,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.show()
 
     def build_menu_names(self, obj):
-        return (self.title,None)
+        return (self.title, None)
 
     def find(self, obj):
         self.options.handler.options_dict['events'] = \
@@ -289,10 +288,10 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
             self.reset()
 
     def do_remove(self, obj):
-        trans = self.db.transaction_begin("",batch=False)
+        trans = self.db.transaction_begin("", batch=False)
         self.db.disable_signals()
 
-        for row_num in range(len(self.real_model)-1,-1,-1):
+        for row_num in range(len(self.real_model)-1, -1, -1):
             path = (row_num,)
             row = self.real_model[path]
             if not row[RemoveUnused.MARK_COL]:
@@ -309,32 +308,32 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.db.enable_signals()
         self.db.request_rebuild()
 
-    def selection_toggled(self,cell,path_string):
+    def selection_toggled(self, cell, path_string):
         sort_path = tuple([int (i) for i in path_string.split(':')])
         real_path = self.sort_model.convert_path_to_child_path(sort_path)
         row = self.real_model[real_path]
         row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
-        self.real_model.row_changed(real_path,row.iter)
+        self.real_model.row_changed(real_path, row.iter)
 
-    def mark_clicked(self,mark_button):
+    def mark_clicked(self, mark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
             row[RemoveUnused.MARK_COL] = True
 
-    def unmark_clicked(self,unmark_button):
+    def unmark_clicked(self, unmark_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
             row[RemoveUnused.MARK_COL] = False
 
-    def invert_clicked(self,invert_button):
+    def invert_clicked(self, invert_button):
         for row_num in range(len(self.real_model)):
             path = (row_num,)
             row = self.real_model[path]
             row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
 
-    def double_click(self, obj,event):
+    def double_click(self, obj, event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             (model, node) = self.selection.get_selected()
             if not node:
@@ -346,7 +345,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
             handle = row[RemoveUnused.OBJ_HANDLE_COL]
             self.call_editor(the_type, handle)
 
-    def call_editor(self,the_type, handle):
+    def call_editor(self, the_type, handle):
         try:
             obj = self.tables[the_type]['get_func'](handle)
             editor_str = 'from Editors import %s as editor' \
@@ -440,8 +439,8 @@ class CheckOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        Tool.ToolOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
