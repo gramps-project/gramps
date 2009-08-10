@@ -625,10 +625,13 @@ class BasePage(object):
 
                 trow = Html('tr')
                 thead += trow
-                attr_header_row = ['Type', 'Value', 'Sources']
-                for data in attr_header_row:
+                attr_header_row = [
+                                                (_('Type'),         'Type'),
+                                                (_('Value'),        'Value'),
+                                                (_('Sources'),    'Source') ]
+                for (label, colclass) in attr_header_row:
 
-                    trow += Html('th', _('%s' % data), class_='Column%s' % data, inline=True)
+                    trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
                 # begin table body
                 tbody = Html('tbody')
@@ -2096,7 +2099,8 @@ class MediaPage(BasePage):
             # inside of it?  No, if not?, then do not show on the media page
             """ 
 
-            image = pyexiv2.Image('%s' % Utils.media_path_full(db, photo.get_path()))
+            image = pyexiv2.Image('%s' % Utils.media_path_full(db, 
+                                                                                                photo.get_path()))
             image.readMetadata()
 
             # exif data does exists
@@ -3946,13 +3950,19 @@ class IndividualPage(BasePage):
         format_event()
         """
 
-        header_row = ['EventType', 'Date', 'Place', 'Description', 'Source', 'Note']
+        header_row = [
+                                (_('EventType'),       'EventType'),
+                                 (_('Date'),               'Date'), 
+                                 (_('Place'),              'Place'),
+                                 (_('Description'),    'Description'),
+                                 (_('Source'),            'Source'),
+                                  (_('Note'),              'Note') ]
 
         # begin table header row
         trow = Html('tr')
 
-        for section in header_row:
-            trow += Html('th', _('%s' % section), class_ = 'Column%s' % section, inline = True)
+        for (label,  colclass) in header_row:
+            trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
         # return header row to its caller
         return trow
