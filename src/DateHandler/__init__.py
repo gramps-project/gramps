@@ -29,11 +29,14 @@ from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY,
                           register_datehandler)
 
 # Import all the localized handlers
+import _Date_ca
 import _Date_cs
 import _Date_de
 import _Date_es
 import _Date_fi
 import _Date_fr
+import _Date_hr
+import _Date_it
 import _Date_lt
 import _Date_nb
 import _Date_nl
@@ -41,10 +44,8 @@ import _Date_pl
 import _Date_pt
 import _Date_ru
 import _Date_sk
+import _Date_sr
 import _Date_sv
-import _Date_hr
-import _Date_ca
-import _Date_it
 
 # Initialize global parser
 try:

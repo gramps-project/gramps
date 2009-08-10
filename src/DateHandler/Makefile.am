@@ -9,19 +9,20 @@ pkgdata_PYTHON = \
         _Date_ca.py\
 	_Date_cs.py\
 	_Date_de.py\
-	_Date_ru.py\
-	_Date_lt.py\
-	_Date_fr.py\
 	_Date_es.py\
 	_Date_fi.py\
-	_Date_sv.py\
-	_Date_nb.py\
-	_Date_nl.py\
-	_Date_sk.py\
-	_Date_pl.py\
-	_Date_pt.py\
+	_Date_fr.py\
         _Date_hr.py\
 	_Date_it.py\
+	_Date_lt.py\
+	_Date_nb.py\
+	_Date_nl.py\
+	_Date_pl.py\
+	_Date_pt.py\
+	_Date_ru.py\
+	_Date_sk.py\
+	_Date_sr.py\
+	_Date_sv.py\
 	_DateDisplay.py\
 	_DateParser.py\
 	_DateHandler.py\
