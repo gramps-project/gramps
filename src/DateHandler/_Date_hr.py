@@ -180,7 +180,7 @@ class DateParserHR(DateParser):
         """
         DateParser.init_strings(self)
         # match 'Day. MONTH year.' format with or without dots
-        self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
+        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
                                 % self._mon_str, re.IGNORECASE)
         # match Day.Month.Year.
         self._numeric  = re.compile(
