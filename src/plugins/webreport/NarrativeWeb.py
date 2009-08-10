@@ -447,26 +447,6 @@ class BasePage(object):
 
         return htmllist
 
-# ---------------------------------------------------------------------------------------
-#
-#              # Web Page Fortmatter and writer                   
-#
-# ---------------------------------------------------------------------------------------
-
-    def mywriter(self, htmlinstance, of):
-        """
-        Will format, write, and close the file
-
-        of -- open file that is being written to
-        htmlinstance -- web page created with libhtml
-            src/plugins/lib/libhtml.py
-        """
- 
-        htmlinstance.write(lambda line: of.write(line + '\n')) 
-
-        # closes the file
-        self.report.close_file(of)
-
     def write_out_addresses(self, obj, spec=False):
         """
         will display an object's addresses, url list, note list, 
@@ -1291,6 +1271,26 @@ class BasePage(object):
 
         # return hyperlink to its callers
         return hyper
+
+# ---------------------------------------------------------------------------------------
+#
+#              # Web Page Fortmatter and writer                   
+#
+# ---------------------------------------------------------------------------------------
+
+    def mywriter(self, htmlinstance, of):
+        """
+        Will format, write, and close the file
+
+        of -- open file that is being written to
+        htmlinstance -- web page created with libhtml
+            src/plugins/lib/libhtml.py
+        """
+ 
+        htmlinstance.write(lambda line: of.write(line + '\n')) 
+
+        # closes the file
+        self.report.close_file(of)
 
 class IndividualListPage(BasePage):
 
@@ -2509,30 +2509,26 @@ class SourcePage(BasePage):
             # add section title
             section += Html('h3', html_escape(self.page_title.strip()), inline=True)
  
-            # begin summaryarea division
-            with Html('div', id='summaryarea') as summaryarea:
-                section += summaryarea
+            # begin sources table
+            with Html('table', class_='infolist source') as table:
+                section += table
 
-                # begin sources table
-                with Html('table', class_='infolist source') as table:
-                    summaryarea += table
+                grampsid = None
+                if not self.noid:
+                    grampsid = source.gramps_id
 
-                    grampsid = None
-                    if not self.noid:
-                        grampsid = source.gramps_id
+                    for (label, val) in [(_('GRAMPS ID'), grampsid),
+                                                  (_('Author'), source.author),
+                                                  (_('Publication information'), source.pubinfo),
+                                                  (_('Abbreviation'), source.abbrev)]:
+                        if val:
+                            trow = Html('tr') + (
+                                Html('td',  label, class_='ColumnAttribute'),
+                                Html('td', val, class_='ColumnValue')
+                                )
+                            table += trow
 
-                        for (label, val) in [(_('GRAMPS ID'), grampsid),
-                                                      (_('Author'), source.author),
-                                                      (_('Publication information'), source.pubinfo),
-                                                      (_('Abbreviation'), source.abbrev)]:
-                            if val:
-                                trow = Html('tr') + (
-                                    Html('td',  label, class_='ColumnAttribute'),
-                                    Html('td', val, class_='ColumnValue')
-                                    )
-                                table += trow
-
-            # additional gallery
+            # additional media
             sourcegallery = self.display_additional_images_as_gallery(media_list)
             if sourcegallery is not None:
                 section += sourcegallery
@@ -2541,14 +2537,6 @@ class SourcePage(BasePage):
             sourcenotes = self.display_note_list(source.get_note_list())
             if sourcenotes is not None:
                 section += sourcenotes
-
-#            # get source repositories
-#            # TODO: Figure if this is possible 
-#            for handle in source.get_repository_handles():
-#                repo = db.get_repository_from_handle(handle)
-#                sourcerepo = self.write_repositories(repo, handle)
-#                if sourcerepo is not None:
-#                    section += sourcerepo
 
             # references
             source_references = self.display_references(src_list[source.handle])
