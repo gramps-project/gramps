@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2009      Gary Burton
+# Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at> 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +30,6 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-from string import capitalize
 
 #------------------------------------------------------------------------
 #
@@ -37,10 +37,10 @@ from string import capitalize
 #
 #------------------------------------------------------------------------
 from gen.plug import PluginManager
-from gen.plug.menu import NumberOption, BooleanOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.menu import NumberOption, BooleanOption, PersonOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from BasicUtils import name_displayer
 import DateHandler
 
@@ -58,7 +58,6 @@ class KinshipReport(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options_class   - instance of the Options class for this report
 
         This report needs the following parameters (class variables)
@@ -83,8 +82,7 @@ class KinshipReport(Report):
         self.person = database.get_person_from_gramps_id(pid)
 
         self.__db = database
-        pmgr = PluginManager.get_instance()
-        self.rel_calc = pmgr.get_relationship_calculator()
+        self.rel_calc = PluginManager.get_instance().get_relationship_calculator()
 
         self.kinship_map = {}
         self.spouse_map = {}
@@ -118,7 +116,7 @@ class KinshipReport(Report):
             for Gb in Gbs:
                 # To understand these calculations, see: 
                 # http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-                x = min (Ga,Gb)
+                x = min (Ga, Gb)
                 y = abs(Ga-Gb)
                 # Skip unrequested people
                 if x == 1 and y > 0 and not self.inc_aunts:
@@ -126,14 +124,14 @@ class KinshipReport(Report):
                 elif x > 1 and not self.inc_cousins:
                     continue
                 
-                title = self.rel_calc.get_plural_relationship_string(Ga,Gb)
-                self.write_people(title,self.kinship_map[Ga][Gb])
+                title = self.rel_calc.get_plural_relationship_string(Ga, Gb)
+                self.write_people(title, self.kinship_map[Ga][Gb])
                 
                 if self.inc_spouses and \
                    Ga in self.spouse_map and \
                    Gb in self.spouse_map[Ga]:
                     title = _("spouses of %s") % title
-                    self.write_people(title,self.spouse_map[Ga][Gb])
+                    self.write_people(title, self.spouse_map[Ga][Gb])
 
     def traverse_down(self, person_handle, Ga, Gb, skip_handle=None):
         """
@@ -155,14 +153,14 @@ class KinshipReport(Report):
         """
         for child_handle in self.get_children_handles(person_handle):
             if child_handle != skip_handle:
-                self.add_kin(child_handle,Ga,Gb)
+                self.add_kin(child_handle, Ga, Gb)
             
                 if self.inc_spouses:
                     for spouse_handle in self.get_spouse_handles(child_handle):
-                        self.add_spouse(spouse_handle,Ga,Gb)
+                        self.add_spouse(spouse_handle, Ga, Gb)
                     
                 if Gb < self.max_descend:
-                    self.traverse_down(child_handle,Ga,Gb+1)
+                    self.traverse_down(child_handle, Ga, Gb+1)
                     
     def traverse_up(self, person_handle, Ga, Gb):
         """
@@ -181,10 +179,10 @@ class KinshipReport(Report):
         """
         parent_handles = self.get_parent_handles(person_handle)
         for parent_handle in parent_handles:
-            self.add_kin(parent_handle,Ga,Gb)
-            self.traverse_down(parent_handle,Ga,Gb+1,person_handle)
+            self.add_kin(parent_handle, Ga, Gb)
+            self.traverse_down(parent_handle, Ga, Gb+1, person_handle)
             if Ga < self.max_ascend:
-                self.traverse_up(parent_handle,Ga+1,0)
+                self.traverse_up(parent_handle, Ga+1, 0)
                 
     def add_kin(self, person_handle, Ga, Gb):
         """
@@ -280,7 +278,7 @@ class KinshipReport(Report):
         """
         Write information about a group of people - including the title.
         """
-        cap_title = capitalize(title)
+        cap_title = title[0].upper() + title[1:]
         subtitle = "%s (%d)" % (cap_title, len(people_handles))
         self.doc.start_paragraph("KIN-Subtitle")
         mark = IndexMark(cap_title, INDEX_TYPE_TOC, 2)
@@ -339,27 +337,27 @@ class KinshipOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
-        maxdescend = NumberOption(_("Max Descendant Generations"),2,1,20)
+        maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
         maxdescend.set_help(_("The maximum number of descendant generations"))
-        menu.add_option(category_name,"maxdescend",maxdescend)
+        menu.add_option(category_name, "maxdescend", maxdescend)
         
-        maxascend = NumberOption(_("Max Ancestor Generations"),2,1,20)
+        maxascend = NumberOption(_("Max Ancestor Generations"), 2, 1, 20)
         maxascend.set_help(_("The maximum number of ancestor generations"))
-        menu.add_option(category_name,"maxascend",maxascend)
+        menu.add_option(category_name, "maxascend", maxascend)
         
-        incspouses = BooleanOption(_("Include spouses"),True)
+        incspouses = BooleanOption(_("Include spouses"), True)
         incspouses.set_help(_("Whether to include spouses"))
-        menu.add_option(category_name,"incspouses",incspouses)
+        menu.add_option(category_name, "incspouses", incspouses)
         
-        inccousins = BooleanOption(_("Include cousins"),True)
+        inccousins = BooleanOption(_("Include cousins"), True)
         inccousins.set_help(_("Whether to include cousins"))
-        menu.add_option(category_name,"inccousins",inccousins)
+        menu.add_option(category_name, "inccousins", inccousins)
         
-        incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"),True)
+        incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"), True)
         incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
-        menu.add_option(category_name,"incaunts",incaunts)        
+        menu.add_option(category_name, "incaunts", incaunts)        
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Kinship Report."""
         f = FontStyle()
         f.set_size(16)
@@ -372,7 +370,7 @@ class KinshipOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("KIN-Title",p)
+        default_style.add_paragraph_style("KIN-Title", p)
         
         font = FontStyle()
         font.set_size(12)
@@ -382,7 +380,7 @@ class KinshipOptions(MenuReportOptions):
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for sub-headings.'))
-        default_style.add_paragraph_style("KIN-Subtitle",p)
+        default_style.add_paragraph_style("KIN-Subtitle", p)
         
         font = FontStyle()
         font.set_size(10)
@@ -390,7 +388,7 @@ class KinshipOptions(MenuReportOptions):
         p.set_font(font)
         p.set_left_margin(0.5)
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("KIN-Normal",p)
+        default_style.add_paragraph_style("KIN-Normal", p)
 
 #------------------------------------------------------------------------
 #
