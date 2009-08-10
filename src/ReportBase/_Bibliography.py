@@ -24,7 +24,7 @@ Contain and organize bibliographic information.
 """
 import string
 import math
-from gen.lib import SourceRef as SourceRef
+from gen.lib import SourceRef
 
 class Citation(object):
     """
@@ -60,7 +60,7 @@ class Citation(object):
         List all the references to this citation.
 
         @return: a list of references
-        @rtype: list of L{Relib.SourceRef} objects
+        @rtype: list of L{gen.lib.srcref} objects
         """
         return self.__ref_list
 
@@ -70,7 +70,7 @@ class Citation(object):
         add another one.
 
         @param source_ref: Source Reference
-        @type source_ref: L{Relib.SourceRef}
+        @type source_ref: L{gen.lib.srcref}
         @return: The key of the added reference among all the references.
         @rtype: char
         """
@@ -84,12 +84,12 @@ class Citation(object):
         last_letter = string.ascii_lowercase[ ref_count % letter_count ]
         key = ""
         # Calculate prek number of digits.
-        number_of_letters = int(math.log(float(ref_count),float(letter_count)))+1
+        number_of_letters = int(math.log(float(ref_count), float(letter_count)))+1
         # Exclude index for number_of_letters-1
         for n in range(1, number_of_letters-1):
             ref_count = ref_count - pow(letter_count, n) 
         # Adjust number_of_letters for new index
-        number_of_letters = int(math.log(float(ref_count),float(letter_count))) +1
+        number_of_letters = int(math.log(float(ref_count), float(letter_count))) +1
         for n in range(1, number_of_letters):
             x_ref_count = x_ref_count - pow(letter_count, n) 
         for letter in range(1, number_of_letters):
@@ -137,7 +137,7 @@ class Bibliography(object):
         add another one.
 
         @param source_ref: Source Reference
-        @type source_ref: L{Relib.SourceRef}
+        @type source_ref: L{gen.lib.srcref}
         @return: A tuple containing the index of the source among all the 
         sources and the key of the reference among all the references. If 
         there is no reference information, the second element will be None.

@@ -63,7 +63,7 @@ def cite_source(bibliography, obj):
     @param bibliography: The bibliography to contain the citations.
     @type bibliography: L{Bibliography}
     @param obj: An object with source references.
-    @type obj: L{Relib.SourceBase}
+    @type obj: L{gen.lib.srcbase}
     """
     txt = ""
     slist = obj.get_source_references()

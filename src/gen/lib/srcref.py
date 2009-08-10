@@ -134,6 +134,6 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         return self.page
 
     def are_equal(self, other):
-        """Deprecated function - use are_equal instead."""
+        """Deprecated function - use is_equal instead."""
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
