@@ -39,12 +39,6 @@ except ImportError:
     f.write('pygtkver=no\n')
 
 try:
-    import gtk.glade
-    f.write('glade=yes\n')
-except ImportError:
-    f.write('glade=no\n')
-
-try:
     import cairo
     f.write('pycairo=yes\n')
     #f.write('pycairover=%s\n' % cairo.version_info)

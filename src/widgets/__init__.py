@@ -39,16 +39,3 @@ from validatedcomboentry import *
 from validatedmaskedentry import *
 from valueaction import *
 from valuetoolitem import *
-
-# Enabling custom widgets to be included in Glade
-from gtk.glade import set_custom_handler
-
-def get_custom_handler(glade, function_name, widget_name, 
-                       str1, str2, int1, int2):
-    raise DeprecationWarning, "get_custom_handler: shouldn't get here"                           
-    if function_name == 'ValidatableMaskedEntry':
-        return ValidatableMaskedEntry()
-    if function_name == 'StyledTextEditor':
-        return StyledTextEditor()
-
-set_custom_handler(get_custom_handler)

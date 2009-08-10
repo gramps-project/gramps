@@ -85,29 +85,6 @@ then
 fi
 AC_MSG_RESULT($has_pygtk)
 
-AC_MSG_CHECKING(Python bindings for glade)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    # Do not import gtk.glade, this can raise a RuntimeError if the
-    # display cannot be opened.  Just search it.
-    import imp
-    imp.find_module('glade',[[imp.find_module('gtk')[1]]])
-    out("gtk.glade")
-except ImportError:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_pyglade=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_pyglade"
-then
-   AC_MSG_ERROR([
-
-**** The python bindings for glade (pygtk2-libglade) could not be found.])
-fi
-AC_MSG_RESULT($has_pyglade)
-
 AC_CONFIG_FILES([
 po/Makefile.in
 m4/Makefile

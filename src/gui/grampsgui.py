@@ -28,9 +28,7 @@
 #-------------------------------------------------------------------------
 import sys
 import os
-import locale
 import const
-import signal
 from gettext import gettext as _
 import platform
 import logging
@@ -54,7 +52,6 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -240,8 +237,6 @@ class Gramps(object):
         from viewmanager import ViewManager
         import DataViews
         from cli.arghandler import ArgHandler
-        from cli.clidbman import CLIDbManager
-        import Config
         import TipOfDay
         
         register_stock_icons()
