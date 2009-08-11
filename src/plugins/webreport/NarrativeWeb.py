@@ -119,6 +119,22 @@ from libhtmlbackend import HtmlBackend
 # constants
 #
 #------------------------------------------------------------------------
+# Translatable strings for variables within this plugin
+# gettext carries a huge footprint with it.
+EHEAD = _('EventType')
+DHEAD = _('Date')
+PHEAD = _('Place')
+DESCRHEAD = _('Description')
+SHEAD = _('Sources')
+NHEAD = _('Notes')
+STREET = _('Street')
+CITY = _('City')
+COUNTY = _('County')
+STATE = _('State/ Province')
+COUNTRY = _('Country')
+POSTAL = _('Postal Code')
+PHONE = _('Phone')
+
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
 
@@ -251,13 +267,13 @@ class BasePage(object):
             trow = Html('tr')
 
             for label, colclass in [
-                [_('Type'),         'LDSType' ],
-                [_('Date'),         'LDSDate' ],
-                [_('Temple'),       'LDSTemple' ],
-                [_('Place'),        'LDSPlace' ],
-                [_('Status'),       'LDSStatus' ],
+                [_('Type'),            'LDSType' ],
+                [HEAD,                'LDSDate' ],
+                [_('Temple'),        'LDSTemple' ],
+                [PHEAD,              'LDSPlace' ],
+                [_('Status'),         'LDSStatus' ],
                 [_('Sealed to '),   'LDSSealed'],
-                [_('Sources'),      'LDSSources'] ]:
+                [SHEAD,              'LDSSources'] ]:
 
                 trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
@@ -461,20 +477,20 @@ class BasePage(object):
 
             trow = Html('tr')
             addr_header = [
-                          [_('Date'),             'Date'],
-                          [_('Street'),           'StreetAddress'],    
-                          [_('City'),             'City'],
-                          [_('County'),           'County'],
-                          [_('State/ Province'),  'State'],
-                          [_('Cntry'),            'Cntry'],
-                          [_('Postal Code'),      'Postalcode'],
-                          [_('Phone'),            'Phone'] ]
+                          [DHEAD,             'Date'],
+                          [STREET,           'StreetAddress'],    
+                          [CITY,             'City'],
+                          [COUNTY,           'County'],
+                          [STATE,  'State'],
+                          [COUNTRY,            'Cntry'],
+                          [POSTAL,      'Postalcode'],
+                          [PHONE,            'Phone'] ]
 
             # if spec = True -- an individual's address else repository
             if spec:
-                addr_header.append([_('Sources'),      'Sources'])
+                addr_header.append([SHEAD,      'Source'])
 
-            for label, colclass in addr_header:  
+            for (label, colclass) in addr_header:  
                 trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
             # return table header row back to module
@@ -519,7 +535,7 @@ class BasePage(object):
 
                     # get source citation list
                     if spec:
-                        addrcollist.append([_('Sources'),    address.get_source_references()])
+                        addrcollist.append([SHEAD,    address.get_source_references()])
                         addrcollist[8][1]  = self.get_citation_links(addrcollist[8][1])   
 
                     for (colclass, value) in addrcollist:
@@ -628,7 +644,7 @@ class BasePage(object):
                 attr_header_row = [
                                                 (_('Type'),         'Type'),
                                                 (_('Value'),        'Value'),
-                                                (_('Sources'),    'Source') ]
+                                                (SHEAD,           'Source') ]
                 for (label, colclass) in attr_header_row:
 
                     trow += Html('th', label, class_='Column%s' % colclass, inline=True)
@@ -665,7 +681,7 @@ class BasePage(object):
                             if first:
                                 trow = Html('tr') + (
                                     Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                                    Html('td', _('Notes'), class_='ColumnValue', inline=True),
+                                    Html('td', NHEAD, class_='ColumnValue', inline=True),
                                     Html('td', note_text, class_='ColumnName', inline=True)
                                     )
                                 table += trow
@@ -1109,9 +1125,9 @@ class BasePage(object):
                         confidence = None
 
                     source_data = [
-                                            [_('Date'), _dd.display(sref.date)],
-                                            [_('Page'), sref.page],
-                                            [_('Confidence'), confidence]
+                                            [DHEAD,                _dd.display(sref.date)],
+                                            [_('Page'),              sref.page],
+                                            [_('Confidence'),    confidence]
                                             ]
                     for (label, data) in source_data:
                         if data:
@@ -1774,33 +1790,22 @@ class PlacePage(BasePage):
 
                     if place.main_loc:
                         ml = place.main_loc
-                        for val in [(_('Street'), ml.street),
-                                        (_('City'), ml.city),
+                        for val in [
+                                        (_('Latitude'),          place.lat),
+                                        (_('Longitude'),       place.long), 
+                                        (STREET,                 ml.street),
+                                        (CITY,                      ml.city),
                                         (_('Church Parish'), ml.parish),
-                                        (_('County'), ml.county),
-                                        (_('State/Province'), ml.state),
-                                        (_('ZIP/Postal Code'), ml.postal),
-                                        (_('Country'), ml.country)]:
+                                        (COUNTY,                 ml.county),
+                                        (STATE,                    ml.state),
+                                        (POSTAL,                 ml.postal),
+                                        (COUNTRY,              ml.country)]:
                             if val[1]:
                                 trow = Html('tr') + (
                                     Html('td', val[0], class_='ColumnAttribute', inline=True),
                                     Html('td', val[1], class_='ColumnValue', inline=True)
                                     )
                                 table += trow
-
-                    if place.lat:
-                        trow = Html('tr') + (
-                            Html('td', _('Latitude'), class_='ColumnAttribute', inline=True),
-                            Html('td', place.lat, class_='ColumnValue', inline=True)
-                            ) 
-                        table += trow
-
-                    if place.long:
-                        trow = Html('tr') + (
-                            Html('td', _('Longitude'), class_='ColumnAttribute', inline=True),
-                            Html('td', place.long, class_='ColumnValue', inline=True)
-                            )
-                        table += trow
 
             # place gallery
             if self.create_media:
@@ -2084,7 +2089,7 @@ class MediaPage(BasePage):
             date = _dd.display(photo.get_date_object())
             if date:
                 trow = Html('tr') + (
-                    Html('td', _('Date'), class_='ColumnAttribute', inline=True),
+                    Html('td', DHEAD, class_='ColumnAttribute', inline=True),
                     Html('td', date, class_='ColumnValue', inline=True)
                     )
                 table += trow
@@ -2587,7 +2592,7 @@ class MediaListPage(BasePage):
                 trow = Html('tr') + (
                     Html('th', '&nbsp;', class_='ColumnRowLabel', inline=True),
                     Html('th', _('Name'), class_='ColumnName', inline=True),
-                    Html('th', _('Date'), class_='ColumnDate', inline=True)
+                    Html('th', DHEAD, class_='ColumnDate', inline=True)
                     )
                 thead += trow
 
@@ -2698,11 +2703,11 @@ class DownloadPage(BasePage):
                 trow = Html('tr')
                 thead += trow
 
-                for (title, colclass) in [(_('File Name'),         'Filename'),
-                                                    (_('Description'),       'Description'),
+                for (label, colclass) in [(_('File Name'),         'Filename'),
+                                                    (DESCRHEAD,            'Description'),
                                                     (_('License'),              'License'),
                                                     (_('Last Modified'),    'Modified') ]:  
-                    trow += Html('th', title, class_='%s' % colclass, inline=True)
+                    trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
                 # if dlfname1 is not None, show it???
                 if dlfname1:
@@ -3951,12 +3956,12 @@ class IndividualPage(BasePage):
         """
 
         header_row = [
-                                (_('EventType'),       'EventType'),
-                                 (_('Date'),               'Date'), 
-                                 (_('Place'),              'Place'),
-                                 (_('Description'),    'Description'),
-                                 (_('Source'),            'Source'),
-                                  (_('Note'),              'Note') ]
+                                (EHEAD,              'EventType'),
+                                 (DHEAD,             'Date'), 
+                                 (PHEAD,             'Place'),
+                                 (DESCRHEAD,    'Description'),
+                                 (SHEAD,             'Source'),
+                                  (NHEAD,            'Note') ]
 
         # begin table header row
         trow = Html('tr')

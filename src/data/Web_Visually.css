@@ -770,28 +770,28 @@ table.download tbody tr td {
     border-width:0 2px 2px 2px;
     text-align:left;
 }
-table.download td.Description {
+table.download td.ColumnDescription {
     width:45%;
 }
-table.download td.License {
+table.download td.ColumnLicense {
     width:6%;
     padding-left:20px;
 }
-table.download td.Filename {
+table.download td.ColumnFilename {
     width:30%;
     background-color:#FFF;
 }
-table.download td.Filename a {
+table.download td.ColumnFilename a {
     display:block;
     padding:10px;
     font-weight:bold;
     font-style: italic;
     text-decoration:none;
 }
-table.download td.Filename a:hover {
+table.download td.ColumnFilename a:hover {
     text-decoration:underline;
 }
-table.download td.Modified {
+table.download td.ColumnModified {
     width:17%;
     font-weight:bold;
 }
