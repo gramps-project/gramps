@@ -1,4 +1,4 @@
-/*
+﻿/*
  **************************************************************************************************
 Copyright Holder and License
 **************************************************************************************************
@@ -865,6 +865,9 @@ div#events h4 {
     margin-bottom:0;
     border:none;
 }
+#IndividualDetail {
+    background-color:#FFF;
+}
 #IndividualDetail div#events table.infolist thead tr th {
     font-weight:bold;
     font-size:12px;
@@ -891,15 +894,41 @@ div#events h4 {
     border-bottom:solid 1px #453619;
 }
 #IndividualDetail div#events table.infolist tbody tr td.ColumnValue {
-    border-bottom:solid 1px #453619;
+    border-bottom:solid 1px #000;
 }
 table.infolist tbody tr td.ColumnValue p {
     font-family:sans-serif;
     color:#696969;
     margin:.2em 0 0 2em;
 }
+table.eventtable thead tr th {
+    color:#000;
+}
 table.eventtable tbody tr td {
     border-bottom:solid 1px #000;
+}
+div#events table.attrlist {
+    margin-top:.3cm;
+    margin-left:.78cm;
+    width:880px;
+}
+table.attrlist thead tr th {
+    color:#000;
+}
+div#events table.attrlist tbody tr td {
+    border-bottom:dashed 2px #000;
+}
+div#events table.attrlist tbody tr td.ColumnType {
+    width:100px;
+}
+div#events table.attrlist tbody tr td.ColumnValue {
+    width:200px;
+}
+div#events table.attrlist tbody tr td.ColumnSource {
+    width:80px;
+}
+div#events table.attrlist tbody tr td.ColumnNote {
+    width:450px;
 }
 
 /* Subsections : Attributes

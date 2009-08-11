@@ -121,14 +121,18 @@ from libhtmlbackend import HtmlBackend
 #------------------------------------------------------------------------
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
-EHEAD = _('EventType')
+AHEAD = _('Attributes')
 DHEAD = _('Date')
-PHEAD = _('Place')
 DESCRHEAD = _('Description')
-SHEAD = _('Sources')
+EHEAD = _('EventType')
 NHEAD = _('Notes')
+PHEAD = _('Place')
+SHEAD = _('Sources')
+THEAD = _('Type')
+VHEAD = _('Value')
 STREET = _('Street')
 CITY = _('City')
+PARISH = _('Church Parish')
 COUNTY = _('County')
 STATE = _('State/ Province')
 COUNTRY = _('Country')
@@ -136,8 +140,9 @@ POSTAL = _('Postal Code')
 PHONE = _('Phone')
 LONGITUDE = _('Longitude')
 LATITUDE = _('Latitude')
-PARISH = _('Church Parish')
 LOCATIONS = _('Alternate Locations')
+TMPL = _('Temple')
+ST = _('Status')
 
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
@@ -251,95 +256,6 @@ class BasePage(object):
         self.linkhome = report.options['linkhome']
         self.create_media = report.options['gallery']
 
-    def dump_ordinance(self, db, ldsobj):
-        """
-        will dump the LDS Ordinance information for either
-        a person or a family ...
-
-        @param: db -- the database in use
-        @param: ldsobject -- either person or family
-        """
-        objectldsord = ldsobj.lds_ord_list
-        if not objectldsord:
-            return None
-        numberofords = len(objectldsord)
-
-        def create_LDS_header_row():
-            """ create the header row for this section """
- 
-            # begin HTML row
-            trow = Html('tr')
-
-            for label, colclass in [
-                [_('Type'),            'LDSType' ],
-                [DHEAD,                'LDSDate' ],
-                [_('Temple'),        'LDSTemple' ],
-                [PHEAD,              'LDSPlace' ],
-                [_('Status'),         'LDSStatus' ],
-                [_('Sealed to '),   'LDSSealed'],
-                [SHEAD,              'LDSSources'] ]:
-
-                trow += Html('th', label, class_='Column%s' % colclass, inline=True)
-
-            # return row back to module
-            return trow 
- 
-        # begin LDS ordinance table and table head
-        with Html('table', class_='infolist ldsordlist') as table:
-            thead = Html('thead')
-            table += thead
-
-            # get LDS ord header row
-            thead += create_LDS_header_row()
-
-            # start table body
-            tbody = Html('tbody')
-            table += tbody
-
-            for row in range(1, (numberofords + 1)):
-
-                # get ordinance for this row
-                ord = objectldsord[(row - 1)]
-
-                # 0 = column class, 1 = ordinance data
-                lds_ord_data = [
-                    ['LDSType',     ord.type2xml()],
-                    ['LDSDate',     ord.get_date_object()],
-                    ['LDSTemple',   ord.get_temple()],
-                    ['LDSPlace',    ord.get_place_handle()],
-                    ['LDSStatus',   ord.get_status()],
-                    ['LDSSealed',   ord.get_family_handle()],
-                    ['LDSSources',  ord.get_source_references()],
-                    ]
-
-                # format date as in user preferences
-                lds_ord_data[1][1] = _dd.display(lds_ord_data[1][1])
-
-                # get place name from database
-                lds_ord_data[3][1] = ReportUtils.place_name(db, lds_ord_data[3][1])
-
-                # get Source references
-                lds_ord_data[6][1] = self.get_citation_links(lds_ord_data[6][1])
-
-                # begin ordinance rows
-                trow = Html('tr')
-                tbody += trow
-
-                for col in range(1, (len(lds_ord_data) + 1)):
-
-                    # column class for styling
-                    colclass = lds_ord_data[(col - 1)][0]
-
-                    # actual column data
-                    value = lds_ord_data[(col - 1)][1]
-                    value = value or '&nbsp;'
-
-                    trow += Html('td', value, class_='Column%s' % colclass,
-                        inline=True if value == '&nbsp;' else False)
-
-        # return table to its callers
-        return table
-
     def get_citation_links(self, source_ref_list):
         gid_list = []
         lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -365,44 +281,6 @@ class BasePage(object):
 
         # return citation list text to its callers
         return text
-
-    def dump_source_references(self, db, sourcelist):
-        """ Dump a list of source references """
-
-        ordered = Html('ol')
-        list = Html('li')
-        ordered += list
-
-        source_dict = {}
-        # Sort the sources
-        for handle in sourcelist:
-
-            # if source is not None, then add it?
-            source = db.get_source_from_handle(handle)
-            if source is not None:
-                key = source.get_title() + str(source.get_gramps_id())
-                source_dict[key] = (source, handle)
-        keys = sorted(source_dict, key=locale.strxfrm)
-
-        for cindex, key in enumerate(keys):
-            (source, handle) = source_dict[key]
-            source_title = source.get_title()
-            
-            list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
-
-        # return ordered list to its callers
-        return ordered
-
-    def source_link(self, handle, name, gid=None, up=False):
-
-        url = self.report.build_url_fname_html(handle, 'src', up)
-        # begin hyperlink
-        hyper = Html('a', html_escape(name), href=url, title=html_escape(name))
-        if not self.noid and gid:
-            hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
-
-        # return hyperlink to its callers
-        return hyper
 
     def get_note_format(self, note):
         """
@@ -467,6 +345,150 @@ class BasePage(object):
 
         return htmllist
 
+    def dump_notes(self, notelist):
+        """
+        dump out of list of notes with very little elements of its own
+
+        @param: notelist -- list of notes
+        """
+
+        if not notelist:
+            return '&nbsp;'
+        db = self.report.database
+
+        # begin unordered list
+        unordered = Html('ul')
+
+        for notehandle in notelist:
+            note = db.get_note_from_handle(notehandle)
+            unordered += self.get_note_format(note)
+
+        # return unordered note list to its callers
+        return unordered
+
+    def dump_ordinance(self, db, ldsobj, LDSType='Person'):
+        """
+        will dump the LDS Ordinance information for either
+        a person or a family ...
+
+        @param: db -- the database in use
+        @param: ldsobj -- either person or family
+        """
+        objectldsord = ldsobj.lds_ord_list
+        if not objectldsord:
+            return None
+        numberofords = len(objectldsord)
+
+        def create_LDS_header_row(LDSType):
+            """ create the header row for this section """
+ 
+            # begin HTML row
+            trow = Html('tr')
+
+            header_row = [
+                [THEAD,                'LDSType' ],
+                [DHEAD,                'LDSDate' ],
+                [TMPL,                  'LDSTemple' ],
+                [PHEAD,                'LDSPlace' ],
+                [ST,                        'LDSStatus' ],
+                [_('Sealed to '),      'LDSSealed'],
+                [SHEAD,                 'LDSSources']
+               ]
+
+            # finish the label's missing piece
+            header_row[5][0] += _('Parents') if LDSType == 'Person' else _('Spouse') 
+
+            for (label, colclass) in header_row:    
+                trow += Html('th', label, class_='Column%s' % colclass, inline=True)
+
+            # return row back to module
+            return trow 
+ 
+        # begin LDS ordinance table and table head
+        with Html('table', class_='infolist ldsordlist') as table:
+            thead = Html('thead')
+            table += thead
+
+            # get LDS ord header row
+            thead += create_LDS_header_row(LDSType)
+
+            # start table body
+            tbody = Html('tbody')
+            table += tbody
+
+            for row in range(1, (numberofords + 1)):
+
+                # get ordinance for this row
+                ord = objectldsord[(row - 1)]
+
+                # 0 = column class, 1 = ordinance data
+                lds_ord_data = [
+                    ['LDSType',     ord.type2xml()],
+                    ['LDSDate',     _dd.display(ord.get_date_object() )],
+                    ['LDSTemple',   ord.get_temple()],
+                    ['LDSPlace',    ReportUtils.place_name(db, ord.get_place_handle() )],
+                    ['LDSStatus',   ord.get_status()],
+                    ['LDSSealed',   ord.get_family_handle()],
+                    ['LDSSources',  self.get_citation_links(ord.get_source_references() )],
+                    ]
+
+                # begin ordinance rows
+                trow = Html('tr')
+                tbody += trow
+
+                for col in range(1, (len(lds_ord_data) + 1)):
+
+                    # column class for styling
+                    colclass = lds_ord_data[(col - 1)][0]
+
+                    # actual column data
+                    value = lds_ord_data[(col - 1)][1]
+                    value = value or '&nbsp;'
+
+                    trow += Html('td', value, class_='Column%s' % colclass,
+                        inline=True if value == '&nbsp;' else False)
+
+        # return table to its callers
+        return table
+
+    def source_link(self, handle, name, gid=None, up=False):
+
+        url = self.report.build_url_fname_html(handle, 'src', up)
+        # begin hyperlink
+        hyper = Html('a', html_escape(name), href=url, title=html_escape(name))
+        if not self.noid and gid:
+            hyper += Html('span', '[%s]' % gid, class_='grampsid', inline=True)
+
+        # return hyperlink to its callers
+        return hyper
+
+    def dump_source_references(self, db, sourcelist):
+        """ Dump a list of source references """
+
+        ordered = Html('ol')
+        list = Html('li')
+        ordered += list
+
+        source_dict = {}
+        # Sort the sources
+        for handle in sourcelist:
+
+            # if source is not None, then add it?
+            source = db.get_source_from_handle(handle)
+            if source is not None:
+                key = source.get_title() + str(source.get_gramps_id())
+                source_dict[key] = (source, handle)
+        keys = sorted(source_dict, key=locale.strxfrm)
+
+        for cindex, key in enumerate(keys):
+            (source, handle) = source_dict[key]
+            source_title = source.get_title()
+            
+            list += self.source_link(handle, title, cindex+1, source.gramps_id, True)
+
+        # return ordered list to its callers
+        return ordered
+
     def write_out_addresses(self, obj, spec=False):
         """
         will display an object's addresses, url list, note list, 
@@ -481,14 +503,14 @@ class BasePage(object):
 
             trow = Html('tr')
             addr_header = [
-                          [DHEAD,             'Date'],
-                          [STREET,           'StreetAddress'],    
-                          [CITY,             'City'],
+                          [DHEAD,              'Date'],
+                          [STREET,            'StreetAddress'],    
+                          [CITY,                 'City'],
                           [COUNTY,           'County'],
-                          [STATE,  'State'],
-                          [COUNTRY,            'Cntry'],
-                          [POSTAL,      'Postalcode'],
-                          [PHONE,            'Phone'] ]
+                          [STATE,              'State'],
+                          [COUNTRY,         'Cntry'],
+                          [POSTAL,            'Postalcode'],
+                          [PHONE,             'Phone'] ]
 
             # if spec = True -- an individual's address else repository
             if spec:
@@ -525,7 +547,7 @@ class BasePage(object):
                     tbody += trow
 
                     addrcollist = [
-                        ['Date',    address.get_date_object()],
+                        ['Date',    _dd.display(address.get_date_object() )],
                         ['Street',  address.get_street()],
                         ['City',    address.get_city()],
                         ['County',  address.get_county()],
@@ -534,13 +556,10 @@ class BasePage(object):
                         ['Postal',  address.get_postal_code()],
                         ['Phone',   address.get_phone()] ]
 
-                    # date as listed in preferences
-                    addrcollist[0][1] = _dd.display(addrcollist[0][1])
-
                     # get source citation list
                     if spec:
-                        addrcollist.append([SHEAD,    address.get_source_references()])
-                        addrcollist[8][1]  = self.get_citation_links(addrcollist[8][1])   
+                        addrcollist.append([SHEAD,    self.get_citation_links(
+                                                                             address.get_source_references())])
 
                     for (colclass, value) in addrcollist:
 
@@ -554,22 +573,6 @@ class BasePage(object):
                    
         # return summaryarea division to its callers
         return summaryarea
-
-    def write_source_refs(self, sourcelist):
-
-        if not sourcelist:
-            return None
-
-        db = self.report.database 
-
-        # Source References division and title
-        with Html('div', class_='subsection', id='sourcerefs') as section:
-            section += Html('h4', _('Source References'), inline=True)
-
-            section += self.dump_source_references(db, sourcelist)
-
-        # return division to its caller
-        return section   
 
     def get_copyright_license(self, copyright, up=False):
         """
@@ -646,9 +649,11 @@ class BasePage(object):
                 trow = Html('tr')
                 thead += trow
                 attr_header_row = [
-                                                (_('Type'),         'Type'),
-                                                (_('Value'),        'Value'),
-                                                (SHEAD,           'Source') ]
+                    (THEAD,            'Type'),
+                    (VHEAD,            'Value'),
+                    (SHEAD,           'Source'),
+                    (NHEAD,          'Notes') ]
+
                 for (label, colclass) in attr_header_row:
 
                     trow += Html('th', label, class_='Column%s' % colclass, inline=True)
@@ -661,42 +666,13 @@ class BasePage(object):
                     trow = Html('tr')
                     tbody += trow
 
-                    attr_data_row = [
-                                                ['Type',                     attr.get_type().xml_str()],
-                                                ['Value',                   attr.get_value()],
-                                                ['Sources',               attr.get_source_references()]
-                                               ]
-
-                    # get attribute source references
-                    attr_data_row[2][1] = self.get_citation_links(attr_data_row[2][1]) 
-
-                    for (colclass, value) in attr_data_row:
+                    for (colclass, value) in [
+                        ['Type',         attr.get_type().xml_str()],
+                        ['Value',        attr.get_value()],
+                        ['Sources',    self.get_citation_links(attr.get_source_references() )],
+                        ['Notes',      self.dump_notes(attr.get_note_list() )] ]:
 
                         trow += Html('td', value, class_='Column%s' % colclass, inline=True)
-
-                    # get attrivute note list
-                    notelist = attr.get_note_list()
-                    if notelist:
-                        first = True
-                        for notehandle in notelist:
-                            note = db.get_note_from_handle(notehandle)
-                            note_text = self.get_note_format(note)
-
-                            if first:
-                                trow = Html('tr') + (
-                                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                                    Html('td', NHEAD, class_='ColumnValue', inline=True),
-                                    Html('td', note_text, class_='ColumnName', inline=True)
-                                    )
-                                table += trow
-                            else:
-                                trow = Html('tr') + (
-                                    Html('td', '&nbsp;', class_='ColumnAttribute', inline=True),
-                                    Html('td', '&nbsp;', class_='ColumnValue', inline=True),
-                                    Html('td', note_text, class_='ColumnName', inline=True)
-                                    )
-                                table += trow
-                            first = False 
 
         # return section to its caller
         return section
@@ -3341,6 +3317,20 @@ class IndividualPage(BasePage):
         # do NOT combine before returning to class IndividualPage
         return thumbnail, sect_name, summaryarea
 
+    def attribs_or_not(self, db, evt_ref_list):
+        """ determine if there are attributes for these events """
+
+        for event_ref in evt_ref_list:
+            event = db.get_event_from_handle(event_ref.ref)
+
+            attrlist = event.get_attribute_list()
+            attrlist.extend(event_ref.get_attribute_list() )
+            if attrlist:
+                return True
+
+        # return True or False back to its caller 
+        return False
+
     def display_ind_events(self):
         """
         will create the events table
@@ -3356,25 +3346,117 @@ class IndividualPage(BasePage):
         with Html('div', class_='subsection', id='events') as section:
             section += Html('h4', _('Events'), inline=True)
 
-            # begin events table
-            with Html('table', class_='infolist eventtable') as table:
-                section += table
+            # determine if there are attributes or not?
+            attribtable = self.attribs_or_not(db, evt_ref_list)
 
-                # begin table head
-                thead = Html('thead')
-                table += thead
-                thead += self.display_event_header()
-
-                tbody = Html('tbody') 
-                table += tbody
+            # attributes: yes!
+            if attribtable:
 
                 for event_ref in evt_ref_list:
-                    event = db.get_event_from_handle(event_ref.ref)
-                    if event:
-                        tbody += self.display_event_row(event, event_ref)
+
+                    # begin events table
+                    with Html('table', class_='infolist eventtable') as table:
+                        section += table
+
+                        # begin table head
+                        thead = Html('thead')
+                        table += thead
+                        thead += self.display_event_header()
+
+                        tbody = Html('tbody') 
+                        table += tbody
+
+                        # ordered list
+                        ordered = Html('ol')
+                        tbody += ordered
+
+                        event = db.get_event_from_handle(event_ref.ref)
+                        if event:
+                            ordered += self.display_event_row(event, event_ref)
+
+                        # attributes list
+                        attrlist = event.get_attribute_list()
+                        attrlist.extend(event_ref.get_attribute_list() )
+                        if attrlist:
+                            ordered += self.dump_attributes(attrlist)
+
+            # no attributes for these events
+            else:
+
+                # begin events table
+                with Html('table', class_='infolist eventtable') as table:
+                    section += table
+
+                    # begin table head
+                    thead = Html('thead')
+                    table += thead
+                    thead += self.display_event_header()
+
+                    tbody = Html('tbody') 
+                    table += tbody
+
+                    # ordered list
+                    ordered = Html('ol')
+                    tbody += ordered
+
+                    for event_ref in evt_ref_list:
+
+                        event = db.get_event_from_handle(event_ref.ref)
+                        if event:
+                            ordered += self.display_event_row(event, event_ref)
 
         # return section to its caller
         return section
+
+    def dump_attributes(self, attrlist):
+        """
+        dump event attributes list
+
+        @param: attrlist -- list of attributes for event or event_ref
+        """
+
+        # begin section table
+        with Html('table', class_='infolist attrlist') as table:
+
+            # begin table head
+            thead = Html('thead')
+            table += thead
+
+            trow = Html('tr')
+            thead += trow
+
+            for (label, colclass) in [
+                (AHEAD,     'Title'), 
+                (THEAD,     'Type'),
+                (VHEAD,     'Value'),
+                (SHEAD,     'Source'),
+                (NHEAD,    'Notes') ]:
+
+                trow += Html('th', label, class_='Column%s' % colclass, inline=True)
+
+            # begin table body
+            tbody = Html('tbody')
+            table += tbody
+
+            for attr in attrlist:
+                trow = Html('tr')
+                tbody += trow
+
+                attr_data_row = [
+                    ['Title',       None],        
+                    ['Type',       attr.get_type().xml_str()],
+                    ['Value',      attr.get_value()],
+                    ['Source',    self.get_citation_links(attr.get_source_references())],
+                    ['Note',       self.dump_notes(attr.get_note_list())]   
+                    ]
+
+                for (colclass, value) in attr_data_row:
+
+                    value = value or '&nbsp;'
+                    trow += Html('td', value, class_='Column%s' % colclass, inline=True)
+
+        # return table to its callers
+        return table
 
     def display_event_row(self, event, event_ref):
         """
@@ -3424,45 +3506,23 @@ class IndividualPage(BasePage):
             place = None
         place = place or '&nbsp;'
 
+        # get event and event_ref notes
+        notelist = event.get_note_list()
+        notelist.extend(event_ref.get_note_list() )    
+
         # begin event table row
-        event_data_row = [
-                                       ['EventType',           eventtype],
-                                       ['Date',                    event.get_date_object()],
-                                       ['Place',                   place],
-                                       ['Description',         event.get_description()],
-                                       ['Source',               event.get_source_references()]
-                                       ]
-
-        # Format date as in preferences
-        event_data_row[1][1] = _dd.display(event_data_row[1][1])
-
-        # get citation links
-        event_data_row[4][1] = self.get_citation_links(event_data_row[4][1] )  
-
         trow = Html('tr')
-        for (colclass, data) in event_data_row:
+
+        for (colclass, data) in [
+            ['EventType',       eventtype],
+            ['Date',               _dd.display(event.get_date_object() )],
+            ['Place',              place],
+            ['Description',    event.get_description()],
+            ['Source',            self.get_citation_links(event.get_source_references() )],
+            ['Notes',             self.dump_notes(notelist)] ]:
 
             data = data or '&nbsp;'
-            trow += Html('td', data, class_='Column%s' % colclass, 
-                inline=True if data == '&nbsp;' else False)
-
-        # Notes
-        # if the event or event reference has a note attached to it,
-        # get the text and format it correctly
-        notelist = event.get_note_list()
-        notelist.extend(event_ref.get_note_list())
-        tcell = Html('td', class_='ColumnNote')
-        trow += tcell
-        if not notelist:
-            tcell += '&nbsp;'
-        else:
-            for notehandle in notelist:
-                note = db.get_note_from_handle(notehandle)
-                if note:
-                    note_text = self.get_note_format(note)
- 
-                    # attach note
-                    tcell += note_text
+            trow += Html('td', data, class_='Column%s' % colclass, inline=True)
 
         # return events table row to its callers
         return trow 
@@ -3481,8 +3541,7 @@ class IndividualPage(BasePage):
             section += Html('h4', _('Addresses'), inline=True)
 
             # write out addresses()
-            addresses = self.write_out_addresses(self.person, spec=True)
-            section += addresses
+            section += self.write_out_addresses(self.person, spec=True)
 
         # return address division to its caller
         return section
@@ -3840,7 +3899,8 @@ class IndividualPage(BasePage):
                         trow = Html('tr') + (
                             Html('td', '&nbsp;', class_='ColumnType', inline=True),
                             Html('td', '&nbsp', class_='ColumnAttribute', inline=True),
-                            Html('td', self.dump_ordinance(db, family), class_='ColumnValue')
+                            Html('td', self.dump_ordinance(db, family, 'Family'), 
+                                class_='ColumnValue')
                             )
                         table += trow
 
@@ -3975,18 +4035,17 @@ class IndividualPage(BasePage):
         format_event()
         """
 
-        header_row = [
-                                (EHEAD,              'EventType'),
-                                 (DHEAD,             'Date'), 
-                                 (PHEAD,             'Place'),
-                                 (DESCRHEAD,    'Description'),
-                                 (SHEAD,             'Source'),
-                                  (NHEAD,            'Note') ]
-
         # begin table header row
         trow = Html('tr')
 
-        for (label,  colclass) in header_row:
+        for (label, colclass) in [
+            (EHEAD,              'EventType'),
+            (DHEAD,             'Date'), 
+            (PHEAD,             'Place'),
+            (DESCRHEAD,    'Description'),
+            (SHEAD,             'Source'),
+            (NHEAD,            'Note') ]:
+
             trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
         # return header row to its caller
@@ -4007,13 +4066,23 @@ class IndividualPage(BasePage):
             tbody = Html('tbody')
             table += tbody 
    
+            # ordered list
+            ordered = Html('ol')
+            tbody += ordered
+
             for event_ref in eventlist:
 
                 event = db.get_event_from_handle(event_ref.ref)
                 evtType = str(event.get_type() )
 
                 # add event body row
-                tbody += self.display_event_row(event, event_ref )
+                ordered += self.display_event_row(event, event_ref )
+
+                # attributes list
+                attrlist = event.get_attribute_list()
+                attrlist.extend(event_ref.get_attribute_list() )
+                if attrlist:
+                    ordered += self.dump_attributes(attrlist)
 
         # return table to its callers
         return table
