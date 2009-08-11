@@ -134,6 +134,10 @@ STATE = _('State/ Province')
 COUNTRY = _('Country')
 POSTAL = _('Postal Code')
 PHONE = _('Phone')
+LONGITUDE = _('Longitude')
+LATITUDE = _('Latitude')
+PARISH = _('Church Parish')
+LOCATIONS = _('Alternate Locations')
 
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
@@ -1791,15 +1795,17 @@ class PlacePage(BasePage):
                     if place.main_loc:
                         ml = place.main_loc
                         for val in [
-                                        (_('Latitude'),          place.lat),
-                                        (_('Longitude'),       place.long), 
-                                        (STREET,                 ml.street),
-                                        (CITY,                      ml.city),
-                                        (_('Church Parish'), ml.parish),
-                                        (COUNTY,                 ml.county),
-                                        (STATE,                    ml.state),
-                                        (POSTAL,                 ml.postal),
-                                        (COUNTRY,              ml.country)]:
+                             (LATITUDE,         place.lat),
+                             (LONGITUDE,      place.long), 
+                             (STREET,             ml.street),
+                             (CITY,                  ml.city),
+                             (PARISH,             ml.parish),
+                             (COUNTY,            ml.county),
+                             (STATE,               ml.state),
+                             (POSTAL,             ml.postal),
+                             (COUNTRY,          ml.country),
+                             (LOCATIONS,      place.get_alternate_locations()) ]:
+
                             if val[1]:
                                 trow = Html('tr') + (
                                     Html('td', val[0], class_='ColumnAttribute', inline=True),
@@ -1822,6 +1828,11 @@ class PlacePage(BasePage):
             urllinks = self.display_url_list(place.get_url_list())
             if urllinks is not None:
                 placedetail += urllinks
+
+            # source references
+            sourcerefs = self.get_citation_links(place.get_source_references() )
+            if sourcerefs is not None:
+                placedetail += sourcerefs  
 
             # place references
             referenceslist = self.display_references(place_list[place.handle])
@@ -3341,22 +3352,31 @@ class IndividualPage(BasePage):
             return None
         db = self.report.database
             
+        # begin events division and section title
         with Html('div', class_='subsection', id='events') as section:
             section += Html('h4', _('Events'), inline=True)
+
+            # begin events table
             with Html('table', class_='infolist eventtable') as table:
                 section += table
-                with Html('thead') as thead:
-                    table += thead
-                    thead += self.display_event_header()
-                with Html('tbody') as tbody:
-                    table += tbody
-                    for event_ref in evt_ref_list:
-                        event = db.get_event_from_handle(event_ref.ref)
-                        if event:
-                            tbody += self.display_event_row(db, event, event_ref)
+
+                # begin table head
+                thead = Html('thead')
+                table += thead
+                thead += self.display_event_header()
+
+                tbody = Html('tbody') 
+                table += tbody
+
+                for event_ref in evt_ref_list:
+                    event = db.get_event_from_handle(event_ref.ref)
+                    if event:
+                        tbody += self.display_event_row(event, event_ref)
+
+        # return section to its caller
         return section
 
-    def display_event_row(self, db, event, event_ref):
+    def display_event_row(self, event, event_ref):
         """
         display the event row
         """
@@ -3413,11 +3433,11 @@ class IndividualPage(BasePage):
                                        ['Source',               event.get_source_references()]
                                        ]
 
-        # Format date
+        # Format date as in preferences
         event_data_row[1][1] = _dd.display(event_data_row[1][1])
 
         # get citation links
-        event_data_row[4][1] = self.get_citation_links(event_data_row[4][1])
+        event_data_row[4][1] = self.get_citation_links(event_data_row[4][1] )  
 
         trow = Html('tr')
         for (colclass, data) in event_data_row:
@@ -3444,7 +3464,7 @@ class IndividualPage(BasePage):
                     # attach note
                     tcell += note_text
 
-        # return events table row to its caller
+        # return events table row to its callers
         return trow 
 
     def display_addresses(self):
@@ -3990,10 +4010,10 @@ class IndividualPage(BasePage):
             for event_ref in eventlist:
 
                 event = db.get_event_from_handle(event_ref.ref)
-                evtType = str(event.get_type())
+                evtType = str(event.get_type() )
 
                 # add event body row
-                tbody += self.display_event_row( db, event, event_ref )
+                tbody += self.display_event_row(event, event_ref )
 
         # return table to its callers
         return table
