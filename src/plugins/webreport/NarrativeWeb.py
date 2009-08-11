@@ -268,7 +268,7 @@ class BasePage(object):
 
             for label, colclass in [
                 [_('Type'),            'LDSType' ],
-                [HEAD,                'LDSDate' ],
+                [DHEAD,                'LDSDate' ],
                 [_('Temple'),        'LDSTemple' ],
                 [PHEAD,              'LDSPlace' ],
                 [_('Status'),         'LDSStatus' ],
