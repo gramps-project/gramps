@@ -1806,9 +1806,9 @@ class PlacePage(BasePage):
                 placedetail += urllinks
 
             # source references
-            sourcerefs = self.get_citation_links(place.get_source_references() )
-            if sourcerefs is not None:
-                placedetail += sourcerefs  
+#            sourcerefs = self.get_citation_links(place.get_source_references() )
+#            if sourcerefs is not None:
+#                placedetail += sourcerefs  
 
             # place references
             referenceslist = self.display_references(place_list[place.handle])
@@ -2452,11 +2452,17 @@ class SourceListPage(BasePage):
                 section += table 
                 thead = Html('thead')
                 table += thead
-                trow = Html('tr') + (
-                    Html('th',  '&nbsp;', class_='ColumnAttrubyte', inline=True),
-                    Html('th', _('Name'), class_='ColumnValue', inline=True)
-                    )
+                trow = Html('tr')
                 thead += trow
+
+                for (label, colclass) in [
+                    (None,                    'RowLabel'),
+                    (_('Name'),                 'Name'),
+                    (DHEAD,                     'Date'),
+                    (_('Page/ Volume'),     'Page') ]:
+
+                    label = label or '&nbsp;'
+                    trow += Html('th', label, class_='Column%s' % colclass, inline=True)
    
                 # begin table body
                 tbody = Html('tbody')
@@ -2464,6 +2470,7 @@ class SourceListPage(BasePage):
 
                 for index, key in enumerate(keys):
                     (source, handle) = source_dict[key]
+
                     trow = Html('tr') + (
                         Html('td', index+1, class_='ColumnRowLabel', inline=True)
                         )
