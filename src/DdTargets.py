@@ -56,7 +56,7 @@ log = logging.getLogger(".DdTargets")
 
 
 class _DdType:
-    """Represents the fields needed by a drag and drop traget."""
+    """Represents the fields needed by a drag and drop target."""
     
     _APP_ID_OFFSET = 40  # Starting value of app_ids
     
@@ -81,7 +81,8 @@ class _DdType:
         return idval
 
     def target(self):
-        """Return the full target information in the format required by the 
+        """
+        Return the full target information in the format required by the 
         Gtk functions.
         
         """
@@ -108,66 +109,63 @@ class _DdTargets(object):
         self._type_map = {}
         self._app_id_map = {}
         
-        self.URL        = _DdType(self, 'url')
-        self.EVENT      = _DdType(self, 'pevent')
-        self.EVENTREF   = _DdType(self, 'eventref')
-        self.ATTRIBUTE  = _DdType(self, 'pattr')
-        self.ADDRESS    = _DdType(self, 'paddr')
-        self.LOCATION   = _DdType(self, 'location')
-        self.SOURCEREF  = _DdType(self, 'srcref')
-        self.REPOREF    = _DdType(self, 'reporef')
-        self.REPO_LINK  = _DdType(self, 'repo-link')
-        self.PLACE_LINK = _DdType(self, 'place-link')
-        self.NAME       = _DdType(self, 'name')
-        self.MEDIAOBJ   = _DdType(self, 'mediaobj')
-        self.MEDIAREF   = _DdType(self, 'mediaref')
-        self.DATA       = _DdType(self, 'data_tuple')
-        self.NOTE_LINK  = _DdType(self, 'note-link')
-
-        self.PERSON_LINK  = _DdType(self, 'person-link')
-        self.PERSON_LINK_LIST  = _DdType(self, 'person-link-list')
-        self.PERSONREF  = _DdType(self, 'personref')
-
-        self.SOURCE_LINK  = _DdType(self, 'source-link')
-
-        self.FAMILY_EVENT     = _DdType(self, 'fevent')
-        self.FAMILY_ATTRIBUTE = _DdType(self, 'fattr')
+        self.ADDRESS            = _DdType(self, 'paddr')
+        self.ATTRIBUTE          = _DdType(self, 'pattr')
+        self.DATA               = _DdType(self, 'data_tuple')
+        self.EVENT              = _DdType(self, 'pevent')
+        self.EVENTREF           = _DdType(self, 'eventref')
+        self.FAMILY_ATTRIBUTE   = _DdType(self, 'fattr')
+        self.FAMILY_EVENT       = _DdType(self, 'fevent')
+        self.LOCATION           = _DdType(self, 'location')
+        self.MEDIAOBJ           = _DdType(self, 'mediaobj')
+        self.MEDIAREF           = _DdType(self, 'mediaref')
+        self.NAME               = _DdType(self, 'name')
+        self.NOTE_LINK          = _DdType(self, 'note-link')
+        self.PLACE_LINK         = _DdType(self, 'place-link')
+        self.REPO_LINK          = _DdType(self, 'repo-link')
+        self.REPOREF            = _DdType(self, 'reporef')
+        self.PERSON_LINK        = _DdType(self, 'person-link')
+        self.PERSON_LINK_LIST   = _DdType(self, 'person-link-list')
+        self.PERSONREF          = _DdType(self, 'personref')
+        self.SOURCEREF          = _DdType(self, 'srcref')
+        self.SOURCE_LINK        = _DdType(self, 'source-link')
+        self.URL                = _DdType(self, 'url')
 
         # List of all types that are used between
         # gramps widgets but should not be exported
         # to non gramps widgets.
         self._all_gramps_types = [
-            self.URL, 
-            self.EVENT, 
-            self.ATTRIBUTE, 
             self.ADDRESS, 
-            self.LOCATION, 
-            self.SOURCEREF, 
+            self.ATTRIBUTE, 
+            self.EVENT, 
             self.EVENTREF, 
-            self.NAME, 
-            self.REPOREF, 
+            self.LOCATION, 
             self.MEDIAOBJ, 
             self.MEDIAREF, 
-            self.REPO_LINK, 
+            self.NAME, 
+            self.NOTE_LINK, 
             self.PLACE_LINK, 
-            self.SOURCE_LINK, 
             self.PERSON_LINK, 
             self.PERSON_LINK_LIST, 
             self.PERSONREF, 
-            self.NOTE_LINK, 
+            self.REPO_LINK, 
+            self.REPOREF, 
+            self.SOURCEREF, 
+            self.SOURCE_LINK, 
+            self.URL, 
         ]
         
         self.CHILD         = _DdType(self, 'child')
         self.SPOUSE        = _DdType(self, 'spouse')
-        self.TEXT          = _DdType(self, 'TEXT', 0, 1)
         self.TEXT_MIME     = _DdType(self, 'text/plain', 0, 0)
+        self.TEXT          = _DdType(self, 'TEXT', 0, 1)
         self.STRING        = _DdType(self, 'STRING', 0, 2)
         self.COMPOUND_TEXT = _DdType(self, 'COMPOUND_TEXT', 0, 3)
         self.UTF8_STRING   = _DdType(self, 'UTF8_STRING', 0, 4)
         self.URI_LIST      = _DdType(self, 'text/uri-list', 0, 5)
         self.APP_ROOT      = _DdType(self, 'application/x-rootwin-drop', 0, 6)
 
-        # List of all the test types. These are types
+        # List of all the text types. These are types
         # that can be interpreted as text.
         self._all_text_types = (self.UTF8_STRING, 
                                 self.TEXT, 
@@ -176,8 +174,10 @@ class _DdTargets(object):
                                 self.COMPOUND_TEXT)
 
     def insert(self, dd_type):
-        """Add a target to the lookup lists. These lists are
-        used purely for performance reasons."""
+        """
+        Add a target to the lookup lists. These lists are
+        used purely for performance reasons.
+        """
         
         self._type_map[dd_type.drag_type] = dd_type
         self._app_id_map[dd_type.app_id] = dd_type
@@ -195,8 +195,10 @@ class _DdTargets(object):
         return self._all_text_types
         
     def all_text_types(self):
-        """return a list of all the type names that could be
-        used as the type of a string."""
+        """
+        Return a list of all the type names that could be
+        used as the type of a string.
+        """
         
         return tuple([t.drag_type for t in self._all_text_types])
     
@@ -204,25 +206,23 @@ class _DdTargets(object):
         return type_name in self.all_gramps_types()
 
     def all_gramps_types(self):
-        """return a list of all the type names that are internal
-        to gramps."""
+        """Return a list of all the type names that are internal to gramps."""
 
         return tuple([t.drag_type for t in self._all_gramps_types])
 
     def all_text_targets(self):
-        """return a list of all the targets that could be used
-        for text."""
+        """Return a list of all the targets that could be used for text."""
         
         return tuple([t.target() for t in self._all_text_types])
 
 
     def all_gramps_targets(self):
-        """return a list off the internal gramps targets."""
+        """Return a list off the internal gramps targets."""
 
         return tuple([t.target() for t in self._all_gramps_types])
 
     def all_targets(self):
-        """return a list of all the known targets."""
+        """Return a list of all the known targets."""
         return self.all_gramps_targets() + self.all_text_targets()
 
 # Create the singleton instance.
