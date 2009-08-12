@@ -329,7 +329,7 @@ class ArgHandler(object):
         """
         Take action for all given to import files. Note: Family trees are not
             supported.
-        If a fam tree is open, the import happens on top of it. If not open, 
+        If a family tree is open, the import happens on top of it. If not open, 
         a new family tree is created, and the import done. If this is CLI, 
         the created tree is deleted at the end (as some action will have 
         happened that is now finished), if this is GUI, it is opened.
@@ -349,7 +349,7 @@ class ArgHandler(object):
                 
                 try:
                     self.sm.open_activate(self.imp_db_path)
-                    print "Created empty fam tree successfully"
+                    print "Created empty family tree successfully"
                 except:
                     print "Error opening the file." 
                     print "Exiting..." 
@@ -361,8 +361,8 @@ class ArgHandler(object):
 
     def __open_action(self):
         """
-        Take action on a Fam tree dir to open. It will be opened in the 
-        sessionmanager
+        Take action on a family tree dir to open. It will be opened in the 
+        session manager
         """
         if self.open:
             # Family Tree to open was given. Open it 

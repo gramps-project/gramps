@@ -67,14 +67,11 @@ import pango
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 from QuestionDialog import ErrorDialog, QuestionDialog
-import gen.db
+from gen.db import GrampsDBDir
 from gen.plug import PluginManager
-from cli.clidbman import *
+from cli.clidbman import CLIDbManager, NAME_FILE, time_val
 import GrampsDbUtils
-import Config
-import Mime
 from DdTargets import DdTargets
 import RecentFiles
 from glade import Glade
@@ -278,7 +275,7 @@ class DbManager(CLIDbManager):
                                          stock_id=STOCK_COL)
         self.dblist.append_column(icon_column)
 
-        # build the last modified cocolumn
+        # build the last modified column
         render = gtk.CellRendererText()
         column = gtk.TreeViewColumn(_('Last modified'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
@@ -511,7 +508,7 @@ class DbManager(CLIDbManager):
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
         
         self.__start_cursor(_("Extracting archive..."))
-        dbclass = gen.db.GrampsDBDir
+        dbclass = GrampsDBDir
         dbase = dbclass()
         dbase.load(new_path, None)
         
@@ -635,10 +632,10 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = gen.db.GrampsDBDir()
+        newdb = GrampsDBDir()
         newdb.write_version(dirname)
 
-        dbclass = gen.db.GrampsDBDir
+        dbclass = GrampsDBDir
         dbase = dbclass()
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
