@@ -56,7 +56,6 @@ import Utils
 import Bookmarks
 import Mime
 import gen.lib
-from QuestionDialog import ErrorDialog
 from Editors import EditMedia, DeleteMediaQuery
 import Errors
 from Filters.SideBar import MediaSidebarFilter
@@ -72,7 +71,7 @@ class MediaView(PageView.ListView):
     """
     Provide the Media View interface on the GRAMPS main window. This allows
     people to manage all media items in their database. This is very similar
-    to the other list based views, with the exeception that it also has a
+    to the other list based views, with the exception that it also has a
     thumbnail image at the top of the view that must be updated when the
     selection changes or when the selected media object changes.
     """
@@ -123,7 +122,7 @@ class MediaView(PageView.ListView):
 
     def _set_dnd(self):
         """
-        Set up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destination are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """

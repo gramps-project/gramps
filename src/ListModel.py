@@ -266,7 +266,7 @@ class ListModel(object):
 
     def get_icon(self):
         """
-        Return an icond to be used for Drag and drop.
+        Return an icon to be used for Drag and drop.
         """
         if self.mode == gtk.SELECTION_SINGLE:
             store, node = self.selection.get_selected()
@@ -279,7 +279,7 @@ class ListModel(object):
 
     def __build_select_list(self, store, path, node, dlist):
         """
-        GTK callback function for waliking a select list
+        GTK callback function for walking a select list
         """
         dlist.append(self.model.get_value(node, self.data_index))
 

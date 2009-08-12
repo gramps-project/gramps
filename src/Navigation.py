@@ -109,7 +109,7 @@ class BaseNavigation(object):
     def build_item_name(self, handle):
         """
         Builds a string from the passed handle. Must be overridden by the
-        derrived class.
+        derived class.
         """
         return "ERROR"
 

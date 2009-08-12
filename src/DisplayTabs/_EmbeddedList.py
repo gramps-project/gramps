@@ -99,9 +99,9 @@ class EmbeddedList(ButtonTab):
             if ref:
                 self.right_click(obj, event)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
-                fun = self.get_middle_click()
-                if fun:
-                    fun()
+            fun = self.get_middle_click()
+            if fun:
+                fun()
 
     def get_popup_menu_items(self):
         """
@@ -165,7 +165,7 @@ class EmbeddedList(ButtonTab):
 
     def _set_dnd(self):
         """
-        Set up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destination are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """
@@ -216,7 +216,7 @@ class EmbeddedList(ButtonTab):
         """
         Handle the standard gtk interface for drag_data_received.
 
-        If the selection data is define, extract the value from sel_data.data,
+        If the selection data is defined, extract the value from sel_data.data,
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.data:
@@ -242,7 +242,7 @@ class EmbeddedList(ButtonTab):
     def tree_drag_motion(self, *args):
         """
         On drag motion one wants the list to show as the database 
-        representation so it is clear how save will change the data
+        representation so it is clear how save will change the data.
         """
         pass
 
@@ -289,7 +289,7 @@ class EmbeddedList(ButtonTab):
         path = '%d' % (row_from-1) 
         self.tree.get_selection().select_path(path)
         
-    def _move_down(self, row_from, obj,selmethod=None):
+    def _move_down(self, row_from, obj, selmethod=None):
         """ 
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
@@ -328,14 +328,14 @@ class EmbeddedList(ButtonTab):
         if ref:
             pos = self.find_index(ref)
             if pos > 0 :
-                self._move_up(pos,ref)
+                self._move_up(pos, ref)
                 
     def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
-            if pos >=0 and pos < len(self.get_data())-1:
-                self._move_down(pos,ref)
+            if pos >= 0 and pos < len(self.get_data())-1:
+                self._move_down(pos, ref)
 
     def build_interface(self):
         """
@@ -362,7 +362,7 @@ class EmbeddedList(ButtonTab):
 
     def get_selected(self):
         """
-        returns the value associated with selected row in the model,
+        Return the value associated with selected row in the model,
         based of the _HANDLE_COL value. Each model must define this
         to indicate what the returned value should be. If no selection
         has been made, None is returned.
@@ -385,7 +385,7 @@ class EmbeddedList(ButtonTab):
         Return the data associated with the list. This is typically
         a list of objects.
 
-        This should be overridden in the derrived classes.
+        This should be overridden in the derived classes.
         """
         raise NotImplementedError
 
@@ -396,7 +396,7 @@ class EmbeddedList(ButtonTab):
         where the first in indicates if the column is visible, and the
         second column indicates the index into the model.
 
-        This should be overridden in the derrived classes.
+        This should be overridden in the derived classes.
         """
         raise NotImplementedError
 

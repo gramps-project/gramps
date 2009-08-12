@@ -349,7 +349,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def _set_dnd(self):
         """
-        Set up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destination are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """

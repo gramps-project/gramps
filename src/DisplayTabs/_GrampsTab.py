@@ -99,7 +99,7 @@ class GrampsTab(gtk.VBox):
     def build_label_widget(self):
         """
         Standard routine to build a widget. Does not need to be overridden
-        by the derrived class. Creates an container that has the label and
+        by the derived class. Creates an container that has the label and
         the icon in it.
         @returns: widget to be used for the notebook label.
         @rtype: gtk.HBox
@@ -130,7 +130,7 @@ class GrampsTab(gtk.VBox):
     def get_icon_name(self):
         """
         Provide the name of the registered stock icon to be used as the
-        icon in the label. This is typically overridden by the derrived
+        icon in the label. This is typically overridden by the derived
         class to provide the new name.
         @returns: stock icon name
         @rtype: str
@@ -188,7 +188,7 @@ class GrampsTab(gtk.VBox):
     def build_interface(self):
         """
         Builds the interface for the derived class. This function should be
-        overridden in the derived class. Since the classes are derrived from
+        overridden in the derived class. Since the classes are derived from
         gtk.HBox, the self.pack_start, self.pack_end, and self.add functions
         can be used to add widgets to the interface.
         """
