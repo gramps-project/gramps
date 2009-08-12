@@ -705,8 +705,8 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         self.avail_tree = self.xml.get_object("avail_tree")
         self.book_tree = self.xml.get_object("book_tree")
-        self.avail_tree.connect('button-press-event', self.av_button_press)
-        self.book_tree.connect('button-press-event', self.bk_button_press)
+        self.avail_tree.connect('button-press-event', self.avail_button_press)
+        self.book_tree.connect('button-press-event', self.book_button_press)
 
         self.name_entry = self.xml.get_object("name_entry")
         self.name_entry.set_text(_('New Book'))
@@ -720,20 +720,20 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         book_label.set_use_underline(True)
         book_label.set_use_markup(True)
 
-        av_titles = [ (_('Name'), 0, 150),
+        avail_titles = [ (_('Name'), 0, 150),
                       (_('Type'), 1, 50 ),
                       (  '' ,    -1, 0  ) ]
         
-        bk_titles = [ (_('Item name'), -1, 150),
+        book_titles = [ (_('Item name'), -1, 150),
                       (_('Type'),      -1, 50 ),
                       (  '',           -1, 0  ),
                       (_('Subject'),   -1, 50 ) ]
         
-        self.av_ncols = len(av_titles)
-        self.bk_ncols = len(bk_titles)
+        self.avail_nr_cols = len(avail_titles)
+        self.book_nr_cols = len(book_titles)
 
-        self.av_model = ListModel.ListModel(self.avail_tree, av_titles)
-        self.bk_model = ListModel.ListModel(self.book_tree, bk_titles)
+        self.avail_model = ListModel.ListModel(self.avail_tree, avail_titles)
+        self.book_model = ListModel.ListModel(self.book_tree, book_titles)
         self.draw_avail_list()
 
         self.book = Book()
@@ -758,13 +758,13 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                 category = book_categories[book_item[1]]
             
             data = [ book_item[0], category, book_item[4] ] 
-            new_iter = self.av_model.add(data)
+            new_iter = self.avail_model.add(data)
 
-        self.av_model.connect_model()
+        self.avail_model.connect_model()
 
         if new_iter:
-            self.av_model.selection.select_iter(new_iter)
-            path = self.av_model.model.get_path(new_iter)
+            self.avail_model.selection.select_iter(new_iter)
+            path = self.avail_model.model.get_path(new_iter)
             col = self.avail_tree.get_column(0)
             self.avail_tree.scroll_to_cell(path, col, 1, 1, 0.0)
 
@@ -787,7 +787,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                 % book.get_dbname() )
             
         self.book.clear()
-        self.bk_model.clear()
+        self.book_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
             item = BookItem(self.db, name)
@@ -810,7 +810,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                      item.get_category(), item.get_name() ]
             
             data[2] = _get_subject(item.option_class, self.db)
-            self.bk_model.add(data)
+            self.book_model.add(data)
 
     def on_add_clicked(self, obj):
         """
@@ -818,45 +818,45 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         
         Use the selected available item to get the item's name in the registry.
         """
-        store, the_iter = self.av_model.get_selected()
+        store, the_iter = self.avail_model.get_selected()
         if not the_iter:
             return
-        data = self.av_model.get_data(the_iter, range(self.av_ncols))
+        data = self.avail_model.get_data(the_iter, range(self.avail_nr_cols))
         item = BookItem(self.db, data[2])
         _initialize_options(item.option_class, self.dbstate)
         data[2] = _get_subject(item.option_class, self.db)
-        self.bk_model.add(data)
+        self.book_model.add(data)
         self.book.append_item(item)
 
     def on_remove_clicked(self, obj):
         """
         Remove the item from the current list of selections.
         """
-        store, the_iter = self.bk_model.get_selected()
+        store, the_iter = self.book_model.get_selected()
         if not the_iter:
             return
-        row = self.bk_model.get_selected_row()
+        row = self.book_model.get_selected_row()
         self.book.pop_item(row)
-        self.bk_model.remove(the_iter)
+        self.book_model.remove(the_iter)
 
     def on_clear_clicked(self, obj):
         """
         Clear the whole current book.
         """
-        self.bk_model.clear()
+        self.book_model.clear()
         self.book.clear()
 
     def on_up_clicked(self, obj):
         """
         Move the currently selected item one row up in the selection list.
         """
-        row = self.bk_model.get_selected_row()
+        row = self.book_model.get_selected_row()
         if not row or row == -1:
             return
-        store, the_iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
-        self.bk_model.remove(the_iter)
-        self.bk_model.insert(row-1, data, None, 1)
+        store, the_iter = self.book_model.get_selected()
+        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        self.book_model.remove(the_iter)
+        self.book_model.insert(row-1, data, None, 1)
         item = self.book.pop_item(row)
         self.book.insert_item(row-1, item)
 
@@ -864,13 +864,13 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Move the currently selected item one row down in the selection list.
         """
-        row = self.bk_model.get_selected_row()
-        if row + 1 >= self.bk_model.count or row == -1:
+        row = self.book_model.get_selected_row()
+        if row + 1 >= self.book_model.count or row == -1:
             return
-        store, the_iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
-        self.bk_model.remove(the_iter)
-        self.bk_model.insert(row+1, data, None, 1)
+        store, the_iter = self.book_model.get_selected()
+        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        self.book_model.remove(the_iter)
+        self.book_model.insert(row+1, data, None, 1)
         item = self.book.pop_item(row)
         self.book.insert_item(row+1, item)
 
@@ -878,11 +878,11 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Configure currently selected item.
         """
-        store, the_iter = self.bk_model.get_selected()
+        store, the_iter = self.book_model.get_selected()
         if not the_iter:
             return
-        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
-        row = self.bk_model.get_selected_row()
+        data = self.book_model.get_data(the_iter, range(self.book_nr_cols))
+        row = self.book_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
         item_dialog = BookItemDialog(self.dbstate, self.uistate, option_class,
@@ -892,11 +892,11 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         response = item_dialog.window.run()
         if response == gtk.RESPONSE_OK:
             subject = _get_subject(option_class, self.db)
-            self.bk_model.model.set_value(the_iter, 2, subject)
+            self.book_model.model.set_value(the_iter, 2, subject)
             self.book.set_item(row, item)
         item_dialog.close()
 
-    def bk_button_press(self, obj, event):
+    def book_button_press(self, obj, event):
         """
         Double-click on the current book selection is the same as setup.
         Right click evokes the context menu. 
@@ -904,9 +904,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_bk_context_menu(event)
+            self.build_book_context_menu(event)
 
-    def av_button_press(self, obj, event):
+    def avail_button_press(self, obj, event):
         """
         Double-click on the available selection is the same as add.
         Right click evokes the context menu. 
@@ -914,12 +914,12 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_av_context_menu(event)
+            self.build_avail_context_menu(event)
 
-    def build_bk_context_menu(self, event):
+    def build_book_context_menu(self, event):
         """Builds the menu with item-centered and book-centered options."""
         
-        store, the_iter = self.bk_model.get_selected()
+        store, the_iter = self.book_model.get_selected()
         if the_iter:
             sensitivity = 1 
         else:
@@ -947,10 +947,10 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             menu.append(item)
         menu.popup(None, None, None, event.button, event.time)
 
-    def build_av_context_menu(self, event):
+    def build_avail_context_menu(self, event):
         """Builds the menu with the single Add option."""
         
-        store, the_iter = self.av_model.get_selected()
+        store, the_iter = self.avail_model.get_selected()
         if the_iter:
             sensitivity = 1 
         else:
