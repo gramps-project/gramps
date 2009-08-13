@@ -126,7 +126,7 @@ class MediaRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase,
         Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        :returns: Returns the list of objects refereincing primary objects.
+        :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
         return self.attribute_list + self.source_list

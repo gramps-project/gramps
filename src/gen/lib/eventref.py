@@ -46,7 +46,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     Event reference class.
 
     This class is for keeping information about how the person relates
-    to the refereneced event.
+    to the referenced event.
     """
 
     def __init__(self, source=None):
@@ -144,7 +144,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         Return the list of child objects which may, directly or through their 
         children, reference primary objects..
         
-        :returns: Returns the list of objects refereincing primary objects.
+        :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
         return self.get_sourcref_child_list()
