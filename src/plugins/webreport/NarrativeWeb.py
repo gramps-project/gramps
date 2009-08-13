@@ -2967,16 +2967,21 @@ class IndividualPage(BasePage):
             if sect11 is not None:
                 individualdetail += sect11
 
+            # display associations
+            assocs = self.person.get_person_ref_list()
+            if assocs: 
+                Individualdetail += self.display_ind_associations(assocs)
+
             # display pedigree
-            sect12 = self.display_ind_pedigree()
-            if sect12 is not None:
-                individualdetail += sect12
+            sect13 = self.display_ind_pedigree()
+            if sect13 is not None:
+                individualdetail += sect13
 
             # display ancestor tree   
             if report.options['graph']:
-                sect13 = self.display_tree()
-                if sect13 is not None:
-                    individualdetail += sect13
+                sect14 = self.display_tree()
+                if sect14 is not None:
+                    individualdetail += sect14
 
         # add clearline for proper styling
         # create footer section
@@ -3129,6 +3134,58 @@ class IndividualPage(BasePage):
 
         # return to its caller
         return sourcerefs
+
+    def display_ind_associations(self, assoclist):
+        """
+        display an individual's associations
+        """
+
+        # begin Associations division  
+        with Html('div', class_='subsection', id='Associations') as section:
+            section += Html('h4', _('Associations'), inline=True)
+
+            with Html('table', class_='infolist assoclist') as table:
+                section += table
+
+                thead = Html('thead')
+                table += thead
+
+                trow = Html('tr')
+                thead += trow
+
+                assoc_row = [
+                    (_('Relationship'),               'Relationship'),
+                    (_('Association'),                 'Association'),
+                    (SHEAD,                              'Sources'),
+                    (NHEAD,                              'Notes') ]
+
+                for (label, colclass) in assoc_row:
+                    trow += Html('th', label, class_='Column%s' % colclass, inline=True)
+
+                tbody = Html('tbody')
+                table += tbody
+
+                for person_ref in assoclist:
+
+                    trow = Html('tr')
+                    tbody += trow
+
+                    index = 0
+                    for data in [
+                        [person_ref.get_relation()],
+                        [person_ref.get_association()],
+                        [self.get_citation_links(person_ref.get_source_references())],
+                        [self.dump_notes(person_ref.get_note_list())] ]: 
+
+                        # get colclass from assoc_row
+                        colclass = assoc_row[index][1]
+
+                        trow += Html('td', data, class_='Column%s' % colclass, inline=True)  
+                        index += 1
+
+        # return section to its callers
+        section.write()
+        return section
 
     def display_ind_pedigree(self):
         """
@@ -4192,19 +4249,20 @@ class RepositoryPage(BasePage):
 
                 # repository type
                 trow = Html('tr') + (
-                    Html('td', _('Type'), class_='ColumnAttribute', inline=True),
-                    Html('td', repo.type.xml_str(), class_='ColumnValue', inline=True)
+                    Html('td', _('Type'), class_='ColumnType', inline=True),
+                    Html('td', str(repo.type), class_='ColumnAttribute', inline=True)
                     )
                 table += trow
 
-                # repo gramps id
-                trow = Html('tr') + (
-                    Html('td', _('GRAMPS ID'), class_='ColumnAttribute', inline=True),
-                    Html('td', repo.gramps_id, class_='ColumnValue', inline=True)
-                    )
-                table += trow
+                if not self.noid:
+                    # repo gramps id
+                    trow = Html('tr') + (
+                        Html('td', _('GRAMPS ID'), class_='ColumnType', inline=True),
+                        Html('td', repo.gramps_id, class_='ColumnAttribute', inline=True)
+                        )
+                    table += trow
 
-            # repository: addresses
+            # repository: address(es)
             addresses = self.write_out_addresses(repo)
             if addresses is not None:
                 repositorydetail += addresses
