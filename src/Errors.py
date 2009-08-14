@@ -60,7 +60,7 @@ class DatabaseError(Exception):
         return self.value
 
 class ReportError(Exception):
-    """Error used to report Report errors"""
+    """Error used to report Report errors."""
     def __init__(self, value, value2=""):
         Exception.__init__(self)
         self.value = value
@@ -104,16 +104,6 @@ class HandleError(Exception):
         "Return string representation"
         return self.value
 
-class GConfSchemaError(Exception):
-    """Error used to report the absence of expected GConf schema."""
-    def __init__(self, value):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        "Return string representation"
-        return self.value
-
 class WindowActiveError(Exception):
     """Error used to report that the request window is already displayed."""
     def __init__(self, value):
@@ -140,7 +130,7 @@ class ValidationError(Exception):
     pass
 
 class DbError(Exception):
-    """Error used to report BerkeleyDB errors"""
+    """Error used to report BerkeleyDB errors."""
     def __init__(self, value):
         Exception.__init__(self)
         try:
@@ -157,7 +147,7 @@ class NameDisplayError(Exception):
     """
     Error used to report that the name display format string is invalid.
     """
-    def __init__(self,value):
+    def __init__(self, value):
         Exception.__init__(self)
         self.value = value
 
