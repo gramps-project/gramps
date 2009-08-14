@@ -79,7 +79,7 @@ _F_RAWFN = 4 # name format raw function
 #
 #-------------------------------------------------------------------------
 # Because of occurring in an exec(), this couldn't be in a lambda:
-def _make_cmp(a,b): return -cmp(a[1], b[1])
+def _make_cmp(a, b): return -cmp(a[1], b[1])
 
 #-------------------------------------------------------------------------
 #
@@ -116,19 +116,19 @@ class NameDisplay(object):
             self.default_format = Config.get(Config.NAME_FORMAT)
             if self.default_format == 0:
                 self.default_format = Name.LNFN
-                Config.set(Config.NAME_FORMAT,self.default_format)
+                Config.set(Config.NAME_FORMAT, self.default_format)
         else:
             self.default_format = 1
             
         self.set_default_format(self.default_format)
 
-    def _format_fn(self,fmt_str):
-        return lambda x: self.format_str(x,fmt_str)
+    def _format_fn(self, fmt_str):
+        return lambda x: self.format_str(x, fmt_str)
     
-    def _format_raw_fn(self,fmt_str):
-        return lambda x: self.format_str_raw(x,fmt_str)
+    def _format_raw_fn(self, fmt_str):
+        return lambda x: self.format_str_raw(x, fmt_str)
     
-    def _raw_lnfn(self,raw_data):
+    def _raw_lnfn(self, raw_data):
         result =  "%s %s, %s %s %s" % (raw_data[_PREFIX],
                                        raw_data[_SURNAME],
                                        raw_data[_FIRSTNAME],
@@ -136,7 +136,7 @@ class NameDisplay(object):
                                        raw_data[_SUFFIX])
         return ' '.join(result.split())
 
-    def _raw_fnln(self,raw_data):
+    def _raw_fnln(self, raw_data):
         result = "%s %s %s %s %s" % (raw_data[_FIRSTNAME],
                                      raw_data[_PATRONYM],
                                      raw_data[_PREFIX],
@@ -144,18 +144,18 @@ class NameDisplay(object):
                                      raw_data[_SUFFIX])
         return ' '.join(result.split())
 
-    def _raw_ptfn(self,raw_data):
+    def _raw_ptfn(self, raw_data):
         result = "%s %s, %s %s" % (raw_data[_PREFIX],
                                    raw_data[_PATRONYM],
                                    raw_data[_SUFFIX],
                                    raw_data[_FIRSTNAME])
         return ' '.join(result.split())
 
-    def _raw_fn(self,raw_data):
+    def _raw_fn(self, raw_data):
         result = raw_data[_FIRSTNAME]        
         return ' '.join(result.split())
 
-    def set_name_format(self,formats):
+    def set_name_format(self, formats):
         raw_func_dict = {
             Name.LNFN : self._raw_lnfn,
             Name.FNLN : self._raw_fnln,
@@ -163,22 +163,22 @@ class NameDisplay(object):
             Name.FN   : self._raw_fn,
             }
 
-        for (num, name,fmt_str,act) in formats:
+        for (num, name, fmt_str, act) in formats:
             func = self._format_fn(fmt_str)
             func_raw = raw_func_dict.get(num)
             if func_raw is None:
                 func_raw = self._format_raw_fn(fmt_str)
-            self.name_formats[num] = (name,fmt_str,act,func,func_raw)
+            self.name_formats[num] = (name, fmt_str, act, func, func_raw)
 
-    def add_name_format(self, name,fmt_str):
+    def add_name_format(self, name, fmt_str):
         num = -1
         while num in self.name_formats:
             num -= 1
-        self.set_name_format([(num, name,fmt_str,_ACT)])
+        self.set_name_format([(num, name, fmt_str,_ACT)])
         return num
     
-    def edit_name_format(self, num, name,fmt_str):
-        self.set_name_format([(num, name,fmt_str,_ACT)])
+    def edit_name_format(self, num, name, fmt_str):
+        self.set_name_format([(num, name, fmt_str,_ACT)])
         if self.default_format == num:
             self.set_default_format(num)
         
@@ -213,7 +213,7 @@ class NameDisplay(object):
         except:
             pass
         
-    def get_name_format(self,also_default=False,
+    def get_name_format(self, also_default=False,
                         only_custom=False,
                         only_active=True):
         """
@@ -231,13 +231,17 @@ class NameDisplay(object):
 
         return the_list
 
-    def _sort_name_format(self,x,y):
-        if x<0:
-            if y<0: return x+y
-            else: return -x+y
+    def _sort_name_format(self, x, y):
+        if x < 0:
+            if y < 0: 
+                return x+y
+            else: 
+                return -x+y
         else:
-            if y<0: return -x+y
-            else: return x-y
+            if y < 0: 
+                return -x+y
+            else: 
+                return x-y
         
     def _is_format_valid(self, num):
         try:
@@ -256,7 +260,7 @@ class NameDisplay(object):
         going to some length to optimise it as much as possible. 
 
         This method constructs a new function that is specifically written 
-        to format a name given a particualar format string. This is worthwhile
+        to format a name given a particular format string. This is worthwhile
         because the format string itself rarely changes, so by caching the new
         function and calling it directly when asked to format a name to the
         same format string again we can be as quick as possible.
@@ -299,7 +303,7 @@ class NameDisplay(object):
         going to some length to optimise it as much as possible. 
 
         This method constructs a new function that is specifically written 
-        to format a name given a particualar format string. This is worthwhile
+        to format a name given a particular format string. This is worthwhile
         because the format string itself rarely changes, so by caching the new
         function and calling it directly when asked to format a name to the
         same format string again we can be as quick as possible.
@@ -349,9 +353,9 @@ class NameDisplay(object):
             for (code, ikeyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
                 ikeyword = unicode(ikeyword, "utf8")
-                format_str = format_str.replace(ikeyword,"%"+ code)
-                format_str = format_str.replace(ikeyword.title(),"%"+ code)
-                format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
+                format_str = format_str.replace(ikeyword, "%"+ code)
+                format_str = format_str.replace(ikeyword.title(), "%"+ code)
+                format_str = format_str.replace(ikeyword.upper(), "%"+ code.upper())
         # Next, go through and do key-word replacement.
         # Just replace keywords with
         # %codes (ie, replace "firstname" with "%f", and
@@ -366,9 +370,9 @@ class NameDisplay(object):
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
                 keyword = unicode(keyword, "utf8")
-                format_str = format_str.replace(keyword,"%"+ code)
-                format_str = format_str.replace(keyword.title(),"%"+ code)
-                format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
+                format_str = format_str.replace(keyword, "%"+ code)
+                format_str = format_str.replace(keyword.title(), "%"+ code)
+                format_str = format_str.replace(keyword.upper(), "%"+ code.upper())
         # Get lower and upper versions of codes:
         codes = d.keys() + [c.upper() for c in d]
         # Next, list out the matching patterns:
@@ -408,8 +412,8 @@ class NameDisplay(object):
             if p == '' and s == '':
                 param = param + (field,)
             else:
-                param = param + ("ifNotEmpty(%s,'%s','%s')" % (field,p,s), )
-            mat = pat.search(format_str,mat.end())
+                param = param + ("ifNotEmpty(%s,'%s','%s')" % (field, p, s), )
+            mat = pat.search(format_str, mat.end())
         s = """
 def fn(%s):
     def ifNotEmpty(str,p,s):
@@ -422,12 +426,12 @@ def fn(%s):
 
         return fn
 
-    def format_str(self, name,format_str):
+    def format_str(self, name, format_str):
         return self._format_str_base(name.first_name, name.surname, name.prefix,
                                      name.suffix, name.patronymic, name.title,
                                      name.call,format_str)
 
-    def format_str_raw(self,raw_data,format_str):
+    def format_str_raw(self, raw_data, format_str):
         """
         Format a name from the raw name list. To make this as fast as possible
         this uses _gen_raw_func to generate a new method for each new format_string.
@@ -444,8 +448,8 @@ def fn(%s):
         return ' '.join(s.split())
 
 
-    def _format_str_base(self,first,surname,prefix,suffix,patronymic,
-                         title,call,format_str):
+    def _format_str_base(self, first, surname, prefix, suffix, patronymic,
+                         title, call, format_str):
         """
         Generates name from a format string.
 
@@ -469,7 +473,7 @@ def fn(%s):
             self.__class__.format_funcs[format_str] = func
         try:
             s = func(first,surname,prefix,suffix,patronymic,title,call)
-        except (ValueError,TypeError,):
+        except (ValueError, TypeError,):
             raise NameDisplayError, "Incomplete format string"
 
         return ' '.join(s.split())
@@ -479,7 +483,7 @@ def fn(%s):
     def sort_string(self, name):
         return u"%-25s%-30s%s" % (name.surname, name.first_name, name.suffix)
 
-    def sorted(self,person):
+    def sorted(self, person):
         """
         Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for displaying a sorted
@@ -509,7 +513,7 @@ def fn(%s):
         num = self._is_format_valid(name.sort_as)
         return self.name_formats[num][_F_FN](name)
 
-    def raw_sorted_name(self,raw_data):
+    def raw_sorted_name(self, raw_data):
         """
         Return a text string representing the L{Name} instance
         in a manner that should be used for displaying a sorted
@@ -523,7 +527,7 @@ def fn(%s):
         num = self._is_format_valid(raw_data[_SORT])
         return self.name_formats[num][_F_RAWFN](raw_data)
 
-    def display(self,person):
+    def display(self, person):
         """
         Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
@@ -538,7 +542,7 @@ def fn(%s):
         name = person.get_primary_name()
         return self.display_name(name)
 
-    def display_formal(self,person):
+    def display_formal(self, person):
         """
         Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
@@ -570,14 +574,13 @@ def fn(%s):
         num = self._is_format_valid(name.display_as)
         return self.name_formats[num][_F_FN](name)
 
-    def display_given(self,person):
-        name = person.get_primary_name()
+    def display_given(self, person):
         return self.format_str(person.get_primary_name(),'%f %y')
 
-    def name_grouping(self,db,person):
-        return self.name_grouping_name(db,person.primary_name)
+    def name_grouping(self, db, person):
+        return self.name_grouping_name(db, person.primary_name)
 
-    def name_grouping_name(self,db,pn):
+    def name_grouping_name(self, db, pn):
         if pn.group_as:
             return pn.group_as
         sv = pn.sort_as

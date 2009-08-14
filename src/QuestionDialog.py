@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -51,7 +50,7 @@ except:
     ICON = None
 
 class SaveDialog(object):
-    def __init__(self,msg1,msg2,task1,task2,parent=None):
+    def __init__(self, msg1, msg2, task1, task2, parent=None):
         self.xml = Glade(toplevel='savedialog')
         
         self.top = self.xml.toplevel
@@ -78,11 +77,11 @@ class SaveDialog(object):
         elif response == gtk.RESPONSE_YES:
             self.task2()
 
-        Config.set(Config.DONT_ASK,self.dontask.get_active())
+        Config.set(Config.DONT_ASK, self.dontask.get_active())
         self.top.destroy()
 
 class QuestionDialog(object):
-    def __init__(self,msg1,msg2,label,task,parent=None):
+    def __init__(self, msg1, msg2, label, task, parent=None):
         self.xml = Glade(toplevel='questiondialog')
                 
         self.top = self.xml.toplevel
@@ -108,7 +107,7 @@ class QuestionDialog(object):
             task()
 
 class QuestionDialog2(object):
-    def __init__(self,msg1,msg2,label_msg1,label_msg2,parent=None):
+    def __init__(self, msg1, msg2, label_msg1, label_msg2, parent=None):
         self.xml = Glade(toplevel='questiondialog')
               
         self.top = self.xml.toplevel
@@ -138,7 +137,7 @@ class QuestionDialog2(object):
         return (response == gtk.RESPONSE_ACCEPT)
 
 class OptionDialog(object):
-    def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2,parent=None):
+    def __init__(self, msg1, msg2, btnmsg1, task1, btnmsg2, task2, parent=None):
         self.xml = Glade(toplevel='optiondialog')
               
         self.top = self.xml.toplevel
@@ -171,7 +170,7 @@ class OptionDialog(object):
         return self.response
 
 class ErrorDialog(gtk.MessageDialog):
-    def __init__(self,msg1,msg2="",parent=None):
+    def __init__(self, msg1, msg2="", parent=None):
         
         gtk.MessageDialog.__init__(self, parent,
                                    flags=gtk.DIALOG_MODAL,
@@ -207,7 +206,7 @@ class DBErrorDialog(ErrorDialog):
               'click on the Repair button') + '\n\n' + str(msg), parent)
 
 class WarningDialog(gtk.MessageDialog):
-    def __init__(self,msg1,msg2="",parent=None):
+    def __init__(self, msg1, msg2="", parent=None):
 
         gtk.MessageDialog.__init__(self, parent,
                                    flags=gtk.DIALOG_MODAL,
@@ -222,7 +221,7 @@ class WarningDialog(gtk.MessageDialog):
         self.destroy()
 
 class OkDialog(gtk.MessageDialog):
-    def __init__(self,msg1,msg2="",parent=None):
+    def __init__(self, msg1, msg2="", parent=None):
 
         gtk.MessageDialog.__init__(self, parent,
                                    flags=gtk.DIALOG_MODAL,
@@ -267,7 +266,7 @@ class InfoDialog(object):
         return self.response
 
 class MissingMediaDialog(object):
-    def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
+    def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
         self.xml = Glade(toplevel='missmediadialog')
               
         self.top = self.xml.toplevel
@@ -291,7 +290,7 @@ class MissingMediaDialog(object):
         if parent:
             self.top.set_transient_for(parent)
         self.top.show()
-        self.top.connect('delete_event',self.warn)
+        self.top.connect('delete_event', self.warn)
         response = gtk.RESPONSE_DELETE_EVENT
 
         # Need some magic here, because an attempt to close the dialog
@@ -326,8 +325,8 @@ class MessageHideDialog(object):
         self.xml = Glade(toplevel='hidedialog')
               
         self.top = self.xml.toplevel
-        top.set_icon(ICON)
-        top.set_title("%s - GRAMPS" % title)
+        self.top.set_icon(ICON)
+        self.top.set_title("%s - GRAMPS" % title)
 
         dont_show = self.xml.get_object('dont_show')
         dont_show.set_active(Config.get(key))
@@ -338,9 +337,9 @@ class MessageHideDialog(object):
         
         self.xml.get_object('message').set_text(message)
         
-        dont_show.connect('toggled',self.update_checkbox, key)
-        top.run()
-        top.destroy()
+        dont_show.connect('toggled', self.update_checkbox, key)
+        self.top.run()
+        self.top.destroy()
 
     def update_checkbox(self, obj, constant):
         Config.set(constant, obj.get_active())
