@@ -26,6 +26,13 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 
 #-------------------------------------------------------------------------
 #
+# Python libraries
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
@@ -132,7 +139,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
-        if not person.get_privacy():
+        if person and not person.get_privacy():
             return sanitize_person(self.db, person)
         return None
 
@@ -142,7 +149,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
-        if not family.get_privacy():
+        if family and not family.get_privacy():
             return sanitize_family(self.db, family)
         return None
 
@@ -152,7 +159,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)
-        if not event.get_privacy():
+        if event and not event.get_privacy():
             return sanitize_event(self.db, event)
         return None
 
@@ -162,7 +169,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_gramps_id(val)
-        if not place.get_privacy():
+        if place and not place.get_privacy():
             return sanitize_place(self.db, place)
         return None
 
@@ -182,7 +189,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such MediaObject exists, None is returned.
         """
         obj = self.db.get_object_from_gramps_id(val)
-        if not obj.get_privacy():
+        if obj and not obj.get_privacy():
             return sanitize_media(self.db, obj)
         return None
 
@@ -192,7 +199,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_gramps_id(val)
-        if not repository.get_privacy():
+        if repository and not repository.get_privacy():
             return sanitize_repository(self.db, repository)
         return None
 
@@ -202,7 +209,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Note exists, None is returned.
         """
         note = self.db.get_note_from_gramps_id(val)
-        if not note.get_privacy():
+        if note and not note.get_privacy():
             return note
         return None
 
@@ -896,7 +903,7 @@ def sanitize_place(db, place):
     
     return new_place
 
-def sanitize_event(db,event):
+def sanitize_event(db, event):
     """
     Create a new Event instance based off the passed Event
     instance. The returned instance has all private records

@@ -35,13 +35,14 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug.docgen import FontStyle, ParagraphStyle, GraphicsStyle,\
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER
-from SubstKeywords import SubstKeywords
+from BasicUtils import name_displayer
+from Errors import ReportError
 from gen.plug import PluginManager
+from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import BooleanOption, NumberOption, TextOption, PersonOption
 from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions
-from BasicUtils import name_displayer
+from SubstKeywords import SubstKeywords
 
 pt2cm = ReportUtils.pt2cm
 
@@ -190,6 +191,8 @@ class AncestorTree(Report):
         
         pid = menu.get_option_by_name('pid').get_value()
         center_person = database.get_person_from_gramps_id(pid)
+        if (center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
         
         name = name_displayer.display_formal(center_person)
         self.title = _("Ancestor Graph for %s") % name

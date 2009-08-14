@@ -61,7 +61,6 @@ class IndivCompleteReport(Report):
         The arguments are:
 
         database        - the GRAMPS database instance
-        person          - currently selected person
         options_class   - instance of the Options class for this report
 
         This report needs the following parameters (class variables)
@@ -70,7 +69,7 @@ class IndivCompleteReport(Report):
         filter    - Filter to be applied to the people of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
-        cites     - Whether or not to include source informaiton.
+        cites     - Whether or not to include source information.
         """
 
         Report.__init__(self, database, options_class)

@@ -30,13 +30,14 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
+from Errors import ReportError
 from gen.plug import PluginManager
+from gen.plug.docgen import (GraphicsStyle, FontStyle, ParagraphStyle,
+                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gen.plug.menu import TextOption, NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
 from TransUtils import sgettext as _
-from gen.plug.docgen import GraphicsStyle, FontStyle, ParagraphStyle,\
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER
 
 #------------------------------------------------------------------------
 #
@@ -145,6 +146,8 @@ class DescendTree(Report):
         self.incblank = menu.get_option_by_name('incblank').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         center_person = database.get_person_from_gramps_id(pid)
+        if (center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
         
         self.showspouse = menu.get_option_by_name('shows').get_value()
         

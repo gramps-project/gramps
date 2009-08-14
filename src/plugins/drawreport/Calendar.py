@@ -34,19 +34,20 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from BasicUtils import name_displayer
+from Errors import ReportError
+from gen.plug import PluginManager
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_CENTER,
                              PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT)
 from gen.plug.docgen.fontscale import string_trim
-from BasicUtils import name_displayer
-from gen.plug import PluginManager
+from gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
+                         EnumeratedListOption, FilterOption, PersonOption)
+from gui.utils import ProgressMeter
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
-from gen.plug.menu import BooleanOption, StringOption, NumberOption, \
-                         EnumeratedListOption, FilterOption, PersonOption
+from Utils import probably_alive
 import GrampsLocale
 import gen.lib
-from Utils import probably_alive
-from gui.utils import ProgressMeter
 
 import libholiday
 from libholiday import g2iso
@@ -87,6 +88,8 @@ class Calendar(Report):
         self.filter = self.filter_option.get_filter()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
     def get_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given, 

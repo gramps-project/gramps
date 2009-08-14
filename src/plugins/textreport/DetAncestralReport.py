@@ -38,16 +38,17 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.lib
+from BasicUtils import name_displayer as _nd
+from Errors import ReportError
+from gen.lib import EventType, FamilyRelType, Person
 from gen.plug import PluginManager
-from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from ReportBase import Bibliography, Endnotes
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, FONT_SERIF, 
                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.menu import BooleanOption, NumberOption, PersonOption
+from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT,
+                        Bibliography, Endnotes)
 import DateHandler
-from BasicUtils import name_displayer as _nd
 import Utils
 
 #------------------------------------------------------------------------
@@ -118,6 +119,8 @@ class DetAncestorReport(Report):
         self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
         pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.gen_handles = {}
         self.prev_gen_handles = {}
@@ -184,7 +187,7 @@ class DetAncestorReport(Report):
                         mother_handle = family.get_mother_handle()
                         if (mother_handle is None                      or
                             mother_handle not in self.map.itervalues()  or
-                            person.get_gender() == gen.lib.Person.FEMALE):
+                            person.get_gender() == Person.FEMALE):
                             # The second test above also covers the 1. person's
                             # mate, which is not an ancestor and as such is not
                             # included in the self.map dictionary
@@ -578,7 +581,7 @@ class DetAncestorReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             ind_handle = None
-            if person.get_gender() == gen.lib.Person.MALE:
+            if person.get_gender() == Person.MALE:
                 ind_handle = family.get_mother_handle()
             else:
                 ind_handle = family.get_father_handle()
@@ -588,10 +591,10 @@ class DetAncestorReport(Report):
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
                         etype = event.get_type()
-                        if etype == gen.lib.EventType.BAPTISM or \
-                           etype == gen.lib.EventType.BURIAL or \
-                           etype == gen.lib.EventType.BIRTH  or \
-                           etype == gen.lib.EventType.DEATH     :
+                        if etype == EventType.BAPTISM or \
+                           etype == EventType.BURIAL or \
+                           etype == EventType.BIRTH  or \
+                           etype == EventType.DEATH     :
                             has_info = True
                             break   
                 if not has_info:
@@ -614,7 +617,7 @@ class DetAncestorReport(Report):
                 name = _nd.display_formal(ind)
                 mark = ReportUtils.get_person_mark(self.database, ind)
         
-                if family.get_relationship() == gen.lib.FamilyRelType.MARRIED:
+                if family.get_relationship() == FamilyRelType.MARRIED:
                     self.doc.write_text(_("Spouse: %s") % name, mark)
                 else:
                     self.doc.write_text(_("Relationship with: %s") % name, mark)

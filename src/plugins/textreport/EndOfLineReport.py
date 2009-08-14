@@ -34,13 +34,14 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
+from BasicUtils import name_displayer
+from Errors import ReportError
 from gen.plug import PluginManager
-from gen.plug.menu import PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, TableStyle,
                             TableCellStyle, FONT_SANS_SERIF, INDEX_TYPE_TOC,
                             PARA_ALIGN_CENTER)
-from BasicUtils import name_displayer
+from gen.plug.menu import PersonOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -69,6 +70,8 @@ class EndOfLineReport(Report):
         menu = options_class.menu
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
         # eol_map is a map whose:
         #   keys are the generations of the people

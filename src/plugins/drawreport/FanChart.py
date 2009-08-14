@@ -33,9 +33,10 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
+from Errors import ReportError
+from gen.plug import PluginManager
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SANS_SERIF, PARA_ALIGN_CENTER)
-from gen.plug import PluginManager
 from gen.plug.menu import EnumeratedListOption, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW
 from SubstKeywords import SubstKeywords
@@ -90,6 +91,8 @@ class FanChart(Report):
         self.radial          = menu.get_option_by_name('radial').get_value()
         pid                  = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.background_style = []
         self.text_style = []

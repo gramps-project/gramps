@@ -30,7 +30,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import sys
 
 import logging
 log = logging.getLogger(".")
@@ -40,13 +39,18 @@ log = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import gen
 import Utils
+from gen.plug import PluginManager
 from gen.plug.docgen import (StyleSheet, StyleSheetList, PaperStyle,
                              PAPER_PORTRAIT, PAPER_LANDSCAPE)
+from gen.plug.menu import (FamilyOption, PersonOption, NoteOption, 
+                           MediaOption, PersonListOption, NumberOption, 
+                           BooleanOption, DestinationOption, StringOption, 
+                           TextOption, EnumeratedListOption)
 from BasicUtils import name_displayer
-from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
-    CATEGORY_GRAPHVIZ
+from Errors import ReportError
+from ReportBase import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
+                        CATEGORY_GRAPHVIZ)
 from _PaperMenu import paper_sizes
 import os
 import const
@@ -72,7 +76,7 @@ def _validate_options(options, dbase):
     for name in menu.get_all_option_names():
         option = menu.get_option_by_name(name)
 
-        if isinstance(option, gen.plug.menu.PersonOption):
+        if isinstance(option, PersonOption):
             pid = option.get_value()
             person = dbase.get_person_from_gramps_id(pid)
             if not person:
@@ -85,7 +89,7 @@ def _validate_options(options, dbase):
             if person:
                 option.set_value(person.get_gramps_id())
             
-        elif isinstance(option, gen.plug.menu.FamilyOption):
+        elif isinstance(option, FamilyOption):
             fid = option.get_value()
             family = dbase.get_family_from_gramps_id(fid)
             if not family:
@@ -118,7 +122,7 @@ class CommandLineReport(object):
     def __init__(self, database, name, category, option_class, options_str_dict,
                  noopt=False):
         
-        pmgr = gen.plug.PluginManager.get_instance()
+        pmgr = PluginManager.get_instance()
         self.__textdoc_plugins = []
         self.__drawdoc_plugins = []
         self.__bookdoc_plugins = []
@@ -223,7 +227,7 @@ class CommandLineReport(object):
             self.options_dict[name] = option.get_value()
             self.options_help[name] = [ "", option.get_help() ]
             
-            if isinstance(option, gen.plug.menu.PersonOption):
+            if isinstance(option, PersonOption):
                 id_list = []
                 for person_handle in self.database.get_person_handles():
                     person = self.database.get_person_from_handle(person_handle)
@@ -231,7 +235,7 @@ class CommandLineReport(object):
                         person.get_gramps_id(),
                         name_displayer.display(person)))
                 self.options_help[name].append(id_list)
-            elif isinstance(option, gen.plug.menu.FamilyOption):
+            elif isinstance(option, FamilyOption):
                 id_list = []
                 for fhandle in self.database.iter_family_handles():
                     family = self.database.get_family_from_handle(fhandle)
@@ -251,31 +255,31 @@ class CommandLineReport(object):
                         (family.get_gramps_id(), fname, mname)
                     id_list.append(text)
                 self.options_help[name].append(id_list)
-            elif isinstance(option, gen.plug.menu.NoteOption):
+            elif isinstance(option, NoteOption):
                 id_list = []
                 for nhandle in self.database.get_note_handles():
                     note = self.database.get_note_from_handle(nhandle)
                     id_list.append(note.get_gramps_id())
                 self.options_help[name].append(id_list)
-            elif isinstance(option, gen.plug.menu.MediaOption):
+            elif isinstance(option, MediaOption):
                 id_list = []
                 for mhandle in self.database.get_media_object_handles():
                     mobject = self.database.get_object_from_handle(mhandle)
                     id_list.append(mobject.get_gramps_id())
                 self.options_help[name].append(id_list)
-            elif isinstance(option, gen.plug.menu.PersonListOption):
+            elif isinstance(option, PersonListOption):
                 self.options_help[name].append("")
-            elif isinstance(option, gen.plug.menu.NumberOption):
+            elif isinstance(option, NumberOption):
                 self.options_help[name].append("A number")
-            elif isinstance(option, gen.plug.menu.BooleanOption):
+            elif isinstance(option, BooleanOption):
                 self.options_help[name].append(["0\tno", "1\tyes"])
-            elif isinstance(option, gen.plug.menu.DestinationOption):
+            elif isinstance(option, DestinationOption):
                 self.options_help[name].append("A file system path")
-            elif isinstance(option, gen.plug.menu.StringOption):
+            elif isinstance(option, StringOption):
                 self.options_help[name].append("Any text")
-            elif isinstance(option, gen.plug.menu.TextOption):
+            elif isinstance(option, TextOption):
                 self.options_help[name].append("Any text")
-            elif isinstance(option, gen.plug.menu.EnumeratedListOption):
+            elif isinstance(option, EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
                     ilist.append("%s\t%s" % (value, description))
@@ -346,7 +350,7 @@ class CommandLineReport(object):
 
             # Read all style sheets available for this item
             style_file = self.option_class.handler.get_stylesheet_savefile()
-            self.style_list = StyleSheetList(style_file,default_style)
+            self.style_list = StyleSheetList(style_file, default_style)
 
             # Get the selected stylesheet
             style_name = self.option_class.handler.get_default_stylesheet_name()
@@ -394,6 +398,7 @@ class CommandLineReport(object):
 def cl_report(database, name, category, report_class, options_class, 
               options_str_dict):
     
+    err_msg = _("Failed to write report. ")
     clr = CommandLineReport(database, name, category, options_class, 
                             options_str_dict)
 
@@ -415,5 +420,9 @@ def cl_report(database, name, category, report_class, options_class,
         MyReport.begin_report()
         MyReport.write_report()
         MyReport.end_report()
+    except ReportError, msg:
+        (m1, m2) = msg.messages()
+        print err_msg
+        print m1
     except:
-        log.error("Failed to write report.", exc_info=True)
+        log.error(err_msg, exc_info=True)

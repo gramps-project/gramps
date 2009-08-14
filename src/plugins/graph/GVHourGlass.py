@@ -37,11 +37,12 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gen.plug import PluginManager
-from gen.plug.menu import PersonOption, BooleanOption, NumberOption, \
-                          EnumeratedListOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
+from Errors import ReportError
+from gen.plug import PluginManager
+from gen.plug.menu import (PersonOption, BooleanOption, NumberOption, 
+                          EnumeratedListOption)
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -94,6 +95,8 @@ class HourGlassReport(Report):
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
         self.colorize = menu.get_option_by_name('color').get_value()
         if self.colorize == 'colored':
             self.colors = colored

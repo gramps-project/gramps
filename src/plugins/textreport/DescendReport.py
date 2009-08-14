@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Reports/Text Reports/Descendant Report
+Reports/Text Reports/Descendant Report.
 """
 
 #------------------------------------------------------------------------
@@ -39,14 +39,14 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from gen.plug import PluginManager
-from gen.plug.menu import NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                            FONT_SANS_SERIF, 
-                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-import Sort
+                            FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gen.plug.menu import NumberOption, PersonOption
 from BasicUtils import name_displayer
+from Errors import ReportError
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 import DateHandler
+import Sort
 
 _BORN = _('b.')
 _DIED = _('d.')
@@ -80,6 +80,8 @@ class DescendantReport(Report):
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
         sort = Sort.Sort(self.database)
         self.by_birthdate = sort.by_birthdate
         
@@ -128,16 +130,16 @@ class DescendantReport(Report):
         self.doc.start_paragraph("DR-Title")
         name = name_displayer.display(self.center_person)
         title = _("Descendants of %s") % name
-        mark = IndexMark(title,INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = IndexMark(title, INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
-        self.dump(1,self.center_person)
+        self.dump(1, self.center_person)
 
-    def dump(self,level,person):
+    def dump(self, level, person):
 
-        self.doc.start_paragraph("DR-Level%d" % min(level,32),"%d." % level)
-        mark = ReportUtils.get_person_mark(self.database,person)
-        self.doc.write_text(name_displayer.display(person),mark)
+        self.doc.start_paragraph("DR-Level%d" % min(level, 32), "%d." % level)
+        mark = ReportUtils.get_person_mark(self.database, person)
+        self.doc.write_text(name_displayer.display(person), mark)
         self.dump_dates(person)
         self.doc.end_paragraph()
 
@@ -147,20 +149,20 @@ class DescendantReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
 
-            spouse_handle = ReportUtils.find_spouse(person,family)
+            spouse_handle = ReportUtils.find_spouse(person, family)
             if spouse_handle:
                 spouse = self.database.get_person_from_handle(spouse_handle)
-                mark = ReportUtils.get_person_mark(self.database,person)
-                self.doc.start_paragraph("DR-Spouse%d" % min(level,32))
+                mark = ReportUtils.get_person_mark(self.database, person)
+                self.doc.start_paragraph("DR-Spouse%d" % min(level, 32))
                 name = name_displayer.display(spouse)
-                self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name},mark)
+                self.doc.write_text(_("sp. %(spouse)s") % {'spouse':name}, mark)
                 self.dump_dates(spouse)
                 self.doc.end_paragraph()
 
             childlist = family.get_child_ref_list()[:]
             for child_ref in childlist:
                 child = self.database.get_person_from_handle(child_ref.ref)
-                self.dump(level+1,child)
+                self.dump(level+1, child)
 
 #------------------------------------------------------------------------
 #
@@ -183,11 +185,11 @@ class DescendantOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
         
-        gen = NumberOption(_("Generations"),10,1,15)
+        gen = NumberOption(_("Generations"), 10, 1, 15)
         gen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"gen",gen)
+        menu.add_option(category_name, "gen", gen)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Descendant Report."""
         f = FontStyle()
         f.set_size(12)
@@ -201,29 +203,29 @@ class DescendantOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("DR-Title",p)
+        default_style.add_paragraph_style("DR-Title", p)
 
         f = FontStyle()
         f.set_size(10)
-        for i in range(1,33):
+        for i in range(1, 33):
             p = ParagraphStyle()
             p.set_font(f)
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_first_indent(-0.5)
-            p.set_left_margin(min(10.0,float(i-0.5)))
+            p.set_left_margin(min(10.0, float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "level %d display.") % i)
-            default_style.add_paragraph_style("DR-Level%d" % min(i,32), p)
+            default_style.add_paragraph_style("DR-Level%d" % min(i, 32), p)
 
             p = ParagraphStyle()
             p.set_font(f)
             p.set_top_margin(ReportUtils.pt2cm(f.get_size()*0.125))
             p.set_bottom_margin(ReportUtils.pt2cm(f.get_size()*0.125))
-            p.set_left_margin(min(10.0,float(i-0.5)))
+            p.set_left_margin(min(10.0, float(i-0.5)))
             p.set_description(_("The style used for the "
                                 "spouse level %d display.") % i)
-            default_style.add_paragraph_style("DR-Spouse%d" % min(i,32), p)
+            default_style.add_paragraph_style("DR-Spouse%d" % min(i, 32), p)
 
 #------------------------------------------------------------------------
 #

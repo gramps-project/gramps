@@ -36,12 +36,13 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
+from BasicUtils import name_displayer
+from Errors import ReportError
 from gen.plug import PluginManager
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                     FONT_SANS_SERIF, INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from BasicUtils import name_displayer
 import DateHandler
 
 #------------------------------------------------------------------------
@@ -80,6 +81,8 @@ class KinshipReport(Report):
         self.inc_aunts   = menu.get_option_by_name('incaunts').get_value()
         pid              = menu.get_option_by_name('pid').get_value()
         self.person = database.get_person_from_gramps_id(pid)
+        if (self.person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.__db = database
         self.rel_calc = PluginManager.get_instance().get_relationship_calculator()

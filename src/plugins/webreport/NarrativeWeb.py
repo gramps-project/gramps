@@ -144,36 +144,6 @@ LOCATIONS = _('Alternate Locations')
 TMPL = _('Temple')
 ST = _('Status')
 
-# Repository Types from src/gen/lib/repotype.py
-UNKNOWN    = -1
-CUSTOM     = 0
-LIBRARY    = 1
-CEMETERY   = 2
-CHURCH     = 3
-ARCHIVE    = 4
-ALBUM      = 5
-WEBSITE    = 6
-BOOKSTORE  = 7
-COLLECTION = 8
-SAFE       = 9
-
-_CUSTOM = CUSTOM
-_DEFAULT = LIBRARY
-
-_DATAMAP = [
-    (UNKNOWN,    _("Unknown"),    "Unknown"),
-    (CUSTOM,     _("Custom"),     "Custom"),
-    (LIBRARY,    _("Library"),    "Library"),
-    (CEMETERY,   _("Cemetery"),   "Cemetery"),
-    (CHURCH,     _("Church"),     "Church"),
-    (ARCHIVE,    _("Archive"),    "Archive"),
-    (ALBUM,      _("Album"),      "Album"),
-    (WEBSITE,    _("Web site"),   "Web site"),
-    (BOOKSTORE,  _("Bookstore"),  "Bookstore"),
-    (COLLECTION, _("Collection"), "Collection"),
-    (SAFE,       _("Safe"),       "Safe"),
-    ]
-
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
 
@@ -772,7 +742,7 @@ class BasePage(object):
         """
         db = self.report.database
 
-        # Header contants
+        # Header constants
         xmllang = xml_lang()
         _META1 = 'name="generator" content="%s %s %s"' % (
                     const.PROGRAM_NAME, const.VERSION, const.URL_HOMEPAGE
@@ -2067,7 +2037,10 @@ class MediaPage(BasePage):
                 # TODO. Mixup url and path
                 # path = convert_disk_path_to_url(path)
                 url = self.report.build_url_fname(path, None, self.up)
-                hyper += Html('img', src=url, alt=html_escape(self.page_title))
+                if hyper:
+                    hyper += Html('img', src=url, alt=html_escape(self.page_title))
+                else:
+                    hyper = Html('img', src=url, alt=html_escape(self.page_title))
                 if target_exists:
                     mediadisplay += hyper  
                 else:

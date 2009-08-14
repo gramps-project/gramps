@@ -36,15 +36,16 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
+from BasicUtils import name_displayer
+from Errors import ReportError
+from gen.lib import ChildRefType
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                             FONT_SANS_SERIF, 
-                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from BasicUtils import name_displayer
+                             FONT_SANS_SERIF, INDEX_TYPE_TOC, 
+                             PARA_ALIGN_CENTER)
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
 
-from gen.lib import ChildRefType
 
 #------------------------------------------------------------------------
 #
@@ -89,6 +90,8 @@ class AncestorReport(Report):
         self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()
         pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
     def apply_filter(self, person_handle, index, generation=1):
         """

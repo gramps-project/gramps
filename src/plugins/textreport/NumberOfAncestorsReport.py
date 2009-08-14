@@ -40,13 +40,14 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from BasicUtils import name_displayer
+from Errors import ReportError
 from gen.plug import PluginManager
 from gen.plug.menu import PersonOption
-from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_TEXT
-from BasicUtils import name_displayer
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                             FONT_SANS_SERIF, PARA_ALIGN_CENTER,
                             INDEX_TYPE_TOC)
+from ReportBase import Report, MenuReportOptions, ReportUtils, CATEGORY_TEXT
 
 #------------------------------------------------------------------------
 #
@@ -71,6 +72,8 @@ class NumberOfAncestorsReport(Report):
         self.__db = database
         pid = options_class.menu.get_option_by_name('pid').get_value()
         self.__person = database.get_person_from_gramps_id(pid)
+        if (self.__person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
     def write_report(self):
         """

@@ -39,16 +39,17 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import gen.lib
+from BasicUtils import name_displayer as _nd
+from Errors import ReportError
+from gen.lib import FamilyRelType, Person
 from gen.plug import PluginManager
 from gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT
-from ReportBase import Bibliography, Endnotes
 from gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
                              FONT_SANS_SERIF, FONT_SERIF, 
                              INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_TEXT,
+                        Bibliography, Endnotes)
 import DateHandler
-from BasicUtils import name_displayer as _nd
 import Utils
 
 #------------------------------------------------------------------------
@@ -125,6 +126,8 @@ class DetDescendantReport(Report):
         self.inc_paths     = menu.get_option_by_name('incpaths').get_value()
         pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
 
         self.gen_handles = {}
         self.prev_gen_handles = {}
@@ -435,7 +438,7 @@ class DetDescendantReport(Report):
         """
         Write information about the person's spouse/mate.
         """
-        if person.get_gender() == gen.lib.Person.MALE:
+        if person.get_gender() == Person.MALE:
             mate_handle = family.get_mother_handle()
         else:
             mate_handle = family.get_father_handle()
@@ -446,7 +449,7 @@ class DetDescendantReport(Report):
             self.doc.start_paragraph("DDR-MoreHeader")
             name = _nd.display_formal(mate)
             mark = ReportUtils.get_person_mark(self.database, mate)
-            if family.get_relationship() == gen.lib.FamilyRelType.MARRIED:
+            if family.get_relationship() == FamilyRelType.MARRIED:
                 self.doc.write_text(_("Spouse: %s") % name, mark)
             else:
                 self.doc.write_text(_("Relationship with: %s") % name, mark)
