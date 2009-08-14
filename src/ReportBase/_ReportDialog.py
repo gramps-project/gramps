@@ -486,7 +486,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                                 )
                     return None
 
-            # selected path is an exsting file and we need a file
+            # selected path is an existing file and we need a file
             if os.path.isfile(self.target_path):
                 a = OptionDialog(_('File already exists'),
                                  _('You can choose to either overwrite the '
@@ -618,7 +618,7 @@ def report(dbstate, uistate, person, report_class, options_class,
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
             except IOError, msg:
-                ErrorDialog(_("Report could not be created"),str(msg))
+                ErrorDialog(_("Report could not be created"), str(msg))
             except Errors.ReportError, msg:
                 (m1, m2) = msg.messages()
                 ErrorDialog(m1, m2)
