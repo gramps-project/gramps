@@ -29,7 +29,6 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 # Python libraries
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
