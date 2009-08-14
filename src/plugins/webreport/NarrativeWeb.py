@@ -144,6 +144,36 @@ LOCATIONS = _('Alternate Locations')
 TMPL = _('Temple')
 ST = _('Status')
 
+# Repository Types from src/gen/lib/repotype.py
+UNKNOWN    = -1
+CUSTOM     = 0
+LIBRARY    = 1
+CEMETERY   = 2
+CHURCH     = 3
+ARCHIVE    = 4
+ALBUM      = 5
+WEBSITE    = 6
+BOOKSTORE  = 7
+COLLECTION = 8
+SAFE       = 9
+
+_CUSTOM = CUSTOM
+_DEFAULT = LIBRARY
+
+_DATAMAP = [
+    (UNKNOWN,    _("Unknown"),    "Unknown"),
+    (CUSTOM,     _("Custom"),     "Custom"),
+    (LIBRARY,    _("Library"),    "Library"),
+    (CEMETERY,   _("Cemetery"),   "Cemetery"),
+    (CHURCH,     _("Church"),     "Church"),
+    (ARCHIVE,    _("Archive"),    "Archive"),
+    (ALBUM,      _("Album"),      "Album"),
+    (WEBSITE,    _("Web site"),   "Web site"),
+    (BOOKSTORE,  _("Bookstore"),  "Bookstore"),
+    (COLLECTION, _("Collection"), "Collection"),
+    (SAFE,       _("Safe"),       "Safe"),
+    ]
+
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
 
