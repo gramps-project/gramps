@@ -376,6 +376,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 DeadParent(self.db,family,estimate_age),
                 LargeChildrenSpan(self.db,family,cbspan,estimate_age),
                 LargeChildrenAgeDiff(self.db,family,cspace,estimate_age),
+                MarriedRelation(self.db,family),
                 ]
 
             for rule in rule_list:
@@ -1495,6 +1496,23 @@ class InvalidDeathDate(PersonRule):
 
     def get_message(self):
         return _("Invalid death date")
+        
+class MarriedRelation(FamilyRule):
+    ID = 31
+    SEVERITY = Rule.WARNING
+    def __init__(self,db, obj):
+        FamilyRule.__init__(self,db, obj)
+
+    def broken(self):          
+        marr_date = get_marriage_date(self.db,self.obj)
+        marr_date_ok = marr_date > 0
+        married = self.obj.get_relationship() == gen.lib.FamilyRelType.MARRIED
+        if not married and marr_date_ok:
+            return False
+        return True
+
+    def get_message(self):
+        return _("Marriage event but not married")
 
 #-------------------------------------------------------------------------
 #
