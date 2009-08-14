@@ -122,7 +122,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.ok_button = self.glade.get_object('button79')
         self.help_button = self.glade.get_object('button103')
         self.cancel_button = self.glade.get_object('button81')
-        self.ok_button.connect('clicked',self.save)
+        self.ok_button.connect('clicked', self.save)
         self.ok_button.set_sensitive(not self.dbase.readonly)
         self.help_button.connect('clicked', lambda x: GrampsDisplay.help())
         self.cancel_button.connect('clicked', self.close)
@@ -131,14 +131,14 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
 
     def build_menu_names(self, obj):
         """
-        Build the menu name for the window manager
+        Build the menu name for the window manager.
         """
         return(_('Select media object'), None)
 
     def save(self, *obj):
         """
-        Callback function called with the save button is pressed.
-        The media object is updated, and callback called
+        Callback function called when the save button is pressed.
+        The media object is updated, and callback called.
         """
         description = unicode(self.description.get_text())
 
@@ -151,15 +151,15 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         filename = Utils.get_unicode_path(self.file_text.get_filename())
         full_file = filename
 
-        pname = unicode(Utils.media_path(self.dbase))
         if self.relpath.get_active():
+            pname = unicode(Utils.media_path(self.dbase))
+            if not os.path.exists(pname):
+                msgstr = _("Cannot import %s")
+                msgstr2 = _("Directory specified in preferences: Base path for relative media paths: %s does not exist. Change preferences or do not use relative path when importing")
+                ErrorDialog(msgstr % filename, msgstr2 % pname)
+                return
             filename = Utils.relative_path(filename, pname)
 
-        if not os.path.exists(pname):
-            msgstr = _("Cannot import %s")
-            msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr % filename, msgstr2)
-            return
 
         mtype = Mime.get_type(full_file)
         description = description or os.path.basename(filename)
@@ -179,7 +179,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
     def on_name_changed(self, *obj):
         """
         Called anytime the filename text window changes. Checks to
-        see if the file exists. If it does, the imgae is loaded into
+        see if the file exists. If it does, the image is loaded into
         the preview window.
         """
         fname = self.file_text.get_filename()
