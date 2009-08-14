@@ -116,6 +116,7 @@ class DetAncestorReport(Report):
         self.inc_events    = menu.get_option_by_name('incevents').get_value()
         self.inc_addr      = menu.get_option_by_name('incaddresses').get_value()
         self.inc_sources   = menu.get_option_by_name('incsources').get_value()
+        self.inc_srcnotes  = menu.get_option_by_name('incsrcnotes').get_value()
         self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
         pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
@@ -196,7 +197,8 @@ class DetAncestorReport(Report):
                             if self.inc_events:
                                 self.write_family_events(family)
         if self.inc_sources:
-            Endnotes.write_endnotes(self.bibli,self.database,self.doc)
+            Endnotes.write_endnotes(self.bibli, self.database, self.doc,
+                                    printnotes=self.inc_srcnotes)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
@@ -790,7 +792,12 @@ class DetAncestorOptions(MenuReportOptions):
         incsources = BooleanOption(_("Include sources"),False)
         incsources.set_help(_("Whether to include source references."))
         menu.add_option(category_name,"incsources",incsources)
-        
+
+        incsrcnotes = BooleanOption(_("Include sources notes"), False)
+        incsrcnotes.set_help(_("Whether to include source notes in the "
+            "Endnotes section. Only works if Include sources is selected."))
+        menu.add_option(category_name, "incsrcnotes", incsrcnotes)
+
         category_name = _("Missing information")        
 
         repplace = BooleanOption(_("Replace missing places with ______"),False)

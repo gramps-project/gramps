@@ -55,6 +55,13 @@ def add_endnote_styles(style_sheet):
     para.set_bottom_margin(0.25)
     para.set_description(_('The basic style used for the endnotes reference display.'))
     style_sheet.add_paragraph_style("Endnotes-Ref", para)
+    
+    para = ParagraphStyle()
+    para.set(lmargin=1.5)
+    para.set_top_margin(0.25)
+    para.set_bottom_margin(0.25)
+    para.set_description(_('The basic style used for the endnotes notes display.'))
+    style_sheet.add_paragraph_style("Endnotes-Notes", para)
 
 def cite_source(bibliography, obj):
     """
@@ -79,7 +86,7 @@ def cite_source(bibliography, obj):
                 txt += key
     return txt
 
-def write_endnotes(bibliography, database, doc):
+def write_endnotes(bibliography, database, doc, printnotes=False):
     """
     Write all the entries in the bibliography as endnotes.
     
@@ -89,6 +96,9 @@ def write_endnotes(bibliography, database, doc):
     @type database: GrampsDbBase
     @param doc: The document to write the endnotes into.
     @type doc: L{docgen.TextDoc}
+    @param printnotes: Indicate if the notes attached to a source must be
+            written too.
+    @type printnotes: bool
     """
     if bibliography.get_citation_count() == 0:
         return
@@ -127,6 +137,19 @@ def write_endnotes(bibliography, database, doc):
                 
                 rindex += 1
             doc.end_paragraph()
+        if printnotes:
+            note_list = source.get_note_list()
+            ind = 1
+            for notehandle in note_list: 
+                note = database.get_note_from_handle(notehandle)
+                doc.start_paragraph('Endnotes-Notes')
+                doc.write_text(_('Note %(ind)d - Type: %(type)s') % {
+                                'ind': ind,
+                                'type': str(note.get_type())})
+                doc.end_paragraph()
+                doc.write_styled_note(note.get_styledtext(), 
+                                               note.get_format(),'Endnotes-Notes')
+                ind += 1
 
 def _format_source_text(source):
     src_txt = ""
