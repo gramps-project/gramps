@@ -1508,8 +1508,7 @@ class MarriedRelation(FamilyRule):
         marr_date_ok = marr_date > 0
         married = self.obj.get_relationship() == gen.lib.FamilyRelType.MARRIED
         if not married and marr_date_ok:
-            return False
-        return True
+            return self.get_message
 
     def get_message(self):
         return _("Marriage event but not married")
