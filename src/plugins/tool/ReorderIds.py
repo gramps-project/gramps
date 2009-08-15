@@ -162,7 +162,6 @@ class ReorderIds(Tool.BatchTool):
                 find_next_id, table, commit, prefix):
         dups = []
         newids = {}
-        key_list = []
 
         for handle in table.keys():
             if self.uistate:
@@ -198,7 +197,7 @@ class ReorderIds(Tool.BatchTool):
             else:
                 dups.append(handle)
 
-        # go through the duplicates, looking for the first availble
+        # go through the duplicates, looking for the first available
         # handle that matches the new scheme.
     
         if self.uistate:

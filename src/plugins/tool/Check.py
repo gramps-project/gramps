@@ -30,7 +30,6 @@
 #-------------------------------------------------------------------------
 from __future__ import with_statement
 import os
-import sys
 import cStringIO
 
 from gettext import gettext as _
@@ -93,12 +92,12 @@ def low_level(db):
                     ('Note', db.note_map)]:
 
         print "Low-level repair: table: %s" % the_map[0]
-        if _table_low_level(db,the_map[1]):
+        if _table_low_level(db, the_map[1]):
             print "Done."
         else:
             print "Low-level repair: Problem with table: %s" % the_map[0]
-            return (False,the_map[0])
-    return (True,'')
+            return (False, the_map[0])
+    return (True, '')
 
 
 def _table_low_level(db,table):
@@ -111,7 +110,7 @@ def _table_low_level(db,table):
         )
 
     if not dup_handles:
-        print "    No dupes found for this table"
+        print "    No duplicates found for this table"
         return True
 
 #    import gen.db
@@ -128,9 +127,9 @@ def _table_low_level(db,table):
         for count in range(handle_list.count(handle)-1):
             try:
                 table_cursor.delete()
-                print "    Succesfully deleted dupe #%d" % (count+1)
+                print "    Successfully deleted duplicate #%d" % (count+1)
             except:
-                print "    Failed deleting dupe."
+                print "    Failed deleting duplicate."
                 return False
 
             try:
@@ -168,7 +167,7 @@ class Check(Tool.BatchTool):
         if self.db.__class__.__name__ == 'GrampsDBDir':
             low_level(self.db)
         
-        trans = self.db.transaction_begin("",batch=True)
+        trans = self.db.transaction_begin("", batch=True)
         self.db.disable_signals()
         checker = CheckIntegrity(dbstate, uistate, trans)
         checker.fix_encoding()
@@ -204,7 +203,7 @@ class Check(Tool.BatchTool):
 
         errs = checker.build_report(cli)
         if errs:
-            Report(uistate, checker.text.getvalue(),cli)
+            Report(uistate, checker.text.getvalue(), cli)
 
 #-------------------------------------------------------------------------
 #
@@ -254,7 +253,7 @@ class CheckIntegrity(object):
 
     def cleanup_deleted_name_formats(self):
         """
-        Permanently remove deleted name formats from db
+        Permanently remove deleted name formats from db.
         
         When user deletes custom name format those are not removed only marked
         as "inactive". This method does the cleanup of the name format table,
@@ -264,7 +263,7 @@ class CheckIntegrity(object):
         self.progress.set_pass(_('Looking for invalid name format references'),
                                self.db.get_number_of_people())
         
-        deleted_name_formats = [number for (number, name,fmt_str,act)
+        deleted_name_formats = [number for (number, name, fmt_str,act)
                                 in self.db.name_formats if not act]
         
         # remove the invalid references from all Name objects
@@ -296,7 +295,7 @@ class CheckIntegrity(object):
                 person.set_alternate_names(name_list)
             
             if p_changed or a_changed:
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person, self.trans)
                 self.removed_name_format.append(person_handle)
                 
             self.progress.step()
@@ -321,9 +320,9 @@ class CheckIntegrity(object):
                 for value in splist:
                     if value not in new_list:
                         new_list.append(value)
-                        self.duplicate_links.append((handle,value))
+                        self.duplicate_links.append((handle, value))
                 p.set_family_handle_list(new_list)
-                self.db.commit_person(p,self.trans)
+                self.db.commit_person(p, self.trans)
             self.progress.step()
 
     def fix_encoding(self):
@@ -335,7 +334,7 @@ class CheckIntegrity(object):
                 obj = self.db.get_object_from_handle(handle)
                 obj.path = Utils.fix_encoding( obj.path)
                 obj.desc = Utils.fix_encoding( obj.desc)
-                self.db.commit_media_object(obj,self.trans)
+                self.db.commit_media_object(obj, self.trans)
             # Once we are here, fix the mime string if not str
             if not isinstance(data[3], str):
                 obj = self.db.get_object_from_handle(handle)
@@ -346,7 +345,7 @@ class CheckIntegrity(object):
                         obj.mime = ""
                 except:
                     obj.mime = ""
-                self.db.commit_media_object(obj,self.trans)
+                self.db.commit_media_object(obj, self.trans)
             self.progress.step()
 
     def check_for_broken_family_links(self):
@@ -365,41 +364,41 @@ class CheckIntegrity(object):
                 if not father:
                     # The person referenced by the father handle does not exist in the database
                     family.set_father_handle(None)
-                    self.db.commit_family(family,self.trans)
-                    self.broken_parent_links.append((father_handle,family_handle))
+                    self.db.commit_family(family, self.trans)
+                    self.broken_parent_links.append((father_handle, family_handle))
                     father_handle = None
             if mother_handle:
                 mother = self.db.get_person_from_handle(mother_handle)
                 if not mother:
                     # The person referenced by the mother handle does not exist in the database
                     family.set_mother_handle(None)
-                    self.db.commit_family(family,self.trans)
-                    self.broken_parent_links.append((mother_handle,family_handle))
+                    self.db.commit_family(family, self.trans)
+                    self.broken_parent_links.append((mother_handle, family_handle))
                     mother_handle = None
 
             if father_handle and father and \
                     family_handle not in father.get_family_handle_list():
                 # The referenced father has no reference back to the family
-                self.broken_parent_links.append((father_handle,family_handle))
+                self.broken_parent_links.append((father_handle, family_handle))
                 father.add_family_handle(family_handle)
-                self.db.commit_person(father,self.trans)
+                self.db.commit_person(father, self.trans)
                 
             if mother_handle and mother and \
                     family_handle not in mother.get_family_handle_list():
                 # The referenced mother has no reference back to the family
-                self.broken_parent_links.append((mother_handle,family_handle))
+                self.broken_parent_links.append((mother_handle, family_handle))
                 mother.add_family_handle(family_handle)
-                self.db.commit_person(mother,self.trans)
+                self.db.commit_person(mother, self.trans)
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 child = self.db.get_person_from_handle(child_handle)
                 if child:
-                    if child_handle in [father_handle,mother_handle]:
+                    if child_handle in [father_handle, mother_handle]:
                         # The child is one of the parents: impossible
                         # Remove such child from the family
                         family.remove_child_ref(child_ref)
-                        self.db.commit_family(family,self.trans)
-                        self.broken_links.append((child_handle,family_handle))
+                        self.db.commit_family(family, self.trans)
+                        self.broken_links.append((child_handle, family_handle))
                         continue
                     if family_handle == child.get_main_parents_family_handle():
                         continue
@@ -407,14 +406,14 @@ class CheckIntegrity(object):
                            child.get_parent_family_handle_list():
                         # The referenced child has no reference to the family
                         family.remove_child_ref(child_ref)
-                        self.db.commit_family(family,self.trans)
-                        self.broken_links.append((child_handle,family_handle))
+                        self.db.commit_family(family, self.trans)
+                        self.broken_links.append((child_handle, family_handle))
                 else:
                     # The person referenced by the child handle
                     # does not exist in the database
                     family.remove_child_ref(child_ref)
-                    self.db.commit_family(family,self.trans)
-                    self.broken_links.append((child_handle,family_handle))
+                    self.db.commit_family(family, self.trans)
+                    self.broken_links.append((child_handle, family_handle))
 
             new_ref_list = []
             new_ref_handles = []
@@ -429,7 +428,7 @@ class CheckIntegrity(object):
 
             if replace:
                 family.set_child_ref_list(new_ref_list)
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
 
             self.progress.step()
             
@@ -441,13 +440,13 @@ class CheckIntegrity(object):
             new_list = list(set(phandle_list))
             if len(phandle_list) != len(new_list):
                 person.set_parent_family_handle_list(new_list)
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person, self.trans)
 
             for par_family_handle in person.get_parent_family_handle_list():
                 family = self.db.get_family_from_handle(par_family_handle)
                 if not family:
                     person.remove_parent_family_handle(par_family_handle)
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
                     continue
                 for child_handle in [child_ref.ref for child_ref
                                      in family.get_child_ref_list()]:
@@ -456,15 +455,15 @@ class CheckIntegrity(object):
                 else:
                     # Person is not a child in the referenced parent family
                     person.remove_parent_family_handle(par_family_handle)
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
                     self.broken_links.append((person_handle,family_handle))
             for family_handle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(family_handle)
                 if not family:
                     # The referenced family does not exist in database
                     person.remove_family_handle(family_handle)
-                    self.db.commit_person(person,self.trans)
-                    self.broken_links.append((person_handle,family_handle))
+                    self.db.commit_person(person, self.trans)
+                    self.broken_links.append((person_handle, family_handle))
                     continue
                 if family.get_father_handle() == person_handle:
                     continue
@@ -472,11 +471,11 @@ class CheckIntegrity(object):
                     continue
                 # The person is not a member of the referenced family
                 person.remove_family_handle(family_handle)
-                self.db.commit_person(person,self.trans)
-                self.broken_links.append((person_handle,family_handle))
+                self.db.commit_person(person, self.trans)
+                self.broken_links.append((person_handle, family_handle))
             self.progress.step()
 
-    def cleanup_missing_photos(self,cl=0):
+    def cleanup_missing_photos(self, cl=0):
 
         self.progress.set_pass(_('Looking for unused objects'),
                                len(self.db.get_media_object_handles()))
@@ -490,13 +489,13 @@ class CheckIntegrity(object):
                 person = self.db.get_person_from_handle(handle)
                 if person.has_media_reference(ObjectId):
                     person.remove_media_references([ObjectId])
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
 
             for handle in self.db.get_family_handles():
                 family = self.db.get_family_from_handle(handle)
                 if family.has_media_reference(ObjectId):
                     family.remove_media_references([ObjectId])
-                    self.db.commit_family(family,self.trans)
+                    self.db.commit_family(family, self.trans)
                     
             for handle in self.db.get_event_handles():
                 event = self.db.get_event_from_handle(handle)
@@ -508,13 +507,13 @@ class CheckIntegrity(object):
                 source = self.db.get_source_from_handle(handle)
                 if source.has_media_reference(ObjectId):
                     source.remove_media_references([ObjectId])
-                    self.db.commit_source(source,self.trans)
+                    self.db.commit_source(source, self.trans)
                 
             for handle in self.db.get_place_handles():
                 place = self.db.get_place_from_handle(handle)
                 if place.has_media_reference(ObjectId):
                     place.remove_media_references([ObjectId])
-                    self.db.commit_place(place,self.trans)
+                    self.db.commit_place(place, self.trans)
 
             self.removed_photo.append(ObjectId)
             self.db.remove_object(ObjectId,self.trans) 
@@ -532,7 +531,7 @@ class CheckIntegrity(object):
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)
-                    self.db.commit_media_object(obj,self.trans)
+                    self.db.commit_media_object(obj, self.trans)
                     self.replaced_photo.append(ObjectId)
                 else:
                     self.bad_photo.append(ObjectId)
@@ -689,7 +688,7 @@ class CheckIntegrity(object):
         else :
             return data[2:] == empty_data[2:]
 
-    def cleanup_empty_families(self,automatic):
+    def cleanup_empty_families(self, automatic):
 
         fhandle_list = self.db.get_family_handles()
 
@@ -708,12 +707,12 @@ class CheckIntegrity(object):
                 self.empty_family.append(family_id)
                 self.delete_empty_family(family_handle)
 
-    def delete_empty_family(self,family_handle):
+    def delete_empty_family(self, family_handle):
         for key in self.db.get_person_handles(sort_handles=False):
             child = self.db.get_person_from_handle(key)
             child.remove_parent_family_handle(family_handle)
             child.remove_family_handle(family_handle)
-        self.db.remove_family(family_handle,self.trans)
+        self.db.remove_family(family_handle, self.trans)
 
     def check_parent_relationships(self):
         """Repair father=female or mother=male in hetero families
@@ -747,7 +746,7 @@ class CheckIntegrity(object):
                 # swap. note: (at most) one handle may be None
                 family.set_father_handle(mother_handle)
                 family.set_mother_handle(father_handle)
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
                 self.fam_rel.append(family_handle)
 
     def check_events(self):
@@ -767,13 +766,13 @@ class CheckIntegrity(object):
                     # The birth event referenced by the birth handle
                     # does not exist in the database
                     person.set_birth_ref(None)
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
                     self.invalid_events.append(key)
                 else:
                     if int(birth.get_type()) != gen.lib.EventType.BIRTH:
                         # Birth event was not of the type "Birth"
                         birth.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
-                        self.db.commit_event(birth,self.trans)
+                        self.db.commit_event(birth, self.trans)
                         self.invalid_birth_events.append(key)
             death_ref = person.get_death_ref()
             if death_ref:
@@ -783,13 +782,13 @@ class CheckIntegrity(object):
                     # The death event referenced by the death handle
                     # does not exist in the database
                     person.set_death_ref(None)
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
                     self.invalid_events.append(key)
                 else:
                     if int(death.get_type()) != gen.lib.EventType.DEATH:
                         # Death event was not of the type "Death"
                         death.set_type(gen.lib.EventType(gen.lib.EventType.DEATH))
-                        self.db.commit_event(death,self.trans)
+                        self.db.commit_event(death, self.trans)
                         self.invalid_death_events.append(key)
 
             if person.get_event_ref_list():
@@ -806,7 +805,7 @@ class CheckIntegrity(object):
             elif not isinstance(person.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 person.set_event_ref_list([])
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person, self.trans)
                 self.invalid_events.append(key)
 
         for key in self.db.get_family_handles():
@@ -823,12 +822,12 @@ class CheckIntegrity(object):
                         nlist = [ x for x in family.get_event_ref_list() \
                                       if x.ref != event_handle]
                         family.set_event_ref_list(nlist)
-                        self.db.commit_family(family,self.trans)
+                        self.db.commit_family(family, self.trans)
                         self.invalid_events.append(key)
             elif not isinstance(family.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 family.set_event_ref_list([])
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
                 self.invalid_events.append(key)
 
     def check_person_references(self):
@@ -844,7 +843,7 @@ class CheckIntegrity(object):
                 if not p:
                     # The referenced person does not exist in the database
                     person.get_person_ref_list().remove(pref)
-                    self.db.commit_person(person,self.trans)
+                    self.db.commit_person(person, self.trans)
                     self.invalid_person_references.append(key)
 
     def check_dates(self):
@@ -939,7 +938,7 @@ class CheckIntegrity(object):
                               new_person_ref_list,    # 20
                               )
                 p = gen.lib.Person(new_person)
-                self.db.commit_person(p,self.trans)
+                self.db.commit_person(p, self.trans)
                 self.invalid_dates.append(handle)
             self.progress.step()
 
@@ -994,7 +993,7 @@ class CheckIntegrity(object):
                               change, marker, private)
                 f = gen.lib.Family()
                 f.unserialize(new_family)
-                self.db.commit_family(f,self.trans)
+                self.db.commit_family(f, self.trans)
                 self.invalid_dates.append(handle)
             self.progress.step()
 
@@ -1011,7 +1010,7 @@ class CheckIntegrity(object):
                 if not r:
                     # The referenced repository does not exist in the database
                     source.get_reporef_list().remove(reporef)
-                    self.db.commit_source(source,self.trans)
+                    self.db.commit_source(source, self.trans)
                     self.invalid_repo_references.append(key)
 
     def check_place_references(self):
@@ -1030,7 +1029,7 @@ class CheckIntegrity(object):
                     if not place:
                         # The referenced place does not exist in the database
                         ordinance.set_place_handle("")
-                        self.db.commit_person(person,self.trans)
+                        self.db.commit_person(person, self.trans)
                         self.invalid_place_references.append(key)
         # check families -> the LdsOrd references a place
         for key in flist:
@@ -1042,7 +1041,7 @@ class CheckIntegrity(object):
                     if not place:
                         # The referenced place does not exist in the database
                         ordinance.set_place_handle("")
-                        self.db.commit_family(family,self.trans)
+                        self.db.commit_family(family, self.trans)
                         self.invalid_place_references.append(key)
         # check events
         for key in elist:
@@ -1053,7 +1052,7 @@ class CheckIntegrity(object):
                 if not place:
                     # The referenced place does not exist in the database
                     event.set_place_handle("")
-                    self.db.commit_event(event,self.trans)
+                    self.db.commit_event(event, self.trans)
                     self.invalid_place_references.append(key)
 
     def check_source_references(self):
@@ -1099,7 +1098,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 family.remove_source_references(bad_handles)
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
@@ -1131,7 +1130,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 repo.remove_source_references(bad_handles)
-                self.db.commit_repository(repo,self.trans)
+                self.db.commit_repository(repo, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
@@ -1148,7 +1147,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 source.remove_source_references(bad_handles)
-                self.db.commit_source(source,self.trans)
+                self.db.commit_source(source, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
@@ -1164,7 +1163,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 obj.remove_source_references(bad_handles)
-                self.db.commit_media_object(obj,self.trans)
+                self.db.commit_media_object(obj, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
@@ -1180,7 +1179,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 event.remove_source_references(bad_handles)
-                self.db.commit_event(event,self.trans)
+                self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
@@ -1210,7 +1209,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 person.remove_media_references(bad_handles)
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
@@ -1226,7 +1225,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 family.remove_media_references(bad_handles)
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
@@ -1242,7 +1241,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 place.remove_media_references(bad_handles)
-                self.db.commit_place(place,self.trans)
+                self.db.commit_place(place, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
@@ -1258,7 +1257,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 event.remove_media_references(bad_handles)
-                self.db.commit_event(event,self.trans)
+                self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
@@ -1274,7 +1273,7 @@ class CheckIntegrity(object):
                             item[1] not in known_handles ]
             if bad_handles:
                 source.remove_media_references(bad_handles)
-                self.db.commit_source(source,self.trans)
+                self.db.commit_source(source, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
@@ -1307,7 +1306,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 person.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_person(person,self.trans)
+                self.db.commit_person(person, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1324,7 +1323,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 family.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_family(family,self.trans)
+                self.db.commit_family(family, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1341,7 +1340,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 place.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_place(place,self.trans)
+                self.db.commit_place(place, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1358,7 +1357,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 source.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_source(source,self.trans)
+                self.db.commit_source(source, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1375,7 +1374,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 obj.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_media_object(obj,self.trans)
+                self.db.commit_media_object(obj, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1392,7 +1391,7 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 event.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_event(event,self.trans)
+                self.db.commit_event(event, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
@@ -1409,12 +1408,12 @@ class CheckIntegrity(object):
             for bad_handle in bad_handles:
                 repo.remove_note(bad_handle)
             if bad_handles:
-                self.db.commit_repository(repo,self.trans)
+                self.db.commit_repository(repo, self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_note_references]
                 self.invalid_note_references += new_bad_handles
 
-    def build_report(self,cl=0):
+    def build_report(self, cl=0):
         self.progress.close()
         bad_photos = len(self.bad_photo)
         replaced_photos = len(self.replaced_photo)
@@ -1467,7 +1466,7 @@ class CheckIntegrity(object):
         if blink > 0:
             self.text.write(ngettext("%d broken child/family link was fixed\n", \
             "%d broken child-family links were found\n", blink) % blink)
-            for (person_handle,family_handle) in self.broken_links:
+            for (person_handle, family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
                     cn = person.get_primary_name().get_name()
@@ -1475,16 +1474,16 @@ class CheckIntegrity(object):
                     cn = _("Non existing child")
                 try:
                     family = self.db.get_family_from_handle(family_handle)
-                    pn = Utils.family_name(family,self.db)
+                    pn = Utils.family_name(family, self.db)
                 except:
                     pn = _("Unknown")
                 self.text.write('\t')
-                self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
+                self.text.write(_("%s was removed from the family of %s\n") % (cn, pn))
 
         if plink > 0:
             self.text.write(ngettext("%d broken spouse/family link was fixed\n", \
             "%d broken spouse/family links were found\n", plink) % plink)
-            for (person_handle,family_handle) in self.broken_parent_links:
+            for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
                     cn = person.get_primary_name().get_name()
@@ -1492,16 +1491,16 @@ class CheckIntegrity(object):
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
-                    pn = Utils.family_name(family,self.db)
+                    pn = Utils.family_name(family, self.db)
                 else:
                     pn = family_handle
                 self.text.write('\t')
-                self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+                self.text.write(_("%s was restored to the family of %s\n") % (cn, pn))
 
         if slink > 0:
             self.text.write(ngettext("%d duplicate spouse/family link was found\n", \
             "%d duplicate spouse/family links were found\n", slink) % slink)
-            for (person_handle,family_handle) in self.broken_parent_links:
+            for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
                     cn = person.get_primary_name().get_name()
@@ -1509,11 +1508,11 @@ class CheckIntegrity(object):
                     cn = _("Non existing person")
                 family = self.db.get_family_from_handle(family_handle)
                 if family:
-                    pn = Utils.family_name(family,self.db)
+                    pn = Utils.family_name(family, self.db)
                 else:
                     pn = _("None")
                 self.text.write('\t')
-                self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
+                self.text.write(_("%s was restored to the family of %s\n") % (cn, pn))
 
         if efam == 1:
             self.text.write(_("%d family with no parents or children found, removed.\n"))
@@ -1623,7 +1622,7 @@ class Report(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
         topDialog = Glade()
-        topDialog.get_object("close").connect('clicked',self.close)
+        topDialog.get_object("close").connect('clicked', self.close)
         window = topDialog.toplevel
         textwindow = topDialog.get_object("textwindow")
         textwindow.get_buffer().set_text(text)
@@ -1636,7 +1635,7 @@ class Report(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self, obj):
-        return (_('Check and Repair'),None)
+        return (_('Check and Repair'), None)
 
 #------------------------------------------------------------------------
 #
@@ -1648,8 +1647,8 @@ class CheckOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name,person_id=None):
-        Tool.ToolOptions.__init__(self, name,person_id)
+    def __init__(self, name, person_id=None):
+        Tool.ToolOptions.__init__(self, name, person_id)
 
 #------------------------------------------------------------------------
 #
