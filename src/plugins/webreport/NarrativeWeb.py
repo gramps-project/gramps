@@ -2453,6 +2453,7 @@ class SourceListPage(BasePage):
             # begin sourcelist table and table head
             with Html('table', class_='infolist sourcelist') as table:
                 section += table 
+
                 thead = Html('thead')
                 table += thead
                 trow = Html('tr')
@@ -2460,9 +2461,7 @@ class SourceListPage(BasePage):
 
                 for (label, colclass) in [
                     (None,                    'RowLabel'),
-                    (_('Name'),                 'Name'),
-                    (DHEAD,                     'Date'),
-                    (_('Page/ Volume'),     'Page') ]:
+                    (_('Name'),                 'Name') ]:
 
                     label = label or '&nbsp;'
                     trow += Html('th', label, class_='Column%s' % colclass, inline=True)
@@ -2972,8 +2971,8 @@ class IndividualPage(BasePage):
 
             # display associations
             assocs = self.person.get_person_ref_list()
-            if assocs: 
-                Individualdetail += self.display_ind_associations(assocs)
+            if assocs:
+                individualdetail += self.display_ind_associations(assocs)
 
             # display pedigree
             sect13 = self.display_ind_pedigree()
@@ -3187,7 +3186,6 @@ class IndividualPage(BasePage):
                         index += 1
 
         # return section to its callers
-        section.write()
         return section
 
     def display_ind_pedigree(self):
