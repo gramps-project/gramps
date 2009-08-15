@@ -64,6 +64,11 @@ class WriterOptionBox(object):
         self.unlinked_check = None
         self.filter_obj = None
         self.filter_note = None
+        # The following are special properties. Create them to force the
+        # export wizard to not ask for a file, and to override the 
+        # confirmation message:
+        #self.no_fileselect = True
+        #self.confirm_text = "You made it, kid!"
 
     def get_option_box(self):
         """Build up a gtk.Table that contains the standard options."""
