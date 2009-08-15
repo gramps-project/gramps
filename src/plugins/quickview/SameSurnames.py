@@ -24,7 +24,7 @@
 #
 
 """
-Display a people who have a person's same surname or given name
+Display a people who have a person's same surname or given name.
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
@@ -41,7 +41,7 @@ class IncompleteSurname(Rule):
     name        = _('People with incomplete surnames')
     description = _("Matches people with lastname missing")
     category    = _('General filters')
-    def apply(self,db,person):
+    def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_group_name() == "":
                 return True
@@ -50,10 +50,10 @@ class IncompleteSurname(Rule):
 class SameSurname(Rule):
     """People with same surname"""
     labels      = [_('Substring:')]
-    name        = _('People matching the <name>')
+    name        = _('People matching the <surname>')
     description = _("Matches people with same lastname")
     category    = _('General filters')
-    def apply(self,db,person):
+    def apply(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.surname and name.surname.upper() == src.upper():
@@ -66,7 +66,7 @@ class SameGiven(Rule):
     name        = _('People matching the <given>')
     description = _("Matches people with same given name")
     category    = _('General filters')
-    def apply(self,db,person):
+    def apply(self, db, person):
         src = self.list[0].upper()
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.first_name:
@@ -83,7 +83,7 @@ class IncompleteGiven(Rule):
     name        = _('People with incomplete given names')
     description = _("Matches people with firstname missing")
     category    = _('General filters')
-    def apply(self,db,person):
+    def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_first_name() == "":
                 return True
@@ -91,7 +91,7 @@ class IncompleteGiven(Rule):
 
 def run(database, document, person):
     """
-    Loops through the families that the person is a child in, and display
+    Loops through the families that the person is a child in, and displays
     the information about the other children.
     """
     # setup the simple access functions
@@ -132,7 +132,7 @@ def run(database, document, person):
 
 def run_given(database, document, person):
     """
-    Loops through the families that the person is a child in, and display
+    Loops through the families that the person is a child in, and displays
     the information about the other children.
     """
     # setup the simple access functions
