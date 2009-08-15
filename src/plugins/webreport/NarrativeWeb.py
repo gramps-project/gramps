@@ -4587,7 +4587,7 @@ class NavWebReport(Report):
 
         PlaceListPage(self, self.title, place_list, source_list)
 
-        for place in place_list.keys():
+        for place in place_list:
             PlacePage(self, self.title, place, source_list, place_list)
             self.progress.step()
 
