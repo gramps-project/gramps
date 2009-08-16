@@ -1511,7 +1511,7 @@ class MarriedRelation(FamilyRule):
             return self.get_message
 
     def get_message(self):
-        return _("Marriage event but not married")
+        return _("Marriage date but not married")
 
 #-------------------------------------------------------------------------
 #
