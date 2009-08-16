@@ -3506,7 +3506,7 @@ msgstr "Ingen aktiv person valgt."
 #: ../src/DataViews/GeoView.py:1676
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
-msgstr "Alle %(name)s persons familiesteder i slektstreet med koordinater."
+msgstr "Alle %(name)s familiesteder i slektstreet med koordinater."
 
 #: ../src/DataViews/GeoView.py:1720
 #, python-format
@@ -3846,7 +3846,7 @@ msgstr "Velg personkolonner"
 
 #: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
-msgstr "Den aktive personens er ikke synlig"
+msgstr "Den aktive personen er ikke synlig"
 
 #: ../src/DataViews/PersonView.py:580 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
