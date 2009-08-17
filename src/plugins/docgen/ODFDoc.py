@@ -38,6 +38,7 @@ import locale
 from cStringIO import StringIO
 from math import pi, cos, sin
 from xml.sax.saxutils import escape
+import operator
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +52,7 @@ from gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc,
                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT, 
                     INDEX_TYPE_ALP, PARA_ALIGN_RIGHT)
 from gen.plug.docgen.fontscale import string_width
+from libodfbackend import OdfBackend
 import const
 from ReportBase import ReportUtils
 import ImgManip
@@ -75,6 +77,14 @@ _esc_map = {
 
 #-------------------------------------------------------------------------
 #
+# regexp for Styled Notes ...
+#
+#-------------------------------------------------------------------------
+import re
+NewStyle = re.compile('style-name="([a-zA-Z0-9]*)__([#a-zA-Z0-9 ]*)__">')
+
+#-------------------------------------------------------------------------
+#
 # ODFDoc
 #
 #-------------------------------------------------------------------------
@@ -84,6 +94,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         BaseDoc.__init__(self, styles, type)
         self.media_list = []
         self.cntnt = None
+        self._backend = None
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
@@ -91,6 +102,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.new_cell = 0
         self.page = 0
         self.first_page = 1
+        self.StyleList = [] # styles to create depending on styled notes.
 
     def open(self, filename):
         t = time.localtime(time.time())
@@ -102,7 +114,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.filename = filename
 
         self.filename = os.path.normpath(os.path.abspath(self.filename))
+        self._backend = OdfBackend()
         self.cntnt = StringIO()
+        self.cntnt1 = StringIO()
+        self.cntnt2 = StringIO()
 
     def init(self):
 
@@ -116,51 +131,52 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         else:
             self.lang = "en-US"
 
-        self.cntnt.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.cntnt.write('<office:document-content ')
-        self.cntnt.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
-        self.cntnt.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
-        self.cntnt.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
-        self.cntnt.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
-        self.cntnt.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
-        self.cntnt.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
-        self.cntnt.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
-        self.cntnt.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.cntnt.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.cntnt.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" ')
-        self.cntnt.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
-        self.cntnt.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
-        self.cntnt.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
-        self.cntnt.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
-        self.cntnt.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
-        self.cntnt.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
-        self.cntnt.write('xmlns:dom="http://www.w3.org/2001/xml-events" ')
-        self.cntnt.write('xmlns:xforms="http://www.w3.org/2002/xforms" ')
-        self.cntnt.write('office:class="text" office:version="1.0">\n')
-        self.cntnt.write('<office:scripts/>\n')
-        self.cntnt.write('<office:font-face-decls>\n')
-        self.cntnt.write('<style:font-face style:name="Courier" svg:font-family="Courier" ')
-        self.cntnt.write('style:font-family-generic="modern" style:font-pitch="fixed"/>\n')
-        self.cntnt.write('<style:font-face style:name="Times New Roman" ')
-        self.cntnt.write('svg:font-family="&apos;Times New Roman&apos;" ')
-        self.cntnt.write('style:font-family-generic="roman" ')
-        self.cntnt.write('style:font-pitch="variable"/>\n')
-        self.cntnt.write('<style:font-face style:name="Arial" ')
-        self.cntnt.write('svg:font-family="Arial" ')
-        self.cntnt.write('style:font-family-generic="swiss" ')
-        self.cntnt.write('style:font-pitch="variable"/>\n')
-        self.cntnt.write('</office:font-face-decls>\n')
-        self.cntnt.write('<office:automatic-styles>\n')
-        self.cntnt.write('<style:style style:name="docgen_page_break" style:family="paragraph" ')
-        self.cntnt.write('style:parent-style-name="Standard">\n')
-        self.cntnt.write('<style:paragraph-properties fo:break-before="page"/>\n')
-        self.cntnt.write('</style:style>\n')
-        self.cntnt.write('<style:style style:name="GSuper" style:family="text">')
-        self.cntnt.write('<style:text-properties style:text-position="super 58%"/>')
-        self.cntnt.write('</style:style>\n')
-        self.cntnt.write('<style:style style:name="GRAMPS-preformat" style:family="text">')
-        self.cntnt.write('<style:text-properties style:font-name="Courier"/>')
-        self.cntnt.write('</style:style>\n')
+        self.StyleList = [] # styles to create depending on styled notes.
+        self.cntnt1.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        self.cntnt1.write('<office:document-content ')
+        self.cntnt1.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
+        self.cntnt1.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
+        self.cntnt1.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
+        self.cntnt1.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
+        self.cntnt1.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
+        self.cntnt1.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
+        self.cntnt1.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
+        self.cntnt1.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
+        self.cntnt1.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
+        self.cntnt1.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" ')
+        self.cntnt1.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
+        self.cntnt1.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
+        self.cntnt1.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
+        self.cntnt1.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
+        self.cntnt1.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
+        self.cntnt1.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
+        self.cntnt1.write('xmlns:dom="http://www.w3.org/2001/xml-events" ')
+        self.cntnt1.write('xmlns:xforms="http://www.w3.org/2002/xforms" ')
+        self.cntnt1.write('office:class="text" office:version="1.0">\n')
+        self.cntnt1.write('<office:scripts/>\n')
+        self.cntnt1.write('<office:font-face-decls>\n')
+        self.cntnt1.write('<style:font-face style:name="Courier" svg:font-family="Courier" ')
+        self.cntnt1.write('style:font-family-generic="modern" style:font-pitch="fixed"/>\n')
+        self.cntnt1.write('<style:font-face style:name="Times New Roman" ')
+        self.cntnt1.write('svg:font-family="&apos;Times New Roman&apos;" ')
+        self.cntnt1.write('style:font-family-generic="roman" ')
+        self.cntnt1.write('style:font-pitch="variable"/>\n')
+        self.cntnt1.write('<style:font-face style:name="Arial" ')
+        self.cntnt1.write('svg:font-family="Arial" ')
+        self.cntnt1.write('style:font-family-generic="swiss" ')
+        self.cntnt1.write('style:font-pitch="variable"/>\n')
+        self.cntnt2.write('</office:font-face-decls>\n')
+        self.cntnt2.write('<office:automatic-styles>\n')
+        self.cntnt2.write('<style:style style:name="docgen_page_break" style:family="paragraph" ')
+        self.cntnt2.write('style:parent-style-name="Standard">\n')
+        self.cntnt2.write('<style:paragraph-properties fo:break-before="page"/>\n')
+        self.cntnt2.write('</style:style>\n')
+        self.cntnt2.write('<style:style style:name="GSuper" style:family="text">')
+        self.cntnt2.write('<style:text-properties style:text-position="super 58%"/>')
+        self.cntnt2.write('</style:style>\n')
+        self.cntnt2.write('<style:style style:name="GRAMPS-preformat" style:family="text">')
+        self.cntnt2.write('<style:text-properties style:font-name="Courier"/>')
+        self.cntnt2.write('</style:style>\n')
         
         styles = self.get_style_sheet()
 
@@ -359,6 +375,16 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('<style:style style:name="Tbold" style:family="text">\n')
         self.cntnt.write('<style:text-properties fo:font-weight="bold"/>\n')
         self.cntnt.write('</style:style>\n')
+        self.cntnt.write('<style:style style:name="Titalic" style:family="text">\n')
+        self.cntnt.write('<style:text-properties fo:font-style="italic"/>\n')
+        self.cntnt.write('</style:style>\n')
+        self.cntnt.write('<style:style style:name="Tunderline" ')
+        self.cntnt.write('style:family="text">\n')
+        self.cntnt.write('<style:text-properties ')
+        self.cntnt.write('style:text-underline-style="solid" ')
+        self.cntnt.write('style:text-underline-width="auto" ')
+        self.cntnt.write('style:text-underline-color="font-color"/>')
+        self.cntnt.write('</style:style>\n')
 
         #Begin photo style
         self.cntnt.write('<style:style style:name="Left" style:family="graphic"')
@@ -425,10 +451,22 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('form:automatic-focus="false" ')
         self.cntnt.write('form:apply-design-mode="false"/>\n')
 
+    def finish_cntnt_creation(self):
+        self.cntntx = StringIO()
+        self.add_styled_notes_fonts()
+        self.add_styled_notes_styles()
+        self.cntntx.write(self.cntnt1.getvalue())
+        self.cntntx.write(self.cntnt2.getvalue())
+        self.cntntx.write(self.cntnt.getvalue())
+        self.cntnt1.close()
+        self.cntnt2.close()
+        self.cntnt.close()
+
     def close(self):
         self.cntnt.write('</office:text>\n')
         self.cntnt.write('</office:body>\n')
         self.cntnt.write('</office:document-content>\n')
+        self.finish_cntnt_creation()
         self._write_styles_file()
         self._write_manifest()
         self._write_meta_file()
@@ -436,6 +474,41 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self._write_zip()
         if self.open_req:
             open_file_with_default_application(self.filename)
+
+    def add_styled_notes_fonts(self):
+        # Need to add new font for styled notes here.
+        for style in self.StyleList:
+            if ( style[0] == "FontFace" ):
+                self.cntnt1.write('<style:font-face style:name="%s"' % style[1] )
+                self.cntnt1.write(' svg:font-family="&apos;%s&apos;"' % style[1] )
+                self.cntnt1.write(' style:font-pitch="fixed"/>\n')
+
+    def add_styled_notes_styles(self):
+        # Need to add new style for styled notes here.
+        for style in self.StyleList:
+            if ( style[0] == "FontSize" ):
+                self.cntnt2.write('<style:style style:name="FontSize__%s__"' % style[1] )
+                self.cntnt2.write(' style:family="text">')
+                self.cntnt2.write(' <style:text-properties fo:font-size="%spt"' % style[1])
+                self.cntnt2.write(' style:font-size-asian="%spt"' % style[1])
+                self.cntnt2.write(' style:font-size-complex="%spt"/>' % style[1])
+                self.cntnt2.write('</style:style>\n')
+            elif ( style[0] == "FontColor" ):
+                self.cntnt2.write('<style:style style:name="FontColor__%s__"' % style[1] )
+                self.cntnt2.write(' style:family="text">')
+                self.cntnt2.write(' <style:text-properties fo:color="%s"/>' % style[1])
+                self.cntnt2.write('</style:style>\n')
+            elif ( style[0] == "FontHighlight" ):
+                self.cntnt2.write('<style:style style:name="FontColor__%s__"' % style[1] )
+                self.cntnt2.write(' style:family="text">')
+                self.cntnt2.write(' <style:text-properties fo:background-color="%s"/>' % style[1])
+                self.cntnt2.write('</style:style>\n')
+            elif ( style[0] == "FontFace" ):
+                self.cntnt2.write('<style:style style:name="FontFace__%s__"' % style[1] )
+                self.cntnt2.write(' style:family="text">')
+                self.cntnt2.write(' <style:text-properties style:font-name="%s"' % style[1] )
+                self.cntnt2.write(' style:font-pitch="variable"/>')
+                self.cntnt2.write('</style:style>\n')
 
     def add_media_object(self, file_name, pos, x_cm, y_cm, alt=''):
 
@@ -552,7 +625,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         t = time.localtime(time.time())[:6]
 
         self._add_zip(zfile, "META-INF/manifest.xml", self.mfile.getvalue(), t)
-        self._add_zip(zfile, "content.xml", self.cntnt.getvalue(), t)
+        self._add_zip(zfile, "content.xml", self.cntntx.getvalue(), t)
         self._add_zip(zfile, "meta.xml", self.meta.getvalue(), t)
         self._add_zip(zfile, "styles.xml", self.sfile.getvalue(), t)
         self._add_zip(zfile, "mimetype", self.mimetype.getvalue(), t)
@@ -880,6 +953,34 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
+
+    def write_styled_note(self, styledtext, format, style_name):
+        """
+        Convenience function to write a styledtext to the latex doc. 
+        styledtext : assumed a StyledText object to write
+        format : = 0 : Flowed, = 1 : Preformatted
+        style_name : name of the style to use for default presentation
+        """
+        text = str(styledtext)
+        s_tags = styledtext.get_tags()
+        markuptext = self._backend.add_markup_from_styled(text, s_tags)
+        # we need to know if we have new styles to add.
+        # if markuptext contains : FontColor, FontFace, FontSize or FontHighlight
+        # we must prepare the new styles for the styles.xml file.
+        # We are looking for the following format :
+        # style-name="([a-zA-Z0-9]*)__([a-zA-Z0-9 ])">
+        # The first element is the StyleType and the second one is the value
+        start = 0
+        while 1:
+            m = NewStyle.search(markuptext, start)
+            if not m:
+                break
+            self.StyleList.append([m.group(1), m.group(2)])
+            print [m.group(1), m.group(2)]
+            start = m.end()
+        self.cntnt.write('<text:p >')
+        self.cntnt.write(markuptext)
+        self.cntnt.write('</text:p>')
 
     def write_text(self, text, mark=None):
         """
