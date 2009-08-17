@@ -976,7 +976,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if not m:
                 break
             self.StyleList.append([m.group(1), m.group(2)])
-            print [m.group(1), m.group(2)]
             start = m.end()
         self.cntnt.write('<text:p >')
         self.cntnt.write(markuptext)
