@@ -3157,7 +3157,6 @@ class IndividualPage(BasePage):
 
                 assoc_row = [
                     (_('Relationship'),               'Relationship'),
-                    (_('Association'),                 'Association'),
                     (SHEAD,                              'Sources'),
                     (NHEAD,                              'Notes') ]
 
@@ -3175,7 +3174,6 @@ class IndividualPage(BasePage):
                     index = 0
                     for data in [
                         [person_ref.get_relation()],
-                        [person_ref.get_association()],
                         [self.get_citation_links(person_ref.get_source_references())],
                         [self.dump_notes(person_ref.get_note_list())] ]: 
 
