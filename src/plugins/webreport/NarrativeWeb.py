@@ -3129,8 +3129,11 @@ class IndividualPage(BasePage):
         return tree
 
     def display_ind_sources(self):
+        """
+        will create the "Source References" section for a person 
+        """
 
-        for sref in self.person.get_source_references():
+        for sref in self.person.get_source_referemces():
             self.bibli.add_reference(sref)
         sourcerefs = self.display_source_refs(self.bibli)
 
@@ -3488,13 +3491,14 @@ class IndividualPage(BasePage):
             trow = Html('tr')
             thead += trow
 
-            for (label, colclass) in [
+            attr_header_row = [
                 (AHEAD,     'Title'), 
                 (THEAD,     'Type'),
                 (VHEAD,     'Value'),
-                (SHEAD,     'Source'),
-                (NHEAD,    'Notes') ]:
+                (SHEAD,     'Sources'),
+                (NHEAD,    'Notes') ]
 
+            for (label, colclass) in attr_header_row:    
                 trow += Html('th', label, class_='Column%s' % colclass, inline=True)
 
             # begin table body
@@ -3506,17 +3510,19 @@ class IndividualPage(BasePage):
                 tbody += trow
 
                 attr_data_row = [
-                    ['Title',       None],        
-                    ['Type',       attr.get_type().xml_str()],
-                    ['Value',      attr.get_value()],
-                    ['Source',    self.get_citation_links(attr.get_source_references())],
-                    ['Note',       self.dump_notes(attr.get_note_list())]   
-                    ]
+                    (None),        
+                    (str(attr.get_type()) ),
+                    (attr.get_value()),
+                    (self.get_citation_links(attr.get_source_references()) ),
+                    (self.dump_notes(attr.get_note_list()) )  ]
 
-                for (colclass, value) in attr_data_row:
+                index = 0
+                for value in attr_data_row:
+                    colclass = attr_header_row[index][1]
 
                     value = value or '&nbsp;'
                     trow += Html('td', value, class_='Column%s' % colclass, inline=True)
+                    index += 1
 
         # return table to its callers
         return table
@@ -3641,9 +3647,9 @@ class IndividualPage(BasePage):
         if child_handle in self.ind_list:
             url = self.report.build_url_fname_html(child_handle, 'ppl', True)
             list += self.person_link(url, child, True, gid)
+
         else:
-            child_name = self.get_name(child)
-            list += child_name
+            list += self.get_name(child)
 
         # return list to its caller
         return list
@@ -5384,32 +5390,23 @@ def add_birthdate(db, childlist):
             birth_event = db.get_event_from_handle(birth_ref.ref)
             birth_date = birth_event.get_date_object()
         if birth_date is not None:
-                year = birth_date.get_year()
-                if year:
-                    year = str(year)
-                else:
-                    year = str(1001) 
-                month = birth_date.get_month()
-                if month:
-                    if 0 < month < 10:
-                        month = '0' + str(month)
-                    else:
-                        month = str(month)
-                else:
-                    month = str(12)
-                day = birth_date.get_day()
-                if day:
-                    if 0 < day < 10:
-                        day = '0' + str(day)
-                    else:
-                        day = str(day)
-                else:
-                    day = str(31)
+            year = birth_date.get_year()
+            if not year:
+                year = 2199 
+            month = birth_date.get_month()
+            if not month:
+                month = 12
+            day = birth_date.get_day()
+            if not day:
+                day = 31
         else:
-            year, month, day = str(1001), str(12), str(31)
-        date_obj = year + month + day
-        sorted_children.append((date_obj, child_handle))
+            year, month, day = 2199, 12, 31
 
+        # get birth date, if there is None, then give fake one...
+        birth_date = Date(year, month, day)
+        sorted_children.append((birth_date, child_handle))
+
+    # return the list of child handles and their birthdates
     return sorted_children
 
 # -------------------------------------------
