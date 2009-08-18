@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-17 15:52+0200\n"
-"PO-Revision-Date: 2009-08-17 18:11+0100\n"
+"PO-Revision-Date: 2009-08-18 11:37+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2646,11 +2646,11 @@ msgstr "Historique effacé"
 
 # trunk
 #: ../src/cli/arghandler.py:127
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: Input family tree \"%s\" does not exist.\n"
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead."
-msgstr "Si il s'agit du format gedcom, gramps-xml ou grdb, utilisez plutôt l'option -i pour importer dans un arbre familial."
+msgstr ""
 
 #: ../src/cli/arghandler.py:140
 #, python-format
@@ -2670,9 +2670,10 @@ msgid ""
 "   %(name)s"
 msgstr ""
 
+# trunk
 #: ../src/cli/arghandler.py:179
 msgid "OK to overwrite? (yes/no) "
-msgstr ""
+msgstr "D'accord pour écraser ? (oui/non)"
 
 # trunk
 #: ../src/cli/arghandler.py:180
@@ -2682,9 +2683,9 @@ msgstr "OUI"
 # enlever la référence
 # trunk
 #: ../src/cli/arghandler.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "Will overwrite the existing file: %s"
-msgstr "Enlever l'adresse existante"
+msgstr "Écrasera le fichier existant : %s"
 
 #: ../src/cli/arghandler.py:201
 #, python-format
@@ -2731,9 +2732,8 @@ msgstr ""
 # trunk
 #: ../src/cli/argparser.py:156
 #: ../src/cli/argparser.py:225
-#, fuzzy
 msgid "Error parsing the arguments"
-msgstr "Erreur d'enregistrement de la feuille de style"
+msgstr ""
 
 #: ../src/cli/argparser.py:158
 #, python-format
@@ -2790,16 +2790,16 @@ msgstr "Verrouillé par %s"
 
 # trunk
 #: ../src/cli/grampscli.py:76
-#, fuzzy, python-format
+#, python-format
 msgid "WARNING: %s"
-msgstr "Attention"
+msgstr "ATTENTION : %s"
 
 # trunk
 #: ../src/cli/grampscli.py:83
 #: ../src/cli/grampscli.py:199
-#, fuzzy, python-format
+#, python-format
 msgid "ERROR: %s"
-msgstr "Erreur"
+msgstr "ERREUR : %s"
 
 #: ../src/cli/grampscli.py:132
 msgid "Read only database"
@@ -2831,16 +2831,16 @@ msgstr "Cet arbre familial n'existe pas, puisqu'il a été supprimé."
 # trunk
 #. already errors encountered. Show first one on terminal and exit
 #: ../src/cli/grampscli.py:297
-#, fuzzy, python-format
+#, python-format
 msgid "Error encountered: %s"
-msgstr "Erreur de configuration"
+msgstr "Erreur rencontrée : %s"
 
 # trunk
 #: ../src/cli/grampscli.py:298
 #: ../src/cli/grampscli.py:304
-#, fuzzy, python-format
+#, python-format
 msgid "  Details: %s"
-msgstr "Afficher les détails"
+msgstr "  Détails : %s"
 
 #: ../src/cli/grampscli.py:302
 #, python-format
@@ -3410,45 +3410,38 @@ msgstr "0 jour"
 
 # trunk
 #: ../src/gen/lib/date.py:653
-#, fuzzy
 msgid "calendar|Gregorian"
-msgstr "Calendrier"
+msgstr "Grégorien"
 
 # trunk
 #: ../src/gen/lib/date.py:654
-#, fuzzy
 msgid "calendar|Julian"
-msgstr "Calendrier"
+msgstr "Julien"
 
 # trunk
 #: ../src/gen/lib/date.py:655
-#, fuzzy
 msgid "calendar|Hebrew"
-msgstr "Calendrier"
+msgstr "Hébreu"
 
 # trunk
 #: ../src/gen/lib/date.py:656
-#, fuzzy
 msgid "calendar|French Republican"
 msgstr "Républicain (France)"
 
 # trunk
 #: ../src/gen/lib/date.py:657
-#, fuzzy
 msgid "calendar|Persian"
-msgstr "Calendrier"
+msgstr "Persan"
 
 # trunk
 #: ../src/gen/lib/date.py:658
-#, fuzzy
 msgid "calendar|Islamic"
-msgstr "Calendrier"
+msgstr "Islamique"
 
 # trunk
 #: ../src/gen/lib/date.py:659
-#, fuzzy
 msgid "calendar|Swedish"
-msgstr "Calendrier"
+msgstr "Suédois"
 
 #: ../src/gen/lib/date.py:1590
 msgid "estimated"
@@ -3768,21 +3761,19 @@ msgstr "Aucune description fournie"
 
 # trunk
 #: ../src/gen/plug/docbackend/docbackend.py:140
-#, fuzzy
 msgid "Close file first"
-msgstr "Filtres sur l'enfant"
+msgstr "Fermez d'abord le fichier"
 
 # trunk
 #: ../src/gen/plug/docbackend/docbackend.py:150
-#, fuzzy
 msgid "No filename given"
-msgstr "Aucune latitude et longitude donnée"
+msgstr "Aucun nom de fichier donné"
 
 # trunk
 #: ../src/gen/plug/docbackend/docbackend.py:152
-#, fuzzy, python-format
+#, python-format
 msgid "File %s already open, close it first."
-msgstr "Le fichier existe déjà"
+msgstr ""
 
 #: ../src/gen/plug/docbackend/docbackend.py:158
 #: ../src/gen/plug/docbackend/docbackend.py:161
@@ -4294,7 +4285,6 @@ msgstr "Danger : ce code est instable !"
 
 # trunk
 #: ../src/gui/grampsgui.py:203
-#, fuzzy
 msgid ""
 "This GRAMPS 3.x-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -4320,9 +4310,8 @@ msgstr ""
 
 # trunk
 #: ../src/gui/grampsgui.py:277
-#, fuzzy
 msgid "Error parsing arguments"
-msgstr "Erreur de lecture de %s"
+msgstr ""
 
 #: ../src/gui/utils.py:184
 msgid "Please do not force closing this important dialog."
@@ -5565,13 +5554,12 @@ msgstr "Éditeur de filtre sur le lieu"
 
 # trunk
 #: ../src/DataViews/PlaceView.py:231
-#, fuzzy
 msgid "No map service is available."
-msgstr "Aucune description disponible"
+msgstr ""
 
 #: ../src/DataViews/PlaceView.py:232
 msgid "Check your installation."
-msgstr ""
+msgstr "Vérifiez votre installation."
 
 #: ../src/DataViews/PlaceView.py:240
 msgid "No place selected."
@@ -5991,42 +5979,34 @@ msgstr "_Données"
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:56
-#, fuzzy
 msgid "Family Events"
-msgstr ""
-"Événements familiaux triés\n"
-" %s - %s"
+msgstr "Événements familiaux"
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:57
-#, fuzzy
 msgid "Events father"
-msgstr "Nom du père"
+msgstr "Événements du père"
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:58
-#, fuzzy
 msgid "Events mother"
-msgstr "Mère inconnue"
+msgstr "Événements de la mère"
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:61
-#, fuzzy
 msgid "Add a new family event"
-msgstr "Ajouter un nouvel enfant à la famille"
+msgstr "Ajouter un nouvel événement familial"
 
 # enlever la référence à l'événement
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:62
-#, fuzzy
 msgid "Remove the selected family event"
-msgstr "Enlever l'événement sélectionné"
+msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:63
-#, fuzzy
 msgid "Edit the selected family event or edit person"
-msgstr "Éditer la famille sélectionnée"
+msgstr ""
 
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:62
@@ -6069,9 +6049,8 @@ msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:278
-#, fuzzy
 msgid "Cannot change Person"
-msgstr "Impossible d'enregistrer l'individu"
+msgstr "Impossible de changer d'individu"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:279
 msgid "You cannot change Person events in the Family Editor"
@@ -6148,15 +6127,13 @@ msgstr "Déplacer le nom sélectionné vers le bas"
 
 # trunk
 #: ../src/DisplayTabs/_NameEmbedList.py:75
-#, fuzzy
 msgid "Group As"
-msgstr "Enregistrer sous"
+msgstr "Grouper sous"
 
 # trunk
 #: ../src/DisplayTabs/_NameEmbedList.py:77
-#, fuzzy
 msgid "Note Preview"
-msgstr "Aperçu avant impression"
+msgstr "Aperçu de la note"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:85
 msgid "_Names"
@@ -6195,9 +6172,8 @@ msgstr "_Notes"
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:54
-#, fuzzy
 msgid "Personal Events"
-msgstr "Événements individuels des enfants"
+msgstr "Événements individuels"
 
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:55
 #, python-format
@@ -6206,52 +6182,44 @@ msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:56
-#, fuzzy
 msgid "<Unknown>"
-msgstr "Inconnu"
+msgstr "<Inconnu>"
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:59
-#, fuzzy
 msgid "Add a new personal event"
-msgstr "Ajouter un nouvel individu"
+msgstr ""
 
 # enlever la référence à l'événement
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:60
-#, fuzzy
 msgid "Remove the selected personal event"
-msgstr "Enlever l'événement sélectionné"
+msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:61
-#, fuzzy
 msgid "Edit the selected personal event or edit family"
-msgstr "Éditer la famille sélectionnée"
+msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:63
-#, fuzzy
 msgid "Move the selected event upwards or change family order"
-msgstr "Déplacer l'événement sélectionné vers le haut"
+msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:64
-#, fuzzy
 msgid "Move the selected event downwards or change family order"
-msgstr "Déplacer l'événement sélectionné vers le bas"
+msgstr ""
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:140
-#, fuzzy
 msgid "Cannot change Family"
-msgstr "Impossible d'enregistrer la famille"
+msgstr "Impossible de changer de famille"
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:141
-#, fuzzy
 msgid "You cannot change Family events in the Person Editor"
-msgstr "Trier les événements familiaux de l'individu"
+msgstr ""
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 msgid "Create and add a new association"
@@ -8242,58 +8210,64 @@ msgstr "Il semble que le répertoire cible est le répertoire de stockage des do
 
 # trunk
 #: ../src/plugins/docgen/HtmlDoc.py:529
-#, fuzzy, python-format
+#, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Impossible de créer le répertoire media %s"
+msgstr ""
 
 #: ../src/plugins/docgen/HtmlDoc.py:556
 msgid "HTML"
 msgstr "HTML"
 
+# trunk
 #: ../src/plugins/docgen/HtmlDoc.py:557
 msgid "Generates documents in HTML format."
-msgstr ""
+msgstr "Génère des documents au format HTML."
 
 #: ../src/plugins/docgen/LaTeXDoc.py:671
 msgid "LaTeX"
 msgstr "LaTeX"
 
+# trunk
 #: ../src/plugins/docgen/LaTeXDoc.py:672
 msgid "Generates documents in LaTeX format."
-msgstr ""
+msgstr "Génère des documents au format LaTeX."
 
 #: ../src/plugins/docgen/ODFDoc.py:1155
 msgid "Open Document Text"
 msgstr "Open Document Texte"
 
+# trunk
 #: ../src/plugins/docgen/ODFDoc.py:1156
 msgid "Generates documents in Open Document Text format (.odt)."
-msgstr ""
+msgstr "Génère des documents au format Open Document Text (.odt)."
 
 #: ../src/plugins/docgen/PSDrawDoc.py:364
 #: ../src/ReportBase/_GraphvizReportDialog.py:811
 msgid "PostScript"
 msgstr "PostScript"
 
+# trunk
 #: ../src/plugins/docgen/PSDrawDoc.py:365
 msgid "Generates documents in postscript format (.ps)."
-msgstr ""
+msgstr "Génère des documents au format postscript (.ps)."
 
 #: ../src/plugins/docgen/RTFDoc.py:447
 msgid "RTF document"
 msgstr "Document RTF"
 
+# trunk
 #: ../src/plugins/docgen/RTFDoc.py:448
 msgid "Generates documents in Rich Text format (.rtf)."
-msgstr ""
+msgstr "Génère des documents au format Rich Text (.rtf)."
 
 #: ../src/plugins/docgen/SvgDrawDoc.py:273
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
+# trunk
 #: ../src/plugins/docgen/SvgDrawDoc.py:274
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
-msgstr ""
+msgstr "Génère des documents au format Scalable Vector Graphics (.svg)."
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
@@ -8310,9 +8284,9 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:74
 #: ../src/plugins/textreport/KinshipReport.py:85
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:76
-#, fuzzy, python-format
+#, python-format
 msgid "Person %s is not in the Database"
-msgstr "Correspond à toutes les notes de la base"
+msgstr ""
 
 # de ou pour ?
 #: ../src/plugins/drawreport/AncestorTree.py:198
@@ -10762,9 +10736,8 @@ msgstr "Importer les données depuis des fichiers vCard"
 
 # trunk
 #: ../src/plugins/lib/libcairodoc.py:1540
-#, fuzzy
 msgid "Provides a library for using Cairo to generate documents."
-msgstr "Fournit l'information sur les jours fériés selon les pays."
+msgstr ""
 
 #: ../src/plugins/lib/libgrampsxml.py:50
 msgid "Provides common functionality for Gramps XML import/export."
@@ -10891,7 +10864,6 @@ msgstr "EniroMaps"
 
 # trunk
 #: ../src/plugins/mapservices/eniroswedenmap.py:190
-#, fuzzy
 msgid "Opens on kartor.eniro.se"
 msgstr "Ouvrir avec kartor.eniro.se"
 
@@ -11352,7 +11324,6 @@ msgstr "Type de media"
 
 # trunk
 #: ../src/plugins/quickview/Reporef.py:75
-#, fuzzy
 msgid "Call number"
 msgstr "Numéro d'identifiant"
 
@@ -11943,9 +11914,8 @@ msgstr "Inclure ou non les références de la source."
 # trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:796
 #: ../src/plugins/textreport/DetDescendantReport.py:825
-#, fuzzy
 msgid "Include sources notes"
-msgstr "Sources avec un <nombre> de notes"
+msgstr "Inclure les notes des sources"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:797
 #: ../src/plugins/textreport/DetDescendantReport.py:826
@@ -12035,15 +12005,13 @@ msgstr "Inclure ou non les informations détaillées concernant le conjoint."
 
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:834
-#, fuzzy
 msgid "Include path to start-person"
-msgstr "Relation avec la souche"
+msgstr ""
 
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:835
-#, fuzzy
 msgid "Whether to include the path of descendancy from the start-person to each descendant"
-msgstr "Inclure ou non les naissances des enfants dans la liste des événements."
+msgstr ""
 
 #: ../src/plugins/textreport/DetDescendantReport.py:951
 msgid "Detailed Descendant Report"
@@ -13506,24 +13474,20 @@ msgstr "Candidats à la fusion"
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
-# supprimer pour marquer la disparition
 # trunk
 #: ../src/plugins/tool/Leak.py:63
-#, fuzzy
 msgid "Uncollected Objects Tool"
 msgstr "Outil de débogage des objets"
 
 # trunk
 #: ../src/plugins/tool/Leak.py:84
-#, fuzzy
 msgid "Number"
-msgstr "Numéro d'identifiant"
+msgstr "Nombre"
 
 # trunk
 #: ../src/plugins/tool/Leak.py:88
-#, fuzzy
 msgid "Uncollected object"
-msgstr "Objet media"
+msgstr "Objet non chargé"
 
 #: ../src/plugins/tool/Leak.py:126
 #, python-format
@@ -13533,9 +13497,9 @@ msgstr ""
 # ngettext
 # trunk
 #: ../src/plugins/tool/Leak.py:137
-#, fuzzy, python-format
+#, python-format
 msgid "%d refers to"
-msgstr "Aller à"
+msgstr "%d réfère à "
 
 #: ../src/plugins/tool/Leak.py:184
 msgid "Show Uncollected Objects"
@@ -14208,9 +14172,8 @@ msgstr "Vérifie les données selon les définitions de l'utilisateur"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:127
-#, fuzzy
 msgid "EventType"
-msgstr "%(eventtype)s : %(name)s"
+msgstr "Type d'événement"
 
 # province (Canada, Belgique)
 #: ../src/plugins/webreport/NarrativeWeb.py:137
@@ -14223,15 +14186,13 @@ msgstr "Code postal / INSEE :"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:143
-#, fuzzy
 msgid "Alternate Locations"
-msgstr "Noms _alternatifs"
+msgstr "Noms aternatifs"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:394
-#, fuzzy
 msgid "Sealed to "
-msgstr "Ordonnance éternelle d'un enfant aux parents"
+msgstr "Lié à "
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:701
@@ -14385,22 +14346,18 @@ msgstr "Informations de publication"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2574
-#, fuzzy
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page.  If you see media size densions above an image, click on the image to see the full sized version.  "
-msgstr "Cette page contient un index de tous les media de la base de données, classés par titre. Cliquez sur un media pour accéder à sa page."
+msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2703
-#, fuzzy
 msgid "File Name"
-msgstr "Nom de fichier invalide"
+msgstr "Nom de fichier"
 
-# adaptation d'un terme anglo-saxon
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:2705
-#, fuzzy
 msgid "License"
-msgstr "Autorisation de mariage"
+msgstr "Autorisation d'utilisation"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2706
 msgid "Last Modified"
@@ -14417,15 +14374,14 @@ msgstr "Associations"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3322
-#, fuzzy
 msgid "Common Name"
-msgstr "Nom de l'ascendant commun"
+msgstr "Nom commun"
 
+# ou Nom de Nick !!!
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3334
-#, fuzzy
 msgid "Nick Name"
-msgstr "Nom de la colonne"
+msgstr "Surnom"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3377
 msgid "Age at Death"
@@ -14445,9 +14401,8 @@ msgstr "Demi-frères et demi-sœurs"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4173
-#, fuzzy
 msgid "This page contains an index of all the repositories in the database, sorted by their title. Clicking on a repositories&#8217;s title will take you to that repositories&#8217;s page."
-msgstr "Cette page contient un index de tous les lieux de la base de données, classés par titre. Cliquez sur le titre d'un lieux pour accéder à sa page."
+msgstr "Cette page contient un index de tous les dépôts de la base de données, classés par titre. Cliquez sur le titre d'un dépôt pour accéder à sa page."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4401
 #, python-format
@@ -14504,9 +14459,8 @@ msgstr "Création des pages pour le media"
 # trunk
 #. set progress bar pass for Repositories
 #: ../src/plugins/webreport/NarrativeWeb.py:4651
-#, fuzzy
 msgid "Creating repository pages"
-msgstr "Création des pages individu"
+msgstr "Création des pages dépôt"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:4868
 msgid "Store web pages in .tar.gz archive"
@@ -14738,22 +14692,20 @@ msgstr "Inclure ou non une option pour télécharger une base de données"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5051
-#, fuzzy
 msgid "Download page note"
-msgstr "Note de la page d'accueil"
+msgstr "Note de la page Télécharger"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5052
-#, fuzzy
 msgid "A note to be used on the download page"
-msgstr "La note utilisée pour la page d'accueil"
+msgstr "La note utilisée pour la page Télécharger"
 
+# à vérifier !
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5055
 #: ../src/plugins/webreport/NarrativeWeb.py:5064
-#, fuzzy
 msgid "Download Filename"
-msgstr "Sélectionner un nom de fichier"
+msgstr "Nom du fichier à télécharger"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5057
 #: ../src/plugins/webreport/NarrativeWeb.py:5066
@@ -14763,15 +14715,13 @@ msgstr ""
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5060
 #: ../src/plugins/webreport/NarrativeWeb.py:5069
-#, fuzzy
 msgid "Description for download"
-msgstr "Description"
+msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5060
-#, fuzzy
 msgid "Smith Family Tree"
-msgstr "Nom de l'arbre familial"
+msgstr "Arbre de la famille Martin"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5061
 #: ../src/plugins/webreport/NarrativeWeb.py:5070
@@ -14780,21 +14730,18 @@ msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5069
-#, fuzzy
 msgid "Johnson Family Tree"
-msgstr "Nom de l'arbre familial"
+msgstr "Arbre de la famille Bernard"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5073
-#, fuzzy
 msgid "Download Copyright License"
-msgstr "Pas de note de licence"
+msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5076
-#, fuzzy
 msgid "The copyright to be used for ths download file?"
-msgstr "Le droit d'auteur utilisé pour les fichiers internet"
+msgstr ""
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5085
 msgid "Advanced"
@@ -14860,9 +14807,8 @@ msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents et ses f
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5124
-#, fuzzy
 msgid "Sort children in birth order"
-msgstr "Trier dans l'ordre inverse"
+msgstr "Trier les enfants selon la date de naissance"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5125
 msgid "Whether to display children in birth order or in entry order?"
@@ -14870,23 +14816,21 @@ msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5129
-#, fuzzy
 msgid "Include Repository Pages"
-msgstr "Inclure des pages vierges"
+msgstr "Inclure les pages dépôt"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5130
-#, fuzzy
 msgid "Whether to include the Repository Pages or not?"
-msgstr "Inclure ou non le titre du rapport."
+msgstr ""
 
 # Substantif (GNOME fr)
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5361
 #: ../src/plugins/webreport/NarrativeWeb.py:5366
-#, fuzzy, python-format
+#, python-format
 msgid " starting with %s"
-msgstr "Ouvrir avec %s"
+msgstr "  commençant avec %s"
 
 # Site internet descriptif ou narratif ?
 #: ../src/plugins/webreport/NarrativeWeb.py:5431
@@ -15205,21 +15149,19 @@ msgstr "Créer ou non une page avec un calendrier miniature dont les dates sont 
 # Substantif (GNOME fr)
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1498
-#, fuzzy
 msgid "Create one day event pages for Year At A Glance calendar"
-msgstr "Création d'un calendrier résumant l'année"
+msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1500
-#, fuzzy
 msgid "Whether to create one day pages or not"
-msgstr "Créer ou non plusieurs calendriers annuels."
+msgstr ""
 
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1741
-#, fuzzy, python-format
+#, python-format
 msgid "%s old"
-msgstr "Père âgé"
+msgstr "%s ans"
 
 #: ../src/plugins/webreport/WebCal.py:1740
 msgid ", <em>"
@@ -15418,9 +15360,10 @@ msgstr "_Poursuivre avec cet outil"
 msgid "Custom Size"
 msgstr "Taille personnalisée"
 
+# trunk
 #: ../src/ReportBase/_CommandLineReport.py:401
 msgid "Failed to write report. "
-msgstr ""
+msgstr "Échec à l'écriture du rapport."
 
 #: ../src/ReportBase/_Constants.py:49
 msgid "Text Reports"
@@ -15522,9 +15465,8 @@ msgstr "Le style de base utilisé pour afficher les annotations de la référenc
 
 # trunk
 #: ../src/ReportBase/_Endnotes.py:63
-#, fuzzy
 msgid "The basic style used for the endnotes notes display."
-msgstr "Le style de base utilisé pour afficher les annotations de la source."
+msgstr "Le style de base utilisé pour afficher les notes de la source."
 
 #: ../src/ReportBase/_Endnotes.py:107
 msgid "Endnotes"
@@ -15532,9 +15474,9 @@ msgstr "Références bibliographiques"
 
 # trunk
 #: ../src/ReportBase/_Endnotes.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "Note %(ind)d - Type: %(type)s"
-msgstr "Note : %(id)s - %(context)s"
+msgstr "Note %(ind)d - Type: %(type)s"
 
 #. -------------------------------------------------------------------------------
 #.
@@ -20945,16 +20887,14 @@ msgstr "Correspond aux événements ayant un nombre de références"
 
 # trunk
 #: ../src/Filters/Rules/Event/_HasSource.py:43
-#, fuzzy
 msgid "Events with <count> source"
-msgstr "Individus avec un <nombre> de source"
+msgstr "Événements avec un <nombre> de source"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
 #: ../src/Filters/Rules/Event/_HasSource.py:44
-#, fuzzy
 msgid "Matches events with a certain number of items in the source"
-msgstr "Correspond aux individus ayant un nombre d'articles dans la source"
+msgstr "Correspond aux événements ayant un nombre d'articles dans la source"
 
 #: ../src/Filters/Rules/Event/_HasType.py:47
 msgid "Events with the particular type"
@@ -21032,9 +20972,8 @@ msgstr "Correspond à tous les lieux de la base"
 
 # trunk
 #: ../src/Filters/Rules/Place/_ChangedSince.py:23
-#, fuzzy
 msgid "Places changed after <date time>"
-msgstr "Objets modifiés après la <date>"
+msgstr "Lieux modifiés après la <date>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
@@ -22982,9 +22921,8 @@ msgstr "Orientation :"
 
 # trunk
 #: ../src/glade/papermenu.glade.h:7
-#, fuzzy
 msgid "Paper Settings"
-msgstr "Propriétés de l'outil"
+msgstr "Propriétés du papier"
 
 #: ../src/glade/papermenu.glade.h:8
 msgid "Paper format"
@@ -23217,29 +23155,26 @@ msgstr "- défaut -"
 
 # trunk
 #: ../src/plugins/tool/phpgedview.glade.h:2
-#, fuzzy
 msgid "<b>phpGedView import</b>"
-msgstr "Début de l'importation, %s"
+msgstr "<b>Importation phpGedView</b>"
 
 #: ../src/plugins/tool/phpgedview.glade.h:4
 msgid "Password:"
-msgstr ""
+msgstr "Mot de passe :"
 
 # trunk
 #: ../src/plugins/tool/phpgedview.glade.h:6
-#, fuzzy
 msgid "Username:"
-msgstr "Nom de famille"
+msgstr "Nom d'utilisateur :"
 
 #: ../src/plugins/tool/phpgedview.glade.h:7
 msgid "http://"
-msgstr ""
+msgstr "http://"
 
 # trunk
 #: ../src/plugins/tool/phpgedview.glade.h:8
-#, fuzzy
 msgid "phpGedView import"
-msgstr "Début de l'importation, %s"
+msgstr "Importation phpGedView"
 
 #: ../src/plugins/tool/relcalc.glade.h:1
 msgid "Select a person to determine the relationship"
