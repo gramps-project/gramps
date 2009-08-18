@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-17 10:04+0200\n"
-"PO-Revision-Date: 2009-08-17 11:04+0200\n"
+"POT-Creation-Date: 2009-08-18 13:46+0200\n"
+"PO-Revision-Date: 2009-08-18 13:50+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -789,6 +789,7 @@ msgid "Complete"
 msgstr "Fullständig"
 
 #: ../src/GrampsCfg.py:238 ../src/gen/lib/markertype.py:57
+#: ../src/plugins/tool/notrelated.glade.h:2
 msgid "ToDo"
 msgstr "Ofullständig"
 
@@ -1564,7 +1565,7 @@ msgstr ""
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/tool/Check.py:1479
 #: ../src/plugins/webreport/NarrativeWeb.py:1103
-#: ../src/ReportBase/_ReportUtils.py:1445
+#: ../src/ReportBase/_ReportUtils.py:1445 ../src/glade/editperson.glade.h:18
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -3477,8 +3478,8 @@ msgstr "Filen %s är redan öppnad, stäng den först."
 #: ../src/docgen/OpenSpreadSheet.py:233 ../src/docgen/OpenSpreadSheet.py:407
 #: ../src/docgen/OpenSpreadSheet.py:411 ../src/docgen/OpenSpreadSheet.py:439
 #: ../src/docgen/OpenSpreadSheet.py:443 ../src/plugins/docgen/AsciiDoc.py:141
-#: ../src/plugins/docgen/AsciiDoc.py:144 ../src/plugins/docgen/ODFDoc.py:547
-#: ../src/plugins/docgen/ODFDoc.py:550 ../src/plugins/docgen/PSDrawDoc.py:110
+#: ../src/plugins/docgen/AsciiDoc.py:144 ../src/plugins/docgen/ODFDoc.py:620
+#: ../src/plugins/docgen/ODFDoc.py:623 ../src/plugins/docgen/PSDrawDoc.py:110
 #: ../src/plugins/docgen/PSDrawDoc.py:113 ../src/plugins/docgen/RTFDoc.py:83
 #: ../src/plugins/docgen/RTFDoc.py:86 ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
@@ -7915,11 +7916,11 @@ msgstr "LaTeX-dokument"
 msgid "Generates documents in LaTeX format."
 msgstr "Skapar dokument i formatet LaTex."
 
-#: ../src/plugins/docgen/ODFDoc.py:1155
+#: ../src/plugins/docgen/ODFDoc.py:1255
 msgid "Open Document Text"
 msgstr "Open Document-text"
 
-#: ../src/plugins/docgen/ODFDoc.py:1156
+#: ../src/plugins/docgen/ODFDoc.py:1256
 msgid "Generates documents in Open Document Text format (.odt)."
 msgstr "Skapar dokument i formatet Open Document Text (.odt)."
 
@@ -11957,10 +11958,12 @@ msgid "Could not add photo to page"
 msgstr "Kunde inte lägga foto till sidan"
 
 #: ../src/plugins/textreport/IndivComplete.py:438
+#: ../src/glade/editperson.glade.h:11
 msgid "Male"
 msgstr "Man"
 
 #: ../src/plugins/textreport/IndivComplete.py:440
+#: ../src/glade/editperson.glade.h:8
 msgid "Female"
 msgstr "Kvinna"
 
@@ -19600,6 +19603,7 @@ msgstr "död i %(death_place)s."
 
 #: ../src/ReportBase/_StyleComboBox.py:65
 #: ../src/ReportBase/_StyleComboBox.py:84
+#: ../src/plugins/import/importgedcom.glade.h:17
 msgid "default"
 msgstr "standard"
 
@@ -19909,7 +19913,7 @@ msgstr "Matchar objekt vars Gramps-ID matchar det reguljära uttrycket"
 msgid "Miscellaneous filters"
 msgstr "Diverse filter"
 
-#: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:16
+#: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr "Beskrivning saknas"
 
@@ -21570,7 +21574,7 @@ msgid "Matches repositories with a certain reference count"
 msgstr "Matcher arkivplatser med en viss referensräknare"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
-#: ../src/plugins/tool/phpgedview.glade.h:4
+#: ../src/plugins/tool/phpgedview.glade.h:5
 msgid "URL:"
 msgstr "URL:"
 
@@ -21884,7 +21888,7 @@ msgid "Rule Name"
 msgstr "Namn på regel"
 
 #: ../src/FilterEditor/_EditRule.py:614 ../src/FilterEditor/_EditRule.py:625
-#: ../src/glade/rule.glade.h:17
+#: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Ingen regel vald"
 
@@ -22059,21 +22063,21 @@ msgstr "_Tilltalsnamn:"
 msgid "Edit the preferred name"
 msgstr "Redigera det föredragna namnet"
 
-#: ../src/glade/editperson.glade.h:8
+#: ../src/glade/editperson.glade.h:9
 msgid "Gi_ven:"
 msgstr "_Förnamn:"
 
-#: ../src/glade/editperson.glade.h:9 ../src/glade/editsource.glade.h:4
+#: ../src/glade/editperson.glade.h:10 ../src/glade/editsource.glade.h:4
 #: ../src/glade/editrepository.glade.h:3 ../src/glade/editreporef.glade.h:8
 #: ../src/glade/editfamily.glade.h:8 ../src/glade/editmedia.glade.h:3
 msgid "Indicates if the record is private"
 msgstr "Indikerar om posten är privat"
 
-#: ../src/glade/editperson.glade.h:10
+#: ../src/glade/editperson.glade.h:12
 msgid "Part of the Given name that is the normally used name. "
 msgstr "Del av förnamn, som är det normalt använda namnet. "
 
-#: ../src/glade/editperson.glade.h:11
+#: ../src/glade/editperson.glade.h:13
 msgid ""
 "Patronimic: component of a personal name based on the name of one's father, "
 "grandfather, .... \n"
@@ -22082,7 +22086,7 @@ msgstr ""
 "Patronimikon: del av ett personnamn, i Sverige grundat på faders förnamn\n"
 "Titel: Personens titel. "
 
-#: ../src/glade/editperson.glade.h:13
+#: ../src/glade/editperson.glade.h:15
 msgid ""
 "Prefix: An optional prefix for the family name that is not used in sorting, "
 "such as \"de\" or \"van\"\n"
@@ -22092,19 +22096,19 @@ msgstr ""
 "\" eller \"von\"\n"
 "Suffix: Ett suffix till namnet, som \"jr\" eller \"d. ä.\""
 
-#: ../src/glade/editperson.glade.h:15
+#: ../src/glade/editperson.glade.h:17
 msgid "The person's given name"
 msgstr "Personens förnamn"
 
-#: ../src/glade/editperson.glade.h:16 ../src/glade/editname.glade.h:14
+#: ../src/glade/editperson.glade.h:19 ../src/glade/editname.glade.h:14
 msgid "_Family:"
 msgstr "_Efternamn:"
 
-#: ../src/glade/editperson.glade.h:17
+#: ../src/glade/editperson.glade.h:20
 msgid "_Gender:"
 msgstr "K_ön:"
 
-#: ../src/glade/editperson.glade.h:18 ../src/glade/editsource.glade.h:6
+#: ../src/glade/editperson.glade.h:21 ../src/glade/editsource.glade.h:6
 #: ../src/glade/editrepository.glade.h:4 ../src/glade/editreporef.glade.h:9
 #: ../src/glade/editfamily.glade.h:10 ../src/glade/editmedia.glade.h:7
 #: ../src/glade/editmediaref.glade.h:12 ../src/glade/editeventref.glade.h:8
@@ -22113,19 +22117,19 @@ msgstr "K_ön:"
 msgid "_ID:"
 msgstr "_ID:"
 
-#: ../src/glade/editperson.glade.h:19 ../src/glade/editfamily.glade.h:11
+#: ../src/glade/editperson.glade.h:22 ../src/glade/editfamily.glade.h:11
 #: ../src/glade/editnote.glade.h:5
 msgid "_Marker:"
 msgstr "_Markering:"
 
-#: ../src/glade/editperson.glade.h:20 ../src/glade/editurl.glade.h:3
+#: ../src/glade/editperson.glade.h:23 ../src/glade/editurl.glade.h:3
 #: ../src/glade/editrepository.glade.h:6 ../src/glade/editreporef.glade.h:12
 #: ../src/glade/editfamily.glade.h:12 ../src/glade/editmediaref.glade.h:15
 #: ../src/glade/editnote.glade.h:7 ../src/glade/editname.glade.h:18
 msgid "_Type:"
 msgstr "_Typ:"
 
-#: ../src/glade/editperson.glade.h:21
+#: ../src/glade/editperson.glade.h:24
 msgid "part of a person's name indicating the family to which the person belongs"
 msgstr "del av en person namn, som visar till vilken familj personen hör"
 
@@ -22296,34 +22300,50 @@ msgid "Dua_l dated"
 msgstr "Dubbe_ldatum"
 
 #: ../src/glade/dateedit.glade.h:8
+msgid "January 1"
+msgstr "1 januari"
+
+#: ../src/glade/dateedit.glade.h:9
+msgid "March 1"
+msgstr "1 mars"
+
+#: ../src/glade/dateedit.glade.h:10
+msgid "March 25"
+msgstr "25 mars"
+
+#: ../src/glade/dateedit.glade.h:11
 msgid "Mo_nth"
 msgstr "M_ånad"
 
-#: ../src/glade/dateedit.glade.h:9
+#: ../src/glade/dateedit.glade.h:12
 msgid "Ne_w year begins:  "
 msgstr "N_ytt år börjar:  "
 
-#: ../src/glade/dateedit.glade.h:10
+#: ../src/glade/dateedit.glade.h:13
 msgid "Old Style/New Style"
 msgstr "Gammal stil/Ny stil"
 
-#: ../src/glade/dateedit.glade.h:11
+#: ../src/glade/dateedit.glade.h:14
+msgid "September 1"
+msgstr "1 september"
+
+#: ../src/glade/dateedit.glade.h:15
 msgid "Te_xt comment:"
 msgstr "Te_xtkommentar:"
 
-#: ../src/glade/dateedit.glade.h:12
+#: ../src/glade/dateedit.glade.h:16
 msgid "Y_ear"
 msgstr "Å_r"
 
-#: ../src/glade/dateedit.glade.h:13
+#: ../src/glade/dateedit.glade.h:17
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/dateedit.glade.h:14
+#: ../src/glade/dateedit.glade.h:18
 msgid "_Month"
 msgstr "Må_nad"
 
-#: ../src/glade/dateedit.glade.h:15
+#: ../src/glade/dateedit.glade.h:19
 msgid "_Year"
 msgstr "_År"
 
@@ -22510,7 +22530,7 @@ msgid "_Web address:"
 msgstr "_Webbadress:"
 
 #: ../src/glade/editrepository.glade.h:5 ../src/glade/editreporef.glade.h:11
-#: ../src/glade/rule.glade.h:20
+#: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Namn:"
 
@@ -22914,34 +22934,46 @@ msgid "Add another rule to the filter"
 msgstr "Lägg till ytterligare en regel för filtret"
 
 #: ../src/glade/rule.glade.h:10
+msgid "All rules must apply"
+msgstr "Alla regler måste uppfyllas"
+
+#: ../src/glade/rule.glade.h:11
+msgid "At least one rule must apply"
+msgstr "Minst en regel måste uppfyllas"
+
+#: ../src/glade/rule.glade.h:12
 msgid "Clone the selected filter"
 msgstr "Klona det valda filtret"
 
-#: ../src/glade/rule.glade.h:11
+#: ../src/glade/rule.glade.h:13
 msgid "Co_mment:"
 msgstr "Ko_mmentar:"
 
-#: ../src/glade/rule.glade.h:12
+#: ../src/glade/rule.glade.h:14
 msgid "Delete the selected filter"
 msgstr "Radera det valda filtret"
 
-#: ../src/glade/rule.glade.h:13
+#: ../src/glade/rule.glade.h:15
 msgid "Delete the selected rule"
 msgstr "Radera den valda regeln"
 
-#: ../src/glade/rule.glade.h:14
+#: ../src/glade/rule.glade.h:16
 msgid "Edit the selected filter"
 msgstr "Redigera det valda filtret"
 
-#: ../src/glade/rule.glade.h:15
+#: ../src/glade/rule.glade.h:17
 msgid "Edit the selected rule"
 msgstr "Redigera den valda regeln"
 
 #: ../src/glade/rule.glade.h:18
+msgid "Exactly one rule must apply"
+msgstr "Endast en regel måste uppfyllas"
+
+#: ../src/glade/rule.glade.h:21
 msgid "Return values that do no_t match the filter rules"
 msgstr "Returnera värden som in_te matchar filterreglerna"
 
-#: ../src/glade/rule.glade.h:19
+#: ../src/glade/rule.glade.h:22
 msgid "Test the selected filter"
 msgstr "Testa det valda filtret"
 
@@ -22998,6 +23030,10 @@ msgid "Width:"
 msgstr "Bredd:"
 
 #: ../src/plugins/tool/notrelated.glade.h:1
+msgid "NotRelated"
+msgstr "Ej släkt"
+
+#: ../src/plugins/tool/notrelated.glade.h:3
 msgid "_Marker"
 msgstr "_Markering"
 
@@ -23116,35 +23152,47 @@ msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
 msgstr "<span size=\"larger\" weight=\"bold\">GEDCOM-kodning</span>"
 
 #: ../src/plugins/import/importgedcom.glade.h:4
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: ../src/plugins/import/importgedcom.glade.h:5
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: ../src/plugins/import/importgedcom.glade.h:6
+msgid "ASCII"
+msgstr "ASCII"
+
+#: ../src/plugins/import/importgedcom.glade.h:7
 msgid "Created by:"
 msgstr "Skapad av:"
 
-#: ../src/plugins/import/importgedcom.glade.h:5
+#: ../src/plugins/import/importgedcom.glade.h:8
 msgid "Encoding:"
 msgstr "Kodning:"
 
-#: ../src/plugins/import/importgedcom.glade.h:6
+#: ../src/plugins/import/importgedcom.glade.h:9
 msgid "Encoding: "
 msgstr "Kodning: "
 
-#: ../src/plugins/import/importgedcom.glade.h:7
+#: ../src/plugins/import/importgedcom.glade.h:10
 msgid "Families:"
 msgstr "Familjer:"
 
-#: ../src/plugins/import/importgedcom.glade.h:8
-#: ../src/plugins/tool/phpgedview.glade.h:2
+#: ../src/plugins/import/importgedcom.glade.h:11
+#: ../src/plugins/tool/phpgedview.glade.h:3
 msgid "File:"
 msgstr "Fil:"
 
-#: ../src/plugins/import/importgedcom.glade.h:9
+#: ../src/plugins/import/importgedcom.glade.h:12
 msgid "GRAMPS - GEDCOM Encoding"
 msgstr "GRAMPS - GEDCOM-kodning"
 
-#: ../src/plugins/import/importgedcom.glade.h:10
+#: ../src/plugins/import/importgedcom.glade.h:13
 msgid "People:"
 msgstr "Personer:"
 
-#: ../src/plugins/import/importgedcom.glade.h:11
+#: ../src/plugins/import/importgedcom.glade.h:14
 msgid ""
 "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
@@ -23155,7 +23203,11 @@ msgstr ""
 "importerade data innehåller ovanliga tecken, så ångra importen och åsidosätt "
 "teckenkodningen genom att välja en annan kodning nedan."
 
-#: ../src/plugins/import/importgedcom.glade.h:12
+#: ../src/plugins/import/importgedcom.glade.h:15
+msgid "UTF8"
+msgstr "UTF8"
+
+#: ../src/plugins/import/importgedcom.glade.h:16
 msgid "Version:"
 msgstr "Version:"
 
@@ -23196,22 +23248,26 @@ msgid "_Accept and close"
 msgstr "_Godkänn och stäng"
 
 #: ../src/plugins/tool/phpgedview.glade.h:1
+msgid "- default -"
+msgstr "- standard -"
+
+#: ../src/plugins/tool/phpgedview.glade.h:2
 msgid "<b>phpGedView import</b>"
 msgstr "<b>phpGedView import</b>"
 
-#: ../src/plugins/tool/phpgedview.glade.h:3
+#: ../src/plugins/tool/phpgedview.glade.h:4
 msgid "Password:"
 msgstr "Lösenord:"
 
-#: ../src/plugins/tool/phpgedview.glade.h:5
+#: ../src/plugins/tool/phpgedview.glade.h:6
 msgid "Username:"
 msgstr "Användarnamn:"
 
-#: ../src/plugins/tool/phpgedview.glade.h:6
+#: ../src/plugins/tool/phpgedview.glade.h:7
 msgid "http://"
 msgstr "http://"
 
-#: ../src/plugins/tool/phpgedview.glade.h:7
+#: ../src/plugins/tool/phpgedview.glade.h:8
 msgid "phpGedView import"
 msgstr "phpGedView import"
 
@@ -23480,9 +23536,9 @@ msgid ""
 "achieve one or more specific tasks."
 msgstr ""
 "<b>Olika vyer</b>: Det finns tolv olika vyer för att navigera i din familj: "
-"Gramplets, person, släktskap, familjevis, antavla, händelser, källor, platser, "
-"media, arkivplatser samt anteckningar och HTML-kartor. Var och en hjälper "
-"dig att utföra en eller flera särskilda uppgifter."
+"Gramplets, person, släktskap, familjevis, antavla, händelser, källor, "
+"platser, media, arkivplatser samt anteckningar och HTML-kartor. Var och en "
+"hjälper dig att utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:7
 msgid ""
