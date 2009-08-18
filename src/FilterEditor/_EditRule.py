@@ -516,7 +516,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         # If editing a rule, get the name so that we can select it later
         #
         sel_node = None
-        if self.active_rule:
+        if self.active_rule is not None:
             self.sel_class = self.active_rule.__class__
         else:
             self.sel_class = None

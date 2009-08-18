@@ -204,7 +204,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
                 pass
 
     def update_rule(self, old_rule, new_rule):
-        if old_rule:
+        if old_rule is not None:
             self.filter.delete_rule(old_rule)
         self.filter.add_rule(new_rule)
         self.draw_rules()
