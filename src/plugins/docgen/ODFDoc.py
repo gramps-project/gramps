@@ -499,7 +499,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 self.cntnt2.write(' <style:text-properties fo:color="%s"/>' % style[1])
                 self.cntnt2.write('</style:style>\n')
             elif ( style[0] == "FontHighlight" ):
-                self.cntnt2.write('<style:style style:name="FontColor__%s__"' % style[1] )
+                self.cntnt2.write('<style:style style:name="FontHighlight__%s__"' % style[1] )
                 self.cntnt2.write(' style:family="text">')
                 self.cntnt2.write(' <style:text-properties fo:background-color="%s"/>' % style[1])
                 self.cntnt2.write('</style:style>\n')
