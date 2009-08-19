@@ -44,6 +44,7 @@ import ToolTips
 import GrampsLocale
 import DateHandler
 import gen.lib
+import Utils
 from gui.views.treemodels.flatbasemodel import FlatBaseModel
 
 #-------------------------------------------------------------------------
@@ -75,6 +76,7 @@ class EventModel(FlatBaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
+            self.column_participant,
             self.column_date,
             self.column_place,
             self.column_change,
@@ -85,13 +87,14 @@ class EventModel(FlatBaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
+            self.column_participant,
             self.sort_date,
             self.column_place,
             self.sort_change,
             self.column_handle,
             self.column_tooltip,
             ]
-        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=8,
+        FlatBaseModel.__init__(self, db, scol, order, tooltip_column=9,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
@@ -100,6 +103,9 @@ class EventModel(FlatBaseModel):
     def column_description(self,data):
         return data[COLUMN_DESCRIPTION]
 
+    def column_participant(self,data):
+        return Utils.get_participant_from_event(self.db, data[COLUMN_HANDLE])
+        
     def column_place(self,data):
         if data[COLUMN_PLACE]:
             return self.db.get_place_from_handle(data[COLUMN_PLACE]).get_title()

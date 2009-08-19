@@ -69,6 +69,7 @@ class EventView(PageView.ListView):
         _('Description'),
         _('ID'),
         _('Type'),
+        _('First Main Participant'),
         _('Date'),
         _('Place'),
         _('Last Changed'),
