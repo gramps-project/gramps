@@ -44,6 +44,8 @@ import Utils
 #
 #-------------------------------------------------------------------------
 class BackRefModel(gtk.ListStore):
+    
+    dispstr = _('%(part1)s - %(part2)s')
 
     def __init__(self, sref_list, db):
         gtk.ListStore.__init__(self, str, str, str, str, str)
@@ -78,10 +80,17 @@ class BackRefModel(gtk.ListStore):
             elif dtype == 'Event':
                 p = self.db.get_event_from_handle(ref[1])
                 gid = p.gramps_id
-                name = p.get_description()
                 handle = p.handle
-                if not name:
+                name = p.get_description()
+                if name:
+                    name = self.dispstr % {'part1': str(p.get_type()),
+                                'part2': name}
+                else:
                     name = str(p.get_type())
+                part = Utils.get_participant_from_event(self.db, ref[1])
+                if part :
+                    name = self.dispstr % {'part1': name,
+                                'part2': part}
             elif dtype == 'Place':
                 p = self.db.get_place_from_handle(ref[1])
                 name = p.get_title()
