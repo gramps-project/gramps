@@ -51,77 +51,12 @@ class GrampsCursor(object):
         """
         self.cursor = self.source = None
 
-    def first(self):
+    def __getattr__(self, name):
         """
-        Return the first (index, data) pair in the database. 
-        
-        This should be called before the first call to next(). Note that the 
-        data return is in the format of the serialized format stored in the 
-        database, not in the more usable class object. The data should be 
-        converted to a class using the class's unserialize method.
+        Return a method from the underlying cursor object, if it exists
+        """
+        return getattr(self.cursor, name)
 
-        If no data is available, None is returned.
-        """
-        
-        data = self.cursor.first()
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
-
-    def next(self):
-        """
-        Return the next (index, data) pair in the database. 
-        
-        Like the first() method, the data return is in the format of the 
-        serialized format stored in the database, not in the more usable class 
-        object. The data should be converted to a class using the class's 
-        unserialize method.
-
-        None is returned when no more data is available.
-        """
-        
-        data = self.cursor.next()
-        if data:
-            return (data[0], pickle.loads(data[1]))
-        return None
-        
-    def delete(self):
-        """
-        Delete the data at the current cursor position
-        """
-        self.cursor.delete()        
-
-    def close(self):
-        """
-        Close the cursor. 
-        
-        This should be called when the user is finished using the cursor, 
-        freeing up the cursor's resources.
-        """
-        self.cursor.close()
-    
-    def get_length(self):
-        """
-        Return the number of records in the table referenced by the cursor.
-        """
-        return self.source.stat()['ndata']
-
-    def __len__(self):
-        """
-        Convienence method to work with len(cursor).
-        """
-        return self.get_length()
-        
-    def __iter__(self):
-        """
-        Iterator
-        """
-        
-        data = self.first()
-        while data:
-            yield data
-            data = self.next()
-        
     def __enter__(self):
         """
         Context manager enter method
@@ -134,4 +69,81 @@ class GrampsCursor(object):
         """
         self.close()
         return exc_type is None
+        
+    def __iter__(self):
+        """
+        Iterator
+        """
+        
+        data = self.first()
+        while data:
+            yield data
+            data = self.next()
 
+    def first(self, *args, **kwargs):
+        """
+        Return the first (index, data) pair in the database. 
+        
+        This should be called before the first call to next(). Note that the 
+        data return is in the format of the serialized format stored in the 
+        database, not in the more usable class object. The data should be 
+        converted to a class using the class's unserialize method.
+
+        If no data is available, None is returned.
+        """
+        
+        data = self.cursor.first(*args, **kwargs)
+        if data:
+            return (data[0], pickle.loads(data[1]))
+        return None
+
+    def next(self, *args, **kwargs):
+        """
+        Return the next (index, data) pair in the database. 
+        
+        Like the first() method, the data return is in the format of the 
+        serialized format stored in the database, not in the more usable class 
+        object. The data should be converted to a class using the class's 
+        unserialize method.
+
+        None is returned when no more data is available.
+        """
+        
+        data = self.cursor.next(*args, **kwargs)
+        if data:
+            return (data[0], pickle.loads(data[1]))
+        return None
+
+    def prev(self, *args, **kwargs):
+        """
+        Return the previous (index, data) pair in the database. 
+        
+        Like the first() method, the data return is in the format of the 
+        serialized format stored in the database, not in the more usable class 
+        object. The data should be converted to a class using the class's 
+        unserialize method.
+
+        If no data is available, None is returned.
+        """
+        
+        data = self.cursor.prev(*args, **kwargs)
+        if data:
+            return (data[0], pickle.loads(data[1]))
+        return None
+
+    def last(self, *args, **kwargs):
+        """
+        Return the last (index, data) pair in the database. 
+        
+        Like the first() method, the data return is in the format of the 
+        serialized format stored in the database, not in the more usable class 
+        object. The data should be converted to a class using the class's 
+        unserialize method.
+
+        None is returned when no more data is available.
+        """
+        
+        data = self.cursor.last(*args, **kwargs)
+        if data:
+            return (data[0], pickle.loads(data[1]))
+        return None
