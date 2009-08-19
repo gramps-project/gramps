@@ -8,11 +8,17 @@ pkgdatadir = $(datadir)/@PACKAGE@/gen/db
 pkgdata_PYTHON = \
 	__init__.py\
 	base.py \
+	bsddbtxn.py \
 	cursor.py \
 	dbconst.py \
 	dbdir.py \
 	exceptions.py \
-	iterator.py 
+	iterator.py \
+	read.py \
+	txn.py \
+	undoredo.py \
+	upgrade.py \
+	write.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/db
 pkgpythondir = @pkgpythondir@/gen/db
