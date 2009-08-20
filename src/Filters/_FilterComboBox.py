@@ -37,7 +37,7 @@ import gobject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters import SystemFilters, CustomFilters
+from Filters import CustomFilters
 
 #-------------------------------------------------------------------------
 #
@@ -64,12 +64,12 @@ class FilterComboBox(gtk.ComboBox):
                 active = cnt
             cnt += 1
         
-        for filt in SystemFilters.get_filters():
-            self.store.append(row=[filt.get_name()])
-            self.map[unicode(filt.get_name())] = filt
-            if default != "" and default == filt.get_name():
-                active = cnt
-            cnt += 1
+        #for filt in SystemFilters.get_filters():
+            #self.store.append(row=[filt.get_name()])
+            #self.map[unicode(filt.get_name())] = filt
+            #if default != "" and default == filt.get_name():
+                #active = cnt
+            #cnt += 1
 
         for filt in CustomFilters.get_filters():
             self.store.append(row=[filt.get_name()])
@@ -82,10 +82,10 @@ class FilterComboBox(gtk.ComboBox):
             self.set_active(active)
         elif len(local_filters):
             self.set_active(2)
-        elif len(SystemFilters.get_filters()):
-            self.set_active(4 + len(local_filters))
+        #elif len(SystemFilters.get_filters()):
+            #self.set_active(4 + len(local_filters))
         elif len(CustomFilters.get_filters()):
-            self.set_active(6 + len(local_filters) + len(SystemFilters.get_filters()))
+            self.set_active(4 + len(local_filters))
         else:
             self.set_active(0)
 

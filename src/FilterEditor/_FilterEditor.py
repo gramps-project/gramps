@@ -52,8 +52,7 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
-from Filters import (GenericFilterFactory, FilterList, reload_custom_filters, 
-                     reload_system_filters)
+from Filters import (GenericFilterFactory, FilterList, reload_custom_filters)
 from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 import ListModel
 import ManagedWindow
@@ -140,7 +139,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
     def close(self, *obj):
         self.filterdb.save()
         reload_custom_filters()
-        reload_system_filters()
+        #reload_system_filters()
         self.uistate.emit('filters-changed', (self.namespace,))
         ManagedWindow.ManagedWindow.close(self, *obj)
         

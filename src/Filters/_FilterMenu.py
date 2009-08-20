@@ -34,13 +34,12 @@ import gobject
 #
 #-------------------------------------------------------------------------
 def build_filter_model(space, local = []):
-    from Filters import SystemFilters, CustomFilters
+    from Filters import CustomFilters
 
     model = gtk.ListStore(gobject.TYPE_STRING, object)
 
     if isinstance(space, basestring):
-        flist = local + SystemFilters.get_filters(space) + \
-	                    CustomFilters.get_filters(space)
+        flist = local + CustomFilters.get_filters(space)
     elif isinstance(space, (list, tuple)):
         flist = space
     else:

@@ -24,26 +24,26 @@
 Package providing filtering framework for GRAMPS.
 """
 
-SystemFilters = None
+#SystemFilters = None
 CustomFilters = None
 
-from const import SYSTEM_FILTERS, CUSTOM_FILTERS
+from const import CUSTOM_FILTERS
 from _FilterList import FilterList
 from _GenericFilter import GenericFilter, GenericFilterFactory
 from _ParamFilter import ParamFilter
 
-def reload_system_filters():
-    global SystemFilters
-    SystemFilters = FilterList(SYSTEM_FILTERS)
-    SystemFilters.load()
+#def reload_system_filters():
+    #global SystemFilters
+    #SystemFilters = FilterList(SYSTEM_FILTERS)
+    #SystemFilters.load()
     
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = FilterList(CUSTOM_FILTERS)
     CustomFilters.load()
     
-if not SystemFilters:
-    reload_system_filters()
+#if not SystemFilters:
+    #reload_system_filters()
 
 if not CustomFilters:
     reload_custom_filters()
