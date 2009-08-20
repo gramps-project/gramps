@@ -1677,6 +1677,8 @@ class TextDoc(object):
                 is <b>text</b><i><b> here</b> not</i>
                overwrite this method if this complexity is not needed. 
         """
+        #unicode text most be sliced correctly
+        text=unicode(text)
         FIRST = 0
         LAST = 1
         tagspos = {}
