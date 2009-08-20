@@ -76,10 +76,10 @@ class EventModel(FlatBaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
-            self.column_participant,
             self.column_date,
             self.column_place,
             self.column_change,
+            self.column_participant,
             self.column_handle,
             self.column_tooltip,
             ]
@@ -87,10 +87,10 @@ class EventModel(FlatBaseModel):
             self.column_description,
             self.column_id,
             self.column_type,
-            self.column_participant,
             self.sort_date,
             self.column_place,
             self.sort_change,
+            self.column_participant,
             self.column_handle,
             self.column_tooltip,
             ]

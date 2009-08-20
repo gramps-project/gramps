@@ -69,10 +69,10 @@ class EventView(PageView.ListView):
         _('Description'),
         _('ID'),
         _('Type'),
-        _('First Main Participant'),
         _('Date'),
         _('Place'),
         _('Last Changed'),
+        _('Main Participants'),
         ]
     
     ADD_MSG     = _("Add a new event")

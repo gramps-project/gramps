@@ -1012,33 +1012,45 @@ def get_participant_from_event(db, event_handle):
     """
     Obtain the first primary or family participant to an event we find in the 
     database. Note that an event can have more than one primary or 
-    family participant, only one is returned. 
+    family participant, only one is returned, adding ellipses if there are
+    more. 
     """
     participant = ""
+    ellipses = False
     result_list = [i for i in db.find_backlink_handles(event_handle, 
                              include_classes=['Person', 'Family'])]
-    people = [x[1] for x in result_list if x[0] == 'Person']
-    families =  [x[1] for x in result_list if x[0] == 'Family']
+    #obtain handles without duplicates
+    people = set([x[1] for x in result_list if x[0] == 'Person'])
+    families = set([x[1] for x in result_list if x[0] == 'Family'])
     for personhandle in people: 
         person = db.get_person_from_handle(personhandle)
         for event_ref in person.get_event_ref_list():
             if event_handle == event_ref.ref and \
                     event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
-                participant =  name_displayer.display(person)
+                if participant:
+                    ellipses = True
+                else:
+                    participant =  name_displayer.display(person)
                 break
-        if participant:
+        if ellipses:
             break
-    if participant:
-        return participant
+    if ellipses:
+        return _('%s, ...') % participant
     
     for familyhandle in families:
         family = db.get_family_from_handle(familyhandle)
         for event_ref in family.get_event_ref_list():
             if event_handle == event_ref.ref and \
                     event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
-                participant = family_name(family, db)
+                if participant:
+                    ellipses = True
+                else:
+                    participant = family_name(family, db)
                 break
-        if participant:
+        if ellipses:
             break
     
-    return participant
+    if ellipses:
+        return _('%s, ...') % participant
+    else:
+        return participant
