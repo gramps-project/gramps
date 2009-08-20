@@ -204,6 +204,16 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         except Errors.WindowActiveError:
             pass
 
+    def __blocked_text(self):
+        """
+        Return the common text used when eventref cannot be edited
+        """
+        return _("This event reference cannot be edited at this time. "
+                    "Either the associated event is already being edited "
+                    "or another event reference that is associated with "
+                    "the same event is being edited.\n\nTo edit this event "
+                    "reference, you need to close the event.")
+    
     def share_button_clicked(self, obj):
         from Selectors import selector_factory
         SelectEvent = selector_factory('Event')
@@ -218,6 +228,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     self.dbstate, self.uistate, self.track,
                     event, ref, self.object_added)
             except Errors.WindowActiveError:
+                from QuestionDialog import WarningDialog
+                WarningDialog(_("Cannot share this reference"),
+                              self.__blocked_text() )
                 pass
 
     def edit_button_clicked(self, obj):
@@ -230,14 +243,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                     event, ref[1], self.object_edited)
             except Errors.WindowActiveError:
                 from QuestionDialog import WarningDialog
-                WarningDialog(
-                    _("Cannot edit this reference"),
-                    _("This event reference cannot be edited at this time. "
-                      "Either the associated event is already being edited "
-                      "or another event reference that is associated with "
-                      "the same event is being edited.\n\nTo edit this event "
-                      "reference, you need to close the event.")
-                    )
+                WarningDialog(_("Cannot edit this reference"),
+                              self.__blocked_text() )
         elif ref and ref[0] != self._WORKGROUP:
             #bring up family editor
             key = self._groups[ref[0]][0]
