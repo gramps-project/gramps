@@ -19,7 +19,8 @@ pkgdata_PYTHON = \
 pkgpyexecdir = @pkgpyexecdir@/plugins/docgen
 pkgpythondir = @pkgpythondir@/plugins/docgen
 
-GLADEFILES = 
+GLADEFILES = \
+	gtkprint.glade 
 
 GRAPHICS = 
 

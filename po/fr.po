@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-17 15:52+0200\n"
-"PO-Revision-Date: 2009-08-18 11:37+0100\n"
+"PO-Revision-Date: 2009-08-20 16:36+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Ville :"
 #: ../src/Assistant.py:341
 #: ../src/plugins/tool/ownereditor.glade.h:7
 msgid "State/Province:"
-msgstr "Région/Province :"
+msgstr "Région / Province :"
 
 #: ../src/Assistant.py:342
 #: ../src/Filters/Rules/Place/_HasPlace.py:54
@@ -64,7 +64,7 @@ msgstr "Pays :"
 
 #: ../src/Assistant.py:343
 msgid "ZIP/Postal code:"
-msgstr "Code lieu INSEE/postal :"
+msgstr "Code lieu :"
 
 #: ../src/Assistant.py:344
 #: ../src/plugins/tool/ownereditor.glade.h:6
@@ -666,7 +666,7 @@ msgstr "Ville"
 #: ../src/GrampsCfg.py:173
 #: ../src/DisplayTabs/_LocationEmbedList.py:57
 msgid "State/Province"
-msgstr "Région/Province"
+msgstr "Région / Province"
 
 #: ../src/GrampsCfg.py:174
 #: ../src/DataViews/PlaceView.py:82
@@ -684,7 +684,7 @@ msgstr "Pays"
 #: ../src/DataViews/RepositoryView.py:72
 #: ../src/plugins/tool/ExtractCity.py:387
 msgid "ZIP/Postal Code"
-msgstr "Code lieu INSEE/postal"
+msgstr "Code lieu"
 
 #: ../src/GrampsCfg.py:176
 #: ../src/plugins/webreport/NarrativeWeb.py:140
@@ -2652,16 +2652,19 @@ msgid ""
 "If gedcom, gramps-xml or grdb, use the -i option to import into a family tree instead."
 msgstr ""
 
+# trunk
 #: ../src/cli/arghandler.py:140
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr ""
 
+# trunk
 #: ../src/cli/arghandler.py:158
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
 
+# trunk
 #: ../src/cli/arghandler.py:174
 #, python-format
 msgid ""
@@ -2687,6 +2690,7 @@ msgstr "OUI"
 msgid "Will overwrite the existing file: %s"
 msgstr "Écrasera le fichier existant : %s"
 
+# trunk
 #: ../src/cli/arghandler.py:201
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
@@ -2705,6 +2709,7 @@ msgstr "  Info: %s"
 msgid "Database needs recovery, cannot open it!"
 msgstr "La base de données doit être récupérée, impossible à ouvrir !"
 
+# trunk
 #. Note: Make sure to edit const.py POPT_TABLE too!
 #: ../src/cli/argparser.py:50
 msgid ""
@@ -2728,13 +2733,33 @@ msgid ""
 "  -L                                     List Family Trees in Detail\n"
 "  -u, --force-unlock                     Force unlock of family tree\n"
 msgstr ""
+"\n"
+"Usage : gramps.py [OPTION...]\n"
+"  --load-modules=MODULE1,MODULE2,...     Modules dynamiques à charger\n"
+"\n"
+"Options d'aide\n"
+"  -?, --help                             Affiche ce message d'aide\n"
+"  --usage                                Affiche un rapide message d'utilisation\n"
+"\n"
+"Options de l'application\n"
+"  -O, --open=FAMILY_TREE                 Ouvre l'arbre familial\n"
+"  -i, --import=FILENAME                  Importe un fichier\n"
+"  -e, --export=FILENAME                  Exporte un fichier\n"
+"  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
+"  -a, --action=ACTION                    Spécifie l'action\n"
+"  -p, --options=OPTIONS_STRING           Spécifie les options\n"
+"  -d, --debug=LOGGER_NAME                Active les logs de déboguage\n"
+"  -l                                     Liste les arbres familiaux\n"
+"  -L                                     Liste les arbres familiaux en détail\n"
+"  -u, --force-unlock                     Force le dévérouillage de l'arbre familial\n"
 
 # trunk
 #: ../src/cli/argparser.py:156
 #: ../src/cli/argparser.py:225
 msgid "Error parsing the arguments"
-msgstr ""
+msgstr "Erreur pour parser les arguments"
 
+# trunk
 #: ../src/cli/argparser.py:158
 #, python-format
 msgid ""
@@ -2742,6 +2767,7 @@ msgid ""
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
 
+# trunk
 #: ../src/cli/argparser.py:226
 #, python-format
 msgid ""
@@ -2842,6 +2868,7 @@ msgstr "Erreur rencontrée : %s"
 msgid "  Details: %s"
 msgstr "  Détails : %s"
 
+# trunk
 #: ../src/cli/grampscli.py:302
 #, python-format
 msgid "Error encountered in argument parsing: %s"
@@ -3773,7 +3800,7 @@ msgstr "Aucun nom de fichier donné"
 #: ../src/gen/plug/docbackend/docbackend.py:152
 #, python-format
 msgid "File %s already open, close it first."
-msgstr ""
+msgstr "Le fichier %s est déjà ouvert, fermez-le."
 
 #: ../src/gen/plug/docbackend/docbackend.py:158
 #: ../src/gen/plug/docbackend/docbackend.py:161
@@ -4311,7 +4338,7 @@ msgstr ""
 # trunk
 #: ../src/gui/grampsgui.py:277
 msgid "Error parsing arguments"
-msgstr ""
+msgstr "Erreur de parsing des arguments"
 
 #: ../src/gui/utils.py:184
 msgid "Please do not force closing this important dialog."
@@ -5480,7 +5507,7 @@ msgstr "Paroisse"
 #: ../src/plugins/webreport/NarrativeWeb.py:136
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
 msgid "County"
-msgstr "Département/Comté"
+msgstr "Département / Comté"
 
 # province (Canada, Belgique)
 #: ../src/DataViews/PlaceView.py:81
@@ -5489,7 +5516,7 @@ msgstr "Département/Comté"
 #: ../src/plugins/tool/ExtractCity.py:386
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
 msgid "State"
-msgstr "Région/Province"
+msgstr "Région / Province"
 
 #: ../src/DataViews/PlaceView.py:83
 #: ../src/plugins/webreport/NarrativeWeb.py:142
@@ -5555,7 +5582,7 @@ msgstr "Éditeur de filtre sur le lieu"
 # trunk
 #: ../src/DataViews/PlaceView.py:231
 msgid "No map service is available."
-msgstr ""
+msgstr "Aucun service cartographique n'est disponible."
 
 #: ../src/DataViews/PlaceView.py:232
 msgid "Check your installation."
@@ -6001,7 +6028,7 @@ msgstr "Ajouter un nouvel événement familial"
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:62
 msgid "Remove the selected family event"
-msgstr ""
+msgstr "Enlever l'événement familial sélectionné"
 
 # trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:63
@@ -6052,14 +6079,16 @@ msgstr ""
 msgid "Cannot change Person"
 msgstr "Impossible de changer d'individu"
 
+# trunk
 #: ../src/DisplayTabs/_EventEmbedList.py:279
 msgid "You cannot change Person events in the Family Editor"
-msgstr ""
+msgstr "Vous ne pouvez pas modifier les événements de l'individu dans l'éditeur de famille"
 
+# trunk
 #: ../src/DisplayTabs/_EventRefModel.py:63
 #, python-format
 msgid "%(groupname)s - %(groupnumber)d"
-msgstr ""
+msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:54
 #: ../src/DisplayTabs/_LdsEmbedList.py:64
@@ -6175,10 +6204,11 @@ msgstr "_Notes"
 msgid "Personal Events"
 msgstr "Événements individuels"
 
+# trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:55
 #, python-format
 msgid "With %(namepartner)s (%(famid)s)"
-msgstr ""
+msgstr "Avec %(namepartner)s (%(famid)s)"
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:56
@@ -6188,13 +6218,13 @@ msgstr "<Inconnu>"
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:59
 msgid "Add a new personal event"
-msgstr ""
+msgstr "Ajouter un événement individuel"
 
 # enlever la référence à l'événement
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:60
 msgid "Remove the selected personal event"
-msgstr ""
+msgstr "Enlever l'événement individuel sélectionné"
 
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:61
@@ -6219,7 +6249,7 @@ msgstr "Impossible de changer de famille"
 # trunk
 #: ../src/DisplayTabs/_PersonEventEmbedList.py:141
 msgid "You cannot change Family events in the Person Editor"
-msgstr ""
+msgstr "Vous ne pouvez pas modifier les événements familiaux dans l'éditeur de l'individu"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 msgid "Create and add a new association"
@@ -6633,6 +6663,7 @@ msgstr "Il est possible de créer accidentellement de multiples familles avec le
 msgid "Family has changed"
 msgstr "La famille a été modifiée"
 
+# trunk
 #: ../src/Editors/_EditFamily.py:519
 #, python-format
 msgid ""
@@ -8174,9 +8205,10 @@ msgstr "Affiche des enregistrements intéressants sur les individus et familles"
 msgid "Plain Text"
 msgstr "Texte brut"
 
+# trunk
 #: ../src/plugins/docgen/AsciiDoc.py:379
 msgid "Generates documents in plain text format (.txt)."
-msgstr ""
+msgstr "Génère des documents au formatplain text (.txt)"
 
 #: ../src/plugins/docgen/GtkPrint.py:68
 msgid "PyGtk 2.10 or later is required"
@@ -8192,9 +8224,10 @@ msgstr "sur %d"
 msgid "Print..."
 msgstr "Imprimer..."
 
+# trunk
 #: ../src/plugins/docgen/GtkPrint.py:617
 msgid "Generates documents and prints them directly."
-msgstr ""
+msgstr "Génère des documents et les imprime directement."
 
 #: ../src/plugins/docgen/HtmlDoc.py:267
 #: ../src/plugins/webreport/NarrativeWeb.py:4826
@@ -8269,7 +8302,6 @@ msgstr "SVG (Scalable Vector Graphics)"
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
 msgstr "Génère des documents au format Scalable Vector Graphics (.svg)."
 
-# utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 # trunk
 #: ../src/plugins/drawreport/AncestorTree.py:195
 #: ../src/plugins/drawreport/Calendar.py:92
@@ -8286,7 +8318,7 @@ msgstr "Génère des documents au format Scalable Vector Graphics (.svg)."
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:76
 #, python-format
 msgid "Person %s is not in the Database"
-msgstr ""
+msgstr "L'individu %s n'est pas présent dans la base de données"
 
 # de ou pour ?
 #: ../src/plugins/drawreport/AncestorTree.py:198
@@ -10737,7 +10769,7 @@ msgstr "Importer les données depuis des fichiers vCard"
 # trunk
 #: ../src/plugins/lib/libcairodoc.py:1540
 msgid "Provides a library for using Cairo to generate documents."
-msgstr ""
+msgstr "Fournit une librairie pour générer des documents avec Cairo."
 
 #: ../src/plugins/lib/libgrampsxml.py:50
 msgid "Provides common functionality for Gramps XML import/export."
@@ -10747,13 +10779,15 @@ msgstr "Fournit une fonctionnalité commune pour l'importation et l'exportation 
 msgid "Provides holiday information for different countries."
 msgstr "Fournit l'information sur les jours fériés selon les pays."
 
+# trunk
 #: ../src/plugins/lib/libhtml.py:557
 msgid "Manages an HTML DOM tree."
-msgstr ""
+msgstr "Gère une hiérarchie DOM au format HTML."
 
+# trunk
 #: ../src/plugins/lib/libhtmlbackend.py:193
 msgid "Manages a HTML file implementing DocBackend."
-msgstr ""
+msgstr "Gère un fichier HTML en implémentant DocBackend."
 
 #. First is used as default selection.
 #. As seen on the internet, ISO-xxx are listed as capital letters
@@ -10794,9 +10828,10 @@ msgstr "Creative Commons - Paternité - Pas d'Utilisation Commerciale - Partage 
 msgid "No copyright notice"
 msgstr "Pas de note de licence"
 
+# trunk
 #: ../src/plugins/lib/libhtmlconst.py:134
 msgid "Common constants for html files."
-msgstr ""
+msgstr "Constantes communes aux fichiers html."
 
 #: ../src/plugins/lib/libmapservice.py:113
 msgid "Provides base functionality for map services."
@@ -10819,7 +10854,7 @@ msgstr " paroisse"
 # province (Canada, Belgique)
 #: ../src/plugins/mapservices/eniroswedenmap.py:79
 msgid " state"
-msgstr " région/province"
+msgstr " région / province"
 
 #: ../src/plugins/mapservices/eniroswedenmap.py:137
 #, python-format
@@ -11917,6 +11952,7 @@ msgstr "Inclure ou non les références de la source."
 msgid "Include sources notes"
 msgstr "Inclure les notes des sources"
 
+# trunk
 #: ../src/plugins/textreport/DetAncestralReport.py:797
 #: ../src/plugins/textreport/DetDescendantReport.py:826
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
@@ -12006,7 +12042,7 @@ msgstr "Inclure ou non les informations détaillées concernant le conjoint."
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:834
 msgid "Include path to start-person"
-msgstr ""
+msgstr "Inclure un chemin vers la personne centrale"
 
 # trunk
 #: ../src/plugins/textreport/DetDescendantReport.py:835
@@ -12413,13 +12449,13 @@ msgstr "Ville : %s "
 #: ../src/plugins/textreport/PlaceReport.py:124
 #, python-format
 msgid "County: %s "
-msgstr "Département/Comté : %s "
+msgstr "Département / Comté : %s "
 
 # province (Canada, Belgique)
 #: ../src/plugins/textreport/PlaceReport.py:125
 #, python-format
 msgid "State: %s"
-msgstr "Région/Province : %s"
+msgstr "Région / Province : %s"
 
 #: ../src/plugins/textreport/PlaceReport.py:126
 #, python-format
@@ -13489,6 +13525,7 @@ msgstr "Nombre"
 msgid "Uncollected object"
 msgstr "Objet non chargé"
 
+# trunk
 #: ../src/plugins/tool/Leak.py:126
 #, python-format
 msgid "Referrers of %d"
@@ -14182,7 +14219,7 @@ msgstr "Région / Province :"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:139
 msgid "Postal Code"
-msgstr "Code postal / INSEE :"
+msgstr "Code lieu :"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:143
@@ -14308,10 +14345,11 @@ msgstr "Ce fichier a été déplacé ou supprimé."
 msgid "File Type"
 msgstr "Type de fichier"
 
+# trunk
 #. add exif title header
 #: ../src/plugins/webreport/NarrativeWeb.py:2108
 msgid "Image Exif Tags"
-msgstr ""
+msgstr "Balises Exif de l'image"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:2189
 msgid "Missing media object:"
@@ -14387,6 +14425,7 @@ msgstr "Surnom"
 msgid "Age at Death"
 msgstr "Âge au décès"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:3628
 msgid "Latter-Day Saints (LDS) Ordinance"
 msgstr ""
@@ -14617,21 +14656,25 @@ msgstr "Inclure images et media"
 msgid "Whether to include a gallery of media objects"
 msgstr "Inclure ou non une galerie des objets media"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4987
 msgid "Max width of initial image"
-msgstr ""
+msgstr "Largeur max de l'image initiale"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4989
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
-msgstr ""
+msgstr "Permet de définir la largeur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4993
 msgid "Max height of initial image"
-msgstr ""
+msgstr "Hauteur max de l'image initiale"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:4995
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
-msgstr ""
+msgstr "Permet de définir la hauteur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5001
 msgid "Suppress GRAMPS ID"
@@ -14707,26 +14750,28 @@ msgstr "La note utilisée pour la page Télécharger"
 msgid "Download Filename"
 msgstr "Nom du fichier à télécharger"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5057
 #: ../src/plugins/webreport/NarrativeWeb.py:5066
 msgid "File to be used for downloading of database"
-msgstr ""
+msgstr "Fichier prévu pour être téléchargé"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5060
 #: ../src/plugins/webreport/NarrativeWeb.py:5069
 msgid "Description for download"
-msgstr ""
+msgstr "Description pour le téléchargement"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5060
 msgid "Smith Family Tree"
 msgstr "Arbre de la famille Martin"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5061
 #: ../src/plugins/webreport/NarrativeWeb.py:5070
 msgid "Give a description for this file."
-msgstr ""
+msgstr "Donnez une description pour ce fichier."
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5069
@@ -14736,12 +14781,12 @@ msgstr "Arbre de la famille Bernard"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5073
 msgid "Download Copyright License"
-msgstr ""
+msgstr "Droit d'utilisation pour le téléchargement"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5076
 msgid "The copyright to be used for ths download file?"
-msgstr ""
+msgstr "Le droit d'auteur défini pour ce fichier ?"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:5085
 msgid "Advanced"
@@ -14810,9 +14855,10 @@ msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents et ses f
 msgid "Sort children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
+# trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5125
 msgid "Whether to display children in birth order or in entry order?"
-msgstr ""
+msgstr "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5129
@@ -14822,7 +14868,7 @@ msgstr "Inclure les pages dépôt"
 # trunk
 #: ../src/plugins/webreport/NarrativeWeb.py:5130
 msgid "Whether to include the Repository Pages or not?"
-msgstr ""
+msgstr "Inclure ou non des pages dépôt ?"
 
 # Substantif (GNOME fr)
 # trunk
@@ -14841,10 +14887,11 @@ msgstr "Saga sur internet"
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Génère des pages internet (XHTML) pour tous les individus ou une partie des individus"
 
+# trunk
 #: ../src/plugins/webreport/WebCal.py:244
 #, python-format
 msgid "Calculating Holidays for year %d"
-msgstr ""
+msgstr "Calcul des jours fériés pour l'année %d"
 
 # trunk
 #: ../src/plugins/webreport/WebCal.py:402
@@ -15155,7 +15202,7 @@ msgstr ""
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1500
 msgid "Whether to create one day pages or not"
-msgstr ""
+msgstr "Créer ou non des pages pour un jour"
 
 # trunk
 #: ../src/plugins/webreport/WebCal.py:1741
@@ -21049,17 +21096,17 @@ msgstr "Paroisse :"
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 #: ../src/plugins/tool/ownereditor.glade.h:8
 msgid "ZIP/Postal Code:"
-msgstr "Code lieu (INSEE/postal) :"
+msgstr "Code lieu :"
 
 # comté (Canada)
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
 msgid "County:"
-msgstr "Département/Comté :"
+msgstr "Département / Comté :"
 
 # province (Belgique, Canada)
 #: ../src/Filters/Rules/Place/_HasPlace.py:53
 msgid "State:"
-msgstr "Région/Province :"
+msgstr "Région / Province :"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Place/_HasPlace.py:56
@@ -21642,7 +21689,7 @@ msgstr "Paroisse"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "Zip/Postal code"
-msgstr "Code lieu (INSEE/postal)"
+msgstr "Code lieu"
 
 #: ../src/FilterEditor/_FilterEditor.py:65
 msgid "Person Filters"
@@ -21739,6 +21786,7 @@ msgstr "Sélectionner..."
 msgid "Select %s from a list"
 msgstr "Sélectionner %s depuis une liste"
 
+# trunk
 #: ../src/FilterEditor/_EditRule.py:333
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
@@ -22224,7 +22272,7 @@ msgstr "_Début de la nouvelle année :  "
 
 #: ../src/glade/dateedit.glade.h:13
 msgid "Old Style/New Style"
-msgstr "Ancien style/Nouveau style"
+msgstr "Ancien style / Nouveau style"
 
 #: ../src/glade/dateedit.glade.h:14
 msgid "September 1"
@@ -22489,7 +22537,7 @@ msgstr "_Paroisse :"
 #: ../src/glade/editlocation.glade.h:3
 #: ../src/glade/editplace.glade.h:4
 msgid "Co_unty:"
-msgstr "_Département/Comté :"
+msgstr "_Département / Comté :"
 
 #: ../src/glade/editlocation.glade.h:4
 #: ../src/glade/editaddress.glade.h:4
@@ -22511,11 +22559,11 @@ msgstr "R_ue :"
 #: ../src/glade/editlocation.glade.h:7
 #: ../src/glade/editplace.glade.h:12
 msgid "_State:"
-msgstr "_Région/Province :"
+msgstr "_Région / Province :"
 
 #: ../src/glade/editlocation.glade.h:8
 msgid "_Zip/Postal code:"
-msgstr "_Code lieu INSEE/postal :"
+msgstr "_Code lieu :"
 
 #: ../src/glade/editfamily.glade.h:1
 msgid "<b>Father</b>"
@@ -22568,7 +22616,7 @@ msgstr "Ad_resse :"
 # comté (Canada)
 #: ../src/glade/editaddress.glade.h:3
 msgid "C_ity/County:"
-msgstr "_Ville/Département (Comté) :"
+msgstr "_Ville / Département (Comté) :"
 
 #: ../src/glade/editaddress.glade.h:6
 #: ../src/glade/editmedia.glade.h:6
@@ -22583,12 +22631,12 @@ msgstr "_Date :"
 # éviter le raccourci sur le g
 #: ../src/glade/editaddress.glade.h:7
 msgid "_State/Province:"
-msgstr "_Région/Province :"
+msgstr "_Région / Province :"
 
 #: ../src/glade/editaddress.glade.h:8
 #: ../src/glade/editplace.glade.h:13
 msgid "_ZIP/Postal code:"
-msgstr "_Code lieu INSEE/postal :"
+msgstr "_Code lieu :"
 
 #: ../src/glade/editmedia.glade.h:4
 #: ../src/glade/editsourceref.glade.h:7

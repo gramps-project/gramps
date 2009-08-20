@@ -14,7 +14,8 @@ pkgdata_PYTHON = \
 	libhtmlconst.py\
 	libholiday.py\
 	libmapservice.py\
-	libmixin.py
+	libmixin.py\
+        libodfbackend.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
 pkgpythondir = @pkgpythondir@/plugins/lib
