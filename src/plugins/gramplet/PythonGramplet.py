@@ -44,6 +44,7 @@ class PythonGramplet(Gramplet):
         import gc
         gc.set_debug(gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_OBJECTS|gc.DEBUG_SAVEALL)
         self.prompt = ">"
+        self.previous = ""
         self.set_tooltip(_("Enter Python expressions"))
         self.gc = gc
         self.env = {"dbstate": self.gui.dbstate,
@@ -70,18 +71,34 @@ class PythonGramplet(Gramplet):
         _retval = None
         if "_retval" in self.env:
             del self.env["_retval"]
-        exp1 = """_retval = """ + command
-        exp2 = command.strip()
+        if self.previous:
+            if command:
+                self.previous += "\n" + command
+                return
+            else:
+                exp = self.previous
+        else:
+            exp = command.strip()
         try:
-            _retval = eval(exp2, self.env)
+            _retval = eval(exp, self.env)
+            self.previous = ""
         except:
             try:
-                exec exp1 in self.env
-            except:
-                try:
-                    exec exp2 in self.env
-                except:
+                exec exp in self.env
+                self.previous = ""
+                self.prompt = ">"
+            except SyntaxError:
+                if command:
+                    self.previous = exp
+                    self.prompt = "-"
+                else:
+                    self.previous = ""
+                    self.prompt = ">"
                     _retval = self.format_exception()
+            except:
+                self.previous = ""
+                self.prompt = ">"
+                _retval = self.format_exception()
         if "_retval" in self.env:
             _retval = self.env["_retval"]
         return _retval
@@ -122,7 +139,7 @@ class PythonGramplet(Gramplet):
             line = buffer.get_text(start, end)
             self.append_text("\n")
             if line.startswith(self.prompt):
-                line = line[1:].strip()
+                line = line[2:]
             else:
                 self.append_text("%s " % self.prompt)
                 end = buffer.get_end_iter()
