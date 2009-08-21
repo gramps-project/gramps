@@ -1387,13 +1387,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
             transaction.add(key, op, handle, old_data, new_data)
         return old_data
         
-    def do_commit(self, add_list, db_map):
-        retlist = []
-        for (handle, data) in add_list:
-            db_map.put(handle, data, self.txn)
-            retlist.append(str(handle))
-        return retlist
-            
     def commit_person(self, person, transaction, change_time=None):
         """
         Commit the specified Person to the database, storing the changes as 

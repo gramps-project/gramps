@@ -595,9 +595,11 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         raise NotImplementedError
         
-    @staticmethod
-    def get_number_of_records(table):
-        return len(table)
+    def get_number_of_records(self, table):
+        if self.txn is None:
+            return len(table)
+        else:
+            return table.stat(flags=db.DB_FAST_STAT, txn=self.txn)['nkeys']
 
     def get_number_of_people(self):
         """
@@ -1453,6 +1455,10 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
                    (1, 4, 200), (0, 5, 100)]
+        # Benny's new column order
+        default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), 
+           (0, 6, 230), (1, 3, 150),
+           (1, 4, 200), (0, 5, 100)]
         return self.__get_columns(EVENT_COL_KEY, default)
 
     def get_repository_column_order(self):
