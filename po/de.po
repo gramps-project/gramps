@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-11 20:54+0200\n"
-"PO-Revision-Date: 2009-08-11 21:56+0200\n"
+"POT-Creation-Date: 2009-08-20 20:10+0200\n"
+"PO-Revision-Date: 2009-08-21 15:24+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -658,8 +658,8 @@ msgstr ""
 "Name:\t%s\n"
 "Ordner:\t%s\n"
 "\n"
-"Klicke zum starten auf Anwenden, auf Zurück um deine Einstellungen zu überprüfen "
-"oder auf Abbrechen"
+"Klicke zum starten auf Anwenden, auf Zurück um deine Einstellungen zu "
+"überprüfen oder auf Abbrechen"
 
 #: ../src/ExportAssistant.py:454
 msgid ""
@@ -1481,7 +1481,7 @@ msgstr "Lesezeichen hinzufügen"
 #: ../src/gramps_main.py:103 ../src/ScratchPad.py:178 ../src/ScratchPad.py:367
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
-#: ../src/DisplayTabs/_EmbeddedList.py:420
+#: ../src/DisplayTabs/_EmbeddedList.py:424
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:65
@@ -18825,7 +18825,7 @@ msgstr "Stiefkind"
 
 #: ../src/gen/lib/childreftype.py:62
 msgid "Sponsored"
-msgstr "Gefördert"
+msgstr "Legitimiert"
 
 #: ../src/gen/lib/childreftype.py:63
 msgid "Foster"
