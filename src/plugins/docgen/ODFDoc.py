@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2005-2006  Serge Noiraud
+# Copyright (C) 2005-2009  Serge Noiraud
 # Copyright (C) 2007-2009  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -22,6 +22,38 @@
 
 # $Id$
 
+"""
+ODFDoc : used to generate Open Office Document
+"""
+
+#-------------------------------------------------------------------------
+#
+# pylint : disable messages ...
+#
+#-------------------------------------------------------------------------
+# disable-msg=C0302 # Too many lines in module
+# pylint: disable-msg=C0302
+# disable-msg # Regular expression which should only match
+# pylint: disable-msg=C0103
+# disable-msg=R0902 # Too many instance attributes
+# pylint: disable-msg=R0902
+# disable-msg=R0904 # Too many public methods
+# pylint: disable-msg=R0904
+# disable-msg=R0912 # Too many branches
+# pylint: disable-msg=R0912
+# disable-msg=R0913 # Too many arguments
+# pylint: disable-msg=R0913
+# disable-msg=R0914 # Too many local variables
+# pylint: disable-msg=R0914
+# disable-msg=R0915 # Too many statements
+# pylint: disable-msg=R0915
+# warnings :
+# disable-msg=W0613 # Unused argument
+# pylint: disable-msg=W0613
+# errors :
+# disable-msg=E1101 # has no member
+# pylint: disable-msg=E1101 
+
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules 
@@ -38,7 +70,6 @@ import locale
 from cStringIO import StringIO
 from math import pi, cos, sin
 from xml.sax.saxutils import escape
-import operator
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +87,6 @@ from libodfbackend import OdfBackend
 import const
 from ReportBase import ReportUtils
 import ImgManip
-import Utils
 import Errors
 
 #-------------------------------------------------------------------------
@@ -89,13 +119,29 @@ NewStyle = re.compile('style-name="([a-zA-Z0-9]*)__([#a-zA-Z0-9 ]*)__">')
 #
 #-------------------------------------------------------------------------
 class ODFDoc(BaseDoc, TextDoc, DrawDoc):
+    """
+    The ODF document class
+    """
 
-    def __init__(self, styles, type):
-        BaseDoc.__init__(self, styles, type)
+    def __init__(self, styles, ftype):
+        """
+        Class init
+        """
+        BaseDoc.__init__(self, styles, ftype)
         self.media_list = []
+        self.init_called = False
         self.cntnt = None
-        self._backend = None
+        self.cntnt1 = None
+        self.cntnt2 = None
+        self.cntntx = None
+        self.sfile = None
+        self.mimetype = None
+        self.meta = None
+        self.mfile = None
         self.filename = None
+        self.lang = None
+        self._backend = None
+        self.span = 0
         self.level = 0
         self.time = "0000-00-00T00:00:00"
         self.new_page = 0
@@ -105,6 +151,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.StyleList = [] # styles to create depending on styled notes.
 
     def open(self, filename):
+        """
+        Open the new document
+        """
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % t[:6]
 
@@ -120,6 +169,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt2 = StringIO()
 
     def init(self):
+        """
+        Create the document header
+        """
 
         assert (not self.init_called)
         self.init_called = True
@@ -134,29 +186,44 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.StyleList = [] # styles to create depending on styled notes.
         self.cntnt1.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.cntnt1.write('<office:document-content ')
-        self.cntnt1.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
-        self.cntnt1.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
-        self.cntnt1.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
-        self.cntnt1.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
-        self.cntnt1.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
-        self.cntnt1.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
+        self.cntnt1.write('xmlns:office="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:office:1.0" ')
+        self.cntnt1.write('xmlns:style="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:style:1.0" ')
+        self.cntnt1.write('xmlns:text="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:text:1.0" ')
+        self.cntnt1.write('xmlns:table="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:table:1.0" ')
+        self.cntnt1.write('xmlns:draw="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:drawing:1.0" ')
+        self.cntnt1.write('xmlns:fo="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:xsl-fo-compatible:1.0" ')
         self.cntnt1.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
         self.cntnt1.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.cntnt1.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.cntnt1.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" ')
-        self.cntnt1.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
-        self.cntnt1.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
-        self.cntnt1.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
+        self.cntnt1.write('xmlns:meta="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:meta:1.0" ')
+        self.cntnt1.write('xmlns:number="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:datastyle:1.0" ')
+        self.cntnt1.write('xmlns:svg="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:svg-compatible:1.0" ')
+        self.cntnt1.write('xmlns:chart="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:chart:1.0" ')
+        self.cntnt1.write('xmlns:dr3d="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:dr3d:1.0" ')
         self.cntnt1.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
-        self.cntnt1.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
-        self.cntnt1.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
+        self.cntnt1.write('xmlns:form="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:form:1.0" ')
+        self.cntnt1.write('xmlns:script="urn:oasis:names:tc:opendocument')
+        self.cntnt1.write(':xmlns:script:1.0" ')
         self.cntnt1.write('xmlns:dom="http://www.w3.org/2001/xml-events" ')
         self.cntnt1.write('xmlns:xforms="http://www.w3.org/2002/xforms" ')
         self.cntnt1.write('office:class="text" office:version="1.0">\n')
         self.cntnt1.write('<office:scripts/>\n')
         self.cntnt1.write('<office:font-face-decls>\n')
-        self.cntnt1.write('<style:font-face style:name="Courier" svg:font-family="Courier" ')
-        self.cntnt1.write('style:font-family-generic="modern" style:font-pitch="fixed"/>\n')
+        self.cntnt1.write('<style:font-face style:name="Courier" ')
+        self.cntnt1.write('svg:font-family="Courier" ')
+        self.cntnt1.write('style:font-family-generic="modern" ')
+        self.cntnt1.write('style:font-pitch="fixed"/>\n')
         self.cntnt1.write('<style:font-face style:name="Times New Roman" ')
         self.cntnt1.write('svg:font-family="&apos;Times New Roman&apos;" ')
         self.cntnt1.write('style:font-family-generic="roman" ')
@@ -167,14 +234,19 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt1.write('style:font-pitch="variable"/>\n')
         self.cntnt2.write('</office:font-face-decls>\n')
         self.cntnt2.write('<office:automatic-styles>\n')
-        self.cntnt2.write('<style:style style:name="docgen_page_break" style:family="paragraph" ')
+        self.cntnt2.write('<style:style style:name="docgen_page_break" ')
+        self.cntnt2.write('style:family="paragraph" ')
         self.cntnt2.write('style:parent-style-name="Standard">\n')
-        self.cntnt2.write('<style:paragraph-properties fo:break-before="page"/>\n')
+        self.cntnt2.write('<style:paragraph-properties ')
+        self.cntnt2.write('fo:break-before="page"/>\n')
         self.cntnt2.write('</style:style>\n')
-        self.cntnt2.write('<style:style style:name="GSuper" style:family="text">')
-        self.cntnt2.write('<style:text-properties style:text-position="super 58%"/>')
+        self.cntnt2.write('<style:style style:name="GSuper" ')
+        self.cntnt2.write('style:family="text">')
+        self.cntnt2.write('<style:text-properties ')
+        self.cntnt2.write('style:text-position="super 58%"/>')
         self.cntnt2.write('</style:style>\n')
-        self.cntnt2.write('<style:style style:name="GRAMPS-preformat" style:family="text">')
+        self.cntnt2.write('<style:style style:name="GRAMPS-preformat" ')
+        self.cntnt2.write('style:family="text">')
         self.cntnt2.write('<style:text-properties style:font-name="Courier"/>')
         self.cntnt2.write('</style:style>\n')
         
@@ -188,7 +260,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('<style:graphic-properties ')
                 
             if style.get_line_width():
-                self.cntnt.write('svg:stroke-width="%.2f" ' % (style.get_line_width()*10))
+                self.cntnt.write('svg:stroke-width="%.2f" ' %
+                                 (style.get_line_width()*10))
                 self.cntnt.write('draw:marker-start="" ')
                 self.cntnt.write('draw:marker-start-width="0.0" ')
                 self.cntnt.write('draw:marker-end-width="0.0" ')
@@ -202,20 +275,24 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if style.get_line_style() == DASHED:
                 self.cntnt.write('svg:fill-color="#cccccc" ')
             else:
-                self.cntnt.write('svg:fill-color="#%02x%02x%02x" ' % style.get_color())
-            self.cntnt.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
+                self.cntnt.write('svg:fill-color="#%02x%02x%02x" ' %
+                                 style.get_color())
+            self.cntnt.write('draw:fill-color="#%02x%02x%02x" ' %
+                              style.get_fill_color())
             self.cntnt.write('draw:shadow="hidden" ')
             self.cntnt.write('style:run-through="background" ')
             self.cntnt.write('style:vertical-pos="from-top" ')
             self.cntnt.write('style:vertical-rel="paragraph" ')
             self.cntnt.write('style:horizontal-pos="from-left" ')
             self.cntnt.write('style:horizontal-rel="paragraph" ')
-            self.cntnt.write('draw:wrap-influence-on-position="once-concurrent" ')
+            self.cntnt.write('draw:wrap-influence-on-position=')
+            self.cntnt.write('"once-concurrent" ')
             self.cntnt.write('style:flow-with-text="false" ')
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
 
-            self.cntnt.write('<style:style style:name="%s_shadow"' % style_name)
+            self.cntnt.write('<style:style style:name="%s_shadow"' %
+                             style_name)
             self.cntnt.write(' style:family="graphic">\n')
             self.cntnt.write('<style:graphic-properties ')
             self.cntnt.write('draw:stroke="none" ')
@@ -229,7 +306,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('style:vertical-rel="paragraph" ')
             self.cntnt.write('style:horizontal-pos="from-left" ')
             self.cntnt.write('style:horizontal-rel="paragraph" ')
-            self.cntnt.write('draw:wrap-influence-on-position="once-concurrent" ')
+            self.cntnt.write('draw:wrap-influence-on-position=')
+            self.cntnt.write('"once-concurrent" ')
             self.cntnt.write('style:flow-with-text="false" ')
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
@@ -237,7 +315,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         # Graphic style for items with a clear background
         self.cntnt.write('<style:style style:name="clear" ')
         self.cntnt.write('style:family="graphic">\n')
-        self.cntnt.write('\t<style:graphic-properties draw:stroke="none" ')
+        self.cntnt.write('<style:graphic-properties draw:stroke="none" ')
         self.cntnt.write('draw:fill="none" draw:shadow="hidden" ')
         self.cntnt.write('style:run-through="background" ')
         self.cntnt.write('style:vertical-pos="from-top" ')
@@ -254,7 +332,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('<style:style style:name="NL%s" ' % style_name)
             self.cntnt.write('style:family="paragraph" ')
             self.cntnt.write('style:parent-style-name="%s">\n' % style_name)
-            self.cntnt.write('<style:paragraph-properties fo:break-before="page"/>\n')
+            self.cntnt.write('<style:paragraph-properties ')
+            self.cntnt.write('fo:break-before="page"/>\n')
             self.cntnt.write('</style:style>\n')
 
             self.cntnt.write('<style:style style:name="X%s" ' % style_name)
@@ -284,7 +363,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             else:
                 self.cntnt.write('style:font-name="Times New Roman" ')
             self.cntnt.write('fo:font-size="%.2fpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%.2fpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.2fpt" ' %
+                             font.get_size())
             color = font.get_color()
             self.cntnt.write('fo:color="#%02x%02x%02x" ' % color)
             if font.get_bold():
@@ -294,9 +374,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if font.get_underline():
                 self.cntnt.write('style:text-underline="single" ')
                 self.cntnt.write('style:text-underline-color="font-color" ')
-            self.cntnt.write('fo:text-indent="%.2fcm"\n' % style.get_first_indent())
-            self.cntnt.write('fo:margin-right="%.2fcm"\n' % style.get_right_margin())
-            self.cntnt.write('fo:margin-left="%.2fcm"\n' % style.get_left_margin())
+            self.cntnt.write('fo:text-indent="%.2fcm"\n' %
+                             style.get_first_indent())
+            self.cntnt.write('fo:margin-right="%.2fcm"\n' %
+                             style.get_right_margin())
+            self.cntnt.write('fo:margin-left="%.2fcm"\n' %
+                             style.get_left_margin())
             self.cntnt.write('fo:margin-top="0.00cm"\n')
             self.cntnt.write('fo:margin-bottom="0.212cm" ')
             self.cntnt.write('/>\n')
@@ -325,7 +408,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if font.get_italic():
                 self.cntnt.write('fo:font-style="italic" ')
             self.cntnt.write('fo:font-size="%.2fpt" ' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%.2fpt"/> ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%.2fpt"/> ' %
+                             font.get_size())
             self.cntnt.write('</style:style>\n')
 
         for style_name in styles.get_table_style_names():
@@ -334,12 +418,14 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('style:family="table-properties">\n')
             table_width = float(self.get_usable_width())
             table_width_str = "%.2f" % table_width
-            self.cntnt.write('<style:table-properties-properties style:width="%scm" '%table_width_str)
+            self.cntnt.write('<style:table-properties-properties ')
+            self.cntnt.write('style:width="%scm" '%table_width_str)
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
             for col in range(0, style.get_columns()):
                 self.cntnt.write('<style:style style:name="')
-                self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'" ')
+                self.cntnt.write(style_name + '.')
+                self.cntnt.write(str(chr(ord('A')+col)) +'" ')
                 self.cntnt.write('style:family="table-column">')
                 width = table_width * float(style.get_column_width(col)/100.0)
                 width_str = "%.4f" % width
@@ -372,10 +458,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('/>\n')
             self.cntnt.write('</style:style>\n')
             
-        self.cntnt.write('<style:style style:name="Tbold" style:family="text">\n')
+        self.cntnt.write('<style:style style:name="Tbold" ')
+        self.cntnt.write('style:family="text">\n')
         self.cntnt.write('<style:text-properties fo:font-weight="bold"/>\n')
         self.cntnt.write('</style:style>\n')
-        self.cntnt.write('<style:style style:name="Titalic" style:family="text">\n')
+        self.cntnt.write('<style:style style:name="Titalic" ')
+        self.cntnt.write('style:family="text">\n')
         self.cntnt.write('<style:text-properties fo:font-style="italic"/>\n')
         self.cntnt.write('</style:style>\n')
         self.cntnt.write('<style:style style:name="Tunderline" ')
@@ -387,58 +475,71 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('</style:style>\n')
 
         #Begin photo style
-        self.cntnt.write('<style:style style:name="Left" style:family="graphic"')
+        self.cntnt.write('<style:style style:name="Left" ')
+        self.cntnt.write('style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="photo">')
-        self.cntnt.write('<style:graphic-properties style:run-through="foreground"')
+        self.cntnt.write('<style:graphic-properties ')
+        self.cntnt.write('style:run-through="foreground"')
         self.cntnt.write(' style:wrap="dynamic"')
         self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
-        self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
+        self.cntnt.write(' style:wrap-contour="false"')
+        self.cntnt.write(' style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')
         self.cntnt.write(' style:horizontal-pos="left"')
         self.cntnt.write(' style:horizontal-rel="paragraph-content"')
         self.cntnt.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.cntnt.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.cntnt.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
-        self.cntnt.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.cntnt.write(' draw:color-inversion="false"')
+        self.cntnt.write(' draw:transparency="-100%"')
         self.cntnt.write(' draw:color-mode="standard"/>')
         self.cntnt.write('</style:style>\n')
 
-        self.cntnt.write('<style:style style:name="Right" style:family="graphic"')
+        self.cntnt.write('<style:style style:name="Right" ')
+        self.cntnt.write('style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="photo">')
-        self.cntnt.write('<style:graphic-properties style:run-through="foreground"')
+        self.cntnt.write('<style:graphic-properties ')
+        self.cntnt.write('style:run-through="foreground"')
         self.cntnt.write(' style:wrap="dynamic"')
         self.cntnt.write(' style:number-wrapped-paragraphs="no-limit"')
-        self.cntnt.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
+        self.cntnt.write(' style:wrap-contour="false" ')
+        self.cntnt.write(' style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph-content"')
         self.cntnt.write(' style:horizontal-pos="right"')
         self.cntnt.write(' style:horizontal-rel="paragraph-content"')
         self.cntnt.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.cntnt.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.cntnt.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
-        self.cntnt.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.cntnt.write(' draw:color-inversion="false"')
+        self.cntnt.write(' draw:transparency="-100%"')
         self.cntnt.write(' draw:color-mode="standard"/>')
         self.cntnt.write('</style:style>\n')
 
-        self.cntnt.write('<style:style style:name="Single" style:family="graphic"')
+        self.cntnt.write('<style:style style:name="Single" ')
+        self.cntnt.write('style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="Graphics"> ')
-        self.cntnt.write('<style:graphic-properties style:vertical-pos="from-top"')
+        self.cntnt.write('<style:graphic-properties ')
+        self.cntnt.write('style:vertical-pos="from-top"')
         self.cntnt.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.cntnt.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.cntnt.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
-        self.cntnt.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.cntnt.write(' draw:color-inversion="false"')
+        self.cntnt.write(' draw:transparency="-100%"')
         self.cntnt.write(' draw:color-mode="standard"/> ')
         self.cntnt.write('</style:style>\n')
 
         self.cntnt.write('<style:style style:name="Row" style:family="graphic"')
         self.cntnt.write(' style:parent-style-name="Graphics">')
-        self.cntnt.write('<style:graphic-properties style:vertical-pos="from-top"')
+        self.cntnt.write('<style:graphic-properties ')
+        self.cntnt.write('style:vertical-pos="from-top"')
         self.cntnt.write(' style:vertical-rel="paragraph"')
         self.cntnt.write(' style:horizontal-pos="from-left"')
         self.cntnt.write(' style:horizontal-rel="paragraph"')
         self.cntnt.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.cntnt.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.cntnt.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
-        self.cntnt.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.cntnt.write(' draw:color-inversion="false"')
+        self.cntnt.write(' draw:transparency="-100%"')
         self.cntnt.write(' draw:color-mode="standard"/>')
         self.cntnt.write('</style:style>\n')
 
@@ -451,8 +552,35 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('form:automatic-focus="false" ')
         self.cntnt.write('form:apply-design-mode="false"/>\n')
 
+    def uniq(self, List, funct=None):
+        """
+        We want no duplicate in the list
+        """
+        # order preserving
+        if funct is None:
+            def funct(x):
+                """
+                function used to compare elements
+                """
+                return x
+        seen = {}
+        result = []
+        for item in List:
+            marker = funct(item[0])
+            if marker in seen: 
+                continue
+            seen[marker] = 1
+            result.append(item)
+        return result
+
     def finish_cntnt_creation(self):
+        """
+        We have finished the document.
+        So me must integrate the new fonts and styles where they should be.
+        The content.xml file is closed.
+        """
         self.cntntx = StringIO()
+        self.StyleList = self.uniq(self.StyleList)
         self.add_styled_notes_fonts()
         self.add_styled_notes_styles()
         self.cntntx.write(self.cntnt1.getvalue())
@@ -463,6 +591,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.close()
 
     def close(self):
+        """
+        Close the document and create the odt file
+        """
         self.cntnt.write('</office:text>\n')
         self.cntnt.write('</office:body>\n')
         self.cntnt.write('</office:document-content>\n')
@@ -476,41 +607,62 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             open_file_with_default_application(self.filename)
 
     def add_styled_notes_fonts(self):
+        """
+        Add the new fonts for Styled notes in the font-face-decls section.
+        """
         # Need to add new font for styled notes here.
         for style in self.StyleList:
-            if ( style[0] == "FontFace" ):
-                self.cntnt1.write('<style:font-face style:name="%s"' % style[1] )
-                self.cntnt1.write(' svg:font-family="&apos;%s&apos;"' % style[1] )
+            if ( style[1] == "FontFace" ):
+                self.cntnt1.write('<style:font-face style:name="%s"' %
+                                  style[2] )
+                self.cntnt1.write(' svg:font-family="&apos;%s&apos;"' %
+                                  style[2] )
                 self.cntnt1.write(' style:font-pitch="fixed"/>\n')
 
     def add_styled_notes_styles(self):
+        """
+        Add the new styles for Styled notes in the automatic-styles section.
+        """
         # Need to add new style for styled notes here.
         for style in self.StyleList:
-            if ( style[0] == "FontSize" ):
-                self.cntnt2.write('<style:style style:name="FontSize__%s__"' % style[1] )
-                self.cntnt2.write(' style:family="text">')
-                self.cntnt2.write(' <style:text-properties fo:font-size="%spt"' % style[1])
-                self.cntnt2.write(' style:font-size-asian="%spt"' % style[1])
-                self.cntnt2.write(' style:font-size-complex="%spt"/>' % style[1])
+            if ( style[1] == "FontSize" ):
+                self.cntnt2.write('<style:style style:name="FontSize__%s__"' %
+                                  style[2] )
+                self.cntnt2.write(' style:family="text"> ')
+                self.cntnt2.write('<style:text-properties fo:font-size="%spt"' %
+                                   style[2])
+                self.cntnt2.write(' style:font-size-asian="%spt"' % style[2])
+                self.cntnt2.write(' style:font-size-complex="%spt"/>' %
+                                  style[2])
                 self.cntnt2.write('</style:style>\n')
-            elif ( style[0] == "FontColor" ):
-                self.cntnt2.write('<style:style style:name="FontColor__%s__"' % style[1] )
+            elif ( style[1] == "FontColor" ):
+                self.cntnt2.write('<style:style style:name="FontColor__%s__"' %
+                                  style[2] )
                 self.cntnt2.write(' style:family="text">')
-                self.cntnt2.write(' <style:text-properties fo:color="%s"/>' % style[1])
+                self.cntnt2.write(' <style:text-properties fo:color="%s"/>' %
+                                  style[2])
                 self.cntnt2.write('</style:style>\n')
-            elif ( style[0] == "FontHighlight" ):
-                self.cntnt2.write('<style:style style:name="FontHighlight__%s__"' % style[1] )
-                self.cntnt2.write(' style:family="text">')
-                self.cntnt2.write(' <style:text-properties fo:background-color="%s"/>' % style[1])
+            elif ( style[1] == "FontHighlight" ):
+                self.cntnt2.write('<style:style ')
+                self.cntnt2.write('style:name="FontHighlight__%s__"' %
+                                  style[2] )
+                self.cntnt2.write(' style:family="text"> ')
+                self.cntnt2.write('<style:text-properties ')
+                self.cntnt2.write('fo:background-color="%s"/>' % style[2])
                 self.cntnt2.write('</style:style>\n')
-            elif ( style[0] == "FontFace" ):
-                self.cntnt2.write('<style:style style:name="FontFace__%s__"' % style[1] )
-                self.cntnt2.write(' style:family="text">')
-                self.cntnt2.write(' <style:text-properties style:font-name="%s"' % style[1] )
+            elif ( style[1] == "FontFace" ):
+                self.cntnt2.write('<style:style style:name="FontFace__%s__"' %
+                                  style[2] )
+                self.cntnt2.write(' style:family="text"> ')
+                self.cntnt2.write('<style:text-properties ')
+                self.cntnt2.write('style:font-name="%s"' % style[2] )
                 self.cntnt2.write(' style:font-pitch="variable"/>')
                 self.cntnt2.write('</style:style>\n')
 
     def add_media_object(self, file_name, pos, x_cm, y_cm, alt=''):
+        """
+        Add multi-media documents : photos
+        """
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
@@ -561,6 +713,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write('</text:p>\n')
 
     def start_table(self, name, style_name):
+        """
+        open a table
+        """
         self.cntnt.write('<table:table table:name="%s" ' % name)
         self.cntnt.write('table:style-name="%s">\n' % style_name)
         styles = self.get_style_sheet()
@@ -570,17 +725,30 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.cntnt.write(style_name + '.' + str(chr(ord('A')+col)) +'"/>\n')
 
     def end_table(self):
+        """
+        close a table
+        """
         self.cntnt.write('</table:table>\n')
 
     def start_row(self):
+        """
+        open a row
+        """
         self.cntnt.write('<table:table-row>\n')
 
     def end_row(self):
+        """
+        close a row
+        """
         self.cntnt.write('</table:table-row>\n')
 
     def start_cell(self, style_name, span=1):
+        """
+        open a cell
+        """
         self.span = span
-        self.cntnt.write('<table:table-cell table:style-name="%s" ' % style_name)
+        self.cntnt.write('<table:table-cell table:style-name="%s" ' %
+                         style_name)
         self.cntnt.write('table:value-type="string"')
         if span > 1:
             self.cntnt.write(' table:number-columns-spanned="%s">\n' % span)
@@ -589,24 +757,42 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.new_cell = 1
 
     def end_cell(self):
+        """
+        close a cell
+        """
         self.cntnt.write('</table:table-cell>\n')
         #for col in range(1, self.span):
         #    self.cntnt.write('<table:covered-table-cell/>\n')
         self.new_cell = 0
 
     def start_bold(self):
+        """
+        open bold
+        """
         self.cntnt.write('<text:span text:style-name="Tbold">')
 
     def end_bold(self):
+        """
+        close bold
+        """
         self.cntnt.write('</text:span>')
         
     def start_superscript(self):
+        """
+        open superscript
+        """
         self.cntnt.write('<text:span text:style-name="GSuper">')
 
     def end_superscript(self):
+        """
+        close superscript
+        """
         self.cntnt.write('</text:span>')
 
     def _add_zip(self, zfile, name, data, t):
+        """
+        Add a zip file to an archive
+        """
         zipinfo = zipfile.ZipInfo(name.encode('utf-8'))
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED
@@ -614,8 +800,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         zfile.writestr(zipinfo, data)
 
     def _write_zip(self):
+        """
+        Create the odt file. This is a zip file
+        """
         try:
-            zfile = zipfile.ZipFile(self.filename, "w", zipfile.ZIP_DEFLATED)    
+            zfile = zipfile.ZipFile(self.filename, "w", zipfile.ZIP_DEFLATED)
         except IOError, msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise Errors.ReportError(errmsg)
@@ -642,30 +831,48 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 self._add_zip(zfile, "Pictures/%s" % image[1], ifile.read(), t)
                 ifile.close()
             except:
-                print "Could not open %s" % image[0]
+                errmsg = "%s\n%s" % (_("Could not open %s") % image[0],
+                                     msg)
+                raise Errors.ReportError(errmsg)
         zfile.close()
 
     def _write_styles_file(self):
+        """
+        create the styles.xml file
+        """
         self.sfile = StringIO()
                                      
         self.sfile.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.sfile.write('<office:document-styles ')
-        self.sfile.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
-        self.sfile.write('xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" ')
-        self.sfile.write('xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" ')
-        self.sfile.write('xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" ')
-        self.sfile.write('xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" ')
-        self.sfile.write('xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" ')
+        self.sfile.write('xmlns:office="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:office:1.0" ')
+        self.sfile.write('xmlns:style="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:style:1.0" ')
+        self.sfile.write('xmlns:text="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:text:1.0" ')
+        self.sfile.write('xmlns:table="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:table:1.0" ')
+        self.sfile.write('xmlns:draw="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:drawing:1.0" ')
+        self.sfile.write('xmlns:fo="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:xsl-fo-compatible:1.0" ')
         self.sfile.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
         self.sfile.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.sfile.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.sfile.write('xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" ')
-        self.sfile.write('xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" ')
-        self.sfile.write('xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" ')
-        self.sfile.write('xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" ')
+        self.sfile.write('xmlns:meta="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:meta:1.0" ')
+        self.sfile.write('xmlns:number="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:datastyle:1.0" ')
+        self.sfile.write('xmlns:svg="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:svg-compatible:1.0" ')
+        self.sfile.write('xmlns:chart="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:chart:1.0" ')
+        self.sfile.write('xmlns:dr3d="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:dr3d:1.0" ')
         self.sfile.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
-        self.sfile.write('xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" ')
-        self.sfile.write('xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" ')
+        self.sfile.write('xmlns:form="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:form:1.0" ')
+        self.sfile.write('xmlns:script="urn:oasis:names:tc:opendocument')
+        self.sfile.write(':xmlns:script:1.0" ')
         self.sfile.write('office:version="1.0">\n')
         self.sfile.write('<office:font-face-decls>\n')
         self.sfile.write('<style:font-face style:name="Times New Roman"')
@@ -734,8 +941,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.sfile.write('</style:default-style>\n')
         self.sfile.write('<style:style style:name="Standard" ')
         self.sfile.write('style:family="paragraph" style:class="text"/>\n')
-        self.sfile.write('<style:style style:name="photo" style:family="graphic">\n')
-        self.sfile.write('<style:graphic-properties text:anchor-type="paragraph" ')
+        self.sfile.write('<style:style style:name="photo" ')
+        self.sfile.write('style:family="graphic">\n')
+        self.sfile.write('<style:graphic-properties ')
+        self.sfile.write('text:anchor-type="paragraph" ')
         self.sfile.write('svg:x="0cm" svg:y="0cm" style:wrap="none" ')
         self.sfile.write('style:vertical-pos="top" ')
         self.sfile.write('style:vertical-rel="paragraph-content" ')
@@ -752,8 +961,10 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             self.sfile.write('style:parent-style-name="Standard" ')
             self.sfile.write('style:class="text">\n')
             self.sfile.write('<style:paragraph-properties\n')
-            self.sfile.write('fo:margin-left="%.2fcm"\n' % style.get_left_margin())
-            self.sfile.write('fo:margin-right="%.2fcm"\n' % style.get_right_margin())
+            self.sfile.write('fo:margin-left="%.2fcm"\n' %
+                             style.get_left_margin())
+            self.sfile.write('fo:margin-right="%.2fcm"\n' %
+                             style.get_right_margin())
             self.sfile.write('fo:margin-top="0.00cm"\n')
             self.sfile.write('fo:margin-bottom="0.212cm"\n')
 
@@ -774,7 +985,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             else:
                 self.sfile.write('fo:text-align="justify" ')
                 self.sfile.write('style:justify-single-word="false" ')
-            self.sfile.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
+            self.sfile.write('fo:text-indent="%.2fcm" ' %
+                             style.get_first_indent())
             self.sfile.write('style:auto-text-indent="false"/> ')
             self.sfile.write('<style:text-properties ')
             font = style.get_font()
@@ -792,9 +1004,12 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             if font.get_underline():
                 self.sfile.write('style:text-underline="single" ')
                 self.sfile.write('style:text-underline-color="font-color" ')
-                self.sfile.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-                self.sfile.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-                self.sfile.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
+                self.sfile.write('fo:text-indent="%.2fcm" ' %
+                                 style.get_first_indent())
+                self.sfile.write('fo:margin-right="%.2fcm" ' %
+                                 style.get_right_margin())
+                self.sfile.write('fo:margin-left="%.2fcm" ' %
+                                 style.get_left_margin())
                 self.sfile.write('fo:margin-top="0cm" ')
                 self.sfile.write('fo:margin-bottom="0.212cm"')
             self.sfile.write('/>\n')
@@ -803,16 +1018,26 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         # Current no leading number format for headers
 
         #self.sfile.write('<text:outline-style>\n')
-        #self.sfile.write('<text:outline-level-style text:level="1" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="2" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="3" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="4" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="5" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="6" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="7" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="8" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="9" style:num-format=""/>\n')
-        #self.sfile.write('<text:outline-level-style text:level="10" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="1" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="2" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="3" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="4" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="5" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="6" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="7" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="8" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="9" style:num-format=""/>\n')
+        #self.sfile.write('<text:outline-level-style ')
+        #self.sfile.write('text:level="10" style:num-format=""/>\n')
         #self.sfile.write('</text:outline-style>\n')
             
         self.sfile.write('<text:notes-configuration  ')
@@ -833,28 +1058,37 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.sfile.write('text:increment="5"/> ')
         self.sfile.write('</office:styles>\n')
         self.sfile.write('<office:automatic-styles>\n')
-        self.sfile.write('<style:style style:name="S-Header" style:family="paragraph" ')
+        self.sfile.write('<style:style style:name="S-Header" ')
+        self.sfile.write('style:family="paragraph" ')
         self.sfile.write('style:parent-style-name="Standard">')
         self.sfile.write('<style:paragraph-properties fo:text-align="center" ')
         self.sfile.write('style:justify-single-word="false"/>')
         self.sfile.write('</style:style>\n')
-        self.sfile.write('<style:style style:name="S-Footer" style:family="paragraph" ')
+        self.sfile.write('<style:style style:name="S-Footer" ')
+        self.sfile.write('style:family="paragraph" ')
         self.sfile.write('style:parent-style-name="Header">')
         self.sfile.write('<style:paragraph-properties fo:text-align="center" ')
         self.sfile.write('style:justify-single-word="false"/>')
         self.sfile.write('</style:style>\n')
         self.sfile.write('<style:page-layout style:name="pm1">\n')
-        self.sfile.write('<style:page-layout-properties fo:page-width="%.2fcm" ' % self.paper.get_size().get_width())
-        self.sfile.write('fo:page-height="%.2fcm" ' % self.paper.get_size().get_height())
+        self.sfile.write('<style:page-layout-properties ')
+        self.sfile.write('fo:page-width="%.2fcm" ' %
+                         self.paper.get_size().get_width())
+        self.sfile.write('fo:page-height="%.2fcm" ' %
+                         self.paper.get_size().get_height())
         self.sfile.write('style:num-format="1" ')
         if self.paper.get_orientation() == PAPER_PORTRAIT:
             self.sfile.write('style:print-orientation="portrait" ')
         else:
             self.sfile.write('style:print-orientation="landscape" ')
-        self.sfile.write('fo:margin-top="%.2fcm" ' % self.paper.get_top_margin())
-        self.sfile.write('fo:margin-bottom="%.2fcm" ' % self.paper.get_bottom_margin())
-        self.sfile.write('fo:margin-left="%.2fcm" ' % self.paper.get_left_margin())
-        self.sfile.write('fo:margin-right="%.2fcm" ' % self.paper.get_right_margin())
+        self.sfile.write('fo:margin-top="%.2fcm" ' %
+                         self.paper.get_top_margin())
+        self.sfile.write('fo:margin-bottom="%.2fcm" ' %
+                         self.paper.get_bottom_margin())
+        self.sfile.write('fo:margin-left="%.2fcm" ' %
+                         self.paper.get_left_margin())
+        self.sfile.write('fo:margin-right="%.2fcm" ' %
+                         self.paper.get_right_margin())
         self.sfile.write('style:writing-mode="lr-tb" ')
         self.sfile.write('style:footnote-max-height="0cm">\n')
         self.sfile.write('<style:footnote-sep style:width="0.018cm" ')
@@ -882,7 +1116,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         # header
         #self.sfile.write('<style:header>')
         #self.sfile.write('<text:p text:style-name="S-Header">')
-        #self.sfile.write(' TITRE : %s' % self.title) # How to get the document title here ?
+        # How to get the document title here ?
+        #self.sfile.write(' TITRE : %s' % self.title)
         #self.sfile.write('</text:p>')
         #self.sfile.write('</style:header>')
         # footer
@@ -900,15 +1135,27 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.sfile.write('</office:document-styles>\n')
 
     def page_break(self):
+        """
+        prepare a new page
+        """
         self.new_page = 1
 
     def start_page(self):
+        """
+        create a new page
+        """
         self.cntnt.write('<text:p text:style-name="docgen_page_break">\n')
 
     def end_page(self):
+        """
+        close the page
+        """
         self.cntnt.write('</text:p>\n')
         
     def start_paragraph(self, style_name, leader=None):
+        """
+        open a new paragraph
+        """
         style_sheet = self.get_style_sheet()
         style = style_sheet.get_paragraph_style(style_name)
         self.level = style.get_header_level()
@@ -929,6 +1176,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.new_cell = 0
 
     def end_paragraph(self):
+        """
+        close a paragraph
+        """
         if self.level == 0:
             self.cntnt.write('</text:p>\n')
         else:
@@ -936,6 +1186,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.new_cell = 1
 
     def write_note(self, text, format, style_name):
+        """
+        write a note
+        """
         if format == 1:
             text = escape(text, _esc_map)
             # Replace multiple spaces: have to go from the largest number down
@@ -965,7 +1218,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         s_tags = styledtext.get_tags()
         markuptext = self._backend.add_markup_from_styled(text, s_tags)
         # we need to know if we have new styles to add.
-        # if markuptext contains : FontColor, FontFace, FontSize or FontHighlight
+        # if markuptext contains : FontColor, FontFace, FontSize ...
         # we must prepare the new styles for the styles.xml file.
         # We are looking for the following format :
         # style-name="([a-zA-Z0-9]*)__([a-zA-Z0-9 ])">
@@ -975,10 +1228,17 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             m = NewStyle.search(markuptext, start)
             if not m:
                 break
-            self.StyleList.append([m.group(1), m.group(2)])
+            self.StyleList.append([m.group(1)+m.group(2),
+                                  m.group(1),
+                                  m.group(2)])
             start = m.end()
         self.cntnt.write('<text:p >')
-        self.cntnt.write(markuptext)
+        linenb = 1
+        for line in markuptext.split('\n'):
+            if ( linenb > 1 ):
+                self.cntnt.write('<text:line-break/>')
+            self.cntnt.write(line)
+            linenb += 1
         self.cntnt.write('</text:p>')
 
     def write_text(self, text, mark=None):
@@ -1000,11 +1260,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write(escape(text, _esc_map))
 
     def _write_manifest(self):
+        """
+        create the manifest.xml file
+        """
         self.mfile = StringIO()
 
         self.mfile.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.mfile.write('<manifest:manifest ')
-        self.mfile.write('xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">')
+        self.mfile.write('xmlns:manifest="urn:oasis:names:tc:opendocument')
+        self.mfile.write(':xmlns:manifest:1.0">')
         self.mfile.write('<manifest:file-entry ')
         self.mfile.write('manifest:media-type="%s" ' % _apptype)
         self.mfile.write('manifest:full-path="/"/>')
@@ -1024,19 +1288,27 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.mfile.write('</manifest:manifest>\n')
 
     def _write_mimetype_file(self):
+        """
+        create the mimetype.xml file
+        """
         self.mimetype = StringIO()
         self.mimetype.write('application/vnd.oasis.opendocument.text')
 
     def _write_meta_file(self):
+        """
+        create the meta.xml file
+        """
         self.meta = StringIO()
 
         self.meta.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.meta.write('<office:document-meta ')
-        self.meta.write('xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" ')
+        self.meta.write('xmlns:office="urn:oasis:names:tc:opendocument')
+        self.meta.write(':xmlns:office:1.0" ')
         self.meta.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
         self.meta.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
-        self.meta.write('xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" ')
-        self.meta.write('office:version="1.0">\n');
+        self.meta.write('xmlns:meta="urn:oasis:names:tc:opendocument')
+        self.meta.write(':xmlns:meta:1.0" ')
+        self.meta.write('office:version="1.0">\n')
         self.meta.write('<office:meta>\n')
         self.meta.write('<meta:generator>')
         self.meta.write(const.PROGRAM_NAME + ' ' + const.VERSION)
@@ -1069,7 +1341,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.meta.write('<dc:language>%s</dc:language>\n' % self.lang)
         self.meta.write('<meta:editing-cycles>1</meta:editing-cycles>\n')
         self.meta.write('<meta:editing-duration>PT0S</meta:editing-duration>\n')
-        self.meta.write('<meta:user-defined meta:name="Genealogical Research and Analysis Management Programming System">http://gramps-project.org')
+        self.meta.write('<meta:user-defined meta:name="Genealogical Research ')
+        self.meta.write('and Analysis Management Programming System">')
+        self.meta.write('http://gramps-project.org')
         self.meta.write('</meta:user-defined>\n')
         self.meta.write('<meta:user-defined meta:name="Info 1"/>\n')
         self.meta.write('<meta:user-defined meta:name="Info 2"/>\n')
@@ -1078,6 +1352,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.meta.write('</office:document-meta>\n')
 
     def rotate_text(self, style, text, x, y, angle):
+        """
+        Used to rotate a text with an angle.
+        """
         style_sheet = self.get_style_sheet()
         stype = style_sheet.get_draw_style(style)
         pname = stype.get_paragraph_style()
@@ -1112,6 +1389,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('</draw:frame>\n')
         
     def draw_path(self, style, path):
+        """
+        Draw a path
+        """
         minx = 9e12
         miny = 9e12
         maxx = 0
@@ -1123,13 +1403,15 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             maxx = max(point[0], maxx)
             maxy = max(point[1], maxy)
 
-        self.cntnt.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
+        self.cntnt.write('<draw:polygon draw:style-name="%s" ')
+        self.cntnt.write('draw:layer="layout" ' % style)
         self.cntnt.write('draw:z-index="1" ')
         x = int((minx)*1000)
         y = int((miny)*1000)
         
         self.cntnt.write('svg:x="%d" svg:y="%d" ' % (x, y))
-        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000), int((maxy-miny)*1000)))
+        self.cntnt.write('svg:viewBox="0 0 %d %d" ' % (int((maxx-minx)*1000),
+                                                       int((maxy-miny)*1000)))
         self.cntnt.write('svg:width="%.4fcm" ' % (maxx-minx))
         self.cntnt.write('svg:height="%.4fcm" ' % (maxy-miny))
         
@@ -1145,6 +1427,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('"/>\n')
 
     def draw_line(self, style, x1, y1, x2, y2):
+        """
+        Draw a line
+        """
         self.cntnt.write('<draw:line text:anchor-type="paragraph" ')
         self.cntnt.write('draw:z-index="3" ')
         self.cntnt.write('draw:text-style-name="%s" ' % style )
@@ -1156,6 +1441,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('</draw:line>\n')
 
     def draw_text(self, style, text, x, y):
+        """
+        Draw a text
+        """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
@@ -1182,6 +1470,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('</draw:frame>\n')
 
     def draw_box(self, style, text, x, y, w, h):
+        """
+        Draw a box
+        """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
@@ -1215,6 +1506,9 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         self.cntnt.write('</draw:rect>\n')
 
     def center_text(self, style, text, x, y):
+        """
+        Center a text in a cell, a row, a line, ...
+        """
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
         para_name = box_style.get_paragraph_style()
