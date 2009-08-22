@@ -12,7 +12,7 @@ Once installed, go to the docs directory, and do:
 Which will produce the html output in docs/_build/html
 
 
-Documention Guidelines
+Documentation Guidelines
 =======================
 
 Doc strings in python files should be written in reStructured text: http://docutils.sourceforge.net/docs/user/rst/quickref.html
@@ -58,7 +58,7 @@ the order).
    check that arg2 is non zero. 
 """
 
-For a class, use :cvar variable: for class variaable, :ivar variable: for instance class
+For a class, use :cvar variable: for class variable, :ivar variable: for instance class
 variable, .. attribute:: attribute: for attributes, .... 
 See http://sphinx.pocoo.org/markup/desc.html and http://sphinx.pocoo.org/markup/inline.html
 
