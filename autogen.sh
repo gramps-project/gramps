@@ -19,7 +19,7 @@ then
 fi
 . ./gramps-autogen.sh
 
-CONFIGURE_DEF_OPT='--enable-maintainer-mode'
+CONFIGURE_DEF_OPT=
 
 autogen_options $@
 
