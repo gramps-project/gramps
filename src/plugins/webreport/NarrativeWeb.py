@@ -3395,7 +3395,7 @@ class IndividualPage(BasePage):
         will create the "Source References" section for a person 
         """
 
-        for sref in self.person.get_source_references():
+        for sref in sourcelist:
             self.bibli.add_reference(sref)
         sourcerefs = self.display_source_refs(self.bibli)
 
