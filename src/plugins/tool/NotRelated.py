@@ -29,6 +29,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import ngettext
 
 #------------------------------------------------------------------------
 #
@@ -231,7 +232,9 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         # if more than 1 person is selected, use a progress indicator
         if rows > 1:
             progress = Utils.ProgressMeter(self.title,_('Starting'))
-            progress.set_pass(_('Setting marker for %d people') % rows, rows)
+            #TRANS: no singular form needed, as rows is always > 1
+            progress.set_pass(ngettext("", 'Setting marker for %d people', \
+                              rows) % rows, rows)
 
         # start the db transaction
         transaction = self.db.transaction_begin()
@@ -263,7 +266,11 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def findRelatedPeople(self) :
 
-        self.progress.set_pass(_('Finding relationships between %d people') % self.numberOfPeopleInDatabase, self.numberOfPeopleInDatabase)
+        #TRANS: No singular form is needed.
+        self.progress.set_pass(ngettext("", "Finding relationships between %d people",\
+                               self.numberOfPeopleInDatabase) \
+                               % self.numberOfPeopleInDatabase, \
+                               self.numberOfPeopleInDatabase)
 
         # as long as we have people we haven't processed yet, keep looping
         while len(self.handlesOfPeopleToBeProcessed) > 0:
@@ -327,10 +334,10 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
         if self.numberOfUnrelatedPeople > 0:
             # we have at least 1 "unrelated" person to find
 
-            if self.numberOfUnrelatedPeople == 1:
-                self.progress.set_pass(_('Looking for 1 person'), self.numberOfPeopleInDatabase)
-            else:
-                self.progress.set_pass(_('Looking for %d people') % self.numberOfUnrelatedPeople, self.numberOfPeopleInDatabase)
+            self.progress.set_pass( \
+                    ngettext("Looking for %d person", "Looking for %d people",\
+                    self.numberOfUnrelatedPeople) % self.numberOfUnrelatedPeople,\
+                    self.numberOfPeopleInDatabase) 
 
             # loop through everyone in the database
             for handle in self.db.get_person_handles(False):
@@ -352,10 +359,10 @@ class NotRelated(Tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
 
     def populateModel(self) :
 
-        if self.numberOfUnrelatedPeople == 1:
-            self.progress.set_pass(_('Looking up the name for 1 person'), 1)
-        else:
-            self.progress.set_pass(_('Looking up the names for %d people') % self.numberOfUnrelatedPeople, self.numberOfUnrelatedPeople)
+        self.progress.set_pass( \
+                ngettext("Looking up the name of %d person", "Looking up the names of %d people", \
+                self.numberOfUnrelatedPeople) % self.numberOfUnrelatedPeople,\
+                self.numberOfUnrelatedPeople)
 
         # loop through the entire list of unrelated people
         for handle in self.handlesOfPeopleNotRelated:
