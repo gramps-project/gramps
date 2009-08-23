@@ -1232,14 +1232,14 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                                   m.group(1),
                                   m.group(2)])
             start = m.end()
-        self.cntnt.write('<text:p >')
         linenb = 1
+        self.start_paragraph(style_name)
         for line in markuptext.split('\n'):
             if ( linenb > 1 ):
                 self.cntnt.write('<text:line-break/>')
             self.cntnt.write(line)
             linenb += 1
-        self.cntnt.write('</text:p>')
+        self.end_paragraph()
 
     def write_text(self, text, mark=None):
         """
