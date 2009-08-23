@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-30 16:43+0200\n"
-"PO-Revision-Date: 2009-07-09 09:07+0100\n"
+"POT-Creation-Date: 2009-08-22 07:48+0200\n"
+"PO-Revision-Date: 2009-08-22 08:05+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
 "Language-Team: nederlands <frederik.de.richter@googlemail.com>\n"
 "MIME-Version: 1.0\n"
@@ -166,7 +166,7 @@ msgstr "Bladwijzers organiseren"
 #: ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:76
 #: ../src/Selectors/_SelectPerson.py:104
-#: ../src/plugins/BookReport.py:725
+#: ../src/plugins/BookReport.py:728
 #: ../src/plugins/drawreport/TimeLine.py:59
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/textreport/MarkerReport.py:119
@@ -203,7 +203,7 @@ msgstr "Naam"
 #: ../src/DataViews/NoteView.py:68
 #: ../src/DataViews/PersonView.py:68
 #: ../src/DataViews/PlaceView.py:76
-#: ../src/DataViews/RelationView.py:549
+#: ../src/DataViews/RelationView.py:560
 #: ../src/DataViews/RepositoryView.py:68
 #: ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_BackRefList.py:57
@@ -579,17 +579,22 @@ msgstr "Kon geen gegevensbestandsmap aanmaken: "
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/DbManager.py:1082
+#: ../src/DbManager.py:1081
+#, python-format
+msgid "Locked by %s"
+msgstr "Op slot door %s"
+
+#: ../src/DbManager.py:1084
 #: ../src/ScratchPad.py:102
-#: ../src/DataViews/RelationView.py:402
-#: ../src/DataViews/RelationView.py:932
-#: ../src/DataViews/RelationView.py:984
+#: ../src/DataViews/RelationView.py:403
+#: ../src/DataViews/RelationView.py:943
+#: ../src/DataViews/RelationView.py:995
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:148
 #: ../src/plugins/gramplet/RelativeGramplet.py:122
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #: ../src/plugins/graph/GVFamilyLines.py:152
-#: ../src/plugins/graph/GVRelGraph.py:545
+#: ../src/plugins/graph/GVRelGraph.py:546
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
@@ -627,11 +632,11 @@ msgstr "Nooit"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/DbManager.py:1101
+#: ../src/DbManager.py:1103
 msgid "Retrieve failed"
 msgstr "Ophalen mislukte"
 
-#: ../src/DbManager.py:1102
+#: ../src/DbManager.py:1104
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -642,12 +647,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1143
-#: ../src/DbManager.py:1171
+#: ../src/DbManager.py:1145
+#: ../src/DbManager.py:1173
 msgid "Archiving failed"
 msgstr "Archieveren is mislukt"
 
-#: ../src/DbManager.py:1144
+#: ../src/DbManager.py:1146
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -658,15 +663,15 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1149
+#: ../src/DbManager.py:1151
 msgid "Creating data to be archived..."
 msgstr "Gegevens worden aangemaakt om te archiveren..."
 
-#: ../src/DbManager.py:1158
+#: ../src/DbManager.py:1160
 msgid "Saving archive..."
 msgstr "Archief wordt opgeslagen..."
 
-#: ../src/DbManager.py:1172
+#: ../src/DbManager.py:1174
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -1097,6 +1102,7 @@ msgstr "E-mail"
 #: ../src/gramps_main.py:119
 #: ../src/ToolTips.py:198
 #: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/gramplet/QuickViewGramplet.py:92
 #: ../src/plugins/gramplet/SessionLogGramplet.py:46
 #: ../src/plugins/gramplet/SessionLogGramplet.py:48
 #: ../src/plugins/gramplet/SessionLogGramplet.py:50
@@ -1120,7 +1126,7 @@ msgstr "E-mail"
 #: ../src/plugins/quickview/SameSurnames.py:107
 #: ../src/plugins/quickview/SameSurnames.py:146
 #: ../src/plugins/tool/EventCmp.py:249
-#: ../src/FilterEditor/_EditRule.py:277
+#: ../src/FilterEditor/_EditRule.py:241
 msgid "Person"
 msgstr "Persoon"
 
@@ -1131,9 +1137,9 @@ msgstr "Persoon"
 #: ../src/gramps_main.py:106
 #: ../src/ScratchPad.py:590
 #: ../src/ToolTips.py:228
-#: ../src/DataViews/RelationView.py:467
-#: ../src/DataViews/RelationView.py:1263
-#: ../src/DataViews/RelationView.py:1285
+#: ../src/DataViews/RelationView.py:476
+#: ../src/DataViews/RelationView.py:1274
+#: ../src/DataViews/RelationView.py:1296
 #: ../src/Editors/_EditFamily.py:505
 #: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
@@ -1147,7 +1153,7 @@ msgstr "Persoon"
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:88
 #: ../src/gen/lib/eventroletype.py:66
-#: ../src/FilterEditor/_EditRule.py:278
+#: ../src/FilterEditor/_EditRule.py:242
 msgid "Family"
 msgstr "Familie"
 
@@ -1171,7 +1177,7 @@ msgstr "Familie"
 #: ../src/plugins/webreport/NarrativeWeb.py:2264
 #: ../src/PluginUtils/_GuiOptions.py:955
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/FilterEditor/_EditRule.py:280
+#: ../src/FilterEditor/_EditRule.py:244
 msgid "Place"
 msgstr "Locatie"
 
@@ -1183,7 +1189,7 @@ msgstr "Locatie"
 #: ../src/plugins/import/ImportCsv.py:202
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:90
-#: ../src/FilterEditor/_EditRule.py:281
+#: ../src/FilterEditor/_EditRule.py:245
 msgid "Source"
 msgstr "Bron"
 
@@ -1191,7 +1197,7 @@ msgstr "Bron"
 #: ../src/ScratchPad.py:640
 #: ../src/ScratchPad.py:653
 #: ../src/Editors/_EditPerson.py:471
-#: ../src/FilterEditor/_EditRule.py:282
+#: ../src/FilterEditor/_EditRule.py:246
 msgid "Media Object"
 msgstr "Media-object"
 
@@ -1200,7 +1206,7 @@ msgstr "Media-object"
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:89
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/FilterEditor/_EditRule.py:279
+#: ../src/FilterEditor/_EditRule.py:243
 msgid "Event"
 msgstr "Gebeurtenis"
 
@@ -1209,7 +1215,7 @@ msgstr "Gebeurtenis"
 #: ../src/Simple/_SimpleTable.py:236
 #: ../src/Editors/_EditRepository.py:68
 #: ../src/Editors/_EditRepository.py:70
-#: ../src/FilterEditor/_EditRule.py:283
+#: ../src/FilterEditor/_EditRule.py:247
 msgid "Repository"
 msgstr "Bibliotheek"
 
@@ -1232,7 +1238,7 @@ msgstr "Bibliotheek"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/FilterEditor/_EditRule.py:284
+#: ../src/FilterEditor/_EditRule.py:248
 msgid "Note"
 msgstr "Opmerking"
 
@@ -1331,7 +1337,7 @@ msgstr "Detail eigen aangemaakte formaten"
 #: ../src/GrampsCfg.py:425
 #: ../src/GrampsCfg.py:426
 #: ../src/GrampsCfg.py:427
-#: ../src/Utils.py:1169
+#: ../src/Utils.py:1205
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
@@ -1359,7 +1365,7 @@ msgstr "Achternaam"
 #: ../src/GrampsCfg.py:433
 #: ../src/GrampsCfg.py:434
 #: ../src/ScratchPad.py:589
-#: ../src/Utils.py:1167
+#: ../src/Utils.py:1203
 #: ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
@@ -1373,7 +1379,7 @@ msgstr "Voornaam"
 #: ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:433
 #: ../src/ScratchPad.py:594
-#: ../src/Utils.py:1170
+#: ../src/Utils.py:1206
 #: ../src/Editors/_EditPerson.py:260
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
@@ -1384,7 +1390,7 @@ msgstr "Achtervoegsel"
 #: ../src/GrampsCfg.py:423
 #: ../src/GrampsCfg.py:429
 #: ../src/GrampsCfg.py:430
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1209
 msgid "Common"
 msgstr "Algemeen"
 
@@ -1392,7 +1398,7 @@ msgstr "Algemeen"
 #: ../src/GrampsCfg.py:422
 #: ../src/GrampsCfg.py:424
 #: ../src/GrampsCfg.py:431
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1208
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
@@ -1405,14 +1411,14 @@ msgstr "Call"
 #: ../src/GrampsCfg.py:432
 #: ../src/GrampsCfg.py:433
 #: ../src/GrampsCfg.py:434
-#: ../src/Utils.py:1169
+#: ../src/Utils.py:1205
 msgid "SURNAME"
 msgstr "ACHTERNAAM"
 
 # patronymisch/patroniemen
 #: ../src/GrampsCfg.py:427
 #: ../src/ScratchPad.py:591
-#: ../src/Utils.py:1171
+#: ../src/Utils.py:1207
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "Patroniemen"
@@ -1443,7 +1449,7 @@ msgstr "Naamformaat"
 
 #: ../src/GrampsCfg.py:747
 #: ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:928
+#: ../src/plugins/BookReport.py:941
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -1629,7 +1635,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/DataViews/EventView.py:72
 #: ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
-#: ../src/DisplayTabs/_EmbeddedList.py:420
+#: ../src/DisplayTabs/_EmbeddedList.py:424
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60
@@ -1671,7 +1677,7 @@ msgid "Font"
 msgstr "Lettertype"
 
 #: ../src/gramps_main.py:108
-#: ../src/widgets/styledtexteditor.py:352
+#: ../src/widgets/styledtexteditor.py:373
 msgid "Font Color"
 msgstr "Tekstkleur"
 
@@ -1715,9 +1721,9 @@ msgstr "Opmerkingen"
 #: ../src/gramps_main.py:115
 #: ../src/Merge/_MergePerson.py:152
 #: ../src/DataViews/PedigreeView.py:1572
-#: ../src/DataViews/RelationView.py:454
-#: ../src/DataViews/RelationView.py:784
-#: ../src/DataViews/RelationView.py:818
+#: ../src/DataViews/RelationView.py:463
+#: ../src/DataViews/RelationView.py:795
+#: ../src/DataViews/RelationView.py:829
 #: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:118
@@ -2004,47 +2010,47 @@ msgstr "Fout: %s is geen geldige GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 
-#: ../src/PageView.py:994
+#: ../src/PageView.py:995
 #: ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "Toevoegen..."
 
-#: ../src/PageView.py:996
+#: ../src/PageView.py:997
 #: ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "_Verwijderen"
 
-#: ../src/PageView.py:998
+#: ../src/PageView.py:999
 #: ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "Exporteer scherm..."
 
-#: ../src/PageView.py:1003
+#: ../src/PageView.py:1004
 #: ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "Aanpassen..."
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../src/PageView.py:1008
+#: ../src/PageView.py:1009
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1074
+#: ../src/PageView.py:1075
 #: ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr "Exporteer scherm als een rekenblad"
 
-#: ../src/PageView.py:1082
+#: ../src/PageView.py:1083
 #: ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr "Formaat:"
 
-#: ../src/PageView.py:1087
+#: ../src/PageView.py:1088
 #: ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1088
+#: ../src/PageView.py:1089
 #: ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr "Open Document Rekenblad"
@@ -2094,7 +2100,7 @@ msgid "GRAMPS has detected a problem in the underlying Berkeley database. This c
 msgstr "GRAMPS heeft een probleem vastgesteld met het onderliggende 'Berkeley' gegevensbestand. Dit kan hersteld worden door middel van de familiestamboom- beheerder. Kies het gegevensbestand en klik op de herstelknop"
 
 #: ../src/QuestionDialog.py:310
-#: ../src/Utils.py:1102
+#: ../src/Utils.py:1134
 msgid "Attempt to force closing the dialog"
 msgstr "Poging om de dialoog geforceerd te sluiten"
 
@@ -2249,7 +2255,7 @@ msgstr "vorige partner"
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157
 #: ../src/DataViews/FamilyList.py:63
-#: ../src/DataViews/RelationView.py:819
+#: ../src/DataViews/RelationView.py:830
 #: ../src/Selectors/_SelectFamily.py:63
 #: ../src/plugins/import/ImportCsv.py:211
 #: ../src/plugins/quickview/all_relations.py:300
@@ -2269,7 +2275,7 @@ msgstr "Vader"
 #: ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:159
 #: ../src/DataViews/FamilyList.py:64
-#: ../src/DataViews/RelationView.py:820
+#: ../src/DataViews/RelationView.py:831
 #: ../src/Selectors/_SelectFamily.py:64
 #: ../src/plugins/import/ImportCsv.py:207
 #: ../src/plugins/quickview/all_relations.py:297
@@ -2287,7 +2293,7 @@ msgstr "Moeder"
 #: ../src/Reorder.py:32
 #: ../src/Merge/_MergePerson.py:173
 #: ../src/DataViews/PersonView.py:74
-#: ../src/DataViews/RelationView.py:1287
+#: ../src/DataViews/RelationView.py:1298
 #: ../src/Selectors/_SelectPerson.py:83
 #: ../src/Selectors/_SelectPerson.py:111
 #: ../src/plugins/textreport/FamilyGroup.py:491
@@ -2366,8 +2372,8 @@ msgstr "Familiegebeurtenis"
 #: ../src/Selectors/_SelectEvent.py:64
 #: ../src/Selectors/_SelectNote.py:69
 #: ../src/Selectors/_SelectObject.py:77
-#: ../src/plugins/BookReport.py:726
-#: ../src/plugins/BookReport.py:730
+#: ../src/plugins/BookReport.py:729
+#: ../src/plugins/BookReport.py:733
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/quickview/OnThisDay.py:77
 #: ../src/plugins/quickview/OnThisDay.py:78
@@ -2502,7 +2508,7 @@ msgid "Call Name"
 msgstr "Roepnaam"
 
 #: ../src/ScratchPad.py:592
-#: ../src/Utils.py:1168
+#: ../src/Utils.py:1204
 #: ../src/Editors/_EditPerson.py:260
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
@@ -2518,7 +2524,7 @@ msgstr "Voorvoegsel"
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
 #: ../src/ScratchPad.py:593
-#: ../src/Utils.py:1166
+#: ../src/Utils.py:1202
 #: ../src/Editors/_EditPerson.py:269
 #: ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
@@ -2544,7 +2550,7 @@ msgstr "Verwijzing naar persoon"
 #: ../src/ScratchPad.py:744
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:130
-#: ../src/DataViews/RelationView.py:559
+#: ../src/DataViews/RelationView.py:570
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/textreport/FamilyGroup.py:449
@@ -2588,8 +2594,8 @@ msgstr "Verwijzing naar bibliotheek"
 
 # zie ook uncleared.
 # is dit goed?
-#: ../src/ScratchPad.py:1208
-#: ../src/ScratchPad.py:1245
+#: ../src/ScratchPad.py:1228
+#: ../src/ScratchPad.py:1265
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Klembord"
@@ -2988,7 +2994,7 @@ msgstr "Bronnen in bibliotheek"
 msgid "Child"
 msgstr "Kind"
 
-#: ../src/Utils.py:81
+#: ../src/Utils.py:82
 #: ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:237
@@ -2997,7 +3003,7 @@ msgstr "Kind"
 msgid "male"
 msgstr "mannelijk"
 
-#: ../src/Utils.py:82
+#: ../src/Utils.py:83
 #: ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:236
@@ -3012,10 +3018,10 @@ msgstr "vrouwelijk"
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../src/Utils.py:83
-#: ../src/Utils.py:176
+#: ../src/Utils.py:84
+#: ../src/Utils.py:177
 #: ../src/Merge/_MergePerson.py:56
-#: ../src/DataViews/RelationView.py:597
+#: ../src/DataViews/RelationView.py:608
 #: ../src/DisplayModels/_PeopleModel.py:232
 #: ../src/Editors/_EditPerson.py:238
 #: ../src/Mime/_GnomeMime.py:67
@@ -3041,129 +3047,129 @@ msgstr "vrouwelijk"
 msgid "unknown"
 msgstr "onbekend"
 
-#: ../src/Utils.py:87
+#: ../src/Utils.py:88
 msgid "Invalid"
 msgstr "Ongeldig"
 
-#: ../src/Utils.py:90
+#: ../src/Utils.py:91
 #: ../src/Editors/_EditSourceRef.py:138
 msgid "Very High"
 msgstr "Zeer hoog"
 
-#: ../src/Utils.py:91
+#: ../src/Utils.py:92
 #: ../src/Editors/_EditSourceRef.py:137
 #: ../src/plugins/tool/FindDupes.py:69
 msgid "High"
 msgstr "Hoog"
 
-#: ../src/Utils.py:92
+#: ../src/Utils.py:93
 #: ../src/Editors/_EditSourceRef.py:136
 #: ../src/plugins/webreport/NarrativeWeb.py:681
 msgid "Normal"
 msgstr "Normaal"
 
-#: ../src/Utils.py:93
+#: ../src/Utils.py:94
 #: ../src/Editors/_EditSourceRef.py:135
 #: ../src/plugins/tool/FindDupes.py:67
 msgid "Low"
 msgstr "Laag"
 
-#: ../src/Utils.py:94
+#: ../src/Utils.py:95
 #: ../src/Editors/_EditSourceRef.py:134
 msgid "Very Low"
 msgstr "Zeer laag"
 
-#: ../src/Utils.py:98
+#: ../src/Utils.py:99
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Een wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
-#: ../src/Utils.py:100
+#: ../src/Utils.py:101
 msgid "No legal or common-law relationship between man and woman"
 msgstr "Geen wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
-#: ../src/Utils.py:102
+#: ../src/Utils.py:103
 msgid "An established relationship between members of the same sex"
 msgstr "Een gevestigde relatie tussen leden van hetzelfde geslacht"
 
-#: ../src/Utils.py:104
+#: ../src/Utils.py:105
 msgid "Unknown relationship between a man and woman"
 msgstr "Onbekende relatie tussen een man en een vrouw"
 
-#: ../src/Utils.py:106
+#: ../src/Utils.py:107
 msgid "An unspecified relationship between a man and woman"
 msgstr "Een ongespecificeerde relatie tussen een man en een vrouw"
 
-#: ../src/Utils.py:122
+#: ../src/Utils.py:123
 msgid "The data can only be recovered by Undo operation or by quitting with abandoning changes."
 msgstr "De gegevens kunnen alleen worden teruggehaald via het uitvoeren van 'Ongedaan maken' of door af te sluiten zonder de wijzigingen op te slaan."
 
-#: ../src/Utils.py:186
-#: ../src/Utils.py:206
+#: ../src/Utils.py:187
+#: ../src/Utils.py:207
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s en %(mother)s"
 
-#: ../src/Utils.py:351
+#: ../src/Utils.py:383
 #: ../src/ReportBase/_StyleComboBox.py:68
 #: ../src/ReportBase/_StyleComboBox.py:88
 msgid "default"
 msgstr "standaard"
 
-#: ../src/Utils.py:703
+#: ../src/Utils.py:735
 #: ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Fout gegevensbestand: %s is gedefinieerd als zijn of haar eigen voorouder"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1135
 msgid "Please do not force closing this important dialog."
 msgstr "Sluit deze dialoog niet geforceerd af."
 
-#: ../src/Utils.py:1127
-#: ../src/Utils.py:1134
+#: ../src/Utils.py:1159
+#: ../src/Utils.py:1166
 msgid "Error Opening File"
 msgstr "Fout bij openen bestand"
 
-#: ../src/Utils.py:1127
+#: ../src/Utils.py:1159
 #: ../src/plugins/textreport/IndivComplete.py:421
 #: ../src/ReportBase/_ReportUtils.py:1856
 msgid "File does not exist"
 msgstr "Bestand bestaat niet"
 
-#: ../src/Utils.py:1166
+#: ../src/Utils.py:1202
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1167
+#: ../src/Utils.py:1203
 msgid "GIVEN"
 msgstr "VOORNAAM"
 
-#: ../src/Utils.py:1168
+#: ../src/Utils.py:1204
 msgid "PREFIX"
 msgstr "PREFIX"
 
-#: ../src/Utils.py:1170
+#: ../src/Utils.py:1206
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
-#: ../src/Utils.py:1171
+#: ../src/Utils.py:1207
 msgid "PATRONYMIC"
 msgstr "PATRONIEM"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1208
 msgid "CALL"
 msgstr "CALL"
 
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1209
 msgid "COMMON"
 msgstr "GEWONE"
 
 # Individuen
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1210
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1210
 msgid "INITIALS"
 msgstr "INITIALEN"
 
@@ -3447,7 +3453,7 @@ msgid "Unknown father"
 msgstr "Vader onbekend"
 
 #: ../src/Simple/_SimpleTable.py:210
-#: ../src/DataViews/RelationView.py:914
+#: ../src/DataViews/RelationView.py:925
 #: ../src/plugins/quickview/all_relations.py:282
 #: ../src/gen/lib/date.py:320
 #: ../src/gen/lib/date.py:413
@@ -3607,8 +3613,8 @@ msgstr "Geslacht"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
 #: ../src/Merge/_MergePerson.py:133
-#: ../src/DataViews/RelationView.py:570
-#: ../src/DataViews/RelationView.py:595
+#: ../src/DataViews/RelationView.py:581
+#: ../src/DataViews/RelationView.py:606
 #: ../src/plugins/textreport/FamilyGroup.py:455
 #: ../src/plugins/textreport/FamilyGroup.py:457
 #: ../src/plugins/textreport/MarkerReport.py:131
@@ -3641,7 +3647,7 @@ msgid "Spouses"
 msgstr "Echtgenoten"
 
 #: ../src/Merge/_MergePerson.py:179
-#: ../src/DataViews/RelationView.py:1203
+#: ../src/DataViews/RelationView.py:1214
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:215
 #: ../src/plugins/textreport/FamilyGroup.py:354
@@ -3742,7 +3748,7 @@ msgstr "De geselecteerde familie verwijderen"
 #: ../src/DataViews/FamilyList.py:91
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/graph/GVFamilyLines.py:157
-#: ../src/plugins/graph/GVRelGraph.py:550
+#: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/plugins/textreport/MarkerReport.py:189
 #: ../src/plugins/webreport/NarrativeWeb.py:2601
 msgid "Families"
@@ -3797,196 +3803,196 @@ msgstr ""
 "Voer bovenaan een webadres in en klik op de uitvoerknop om een webpagina op deze pagina te tonen\n"
 "<br>/nVoorbeeld: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:738
+#: ../src/DataViews/GeoView.py:744
 msgid "_OpenStreetMap"
 msgstr "OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:740
+#: ../src/DataViews/GeoView.py:746
 msgid "Select OpenStreetMap Maps"
 msgstr "Kies OpenStreetMap kaarten"
 
-#: ../src/DataViews/GeoView.py:743
+#: ../src/DataViews/GeoView.py:749
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/GeoView.py:745
+#: ../src/DataViews/GeoView.py:751
 msgid "Select Google Maps."
 msgstr "Kies Google Maps."
 
-#: ../src/DataViews/GeoView.py:748
+#: ../src/DataViews/GeoView.py:754
 msgid "_OpenLayers Maps"
 msgstr "OpenLayers kaarten"
 
-#: ../src/DataViews/GeoView.py:750
+#: ../src/DataViews/GeoView.py:756
 msgid "Select OpenLayers Maps."
 msgstr "Kies OpenLayers kaarten."
 
-#: ../src/DataViews/GeoView.py:753
+#: ../src/DataViews/GeoView.py:759
 msgid "_Yahoo! Maps"
 msgstr "Yahoo! Maps kaarten"
 
-#: ../src/DataViews/GeoView.py:755
+#: ../src/DataViews/GeoView.py:761
 msgid "Select Yahoo Maps."
 msgstr "Kies Yahoo! Maps kaarten."
 
-#: ../src/DataViews/GeoView.py:758
+#: ../src/DataViews/GeoView.py:764
 msgid "_Microsoft Maps"
 msgstr "Microsoft Maps kaarten"
 
-#: ../src/DataViews/GeoView.py:760
+#: ../src/DataViews/GeoView.py:766
 msgid "Select Microsoft Maps"
 msgstr "Kies Microsoft Maps kaarten"
 
 # Plaatsen
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:767
 msgid "_All Places"
 msgstr "Alle locaties"
 
-#: ../src/DataViews/GeoView.py:763
+#: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view all places in the family tree."
 msgstr "Een poging om alle locaties te tonen van de familiestamboom."
 
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:770
 msgid "_Person"
 msgstr "_Persoon"
 
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Een poging om alle locaties te tonen waar de geselecteerde personen woonden."
 
-#: ../src/DataViews/GeoView.py:767
+#: ../src/DataViews/GeoView.py:773
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/DataViews/GeoView.py:769
+#: ../src/DataViews/GeoView.py:775
 msgid "Attempt to view places of the selected people's family."
 msgstr "Een poging om de locaties te tonen van de geselecteerde familie(s)."
 
 # Gebeuren (korter)
-#: ../src/DataViews/GeoView.py:770
+#: ../src/DataViews/GeoView.py:776
 msgid "_Event"
 msgstr "Ge_beurtenis"
 
-#: ../src/DataViews/GeoView.py:772
+#: ../src/DataViews/GeoView.py:778
 msgid "Attempt to view places connected to all events."
 msgstr "Een poging om alle locaties die verbonden zijn met gebeurtenissen, te tonen."
 
-#: ../src/DataViews/GeoView.py:868
+#: ../src/DataViews/GeoView.py:874
 msgid "List of places without coordinates"
 msgstr "Lijst van de locaties zonder coördinaten"
 
-#: ../src/DataViews/GeoView.py:869
+#: ../src/DataViews/GeoView.py:875
 msgid "Here is the list of all places in the family tree for which we have no coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "Hier is een lijst van alle locaties in de familiestamboom die geen coördinaten hebben.<br> Dus geen lengte of breedte.<p>"
 
-#: ../src/DataViews/GeoView.py:919
+#: ../src/DataViews/GeoView.py:925
 #, python-format
 msgid "There are %d markers to display. They are split up over %d pages of %d markers : "
 msgstr "Er zijn %d merkpunten te tonen. Deze worden verdeeld over %d bladzijden met %d merkpunten : "
 
-#: ../src/DataViews/GeoView.py:958
+#: ../src/DataViews/GeoView.py:964
 msgid "All"
 msgstr "Alle"
 
-#: ../src/DataViews/GeoView.py:1417
+#: ../src/DataViews/GeoView.py:1427
 msgid "No location."
 msgstr "Geen locatie."
 
-#: ../src/DataViews/GeoView.py:1420
+#: ../src/DataViews/GeoView.py:1430
 msgid "You have no places in your family tree  with coordinates."
 msgstr "In de familiestamboom zijn er geen locaties met coördinaten te vinden."
 
-#: ../src/DataViews/GeoView.py:1423
+#: ../src/DataViews/GeoView.py:1433
 msgid "You are looking at the default map."
 msgstr "U kijkt nu naar de standaardkaart."
 
-#: ../src/DataViews/GeoView.py:1448
+#: ../src/DataViews/GeoView.py:1458
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s: geboorteplaats."
 
-#: ../src/DataViews/GeoView.py:1451
+#: ../src/DataViews/GeoView.py:1461
 msgid "birth place."
 msgstr "geboorteplaats."
 
-#: ../src/DataViews/GeoView.py:1483
+#: ../src/DataViews/GeoView.py:1493
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : plaats van overlijden."
 
-#: ../src/DataViews/GeoView.py:1486
+#: ../src/DataViews/GeoView.py:1496
 msgid "death place."
 msgstr "plaats van overlijden."
 
-#: ../src/DataViews/GeoView.py:1522
+#: ../src/DataViews/GeoView.py:1532
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/DataViews/GeoView.py:1539
-#: ../src/DataViews/GeoView.py:1616
-#: ../src/DataViews/GeoView.py:1666
-#: ../src/DataViews/GeoView.py:1737
+#: ../src/DataViews/GeoView.py:1549
+#: ../src/DataViews/GeoView.py:1626
+#: ../src/DataViews/GeoView.py:1676
+#: ../src/DataViews/GeoView.py:1747
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Kan de kaart niet centreren. Geen locatie met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1543
+#: ../src/DataViews/GeoView.py:1553
 msgid "All places in the family tree with coordinates."
 msgstr "Alle locaties in de familiestamboom met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1568
+#: ../src/DataViews/GeoView.py:1578
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1619
+#: ../src/DataViews/GeoView.py:1629
 msgid "All events in the family tree with coordinates."
 msgstr "Alle gebeurtenissen in de familiestamboom met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1647
+#: ../src/DataViews/GeoView.py:1657
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : vader : %s"
 
-#: ../src/DataViews/GeoView.py:1652
+#: ../src/DataViews/GeoView.py:1662
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : moeder : %s"
 
-#: ../src/DataViews/GeoView.py:1661
+#: ../src/DataViews/GeoView.py:1671
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : kind : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1668
+#: ../src/DataViews/GeoView.py:1678
 msgid "The active person's family members have no places with coordinates."
 msgstr "De familieleden van de actieve persoon hebben geen locaties met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1672
-#: ../src/DataViews/GeoView.py:1742
+#: ../src/DataViews/GeoView.py:1682
+#: ../src/DataViews/GeoView.py:1752
 msgid "No active person set."
 msgstr "Geen actieve persoon ingesteld."
 
-#: ../src/DataViews/GeoView.py:1676
+#: ../src/DataViews/GeoView.py:1686
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s familielocaties van de familiestamboom met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1720
+#: ../src/DataViews/GeoView.py:1730
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1740
+#: ../src/DataViews/GeoView.py:1750
 msgid "The active person has no places with coordinates."
 msgstr "De actieve persoon heeft geen locaties met coördinaten."
 
-#: ../src/DataViews/GeoView.py:1745
+#: ../src/DataViews/GeoView.py:1755
 #, python-format
 msgid "All event places for %s."
 msgstr "Alle locatiegebeurtenissen van %s."
 
-#: ../src/DataViews/GeoView.py:1752
+#: ../src/DataViews/GeoView.py:1762
 msgid "Not yet implemented ..."
 msgstr "Nog niet geïmplementeerd..."
 
@@ -4215,7 +4221,7 @@ msgstr "Personen menu"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/PedigreeView.py:1492
-#: ../src/DataViews/RelationView.py:834
+#: ../src/DataViews/RelationView.py:845
 #: ../src/plugins/gramplet/FanChartGramplet.py:736
 #: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2457
@@ -4224,7 +4230,7 @@ msgstr "Broers en zussen"
 
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1535
-#: ../src/DataViews/RelationView.py:1302
+#: ../src/DataViews/RelationView.py:1313
 #: ../src/plugins/gramplet/FanChartGramplet.py:779
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #: ../src/plugins/textreport/IndivComplete.py:333
@@ -4461,43 +4467,51 @@ msgstr "De locatie proberen op een kaart te tonen (OpenstreetMap, Google Maps, .
 msgid "Place Filter Editor"
 msgstr "Locatiefilter bewerken"
 
-#: ../src/DataViews/PlaceView.py:230
+#: ../src/DataViews/PlaceView.py:224
+msgid "No map service is available."
+msgstr "Er is geen kaartprogramma beschikbaar."
+
+#: ../src/DataViews/PlaceView.py:225
+msgid "Check your installation."
+msgstr "Controleer uw installatie."
+
+#: ../src/DataViews/PlaceView.py:233
 msgid "No place selected."
 msgstr "Geen locatie gekozen."
 
-#: ../src/DataViews/PlaceView.py:231
+#: ../src/DataViews/PlaceView.py:234
 msgid "You need to select a place to be able to view it on a map. Some Map Services might support multiple selections."
 msgstr "U moet eerst een locatie kiezen om deze locatie op een kaart te kunnen zien. Some kaartprogramma's ondersteunen meerdere selecties."
 
-#: ../src/DataViews/PlaceView.py:251
+#: ../src/DataViews/PlaceView.py:254
 msgid "Select Place Columns"
 msgstr "Locatiekolommen selecteren"
 
-#: ../src/DataViews/PlaceView.py:352
+#: ../src/DataViews/PlaceView.py:355
 msgid "Cannot merge places."
 msgstr "Kan locaties niet samenvoegen."
 
-#: ../src/DataViews/PlaceView.py:353
+#: ../src/DataViews/PlaceView.py:356
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden geselecteerd. Een tweede locatie kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste locatie aan te klikken."
 
-#: ../src/DataViews/RelationView.py:325
+#: ../src/DataViews/RelationView.py:326
 msgid "_Reorder"
 msgstr "_Herschikken"
 
-#: ../src/DataViews/RelationView.py:326
+#: ../src/DataViews/RelationView.py:327
 msgid "Change order of parents and families"
 msgstr "Verander volgorde van de ouders en de families"
 
-#: ../src/DataViews/RelationView.py:331
+#: ../src/DataViews/RelationView.py:332
 msgid "Edit..."
 msgstr "Bewerken..."
 
-#: ../src/DataViews/RelationView.py:332
+#: ../src/DataViews/RelationView.py:333
 msgid "Edit the active person"
 msgstr "De actieve persoon aanpassen"
 
-#: ../src/DataViews/RelationView.py:333
+#: ../src/DataViews/RelationView.py:334
 #: ../src/plugins/quickview/all_relations.py:286
 #: ../src/plugins/webreport/NarrativeWeb.py:815
 #: ../src/plugins/webreport/NarrativeWeb.py:971
@@ -4506,201 +4520,201 @@ msgstr "De actieve persoon aanpassen"
 msgid "Partner"
 msgstr "Partners"
 
-#: ../src/DataViews/RelationView.py:334
-#: ../src/DataViews/RelationView.py:336
-#: ../src/DataViews/RelationView.py:737
+#: ../src/DataViews/RelationView.py:335
+#: ../src/DataViews/RelationView.py:337
+#: ../src/DataViews/RelationView.py:748
 msgid "Add a new family with person as parent"
 msgstr "Voeg een nieuwe familie toe, met de persoon als ouder"
 
-#: ../src/DataViews/RelationView.py:335
+#: ../src/DataViews/RelationView.py:336
 msgid "Add Partner..."
 msgstr "Partner toevoegen..."
 
-#: ../src/DataViews/RelationView.py:337
+#: ../src/DataViews/RelationView.py:338
 #: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/tool/CalculateEstimatedDates.py:87
 msgid "Add"
 msgstr "Toevoegen"
 
-#: ../src/DataViews/RelationView.py:338
-#: ../src/DataViews/RelationView.py:340
-#: ../src/DataViews/RelationView.py:731
+#: ../src/DataViews/RelationView.py:339
+#: ../src/DataViews/RelationView.py:341
+#: ../src/DataViews/RelationView.py:742
 msgid "Add a new set of parents"
 msgstr "Een nieuw stel ouders toevoegen"
 
-#: ../src/DataViews/RelationView.py:339
+#: ../src/DataViews/RelationView.py:340
 msgid "Add New Parents..."
 msgstr "Nieuwe ouders toevoegen..."
 
-#: ../src/DataViews/RelationView.py:341
+#: ../src/DataViews/RelationView.py:342
 #: ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:118
 #: ../src/DisplayTabs/_GalleryTab.py:110
 msgid "Share"
 msgstr "Delen"
 
-#: ../src/DataViews/RelationView.py:342
-#: ../src/DataViews/RelationView.py:346
-#: ../src/DataViews/RelationView.py:732
+#: ../src/DataViews/RelationView.py:343
+#: ../src/DataViews/RelationView.py:347
+#: ../src/DataViews/RelationView.py:743
 msgid "Add person as child to an existing family"
 msgstr "Voeg de persoon toe, als kind aan een bestaande familie"
 
-#: ../src/DataViews/RelationView.py:345
+#: ../src/DataViews/RelationView.py:346
 msgid "Add Existing Parents..."
 msgstr "Bestaande ouders toevoegen..."
 
-#: ../src/DataViews/RelationView.py:353
+#: ../src/DataViews/RelationView.py:354
 msgid "Show Details"
 msgstr "Details tonen"
 
-#: ../src/DataViews/RelationView.py:356
+#: ../src/DataViews/RelationView.py:357
 msgid "Show Siblings"
 msgstr "Toon broers en zussen"
 
-#: ../src/DataViews/RelationView.py:531
-#: ../src/DataViews/RelationView.py:926
-#: ../src/DataViews/RelationView.py:979
-#: ../src/DataViews/RelationView.py:1066
-#: ../src/DataViews/RelationView.py:1170
+#: ../src/DataViews/RelationView.py:542
+#: ../src/DataViews/RelationView.py:937
+#: ../src/DataViews/RelationView.py:990
+#: ../src/DataViews/RelationView.py:1077
+#: ../src/DataViews/RelationView.py:1181
 #: ../src/Editors/_EditFamily.py:859
 #, python-format
 msgid "Edit %s"
 msgstr "Aanpassen van %s"
 
-#: ../src/DataViews/RelationView.py:590
+#: ../src/DataViews/RelationView.py:601
 msgid "Alive"
 msgstr "In leven"
 
-#: ../src/DataViews/RelationView.py:648
-#: ../src/DataViews/RelationView.py:675
+#: ../src/DataViews/RelationView.py:659
+#: ../src/DataViews/RelationView.py:686
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s in %(place)s"
 
 # Gebeuren (korter)
-#: ../src/DataViews/RelationView.py:733
+#: ../src/DataViews/RelationView.py:744
 msgid "Edit parents"
 msgstr "Ouders bewerken"
 
-#: ../src/DataViews/RelationView.py:734
+#: ../src/DataViews/RelationView.py:745
 msgid "Reorder parents"
 msgstr "Ouders herschikken"
 
-#: ../src/DataViews/RelationView.py:735
+#: ../src/DataViews/RelationView.py:746
 msgid "Remove person as child of these parents"
 msgstr "Verwijder de persoon als kind van deze ouders"
 
-#: ../src/DataViews/RelationView.py:739
+#: ../src/DataViews/RelationView.py:750
 msgid "Edit family"
 msgstr "Familie bewerken"
 
-#: ../src/DataViews/RelationView.py:740
+#: ../src/DataViews/RelationView.py:751
 msgid "Reorder families"
 msgstr "Families herschikken"
 
-#: ../src/DataViews/RelationView.py:741
+#: ../src/DataViews/RelationView.py:752
 msgid "Remove person as parent in this family"
 msgstr "Verwijder de persoon als ouder in deze familie"
 
-#: ../src/DataViews/RelationView.py:794
-#: ../src/DataViews/RelationView.py:850
+#: ../src/DataViews/RelationView.py:805
+#: ../src/DataViews/RelationView.py:861
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d broer of zus)"
 msgstr[1] " (%d broers en zussen)"
 
-#: ../src/DataViews/RelationView.py:799
-#: ../src/DataViews/RelationView.py:855
+#: ../src/DataViews/RelationView.py:810
+#: ../src/DataViews/RelationView.py:866
 msgid " (1 brother)"
 msgstr " (1 broer)"
 
-#: ../src/DataViews/RelationView.py:801
-#: ../src/DataViews/RelationView.py:857
+#: ../src/DataViews/RelationView.py:812
+#: ../src/DataViews/RelationView.py:868
 msgid " (1 sister)"
 msgstr " (1 zus)"
 
-#: ../src/DataViews/RelationView.py:803
-#: ../src/DataViews/RelationView.py:859
+#: ../src/DataViews/RelationView.py:814
+#: ../src/DataViews/RelationView.py:870
 msgid " (1 sibling)"
 msgstr " (1 broer of zus)"
 
-#: ../src/DataViews/RelationView.py:805
-#: ../src/DataViews/RelationView.py:861
+#: ../src/DataViews/RelationView.py:816
+#: ../src/DataViews/RelationView.py:872
 msgid " (only child)"
 msgstr " (enig kind)"
 
-#: ../src/DataViews/RelationView.py:877
-#: ../src/DataViews/RelationView.py:1335
+#: ../src/DataViews/RelationView.py:888
+#: ../src/DataViews/RelationView.py:1346
 msgid "Add new child to family"
 msgstr "Nieuw kind aan familie toevoegen"
 
-#: ../src/DataViews/RelationView.py:882
-#: ../src/DataViews/RelationView.py:1340
+#: ../src/DataViews/RelationView.py:893
+#: ../src/DataViews/RelationView.py:1351
 msgid "Add existing child to family"
 msgstr "Bestaand kind aan familie toevoegen"
 
-#: ../src/DataViews/RelationView.py:1121
+#: ../src/DataViews/RelationView.py:1132
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "g. %(birthdate)s, o. %(deathdate)s"
 
-#: ../src/DataViews/RelationView.py:1126
+#: ../src/DataViews/RelationView.py:1137
 #, python-format
 msgid "short for born|b. %s"
 msgstr "g. %s"
 
-#: ../src/DataViews/RelationView.py:1128
+#: ../src/DataViews/RelationView.py:1139
 #, python-format
 msgid "short for dead|d. %s"
 msgstr "o. %s"
 
-#: ../src/DataViews/RelationView.py:1190
+#: ../src/DataViews/RelationView.py:1201
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Relatietype: %s"
 
-#: ../src/DataViews/RelationView.py:1230
+#: ../src/DataViews/RelationView.py:1241
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s:·%(date)s·in·%(place)s"
 
-#: ../src/DataViews/RelationView.py:1234
+#: ../src/DataViews/RelationView.py:1245
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/RelationView.py:1238
+#: ../src/DataViews/RelationView.py:1249
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/RelationView.py:1249
+#: ../src/DataViews/RelationView.py:1260
 msgid "Broken family detected"
 msgstr "Gebroken familie gedetecteerd"
 
-#: ../src/DataViews/RelationView.py:1250
+#: ../src/DataViews/RelationView.py:1261
 msgid "Please run the Check and Repair Database tool"
 msgstr "Gelieve het gegevensbestand te controleren en repareren"
 
-#: ../src/DataViews/RelationView.py:1271
-#: ../src/DataViews/RelationView.py:1317
+#: ../src/DataViews/RelationView.py:1282
+#: ../src/DataViews/RelationView.py:1328
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d kind)"
 msgstr[1] " (%d kinderen)"
 
-#: ../src/DataViews/RelationView.py:1273
-#: ../src/DataViews/RelationView.py:1319
+#: ../src/DataViews/RelationView.py:1284
+#: ../src/DataViews/RelationView.py:1330
 msgid " (no children)"
 msgstr " (geen kinderen)"
 
-#: ../src/DataViews/RelationView.py:1456
+#: ../src/DataViews/RelationView.py:1467
 msgid "Add Child to Family"
 msgstr "Kind aan familie toevoegen"
 
-#: ../src/DataViews/RelationView.py:1469
+#: ../src/DataViews/RelationView.py:1480
 #: ../src/Editors/_EditFamily.py:248
 #: ../src/Editors/_EditFamily.py:261
 msgid "Select Child"
@@ -4823,8 +4837,8 @@ msgstr "Om een samenvoeging uit te voeren moeten precies twee locaties worden ge
 #: ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportCsv.py:308
-#: ../src/plugins/export/ExportGedcom.py:1526
-#: ../src/plugins/export/ExportGedcom.py:1531
+#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1534
 #: ../src/plugins/export/ExportGeneWeb.py:235
 #: ../src/plugins/export/ExportGeneWeb.py:239
 #: ../src/plugins/export/ExportVCalendar.py:207
@@ -6059,21 +6073,21 @@ msgstr "Uw GEDCOM-bestand is leeg."
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Foute lijn%d in GEDCOM bestand."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:133
+#: ../src/GrampsDbUtils/_GedcomParse.py:134
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Uw GEDCOM bestand is corrupt. Het lijkt erop dat bepaaldegegevens niet volledig zijn."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:276
+#: ../src/GrampsDbUtils/_GedcomParse.py:277
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Geïmporteerd uit GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:818
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
 # Let op, ipv waarschuwing
-#: ../src/GrampsDbUtils/_GedcomParse.py:1072
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
@@ -6081,30 +6095,30 @@ msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
 # Let op, ipv waarschuwing
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:2918
+#: ../src/GrampsDbUtils/_GedcomParse.py:2937
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Regel %d: lege gebeurtenis opmerking werd genegeerd."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3601
-#: ../src/GrampsDbUtils/_GedcomParse.py:4169
+#: ../src/GrampsDbUtils/_GedcomParse.py:3620
+#: ../src/GrampsDbUtils/_GedcomParse.py:4188
 #, python-format
 msgid "Could not import %s"
 msgstr "Kon %s niet importeren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3945
+#: ../src/GrampsDbUtils/_GedcomParse.py:3964
 #, python-format
 msgid "Import from %s"
 msgstr "Geïmporteerd uit %s"
 
 # Let op, ipv waarschuwing
-#: ../src/GrampsDbUtils/_GedcomParse.py:4035
-#: ../src/GrampsDbUtils/_GedcomParse.py:4047
+#: ../src/GrampsDbUtils/_GedcomParse.py:4054
+#: ../src/GrampsDbUtils/_GedcomParse.py:4066
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Regel %d: lege opmerking werd genegeerd."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4086
+#: ../src/GrampsDbUtils/_GedcomParse.py:4105
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "sloeg %d subordinaten over op lijn %d"
@@ -6285,72 +6299,72 @@ msgstr "Bibliotheek kiezen"
 msgid "Select Source"
 msgstr "Bron selecteren"
 
-#: ../src/plugins/BookReport.py:141
-#: ../src/plugins/BookReport.py:178
+#: ../src/plugins/BookReport.py:144
+#: ../src/plugins/BookReport.py:181
 msgid "Not Applicable"
 msgstr "Niet van toepassing"
 
-#: ../src/plugins/BookReport.py:167
+#: ../src/plugins/BookReport.py:170
 #: ../src/PluginUtils/_GuiOptions.py:610
 msgid "unknown father"
 msgstr "onbekende vader"
 
-#: ../src/plugins/BookReport.py:173
+#: ../src/plugins/BookReport.py:176
 #: ../src/PluginUtils/_GuiOptions.py:616
 msgid "unknown mother"
 msgstr "onbekende moeder"
 
-#: ../src/plugins/BookReport.py:175
+#: ../src/plugins/BookReport.py:178
 #: ../src/PluginUtils/_GuiOptions.py:618
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s en %s (%s)"
 
-#: ../src/plugins/BookReport.py:580
+#: ../src/plugins/BookReport.py:583
 msgid "Available Books"
 msgstr "Beschikbare boeken"
 
-#: ../src/plugins/BookReport.py:593
+#: ../src/plugins/BookReport.py:596
 msgid "Book List"
 msgstr "Boekenlijst"
 
-#: ../src/plugins/BookReport.py:681
-#: ../src/plugins/BookReport.py:1059
-#: ../src/plugins/BookReport.py:1107
-#: ../src/plugins/BookReport.py:1249
+#: ../src/plugins/BookReport.py:684
+#: ../src/plugins/BookReport.py:1072
+#: ../src/plugins/BookReport.py:1120
+#: ../src/plugins/BookReport.py:1262
 msgid "Book Report"
 msgstr "Boekverslag"
 
-#: ../src/plugins/BookReport.py:714
+#: ../src/plugins/BookReport.py:717
 msgid "New Book"
 msgstr "Nieuw boek"
 
-#: ../src/plugins/BookReport.py:717
+#: ../src/plugins/BookReport.py:720
 msgid "_Available items"
 msgstr "Beschikbare items"
 
-#: ../src/plugins/BookReport.py:721
+#: ../src/plugins/BookReport.py:724
 msgid "Current _book"
 msgstr "Huidig _boek"
 
-#: ../src/plugins/BookReport.py:729
+#: ../src/plugins/BookReport.py:732
 #: ../src/plugins/drawreport/StatisticsChart.py:67
 msgid "Item name"
 msgstr "Itemnaam"
 
-#: ../src/plugins/BookReport.py:732
+#: ../src/plugins/BookReport.py:735
 msgid "Subject"
 msgstr "Onderwerp"
 
-#: ../src/plugins/BookReport.py:744
+#: ../src/plugins/BookReport.py:747
 msgid "Book selection list"
 msgstr "Boek selectielijst"
 
-#: ../src/plugins/BookReport.py:783
+#: ../src/plugins/BookReport.py:786
 msgid "Different database"
 msgstr "Ander gegevensbestand"
 
-#: ../src/plugins/BookReport.py:784
+#: ../src/plugins/BookReport.py:787
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -6365,24 +6379,24 @@ msgstr ""
 "\n"
 "Daarom wordt de centrale persoon voor elk item gezet op de actieve persoon van het gegevensbestand dat nu geopend is."
 
-#: ../src/plugins/BookReport.py:922
+#: ../src/plugins/BookReport.py:935
 msgid "Setup"
 msgstr "Instellingen"
 
-#: ../src/plugins/BookReport.py:932
+#: ../src/plugins/BookReport.py:945
 msgid "Book Menu"
 msgstr "Boekmenu"
 
-#: ../src/plugins/BookReport.py:955
+#: ../src/plugins/BookReport.py:968
 msgid "Available Items Menu"
 msgstr "Beschikbare items menu"
 
-#: ../src/plugins/BookReport.py:1110
+#: ../src/plugins/BookReport.py:1123
 msgid "GRAMPS Book"
 msgstr "GRAMPS-boek"
 
 # Provincie
-#: ../src/plugins/BookReport.py:1250
+#: ../src/plugins/BookReport.py:1263
 #: ../src/plugins/Records.py:577
 #: ../src/plugins/drawreport/AncestorTree.py:543
 #: ../src/plugins/drawreport/Calendar.py:539
@@ -6392,7 +6406,7 @@ msgstr "GRAMPS-boek"
 #: ../src/plugins/drawreport/TimeLine.py:466
 #: ../src/plugins/graph/GVFamilyLines.py:1055
 #: ../src/plugins/graph/GVHourGlass.py:304
-#: ../src/plugins/graph/GVRelGraph.py:630
+#: ../src/plugins/graph/GVRelGraph.py:631
 #: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
@@ -6448,7 +6462,7 @@ msgstr "GRAMPS-boek"
 msgid "Stable"
 msgstr "Stabiel"
 
-#: ../src/plugins/BookReport.py:1251
+#: ../src/plugins/BookReport.py:1264
 msgid "Produces a book containing several reports."
 msgstr "Maakt boek aan, met verschillende verslagen."
 
@@ -6823,7 +6837,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/drawreport/FanChart.py:340
 #: ../src/plugins/drawreport/StatisticsChart.py:678
 #: ../src/plugins/drawreport/TimeLine.py:310
-#: ../src/plugins/graph/GVRelGraph.py:463
+#: ../src/plugins/graph/GVRelGraph.py:464
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
@@ -6849,7 +6863,7 @@ msgstr "Verslagopties"
 #: ../src/plugins/drawreport/Calendar.py:382
 #: ../src/plugins/drawreport/StatisticsChart.py:680
 #: ../src/plugins/drawreport/TimeLine.py:312
-#: ../src/plugins/graph/GVRelGraph.py:466
+#: ../src/plugins/graph/GVRelGraph.py:467
 #: ../src/plugins/quickview/FilterByName.py:237
 #: ../src/plugins/textreport/BirthdayReport.py:336
 #: ../src/plugins/textreport/IndivComplete.py:516
@@ -6870,7 +6884,7 @@ msgstr "Bepaalt welke personen toegevoegd worden aan het verslag"
 #: ../src/plugins/Records.py:453
 #: ../src/plugins/drawreport/StatisticsChart.py:686
 #: ../src/plugins/drawreport/TimeLine.py:318
-#: ../src/plugins/graph/GVRelGraph.py:472
+#: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/IndivComplete.py:522
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
@@ -6882,7 +6896,7 @@ msgstr "Personenfilter"
 #: ../src/plugins/Records.py:454
 #: ../src/plugins/drawreport/StatisticsChart.py:687
 #: ../src/plugins/drawreport/TimeLine.py:319
-#: ../src/plugins/graph/GVRelGraph.py:473
+#: ../src/plugins/graph/GVRelGraph.py:474
 #: ../src/plugins/textreport/IndivComplete.py:523
 #: ../src/plugins/tool/CalculateEstimatedDates.py:71
 #: ../src/plugins/tool/SortEvents.py:175
@@ -8091,7 +8105,7 @@ msgstr "Opmerkingen schrijven"
 msgid "Writing repositories"
 msgstr "Bibliotheken wegschrijven"
 
-#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1532
 msgid "Export failed"
 msgstr "Export is mislukt"
 
@@ -8100,16 +8114,16 @@ msgstr "Export is mislukt"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportGedcom.py:1539
+#: ../src/plugins/export/ExportGedcom.py:1542
 #: ../src/plugins/import/ImportGedcom.py:142
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
 msgstr "GEDCOM wordt gebruikt om gegevens tussen genealogische programma's uit te wisselen. Vrijwel alle genealogische softwareprogramma's accepteren GEDCOM-bestanden."
 
-#: ../src/plugins/export/ExportGedcom.py:1541
+#: ../src/plugins/export/ExportGedcom.py:1544
 msgid "GEDCOM export options"
 msgstr "GEDCOM-export opties"
 
-#: ../src/plugins/export/ExportGedcom.py:1544
+#: ../src/plugins/export/ExportGedcom.py:1547
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
@@ -8642,14 +8656,14 @@ msgstr "Aantal personen"
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
-#: ../src/plugins/graph/GVRelGraph.py:537
+#: ../src/plugins/graph/GVRelGraph.py:538
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Mannen"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:132
 #: ../src/plugins/graph/GVFamilyLines.py:148
-#: ../src/plugins/graph/GVRelGraph.py:541
+#: ../src/plugins/graph/GVRelGraph.py:542
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Vrouwen"
@@ -8974,22 +8988,22 @@ msgid "Colours to use for various family lines."
 msgstr "Te gebruiken kleuren voor de verschillende familielijnen."
 
 #: ../src/plugins/graph/GVFamilyLines.py:145
-#: ../src/plugins/graph/GVRelGraph.py:538
+#: ../src/plugins/graph/GVRelGraph.py:539
 msgid "The colour to use to display men."
 msgstr "Kleur om mannen weer te geven."
 
 #: ../src/plugins/graph/GVFamilyLines.py:149
-#: ../src/plugins/graph/GVRelGraph.py:542
+#: ../src/plugins/graph/GVRelGraph.py:543
 msgid "The colour to use to display women."
 msgstr "Kleur om vrouwen weer te geven."
 
 #: ../src/plugins/graph/GVFamilyLines.py:153
-#: ../src/plugins/graph/GVRelGraph.py:546
+#: ../src/plugins/graph/GVRelGraph.py:547
 msgid "The colour to use when the gender is unknown."
 msgstr "Kleur die gebruikt wordt indien geslacht onbekend is."
 
 #: ../src/plugins/graph/GVFamilyLines.py:158
-#: ../src/plugins/graph/GVRelGraph.py:551
+#: ../src/plugins/graph/GVRelGraph.py:552
 msgid "The colour to use to display families."
 msgstr "De kleur die gebruikt wordt om de families te tonen."
 
@@ -9018,7 +9032,7 @@ msgid "Images"
 msgstr "Afbeeldingen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:190
-#: ../src/plugins/graph/GVRelGraph.py:511
+#: ../src/plugins/graph/GVRelGraph.py:512
 msgid "Include thumbnail images of people"
 msgstr "Miniaturen van personen toevoegen"
 
@@ -9027,17 +9041,17 @@ msgid "Thumbnail location"
 msgstr "Plaats van de miniaturen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:197
-#: ../src/plugins/graph/GVRelGraph.py:518
+#: ../src/plugins/graph/GVRelGraph.py:519
 msgid "Above the name"
 msgstr "Boven de naam"
 
 #: ../src/plugins/graph/GVFamilyLines.py:198
-#: ../src/plugins/graph/GVRelGraph.py:519
+#: ../src/plugins/graph/GVRelGraph.py:520
 msgid "Beside the name"
 msgstr "Naast de naam"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#: ../src/plugins/graph/GVRelGraph.py:521
+#: ../src/plugins/graph/GVRelGraph.py:522
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Plaats waar de miniaturen wordt getoond t.o.v. de naam"
 
@@ -9055,7 +9069,7 @@ msgstr "Opties"
 #. ###############################
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:274
-#: ../src/plugins/graph/GVRelGraph.py:529
+#: ../src/plugins/graph/GVRelGraph.py:530
 msgid "Graph coloring"
 msgstr "Grafiekkleuren"
 
@@ -9066,13 +9080,13 @@ msgstr "Mannen krijgen een blauwe kleur, vrouwen een rode kleur. Als het geslach
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
-#: ../src/plugins/graph/GVRelGraph.py:561
+#: ../src/plugins/graph/GVRelGraph.py:562
 msgid "Use rounded corners"
 msgstr "Gebruik afgeronde hoeken"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
-#: ../src/plugins/graph/GVRelGraph.py:563
+#: ../src/plugins/graph/GVRelGraph.py:564
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Gebruik afgeronde hoeken om een verschil te kunnen zien tussen mannen en vrouwen."
 
@@ -9085,12 +9099,12 @@ msgid "Whether to include dates for people and families."
 msgstr "Al of niet datums voor personen en families insluiten."
 
 #: ../src/plugins/graph/GVFamilyLines.py:227
-#: ../src/plugins/graph/GVRelGraph.py:486
+#: ../src/plugins/graph/GVRelGraph.py:487
 msgid "Limit dates to years only"
 msgstr "Datums beperken tot jaren alleen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:228
-#: ../src/plugins/graph/GVRelGraph.py:487
+#: ../src/plugins/graph/GVRelGraph.py:488
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "Geeft alleen het jaartal. Er worden geen maanden, dagen of tijdsintervallen getoond."
 
@@ -9185,12 +9199,12 @@ msgstr "Het aantal vooroudergeneraties dat opgenomen wordt in het verslag"
 
 #. ###############################
 #: ../src/plugins/graph/GVHourGlass.py:271
-#: ../src/plugins/graph/GVRelGraph.py:526
+#: ../src/plugins/graph/GVRelGraph.py:527
 msgid "Graph Style"
 msgstr "Grafiekstijl"
 
 #: ../src/plugins/graph/GVHourGlass.py:277
-#: ../src/plugins/graph/GVRelGraph.py:532
+#: ../src/plugins/graph/GVRelGraph.py:533
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Mannen krijgen een blauwe kleur, vrouwen een rode kleur. Als het geslacht van een persoon niet bekend is krijgt de persoon een grijze kleur."
 
@@ -9218,80 +9232,80 @@ msgstr "Afstammelingen <-> Voorouders"
 msgid "Descendants - Ancestors"
 msgstr "Afstammelingen - Voorouders"
 
-#: ../src/plugins/graph/GVRelGraph.py:468
+#: ../src/plugins/graph/GVRelGraph.py:469
 msgid "Determines what people are included in the graph"
 msgstr "Bepaald welke personen in de grafiek getoond worden"
 
-#: ../src/plugins/graph/GVRelGraph.py:480
+#: ../src/plugins/graph/GVRelGraph.py:481
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Geboortedata, trouwdata en sterfdata bijvoegen"
 
-#: ../src/plugins/graph/GVRelGraph.py:481
+#: ../src/plugins/graph/GVRelGraph.py:482
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "De datums waarop de persoon werd geboren, trouwde en/of overleed, tonen in de grafieklabels."
 
-#: ../src/plugins/graph/GVRelGraph.py:492
+#: ../src/plugins/graph/GVRelGraph.py:493
 msgid "Use place when no date"
 msgstr "Gebruik locatie indien geen datum beschikbaar"
 
-#: ../src/plugins/graph/GVRelGraph.py:493
+#: ../src/plugins/graph/GVRelGraph.py:494
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Indien geen geboorte, trouw, of sterfdatum beschikbaar is, wordt het corresponderende locatieveld gebruikt."
 
-#: ../src/plugins/graph/GVRelGraph.py:498
+#: ../src/plugins/graph/GVRelGraph.py:499
 msgid "Include URLs"
 msgstr "URLs bijvoegen"
 
-#: ../src/plugins/graph/GVRelGraph.py:499
+#: ../src/plugins/graph/GVRelGraph.py:500
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden  worden aangemaakt met actieve links naar de bestanden die gegenereerd zijn met het 'Website'-verslag ."
 
-#: ../src/plugins/graph/GVRelGraph.py:506
+#: ../src/plugins/graph/GVRelGraph.py:507
 msgid "Include IDs"
 msgstr "IDs bijvoegen"
 
-#: ../src/plugins/graph/GVRelGraph.py:507
+#: ../src/plugins/graph/GVRelGraph.py:508
 msgid "Include individual and family IDs."
 msgstr "Persoonlijke en familie-IDs bijvoegen."
 
-#: ../src/plugins/graph/GVRelGraph.py:513
+#: ../src/plugins/graph/GVRelGraph.py:514
 msgid "Whether to include thumbnails of people."
 msgstr "Al of niet miniaturen van personen."
 
-#: ../src/plugins/graph/GVRelGraph.py:517
+#: ../src/plugins/graph/GVRelGraph.py:518
 msgid "Thumbnail Location"
 msgstr "Plaats van de miniaturen"
 
-#: ../src/plugins/graph/GVRelGraph.py:554
+#: ../src/plugins/graph/GVRelGraph.py:555
 msgid "Arrowhead direction"
 msgstr "Richting van de pijlen"
 
-#: ../src/plugins/graph/GVRelGraph.py:557
+#: ../src/plugins/graph/GVRelGraph.py:558
 msgid "Choose the direction that the arrows point."
 msgstr "Kies de richting van de pijlen."
 
-#: ../src/plugins/graph/GVRelGraph.py:568
+#: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Niet-geboorterelaties aanduiden met stippellijnen"
 
 # is dit de juiste betekenis?
-#: ../src/plugins/graph/GVRelGraph.py:569
+#: ../src/plugins/graph/GVRelGraph.py:570
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Relaties die niet uit een geboorte zijn ontstaan worden in de grafiek weergeven met stippellijnen."
 
-#: ../src/plugins/graph/GVRelGraph.py:573
+#: ../src/plugins/graph/GVRelGraph.py:574
 msgid "Show family nodes"
 msgstr "Familieknooppunten tonen"
 
-#: ../src/plugins/graph/GVRelGraph.py:574
+#: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Families worden als ovalen weergegeven met verbindingen naar ouders en kinderen."
 
-#: ../src/plugins/graph/GVRelGraph.py:629
+#: ../src/plugins/graph/GVRelGraph.py:630
 msgid "Relationship Graph"
 msgstr "Relatiegrafiek"
 
-#: ../src/plugins/graph/GVRelGraph.py:631
+#: ../src/plugins/graph/GVRelGraph.py:632
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Maakt een verwantschapsgrafiek aan met \"GraphViz\""
 
@@ -13722,6 +13736,11 @@ msgstr "Dit wordt in december afgedrukt"
 msgid "The note for the month of December"
 msgstr "Een opmerking voor december"
 
+#: ../src/plugins/webreport/WebCal.py:1453
+#, python-format
+msgid "%s old"
+msgstr "%s oud"
+
 #: ../src/plugins/webreport/WebCal.py:1452
 msgid ", <em>"
 msgstr ", <em>"
@@ -13942,7 +13961,7 @@ msgstr "Geen beschrijving gegeven"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:172
+#: ../src/ReportBase/_CommandLineReport.py:181
 #: ../src/ReportBase/_PaperMenu.py:201
 #: ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:364
@@ -14149,7 +14168,7 @@ msgstr "GraphViz-layout"
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:943
-#: ../src/widgets/styledtexteditor.py:364
+#: ../src/widgets/styledtexteditor.py:385
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
@@ -14158,7 +14177,7 @@ msgid "Choose the font family. If international characters don't show, use FreeS
 msgstr "Kies het lettertype. Indien internationale tekens niet worden weergegeven, gebruik dan het FreeSans lettertype. Dit lettertype is verkrijgbaar bij http://www.nongnu.org/freefont/"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:954
-#: ../src/widgets/styledtexteditor.py:376
+#: ../src/widgets/styledtexteditor.py:397
 msgid "Font size"
 msgstr "Lettergrootte"
 
@@ -18049,11 +18068,6 @@ msgstr ""
 msgid "Upgrade now"
 msgstr "Opwaarderen"
 
-#: ../src/gen/db/dbdir.py:2116
-#, python-format
-msgid "Locked by %s"
-msgstr "Op slot door %s"
-
 #: ../src/gen/lib/urltype.py:56
 msgid "E-mail"
 msgstr "E-mail"
@@ -18890,7 +18904,7 @@ msgstr "Datum:"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:473
+#: ../src/FilterEditor/_EditRule.py:454
 msgid "Place:"
 msgstr "Locatie:"
 
@@ -18933,7 +18947,7 @@ msgstr "Gebeurtenissenfilters"
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:485
+#: ../src/FilterEditor/_EditRule.py:466
 msgid "ID:"
 msgstr "ID:"
 
@@ -18970,12 +18984,12 @@ msgstr "Vindt objecten waarvan de notities tekst bevatten, die met een bepaalde 
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:479
+#: ../src/FilterEditor/_EditRule.py:460
 msgid "Reference count must be:"
 msgstr "Aantal maal waarnaar verwezen wordt moet zijn:"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:475
+#: ../src/FilterEditor/_EditRule.py:456
 msgid "Reference count:"
 msgstr "Aantal verwijzingen:"
 
@@ -18989,13 +19003,13 @@ msgstr "Vindt media-objecten waarnaar een bepaald aantal maal verwezen wordt"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:504
+#: ../src/FilterEditor/_EditRule.py:485
 msgid "Case sensitive:"
 msgstr "Hoofdlettergevoelig:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:506
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Regular-Expression matching:"
 msgstr "Reguliere uitdrukking overeenkomst:"
 
@@ -19024,7 +19038,7 @@ msgstr "Vindt objecten die als privé zijn aangeduid"
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:490
+#: ../src/FilterEditor/_EditRule.py:471
 msgid "Filter name:"
 msgstr "Filternaam:"
 
@@ -19101,13 +19115,13 @@ msgstr "Vindt personen waarvan de datum of de plaats van een gebeurtenis mist"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:476
+#: ../src/FilterEditor/_EditRule.py:457
 msgid "Number of instances:"
 msgstr "Aantal gevallen:"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:481
+#: ../src/FilterEditor/_EditRule.py:462
 msgid "Number must be:"
 msgstr "Getal moet zijn:"
 
@@ -19379,7 +19393,7 @@ msgid "Matches people with a certain number of items in the source"
 msgstr "Vindt personen met een bepaald aantal items in de bron"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:488
+#: ../src/FilterEditor/_EditRule.py:469
 msgid "Source ID:"
 msgstr "Bron-ID:"
 
@@ -19445,7 +19459,7 @@ msgstr "Vindt personen die voorouder zijn van iemand gevonden via een filter"
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:502
+#: ../src/FilterEditor/_EditRule.py:483
 msgid "Inclusive:"
 msgstr "Inclusief:"
 
@@ -19527,7 +19541,7 @@ msgstr "Vindt alle vrouwen"
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:464
 msgid "Number of generations:"
 msgstr "Aantal generaties:"
 
@@ -19617,7 +19631,7 @@ msgstr "Vindt personen die getuigen zijn bij een gebeurtenis"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:496
+#: ../src/FilterEditor/_EditRule.py:477
 msgid "Event filter name:"
 msgstr "Gebeurtenissenfilternaam:"
 
@@ -20140,12 +20154,12 @@ msgstr "Vindt gebeurtenissen met een opgegeven filter"
 # naam filteren of filternaam
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:494
+#: ../src/FilterEditor/_EditRule.py:475
 msgid "Person filter name:"
 msgstr "Personenfilternaam:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:508
+#: ../src/FilterEditor/_EditRule.py:489
 msgid "Include Family events:"
 msgstr "Familiegebeurtenissen bijvoegen:"
 
@@ -20160,7 +20174,7 @@ msgstr "Vindt persoonsgebeurtenissen met een opgegeven personennaamfilter"
 
 # naam filteren of filternaam
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:498
+#: ../src/FilterEditor/_EditRule.py:479
 msgid "Source filter name:"
 msgstr "Bronfilternaam:"
 
@@ -20188,6 +20202,10 @@ msgstr "Alle plaatsen"
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
 msgstr "Vindt alle plaatsen in het gegevensbestand"
+
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+msgid "Places changed after <date time>"
+msgstr "Locaties veranderd na <datum tijdstip>"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid "Matches place records changed after a specified date-time (yyyy-mm-dd hh:mm:ss) or in the range, if a second date-time is given"
@@ -20879,41 +20897,45 @@ msgstr "gelijk aan"
 msgid "greater than"
 msgstr "groter dan"
 
-#: ../src/FilterEditor/_EditRule.py:298
+#: ../src/FilterEditor/_EditRule.py:237
+msgid "Not a valid ID"
+msgstr "Geen geldig ID"
+
+#: ../src/FilterEditor/_EditRule.py:262
 msgid "Select..."
 msgstr "Selecteren..."
 
-#: ../src/FilterEditor/_EditRule.py:304
+#: ../src/FilterEditor/_EditRule.py:268
 #, python-format
 msgid "Select %s from a list"
 msgstr "Selecteer %s uit een lijst"
 
-#: ../src/FilterEditor/_EditRule.py:355
-msgid "Not a valid ID"
-msgstr "Geen geldig ID"
+#: ../src/FilterEditor/_EditRule.py:333
+msgid "Give or select a source ID, leave empty to find objects with no source."
+msgstr "Geef of selecteer een bron-ID of laat leeg om alle objecten zonder bron te vinden."
 
-#: ../src/FilterEditor/_EditRule.py:503
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "Include original person"
 msgstr "Oorspronkelijke persoon bijvoegen"
 
-#: ../src/FilterEditor/_EditRule.py:505
+#: ../src/FilterEditor/_EditRule.py:486
 msgid "Use exact case of letters"
 msgstr "Exacte schrijfwijze toepassen"
 
-#: ../src/FilterEditor/_EditRule.py:507
+#: ../src/FilterEditor/_EditRule.py:488
 msgid "Use regular expression"
 msgstr "Reguliere uitdrukking toepassen"
 
-#: ../src/FilterEditor/_EditRule.py:509
+#: ../src/FilterEditor/_EditRule.py:490
 msgid "Also family events where person is wife/husband"
 msgstr "Ook die familiegebeurtenissen waarin de persoon echtgenoot/echtgenote is"
 
-#: ../src/FilterEditor/_EditRule.py:523
+#: ../src/FilterEditor/_EditRule.py:504
 msgid "Rule Name"
 msgstr "Regelnaam"
 
-#: ../src/FilterEditor/_EditRule.py:635
-#: ../src/FilterEditor/_EditRule.py:646
+#: ../src/FilterEditor/_EditRule.py:616
+#: ../src/FilterEditor/_EditRule.py:627
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "Geen regel geselecteerd"
@@ -20951,51 +20973,51 @@ msgid "Edit icons can be enabled in the Preferences dialog"
 msgstr "Aanpassen van de iconen kan geactiveerd worden in het voorkeurendialoog"
 
 #. spell checker submenu
-#: ../src/widgets/styledtexteditor.py:291
+#: ../src/widgets/styledtexteditor.py:311
 msgid "Spell"
 msgstr "Spellen"
 
-#: ../src/widgets/styledtexteditor.py:302
+#: ../src/widgets/styledtexteditor.py:322
 msgid "_Send Mail To..."
 msgstr "Stuur mail naar..."
 
-#: ../src/widgets/styledtexteditor.py:303
+#: ../src/widgets/styledtexteditor.py:323
 msgid "Copy _E-mail Address"
 msgstr "Kopieer email-adres"
 
-#: ../src/widgets/styledtexteditor.py:305
+#: ../src/widgets/styledtexteditor.py:325
 msgid "_Open Link"
 msgstr "Koppeling openen"
 
-#: ../src/widgets/styledtexteditor.py:306
+#: ../src/widgets/styledtexteditor.py:326
 msgid "Copy _Link Address"
 msgstr "Kopieer koppelingsadres"
 
-#: ../src/widgets/styledtexteditor.py:340
+#: ../src/widgets/styledtexteditor.py:361
 msgid "Italic"
 msgstr "_Cursief"
 
-#: ../src/widgets/styledtexteditor.py:342
+#: ../src/widgets/styledtexteditor.py:363
 msgid "Bold"
 msgstr "_Vet"
 
-#: ../src/widgets/styledtexteditor.py:344
+#: ../src/widgets/styledtexteditor.py:365
 msgid "Underline"
 msgstr "_Onderstreept"
 
-#: ../src/widgets/styledtexteditor.py:354
+#: ../src/widgets/styledtexteditor.py:375
 msgid "Background Color"
 msgstr "Achtergrondkleur"
 
-#: ../src/widgets/styledtexteditor.py:356
+#: ../src/widgets/styledtexteditor.py:377
 msgid "Clear Markup"
 msgstr "Opmaak wissen"
 
-#: ../src/widgets/styledtexteditor.py:475
+#: ../src/widgets/styledtexteditor.py:496
 msgid "Select font color"
 msgstr "Kies een tekstkleur"
 
-#: ../src/widgets/styledtexteditor.py:477
+#: ../src/widgets/styledtexteditor.py:498
 msgid "Select background color"
 msgstr "Kies een achtergrondkleur"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION 3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-17 21:28+0800\n"
+"POT-Creation-Date: 2009-08-22 07:48+0200\n"
 "PO-Revision-Date: 2009-06-20 12:27+0800\n"
 "Last-Translator: grampscn <grampscn@gmail.com>\n"
 "Language-Team: zh <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr "整理书签"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 #: ../src/Editors/_EditFamily.py:104 ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:76 ../src/Selectors/_SelectPerson.py:104
-#: ../src/plugins/BookReport.py:725 ../src/plugins/drawreport/TimeLine.py:59
+#: ../src/plugins/BookReport.py:728 ../src/plugins/drawreport/TimeLine.py:59
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/textreport/MarkerReport.py:119
 #: ../src/plugins/tool/NotRelated.py:116 ../src/plugins/tool/PatchNames.py:235
@@ -141,7 +141,7 @@ msgstr "名字"
 #: ../src/Merge/_MergePerson.py:126 ../src/DataViews/EventView.py:70
 #: ../src/DataViews/FamilyList.py:62 ../src/DataViews/MediaView.py:81
 #: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:68
-#: ../src/DataViews/PlaceView.py:76 ../src/DataViews/RelationView.py:549
+#: ../src/DataViews/PlaceView.py:76 ../src/DataViews/RelationView.py:560
 #: ../src/DataViews/RepositoryView.py:68 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_BackRefList.py:57
 #: ../src/DisplayTabs/_EventEmbedList.py:64
@@ -511,14 +511,14 @@ msgid "Locked by %s"
 msgstr "被 %s 锁定"
 
 #: ../src/DbManager.py:1084 ../src/ScratchPad.py:102
-#: ../src/DataViews/RelationView.py:402 ../src/DataViews/RelationView.py:932
-#: ../src/DataViews/RelationView.py:984
+#: ../src/DataViews/RelationView.py:403 ../src/DataViews/RelationView.py:943
+#: ../src/DataViews/RelationView.py:995
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:148
 #: ../src/plugins/gramplet/RelativeGramplet.py:122
 #: ../src/plugins/gramplet/RelativeGramplet.py:133
 #: ../src/plugins/graph/GVFamilyLines.py:152
-#: ../src/plugins/graph/GVRelGraph.py:545
+#: ../src/plugins/graph/GVRelGraph.py:546
 #: ../src/plugins/quickview/all_relations.py:277
 #: ../src/plugins/quickview/all_relations.py:294
 #: ../src/plugins/textreport/IndivComplete.py:443
@@ -1011,7 +1011,7 @@ msgstr "电子邮件"
 #: ../src/plugins/quickview/References.py:87
 #: ../src/plugins/quickview/SameSurnames.py:107
 #: ../src/plugins/quickview/SameSurnames.py:146
-#: ../src/plugins/tool/EventCmp.py:249 ../src/FilterEditor/_EditRule.py:277
+#: ../src/plugins/tool/EventCmp.py:249 ../src/FilterEditor/_EditRule.py:241
 msgid "Person"
 msgstr "成员"
 
@@ -1019,8 +1019,8 @@ msgstr "成员"
 #. show "V Family: ..." and the rest
 #. get the family events
 #: ../src/GrampsCfg.py:225 ../src/gramps_main.py:106 ../src/ScratchPad.py:590
-#: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:467
-#: ../src/DataViews/RelationView.py:1263 ../src/DataViews/RelationView.py:1285
+#: ../src/ToolTips.py:228 ../src/DataViews/RelationView.py:476
+#: ../src/DataViews/RelationView.py:1274 ../src/DataViews/RelationView.py:1296
 #: ../src/Editors/_EditFamily.py:505 ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/gramplet/SessionLogGramplet.py:52
 #: ../src/plugins/gramplet/SessionLogGramplet.py:54
@@ -1032,7 +1032,7 @@ msgstr "成员"
 #: ../src/plugins/quickview/FilterByName.py:130
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:88
-#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:278
+#: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:242
 msgid "Family"
 msgstr "家庭"
 
@@ -1053,7 +1053,7 @@ msgstr "家庭"
 #: ../src/plugins/webreport/NarrativeWeb.py:2264
 #: ../src/PluginUtils/_GuiOptions.py:955
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/FilterEditor/_EditRule.py:280
+#: ../src/FilterEditor/_EditRule.py:244
 msgid "Place"
 msgstr "地点"
 
@@ -1063,25 +1063,25 @@ msgstr "地点"
 #: ../src/plugins/import/ImportCsv.py:202
 #: ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:90
-#: ../src/FilterEditor/_EditRule.py:281
+#: ../src/FilterEditor/_EditRule.py:245
 msgid "Source"
 msgstr "来源"
 
 #: ../src/GrampsCfg.py:231 ../src/ScratchPad.py:640 ../src/ScratchPad.py:653
-#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:282
+#: ../src/Editors/_EditPerson.py:471 ../src/FilterEditor/_EditRule.py:246
 msgid "Media Object"
 msgstr "媒体物"
 
 #: ../src/GrampsCfg.py:233 ../src/plugins/quickview/References.py:34
 #: ../src/plugins/quickview/References.py:89
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/FilterEditor/_EditRule.py:279
+#: ../src/FilterEditor/_EditRule.py:243
 msgid "Event"
 msgstr "事件"
 
 #: ../src/GrampsCfg.py:235 ../src/ToolTips.py:141
 #: ../src/Simple/_SimpleTable.py:236 ../src/Editors/_EditRepository.py:68
-#: ../src/Editors/_EditRepository.py:70 ../src/FilterEditor/_EditRule.py:283
+#: ../src/Editors/_EditRepository.py:70 ../src/FilterEditor/_EditRule.py:247
 msgid "Repository"
 msgstr "仓库"
 
@@ -1100,7 +1100,7 @@ msgstr "仓库"
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:92
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
-#: ../src/FilterEditor/_EditRule.py:284
+#: ../src/FilterEditor/_EditRule.py:248
 msgid "Note"
 msgstr "摘录"
 
@@ -1187,7 +1187,7 @@ msgstr "定制格式内容细节(_U)"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:423
 #: ../src/GrampsCfg.py:424 ../src/GrampsCfg.py:425 ../src/GrampsCfg.py:426
-#: ../src/GrampsCfg.py:427 ../src/Utils.py:1169
+#: ../src/GrampsCfg.py:427 ../src/Utils.py:1205
 #: ../src/plugins/drawreport/StatisticsChart.py:89
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:151
@@ -1204,7 +1204,7 @@ msgstr "姓"
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:427 ../src/GrampsCfg.py:428
 #: ../src/GrampsCfg.py:430 ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432
 #: ../src/GrampsCfg.py:433 ../src/GrampsCfg.py:434 ../src/ScratchPad.py:589
-#: ../src/Utils.py:1167 ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/Utils.py:1203 ../src/BasicUtils/_NameDisplay.py:107
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:155
 msgid "Given"
@@ -1212,19 +1212,19 @@ msgstr "名"
 
 #: ../src/GrampsCfg.py:417 ../src/GrampsCfg.py:419 ../src/GrampsCfg.py:421
 #: ../src/GrampsCfg.py:426 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:433
-#: ../src/ScratchPad.py:594 ../src/Utils.py:1170
+#: ../src/ScratchPad.py:594 ../src/Utils.py:1206
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:165
 msgid "Suffix"
 msgstr "后缀"
 
 #: ../src/GrampsCfg.py:418 ../src/GrampsCfg.py:423 ../src/GrampsCfg.py:429
-#: ../src/GrampsCfg.py:430 ../src/Utils.py:1173
+#: ../src/GrampsCfg.py:430 ../src/Utils.py:1209
 msgid "Common"
 msgstr "通用的，共有的"
 
 #: ../src/GrampsCfg.py:420 ../src/GrampsCfg.py:422 ../src/GrampsCfg.py:424
-#: ../src/GrampsCfg.py:431 ../src/Utils.py:1172
+#: ../src/GrampsCfg.py:431 ../src/Utils.py:1208
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:159
 msgid "Call"
@@ -1232,11 +1232,11 @@ msgstr "称"
 
 #: ../src/GrampsCfg.py:421 ../src/GrampsCfg.py:428 ../src/GrampsCfg.py:430
 #: ../src/GrampsCfg.py:431 ../src/GrampsCfg.py:432 ../src/GrampsCfg.py:433
-#: ../src/GrampsCfg.py:434 ../src/Utils.py:1169
+#: ../src/GrampsCfg.py:434 ../src/Utils.py:1205
 msgid "SURNAME"
 msgstr "姓"
 
-#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1171
+#: ../src/GrampsCfg.py:427 ../src/ScratchPad.py:591 ../src/Utils.py:1207
 #: ../src/Editors/_EditPerson.py:269
 msgid "Patronymic"
 msgstr "取自父的名"
@@ -1264,7 +1264,7 @@ msgid "Name format"
 msgstr "姓名格式"
 
 #: ../src/GrampsCfg.py:747 ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:928
+#: ../src/plugins/BookReport.py:941
 msgid "Edit"
 msgstr "编辑"
 
@@ -1442,7 +1442,7 @@ msgstr "添加书签"
 #: ../src/gramps_main.py:103 ../src/ScratchPad.py:178 ../src/ScratchPad.py:367
 #: ../src/DataViews/EventView.py:72 ../src/DataViews/MediaView.py:85
 #: ../src/DisplayTabs/_AddrEmbedList.py:69
-#: ../src/DisplayTabs/_EmbeddedList.py:420
+#: ../src/DisplayTabs/_EmbeddedList.py:424
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:65
@@ -1517,8 +1517,8 @@ msgstr "摘录"
 #. don't show rest
 #. Go over parents and build their menu
 #: ../src/gramps_main.py:115 ../src/Merge/_MergePerson.py:152
-#: ../src/DataViews/PedigreeView.py:1572 ../src/DataViews/RelationView.py:454
-#: ../src/DataViews/RelationView.py:784 ../src/DataViews/RelationView.py:818
+#: ../src/DataViews/PedigreeView.py:1572 ../src/DataViews/RelationView.py:463
+#: ../src/DataViews/RelationView.py:795 ../src/DataViews/RelationView.py:829
 #: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
 #: ../src/plugins/tool/NotRelated.py:118
@@ -1774,39 +1774,39 @@ msgstr "错误: %s 不是有效的GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "不能设定书签，因为未选中内容."
 
-#: ../src/PageView.py:994 ../src/DataViews/PersonView.py:157
+#: ../src/PageView.py:995 ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "添加(_A)..."
 
-#: ../src/PageView.py:996 ../src/DataViews/PersonView.py:159
+#: ../src/PageView.py:997 ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "删除(_R)"
 
-#: ../src/PageView.py:998 ../src/DataViews/PersonView.py:167
+#: ../src/PageView.py:999 ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "导出视图..."
 
-#: ../src/PageView.py:1003 ../src/DataViews/PersonView.py:147
+#: ../src/PageView.py:1004 ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "编辑(_E)..."
 
-#: ../src/PageView.py:1008
+#: ../src/PageView.py:1009
 msgid "_Filter"
 msgstr "过滤器(_F)"
 
-#: ../src/PageView.py:1074 ../src/DataViews/PersonView.py:911
+#: ../src/PageView.py:1075 ../src/DataViews/PersonView.py:911
 msgid "Export View as Spreadsheet"
 msgstr "用电子表格导出视图"
 
-#: ../src/PageView.py:1082 ../src/DataViews/PersonView.py:919
+#: ../src/PageView.py:1083 ../src/DataViews/PersonView.py:919
 msgid "Format:"
 msgstr "格式:"
 
-#: ../src/PageView.py:1087 ../src/DataViews/PersonView.py:924
+#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:924
 msgid "CSV"
 msgstr "CSV Comma Separated Value，逗号分隔文本"
 
-#: ../src/PageView.py:1088 ../src/DataViews/PersonView.py:925
+#: ../src/PageView.py:1089 ../src/DataViews/PersonView.py:925
 msgid "Open Document Spreadsheet"
 msgstr "打开电子表格文档"
 
@@ -1862,7 +1862,7 @@ msgstr ""
 "GRAMPS侦测到在Berkeley数据库中有一个问题. 可以从家族树管理中修复. 选择“数据"
 "库“ 并点击”修复“按钮"
 
-#: ../src/QuestionDialog.py:310 ../src/Utils.py:1102
+#: ../src/QuestionDialog.py:310 ../src/Utils.py:1134
 msgid "Attempt to force closing the dialog"
 msgstr "尝试强制关闭对话框"
 
@@ -2006,7 +2006,7 @@ msgstr "未知性别，未知关系｜前同居密友"
 
 #: ../src/Reorder.py:31 ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:157 ../src/DataViews/FamilyList.py:63
-#: ../src/DataViews/RelationView.py:819 ../src/Selectors/_SelectFamily.py:63
+#: ../src/DataViews/RelationView.py:830 ../src/Selectors/_SelectFamily.py:63
 #: ../src/plugins/import/ImportCsv.py:211
 #: ../src/plugins/quickview/all_relations.py:300
 #: ../src/plugins/textreport/FamilyGroup.py:185
@@ -2023,7 +2023,7 @@ msgstr "父亲"
 #. ----------------------------------
 #: ../src/Reorder.py:31 ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:159 ../src/DataViews/FamilyList.py:64
-#: ../src/DataViews/RelationView.py:820 ../src/Selectors/_SelectFamily.py:64
+#: ../src/DataViews/RelationView.py:831 ../src/Selectors/_SelectFamily.py:64
 #: ../src/plugins/import/ImportCsv.py:207
 #: ../src/plugins/quickview/all_relations.py:297
 #: ../src/plugins/textreport/FamilyGroup.py:202
@@ -2038,7 +2038,7 @@ msgid "Mother"
 msgstr "母亲"
 
 #: ../src/Reorder.py:32 ../src/Merge/_MergePerson.py:173
-#: ../src/DataViews/PersonView.py:74 ../src/DataViews/RelationView.py:1287
+#: ../src/DataViews/PersonView.py:74 ../src/DataViews/RelationView.py:1298
 #: ../src/Selectors/_SelectPerson.py:83 ../src/Selectors/_SelectPerson.py:111
 #: ../src/plugins/textreport/FamilyGroup.py:491
 #: ../src/plugins/tool/RelCalc.py:63
@@ -2099,7 +2099,7 @@ msgstr "家庭事件"
 #: ../src/DisplayTabs/_RepoEmbedList.py:65
 #: ../src/DisplayTabs/_WebEmbedList.py:62 ../src/Selectors/_SelectEvent.py:64
 #: ../src/Selectors/_SelectNote.py:69 ../src/Selectors/_SelectObject.py:77
-#: ../src/plugins/BookReport.py:726 ../src/plugins/BookReport.py:730
+#: ../src/plugins/BookReport.py:729 ../src/plugins/BookReport.py:733
 #: ../src/plugins/quickview/FilterByName.py:103
 #: ../src/plugins/quickview/OnThisDay.py:77
 #: ../src/plugins/quickview/OnThisDay.py:78
@@ -2207,7 +2207,7 @@ msgstr "参考事件"
 msgid "Call Name"
 msgstr "称呼"
 
-#: ../src/ScratchPad.py:592 ../src/Utils.py:1168
+#: ../src/ScratchPad.py:592 ../src/Utils.py:1204
 #: ../src/Editors/_EditPerson.py:260 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:163
 #: ../src/plugins/tool/PatchNames.py:279 ../src/plugins/tool/PatchNames.py:291
@@ -2220,7 +2220,7 @@ msgstr "前缀"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:593 ../src/Utils.py:1166
+#: ../src/ScratchPad.py:593 ../src/Utils.py:1202
 #: ../src/Editors/_EditPerson.py:269 ../src/plugins/export/ExportCsv.py:339
 #: ../src/plugins/import/ImportCsv.py:161
 #: ../src/plugins/tool/PatchNames.py:267
@@ -2240,7 +2240,7 @@ msgid "Person Link"
 msgstr "成员链接"
 
 #: ../src/ScratchPad.py:744 ../src/ToolTips.py:200
-#: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:559
+#: ../src/Merge/_MergePerson.py:130 ../src/DataViews/RelationView.py:570
 #: ../src/plugins/quickview/all_relations.py:270
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/textreport/FamilyGroup.py:449
@@ -2276,7 +2276,7 @@ msgstr "出版信息"
 msgid "Repository Link"
 msgstr "仓库链接"
 
-#: ../src/ScratchPad.py:1208 ../src/ScratchPad.py:1245
+#: ../src/ScratchPad.py:1228 ../src/ScratchPad.py:1265
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "剪贴板"
@@ -2661,14 +2661,14 @@ msgstr "仓库中的源"
 msgid "Child"
 msgstr "子女"
 
-#: ../src/Utils.py:81 ../src/Merge/_MergePerson.py:56
+#: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:237
 #: ../src/plugins/webreport/NarrativeWeb.py:1876
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "男性"
 
-#: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:56
+#: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:56
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:236
 #: ../src/plugins/webreport/NarrativeWeb.py:1877
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
@@ -2681,8 +2681,8 @@ msgstr "女性"
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../src/Utils.py:83 ../src/Utils.py:176 ../src/Merge/_MergePerson.py:56
-#: ../src/DataViews/RelationView.py:597
+#: ../src/Utils.py:84 ../src/Utils.py:177 ../src/Merge/_MergePerson.py:56
+#: ../src/DataViews/RelationView.py:608
 #: ../src/DisplayModels/_PeopleModel.py:232 ../src/Editors/_EditPerson.py:238
 #: ../src/Mime/_GnomeMime.py:67 ../src/Mime/_GnomeMime.py:74
 #: ../src/Mime/_PythonMime.py:53 ../src/Mime/_PythonMime.py:61
@@ -2704,120 +2704,120 @@ msgstr "女性"
 msgid "unknown"
 msgstr "未知"
 
-#: ../src/Utils.py:87
+#: ../src/Utils.py:88
 msgid "Invalid"
 msgstr "无效"
 
-#: ../src/Utils.py:90 ../src/Editors/_EditSourceRef.py:138
+#: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:138
 msgid "Very High"
 msgstr "很高"
 
-#: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:137
+#: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:137
 #: ../src/plugins/tool/FindDupes.py:69
 msgid "High"
 msgstr "高"
 
-#: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:136
+#: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:136
 #: ../src/plugins/webreport/NarrativeWeb.py:681
 msgid "Normal"
 msgstr "正常"
 
-#: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:135
+#: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:135
 #: ../src/plugins/tool/FindDupes.py:67
 msgid "Low"
 msgstr "低"
 
-#: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:134
+#: ../src/Utils.py:95 ../src/Editors/_EditSourceRef.py:134
 msgid "Very Low"
 msgstr "很低"
 
-#: ../src/Utils.py:98
+#: ../src/Utils.py:99
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "法定的或依据习惯确立的丈夫和妻子的关系"
 
-#: ../src/Utils.py:100
+#: ../src/Utils.py:101
 msgid "No legal or common-law relationship between man and woman"
 msgstr "无法律的或者按照习惯确立的男女关系"
 
-#: ../src/Utils.py:102
+#: ../src/Utils.py:103
 msgid "An established relationship between members of the same sex"
 msgstr "确立的成员同性别间关系"
 
-#: ../src/Utils.py:104
+#: ../src/Utils.py:105
 msgid "Unknown relationship between a man and woman"
 msgstr "男女之间未知关系"
 
-#: ../src/Utils.py:106
+#: ../src/Utils.py:107
 msgid "An unspecified relationship between a man and woman"
 msgstr "未明确的男女之间的关系"
 
-#: ../src/Utils.py:122
+#: ../src/Utils.py:123
 msgid ""
 "The data can only be recovered by Undo operation or by quitting with "
 "abandoning changes."
 msgstr "数据只能通过撤销操作或者退出并摒弃变更来恢复."
 
-#: ../src/Utils.py:186 ../src/Utils.py:206
+#: ../src/Utils.py:187 ../src/Utils.py:207
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s 和 %(mother)s"
 
-#: ../src/Utils.py:351 ../src/ReportBase/_StyleComboBox.py:68
+#: ../src/Utils.py:383 ../src/ReportBase/_StyleComboBox.py:68
 #: ../src/ReportBase/_StyleComboBox.py:88
 msgid "default"
 msgstr "默认"
 
-#: ../src/Utils.py:703 ../src/plugins/tool/CalculateEstimatedDates.py:416
+#: ../src/Utils.py:735 ../src/plugins/tool/CalculateEstimatedDates.py:416
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "数据库错误: %s 被定义为 他/她自己的祖先"
 
-#: ../src/Utils.py:1103
+#: ../src/Utils.py:1135
 msgid "Please do not force closing this important dialog."
 msgstr "请不要强制关闭这个重要的对话框."
 
-#: ../src/Utils.py:1127 ../src/Utils.py:1134
+#: ../src/Utils.py:1159 ../src/Utils.py:1166
 msgid "Error Opening File"
 msgstr "打开文件出错"
 
-#: ../src/Utils.py:1127 ../src/plugins/textreport/IndivComplete.py:421
+#: ../src/Utils.py:1159 ../src/plugins/textreport/IndivComplete.py:421
 #: ../src/ReportBase/_ReportUtils.py:1856
 msgid "File does not exist"
 msgstr "文件不存在"
 
-#: ../src/Utils.py:1166
+#: ../src/Utils.py:1202
 msgid "Person|TITLE"
 msgstr "头衔"
 
-#: ../src/Utils.py:1167
+#: ../src/Utils.py:1203
 msgid "GIVEN"
 msgstr "名"
 
-#: ../src/Utils.py:1168
+#: ../src/Utils.py:1204
 msgid "PREFIX"
 msgstr "前缀"
 
-#: ../src/Utils.py:1170
+#: ../src/Utils.py:1206
 msgid "SUFFIX"
 msgstr "后缀"
 
-#: ../src/Utils.py:1171
+#: ../src/Utils.py:1207
 msgid "PATRONYMIC"
 msgstr "取自父的名"
 
-#: ../src/Utils.py:1172
+#: ../src/Utils.py:1208
 msgid "CALL"
 msgstr "称呼"
 
-#: ../src/Utils.py:1173
+#: ../src/Utils.py:1209
 msgid "COMMON"
 msgstr "普通"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1210
 msgid "Initials"
 msgstr "首字目"
 
-#: ../src/Utils.py:1174
+#: ../src/Utils.py:1210
 msgid "INITIALS"
 msgstr "首字目"
 
@@ -3087,7 +3087,7 @@ msgstr "只读"
 msgid "Unknown father"
 msgstr "未知父亲"
 
-#: ../src/Simple/_SimpleTable.py:210 ../src/DataViews/RelationView.py:914
+#: ../src/Simple/_SimpleTable.py:210 ../src/DataViews/RelationView.py:925
 #: ../src/plugins/quickview/all_relations.py:282 ../src/gen/lib/date.py:320
 #: ../src/gen/lib/date.py:413 ../src/gen/lib/date.py:442
 msgid "and"
@@ -3225,8 +3225,8 @@ msgstr "父母和孩子无法合并.合并这些人，你必须先断开他们�
 msgid "Gender"
 msgstr "性别"
 
-#: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:570
-#: ../src/DataViews/RelationView.py:595
+#: ../src/Merge/_MergePerson.py:133 ../src/DataViews/RelationView.py:581
+#: ../src/DataViews/RelationView.py:606
 #: ../src/plugins/textreport/FamilyGroup.py:455
 #: ../src/plugins/textreport/FamilyGroup.py:457
 #: ../src/plugins/textreport/MarkerReport.py:131
@@ -3255,7 +3255,7 @@ msgstr "未找到父母"
 msgid "Spouses"
 msgstr "配偶"
 
-#: ../src/Merge/_MergePerson.py:179 ../src/DataViews/RelationView.py:1203
+#: ../src/Merge/_MergePerson.py:179 ../src/DataViews/RelationView.py:1214
 #: ../src/plugins/export/ExportCsv.py:415
 #: ../src/plugins/import/ImportCsv.py:215
 #: ../src/plugins/textreport/FamilyGroup.py:354
@@ -3345,7 +3345,7 @@ msgstr "删除所选家庭"
 #: ../src/DataViews/FamilyList.py:91
 #: ../src/plugins/gramplet/QuickViewGramplet.py:66
 #: ../src/plugins/graph/GVFamilyLines.py:157
-#: ../src/plugins/graph/GVRelGraph.py:550
+#: ../src/plugins/graph/GVRelGraph.py:551
 #: ../src/plugins/textreport/MarkerReport.py:189
 #: ../src/plugins/webreport/NarrativeWeb.py:2601
 msgid "Families"
@@ -3399,196 +3399,196 @@ msgstr ""
 "<br>\n"
 "例如: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:738
+#: ../src/DataViews/GeoView.py:744
 msgid "_OpenStreetMap"
 msgstr "打开街景地图"
 
-#: ../src/DataViews/GeoView.py:740
+#: ../src/DataViews/GeoView.py:746
 msgid "Select OpenStreetMap Maps"
 msgstr "选择打开街景地图"
 
-#: ../src/DataViews/GeoView.py:743
+#: ../src/DataViews/GeoView.py:749
 msgid "_Google Maps"
 msgstr "google 地图(_G)"
 
-#: ../src/DataViews/GeoView.py:745
+#: ../src/DataViews/GeoView.py:751
 msgid "Select Google Maps."
 msgstr "选择google 地图."
 
-#: ../src/DataViews/GeoView.py:748
+#: ../src/DataViews/GeoView.py:754
 msgid "_OpenLayers Maps"
 msgstr "打开分层地图(_O)"
 
-#: ../src/DataViews/GeoView.py:750
+#: ../src/DataViews/GeoView.py:756
 msgid "Select OpenLayers Maps."
 msgstr "选择打开层地图."
 
-#: ../src/DataViews/GeoView.py:753
+#: ../src/DataViews/GeoView.py:759
 msgid "_Yahoo! Maps"
 msgstr "Yahoo! 地图(_Y)"
 
-#: ../src/DataViews/GeoView.py:755
+#: ../src/DataViews/GeoView.py:761
 msgid "Select Yahoo Maps."
 msgstr "选择Yahoo 地图."
 
-#: ../src/DataViews/GeoView.py:758
+#: ../src/DataViews/GeoView.py:764
 msgid "_Microsoft Maps"
 msgstr "微软地图(_M)"
 
-#: ../src/DataViews/GeoView.py:760
+#: ../src/DataViews/GeoView.py:766
 msgid "Select Microsoft Maps"
 msgstr "选择微软地图"
 
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:767
 msgid "_All Places"
 msgstr "所有地点(_A)"
 
-#: ../src/DataViews/GeoView.py:763
+#: ../src/DataViews/GeoView.py:769
 msgid "Attempt to view all places in the family tree."
 msgstr "尝试在家庭树中浏览所有地点."
 
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:770
 msgid "_Person"
 msgstr "人员（_P)"
 
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:772
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "尝试浏览选中人员居住的所有的地方."
 
-#: ../src/DataViews/GeoView.py:767
+#: ../src/DataViews/GeoView.py:773
 msgid "_Family"
 msgstr "家庭(_F)"
 
-#: ../src/DataViews/GeoView.py:769
+#: ../src/DataViews/GeoView.py:775
 msgid "Attempt to view places of the selected people's family."
 msgstr "尝试浏览所选人员的家庭的地点."
 
-#: ../src/DataViews/GeoView.py:770
+#: ../src/DataViews/GeoView.py:776
 msgid "_Event"
 msgstr "事件 (_E)"
 
-#: ../src/DataViews/GeoView.py:772
+#: ../src/DataViews/GeoView.py:778
 msgid "Attempt to view places connected to all events."
 msgstr "尝试浏览连接到所有事件的地点."
 
-#: ../src/DataViews/GeoView.py:868
+#: ../src/DataViews/GeoView.py:874
 msgid "List of places without coordinates"
 msgstr "列出所有没有坐标的地址"
 
-#: ../src/DataViews/GeoView.py:869
+#: ../src/DataViews/GeoView.py:875
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
 msgstr "本处列出了家庭树中没有包含坐标的所有地点.<br> 意味着没有经度和纬度.<p>"
 
-#: ../src/DataViews/GeoView.py:919
+#: ../src/DataViews/GeoView.py:925
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
 "markers : "
 msgstr "有 %d 标记将要被显示.它们被分成 %d 页面共 %d 个标记: "
 
-#: ../src/DataViews/GeoView.py:958
+#: ../src/DataViews/GeoView.py:964
 msgid "All"
 msgstr "所有"
 
-#: ../src/DataViews/GeoView.py:1417
+#: ../src/DataViews/GeoView.py:1427
 msgid "No location."
 msgstr "没有定位."
 
-#: ../src/DataViews/GeoView.py:1420
+#: ../src/DataViews/GeoView.py:1430
 msgid "You have no places in your family tree  with coordinates."
 msgstr "你的家庭树中的地点未包含坐标."
 
-#: ../src/DataViews/GeoView.py:1423
+#: ../src/DataViews/GeoView.py:1433
 msgid "You are looking at the default map."
 msgstr "你正在看默认地图."
 
-#: ../src/DataViews/GeoView.py:1448
+#: ../src/DataViews/GeoView.py:1458
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : 出生地."
 
-#: ../src/DataViews/GeoView.py:1451
+#: ../src/DataViews/GeoView.py:1461
 msgid "birth place."
 msgstr "出生地点."
 
-#: ../src/DataViews/GeoView.py:1483
+#: ../src/DataViews/GeoView.py:1493
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : 死亡地点."
 
-#: ../src/DataViews/GeoView.py:1486
+#: ../src/DataViews/GeoView.py:1496
 msgid "death place."
 msgstr "死亡地点."
 
-#: ../src/DataViews/GeoView.py:1522
+#: ../src/DataViews/GeoView.py:1532
 #, python-format
 msgid "Id : %s"
 msgstr "Id:%s"
 
-#: ../src/DataViews/GeoView.py:1539 ../src/DataViews/GeoView.py:1616
-#: ../src/DataViews/GeoView.py:1666 ../src/DataViews/GeoView.py:1737
+#: ../src/DataViews/GeoView.py:1549 ../src/DataViews/GeoView.py:1626
+#: ../src/DataViews/GeoView.py:1676 ../src/DataViews/GeoView.py:1747
 msgid "Cannot center the map. No location with coordinates."
 msgstr "无法定位地图的中心.没有地点包含坐标."
 
-#: ../src/DataViews/GeoView.py:1543
+#: ../src/DataViews/GeoView.py:1553
 msgid "All places in the family tree with coordinates."
 msgstr "家族树中的地点均包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1568
+#: ../src/DataViews/GeoView.py:1578
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1619
+#: ../src/DataViews/GeoView.py:1629
 msgid "All events in the family tree with coordinates."
 msgstr "家族树中所有的事件均包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1647
+#: ../src/DataViews/GeoView.py:1657
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : 父亲 : %s"
 
-#: ../src/DataViews/GeoView.py:1652
+#: ../src/DataViews/GeoView.py:1662
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : 母亲 : %s"
 
-#: ../src/DataViews/GeoView.py:1661
+#: ../src/DataViews/GeoView.py:1671
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : 子女 : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1668
+#: ../src/DataViews/GeoView.py:1678
 msgid "The active person's family members have no places with coordinates."
 msgstr "激活人员的家庭成员没有包含有坐标的地址."
 
-#: ../src/DataViews/GeoView.py:1672 ../src/DataViews/GeoView.py:1742
+#: ../src/DataViews/GeoView.py:1682 ../src/DataViews/GeoView.py:1752
 msgid "No active person set."
 msgstr "未设定激活人员."
 
-#: ../src/DataViews/GeoView.py:1676
+#: ../src/DataViews/GeoView.py:1686
 #, python-format
 msgid ""
 "All %(name)s people's family places in the family tree with coordinates."
 msgstr "所有 %(name)s 人员，在家庭树中的家庭地址包含了坐标."
 
-#: ../src/DataViews/GeoView.py:1720
+#: ../src/DataViews/GeoView.py:1730
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1740
+#: ../src/DataViews/GeoView.py:1750
 msgid "The active person has no places with coordinates."
 msgstr "激活人员未包含有坐标的地址."
 
-#: ../src/DataViews/GeoView.py:1745
+#: ../src/DataViews/GeoView.py:1755
 #, python-format
 msgid "All event places for %s."
 msgstr "%s 的所有事件地点."
 
-#: ../src/DataViews/GeoView.py:1752
+#: ../src/DataViews/GeoView.py:1762
 msgid "Not yet implemented ..."
 msgstr "还未执行..."
 
@@ -3800,7 +3800,7 @@ msgid "People Menu"
 msgstr "人的菜单"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/PedigreeView.py:1492 ../src/DataViews/RelationView.py:834
+#: ../src/DataViews/PedigreeView.py:1492 ../src/DataViews/RelationView.py:845
 #: ../src/plugins/gramplet/FanChartGramplet.py:736
 #: ../src/plugins/quickview/siblings.py:77
 #: ../src/plugins/webreport/NarrativeWeb.py:2457
@@ -3808,7 +3808,7 @@ msgid "Siblings"
 msgstr "兄弟姐妹，同胞"
 
 #. Go over children and build their menu
-#: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1302
+#: ../src/DataViews/PedigreeView.py:1535 ../src/DataViews/RelationView.py:1313
 #: ../src/plugins/gramplet/FanChartGramplet.py:779
 #: ../src/plugins/textreport/FamilyGroup.py:556
 #: ../src/plugins/textreport/IndivComplete.py:333
@@ -4032,25 +4032,34 @@ msgstr "尝试使用地图服务查看这个位置.(打开街景地图，Google�
 msgid "Place Filter Editor"
 msgstr "地点筛选编辑器"
 
-#: ../src/DataViews/PlaceView.py:230
+#: ../src/DataViews/PlaceView.py:224
+#, fuzzy
+msgid "No map service is available."
+msgstr "Eniro 地图不可用"
+
+#: ../src/DataViews/PlaceView.py:225
+msgid "Check your installation."
+msgstr ""
+
+#: ../src/DataViews/PlaceView.py:233
 msgid "No place selected."
 msgstr "无地点被选中."
 
-#: ../src/DataViews/PlaceView.py:231
+#: ../src/DataViews/PlaceView.py:234
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
 msgstr "你需要选择一个地点，可以在地图上查看.一些地图信息可能支持多重选择."
 
-#: ../src/DataViews/PlaceView.py:251
+#: ../src/DataViews/PlaceView.py:254
 msgid "Select Place Columns"
 msgstr "选择地址栏"
 
-#: ../src/DataViews/PlaceView.py:352
+#: ../src/DataViews/PlaceView.py:355
 msgid "Cannot merge places."
 msgstr "无法合并地点."
 
-#: ../src/DataViews/PlaceView.py:353
+#: ../src/DataViews/PlaceView.py:356
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -4059,23 +4068,23 @@ msgstr ""
 "确切的两个地点必需被选中才能执行合并. 第二个地点可以通过同时按CTRL+鼠标点击目"
 "标地点来选中."
 
-#: ../src/DataViews/RelationView.py:325
+#: ../src/DataViews/RelationView.py:326
 msgid "_Reorder"
 msgstr "记录(_R)"
 
-#: ../src/DataViews/RelationView.py:326
+#: ../src/DataViews/RelationView.py:327
 msgid "Change order of parents and families"
 msgstr "修订父母和家庭的顺序"
 
-#: ../src/DataViews/RelationView.py:331
+#: ../src/DataViews/RelationView.py:332
 msgid "Edit..."
 msgstr "编辑..."
 
-#: ../src/DataViews/RelationView.py:332
+#: ../src/DataViews/RelationView.py:333
 msgid "Edit the active person"
 msgstr "编辑激活的人"
 
-#: ../src/DataViews/RelationView.py:333
+#: ../src/DataViews/RelationView.py:334
 #: ../src/plugins/quickview/all_relations.py:286
 #: ../src/plugins/webreport/NarrativeWeb.py:815
 #: ../src/plugins/webreport/NarrativeWeb.py:971
@@ -4084,180 +4093,180 @@ msgstr "编辑激活的人"
 msgid "Partner"
 msgstr "伴侣"
 
-#: ../src/DataViews/RelationView.py:334 ../src/DataViews/RelationView.py:336
-#: ../src/DataViews/RelationView.py:737
+#: ../src/DataViews/RelationView.py:335 ../src/DataViews/RelationView.py:337
+#: ../src/DataViews/RelationView.py:748
 msgid "Add a new family with person as parent"
 msgstr "新增一个家庭，并设定所选人员为其父母"
 
-#: ../src/DataViews/RelationView.py:335
+#: ../src/DataViews/RelationView.py:336
 msgid "Add Partner..."
 msgstr "添加伴侣..."
 
-#: ../src/DataViews/RelationView.py:337 ../src/DisplayTabs/_ButtonTab.py:67
+#: ../src/DataViews/RelationView.py:338 ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/tool/CalculateEstimatedDates.py:87
 msgid "Add"
 msgstr "添加"
 
-#: ../src/DataViews/RelationView.py:338 ../src/DataViews/RelationView.py:340
-#: ../src/DataViews/RelationView.py:731
+#: ../src/DataViews/RelationView.py:339 ../src/DataViews/RelationView.py:341
+#: ../src/DataViews/RelationView.py:742
 msgid "Add a new set of parents"
 msgstr "新增一对父母"
 
-#: ../src/DataViews/RelationView.py:339
+#: ../src/DataViews/RelationView.py:340
 msgid "Add New Parents..."
 msgstr "新增父母..."
 
-#: ../src/DataViews/RelationView.py:341 ../src/DisplayTabs/_ButtonTab.py:70
+#: ../src/DataViews/RelationView.py:342 ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:118
 #: ../src/DisplayTabs/_GalleryTab.py:110
 msgid "Share"
 msgstr "共享"
 
-#: ../src/DataViews/RelationView.py:342 ../src/DataViews/RelationView.py:346
-#: ../src/DataViews/RelationView.py:732
+#: ../src/DataViews/RelationView.py:343 ../src/DataViews/RelationView.py:347
+#: ../src/DataViews/RelationView.py:743
 msgid "Add person as child to an existing family"
 msgstr "为一个存在的家庭新增一个成员作为子女"
 
-#: ../src/DataViews/RelationView.py:345
+#: ../src/DataViews/RelationView.py:346
 msgid "Add Existing Parents..."
 msgstr "添加一个已有父母..."
 
-#: ../src/DataViews/RelationView.py:353
+#: ../src/DataViews/RelationView.py:354
 msgid "Show Details"
 msgstr "显示细节"
 
-#: ../src/DataViews/RelationView.py:356
+#: ../src/DataViews/RelationView.py:357
 msgid "Show Siblings"
 msgstr "显示所有同胞兄弟"
 
-#: ../src/DataViews/RelationView.py:531 ../src/DataViews/RelationView.py:926
-#: ../src/DataViews/RelationView.py:979 ../src/DataViews/RelationView.py:1066
-#: ../src/DataViews/RelationView.py:1170 ../src/Editors/_EditFamily.py:859
+#: ../src/DataViews/RelationView.py:542 ../src/DataViews/RelationView.py:937
+#: ../src/DataViews/RelationView.py:990 ../src/DataViews/RelationView.py:1077
+#: ../src/DataViews/RelationView.py:1181 ../src/Editors/_EditFamily.py:859
 #, python-format
 msgid "Edit %s"
 msgstr "编辑 %s"
 
-#: ../src/DataViews/RelationView.py:590
+#: ../src/DataViews/RelationView.py:601
 msgid "Alive"
 msgstr "健在的"
 
-#: ../src/DataViews/RelationView.py:648 ../src/DataViews/RelationView.py:675
+#: ../src/DataViews/RelationView.py:659 ../src/DataViews/RelationView.py:686
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s 在 %(place)s"
 
-#: ../src/DataViews/RelationView.py:733
+#: ../src/DataViews/RelationView.py:744
 msgid "Edit parents"
 msgstr "编辑父母"
 
-#: ../src/DataViews/RelationView.py:734
+#: ../src/DataViews/RelationView.py:745
 msgid "Reorder parents"
 msgstr "记录父母"
 
-#: ../src/DataViews/RelationView.py:735
+#: ../src/DataViews/RelationView.py:746
 msgid "Remove person as child of these parents"
 msgstr "移除此人相对这些父母的子女关系"
 
-#: ../src/DataViews/RelationView.py:739
+#: ../src/DataViews/RelationView.py:750
 msgid "Edit family"
 msgstr "编辑家庭"
 
-#: ../src/DataViews/RelationView.py:740
+#: ../src/DataViews/RelationView.py:751
 msgid "Reorder families"
 msgstr "记录家庭"
 
-#: ../src/DataViews/RelationView.py:741
+#: ../src/DataViews/RelationView.py:752
 msgid "Remove person as parent in this family"
 msgstr "移除此人相对这个家庭作为父母的关系"
 
-#: ../src/DataViews/RelationView.py:794 ../src/DataViews/RelationView.py:850
+#: ../src/DataViews/RelationView.py:805 ../src/DataViews/RelationView.py:861
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
 msgstr[0] " (%d 同胞兄弟姐妹)"
 
-#: ../src/DataViews/RelationView.py:799 ../src/DataViews/RelationView.py:855
+#: ../src/DataViews/RelationView.py:810 ../src/DataViews/RelationView.py:866
 msgid " (1 brother)"
 msgstr "（兄弟1人）"
 
-#: ../src/DataViews/RelationView.py:801 ../src/DataViews/RelationView.py:857
+#: ../src/DataViews/RelationView.py:812 ../src/DataViews/RelationView.py:868
 msgid " (1 sister)"
 msgstr "（姐妹1人）"
 
-#: ../src/DataViews/RelationView.py:803 ../src/DataViews/RelationView.py:859
+#: ../src/DataViews/RelationView.py:814 ../src/DataViews/RelationView.py:870
 msgid " (1 sibling)"
 msgstr "（同胞兄弟 1人）"
 
-#: ../src/DataViews/RelationView.py:805 ../src/DataViews/RelationView.py:861
+#: ../src/DataViews/RelationView.py:816 ../src/DataViews/RelationView.py:872
 msgid " (only child)"
 msgstr "（仅对子女）"
 
-#: ../src/DataViews/RelationView.py:877 ../src/DataViews/RelationView.py:1335
+#: ../src/DataViews/RelationView.py:888 ../src/DataViews/RelationView.py:1346
 msgid "Add new child to family"
 msgstr "为家庭新增一个子女"
 
-#: ../src/DataViews/RelationView.py:882 ../src/DataViews/RelationView.py:1340
+#: ../src/DataViews/RelationView.py:893 ../src/DataViews/RelationView.py:1351
 msgid "Add existing child to family"
 msgstr "将已存有的子女加入到家庭中"
 
-#: ../src/DataViews/RelationView.py:1121
+#: ../src/DataViews/RelationView.py:1132
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "b. %(birthdate)s, d. %(deathdate)s"
 
-#: ../src/DataViews/RelationView.py:1126
+#: ../src/DataViews/RelationView.py:1137
 #, python-format
 msgid "short for born|b. %s"
 msgstr "b. %s"
 
-#: ../src/DataViews/RelationView.py:1128
+#: ../src/DataViews/RelationView.py:1139
 #, python-format
 msgid "short for dead|d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/RelationView.py:1190
+#: ../src/DataViews/RelationView.py:1201
 #, python-format
 msgid "Relationship type: %s"
 msgstr "关系类型:%s"
 
-#: ../src/DataViews/RelationView.py:1230
+#: ../src/DataViews/RelationView.py:1241
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s 在 %(place)s"
 
-#: ../src/DataViews/RelationView.py:1234
+#: ../src/DataViews/RelationView.py:1245
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../src/DataViews/RelationView.py:1238
+#: ../src/DataViews/RelationView.py:1249
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../src/DataViews/RelationView.py:1249
+#: ../src/DataViews/RelationView.py:1260
 msgid "Broken family detected"
 msgstr "侦测到破碎家庭"
 
-#: ../src/DataViews/RelationView.py:1250
+#: ../src/DataViews/RelationView.py:1261
 msgid "Please run the Check and Repair Database tool"
 msgstr "请运行检查和修复数据库工具"
 
-#: ../src/DataViews/RelationView.py:1271 ../src/DataViews/RelationView.py:1317
+#: ../src/DataViews/RelationView.py:1282 ../src/DataViews/RelationView.py:1328
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
 msgstr[0] " (%d 子女)"
 
-#: ../src/DataViews/RelationView.py:1273 ../src/DataViews/RelationView.py:1319
+#: ../src/DataViews/RelationView.py:1284 ../src/DataViews/RelationView.py:1330
 msgid " (no children)"
 msgstr "（无儿无女）"
 
-#: ../src/DataViews/RelationView.py:1456
+#: ../src/DataViews/RelationView.py:1467
 msgid "Add Child to Family"
 msgstr "为家庭添加子女"
 
-#: ../src/DataViews/RelationView.py:1469 ../src/Editors/_EditFamily.py:248
+#: ../src/DataViews/RelationView.py:1480 ../src/Editors/_EditFamily.py:248
 #: ../src/Editors/_EditFamily.py:261
 msgid "Select Child"
 msgstr "选择子女"
@@ -4357,8 +4366,8 @@ msgstr ""
 #: ../src/plugins/export/ExportCd.py:159 ../src/plugins/export/ExportCd.py:172
 #: ../src/plugins/export/ExportCsv.py:304
 #: ../src/plugins/export/ExportCsv.py:308
-#: ../src/plugins/export/ExportGedcom.py:1526
-#: ../src/plugins/export/ExportGedcom.py:1531
+#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1534
 #: ../src/plugins/export/ExportGeneWeb.py:235
 #: ../src/plugins/export/ExportGeneWeb.py:239
 #: ../src/plugins/export/ExportVCalendar.py:207
@@ -5587,49 +5596,49 @@ msgstr "你的GEDCOM文件为空."
 msgid "Invalid line %d in GEDCOM file."
 msgstr "无效行 %d 在GEDCOM文件中."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:133
+#: ../src/GrampsDbUtils/_GedcomParse.py:134
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "你的GEDCOM文件已经崩溃，可能文件已被截断."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:276
+#: ../src/GrampsDbUtils/_GedcomParse.py:277
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "从 GEDCOM 文件%s 中导入"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:818
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM 文件导入"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1072
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "行 %d 无法辨别, 因此被忽略."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:2918
+#: ../src/GrampsDbUtils/_GedcomParse.py:2937
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "行 %d: 空事件注释被忽略."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3601
-#: ../src/GrampsDbUtils/_GedcomParse.py:4169
+#: ../src/GrampsDbUtils/_GedcomParse.py:3620
+#: ../src/GrampsDbUtils/_GedcomParse.py:4188
 #, python-format
 msgid "Could not import %s"
 msgstr "无法导入 %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3945
+#: ../src/GrampsDbUtils/_GedcomParse.py:3964
 #, python-format
 msgid "Import from %s"
 msgstr "从 %s 中导入"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4035
-#: ../src/GrampsDbUtils/_GedcomParse.py:4047
+#: ../src/GrampsDbUtils/_GedcomParse.py:4054
+#: ../src/GrampsDbUtils/_GedcomParse.py:4066
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "行 %d: 空注释被忽略."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4086
+#: ../src/GrampsDbUtils/_GedcomParse.py:4105
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "跳过 %d subordinate(s) 在行 %d"
@@ -5864,66 +5873,66 @@ msgstr "选择仓库"
 msgid "Select Source"
 msgstr "选择来源"
 
-#: ../src/plugins/BookReport.py:141 ../src/plugins/BookReport.py:178
+#: ../src/plugins/BookReport.py:144 ../src/plugins/BookReport.py:181
 msgid "Not Applicable"
 msgstr "没有应用"
 
-#: ../src/plugins/BookReport.py:167 ../src/PluginUtils/_GuiOptions.py:610
+#: ../src/plugins/BookReport.py:170 ../src/PluginUtils/_GuiOptions.py:610
 msgid "unknown father"
 msgstr "未知父亲"
 
-#: ../src/plugins/BookReport.py:173 ../src/PluginUtils/_GuiOptions.py:616
+#: ../src/plugins/BookReport.py:176 ../src/PluginUtils/_GuiOptions.py:616
 msgid "unknown mother"
 msgstr "未知母亲"
 
-#: ../src/plugins/BookReport.py:175 ../src/PluginUtils/_GuiOptions.py:618
+#: ../src/plugins/BookReport.py:178 ../src/PluginUtils/_GuiOptions.py:618
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s 和 %s(%s)"
 
-#: ../src/plugins/BookReport.py:580
+#: ../src/plugins/BookReport.py:583
 msgid "Available Books"
 msgstr "可利用的名册"
 
-#: ../src/plugins/BookReport.py:593
+#: ../src/plugins/BookReport.py:596
 msgid "Book List"
 msgstr "名册列表"
 
-#: ../src/plugins/BookReport.py:681 ../src/plugins/BookReport.py:1059
-#: ../src/plugins/BookReport.py:1107 ../src/plugins/BookReport.py:1249
+#: ../src/plugins/BookReport.py:684 ../src/plugins/BookReport.py:1072
+#: ../src/plugins/BookReport.py:1120 ../src/plugins/BookReport.py:1262
 msgid "Book Report"
 msgstr "名册报告"
 
-#: ../src/plugins/BookReport.py:714
+#: ../src/plugins/BookReport.py:717
 msgid "New Book"
 msgstr "新名册"
 
-#: ../src/plugins/BookReport.py:717
+#: ../src/plugins/BookReport.py:720
 msgid "_Available items"
 msgstr "可利用的条目(_A)"
 
-#: ../src/plugins/BookReport.py:721
+#: ../src/plugins/BookReport.py:724
 msgid "Current _book"
 msgstr "现有名册(_B)"
 
-#: ../src/plugins/BookReport.py:729
+#: ../src/plugins/BookReport.py:732
 #: ../src/plugins/drawreport/StatisticsChart.py:67
 msgid "Item name"
 msgstr "条目名称"
 
-#: ../src/plugins/BookReport.py:732
+#: ../src/plugins/BookReport.py:735
 msgid "Subject"
 msgstr "议题"
 
-#: ../src/plugins/BookReport.py:744
+#: ../src/plugins/BookReport.py:747
 msgid "Book selection list"
 msgstr "书册选项列表"
 
-#: ../src/plugins/BookReport.py:783
+#: ../src/plugins/BookReport.py:786
 msgid "Different database"
 msgstr "不同的数据库"
 
-#: ../src/plugins/BookReport.py:784
+#: ../src/plugins/BookReport.py:787
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -5939,23 +5948,23 @@ msgstr ""
 "\n"
 "因此，每个条目的重要人员在现在打开的数据库中，被设为激活的人员."
 
-#: ../src/plugins/BookReport.py:922
+#: ../src/plugins/BookReport.py:935
 msgid "Setup"
 msgstr "设置"
 
-#: ../src/plugins/BookReport.py:932
+#: ../src/plugins/BookReport.py:945
 msgid "Book Menu"
 msgstr "名册菜单"
 
-#: ../src/plugins/BookReport.py:955
+#: ../src/plugins/BookReport.py:968
 msgid "Available Items Menu"
 msgstr "有效条目菜单"
 
-#: ../src/plugins/BookReport.py:1110
+#: ../src/plugins/BookReport.py:1123
 msgid "GRAMPS Book"
 msgstr "GRAMPS 名册"
 
-#: ../src/plugins/BookReport.py:1250 ../src/plugins/Records.py:577
+#: ../src/plugins/BookReport.py:1263 ../src/plugins/Records.py:577
 #: ../src/plugins/drawreport/AncestorTree.py:543
 #: ../src/plugins/drawreport/Calendar.py:539
 #: ../src/plugins/drawreport/DescendTree.py:539
@@ -5964,7 +5973,7 @@ msgstr "GRAMPS 名册"
 #: ../src/plugins/drawreport/TimeLine.py:466
 #: ../src/plugins/graph/GVFamilyLines.py:1055
 #: ../src/plugins/graph/GVHourGlass.py:304
-#: ../src/plugins/graph/GVRelGraph.py:630
+#: ../src/plugins/graph/GVRelGraph.py:631
 #: ../src/plugins/mapservices/eniroswedenmap.py:189
 #: ../src/plugins/mapservices/googlemap.py:80
 #: ../src/plugins/mapservices/openstreetmap.py:84
@@ -6012,7 +6021,7 @@ msgstr "GRAMPS 名册"
 msgid "Stable"
 msgstr "稳定版"
 
-#: ../src/plugins/BookReport.py:1251
+#: ../src/plugins/BookReport.py:1264
 msgid "Produces a book containing several reports."
 msgstr "生成包含多份报告的名册."
 
@@ -6427,7 +6436,7 @@ msgstr "%(number)s. %(name)s (%(value)s)"
 #: ../src/plugins/drawreport/FanChart.py:340
 #: ../src/plugins/drawreport/StatisticsChart.py:678
 #: ../src/plugins/drawreport/TimeLine.py:310
-#: ../src/plugins/graph/GVRelGraph.py:463
+#: ../src/plugins/graph/GVRelGraph.py:464
 #: ../src/plugins/textreport/AncestorReport.py:247
 #: ../src/plugins/textreport/BirthdayReport.py:329
 #: ../src/plugins/textreport/DescendReport.py:195
@@ -6451,7 +6460,7 @@ msgstr "报告选项"
 #: ../src/plugins/Records.py:447 ../src/plugins/drawreport/Calendar.py:382
 #: ../src/plugins/drawreport/StatisticsChart.py:680
 #: ../src/plugins/drawreport/TimeLine.py:312
-#: ../src/plugins/graph/GVRelGraph.py:466
+#: ../src/plugins/graph/GVRelGraph.py:467
 #: ../src/plugins/quickview/FilterByName.py:237
 #: ../src/plugins/textreport/BirthdayReport.py:336
 #: ../src/plugins/textreport/IndivComplete.py:516
@@ -6472,7 +6481,7 @@ msgstr "决定何类人应当包含在报告中"
 #: ../src/plugins/Records.py:453
 #: ../src/plugins/drawreport/StatisticsChart.py:686
 #: ../src/plugins/drawreport/TimeLine.py:318
-#: ../src/plugins/graph/GVRelGraph.py:472
+#: ../src/plugins/graph/GVRelGraph.py:473
 #: ../src/plugins/textreport/IndivComplete.py:522
 #: ../src/plugins/tool/CalculateEstimatedDates.py:70
 #: ../src/plugins/tool/SortEvents.py:174
@@ -6484,7 +6493,7 @@ msgstr "筛选人员"
 #: ../src/plugins/Records.py:454
 #: ../src/plugins/drawreport/StatisticsChart.py:687
 #: ../src/plugins/drawreport/TimeLine.py:319
-#: ../src/plugins/graph/GVRelGraph.py:473
+#: ../src/plugins/graph/GVRelGraph.py:474
 #: ../src/plugins/textreport/IndivComplete.py:523
 #: ../src/plugins/tool/CalculateEstimatedDates.py:71
 #: ../src/plugins/tool/SortEvents.py:175
@@ -7675,7 +7684,7 @@ msgstr "写入笔记"
 msgid "Writing repositories"
 msgstr "写入仓库"
 
-#: ../src/plugins/export/ExportGedcom.py:1529
+#: ../src/plugins/export/ExportGedcom.py:1532
 msgid "Export failed"
 msgstr "导出失败"
 
@@ -7684,7 +7693,7 @@ msgstr "导出失败"
 #. Register with the plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/export/ExportGedcom.py:1539
+#: ../src/plugins/export/ExportGedcom.py:1542
 #: ../src/plugins/import/ImportGedcom.py:142
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
@@ -7692,11 +7701,11 @@ msgid ""
 msgstr ""
 "GEDCOM 用于在genealogy 程序间传送数据.大多的族谱软件接受GEDCOM文件作为输入."
 
-#: ../src/plugins/export/ExportGedcom.py:1541
+#: ../src/plugins/export/ExportGedcom.py:1544
 msgid "GEDCOM export options"
 msgstr "GEDCOM 导出选项"
 
-#: ../src/plugins/export/ExportGedcom.py:1544
+#: ../src/plugins/export/ExportGedcom.py:1547
 msgid "GE_DCOM"
 msgstr "GEDCOM（_D)"
 
@@ -8235,14 +8244,14 @@ msgstr "个体的数量"
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:129
 #: ../src/plugins/graph/GVFamilyLines.py:144
-#: ../src/plugins/graph/GVRelGraph.py:537
+#: ../src/plugins/graph/GVRelGraph.py:538
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "男性"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:132
 #: ../src/plugins/graph/GVFamilyLines.py:148
-#: ../src/plugins/graph/GVRelGraph.py:541
+#: ../src/plugins/graph/GVRelGraph.py:542
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "女性"
@@ -8572,22 +8581,22 @@ msgid "Colours to use for various family lines."
 msgstr "区分不同家庭线所使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:145
-#: ../src/plugins/graph/GVRelGraph.py:538
+#: ../src/plugins/graph/GVRelGraph.py:539
 msgid "The colour to use to display men."
 msgstr "显示男性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:149
-#: ../src/plugins/graph/GVRelGraph.py:542
+#: ../src/plugins/graph/GVRelGraph.py:543
 msgid "The colour to use to display women."
 msgstr "显示女性使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:153
-#: ../src/plugins/graph/GVRelGraph.py:546
+#: ../src/plugins/graph/GVRelGraph.py:547
 msgid "The colour to use when the gender is unknown."
 msgstr "显示未知性别使用的颜色."
 
 #: ../src/plugins/graph/GVFamilyLines.py:158
-#: ../src/plugins/graph/GVRelGraph.py:551
+#: ../src/plugins/graph/GVRelGraph.py:552
 msgid "The colour to use to display families."
 msgstr "显示家庭使用的颜色."
 
@@ -8616,7 +8625,7 @@ msgid "Images"
 msgstr "图像"
 
 #: ../src/plugins/graph/GVFamilyLines.py:190
-#: ../src/plugins/graph/GVRelGraph.py:511
+#: ../src/plugins/graph/GVRelGraph.py:512
 msgid "Include thumbnail images of people"
 msgstr "包含人员的缩略图"
 
@@ -8625,17 +8634,17 @@ msgid "Thumbnail location"
 msgstr "缩略图位置"
 
 #: ../src/plugins/graph/GVFamilyLines.py:197
-#: ../src/plugins/graph/GVRelGraph.py:518
+#: ../src/plugins/graph/GVRelGraph.py:519
 msgid "Above the name"
 msgstr "名称之上"
 
 #: ../src/plugins/graph/GVFamilyLines.py:198
-#: ../src/plugins/graph/GVRelGraph.py:519
+#: ../src/plugins/graph/GVRelGraph.py:520
 msgid "Beside the name"
 msgstr "除了名字之外"
 
 #: ../src/plugins/graph/GVFamilyLines.py:200
-#: ../src/plugins/graph/GVRelGraph.py:521
+#: ../src/plugins/graph/GVRelGraph.py:522
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "缩略图应该出现在相关人员的什么位置"
 
@@ -8652,7 +8661,7 @@ msgstr "选项"
 #. ###############################
 #: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVHourGlass.py:274
-#: ../src/plugins/graph/GVRelGraph.py:529
+#: ../src/plugins/graph/GVRelGraph.py:530
 msgid "Graph coloring"
 msgstr "图表上色"
 
@@ -8668,13 +8677,13 @@ msgstr ""
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:283
-#: ../src/plugins/graph/GVRelGraph.py:561
+#: ../src/plugins/graph/GVRelGraph.py:562
 msgid "Use rounded corners"
 msgstr "使用圆角"
 
 #: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:285
-#: ../src/plugins/graph/GVRelGraph.py:563
+#: ../src/plugins/graph/GVRelGraph.py:564
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "使用圆角区分男性和女性."
 
@@ -8687,12 +8696,12 @@ msgid "Whether to include dates for people and families."
 msgstr "是否为成员和家庭包含日期."
 
 #: ../src/plugins/graph/GVFamilyLines.py:227
-#: ../src/plugins/graph/GVRelGraph.py:486
+#: ../src/plugins/graph/GVRelGraph.py:487
 msgid "Limit dates to years only"
 msgstr "Limit dates to years only"
 
 #: ../src/plugins/graph/GVFamilyLines.py:228
-#: ../src/plugins/graph/GVRelGraph.py:487
+#: ../src/plugins/graph/GVRelGraph.py:488
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -8790,12 +8799,12 @@ msgstr "图形中包含祖先的辈分和数量"
 
 #. ###############################
 #: ../src/plugins/graph/GVHourGlass.py:271
-#: ../src/plugins/graph/GVRelGraph.py:526
+#: ../src/plugins/graph/GVRelGraph.py:527
 msgid "Graph Style"
 msgstr "图表风格"
 
 #: ../src/plugins/graph/GVHourGlass.py:277
-#: ../src/plugins/graph/GVRelGraph.py:532
+#: ../src/plugins/graph/GVRelGraph.py:533
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -8825,35 +8834,35 @@ msgstr "后代<->祖先"
 msgid "Descendants - Ancestors"
 msgstr "后代 － 祖先"
 
-#: ../src/plugins/graph/GVRelGraph.py:468
+#: ../src/plugins/graph/GVRelGraph.py:469
 msgid "Determines what people are included in the graph"
 msgstr "决定在图像中包含什么样的人"
 
-#: ../src/plugins/graph/GVRelGraph.py:480
+#: ../src/plugins/graph/GVRelGraph.py:481
 msgid "Include Birth, Marriage and Death dates"
 msgstr "包含出生，结婚和死亡日期"
 
-#: ../src/plugins/graph/GVRelGraph.py:481
+#: ../src/plugins/graph/GVRelGraph.py:482
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr "在曲线图标签中包含个体出生，结婚 或者 死亡日期."
 
-#: ../src/plugins/graph/GVRelGraph.py:492
+#: ../src/plugins/graph/GVRelGraph.py:493
 msgid "Use place when no date"
 msgstr "当无日期时使用地点"
 
-#: ../src/plugins/graph/GVRelGraph.py:493
+#: ../src/plugins/graph/GVRelGraph.py:494
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
 msgstr "当没有出生，婚姻，死亡日期等有效数据时，相应的地点区域会被使用."
 
-#: ../src/plugins/graph/GVRelGraph.py:498
+#: ../src/plugins/graph/GVRelGraph.py:499
 msgid "Include URLs"
 msgstr "包含 URL地址"
 
-#: ../src/plugins/graph/GVRelGraph.py:499
+#: ../src/plugins/graph/GVRelGraph.py:500
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -8862,51 +8871,51 @@ msgstr ""
 "每个曲线节点包含一个URL，因此PDF 和 位图文件可以被生成包含动态链接到由  "
 "'Narrated Web Site'报告生成的文件 ."
 
-#: ../src/plugins/graph/GVRelGraph.py:506
+#: ../src/plugins/graph/GVRelGraph.py:507
 msgid "Include IDs"
 msgstr "包含ID"
 
-#: ../src/plugins/graph/GVRelGraph.py:507
+#: ../src/plugins/graph/GVRelGraph.py:508
 msgid "Include individual and family IDs."
 msgstr "包含个人和家庭的ID."
 
-#: ../src/plugins/graph/GVRelGraph.py:513
+#: ../src/plugins/graph/GVRelGraph.py:514
 msgid "Whether to include thumbnails of people."
 msgstr "是否包含人员的缩略图."
 
-#: ../src/plugins/graph/GVRelGraph.py:517
+#: ../src/plugins/graph/GVRelGraph.py:518
 msgid "Thumbnail Location"
 msgstr "缩略图位置"
 
-#: ../src/plugins/graph/GVRelGraph.py:554
+#: ../src/plugins/graph/GVRelGraph.py:555
 msgid "Arrowhead direction"
 msgstr "箭头方向"
 
-#: ../src/plugins/graph/GVRelGraph.py:557
+#: ../src/plugins/graph/GVRelGraph.py:558
 msgid "Choose the direction that the arrows point."
 msgstr "选择箭头所指方向."
 
-#: ../src/plugins/graph/GVRelGraph.py:568
+#: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "使用点线标识非生育关系"
 
-#: ../src/plugins/graph/GVRelGraph.py:569
+#: ../src/plugins/graph/GVRelGraph.py:570
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "非生育关系在曲线图中将会由点线来显示."
 
-#: ../src/plugins/graph/GVRelGraph.py:573
+#: ../src/plugins/graph/GVRelGraph.py:574
 msgid "Show family nodes"
 msgstr "显示家庭节点"
 
-#: ../src/plugins/graph/GVRelGraph.py:574
+#: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "家庭将会显示为椭圆，链接父母和子女."
 
-#: ../src/plugins/graph/GVRelGraph.py:629
+#: ../src/plugins/graph/GVRelGraph.py:630
 msgid "Relationship Graph"
 msgstr "关系曲线图"
 
-#: ../src/plugins/graph/GVRelGraph.py:631
+#: ../src/plugins/graph/GVRelGraph.py:632
 msgid "Produces relationship graphs using Graphviz"
 msgstr "使用Graphviz 生成关系曲线图"
 
@@ -13323,6 +13332,11 @@ msgstr ""
 msgid "The note for the month of December"
 msgstr ""
 
+#: ../src/plugins/webreport/WebCal.py:1453
+#, fuzzy, python-format
+msgid "%s old"
+msgstr "粗体"
+
 #: ../src/plugins/webreport/WebCal.py:1452
 msgid ", <em>"
 msgstr ", ，，，，<em>"
@@ -13539,7 +13553,7 @@ msgstr ""
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:172
+#: ../src/ReportBase/_CommandLineReport.py:181
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
 #: ../src/ReportBase/_PaperMenu.py:364 ../src/ReportBase/_PaperMenu.py:386
 msgid "Custom Size"
@@ -18800,7 +18814,7 @@ msgstr "日期"
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
 #: ../src/Filters/Rules/Family/_HasEvent.py:47
 #: ../src/Filters/Rules/Event/_HasData.py:47
-#: ../src/FilterEditor/_EditRule.py:473
+#: ../src/FilterEditor/_EditRule.py:454
 msgid "Place:"
 msgstr "地点:"
 
@@ -18843,7 +18857,7 @@ msgstr "事件过滤器"
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_MatchIdOf.py:45
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:46
-#: ../src/FilterEditor/_EditRule.py:485
+#: ../src/FilterEditor/_EditRule.py:466
 msgid "ID:"
 msgstr "ID:"
 
@@ -18878,12 +18892,12 @@ msgid "Matches objects whose notes contain text matching a substring"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:479
+#: ../src/FilterEditor/_EditRule.py:460
 msgid "Reference count must be:"
 msgstr ""
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:43
-#: ../src/FilterEditor/_EditRule.py:475
+#: ../src/FilterEditor/_EditRule.py:456
 msgid "Reference count:"
 msgstr ""
 
@@ -18897,13 +18911,13 @@ msgstr ""
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
-#: ../src/FilterEditor/_EditRule.py:504
+#: ../src/FilterEditor/_EditRule.py:485
 msgid "Case sensitive:"
 msgstr "区分大小写:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:46
-#: ../src/FilterEditor/_EditRule.py:506
+#: ../src/FilterEditor/_EditRule.py:487
 msgid "Regular-Expression matching:"
 msgstr "正则表达式匹配:"
 
@@ -18931,7 +18945,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsParentOfFilterMatch.py:46
 #: ../src/Filters/Rules/Person/_IsSiblingOfFilterMatch.py:45
 #: ../src/Filters/Rules/Person/_IsSpouseOfFilterMatch.py:46
-#: ../src/FilterEditor/_EditRule.py:490
+#: ../src/FilterEditor/_EditRule.py:471
 msgid "Filter name:"
 msgstr "筛选名称:"
 
@@ -19010,13 +19024,13 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:476
+#: ../src/FilterEditor/_EditRule.py:457
 msgid "Number of instances:"
 msgstr "例子的数量"
 
 #: ../src/Filters/Rules/Person/_HasAddress.py:46
 #: ../src/Filters/Rules/Person/_HasAssociation.py:46
-#: ../src/FilterEditor/_EditRule.py:481
+#: ../src/FilterEditor/_EditRule.py:462
 msgid "Number must be:"
 msgstr "需要一定是:"
 
@@ -19281,7 +19295,7 @@ msgid "Matches people with a certain number of items in the source"
 msgstr "匹配在来源中拥有特定数量栏目的人"
 
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:45
-#: ../src/FilterEditor/_EditRule.py:488
+#: ../src/FilterEditor/_EditRule.py:469
 msgid "Source ID:"
 msgstr "来源 ID:"
 
@@ -19344,7 +19358,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:502
+#: ../src/FilterEditor/_EditRule.py:483
 msgid "Inclusive:"
 msgstr ""
 
@@ -19424,7 +19438,7 @@ msgstr ""
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationDescendantOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationAncestorOf.py:46
 #: ../src/Filters/Rules/Person/_IsMoreThanNthGenerationDescendantOf.py:46
-#: ../src/FilterEditor/_EditRule.py:483
+#: ../src/FilterEditor/_EditRule.py:464
 msgid "Number of generations:"
 msgstr "后代数目"
 
@@ -19525,7 +19539,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:51
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
-#: ../src/FilterEditor/_EditRule.py:496
+#: ../src/FilterEditor/_EditRule.py:477
 msgid "Event filter name:"
 msgstr "事件过滤条件:"
 
@@ -20042,12 +20056,12 @@ msgstr "匹配特定筛选名称的事件"
 
 #. filters of another namespace, name may be same as caller!
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:494
+#: ../src/FilterEditor/_EditRule.py:475
 msgid "Person filter name:"
 msgstr "人员筛选名称:"
 
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
-#: ../src/FilterEditor/_EditRule.py:508
+#: ../src/FilterEditor/_EditRule.py:489
 msgid "Include Family events:"
 msgstr "包含家庭事件:"
 
@@ -20060,7 +20074,7 @@ msgid "Matches events of persons matched by the specified person filter name"
 msgstr "匹配特定人员筛选名称的人员事件"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:47
-#: ../src/FilterEditor/_EditRule.py:498
+#: ../src/FilterEditor/_EditRule.py:479
 msgid "Source filter name:"
 msgstr "来源筛选名称:"
 
@@ -20087,6 +20101,11 @@ msgstr "每个地方"
 #: ../src/Filters/Rules/Place/_AllPlaces.py:46
 msgid "Matches every place in the database"
 msgstr "对比数据库的每个位置"
+
+#: ../src/Filters/Rules/Place/_ChangedSince.py:23
+#, fuzzy
+msgid "Places changed after <date time>"
+msgstr "笔记，在<date time> 之后修改的"
 
 #: ../src/Filters/Rules/Place/_ChangedSince.py:24
 msgid ""
@@ -20786,40 +20805,44 @@ msgstr "等于"
 msgid "greater than"
 msgstr "大于"
 
-#: ../src/FilterEditor/_EditRule.py:298
+#: ../src/FilterEditor/_EditRule.py:237
+msgid "Not a valid ID"
+msgstr "不是一个有效的ID"
+
+#: ../src/FilterEditor/_EditRule.py:262
 msgid "Select..."
 msgstr "选择..."
 
-#: ../src/FilterEditor/_EditRule.py:304
+#: ../src/FilterEditor/_EditRule.py:268
 #, python-format
 msgid "Select %s from a list"
 msgstr "从列表中选择 %s"
 
-#: ../src/FilterEditor/_EditRule.py:355
-msgid "Not a valid ID"
-msgstr "不是一个有效的ID"
+#: ../src/FilterEditor/_EditRule.py:333
+msgid "Give or select a source ID, leave empty to find objects with no source."
+msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:503
+#: ../src/FilterEditor/_EditRule.py:484
 msgid "Include original person"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:505
+#: ../src/FilterEditor/_EditRule.py:486
 msgid "Use exact case of letters"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:507
+#: ../src/FilterEditor/_EditRule.py:488
 msgid "Use regular expression"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:509
+#: ../src/FilterEditor/_EditRule.py:490
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../src/FilterEditor/_EditRule.py:523
+#: ../src/FilterEditor/_EditRule.py:504
 msgid "Rule Name"
 msgstr "规则名称"
 
-#: ../src/FilterEditor/_EditRule.py:635 ../src/FilterEditor/_EditRule.py:646
+#: ../src/FilterEditor/_EditRule.py:616 ../src/FilterEditor/_EditRule.py:627
 #: ../src/glade/rule.glade.h:20
 msgid "No rule selected"
 msgstr "无规则被选中"
