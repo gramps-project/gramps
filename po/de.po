@@ -2,7 +2,10 @@
 # translation of de.po to
 # German GRAMPS Translation
 #
-#
+#. TRANS: no singular form needed, as rows is always > 1
+#. TRANS: No singular form is needed.
+#: ../src/plugins/tool/NotRelated.py:236 ../src/plugins/tool/NotRelated.py:270
+#, python-format
 # Anton Huber <anton_huber@gmx.de>, 2005,2006.
 # Sebastian Vöcking <sebastian_voecking@gmx.de>, 2005.
 # Sebastian Vöcking <voeck@web.de>, 2005.
@@ -13,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-20 20:10+0200\n"
-"PO-Revision-Date: 2009-08-21 15:24+0200\n"
+"POT-Creation-Date: 2009-08-23 11:00+0200\n"
+"PO-Revision-Date: 2009-08-23 11:03+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,7 +124,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/plugins/BookReport.py:728 ../src/plugins/drawreport/TimeLine.py:59
 #: ../src/plugins/textreport/IndivComplete.py:426
 #: ../src/plugins/textreport/MarkerReport.py:119
-#: ../src/plugins/tool/NotRelated.py:116 ../src/plugins/tool/PatchNames.py:235
+#: ../src/plugins/tool/NotRelated.py:117 ../src/plugins/tool/PatchNames.py:235
 #: ../src/plugins/tool/RelCalc.py:56 ../src/plugins/tool/RelCalc.py:116
 #: ../src/plugins/tool/RemoveUnused.py:203 ../src/plugins/tool/Verify.py:554
 #: ../src/plugins/webreport/NarrativeWeb.py:806
@@ -158,7 +161,7 @@ msgstr "Name"
 #: ../src/Selectors/_SelectPlace.py:63
 #: ../src/Selectors/_SelectRepository.py:63
 #: ../src/Selectors/_SelectSource.py:63 ../src/plugins/tool/EventCmp.py:249
-#: ../src/plugins/tool/NotRelated.py:117 ../src/plugins/tool/PatchNames.py:226
+#: ../src/plugins/tool/NotRelated.py:118 ../src/plugins/tool/PatchNames.py:226
 #: ../src/plugins/tool/RelCalc.py:57 ../src/plugins/tool/RemoveUnused.py:197
 #: ../src/plugins/tool/SortEvents.py:58 ../src/plugins/tool/Verify.py:547
 #: ../src/PluginUtils/_GuiOptions.py:816 ../src/PluginUtils/_GuiOptions.py:956
@@ -1560,7 +1563,7 @@ msgstr "Notizen"
 #: ../src/DataViews/RelationView.py:795 ../src/DataViews/RelationView.py:829
 #: ../src/plugins/gramplet/FanChartGramplet.py:816
 #: ../src/plugins/quickview/all_relations.py:305
-#: ../src/plugins/tool/NotRelated.py:118
+#: ../src/plugins/tool/NotRelated.py:119
 #: ../src/plugins/webreport/NarrativeWeb.py:818
 #: ../src/plugins/webreport/NarrativeWeb.py:973
 #: ../src/plugins/webreport/NarrativeWeb.py:2415
@@ -3737,7 +3740,7 @@ msgstr "Vorschau"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:70
 #: ../src/plugins/textreport/MarkerReport.py:438
-#: ../src/plugins/tool/NotRelated.py:119
+#: ../src/plugins/tool/NotRelated.py:120
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
@@ -6148,7 +6151,7 @@ msgstr "GRAMPS-Buch"
 #: ../src/plugins/tool/Desbrowser.py:171 ../src/plugins/tool/EventCmp.py:467
 #: ../src/plugins/tool/EventNames.py:179
 #: ../src/plugins/tool/ExtractCity.py:649 ../src/plugins/tool/FindDupes.py:704
-#: ../src/plugins/tool/NotRelated.py:443 ../src/plugins/tool/PatchNames.py:376
+#: ../src/plugins/tool/NotRelated.py:450 ../src/plugins/tool/PatchNames.py:376
 #: ../src/plugins/tool/Rebuild.py:121 ../src/plugins/tool/RebuildRefMap.py:123
 #: ../src/plugins/tool/RelCalc.py:271 ../src/plugins/tool/RemoveUnused.py:497
 #: ../src/plugins/tool/ReorderIds.py:240 ../src/plugins/tool/SortEvents.py:233
@@ -8960,7 +8963,7 @@ msgstr "Erstelle Familienlinien"
 
 #. start the progress indicator
 #: ../src/plugins/graph/GVFamilyLines.py:398
-#: ../src/plugins/tool/NotRelated.py:103 ../src/plugins/tool/NotRelated.py:233
+#: ../src/plugins/tool/NotRelated.py:104 ../src/plugins/tool/NotRelated.py:234
 msgid "Starting"
 msgstr "Start"
 
@@ -12200,53 +12203,40 @@ msgstr ""
 msgid "Manages batch operations on media files"
 msgstr "Verwaltet Stapeloperationen von Mediendateien"
 
-#: ../src/plugins/tool/NotRelated.py:63
+#: ../src/plugins/tool/NotRelated.py:64
 msgid "manual|Not_Related..."
 msgstr "Nicht_verwandt..."
 
-#: ../src/plugins/tool/NotRelated.py:79
+#: ../src/plugins/tool/NotRelated.py:80
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Nicht verwandt mit \"%s\""
 
-#: ../src/plugins/tool/NotRelated.py:162
+#: ../src/plugins/tool/NotRelated.py:163
 #, python-format
 msgid "Everyone in the database is related to %s"
 msgstr "Jeder in der Datenbank ist verwandt mit %s"
 
-#: ../src/plugins/tool/NotRelated.py:234
+#. we have at least 1 "unrelated" person to find
+#: ../src/plugins/tool/NotRelated.py:338
 #, python-format
-msgid "Setting marker for %d people"
-msgstr "Setze Marker für %d Personen"
+msgid "Looking for %d person"
+msgid_plural "Looking for %d people"
+msgstr[0] "Suche nach %d Person"
+msgstr[1] "Suche nach %d Personen"
 
-#: ../src/plugins/tool/NotRelated.py:266
+#: ../src/plugins/tool/NotRelated.py:363
 #, python-format
-msgid "Finding relationships between %d people"
-msgstr "Finde Beziehungen zwischen %d Personen"
+msgid "Looking up the name of %d person"
+msgid_plural "Looking up the names of %d people"
+msgstr[0] "Suche den Namen für %d Person"
+msgstr[1] "Suche den Namen für %d Personen"
 
-#: ../src/plugins/tool/NotRelated.py:331
-msgid "Looking for 1 person"
-msgstr "Suche nach einer Person"
-
-#: ../src/plugins/tool/NotRelated.py:333
-#, python-format
-msgid "Looking for %d people"
-msgstr "Suche nach %d Personen"
-
-#: ../src/plugins/tool/NotRelated.py:356
-msgid "Looking up the name for 1 person"
-msgstr "Suche den Namen für 1 Person"
-
-#: ../src/plugins/tool/NotRelated.py:358
-#, python-format
-msgid "Looking up the names for %d people"
-msgstr "Suche die Namen für %d Personen"
-
-#: ../src/plugins/tool/NotRelated.py:442
+#: ../src/plugins/tool/NotRelated.py:449
 msgid "Not Related"
 msgstr "Nicht verwandt"
 
-#: ../src/plugins/tool/NotRelated.py:446
+#: ../src/plugins/tool/NotRelated.py:453
 msgid "Find people who are not in any way related to the selected person"
 msgstr "Findet Personen die überhauptnicht mit der gewählten Person verwandt sind"
 
