@@ -3,7 +3,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008  Serge Noiraud
+# Copyright (C) 2007-2009  Serge Noiraud
+# Copyright (C) 2009  Helge GRAMPS
+# Copyright (C) 2009  Josip
 # Copyright (C) 2008  Benny Malengier
 #
 # This program is free software; you can redistribute it and/or modify
@@ -67,6 +69,7 @@ from PlaceUtils import conv_lat_lon
 NOWEB  = 0
 WEBKIT = 1
 MOZIL  = 2
+URL_SEP = '/'
 
 WebKit = NOWEB
 try:
@@ -290,7 +293,9 @@ class RendererMozilla(Renderer):
             proxy = os.environ['http_proxy']
             if proxy:
                 host_port = None
-                prefs = open(MOZEMBED_SUBPATH+"/prefs.js", "w+")
+                prefs = open(os.path.join(MOZEMBED_SUBPATH,
+                                          "prefs.js"),
+                             "w+")
                 parts = urlparse.urlparse(proxy)
                 if not parts[0] or parts[0] == 'http':
                     host_port = parts[1]
@@ -331,7 +336,7 @@ class RendererMozilla(Renderer):
                 prefs.close()
         except:
             try: # trying to remove pref.js in case of proxy change.
-                os.remove(MOZEMBED_SUBPATH+"/prefs.js")
+                os.remove(os.path.join(MOZEMBED_SUBPATH, "prefs.js"))
             except:
                 pass
             pass   # We don't use a proxy or the http_proxy variable is not set.
@@ -574,11 +579,14 @@ class HtmlView(PageView.PageView):
                              ' page\n<br>\n'
                              'For example: <b>http://gramps-project.org</p>')
         }
-        filename = os.path.join(tmpdir, 'startpage')
+        filename = os.path.join(tmpdir, 'startpage.html')
         ufd = file(filename, "w+")
         ufd.write(data)
         ufd.close()
-        return 'file://'+filename
+        return urlparse.urlunsplit(('file', '',
+                                    URL_SEP.join(filename.split(os.sep)),
+                                    '', ''))
+
 
 #-------------------------------------------------------------------------
 #
@@ -819,7 +827,10 @@ class GeoView(HtmlView):
         self.nbmarkers = 0
         self.without = 0
         self.createmapstraction(displaytype)
-        self.open("file://"+self.htmlfile)
+        self.open(urlparse.urlunsplit(
+                           ('file', '',
+                            URL_SEP.join(self.htmlfile.split(os.sep)),
+                            '', '')))
 
     def select_openstreetmap_map(self,handle):
         """
@@ -927,8 +938,12 @@ class GeoView(HtmlView):
                                             maxpages, NB_MARKERS_PER_PAGE))
             self.mapview.write(" <div id='pages' font=-4 >%s<br>\n" % message)
             if curpage != 1:
-                priorfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                            (ftype, curpage-1)
+                priorfile = os.path.join(GEOVIEW_SUBPATH,
+                                         "GeoV-%c-%05d.html" % (ftype, curpage-1))
+                priorfile = urlparse.urlunsplit(
+                                     ('file', '',
+                                      URL_SEP.join(priorfile.split(os.sep)),
+                                      '', ''))
                 self.mapview.write("<a href='%s' >--</a>" % priorfile)
             else:
                 self.mapview.write(" --")
@@ -937,22 +952,36 @@ class GeoView(HtmlView):
                     self.mapview.write(" %d" % page)
                 else:
                     if ( page < curpage + 11 ) and ( page > curpage - 11 ):
-                        nextfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                                   (ftype, page)
+                        nextfile = os.path.join(GEOVIEW_SUBPATH,
+                                                "GeoV-%c-%05d.html" % \
+                                                 (ftype, page))
+                        nextfile = urlparse.urlunsplit(
+                                            ('file', '',
+                                             URL_SEP.join(nextfile.split(os.sep)),
+                                             '', ''))
                         self.mapview.write(" <a href='%s' >%d</a>" % \
                                            (nextfile, page))
             if curpage != maxpages:
-                nextfile = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                                           (ftype, curpage+1)
+                nextfile = os.path.join(GEOVIEW_SUBPATH,
+                                       "GeoV-%c-%05d.html" % (ftype, curpage+1))
+                nextfile = urlparse.urlunsplit(
+                                    ('file', '',
+                                     URL_SEP.join(nextfile.split(os.sep)),
+                                     '', ''))
                 self.mapview.write(" <a href='%s' >++</a>" % nextfile)
             else:
                 self.mapview.write(" ++")
             self.mapview.write("\n</div>\n")
             if self.without != 0:
-                self.without_coord_file = GEOVIEW_SUBPATH+"/without_coord.html"
+                self.without_coord_file = os.path.join(GEOVIEW_SUBPATH,
+                                                       "without_coord.html")
                 self.mapview.write("<div id='coord' font=-4 >You have ")
+                filename = urlparse.urlunsplit(
+                           ('file', '',
+                            URL_SEP.join(self.without_coord_file.split(os.sep)),
+                            '', ''))
                 self.mapview.write("<a href=\"%s\" >%d<a>" % \
-                                   ( self.without_coord_file, self.without ) )
+                                   ( filename, self.without ) )
                 self.mapview.write(" places without coordinates</div>\n" )
                 self.createpageforplaceswithoutcoord()
         if self.displaytype != "places":
@@ -991,8 +1020,13 @@ class GeoView(HtmlView):
         self.mapview.write("  <meta http-equiv=\"Content-Script-Type\" ")
         self.mapview.write("content=\"text/javascript\">\n")
         self.mapview.write("  <script type=\"text/javascript\"\n" )
-        self.mapview.write("          src=\"file://"+const.ROOT_DIR+"/")
-        self.mapview.write("mapstraction/mapstraction.js\">\n")
+        fpath = os.path.join(const.ROOT_DIR,
+                             'mapstraction',
+                             'mapstraction.js')
+        upath = urlparse.urlunsplit(('file', '',
+                                     URL_SEP.join(fpath.split(os.sep)),
+                                     '', ''))
+        self.mapview.write("          src=\"%s\">\n" % upath)
         self.mapview.write("  </script>\n")
         self.mapview.write("  <script id=\"googleapiimport\" \n")
         self.mapview.write("          src=\"http://maps.google.com/")
@@ -1208,8 +1242,8 @@ class GeoView(HtmlView):
                 ftype = "I"
             else:
                 ftype = "X"
-            filename = GEOVIEW_SUBPATH+"/GeoV-%c-%05d.html" % \
-                       (ftype, self.nbpages)
+            filename = os.path.join(GEOVIEW_SUBPATH,
+                                    "GeoV-%c-%05d.html" % (ftype, self.nbpages))
             if self.nbpages == 1:
                 self.htmlfile = filename
             self.createmapstractionheader(filename)
@@ -1235,7 +1269,8 @@ class GeoView(HtmlView):
         elif displaytype == "event":
             self.createmapstractionevents(self.dbstate)
         else:
-            self.createmapstractionheader(GEOVIEW_SUBPATH+"/error.html")
+            self.createmapstractionheader(os.path.join(GEOVIEW_SUBPATH,
+                                                       "error.html"))
             self.createmapnotimplemented()
             self.createmapstractiontrailer()
 
