@@ -72,9 +72,9 @@ class SelectObject(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT),
-            (_('ID'),     75, BaseSelector.TEXT),
-            (_('Type'),   75, BaseSelector.TEXT),
+            (_('Title'), 350, BaseSelector.TEXT, 0),
+            (_('ID'),     75, BaseSelector.TEXT, 1),
+            (_('Type'),   75, BaseSelector.TEXT, 2),
             ]
 
     def _local_init(self):
@@ -102,13 +102,7 @@ class SelectObject(BaseSelector):
                                                              obj.get_path()))
         self.preview.set_from_pixbuf(pix)
         gc.collect()
-        
-    def column_order(self):
-        """
-        returns a tuple indicating the column order of the model
-        """
-        return self.db.get_media_column_order()
-    
+
     def column_view_names(self):
         """
         Get correct column view names on which model is based

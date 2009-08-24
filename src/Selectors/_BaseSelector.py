@@ -127,9 +127,9 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             if item[2] == BaseSelector.NONE:
                 continue
             elif item[2] == BaseSelector.TEXT:
-                column = gtk.TreeViewColumn(item[0],self.renderer,text=ix)
+                column = gtk.TreeViewColumn(item[0],self.renderer,text=item[3])
             elif item[2] == BaseSelector.MARKUP:
-                column = gtk.TreeViewColumn(item[0],self.renderer,markup=ix)
+                column = gtk.TreeViewColumn(item[0],self.renderer,markup=item[3])
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(item[1])
             column.set_resizable(True)
@@ -177,7 +177,15 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         assert False, "Must be defined in the subclass"
         
     def get_column_titles(self):
-        assert False, "Must be defined in the subclass"
+        """
+        Defines the columns to show in the selector. Must be defined in the
+        subclasses.
+        :returns: a list of tuples with four entries. The four entries should
+                be 0: column header string, 1: column width, 
+                2: TEXT, MARKUP or IMAGE, 3: column in the model that must be 
+                used.
+        """
+        raise NotImplementedError
 
     def get_from_handle_func(self):
         assert False, "Must be defined in the subclass"
@@ -208,15 +216,13 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         mlist = []
         self.selection.selected_foreach(self.begintree, mlist)
         return mlist[0] if mlist else None
-            
+
     def column_order(self):
         """
-        Column order for db columns
-        
-        Derived classes must override this function.
+        returns a tuple indicating the column order of the model
         """
-        raise NotImplementedError
-    
+        return [(1, row[3], row[1]) for row in self.get_column_titles()]
+
     def column_view_names(self):
         """
         Get correct column view names on which model is based

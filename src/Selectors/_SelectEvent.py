@@ -59,11 +59,12 @@ class SelectEvent(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Description'), 250, BaseSelector.TEXT),
-            (_('ID'),           75, BaseSelector.TEXT),
-            (_('Type'),         75, BaseSelector.TEXT),
-            (_('Date'),        150, BaseSelector.TEXT),
-            (_('Place'),       150, BaseSelector.TEXT)
+            (_('Description'),       250, BaseSelector.TEXT, 0),
+            (_('ID'),                75,  BaseSelector.TEXT, 1),
+            (_('Type'),              75,  BaseSelector.TEXT, 2),
+            (_('Main Participants'), 250, BaseSelector.TEXT, 6),
+            (_('Date'),              150, BaseSelector.TEXT, 3),
+            (_('Place'),             150, BaseSelector.TEXT, 4)
             ]
 
     def get_from_handle_func(self):
@@ -71,13 +72,7 @@ class SelectEvent(BaseSelector):
         
     def get_handle_column(self):
         return 7
-        
-    def column_order(self):
-        """
-        returns a tuple indicating the column order of the model
-        """
-        return self.db.get_event_column_order()
-    
+
     def column_view_names(self):
         """
         Get correct column view names on which model is based

@@ -73,15 +73,15 @@ class SelectPerson(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Name'),         250, BaseSelector.TEXT),
-            (_('ID'),            75, BaseSelector.TEXT),
-            (_('Gender'),        75, BaseSelector.TEXT),
-            (_('Birth Date'),   150, BaseSelector.MARKUP),
-            (_('Birth Place'),  150, BaseSelector.MARKUP),
-            (_('Death Date'),   150, BaseSelector.MARKUP),
-            (_('Death Place'),  150, BaseSelector.MARKUP),
-            (_('Spouse'),       150, BaseSelector.TEXT),
-            (_('Last Change'),  150, BaseSelector.TEXT)
+            (_('Name'),         250, BaseSelector.TEXT,   0),
+            (_('ID'),            75, BaseSelector.TEXT,   1),
+            (_('Gender'),        75, BaseSelector.TEXT,   2),
+            (_('Birth Date'),   150, BaseSelector.MARKUP, 3),
+            (_('Birth Place'),  150, BaseSelector.MARKUP, 4),
+            (_('Death Date'),   150, BaseSelector.MARKUP, 5),
+            (_('Death Place'),  150, BaseSelector.MARKUP, 6),
+            (_('Spouse'),       150, BaseSelector.TEXT,   7),
+            (_('Last Change'),  150, BaseSelector.TEXT,   8)
             ]
 
     def get_from_handle_func(self):
@@ -89,13 +89,7 @@ class SelectPerson(BaseSelector):
         
     def get_handle_column(self):
         return PeopleModel.COLUMN_INT_ID
-        
-    def column_order(self):
-        """
-        returns a tuple indicating the column order of the model
-        """
-        return self.db.get_person_column_order()
-    
+
     def column_view_names(self):
         """
         Get correct column view names on which model is based

@@ -59,8 +59,8 @@ class SelectSource(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Title'), 350, BaseSelector.TEXT),
-            (_('ID'),     75, BaseSelector.TEXT)
+            (_('Title'), 350, BaseSelector.TEXT, 0),
+            (_('ID'),     75, BaseSelector.TEXT, 1)
             ]
 
     def get_from_handle_func(self):
@@ -68,13 +68,7 @@ class SelectSource(BaseSelector):
         
     def get_handle_column(self):
         return 6
-    
-    def column_order(self):
-        """
-        returns a tuple indicating the column order of the model
-        """
-        return self.db.get_source_column_order()
-    
+
     def column_view_names(self):
         """
         Get correct column view names on which model is based
