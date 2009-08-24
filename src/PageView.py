@@ -55,6 +55,7 @@ import Errors
 from Filters import SearchBar
 import Utils
 from gui.utils import add_menuitem
+from gui.dbguielement import DbGUIElement
 import const
 from widgets.menutoolbuttonaction import MenuToolButtonAction
 
@@ -69,7 +70,7 @@ NAVIGATION_PERSON = 0
 # PageView
 #
 #------------------------------------------------------------------------------
-class PageView(object):
+class PageView(DbGUIElement):
     """
     The PageView class is the base class for all Data Views in GRAMPS.  All 
     Views should derive from this class. The ViewManager understands the public
@@ -97,6 +98,7 @@ class PageView(object):
         self.handle_col = 0
         self.selection = None
         self.func_list = {}
+        DbGUIElement.__init__(self, dbstate.db)
 
     def call_function(self, key):
         """
@@ -1006,8 +1008,9 @@ class ListView(BookMarkView):
             return
 
     def change_db(self, db):
+        self._cleanup_callbacks()
         for sig in self.signal_map:
-            db.connect(sig, self.signal_map[sig])
+            self.callman.add_db_signal(sig, self.signal_map[sig])
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
             #force rebuild of the model on build of tree

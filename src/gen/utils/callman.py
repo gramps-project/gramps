@@ -242,12 +242,19 @@ class CallbackManager(object):
         if keys is None:
             return
         for key in keys:
-            for method in METHODS:
+            for method in METHODS_LIST:
                 signal = key + method
                 self.__do_unconnect(signal)
                 self.__callbacks[signal][1] = self.database.connect(
                                         signal, 
-                                        self.__callbackcreator(key, signal))
+                                        self.__callbackcreator(signal))
+            for method in METHODS_NONE:
+                signal = key + method
+                self.__do_unconnect(signal)
+                self.__callbacks[signal][1] = self.database.connect(
+                                        signal, 
+                                        self.__callbackcreator(signal, 
+                                                               noarg=True))
 
     def __do_callback(self, signal, *arg):
         """
@@ -291,107 +298,33 @@ class CallbackManager(object):
         """
         self.custom_signal_keys.append(self.database.connect(name, callback))
     
-    def __callbackcreator(self, key, signal):
+    def __callbackcreator(self, signal, noarg=False):
         """
         helper function, a lambda function needs a string to be defined 
         explicitly. This function creates the correct lambda function to use
         as callback based on the key/signal one needs to connect to. 
         AttributeError is raised for unknown key or signal.
         """
-        if key == PERSONKEY:
-            if signal == 'person-update':
-                return lambda arg: self.__do_callback('person-update', *(arg,))
-            elif signal == 'person-add':
-                return lambda arg: self.__do_callback('person-add', *(arg,))
-            elif signal == 'person-delete':
-                return lambda arg: self.__do_callback('person-delete', *(arg,))
-            elif signal == 'person-rebuild':
-                return lambda *arg: self.__do_callback('person-rebuild')
+        def gen(self, signal):
+            """
+            Generate lambda function that does call with an argument
+            """
+            return lambda arg: self.__do_callback(signal, *(arg,))
+
+        def gen_noarg(self, signal):
+            """
+            Generate lambda function that does call without argument
+            """
+            return lambda *arg: self.__do_callback(signal)
+
+        if signal in self.__callbacks:
+            if noarg:
+                return gen_noarg(self, signal)
             else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == FAMILYKEY:
-            if signal == 'family-update':
-                return lambda arg: self.__do_callback('family-update', *(arg,))
-            elif signal == 'family-add':
-                return lambda arg: self.__do_callback('family-add', *(arg,))
-            elif signal == 'family-delete':
-                return lambda arg: self.__do_callback('family-delete', *(arg,))
-            elif signal == 'family-rebuild':
-                return lambda *arg: self.__do_callback('family-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == EVENTKEY:
-            if signal == 'event-update':
-                return lambda arg: self.__do_callback('event-update', *(arg,))
-            elif signal == 'event-add':
-                return lambda arg: self.__do_callback('event-add', *(arg,))
-            elif signal == 'event-delete':
-                return lambda arg: self.__do_callback('event-delete', *(arg,))
-            elif signal == 'event-rebuild':
-                return lambda *arg: self.__do_callback('event-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == PLACEKEY:
-            if signal == 'place-update':
-                return lambda arg: self.__do_callback('place-update', *(arg,))
-            elif signal == 'place-add':
-                return lambda arg: self.__do_callback('place-add', *(arg,))
-            elif signal == 'place-delete':
-                return lambda arg: self.__do_callback('place-delete', *(arg,))
-            elif signal == 'place-rebuild':
-                return lambda *arg: self.__do_callback('place-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == SOURCEKEY:
-            if signal == 'source-update':
-                return lambda arg: self.__do_callback('source-update', *(arg,))
-            elif signal == 'source-add':
-                return lambda arg: self.__do_callback('source-add', *(arg,))
-            elif signal == 'source-delete':
-                return lambda arg: self.__do_callback('source-delete', *(arg,))
-            elif signal == 'source-rebuild':
-                return lambda *arg: self.__do_callback('source-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == REPOKEY:
-            if signal == 'repository-update':
-                return lambda arg: self.__do_callback('repository-update', 
-                                                      *(arg,))
-            elif signal == 'repository-add':
-                return lambda arg: self.__do_callback('repository-add', 
-                                                      *(arg,))
-            elif signal == 'repository-delete':
-                return lambda arg: self.__do_callback('repository-delete', 
-                                                      *(arg,))
-            elif signal == 'repository-rebuild':
-                return lambda *arg: self.__do_callback('repository-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == MEDIAKEY:
-            if signal == 'media-update':
-                return lambda arg: self.__do_callback('media-update', *(arg,))
-            elif signal == 'media-add':
-                return lambda arg: self.__do_callback('media-add', *(arg,))
-            elif signal == 'media-delete':
-                return lambda arg: self.__do_callback('media-delete', *(arg,))
-            elif signal == 'media-rebuild':
-                return lambda *arg: self.__do_callback('media-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
-        elif key == NOTEKEY:
-            if signal == 'note-update':
-                return lambda arg: self.__do_callback('note-update', *(arg,))
-            elif signal == 'note-add':
-                return lambda arg: self.__do_callback('note-add', *(arg,))
-            elif signal == 'note-delete':
-                return lambda arg: self.__do_callback('note-delete', *(arg,))
-            elif signal == 'note-rebuild':
-                return lambda *arg: self.__do_callback('note-rebuild')
-            else:
-                raise AttributeError, 'Signal ' + signal + 'not supported.'
+                return gen(self, signal)
         else:
             raise AttributeError, 'Signal ' + signal + 'not supported.'
-
+    
 def directhandledict(baseobj):
     """
     Build a handledict from baseobj with all directly referenced objects

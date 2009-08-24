@@ -123,7 +123,6 @@ class RelationshipView(PageView.PersonNavView):
         dbstate.connect('database-changed', self.change_db)
         self.show_siblings = Config.get(Config.FAMILY_SIBLINGS)
         self.show_details = Config.get(Config.FAMILY_DETAILS)
-        self.connect_to_db(dbstate.db)
         self.redrawing = False
         self.use_shade = Config.get(Config.RELATION_SHADE)
         self.toolbar_visible = Config.get(Config.TOOLBAR_ON)
@@ -140,6 +139,23 @@ class RelationshipView(PageView.PersonNavView):
                                  self.shade_update)
         self.reorder_sensitive = False
         self.collapsed_items = {}
+
+    def _connect_db_signals(self):
+        """
+        implement from base class DbGUIElement
+        Register the callbacks we need.
+        """
+        # Add a signal to pick up event changes, bug #1416
+        self.callman.add_db_signal('event-update', self.family_update)
+
+        self.callman.add_db_signal('person-update', self.person_update)
+        self.callman.add_db_signal('person-rebuild', self.person_rebuild)
+        self.callman.add_db_signal('family-update', self.family_update)
+        self.callman.add_db_signal('family-add',    self.family_add)
+        self.callman.add_db_signal('family-delete', self.family_delete)
+        self.callman.add_db_signal('family-rebuild', self.family_rebuild)
+
+        self.callman.add_db_signal('person-delete', self.redraw)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -162,17 +178,6 @@ class RelationshipView(PageView.PersonNavView):
 
     def build_tree(self):
         self.redraw()
-            
-    def connect_to_db(self, db):
-        # Add a signal to pick up event changes, bug #1416
-        db.connect('event-update', self.family_update)
-
-        db.connect('person-update', self.person_update)
-        db.connect('person-rebuild', self.person_rebuild)
-        db.connect('family-update', self.family_update)
-        db.connect('family-add',    self.family_add)
-        db.connect('family-delete', self.family_delete)
-        db.connect('family-rebuild', self.family_rebuild)
 
     def person_update(self, handle_list):
         if self.dbstate.active:
@@ -372,19 +377,14 @@ class RelationshipView(PageView.PersonNavView):
         Config.set(Config.FAMILY_DETAILS, self.show_details)
 
     def change_db(self, db):
-        self.connect_to_db(db)
+        #reset the connects
+        self._change_db(db)
         if self.child:
             for old_child in self.vbox.get_children():
                 self.vbox.remove(old_child)
             for old_child in self.header.get_children():
                 self.header.remove(old_child)
             self.child = None
-        self.dbstate.db.connect('family-update', self.redraw)
-        self.dbstate.db.connect('family-add', self.redraw)
-        self.dbstate.db.connect('family-delete', self.redraw)
-        self.dbstate.db.connect('person-update', self.redraw)
-        self.dbstate.db.connect('person-add', self.redraw)
-        self.dbstate.db.connect('person-delete', self.redraw)
         self.bookmarks.update_bookmarks(db.get_bookmarks())
         if self.active:
                 self.bookmarks.redraw()

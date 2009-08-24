@@ -74,7 +74,8 @@ class DbGUIElement(object):
     def _connect_db_signals(self):
         """
         Convenience method that is called on initialization of DbGUIElement. 
-        Use this to group setup of the callman attribute
+        Use this to group setup of the callman attribute.
+        Also called in _change_db method
         """
         pass
     
@@ -85,5 +86,23 @@ class DbGUIElement(object):
         normally needed earlier, calling this method does so.
         """
         database = self.callman.database
-        self.callman.disconnect_all()
+        if database.is_open():
+            #a closed database has disconnected all signals
+            self.callman.disconnect_all()
+        #set a new callback manager
         self.callman = CallbackManager(database)
+
+    def _change_db(self, database):
+        """
+        Change the database the GUI element works on to database. 
+        This removes all callbacks and all registered handles.
+        
+        :param database: the new database to connect to
+        """
+        dbold = self.callman.database
+        if dbold.is_open():
+            #a closed database has disconnected all signals
+            self.callman.disconnect_all()
+        #set a new callback manager on new database
+        self.callman = CallbackManager(database)
+        self._connect_db_signals()
