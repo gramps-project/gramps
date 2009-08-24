@@ -206,16 +206,30 @@ class GroupEmbeddedList(EmbeddedList):
         """
         dest = self.tree.get_dest_row_at_pos(x, y)
         if dest is None:
+            # Below last item in list
             if self.is_empty():
                 return [self._WORKGROUP, 0]
             else:
                 return [self._WORKGROUP, len(self.get_data()[self._WORKGROUP])]
         else:
-            row = dest[0]
-            if len(row) == 1:
-                #drop on a group node, change to first real row
-                row = (row[0], 0)
-            return row
+            wgroup = dest[0][0]
+            if len(dest[0]) == 1:
+                # On a heading
+                if dest[1] == gtk.TREE_VIEW_DROP_BEFORE:
+                    if wgroup != 0:
+                        # If before then put at end of previous group
+                        return (wgroup-1, len(self.get_data()[wgroup-1]))
+                    else:
+                        # unless it is the first group
+                        return (wgroup, 0)
+                else:
+                    return (wgroup, 0)
+            else:
+                if dest[1] in (gtk.TREE_VIEW_DROP_BEFORE,
+                               gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                    return (wgroup, dest[0][1])
+                else:
+                    return (wgroup, dest[0][1]+1)
 
     def _handle_drag(self, row, obj):
         """
