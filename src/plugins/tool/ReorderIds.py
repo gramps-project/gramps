@@ -46,6 +46,9 @@ from gen.plug import PluginManager
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
+# gets the number specified in a format string, example: %04d returns '04'
+_parseformat = re.compile('.*%(\d+)[^\d]+')
+
 #-------------------------------------------------------------------------
 #
 # Actual tool
@@ -163,6 +166,8 @@ class ReorderIds(Tool.BatchTool):
         dups = []
         newids = {}
 
+        formatmatch = _parseformat.match(prefix)
+
         for handle in table.keys():
             if self.uistate:
                 self.progress.step()
@@ -183,7 +188,16 @@ class ReorderIds(Tool.BatchTool):
 
                 try:
                     index = match.groups()[0]
-                    newgramps_id = prefix % int(index)
+
+                    if formatmatch:
+                        if int(index) > int("9" * int(formatmatch.groups()[0])):
+                            newgramps_id = find_next_id()
+                        else:
+                            newgramps_id = prefix % int(index)
+                    else:
+                        # the prefix does not contain a number after %, eg I%d
+                        newgramps_id = prefix % int(index)
+
                     if newgramps_id == gramps_id:
                         newids[newgramps_id] = gramps_id
                     elif find_from_id(newgramps_id) is not None:
