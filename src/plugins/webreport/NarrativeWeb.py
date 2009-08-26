@@ -1949,7 +1949,7 @@ class EventListPage(BasePage):
         tbody = Html('tbody')
 
         # unwrap event list
-        for evt_type, sort_name, sort_date, event, evt_ref, person in event_data_list:
+        for sort_name, evt_type, sort_date, event, evt_ref, person in event_data_list:
 
             # Event/  Type
             evt_name = str(event.get_type())
@@ -1971,23 +1971,8 @@ class EventListPage(BasePage):
                 place_hyper = self.place_link(place_handle, place_name, 
                                                                 place.gramps_id, False)
   
-            if evt_type[0:7] == 'Marriage' or evt_type[0:6] == 'Divorce':
-                person = person[0]
-                partner = person[1]
-
-                # add person hyperlink
-                url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
-                person_hyper = self.person_link(url, person, True, person.gramps_id)
-
-                # add partner hyperlink
-                url = self.report.build_url_fname_html(partner.handle, 'ppl', self.up)
-                partner_hyper = self.person_link(url, partner, True, partner.gramps_id)
-                person_hyper = ' + '.join([person_hyper, partner_hyper])
-
-            # only one person involved event
-            else:
-                url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
-                person_hyper = self.person_link(url, person, True, person.gramps_id)
+            url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
+            person_hyper = self.person_link(url, person, True, person.gramps_id)
 
             # begin table row
             trow = Html('tr')
@@ -2042,24 +2027,8 @@ class EventPage(BasePage):
                             )
                         table += trow
 
-                # add person hyperlink
-                # if event type == 'Marriage' or 'Divorce', then there are two people
-                # person = [person, spouse]
-                if (evt_type[0:7] == 'Marriage' or evt_type[0:6] == 'Divorce'): 
-                    person1 = person[0]
-                    url = self.report.build_url_fname_html(person1.handle, 'ppl', self.up)
-                    hyper_1 = self.person_link(url, person1, True, person1.gramps_id)
-
-                    person2 = person[1]
-                    url = self.report.build_url_fname_html(person2.handle, 'ppl', self.up)
-                    hyper_2 = self.person_link(url, person2, True, person2.gramps_id)
-                    hyper = ' + '.join([hyper_1, hyper_2])
-
-                # only one person for normal events
-                # person = person
-                else:
-                    url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
-                    hyper = self.person_link(url, person, True, person.gramps_id)
+                url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
+                hyper = self.person_link(url, person, True, person.gramps_id)
 
                 trow = Html('tr') + (
                     Html('td', _('Person'), class_='ColumnAttribute', inline=True),
@@ -4905,18 +4874,6 @@ class NavWebReport(Report):
                     # get event type
                     evt_type = self.get_event_type(event, evt_ref)
 
-                    # if event type == Marriage or Divorce, then there are 
-                    # two people involved, show them
-                    if evt_type[0:7] == 'Marriage' or evt_type[0:6] == 'Divorce':
-                        partner_handle = ReportUtils.find_spouse(person, family)
-                        if partner_handle:
-                            partner = db.get_person_from_handle(partner_handle)
-                            people = [person, partner]
-
-                    # only single person event
-                    else:
-                        people = person 
-
                     # get sot date as year/month/day or 0/0/0
                     event_date = event.get_date_object()
                     year = str(event_date.get_year() ) or str(0)
@@ -4924,7 +4881,7 @@ class NavWebReport(Report):
                     day = str(event_date.get_day() ) or str(0)
                     sort_date = '/'.join([year, month, day])
                     
-                    info = [evt_type, sort_name, sort_date, event, evt_ref, people]
+                    info = [sort_name, evt_type, sort_date, event, evt_ref, person]
                     event_list.append(info)
 
                     # get a list of the different event type in this database
@@ -4946,7 +4903,7 @@ class NavWebReport(Report):
                 day = str(event_date.get_day() ) or str(0)
                 sort_date = '/'.join([year, month, day])
                     
-                info = [evt_type, sort_name, sort_date, event, evt_ref, person]
+                info = [sort_name, evt_type, sort_date, event, evt_ref, person]
                 event_list.append(info)
 
                 # get a list of the different event type in this database
@@ -4964,7 +4921,7 @@ class NavWebReport(Report):
         # send all data to the events list page
         EventListPage(self, self.title, event_list, event_types)
 
-        for evt_type, sort_name, sort_date, event, evt_ref, person in event_list:
+        for sort_name, evt_type, sort_date, event, evt_ref, person in event_list:
             self.progress.step()
 
             # create individual event page 
