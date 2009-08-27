@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -76,6 +77,9 @@ class Rule(object):
         return ';'.join(v)
 
     def match_substring(self, param_index, str_var):
+        # make str_var unicode so that search for ü works
+        # see issue 3188
+        str_var = unicode(str_var)
         if self.list[param_index] and \
                (str_var.upper().find(self.list[param_index].upper()) == -1):
             return False
