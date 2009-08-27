@@ -124,7 +124,7 @@ from libhtmlbackend import HtmlBackend
 AHEAD = _('Attributes')
 DHEAD = _('Date')
 DESCRHEAD = _('Description')
-EHEAD = _('EventType')
+EHEAD = _('Type')
 NHEAD = _('Notes')
 PHEAD = _('Place')
 SHEAD = _('Sources')
@@ -1882,13 +1882,9 @@ class PlacePage(BasePage):
 
 class EventListPage(BasePage):
 
-    def __init__(self, report, title, event_list, event_types):
+    def __init__(self, report, title, event_dict):
+        BasePage.__init__(self, report, title)
         db = report.database
-
-        BasePage.__init__(self, report, event_list[0][0], event_list[0][1])
-
-        # get down to just the types and remove its occurences
-        keys = sorted(event_types, key=locale.strxfrm)
 
         of = self.report.create_file("events")
         eventslistpage, body = self.write_header(_('Events'))
@@ -1918,17 +1914,15 @@ class EventListPage(BasePage):
                 thead += trow
 
                 for (label, colclass) in [
-                    (EHEAD,              'EventType'),
+                    (EHEAD,              'Type'),
                     (DHEAD,             'Date'), 
-                    (PHEAD,             'Place'),
                     (DESCRHEAD,    'Description'),
                     (_('Person'),       'Person') ]:
 
                     trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
-                # send the entire events list
-                # table body is started in here
-                table += self.write_event_row(event_list)
+                # send entire events dictionary
+                table += self.write_event_rows(event_dict)
 
         # and clearline for proper styling
         # and footer section
@@ -1939,62 +1933,57 @@ class EventListPage(BasePage):
         # and close the file
         self.mywriter(eventslistpage, of)
 
-    def write_event_row(self, event_data_list):
+    def write_event_rows(self, event_dict):
         """
-        display the event row
+        display the event row for class EventListPage()
         """
         db = self.report.database
 
         # begin table body
         tbody = Html('tbody')
 
-        # unwrap event list
-        for sort_name, evt_type, sort_date, event, evt_ref, person in event_data_list:
+        for (sort_name, person, event_list) in event_dict:
 
-            # Event/  Type
-            evt_name = str(event.get_type())
-
-            if evt_ref.get_role() == EventRoleType.PRIMARY:
-                eventtype = u"%(evt_name)s" % locals()
-            else:
-                evt_role = evt_ref.get_role()
-                eventtype = u"%(evt_name)s (%(evt_role)s)" % locals()
-            event_hyper = self.event_link(eventtype, evt_ref.ref, event.gramps_id)
-
-            # get place hyperlink
-            place_handle = event.get_place_handle()
-            place = db.get_place_from_handle(place_handle)
-
-            place_hyper = None
-            if place: 
-                place_name = ReportUtils.place_name(db, place_handle)
-                place_hyper = self.place_link(place_handle, place_name, 
-                                                                place.gramps_id, False)
-  
+            # get person's hyperlink 
             url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
             person_hyper = self.person_link(url, person, True, person.gramps_id)
 
-            # begin table row
-            trow = Html('tr')
-            tbody += trow   
+            first = True
+            for (evt_type, sort_date, event, evt_ref) in event_list: 
 
-            for (colclass, data) in [
-                ['EventType',       event_hyper],
-                ['Date',               _dd.display(event.get_date_object() )],
-                ['Place',              place_hyper],
-                ['Description',    event.get_description()],
-                ['Person',            person_hyper] ]:
+                # event hyperlink
+                event_hyper = self.event_link(evt_type, evt_ref.ref, event.gramps_id)
 
-                data = data or '&nbsp;'
-                trow += Html('td', data, class_='Column%s' % colclass, inline=True)
+                # begin table row 
+                trow = Html('tr')
+                tbody += trow
 
-        # return events table body to its callers
+                if first:
+                    trow.attr = 'class="BeginName"'
+
+                for (colclass, data) in [
+                    ['Type',                event_hyper],
+                    ['Date',                _dd.display(event.get_date_object() )],
+                    ['Description',    event.get_description()] ]:
+                    data = data or '&nbsp;'
+
+                    # conditional statement for inline=True or False
+                    samerow = True if (data == '&nbsp;' or colclass == 'Date') else False
+
+                    trow += Html('td', data, class_='Column%s' % colclass, inline=samerow)
+
+                if first:
+                    trow += Html('td', person_hyper, class_='ColumnName')
+                else:
+                    trow += Html('td', '&nbsp;', class_='ColumnName', inline=True)
+                first = False
+
+        # return events table body to its caller
         return tbody
 
 class EventPage(BasePage):
-
-    def __init__(self, report, evt_type, event, evt_ref, person):
-        BasePage.__init__(self, report, evt_type, event.gramps_id)
+    def __init__(self, report, title, evt_type, event, evt_ref, person):
+        BasePage.__init__(self, report, '%s - %s' % (title, evt_type))
         db = report.database
 
         of = self.report.create_file(evt_ref.ref, 'evt')
@@ -2009,7 +1998,7 @@ class EventPage(BasePage):
             eventdetail += Html('h3', '%s of %s' % (evt_type, self.get_name(person)), inline=True)
 
             # begin event detail table
-            with Html('table', class_='infolist eventdetail') as table:
+            with Html('table', class_='infolist eventlist') as table:
                 eventdetail += table
  
                 # get event data
@@ -2028,11 +2017,11 @@ class EventPage(BasePage):
                         table += trow
 
                 url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
-                hyper = self.person_link(url, person, True, person.gramps_id)
+                person_hyper = self.person_link(url, person, True, person.gramps_id)
 
                 trow = Html('tr') + (
                     Html('td', _('Person'), class_='ColumnAttribute', inline=True),
-                    Html('td', hyper, class_='ColumnValue', inline=True)
+                    Html('td', person_hyper, class_='ColumnValue', inline=True)
                     )
                 table += trow  
 
@@ -2691,7 +2680,7 @@ class SourceListPage(BasePage):
                 thead += trow
 
                 for (label, colclass) in [
-                    (None,                    'RowLabel'),
+                    (None,                        'RowLabel'),
                     (_('Name'),                 'Name') ]:
 
                     label = label or '&nbsp;'
@@ -4270,12 +4259,12 @@ class IndividualPage(BasePage):
         trow = Html('tr')
 
         for (label, colclass) in [
-            (EHEAD,              'EventType'),
+            (EHEAD,              'Type'),
             (DHEAD,             'Date'), 
             (PHEAD,             'Place'),
             (DESCRHEAD,    'Description'),
             (SHEAD,             'Sources'),
-            (NHEAD,            'Note') ]:
+            (NHEAD,            'Notes') ]:
 
             trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
@@ -4850,15 +4839,19 @@ class NavWebReport(Report):
 
     def event_pages(self, ind_list):
         """
-        a dump of all the events sorted by EventType, gramps_id, 
-        and a description if one?
+        a dump of all the events sorted by  person's surname, and event type, 
+        then by date if needed...
         """
         db = self.database
+ 
+        # a dictionary for event information
+        event_dict = []
 
-        event_list = []
-        event_types = {}
         for person_handle in ind_list:
             person = db.get_person_from_handle(person_handle)
+
+            # begin events list for each person
+            event_list = []
 
             # get sort name for sorting later
             last_name = person.get_primary_name().get_surname()
@@ -4874,21 +4867,15 @@ class NavWebReport(Report):
                     # get event type
                     evt_type = self.get_event_type(event, evt_ref)
 
-                    # get sot date as year/month/day or 0/0/0
+                    # get sot date as year/month/day or 0000/00/00
                     event_date = event.get_date_object()
-                    year = str(event_date.get_year() ) or str(0)
-                    month = str(event_date.get_month() ) or str(0)
-                    day = str(event_date.get_day() ) or str(0)
-                    sort_date = '/'.join([year, month, day])
-                    
-                    info = [sort_name, evt_type, sort_date, event, evt_ref, person]
-                    event_list.append(info)
+                    year = event_date.get_year() or 0
+                    month = event_date.get_month() or 0
+                    day = event_date.get_day() or 0
+                    sort_date = '%04d/%02d/%02d' % (year, month, day)
 
-                    # get a list of the different event type in this database
-                    if evt_type in event_types:
-                        event_types[evt_type] += 1
-                    else:
-                        event_types[evt_type] = 1   
+                    # add event data
+                    event_list.append([evt_type, sort_date, event, evt_ref])
 
             for evt_ref in person.get_primary_event_ref_list():
                 event = db.get_event_from_handle(evt_ref.ref)
@@ -4896,36 +4883,38 @@ class NavWebReport(Report):
                 # get event type
                 evt_type = self.get_event_type(event, evt_ref)
 
-                # get sot date as year/month/day or 0/0/0
+                # get sot date as year/month/day or 0000/00/00
                 event_date = event.get_date_object()
-                year = str(event_date.get_year() ) or str(0)
-                month = str(event_date.get_month() ) or str(0)
-                day = str(event_date.get_day() ) or str(0)
-                sort_date = '/'.join([year, month, day])
-                    
-                info = [sort_name, evt_type, sort_date, event, evt_ref, person]
-                event_list.append(info)
+                year = event_date.get_year() or 0
+                month = event_date.get_month() or 0
+                day = event_date.get_day() or 0
+                sort_date = '%04d/%02d/%02d' % (year, month, day)
 
-                # get a list of the different event type in this database
-                if evt_type in event_types:
-                    event_types[evt_type] += 1
-                else:
-                    event_types[evt_type] = 1   
+                # add event data
+                event_list.append([evt_type, sort_date, event, evt_ref])
+
+            # sort the list of an individual's events
+            event_list.sort()
+
+            # combine person and their events together
+            event_dict.append([sort_name, person, event_list])
+
+        # sort the events dictionary
+        event_dict.sort()
 
         # set progress meter pass
-        self.progress.set_pass(_('Creating event pages'), len(event_list))
-
-        # sort the events by type
-        event_list.sort()
+        self.progress.set_pass(_('Creating event pages'), len(event_dict))
 
         # send all data to the events list page
-        EventListPage(self, self.title, event_list, event_types)
+        EventListPage(self, self.title, event_dict)
 
-        for sort_name, evt_type, sort_date, event, evt_ref, person in event_list:
-            self.progress.step()
+        for (sort_name, person, event_list) in event_dict:
 
-            # create individual event page 
-            EventPage(self, evt_type, event, evt_ref, person)
+            for evt_type, sort_date, event, evt_ref in event_list:
+                self.progress.step()    
+
+                # create individual event page 
+                EventPage(self, self.title, evt_type, event, evt_ref, person)
 
     def gallery_pages(self, source_list):
         import gc
