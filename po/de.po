@@ -1,7 +1,6 @@
 # translation of de.po to Deutsch
 # translation of de.po to
 # German GRAMPS Translation
-#
 #. TRANS: no singular form needed, as rows is always > 1
 #. TRANS: No singular form is needed.
 #: ../src/plugins/tool/NotRelated.py:236 ../src/plugins/tool/NotRelated.py:270
@@ -16,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-23 11:00+0200\n"
-"PO-Revision-Date: 2009-08-23 11:03+0200\n"
+"POT-Creation-Date: 2009-08-28 11:46+0200\n"
+"PO-Revision-Date: 2009-08-28 11:54+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: Deutsch <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1534,7 +1533,7 @@ msgstr "Schrifthintergrundfarbe"
 msgid "Gramplets"
 msgstr "Gramplets"
 
-#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:594
+#: ../src/gramps_main.py:111 ../src/DataViews/GeoView.py:621
 msgid "GeoView"
 msgstr "GeoView"
 
@@ -1773,7 +1772,7 @@ msgstr "Lesezeichen _hinzufügen"
 msgid "%(title)s..."
 msgstr "%(title)s..."
 
-#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:532
+#: ../src/PageView.py:451 ../src/DataViews/GeoView.py:556
 #: ../src/DataViews/GrampletView.py:1382
 msgid "_Forward"
 msgstr "_Vor"
@@ -1782,7 +1781,7 @@ msgstr "_Vor"
 msgid "Go to the next person in the history"
 msgstr "Gehe zur nächsten Person in der Chronik"
 
-#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:524
+#: ../src/PageView.py:459 ../src/DataViews/GeoView.py:548
 #: ../src/DataViews/GrampletView.py:1390
 msgid "_Back"
 msgstr "_Zurück"
@@ -3427,32 +3426,32 @@ msgstr "_Spalteneditor..."
 msgid "Family Filter Editor"
 msgstr "Familienfiltereditor"
 
-#: ../src/DataViews/GeoView.py:350
+#: ../src/DataViews/GeoView.py:374
 msgid "HtmlView"
 msgstr "HtmlAnsicht"
 
-#: ../src/DataViews/GeoView.py:525
+#: ../src/DataViews/GeoView.py:549
 msgid "Go to the previous page in the history"
 msgstr "Gehe zur vorheriger Seite in der Chronik"
 
-#: ../src/DataViews/GeoView.py:533
+#: ../src/DataViews/GeoView.py:557
 msgid "Go to the next page in the history"
 msgstr "Gehe zur nächsten Seite in der Chronik"
 
 #. add the Refresh action to handle the Refresh button
-#: ../src/DataViews/GeoView.py:538
+#: ../src/DataViews/GeoView.py:562
 msgid "_Refresh"
 msgstr "_Aktualisieren"
 
-#: ../src/DataViews/GeoView.py:541
+#: ../src/DataViews/GeoView.py:565
 msgid "Stop and reload the page."
 msgstr "Stopp und die Seite neu laden."
 
-#: ../src/DataViews/GeoView.py:571
+#: ../src/DataViews/GeoView.py:595
 msgid "Start page for the Html View"
 msgstr "Startseite für die Html Ansicht"
 
-#: ../src/DataViews/GeoView.py:572
+#: ../src/DataViews/GeoView.py:596
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
@@ -3464,83 +3463,83 @@ msgstr ""
 "<br>\n"
 "Zum Beispiel: <b>http://gramps-project.org</p>"
 
-#: ../src/DataViews/GeoView.py:744
+#: ../src/DataViews/GeoView.py:749
 msgid "_OpenStreetMap"
 msgstr "_OpenStreetMap"
 
-#: ../src/DataViews/GeoView.py:746
+#: ../src/DataViews/GeoView.py:751
 msgid "Select OpenStreetMap Maps"
 msgstr "OpenStreetMap wählen"
 
-#: ../src/DataViews/GeoView.py:749
+#: ../src/DataViews/GeoView.py:754
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/GeoView.py:751
+#: ../src/DataViews/GeoView.py:756
 msgid "Select Google Maps."
 msgstr "Google Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:754
+#: ../src/DataViews/GeoView.py:759
 msgid "_OpenLayers Maps"
 msgstr "_OpenLayers Maps"
 
-#: ../src/DataViews/GeoView.py:756
+#: ../src/DataViews/GeoView.py:761
 msgid "Select OpenLayers Maps."
 msgstr "OpenLayers Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:759
+#: ../src/DataViews/GeoView.py:764
 msgid "_Yahoo! Maps"
 msgstr "_Yahoo! Maps"
 
-#: ../src/DataViews/GeoView.py:761
+#: ../src/DataViews/GeoView.py:766
 msgid "Select Yahoo Maps."
 msgstr "Yahoo! Maps auswählen."
 
-#: ../src/DataViews/GeoView.py:764
+#: ../src/DataViews/GeoView.py:769
 msgid "_Microsoft Maps"
 msgstr "_Microsoft Maps"
 
-#: ../src/DataViews/GeoView.py:766
+#: ../src/DataViews/GeoView.py:771
 msgid "Select Microsoft Maps"
 msgstr "Microsoft Maps auswählen"
 
-#: ../src/DataViews/GeoView.py:767
+#: ../src/DataViews/GeoView.py:772
 msgid "_All Places"
 msgstr "_Alle Orte"
 
-#: ../src/DataViews/GeoView.py:769
+#: ../src/DataViews/GeoView.py:773
 msgid "Attempt to view all places in the family tree."
 msgstr "Versuche alle Orte im Stammbaum zu zeigen."
 
-#: ../src/DataViews/GeoView.py:770
+#: ../src/DataViews/GeoView.py:775
 msgid "_Person"
 msgstr "_Person"
 
-#: ../src/DataViews/GeoView.py:772
+#: ../src/DataViews/GeoView.py:777
 msgid "Attempt to view all the places where the selected people lived."
 msgstr "Versuche alle Orte zu zeigen in denen die gewählten Personen gewohnt haben."
 
-#: ../src/DataViews/GeoView.py:773
+#: ../src/DataViews/GeoView.py:779
 msgid "_Family"
 msgstr "_Familie"
 
-#: ../src/DataViews/GeoView.py:775
+#: ../src/DataViews/GeoView.py:781
 msgid "Attempt to view places of the selected people's family."
 msgstr "Versuche Orte der Personen der gewählten Familien zu zeigen."
 
-#: ../src/DataViews/GeoView.py:776
+#: ../src/DataViews/GeoView.py:782
 msgid "_Event"
 msgstr "_Ereignis"
 
-#: ../src/DataViews/GeoView.py:778
+#: ../src/DataViews/GeoView.py:784
 msgid "Attempt to view places connected to all events."
 msgstr "Versuche die Orte die mit allen Ereignissen verbunden sind zu zeigen."
 
-#: ../src/DataViews/GeoView.py:874
+#: ../src/DataViews/GeoView.py:883
 msgid "List of places without coordinates"
 msgstr "Liste der Orte ohne Koordinaten"
 
-#: ../src/DataViews/GeoView.py:875
+#: ../src/DataViews/GeoView.py:884
 msgid ""
 "Here is the list of all places in the family tree for which we have no "
 "coordinates.<br> This means no longitude or latitude.<p>"
@@ -3548,7 +3547,11 @@ msgstr ""
 "Hier ist die Liste aller Orte im Stammbaum für die wir keine Koordinaten "
 "haben.<br> Dies bedeutet keine Längen oder Breitengrade.<p>"
 
-#: ../src/DataViews/GeoView.py:925
+#: ../src/DataViews/GeoView.py:887
+msgid "Back to prior page"
+msgstr "Zurück zur vorherigen Seite"
+
+#: ../src/DataViews/GeoView.py:936
 #, python-format
 msgid ""
 "There are %d markers to display. They are split up over %d pages of %d "
@@ -3557,106 +3560,106 @@ msgstr ""
 "Es gibt %d Marker zum anzeigen. Diese sind verteilt über %d Seiten mit %d "
 "Markern : "
 
-#: ../src/DataViews/GeoView.py:964
+#: ../src/DataViews/GeoView.py:993
 msgid "All"
 msgstr "Alles"
 
-#: ../src/DataViews/GeoView.py:1427
+#: ../src/DataViews/GeoView.py:1501
 msgid "No location."
 msgstr "Kein Ort."
 
-#: ../src/DataViews/GeoView.py:1430
+#: ../src/DataViews/GeoView.py:1504
 msgid "You have no places in your family tree  with coordinates."
 msgstr "Du hast keine Orte mit Koordinaten in deinem Stammbaum."
 
-#: ../src/DataViews/GeoView.py:1433
+#: ../src/DataViews/GeoView.py:1507
 msgid "You are looking at the default map."
 msgstr "Du schaust auf die Standartkarte."
 
-#: ../src/DataViews/GeoView.py:1458
+#: ../src/DataViews/GeoView.py:1534
 #, python-format
 msgid "%(comment)s : birth place."
 msgstr "%(comment)s : Geburtsort."
 
-#: ../src/DataViews/GeoView.py:1461
+#: ../src/DataViews/GeoView.py:1537
 msgid "birth place."
 msgstr "Geburtsort."
 
-#: ../src/DataViews/GeoView.py:1493
+#: ../src/DataViews/GeoView.py:1571
 #, python-format
 msgid "%(comment)s : death place."
 msgstr "%(comment)s : Sterbeort."
 
-#: ../src/DataViews/GeoView.py:1496
+#: ../src/DataViews/GeoView.py:1574
 msgid "death place."
 msgstr "Sterbeort."
 
-#: ../src/DataViews/GeoView.py:1532
+#: ../src/DataViews/GeoView.py:1610
 #, python-format
 msgid "Id : %s"
 msgstr "Id : %s"
 
-#: ../src/DataViews/GeoView.py:1549 ../src/DataViews/GeoView.py:1626
-#: ../src/DataViews/GeoView.py:1676 ../src/DataViews/GeoView.py:1747
+#: ../src/DataViews/GeoView.py:1626 ../src/DataViews/GeoView.py:1710
+#: ../src/DataViews/GeoView.py:1761 ../src/DataViews/GeoView.py:1833
 msgid "Cannot center the map. No location with coordinates."
 msgstr "Kann Karte nicht zentrieren. Keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1553
+#: ../src/DataViews/GeoView.py:1630
 msgid "All places in the family tree with coordinates."
 msgstr "Alle Orte im Stammbaum mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1578
+#: ../src/DataViews/GeoView.py:1655
 #, python-format
 msgid "Id : %(id)s (%(year)s)"
 msgstr "Id : %(id)s (%(year)s)"
 
-#: ../src/DataViews/GeoView.py:1629
+#: ../src/DataViews/GeoView.py:1714
 msgid "All events in the family tree with coordinates."
 msgstr "Alle Ereignisse im Stammbaum mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1657
+#: ../src/DataViews/GeoView.py:1742
 #, python-format
 msgid "Id : Father : %s"
 msgstr "Id : Vater : %s"
 
-#: ../src/DataViews/GeoView.py:1662
+#: ../src/DataViews/GeoView.py:1747
 #, python-format
 msgid "Id : Mother : %s"
 msgstr "Id : Mutter : %s"
 
-#: ../src/DataViews/GeoView.py:1671
+#: ../src/DataViews/GeoView.py:1756
 #, python-format
 msgid "Id : Child : %(id)s %(index)d"
 msgstr "Id : Kind : %(id)s %(index)d"
 
-#: ../src/DataViews/GeoView.py:1678
+#: ../src/DataViews/GeoView.py:1763
 msgid "The active person's family members have no places with coordinates."
 msgstr "Die Familienmitglieder der aktiven Person haben keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1682 ../src/DataViews/GeoView.py:1752
+#: ../src/DataViews/GeoView.py:1767 ../src/DataViews/GeoView.py:1838
 msgid "No active person set."
 msgstr "Keine aktive Person gesetzt."
 
-#: ../src/DataViews/GeoView.py:1686
+#: ../src/DataViews/GeoView.py:1771
 #, python-format
 msgid "All %(name)s people's family places in the family tree with coordinates."
 msgstr "Alle %(name)s Personen Familien Orte im Stammbaummit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1730
+#: ../src/DataViews/GeoView.py:1816
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/DataViews/GeoView.py:1750
+#: ../src/DataViews/GeoView.py:1836
 msgid "The active person has no places with coordinates."
 msgstr "Die aktive Person hat keine Orte mit Koordinaten."
 
-#: ../src/DataViews/GeoView.py:1755
+#: ../src/DataViews/GeoView.py:1841
 #, python-format
 msgid "All event places for %s."
 msgstr "Alle Ereignis Orte für %s."
 
-#: ../src/DataViews/GeoView.py:1762
+#: ../src/DataViews/GeoView.py:1848
 msgid "Not yet implemented ..."
 msgstr "Noch nicht implementiert ..."
 
@@ -19590,11 +19593,11 @@ msgstr "Objekte mit <ID>"
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
 msgstr "Fasst alle Quellen ein, deren GRAMPS ID die reguläre Erklärung enthalten"
 
-#: ../src/Filters/Rules/_Rule.py:40
+#: ../src/Filters/Rules/_Rule.py:41
 msgid "Miscellaneous filters"
 msgstr "Verschiedene Filter"
 
-#: ../src/Filters/Rules/_Rule.py:41 ../src/glade/rule.glade.h:19
+#: ../src/Filters/Rules/_Rule.py:42 ../src/glade/rule.glade.h:19
 msgid "No description"
 msgstr "Keine Beschreibung"
 
