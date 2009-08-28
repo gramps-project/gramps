@@ -524,6 +524,8 @@ class BasePage(object):
                 of.write('\t<div class="snapshot">\n')
                 # TODO. Check if build_url_fname can be used.
                 newpath = '/'.join(['..']*3 + [newpath])
+                if ( Utils.win ):
+                    newpath = newpath.replace('\\','/')
                 self.media_link(of, photo_handle, newpath, '', up=True)
                 of.write('\t</div>\n\n')
             except (IOError, OSError), msg:
@@ -570,6 +572,8 @@ class BasePage(object):
                     descr = " ".join(wrapper.wrap(title))
                     # TODO. Check if build_url_fname can be used.
                     newpath = '/'.join(['..']*3 + [newpath])
+                    if ( Utils.win ):
+                        newpath = newpath.replace('\\','/')
                     self.media_link(of, photo_handle, newpath, descr, up=True)
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
@@ -1970,6 +1974,8 @@ class IndividualPage(BasePage):
                     if mime_type:
                         (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
                         thumbnailUrl = '/'.join(['..']*3 + [thumbnailUrl])
+                        if ( Utils.win ):
+                            thumbnailUrl = thumbnailUrl.replace('\\','/')
             person_name = _nd.display(person)
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
             self.person_link(of, url, person_name, thumbnailUrl=thumbnailUrl)
@@ -3149,6 +3155,8 @@ class NavWebReport(Report):
                     of.write('\t<img')
                     if height:
                         of.write(' height="%d"' % height)
+                    if ( Utils.win ):
+                        newpath = newpath.replace('\\','/')
                     of.write(' src="%s"' % newpath)
                     of.write(' alt="%s"' % obj.get_description())
                     of.write(' />\n')
@@ -3186,7 +3194,10 @@ class NavWebReport(Report):
             subdirs.append(subdir)
         if up:
             subdirs = ['..']*3 + subdirs
-        return '/'.join(subdirs + [fname])
+        nname = '/'.join(subdirs + [fname])
+        if ( Utils.win ):
+            nname = nname.replace('\\','/')
+        return nname
 
     def build_url_fname_html(self, fname, subdir=None, up=False):
         return self.build_url_fname(fname, subdir, up) + self.ext
@@ -3205,6 +3216,8 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
+        if ( Utils.win ):
+            fname = fname.replace('\\','/')
         subdirs = self.build_subdirs(subdir, fname, up)
         return '/'.join(subdirs + [fname])
 
