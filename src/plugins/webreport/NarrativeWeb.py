@@ -953,6 +953,8 @@ class BasePage(object):
 
                     # TODO. Check if build_url_fname can be used.
                     newpath = '/'.join(['..']*3 + [newpath])
+                    if ( Utils.win ):
+                        newpath = newpath.replace('\\','/')
 
                     # begin hyperlink
                     # description is given only for the purpose of the alt tag in img element
@@ -1011,6 +1013,8 @@ class BasePage(object):
                         real_path, newpath = self.report.prepare_copy_media(photo)
                         # TODO. Check if build_url_fname can be used.
                         newpath = '/'.join(['..']*3 + [newpath])
+                        if ( Utils.win ):
+                            newpath = newpath.replace('\\','/')
  
                         # begin hyperlink
                         section += self.media_link(photo_handle, newpath, descr, True, False)
@@ -3248,6 +3252,8 @@ class IndividualPage(BasePage):
                     if mime_type:
                         (photoUrl, thumbnailUrl) = self.report.prepare_copy_media(photo)
                         thumbnailUrl = '/'.join(['..']*3 + [thumbnailUrl])
+                        if ( Utils.win ):
+                            thumbnailUrl = thumbnailUrl.replace('\\','/')
             url = self.report.build_url_fname_html(person.handle, 'ppl', True)
             boxbg += self.person_link(url, person, name_style=True, 
                 thumbnailUrl=thumbnailUrl)
@@ -5044,6 +5050,7 @@ class NavWebReport(Report):
             subdirs = ['..']*3 + subdirs
         return subdirs
 
+
     def build_path(self, subdir, fname, up=False):
         """
         Return the name of the subdirectory.
@@ -5058,7 +5065,10 @@ class NavWebReport(Report):
             subdirs.append(subdir)
         if up:
             subdirs = ['..']*3 + subdirs
-        return '/'.join(subdirs + [fname])
+        nname = '/'.join(subdirs + [fname])
+        if ( Utils.win ):
+            nname = nname.replace('\\','/')
+        return nname
 
     def build_url_fname_html(self, fname, subdir=None, up=False):
         return self.build_url_fname(fname, subdir, up) + self.ext
@@ -5077,6 +5087,8 @@ class NavWebReport(Report):
         Imagine we run gramps on Windows (heaven forbits), we don't want to
         see backslashes in the URL.
         """
+        if ( Utils.win ):
+            fname = fname.replace('\\','/')
         subdirs = self.build_subdirs(subdir, fname, up)
         return '/'.join(subdirs + [fname])
 
