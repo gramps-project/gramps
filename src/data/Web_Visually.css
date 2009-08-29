@@ -59,7 +59,7 @@ Females     Web_Gender_Female.png
 body {
     color:#000;
     margin:0;
-    padding:0;
+    padding: 88px 0 60px 0;
     background-color:#FFF;
 }
 div {
@@ -201,9 +201,11 @@ body#NarrativeWeb {
 /* Header
 ----------------------------------------------------- */
 #header  {
+    position: fixed;
+    top: 0;
     overflow: auto;
     width:100%;
-    height: 2cm;
+    height: 60px;
     margin:0;
     padding:0 0 .9em 0;
     background-color: #542;
@@ -212,7 +214,7 @@ body#NarrativeWeb {
 #SiteTitle {
     margin:0;
     padding:.5em 0 0 20px;
-    font-size: 36px;
+    font-size: 32px;
     color:#FFF;
     font-style:italic;
 }
@@ -227,9 +229,11 @@ p#user_header {
 /* Footer
 ----------------------------------------------------- */
 #footer {
+    position: fixed;
+    bottom: 0;
     overflow: auto;
     width: 100%;
-    height: 1.5cm;
+    height: 60px;
     clear:both;
     font-size:12px;
     color:#FFF;
@@ -297,6 +301,9 @@ div#alphabet ul {
 }
 div#alphabet ul li:after {
     content:"  |";
+}
+div#alphabet ul li:first-child {
+    content: " |";
 }
 div#alphabet ul li.letters {
     margin:0;
@@ -375,7 +382,6 @@ table.infolist {
     width:100%;
     margin:0;
     padding:0;
-    background-color:#FFF;
 }
 table.infolist thead tr th {
     font:normal 1.1em/1.2em serif;
@@ -383,7 +389,7 @@ table.infolist thead tr th {
     margin:0;
     padding:.2em 10px;
     background-color:#6AF364;
-    border-bottom:solid 2px #000;
+    border: solid 2px #5D835F;
 }
 table.infolist thead tr th a {
     background-color:#6AF364;
@@ -520,6 +526,9 @@ table.surname tbody tr td.ColumnName a span.grampsid { }
 
 table.surname tbody tr td.ColumnName:hover {
     background-color:#C1B398;
+}
+table.surname tbody tr td.ColumnPartner {
+    background-color: #FFF;
 }
 table.surname thead tr th.ColumnParents, 
 table.surname tbody tr td.ColumnParents {
