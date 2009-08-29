@@ -631,7 +631,6 @@ div#EventList table.eventlist {
 }
 div#EventList table.eventlist thead tr th {
     font-weight:bold;
-    text-transform:uppercase;
     border:solid 1px #5D835F;
 }
 div#EventList table.eventlist tbody tr {
@@ -639,24 +638,29 @@ div#EventList table.eventlist tbody tr {
 }
 div#EventList table.eventlist tbody tr td {
     background-color:#D8F3D6;
+    padding: 10px 0px 10px 0px;
 }
 div#EventList table.eventlist tbody tr td.ColumnType {
-    display:block;
-    padding:10px 20px 10px 20px;
     background-color:#FFF;
-    width: 35%;
+    width: 25%;
+}
+div#EventList table.eventlist tbody tr td.ColumnType a:hover {
+    padding: 10px 10px 10px 0px;
+    display:block;
 }
 div#EventList table.eventlist tbody tr td.ColumnDate {
-    width: 22%;
+    width: 18%;
 }
 div#EventList table.eventlist tbody tr td.ColumnDescription {
     width: 20%;
 }
 div#EventList table.eventlist tbody tr td.ColumnName {
-    display:block;
-    padding:10px 20px 10px 20px;
     background-color:#FFF;
     width: 75%;
+}
+div#EventList table.eventlist tbody tr td.ColumnName a:hover {
+    padding: 10px 10px 10px 0px;
+    display:block;
 }
 div#EventDetail {
     font-size:10px;
@@ -665,6 +669,13 @@ div#EventDetail {
 }
 div#EventDetail h3 {
     font-size: 40px;
+}
+div#EventDetail table.eventlist tbody tr td
+    border-bottom:dashed 1px #5D835F;
+}
+div#EventDetail table.eventlist tbody tr td.ColumnValue  a:hover {
+    padding: 5px 50px 5px 0px;
+    display:block;
 }
     
 /* Gallery

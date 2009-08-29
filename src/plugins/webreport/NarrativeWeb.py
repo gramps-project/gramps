@@ -5452,12 +5452,12 @@ class NavWebOptions(MenuReportOptions):
                                     "step-siblings with the parents and siblings"))
         menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 
-        birthorder = BooleanOption(_('Sort children in birth order'), False)
+        birthorder = BooleanOption(_('Sort all children in birth order'), False)
         birthorder.set_help(_('Whether to display children in birth order'
                               ' or in entry order?'))
         menu.add_option(category_name, 'birthorder', birthorder)
 
-        inc_events = BooleanOption(_('Include an event pages'), False)
+        inc_events = BooleanOption(_('Include event pages'), False)
         inc_events.set_help(_('Add a complete events list and relevant pages or not'))
         menu.add_option(category_name, 'inc_events', inc_events)
 
