@@ -670,7 +670,7 @@ div#EventDetail {
 div#EventDetail h3 {
     font-size: 40px;
 }
-div#EventDetail table.eventlist tbody tr td
+div#EventDetail table.eventlist tbody tr td {
     border-bottom:dashed 1px #5D835F;
 }
 div#EventDetail table.eventlist tbody tr td.ColumnValue  a:hover {
