@@ -1996,7 +1996,9 @@ class EventPage(BasePage):
             body += eventdetail
 
             # display page itle
-            eventdetail += Html('h3', '%s of %s' % (evt_type, self.get_name(person)), inline=True)
+            title = _('%(type)s of %(name)s') % {'type'   : evt_type,
+                                                                       'name' : self.get_name(person) }
+            eventdetail += Html('h3', title, inline=True)
 
             # begin event detail table
             with Html('table', class_='infolist eventlist') as table:
