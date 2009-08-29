@@ -70,6 +70,7 @@ try:
 except ImportError:
     pyexiftaglib = False
 
+from gen.lib.repotype import RepositoryType
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -4428,6 +4429,11 @@ class RepositoryListPage(BasePage):
 
                     # repository type
                     rtype = repo.type.xml_str()
+                    for xtype in RepositoryType._DATAMAP:
+                        if rtype == xtype[2]:
+                            rtype = xtype[1]
+                            break
+
                     if rtype:
                         tcell = Html('td', rtype, class_='ColumnType', inline=True)
                         trow += tcell
