@@ -2002,6 +2002,9 @@ class EventPage(BasePage):
             with Html('table', class_='infolist eventlist') as table:
                 eventdetail += table
  
+                tbody = Html('tbody')
+                table += tbody
+
                 # get event data
                 event_row = self.get_event_data(event, evt_ref)
 
@@ -2015,26 +2018,25 @@ class EventPage(BasePage):
                             Html('td', label, class_= 'ColumnAttribute', inline=True),
                             Html('td', data, class_='ColumnValue', inline=True)
                             )
-                        table += trow
+                        tbody += trow
 
                 url = self.report.build_url_fname_html(person.handle, 'ppl', self.up)
                 person_hyper = self.person_link(url, person, True, person.gramps_id)
-
                 trow = Html('tr') + (
                     Html('td', _('Person'), class_='ColumnAttribute', inline=True),
                     Html('td', person_hyper, class_='ColumnValue', inline=True)
                     )
-                table += trow  
+                tbody += trow  
 
-                # get notes section 
-                notelist = event_row[5][1]
-                if notelist:
-                    eventdetail += self.display_note_list(notelist) 
+            # get notes section 
+            notelist = event_row[5][1]
+            if notelist:
+                eventdetail += self.display_note_list(notelist) 
 
-                # get attribute list
-                attrib = event_row[6][1]
-                if attrib:
-                    eventdetail += self.display_attr_list(event)    
+            # get attribute list
+            attrib = event_row[6][1]
+            if attrib:
+                eventdetail += self.display_attr_list(event)    
 
         # add clearline for proper styling
         # add footer section
