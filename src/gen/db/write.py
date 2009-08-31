@@ -52,7 +52,7 @@ from sys import maxint
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
 from gen.db import (GrampsDbRead, BSDDBTxn)
-from grampsdbtxn import GrampsDbTxn
+from txn import GrampsDbTxn
 from undoredo import GrampsDbUndoBSDDB as GrampsDbUndo
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
