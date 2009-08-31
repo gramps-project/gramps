@@ -215,61 +215,61 @@ class PrivateProxyDb(ProxyDbBase):
 
     # Define predicate functions for use by default iterator methods
     
-    def person_predicate(self, handle):
+    def include_person(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """
-        obj = self.db.get_person_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_person(handle)
+        return obj and not obj.get_privacy()
     
-    def family_predicate(self, handle):
+    def include_family(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_family_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_family(handle)
+        return obj and not obj.get_privacy()
     
-    def event_predicate(self, handle):
+    def include_event(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_event_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_event(handle)
+        return obj and not obj.get_privacy()
     
-    def source_predicate(self, handle):
+    def include_source(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_source_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_source(handle)
+        return obj and not obj.get_privacy()
     
-    def place_predicate(self, handle):
+    def include_place(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_place_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_place(handle)
+        return obj and not obj.get_privacy()
     
-    def object_predicate(self, handle):
+    def include_object(self, handle):
+        """
+        Predicate returning True if object is to be included, else False
+        """
+        obj = self.get_unfiltered_object(handle)
+        return obj and not obj.get_privacy()
+    
+    def include_repository(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_object_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_repository(handle)
+        return obj and not obj.get_privacy()
     
-    def repository_predicate(self, handle):
+    def include_note(self, handle):
         """
         Predicate returning True if object is to be included, else False
         """        
-        obj = self.db.get_repository_from_handle(handle)
-        return not obj.get_privacy()
-    
-    def note_predicate(self, handle):
-        """
-        Predicate returning True if object is to be included, else False
-        """        
-        obj = self.db.get_note_from_handle(handle)
-        return not obj.get_privacy()
+        obj = self.get_unfiltered_note(handle)
+        return obj and not obj.get_privacy()
 
     def get_default_person(self):
         """returns the default Person of the database"""
@@ -290,81 +290,73 @@ class PrivateProxyDb(ProxyDbBase):
         """
         returns True if the handle exists in the current Person database.
         """
-        has_person = False
-        person = self.db.get_person_from_handle()
+        person = self.db.get_person_from_handle(handle)
         if person and not person.get_privacy():
-            has_person = True
-        return has_person         
+            return True
+        return False
 
     def has_event_handle(self, handle):
         """
         returns True if the handle exists in the current Event database.
         """
-        has_event = False
-        event = self.db.get_event_from_handle()
+        event = self.db.get_event_from_handle(handle)
         if event and not event.get_privacy():
-            has_event = True
-        return has_event
+            return True
+        return False
 
     def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Source database.
         """
-        has_source = False
-        source = self.db.get_source_from_handle()
+        source = self.db.get_source_from_handle(handle)
         if source and not source.get_privacy():
-            has_source = True
-        return has_source 
+            return True
+        return False
 
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Place database.
         """
-        has_place = False
-        place = self.db.get_place_from_handle()
+        place = self.db.get_place_from_handle(handle)
         if place and not place.get_privacy():
-            has_place = True
-        return has_place
+            return True
+        return False
 
     def has_family_handle(self, handle):            
         """
         Return True if the handle exists in the current Family database.
         """
-        has_family = False
-        family = self.db.get_family_from_handle()
+        family = self.db.get_family_from_handle(handle)
         if family and not family.get_privacy():
-            has_family = True
-        return has_family
+            return True
+        return False
 
     def has_object_handle(self, handle):
         """
         Return True if the handle exists in the current MediaObjectdatabase.
         """
-        has_object = False
-        object = self.db.get_object_from_handle()
+        object = self.db.get_object_from_handle(handle)
         if object and not object.get_privacy():
-            has_object = True
-        return has_object
+            return True
+        return False
 
     def has_repository_handle(self, handle):
         """
         Return True if the handle exists in the current Repository database.
         """
-        has_repository = False
-        repository = self.db.get_repository_from_handle()
+        repository = self.db.get_repository_from_handle(handle)
         if repository and not repository.get_privacy():
-            has_repository = True
-        return has_repository
+            return True
+        return False
 
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
         """
-        has_note = False
-        note = self.db.get_note_from_handle()
+        note = self.db.get_note_from_handle(handle)
         if note and not note.get_privacy():
-            has_note = True
-        return has_note
+            return True
+        return False
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -413,7 +405,7 @@ class PrivateProxyDb(ProxyDbBase):
             else:
                 raise NotImplementedError
             
-            if not obj.get_privacy():
+            if obj and not obj.get_privacy():
                 yield (class_name, handle)
         return
 

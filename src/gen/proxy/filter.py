@@ -50,28 +50,36 @@ class FilterProxyDb(ProxyDbBase):
         self.person_filter = person_filter
 
         if person_filter:
-            self.plist = set(person_filter.apply(
+            #self.plist = set(person_filter.apply(
+            #        self.db, self.db.iter_person_handles()))
+            self.plist = dict((h, 1) for h in person_filter.apply(
                     self.db, self.db.iter_person_handles()))
         else:
-            self.plist = self.db.get_person_handles()
+            #self.plist = self.db.get_person_handles()
+            self.plist = dict((h, 1) for h in self.db.iter_person_handles())
 
         if event_filter:
-            self.elist = set(event_filter.apply(
+            #self.elist = set(event_filter.apply(
+            #        self.db, self.db.iter_event_handles()))
+            self.elist = dict((h, 1) for h in event_filter.apply(
                     self.db, self.db.iter_event_handles()))
         else:
-            self.elist = self.db.get_event_handles()
+            #self.elist = self.db.get_event_handles()
+            self.elist = dict((h, 1) for h in self.db.iter_event_handles())
         
         if note_filter:
-            self.nlist = set(note_filter.apply(
+            #self.nlist = set(note_filter.apply(
+            #        self.db, self.db.iter_note_handles()))
+            self.nlist = dict((h, 1) for h in note_filter.apply(
                     self.db, self.db.iter_note_handles()))
         else:
-            self.nlist = self.db.get_note_handles()
+            self.nlist = dict((h, 1) for h in self.db.iter_note_handles())
 
-        self.flist = set()
+        self.flist = {}
         for handle in list(self.plist):
             person = self.db.get_person_from_handle(handle)
-            for family_handle in person.get_family_handle_list():
-                self.flist.add(family_handle)
+            for handle in person.get_family_handle_list():
+                self.flist[handle] = 1
 
     def get_person_from_handle(self, handle):
         """
@@ -112,6 +120,18 @@ class FilterProxyDb(ProxyDbBase):
             return person
         else:
             return None
+
+    def include_person(self, handle):
+        return handle in self.plist               
+
+    def include_family(self, handle):
+        return handle in self.flist               
+
+    def include_event(self, handle):
+        return handle in self.elist               
+
+    def include_note(self, handle):
+        return handle in self.nlist               
 
     def get_source_from_handle(self, handle):
         """
@@ -289,6 +309,13 @@ class FilterProxyDb(ProxyDbBase):
         # FIXME: plist is not a sorted list of handles
         return self.plist
 
+    def iter_people(self):
+        """
+        Return an iterator over handles and objects for Persons in the database
+        """
+        for handle in self.plist:
+            yield handle, self.get_person_from_handle(handle)
+
     def get_event_handles(self):
         """
         Return a list of database handles, one handle for each Event in
@@ -359,35 +386,11 @@ class FilterProxyDb(ProxyDbBase):
         """
         return handle in self.elist
 
-    def has_source_handle(self, handle):
-        """
-        returns True if the handle exists in the current Source database.
-        """
-        return self.db.has_source_handle(handle)
-
-    def has_place_handle(self, handle):
-        """
-        returns True if the handle exists in the current Place database.
-        """
-        return self.db.has_place_handle(handle)
-
     def has_family_handle(self, handle):            
         """
         returns True if the handle exists in the current Family database.
         """
-        return self.db.has_family_handle(handle)
-
-    def has_object_handle(self, handle):
-        """
-        returns True if the handle exists in the current MediaObjectdatabase.
-        """
-        return self.db.has_object_handle(handle)
-
-    def has_repository_handle(self, handle):
-        """
-        returns True if the handle exists in the current Repository database.
-        """
-        return self.db.has_repository_handle(handle)
+        return handle in self.flist
 
     def has_note_handle(self, handle):
         """

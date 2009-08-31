@@ -97,34 +97,6 @@ class LivingProxyDb(ProxyDbBase):
                 person = self.__restrict_person(person)
         return person
 
-    def get_source_from_handle(self, handle):
-        """
-        Finds a Source in the database from the passed gramps ID.
-        If no such Source exists, None is returned.
-        """
-        return self.db.get_source_from_handle(handle)
-
-    def get_object_from_handle(self, handle):
-        """
-        Finds an Object in the database from the passed gramps ID.
-        If no such Object exists, None is returned.
-        """
-        return self.db.get_object_from_handle(handle)
-
-    def get_place_from_handle(self, handle):
-        """
-        Finds a Place in the database from the passed gramps ID.
-        If no such Place exists, None is returned.
-        """
-        return self.db.get_place_from_handle(handle)
-
-    def get_event_from_handle(self, handle):
-        """
-        Finds a Event in the database from the passed gramps ID.
-        If no such Event exists, None is returned.
-        """
-        return self.db.get_event_from_handle(handle)
-
     def get_family_from_handle(self, handle):
         """
         Finds a Family in the database from the passed handle.
@@ -133,20 +105,6 @@ class LivingProxyDb(ProxyDbBase):
         family = self.db.get_family_from_handle(handle)
         family = self.__remove_living_from_family(family)
         return family
-
-    def get_repository_from_handle(self, handle):
-        """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
-        """
-        return self.db.get_repository_from_handle(handle)
-
-    def get_note_from_handle(self, handle):
-        """
-        Finds a Note in the database from the passed gramps' ID.
-        If no such Note exists, None is returned.
-        """
-        return self.db.get_note_from_handle(handle)
 
     def get_person_from_gramps_id(self, val):
         """
@@ -171,52 +129,10 @@ class LivingProxyDb(ProxyDbBase):
         family = self.__remove_living_from_family(family)
         return family
 
-    def get_event_from_gramps_id(self, val):
-        """
-        Finds an Event in the database from the passed GRAMPS ID.
-        If no such Event exists, None is returned.
-        """
-        return self.db.get_event_from_gramps_id(val)
-
-    def get_place_from_gramps_id(self, val):
-        """
-        Finds a Place in the database from the passed gramps' ID.
-        If no such Place exists, None is returned.
-        """
-        return self.db.get_place_from_gramps_id(val)
-
-    def get_source_from_gramps_id(self, val):
-        """
-        Finds a Source in the database from the passed gramps' ID.
-        If no such Source exists, None is returned.
-        """
-        return self.db.get_source_from_gramps_id(val)
-
-    def get_object_from_gramps_id(self, val):
-        """
-        Finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
-        """
-        return self.db.get_object_from_gramps_id(val)
-
-    def get_repository_from_gramps_id(self, val):
-        """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
-        """
-        return self.db.get_repository_from_gramps_id(val)
-
-    def get_note_from_gramps_id(self, val):
-        """
-        Finds a Note in the database from the passed gramps' ID.
-        If no such Note exists, None is returned.
-        """
-        return self.db.get_note_from_gramps_id(val)
-
-    def person_predicate(self, handle):
+    def include_person(self, handle):
         if self.mode == self.MODE_EXCLUDE_ALL:
-            person = self.db.get_person_from_handle(handle)
-            if self.__is_living(person):
+            person = self.get_unfiltered_person(handle)
+            if person and self.__is_living(person):
                 return False
         return True        
         
@@ -239,48 +155,6 @@ class LivingProxyDb(ProxyDbBase):
         if self.get_person_from_handle(handle):
             return True
         return False
-
-    def has_event_handle(self, handle):
-        """
-        returns True if the handle exists in the current Event database.
-        """
-        return self.db.has_event_handle(handle)
-
-    def has_source_handle(self, handle):
-        """
-        returns True if the handle exists in the current Source database.
-        """
-        return self.db.has_source_handle(handle)
-
-    def has_place_handle(self, handle):
-        """
-        returns True if the handle exists in the current Place database.
-        """
-        return self.db.has_place_handle(handle)
-
-    def has_family_handle(self, handle):            
-        """
-        returns True if the handle exists in the current Family database.
-        """
-        return self.db.has_family_handle(handle)
-
-    def has_object_handle(self, handle):
-        """
-        returns True if the handle exists in the current MediaObjectdatabase.
-        """
-        return self.db.has_object_handle(handle)
-
-    def has_repository_handle(self, handle):
-        """
-        returns True if the handle exists in the current Repository database.
-        """
-        return self.db.has_repository_handle(handle)
-
-    def has_note_handle(self, handle):
-        """
-        returns True if the handle exists in the current Note database.
-        """
-        return self.db.has_note_handle(handle)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
