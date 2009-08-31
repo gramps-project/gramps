@@ -1963,24 +1963,24 @@ class EventListPage(BasePage):
                 trow = Html('tr')
                 tbody += trow
 
-                if first:
-                    trow.attr = 'class="BeginName"'
-
                 for (colclass, data) in [
-                    ['Type',                event_hyper],
-                    ['Date',                _dd.display(event.get_date_object() )],
+                    ['Type',           event_hyper],
+                    ['Date',           _dd.display(event.get_date_object() )],
                     ['Description',    event.get_description()] ]:
                     data = data or '&nbsp;'
 
                     # conditional statement for inline=True or False
-                    samerow = True if (data == '&nbsp;' or colclass == 'Date') else False
-
+                    samerow = True if (data == '&nbsp;' or (colclass == 'Date' or 'Type'))\
+                        else False
                     trow += Html('td', data, class_='Column%s' % colclass, inline=samerow)
 
+                # display person hyperlink or non-breaking space
+                tcell = Html('td', class_='ColumnName')
+                trow += tcell 
                 if first:
-                    trow += Html('td', person_hyper, class_='ColumnName')
+                    tcell += person_hyper
                 else:
-                    trow += Html('td', '&nbsp;', class_='ColumnName', inline=True)
+                    tcell += '&nbsp;'
                 first = False
 
         # return events table body to its caller
@@ -2000,8 +2000,10 @@ class EventPage(BasePage):
             body += eventdetail
 
             # display page itle
-            title = _('%(type)s of %(name)s') % {'type'   : evt_type,
-                                                                       'name' : self.get_name(person) }
+            title = _('%(type)s of %(name)s') % {'type' : evt_type.lower(),
+                                                 'name' : self.get_name(person) }
+            # line is in place for Peter Lundgren
+            title = title[0].upper() + title[1:]
             eventdetail += Html('h3', title, inline=True)
 
             # begin event detail table
@@ -3497,7 +3499,7 @@ class IndividualPage(BasePage):
         self.page_title = self.sort_name
         thumbnail = self.display_first_image_as_thumbnail(self.person.get_media_list())
 
-        sect_name = Html('h3', self.sort_name.strip(), inline=True)
+        section_title = Html('h3', self.get_name(self.person), inline=True)
 
         # begin summaryarea division
         with Html('div', id='summaryarea') as summaryarea:
@@ -3549,8 +3551,7 @@ class IndividualPage(BasePage):
                         call_name += self.get_citation_links( 
                             name.get_source_references() )
                         trow = Html('tr') + (
-                            Html('td', _('Common Name'), class_='ColumnAttribute', 
-                                inline=True),
+                            Html('td', _('Call Name'), class_='ColumnAttribute', inline=True),
                             Html('td', call_name, class_='ColumnValue', inline=True)
                             )
                         table += trow
@@ -3561,8 +3562,7 @@ class IndividualPage(BasePage):
                     nick_name += self.get_citation_links( 
                         self.person.get_source_references() )
                     trow = Html('tr') + (
-                        Html('td', _('Nick Name'), class_='ColumnAttribute', 
-                            inline=True),
+                        Html('td', _('Nick Name'), class_='ColumnAttribute', inline=True),
                         Html('td', nick_name, class_='ColumnValue', inline=True)
                         ) 
                     table += trow 
@@ -3570,10 +3570,8 @@ class IndividualPage(BasePage):
                 # GRAMPS ID
                 if not self.noid:
                     trow = Html('tr') + (
-                        Html('td', _('GRAMPS ID'), class_='ColumnAttribute', 
-                            inline=True),
-                        Html('td', self.person.gramps_id, class_='ColumnValue', 
-                            inline=True)
+                        Html('td', _('GRAMPS ID'), class_='ColumnAttribute', inline=True),
+                        Html('td', self.person.gramps_id, class_='ColumnValue', inline=True)
                         ) 
                     table += trow
 
@@ -4311,7 +4309,6 @@ class IndividualPage(BasePage):
         else:
             evt_role = event_ref.get_role()
             eventtype = u"%(evt_name)s (%(evt_role)s)" % locals()
-        eventtype = eventtype or '&nbsp;'
 
         # Place
         place_handle = event.get_place_handle()
@@ -4325,10 +4322,9 @@ class IndividualPage(BasePage):
                 self.place_list[place_handle] = [lnk]
 
             place = self.place_link(place_handle,
-                                                   ReportUtils.place_name(db, place_handle), up=True)
+                                    ReportUtils.place_name(db, place_handle), up=True)
         else:
             place = None
-        place = place or '&nbsp;'
 
         # get event and event_ref notes
         notelist = event.get_note_list()
@@ -4338,15 +4334,19 @@ class IndividualPage(BasePage):
         trow = Html('tr')
 
         for (colclass, data) in [
-            ['EventType',       eventtype],
-            ['Date',               _dd.display(event.get_date_object() )],
-            ['Place',              place],
+            ['Type',           eventtype],
+            ['Date',           _dd.display(event.get_date_object() )],
+            ['Place',          place],
             ['Description',    event.get_description()],
-            ['Source',            self.get_citation_links(event.get_source_references() )],
-            ['Notes',             self.dump_notes(notelist)] ]:
-
+            ['Source',         self.get_citation_links(event.get_source_references() )],
+            ['Notes',          self.dump_notes(notelist)] ]:
             data = data or '&nbsp;'
-            trow += Html('td', data, class_='Column%s' % colclass, inline=True)
+
+            # determine if information will fit on same line?
+            samerow = True if (data == '&nbsp;' or (colclass  == 'Type' or 'Date')) \
+                else False
+
+            trow += Html('td', data, class_='Column%s' % colclass, inline = samerow)
 
         # return events table row to its callers
         return trow 
