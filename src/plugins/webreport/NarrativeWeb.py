@@ -3610,7 +3610,7 @@ class IndividualPage(BasePage):
 
         # return all three pieces to its caller
         # do NOT combine before returning to class IndividualPage
-        return thumbnail, sect_name, summaryarea
+        return thumbnail, section_title, summaryarea
 
     def attribs_or_not(self, db, evt_ref_list):
         """ determine if there are attributes for these events """
