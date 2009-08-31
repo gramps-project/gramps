@@ -58,7 +58,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
-from gen.db.dbdir import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
+from gen.db.write import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
     EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, META
 
 #------------------------------------------------------------------------

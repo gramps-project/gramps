@@ -22,7 +22,7 @@
 Provide the database state class
 """
 
-from gen.db import GrampsDbBase
+from gen.db import GrampsDbRead
 from gen.utils import Callback
 import Config
 
@@ -32,18 +32,18 @@ class DbState(Callback):
     """
 
     __signals__ = {
-        'database-changed' : (GrampsDbBase, ), 
+        'database-changed' : (GrampsDbRead, ), 
         'active-changed'   : (str, ), 
         'no-database'      :  None, 
         }
 
     def __init__(self):
         """
-        Initalize the state with an empty (and useless) GrampsDbBase. This is
+        Initalize the state with an empty (and useless) GrampsDbRead. This is
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db      = GrampsDbBase()
+        self.db      = GrampsDbRead()
         self.open    = False
         self.active  = None
         self.sighndl = None
@@ -115,7 +115,7 @@ class DbState(Callback):
         Closes the database without a new database
         """
         self.db.close()
-        self.db = GrampsDbBase()
+        self.db = GrampsDbRead()
         self.db.db_is_open = False
         self.active = None
         self.open = False

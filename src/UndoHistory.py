@@ -63,6 +63,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.title = _("Undo History")
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.db = dbstate.db
+        self.undodb = self.db.undodb
         self.dbstate = dbstate
 
         window = gtk.Dialog("",uistate.window,
@@ -113,22 +114,22 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         if not node:
             return
         path = self.model.get_path(node)
-
-        start = min(path[0],self.db.undoindex+1)
-        end = max(path[0],self.db.undoindex+1)
+        
+        start = min(path[0],self.undodb.undoindex+1)
+        end = max(path[0],self.undodb.undoindex+1)
 
         self._paint_rows(0,len(self.model)-1,False)
         self._paint_rows(start,end,True)
 
-        if path[0] < self.db.undoindex+1:
+        if path[0] < self.undodb.undoindex+1:
             self.redo_button.set_sensitive(False)
-            self.undo_button.set_sensitive(self.db.undo_available())
-        if path[0] > self.db.undoindex+1:
+            self.undo_button.set_sensitive(self.undodb.undo_available())
+        if path[0] > self.undodb.undoindex+1:
             self.undo_button.set_sensitive(False)
-            self.redo_button.set_sensitive(self.db.redo_available())
-        if path[0] == self.db.undoindex+1:
-            self.undo_button.set_sensitive(self.db.undo_available())
-            self.redo_button.set_sensitive(self.db.redo_available())
+            self.redo_button.set_sensitive(self.undodb.redo_available())
+        if path[0] == self.undodb.undoindex+1:
+            self.undo_button.set_sensitive(self.undodb.undo_available())
+            self.redo_button.set_sensitive(self.undodb.redo_available())
 
     def _paint_rows(self,start,end,selected=False):
         if selected:
@@ -149,7 +150,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.db.undoindex-1
+            nsteps = path[0]-self.undodb.undoindex-1
             if nsteps == 0:
                 self._move(-1)
             else:
@@ -159,7 +160,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             if not node:
                 return
             path = self.model.get_path(node)
-            nsteps = path[0]-self.db.undoindex-1
+            nsteps = path[0]-self.undodb.undoindex-1
             if nsteps == 0:
                 self._move(1)
             else:
@@ -180,9 +181,8 @@ class UndoHistory(ManagedWindow.ManagedWindow):
                        self.window)
 
     def clear(self):
-        self.db.undoindex = -1
-        self.db.translist = [None] * len(self.db.translist)
-        self.db.abort_possible = False
+        self.undodb.clear()
+        self.undodb.abort_possible = False
         self.update()
         if self.db.undo_callback:
             self.db.undo_callback(None)
@@ -203,30 +203,30 @@ class UndoHistory(ManagedWindow.ManagedWindow):
 
     def _update_ui(self):
         self._paint_rows(0,len(self.model)-1,False)
-        self.undo_button.set_sensitive(self.db.undo_available())
-        self.redo_button.set_sensitive(self.db.redo_available())
+        self.undo_button.set_sensitive(self.undodb.undo_available())
+        self.redo_button.set_sensitive(self.undodb.redo_available())
         self.clear_button.set_sensitive(
-            self.db.undo_available() or self.db.redo_available() )
+            self.undodb.undo_available() or self.undodb.redo_available() )
 
     def _build_model(self):
         self.model.clear()
         fg = bg = None
 
-        if self.db.undo_history_timestamp:
+        if self.undodb.undo_history_timestamp:
             if self.db.abort_possible:
                 mod_text = _('Database opened')
             else:
                 mod_text = _('History cleared')
-            time_text = time.ctime(self.db.undo_history_timestamp)           
+            time_text = time.ctime(self.undodb.undo_history_timestamp)           
             self.model.append(row=[time_text,mod_text,fg,bg])
 
         # Get the not-None portion of transaction list
-        translist = [item for item in self.db.translist if item]
+        translist = [item for item in self.undodb.translist if item]
         for transaction in translist:
             time_text = time.ctime(transaction.timestamp)
             mod_text = transaction.get_description()
             self.model.append(row=[time_text,mod_text,fg,bg])
-        path = (self.db.undoindex+1,)
+        path = (self.undodb.undoindex+1,)
         self.selection.select_path(path)
 
     def update(self):

@@ -19,7 +19,9 @@
 #
 
 from base import *
-from cursor import *
 from dbconst import *
-from dbdir import *
+from read import *
+from cursor import *
+from bsddbtxn import *
+from write import *
 from exceptions import *

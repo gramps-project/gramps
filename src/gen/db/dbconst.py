@@ -20,6 +20,10 @@
 
 # $Id$
 
+"""
+Declare constants used by database modules
+"""
+
 #-------------------------------------------------------------------------
 #
 # standard python modules
@@ -31,6 +35,44 @@
 # constants
 #
 #-------------------------------------------------------------------------
+__all__ = (
+            ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
+             'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
+             'DBRECOVFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R', 'DBFLAGS_D',
+            ) +
+            
+            ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'EVENT_KEY',
+             'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY', 'NOTE_KEY',
+             'REFERENCE_KEY', 'PERSON_COL_KEY', 'FAMILY_COL_KEY',
+             'CHILD_COL_KEY'
+            ) +
+
+            ('PERSON_COL_KEY', 'FAMILY_COL_KEY', 'CHILD_COL_KEY',
+             'PLACE_COL_KEY', 'SOURCE_COL_KEY', 'MEDIA_COL_KEY', 
+             'EVENT_COL_KEY', 'REPOSITORY_COL_KEY', 'NOTE_COL_KEY'
+            ) +
+
+            ('TXNADD', 'TXNUPD', 'TXNDEL')
+          )
+
+DBEXT     = ".db"           # File extension to be used for database files
+DBUNDOFN  = "undo.db"       # File name of 'undo' database
+DBLOCKFN  = "lock"          # File name of lock file
+DBRECOVFN = "need_recover"  # File name of recovery file
+DBLOGNAME = ".GrampsDb"     # Name of logger
+DBMODE_R  = "r"             # Read-only access
+DBMODE_W  = "w"             # Full Reaw/Write access
+DBPAGE    = 16384           # Size of the pages used to hold items in the database
+DBMODE    = 0666            # Unix mode for database creation
+DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
+DBLOCKS   = 25000           # Maximum number of locks supported
+DBOBJECTS = 25000           # Maximum number of simultaneously locked objects
+DBUNDO    = 1000            # Maximum size of undo buffer
+
+from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
+DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
+DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1
@@ -51,3 +93,5 @@ REPOSITORY_COL_KEY  = 'repository_columns'
 EVENT_COL_KEY       = 'event_columns'
 FAMILY_COL_KEY      = 'family_columns'
 NOTE_COL_KEY        = 'note_columns'
+
+TXNADD, TXNUPD, TXNDEL = 0, 1, 2

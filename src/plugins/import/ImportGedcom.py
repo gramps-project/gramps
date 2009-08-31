@@ -48,6 +48,7 @@ from GrampsDbUtils._GedcomStageOne import StageOne
 from QuestionDialog import ErrorDialog, DBErrorDialog
 from gen.plug import PluginManager, ImportPlugin
 from glade import Glade
+from libmixin import GrampsDbMixin
 
 try:
     import Config
@@ -65,6 +66,11 @@ def importData(database, filename, callback=None):
     """
     Try to handle ANSEL encoded files that are not really ANSEL encoded
     """
+
+    if GrampsDbMixin not in database.__class__.__bases__:
+        database.__class__.__bases__ = (GrampsDbMixin,) +  \
+                                        database.__class__.__bases__
+
     try:
         ifile = open(filename, "r")
     except IOError:

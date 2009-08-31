@@ -48,12 +48,11 @@ __LOG = logging.getLogger(".GrampsDb")
 from gen.lib import (GenderStats, Source, Person, Family, Event, Place, 
                      MediaObject, Repository, Note, Attribute, AttributeType, 
                      NoteType)
-from gen.db.base import (GrampsDbBase, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP, 
-                         Transaction)
+from gen.db.write import (GrampsDBDir, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP)
+from libgrdb import GrampsDbGrdb
+from gen.db.txn import GrampsDbTxn as Transaction
 from gen.db.cursor import GrampsCursor
-from gen.db.dbconst import (REFERENCE_KEY, PERSON_COL_KEY, EVENT_COL_KEY, 
-                            EVENT_KEY, FAMILY_KEY, SOURCE_KEY, PLACE_KEY, 
-                            MEDIA_KEY, REPOSITORY_KEY, PERSON_KEY, NOTE_KEY)
+from gen.db.dbconst import *
 from gen.db.exceptions import FileVersionError
 from gen.utils import db_copy
 import const
@@ -136,7 +135,7 @@ class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
 # GrampsBSDDB
 #
 #-------------------------------------------------------------------------
-class GrampsBSDDB(GrampsDbBase, UpdateCallback):
+class GrampsBSDDB(GrampsDbGrdb, UpdateCallback):
     """ GRAMPS database object for Berkeley DB. 
         This is replaced for internal use by gen/db/dbdir.py
         However, this class is still used for import of the 2.2.x 
@@ -146,7 +145,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
     def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
         
-        GrampsDbBase.__init__(self)
+        GrampsDbGrdb.__init__(self)
         #UpdateCallback.__init__(self)
         self.txn = None
         self.secondary_connected = False
@@ -460,7 +459,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
-        
         if self.need_upgrade():
             self.gramps_upgrade(callback)
 
@@ -471,10 +469,10 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.db_is_open = True
 
         # Re-set the undo history to a fresh session start
-        self.undoindex = -1
-        self.translist = [None] * len(self.translist)
+        #self.undoindex = -1
+        #self.translist = [None] * len(self.translist)
         self.abort_possible = True
-        self.undo_history_timestamp = time.time()
+        #self.undo_history_timestamp = time.time()
 
         return 1
 
@@ -772,7 +770,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             
         while (ret is not None):
             (key, data) = ret
-            print key, data
             
             # data values are of the form:
             #   ((primary_object_class_name, primary_object_handle),
@@ -1461,8 +1458,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             # Aborting the session completely will become impossible.
             self.abort_possible = False
             # Undo is also impossible after batch transaction
-            self.undoindex = -1
-            self.translist = [None] * len(self.translist)
+            #self.undoindex = -1
+            #self.translist = [None] * len(self.translist)
         transaction = BdbTransaction(msg, self.undodb, batch, no_magic)
         if transaction.batch:
             if self.UseTXN:
@@ -2665,9 +2662,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
 class BdbTransaction(Transaction):
     def __init__(self, msg, db, batch=False, no_magic=False):
-        Transaction.__init__(self, msg, db, batch, no_magic)
-        self.reference_del = []
-        self.reference_add = []
+        Transaction.__init__(self, msg, db)
+        self.batch = batch
+        self.no_magic = no_magic
 
 def convert_name_10(name):
     # Names lost the "sname" attribute
@@ -2697,7 +2694,6 @@ def convert_location_11(loc):
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, cl=0):
-
     other_database = GrampsBSDDB()
 
     # Since we don't want to modify the file being imported, 

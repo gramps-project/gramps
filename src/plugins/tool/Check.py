@@ -114,8 +114,8 @@ def _table_low_level(db,table):
         return True
 
 #    import gen.db
-    from gen.db import GrampsDBDirDupCursor
-    table_cursor = GrampsDBDirDupCursor(table)
+    from gen.db import GrampsDBDirAssocCursor
+    table_cursor = GrampsDBDirAssocCursor(table)
     for handle in dup_handles:
         print "    Duplicates found for handle: %s" % handle
         try:

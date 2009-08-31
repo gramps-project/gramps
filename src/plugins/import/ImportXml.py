@@ -49,6 +49,7 @@ from BasicUtils import UpdateCallback
 import const
 from gen.plug import PluginManager, ImportPlugin
 import libgrampsxml
+from libmixin import GrampsDbMixin
 
 #-------------------------------------------------------------------------
 #
@@ -82,6 +83,10 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, callback=None, cl=0):
+
+    if GrampsDbMixin not in database.__class__.__bases__:
+        database.__class__.__bases__ = (GrampsDbMixin,) +  \
+                                        database.__class__.__bases__
 
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)

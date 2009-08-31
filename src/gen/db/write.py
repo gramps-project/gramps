@@ -1102,8 +1102,6 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         if not obj.handle:
             obj.handle = self.create_id()
         commit_func(obj, transaction)
-        if obj.__class__.__name__ == 'Person':
-            self.genderStats.count_person (obj)
         return obj.handle
 
     def add_person(self, person, transaction, set_gid=True):
@@ -1113,9 +1111,11 @@ class GrampsDBDir(GrampsDbRead, Callback, UpdateCallback):
         
         If not set_gid, then gramps_id is not set.
         """
-        return self.__add_object(person, transaction, 
+        handle = self.__add_object(person, transaction, 
                     self.find_next_person_gramps_id if set_gid else None, 
                     self.commit_person)
+        self.genderStats.count_person(person)
+        return handle
 
     def add_family(self, family, transaction, set_gid=True):
         """

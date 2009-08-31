@@ -644,7 +644,7 @@ class ViewManager(CLIManager):
         """
         import GrampsDbUtils
 
-        if self.dbstate.db.undoindex >= 0:
+        if self.dbstate.db.has_changed:
             self.uistate.set_busy_cursor(1)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
