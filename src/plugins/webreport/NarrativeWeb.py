@@ -718,14 +718,19 @@ class BasePage(object):
         # return section to its caller
         return section
 
-    def write_footer(self):
+    def write_footer(self, bottom=True):
         """
         Will create and display the footer section of each page...
+
+        @param: bottom -- whether to specify location of footer section
         """
         db = self.report.database
 
         # begin footer division
-        with Html('div', id='footer') as section:
+        with Html('div', id='footer') as footer:
+
+            # specify footer location or not?
+            footer.attr += ' class="bottom"' if bottom else ' class="nobottom"' 
 
             footer_note = self.report.options['footernote']
             if footer_note:
@@ -733,7 +738,7 @@ class BasePage(object):
                 note_text = self.get_note_format(note)
 
                 user_footer = Html('div', id='user_footer')
-                section += user_footer
+                footer += user_footer
  
                 # attach note
                 user_footer += note_text
@@ -748,13 +753,17 @@ class BasePage(object):
             if self.report.options['linkhome']:
                 home_person = db.get_default_person()
                 if home_person:
-                    home_person_url = self.report.build_url_fname_html(home_person.handle, 'ppl', self.up)
+                    home_person_url = self.report.build_url_fname_html(
+                        home_person.handle, 
+                        'ppl', 
+                        self.up)
+
                     home_person_name = self.get_name(home_person)
                     msg += _(' Created for <a href="%s">%s</a>') % (
                                 home_person_url, home_person_name)
 
             # creation date
-            section += Html('p', msg, id='createdate')
+            footer += Html('p', msg, id='createdate')
 
             # get copyright license for all pages
             copy_nr = self.report.copyright
@@ -771,10 +780,10 @@ class BasePage(object):
                 fname = '/'.join(["images", "somerights20.gif"])
                 url = self.report.build_url_fname(fname, None, self.up)
                 text = _CC[copy_nr] % {'gif_fname' : url}
-            section += Html('p', text, id='copyright')
+            footer += Html('p', text, id='copyright')
 
-        # return footer to its caller
-        return section
+        # return footer to its callers
+        return footer
 
     def write_header(self, title):
         """
@@ -3089,7 +3098,7 @@ class ContactPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for porcessing

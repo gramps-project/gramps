@@ -59,7 +59,9 @@ Females     Web_Gender_Female.png
 body {
     color: #000;
     margin: 0 auto;
+    padding: 88px 0 60px 0;
     background-color: #FFF;
+    font-family: Arial, sans, sans-serif, Helvetica;
 }
 div {
     margin:0;
@@ -189,18 +191,6 @@ span.preposition {
 .grampsid {
     font:normal .8em/1.2em monospace;
     color:#000;
-}
-
-/* NarrativeWeb 
------------------------------------------------------- */
-body#NarrativeWeb {
-    font-family: Arial, sans, sans-serif, Helvetica;
-}
-#body#NarrativeWeb .nobottom {
-    padding: 88px 0 0 0;
-}
-#body#NarrativeWeb .bottom {
-    padding: 88px 0 60px 0;
 }
 
 /* Header
