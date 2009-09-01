@@ -5543,7 +5543,7 @@ class NavWebOptions(MenuReportOptions):
         inc_events.set_help(_('Add a complete events list and relevant pages or not'))
         menu.add_option(category_name, 'inc_events', inc_events)
 
-        inc_repository = BooleanOption(_('Include Repository Pages'), False)
+        inc_repository = BooleanOption(_('Include repository pages'), False)
         inc_repository.set_help(_('Whether to include the Repository Pages or not?'))
         menu.add_option(category_name, 'inc_repository', inc_repository)
 
