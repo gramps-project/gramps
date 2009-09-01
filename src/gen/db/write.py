@@ -51,14 +51,12 @@ from sys import maxint
 #-------------------------------------------------------------------------
 from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
                      MediaObject, Repository, Note)
-from gen.db import (GrampsDbRead, BSDDBTxn)
-from txn import GrampsDbTxn
-from undoredo import GrampsDbUndoBSDDB as GrampsDbUndo
+from gen.db import (GrampsDbRead, BSDDBTxn, GrampsDbTxn, GrampsCursor,
+                    FileVersionError, FileVersionDeclineToUpgrade,
+                    GrampsDbUndoBSDDB as GrampsDbUndo)
 from gen.db.dbconst import *
 from gen.utils.callback import Callback
 from BasicUtils import UpdateCallback
-from gen.db.cursor import GrampsCursor
-from gen.db.exceptions import FileVersionError, FileVersionDeclineToUpgrade
 import Errors
 from QuestionDialog import QuestionDialog2
 
