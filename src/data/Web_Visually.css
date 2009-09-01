@@ -813,13 +813,12 @@ table.exiflist tr td.ColumnValue {
 /* Download 
 ----------------------------------------------------- */
 #Download { 
-    padding-bottom:2cm;
-    padding-left:.5cm;
-    padding-right:.5cm;
-    height:390px;
+    margin: 0;
+    padding: 0 0.5cm 0 0.5cm;
 }
 table.download {
-    padding-top:2cm;
+    padding: 0;
+    margin: 2cm 0 2cm 0;
     border:solid 2px #000;
     width:100%;
     nackground-color:#D8F3D6;

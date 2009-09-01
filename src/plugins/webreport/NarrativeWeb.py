@@ -2964,6 +2964,7 @@ class DownloadPage(BasePage):
         if not dlfname1 and not dlfname2:
             return
 
+        # has to be False for some problem with stylesheet
         of = self.report.create_file("download")
         downloadpage, body = self.write_header(_('Download'), False)
 
@@ -2975,10 +2976,7 @@ class DownloadPage(BasePage):
             if downloadnote:
                 note = db.get_note_from_gramps_id(downloadnote)
                 note_text = self.get_note_format(note)
-                download += note_text
-
-            # add clearline before beginning table
-            download += fullclear   
+                download += Html('p', note_text, id="description")
 
             # begin download table
             with Html('table', class_='infolist download') as table:
