@@ -123,27 +123,26 @@ from libhtmlbackend import HtmlBackend
 # Translatable strings for variables within this plugin
 # gettext carries a huge footprint with it.
 AHEAD = _('Attributes')
+CITY = _('City')
+COUNTY = _('County')
+COUNTRY = _('Country')
 DHEAD = _('Date')
 DESCRHEAD = _('Description')
-EHEAD = _('Type')
-NHEAD = _('Notes')
-PHEAD = _('Place')
-SHEAD = _('Sources')
-THEAD = _('Type')
-VHEAD = _('Value')
-STREET = _('Street')
-CITY = _('City')
-PARISH = _('Church Parish')
-COUNTY = _('County')
-STATE = _('State/ Province')
-COUNTRY = _('Country')
-POSTAL = _('Postal Code')
-PHONE = _('Phone')
-LONGITUDE = _('Longitude')
 LATITUDE = _('Latitude')
 LOCATIONS = _('Alternate Locations')
-TMPL = _('Temple')
+LONGITUDE = _('Longitude')
+NHEAD = _('Notes')
+PARISH = _('Church Parish')
+PHEAD = _('Place')
+PHONE = _('Phone')
+POSTAL = _('Postal Code')
+SHEAD = _('Sources')
 ST = _('Status')
+STATE = _('State/ Province')
+STREET = _('Street')
+THEAD = _('Type')
+TMPL = _('Temple')
+VHEAD = _('Value')
 
 # define clear blank line for proper styling
 fullclear = Html('div', class_='fullclear', inline=True)
@@ -718,11 +717,11 @@ class BasePage(object):
         # return section to its caller
         return section
 
-    def write_footer(self, bottom=True):
+    def write_footer(self, location):
         """
         Will create and display the footer section of each page...
 
-        @param: bottom -- whether to specify location of footer section
+        @param: bottom -- whether to specify location of footer section or not?
         """
         db = self.report.database
 
@@ -730,7 +729,7 @@ class BasePage(object):
         with Html('div', id='footer') as footer:
 
             # specify footer location or not?
-            footer.attr += ' class="bottom"' if bottom else ' class="nobottom"' 
+            footer.attr += ' class="location"' if location else ' class="nolocation"' 
 
             footer_note = self.report.options['footernote']
             if footer_note:
@@ -785,7 +784,7 @@ class BasePage(object):
         # return footer to its callers
         return footer
 
-    def write_header(self, title):
+    def write_header(self, title, location):
         """
         Note. 'title' is used as currentsection in the navigation links and
         as part of the header title.
@@ -804,6 +803,10 @@ class BasePage(object):
                                      html_escape(title)),
                                     self.report.encoding, xmllang
                                     )
+
+        # if we have set a location for footer, then we must also set 
+        # the class here too to not have the footer padding
+        body.attr = ' class="location"' if location else ' class="nolocation"'
 
         # create additional meta tags
         meta = (Html('meta', attr = _META1) + 
@@ -836,9 +839,6 @@ class BasePage(object):
         # add additional meta and link tags
         head += meta
         head += links
-
-        # replace standard body element with custom one
-        body.attr = 'id= "NarrativeWeb"'
 
         # begin header section
         headerdiv = (Html('div', id='header') +
@@ -1376,8 +1376,13 @@ class IndividualListPage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
+        # determine if we specify the location of footer or not?
+        location = True
+        if len(person_handle_list) > 6:
+            location = False 
+
         of = self.report.create_file("individuals")
-        indlistpage, body = self.write_header(_('Individuals'))
+        indlistpage, body = self.write_header(_('Individuals'), location)
 
         # begin Individuals division
         with Html('div', class_='content', id='Individuals') as section:
@@ -1550,7 +1555,7 @@ class IndividualListPage(BasePage):
 
         # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1569,9 +1574,14 @@ class SurnamePage(BasePage):
         showpartner = report.options['showpartner']
         showparents = report.options['showparents']
 
+        # determine location of footer or not?
+        location = True
+        if len(person_handle_list) > 6:
+            location = False
+
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
-        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname))
+        surnamepage, body = self.write_header("%s - %s" % (_('Surname'), surname), location)
 
         # begin SurnameDetail division
         with Html('div', id='SurnameDetail', class_='contente') as surnamedetail:
@@ -1706,7 +1716,7 @@ class SurnamePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1720,8 +1730,13 @@ class PlaceListPage(BasePage):
         self.src_list = src_list        # TODO verify that this is correct
         db = report.database
 
+        # determine the location of footer or not?
+        location = True
+        if len(place_handles) > 6: 
+            location = False
+
         of = self.report.create_file("places")
-        placelistpage, body = self.write_header(_('Places'))
+        placelistpage, body = self.write_header(_('Places'), location)
 
         # begin places division
         with Html('div', class_='content', id='Places') as section:
@@ -1791,7 +1806,7 @@ class PlaceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1807,10 +1822,11 @@ class PlacePage(BasePage):
         BasePage.__init__(self, report, title, place.gramps_id)
         self.src_list = src_list        # TODO verify that this is correct
 
+        # we are specifying the location of footer
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        placepage, body = self.write_header("%s - %s" % (_('Places'), self.page_title))
+        placepage, body = self.write_header(_('Places'), True)
 
         # begin PlaceDetail Division
         with Html('div', class_='content', id='PlaceDetail') as placedetail:
@@ -1887,7 +1903,8 @@ class PlacePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        # we are not specifying the location of footer as there is too much info 
+        footer = self.write_footer(True)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -1900,8 +1917,13 @@ class EventListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # determine if we specify location of footer or not?
+        location = True
+        if len(event_dict) > 6:
+            location = False
+
         of = self.report.create_file("events")
-        eventslistpage, body = self.write_header(_('Events'))
+        eventslistpage, body = self.write_header(_('Events'), location)
 
         # begin events list  division
         with Html('div', class_='content', id='EventList') as eventlist:
@@ -1928,7 +1950,7 @@ class EventListPage(BasePage):
                 thead += trow
 
                 for (label, colclass) in [
-                    (EHEAD,              'Type'),
+                    (THEAD,              'Type'),
                     (DHEAD,             'Date'), 
                     (DESCRHEAD,    'Description'),
                     (_('Person'),       'Person') ]:
@@ -1940,7 +1962,7 @@ class EventListPage(BasePage):
 
         # and clearline for proper styling
         # and footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page ut for processing
@@ -2002,7 +2024,7 @@ class EventPage(BasePage):
 
         of = self.report.create_file(evt_ref.ref, 'evt')
         self.up = True
-        eventpage, body = self.write_header(_('Events'))
+        eventpage, body = self.write_header(_('Events'), True)
 
         # start event page division
         with Html('div', class_='content', id='EventDetail') as eventdetail:
@@ -2057,7 +2079,8 @@ class EventPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        # specified location of footer 
+        footer = self.write_footer(True)
         body += (fullclear, footer) 
 
         # send page out for processing
@@ -2155,7 +2178,8 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title))
+        # there is usually too much information on these pages?
+        mediapage, body = self.write_header("%s - %s" % (_('Media'), self.page_title), False)
 
         # begin GalleryDetail division
         mediadetail = Html('div', class_='content', id='GalleryDetail')
@@ -2382,7 +2406,9 @@ class MediaPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        # not specifying the location of footer because there is usually
+        # a lot of information on the media pages  
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2457,12 +2483,17 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # determine if we specify location of footer or not?
+        location = True 
+        if len(person_handle_list) > 6:
+            location = False
+
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            surnamelistpage, body = self.write_header(_('Surnames'))
+            surnamelistpage, body = self.write_header(_('Surnames'), location)
         else:
             of = self.report.create_file("surnames_count")
-            surnamelistpage, body = self.write_header(_('Surnames by person count'))
+            surnamelistpage, body = self.write_header(_('Surnames by person count'), location)
 
         # begin surnames division
         with Html('div', class_='content', id='surnames') as surnamelist:
@@ -2570,7 +2601,7 @@ class SurnameListPage(BasePage):
 
         # create footer section
         # add clearline for proper styling
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2595,15 +2626,21 @@ class IntroductionPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # determine if we specify the location of the footer or not on image?
+        location = True
+        introimg = report.add_image('introimg')
+        if introimg: 
+            location = False
+
         of = self.report.create_file(report.intro_fname)
         # Note. In old NarrativeWeb.py the content_divid depended on filename.
-        intropage, body = self.write_header(_('Introduction'))
+        intropage, body = self.write_header(_('Introduction'), location)
 
         # begin Introduction division
         with Html('div', class_='content', id='Introduction') as section:
             body += section
 
-            introimg = report.add_image('introimg')
+            # introduction image is identified earlier
             if introimg is not None:
                 section += introimg
 
@@ -2617,7 +2654,7 @@ class IntroductionPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2633,14 +2670,20 @@ class HomePage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # determine the location of footer or not by image?
+        homeimg = report.add_image('homeimg')
+        location = True
+        if homeimg:
+            location = False 
+
         of = self.report.create_file("index")
-        homepage, body = self.write_header(_('Home'))
+        homepage, body = self.write_header(_('Home'), location)
 
         # begin home division
         with Html('div', class_='content', id='Home') as section:
             body += section
 
-            homeimg = report.add_image('homeimg')
+            # home page image is specified earlier...
             if homeimg is not None:
                 section += homeimg
 
@@ -2654,7 +2697,7 @@ class HomePage(BasePage):
 
          # create clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2667,15 +2710,20 @@ class SourceListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        handle_list = list(handle_set)
+        source_dict = {}
+
+        # determine if we specify location of footer or not?
+        location = True
+        if len(handle_list) > 6:
+            location = False 
+
         of = self.report.create_file("sources")
-        sourcelistpage, body = self.write_header(_('Sources'))
+        sourcelistpage, body = self.write_header(_('Sources'), location)
 
         # begin source list division
         with Html('div', class_='content', id='sources') as section:
             body += section
-
-            handle_list = list(handle_set)
-            source_dict = {}
 
             # Sort the sources
             for handle in handle_list:
@@ -2722,7 +2770,7 @@ class SourceListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2737,10 +2785,10 @@ class SourcePage(BasePage):
         source = db.get_source_from_handle(handle)
         BasePage.__init__(self, report, title, source.gramps_id)
 
+        # possibility of too much information, so no specified footer
         of = self.report.create_file(source.get_handle(), 'src')
         self.up = True
-        self.page_title = source.get_title()
-        sourcepage, body = self.write_header("%s - %s" % (_('Sources'), self.page_title))
+        sourcepage, body = self.write_header(_('Sources'),False)
 
         # begin source detail division
         with Html('div', class_='content', id='SourceDetail') as section:
@@ -2790,7 +2838,8 @@ class SourcePage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        # possibility of too much information, so no specified footer
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2803,8 +2852,9 @@ class MediaListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
 
+        # no specified footer location
         of = self.report.create_file("media")
-        medialistpage, body = self.write_header(_('Media'))
+        medialistpage, body = self.write_header(_('Media'), False)
 
         # begin gallery division
         with Html('div', class_='content', id='Gallery') as section:
@@ -2859,7 +2909,8 @@ class MediaListPage(BasePage):
 
         # add footer section
         # add clearline for proper styling
-        footer = self.write_footer()
+        # no specified footer location
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -2914,7 +2965,7 @@ class DownloadPage(BasePage):
             return
 
         of = self.report.create_file("download")
-        downloadpage, body = self.write_header(_('Download'))
+        downloadpage, body = self.write_header(_('Download'), False)
 
         # begin download page and table
         with Html('div', class_='content', id='Download') as download:
@@ -3033,7 +3084,8 @@ class DownloadPage(BasePage):
 
         # clear line for proper styling
         # create footer section
-        footer = self.write_footer()
+        # a specified footer location
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -3047,7 +3099,7 @@ class ContactPage(BasePage):
         db = report.database
 
         of = self.report.create_file("contact")
-        contactpage, body = self.write_header(_('Contact'))
+        contactpage, body = self.write_header(_('Contact'), False)
 
         # begin contact division
         with Html('div', class_='content', id='Contact') as section:
@@ -3057,6 +3109,7 @@ class ContactPage(BasePage):
             with Html('div', id='summaryarea') as summaryarea:
                 section  += summaryarea
 
+                # contact image is specified earlier
                 contactimg = report.add_image('contactimg', 200)
                 if contactimg is not None:
                     summaryarea += contactimg
@@ -3129,7 +3182,8 @@ class IndividualPage(BasePage):
 
         of = self.report.create_file(person.handle, 'ppl')
         self.up = True
-        indivdetpage, body = self.write_header(self.sort_name)
+        # there is way too much information on this page, so False
+        indivdetpage, body = self.write_header(self.get_name(person), False)
 
         # begin individualdetail division
         with Html('div', class_='content', id='IndividualDetail') as individualdetail:
@@ -3227,7 +3281,8 @@ class IndividualPage(BasePage):
 
         # add clearline for proper styling
         # create footer section
-        footer = self.write_footer()
+        # there is way too much information here to gie footer a location...
+        footer = self.write_footer(False)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -4277,13 +4332,12 @@ class IndividualPage(BasePage):
         trow = Html('tr')
 
         for (label, colclass) in [
-            (EHEAD,              'Type'),
-            (DHEAD,             'Date'), 
-            (PHEAD,             'Place'),
+            (THEAD,        'Type'),
+            (DHEAD,        'Date'), 
+            (PHEAD,        'Place'),
             (DESCRHEAD,    'Description'),
-            (SHEAD,             'Sources'),
-            (NHEAD,            'Notes') ]:
-
+            (SHEAD,        'Sources'),
+            (NHEAD,        'Notes') ]:
             trow += Html('th', label, class_ = 'Column%s' % colclass, inline = True)
 
         # return header row to its caller
@@ -4403,10 +4457,15 @@ class RepositoryListPage(BasePage):
 
     def __init__(self, report, title, repos_dict, keys):
         BasePage.__init__(self, report, title)
-
         db = report.database
+
+        # determine if we specify the location of footer or not?
+        location = True
+        if len(repos_dict) > 6:
+            location = False
+
         of = self.report.create_file('repositories')
-        repolistpage, body = self.write_header(_('Repositories'))
+        repolistpage, body = self.write_header(_('Repositories'), location)
 
         # begin RepositoryList division
         with Html('div', class_='content', id='RepositoryList') as repositorylist:
@@ -4452,7 +4511,6 @@ class RepositoryListPage(BasePage):
                         if rtype == xtype[2]:
                             rtype = xtype[1]
                             break
-
                     if rtype:
                         tcell = Html('td', rtype, class_='ColumnType', inline=True)
                         trow += tcell
@@ -4466,7 +4524,7 @@ class RepositoryListPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        footer = self.write_footer(location)
         body += (fullclear, footer)
 
         # send page out for processing
@@ -4484,7 +4542,7 @@ class RepositoryPage(BasePage):
 
         of = self.report.create_file(handle, 'repo')
         self.up = True
-        repositorypage, body = self.write_header('Repositories')
+        repositorypage, body = self.write_header(_('Repositories'), True)
 
         # begin RepositoryDetail division and page title
         with Html('div', class_='content', id='RepositoryDetail') as repositorydetail:
@@ -4529,7 +4587,8 @@ class RepositoryPage(BasePage):
 
         # add clearline for proper styling
         # add footer section
-        footer = self.write_footer()
+        # a specified location of footer
+        footer = self.write_footer(True)
         body += (fullclear, footer)
 
         # send page out for processing
