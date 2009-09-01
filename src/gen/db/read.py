@@ -596,6 +596,8 @@ class GrampsDbRead(GrampsDbBase, Callback):
         raise NotImplementedError
         
     def get_number_of_records(self, table):
+        if not self.db_is_open:
+            return 0
         if self.txn is None:
             return len(table)
         else:
@@ -605,11 +607,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         Return the number of people currently in the database.
         """
-        if self.db_is_open:
-            return self.get_number_of_records(self.person_map)
-            #return len(self.person_map)
-        else:
-            return 0
+        return self.get_number_of_records(self.person_map)
 
     def get_number_of_families(self):
         """
@@ -639,7 +637,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
         """
         Return the number of media objects currently in the database.
         """
-        return len(self.media_map)
+        return self.get_number_of_records(self.media_map)
 
     def get_number_of_repositories(self):
         """
@@ -664,6 +662,14 @@ class GrampsDbRead(GrampsDbBase, Callback):
         If sort_handles is True, the list is sorted by surnames.
         """
         if self.db_is_open:
+            handle_list = self.all_handles(self.person_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbyperson_key)
+            return handle_list
+        return []
+
+        # Old code: does the same as above, but more complicated
+        if self.db_is_open:
             if sort_handles:
                 with self.get_person_cursor() as cursor:
                     slist = sorted((data[3][5], key) for key, data in cursor)
@@ -672,24 +678,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
                 return self.all_handles(self.person_map)
         return []
 
-    def iter_person_handles(self):
-        """
-        Return an iterator over handles for Persons in the database
-        """
-        with self.get_person_cursor() as cursor:
-            for key, data in cursor:
-                yield key
-                
-    def iter_people(self):
-        """
-        Return an iterator over handles and objects for Persons in the database
-        """
-        with self.get_person_cursor() as cursor:
-            for handle, data in cursor:
-                person = Person()
-                person.unserialize(data)
-                yield handle, person
-
     def get_place_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Place in
@@ -697,6 +685,15 @@ class GrampsDbRead(GrampsDbBase, Callback):
         
         If sort_handles is True, the list is sorted by Place title.
         """
+
+        if self.db_is_open:
+            handle_list = self.all_handles(self.place_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbyplace_key)
+            return handle_list
+        return []
+
+        # Old code: does the same as above, but more complicated
         if self.db_is_open:
             if sort_handles:
                 with self.get_place_cursor() as cursor:
@@ -706,14 +703,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
                 return self.all_handles(self.place_map)
         return []
         
-    def iter_place_handles(self):
-        """
-        Return an iterator over handles for Places in the database
-        """
-        with self.get_place_cursor() as cursor:
-            for key, data in cursor:
-                yield key
-                
     def get_source_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each Source in
@@ -728,14 +717,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
             return handle_list
         return []
         
-    def iter_source_handles(self):
-        """
-        Return an iterator over handles for Sources in the database
-        """
-        with self.get_source_cursor() as cursor:
-            for key, data in cursor:
-                yield key
-                
     def get_media_object_handles(self, sort_handles=True):
         """
         Return a list of database handles, one handle for each MediaObject in
@@ -750,14 +731,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
             return handle_list
         return []
         
-    def iter_media_object_handles(self):
-        """
-        Return an iterator over handles for Media in the database
-        """
-        with self.get_media_cursor() as cursor:
-            for key, data in cursor:
-                yield key
-
     def get_event_handles(self):
         """
         Return a list of database handles, one handle for each Event in the 
@@ -767,14 +740,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
             return self.all_handles(self.event_map)
         return []
         
-    def iter_event_handles(self):
-        """
-        Return an iterator over handles for Events in the database
-        """
-        with self.get_event_cursor() as cursor:
-            for key, data in cursor:
-                yield key
-
     def get_family_handles(self):
         """
         Return a list of database handles, one handle for each Family in
@@ -784,14 +749,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
             return self.all_handles(self.family_map)
         return []
         
-    def iter_family_handles(self):
-        """
-        Return an iterator over handles for Families in the database
-        """
-        with self.get_family_cursor() as cursor:
-            for key, data in cursor:
-                yield key        
-
     def get_repository_handles(self):
         """
         Return a list of database handles, one handle for each Repository in
@@ -801,14 +758,6 @@ class GrampsDbRead(GrampsDbBase, Callback):
             return self.all_handles(self.repository_map)
         return []
         
-    def iter_repository_handles(self):
-        """
-        Return an iterator over handles for Repositories in the database
-        """
-        with self.get_repository_cursor() as cursor:
-            for key, data in cursor:
-                yield key 
-
     def get_note_handles(self):
         """
         Return a list of database handles, one handle for each Note in the 
@@ -817,14 +766,50 @@ class GrampsDbRead(GrampsDbBase, Callback):
         if self.db_is_open:
             return self.all_handles(self.note_map)
         return []
-        
-    def iter_note_handles(self):
+
+    def _f(curs_):
         """
-        Return an iterator over handles for Notes in the database
+        Closure that returns an iterator over handles in the database.
         """
-        with self.get_note_cursor() as cursor:
-            for key, data in cursor:
-                yield key
+        def g(self):
+            with curs_(self) as cursor:
+                for key, data in cursor:
+                    yield key
+        return g
+
+    # Use closure to define iterators for each primary object type
+
+    iter_person_handles       = _f(get_person_cursor)
+    iter_family_handles       = _f(get_family_cursor)
+    iter_event_handles        = _f(get_event_cursor)
+    iter_place_handles        = _f(get_place_cursor)
+    iter_source_handles       = _f(get_source_cursor)
+    iter_media_object_handles = _f(get_media_cursor)
+    iter_repository_handles   = _f(get_repository_cursor)
+    iter_note_handles         = _f(get_note_cursor)
+    
+    def _f(curs_, obj_):
+        """
+        Closure that returns an iterator over objects in the database.
+        """
+        def g(self):
+            with curs_(self) as cursor:
+                for key, data in cursor:
+                    obj = obj_()
+                    obj.unserialize(data)
+                    yield obj
+        return g
+
+    # Use closure to define iterators for each primary object type
+    
+    iter_people        = _f(get_person_cursor, Person)
+    iter_families      = _f(get_family_cursor, Family)
+    iter_events        = _f(get_event_cursor, Event)
+    iter_places        = _f(get_place_cursor, Place)
+    iter_sources       = _f(get_source_cursor, Source)
+    iter_media_objects = _f(get_media_cursor, MediaObject)
+    iter_repositories  = _f(get_repository_cursor, Repository)
+    iter_notes         = _f(get_note_cursor, Note)
 
     def get_gramps_ids(self, obj_key):
         key2table = {
@@ -876,7 +861,7 @@ class GrampsDbRead(GrampsDbBase, Callback):
         else:
             prefix_var = default+"%04d" # not a string or empty string
         return prefix_var
-    
+        
     def set_person_id_prefix(self, val):
         """
         Set the naming template for GRAMPS Person ID values. 
@@ -1273,6 +1258,9 @@ class GrampsDbRead(GrampsDbBase, Callback):
         Return True if the handle exists in the current Source database.
         """
         return self.__has_handle(self.source_map, handle)
+
+    def __sortbyperson_key(self, person):
+        return locale.strxfrm(self.person_map.get(str(person))[3][5])
 
     def __sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 
