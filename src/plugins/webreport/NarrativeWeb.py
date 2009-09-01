@@ -4991,9 +4991,9 @@ class NavWebReport(Report):
         EventListPage(self, self.title, event_dict)
 
         for (sort_name, person, event_list) in event_dict:
+            self.progress.step()   
 
             for evt_type, sort_date, event, evt_ref in event_list:
-                self.progress.step()    
 
                 # create individual event page 
                 EventPage(self, self.title, evt_type, event, evt_ref, person)
