@@ -45,8 +45,9 @@ def fill_combo(combo, data_list):
     """
     store = gtk.ListStore(gobject.TYPE_STRING)
 
-    for data in [ item for item in data_list if item ]:
-        store.append(row=[data])
+    for data in data_list:
+        if data:
+            store.append(row=[data])
     
     combo.set_model(store)
     combo.set_text_column(0)
@@ -60,11 +61,13 @@ def fill_entry(entry, data_list):
     """
     Fill a entry with completion data
     """
+
     store = gtk.ListStore(gobject.TYPE_STRING)
 
-    for data in [ item for item in data_list if item ]:
-        store.append(row=[data])
-        
+    for data in data_list:
+        if data:
+            store.append(row=[data])
+
     completion = gtk.EntryCompletion()
     completion.set_model(store)
     completion.set_minimum_key_length(1)
@@ -162,7 +165,7 @@ class StandardCustomSelector(object):
                 self.store.append(row=[key, self.mapping[key]])
                 if key == self.active_key:
                     self.active_index = index
-                index = index + 1
+                index += 1
 
         if self.additional:
             for event_type in self.additional:
@@ -176,7 +179,7 @@ class StandardCustomSelector(object):
                     self.store.append(row=[int(event_type), str(event_type)])
                 if key == self.active_key:
                     self.active_index = index
-                index = index + 1
+                index += 1
 
     def by_value(self, first, second):
         """
